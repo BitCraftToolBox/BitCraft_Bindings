@@ -136,6 +136,7 @@ export type TransferPlayerMsg = {
   playerHousingState: __PlayerHousingState | undefined,
   travelerTaskStates: __TravelerTaskState[],
   extractOutcomeState: __ExtractOutcomeState,
+  undeployedDeployableStates: __DeployableState[],
 };
 
 /**
@@ -201,6 +202,7 @@ export namespace TransferPlayerMsg {
       new ProductTypeElement("playerHousingState", AlgebraicType.createOptionType(__PlayerHousingState.getTypeScriptAlgebraicType())),
       new ProductTypeElement("travelerTaskStates", AlgebraicType.createArrayType(__TravelerTaskState.getTypeScriptAlgebraicType())),
       new ProductTypeElement("extractOutcomeState", __ExtractOutcomeState.getTypeScriptAlgebraicType()),
+      new ProductTypeElement("undeployedDeployableStates", AlgebraicType.createArrayType(__DeployableState.getTypeScriptAlgebraicType())),
     ]);
   }
 

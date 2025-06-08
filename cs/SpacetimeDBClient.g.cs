@@ -210,6 +210,7 @@ namespace SpacetimeDB.Types
             AddTable(ProjectSiteState = new(conn));
             AddTable(RegionConnectionInfo = new(conn));
             AddTable(RegionPopulationInfo = new(conn));
+            AddTable(RegionSignInParameters = new(conn));
             AddTable(RentState = new(conn));
             AddTable(ResourceClumpDesc = new(conn));
             AddTable(ResourceCount = new(conn));
@@ -697,11 +698,13 @@ namespace SpacetimeDB.Types
                 "admin_skip_queue_identity" => BSATNHelpers.Decode<Reducer.AdminSkipQueueIdentity>(encodedArgs),
                 "admin_skip_queue_name" => BSATNHelpers.Decode<Reducer.AdminSkipQueueName>(encodedArgs),
                 "admin_update_granted_hub_item_state" => BSATNHelpers.Decode<Reducer.AdminUpdateGrantedHubItemState>(encodedArgs),
+                "admin_update_sign_in_parameters" => BSATNHelpers.Decode<Reducer.AdminUpdateSignInParameters>(encodedArgs),
                 "authenticate" => BSATNHelpers.Decode<Reducer.Authenticate>(encodedArgs),
                 "cheat_empire_siege_add_supplies" => BSATNHelpers.Decode<Reducer.CheatEmpireSiegeAddSupplies>(encodedArgs),
                 "cheat_empire_siege_cancel" => BSATNHelpers.Decode<Reducer.CheatEmpireSiegeCancel>(encodedArgs),
                 "cheat_player_set_name" => BSATNHelpers.Decode<Reducer.CheatPlayerSetName>(encodedArgs),
                 "cheat_shards_grant" => BSATNHelpers.Decode<Reducer.CheatShardsGrant>(encodedArgs),
+                "clear_staged_static_data" => BSATNHelpers.Decode<Reducer.ClearStagedStaticData>(encodedArgs),
                 "commit_staged_static_data" => BSATNHelpers.Decode<Reducer.CommitStagedStaticData>(encodedArgs),
                 "current_version" => BSATNHelpers.Decode<Reducer.CurrentVersion>(encodedArgs),
                 "empire_change_emblem" => BSATNHelpers.Decode<Reducer.EmpireChangeEmblem>(encodedArgs),
@@ -849,6 +852,7 @@ namespace SpacetimeDB.Types
                 "import_progressive_action_state" => BSATNHelpers.Decode<Reducer.ImportProgressiveActionState>(encodedArgs),
                 "import_project_site_state" => BSATNHelpers.Decode<Reducer.ImportProjectSiteState>(encodedArgs),
                 "import_region_connection_info" => BSATNHelpers.Decode<Reducer.ImportRegionConnectionInfo>(encodedArgs),
+                "import_region_sign_in_parameters" => BSATNHelpers.Decode<Reducer.ImportRegionSignInParameters>(encodedArgs),
                 "import_rent_state" => BSATNHelpers.Decode<Reducer.ImportRentState>(encodedArgs),
                 "import_resource_clump_desc" => BSATNHelpers.Decode<Reducer.ImportResourceClumpDesc>(encodedArgs),
                 "import_resource_count" => BSATNHelpers.Decode<Reducer.ImportResourceCount>(encodedArgs),
@@ -1009,11 +1013,13 @@ namespace SpacetimeDB.Types
                 Reducer.AdminSkipQueueIdentity args => Reducers.InvokeAdminSkipQueueIdentity(eventContext, args),
                 Reducer.AdminSkipQueueName args => Reducers.InvokeAdminSkipQueueName(eventContext, args),
                 Reducer.AdminUpdateGrantedHubItemState args => Reducers.InvokeAdminUpdateGrantedHubItemState(eventContext, args),
+                Reducer.AdminUpdateSignInParameters args => Reducers.InvokeAdminUpdateSignInParameters(eventContext, args),
                 Reducer.Authenticate args => Reducers.InvokeAuthenticate(eventContext, args),
                 Reducer.CheatEmpireSiegeAddSupplies args => Reducers.InvokeCheatEmpireSiegeAddSupplies(eventContext, args),
                 Reducer.CheatEmpireSiegeCancel args => Reducers.InvokeCheatEmpireSiegeCancel(eventContext, args),
                 Reducer.CheatPlayerSetName args => Reducers.InvokeCheatPlayerSetName(eventContext, args),
                 Reducer.CheatShardsGrant args => Reducers.InvokeCheatShardsGrant(eventContext, args),
+                Reducer.ClearStagedStaticData args => Reducers.InvokeClearStagedStaticData(eventContext, args),
                 Reducer.CommitStagedStaticData args => Reducers.InvokeCommitStagedStaticData(eventContext, args),
                 Reducer.CurrentVersion args => Reducers.InvokeCurrentVersion(eventContext, args),
                 Reducer.EmpireChangeEmblem args => Reducers.InvokeEmpireChangeEmblem(eventContext, args),
@@ -1161,6 +1167,7 @@ namespace SpacetimeDB.Types
                 Reducer.ImportProgressiveActionState args => Reducers.InvokeImportProgressiveActionState(eventContext, args),
                 Reducer.ImportProjectSiteState args => Reducers.InvokeImportProjectSiteState(eventContext, args),
                 Reducer.ImportRegionConnectionInfo args => Reducers.InvokeImportRegionConnectionInfo(eventContext, args),
+                Reducer.ImportRegionSignInParameters args => Reducers.InvokeImportRegionSignInParameters(eventContext, args),
                 Reducer.ImportRentState args => Reducers.InvokeImportRentState(eventContext, args),
                 Reducer.ImportResourceClumpDesc args => Reducers.InvokeImportResourceClumpDesc(eventContext, args),
                 Reducer.ImportResourceCount args => Reducers.InvokeImportResourceCount(eventContext, args),

@@ -48,6 +48,8 @@ import { AdminSkipQueueName } from "./admin_skip_queue_name_reducer.ts";
 export { AdminSkipQueueName };
 import { AdminUpdateGrantedHubItemState } from "./admin_update_granted_hub_item_state_reducer.ts";
 export { AdminUpdateGrantedHubItemState };
+import { AdminUpdateSignInParameters } from "./admin_update_sign_in_parameters_reducer.ts";
+export { AdminUpdateSignInParameters };
 import { Authenticate } from "./authenticate_reducer.ts";
 export { Authenticate };
 import { CheatEmpireSiegeAddSupplies } from "./cheat_empire_siege_add_supplies_reducer.ts";
@@ -58,6 +60,8 @@ import { CheatPlayerSetName } from "./cheat_player_set_name_reducer.ts";
 export { CheatPlayerSetName };
 import { CheatShardsGrant } from "./cheat_shards_grant_reducer.ts";
 export { CheatShardsGrant };
+import { ClearStagedStaticData } from "./clear_staged_static_data_reducer.ts";
+export { ClearStagedStaticData };
 import { CommitStagedStaticData } from "./commit_staged_static_data_reducer.ts";
 export { CommitStagedStaticData };
 import { CurrentVersion } from "./current_version_reducer.ts";
@@ -352,6 +356,8 @@ import { ImportProjectSiteState } from "./import_project_site_state_reducer.ts";
 export { ImportProjectSiteState };
 import { ImportRegionConnectionInfo } from "./import_region_connection_info_reducer.ts";
 export { ImportRegionConnectionInfo };
+import { ImportRegionSignInParameters } from "./import_region_sign_in_parameters_reducer.ts";
+export { ImportRegionSignInParameters };
 import { ImportRentState } from "./import_rent_state_reducer.ts";
 export { ImportRentState };
 import { ImportResourceClumpDesc } from "./import_resource_clump_desc_reducer.ts";
@@ -994,6 +1000,8 @@ import { RegionConnectionInfoTableHandle } from "./region_connection_info_table.
 export { RegionConnectionInfoTableHandle };
 import { RegionPopulationInfoTableHandle } from "./region_population_info_table.ts";
 export { RegionPopulationInfoTableHandle };
+import { RegionSignInParametersTableHandle } from "./region_sign_in_parameters_table.ts";
+export { RegionSignInParametersTableHandle };
 import { RentStateTableHandle } from "./rent_state_table.ts";
 export { RentStateTableHandle };
 import { ResourceClumpDescTableHandle } from "./resource_clump_desc_table.ts";
@@ -1618,6 +1626,8 @@ import { OnEmpireBuildingDeletedMsg } from "./on_empire_building_deleted_msg_typ
 export { OnEmpireBuildingDeletedMsg };
 import { OnPlayerJoinedEmpireMsg } from "./on_player_joined_empire_msg_type.ts";
 export { OnPlayerJoinedEmpireMsg };
+import { OnPlayerLeftEmpireMsg } from "./on_player_left_empire_msg_type.ts";
+export { OnPlayerLeftEmpireMsg };
 import { OnPlayerNameSetMsg } from "./on_player_name_set_msg_type.ts";
 export { OnPlayerNameSetMsg };
 import { OnRegionPlayerCreatedMsg } from "./on_region_player_created_msg_type.ts";
@@ -1734,6 +1744,10 @@ import { RegionPopulationInfo } from "./region_population_info_type.ts";
 export { RegionPopulationInfo };
 import { RegionPopulationInfoOp } from "./region_population_info_op_type.ts";
 export { RegionPopulationInfoOp };
+import { RegionSignInParameters } from "./region_sign_in_parameters_type.ts";
+export { RegionSignInParameters };
+import { RegionSignInParametersOp } from "./region_sign_in_parameters_op_type.ts";
+export { RegionSignInParametersOp };
 import { RentState } from "./rent_state_type.ts";
 export { RentState };
 import { ResourceClumpDesc } from "./resource_clump_desc_type.ts";
@@ -3559,6 +3573,15 @@ const REMOTE_MODULE = {
         colType: RegionPopulationInfo.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    region_sign_in_parameters: {
+      tableName: "region_sign_in_parameters",
+      rowType: RegionSignInParameters.getTypeScriptAlgebraicType(),
+      primaryKey: "regionId",
+      primaryKeyInfo: {
+        colName: "regionId",
+        colType: RegionSignInParameters.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     rent_state: {
       tableName: "rent_state",
       rowType: RentState.getTypeScriptAlgebraicType(),
@@ -4039,6 +4062,10 @@ const REMOTE_MODULE = {
       reducerName: "admin_update_granted_hub_item_state",
       argsType: AdminUpdateGrantedHubItemState.getTypeScriptAlgebraicType(),
     },
+    admin_update_sign_in_parameters: {
+      reducerName: "admin_update_sign_in_parameters",
+      argsType: AdminUpdateSignInParameters.getTypeScriptAlgebraicType(),
+    },
     authenticate: {
       reducerName: "authenticate",
       argsType: Authenticate.getTypeScriptAlgebraicType(),
@@ -4058,6 +4085,10 @@ const REMOTE_MODULE = {
     cheat_shards_grant: {
       reducerName: "cheat_shards_grant",
       argsType: CheatShardsGrant.getTypeScriptAlgebraicType(),
+    },
+    clear_staged_static_data: {
+      reducerName: "clear_staged_static_data",
+      argsType: ClearStagedStaticData.getTypeScriptAlgebraicType(),
     },
     commit_staged_static_data: {
       reducerName: "commit_staged_static_data",
@@ -4647,6 +4678,10 @@ const REMOTE_MODULE = {
       reducerName: "import_region_connection_info",
       argsType: ImportRegionConnectionInfo.getTypeScriptAlgebraicType(),
     },
+    import_region_sign_in_parameters: {
+      reducerName: "import_region_sign_in_parameters",
+      argsType: ImportRegionSignInParameters.getTypeScriptAlgebraicType(),
+    },
     import_rent_state: {
       reducerName: "import_rent_state",
       argsType: ImportRentState.getTypeScriptAlgebraicType(),
@@ -5216,11 +5251,13 @@ export type Reducer = never
 | { name: "AdminSkipQueueIdentity", args: AdminSkipQueueIdentity }
 | { name: "AdminSkipQueueName", args: AdminSkipQueueName }
 | { name: "AdminUpdateGrantedHubItemState", args: AdminUpdateGrantedHubItemState }
+| { name: "AdminUpdateSignInParameters", args: AdminUpdateSignInParameters }
 | { name: "Authenticate", args: Authenticate }
 | { name: "CheatEmpireSiegeAddSupplies", args: CheatEmpireSiegeAddSupplies }
 | { name: "CheatEmpireSiegeCancel", args: CheatEmpireSiegeCancel }
 | { name: "CheatPlayerSetName", args: CheatPlayerSetName }
 | { name: "CheatShardsGrant", args: CheatShardsGrant }
+| { name: "ClearStagedStaticData", args: ClearStagedStaticData }
 | { name: "CommitStagedStaticData", args: CommitStagedStaticData }
 | { name: "CurrentVersion", args: CurrentVersion }
 | { name: "EmpireChangeEmblem", args: EmpireChangeEmblem }
@@ -5368,6 +5405,7 @@ export type Reducer = never
 | { name: "ImportProgressiveActionState", args: ImportProgressiveActionState }
 | { name: "ImportProjectSiteState", args: ImportProjectSiteState }
 | { name: "ImportRegionConnectionInfo", args: ImportRegionConnectionInfo }
+| { name: "ImportRegionSignInParameters", args: ImportRegionSignInParameters }
 | { name: "ImportRentState", args: ImportRentState }
 | { name: "ImportResourceClumpDesc", args: ImportResourceClumpDesc }
 | { name: "ImportResourceCount", args: ImportResourceCount }
@@ -5618,6 +5656,22 @@ export class RemoteReducers {
     this.connection.offReducer("admin_update_granted_hub_item_state", callback);
   }
 
+  adminUpdateSignInParameters(regionSignInParameters: RegionSignInParameters, region: number) {
+    const __args = { regionSignInParameters, region };
+    let __writer = new BinaryWriter(1024);
+    AdminUpdateSignInParameters.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("admin_update_sign_in_parameters", __argsBuffer, this.setCallReducerFlags.adminUpdateSignInParametersFlags);
+  }
+
+  onAdminUpdateSignInParameters(callback: (ctx: ReducerEventContext, regionSignInParameters: RegionSignInParameters, region: number) => void) {
+    this.connection.onReducer("admin_update_sign_in_parameters", callback);
+  }
+
+  removeOnAdminUpdateSignInParameters(callback: (ctx: ReducerEventContext, regionSignInParameters: RegionSignInParameters, region: number) => void) {
+    this.connection.offReducer("admin_update_sign_in_parameters", callback);
+  }
+
   authenticate(identity: string) {
     const __args = { identity };
     let __writer = new BinaryWriter(1024);
@@ -5696,6 +5750,18 @@ export class RemoteReducers {
 
   removeOnCheatShardsGrant(callback: (ctx: ReducerEventContext, request: CheatShardsGrantRequest) => void) {
     this.connection.offReducer("cheat_shards_grant", callback);
+  }
+
+  clearStagedStaticData() {
+    this.connection.callReducer("clear_staged_static_data", new Uint8Array(0), this.setCallReducerFlags.clearStagedStaticDataFlags);
+  }
+
+  onClearStagedStaticData(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.onReducer("clear_staged_static_data", callback);
+  }
+
+  removeOnClearStagedStaticData(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.offReducer("clear_staged_static_data", callback);
   }
 
   commitStagedStaticData() {
@@ -8034,6 +8100,22 @@ export class RemoteReducers {
     this.connection.offReducer("import_region_connection_info", callback);
   }
 
+  importRegionSignInParameters(records: RegionSignInParameters[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    ImportRegionSignInParameters.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("import_region_sign_in_parameters", __argsBuffer, this.setCallReducerFlags.importRegionSignInParametersFlags);
+  }
+
+  onImportRegionSignInParameters(callback: (ctx: ReducerEventContext, records: RegionSignInParameters[]) => void) {
+    this.connection.onReducer("import_region_sign_in_parameters", callback);
+  }
+
+  removeOnImportRegionSignInParameters(callback: (ctx: ReducerEventContext, records: RegionSignInParameters[]) => void) {
+    this.connection.offReducer("import_region_sign_in_parameters", callback);
+  }
+
   importRentState(records: RentState[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
@@ -10180,6 +10262,11 @@ export class SetReducerFlags {
     this.adminUpdateGrantedHubItemStateFlags = flags;
   }
 
+  adminUpdateSignInParametersFlags: CallReducerFlags = 'FullUpdate';
+  adminUpdateSignInParameters(flags: CallReducerFlags) {
+    this.adminUpdateSignInParametersFlags = flags;
+  }
+
   authenticateFlags: CallReducerFlags = 'FullUpdate';
   authenticate(flags: CallReducerFlags) {
     this.authenticateFlags = flags;
@@ -10203,6 +10290,11 @@ export class SetReducerFlags {
   cheatShardsGrantFlags: CallReducerFlags = 'FullUpdate';
   cheatShardsGrant(flags: CallReducerFlags) {
     this.cheatShardsGrantFlags = flags;
+  }
+
+  clearStagedStaticDataFlags: CallReducerFlags = 'FullUpdate';
+  clearStagedStaticData(flags: CallReducerFlags) {
+    this.clearStagedStaticDataFlags = flags;
   }
 
   commitStagedStaticDataFlags: CallReducerFlags = 'FullUpdate';
@@ -10933,6 +11025,11 @@ export class SetReducerFlags {
   importRegionConnectionInfoFlags: CallReducerFlags = 'FullUpdate';
   importRegionConnectionInfo(flags: CallReducerFlags) {
     this.importRegionConnectionInfoFlags = flags;
+  }
+
+  importRegionSignInParametersFlags: CallReducerFlags = 'FullUpdate';
+  importRegionSignInParameters(flags: CallReducerFlags) {
+    this.importRegionSignInParametersFlags = flags;
   }
 
   importRentStateFlags: CallReducerFlags = 'FullUpdate';
@@ -12351,6 +12448,10 @@ export class RemoteTables {
 
   get regionPopulationInfo(): RegionPopulationInfoTableHandle {
     return new RegionPopulationInfoTableHandle(this.connection.clientCache.getOrCreateTable<RegionPopulationInfo>(REMOTE_MODULE.tables.region_population_info));
+  }
+
+  get regionSignInParameters(): RegionSignInParametersTableHandle {
+    return new RegionSignInParametersTableHandle(this.connection.clientCache.getOrCreateTable<RegionSignInParameters>(REMOTE_MODULE.tables.region_sign_in_parameters));
   }
 
   get rentState(): RentStateTableHandle {

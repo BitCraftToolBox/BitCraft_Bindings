@@ -25,6 +25,7 @@ pub mod admin_skip_queue_entity_reducer;
 pub mod admin_skip_queue_identity_reducer;
 pub mod admin_skip_queue_name_reducer;
 pub mod admin_update_granted_hub_item_state_reducer;
+pub mod admin_update_sign_in_parameters_reducer;
 pub mod ai_debug_state_type;
 pub mod alert_desc_table;
 pub mod alert_desc_type;
@@ -117,6 +118,7 @@ pub mod claim_tile_cost_type;
 pub mod claim_tile_state_table;
 pub mod claim_tile_state_type;
 pub mod claim_type_type;
+pub mod clear_staged_static_data_reducer;
 pub mod climb_requirement_desc_table;
 pub mod climb_requirement_desc_type;
 pub mod closed_listing_state_table;
@@ -457,6 +459,7 @@ pub mod import_private_parameters_desc_reducer;
 pub mod import_progressive_action_state_reducer;
 pub mod import_project_site_state_reducer;
 pub mod import_region_connection_info_reducer;
+pub mod import_region_sign_in_parameters_reducer;
 pub mod import_rent_state_reducer;
 pub mod import_resource_clump_desc_reducer;
 pub mod import_resource_count_reducer;
@@ -617,6 +620,7 @@ pub mod on_claim_members_changed_msg_type;
 pub mod on_empire_building_deleted_msg_type;
 pub mod on_inter_module_message_processed_reducer;
 pub mod on_player_joined_empire_msg_type;
+pub mod on_player_left_empire_msg_type;
 pub mod on_player_name_set_msg_type;
 pub mod on_region_player_created_msg_type;
 pub mod onboarding_reward_desc_table;
@@ -715,6 +719,9 @@ pub mod region_destroy_siege_engine_msg_type;
 pub mod region_population_info_op_type;
 pub mod region_population_info_table;
 pub mod region_population_info_type;
+pub mod region_sign_in_parameters_op_type;
+pub mod region_sign_in_parameters_table;
+pub mod region_sign_in_parameters_type;
 pub mod rent_state_table;
 pub mod rent_state_type;
 pub mod resource_clump_desc_table;
@@ -962,6 +969,10 @@ pub use admin_update_granted_hub_item_state_reducer::{
     admin_update_granted_hub_item_state, set_flags_for_admin_update_granted_hub_item_state,
     AdminUpdateGrantedHubItemStateCallbackId,
 };
+pub use admin_update_sign_in_parameters_reducer::{
+    admin_update_sign_in_parameters, set_flags_for_admin_update_sign_in_parameters,
+    AdminUpdateSignInParametersCallbackId,
+};
 pub use ai_debug_state_type::AiDebugState;
 pub use alert_desc_table::*;
 pub use alert_desc_type::AlertDesc;
@@ -1064,6 +1075,10 @@ pub use claim_tile_cost_type::ClaimTileCost;
 pub use claim_tile_state_table::*;
 pub use claim_tile_state_type::ClaimTileState;
 pub use claim_type_type::ClaimType;
+pub use clear_staged_static_data_reducer::{
+    clear_staged_static_data, set_flags_for_clear_staged_static_data,
+    ClearStagedStaticDataCallbackId,
+};
 pub use climb_requirement_desc_table::*;
 pub use climb_requirement_desc_type::ClimbRequirementDesc;
 pub use closed_listing_state_table::*;
@@ -1773,6 +1788,10 @@ pub use import_region_connection_info_reducer::{
     import_region_connection_info, set_flags_for_import_region_connection_info,
     ImportRegionConnectionInfoCallbackId,
 };
+pub use import_region_sign_in_parameters_reducer::{
+    import_region_sign_in_parameters, set_flags_for_import_region_sign_in_parameters,
+    ImportRegionSignInParametersCallbackId,
+};
 pub use import_rent_state_reducer::{
     import_rent_state, set_flags_for_import_rent_state, ImportRentStateCallbackId,
 };
@@ -2022,6 +2041,7 @@ pub use on_inter_module_message_processed_reducer::{
     OnInterModuleMessageProcessedCallbackId,
 };
 pub use on_player_joined_empire_msg_type::OnPlayerJoinedEmpireMsg;
+pub use on_player_left_empire_msg_type::OnPlayerLeftEmpireMsg;
 pub use on_player_name_set_msg_type::OnPlayerNameSetMsg;
 pub use on_region_player_created_msg_type::OnRegionPlayerCreatedMsg;
 pub use onboarding_reward_desc_table::*;
@@ -2137,6 +2157,9 @@ pub use region_destroy_siege_engine_msg_type::RegionDestroySiegeEngineMsg;
 pub use region_population_info_op_type::RegionPopulationInfoOp;
 pub use region_population_info_table::*;
 pub use region_population_info_type::RegionPopulationInfo;
+pub use region_sign_in_parameters_op_type::RegionSignInParametersOp;
+pub use region_sign_in_parameters_table::*;
+pub use region_sign_in_parameters_type::RegionSignInParameters;
 pub use rent_state_table::*;
 pub use rent_state_type::RentState;
 pub use resource_clump_desc_table::*;
@@ -2607,6 +2630,10 @@ pub enum Reducer {
         item_id: i32,
         balance: u32,
     },
+    AdminUpdateSignInParameters {
+        region_sign_in_parameters: RegionSignInParameters,
+        region: u8,
+    },
     Authenticate {
         identity: String,
     },
@@ -2624,6 +2651,7 @@ pub enum Reducer {
     CheatShardsGrant {
         request: CheatShardsGrantRequest,
     },
+    ClearStagedStaticData,
     CommitStagedStaticData,
     CurrentVersion,
     EmpireChangeEmblem {
@@ -3059,6 +3087,9 @@ pub enum Reducer {
     ImportRegionConnectionInfo {
         records: Vec<RegionConnectionInfo>,
     },
+    ImportRegionSignInParameters {
+        records: Vec<RegionSignInParameters>,
+    },
     ImportRentState {
         records: Vec<RentState>,
     },
@@ -3469,11 +3500,13 @@ impl __sdk::Reducer for Reducer {
             Reducer::AdminSkipQueueIdentity { .. } => "admin_skip_queue_identity",
             Reducer::AdminSkipQueueName { .. } => "admin_skip_queue_name",
             Reducer::AdminUpdateGrantedHubItemState { .. } => "admin_update_granted_hub_item_state",
+            Reducer::AdminUpdateSignInParameters { .. } => "admin_update_sign_in_parameters",
             Reducer::Authenticate { .. } => "authenticate",
             Reducer::CheatEmpireSiegeAddSupplies { .. } => "cheat_empire_siege_add_supplies",
             Reducer::CheatEmpireSiegeCancel { .. } => "cheat_empire_siege_cancel",
             Reducer::CheatPlayerSetName { .. } => "cheat_player_set_name",
             Reducer::CheatShardsGrant { .. } => "cheat_shards_grant",
+            Reducer::ClearStagedStaticData => "clear_staged_static_data",
             Reducer::CommitStagedStaticData => "commit_staged_static_data",
             Reducer::CurrentVersion => "current_version",
             Reducer::EmpireChangeEmblem { .. } => "empire_change_emblem",
@@ -3635,6 +3668,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::ImportProgressiveActionState { .. } => "import_progressive_action_state",
             Reducer::ImportProjectSiteState { .. } => "import_project_site_state",
             Reducer::ImportRegionConnectionInfo { .. } => "import_region_connection_info",
+            Reducer::ImportRegionSignInParameters { .. } => "import_region_sign_in_parameters",
             Reducer::ImportRentState { .. } => "import_rent_state",
             Reducer::ImportResourceClumpDesc { .. } => "import_resource_clump_desc",
             Reducer::ImportResourceCount { .. } => "import_resource_count",
@@ -3790,11 +3824,13 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "admin_skip_queue_identity" => Ok(__sdk::parse_reducer_args::<admin_skip_queue_identity_reducer::AdminSkipQueueIdentityArgs>("admin_skip_queue_identity", &value.args)?.into()),
             "admin_skip_queue_name" => Ok(__sdk::parse_reducer_args::<admin_skip_queue_name_reducer::AdminSkipQueueNameArgs>("admin_skip_queue_name", &value.args)?.into()),
             "admin_update_granted_hub_item_state" => Ok(__sdk::parse_reducer_args::<admin_update_granted_hub_item_state_reducer::AdminUpdateGrantedHubItemStateArgs>("admin_update_granted_hub_item_state", &value.args)?.into()),
+            "admin_update_sign_in_parameters" => Ok(__sdk::parse_reducer_args::<admin_update_sign_in_parameters_reducer::AdminUpdateSignInParametersArgs>("admin_update_sign_in_parameters", &value.args)?.into()),
             "authenticate" => Ok(__sdk::parse_reducer_args::<authenticate_reducer::AuthenticateArgs>("authenticate", &value.args)?.into()),
             "cheat_empire_siege_add_supplies" => Ok(__sdk::parse_reducer_args::<cheat_empire_siege_add_supplies_reducer::CheatEmpireSiegeAddSuppliesArgs>("cheat_empire_siege_add_supplies", &value.args)?.into()),
             "cheat_empire_siege_cancel" => Ok(__sdk::parse_reducer_args::<cheat_empire_siege_cancel_reducer::CheatEmpireSiegeCancelArgs>("cheat_empire_siege_cancel", &value.args)?.into()),
             "cheat_player_set_name" => Ok(__sdk::parse_reducer_args::<cheat_player_set_name_reducer::CheatPlayerSetNameArgs>("cheat_player_set_name", &value.args)?.into()),
             "cheat_shards_grant" => Ok(__sdk::parse_reducer_args::<cheat_shards_grant_reducer::CheatShardsGrantArgs>("cheat_shards_grant", &value.args)?.into()),
+            "clear_staged_static_data" => Ok(__sdk::parse_reducer_args::<clear_staged_static_data_reducer::ClearStagedStaticDataArgs>("clear_staged_static_data", &value.args)?.into()),
             "commit_staged_static_data" => Ok(__sdk::parse_reducer_args::<commit_staged_static_data_reducer::CommitStagedStaticDataArgs>("commit_staged_static_data", &value.args)?.into()),
             "current_version" => Ok(__sdk::parse_reducer_args::<current_version_reducer::CurrentVersionArgs>("current_version", &value.args)?.into()),
             "empire_change_emblem" => Ok(__sdk::parse_reducer_args::<empire_change_emblem_reducer::EmpireChangeEmblemArgs>("empire_change_emblem", &value.args)?.into()),
@@ -3942,6 +3978,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "import_progressive_action_state" => Ok(__sdk::parse_reducer_args::<import_progressive_action_state_reducer::ImportProgressiveActionStateArgs>("import_progressive_action_state", &value.args)?.into()),
             "import_project_site_state" => Ok(__sdk::parse_reducer_args::<import_project_site_state_reducer::ImportProjectSiteStateArgs>("import_project_site_state", &value.args)?.into()),
             "import_region_connection_info" => Ok(__sdk::parse_reducer_args::<import_region_connection_info_reducer::ImportRegionConnectionInfoArgs>("import_region_connection_info", &value.args)?.into()),
+            "import_region_sign_in_parameters" => Ok(__sdk::parse_reducer_args::<import_region_sign_in_parameters_reducer::ImportRegionSignInParametersArgs>("import_region_sign_in_parameters", &value.args)?.into()),
             "import_rent_state" => Ok(__sdk::parse_reducer_args::<import_rent_state_reducer::ImportRentStateArgs>("import_rent_state", &value.args)?.into()),
             "import_resource_clump_desc" => Ok(__sdk::parse_reducer_args::<import_resource_clump_desc_reducer::ImportResourceClumpDescArgs>("import_resource_clump_desc", &value.args)?.into()),
             "import_resource_count" => Ok(__sdk::parse_reducer_args::<import_resource_count_reducer::ImportResourceCountArgs>("import_resource_count", &value.args)?.into()),
@@ -4271,6 +4308,7 @@ pub struct DbUpdate {
     project_site_state: __sdk::TableUpdate<ProjectSiteState>,
     region_connection_info: __sdk::TableUpdate<RegionConnectionInfo>,
     region_population_info: __sdk::TableUpdate<RegionPopulationInfo>,
+    region_sign_in_parameters: __sdk::TableUpdate<RegionSignInParameters>,
     rent_state: __sdk::TableUpdate<RentState>,
     resource_clump_desc: __sdk::TableUpdate<ResourceClumpDesc>,
     resource_count: __sdk::TableUpdate<ResourceCount>,
@@ -4911,6 +4949,9 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
                 ),
                 "region_population_info" => db_update.region_population_info.append(
                     region_population_info_table::parse_table_update(table_update)?,
+                ),
+                "region_sign_in_parameters" => db_update.region_sign_in_parameters.append(
+                    region_sign_in_parameters_table::parse_table_update(table_update)?,
                 ),
                 "rent_state" => db_update
                     .rent_state
@@ -5958,6 +5999,12 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.region_population_info,
             )
             .with_updates_by_pk(|row| &row.region_id);
+        diff.region_sign_in_parameters = cache
+            .apply_diff_to_table::<RegionSignInParameters>(
+                "region_sign_in_parameters",
+                &self.region_sign_in_parameters,
+            )
+            .with_updates_by_pk(|row| &row.region_id);
         diff.rent_state = cache
             .apply_diff_to_table::<RentState>("rent_state", &self.rent_state)
             .with_updates_by_pk(|row| &row.entity_id);
@@ -6380,6 +6427,7 @@ pub struct AppliedDiff<'r> {
     project_site_state: __sdk::TableAppliedDiff<'r, ProjectSiteState>,
     region_connection_info: __sdk::TableAppliedDiff<'r, RegionConnectionInfo>,
     region_population_info: __sdk::TableAppliedDiff<'r, RegionPopulationInfo>,
+    region_sign_in_parameters: __sdk::TableAppliedDiff<'r, RegionSignInParameters>,
     rent_state: __sdk::TableAppliedDiff<'r, RentState>,
     resource_clump_desc: __sdk::TableAppliedDiff<'r, ResourceClumpDesc>,
     resource_count: __sdk::TableAppliedDiff<'r, ResourceCount>,
@@ -7303,6 +7351,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<RegionPopulationInfo>(
             "region_population_info",
             &self.region_population_info,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<RegionSignInParameters>(
+            "region_sign_in_parameters",
+            &self.region_sign_in_parameters,
             event,
         );
         callbacks.invoke_table_row_callbacks::<RentState>("rent_state", &self.rent_state, event);
@@ -8289,6 +8342,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         project_site_state_table::register_table(client_cache);
         region_connection_info_table::register_table(client_cache);
         region_population_info_table::register_table(client_cache);
+        region_sign_in_parameters_table::register_table(client_cache);
         rent_state_table::register_table(client_cache);
         resource_clump_desc_table::register_table(client_cache);
         resource_count_table::register_table(client_cache);

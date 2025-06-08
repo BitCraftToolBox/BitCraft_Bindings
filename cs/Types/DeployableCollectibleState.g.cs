@@ -21,6 +21,8 @@ namespace SpacetimeDB.Types
         public ulong OwnerEntityId;
         [DataMember(Name = "collectible_id")]
         public int CollectibleId;
+        [DataMember(Name = "deployable_desc_id")]
+        public int DeployableDescId;
         [DataMember(Name = "location")]
         public OffsetCoordinatesSmallMessage? Location;
 
@@ -28,12 +30,14 @@ namespace SpacetimeDB.Types
             ulong DeployableEntityId,
             ulong OwnerEntityId,
             int CollectibleId,
+            int DeployableDescId,
             OffsetCoordinatesSmallMessage? Location
         )
         {
             this.DeployableEntityId = DeployableEntityId;
             this.OwnerEntityId = OwnerEntityId;
             this.CollectibleId = CollectibleId;
+            this.DeployableDescId = DeployableDescId;
             this.Location = Location;
         }
 

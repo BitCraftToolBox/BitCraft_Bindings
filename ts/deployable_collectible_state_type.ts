@@ -38,6 +38,7 @@ export type DeployableCollectibleState = {
   deployableEntityId: bigint,
   ownerEntityId: bigint,
   collectibleId: number,
+  deployableDescId: number,
   location: __OffsetCoordinatesSmallMessage | undefined,
 };
 
@@ -54,6 +55,7 @@ export namespace DeployableCollectibleState {
       new ProductTypeElement("deployableEntityId", AlgebraicType.createU64Type()),
       new ProductTypeElement("ownerEntityId", AlgebraicType.createU64Type()),
       new ProductTypeElement("collectibleId", AlgebraicType.createI32Type()),
+      new ProductTypeElement("deployableDescId", AlgebraicType.createI32Type()),
       new ProductTypeElement("location", AlgebraicType.createOptionType(__OffsetCoordinatesSmallMessage.getTypeScriptAlgebraicType())),
     ]);
   }

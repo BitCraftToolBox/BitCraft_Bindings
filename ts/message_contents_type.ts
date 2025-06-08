@@ -50,6 +50,7 @@ import { EmpireCollectHexiteCapsuleMsg as __EmpireCollectHexiteCapsuleMsg } from
 import { EmpireStartSiegeMsg as __EmpireStartSiegeMsg } from "./empire_start_siege_msg_type";
 import { EmpireSiegeAddSuppliesMsg as __EmpireSiegeAddSuppliesMsg } from "./empire_siege_add_supplies_msg_type";
 import { OnPlayerJoinedEmpireMsg as __OnPlayerJoinedEmpireMsg } from "./on_player_joined_empire_msg_type";
+import { OnPlayerLeftEmpireMsg as __OnPlayerLeftEmpireMsg } from "./on_player_left_empire_msg_type";
 import { RegionDestroySiegeEngineMsg as __RegionDestroySiegeEngineMsg } from "./region_destroy_siege_engine_msg_type";
 import { OnRegionPlayerCreatedMsg as __OnRegionPlayerCreatedMsg } from "./on_region_player_created_msg_type";
 import { EmpireQueueSuppliesMsg as __EmpireQueueSuppliesMsg } from "./empire_queue_supplies_msg_type";
@@ -83,6 +84,7 @@ export namespace MessageContents {
   export type EmpireStartSiege = { tag: "EmpireStartSiege", value: __EmpireStartSiegeMsg };
   export type EmpireSiegeAddSupplies = { tag: "EmpireSiegeAddSupplies", value: __EmpireSiegeAddSuppliesMsg };
   export type OnPlayerJoinedEmpire = { tag: "OnPlayerJoinedEmpire", value: __OnPlayerJoinedEmpireMsg };
+  export type OnPlayerLeftEmpire = { tag: "OnPlayerLeftEmpire", value: __OnPlayerLeftEmpireMsg };
   export type RegionDestroySiegeEngine = { tag: "RegionDestroySiegeEngine", value: __RegionDestroySiegeEngineMsg };
   export type OnRegionPlayerCreated = { tag: "OnRegionPlayerCreated", value: __OnRegionPlayerCreatedMsg };
   export type EmpireQueueSupplies = { tag: "EmpireQueueSupplies", value: __EmpireQueueSuppliesMsg };
@@ -117,6 +119,7 @@ export namespace MessageContents {
   export const EmpireStartSiege = (value: __EmpireStartSiegeMsg): MessageContents => ({ tag: "EmpireStartSiege", value });
   export const EmpireSiegeAddSupplies = (value: __EmpireSiegeAddSuppliesMsg): MessageContents => ({ tag: "EmpireSiegeAddSupplies", value });
   export const OnPlayerJoinedEmpire = (value: __OnPlayerJoinedEmpireMsg): MessageContents => ({ tag: "OnPlayerJoinedEmpire", value });
+  export const OnPlayerLeftEmpire = (value: __OnPlayerLeftEmpireMsg): MessageContents => ({ tag: "OnPlayerLeftEmpire", value });
   export const RegionDestroySiegeEngine = (value: __RegionDestroySiegeEngineMsg): MessageContents => ({ tag: "RegionDestroySiegeEngine", value });
   export const OnRegionPlayerCreated = (value: __OnRegionPlayerCreatedMsg): MessageContents => ({ tag: "OnRegionPlayerCreated", value });
   export const EmpireQueueSupplies = (value: __EmpireQueueSuppliesMsg): MessageContents => ({ tag: "EmpireQueueSupplies", value });
@@ -147,6 +150,7 @@ export namespace MessageContents {
       new SumTypeVariant("EmpireStartSiege", __EmpireStartSiegeMsg.getTypeScriptAlgebraicType()),
       new SumTypeVariant("EmpireSiegeAddSupplies", __EmpireSiegeAddSuppliesMsg.getTypeScriptAlgebraicType()),
       new SumTypeVariant("OnPlayerJoinedEmpire", __OnPlayerJoinedEmpireMsg.getTypeScriptAlgebraicType()),
+      new SumTypeVariant("OnPlayerLeftEmpire", __OnPlayerLeftEmpireMsg.getTypeScriptAlgebraicType()),
       new SumTypeVariant("RegionDestroySiegeEngine", __RegionDestroySiegeEngineMsg.getTypeScriptAlgebraicType()),
       new SumTypeVariant("OnRegionPlayerCreated", __OnRegionPlayerCreatedMsg.getTypeScriptAlgebraicType()),
       new SumTypeVariant("EmpireQueueSupplies", __EmpireQueueSuppliesMsg.getTypeScriptAlgebraicType()),
@@ -170,7 +174,7 @@ export namespace MessageContents {
 }
 
 // The tagged union or sum type for the algebraic type `MessageContents`.
-export type MessageContents = MessageContents.TableUpdate | MessageContents.TransferPlayerRequest | MessageContents.TransferPlayerHousingRequest | MessageContents.PlayerCreateRequest | MessageContents.UserUpdateRegionRequest | MessageContents.OnPlayerNameSetRequest | MessageContents.ClaimCreateEmpireSettlementState | MessageContents.OnClaimMembersChanged | MessageContents.EmpireCreateBuilding | MessageContents.OnEmpireBuildingDeleted | MessageContents.GlobalDeleteEmpireBuilding | MessageContents.DeleteEmpire | MessageContents.EmpireClaimJoin | MessageContents.EmpireResupplyNode | MessageContents.EmpireCollectHexiteCapsule | MessageContents.EmpireStartSiege | MessageContents.EmpireSiegeAddSupplies | MessageContents.OnPlayerJoinedEmpire | MessageContents.RegionDestroySiegeEngine | MessageContents.OnRegionPlayerCreated | MessageContents.EmpireQueueSupplies | MessageContents.EmpireUpdateEmperorCrown | MessageContents.EmpireRemoveCrown | MessageContents.SignPlayerOut | MessageContents.AdminBroadcastMessage | MessageContents.PlayerSkipQueue | MessageContents.GrantHubItem;
+export type MessageContents = MessageContents.TableUpdate | MessageContents.TransferPlayerRequest | MessageContents.TransferPlayerHousingRequest | MessageContents.PlayerCreateRequest | MessageContents.UserUpdateRegionRequest | MessageContents.OnPlayerNameSetRequest | MessageContents.ClaimCreateEmpireSettlementState | MessageContents.OnClaimMembersChanged | MessageContents.EmpireCreateBuilding | MessageContents.OnEmpireBuildingDeleted | MessageContents.GlobalDeleteEmpireBuilding | MessageContents.DeleteEmpire | MessageContents.EmpireClaimJoin | MessageContents.EmpireResupplyNode | MessageContents.EmpireCollectHexiteCapsule | MessageContents.EmpireStartSiege | MessageContents.EmpireSiegeAddSupplies | MessageContents.OnPlayerJoinedEmpire | MessageContents.OnPlayerLeftEmpire | MessageContents.RegionDestroySiegeEngine | MessageContents.OnRegionPlayerCreated | MessageContents.EmpireQueueSupplies | MessageContents.EmpireUpdateEmperorCrown | MessageContents.EmpireRemoveCrown | MessageContents.SignPlayerOut | MessageContents.AdminBroadcastMessage | MessageContents.PlayerSkipQueue | MessageContents.GrantHubItem;
 
 export default MessageContents;
 
