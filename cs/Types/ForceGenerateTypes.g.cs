@@ -23,8 +23,6 @@ namespace SpacetimeDB.Types
         public ChunkCoordinatesMessage ChunkCoordinatesMessage;
         [DataMember(Name = "claim_permission")]
         public ClaimPermission ClaimPermission;
-        [DataMember(Name = "empire_permission")]
-        public EmpirePermission EmpirePermission;
         [DataMember(Name = "large_hex_tile_message")]
         public LargeHexTileMessage LargeHexTileMessage;
         [DataMember(Name = "terrain_cell")]
@@ -37,7 +35,6 @@ namespace SpacetimeDB.Types
             FloatHexTileMessage FloatHexTile,
             ChunkCoordinatesMessage ChunkCoordinatesMessage,
             ClaimPermission ClaimPermission,
-            EmpirePermission EmpirePermission,
             LargeHexTileMessage LargeHexTileMessage,
             TerrainCell TerrainCell,
             ItemConversionLocationContext ItemConversionLocatinContext
@@ -47,7 +44,6 @@ namespace SpacetimeDB.Types
             this.FloatHexTile = FloatHexTile;
             this.ChunkCoordinatesMessage = ChunkCoordinatesMessage;
             this.ClaimPermission = ClaimPermission;
-            this.EmpirePermission = EmpirePermission;
             this.LargeHexTileMessage = LargeHexTileMessage;
             this.TerrainCell = TerrainCell;
             this.ItemConversionLocatinContext = ItemConversionLocatinContext;

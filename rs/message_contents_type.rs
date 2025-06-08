@@ -24,7 +24,6 @@ use super::inter_module_table_updates_type::InterModuleTableUpdates;
 use super::on_claim_members_changed_msg_type::OnClaimMembersChangedMsg;
 use super::on_empire_building_deleted_msg_type::OnEmpireBuildingDeletedMsg;
 use super::on_player_joined_empire_msg_type::OnPlayerJoinedEmpireMsg;
-use super::on_player_left_empire_msg_type::OnPlayerLeftEmpireMsg;
 use super::on_player_name_set_msg_type::OnPlayerNameSetMsg;
 use super::on_region_player_created_msg_type::OnRegionPlayerCreatedMsg;
 use super::player_create_msg_type::PlayerCreateMsg;
@@ -73,8 +72,6 @@ pub enum MessageContents {
     EmpireSiegeAddSupplies(EmpireSiegeAddSuppliesMsg),
 
     OnPlayerJoinedEmpire(OnPlayerJoinedEmpireMsg),
-
-    OnPlayerLeftEmpire(OnPlayerLeftEmpireMsg),
 
     RegionDestroySiegeEngine(RegionDestroySiegeEngineMsg),
 

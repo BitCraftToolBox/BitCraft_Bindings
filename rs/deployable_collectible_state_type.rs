@@ -14,7 +14,6 @@ pub struct DeployableCollectibleState {
     pub deployable_entity_id: u64,
     pub owner_entity_id: u64,
     pub collectible_id: i32,
-    pub deployable_desc_id: i32,
     pub location: Option<OffsetCoordinatesSmallMessage>,
 }
 

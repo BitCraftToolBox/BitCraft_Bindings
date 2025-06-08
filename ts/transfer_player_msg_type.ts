@@ -59,6 +59,7 @@ import { KnowledgeItemState as __KnowledgeItemState } from "./knowledge_item_sta
 import { KnowledgeLoreState as __KnowledgeLoreState } from "./knowledge_lore_state_type";
 import { KnowledgeNpcState as __KnowledgeNpcState } from "./knowledge_npc_state_type";
 import { KnowledgePavingState as __KnowledgePavingState } from "./knowledge_paving_state_type";
+import { KnowledgePillarShapingState as __KnowledgePillarShapingState } from "./knowledge_pillar_shaping_state_type";
 import { KnowledgeResourcePlacementState as __KnowledgeResourcePlacementState } from "./knowledge_resource_placement_state_type";
 import { KnowledgeResourceState as __KnowledgeResourceState } from "./knowledge_resource_state_type";
 import { KnowledgeRuinsState as __KnowledgeRuinsState } from "./knowledge_ruins_state_type";
@@ -74,7 +75,6 @@ import { UserState as __UserState } from "./user_state_type";
 import { VaultState as __VaultState } from "./vault_state_type";
 import { MoveValidationStrikeCounterState as __MoveValidationStrikeCounterState } from "./move_validation_strike_counter_state_type";
 import { KnowledgeClaimState as __KnowledgeClaimState } from "./knowledge_claim_state_type";
-import { KnowledgePillarShapingState as __KnowledgePillarShapingState } from "./knowledge_pillar_shaping_state_type";
 import { PlayerUsernameState as __PlayerUsernameState } from "./player_username_state_type";
 import { ToolbarState as __ToolbarState } from "./toolbar_state_type";
 import { UnclaimedCollectiblesState as __UnclaimedCollectiblesState } from "./unclaimed_collectibles_state_type";
@@ -136,7 +136,6 @@ export type TransferPlayerMsg = {
   playerHousingState: __PlayerHousingState | undefined,
   travelerTaskStates: __TravelerTaskState[],
   extractOutcomeState: __ExtractOutcomeState,
-  undeployedDeployableStates: __DeployableState[],
 };
 
 /**
@@ -202,7 +201,6 @@ export namespace TransferPlayerMsg {
       new ProductTypeElement("playerHousingState", AlgebraicType.createOptionType(__PlayerHousingState.getTypeScriptAlgebraicType())),
       new ProductTypeElement("travelerTaskStates", AlgebraicType.createArrayType(__TravelerTaskState.getTypeScriptAlgebraicType())),
       new ProductTypeElement("extractOutcomeState", __ExtractOutcomeState.getTypeScriptAlgebraicType()),
-      new ProductTypeElement("undeployedDeployableStates", AlgebraicType.createArrayType(__DeployableState.getTypeScriptAlgebraicType())),
     ]);
   }
 

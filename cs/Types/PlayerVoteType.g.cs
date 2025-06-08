@@ -12,7 +12,6 @@ namespace SpacetimeDB.Types
     [SpacetimeDB.Type]
     public enum PlayerVoteType
     {
-        JoinEmpire,
-        SubmitEmpire,
+        Duel,
     }
 }
