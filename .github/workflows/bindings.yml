@@ -1,0 +1,30 @@
+name: Update Client Bindings
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 */3 * * *'
+
+jobs:
+  update_bindings:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: BitCraftToolBox/bindings-action@main
+        id: gen-bindings
+        with:
+          data-dir: '.'
+          bitcraft-spacetime-host: ${{ secrets.BITCRAFT_SPACETIME_HOST }}
+          stdb-cli-version: c99dc82a483f42f165fa27b7aa41aff46bf0b84d
+      - name: Commit changes
+        if: steps.gen-bindings.outputs.updated_bindings == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A manifest.txt cs ts rs
+          if ! git diff --cached --quiet; then
+            git commit -m "Update client bindings to $PROG_HASH"
+            git push origin main
+          fi
+        env:
+          PROG_HASH: ${{ steps.gen-bindings.outputs.prog_hash }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
