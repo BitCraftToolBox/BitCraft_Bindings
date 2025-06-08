@@ -49,6 +49,8 @@ namespace SpacetimeDB.Types
         public System.Collections.Generic.List<RegionConnectionInfoOp>? RegionConnectionInfo;
         [DataMember(Name = "region_population_info")]
         public System.Collections.Generic.List<RegionPopulationInfoOp>? RegionPopulationInfo;
+        [DataMember(Name = "region_sign_in_parameters")]
+        public System.Collections.Generic.List<RegionSignInParametersOp>? RegionSignInParameters;
         [DataMember(Name = "user_authentication_state")]
         public System.Collections.Generic.List<UserAuthenticationStateOp>? UserAuthenticationState;
         [DataMember(Name = "user_moderation_state")]
@@ -74,6 +76,7 @@ namespace SpacetimeDB.Types
             System.Collections.Generic.List<PlayerReportStateOp>? PlayerReportState,
             System.Collections.Generic.List<RegionConnectionInfoOp>? RegionConnectionInfo,
             System.Collections.Generic.List<RegionPopulationInfoOp>? RegionPopulationInfo,
+            System.Collections.Generic.List<RegionSignInParametersOp>? RegionSignInParameters,
             System.Collections.Generic.List<UserAuthenticationStateOp>? UserAuthenticationState,
             System.Collections.Generic.List<UserModerationStateOp>? UserModerationState,
             System.Collections.Generic.List<UserStateOp>? UserState
@@ -96,6 +99,7 @@ namespace SpacetimeDB.Types
             this.PlayerReportState = PlayerReportState;
             this.RegionConnectionInfo = RegionConnectionInfo;
             this.RegionPopulationInfo = RegionPopulationInfo;
+            this.RegionSignInParameters = RegionSignInParameters;
             this.UserAuthenticationState = UserAuthenticationState;
             this.UserModerationState = UserModerationState;
             this.UserState = UserState;

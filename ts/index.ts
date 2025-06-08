@@ -242,6 +242,8 @@ import { ClaimTransferOwnership } from "./claim_transfer_ownership_reducer.ts";
 export { ClaimTransferOwnership };
 import { ClaimWithdrawFromTreasury } from "./claim_withdraw_from_treasury_reducer.ts";
 export { ClaimWithdrawFromTreasury };
+import { ClearStagedStaticData } from "./clear_staged_static_data_reducer.ts";
+export { ClearStagedStaticData };
 import { ClosedListingCollect } from "./closed_listing_collect_reducer.ts";
 export { ClosedListingCollect };
 import { CollectStatsReducer } from "./collect_stats_reducer_reducer.ts";
@@ -372,6 +374,8 @@ import { GrowthAgentLoop } from "./growth_agent_loop_reducer.ts";
 export { GrowthAgentLoop };
 import { HideDeployable } from "./hide_deployable_reducer.ts";
 export { HideDeployable };
+import { IdentityConnected } from "./identity_connected_reducer.ts";
+export { IdentityConnected };
 import { IdentityDisconnected } from "./identity_disconnected_reducer.ts";
 export { IdentityDisconnected };
 import { ImportAchievementDesc } from "./import_achievement_desc_reducer.ts";
@@ -1570,6 +1574,8 @@ import { RegionPopulationInfoTableHandle } from "./region_population_info_table.
 export { RegionPopulationInfoTableHandle };
 import { RegionPopuplationLoopTimerTableHandle } from "./region_popuplation_loop_timer_table.ts";
 export { RegionPopuplationLoopTimerTableHandle };
+import { RegionSignInParametersTableHandle } from "./region_sign_in_parameters_table.ts";
+export { RegionSignInParametersTableHandle };
 import { RentCollectorLoopTimerTableHandle } from "./rent_collector_loop_timer_table.ts";
 export { RentCollectorLoopTimerTableHandle };
 import { RentEvictTimerTableHandle } from "./rent_evict_timer_table.ts";
@@ -2294,6 +2300,8 @@ import { OnEmpireBuildingDeletedMsg } from "./on_empire_building_deleted_msg_typ
 export { OnEmpireBuildingDeletedMsg };
 import { OnPlayerJoinedEmpireMsg } from "./on_player_joined_empire_msg_type.ts";
 export { OnPlayerJoinedEmpireMsg };
+import { OnPlayerLeftEmpireMsg } from "./on_player_left_empire_msg_type.ts";
+export { OnPlayerLeftEmpireMsg };
 import { OnPlayerNameSetMsg } from "./on_player_name_set_msg_type.ts";
 export { OnPlayerNameSetMsg };
 import { OnRegionPlayerCreatedMsg } from "./on_region_player_created_msg_type.ts";
@@ -2610,6 +2618,10 @@ import { RegionPopulationInfoOp } from "./region_population_info_op_type.ts";
 export { RegionPopulationInfoOp };
 import { RegionPopulationLoopTimer } from "./region_population_loop_timer_type.ts";
 export { RegionPopulationLoopTimer };
+import { RegionSignInParameters } from "./region_sign_in_parameters_type.ts";
+export { RegionSignInParameters };
+import { RegionSignInParametersOp } from "./region_sign_in_parameters_op_type.ts";
+export { RegionSignInParametersOp };
 import { RentAddListingRequest } from "./rent_add_listing_request_type.ts";
 export { RentAddListingRequest };
 import { RentAddTenantRequest } from "./rent_add_tenant_request_type.ts";
@@ -4763,6 +4775,15 @@ const REMOTE_MODULE = {
         colType: RegionPopulationLoopTimer.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    region_sign_in_parameters: {
+      tableName: "region_sign_in_parameters",
+      rowType: RegionSignInParameters.getTypeScriptAlgebraicType(),
+      primaryKey: "regionId",
+      primaryKeyInfo: {
+        colName: "regionId",
+        colType: RegionSignInParameters.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     rent_collector_loop_timer: {
       tableName: "rent_collector_loop_timer",
       rowType: RentCollectorLoopTimer.getTypeScriptAlgebraicType(),
@@ -5757,6 +5778,10 @@ const REMOTE_MODULE = {
       reducerName: "claim_withdraw_from_treasury",
       argsType: ClaimWithdrawFromTreasury.getTypeScriptAlgebraicType(),
     },
+    clear_staged_static_data: {
+      reducerName: "clear_staged_static_data",
+      argsType: ClearStagedStaticData.getTypeScriptAlgebraicType(),
+    },
     closed_listing_collect: {
       reducerName: "closed_listing_collect",
       argsType: ClosedListingCollect.getTypeScriptAlgebraicType(),
@@ -6016,6 +6041,10 @@ const REMOTE_MODULE = {
     hide_deployable: {
       reducerName: "hide_deployable",
       argsType: HideDeployable.getTypeScriptAlgebraicType(),
+    },
+    identity_connected: {
+      reducerName: "identity_connected",
+      argsType: IdentityConnected.getTypeScriptAlgebraicType(),
     },
     identity_disconnected: {
       reducerName: "identity_disconnected",
@@ -7699,6 +7728,7 @@ export type Reducer = never
 | { name: "ClaimTechUnlockTech", args: ClaimTechUnlockTech }
 | { name: "ClaimTransferOwnership", args: ClaimTransferOwnership }
 | { name: "ClaimWithdrawFromTreasury", args: ClaimWithdrawFromTreasury }
+| { name: "ClearStagedStaticData", args: ClearStagedStaticData }
 | { name: "ClosedListingCollect", args: ClosedListingCollect }
 | { name: "CollectStatsReducer", args: CollectStatsReducer }
 | { name: "CollectibleActivate", args: CollectibleActivate }
@@ -7764,6 +7794,7 @@ export type Reducer = never
 | { name: "GenerateWorld", args: GenerateWorld }
 | { name: "GrowthAgentLoop", args: GrowthAgentLoop }
 | { name: "HideDeployable", args: HideDeployable }
+| { name: "IdentityConnected", args: IdentityConnected }
 | { name: "IdentityDisconnected", args: IdentityDisconnected }
 | { name: "ImportAchievementDesc", args: ImportAchievementDesc }
 | { name: "ImportActiveBuffState", args: ImportActiveBuffState }
@@ -9788,6 +9819,18 @@ export class RemoteReducers {
     this.connection.offReducer("claim_withdraw_from_treasury", callback);
   }
 
+  clearStagedStaticData() {
+    this.connection.callReducer("clear_staged_static_data", new Uint8Array(0), this.setCallReducerFlags.clearStagedStaticDataFlags);
+  }
+
+  onClearStagedStaticData(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.onReducer("clear_staged_static_data", callback);
+  }
+
+  removeOnClearStagedStaticData(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.offReducer("clear_staged_static_data", callback);
+  }
+
   closedListingCollect(request: PlayerClosedListingCollectRequest) {
     const __args = { request };
     let __writer = new BinaryWriter(1024);
@@ -10798,6 +10841,14 @@ export class RemoteReducers {
 
   removeOnHideDeployable(callback: (ctx: ReducerEventContext, timer: HideDeployableTimer) => void) {
     this.connection.offReducer("hide_deployable", callback);
+  }
+
+  onIdentityConnected(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.onReducer("identity_connected", callback);
+  }
+
+  removeOnIdentityConnected(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.offReducer("identity_connected", callback);
   }
 
   onIdentityDisconnected(callback: (ctx: ReducerEventContext) => void) {
@@ -17455,6 +17506,11 @@ export class SetReducerFlags {
     this.claimWithdrawFromTreasuryFlags = flags;
   }
 
+  clearStagedStaticDataFlags: CallReducerFlags = 'FullUpdate';
+  clearStagedStaticData(flags: CallReducerFlags) {
+    this.clearStagedStaticDataFlags = flags;
+  }
+
   closedListingCollectFlags: CallReducerFlags = 'FullUpdate';
   closedListingCollect(flags: CallReducerFlags) {
     this.closedListingCollectFlags = flags;
@@ -20557,6 +20613,10 @@ export class RemoteTables {
 
   get regionPopuplationLoopTimer(): RegionPopuplationLoopTimerTableHandle {
     return new RegionPopuplationLoopTimerTableHandle(this.connection.clientCache.getOrCreateTable<RegionPopulationLoopTimer>(REMOTE_MODULE.tables.region_popuplation_loop_timer));
+  }
+
+  get regionSignInParameters(): RegionSignInParametersTableHandle {
+    return new RegionSignInParametersTableHandle(this.connection.clientCache.getOrCreateTable<RegionSignInParameters>(REMOTE_MODULE.tables.region_sign_in_parameters));
   }
 
   get rentCollectorLoopTimer(): RentCollectorLoopTimerTableHandle {

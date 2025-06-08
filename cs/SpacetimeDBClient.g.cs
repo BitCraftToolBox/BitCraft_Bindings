@@ -234,6 +234,7 @@ namespace SpacetimeDB.Types
             AddTable(RegionConnectionInfo = new(conn));
             AddTable(RegionPopulationInfo = new(conn));
             AddTable(RegionPopuplationLoopTimer = new(conn));
+            AddTable(RegionSignInParameters = new(conn));
             AddTable(RentCollectorLoopTimer = new(conn));
             AddTable(RentEvictTimer = new(conn));
             AddTable(RentState = new(conn));
@@ -832,6 +833,7 @@ namespace SpacetimeDB.Types
                 "claim_tech_unlock_tech" => BSATNHelpers.Decode<Reducer.ClaimTechUnlockTech>(encodedArgs),
                 "claim_transfer_ownership" => BSATNHelpers.Decode<Reducer.ClaimTransferOwnership>(encodedArgs),
                 "claim_withdraw_from_treasury" => BSATNHelpers.Decode<Reducer.ClaimWithdrawFromTreasury>(encodedArgs),
+                "clear_staged_static_data" => BSATNHelpers.Decode<Reducer.ClearStagedStaticData>(encodedArgs),
                 "closed_listing_collect" => BSATNHelpers.Decode<Reducer.ClosedListingCollect>(encodedArgs),
                 "collect_stats_reducer" => BSATNHelpers.Decode<Reducer.CollectStatsReducer>(encodedArgs),
                 "collectible_activate" => BSATNHelpers.Decode<Reducer.CollectibleActivate>(encodedArgs),
@@ -897,6 +899,7 @@ namespace SpacetimeDB.Types
                 "generate_world" => BSATNHelpers.Decode<Reducer.GenerateWorld>(encodedArgs),
                 "growth_agent_loop" => BSATNHelpers.Decode<Reducer.GrowthAgentLoop>(encodedArgs),
                 "hide_deployable" => BSATNHelpers.Decode<Reducer.HideDeployable>(encodedArgs),
+                "identity_connected" => BSATNHelpers.Decode<Reducer.IdentityConnected>(encodedArgs),
                 "identity_disconnected" => BSATNHelpers.Decode<Reducer.IdentityDisconnected>(encodedArgs),
                 "import_achievement_desc" => BSATNHelpers.Decode<Reducer.ImportAchievementDesc>(encodedArgs),
                 "import_active_buff_state" => BSATNHelpers.Decode<Reducer.ImportActiveBuffState>(encodedArgs),
@@ -1408,6 +1411,7 @@ namespace SpacetimeDB.Types
                 Reducer.ClaimTechUnlockTech args => Reducers.InvokeClaimTechUnlockTech(eventContext, args),
                 Reducer.ClaimTransferOwnership args => Reducers.InvokeClaimTransferOwnership(eventContext, args),
                 Reducer.ClaimWithdrawFromTreasury args => Reducers.InvokeClaimWithdrawFromTreasury(eventContext, args),
+                Reducer.ClearStagedStaticData args => Reducers.InvokeClearStagedStaticData(eventContext, args),
                 Reducer.ClosedListingCollect args => Reducers.InvokeClosedListingCollect(eventContext, args),
                 Reducer.CollectStatsReducer args => Reducers.InvokeCollectStatsReducer(eventContext, args),
                 Reducer.CollectibleActivate args => Reducers.InvokeCollectibleActivate(eventContext, args),
@@ -1473,6 +1477,7 @@ namespace SpacetimeDB.Types
                 Reducer.GenerateWorld args => Reducers.InvokeGenerateWorld(eventContext, args),
                 Reducer.GrowthAgentLoop args => Reducers.InvokeGrowthAgentLoop(eventContext, args),
                 Reducer.HideDeployable args => Reducers.InvokeHideDeployable(eventContext, args),
+                Reducer.IdentityConnected args => Reducers.InvokeIdentityConnected(eventContext, args),
                 Reducer.IdentityDisconnected args => Reducers.InvokeIdentityDisconnected(eventContext, args),
                 Reducer.ImportAchievementDesc args => Reducers.InvokeImportAchievementDesc(eventContext, args),
                 Reducer.ImportActiveBuffState args => Reducers.InvokeImportActiveBuffState(eventContext, args),

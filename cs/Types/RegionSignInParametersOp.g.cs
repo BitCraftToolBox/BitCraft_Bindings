@@ -10,13 +10,8 @@ using System;
 namespace SpacetimeDB.Types
 {
     [SpacetimeDB.Type]
-    public enum Role
-    {
-        Player,
-        SkipQueue,
-        Mod,
-        Gm,
-        Admin,
-        Relay,
-    }
+    public partial record RegionSignInParametersOp : SpacetimeDB.TaggedEnum<(
+        RegionSignInParameters Insert,
+        RegionSignInParameters Delete
+    )>;
 }

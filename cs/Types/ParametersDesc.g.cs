@@ -203,16 +203,8 @@ namespace SpacetimeDB.Types
         public float TeleportationFullInventoryMultiplier;
         [DataMember(Name = "region_crossover_distance_large_tiles")]
         public int RegionCrossoverDistanceLargeTiles;
-        [DataMember(Name = "max_signed_in_players")]
-        public int MaxSignedInPlayers;
-        [DataMember(Name = "max_queue_length")]
-        public int MaxQueueLength;
-        [DataMember(Name = "grace_period_seconds")]
-        public int GracePeriodSeconds;
         [DataMember(Name = "item_recovery_range")]
         public int ItemRecoveryRange;
-        [DataMember(Name = "region_target_population")]
-        public int RegionTargetPopulation;
         [DataMember(Name = "quick_board_range")]
         public float QuickBoardRange;
         [DataMember(Name = "duel_range")]
@@ -321,11 +313,7 @@ namespace SpacetimeDB.Types
             float TeleportationCostPerLargeTile,
             float TeleportationFullInventoryMultiplier,
             int RegionCrossoverDistanceLargeTiles,
-            int MaxSignedInPlayers,
-            int MaxQueueLength,
-            int GracePeriodSeconds,
             int ItemRecoveryRange,
-            int RegionTargetPopulation,
             float QuickBoardRange,
             float DuelRange,
             int DuelOutOfRangeGracePeriodMillis,
@@ -428,11 +416,7 @@ namespace SpacetimeDB.Types
             this.TeleportationCostPerLargeTile = TeleportationCostPerLargeTile;
             this.TeleportationFullInventoryMultiplier = TeleportationFullInventoryMultiplier;
             this.RegionCrossoverDistanceLargeTiles = RegionCrossoverDistanceLargeTiles;
-            this.MaxSignedInPlayers = MaxSignedInPlayers;
-            this.MaxQueueLength = MaxQueueLength;
-            this.GracePeriodSeconds = GracePeriodSeconds;
             this.ItemRecoveryRange = ItemRecoveryRange;
-            this.RegionTargetPopulation = RegionTargetPopulation;
             this.QuickBoardRange = QuickBoardRange;
             this.DuelRange = DuelRange;
             this.DuelOutOfRangeGracePeriodMillis = DuelOutOfRangeGracePeriodMillis;

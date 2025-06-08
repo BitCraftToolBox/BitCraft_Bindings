@@ -49,6 +49,7 @@ import { LocationStateOp as __LocationStateOp } from "./location_state_op_type";
 import { PlayerReportStateOp as __PlayerReportStateOp } from "./player_report_state_op_type";
 import { RegionConnectionInfoOp as __RegionConnectionInfoOp } from "./region_connection_info_op_type";
 import { RegionPopulationInfoOp as __RegionPopulationInfoOp } from "./region_population_info_op_type";
+import { RegionSignInParametersOp as __RegionSignInParametersOp } from "./region_sign_in_parameters_op_type";
 import { UserAuthenticationStateOp as __UserAuthenticationStateOp } from "./user_authentication_state_op_type";
 import { UserModerationStateOp as __UserModerationStateOp } from "./user_moderation_state_op_type";
 import { UserStateOp as __UserStateOp } from "./user_state_op_type";
@@ -71,6 +72,7 @@ export type InterModuleTableUpdates = {
   playerReportState: __PlayerReportStateOp[] | undefined,
   regionConnectionInfo: __RegionConnectionInfoOp[] | undefined,
   regionPopulationInfo: __RegionPopulationInfoOp[] | undefined,
+  regionSignInParameters: __RegionSignInParametersOp[] | undefined,
   userAuthenticationState: __UserAuthenticationStateOp[] | undefined,
   userModerationState: __UserModerationStateOp[] | undefined,
   userState: __UserStateOp[] | undefined,
@@ -103,6 +105,7 @@ export namespace InterModuleTableUpdates {
       new ProductTypeElement("playerReportState", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__PlayerReportStateOp.getTypeScriptAlgebraicType()))),
       new ProductTypeElement("regionConnectionInfo", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__RegionConnectionInfoOp.getTypeScriptAlgebraicType()))),
       new ProductTypeElement("regionPopulationInfo", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__RegionPopulationInfoOp.getTypeScriptAlgebraicType()))),
+      new ProductTypeElement("regionSignInParameters", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__RegionSignInParametersOp.getTypeScriptAlgebraicType()))),
       new ProductTypeElement("userAuthenticationState", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__UserAuthenticationStateOp.getTypeScriptAlgebraicType()))),
       new ProductTypeElement("userModerationState", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__UserModerationStateOp.getTypeScriptAlgebraicType()))),
       new ProductTypeElement("userState", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__UserStateOp.getTypeScriptAlgebraicType()))),

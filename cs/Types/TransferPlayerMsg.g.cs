@@ -121,6 +121,8 @@ namespace SpacetimeDB.Types
         public System.Collections.Generic.List<TravelerTaskState> TravelerTaskStates;
         [DataMember(Name = "extract_outcome_state")]
         public ExtractOutcomeState ExtractOutcomeState;
+        [DataMember(Name = "undeployed_deployable_states")]
+        public System.Collections.Generic.List<DeployableState> UndeployedDeployableStates;
 
         public TransferPlayerMsg(
             FloatHexTileMessage OriginalLocation,
@@ -175,7 +177,8 @@ namespace SpacetimeDB.Types
             TeleportationEnergyState TeleportationEnergyState,
             PlayerHousingState? PlayerHousingState,
             System.Collections.Generic.List<TravelerTaskState> TravelerTaskStates,
-            ExtractOutcomeState ExtractOutcomeState
+            ExtractOutcomeState ExtractOutcomeState,
+            System.Collections.Generic.List<DeployableState> UndeployedDeployableStates
         )
         {
             this.OriginalLocation = OriginalLocation;
@@ -231,6 +234,7 @@ namespace SpacetimeDB.Types
             this.PlayerHousingState = PlayerHousingState;
             this.TravelerTaskStates = TravelerTaskStates;
             this.ExtractOutcomeState = ExtractOutcomeState;
+            this.UndeployedDeployableStates = UndeployedDeployableStates;
         }
 
         public TransferPlayerMsg()
@@ -282,6 +286,7 @@ namespace SpacetimeDB.Types
             this.TeleportationEnergyState = new();
             this.TravelerTaskStates = new();
             this.ExtractOutcomeState = new();
+            this.UndeployedDeployableStates = new();
         }
     }
 }

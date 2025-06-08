@@ -29,6 +29,7 @@ namespace SpacetimeDB.Types
         EmpireStartSiegeMsg EmpireStartSiege,
         EmpireSiegeAddSuppliesMsg EmpireSiegeAddSupplies,
         OnPlayerJoinedEmpireMsg OnPlayerJoinedEmpire,
+        OnPlayerLeftEmpireMsg OnPlayerLeftEmpire,
         RegionDestroySiegeEngineMsg RegionDestroySiegeEngine,
         OnRegionPlayerCreatedMsg OnRegionPlayerCreated,
         EmpireQueueSuppliesMsg EmpireQueueSupplies,
