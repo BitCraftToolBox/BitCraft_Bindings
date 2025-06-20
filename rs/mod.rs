@@ -40,8 +40,10 @@ pub mod admin_collapse_ruins_reducer;
 pub mod admin_complete_all_passive_crafts_reducer;
 pub mod admin_count_inventory_items_reducer;
 pub mod admin_delete_all_items_of_type_reducer;
+pub mod admin_delete_chat_message_reducer;
 pub mod admin_despawn_overworld_enemies_reducer;
 pub mod admin_grant_collectibles_reducer;
+pub mod admin_modify_chat_message_reducer;
 pub mod admin_rename_building_coord_reducer;
 pub mod admin_rename_building_entity_reducer;
 pub mod admin_rename_building_reducer;
@@ -1556,6 +1558,10 @@ pub use admin_delete_all_items_of_type_reducer::{
     admin_delete_all_items_of_type, set_flags_for_admin_delete_all_items_of_type,
     AdminDeleteAllItemsOfTypeCallbackId,
 };
+pub use admin_delete_chat_message_reducer::{
+    admin_delete_chat_message, set_flags_for_admin_delete_chat_message,
+    AdminDeleteChatMessageCallbackId,
+};
 pub use admin_despawn_overworld_enemies_reducer::{
     admin_despawn_overworld_enemies, set_flags_for_admin_despawn_overworld_enemies,
     AdminDespawnOverworldEnemiesCallbackId,
@@ -1563,6 +1569,10 @@ pub use admin_despawn_overworld_enemies_reducer::{
 pub use admin_grant_collectibles_reducer::{
     admin_grant_collectibles, set_flags_for_admin_grant_collectibles,
     AdminGrantCollectiblesCallbackId,
+};
+pub use admin_modify_chat_message_reducer::{
+    admin_modify_chat_message, set_flags_for_admin_modify_chat_message,
+    AdminModifyChatMessageCallbackId,
 };
 pub use admin_rename_building_coord_reducer::{
     admin_rename_building_coord, set_flags_for_admin_rename_building_coord,
@@ -4330,10 +4340,17 @@ pub enum Reducer {
         item_id: i32,
         is_cargo: bool,
     },
+    AdminDeleteChatMessage {
+        entity_id: u64,
+    },
     AdminDespawnOverworldEnemies,
     AdminGrantCollectibles {
         identity: String,
         collectibles: Vec<i32>,
+    },
+    AdminModifyChatMessage {
+        entity_id: u64,
+        new_message_text: String,
     },
     AdminRenameBuilding {
         building_name: String,
@@ -6042,8 +6059,10 @@ impl __sdk::Reducer for Reducer {
             Reducer::AdminCompleteAllPassiveCrafts => "admin_complete_all_passive_crafts",
             Reducer::AdminCountInventoryItems { .. } => "admin_count_inventory_items",
             Reducer::AdminDeleteAllItemsOfType { .. } => "admin_delete_all_items_of_type",
+            Reducer::AdminDeleteChatMessage { .. } => "admin_delete_chat_message",
             Reducer::AdminDespawnOverworldEnemies => "admin_despawn_overworld_enemies",
             Reducer::AdminGrantCollectibles { .. } => "admin_grant_collectibles",
+            Reducer::AdminModifyChatMessage { .. } => "admin_modify_chat_message",
             Reducer::AdminRenameBuilding { .. } => "admin_rename_building",
             Reducer::AdminRenameBuildingCoord { .. } => "admin_rename_building_coord",
             Reducer::AdminRenameBuildingEntity { .. } => "admin_rename_building_entity",
@@ -6672,8 +6691,10 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "admin_complete_all_passive_crafts" => Ok(__sdk::parse_reducer_args::<admin_complete_all_passive_crafts_reducer::AdminCompleteAllPassiveCraftsArgs>("admin_complete_all_passive_crafts", &value.args)?.into()),
             "admin_count_inventory_items" => Ok(__sdk::parse_reducer_args::<admin_count_inventory_items_reducer::AdminCountInventoryItemsArgs>("admin_count_inventory_items", &value.args)?.into()),
             "admin_delete_all_items_of_type" => Ok(__sdk::parse_reducer_args::<admin_delete_all_items_of_type_reducer::AdminDeleteAllItemsOfTypeArgs>("admin_delete_all_items_of_type", &value.args)?.into()),
+            "admin_delete_chat_message" => Ok(__sdk::parse_reducer_args::<admin_delete_chat_message_reducer::AdminDeleteChatMessageArgs>("admin_delete_chat_message", &value.args)?.into()),
             "admin_despawn_overworld_enemies" => Ok(__sdk::parse_reducer_args::<admin_despawn_overworld_enemies_reducer::AdminDespawnOverworldEnemiesArgs>("admin_despawn_overworld_enemies", &value.args)?.into()),
             "admin_grant_collectibles" => Ok(__sdk::parse_reducer_args::<admin_grant_collectibles_reducer::AdminGrantCollectiblesArgs>("admin_grant_collectibles", &value.args)?.into()),
+            "admin_modify_chat_message" => Ok(__sdk::parse_reducer_args::<admin_modify_chat_message_reducer::AdminModifyChatMessageArgs>("admin_modify_chat_message", &value.args)?.into()),
             "admin_rename_building" => Ok(__sdk::parse_reducer_args::<admin_rename_building_reducer::AdminRenameBuildingArgs>("admin_rename_building", &value.args)?.into()),
             "admin_rename_building_coord" => Ok(__sdk::parse_reducer_args::<admin_rename_building_coord_reducer::AdminRenameBuildingCoordArgs>("admin_rename_building_coord", &value.args)?.into()),
             "admin_rename_building_entity" => Ok(__sdk::parse_reducer_args::<admin_rename_building_entity_reducer::AdminRenameBuildingEntityArgs>("admin_rename_building_entity", &value.args)?.into()),

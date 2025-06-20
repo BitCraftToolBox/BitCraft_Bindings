@@ -74,10 +74,14 @@ import { AdminCountInventoryItems } from "./admin_count_inventory_items_reducer.
 export { AdminCountInventoryItems };
 import { AdminDeleteAllItemsOfType } from "./admin_delete_all_items_of_type_reducer.ts";
 export { AdminDeleteAllItemsOfType };
+import { AdminDeleteChatMessage } from "./admin_delete_chat_message_reducer.ts";
+export { AdminDeleteChatMessage };
 import { AdminDespawnOverworldEnemies } from "./admin_despawn_overworld_enemies_reducer.ts";
 export { AdminDespawnOverworldEnemies };
 import { AdminGrantCollectibles } from "./admin_grant_collectibles_reducer.ts";
 export { AdminGrantCollectibles };
+import { AdminModifyChatMessage } from "./admin_modify_chat_message_reducer.ts";
+export { AdminModifyChatMessage };
 import { AdminRenameBuilding } from "./admin_rename_building_reducer.ts";
 export { AdminRenameBuilding };
 import { AdminRenameBuildingCoord } from "./admin_rename_building_coord_reducer.ts";
@@ -5536,6 +5540,10 @@ const REMOTE_MODULE = {
       reducerName: "admin_delete_all_items_of_type",
       argsType: AdminDeleteAllItemsOfType.getTypeScriptAlgebraicType(),
     },
+    admin_delete_chat_message: {
+      reducerName: "admin_delete_chat_message",
+      argsType: AdminDeleteChatMessage.getTypeScriptAlgebraicType(),
+    },
     admin_despawn_overworld_enemies: {
       reducerName: "admin_despawn_overworld_enemies",
       argsType: AdminDespawnOverworldEnemies.getTypeScriptAlgebraicType(),
@@ -5543,6 +5551,10 @@ const REMOTE_MODULE = {
     admin_grant_collectibles: {
       reducerName: "admin_grant_collectibles",
       argsType: AdminGrantCollectibles.getTypeScriptAlgebraicType(),
+    },
+    admin_modify_chat_message: {
+      reducerName: "admin_modify_chat_message",
+      argsType: AdminModifyChatMessage.getTypeScriptAlgebraicType(),
     },
     admin_rename_building: {
       reducerName: "admin_rename_building",
@@ -7814,8 +7826,10 @@ export type Reducer = never
 | { name: "AdminCompleteAllPassiveCrafts", args: AdminCompleteAllPassiveCrafts }
 | { name: "AdminCountInventoryItems", args: AdminCountInventoryItems }
 | { name: "AdminDeleteAllItemsOfType", args: AdminDeleteAllItemsOfType }
+| { name: "AdminDeleteChatMessage", args: AdminDeleteChatMessage }
 | { name: "AdminDespawnOverworldEnemies", args: AdminDespawnOverworldEnemies }
 | { name: "AdminGrantCollectibles", args: AdminGrantCollectibles }
+| { name: "AdminModifyChatMessage", args: AdminModifyChatMessage }
 | { name: "AdminRenameBuilding", args: AdminRenameBuilding }
 | { name: "AdminRenameBuildingCoord", args: AdminRenameBuildingCoord }
 | { name: "AdminRenameBuildingEntity", args: AdminRenameBuildingEntity }
@@ -8684,6 +8698,22 @@ export class RemoteReducers {
     this.connection.offReducer("admin_delete_all_items_of_type", callback);
   }
 
+  adminDeleteChatMessage(entityId: bigint) {
+    const __args = { entityId };
+    let __writer = new BinaryWriter(1024);
+    AdminDeleteChatMessage.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("admin_delete_chat_message", __argsBuffer, this.setCallReducerFlags.adminDeleteChatMessageFlags);
+  }
+
+  onAdminDeleteChatMessage(callback: (ctx: ReducerEventContext, entityId: bigint) => void) {
+    this.connection.onReducer("admin_delete_chat_message", callback);
+  }
+
+  removeOnAdminDeleteChatMessage(callback: (ctx: ReducerEventContext, entityId: bigint) => void) {
+    this.connection.offReducer("admin_delete_chat_message", callback);
+  }
+
   adminDespawnOverworldEnemies() {
     this.connection.callReducer("admin_despawn_overworld_enemies", new Uint8Array(0), this.setCallReducerFlags.adminDespawnOverworldEnemiesFlags);
   }
@@ -8710,6 +8740,22 @@ export class RemoteReducers {
 
   removeOnAdminGrantCollectibles(callback: (ctx: ReducerEventContext, identity: string, collectibles: number[]) => void) {
     this.connection.offReducer("admin_grant_collectibles", callback);
+  }
+
+  adminModifyChatMessage(entityId: bigint, newMessageText: string) {
+    const __args = { entityId, newMessageText };
+    let __writer = new BinaryWriter(1024);
+    AdminModifyChatMessage.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("admin_modify_chat_message", __argsBuffer, this.setCallReducerFlags.adminModifyChatMessageFlags);
+  }
+
+  onAdminModifyChatMessage(callback: (ctx: ReducerEventContext, entityId: bigint, newMessageText: string) => void) {
+    this.connection.onReducer("admin_modify_chat_message", callback);
+  }
+
+  removeOnAdminModifyChatMessage(callback: (ctx: ReducerEventContext, entityId: bigint, newMessageText: string) => void) {
+    this.connection.offReducer("admin_modify_chat_message", callback);
   }
 
   adminRenameBuilding(buildingName: string, newName: string) {
@@ -17579,6 +17625,11 @@ export class SetReducerFlags {
     this.adminDeleteAllItemsOfTypeFlags = flags;
   }
 
+  adminDeleteChatMessageFlags: CallReducerFlags = 'FullUpdate';
+  adminDeleteChatMessage(flags: CallReducerFlags) {
+    this.adminDeleteChatMessageFlags = flags;
+  }
+
   adminDespawnOverworldEnemiesFlags: CallReducerFlags = 'FullUpdate';
   adminDespawnOverworldEnemies(flags: CallReducerFlags) {
     this.adminDespawnOverworldEnemiesFlags = flags;
@@ -17587,6 +17638,11 @@ export class SetReducerFlags {
   adminGrantCollectiblesFlags: CallReducerFlags = 'FullUpdate';
   adminGrantCollectibles(flags: CallReducerFlags) {
     this.adminGrantCollectiblesFlags = flags;
+  }
+
+  adminModifyChatMessageFlags: CallReducerFlags = 'FullUpdate';
+  adminModifyChatMessage(flags: CallReducerFlags) {
+    this.adminModifyChatMessageFlags = flags;
   }
 
   adminRenameBuildingFlags: CallReducerFlags = 'FullUpdate';
