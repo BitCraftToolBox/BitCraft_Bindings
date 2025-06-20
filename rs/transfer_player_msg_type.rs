@@ -112,6 +112,7 @@ pub struct TransferPlayerMsg {
     pub player_housing_state: Option<PlayerHousingState>,
     pub traveler_task_states: Vec<TravelerTaskState>,
     pub extract_outcome_state: ExtractOutcomeState,
+    pub undeployed_deployable_states: Vec<DeployableState>,
 }
 
 impl __sdk::InModule for TransferPlayerMsg {

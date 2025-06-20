@@ -242,6 +242,7 @@ pub mod claim_tile_state_type;
 pub mod claim_transfer_ownership_reducer;
 pub mod claim_type_type;
 pub mod claim_withdraw_from_treasury_reducer;
+pub mod clear_staged_static_data_reducer;
 pub mod climb_requirement_desc_table;
 pub mod climb_requirement_desc_type;
 pub mod closed_listing_collect_reducer;
@@ -503,6 +504,7 @@ pub mod hide_deployable_reducer;
 pub mod hide_deployable_timer_table;
 pub mod hide_deployable_timer_type;
 pub mod hub_item_type_type;
+pub mod identity_connected_reducer;
 pub mod identity_disconnected_reducer;
 pub mod identity_role_op_type;
 pub mod identity_role_table;
@@ -828,6 +830,7 @@ pub mod on_durability_zero_timer_type;
 pub mod on_empire_building_deleted_msg_type;
 pub mod on_inter_module_message_processed_reducer;
 pub mod on_player_joined_empire_msg_type;
+pub mod on_player_left_empire_msg_type;
 pub mod on_player_name_set_msg_type;
 pub mod on_region_player_created_msg_type;
 pub mod onboarding_reward_desc_table;
@@ -1091,6 +1094,9 @@ pub mod region_population_info_type;
 pub mod region_population_loop_timer_type;
 pub mod region_popuplation_agent_loop_reducer;
 pub mod region_popuplation_loop_timer_table;
+pub mod region_sign_in_parameters_op_type;
+pub mod region_sign_in_parameters_table;
+pub mod region_sign_in_parameters_type;
 pub mod rent_add_listing_reducer;
 pub mod rent_add_listing_request_type;
 pub mod rent_add_tenant_reducer;
@@ -1919,6 +1925,10 @@ pub use claim_withdraw_from_treasury_reducer::{
     claim_withdraw_from_treasury, set_flags_for_claim_withdraw_from_treasury,
     ClaimWithdrawFromTreasuryCallbackId,
 };
+pub use clear_staged_static_data_reducer::{
+    clear_staged_static_data, set_flags_for_clear_staged_static_data,
+    ClearStagedStaticDataCallbackId,
+};
 pub use climb_requirement_desc_table::*;
 pub use climb_requirement_desc_type::ClimbRequirementDesc;
 pub use closed_listing_collect_reducer::{
@@ -2312,6 +2322,9 @@ pub use hide_deployable_reducer::{
 pub use hide_deployable_timer_table::*;
 pub use hide_deployable_timer_type::HideDeployableTimer;
 pub use hub_item_type_type::HubItemType;
+pub use identity_connected_reducer::{
+    identity_connected, set_flags_for_identity_connected, IdentityConnectedCallbackId,
+};
 pub use identity_disconnected_reducer::{
     identity_disconnected, set_flags_for_identity_disconnected, IdentityDisconnectedCallbackId,
 };
@@ -3094,6 +3107,7 @@ pub use on_inter_module_message_processed_reducer::{
     OnInterModuleMessageProcessedCallbackId,
 };
 pub use on_player_joined_empire_msg_type::OnPlayerJoinedEmpireMsg;
+pub use on_player_left_empire_msg_type::OnPlayerLeftEmpireMsg;
 pub use on_player_name_set_msg_type::OnPlayerNameSetMsg;
 pub use on_region_player_created_msg_type::OnRegionPlayerCreatedMsg;
 pub use onboarding_reward_desc_table::*;
@@ -3501,6 +3515,9 @@ pub use region_popuplation_agent_loop_reducer::{
     RegionPopuplationAgentLoopCallbackId,
 };
 pub use region_popuplation_loop_timer_table::*;
+pub use region_sign_in_parameters_op_type::RegionSignInParametersOp;
+pub use region_sign_in_parameters_table::*;
+pub use region_sign_in_parameters_type::RegionSignInParameters;
 pub use rent_add_listing_reducer::{
     rent_add_listing, set_flags_for_rent_add_listing, RentAddListingCallbackId,
 };
@@ -4460,6 +4477,7 @@ pub enum Reducer {
     ClaimWithdrawFromTreasury {
         request: PlayerClaimWithdrawFromTreasuryRequest,
     },
+    ClearStagedStaticData,
     ClosedListingCollect {
         request: PlayerClosedListingCollectRequest,
     },
@@ -4642,6 +4660,7 @@ pub enum Reducer {
     HideDeployable {
         timer: HideDeployableTimer,
     },
+    IdentityConnected,
     IdentityDisconnected,
     ImportAchievementDesc {
         records: Vec<AchievementDesc>,
@@ -5931,6 +5950,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::ClaimTechUnlockTech { .. } => "claim_tech_unlock_tech",
             Reducer::ClaimTransferOwnership { .. } => "claim_transfer_ownership",
             Reducer::ClaimWithdrawFromTreasury { .. } => "claim_withdraw_from_treasury",
+            Reducer::ClearStagedStaticData => "clear_staged_static_data",
             Reducer::ClosedListingCollect { .. } => "closed_listing_collect",
             Reducer::CollectStatsReducer { .. } => "collect_stats_reducer",
             Reducer::CollectibleActivate { .. } => "collectible_activate",
@@ -5996,6 +6016,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::GenerateWorld { .. } => "generate_world",
             Reducer::GrowthAgentLoop { .. } => "growth_agent_loop",
             Reducer::HideDeployable { .. } => "hide_deployable",
+            Reducer::IdentityConnected => "identity_connected",
             Reducer::IdentityDisconnected => "identity_disconnected",
             Reducer::ImportAchievementDesc { .. } => "import_achievement_desc",
             Reducer::ImportActiveBuffState { .. } => "import_active_buff_state",
@@ -6526,6 +6547,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "claim_tech_unlock_tech" => Ok(__sdk::parse_reducer_args::<claim_tech_unlock_tech_reducer::ClaimTechUnlockTechArgs>("claim_tech_unlock_tech", &value.args)?.into()),
             "claim_transfer_ownership" => Ok(__sdk::parse_reducer_args::<claim_transfer_ownership_reducer::ClaimTransferOwnershipArgs>("claim_transfer_ownership", &value.args)?.into()),
             "claim_withdraw_from_treasury" => Ok(__sdk::parse_reducer_args::<claim_withdraw_from_treasury_reducer::ClaimWithdrawFromTreasuryArgs>("claim_withdraw_from_treasury", &value.args)?.into()),
+            "clear_staged_static_data" => Ok(__sdk::parse_reducer_args::<clear_staged_static_data_reducer::ClearStagedStaticDataArgs>("clear_staged_static_data", &value.args)?.into()),
             "closed_listing_collect" => Ok(__sdk::parse_reducer_args::<closed_listing_collect_reducer::ClosedListingCollectArgs>("closed_listing_collect", &value.args)?.into()),
             "collect_stats_reducer" => Ok(__sdk::parse_reducer_args::<collect_stats_reducer_reducer::CollectStatsReducerArgs>("collect_stats_reducer", &value.args)?.into()),
             "collectible_activate" => Ok(__sdk::parse_reducer_args::<collectible_activate_reducer::CollectibleActivateArgs>("collectible_activate", &value.args)?.into()),
@@ -6591,6 +6613,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "generate_world" => Ok(__sdk::parse_reducer_args::<generate_world_reducer::GenerateWorldArgs>("generate_world", &value.args)?.into()),
             "growth_agent_loop" => Ok(__sdk::parse_reducer_args::<growth_agent_loop_reducer::GrowthAgentLoopArgs>("growth_agent_loop", &value.args)?.into()),
             "hide_deployable" => Ok(__sdk::parse_reducer_args::<hide_deployable_reducer::HideDeployableArgs>("hide_deployable", &value.args)?.into()),
+            "identity_connected" => Ok(__sdk::parse_reducer_args::<identity_connected_reducer::IdentityConnectedArgs>("identity_connected", &value.args)?.into()),
             "identity_disconnected" => Ok(__sdk::parse_reducer_args::<identity_disconnected_reducer::IdentityDisconnectedArgs>("identity_disconnected", &value.args)?.into()),
             "import_achievement_desc" => Ok(__sdk::parse_reducer_args::<import_achievement_desc_reducer::ImportAchievementDescArgs>("import_achievement_desc", &value.args)?.into()),
             "import_active_buff_state" => Ok(__sdk::parse_reducer_args::<import_active_buff_state_reducer::ImportActiveBuffStateArgs>("import_active_buff_state", &value.args)?.into()),
@@ -7198,6 +7221,7 @@ pub struct DbUpdate {
     region_connection_info: __sdk::TableUpdate<RegionConnectionInfo>,
     region_population_info: __sdk::TableUpdate<RegionPopulationInfo>,
     region_popuplation_loop_timer: __sdk::TableUpdate<RegionPopulationLoopTimer>,
+    region_sign_in_parameters: __sdk::TableUpdate<RegionSignInParameters>,
     rent_collector_loop_timer: __sdk::TableUpdate<RentCollectorLoopTimer>,
     rent_evict_timer: __sdk::TableUpdate<RentEvictTimer>,
     rent_state: __sdk::TableUpdate<RentState>,
@@ -7936,6 +7960,9 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
                 ),
                 "region_popuplation_loop_timer" => db_update.region_popuplation_loop_timer.append(
                     region_popuplation_loop_timer_table::parse_table_update(table_update)?,
+                ),
+                "region_sign_in_parameters" => db_update.region_sign_in_parameters.append(
+                    region_sign_in_parameters_table::parse_table_update(table_update)?,
                 ),
                 "rent_collector_loop_timer" => db_update.rent_collector_loop_timer.append(
                     rent_collector_loop_timer_table::parse_table_update(table_update)?,
@@ -9160,6 +9187,12 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.region_popuplation_loop_timer,
             )
             .with_updates_by_pk(|row| &row.scheduled_id);
+        diff.region_sign_in_parameters = cache
+            .apply_diff_to_table::<RegionSignInParameters>(
+                "region_sign_in_parameters",
+                &self.region_sign_in_parameters,
+            )
+            .with_updates_by_pk(|row| &row.region_id);
         diff.rent_collector_loop_timer = cache
             .apply_diff_to_table::<RentCollectorLoopTimer>(
                 "rent_collector_loop_timer",
@@ -9687,6 +9720,7 @@ pub struct AppliedDiff<'r> {
     region_connection_info: __sdk::TableAppliedDiff<'r, RegionConnectionInfo>,
     region_population_info: __sdk::TableAppliedDiff<'r, RegionPopulationInfo>,
     region_popuplation_loop_timer: __sdk::TableAppliedDiff<'r, RegionPopulationLoopTimer>,
+    region_sign_in_parameters: __sdk::TableAppliedDiff<'r, RegionSignInParameters>,
     rent_collector_loop_timer: __sdk::TableAppliedDiff<'r, RentCollectorLoopTimer>,
     rent_evict_timer: __sdk::TableAppliedDiff<'r, RentEvictTimer>,
     rent_state: __sdk::TableAppliedDiff<'r, RentState>,
@@ -10745,6 +10779,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<RegionPopulationLoopTimer>(
             "region_popuplation_loop_timer",
             &self.region_popuplation_loop_timer,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<RegionSignInParameters>(
+            "region_sign_in_parameters",
+            &self.region_sign_in_parameters,
             event,
         );
         callbacks.invoke_table_row_callbacks::<RentCollectorLoopTimer>(
@@ -11825,6 +11864,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         region_connection_info_table::register_table(client_cache);
         region_population_info_table::register_table(client_cache);
         region_popuplation_loop_timer_table::register_table(client_cache);
+        region_sign_in_parameters_table::register_table(client_cache);
         rent_collector_loop_timer_table::register_table(client_cache);
         rent_evict_timer_table::register_table(client_cache);
         rent_state_table::register_table(client_cache);

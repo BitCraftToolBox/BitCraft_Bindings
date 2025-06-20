@@ -6,18 +6,13 @@
 #![allow(unused, clippy::all)]
 use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
-use super::offset_coordinates_small_message_type::OffsetCoordinatesSmallMessage;
-
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
-pub struct DeployableCollectibleState {
-    pub deployable_entity_id: u64,
-    pub owner_entity_id: u64,
-    pub collectible_id: i32,
-    pub deployable_desc_id: i32,
-    pub location: Option<OffsetCoordinatesSmallMessage>,
+pub struct OnPlayerLeftEmpireMsg {
+    pub player_entity_id: u64,
+    pub empire_entity_id: u64,
 }
 
-impl __sdk::InModule for DeployableCollectibleState {
+impl __sdk::InModule for OnPlayerLeftEmpireMsg {
     type Module = super::RemoteModule;
 }

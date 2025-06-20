@@ -6,18 +6,17 @@
 #![allow(unused, clippy::all)]
 use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
-use super::offset_coordinates_small_message_type::OffsetCoordinatesSmallMessage;
-
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
-pub struct DeployableCollectibleState {
-    pub deployable_entity_id: u64,
-    pub owner_entity_id: u64,
-    pub collectible_id: i32,
-    pub deployable_desc_id: i32,
-    pub location: Option<OffsetCoordinatesSmallMessage>,
+pub struct RegionSignInParameters {
+    pub region_id: u8,
+    pub is_signing_in_blocked: bool,
+    pub max_signed_in_players: u64,
+    pub max_queue_length: u64,
+    pub queue_length_tolerance: u32,
+    pub grace_period_seconds: u64,
 }
 
-impl __sdk::InModule for DeployableCollectibleState {
+impl __sdk::InModule for RegionSignInParameters {
     type Module = super::RemoteModule;
 }

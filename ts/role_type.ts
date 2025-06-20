@@ -38,6 +38,7 @@ export namespace Role {
   // One type is generated per variant and will be used in the `value` field of
   // the tagged union.
   export type Player = { tag: "Player" };
+  export type SkipQueue = { tag: "SkipQueue" };
   export type Mod = { tag: "Mod" };
   export type Gm = { tag: "Gm" };
   export type Admin = { tag: "Admin" };
@@ -50,6 +51,7 @@ export namespace Role {
   // assert!(foo.value === 42);
   // ```
   export const Player = { tag: "Player" };
+  export const SkipQueue = { tag: "SkipQueue" };
   export const Mod = { tag: "Mod" };
   export const Gm = { tag: "Gm" };
   export const Admin = { tag: "Admin" };
@@ -58,6 +60,7 @@ export namespace Role {
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createSumType([
       new SumTypeVariant("Player", AlgebraicType.createProductType([])),
+      new SumTypeVariant("SkipQueue", AlgebraicType.createProductType([])),
       new SumTypeVariant("Mod", AlgebraicType.createProductType([])),
       new SumTypeVariant("Gm", AlgebraicType.createProductType([])),
       new SumTypeVariant("Admin", AlgebraicType.createProductType([])),
@@ -76,7 +79,7 @@ export namespace Role {
 }
 
 // The tagged union or sum type for the algebraic type `Role`.
-export type Role = Role.Player | Role.Mod | Role.Gm | Role.Admin | Role.Relay;
+export type Role = Role.Player | Role.SkipQueue | Role.Mod | Role.Gm | Role.Admin | Role.Relay;
 
 export default Role;
 
