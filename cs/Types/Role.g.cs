@@ -13,6 +13,7 @@ namespace SpacetimeDB.Types
     public enum Role
     {
         Player,
+        Partner,
         SkipQueue,
         Mod,
         Gm,

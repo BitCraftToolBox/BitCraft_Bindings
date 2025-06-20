@@ -37,10 +37,20 @@ namespace SpacetimeDB.Types
 
             public readonly OwnerEntityIdIndex OwnerEntityId;
 
+            public sealed class PlayerOwnerEntityIdIndex : BTreeIndexBase<ulong>
+            {
+                protected override ulong GetKey(InventoryState row) => row.PlayerOwnerEntityId;
+
+                public PlayerOwnerEntityIdIndex(InventoryStateHandle table) : base(table) { }
+            }
+
+            public readonly PlayerOwnerEntityIdIndex PlayerOwnerEntityId;
+
             internal InventoryStateHandle(DbConnection conn) : base(conn)
             {
                 EntityId = new(this);
                 OwnerEntityId = new(this);
+                PlayerOwnerEntityId = new(this);
             }
 
             protected override object GetPrimaryKey(InventoryState row) => row.EntityId;

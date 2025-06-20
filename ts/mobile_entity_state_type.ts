@@ -42,6 +42,9 @@ export type MobileEntityState = {
   destinationZ: number,
   dimension: number,
   isRunning: boolean,
+  pad1: number,
+  pad2: number,
+  pad3: number,
 };
 
 /**
@@ -63,6 +66,9 @@ export namespace MobileEntityState {
       new ProductTypeElement("destinationZ", AlgebraicType.createI32Type()),
       new ProductTypeElement("dimension", AlgebraicType.createU32Type()),
       new ProductTypeElement("isRunning", AlgebraicType.createBoolType()),
+      new ProductTypeElement("pad1", AlgebraicType.createU8Type()),
+      new ProductTypeElement("pad2", AlgebraicType.createU8Type()),
+      new ProductTypeElement("pad3", AlgebraicType.createU8Type()),
     ]);
   }
 

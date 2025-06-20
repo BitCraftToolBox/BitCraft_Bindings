@@ -20,6 +20,15 @@ pub mod admin_broadcast_msg_reducer;
 pub mod admin_broadcast_table;
 pub mod admin_broadcast_type;
 pub mod admin_grant_shards_reducer;
+pub mod admin_mark_user_report_as_actioned_reducer;
+pub mod admin_notify_player_by_identity_reducer;
+pub mod admin_notify_player_reducer;
+pub mod admin_rename_empire_entity_reducer;
+pub mod admin_rename_empire_rank_entity_reducer;
+pub mod admin_rename_empire_rank_reducer;
+pub mod admin_rename_empire_reducer;
+pub mod admin_rename_player_entity_reducer;
+pub mod admin_rename_player_reducer;
 pub mod admin_sign_out_all_reducer;
 pub mod admin_skip_queue_entity_reducer;
 pub mod admin_skip_queue_identity_reducer;
@@ -45,6 +54,10 @@ pub mod barter_stall_state_type;
 pub mod biome_desc_table;
 pub mod biome_desc_type;
 pub mod biome_type;
+pub mod block_identity_reducer;
+pub mod blocked_identity_op_type;
+pub mod blocked_identity_table;
+pub mod blocked_identity_type;
 pub mod buff_category_type;
 pub mod buff_desc_table;
 pub mod buff_desc_type;
@@ -331,6 +344,7 @@ pub mod hex_direction_type;
 pub mod hexite_exchange_entry_desc_table;
 pub mod hexite_exchange_entry_desc_type;
 pub mod hub_item_type_type;
+pub mod identity_connected_reducer;
 pub mod identity_disconnected_reducer;
 pub mod identity_role_op_type;
 pub mod identity_role_table;
@@ -617,6 +631,7 @@ pub mod npc_type_type;
 pub mod offset_coordinates_float_type;
 pub mod offset_coordinates_small_message_type;
 pub mod on_claim_members_changed_msg_type;
+pub mod on_deployable_recovered_msg_type;
 pub mod on_empire_building_deleted_msg_type;
 pub mod on_inter_module_message_processed_reducer;
 pub mod on_player_joined_empire_msg_type;
@@ -660,8 +675,12 @@ pub mod player_action_type_type;
 pub mod player_claim_daily_shards_reducer;
 pub mod player_create_msg_type;
 pub mod player_create_reducer;
+pub mod player_developer_notification_state_table;
+pub mod player_developer_notification_state_type;
+pub mod player_dismiss_notification_reducer;
 pub mod player_housing_desc_table;
 pub mod player_housing_desc_type;
+pub mod player_housing_state_op_type;
 pub mod player_housing_state_table;
 pub mod player_housing_state_type;
 pub mod player_lowercase_username_state_table;
@@ -677,6 +696,8 @@ pub mod player_queue_state_table;
 pub mod player_queue_state_type;
 pub mod player_report_state_op_type;
 pub mod player_report_state_table;
+pub mod player_report_state_timestamp_table;
+pub mod player_report_state_timestamp_type;
 pub mod player_report_state_type;
 pub mod player_set_name_reducer;
 pub mod player_set_name_request_type;
@@ -712,6 +733,7 @@ pub mod progressive_action_status_type;
 pub mod project_site_state_table;
 pub mod project_site_state_type;
 pub mod rarity_type;
+pub mod recover_deployable_msg_type;
 pub mod region_connection_info_op_type;
 pub mod region_connection_info_table;
 pub mod region_connection_info_type;
@@ -724,6 +746,8 @@ pub mod region_sign_in_parameters_table;
 pub mod region_sign_in_parameters_type;
 pub mod rent_state_table;
 pub mod rent_state_type;
+pub mod reserved_name_desc_table;
+pub mod reserved_name_desc_type;
 pub mod resource_clump_desc_table;
 pub mod resource_clump_desc_type;
 pub mod resource_count_table;
@@ -824,6 +848,7 @@ pub mod stage_pillar_shaping_desc_reducer;
 pub mod stage_player_action_desc_reducer;
 pub mod stage_player_housing_desc_reducer;
 pub mod stage_private_parameters_desc_reducer;
+pub mod stage_reserved_name_desc_reducer;
 pub mod stage_resource_clump_desc_reducer;
 pub mod stage_resource_desc_reducer;
 pub mod stage_resource_growth_recipe_desc_reducer;
@@ -952,6 +977,39 @@ pub use admin_broadcast_type::AdminBroadcast;
 pub use admin_grant_shards_reducer::{
     admin_grant_shards, set_flags_for_admin_grant_shards, AdminGrantShardsCallbackId,
 };
+pub use admin_mark_user_report_as_actioned_reducer::{
+    admin_mark_user_report_as_actioned, set_flags_for_admin_mark_user_report_as_actioned,
+    AdminMarkUserReportAsActionedCallbackId,
+};
+pub use admin_notify_player_by_identity_reducer::{
+    admin_notify_player_by_identity, set_flags_for_admin_notify_player_by_identity,
+    AdminNotifyPlayerByIdentityCallbackId,
+};
+pub use admin_notify_player_reducer::{
+    admin_notify_player, set_flags_for_admin_notify_player, AdminNotifyPlayerCallbackId,
+};
+pub use admin_rename_empire_entity_reducer::{
+    admin_rename_empire_entity, set_flags_for_admin_rename_empire_entity,
+    AdminRenameEmpireEntityCallbackId,
+};
+pub use admin_rename_empire_rank_entity_reducer::{
+    admin_rename_empire_rank_entity, set_flags_for_admin_rename_empire_rank_entity,
+    AdminRenameEmpireRankEntityCallbackId,
+};
+pub use admin_rename_empire_rank_reducer::{
+    admin_rename_empire_rank, set_flags_for_admin_rename_empire_rank,
+    AdminRenameEmpireRankCallbackId,
+};
+pub use admin_rename_empire_reducer::{
+    admin_rename_empire, set_flags_for_admin_rename_empire, AdminRenameEmpireCallbackId,
+};
+pub use admin_rename_player_entity_reducer::{
+    admin_rename_player_entity, set_flags_for_admin_rename_player_entity,
+    AdminRenamePlayerEntityCallbackId,
+};
+pub use admin_rename_player_reducer::{
+    admin_rename_player, set_flags_for_admin_rename_player, AdminRenamePlayerCallbackId,
+};
 pub use admin_sign_out_all_reducer::{
     admin_sign_out_all, set_flags_for_admin_sign_out_all, AdminSignOutAllCallbackId,
 };
@@ -992,6 +1050,12 @@ pub use barter_stall_state_type::BarterStallState;
 pub use biome_desc_table::*;
 pub use biome_desc_type::BiomeDesc;
 pub use biome_type::Biome;
+pub use block_identity_reducer::{
+    block_identity, set_flags_for_block_identity, BlockIdentityCallbackId,
+};
+pub use blocked_identity_op_type::BlockedIdentityOp;
+pub use blocked_identity_table::*;
+pub use blocked_identity_type::BlockedIdentity;
 pub use buff_category_type::BuffCategory;
 pub use buff_desc_table::*;
 pub use buff_desc_type::BuffDesc;
@@ -1338,6 +1402,9 @@ pub use hex_direction_type::HexDirection;
 pub use hexite_exchange_entry_desc_table::*;
 pub use hexite_exchange_entry_desc_type::HexiteExchangeEntryDesc;
 pub use hub_item_type_type::HubItemType;
+pub use identity_connected_reducer::{
+    identity_connected, set_flags_for_identity_connected, IdentityConnectedCallbackId,
+};
 pub use identity_disconnected_reducer::{
     identity_disconnected, set_flags_for_identity_disconnected, IdentityDisconnectedCallbackId,
 };
@@ -2035,6 +2102,7 @@ pub use npc_type_type::NpcType;
 pub use offset_coordinates_float_type::OffsetCoordinatesFloat;
 pub use offset_coordinates_small_message_type::OffsetCoordinatesSmallMessage;
 pub use on_claim_members_changed_msg_type::OnClaimMembersChangedMsg;
+pub use on_deployable_recovered_msg_type::OnDeployableRecoveredMsg;
 pub use on_empire_building_deleted_msg_type::OnEmpireBuildingDeletedMsg;
 pub use on_inter_module_message_processed_reducer::{
     on_inter_module_message_processed, set_flags_for_on_inter_module_message_processed,
@@ -2086,8 +2154,15 @@ pub use player_create_msg_type::PlayerCreateMsg;
 pub use player_create_reducer::{
     player_create, set_flags_for_player_create, PlayerCreateCallbackId,
 };
+pub use player_developer_notification_state_table::*;
+pub use player_developer_notification_state_type::PlayerDeveloperNotificationState;
+pub use player_dismiss_notification_reducer::{
+    player_dismiss_notification, set_flags_for_player_dismiss_notification,
+    PlayerDismissNotificationCallbackId,
+};
 pub use player_housing_desc_table::*;
 pub use player_housing_desc_type::PlayerHousingDesc;
+pub use player_housing_state_op_type::PlayerHousingStateOp;
 pub use player_housing_state_table::*;
 pub use player_housing_state_type::PlayerHousingState;
 pub use player_lowercase_username_state_table::*;
@@ -2106,6 +2181,8 @@ pub use player_queue_state_table::*;
 pub use player_queue_state_type::PlayerQueueState;
 pub use player_report_state_op_type::PlayerReportStateOp;
 pub use player_report_state_table::*;
+pub use player_report_state_timestamp_table::*;
+pub use player_report_state_timestamp_type::PlayerReportStateTimestamp;
 pub use player_report_state_type::PlayerReportState;
 pub use player_set_name_reducer::{
     player_set_name, set_flags_for_player_set_name, PlayerSetNameCallbackId,
@@ -2150,6 +2227,7 @@ pub use progressive_action_status_type::ProgressiveActionStatus;
 pub use project_site_state_table::*;
 pub use project_site_state_type::ProjectSiteState;
 pub use rarity_type::Rarity;
+pub use recover_deployable_msg_type::RecoverDeployableMsg;
 pub use region_connection_info_op_type::RegionConnectionInfoOp;
 pub use region_connection_info_table::*;
 pub use region_connection_info_type::RegionConnectionInfo;
@@ -2162,6 +2240,8 @@ pub use region_sign_in_parameters_table::*;
 pub use region_sign_in_parameters_type::RegionSignInParameters;
 pub use rent_state_table::*;
 pub use rent_state_type::RentState;
+pub use reserved_name_desc_table::*;
+pub use reserved_name_desc_type::ReservedNameDesc;
 pub use resource_clump_desc_table::*;
 pub use resource_clump_desc_type::ResourceClumpDesc;
 pub use resource_count_table::*;
@@ -2429,6 +2509,10 @@ pub use stage_private_parameters_desc_reducer::{
     set_flags_for_stage_private_parameters_desc, stage_private_parameters_desc,
     StagePrivateParametersDescCallbackId,
 };
+pub use stage_reserved_name_desc_reducer::{
+    set_flags_for_stage_reserved_name_desc, stage_reserved_name_desc,
+    StageReservedNameDescCallbackId,
+};
 pub use stage_resource_clump_desc_reducer::{
     set_flags_for_stage_resource_clump_desc, stage_resource_clump_desc,
     StageResourceClumpDescCallbackId,
@@ -2612,6 +2696,46 @@ pub enum Reducer {
         identity: String,
         amount: u32,
     },
+    AdminMarkUserReportAsActioned {
+        entity_id: u64,
+        actioned: bool,
+    },
+    AdminNotifyPlayer {
+        username: String,
+        title: String,
+        message: String,
+    },
+    AdminNotifyPlayerByIdentity {
+        identity: String,
+        title: String,
+        message: String,
+    },
+    AdminRenameEmpire {
+        current_name: String,
+        new_name: String,
+    },
+    AdminRenameEmpireEntity {
+        entity_id: u64,
+        new_name: String,
+    },
+    AdminRenameEmpireRank {
+        empire_name: String,
+        rank: u8,
+        new_name: String,
+    },
+    AdminRenameEmpireRankEntity {
+        empire_entity_id: u64,
+        rank: u8,
+        new_name: String,
+    },
+    AdminRenamePlayer {
+        current_name: String,
+        new_name: String,
+    },
+    AdminRenamePlayerEntity {
+        entity_id: u64,
+        new_name: String,
+    },
     AdminSignOutAll {
         region: u8,
     },
@@ -2635,6 +2759,9 @@ pub enum Reducer {
         region: u8,
     },
     Authenticate {
+        identity: String,
+    },
+    BlockIdentity {
         identity: String,
     },
     CheatEmpireSiegeAddSupplies {
@@ -2714,6 +2841,7 @@ pub enum Reducer {
     EmpireUpdatePermissions {
         request: EmpireUpdatePermissionsRequest,
     },
+    IdentityConnected,
     IdentityDisconnected,
     ImportAchievementDesc {
         records: Vec<AchievementDesc>,
@@ -3201,6 +3329,7 @@ pub enum Reducer {
     },
     PlayerClaimDailyShards,
     PlayerCreate,
+    PlayerDismissNotification,
     PlayerNotificationEventReducer {
         timer: PlayerNotificationEvent,
     },
@@ -3419,6 +3548,9 @@ pub enum Reducer {
     StagePrivateParametersDesc {
         records: Vec<PrivateParametersDesc>,
     },
+    StageReservedNameDesc {
+        records: Vec<ReservedNameDesc>,
+    },
     StageResourceClumpDesc {
         records: Vec<ResourceClumpDesc>,
     },
@@ -3495,6 +3627,15 @@ impl __sdk::Reducer for Reducer {
         match self {
             Reducer::AdminBroadcastMsg { .. } => "admin_broadcast_msg",
             Reducer::AdminGrantShards { .. } => "admin_grant_shards",
+            Reducer::AdminMarkUserReportAsActioned { .. } => "admin_mark_user_report_as_actioned",
+            Reducer::AdminNotifyPlayer { .. } => "admin_notify_player",
+            Reducer::AdminNotifyPlayerByIdentity { .. } => "admin_notify_player_by_identity",
+            Reducer::AdminRenameEmpire { .. } => "admin_rename_empire",
+            Reducer::AdminRenameEmpireEntity { .. } => "admin_rename_empire_entity",
+            Reducer::AdminRenameEmpireRank { .. } => "admin_rename_empire_rank",
+            Reducer::AdminRenameEmpireRankEntity { .. } => "admin_rename_empire_rank_entity",
+            Reducer::AdminRenamePlayer { .. } => "admin_rename_player",
+            Reducer::AdminRenamePlayerEntity { .. } => "admin_rename_player_entity",
             Reducer::AdminSignOutAll { .. } => "admin_sign_out_all",
             Reducer::AdminSkipQueueEntity { .. } => "admin_skip_queue_entity",
             Reducer::AdminSkipQueueIdentity { .. } => "admin_skip_queue_identity",
@@ -3502,6 +3643,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::AdminUpdateGrantedHubItemState { .. } => "admin_update_granted_hub_item_state",
             Reducer::AdminUpdateSignInParameters { .. } => "admin_update_sign_in_parameters",
             Reducer::Authenticate { .. } => "authenticate",
+            Reducer::BlockIdentity { .. } => "block_identity",
             Reducer::CheatEmpireSiegeAddSupplies { .. } => "cheat_empire_siege_add_supplies",
             Reducer::CheatEmpireSiegeCancel { .. } => "cheat_empire_siege_cancel",
             Reducer::CheatPlayerSetName { .. } => "cheat_player_set_name",
@@ -3529,6 +3671,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::EmpireSubmit { .. } => "empire_submit",
             Reducer::EmpireTransferEmperorship { .. } => "empire_transfer_emperorship",
             Reducer::EmpireUpdatePermissions { .. } => "empire_update_permissions",
+            Reducer::IdentityConnected => "identity_connected",
             Reducer::IdentityDisconnected => "identity_disconnected",
             Reducer::ImportAchievementDesc { .. } => "import_achievement_desc",
             Reducer::ImportActiveBuffState { .. } => "import_active_buff_state",
@@ -3710,6 +3853,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::OnInterModuleMessageProcessed { .. } => "on_inter_module_message_processed",
             Reducer::PlayerClaimDailyShards => "player_claim_daily_shards",
             Reducer::PlayerCreate => "player_create",
+            Reducer::PlayerDismissNotification => "player_dismiss_notification",
             Reducer::PlayerNotificationEventReducer { .. } => "player_notification_event_reducer",
             Reducer::PlayerSetName { .. } => "player_set_name",
             Reducer::PlayerVoteAnswer { .. } => "player_vote_answer",
@@ -3784,6 +3928,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::StagePlayerActionDesc { .. } => "stage_player_action_desc",
             Reducer::StagePlayerHousingDesc { .. } => "stage_player_housing_desc",
             Reducer::StagePrivateParametersDesc { .. } => "stage_private_parameters_desc",
+            Reducer::StageReservedNameDesc { .. } => "stage_reserved_name_desc",
             Reducer::StageResourceClumpDesc { .. } => "stage_resource_clump_desc",
             Reducer::StageResourceDesc { .. } => "stage_resource_desc",
             Reducer::StageResourceGrowthRecipeDesc { .. } => "stage_resource_growth_recipe_desc",
@@ -3819,6 +3964,15 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
         match &value.reducer_name[..] {
                         "admin_broadcast_msg" => Ok(__sdk::parse_reducer_args::<admin_broadcast_msg_reducer::AdminBroadcastMsgArgs>("admin_broadcast_msg", &value.args)?.into()),
             "admin_grant_shards" => Ok(__sdk::parse_reducer_args::<admin_grant_shards_reducer::AdminGrantShardsArgs>("admin_grant_shards", &value.args)?.into()),
+            "admin_mark_user_report_as_actioned" => Ok(__sdk::parse_reducer_args::<admin_mark_user_report_as_actioned_reducer::AdminMarkUserReportAsActionedArgs>("admin_mark_user_report_as_actioned", &value.args)?.into()),
+            "admin_notify_player" => Ok(__sdk::parse_reducer_args::<admin_notify_player_reducer::AdminNotifyPlayerArgs>("admin_notify_player", &value.args)?.into()),
+            "admin_notify_player_by_identity" => Ok(__sdk::parse_reducer_args::<admin_notify_player_by_identity_reducer::AdminNotifyPlayerByIdentityArgs>("admin_notify_player_by_identity", &value.args)?.into()),
+            "admin_rename_empire" => Ok(__sdk::parse_reducer_args::<admin_rename_empire_reducer::AdminRenameEmpireArgs>("admin_rename_empire", &value.args)?.into()),
+            "admin_rename_empire_entity" => Ok(__sdk::parse_reducer_args::<admin_rename_empire_entity_reducer::AdminRenameEmpireEntityArgs>("admin_rename_empire_entity", &value.args)?.into()),
+            "admin_rename_empire_rank" => Ok(__sdk::parse_reducer_args::<admin_rename_empire_rank_reducer::AdminRenameEmpireRankArgs>("admin_rename_empire_rank", &value.args)?.into()),
+            "admin_rename_empire_rank_entity" => Ok(__sdk::parse_reducer_args::<admin_rename_empire_rank_entity_reducer::AdminRenameEmpireRankEntityArgs>("admin_rename_empire_rank_entity", &value.args)?.into()),
+            "admin_rename_player" => Ok(__sdk::parse_reducer_args::<admin_rename_player_reducer::AdminRenamePlayerArgs>("admin_rename_player", &value.args)?.into()),
+            "admin_rename_player_entity" => Ok(__sdk::parse_reducer_args::<admin_rename_player_entity_reducer::AdminRenamePlayerEntityArgs>("admin_rename_player_entity", &value.args)?.into()),
             "admin_sign_out_all" => Ok(__sdk::parse_reducer_args::<admin_sign_out_all_reducer::AdminSignOutAllArgs>("admin_sign_out_all", &value.args)?.into()),
             "admin_skip_queue_entity" => Ok(__sdk::parse_reducer_args::<admin_skip_queue_entity_reducer::AdminSkipQueueEntityArgs>("admin_skip_queue_entity", &value.args)?.into()),
             "admin_skip_queue_identity" => Ok(__sdk::parse_reducer_args::<admin_skip_queue_identity_reducer::AdminSkipQueueIdentityArgs>("admin_skip_queue_identity", &value.args)?.into()),
@@ -3826,6 +3980,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "admin_update_granted_hub_item_state" => Ok(__sdk::parse_reducer_args::<admin_update_granted_hub_item_state_reducer::AdminUpdateGrantedHubItemStateArgs>("admin_update_granted_hub_item_state", &value.args)?.into()),
             "admin_update_sign_in_parameters" => Ok(__sdk::parse_reducer_args::<admin_update_sign_in_parameters_reducer::AdminUpdateSignInParametersArgs>("admin_update_sign_in_parameters", &value.args)?.into()),
             "authenticate" => Ok(__sdk::parse_reducer_args::<authenticate_reducer::AuthenticateArgs>("authenticate", &value.args)?.into()),
+            "block_identity" => Ok(__sdk::parse_reducer_args::<block_identity_reducer::BlockIdentityArgs>("block_identity", &value.args)?.into()),
             "cheat_empire_siege_add_supplies" => Ok(__sdk::parse_reducer_args::<cheat_empire_siege_add_supplies_reducer::CheatEmpireSiegeAddSuppliesArgs>("cheat_empire_siege_add_supplies", &value.args)?.into()),
             "cheat_empire_siege_cancel" => Ok(__sdk::parse_reducer_args::<cheat_empire_siege_cancel_reducer::CheatEmpireSiegeCancelArgs>("cheat_empire_siege_cancel", &value.args)?.into()),
             "cheat_player_set_name" => Ok(__sdk::parse_reducer_args::<cheat_player_set_name_reducer::CheatPlayerSetNameArgs>("cheat_player_set_name", &value.args)?.into()),
@@ -3853,6 +4008,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "empire_submit" => Ok(__sdk::parse_reducer_args::<empire_submit_reducer::EmpireSubmitArgs>("empire_submit", &value.args)?.into()),
             "empire_transfer_emperorship" => Ok(__sdk::parse_reducer_args::<empire_transfer_emperorship_reducer::EmpireTransferEmperorshipArgs>("empire_transfer_emperorship", &value.args)?.into()),
             "empire_update_permissions" => Ok(__sdk::parse_reducer_args::<empire_update_permissions_reducer::EmpireUpdatePermissionsArgs>("empire_update_permissions", &value.args)?.into()),
+            "identity_connected" => Ok(__sdk::parse_reducer_args::<identity_connected_reducer::IdentityConnectedArgs>("identity_connected", &value.args)?.into()),
             "identity_disconnected" => Ok(__sdk::parse_reducer_args::<identity_disconnected_reducer::IdentityDisconnectedArgs>("identity_disconnected", &value.args)?.into()),
             "import_achievement_desc" => Ok(__sdk::parse_reducer_args::<import_achievement_desc_reducer::ImportAchievementDescArgs>("import_achievement_desc", &value.args)?.into()),
             "import_active_buff_state" => Ok(__sdk::parse_reducer_args::<import_active_buff_state_reducer::ImportActiveBuffStateArgs>("import_active_buff_state", &value.args)?.into()),
@@ -4018,6 +4174,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "on_inter_module_message_processed" => Ok(__sdk::parse_reducer_args::<on_inter_module_message_processed_reducer::OnInterModuleMessageProcessedArgs>("on_inter_module_message_processed", &value.args)?.into()),
             "player_claim_daily_shards" => Ok(__sdk::parse_reducer_args::<player_claim_daily_shards_reducer::PlayerClaimDailyShardsArgs>("player_claim_daily_shards", &value.args)?.into()),
             "player_create" => Ok(__sdk::parse_reducer_args::<player_create_reducer::PlayerCreateArgs>("player_create", &value.args)?.into()),
+            "player_dismiss_notification" => Ok(__sdk::parse_reducer_args::<player_dismiss_notification_reducer::PlayerDismissNotificationArgs>("player_dismiss_notification", &value.args)?.into()),
             "player_notification_event_reducer" => Ok(__sdk::parse_reducer_args::<player_notification_event_reducer_reducer::PlayerNotificationEventReducerArgs>("player_notification_event_reducer", &value.args)?.into()),
             "player_set_name" => Ok(__sdk::parse_reducer_args::<player_set_name_reducer::PlayerSetNameArgs>("player_set_name", &value.args)?.into()),
             "player_vote_answer" => Ok(__sdk::parse_reducer_args::<player_vote_answer_reducer::PlayerVoteAnswerArgs>("player_vote_answer", &value.args)?.into()),
@@ -4090,6 +4247,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "stage_player_action_desc" => Ok(__sdk::parse_reducer_args::<stage_player_action_desc_reducer::StagePlayerActionDescArgs>("stage_player_action_desc", &value.args)?.into()),
             "stage_player_housing_desc" => Ok(__sdk::parse_reducer_args::<stage_player_housing_desc_reducer::StagePlayerHousingDescArgs>("stage_player_housing_desc", &value.args)?.into()),
             "stage_private_parameters_desc" => Ok(__sdk::parse_reducer_args::<stage_private_parameters_desc_reducer::StagePrivateParametersDescArgs>("stage_private_parameters_desc", &value.args)?.into()),
+            "stage_reserved_name_desc" => Ok(__sdk::parse_reducer_args::<stage_reserved_name_desc_reducer::StageReservedNameDescArgs>("stage_reserved_name_desc", &value.args)?.into()),
             "stage_resource_clump_desc" => Ok(__sdk::parse_reducer_args::<stage_resource_clump_desc_reducer::StageResourceClumpDescArgs>("stage_resource_clump_desc", &value.args)?.into()),
             "stage_resource_desc" => Ok(__sdk::parse_reducer_args::<stage_resource_desc_reducer::StageResourceDescArgs>("stage_resource_desc", &value.args)?.into()),
             "stage_resource_growth_recipe_desc" => Ok(__sdk::parse_reducer_args::<stage_resource_growth_recipe_desc_reducer::StageResourceGrowthRecipeDescArgs>("stage_resource_growth_recipe_desc", &value.args)?.into()),
@@ -4133,6 +4291,7 @@ pub struct DbUpdate {
     auto_claim_state: __sdk::TableUpdate<AutoClaimState>,
     barter_stall_state: __sdk::TableUpdate<BarterStallState>,
     biome_desc: __sdk::TableUpdate<BiomeDesc>,
+    blocked_identity: __sdk::TableUpdate<BlockedIdentity>,
     buff_desc: __sdk::TableUpdate<BuffDesc>,
     buff_type_desc: __sdk::TableUpdate<BuffTypeDesc>,
     building_claim_desc: __sdk::TableUpdate<BuildingClaimDesc>,
@@ -4288,6 +4447,7 @@ pub struct DbUpdate {
     pillar_shaping_state: __sdk::TableUpdate<PillarShapingState>,
     player_action_desc: __sdk::TableUpdate<PlayerActionDesc>,
     player_action_state: __sdk::TableUpdate<PlayerActionState>,
+    player_developer_notification_state: __sdk::TableUpdate<PlayerDeveloperNotificationState>,
     player_housing_desc: __sdk::TableUpdate<PlayerHousingDesc>,
     player_housing_state: __sdk::TableUpdate<PlayerHousingState>,
     player_lowercase_username_state: __sdk::TableUpdate<PlayerLowercaseUsernameState>,
@@ -4296,6 +4456,7 @@ pub struct DbUpdate {
     player_prefs_state: __sdk::TableUpdate<PlayerPrefsState>,
     player_queue_state: __sdk::TableUpdate<PlayerQueueState>,
     player_report_state: __sdk::TableUpdate<PlayerReportState>,
+    player_report_state_timestamp: __sdk::TableUpdate<PlayerReportStateTimestamp>,
     player_shard_state: __sdk::TableUpdate<PlayerShardState>,
     player_state: __sdk::TableUpdate<PlayerState>,
     player_timestamp_state: __sdk::TableUpdate<PlayerTimestampState>,
@@ -4310,6 +4471,7 @@ pub struct DbUpdate {
     region_population_info: __sdk::TableUpdate<RegionPopulationInfo>,
     region_sign_in_parameters: __sdk::TableUpdate<RegionSignInParameters>,
     rent_state: __sdk::TableUpdate<RentState>,
+    reserved_name_desc: __sdk::TableUpdate<ReservedNameDesc>,
     resource_clump_desc: __sdk::TableUpdate<ResourceClumpDesc>,
     resource_count: __sdk::TableUpdate<ResourceCount>,
     resource_desc: __sdk::TableUpdate<ResourceDesc>,
@@ -4403,6 +4565,9 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
                 "biome_desc" => db_update
                     .biome_desc
                     .append(biome_desc_table::parse_table_update(table_update)?),
+                "blocked_identity" => db_update
+                    .blocked_identity
+                    .append(blocked_identity_table::parse_table_update(table_update)?),
                 "buff_desc" => db_update
                     .buff_desc
                     .append(buff_desc_table::parse_table_update(table_update)?),
@@ -4888,6 +5053,13 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
                 "player_action_state" => db_update
                     .player_action_state
                     .append(player_action_state_table::parse_table_update(table_update)?),
+                "player_developer_notification_state" => {
+                    db_update.player_developer_notification_state.append(
+                        player_developer_notification_state_table::parse_table_update(
+                            table_update,
+                        )?,
+                    )
+                }
                 "player_housing_desc" => db_update
                     .player_housing_desc
                     .append(player_housing_desc_table::parse_table_update(table_update)?),
@@ -4914,6 +5086,9 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
                 "player_report_state" => db_update
                     .player_report_state
                     .append(player_report_state_table::parse_table_update(table_update)?),
+                "player_report_state_timestamp" => db_update.player_report_state_timestamp.append(
+                    player_report_state_timestamp_table::parse_table_update(table_update)?,
+                ),
                 "player_shard_state" => db_update
                     .player_shard_state
                     .append(player_shard_state_table::parse_table_update(table_update)?),
@@ -4956,6 +5131,9 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
                 "rent_state" => db_update
                     .rent_state
                     .append(rent_state_table::parse_table_update(table_update)?),
+                "reserved_name_desc" => db_update
+                    .reserved_name_desc
+                    .append(reserved_name_desc_table::parse_table_update(table_update)?),
                 "resource_clump_desc" => db_update
                     .resource_clump_desc
                     .append(resource_clump_desc_table::parse_table_update(table_update)?),
@@ -5173,6 +5351,9 @@ impl __sdk::DbUpdate for DbUpdate {
         diff.biome_desc = cache
             .apply_diff_to_table::<BiomeDesc>("biome_desc", &self.biome_desc)
             .with_updates_by_pk(|row| &row.biome_type);
+        diff.blocked_identity = cache
+            .apply_diff_to_table::<BlockedIdentity>("blocked_identity", &self.blocked_identity)
+            .with_updates_by_pk(|row| &row.identity);
         diff.buff_desc = cache
             .apply_diff_to_table::<BuffDesc>("buff_desc", &self.buff_desc)
             .with_updates_by_pk(|row| &row.id);
@@ -5903,6 +6084,12 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.player_action_state,
             )
             .with_updates_by_pk(|row| &row.auto_id);
+        diff.player_developer_notification_state = cache
+            .apply_diff_to_table::<PlayerDeveloperNotificationState>(
+                "player_developer_notification_state",
+                &self.player_developer_notification_state,
+            )
+            .with_updates_by_pk(|row| &row.entity_id);
         diff.player_housing_desc = cache
             .apply_diff_to_table::<PlayerHousingDesc>(
                 "player_housing_desc",
@@ -5940,6 +6127,12 @@ impl __sdk::DbUpdate for DbUpdate {
             .apply_diff_to_table::<PlayerReportState>(
                 "player_report_state",
                 &self.player_report_state,
+            )
+            .with_updates_by_pk(|row| &row.entity_id);
+        diff.player_report_state_timestamp = cache
+            .apply_diff_to_table::<PlayerReportStateTimestamp>(
+                "player_report_state_timestamp",
+                &self.player_report_state_timestamp,
             )
             .with_updates_by_pk(|row| &row.entity_id);
         diff.player_shard_state = cache
@@ -6008,6 +6201,9 @@ impl __sdk::DbUpdate for DbUpdate {
         diff.rent_state = cache
             .apply_diff_to_table::<RentState>("rent_state", &self.rent_state)
             .with_updates_by_pk(|row| &row.entity_id);
+        diff.reserved_name_desc = cache
+            .apply_diff_to_table::<ReservedNameDesc>("reserved_name_desc", &self.reserved_name_desc)
+            .with_updates_by_pk(|row| &row.name);
         diff.resource_clump_desc = cache
             .apply_diff_to_table::<ResourceClumpDesc>(
                 "resource_clump_desc",
@@ -6248,6 +6444,7 @@ pub struct AppliedDiff<'r> {
     auto_claim_state: __sdk::TableAppliedDiff<'r, AutoClaimState>,
     barter_stall_state: __sdk::TableAppliedDiff<'r, BarterStallState>,
     biome_desc: __sdk::TableAppliedDiff<'r, BiomeDesc>,
+    blocked_identity: __sdk::TableAppliedDiff<'r, BlockedIdentity>,
     buff_desc: __sdk::TableAppliedDiff<'r, BuffDesc>,
     buff_type_desc: __sdk::TableAppliedDiff<'r, BuffTypeDesc>,
     building_claim_desc: __sdk::TableAppliedDiff<'r, BuildingClaimDesc>,
@@ -6407,6 +6604,8 @@ pub struct AppliedDiff<'r> {
     pillar_shaping_state: __sdk::TableAppliedDiff<'r, PillarShapingState>,
     player_action_desc: __sdk::TableAppliedDiff<'r, PlayerActionDesc>,
     player_action_state: __sdk::TableAppliedDiff<'r, PlayerActionState>,
+    player_developer_notification_state:
+        __sdk::TableAppliedDiff<'r, PlayerDeveloperNotificationState>,
     player_housing_desc: __sdk::TableAppliedDiff<'r, PlayerHousingDesc>,
     player_housing_state: __sdk::TableAppliedDiff<'r, PlayerHousingState>,
     player_lowercase_username_state: __sdk::TableAppliedDiff<'r, PlayerLowercaseUsernameState>,
@@ -6415,6 +6614,7 @@ pub struct AppliedDiff<'r> {
     player_prefs_state: __sdk::TableAppliedDiff<'r, PlayerPrefsState>,
     player_queue_state: __sdk::TableAppliedDiff<'r, PlayerQueueState>,
     player_report_state: __sdk::TableAppliedDiff<'r, PlayerReportState>,
+    player_report_state_timestamp: __sdk::TableAppliedDiff<'r, PlayerReportStateTimestamp>,
     player_shard_state: __sdk::TableAppliedDiff<'r, PlayerShardState>,
     player_state: __sdk::TableAppliedDiff<'r, PlayerState>,
     player_timestamp_state: __sdk::TableAppliedDiff<'r, PlayerTimestampState>,
@@ -6429,6 +6629,7 @@ pub struct AppliedDiff<'r> {
     region_population_info: __sdk::TableAppliedDiff<'r, RegionPopulationInfo>,
     region_sign_in_parameters: __sdk::TableAppliedDiff<'r, RegionSignInParameters>,
     rent_state: __sdk::TableAppliedDiff<'r, RentState>,
+    reserved_name_desc: __sdk::TableAppliedDiff<'r, ReservedNameDesc>,
     resource_clump_desc: __sdk::TableAppliedDiff<'r, ResourceClumpDesc>,
     resource_count: __sdk::TableAppliedDiff<'r, ResourceCount>,
     resource_desc: __sdk::TableAppliedDiff<'r, ResourceDesc>,
@@ -6538,6 +6739,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             event,
         );
         callbacks.invoke_table_row_callbacks::<BiomeDesc>("biome_desc", &self.biome_desc, event);
+        callbacks.invoke_table_row_callbacks::<BlockedIdentity>(
+            "blocked_identity",
+            &self.blocked_identity,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<BuffDesc>("buff_desc", &self.buff_desc, event);
         callbacks.invoke_table_row_callbacks::<BuffTypeDesc>(
             "buff_type_desc",
@@ -7253,6 +7459,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             &self.player_action_state,
             event,
         );
+        callbacks.invoke_table_row_callbacks::<PlayerDeveloperNotificationState>(
+            "player_developer_notification_state",
+            &self.player_developer_notification_state,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<PlayerHousingDesc>(
             "player_housing_desc",
             &self.player_housing_desc,
@@ -7291,6 +7502,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<PlayerReportState>(
             "player_report_state",
             &self.player_report_state,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<PlayerReportStateTimestamp>(
+            "player_report_state_timestamp",
+            &self.player_report_state_timestamp,
             event,
         );
         callbacks.invoke_table_row_callbacks::<PlayerShardState>(
@@ -7359,6 +7575,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             event,
         );
         callbacks.invoke_table_row_callbacks::<RentState>("rent_state", &self.rent_state, event);
+        callbacks.invoke_table_row_callbacks::<ReservedNameDesc>(
+            "reserved_name_desc",
+            &self.reserved_name_desc,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<ResourceClumpDesc>(
             "resource_clump_desc",
             &self.resource_clump_desc,
@@ -8167,6 +8388,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         auto_claim_state_table::register_table(client_cache);
         barter_stall_state_table::register_table(client_cache);
         biome_desc_table::register_table(client_cache);
+        blocked_identity_table::register_table(client_cache);
         buff_desc_table::register_table(client_cache);
         buff_type_desc_table::register_table(client_cache);
         building_claim_desc_table::register_table(client_cache);
@@ -8322,6 +8544,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         pillar_shaping_state_table::register_table(client_cache);
         player_action_desc_table::register_table(client_cache);
         player_action_state_table::register_table(client_cache);
+        player_developer_notification_state_table::register_table(client_cache);
         player_housing_desc_table::register_table(client_cache);
         player_housing_state_table::register_table(client_cache);
         player_lowercase_username_state_table::register_table(client_cache);
@@ -8330,6 +8553,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         player_prefs_state_table::register_table(client_cache);
         player_queue_state_table::register_table(client_cache);
         player_report_state_table::register_table(client_cache);
+        player_report_state_timestamp_table::register_table(client_cache);
         player_shard_state_table::register_table(client_cache);
         player_state_table::register_table(client_cache);
         player_timestamp_state_table::register_table(client_cache);
@@ -8344,6 +8568,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         region_population_info_table::register_table(client_cache);
         region_sign_in_parameters_table::register_table(client_cache);
         rent_state_table::register_table(client_cache);
+        reserved_name_desc_table::register_table(client_cache);
         resource_clump_desc_table::register_table(client_cache);
         resource_count_table::register_table(client_cache);
         resource_desc_table::register_table(client_cache);

@@ -38,6 +38,24 @@ import { AdminBroadcastMsg } from "./admin_broadcast_msg_reducer.ts";
 export { AdminBroadcastMsg };
 import { AdminGrantShards } from "./admin_grant_shards_reducer.ts";
 export { AdminGrantShards };
+import { AdminMarkUserReportAsActioned } from "./admin_mark_user_report_as_actioned_reducer.ts";
+export { AdminMarkUserReportAsActioned };
+import { AdminNotifyPlayer } from "./admin_notify_player_reducer.ts";
+export { AdminNotifyPlayer };
+import { AdminNotifyPlayerByIdentity } from "./admin_notify_player_by_identity_reducer.ts";
+export { AdminNotifyPlayerByIdentity };
+import { AdminRenameEmpire } from "./admin_rename_empire_reducer.ts";
+export { AdminRenameEmpire };
+import { AdminRenameEmpireEntity } from "./admin_rename_empire_entity_reducer.ts";
+export { AdminRenameEmpireEntity };
+import { AdminRenameEmpireRank } from "./admin_rename_empire_rank_reducer.ts";
+export { AdminRenameEmpireRank };
+import { AdminRenameEmpireRankEntity } from "./admin_rename_empire_rank_entity_reducer.ts";
+export { AdminRenameEmpireRankEntity };
+import { AdminRenamePlayer } from "./admin_rename_player_reducer.ts";
+export { AdminRenamePlayer };
+import { AdminRenamePlayerEntity } from "./admin_rename_player_entity_reducer.ts";
+export { AdminRenamePlayerEntity };
 import { AdminSignOutAll } from "./admin_sign_out_all_reducer.ts";
 export { AdminSignOutAll };
 import { AdminSkipQueueEntity } from "./admin_skip_queue_entity_reducer.ts";
@@ -52,6 +70,8 @@ import { AdminUpdateSignInParameters } from "./admin_update_sign_in_parameters_r
 export { AdminUpdateSignInParameters };
 import { Authenticate } from "./authenticate_reducer.ts";
 export { Authenticate };
+import { BlockIdentity } from "./block_identity_reducer.ts";
+export { BlockIdentity };
 import { CheatEmpireSiegeAddSupplies } from "./cheat_empire_siege_add_supplies_reducer.ts";
 export { CheatEmpireSiegeAddSupplies };
 import { CheatEmpireSiegeCancel } from "./cheat_empire_siege_cancel_reducer.ts";
@@ -106,6 +126,8 @@ import { EmpireTransferEmperorship } from "./empire_transfer_emperorship_reducer
 export { EmpireTransferEmperorship };
 import { EmpireUpdatePermissions } from "./empire_update_permissions_reducer.ts";
 export { EmpireUpdatePermissions };
+import { IdentityConnected } from "./identity_connected_reducer.ts";
+export { IdentityConnected };
 import { IdentityDisconnected } from "./identity_disconnected_reducer.ts";
 export { IdentityDisconnected };
 import { ImportAchievementDesc } from "./import_achievement_desc_reducer.ts";
@@ -436,6 +458,8 @@ import { PlayerClaimDailyShards } from "./player_claim_daily_shards_reducer.ts";
 export { PlayerClaimDailyShards };
 import { PlayerCreate } from "./player_create_reducer.ts";
 export { PlayerCreate };
+import { PlayerDismissNotification } from "./player_dismiss_notification_reducer.ts";
+export { PlayerDismissNotification };
 import { PlayerNotificationEventReducer } from "./player_notification_event_reducer_reducer.ts";
 export { PlayerNotificationEventReducer };
 import { PlayerSetName } from "./player_set_name_reducer.ts";
@@ -580,6 +604,8 @@ import { StagePlayerHousingDesc } from "./stage_player_housing_desc_reducer.ts";
 export { StagePlayerHousingDesc };
 import { StagePrivateParametersDesc } from "./stage_private_parameters_desc_reducer.ts";
 export { StagePrivateParametersDesc };
+import { StageReservedNameDesc } from "./stage_reserved_name_desc_reducer.ts";
+export { StageReservedNameDesc };
 import { StageResourceClumpDesc } from "./stage_resource_clump_desc_reducer.ts";
 export { StageResourceClumpDesc };
 import { StageResourceDesc } from "./stage_resource_desc_reducer.ts";
@@ -650,6 +676,8 @@ import { BarterStallStateTableHandle } from "./barter_stall_state_table.ts";
 export { BarterStallStateTableHandle };
 import { BiomeDescTableHandle } from "./biome_desc_table.ts";
 export { BiomeDescTableHandle };
+import { BlockedIdentityTableHandle } from "./blocked_identity_table.ts";
+export { BlockedIdentityTableHandle };
 import { BuffDescTableHandle } from "./buff_desc_table.ts";
 export { BuffDescTableHandle };
 import { BuffTypeDescTableHandle } from "./buff_type_desc_table.ts";
@@ -960,6 +988,8 @@ import { PlayerActionDescTableHandle } from "./player_action_desc_table.ts";
 export { PlayerActionDescTableHandle };
 import { PlayerActionStateTableHandle } from "./player_action_state_table.ts";
 export { PlayerActionStateTableHandle };
+import { PlayerDeveloperNotificationStateTableHandle } from "./player_developer_notification_state_table.ts";
+export { PlayerDeveloperNotificationStateTableHandle };
 import { PlayerHousingDescTableHandle } from "./player_housing_desc_table.ts";
 export { PlayerHousingDescTableHandle };
 import { PlayerHousingStateTableHandle } from "./player_housing_state_table.ts";
@@ -976,6 +1006,8 @@ import { PlayerQueueStateTableHandle } from "./player_queue_state_table.ts";
 export { PlayerQueueStateTableHandle };
 import { PlayerReportStateTableHandle } from "./player_report_state_table.ts";
 export { PlayerReportStateTableHandle };
+import { PlayerReportStateTimestampTableHandle } from "./player_report_state_timestamp_table.ts";
+export { PlayerReportStateTimestampTableHandle };
 import { PlayerShardStateTableHandle } from "./player_shard_state_table.ts";
 export { PlayerShardStateTableHandle };
 import { PlayerStateTableHandle } from "./player_state_table.ts";
@@ -1004,6 +1036,8 @@ import { RegionSignInParametersTableHandle } from "./region_sign_in_parameters_t
 export { RegionSignInParametersTableHandle };
 import { RentStateTableHandle } from "./rent_state_table.ts";
 export { RentStateTableHandle };
+import { ReservedNameDescTableHandle } from "./reserved_name_desc_table.ts";
+export { ReservedNameDescTableHandle };
 import { ResourceClumpDescTableHandle } from "./resource_clump_desc_table.ts";
 export { ResourceClumpDescTableHandle };
 import { ResourceCountTableHandle } from "./resource_count_table.ts";
@@ -1140,6 +1174,10 @@ import { Biome } from "./biome_type.ts";
 export { Biome };
 import { BiomeDesc } from "./biome_desc_type.ts";
 export { BiomeDesc };
+import { BlockedIdentity } from "./blocked_identity_type.ts";
+export { BlockedIdentity };
+import { BlockedIdentityOp } from "./blocked_identity_op_type.ts";
+export { BlockedIdentityOp };
 import { BuffCategory } from "./buff_category_type.ts";
 export { BuffCategory };
 import { BuffDesc } from "./buff_desc_type.ts";
@@ -1622,6 +1660,8 @@ import { OffsetCoordinatesSmallMessage } from "./offset_coordinates_small_messag
 export { OffsetCoordinatesSmallMessage };
 import { OnClaimMembersChangedMsg } from "./on_claim_members_changed_msg_type.ts";
 export { OnClaimMembersChangedMsg };
+import { OnDeployableRecoveredMsg } from "./on_deployable_recovered_msg_type.ts";
+export { OnDeployableRecoveredMsg };
 import { OnEmpireBuildingDeletedMsg } from "./on_empire_building_deleted_msg_type.ts";
 export { OnEmpireBuildingDeletedMsg };
 import { OnPlayerJoinedEmpireMsg } from "./on_player_joined_empire_msg_type.ts";
@@ -1676,10 +1716,14 @@ import { PlayerActionType } from "./player_action_type_type.ts";
 export { PlayerActionType };
 import { PlayerCreateMsg } from "./player_create_msg_type.ts";
 export { PlayerCreateMsg };
+import { PlayerDeveloperNotificationState } from "./player_developer_notification_state_type.ts";
+export { PlayerDeveloperNotificationState };
 import { PlayerHousingDesc } from "./player_housing_desc_type.ts";
 export { PlayerHousingDesc };
 import { PlayerHousingState } from "./player_housing_state_type.ts";
 export { PlayerHousingState };
+import { PlayerHousingStateOp } from "./player_housing_state_op_type.ts";
+export { PlayerHousingStateOp };
 import { PlayerLowercaseUsernameState } from "./player_lowercase_username_state_type.ts";
 export { PlayerLowercaseUsernameState };
 import { PlayerNoteState } from "./player_note_state_type.ts";
@@ -1694,6 +1738,8 @@ import { PlayerReportState } from "./player_report_state_type.ts";
 export { PlayerReportState };
 import { PlayerReportStateOp } from "./player_report_state_op_type.ts";
 export { PlayerReportStateOp };
+import { PlayerReportStateTimestamp } from "./player_report_state_timestamp_type.ts";
+export { PlayerReportStateTimestamp };
 import { PlayerSetNameRequest } from "./player_set_name_request_type.ts";
 export { PlayerSetNameRequest };
 import { PlayerShardState } from "./player_shard_state_type.ts";
@@ -1734,6 +1780,8 @@ import { ProjectSiteState } from "./project_site_state_type.ts";
 export { ProjectSiteState };
 import { Rarity } from "./rarity_type.ts";
 export { Rarity };
+import { RecoverDeployableMsg } from "./recover_deployable_msg_type.ts";
+export { RecoverDeployableMsg };
 import { RegionConnectionInfo } from "./region_connection_info_type.ts";
 export { RegionConnectionInfo };
 import { RegionConnectionInfoOp } from "./region_connection_info_op_type.ts";
@@ -1750,6 +1798,8 @@ import { RegionSignInParametersOp } from "./region_sign_in_parameters_op_type.ts
 export { RegionSignInParametersOp };
 import { RentState } from "./rent_state_type.ts";
 export { RentState };
+import { ReservedNameDesc } from "./reserved_name_desc_type.ts";
+export { ReservedNameDesc };
 import { ResourceClumpDesc } from "./resource_clump_desc_type.ts";
 export { ResourceClumpDesc };
 import { ResourceCount } from "./resource_count_type.ts";
@@ -2001,6 +2051,15 @@ const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "biomeType",
         colType: BiomeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    blocked_identity: {
+      tableName: "blocked_identity",
+      rowType: BlockedIdentity.getTypeScriptAlgebraicType(),
+      primaryKey: "identity",
+      primaryKeyInfo: {
+        colName: "identity",
+        colType: BlockedIdentity.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     buff_desc: {
@@ -3393,6 +3452,15 @@ const REMOTE_MODULE = {
         colType: PlayerActionState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    player_developer_notification_state: {
+      tableName: "player_developer_notification_state",
+      rowType: PlayerDeveloperNotificationState.getTypeScriptAlgebraicType(),
+      primaryKey: "entityId",
+      primaryKeyInfo: {
+        colName: "entityId",
+        colType: PlayerDeveloperNotificationState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     player_housing_desc: {
       tableName: "player_housing_desc",
       rowType: PlayerHousingDesc.getTypeScriptAlgebraicType(),
@@ -3463,6 +3531,15 @@ const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "entityId",
         colType: PlayerReportState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    player_report_state_timestamp: {
+      tableName: "player_report_state_timestamp",
+      rowType: PlayerReportStateTimestamp.getTypeScriptAlgebraicType(),
+      primaryKey: "entityId",
+      primaryKeyInfo: {
+        colName: "entityId",
+        colType: PlayerReportStateTimestamp.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     player_shard_state: {
@@ -3589,6 +3666,15 @@ const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "entityId",
         colType: RentState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    reserved_name_desc: {
+      tableName: "reserved_name_desc",
+      rowType: ReservedNameDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "name",
+      primaryKeyInfo: {
+        colName: "name",
+        colType: ReservedNameDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     resource_clump_desc: {
@@ -4042,6 +4128,42 @@ const REMOTE_MODULE = {
       reducerName: "admin_grant_shards",
       argsType: AdminGrantShards.getTypeScriptAlgebraicType(),
     },
+    admin_mark_user_report_as_actioned: {
+      reducerName: "admin_mark_user_report_as_actioned",
+      argsType: AdminMarkUserReportAsActioned.getTypeScriptAlgebraicType(),
+    },
+    admin_notify_player: {
+      reducerName: "admin_notify_player",
+      argsType: AdminNotifyPlayer.getTypeScriptAlgebraicType(),
+    },
+    admin_notify_player_by_identity: {
+      reducerName: "admin_notify_player_by_identity",
+      argsType: AdminNotifyPlayerByIdentity.getTypeScriptAlgebraicType(),
+    },
+    admin_rename_empire: {
+      reducerName: "admin_rename_empire",
+      argsType: AdminRenameEmpire.getTypeScriptAlgebraicType(),
+    },
+    admin_rename_empire_entity: {
+      reducerName: "admin_rename_empire_entity",
+      argsType: AdminRenameEmpireEntity.getTypeScriptAlgebraicType(),
+    },
+    admin_rename_empire_rank: {
+      reducerName: "admin_rename_empire_rank",
+      argsType: AdminRenameEmpireRank.getTypeScriptAlgebraicType(),
+    },
+    admin_rename_empire_rank_entity: {
+      reducerName: "admin_rename_empire_rank_entity",
+      argsType: AdminRenameEmpireRankEntity.getTypeScriptAlgebraicType(),
+    },
+    admin_rename_player: {
+      reducerName: "admin_rename_player",
+      argsType: AdminRenamePlayer.getTypeScriptAlgebraicType(),
+    },
+    admin_rename_player_entity: {
+      reducerName: "admin_rename_player_entity",
+      argsType: AdminRenamePlayerEntity.getTypeScriptAlgebraicType(),
+    },
     admin_sign_out_all: {
       reducerName: "admin_sign_out_all",
       argsType: AdminSignOutAll.getTypeScriptAlgebraicType(),
@@ -4069,6 +4191,10 @@ const REMOTE_MODULE = {
     authenticate: {
       reducerName: "authenticate",
       argsType: Authenticate.getTypeScriptAlgebraicType(),
+    },
+    block_identity: {
+      reducerName: "block_identity",
+      argsType: BlockIdentity.getTypeScriptAlgebraicType(),
     },
     cheat_empire_siege_add_supplies: {
       reducerName: "cheat_empire_siege_add_supplies",
@@ -4177,6 +4303,10 @@ const REMOTE_MODULE = {
     empire_update_permissions: {
       reducerName: "empire_update_permissions",
       argsType: EmpireUpdatePermissions.getTypeScriptAlgebraicType(),
+    },
+    identity_connected: {
+      reducerName: "identity_connected",
+      argsType: IdentityConnected.getTypeScriptAlgebraicType(),
     },
     identity_disconnected: {
       reducerName: "identity_disconnected",
@@ -4838,6 +4968,10 @@ const REMOTE_MODULE = {
       reducerName: "player_create",
       argsType: PlayerCreate.getTypeScriptAlgebraicType(),
     },
+    player_dismiss_notification: {
+      reducerName: "player_dismiss_notification",
+      argsType: PlayerDismissNotification.getTypeScriptAlgebraicType(),
+    },
     player_notification_event_reducer: {
       reducerName: "player_notification_event_reducer",
       argsType: PlayerNotificationEventReducer.getTypeScriptAlgebraicType(),
@@ -5126,6 +5260,10 @@ const REMOTE_MODULE = {
       reducerName: "stage_private_parameters_desc",
       argsType: StagePrivateParametersDesc.getTypeScriptAlgebraicType(),
     },
+    stage_reserved_name_desc: {
+      reducerName: "stage_reserved_name_desc",
+      argsType: StageReservedNameDesc.getTypeScriptAlgebraicType(),
+    },
     stage_resource_clump_desc: {
       reducerName: "stage_resource_clump_desc",
       argsType: StageResourceClumpDesc.getTypeScriptAlgebraicType(),
@@ -5246,6 +5384,15 @@ const REMOTE_MODULE = {
 export type Reducer = never
 | { name: "AdminBroadcastMsg", args: AdminBroadcastMsg }
 | { name: "AdminGrantShards", args: AdminGrantShards }
+| { name: "AdminMarkUserReportAsActioned", args: AdminMarkUserReportAsActioned }
+| { name: "AdminNotifyPlayer", args: AdminNotifyPlayer }
+| { name: "AdminNotifyPlayerByIdentity", args: AdminNotifyPlayerByIdentity }
+| { name: "AdminRenameEmpire", args: AdminRenameEmpire }
+| { name: "AdminRenameEmpireEntity", args: AdminRenameEmpireEntity }
+| { name: "AdminRenameEmpireRank", args: AdminRenameEmpireRank }
+| { name: "AdminRenameEmpireRankEntity", args: AdminRenameEmpireRankEntity }
+| { name: "AdminRenamePlayer", args: AdminRenamePlayer }
+| { name: "AdminRenamePlayerEntity", args: AdminRenamePlayerEntity }
 | { name: "AdminSignOutAll", args: AdminSignOutAll }
 | { name: "AdminSkipQueueEntity", args: AdminSkipQueueEntity }
 | { name: "AdminSkipQueueIdentity", args: AdminSkipQueueIdentity }
@@ -5253,6 +5400,7 @@ export type Reducer = never
 | { name: "AdminUpdateGrantedHubItemState", args: AdminUpdateGrantedHubItemState }
 | { name: "AdminUpdateSignInParameters", args: AdminUpdateSignInParameters }
 | { name: "Authenticate", args: Authenticate }
+| { name: "BlockIdentity", args: BlockIdentity }
 | { name: "CheatEmpireSiegeAddSupplies", args: CheatEmpireSiegeAddSupplies }
 | { name: "CheatEmpireSiegeCancel", args: CheatEmpireSiegeCancel }
 | { name: "CheatPlayerSetName", args: CheatPlayerSetName }
@@ -5280,6 +5428,7 @@ export type Reducer = never
 | { name: "EmpireSubmit", args: EmpireSubmit }
 | { name: "EmpireTransferEmperorship", args: EmpireTransferEmperorship }
 | { name: "EmpireUpdatePermissions", args: EmpireUpdatePermissions }
+| { name: "IdentityConnected", args: IdentityConnected }
 | { name: "IdentityDisconnected", args: IdentityDisconnected }
 | { name: "ImportAchievementDesc", args: ImportAchievementDesc }
 | { name: "ImportActiveBuffState", args: ImportActiveBuffState }
@@ -5445,6 +5594,7 @@ export type Reducer = never
 | { name: "OnInterModuleMessageProcessed", args: OnInterModuleMessageProcessed }
 | { name: "PlayerClaimDailyShards", args: PlayerClaimDailyShards }
 | { name: "PlayerCreate", args: PlayerCreate }
+| { name: "PlayerDismissNotification", args: PlayerDismissNotification }
 | { name: "PlayerNotificationEventReducer", args: PlayerNotificationEventReducer }
 | { name: "PlayerSetName", args: PlayerSetName }
 | { name: "PlayerVoteAnswer", args: PlayerVoteAnswer }
@@ -5517,6 +5667,7 @@ export type Reducer = never
 | { name: "StagePlayerActionDesc", args: StagePlayerActionDesc }
 | { name: "StagePlayerHousingDesc", args: StagePlayerHousingDesc }
 | { name: "StagePrivateParametersDesc", args: StagePrivateParametersDesc }
+| { name: "StageReservedNameDesc", args: StageReservedNameDesc }
 | { name: "StageResourceClumpDesc", args: StageResourceClumpDesc }
 | { name: "StageResourceDesc", args: StageResourceDesc }
 | { name: "StageResourceGrowthRecipeDesc", args: StageResourceGrowthRecipeDesc }
@@ -5574,6 +5725,150 @@ export class RemoteReducers {
 
   removeOnAdminGrantShards(callback: (ctx: ReducerEventContext, identity: string, amount: number) => void) {
     this.connection.offReducer("admin_grant_shards", callback);
+  }
+
+  adminMarkUserReportAsActioned(entityId: bigint, actioned: boolean) {
+    const __args = { entityId, actioned };
+    let __writer = new BinaryWriter(1024);
+    AdminMarkUserReportAsActioned.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("admin_mark_user_report_as_actioned", __argsBuffer, this.setCallReducerFlags.adminMarkUserReportAsActionedFlags);
+  }
+
+  onAdminMarkUserReportAsActioned(callback: (ctx: ReducerEventContext, entityId: bigint, actioned: boolean) => void) {
+    this.connection.onReducer("admin_mark_user_report_as_actioned", callback);
+  }
+
+  removeOnAdminMarkUserReportAsActioned(callback: (ctx: ReducerEventContext, entityId: bigint, actioned: boolean) => void) {
+    this.connection.offReducer("admin_mark_user_report_as_actioned", callback);
+  }
+
+  adminNotifyPlayer(username: string, title: string, message: string) {
+    const __args = { username, title, message };
+    let __writer = new BinaryWriter(1024);
+    AdminNotifyPlayer.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("admin_notify_player", __argsBuffer, this.setCallReducerFlags.adminNotifyPlayerFlags);
+  }
+
+  onAdminNotifyPlayer(callback: (ctx: ReducerEventContext, username: string, title: string, message: string) => void) {
+    this.connection.onReducer("admin_notify_player", callback);
+  }
+
+  removeOnAdminNotifyPlayer(callback: (ctx: ReducerEventContext, username: string, title: string, message: string) => void) {
+    this.connection.offReducer("admin_notify_player", callback);
+  }
+
+  adminNotifyPlayerByIdentity(identity: string, title: string, message: string) {
+    const __args = { identity, title, message };
+    let __writer = new BinaryWriter(1024);
+    AdminNotifyPlayerByIdentity.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("admin_notify_player_by_identity", __argsBuffer, this.setCallReducerFlags.adminNotifyPlayerByIdentityFlags);
+  }
+
+  onAdminNotifyPlayerByIdentity(callback: (ctx: ReducerEventContext, identity: string, title: string, message: string) => void) {
+    this.connection.onReducer("admin_notify_player_by_identity", callback);
+  }
+
+  removeOnAdminNotifyPlayerByIdentity(callback: (ctx: ReducerEventContext, identity: string, title: string, message: string) => void) {
+    this.connection.offReducer("admin_notify_player_by_identity", callback);
+  }
+
+  adminRenameEmpire(currentName: string, newName: string) {
+    const __args = { currentName, newName };
+    let __writer = new BinaryWriter(1024);
+    AdminRenameEmpire.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("admin_rename_empire", __argsBuffer, this.setCallReducerFlags.adminRenameEmpireFlags);
+  }
+
+  onAdminRenameEmpire(callback: (ctx: ReducerEventContext, currentName: string, newName: string) => void) {
+    this.connection.onReducer("admin_rename_empire", callback);
+  }
+
+  removeOnAdminRenameEmpire(callback: (ctx: ReducerEventContext, currentName: string, newName: string) => void) {
+    this.connection.offReducer("admin_rename_empire", callback);
+  }
+
+  adminRenameEmpireEntity(entityId: bigint, newName: string) {
+    const __args = { entityId, newName };
+    let __writer = new BinaryWriter(1024);
+    AdminRenameEmpireEntity.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("admin_rename_empire_entity", __argsBuffer, this.setCallReducerFlags.adminRenameEmpireEntityFlags);
+  }
+
+  onAdminRenameEmpireEntity(callback: (ctx: ReducerEventContext, entityId: bigint, newName: string) => void) {
+    this.connection.onReducer("admin_rename_empire_entity", callback);
+  }
+
+  removeOnAdminRenameEmpireEntity(callback: (ctx: ReducerEventContext, entityId: bigint, newName: string) => void) {
+    this.connection.offReducer("admin_rename_empire_entity", callback);
+  }
+
+  adminRenameEmpireRank(empireName: string, rank: number, newName: string) {
+    const __args = { empireName, rank, newName };
+    let __writer = new BinaryWriter(1024);
+    AdminRenameEmpireRank.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("admin_rename_empire_rank", __argsBuffer, this.setCallReducerFlags.adminRenameEmpireRankFlags);
+  }
+
+  onAdminRenameEmpireRank(callback: (ctx: ReducerEventContext, empireName: string, rank: number, newName: string) => void) {
+    this.connection.onReducer("admin_rename_empire_rank", callback);
+  }
+
+  removeOnAdminRenameEmpireRank(callback: (ctx: ReducerEventContext, empireName: string, rank: number, newName: string) => void) {
+    this.connection.offReducer("admin_rename_empire_rank", callback);
+  }
+
+  adminRenameEmpireRankEntity(empireEntityId: bigint, rank: number, newName: string) {
+    const __args = { empireEntityId, rank, newName };
+    let __writer = new BinaryWriter(1024);
+    AdminRenameEmpireRankEntity.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("admin_rename_empire_rank_entity", __argsBuffer, this.setCallReducerFlags.adminRenameEmpireRankEntityFlags);
+  }
+
+  onAdminRenameEmpireRankEntity(callback: (ctx: ReducerEventContext, empireEntityId: bigint, rank: number, newName: string) => void) {
+    this.connection.onReducer("admin_rename_empire_rank_entity", callback);
+  }
+
+  removeOnAdminRenameEmpireRankEntity(callback: (ctx: ReducerEventContext, empireEntityId: bigint, rank: number, newName: string) => void) {
+    this.connection.offReducer("admin_rename_empire_rank_entity", callback);
+  }
+
+  adminRenamePlayer(currentName: string, newName: string) {
+    const __args = { currentName, newName };
+    let __writer = new BinaryWriter(1024);
+    AdminRenamePlayer.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("admin_rename_player", __argsBuffer, this.setCallReducerFlags.adminRenamePlayerFlags);
+  }
+
+  onAdminRenamePlayer(callback: (ctx: ReducerEventContext, currentName: string, newName: string) => void) {
+    this.connection.onReducer("admin_rename_player", callback);
+  }
+
+  removeOnAdminRenamePlayer(callback: (ctx: ReducerEventContext, currentName: string, newName: string) => void) {
+    this.connection.offReducer("admin_rename_player", callback);
+  }
+
+  adminRenamePlayerEntity(entityId: bigint, newName: string) {
+    const __args = { entityId, newName };
+    let __writer = new BinaryWriter(1024);
+    AdminRenamePlayerEntity.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("admin_rename_player_entity", __argsBuffer, this.setCallReducerFlags.adminRenamePlayerEntityFlags);
+  }
+
+  onAdminRenamePlayerEntity(callback: (ctx: ReducerEventContext, entityId: bigint, newName: string) => void) {
+    this.connection.onReducer("admin_rename_player_entity", callback);
+  }
+
+  removeOnAdminRenamePlayerEntity(callback: (ctx: ReducerEventContext, entityId: bigint, newName: string) => void) {
+    this.connection.offReducer("admin_rename_player_entity", callback);
   }
 
   adminSignOutAll(region: number) {
@@ -5686,6 +5981,22 @@ export class RemoteReducers {
 
   removeOnAuthenticate(callback: (ctx: ReducerEventContext, identity: string) => void) {
     this.connection.offReducer("authenticate", callback);
+  }
+
+  blockIdentity(identity: string) {
+    const __args = { identity };
+    let __writer = new BinaryWriter(1024);
+    BlockIdentity.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("block_identity", __argsBuffer, this.setCallReducerFlags.blockIdentityFlags);
+  }
+
+  onBlockIdentity(callback: (ctx: ReducerEventContext, identity: string) => void) {
+    this.connection.onReducer("block_identity", callback);
+  }
+
+  removeOnBlockIdentity(callback: (ctx: ReducerEventContext, identity: string) => void) {
+    this.connection.offReducer("block_identity", callback);
   }
 
   cheatEmpireSiegeAddSupplies(siegeNodeEntityId: bigint, supplies: number) {
@@ -6106,6 +6417,14 @@ export class RemoteReducers {
 
   removeOnEmpireUpdatePermissions(callback: (ctx: ReducerEventContext, request: EmpireUpdatePermissionsRequest) => void) {
     this.connection.offReducer("empire_update_permissions", callback);
+  }
+
+  onIdentityConnected(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.onReducer("identity_connected", callback);
+  }
+
+  removeOnIdentityConnected(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.offReducer("identity_connected", callback);
   }
 
   onIdentityDisconnected(callback: (ctx: ReducerEventContext) => void) {
@@ -8724,6 +9043,18 @@ export class RemoteReducers {
     this.connection.offReducer("player_create", callback);
   }
 
+  playerDismissNotification() {
+    this.connection.callReducer("player_dismiss_notification", new Uint8Array(0), this.setCallReducerFlags.playerDismissNotificationFlags);
+  }
+
+  onPlayerDismissNotification(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.onReducer("player_dismiss_notification", callback);
+  }
+
+  removeOnPlayerDismissNotification(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.offReducer("player_dismiss_notification", callback);
+  }
+
   playerNotificationEventReducer(timer: PlayerNotificationEvent) {
     const __args = { timer };
     let __writer = new BinaryWriter(1024);
@@ -9876,6 +10207,22 @@ export class RemoteReducers {
     this.connection.offReducer("stage_private_parameters_desc", callback);
   }
 
+  stageReservedNameDesc(records: ReservedNameDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    StageReservedNameDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("stage_reserved_name_desc", __argsBuffer, this.setCallReducerFlags.stageReservedNameDescFlags);
+  }
+
+  onStageReservedNameDesc(callback: (ctx: ReducerEventContext, records: ReservedNameDesc[]) => void) {
+    this.connection.onReducer("stage_reserved_name_desc", callback);
+  }
+
+  removeOnStageReservedNameDesc(callback: (ctx: ReducerEventContext, records: ReservedNameDesc[]) => void) {
+    this.connection.offReducer("stage_reserved_name_desc", callback);
+  }
+
   stageResourceClumpDesc(records: ResourceClumpDesc[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
@@ -10237,6 +10584,51 @@ export class SetReducerFlags {
     this.adminGrantShardsFlags = flags;
   }
 
+  adminMarkUserReportAsActionedFlags: CallReducerFlags = 'FullUpdate';
+  adminMarkUserReportAsActioned(flags: CallReducerFlags) {
+    this.adminMarkUserReportAsActionedFlags = flags;
+  }
+
+  adminNotifyPlayerFlags: CallReducerFlags = 'FullUpdate';
+  adminNotifyPlayer(flags: CallReducerFlags) {
+    this.adminNotifyPlayerFlags = flags;
+  }
+
+  adminNotifyPlayerByIdentityFlags: CallReducerFlags = 'FullUpdate';
+  adminNotifyPlayerByIdentity(flags: CallReducerFlags) {
+    this.adminNotifyPlayerByIdentityFlags = flags;
+  }
+
+  adminRenameEmpireFlags: CallReducerFlags = 'FullUpdate';
+  adminRenameEmpire(flags: CallReducerFlags) {
+    this.adminRenameEmpireFlags = flags;
+  }
+
+  adminRenameEmpireEntityFlags: CallReducerFlags = 'FullUpdate';
+  adminRenameEmpireEntity(flags: CallReducerFlags) {
+    this.adminRenameEmpireEntityFlags = flags;
+  }
+
+  adminRenameEmpireRankFlags: CallReducerFlags = 'FullUpdate';
+  adminRenameEmpireRank(flags: CallReducerFlags) {
+    this.adminRenameEmpireRankFlags = flags;
+  }
+
+  adminRenameEmpireRankEntityFlags: CallReducerFlags = 'FullUpdate';
+  adminRenameEmpireRankEntity(flags: CallReducerFlags) {
+    this.adminRenameEmpireRankEntityFlags = flags;
+  }
+
+  adminRenamePlayerFlags: CallReducerFlags = 'FullUpdate';
+  adminRenamePlayer(flags: CallReducerFlags) {
+    this.adminRenamePlayerFlags = flags;
+  }
+
+  adminRenamePlayerEntityFlags: CallReducerFlags = 'FullUpdate';
+  adminRenamePlayerEntity(flags: CallReducerFlags) {
+    this.adminRenamePlayerEntityFlags = flags;
+  }
+
   adminSignOutAllFlags: CallReducerFlags = 'FullUpdate';
   adminSignOutAll(flags: CallReducerFlags) {
     this.adminSignOutAllFlags = flags;
@@ -10270,6 +10662,11 @@ export class SetReducerFlags {
   authenticateFlags: CallReducerFlags = 'FullUpdate';
   authenticate(flags: CallReducerFlags) {
     this.authenticateFlags = flags;
+  }
+
+  blockIdentityFlags: CallReducerFlags = 'FullUpdate';
+  blockIdentity(flags: CallReducerFlags) {
+    this.blockIdentityFlags = flags;
   }
 
   cheatEmpireSiegeAddSuppliesFlags: CallReducerFlags = 'FullUpdate';
@@ -11227,6 +11624,11 @@ export class SetReducerFlags {
     this.playerCreateFlags = flags;
   }
 
+  playerDismissNotificationFlags: CallReducerFlags = 'FullUpdate';
+  playerDismissNotification(flags: CallReducerFlags) {
+    this.playerDismissNotificationFlags = flags;
+  }
+
   playerNotificationEventReducerFlags: CallReducerFlags = 'FullUpdate';
   playerNotificationEventReducer(flags: CallReducerFlags) {
     this.playerNotificationEventReducerFlags = flags;
@@ -11587,6 +11989,11 @@ export class SetReducerFlags {
     this.stagePrivateParametersDescFlags = flags;
   }
 
+  stageReservedNameDescFlags: CallReducerFlags = 'FullUpdate';
+  stageReservedNameDesc(flags: CallReducerFlags) {
+    this.stageReservedNameDescFlags = flags;
+  }
+
   stageResourceClumpDescFlags: CallReducerFlags = 'FullUpdate';
   stageResourceClumpDesc(flags: CallReducerFlags) {
     this.stageResourceClumpDescFlags = flags;
@@ -11748,6 +12155,10 @@ export class RemoteTables {
 
   get biomeDesc(): BiomeDescTableHandle {
     return new BiomeDescTableHandle(this.connection.clientCache.getOrCreateTable<BiomeDesc>(REMOTE_MODULE.tables.biome_desc));
+  }
+
+  get blockedIdentity(): BlockedIdentityTableHandle {
+    return new BlockedIdentityTableHandle(this.connection.clientCache.getOrCreateTable<BlockedIdentity>(REMOTE_MODULE.tables.blocked_identity));
   }
 
   get buffDesc(): BuffDescTableHandle {
@@ -12370,6 +12781,10 @@ export class RemoteTables {
     return new PlayerActionStateTableHandle(this.connection.clientCache.getOrCreateTable<PlayerActionState>(REMOTE_MODULE.tables.player_action_state));
   }
 
+  get playerDeveloperNotificationState(): PlayerDeveloperNotificationStateTableHandle {
+    return new PlayerDeveloperNotificationStateTableHandle(this.connection.clientCache.getOrCreateTable<PlayerDeveloperNotificationState>(REMOTE_MODULE.tables.player_developer_notification_state));
+  }
+
   get playerHousingDesc(): PlayerHousingDescTableHandle {
     return new PlayerHousingDescTableHandle(this.connection.clientCache.getOrCreateTable<PlayerHousingDesc>(REMOTE_MODULE.tables.player_housing_desc));
   }
@@ -12400,6 +12815,10 @@ export class RemoteTables {
 
   get playerReportState(): PlayerReportStateTableHandle {
     return new PlayerReportStateTableHandle(this.connection.clientCache.getOrCreateTable<PlayerReportState>(REMOTE_MODULE.tables.player_report_state));
+  }
+
+  get playerReportStateTimestamp(): PlayerReportStateTimestampTableHandle {
+    return new PlayerReportStateTimestampTableHandle(this.connection.clientCache.getOrCreateTable<PlayerReportStateTimestamp>(REMOTE_MODULE.tables.player_report_state_timestamp));
   }
 
   get playerShardState(): PlayerShardStateTableHandle {
@@ -12456,6 +12875,10 @@ export class RemoteTables {
 
   get rentState(): RentStateTableHandle {
     return new RentStateTableHandle(this.connection.clientCache.getOrCreateTable<RentState>(REMOTE_MODULE.tables.rent_state));
+  }
+
+  get reservedNameDesc(): ReservedNameDescTableHandle {
+    return new ReservedNameDescTableHandle(this.connection.clientCache.getOrCreateTable<ReservedNameDesc>(REMOTE_MODULE.tables.reserved_name_desc));
   }
 
   get resourceClumpDesc(): ResourceClumpDescTableHandle {

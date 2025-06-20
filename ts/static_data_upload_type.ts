@@ -113,6 +113,7 @@ import { WeaponTypeDesc as __WeaponTypeDesc } from "./weapon_type_desc_type";
 import { InteriorEnvironmentDesc as __InteriorEnvironmentDesc } from "./interior_environment_desc_type";
 import { PillarShapingDesc as __PillarShapingDesc } from "./pillar_shaping_desc_type";
 import { PlayerHousingDesc as __PlayerHousingDesc } from "./player_housing_desc_type";
+import { ReservedNameDesc as __ReservedNameDesc } from "./reserved_name_desc_type";
 
 export type StaticDataUpload = {
   parameters: __ParametersDesc[],
@@ -196,6 +197,7 @@ export type StaticDataUpload = {
   distantVisibileEntities: __DistantVisibleEntityDesc[],
   playerHousing: __PlayerHousingDesc[],
   hexiteExchangeEntries: __HexiteExchangeEntryDesc[],
+  reservedName: __ReservedNameDesc[],
 };
 
 /**
@@ -289,6 +291,7 @@ export namespace StaticDataUpload {
       new ProductTypeElement("distantVisibileEntities", AlgebraicType.createArrayType(__DistantVisibleEntityDesc.getTypeScriptAlgebraicType())),
       new ProductTypeElement("playerHousing", AlgebraicType.createArrayType(__PlayerHousingDesc.getTypeScriptAlgebraicType())),
       new ProductTypeElement("hexiteExchangeEntries", AlgebraicType.createArrayType(__HexiteExchangeEntryDesc.getTypeScriptAlgebraicType())),
+      new ProductTypeElement("reservedName", AlgebraicType.createArrayType(__ReservedNameDesc.getTypeScriptAlgebraicType())),
     ]);
   }
 

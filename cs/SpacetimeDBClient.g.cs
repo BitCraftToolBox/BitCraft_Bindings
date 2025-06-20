@@ -35,6 +35,7 @@ namespace SpacetimeDB.Types
             AddTable(AutoClaimState = new(conn));
             AddTable(BarterStallState = new(conn));
             AddTable(BiomeDesc = new(conn));
+            AddTable(BlockedIdentity = new(conn));
             AddTable(BuffDesc = new(conn));
             AddTable(BuffTypeDesc = new(conn));
             AddTable(BuildingClaimDesc = new(conn));
@@ -190,6 +191,7 @@ namespace SpacetimeDB.Types
             AddTable(PillarShapingState = new(conn));
             AddTable(PlayerActionDesc = new(conn));
             AddTable(PlayerActionState = new(conn));
+            AddTable(PlayerDeveloperNotificationState = new(conn));
             AddTable(PlayerHousingDesc = new(conn));
             AddTable(PlayerHousingState = new(conn));
             AddTable(PlayerLowercaseUsernameState = new(conn));
@@ -198,6 +200,7 @@ namespace SpacetimeDB.Types
             AddTable(PlayerPrefsState = new(conn));
             AddTable(PlayerQueueState = new(conn));
             AddTable(PlayerReportState = new(conn));
+            AddTable(PlayerReportStateTimestamp = new(conn));
             AddTable(PlayerShardState = new(conn));
             AddTable(PlayerState = new(conn));
             AddTable(PlayerTimestampState = new(conn));
@@ -212,6 +215,7 @@ namespace SpacetimeDB.Types
             AddTable(RegionPopulationInfo = new(conn));
             AddTable(RegionSignInParameters = new(conn));
             AddTable(RentState = new(conn));
+            AddTable(ReservedNameDesc = new(conn));
             AddTable(ResourceClumpDesc = new(conn));
             AddTable(ResourceCount = new(conn));
             AddTable(ResourceDesc = new(conn));
@@ -693,6 +697,15 @@ namespace SpacetimeDB.Types
             return update.ReducerCall.ReducerName switch {
                 "admin_broadcast_msg" => BSATNHelpers.Decode<Reducer.AdminBroadcastMsg>(encodedArgs),
                 "admin_grant_shards" => BSATNHelpers.Decode<Reducer.AdminGrantShards>(encodedArgs),
+                "admin_mark_user_report_as_actioned" => BSATNHelpers.Decode<Reducer.AdminMarkUserReportAsActioned>(encodedArgs),
+                "admin_notify_player" => BSATNHelpers.Decode<Reducer.AdminNotifyPlayer>(encodedArgs),
+                "admin_notify_player_by_identity" => BSATNHelpers.Decode<Reducer.AdminNotifyPlayerByIdentity>(encodedArgs),
+                "admin_rename_empire" => BSATNHelpers.Decode<Reducer.AdminRenameEmpire>(encodedArgs),
+                "admin_rename_empire_entity" => BSATNHelpers.Decode<Reducer.AdminRenameEmpireEntity>(encodedArgs),
+                "admin_rename_empire_rank" => BSATNHelpers.Decode<Reducer.AdminRenameEmpireRank>(encodedArgs),
+                "admin_rename_empire_rank_entity" => BSATNHelpers.Decode<Reducer.AdminRenameEmpireRankEntity>(encodedArgs),
+                "admin_rename_player" => BSATNHelpers.Decode<Reducer.AdminRenamePlayer>(encodedArgs),
+                "admin_rename_player_entity" => BSATNHelpers.Decode<Reducer.AdminRenamePlayerEntity>(encodedArgs),
                 "admin_sign_out_all" => BSATNHelpers.Decode<Reducer.AdminSignOutAll>(encodedArgs),
                 "admin_skip_queue_entity" => BSATNHelpers.Decode<Reducer.AdminSkipQueueEntity>(encodedArgs),
                 "admin_skip_queue_identity" => BSATNHelpers.Decode<Reducer.AdminSkipQueueIdentity>(encodedArgs),
@@ -700,6 +713,7 @@ namespace SpacetimeDB.Types
                 "admin_update_granted_hub_item_state" => BSATNHelpers.Decode<Reducer.AdminUpdateGrantedHubItemState>(encodedArgs),
                 "admin_update_sign_in_parameters" => BSATNHelpers.Decode<Reducer.AdminUpdateSignInParameters>(encodedArgs),
                 "authenticate" => BSATNHelpers.Decode<Reducer.Authenticate>(encodedArgs),
+                "block_identity" => BSATNHelpers.Decode<Reducer.BlockIdentity>(encodedArgs),
                 "cheat_empire_siege_add_supplies" => BSATNHelpers.Decode<Reducer.CheatEmpireSiegeAddSupplies>(encodedArgs),
                 "cheat_empire_siege_cancel" => BSATNHelpers.Decode<Reducer.CheatEmpireSiegeCancel>(encodedArgs),
                 "cheat_player_set_name" => BSATNHelpers.Decode<Reducer.CheatPlayerSetName>(encodedArgs),
@@ -727,6 +741,7 @@ namespace SpacetimeDB.Types
                 "empire_submit" => BSATNHelpers.Decode<Reducer.EmpireSubmit>(encodedArgs),
                 "empire_transfer_emperorship" => BSATNHelpers.Decode<Reducer.EmpireTransferEmperorship>(encodedArgs),
                 "empire_update_permissions" => BSATNHelpers.Decode<Reducer.EmpireUpdatePermissions>(encodedArgs),
+                "identity_connected" => BSATNHelpers.Decode<Reducer.IdentityConnected>(encodedArgs),
                 "identity_disconnected" => BSATNHelpers.Decode<Reducer.IdentityDisconnected>(encodedArgs),
                 "import_achievement_desc" => BSATNHelpers.Decode<Reducer.ImportAchievementDesc>(encodedArgs),
                 "import_active_buff_state" => BSATNHelpers.Decode<Reducer.ImportActiveBuffState>(encodedArgs),
@@ -892,6 +907,7 @@ namespace SpacetimeDB.Types
                 "on_inter_module_message_processed" => BSATNHelpers.Decode<Reducer.OnInterModuleMessageProcessed>(encodedArgs),
                 "player_claim_daily_shards" => BSATNHelpers.Decode<Reducer.PlayerClaimDailyShards>(encodedArgs),
                 "player_create" => BSATNHelpers.Decode<Reducer.PlayerCreate>(encodedArgs),
+                "player_dismiss_notification" => BSATNHelpers.Decode<Reducer.PlayerDismissNotification>(encodedArgs),
                 "player_notification_event_reducer" => BSATNHelpers.Decode<Reducer.PlayerNotificationEventReducer>(encodedArgs),
                 "player_set_name" => BSATNHelpers.Decode<Reducer.PlayerSetName>(encodedArgs),
                 "player_vote_answer" => BSATNHelpers.Decode<Reducer.PlayerVoteAnswer>(encodedArgs),
@@ -964,6 +980,7 @@ namespace SpacetimeDB.Types
                 "stage_player_action_desc" => BSATNHelpers.Decode<Reducer.StagePlayerActionDesc>(encodedArgs),
                 "stage_player_housing_desc" => BSATNHelpers.Decode<Reducer.StagePlayerHousingDesc>(encodedArgs),
                 "stage_private_parameters_desc" => BSATNHelpers.Decode<Reducer.StagePrivateParametersDesc>(encodedArgs),
+                "stage_reserved_name_desc" => BSATNHelpers.Decode<Reducer.StageReservedNameDesc>(encodedArgs),
                 "stage_resource_clump_desc" => BSATNHelpers.Decode<Reducer.StageResourceClumpDesc>(encodedArgs),
                 "stage_resource_desc" => BSATNHelpers.Decode<Reducer.StageResourceDesc>(encodedArgs),
                 "stage_resource_growth_recipe_desc" => BSATNHelpers.Decode<Reducer.StageResourceGrowthRecipeDesc>(encodedArgs),
@@ -1008,6 +1025,15 @@ namespace SpacetimeDB.Types
             return reducer switch {
                 Reducer.AdminBroadcastMsg args => Reducers.InvokeAdminBroadcastMsg(eventContext, args),
                 Reducer.AdminGrantShards args => Reducers.InvokeAdminGrantShards(eventContext, args),
+                Reducer.AdminMarkUserReportAsActioned args => Reducers.InvokeAdminMarkUserReportAsActioned(eventContext, args),
+                Reducer.AdminNotifyPlayer args => Reducers.InvokeAdminNotifyPlayer(eventContext, args),
+                Reducer.AdminNotifyPlayerByIdentity args => Reducers.InvokeAdminNotifyPlayerByIdentity(eventContext, args),
+                Reducer.AdminRenameEmpire args => Reducers.InvokeAdminRenameEmpire(eventContext, args),
+                Reducer.AdminRenameEmpireEntity args => Reducers.InvokeAdminRenameEmpireEntity(eventContext, args),
+                Reducer.AdminRenameEmpireRank args => Reducers.InvokeAdminRenameEmpireRank(eventContext, args),
+                Reducer.AdminRenameEmpireRankEntity args => Reducers.InvokeAdminRenameEmpireRankEntity(eventContext, args),
+                Reducer.AdminRenamePlayer args => Reducers.InvokeAdminRenamePlayer(eventContext, args),
+                Reducer.AdminRenamePlayerEntity args => Reducers.InvokeAdminRenamePlayerEntity(eventContext, args),
                 Reducer.AdminSignOutAll args => Reducers.InvokeAdminSignOutAll(eventContext, args),
                 Reducer.AdminSkipQueueEntity args => Reducers.InvokeAdminSkipQueueEntity(eventContext, args),
                 Reducer.AdminSkipQueueIdentity args => Reducers.InvokeAdminSkipQueueIdentity(eventContext, args),
@@ -1015,6 +1041,7 @@ namespace SpacetimeDB.Types
                 Reducer.AdminUpdateGrantedHubItemState args => Reducers.InvokeAdminUpdateGrantedHubItemState(eventContext, args),
                 Reducer.AdminUpdateSignInParameters args => Reducers.InvokeAdminUpdateSignInParameters(eventContext, args),
                 Reducer.Authenticate args => Reducers.InvokeAuthenticate(eventContext, args),
+                Reducer.BlockIdentity args => Reducers.InvokeBlockIdentity(eventContext, args),
                 Reducer.CheatEmpireSiegeAddSupplies args => Reducers.InvokeCheatEmpireSiegeAddSupplies(eventContext, args),
                 Reducer.CheatEmpireSiegeCancel args => Reducers.InvokeCheatEmpireSiegeCancel(eventContext, args),
                 Reducer.CheatPlayerSetName args => Reducers.InvokeCheatPlayerSetName(eventContext, args),
@@ -1042,6 +1069,7 @@ namespace SpacetimeDB.Types
                 Reducer.EmpireSubmit args => Reducers.InvokeEmpireSubmit(eventContext, args),
                 Reducer.EmpireTransferEmperorship args => Reducers.InvokeEmpireTransferEmperorship(eventContext, args),
                 Reducer.EmpireUpdatePermissions args => Reducers.InvokeEmpireUpdatePermissions(eventContext, args),
+                Reducer.IdentityConnected args => Reducers.InvokeIdentityConnected(eventContext, args),
                 Reducer.IdentityDisconnected args => Reducers.InvokeIdentityDisconnected(eventContext, args),
                 Reducer.ImportAchievementDesc args => Reducers.InvokeImportAchievementDesc(eventContext, args),
                 Reducer.ImportActiveBuffState args => Reducers.InvokeImportActiveBuffState(eventContext, args),
@@ -1207,6 +1235,7 @@ namespace SpacetimeDB.Types
                 Reducer.OnInterModuleMessageProcessed args => Reducers.InvokeOnInterModuleMessageProcessed(eventContext, args),
                 Reducer.PlayerClaimDailyShards args => Reducers.InvokePlayerClaimDailyShards(eventContext, args),
                 Reducer.PlayerCreate args => Reducers.InvokePlayerCreate(eventContext, args),
+                Reducer.PlayerDismissNotification args => Reducers.InvokePlayerDismissNotification(eventContext, args),
                 Reducer.PlayerNotificationEventReducer args => Reducers.InvokePlayerNotificationEventReducer(eventContext, args),
                 Reducer.PlayerSetName args => Reducers.InvokePlayerSetName(eventContext, args),
                 Reducer.PlayerVoteAnswer args => Reducers.InvokePlayerVoteAnswer(eventContext, args),
@@ -1279,6 +1308,7 @@ namespace SpacetimeDB.Types
                 Reducer.StagePlayerActionDesc args => Reducers.InvokeStagePlayerActionDesc(eventContext, args),
                 Reducer.StagePlayerHousingDesc args => Reducers.InvokeStagePlayerHousingDesc(eventContext, args),
                 Reducer.StagePrivateParametersDesc args => Reducers.InvokeStagePrivateParametersDesc(eventContext, args),
+                Reducer.StageReservedNameDesc args => Reducers.InvokeStageReservedNameDesc(eventContext, args),
                 Reducer.StageResourceClumpDesc args => Reducers.InvokeStageResourceClumpDesc(eventContext, args),
                 Reducer.StageResourceDesc args => Reducers.InvokeStageResourceDesc(eventContext, args),
                 Reducer.StageResourceGrowthRecipeDesc args => Reducers.InvokeStageResourceGrowthRecipeDesc(eventContext, args),

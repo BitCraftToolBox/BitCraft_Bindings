@@ -28,9 +28,19 @@ namespace SpacetimeDB.Types
 
             public readonly IdentityUniqueIndex Identity;
 
+            public sealed class RegionIdIndex : BTreeIndexBase<byte>
+            {
+                protected override byte GetKey(UserRegionState row) => row.RegionId;
+
+                public RegionIdIndex(UserRegionStateHandle table) : base(table) { }
+            }
+
+            public readonly RegionIdIndex RegionId;
+
             internal UserRegionStateHandle(DbConnection conn) : base(conn)
             {
                 Identity = new(this);
+                RegionId = new(this);
             }
 
             protected override object GetPrimaryKey(UserRegionState row) => row.Identity;

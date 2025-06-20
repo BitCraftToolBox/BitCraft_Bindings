@@ -21,12 +21,6 @@ namespace SpacetimeDB.Types
         public ulong ChunkIndex;
         [DataMember(Name = "entity_id")]
         public ulong EntityId;
-        [DataMember(Name = "action_type")]
-        public PlayerActionType ActionType;
-        [DataMember(Name = "layer")]
-        public PlayerActionLayer Layer;
-        [DataMember(Name = "last_action_result")]
-        public PlayerActionResult LastActionResult;
         [DataMember(Name = "start_time")]
         public ulong StartTime;
         [DataMember(Name = "duration")]
@@ -35,34 +29,44 @@ namespace SpacetimeDB.Types
         public ulong? Target;
         [DataMember(Name = "recipe_id")]
         public int? RecipeId;
+        [DataMember(Name = "action_type")]
+        public PlayerActionType ActionType;
+        [DataMember(Name = "layer")]
+        public PlayerActionLayer Layer;
+        [DataMember(Name = "last_action_result")]
+        public PlayerActionResult LastActionResult;
         [DataMember(Name = "client_cancel")]
         public bool ClientCancel;
+        [DataMember(Name = "_pad")]
+        public uint Pad;
 
         public PlayerActionState(
             ulong AutoId,
             ulong ChunkIndex,
             ulong EntityId,
-            PlayerActionType ActionType,
-            PlayerActionLayer Layer,
-            PlayerActionResult LastActionResult,
             ulong StartTime,
             ulong Duration,
             ulong? Target,
             int? RecipeId,
-            bool ClientCancel
+            PlayerActionType ActionType,
+            PlayerActionLayer Layer,
+            PlayerActionResult LastActionResult,
+            bool ClientCancel,
+            uint Pad
         )
         {
             this.AutoId = AutoId;
             this.ChunkIndex = ChunkIndex;
             this.EntityId = EntityId;
-            this.ActionType = ActionType;
-            this.Layer = Layer;
-            this.LastActionResult = LastActionResult;
             this.StartTime = StartTime;
             this.Duration = Duration;
             this.Target = Target;
             this.RecipeId = RecipeId;
+            this.ActionType = ActionType;
+            this.Layer = Layer;
+            this.LastActionResult = LastActionResult;
             this.ClientCancel = ClientCancel;
+            this.Pad = Pad;
         }
 
         public PlayerActionState()

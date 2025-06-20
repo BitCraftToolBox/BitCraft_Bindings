@@ -22,6 +22,7 @@ use super::global_delete_empire_building_msg_type::GlobalDeleteEmpireBuildingMsg
 use super::grant_hub_item_msg_type::GrantHubItemMsg;
 use super::inter_module_table_updates_type::InterModuleTableUpdates;
 use super::on_claim_members_changed_msg_type::OnClaimMembersChangedMsg;
+use super::on_deployable_recovered_msg_type::OnDeployableRecoveredMsg;
 use super::on_empire_building_deleted_msg_type::OnEmpireBuildingDeletedMsg;
 use super::on_player_joined_empire_msg_type::OnPlayerJoinedEmpireMsg;
 use super::on_player_left_empire_msg_type::OnPlayerLeftEmpireMsg;
@@ -29,6 +30,7 @@ use super::on_player_name_set_msg_type::OnPlayerNameSetMsg;
 use super::on_region_player_created_msg_type::OnRegionPlayerCreatedMsg;
 use super::player_create_msg_type::PlayerCreateMsg;
 use super::player_skip_queue_msg_type::PlayerSkipQueueMsg;
+use super::recover_deployable_msg_type::RecoverDeployableMsg;
 use super::region_destroy_siege_engine_msg_type::RegionDestroySiegeEngineMsg;
 use super::sign_player_out_msg_type::SignPlayerOutMsg;
 use super::transfer_player_housing_msg_type::TransferPlayerHousingMsg;
@@ -93,6 +95,10 @@ pub enum MessageContents {
     PlayerSkipQueue(PlayerSkipQueueMsg),
 
     GrantHubItem(GrantHubItemMsg),
+
+    RecoverDeployable(RecoverDeployableMsg),
+
+    OnDeployableRecovered(OnDeployableRecoveredMsg),
 }
 
 impl __sdk::InModule for MessageContents {

@@ -71,6 +71,7 @@ use super::pillar_shaping_desc_type::PillarShapingDesc;
 use super::player_action_desc_type::PlayerActionDesc;
 use super::player_housing_desc_type::PlayerHousingDesc;
 use super::private_parameters_desc_type::PrivateParametersDesc;
+use super::reserved_name_desc_type::ReservedNameDesc;
 use super::resource_clump_desc_type::ResourceClumpDesc;
 use super::resource_desc_type::ResourceDesc;
 use super::resource_growth_recipe_desc_type::ResourceGrowthRecipeDesc;
@@ -172,6 +173,7 @@ pub struct StaticDataUpload {
     pub distant_visibile_entities: Vec<DistantVisibleEntityDesc>,
     pub player_housing: Vec<PlayerHousingDesc>,
     pub hexite_exchange_entries: Vec<HexiteExchangeEntryDesc>,
+    pub reserved_name: Vec<ReservedNameDesc>,
 }
 
 impl __sdk::InModule for StaticDataUpload {

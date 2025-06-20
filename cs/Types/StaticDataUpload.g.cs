@@ -177,6 +177,8 @@ namespace SpacetimeDB.Types
         public System.Collections.Generic.List<PlayerHousingDesc> PlayerHousing;
         [DataMember(Name = "hexite_exchange_entries")]
         public System.Collections.Generic.List<HexiteExchangeEntryDesc> HexiteExchangeEntries;
+        [DataMember(Name = "reserved_name")]
+        public System.Collections.Generic.List<ReservedNameDesc> ReservedName;
 
         public StaticDataUpload(
             System.Collections.Generic.List<ParametersDesc> Parameters,
@@ -259,7 +261,8 @@ namespace SpacetimeDB.Types
             System.Collections.Generic.List<PlayerActionDesc> PlayerActions,
             System.Collections.Generic.List<DistantVisibleEntityDesc> DistantVisibileEntities,
             System.Collections.Generic.List<PlayerHousingDesc> PlayerHousing,
-            System.Collections.Generic.List<HexiteExchangeEntryDesc> HexiteExchangeEntries
+            System.Collections.Generic.List<HexiteExchangeEntryDesc> HexiteExchangeEntries,
+            System.Collections.Generic.List<ReservedNameDesc> ReservedName
         )
         {
             this.Parameters = Parameters;
@@ -343,6 +346,7 @@ namespace SpacetimeDB.Types
             this.DistantVisibileEntities = DistantVisibileEntities;
             this.PlayerHousing = PlayerHousing;
             this.HexiteExchangeEntries = HexiteExchangeEntries;
+            this.ReservedName = ReservedName;
         }
 
         public StaticDataUpload()
@@ -428,6 +432,7 @@ namespace SpacetimeDB.Types
             this.DistantVisibileEntities = new();
             this.PlayerHousing = new();
             this.HexiteExchangeEntries = new();
+            this.ReservedName = new();
         }
     }
 }
