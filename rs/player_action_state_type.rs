@@ -16,14 +16,15 @@ pub struct PlayerActionState {
     pub auto_id: u64,
     pub chunk_index: u64,
     pub entity_id: u64,
-    pub action_type: PlayerActionType,
-    pub layer: PlayerActionLayer,
-    pub last_action_result: PlayerActionResult,
     pub start_time: u64,
     pub duration: u64,
     pub target: Option<u64>,
     pub recipe_id: Option<i32>,
+    pub action_type: PlayerActionType,
+    pub layer: PlayerActionLayer,
+    pub last_action_result: PlayerActionResult,
     pub client_cancel: bool,
+    pub pad: u32,
 }
 
 impl __sdk::InModule for PlayerActionState {

@@ -17,20 +17,21 @@ namespace SpacetimeDB.Types
     {
         [DataMember(Name = "building_entity_id")]
         public ulong BuildingEntityId;
-        [DataMember(Name = "cargo_id")]
-        public int CargoId;
+        [DataMember(Name = "from_pocket")]
+        public PocketKey FromPocket;
 
         public EmpireResupplyNodeRequest(
             ulong BuildingEntityId,
-            int CargoId
+            PocketKey FromPocket
         )
         {
             this.BuildingEntityId = BuildingEntityId;
-            this.CargoId = CargoId;
+            this.FromPocket = FromPocket;
         }
 
         public EmpireResupplyNodeRequest()
         {
+            this.FromPocket = new();
         }
     }
 }

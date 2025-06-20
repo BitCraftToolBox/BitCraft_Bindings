@@ -32,9 +32,11 @@ import {
   type ReducerEventContextInterface,
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
+import { PocketKey as __PocketKey } from "./pocket_key_type";
+
 export type EmpireResupplyNodeRequest = {
   buildingEntityId: bigint,
-  cargoId: number,
+  fromPocket: __PocketKey,
 };
 
 /**
@@ -48,7 +50,7 @@ export namespace EmpireResupplyNodeRequest {
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
       new ProductTypeElement("buildingEntityId", AlgebraicType.createU64Type()),
-      new ProductTypeElement("cargoId", AlgebraicType.createI32Type()),
+      new ProductTypeElement("fromPocket", __PocketKey.getTypeScriptAlgebraicType()),
     ]);
   }
 

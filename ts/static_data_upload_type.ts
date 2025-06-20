@@ -97,6 +97,7 @@ import { PillarShapingDesc as __PillarShapingDesc } from "./pillar_shaping_desc_
 import { PlayerActionDesc as __PlayerActionDesc } from "./player_action_desc_type";
 import { PlayerHousingDesc as __PlayerHousingDesc } from "./player_housing_desc_type";
 import { PrivateParametersDesc as __PrivateParametersDesc } from "./private_parameters_desc_type";
+import { ReservedNameDesc as __ReservedNameDesc } from "./reserved_name_desc_type";
 import { ResourceClumpDesc as __ResourceClumpDesc } from "./resource_clump_desc_type";
 import { ResourceDesc as __ResourceDesc } from "./resource_desc_type";
 import { ResourceGrowthRecipeDesc as __ResourceGrowthRecipeDesc } from "./resource_growth_recipe_desc_type";
@@ -196,6 +197,7 @@ export type StaticDataUpload = {
   distantVisibileEntities: __DistantVisibleEntityDesc[],
   playerHousing: __PlayerHousingDesc[],
   hexiteExchangeEntries: __HexiteExchangeEntryDesc[],
+  reservedName: __ReservedNameDesc[],
 };
 
 /**
@@ -289,6 +291,7 @@ export namespace StaticDataUpload {
       new ProductTypeElement("distantVisibileEntities", AlgebraicType.createArrayType(__DistantVisibleEntityDesc.getTypeScriptAlgebraicType())),
       new ProductTypeElement("playerHousing", AlgebraicType.createArrayType(__PlayerHousingDesc.getTypeScriptAlgebraicType())),
       new ProductTypeElement("hexiteExchangeEntries", AlgebraicType.createArrayType(__HexiteExchangeEntryDesc.getTypeScriptAlgebraicType())),
+      new ProductTypeElement("reservedName", AlgebraicType.createArrayType(__ReservedNameDesc.getTypeScriptAlgebraicType())),
     ]);
   }
 

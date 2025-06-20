@@ -36,6 +36,7 @@ export type PlayerCraftInitiateRequest = {
   recipeId: number,
   buildingEntityId: bigint,
   count: number,
+  timestamp: bigint,
 };
 
 /**
@@ -51,6 +52,7 @@ export namespace PlayerCraftInitiateRequest {
       new ProductTypeElement("recipeId", AlgebraicType.createI32Type()),
       new ProductTypeElement("buildingEntityId", AlgebraicType.createU64Type()),
       new ProductTypeElement("count", AlgebraicType.createI32Type()),
+      new ProductTypeElement("timestamp", AlgebraicType.createU64Type()),
     ]);
   }
 

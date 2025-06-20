@@ -33,6 +33,12 @@ namespace SpacetimeDB.Types
         public uint Dimension;
         [DataMember(Name = "is_running")]
         public bool IsRunning;
+        [DataMember(Name = "_pad1")]
+        public byte Pad1;
+        [DataMember(Name = "_pad2")]
+        public byte Pad2;
+        [DataMember(Name = "_pad3")]
+        public byte Pad3;
 
         public MobileEntityState(
             ulong EntityId,
@@ -43,7 +49,10 @@ namespace SpacetimeDB.Types
             int DestinationX,
             int DestinationZ,
             uint Dimension,
-            bool IsRunning
+            bool IsRunning,
+            byte Pad1,
+            byte Pad2,
+            byte Pad3
         )
         {
             this.EntityId = EntityId;
@@ -55,6 +64,9 @@ namespace SpacetimeDB.Types
             this.DestinationZ = DestinationZ;
             this.Dimension = Dimension;
             this.IsRunning = IsRunning;
+            this.Pad1 = Pad1;
+            this.Pad2 = Pad2;
+            this.Pad3 = Pad3;
         }
 
         public MobileEntityState()

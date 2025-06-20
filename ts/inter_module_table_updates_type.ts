@@ -32,6 +32,7 @@ import {
   type ReducerEventContextInterface,
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
+import { BlockedIdentityOp as __BlockedIdentityOp } from "./blocked_identity_op_type";
 import { BuildingNicknameStateOp as __BuildingNicknameStateOp } from "./building_nickname_state_op_type";
 import { BuildingStateOp as __BuildingStateOp } from "./building_state_op_type";
 import { ClaimMemberStateOp as __ClaimMemberStateOp } from "./claim_member_state_op_type";
@@ -46,6 +47,7 @@ import { EmpireSettlementStateOp as __EmpireSettlementStateOp } from "./empire_s
 import { EmpireStateOp as __EmpireStateOp } from "./empire_state_op_type";
 import { IdentityRoleOp as __IdentityRoleOp } from "./identity_role_op_type";
 import { LocationStateOp as __LocationStateOp } from "./location_state_op_type";
+import { PlayerHousingStateOp as __PlayerHousingStateOp } from "./player_housing_state_op_type";
 import { PlayerReportStateOp as __PlayerReportStateOp } from "./player_report_state_op_type";
 import { RegionConnectionInfoOp as __RegionConnectionInfoOp } from "./region_connection_info_op_type";
 import { RegionPopulationInfoOp as __RegionPopulationInfoOp } from "./region_population_info_op_type";
@@ -55,6 +57,7 @@ import { UserModerationStateOp as __UserModerationStateOp } from "./user_moderat
 import { UserStateOp as __UserStateOp } from "./user_state_op_type";
 
 export type InterModuleTableUpdates = {
+  blockedIdentity: __BlockedIdentityOp[] | undefined,
   buildingNicknameState: __BuildingNicknameStateOp[] | undefined,
   buildingState: __BuildingStateOp[] | undefined,
   claimMemberState: __ClaimMemberStateOp[] | undefined,
@@ -69,6 +72,7 @@ export type InterModuleTableUpdates = {
   empireState: __EmpireStateOp[] | undefined,
   identityRole: __IdentityRoleOp[] | undefined,
   locationState: __LocationStateOp[] | undefined,
+  playerHousingState: __PlayerHousingStateOp[] | undefined,
   playerReportState: __PlayerReportStateOp[] | undefined,
   regionConnectionInfo: __RegionConnectionInfoOp[] | undefined,
   regionPopulationInfo: __RegionPopulationInfoOp[] | undefined,
@@ -88,6 +92,7 @@ export namespace InterModuleTableUpdates {
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
+      new ProductTypeElement("blockedIdentity", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__BlockedIdentityOp.getTypeScriptAlgebraicType()))),
       new ProductTypeElement("buildingNicknameState", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__BuildingNicknameStateOp.getTypeScriptAlgebraicType()))),
       new ProductTypeElement("buildingState", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__BuildingStateOp.getTypeScriptAlgebraicType()))),
       new ProductTypeElement("claimMemberState", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__ClaimMemberStateOp.getTypeScriptAlgebraicType()))),
@@ -102,6 +107,7 @@ export namespace InterModuleTableUpdates {
       new ProductTypeElement("empireState", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__EmpireStateOp.getTypeScriptAlgebraicType()))),
       new ProductTypeElement("identityRole", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__IdentityRoleOp.getTypeScriptAlgebraicType()))),
       new ProductTypeElement("locationState", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__LocationStateOp.getTypeScriptAlgebraicType()))),
+      new ProductTypeElement("playerHousingState", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__PlayerHousingStateOp.getTypeScriptAlgebraicType()))),
       new ProductTypeElement("playerReportState", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__PlayerReportStateOp.getTypeScriptAlgebraicType()))),
       new ProductTypeElement("regionConnectionInfo", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__RegionConnectionInfoOp.getTypeScriptAlgebraicType()))),
       new ProductTypeElement("regionPopulationInfo", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__RegionPopulationInfoOp.getTypeScriptAlgebraicType()))),

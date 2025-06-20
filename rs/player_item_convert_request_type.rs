@@ -12,6 +12,7 @@ pub struct PlayerItemConvertRequest {
     pub conversion_recipe_id: u32,
     pub location_context: u32,
     pub count: u32,
+    pub timestamp: u64,
 }
 
 impl __sdk::InModule for PlayerItemConvertRequest {

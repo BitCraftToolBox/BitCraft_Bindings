@@ -21,16 +21,20 @@ namespace SpacetimeDB.Types
         public uint LocationContext;
         [DataMember(Name = "count")]
         public uint Count;
+        [DataMember(Name = "timestamp")]
+        public ulong Timestamp;
 
         public PlayerItemConvertRequest(
             uint ConversionRecipeId,
             uint LocationContext,
-            uint Count
+            uint Count,
+            ulong Timestamp
         )
         {
             this.ConversionRecipeId = ConversionRecipeId;
             this.LocationContext = LocationContext;
             this.Count = Count;
+            this.Timestamp = Timestamp;
         }
 
         public PlayerItemConvertRequest()

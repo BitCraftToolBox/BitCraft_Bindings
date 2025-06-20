@@ -6,18 +6,16 @@
 #![allow(unused, clippy::all)]
 use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
-use super::cheat_remove_entity_request_type::CheatRemoveEntityRequest;
-
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct CheatRemoveEntityResourceArgs {
-    pub request: CheatRemoveEntityRequest,
+    pub target_entity_id: u64,
 }
 
 impl From<CheatRemoveEntityResourceArgs> for super::Reducer {
     fn from(args: CheatRemoveEntityResourceArgs) -> Self {
         Self::CheatRemoveEntityResource {
-            request: args.request,
+            target_entity_id: args.target_entity_id,
         }
     }
 }
@@ -38,7 +36,7 @@ pub trait cheat_remove_entity_resource {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_cheat_remove_entity_resource`] callbacks.
-    fn cheat_remove_entity_resource(&self, request: CheatRemoveEntityRequest) -> __sdk::Result<()>;
+    fn cheat_remove_entity_resource(&self, target_entity_id: u64) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `cheat_remove_entity_resource`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -48,7 +46,7 @@ pub trait cheat_remove_entity_resource {
     /// to cancel the callback.
     fn on_cheat_remove_entity_resource(
         &self,
-        callback: impl FnMut(&super::ReducerEventContext, &CheatRemoveEntityRequest) + Send + 'static,
+        callback: impl FnMut(&super::ReducerEventContext, &u64) + Send + 'static,
     ) -> CheatRemoveEntityResourceCallbackId;
     /// Cancel a callback previously registered by [`Self::on_cheat_remove_entity_resource`],
     /// causing it not to run in the future.
@@ -56,17 +54,15 @@ pub trait cheat_remove_entity_resource {
 }
 
 impl cheat_remove_entity_resource for super::RemoteReducers {
-    fn cheat_remove_entity_resource(&self, request: CheatRemoveEntityRequest) -> __sdk::Result<()> {
+    fn cheat_remove_entity_resource(&self, target_entity_id: u64) -> __sdk::Result<()> {
         self.imp.call_reducer(
             "cheat_remove_entity_resource",
-            CheatRemoveEntityResourceArgs { request },
+            CheatRemoveEntityResourceArgs { target_entity_id },
         )
     }
     fn on_cheat_remove_entity_resource(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &CheatRemoveEntityRequest)
-            + Send
-            + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &u64) + Send + 'static,
     ) -> CheatRemoveEntityResourceCallbackId {
         CheatRemoveEntityResourceCallbackId(self.imp.on_reducer(
             "cheat_remove_entity_resource",
@@ -74,7 +70,7 @@ impl cheat_remove_entity_resource for super::RemoteReducers {
                 let super::ReducerEventContext {
                     event:
                         __sdk::ReducerEvent {
-                            reducer: super::Reducer::CheatRemoveEntityResource { request },
+                            reducer: super::Reducer::CheatRemoveEntityResource { target_entity_id },
                             ..
                         },
                     ..
@@ -82,7 +78,7 @@ impl cheat_remove_entity_resource for super::RemoteReducers {
                 else {
                     unreachable!()
                 };
-                callback(ctx, request)
+                callback(ctx, target_entity_id)
             }),
         ))
     }

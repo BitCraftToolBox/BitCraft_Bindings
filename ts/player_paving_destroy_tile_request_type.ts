@@ -36,6 +36,7 @@ import { OffsetCoordinatesSmallMessage as __OffsetCoordinatesSmallMessage } from
 
 export type PlayerPavingDestroyTileRequest = {
   coordinates: __OffsetCoordinatesSmallMessage,
+  timestamp: bigint,
 };
 
 /**
@@ -49,6 +50,7 @@ export namespace PlayerPavingDestroyTileRequest {
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
       new ProductTypeElement("coordinates", __OffsetCoordinatesSmallMessage.getTypeScriptAlgebraicType()),
+      new ProductTypeElement("timestamp", AlgebraicType.createU64Type()),
     ]);
   }
 

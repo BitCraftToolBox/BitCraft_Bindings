@@ -32,12 +32,23 @@ pub mod admin_broadcast_msg_region_reducer;
 pub mod admin_broadcast_table;
 pub mod admin_broadcast_type;
 pub mod admin_clear_all_resources_reducer;
+pub mod admin_clear_chunk_resources_reducer;
+pub mod admin_clear_resource_timer_table;
+pub mod admin_clear_resource_timer_type;
 pub mod admin_collapse_ruin_reducer;
 pub mod admin_collapse_ruins_reducer;
 pub mod admin_complete_all_passive_crafts_reducer;
 pub mod admin_count_inventory_items_reducer;
+pub mod admin_delete_all_items_of_type_reducer;
 pub mod admin_despawn_overworld_enemies_reducer;
 pub mod admin_grant_collectibles_reducer;
+pub mod admin_rename_building_coord_reducer;
+pub mod admin_rename_building_entity_reducer;
+pub mod admin_rename_building_reducer;
+pub mod admin_rename_claim_entity_reducer;
+pub mod admin_rename_claim_reducer;
+pub mod admin_rename_deployable_entity_reducer;
+pub mod admin_rename_deployable_reducer;
 pub mod admin_reset_all_herd_locations_reducer;
 pub mod admin_reset_herd_locations_reducer;
 pub mod admin_reset_onboarding_completely_reducer;
@@ -46,6 +57,9 @@ pub mod admin_restore_player_state_reducer;
 pub mod admin_restore_player_state_scheduled_reducer;
 pub mod admin_restore_player_state_timer_table;
 pub mod admin_restore_player_state_timer_type;
+pub mod admin_set_sign_text_coord_reducer;
+pub mod admin_set_sign_text_entity_reducer;
+pub mod admin_set_sign_text_reducer;
 pub mod admin_sign_out_all_region_reducer;
 pub mod admin_sign_out_reducer;
 pub mod admin_sign_out_string_reducer;
@@ -84,6 +98,9 @@ pub mod barter_stall_state_type;
 pub mod biome_desc_table;
 pub mod biome_desc_type;
 pub mod biome_type;
+pub mod blocked_identity_op_type;
+pub mod blocked_identity_table;
+pub mod blocked_identity_type;
 pub mod blueprint_place_reducer;
 pub mod buff_category_type;
 pub mod buff_desc_table;
@@ -167,7 +184,6 @@ pub mod cheat_grant_knowledge_request_type;
 pub mod cheat_grant_teleport_energy_reducer;
 pub mod cheat_item_stack_grant_and_equip_reducer;
 pub mod cheat_item_stack_grant_reducer;
-pub mod cheat_item_stack_grant_request_type;
 pub mod cheat_kill_reducer;
 pub mod cheat_paving_add_tile_reducer;
 pub mod cheat_paving_destroy_reducer;
@@ -176,7 +192,6 @@ pub mod cheat_pillar_shaping_destroy_reducer;
 pub mod cheat_project_site_add_all_materials_reducer;
 pub mod cheat_remove_entity_building_reducer;
 pub mod cheat_remove_entity_enemy_reducer;
-pub mod cheat_remove_entity_request_type;
 pub mod cheat_remove_entity_resource_reducer;
 pub mod cheat_set_ai_debug_state_reducer;
 pub mod cheat_set_debug_ai_state_request_type;
@@ -185,7 +200,6 @@ pub mod cheat_spawn_loot_chest_request_type;
 pub mod cheat_teleport_float_reducer;
 pub mod cheat_teleport_float_request_type;
 pub mod cheat_terraform_reducer;
-pub mod cheat_terraform_request_type;
 pub mod cheat_toggle_active_collectible_reducer;
 pub mod cheat_toggle_active_collectible_request_type;
 pub mod cheat_warp_reducer;
@@ -417,17 +431,23 @@ pub mod enemy_clear_aggro_reducer;
 pub mod enemy_clear_aggro_request_type;
 pub mod enemy_desc_table;
 pub mod enemy_desc_type;
+pub mod enemy_despawn_from_mob_monitor_batch_reducer;
 pub mod enemy_despawn_from_mob_monitor_reducer;
 pub mod enemy_despawn_reducer;
 pub mod enemy_despawn_timer_table;
 pub mod enemy_despawn_timer_type;
 pub mod enemy_mob_monitor_state_table;
 pub mod enemy_mob_monitor_state_type;
+pub mod enemy_move_batch_reducer;
 pub mod enemy_move_reducer;
 pub mod enemy_move_request_type;
 pub mod enemy_regen_agent_loop_reducer;
 pub mod enemy_regen_loop_timer_table;
 pub mod enemy_regen_loop_timer_type;
+pub mod enemy_set_health_batch_reducer;
+pub mod enemy_set_health_reducer;
+pub mod enemy_set_health_request_type;
+pub mod enemy_spawn_batch_reducer;
 pub mod enemy_spawn_loot_reducer;
 pub mod enemy_spawn_loot_request_type;
 pub mod enemy_spawn_reducer;
@@ -638,6 +658,7 @@ pub mod import_private_parameters_desc_reducer;
 pub mod import_progressive_action_state_reducer;
 pub mod import_project_site_state_reducer;
 pub mod import_rent_state_reducer;
+pub mod import_reserved_name_desc_reducer;
 pub mod import_resource_clump_desc_reducer;
 pub mod import_resource_count_reducer;
 pub mod import_resource_desc_reducer;
@@ -824,6 +845,7 @@ pub mod offset_coordinates_float_type;
 pub mod offset_coordinates_large_message_type;
 pub mod offset_coordinates_small_message_type;
 pub mod on_claim_members_changed_msg_type;
+pub mod on_deployable_recovered_msg_type;
 pub mod on_durability_zero_reducer;
 pub mod on_durability_zero_timer_table;
 pub mod on_durability_zero_timer_type;
@@ -966,6 +988,7 @@ pub mod player_housing_income_loop_timer_table;
 pub mod player_housing_income_loop_timer_type;
 pub mod player_housing_request_access_reducer;
 pub mod player_housing_request_access_request_type;
+pub mod player_housing_state_op_type;
 pub mod player_housing_state_table;
 pub mod player_housing_state_type;
 pub mod player_housing_update_reducer;
@@ -1015,6 +1038,8 @@ pub mod player_region_transfer_event_table;
 pub mod player_region_transfer_event_type;
 pub mod player_report_state_op_type;
 pub mod player_report_state_table;
+pub mod player_report_state_timestamp_table;
+pub mod player_report_state_timestamp_type;
 pub mod player_report_state_type;
 pub mod player_respawn_reducer;
 pub mod player_retrieve_lost_item_request_type;
@@ -1084,6 +1109,7 @@ pub mod project_site_place_reducer;
 pub mod project_site_state_table;
 pub mod project_site_state_type;
 pub mod rarity_type;
+pub mod recover_deployable_msg_type;
 pub mod region_connection_info_op_type;
 pub mod region_connection_info_table;
 pub mod region_connection_info_type;
@@ -1128,6 +1154,8 @@ pub mod report_chat_message_reducer;
 pub mod report_player_chat_message_type;
 pub mod report_player_message_type;
 pub mod report_player_reducer;
+pub mod reserved_name_desc_table;
+pub mod reserved_name_desc_type;
 pub mod reset_chunk_index_reducer;
 pub mod reset_chunk_index_timer_table;
 pub mod reset_chunk_index_timer_type;
@@ -1263,6 +1291,7 @@ pub mod stage_pillar_shaping_desc_reducer;
 pub mod stage_player_action_desc_reducer;
 pub mod stage_player_housing_desc_reducer;
 pub mod stage_private_parameters_desc_reducer;
+pub mod stage_reserved_name_desc_reducer;
 pub mod stage_resource_clump_desc_reducer;
 pub mod stage_resource_desc_reducer;
 pub mod stage_resource_growth_recipe_desc_reducer;
@@ -1503,6 +1532,12 @@ pub use admin_clear_all_resources_reducer::{
     admin_clear_all_resources, set_flags_for_admin_clear_all_resources,
     AdminClearAllResourcesCallbackId,
 };
+pub use admin_clear_chunk_resources_reducer::{
+    admin_clear_chunk_resources, set_flags_for_admin_clear_chunk_resources,
+    AdminClearChunkResourcesCallbackId,
+};
+pub use admin_clear_resource_timer_table::*;
+pub use admin_clear_resource_timer_type::AdminClearResourceTimer;
 pub use admin_collapse_ruin_reducer::{
     admin_collapse_ruin, set_flags_for_admin_collapse_ruin, AdminCollapseRuinCallbackId,
 };
@@ -1517,6 +1552,10 @@ pub use admin_count_inventory_items_reducer::{
     admin_count_inventory_items, set_flags_for_admin_count_inventory_items,
     AdminCountInventoryItemsCallbackId,
 };
+pub use admin_delete_all_items_of_type_reducer::{
+    admin_delete_all_items_of_type, set_flags_for_admin_delete_all_items_of_type,
+    AdminDeleteAllItemsOfTypeCallbackId,
+};
 pub use admin_despawn_overworld_enemies_reducer::{
     admin_despawn_overworld_enemies, set_flags_for_admin_despawn_overworld_enemies,
     AdminDespawnOverworldEnemiesCallbackId,
@@ -1524,6 +1563,31 @@ pub use admin_despawn_overworld_enemies_reducer::{
 pub use admin_grant_collectibles_reducer::{
     admin_grant_collectibles, set_flags_for_admin_grant_collectibles,
     AdminGrantCollectiblesCallbackId,
+};
+pub use admin_rename_building_coord_reducer::{
+    admin_rename_building_coord, set_flags_for_admin_rename_building_coord,
+    AdminRenameBuildingCoordCallbackId,
+};
+pub use admin_rename_building_entity_reducer::{
+    admin_rename_building_entity, set_flags_for_admin_rename_building_entity,
+    AdminRenameBuildingEntityCallbackId,
+};
+pub use admin_rename_building_reducer::{
+    admin_rename_building, set_flags_for_admin_rename_building, AdminRenameBuildingCallbackId,
+};
+pub use admin_rename_claim_entity_reducer::{
+    admin_rename_claim_entity, set_flags_for_admin_rename_claim_entity,
+    AdminRenameClaimEntityCallbackId,
+};
+pub use admin_rename_claim_reducer::{
+    admin_rename_claim, set_flags_for_admin_rename_claim, AdminRenameClaimCallbackId,
+};
+pub use admin_rename_deployable_entity_reducer::{
+    admin_rename_deployable_entity, set_flags_for_admin_rename_deployable_entity,
+    AdminRenameDeployableEntityCallbackId,
+};
+pub use admin_rename_deployable_reducer::{
+    admin_rename_deployable, set_flags_for_admin_rename_deployable, AdminRenameDeployableCallbackId,
 };
 pub use admin_reset_all_herd_locations_reducer::{
     admin_reset_all_herd_locations, set_flags_for_admin_reset_all_herd_locations,
@@ -1551,6 +1615,17 @@ pub use admin_restore_player_state_scheduled_reducer::{
 };
 pub use admin_restore_player_state_timer_table::*;
 pub use admin_restore_player_state_timer_type::AdminRestorePlayerStateTimer;
+pub use admin_set_sign_text_coord_reducer::{
+    admin_set_sign_text_coord, set_flags_for_admin_set_sign_text_coord,
+    AdminSetSignTextCoordCallbackId,
+};
+pub use admin_set_sign_text_entity_reducer::{
+    admin_set_sign_text_entity, set_flags_for_admin_set_sign_text_entity,
+    AdminSetSignTextEntityCallbackId,
+};
+pub use admin_set_sign_text_reducer::{
+    admin_set_sign_text, set_flags_for_admin_set_sign_text, AdminSetSignTextCallbackId,
+};
 pub use admin_sign_out_all_region_reducer::{
     admin_sign_out_all_region, set_flags_for_admin_sign_out_all_region,
     AdminSignOutAllRegionCallbackId,
@@ -1617,6 +1692,9 @@ pub use barter_stall_state_type::BarterStallState;
 pub use biome_desc_table::*;
 pub use biome_desc_type::BiomeDesc;
 pub use biome_type::Biome;
+pub use blocked_identity_op_type::BlockedIdentityOp;
+pub use blocked_identity_table::*;
+pub use blocked_identity_type::BlockedIdentity;
 pub use blueprint_place_reducer::{
     blueprint_place, set_flags_for_blueprint_place, BlueprintPlaceCallbackId,
 };
@@ -1770,7 +1848,6 @@ pub use cheat_item_stack_grant_and_equip_reducer::{
 pub use cheat_item_stack_grant_reducer::{
     cheat_item_stack_grant, set_flags_for_cheat_item_stack_grant, CheatItemStackGrantCallbackId,
 };
-pub use cheat_item_stack_grant_request_type::CheatItemStackGrantRequest;
 pub use cheat_kill_reducer::{cheat_kill, set_flags_for_cheat_kill, CheatKillCallbackId};
 pub use cheat_paving_add_tile_reducer::{
     cheat_paving_add_tile, set_flags_for_cheat_paving_add_tile, CheatPavingAddTileCallbackId,
@@ -1798,7 +1875,6 @@ pub use cheat_remove_entity_enemy_reducer::{
     cheat_remove_entity_enemy, set_flags_for_cheat_remove_entity_enemy,
     CheatRemoveEntityEnemyCallbackId,
 };
-pub use cheat_remove_entity_request_type::CheatRemoveEntityRequest;
 pub use cheat_remove_entity_resource_reducer::{
     cheat_remove_entity_resource, set_flags_for_cheat_remove_entity_resource,
     CheatRemoveEntityResourceCallbackId,
@@ -1819,7 +1895,6 @@ pub use cheat_teleport_float_request_type::CheatTeleportFloatRequest;
 pub use cheat_terraform_reducer::{
     cheat_terraform, set_flags_for_cheat_terraform, CheatTerraformCallbackId,
 };
-pub use cheat_terraform_request_type::CheatTerraformRequest;
 pub use cheat_toggle_active_collectible_reducer::{
     cheat_toggle_active_collectible, set_flags_for_cheat_toggle_active_collectible,
     CheatToggleActiveCollectibleCallbackId,
@@ -2205,6 +2280,10 @@ pub use enemy_clear_aggro_reducer::{
 pub use enemy_clear_aggro_request_type::EnemyClearAggroRequest;
 pub use enemy_desc_table::*;
 pub use enemy_desc_type::EnemyDesc;
+pub use enemy_despawn_from_mob_monitor_batch_reducer::{
+    enemy_despawn_from_mob_monitor_batch, set_flags_for_enemy_despawn_from_mob_monitor_batch,
+    EnemyDespawnFromMobMonitorBatchCallbackId,
+};
 pub use enemy_despawn_from_mob_monitor_reducer::{
     enemy_despawn_from_mob_monitor, set_flags_for_enemy_despawn_from_mob_monitor,
     EnemyDespawnFromMobMonitorCallbackId,
@@ -2216,6 +2295,9 @@ pub use enemy_despawn_timer_table::*;
 pub use enemy_despawn_timer_type::EnemyDespawnTimer;
 pub use enemy_mob_monitor_state_table::*;
 pub use enemy_mob_monitor_state_type::EnemyMobMonitorState;
+pub use enemy_move_batch_reducer::{
+    enemy_move_batch, set_flags_for_enemy_move_batch, EnemyMoveBatchCallbackId,
+};
 pub use enemy_move_reducer::{enemy_move, set_flags_for_enemy_move, EnemyMoveCallbackId};
 pub use enemy_move_request_type::EnemyMoveRequest;
 pub use enemy_regen_agent_loop_reducer::{
@@ -2223,6 +2305,16 @@ pub use enemy_regen_agent_loop_reducer::{
 };
 pub use enemy_regen_loop_timer_table::*;
 pub use enemy_regen_loop_timer_type::EnemyRegenLoopTimer;
+pub use enemy_set_health_batch_reducer::{
+    enemy_set_health_batch, set_flags_for_enemy_set_health_batch, EnemySetHealthBatchCallbackId,
+};
+pub use enemy_set_health_reducer::{
+    enemy_set_health, set_flags_for_enemy_set_health, EnemySetHealthCallbackId,
+};
+pub use enemy_set_health_request_type::EnemySetHealthRequest;
+pub use enemy_spawn_batch_reducer::{
+    enemy_spawn_batch, set_flags_for_enemy_spawn_batch, EnemySpawnBatchCallbackId,
+};
 pub use enemy_spawn_loot_reducer::{
     enemy_spawn_loot, set_flags_for_enemy_spawn_loot, EnemySpawnLootCallbackId,
 };
@@ -2792,6 +2884,10 @@ pub use import_project_site_state_reducer::{
 pub use import_rent_state_reducer::{
     import_rent_state, set_flags_for_import_rent_state, ImportRentStateCallbackId,
 };
+pub use import_reserved_name_desc_reducer::{
+    import_reserved_name_desc, set_flags_for_import_reserved_name_desc,
+    ImportReservedNameDescCallbackId,
+};
 pub use import_resource_clump_desc_reducer::{
     import_resource_clump_desc, set_flags_for_import_resource_clump_desc,
     ImportResourceClumpDescCallbackId,
@@ -3096,6 +3192,7 @@ pub use offset_coordinates_float_type::OffsetCoordinatesFloat;
 pub use offset_coordinates_large_message_type::OffsetCoordinatesLargeMessage;
 pub use offset_coordinates_small_message_type::OffsetCoordinatesSmallMessage;
 pub use on_claim_members_changed_msg_type::OnClaimMembersChangedMsg;
+pub use on_deployable_recovered_msg_type::OnDeployableRecoveredMsg;
 pub use on_durability_zero_reducer::{
     on_durability_zero, set_flags_for_on_durability_zero, OnDurabilityZeroCallbackId,
 };
@@ -3325,6 +3422,7 @@ pub use player_housing_request_access_reducer::{
     PlayerHousingRequestAccessCallbackId,
 };
 pub use player_housing_request_access_request_type::PlayerHousingRequestAccessRequest;
+pub use player_housing_state_op_type::PlayerHousingStateOp;
 pub use player_housing_state_table::*;
 pub use player_housing_state_type::PlayerHousingState;
 pub use player_housing_update_reducer::{
@@ -3390,6 +3488,8 @@ pub use player_region_transfer_event_table::*;
 pub use player_region_transfer_event_type::PlayerRegionTransferEvent;
 pub use player_report_state_op_type::PlayerReportStateOp;
 pub use player_report_state_table::*;
+pub use player_report_state_timestamp_table::*;
+pub use player_report_state_timestamp_type::PlayerReportStateTimestamp;
 pub use player_report_state_type::PlayerReportState;
 pub use player_respawn_reducer::{
     player_respawn, set_flags_for_player_respawn, PlayerRespawnCallbackId,
@@ -3502,6 +3602,7 @@ pub use project_site_place_reducer::{
 pub use project_site_state_table::*;
 pub use project_site_state_type::ProjectSiteState;
 pub use rarity_type::Rarity;
+pub use recover_deployable_msg_type::RecoverDeployableMsg;
 pub use region_connection_info_op_type::RegionConnectionInfoOp;
 pub use region_connection_info_table::*;
 pub use region_connection_info_type::RegionConnectionInfo;
@@ -3575,6 +3676,8 @@ pub use report_player_message_type::ReportPlayerMessage;
 pub use report_player_reducer::{
     report_player, set_flags_for_report_player, ReportPlayerCallbackId,
 };
+pub use reserved_name_desc_table::*;
+pub use reserved_name_desc_type::ReservedNameDesc;
 pub use reset_chunk_index_reducer::{
     reset_chunk_index, set_flags_for_reset_chunk_index, ResetChunkIndexCallbackId,
 };
@@ -3905,6 +4008,10 @@ pub use stage_private_parameters_desc_reducer::{
     set_flags_for_stage_private_parameters_desc, stage_private_parameters_desc,
     StagePrivateParametersDescCallbackId,
 };
+pub use stage_reserved_name_desc_reducer::{
+    set_flags_for_stage_reserved_name_desc, stage_reserved_name_desc,
+    StageReservedNameDescCallbackId,
+};
 pub use stage_resource_clump_desc_reducer::{
     set_flags_for_stage_resource_clump_desc, stage_resource_clump_desc,
     StageResourceClumpDescCallbackId,
@@ -4206,6 +4313,9 @@ pub enum Reducer {
         message: String,
     },
     AdminClearAllResources,
+    AdminClearChunkResources {
+        timer: AdminClearResourceTimer,
+    },
     AdminCollapseRuin {
         ruin_building_entity_id: u64,
     },
@@ -4215,10 +4325,43 @@ pub enum Reducer {
         item_id: i32,
         limit: u32,
     },
+    AdminDeleteAllItemsOfType {
+        player_username: String,
+        item_id: i32,
+        is_cargo: bool,
+    },
     AdminDespawnOverworldEnemies,
     AdminGrantCollectibles {
         identity: String,
         collectibles: Vec<i32>,
+    },
+    AdminRenameBuilding {
+        building_name: String,
+        new_name: String,
+    },
+    AdminRenameBuildingCoord {
+        coord: OffsetCoordinatesSmallMessage,
+        new_name: String,
+    },
+    AdminRenameBuildingEntity {
+        entity_id: u64,
+        new_name: String,
+    },
+    AdminRenameClaim {
+        claim_name: String,
+        new_name: String,
+    },
+    AdminRenameClaimEntity {
+        entity_id: u64,
+        new_name: String,
+    },
+    AdminRenameDeployable {
+        deployable_name: String,
+        new_name: String,
+    },
+    AdminRenameDeployableEntity {
+        entity_id: u64,
+        new_name: String,
     },
     AdminResetAllHerdLocations,
     AdminResetHerdLocations {
@@ -4240,6 +4383,18 @@ pub enum Reducer {
     },
     AdminRestorePlayerStateScheduled {
         timer: AdminRestorePlayerStateTimer,
+    },
+    AdminSetSignText {
+        deployable_name: String,
+        new_name: String,
+    },
+    AdminSetSignTextCoord {
+        coord: OffsetCoordinatesSmallMessage,
+        new_name: String,
+    },
+    AdminSetSignTextEntity {
+        entity_id: u64,
+        new_name: String,
     },
     AdminSignOut {
         identity: __sdk::Identity,
@@ -4362,12 +4517,19 @@ pub enum Reducer {
     },
     CheatGrantTeleportEnergy {
         player_entity_id: u64,
+        amount: f32,
     },
     CheatItemStackGrant {
-        request: CheatItemStackGrantRequest,
+        player_entity_id: u64,
+        item_id: i32,
+        quantity: i32,
+        is_cargo: bool,
     },
     CheatItemStackGrantAndEquip {
-        request: CheatItemStackGrantRequest,
+        player_entity_id: u64,
+        item_id: i32,
+        quantity: i32,
+        is_cargo: bool,
     },
     CheatKill {
         entity_id: u64,
@@ -4376,7 +4538,9 @@ pub enum Reducer {
         request: PlayerPavingPlaceTileRequest,
     },
     CheatPavingDestroy {
-        request: PlayerPavingDestroyTileRequest,
+        x: i32,
+        z: i32,
+        dimension: u32,
     },
     CheatPillarShapingAddPillar {
         request: PlayerPillarShapingPlaceRequest,
@@ -4388,13 +4552,13 @@ pub enum Reducer {
         project_site_entity_id: u64,
     },
     CheatRemoveEntityBuilding {
-        request: CheatRemoveEntityRequest,
+        building_entity_id: u64,
     },
     CheatRemoveEntityEnemy {
-        request: CheatRemoveEntityRequest,
+        enemy_entity_id: u64,
     },
     CheatRemoveEntityResource {
-        request: CheatRemoveEntityRequest,
+        target_entity_id: u64,
     },
     CheatSetAiDebugState {
         request: CheatSetDebugAiStateRequest,
@@ -4406,7 +4570,10 @@ pub enum Reducer {
         request: CheatTeleportFloatRequest,
     },
     CheatTerraform {
-        request: CheatTerraformRequest,
+        x: i32,
+        z: i32,
+        dimension: u32,
+        delta: i32,
     },
     CheatToggleActiveCollectible {
         request: CheatToggleActiveCollectibleRequest,
@@ -4621,14 +4788,29 @@ pub enum Reducer {
     EnemyDespawnFromMobMonitor {
         enemy_entity_id: u64,
     },
+    EnemyDespawnFromMobMonitorBatch {
+        enemy_entity_ids: Vec<u64>,
+    },
     EnemyMove {
         request: EnemyMoveRequest,
+    },
+    EnemyMoveBatch {
+        requests: Vec<EnemyMoveRequest>,
     },
     EnemyRegenAgentLoop {
         timer: EnemyRegenLoopTimer,
     },
+    EnemySetHealth {
+        request: EnemySetHealthRequest,
+    },
+    EnemySetHealthBatch {
+        requests: Vec<EnemySetHealthRequest>,
+    },
     EnemySpawn {
         request: EnemySpawnRequest,
+    },
+    EnemySpawnBatch {
+        requests: Vec<EnemySpawnRequest>,
     },
     EnemySpawnLoot {
         request: EnemySpawnLootRequest,
@@ -5048,6 +5230,9 @@ pub enum Reducer {
     },
     ImportRentState {
         records: Vec<RentState>,
+    },
+    ImportReservedNameDesc {
+        records: Vec<ReservedNameDesc>,
     },
     ImportResourceClumpDesc {
         records: Vec<ResourceClumpDesc>,
@@ -5686,6 +5871,9 @@ pub enum Reducer {
     StagePrivateParametersDesc {
         records: Vec<PrivateParametersDesc>,
     },
+    StageReservedNameDesc {
+        records: Vec<ReservedNameDesc>,
+    },
     StageResourceClumpDesc {
         records: Vec<ResourceClumpDesc>,
     },
@@ -5848,12 +6036,21 @@ impl __sdk::Reducer for Reducer {
             }
             Reducer::AdminBroadcastMsgRegion { .. } => "admin_broadcast_msg_region",
             Reducer::AdminClearAllResources => "admin_clear_all_resources",
+            Reducer::AdminClearChunkResources { .. } => "admin_clear_chunk_resources",
             Reducer::AdminCollapseRuin { .. } => "admin_collapse_ruin",
             Reducer::AdminCollapseRuins => "admin_collapse_ruins",
             Reducer::AdminCompleteAllPassiveCrafts => "admin_complete_all_passive_crafts",
             Reducer::AdminCountInventoryItems { .. } => "admin_count_inventory_items",
+            Reducer::AdminDeleteAllItemsOfType { .. } => "admin_delete_all_items_of_type",
             Reducer::AdminDespawnOverworldEnemies => "admin_despawn_overworld_enemies",
             Reducer::AdminGrantCollectibles { .. } => "admin_grant_collectibles",
+            Reducer::AdminRenameBuilding { .. } => "admin_rename_building",
+            Reducer::AdminRenameBuildingCoord { .. } => "admin_rename_building_coord",
+            Reducer::AdminRenameBuildingEntity { .. } => "admin_rename_building_entity",
+            Reducer::AdminRenameClaim { .. } => "admin_rename_claim",
+            Reducer::AdminRenameClaimEntity { .. } => "admin_rename_claim_entity",
+            Reducer::AdminRenameDeployable { .. } => "admin_rename_deployable",
+            Reducer::AdminRenameDeployableEntity { .. } => "admin_rename_deployable_entity",
             Reducer::AdminResetAllHerdLocations => "admin_reset_all_herd_locations",
             Reducer::AdminResetHerdLocations { .. } => "admin_reset_herd_locations",
             Reducer::AdminResetOnboardingCompletely { .. } => "admin_reset_onboarding_completely",
@@ -5862,6 +6059,9 @@ impl __sdk::Reducer for Reducer {
             Reducer::AdminRestorePlayerStateScheduled { .. } => {
                 "admin_restore_player_state_scheduled"
             }
+            Reducer::AdminSetSignText { .. } => "admin_set_sign_text",
+            Reducer::AdminSetSignTextCoord { .. } => "admin_set_sign_text_coord",
+            Reducer::AdminSetSignTextEntity { .. } => "admin_set_sign_text_entity",
             Reducer::AdminSignOut { .. } => "admin_sign_out",
             Reducer::AdminSignOutAllRegion => "admin_sign_out_all_region",
             Reducer::AdminSignOutString { .. } => "admin_sign_out_string",
@@ -6001,9 +6201,16 @@ impl __sdk::Reducer for Reducer {
             Reducer::EnemyClearAggro { .. } => "enemy_clear_aggro",
             Reducer::EnemyDespawn { .. } => "enemy_despawn",
             Reducer::EnemyDespawnFromMobMonitor { .. } => "enemy_despawn_from_mob_monitor",
+            Reducer::EnemyDespawnFromMobMonitorBatch { .. } => {
+                "enemy_despawn_from_mob_monitor_batch"
+            }
             Reducer::EnemyMove { .. } => "enemy_move",
+            Reducer::EnemyMoveBatch { .. } => "enemy_move_batch",
             Reducer::EnemyRegenAgentLoop { .. } => "enemy_regen_agent_loop",
+            Reducer::EnemySetHealth { .. } => "enemy_set_health",
+            Reducer::EnemySetHealthBatch { .. } => "enemy_set_health_batch",
             Reducer::EnemySpawn { .. } => "enemy_spawn",
+            Reducer::EnemySpawnBatch { .. } => "enemy_spawn_batch",
             Reducer::EnemySpawnLoot { .. } => "enemy_spawn_loot",
             Reducer::EnvironmentDebuffAgentLoop { .. } => "environment_debuff_agent_loop",
             Reducer::EquipmentAdd { .. } => "equipment_add",
@@ -6163,6 +6370,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::ImportProgressiveActionState { .. } => "import_progressive_action_state",
             Reducer::ImportProjectSiteState { .. } => "import_project_site_state",
             Reducer::ImportRentState { .. } => "import_rent_state",
+            Reducer::ImportReservedNameDesc { .. } => "import_reserved_name_desc",
             Reducer::ImportResourceClumpDesc { .. } => "import_resource_clump_desc",
             Reducer::ImportResourceCount { .. } => "import_resource_count",
             Reducer::ImportResourceDesc { .. } => "import_resource_desc",
@@ -6389,6 +6597,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::StagePlayerActionDesc { .. } => "stage_player_action_desc",
             Reducer::StagePlayerHousingDesc { .. } => "stage_player_housing_desc",
             Reducer::StagePrivateParametersDesc { .. } => "stage_private_parameters_desc",
+            Reducer::StageReservedNameDesc { .. } => "stage_reserved_name_desc",
             Reducer::StageResourceClumpDesc { .. } => "stage_resource_clump_desc",
             Reducer::StageResourceDesc { .. } => "stage_resource_desc",
             Reducer::StageResourceGrowthRecipeDesc { .. } => "stage_resource_growth_recipe_desc",
@@ -6457,18 +6666,30 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "admin_alpha3_reset_onboarding_to_third_temple_quest" => Ok(__sdk::parse_reducer_args::<admin_alpha_3_reset_onboarding_to_third_temple_quest_reducer::AdminAlpha3ResetOnboardingToThirdTempleQuestArgs>("admin_alpha3_reset_onboarding_to_third_temple_quest", &value.args)?.into()),
             "admin_broadcast_msg_region" => Ok(__sdk::parse_reducer_args::<admin_broadcast_msg_region_reducer::AdminBroadcastMsgRegionArgs>("admin_broadcast_msg_region", &value.args)?.into()),
             "admin_clear_all_resources" => Ok(__sdk::parse_reducer_args::<admin_clear_all_resources_reducer::AdminClearAllResourcesArgs>("admin_clear_all_resources", &value.args)?.into()),
+            "admin_clear_chunk_resources" => Ok(__sdk::parse_reducer_args::<admin_clear_chunk_resources_reducer::AdminClearChunkResourcesArgs>("admin_clear_chunk_resources", &value.args)?.into()),
             "admin_collapse_ruin" => Ok(__sdk::parse_reducer_args::<admin_collapse_ruin_reducer::AdminCollapseRuinArgs>("admin_collapse_ruin", &value.args)?.into()),
             "admin_collapse_ruins" => Ok(__sdk::parse_reducer_args::<admin_collapse_ruins_reducer::AdminCollapseRuinsArgs>("admin_collapse_ruins", &value.args)?.into()),
             "admin_complete_all_passive_crafts" => Ok(__sdk::parse_reducer_args::<admin_complete_all_passive_crafts_reducer::AdminCompleteAllPassiveCraftsArgs>("admin_complete_all_passive_crafts", &value.args)?.into()),
             "admin_count_inventory_items" => Ok(__sdk::parse_reducer_args::<admin_count_inventory_items_reducer::AdminCountInventoryItemsArgs>("admin_count_inventory_items", &value.args)?.into()),
+            "admin_delete_all_items_of_type" => Ok(__sdk::parse_reducer_args::<admin_delete_all_items_of_type_reducer::AdminDeleteAllItemsOfTypeArgs>("admin_delete_all_items_of_type", &value.args)?.into()),
             "admin_despawn_overworld_enemies" => Ok(__sdk::parse_reducer_args::<admin_despawn_overworld_enemies_reducer::AdminDespawnOverworldEnemiesArgs>("admin_despawn_overworld_enemies", &value.args)?.into()),
             "admin_grant_collectibles" => Ok(__sdk::parse_reducer_args::<admin_grant_collectibles_reducer::AdminGrantCollectiblesArgs>("admin_grant_collectibles", &value.args)?.into()),
+            "admin_rename_building" => Ok(__sdk::parse_reducer_args::<admin_rename_building_reducer::AdminRenameBuildingArgs>("admin_rename_building", &value.args)?.into()),
+            "admin_rename_building_coord" => Ok(__sdk::parse_reducer_args::<admin_rename_building_coord_reducer::AdminRenameBuildingCoordArgs>("admin_rename_building_coord", &value.args)?.into()),
+            "admin_rename_building_entity" => Ok(__sdk::parse_reducer_args::<admin_rename_building_entity_reducer::AdminRenameBuildingEntityArgs>("admin_rename_building_entity", &value.args)?.into()),
+            "admin_rename_claim" => Ok(__sdk::parse_reducer_args::<admin_rename_claim_reducer::AdminRenameClaimArgs>("admin_rename_claim", &value.args)?.into()),
+            "admin_rename_claim_entity" => Ok(__sdk::parse_reducer_args::<admin_rename_claim_entity_reducer::AdminRenameClaimEntityArgs>("admin_rename_claim_entity", &value.args)?.into()),
+            "admin_rename_deployable" => Ok(__sdk::parse_reducer_args::<admin_rename_deployable_reducer::AdminRenameDeployableArgs>("admin_rename_deployable", &value.args)?.into()),
+            "admin_rename_deployable_entity" => Ok(__sdk::parse_reducer_args::<admin_rename_deployable_entity_reducer::AdminRenameDeployableEntityArgs>("admin_rename_deployable_entity", &value.args)?.into()),
             "admin_reset_all_herd_locations" => Ok(__sdk::parse_reducer_args::<admin_reset_all_herd_locations_reducer::AdminResetAllHerdLocationsArgs>("admin_reset_all_herd_locations", &value.args)?.into()),
             "admin_reset_herd_locations" => Ok(__sdk::parse_reducer_args::<admin_reset_herd_locations_reducer::AdminResetHerdLocationsArgs>("admin_reset_herd_locations", &value.args)?.into()),
             "admin_reset_onboarding_completely" => Ok(__sdk::parse_reducer_args::<admin_reset_onboarding_completely_reducer::AdminResetOnboardingCompletelyArgs>("admin_reset_onboarding_completely", &value.args)?.into()),
             "admin_restore_all_collapsed_ruins" => Ok(__sdk::parse_reducer_args::<admin_restore_all_collapsed_ruins_reducer::AdminRestoreAllCollapsedRuinsArgs>("admin_restore_all_collapsed_ruins", &value.args)?.into()),
             "admin_restore_player_state" => Ok(__sdk::parse_reducer_args::<admin_restore_player_state_reducer::AdminRestorePlayerStateArgs>("admin_restore_player_state", &value.args)?.into()),
             "admin_restore_player_state_scheduled" => Ok(__sdk::parse_reducer_args::<admin_restore_player_state_scheduled_reducer::AdminRestorePlayerStateScheduledArgs>("admin_restore_player_state_scheduled", &value.args)?.into()),
+            "admin_set_sign_text" => Ok(__sdk::parse_reducer_args::<admin_set_sign_text_reducer::AdminSetSignTextArgs>("admin_set_sign_text", &value.args)?.into()),
+            "admin_set_sign_text_coord" => Ok(__sdk::parse_reducer_args::<admin_set_sign_text_coord_reducer::AdminSetSignTextCoordArgs>("admin_set_sign_text_coord", &value.args)?.into()),
+            "admin_set_sign_text_entity" => Ok(__sdk::parse_reducer_args::<admin_set_sign_text_entity_reducer::AdminSetSignTextEntityArgs>("admin_set_sign_text_entity", &value.args)?.into()),
             "admin_sign_out" => Ok(__sdk::parse_reducer_args::<admin_sign_out_reducer::AdminSignOutArgs>("admin_sign_out", &value.args)?.into()),
             "admin_sign_out_all_region" => Ok(__sdk::parse_reducer_args::<admin_sign_out_all_region_reducer::AdminSignOutAllRegionArgs>("admin_sign_out_all_region", &value.args)?.into()),
             "admin_sign_out_string" => Ok(__sdk::parse_reducer_args::<admin_sign_out_string_reducer::AdminSignOutStringArgs>("admin_sign_out_string", &value.args)?.into()),
@@ -6598,9 +6819,14 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "enemy_clear_aggro" => Ok(__sdk::parse_reducer_args::<enemy_clear_aggro_reducer::EnemyClearAggroArgs>("enemy_clear_aggro", &value.args)?.into()),
             "enemy_despawn" => Ok(__sdk::parse_reducer_args::<enemy_despawn_reducer::EnemyDespawnArgs>("enemy_despawn", &value.args)?.into()),
             "enemy_despawn_from_mob_monitor" => Ok(__sdk::parse_reducer_args::<enemy_despawn_from_mob_monitor_reducer::EnemyDespawnFromMobMonitorArgs>("enemy_despawn_from_mob_monitor", &value.args)?.into()),
+            "enemy_despawn_from_mob_monitor_batch" => Ok(__sdk::parse_reducer_args::<enemy_despawn_from_mob_monitor_batch_reducer::EnemyDespawnFromMobMonitorBatchArgs>("enemy_despawn_from_mob_monitor_batch", &value.args)?.into()),
             "enemy_move" => Ok(__sdk::parse_reducer_args::<enemy_move_reducer::EnemyMoveArgs>("enemy_move", &value.args)?.into()),
+            "enemy_move_batch" => Ok(__sdk::parse_reducer_args::<enemy_move_batch_reducer::EnemyMoveBatchArgs>("enemy_move_batch", &value.args)?.into()),
             "enemy_regen_agent_loop" => Ok(__sdk::parse_reducer_args::<enemy_regen_agent_loop_reducer::EnemyRegenAgentLoopArgs>("enemy_regen_agent_loop", &value.args)?.into()),
+            "enemy_set_health" => Ok(__sdk::parse_reducer_args::<enemy_set_health_reducer::EnemySetHealthArgs>("enemy_set_health", &value.args)?.into()),
+            "enemy_set_health_batch" => Ok(__sdk::parse_reducer_args::<enemy_set_health_batch_reducer::EnemySetHealthBatchArgs>("enemy_set_health_batch", &value.args)?.into()),
             "enemy_spawn" => Ok(__sdk::parse_reducer_args::<enemy_spawn_reducer::EnemySpawnArgs>("enemy_spawn", &value.args)?.into()),
+            "enemy_spawn_batch" => Ok(__sdk::parse_reducer_args::<enemy_spawn_batch_reducer::EnemySpawnBatchArgs>("enemy_spawn_batch", &value.args)?.into()),
             "enemy_spawn_loot" => Ok(__sdk::parse_reducer_args::<enemy_spawn_loot_reducer::EnemySpawnLootArgs>("enemy_spawn_loot", &value.args)?.into()),
             "environment_debuff_agent_loop" => Ok(__sdk::parse_reducer_args::<environment_debuff_agent_loop_reducer::EnvironmentDebuffAgentLoopArgs>("environment_debuff_agent_loop", &value.args)?.into()),
             "equipment_add" => Ok(__sdk::parse_reducer_args::<equipment_add_reducer::EquipmentAddArgs>("equipment_add", &value.args)?.into()),
@@ -6744,6 +6970,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "import_progressive_action_state" => Ok(__sdk::parse_reducer_args::<import_progressive_action_state_reducer::ImportProgressiveActionStateArgs>("import_progressive_action_state", &value.args)?.into()),
             "import_project_site_state" => Ok(__sdk::parse_reducer_args::<import_project_site_state_reducer::ImportProjectSiteStateArgs>("import_project_site_state", &value.args)?.into()),
             "import_rent_state" => Ok(__sdk::parse_reducer_args::<import_rent_state_reducer::ImportRentStateArgs>("import_rent_state", &value.args)?.into()),
+            "import_reserved_name_desc" => Ok(__sdk::parse_reducer_args::<import_reserved_name_desc_reducer::ImportReservedNameDescArgs>("import_reserved_name_desc", &value.args)?.into()),
             "import_resource_clump_desc" => Ok(__sdk::parse_reducer_args::<import_resource_clump_desc_reducer::ImportResourceClumpDescArgs>("import_resource_clump_desc", &value.args)?.into()),
             "import_resource_count" => Ok(__sdk::parse_reducer_args::<import_resource_count_reducer::ImportResourceCountArgs>("import_resource_count", &value.args)?.into()),
             "import_resource_desc" => Ok(__sdk::parse_reducer_args::<import_resource_desc_reducer::ImportResourceDescArgs>("import_resource_desc", &value.args)?.into()),
@@ -6960,6 +7187,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "stage_player_action_desc" => Ok(__sdk::parse_reducer_args::<stage_player_action_desc_reducer::StagePlayerActionDescArgs>("stage_player_action_desc", &value.args)?.into()),
             "stage_player_housing_desc" => Ok(__sdk::parse_reducer_args::<stage_player_housing_desc_reducer::StagePlayerHousingDescArgs>("stage_player_housing_desc", &value.args)?.into()),
             "stage_private_parameters_desc" => Ok(__sdk::parse_reducer_args::<stage_private_parameters_desc_reducer::StagePrivateParametersDescArgs>("stage_private_parameters_desc", &value.args)?.into()),
+            "stage_reserved_name_desc" => Ok(__sdk::parse_reducer_args::<stage_reserved_name_desc_reducer::StageReservedNameDescArgs>("stage_reserved_name_desc", &value.args)?.into()),
             "stage_resource_clump_desc" => Ok(__sdk::parse_reducer_args::<stage_resource_clump_desc_reducer::StageResourceClumpDescArgs>("stage_resource_clump_desc", &value.args)?.into()),
             "stage_resource_desc" => Ok(__sdk::parse_reducer_args::<stage_resource_desc_reducer::StageResourceDescArgs>("stage_resource_desc", &value.args)?.into()),
             "stage_resource_growth_recipe_desc" => Ok(__sdk::parse_reducer_args::<stage_resource_growth_recipe_desc_reducer::StageResourceGrowthRecipeDescArgs>("stage_resource_growth_recipe_desc", &value.args)?.into()),
@@ -7015,6 +7243,7 @@ pub struct DbUpdate {
     action_state: __sdk::TableUpdate<ActionState>,
     active_buff_state: __sdk::TableUpdate<ActiveBuffState>,
     admin_broadcast: __sdk::TableUpdate<AdminBroadcast>,
+    admin_clear_resource_timer: __sdk::TableUpdate<AdminClearResourceTimer>,
     admin_restore_player_state_timer: __sdk::TableUpdate<AdminRestorePlayerStateTimer>,
     alert_desc: __sdk::TableUpdate<AlertDesc>,
     alert_state: __sdk::TableUpdate<AlertState>,
@@ -7026,6 +7255,7 @@ pub struct DbUpdate {
     auto_logout_loop_timer: __sdk::TableUpdate<AutoLogoutLoopTimer>,
     barter_stall_state: __sdk::TableUpdate<BarterStallState>,
     biome_desc: __sdk::TableUpdate<BiomeDesc>,
+    blocked_identity: __sdk::TableUpdate<BlockedIdentity>,
     buff_desc: __sdk::TableUpdate<BuffDesc>,
     buff_type_desc: __sdk::TableUpdate<BuffTypeDesc>,
     building_claim_desc: __sdk::TableUpdate<BuildingClaimDesc>,
@@ -7207,6 +7437,7 @@ pub struct DbUpdate {
     player_regen_loop_timer: __sdk::TableUpdate<PlayerRegenLoopTimer>,
     player_region_transfer_event: __sdk::TableUpdate<PlayerRegionTransferEvent>,
     player_report_state: __sdk::TableUpdate<PlayerReportState>,
+    player_report_state_timestamp: __sdk::TableUpdate<PlayerReportStateTimestamp>,
     player_set_name_outcome_event: __sdk::TableUpdate<PlayerSetNameOutcomeEvent>,
     player_state: __sdk::TableUpdate<PlayerState>,
     player_timestamp_state: __sdk::TableUpdate<PlayerTimestampState>,
@@ -7225,6 +7456,7 @@ pub struct DbUpdate {
     rent_collector_loop_timer: __sdk::TableUpdate<RentCollectorLoopTimer>,
     rent_evict_timer: __sdk::TableUpdate<RentEvictTimer>,
     rent_state: __sdk::TableUpdate<RentState>,
+    reserved_name_desc: __sdk::TableUpdate<ReservedNameDesc>,
     reset_chunk_index_timer: __sdk::TableUpdate<ResetChunkIndexTimer>,
     reset_mobile_entity_timer: __sdk::TableUpdate<ResetMobileEntityTimer>,
     resource_clump_desc: __sdk::TableUpdate<ResourceClumpDesc>,
@@ -7309,6 +7541,9 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
                 "admin_broadcast" => db_update
                     .admin_broadcast
                     .append(admin_broadcast_table::parse_table_update(table_update)?),
+                "admin_clear_resource_timer" => db_update.admin_clear_resource_timer.append(
+                    admin_clear_resource_timer_table::parse_table_update(table_update)?,
+                ),
                 "admin_restore_player_state_timer" => {
                     db_update.admin_restore_player_state_timer.append(
                         admin_restore_player_state_timer_table::parse_table_update(table_update)?,
@@ -7344,6 +7579,9 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
                 "biome_desc" => db_update
                     .biome_desc
                     .append(biome_desc_table::parse_table_update(table_update)?),
+                "blocked_identity" => db_update
+                    .blocked_identity
+                    .append(blocked_identity_table::parse_table_update(table_update)?),
                 "buff_desc" => db_update
                     .buff_desc
                     .append(buff_desc_table::parse_table_update(table_update)?),
@@ -7919,6 +8157,9 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
                 "player_report_state" => db_update
                     .player_report_state
                     .append(player_report_state_table::parse_table_update(table_update)?),
+                "player_report_state_timestamp" => db_update.player_report_state_timestamp.append(
+                    player_report_state_timestamp_table::parse_table_update(table_update)?,
+                ),
                 "player_set_name_outcome_event" => db_update.player_set_name_outcome_event.append(
                     player_set_name_outcome_event_table::parse_table_update(table_update)?,
                 ),
@@ -7973,6 +8214,9 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
                 "rent_state" => db_update
                     .rent_state
                     .append(rent_state_table::parse_table_update(table_update)?),
+                "reserved_name_desc" => db_update
+                    .reserved_name_desc
+                    .append(reserved_name_desc_table::parse_table_update(table_update)?),
                 "reset_chunk_index_timer" => db_update.reset_chunk_index_timer.append(
                     reset_chunk_index_timer_table::parse_table_update(table_update)?,
                 ),
@@ -8205,6 +8449,12 @@ impl __sdk::DbUpdate for DbUpdate {
         diff.admin_broadcast = cache
             .apply_diff_to_table::<AdminBroadcast>("admin_broadcast", &self.admin_broadcast)
             .with_updates_by_pk(|row| &row.version);
+        diff.admin_clear_resource_timer = cache
+            .apply_diff_to_table::<AdminClearResourceTimer>(
+                "admin_clear_resource_timer",
+                &self.admin_clear_resource_timer,
+            )
+            .with_updates_by_pk(|row| &row.scheduled_id);
         diff.admin_restore_player_state_timer = cache
             .apply_diff_to_table::<AdminRestorePlayerStateTimer>(
                 "admin_restore_player_state_timer",
@@ -8253,6 +8503,9 @@ impl __sdk::DbUpdate for DbUpdate {
         diff.biome_desc = cache
             .apply_diff_to_table::<BiomeDesc>("biome_desc", &self.biome_desc)
             .with_updates_by_pk(|row| &row.biome_type);
+        diff.blocked_identity = cache
+            .apply_diff_to_table::<BlockedIdentity>("blocked_identity", &self.blocked_identity)
+            .with_updates_by_pk(|row| &row.identity);
         diff.buff_desc = cache
             .apply_diff_to_table::<BuffDesc>("buff_desc", &self.buff_desc)
             .with_updates_by_pk(|row| &row.id);
@@ -9115,6 +9368,12 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.player_report_state,
             )
             .with_updates_by_pk(|row| &row.entity_id);
+        diff.player_report_state_timestamp = cache
+            .apply_diff_to_table::<PlayerReportStateTimestamp>(
+                "player_report_state_timestamp",
+                &self.player_report_state_timestamp,
+            )
+            .with_updates_by_pk(|row| &row.entity_id);
         diff.player_set_name_outcome_event = cache
             .apply_diff_to_table::<PlayerSetNameOutcomeEvent>(
                 "player_set_name_outcome_event",
@@ -9205,6 +9464,9 @@ impl __sdk::DbUpdate for DbUpdate {
         diff.rent_state = cache
             .apply_diff_to_table::<RentState>("rent_state", &self.rent_state)
             .with_updates_by_pk(|row| &row.entity_id);
+        diff.reserved_name_desc = cache
+            .apply_diff_to_table::<ReservedNameDesc>("reserved_name_desc", &self.reserved_name_desc)
+            .with_updates_by_pk(|row| &row.name);
         diff.reset_chunk_index_timer = cache
             .apply_diff_to_table::<ResetChunkIndexTimer>(
                 "reset_chunk_index_timer",
@@ -9510,6 +9772,7 @@ pub struct AppliedDiff<'r> {
     action_state: __sdk::TableAppliedDiff<'r, ActionState>,
     active_buff_state: __sdk::TableAppliedDiff<'r, ActiveBuffState>,
     admin_broadcast: __sdk::TableAppliedDiff<'r, AdminBroadcast>,
+    admin_clear_resource_timer: __sdk::TableAppliedDiff<'r, AdminClearResourceTimer>,
     admin_restore_player_state_timer: __sdk::TableAppliedDiff<'r, AdminRestorePlayerStateTimer>,
     alert_desc: __sdk::TableAppliedDiff<'r, AlertDesc>,
     alert_state: __sdk::TableAppliedDiff<'r, AlertState>,
@@ -9521,6 +9784,7 @@ pub struct AppliedDiff<'r> {
     auto_logout_loop_timer: __sdk::TableAppliedDiff<'r, AutoLogoutLoopTimer>,
     barter_stall_state: __sdk::TableAppliedDiff<'r, BarterStallState>,
     biome_desc: __sdk::TableAppliedDiff<'r, BiomeDesc>,
+    blocked_identity: __sdk::TableAppliedDiff<'r, BlockedIdentity>,
     buff_desc: __sdk::TableAppliedDiff<'r, BuffDesc>,
     buff_type_desc: __sdk::TableAppliedDiff<'r, BuffTypeDesc>,
     building_claim_desc: __sdk::TableAppliedDiff<'r, BuildingClaimDesc>,
@@ -9706,6 +9970,7 @@ pub struct AppliedDiff<'r> {
     player_regen_loop_timer: __sdk::TableAppliedDiff<'r, PlayerRegenLoopTimer>,
     player_region_transfer_event: __sdk::TableAppliedDiff<'r, PlayerRegionTransferEvent>,
     player_report_state: __sdk::TableAppliedDiff<'r, PlayerReportState>,
+    player_report_state_timestamp: __sdk::TableAppliedDiff<'r, PlayerReportStateTimestamp>,
     player_set_name_outcome_event: __sdk::TableAppliedDiff<'r, PlayerSetNameOutcomeEvent>,
     player_state: __sdk::TableAppliedDiff<'r, PlayerState>,
     player_timestamp_state: __sdk::TableAppliedDiff<'r, PlayerTimestampState>,
@@ -9724,6 +9989,7 @@ pub struct AppliedDiff<'r> {
     rent_collector_loop_timer: __sdk::TableAppliedDiff<'r, RentCollectorLoopTimer>,
     rent_evict_timer: __sdk::TableAppliedDiff<'r, RentEvictTimer>,
     rent_state: __sdk::TableAppliedDiff<'r, RentState>,
+    reserved_name_desc: __sdk::TableAppliedDiff<'r, ReservedNameDesc>,
     reset_chunk_index_timer: __sdk::TableAppliedDiff<'r, ResetChunkIndexTimer>,
     reset_mobile_entity_timer: __sdk::TableAppliedDiff<'r, ResetMobileEntityTimer>,
     resource_clump_desc: __sdk::TableAppliedDiff<'r, ResourceClumpDesc>,
@@ -9823,6 +10089,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             &self.admin_broadcast,
             event,
         );
+        callbacks.invoke_table_row_callbacks::<AdminClearResourceTimer>(
+            "admin_clear_resource_timer",
+            &self.admin_clear_resource_timer,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<AdminRestorePlayerStateTimer>(
             "admin_restore_player_state_timer",
             &self.admin_restore_player_state_timer,
@@ -9866,6 +10137,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             event,
         );
         callbacks.invoke_table_row_callbacks::<BiomeDesc>("biome_desc", &self.biome_desc, event);
+        callbacks.invoke_table_row_callbacks::<BlockedIdentity>(
+            "blocked_identity",
+            &self.blocked_identity,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<BuffDesc>("buff_desc", &self.buff_desc, event);
         callbacks.invoke_table_row_callbacks::<BuffTypeDesc>(
             "buff_type_desc",
@@ -10711,6 +10987,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             &self.player_report_state,
             event,
         );
+        callbacks.invoke_table_row_callbacks::<PlayerReportStateTimestamp>(
+            "player_report_state_timestamp",
+            &self.player_report_state_timestamp,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<PlayerSetNameOutcomeEvent>(
             "player_set_name_outcome_event",
             &self.player_set_name_outcome_event,
@@ -10797,6 +11078,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             event,
         );
         callbacks.invoke_table_row_callbacks::<RentState>("rent_state", &self.rent_state, event);
+        callbacks.invoke_table_row_callbacks::<ReservedNameDesc>(
+            "reserved_name_desc",
+            &self.reserved_name_desc,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<ResetChunkIndexTimer>(
             "reset_chunk_index_timer",
             &self.reset_chunk_index_timer,
@@ -11658,6 +11944,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         action_state_table::register_table(client_cache);
         active_buff_state_table::register_table(client_cache);
         admin_broadcast_table::register_table(client_cache);
+        admin_clear_resource_timer_table::register_table(client_cache);
         admin_restore_player_state_timer_table::register_table(client_cache);
         alert_desc_table::register_table(client_cache);
         alert_state_table::register_table(client_cache);
@@ -11669,6 +11956,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         auto_logout_loop_timer_table::register_table(client_cache);
         barter_stall_state_table::register_table(client_cache);
         biome_desc_table::register_table(client_cache);
+        blocked_identity_table::register_table(client_cache);
         buff_desc_table::register_table(client_cache);
         buff_type_desc_table::register_table(client_cache);
         building_claim_desc_table::register_table(client_cache);
@@ -11850,6 +12138,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         player_regen_loop_timer_table::register_table(client_cache);
         player_region_transfer_event_table::register_table(client_cache);
         player_report_state_table::register_table(client_cache);
+        player_report_state_timestamp_table::register_table(client_cache);
         player_set_name_outcome_event_table::register_table(client_cache);
         player_state_table::register_table(client_cache);
         player_timestamp_state_table::register_table(client_cache);
@@ -11868,6 +12157,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         rent_collector_loop_timer_table::register_table(client_cache);
         rent_evict_timer_table::register_table(client_cache);
         rent_state_table::register_table(client_cache);
+        reserved_name_desc_table::register_table(client_cache);
         reset_chunk_index_timer_table::register_table(client_cache);
         reset_mobile_entity_timer_table::register_table(client_cache);
         resource_clump_desc_table::register_table(client_cache);

@@ -10,6 +10,7 @@ use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 #[sats(crate = __lib)]
 pub struct PlayerCraftContinueRequest {
     pub progressive_action_entity_id: u64,
+    pub timestamp: u64,
 }
 
 impl __sdk::InModule for PlayerCraftContinueRequest {

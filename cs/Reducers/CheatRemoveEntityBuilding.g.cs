@@ -14,12 +14,12 @@ namespace SpacetimeDB.Types
 {
     public sealed partial class RemoteReducers : RemoteBase
     {
-        public delegate void CheatRemoveEntityBuildingHandler(ReducerEventContext ctx, CheatRemoveEntityRequest request);
+        public delegate void CheatRemoveEntityBuildingHandler(ReducerEventContext ctx, ulong buildingEntityId);
         public event CheatRemoveEntityBuildingHandler? OnCheatRemoveEntityBuilding;
 
-        public void CheatRemoveEntityBuilding(CheatRemoveEntityRequest request)
+        public void CheatRemoveEntityBuilding(ulong buildingEntityId)
         {
-            conn.InternalCallReducer(new Reducer.CheatRemoveEntityBuilding(request), this.SetCallReducerFlags.CheatRemoveEntityBuildingFlags);
+            conn.InternalCallReducer(new Reducer.CheatRemoveEntityBuilding(buildingEntityId), this.SetCallReducerFlags.CheatRemoveEntityBuildingFlags);
         }
 
         public bool InvokeCheatRemoveEntityBuilding(ReducerEventContext ctx, Reducer.CheatRemoveEntityBuilding args)
@@ -38,7 +38,7 @@ namespace SpacetimeDB.Types
             }
             OnCheatRemoveEntityBuilding(
                 ctx,
-                args.Request
+                args.BuildingEntityId
             );
             return true;
         }
@@ -50,17 +50,16 @@ namespace SpacetimeDB.Types
         [DataContract]
         public sealed partial class CheatRemoveEntityBuilding : Reducer, IReducerArgs
         {
-            [DataMember(Name = "request")]
-            public CheatRemoveEntityRequest Request;
+            [DataMember(Name = "building_entity_id")]
+            public ulong BuildingEntityId;
 
-            public CheatRemoveEntityBuilding(CheatRemoveEntityRequest Request)
+            public CheatRemoveEntityBuilding(ulong BuildingEntityId)
             {
-                this.Request = Request;
+                this.BuildingEntityId = BuildingEntityId;
             }
 
             public CheatRemoveEntityBuilding()
             {
-                this.Request = new();
             }
 
             string IReducerArgs.ReducerName => "cheat_remove_entity_building";

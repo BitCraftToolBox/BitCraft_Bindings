@@ -12,6 +12,7 @@ use super::offset_coordinates_large_message_type::OffsetCoordinatesLargeMessage;
 #[sats(crate = __lib)]
 pub struct PlayerPillarShapingDestroyRequest {
     pub coordinates: OffsetCoordinatesLargeMessage,
+    pub timestamp: u64,
 }
 
 impl __sdk::InModule for PlayerPillarShapingDestroyRequest {

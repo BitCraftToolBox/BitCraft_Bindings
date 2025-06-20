@@ -33,10 +33,11 @@ import {
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
 
-import { CheatTerraformRequest as __CheatTerraformRequest } from "./cheat_terraform_request_type";
-
 export type CheatTerraform = {
-  request: __CheatTerraformRequest,
+  x: number,
+  z: number,
+  dimension: number,
+  delta: number,
 };
 
 /**
@@ -49,7 +50,10 @@ export namespace CheatTerraform {
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("request", __CheatTerraformRequest.getTypeScriptAlgebraicType()),
+      new ProductTypeElement("x", AlgebraicType.createI32Type()),
+      new ProductTypeElement("z", AlgebraicType.createI32Type()),
+      new ProductTypeElement("dimension", AlgebraicType.createU32Type()),
+      new ProductTypeElement("delta", AlgebraicType.createI32Type()),
     ]);
   }
 

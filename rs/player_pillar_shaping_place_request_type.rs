@@ -13,6 +13,7 @@ use super::offset_coordinates_large_message_type::OffsetCoordinatesLargeMessage;
 pub struct PlayerPillarShapingPlaceRequest {
     pub coordinates: OffsetCoordinatesLargeMessage,
     pub pillar_type_id: i32,
+    pub timestamp: u64,
 }
 
 impl __sdk::InModule for PlayerPillarShapingPlaceRequest {

@@ -37,6 +37,7 @@ import { OffsetCoordinatesLargeMessage as __OffsetCoordinatesLargeMessage } from
 export type PlayerPillarShapingPlaceRequest = {
   coordinates: __OffsetCoordinatesLargeMessage,
   pillarTypeId: number,
+  timestamp: bigint,
 };
 
 /**
@@ -51,6 +52,7 @@ export namespace PlayerPillarShapingPlaceRequest {
     return AlgebraicType.createProductType([
       new ProductTypeElement("coordinates", __OffsetCoordinatesLargeMessage.getTypeScriptAlgebraicType()),
       new ProductTypeElement("pillarTypeId", AlgebraicType.createI32Type()),
+      new ProductTypeElement("timestamp", AlgebraicType.createU64Type()),
     ]);
   }
 

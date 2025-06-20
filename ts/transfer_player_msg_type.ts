@@ -73,13 +73,13 @@ import { SatiationState as __SatiationState } from "./satiation_state_type";
 import { StaminaState as __StaminaState } from "./stamina_state_type";
 import { UserState as __UserState } from "./user_state_type";
 import { VaultState as __VaultState } from "./vault_state_type";
+import { PlayerHousingState as __PlayerHousingState } from "./player_housing_state_type";
 import { MoveValidationStrikeCounterState as __MoveValidationStrikeCounterState } from "./move_validation_strike_counter_state_type";
 import { KnowledgeClaimState as __KnowledgeClaimState } from "./knowledge_claim_state_type";
 import { PlayerUsernameState as __PlayerUsernameState } from "./player_username_state_type";
 import { ToolbarState as __ToolbarState } from "./toolbar_state_type";
 import { UnclaimedCollectiblesState as __UnclaimedCollectiblesState } from "./unclaimed_collectibles_state_type";
 import { TeleportationEnergyState as __TeleportationEnergyState } from "./teleportation_energy_state_type";
-import { PlayerHousingState as __PlayerHousingState } from "./player_housing_state_type";
 import { TravelerTaskState as __TravelerTaskState } from "./traveler_task_state_type";
 
 export type TransferPlayerMsg = {

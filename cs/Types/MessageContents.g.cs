@@ -38,6 +38,8 @@ namespace SpacetimeDB.Types
         SignPlayerOutMsg SignPlayerOut,
         AdminBroadcastMessageMsg AdminBroadcastMessage,
         PlayerSkipQueueMsg PlayerSkipQueue,
-        GrantHubItemMsg GrantHubItem
+        GrantHubItemMsg GrantHubItem,
+        RecoverDeployableMsg RecoverDeployable,
+        OnDeployableRecoveredMsg OnDeployableRecovered
     )>;
 }

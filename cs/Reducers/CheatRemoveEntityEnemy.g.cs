@@ -14,12 +14,12 @@ namespace SpacetimeDB.Types
 {
     public sealed partial class RemoteReducers : RemoteBase
     {
-        public delegate void CheatRemoveEntityEnemyHandler(ReducerEventContext ctx, CheatRemoveEntityRequest request);
+        public delegate void CheatRemoveEntityEnemyHandler(ReducerEventContext ctx, ulong enemyEntityId);
         public event CheatRemoveEntityEnemyHandler? OnCheatRemoveEntityEnemy;
 
-        public void CheatRemoveEntityEnemy(CheatRemoveEntityRequest request)
+        public void CheatRemoveEntityEnemy(ulong enemyEntityId)
         {
-            conn.InternalCallReducer(new Reducer.CheatRemoveEntityEnemy(request), this.SetCallReducerFlags.CheatRemoveEntityEnemyFlags);
+            conn.InternalCallReducer(new Reducer.CheatRemoveEntityEnemy(enemyEntityId), this.SetCallReducerFlags.CheatRemoveEntityEnemyFlags);
         }
 
         public bool InvokeCheatRemoveEntityEnemy(ReducerEventContext ctx, Reducer.CheatRemoveEntityEnemy args)
@@ -38,7 +38,7 @@ namespace SpacetimeDB.Types
             }
             OnCheatRemoveEntityEnemy(
                 ctx,
-                args.Request
+                args.EnemyEntityId
             );
             return true;
         }
@@ -50,17 +50,16 @@ namespace SpacetimeDB.Types
         [DataContract]
         public sealed partial class CheatRemoveEntityEnemy : Reducer, IReducerArgs
         {
-            [DataMember(Name = "request")]
-            public CheatRemoveEntityRequest Request;
+            [DataMember(Name = "enemy_entity_id")]
+            public ulong EnemyEntityId;
 
-            public CheatRemoveEntityEnemy(CheatRemoveEntityRequest Request)
+            public CheatRemoveEntityEnemy(ulong EnemyEntityId)
             {
-                this.Request = Request;
+                this.EnemyEntityId = EnemyEntityId;
             }
 
             public CheatRemoveEntityEnemy()
             {
-                this.Request = new();
             }
 
             string IReducerArgs.ReducerName => "cheat_remove_entity_enemy";

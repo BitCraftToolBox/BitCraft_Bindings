@@ -14,12 +14,12 @@ namespace SpacetimeDB.Types
 {
     public sealed partial class RemoteReducers : RemoteBase
     {
-        public delegate void CheatPavingDestroyHandler(ReducerEventContext ctx, PlayerPavingDestroyTileRequest request);
+        public delegate void CheatPavingDestroyHandler(ReducerEventContext ctx, int x, int z, uint dimension);
         public event CheatPavingDestroyHandler? OnCheatPavingDestroy;
 
-        public void CheatPavingDestroy(PlayerPavingDestroyTileRequest request)
+        public void CheatPavingDestroy(int x, int z, uint dimension)
         {
-            conn.InternalCallReducer(new Reducer.CheatPavingDestroy(request), this.SetCallReducerFlags.CheatPavingDestroyFlags);
+            conn.InternalCallReducer(new Reducer.CheatPavingDestroy(x, z, dimension), this.SetCallReducerFlags.CheatPavingDestroyFlags);
         }
 
         public bool InvokeCheatPavingDestroy(ReducerEventContext ctx, Reducer.CheatPavingDestroy args)
@@ -38,7 +38,9 @@ namespace SpacetimeDB.Types
             }
             OnCheatPavingDestroy(
                 ctx,
-                args.Request
+                args.X,
+                args.Z,
+                args.Dimension
             );
             return true;
         }
@@ -50,17 +52,26 @@ namespace SpacetimeDB.Types
         [DataContract]
         public sealed partial class CheatPavingDestroy : Reducer, IReducerArgs
         {
-            [DataMember(Name = "request")]
-            public PlayerPavingDestroyTileRequest Request;
+            [DataMember(Name = "x")]
+            public int X;
+            [DataMember(Name = "z")]
+            public int Z;
+            [DataMember(Name = "dimension")]
+            public uint Dimension;
 
-            public CheatPavingDestroy(PlayerPavingDestroyTileRequest Request)
+            public CheatPavingDestroy(
+                int X,
+                int Z,
+                uint Dimension
+            )
             {
-                this.Request = Request;
+                this.X = X;
+                this.Z = Z;
+                this.Dimension = Dimension;
             }
 
             public CheatPavingDestroy()
             {
-                this.Request = new();
             }
 
             string IReducerArgs.ReducerName => "cheat_paving_destroy";

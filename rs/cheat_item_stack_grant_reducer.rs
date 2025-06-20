@@ -6,18 +6,22 @@
 #![allow(unused, clippy::all)]
 use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
-use super::cheat_item_stack_grant_request_type::CheatItemStackGrantRequest;
-
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct CheatItemStackGrantArgs {
-    pub request: CheatItemStackGrantRequest,
+    pub player_entity_id: u64,
+    pub item_id: i32,
+    pub quantity: i32,
+    pub is_cargo: bool,
 }
 
 impl From<CheatItemStackGrantArgs> for super::Reducer {
     fn from(args: CheatItemStackGrantArgs) -> Self {
         Self::CheatItemStackGrant {
-            request: args.request,
+            player_entity_id: args.player_entity_id,
+            item_id: args.item_id,
+            quantity: args.quantity,
+            is_cargo: args.is_cargo,
         }
     }
 }
@@ -38,7 +42,13 @@ pub trait cheat_item_stack_grant {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_cheat_item_stack_grant`] callbacks.
-    fn cheat_item_stack_grant(&self, request: CheatItemStackGrantRequest) -> __sdk::Result<()>;
+    fn cheat_item_stack_grant(
+        &self,
+        player_entity_id: u64,
+        item_id: i32,
+        quantity: i32,
+        is_cargo: bool,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `cheat_item_stack_grant`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -48,7 +58,7 @@ pub trait cheat_item_stack_grant {
     /// to cancel the callback.
     fn on_cheat_item_stack_grant(
         &self,
-        callback: impl FnMut(&super::ReducerEventContext, &CheatItemStackGrantRequest) + Send + 'static,
+        callback: impl FnMut(&super::ReducerEventContext, &u64, &i32, &i32, &bool) + Send + 'static,
     ) -> CheatItemStackGrantCallbackId;
     /// Cancel a callback previously registered by [`Self::on_cheat_item_stack_grant`],
     /// causing it not to run in the future.
@@ -56,17 +66,26 @@ pub trait cheat_item_stack_grant {
 }
 
 impl cheat_item_stack_grant for super::RemoteReducers {
-    fn cheat_item_stack_grant(&self, request: CheatItemStackGrantRequest) -> __sdk::Result<()> {
+    fn cheat_item_stack_grant(
+        &self,
+        player_entity_id: u64,
+        item_id: i32,
+        quantity: i32,
+        is_cargo: bool,
+    ) -> __sdk::Result<()> {
         self.imp.call_reducer(
             "cheat_item_stack_grant",
-            CheatItemStackGrantArgs { request },
+            CheatItemStackGrantArgs {
+                player_entity_id,
+                item_id,
+                quantity,
+                is_cargo,
+            },
         )
     }
     fn on_cheat_item_stack_grant(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &CheatItemStackGrantRequest)
-            + Send
-            + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &u64, &i32, &i32, &bool) + Send + 'static,
     ) -> CheatItemStackGrantCallbackId {
         CheatItemStackGrantCallbackId(self.imp.on_reducer(
             "cheat_item_stack_grant",
@@ -74,7 +93,13 @@ impl cheat_item_stack_grant for super::RemoteReducers {
                 let super::ReducerEventContext {
                     event:
                         __sdk::ReducerEvent {
-                            reducer: super::Reducer::CheatItemStackGrant { request },
+                            reducer:
+                                super::Reducer::CheatItemStackGrant {
+                                    player_entity_id,
+                                    item_id,
+                                    quantity,
+                                    is_cargo,
+                                },
                             ..
                         },
                     ..
@@ -82,7 +107,7 @@ impl cheat_item_stack_grant for super::RemoteReducers {
                 else {
                     unreachable!()
                 };
-                callback(ctx, request)
+                callback(ctx, player_entity_id, item_id, quantity, is_cargo)
             }),
         ))
     }

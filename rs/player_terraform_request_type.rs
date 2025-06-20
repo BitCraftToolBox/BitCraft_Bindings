@@ -13,6 +13,7 @@ use super::offset_coordinates_large_message_type::OffsetCoordinatesLargeMessage;
 pub struct PlayerTerraformRequest {
     pub coordinates: OffsetCoordinatesLargeMessage,
     pub start_new: bool,
+    pub timestamp: u64,
 }
 
 impl __sdk::InModule for PlayerTerraformRequest {

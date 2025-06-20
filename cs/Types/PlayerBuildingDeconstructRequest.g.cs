@@ -17,10 +17,16 @@ namespace SpacetimeDB.Types
     {
         [DataMember(Name = "building_entity_id")]
         public ulong BuildingEntityId;
+        [DataMember(Name = "timestamp")]
+        public ulong Timestamp;
 
-        public PlayerBuildingDeconstructRequest(ulong BuildingEntityId)
+        public PlayerBuildingDeconstructRequest(
+            ulong BuildingEntityId,
+            ulong Timestamp
+        )
         {
             this.BuildingEntityId = BuildingEntityId;
+            this.Timestamp = Timestamp;
         }
 
         public PlayerBuildingDeconstructRequest()

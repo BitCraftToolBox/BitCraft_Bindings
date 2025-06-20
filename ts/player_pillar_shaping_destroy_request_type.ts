@@ -36,6 +36,7 @@ import { OffsetCoordinatesLargeMessage as __OffsetCoordinatesLargeMessage } from
 
 export type PlayerPillarShapingDestroyRequest = {
   coordinates: __OffsetCoordinatesLargeMessage,
+  timestamp: bigint,
 };
 
 /**
@@ -49,6 +50,7 @@ export namespace PlayerPillarShapingDestroyRequest {
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
       new ProductTypeElement("coordinates", __OffsetCoordinatesLargeMessage.getTypeScriptAlgebraicType()),
+      new ProductTypeElement("timestamp", AlgebraicType.createU64Type()),
     ]);
   }
 

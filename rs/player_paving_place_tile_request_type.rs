@@ -13,6 +13,7 @@ use super::offset_coordinates_small_message_type::OffsetCoordinatesSmallMessage;
 pub struct PlayerPavingPlaceTileRequest {
     pub coordinates: OffsetCoordinatesSmallMessage,
     pub tile_type_id: i32,
+    pub timestamp: u64,
 }
 
 impl __sdk::InModule for PlayerPavingPlaceTileRequest {

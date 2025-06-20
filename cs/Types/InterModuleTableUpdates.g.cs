@@ -15,6 +15,8 @@ namespace SpacetimeDB.Types
     [DataContract]
     public sealed partial class InterModuleTableUpdates
     {
+        [DataMember(Name = "blocked_identity")]
+        public System.Collections.Generic.List<BlockedIdentityOp>? BlockedIdentity;
         [DataMember(Name = "building_nickname_state")]
         public System.Collections.Generic.List<BuildingNicknameStateOp>? BuildingNicknameState;
         [DataMember(Name = "building_state")]
@@ -43,6 +45,8 @@ namespace SpacetimeDB.Types
         public System.Collections.Generic.List<IdentityRoleOp>? IdentityRole;
         [DataMember(Name = "location_state")]
         public System.Collections.Generic.List<LocationStateOp>? LocationState;
+        [DataMember(Name = "player_housing_state")]
+        public System.Collections.Generic.List<PlayerHousingStateOp>? PlayerHousingState;
         [DataMember(Name = "player_report_state")]
         public System.Collections.Generic.List<PlayerReportStateOp>? PlayerReportState;
         [DataMember(Name = "region_connection_info")]
@@ -59,6 +63,7 @@ namespace SpacetimeDB.Types
         public System.Collections.Generic.List<UserStateOp>? UserState;
 
         public InterModuleTableUpdates(
+            System.Collections.Generic.List<BlockedIdentityOp>? BlockedIdentity,
             System.Collections.Generic.List<BuildingNicknameStateOp>? BuildingNicknameState,
             System.Collections.Generic.List<BuildingStateOp>? BuildingState,
             System.Collections.Generic.List<ClaimMemberStateOp>? ClaimMemberState,
@@ -73,6 +78,7 @@ namespace SpacetimeDB.Types
             System.Collections.Generic.List<EmpireStateOp>? EmpireState,
             System.Collections.Generic.List<IdentityRoleOp>? IdentityRole,
             System.Collections.Generic.List<LocationStateOp>? LocationState,
+            System.Collections.Generic.List<PlayerHousingStateOp>? PlayerHousingState,
             System.Collections.Generic.List<PlayerReportStateOp>? PlayerReportState,
             System.Collections.Generic.List<RegionConnectionInfoOp>? RegionConnectionInfo,
             System.Collections.Generic.List<RegionPopulationInfoOp>? RegionPopulationInfo,
@@ -82,6 +88,7 @@ namespace SpacetimeDB.Types
             System.Collections.Generic.List<UserStateOp>? UserState
         )
         {
+            this.BlockedIdentity = BlockedIdentity;
             this.BuildingNicknameState = BuildingNicknameState;
             this.BuildingState = BuildingState;
             this.ClaimMemberState = ClaimMemberState;
@@ -96,6 +103,7 @@ namespace SpacetimeDB.Types
             this.EmpireState = EmpireState;
             this.IdentityRole = IdentityRole;
             this.LocationState = LocationState;
+            this.PlayerHousingState = PlayerHousingState;
             this.PlayerReportState = PlayerReportState;
             this.RegionConnectionInfo = RegionConnectionInfo;
             this.RegionPopulationInfo = RegionPopulationInfo;

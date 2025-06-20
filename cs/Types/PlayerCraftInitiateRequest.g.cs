@@ -21,16 +21,20 @@ namespace SpacetimeDB.Types
         public ulong BuildingEntityId;
         [DataMember(Name = "count")]
         public int Count;
+        [DataMember(Name = "timestamp")]
+        public ulong Timestamp;
 
         public PlayerCraftInitiateRequest(
             int RecipeId,
             ulong BuildingEntityId,
-            int Count
+            int Count,
+            ulong Timestamp
         )
         {
             this.RecipeId = RecipeId;
             this.BuildingEntityId = BuildingEntityId;
             this.Count = Count;
+            this.Timestamp = Timestamp;
         }
 
         public PlayerCraftInitiateRequest()

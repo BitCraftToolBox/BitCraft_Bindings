@@ -6,6 +6,7 @@
 #![allow(unused, clippy::all)]
 use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
+use super::blocked_identity_op_type::BlockedIdentityOp;
 use super::building_nickname_state_op_type::BuildingNicknameStateOp;
 use super::building_state_op_type::BuildingStateOp;
 use super::claim_member_state_op_type::ClaimMemberStateOp;
@@ -20,6 +21,7 @@ use super::empire_settlement_state_op_type::EmpireSettlementStateOp;
 use super::empire_state_op_type::EmpireStateOp;
 use super::identity_role_op_type::IdentityRoleOp;
 use super::location_state_op_type::LocationStateOp;
+use super::player_housing_state_op_type::PlayerHousingStateOp;
 use super::player_report_state_op_type::PlayerReportStateOp;
 use super::region_connection_info_op_type::RegionConnectionInfoOp;
 use super::region_population_info_op_type::RegionPopulationInfoOp;
@@ -31,6 +33,7 @@ use super::user_state_op_type::UserStateOp;
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub struct InterModuleTableUpdates {
+    pub blocked_identity: Option<Vec<BlockedIdentityOp>>,
     pub building_nickname_state: Option<Vec<BuildingNicknameStateOp>>,
     pub building_state: Option<Vec<BuildingStateOp>>,
     pub claim_member_state: Option<Vec<ClaimMemberStateOp>>,
@@ -45,6 +48,7 @@ pub struct InterModuleTableUpdates {
     pub empire_state: Option<Vec<EmpireStateOp>>,
     pub identity_role: Option<Vec<IdentityRoleOp>>,
     pub location_state: Option<Vec<LocationStateOp>>,
+    pub player_housing_state: Option<Vec<PlayerHousingStateOp>>,
     pub player_report_state: Option<Vec<PlayerReportStateOp>>,
     pub region_connection_info: Option<Vec<RegionConnectionInfoOp>>,
     pub region_population_info: Option<Vec<RegionPopulationInfoOp>>,

@@ -35,6 +35,7 @@ import {
 export type PlayerExtractRequest = {
   recipeId: number,
   targetEntityId: bigint,
+  timestamp: bigint,
 };
 
 /**
@@ -49,6 +50,7 @@ export namespace PlayerExtractRequest {
     return AlgebraicType.createProductType([
       new ProductTypeElement("recipeId", AlgebraicType.createI32Type()),
       new ProductTypeElement("targetEntityId", AlgebraicType.createU64Type()),
+      new ProductTypeElement("timestamp", AlgebraicType.createU64Type()),
     ]);
   }
 

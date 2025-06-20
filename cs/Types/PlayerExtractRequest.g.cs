@@ -19,14 +19,18 @@ namespace SpacetimeDB.Types
         public int RecipeId;
         [DataMember(Name = "target_entity_id")]
         public ulong TargetEntityId;
+        [DataMember(Name = "timestamp")]
+        public ulong Timestamp;
 
         public PlayerExtractRequest(
             int RecipeId,
-            ulong TargetEntityId
+            ulong TargetEntityId,
+            ulong Timestamp
         )
         {
             this.RecipeId = RecipeId;
             this.TargetEntityId = TargetEntityId;
+            this.Timestamp = Timestamp;
         }
 
         public PlayerExtractRequest()

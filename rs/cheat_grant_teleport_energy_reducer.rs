@@ -10,12 +10,14 @@ use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 #[sats(crate = __lib)]
 pub(super) struct CheatGrantTeleportEnergyArgs {
     pub player_entity_id: u64,
+    pub amount: f32,
 }
 
 impl From<CheatGrantTeleportEnergyArgs> for super::Reducer {
     fn from(args: CheatGrantTeleportEnergyArgs) -> Self {
         Self::CheatGrantTeleportEnergy {
             player_entity_id: args.player_entity_id,
+            amount: args.amount,
         }
     }
 }
@@ -36,7 +38,7 @@ pub trait cheat_grant_teleport_energy {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_cheat_grant_teleport_energy`] callbacks.
-    fn cheat_grant_teleport_energy(&self, player_entity_id: u64) -> __sdk::Result<()>;
+    fn cheat_grant_teleport_energy(&self, player_entity_id: u64, amount: f32) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `cheat_grant_teleport_energy`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -46,7 +48,7 @@ pub trait cheat_grant_teleport_energy {
     /// to cancel the callback.
     fn on_cheat_grant_teleport_energy(
         &self,
-        callback: impl FnMut(&super::ReducerEventContext, &u64) + Send + 'static,
+        callback: impl FnMut(&super::ReducerEventContext, &u64, &f32) + Send + 'static,
     ) -> CheatGrantTeleportEnergyCallbackId;
     /// Cancel a callback previously registered by [`Self::on_cheat_grant_teleport_energy`],
     /// causing it not to run in the future.
@@ -54,15 +56,18 @@ pub trait cheat_grant_teleport_energy {
 }
 
 impl cheat_grant_teleport_energy for super::RemoteReducers {
-    fn cheat_grant_teleport_energy(&self, player_entity_id: u64) -> __sdk::Result<()> {
+    fn cheat_grant_teleport_energy(&self, player_entity_id: u64, amount: f32) -> __sdk::Result<()> {
         self.imp.call_reducer(
             "cheat_grant_teleport_energy",
-            CheatGrantTeleportEnergyArgs { player_entity_id },
+            CheatGrantTeleportEnergyArgs {
+                player_entity_id,
+                amount,
+            },
         )
     }
     fn on_cheat_grant_teleport_energy(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &u64) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &u64, &f32) + Send + 'static,
     ) -> CheatGrantTeleportEnergyCallbackId {
         CheatGrantTeleportEnergyCallbackId(self.imp.on_reducer(
             "cheat_grant_teleport_energy",
@@ -70,7 +75,11 @@ impl cheat_grant_teleport_energy for super::RemoteReducers {
                 let super::ReducerEventContext {
                     event:
                         __sdk::ReducerEvent {
-                            reducer: super::Reducer::CheatGrantTeleportEnergy { player_entity_id },
+                            reducer:
+                                super::Reducer::CheatGrantTeleportEnergy {
+                                    player_entity_id,
+                                    amount,
+                                },
                             ..
                         },
                     ..
@@ -78,7 +87,7 @@ impl cheat_grant_teleport_energy for super::RemoteReducers {
                 else {
                     unreachable!()
                 };
-                callback(ctx, player_entity_id)
+                callback(ctx, player_entity_id, amount)
             }),
         ))
     }

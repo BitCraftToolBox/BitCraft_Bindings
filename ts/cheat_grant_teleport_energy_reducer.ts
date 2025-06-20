@@ -35,6 +35,7 @@ import {
 
 export type CheatGrantTeleportEnergy = {
   playerEntityId: bigint,
+  amount: number,
 };
 
 /**
@@ -48,6 +49,7 @@ export namespace CheatGrantTeleportEnergy {
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
       new ProductTypeElement("playerEntityId", AlgebraicType.createU64Type()),
+      new ProductTypeElement("amount", AlgebraicType.createF32Type()),
     ]);
   }
 

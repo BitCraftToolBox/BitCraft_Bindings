@@ -40,14 +40,15 @@ export type PlayerActionState = {
   autoId: bigint,
   chunkIndex: bigint,
   entityId: bigint,
-  actionType: __PlayerActionType,
-  layer: __PlayerActionLayer,
-  lastActionResult: __PlayerActionResult,
   startTime: bigint,
   duration: bigint,
   target: bigint | undefined,
   recipeId: number | undefined,
+  actionType: __PlayerActionType,
+  layer: __PlayerActionLayer,
+  lastActionResult: __PlayerActionResult,
   clientCancel: boolean,
+  pad: number,
 };
 
 /**
@@ -63,14 +64,15 @@ export namespace PlayerActionState {
       new ProductTypeElement("autoId", AlgebraicType.createU64Type()),
       new ProductTypeElement("chunkIndex", AlgebraicType.createU64Type()),
       new ProductTypeElement("entityId", AlgebraicType.createU64Type()),
-      new ProductTypeElement("actionType", __PlayerActionType.getTypeScriptAlgebraicType()),
-      new ProductTypeElement("layer", __PlayerActionLayer.getTypeScriptAlgebraicType()),
-      new ProductTypeElement("lastActionResult", __PlayerActionResult.getTypeScriptAlgebraicType()),
       new ProductTypeElement("startTime", AlgebraicType.createU64Type()),
       new ProductTypeElement("duration", AlgebraicType.createU64Type()),
       new ProductTypeElement("target", AlgebraicType.createOptionType(AlgebraicType.createU64Type())),
       new ProductTypeElement("recipeId", AlgebraicType.createOptionType(AlgebraicType.createI32Type())),
+      new ProductTypeElement("actionType", __PlayerActionType.getTypeScriptAlgebraicType()),
+      new ProductTypeElement("layer", __PlayerActionLayer.getTypeScriptAlgebraicType()),
+      new ProductTypeElement("lastActionResult", __PlayerActionResult.getTypeScriptAlgebraicType()),
       new ProductTypeElement("clientCancel", AlgebraicType.createBoolType()),
+      new ProductTypeElement("pad", AlgebraicType.createU32Type()),
     ]);
   }
 

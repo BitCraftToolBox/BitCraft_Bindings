@@ -11,6 +11,7 @@ use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 pub struct PlayerExtractRequest {
     pub recipe_id: i32,
     pub target_entity_id: u64,
+    pub timestamp: u64,
 }
 
 impl __sdk::InModule for PlayerExtractRequest {

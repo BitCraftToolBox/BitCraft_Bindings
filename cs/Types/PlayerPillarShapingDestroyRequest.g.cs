@@ -17,10 +17,16 @@ namespace SpacetimeDB.Types
     {
         [DataMember(Name = "coordinates")]
         public OffsetCoordinatesLargeMessage Coordinates;
+        [DataMember(Name = "timestamp")]
+        public ulong Timestamp;
 
-        public PlayerPillarShapingDestroyRequest(OffsetCoordinatesLargeMessage Coordinates)
+        public PlayerPillarShapingDestroyRequest(
+            OffsetCoordinatesLargeMessage Coordinates,
+            ulong Timestamp
+        )
         {
             this.Coordinates = Coordinates;
+            this.Timestamp = Timestamp;
         }
 
         public PlayerPillarShapingDestroyRequest()

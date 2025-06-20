@@ -14,12 +14,12 @@ namespace SpacetimeDB.Types
 {
     public sealed partial class RemoteReducers : RemoteBase
     {
-        public delegate void CheatTerraformHandler(ReducerEventContext ctx, CheatTerraformRequest request);
+        public delegate void CheatTerraformHandler(ReducerEventContext ctx, int x, int z, uint dimension, int delta);
         public event CheatTerraformHandler? OnCheatTerraform;
 
-        public void CheatTerraform(CheatTerraformRequest request)
+        public void CheatTerraform(int x, int z, uint dimension, int delta)
         {
-            conn.InternalCallReducer(new Reducer.CheatTerraform(request), this.SetCallReducerFlags.CheatTerraformFlags);
+            conn.InternalCallReducer(new Reducer.CheatTerraform(x, z, dimension, delta), this.SetCallReducerFlags.CheatTerraformFlags);
         }
 
         public bool InvokeCheatTerraform(ReducerEventContext ctx, Reducer.CheatTerraform args)
@@ -38,7 +38,10 @@ namespace SpacetimeDB.Types
             }
             OnCheatTerraform(
                 ctx,
-                args.Request
+                args.X,
+                args.Z,
+                args.Dimension,
+                args.Delta
             );
             return true;
         }
@@ -50,17 +53,30 @@ namespace SpacetimeDB.Types
         [DataContract]
         public sealed partial class CheatTerraform : Reducer, IReducerArgs
         {
-            [DataMember(Name = "request")]
-            public CheatTerraformRequest Request;
+            [DataMember(Name = "x")]
+            public int X;
+            [DataMember(Name = "z")]
+            public int Z;
+            [DataMember(Name = "dimension")]
+            public uint Dimension;
+            [DataMember(Name = "delta")]
+            public int Delta;
 
-            public CheatTerraform(CheatTerraformRequest Request)
+            public CheatTerraform(
+                int X,
+                int Z,
+                uint Dimension,
+                int Delta
+            )
             {
-                this.Request = Request;
+                this.X = X;
+                this.Z = Z;
+                this.Dimension = Dimension;
+                this.Delta = Delta;
             }
 
             public CheatTerraform()
             {
-                this.Request = new();
             }
 
             string IReducerArgs.ReducerName => "cheat_terraform";

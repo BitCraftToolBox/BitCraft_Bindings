@@ -33,10 +33,11 @@ import {
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
 
-import { CheatItemStackGrantRequest as __CheatItemStackGrantRequest } from "./cheat_item_stack_grant_request_type";
-
 export type CheatItemStackGrant = {
-  request: __CheatItemStackGrantRequest,
+  playerEntityId: bigint,
+  itemId: number,
+  quantity: number,
+  isCargo: boolean,
 };
 
 /**
@@ -49,7 +50,10 @@ export namespace CheatItemStackGrant {
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("request", __CheatItemStackGrantRequest.getTypeScriptAlgebraicType()),
+      new ProductTypeElement("playerEntityId", AlgebraicType.createU64Type()),
+      new ProductTypeElement("itemId", AlgebraicType.createI32Type()),
+      new ProductTypeElement("quantity", AlgebraicType.createI32Type()),
+      new ProductTypeElement("isCargo", AlgebraicType.createBoolType()),
     ]);
   }
 

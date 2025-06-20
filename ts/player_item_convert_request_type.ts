@@ -36,6 +36,7 @@ export type PlayerItemConvertRequest = {
   conversionRecipeId: number,
   locationContext: number,
   count: number,
+  timestamp: bigint,
 };
 
 /**
@@ -51,6 +52,7 @@ export namespace PlayerItemConvertRequest {
       new ProductTypeElement("conversionRecipeId", AlgebraicType.createU32Type()),
       new ProductTypeElement("locationContext", AlgebraicType.createU32Type()),
       new ProductTypeElement("count", AlgebraicType.createU32Type()),
+      new ProductTypeElement("timestamp", AlgebraicType.createU64Type()),
     ]);
   }
 

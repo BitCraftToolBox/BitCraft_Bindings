@@ -19,14 +19,18 @@ namespace SpacetimeDB.Types
         public OffsetCoordinatesLargeMessage Coordinates;
         [DataMember(Name = "start_new")]
         public bool StartNew;
+        [DataMember(Name = "timestamp")]
+        public ulong Timestamp;
 
         public PlayerTerraformRequest(
             OffsetCoordinatesLargeMessage Coordinates,
-            bool StartNew
+            bool StartNew,
+            ulong Timestamp
         )
         {
             this.Coordinates = Coordinates;
             this.StartNew = StartNew;
+            this.Timestamp = Timestamp;
         }
 
         public PlayerTerraformRequest()

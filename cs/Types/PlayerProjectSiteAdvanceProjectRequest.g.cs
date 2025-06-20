@@ -17,10 +17,16 @@ namespace SpacetimeDB.Types
     {
         [DataMember(Name = "owner_entity_id")]
         public ulong OwnerEntityId;
+        [DataMember(Name = "timestamp")]
+        public ulong Timestamp;
 
-        public PlayerProjectSiteAdvanceProjectRequest(ulong OwnerEntityId)
+        public PlayerProjectSiteAdvanceProjectRequest(
+            ulong OwnerEntityId,
+            ulong Timestamp
+        )
         {
             this.OwnerEntityId = OwnerEntityId;
+            this.Timestamp = Timestamp;
         }
 
         public PlayerProjectSiteAdvanceProjectRequest()

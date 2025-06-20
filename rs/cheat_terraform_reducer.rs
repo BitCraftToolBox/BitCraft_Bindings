@@ -6,18 +6,22 @@
 #![allow(unused, clippy::all)]
 use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
-use super::cheat_terraform_request_type::CheatTerraformRequest;
-
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct CheatTerraformArgs {
-    pub request: CheatTerraformRequest,
+    pub x: i32,
+    pub z: i32,
+    pub dimension: u32,
+    pub delta: i32,
 }
 
 impl From<CheatTerraformArgs> for super::Reducer {
     fn from(args: CheatTerraformArgs) -> Self {
         Self::CheatTerraform {
-            request: args.request,
+            x: args.x,
+            z: args.z,
+            dimension: args.dimension,
+            delta: args.delta,
         }
     }
 }
@@ -38,7 +42,7 @@ pub trait cheat_terraform {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_cheat_terraform`] callbacks.
-    fn cheat_terraform(&self, request: CheatTerraformRequest) -> __sdk::Result<()>;
+    fn cheat_terraform(&self, x: i32, z: i32, dimension: u32, delta: i32) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `cheat_terraform`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -48,7 +52,7 @@ pub trait cheat_terraform {
     /// to cancel the callback.
     fn on_cheat_terraform(
         &self,
-        callback: impl FnMut(&super::ReducerEventContext, &CheatTerraformRequest) + Send + 'static,
+        callback: impl FnMut(&super::ReducerEventContext, &i32, &i32, &u32, &i32) + Send + 'static,
     ) -> CheatTerraformCallbackId;
     /// Cancel a callback previously registered by [`Self::on_cheat_terraform`],
     /// causing it not to run in the future.
@@ -56,13 +60,20 @@ pub trait cheat_terraform {
 }
 
 impl cheat_terraform for super::RemoteReducers {
-    fn cheat_terraform(&self, request: CheatTerraformRequest) -> __sdk::Result<()> {
-        self.imp
-            .call_reducer("cheat_terraform", CheatTerraformArgs { request })
+    fn cheat_terraform(&self, x: i32, z: i32, dimension: u32, delta: i32) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "cheat_terraform",
+            CheatTerraformArgs {
+                x,
+                z,
+                dimension,
+                delta,
+            },
+        )
     }
     fn on_cheat_terraform(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &CheatTerraformRequest) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &i32, &i32, &u32, &i32) + Send + 'static,
     ) -> CheatTerraformCallbackId {
         CheatTerraformCallbackId(self.imp.on_reducer(
             "cheat_terraform",
@@ -70,7 +81,13 @@ impl cheat_terraform for super::RemoteReducers {
                 let super::ReducerEventContext {
                     event:
                         __sdk::ReducerEvent {
-                            reducer: super::Reducer::CheatTerraform { request },
+                            reducer:
+                                super::Reducer::CheatTerraform {
+                                    x,
+                                    z,
+                                    dimension,
+                                    delta,
+                                },
                             ..
                         },
                     ..
@@ -78,7 +95,7 @@ impl cheat_terraform for super::RemoteReducers {
                 else {
                     unreachable!()
                 };
-                callback(ctx, request)
+                callback(ctx, x, z, dimension, delta)
             }),
         ))
     }

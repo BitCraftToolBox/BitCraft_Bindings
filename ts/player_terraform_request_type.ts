@@ -37,6 +37,7 @@ import { OffsetCoordinatesLargeMessage as __OffsetCoordinatesLargeMessage } from
 export type PlayerTerraformRequest = {
   coordinates: __OffsetCoordinatesLargeMessage,
   startNew: boolean,
+  timestamp: bigint,
 };
 
 /**
@@ -51,6 +52,7 @@ export namespace PlayerTerraformRequest {
     return AlgebraicType.createProductType([
       new ProductTypeElement("coordinates", __OffsetCoordinatesLargeMessage.getTypeScriptAlgebraicType()),
       new ProductTypeElement("startNew", AlgebraicType.createBoolType()),
+      new ProductTypeElement("timestamp", AlgebraicType.createU64Type()),
     ]);
   }
 

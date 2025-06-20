@@ -33,10 +33,8 @@ import {
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
 
-import { CheatRemoveEntityRequest as __CheatRemoveEntityRequest } from "./cheat_remove_entity_request_type";
-
 export type CheatRemoveEntityResource = {
-  request: __CheatRemoveEntityRequest,
+  targetEntityId: bigint,
 };
 
 /**
@@ -49,7 +47,7 @@ export namespace CheatRemoveEntityResource {
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("request", __CheatRemoveEntityRequest.getTypeScriptAlgebraicType()),
+      new ProductTypeElement("targetEntityId", AlgebraicType.createU64Type()),
     ]);
   }
 

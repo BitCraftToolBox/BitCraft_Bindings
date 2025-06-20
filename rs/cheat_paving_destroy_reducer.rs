@@ -6,18 +6,20 @@
 #![allow(unused, clippy::all)]
 use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
-use super::player_paving_destroy_tile_request_type::PlayerPavingDestroyTileRequest;
-
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct CheatPavingDestroyArgs {
-    pub request: PlayerPavingDestroyTileRequest,
+    pub x: i32,
+    pub z: i32,
+    pub dimension: u32,
 }
 
 impl From<CheatPavingDestroyArgs> for super::Reducer {
     fn from(args: CheatPavingDestroyArgs) -> Self {
         Self::CheatPavingDestroy {
-            request: args.request,
+            x: args.x,
+            z: args.z,
+            dimension: args.dimension,
         }
     }
 }
@@ -38,7 +40,7 @@ pub trait cheat_paving_destroy {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_cheat_paving_destroy`] callbacks.
-    fn cheat_paving_destroy(&self, request: PlayerPavingDestroyTileRequest) -> __sdk::Result<()>;
+    fn cheat_paving_destroy(&self, x: i32, z: i32, dimension: u32) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `cheat_paving_destroy`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -48,9 +50,7 @@ pub trait cheat_paving_destroy {
     /// to cancel the callback.
     fn on_cheat_paving_destroy(
         &self,
-        callback: impl FnMut(&super::ReducerEventContext, &PlayerPavingDestroyTileRequest)
-            + Send
-            + 'static,
+        callback: impl FnMut(&super::ReducerEventContext, &i32, &i32, &u32) + Send + 'static,
     ) -> CheatPavingDestroyCallbackId;
     /// Cancel a callback previously registered by [`Self::on_cheat_paving_destroy`],
     /// causing it not to run in the future.
@@ -58,15 +58,15 @@ pub trait cheat_paving_destroy {
 }
 
 impl cheat_paving_destroy for super::RemoteReducers {
-    fn cheat_paving_destroy(&self, request: PlayerPavingDestroyTileRequest) -> __sdk::Result<()> {
-        self.imp
-            .call_reducer("cheat_paving_destroy", CheatPavingDestroyArgs { request })
+    fn cheat_paving_destroy(&self, x: i32, z: i32, dimension: u32) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "cheat_paving_destroy",
+            CheatPavingDestroyArgs { x, z, dimension },
+        )
     }
     fn on_cheat_paving_destroy(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerPavingDestroyTileRequest)
-            + Send
-            + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &i32, &i32, &u32) + Send + 'static,
     ) -> CheatPavingDestroyCallbackId {
         CheatPavingDestroyCallbackId(self.imp.on_reducer(
             "cheat_paving_destroy",
@@ -74,7 +74,7 @@ impl cheat_paving_destroy for super::RemoteReducers {
                 let super::ReducerEventContext {
                     event:
                         __sdk::ReducerEvent {
-                            reducer: super::Reducer::CheatPavingDestroy { request },
+                            reducer: super::Reducer::CheatPavingDestroy { x, z, dimension },
                             ..
                         },
                     ..
@@ -82,7 +82,7 @@ impl cheat_paving_destroy for super::RemoteReducers {
                 else {
                     unreachable!()
                 };
-                callback(ctx, request)
+                callback(ctx, x, z, dimension)
             }),
         ))
     }

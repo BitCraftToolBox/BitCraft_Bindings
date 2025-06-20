@@ -34,6 +34,7 @@ import {
 } from "@clockworklabs/spacetimedb-sdk";
 export type PlayerProjectSiteAdvanceProjectRequest = {
   ownerEntityId: bigint,
+  timestamp: bigint,
 };
 
 /**
@@ -47,6 +48,7 @@ export namespace PlayerProjectSiteAdvanceProjectRequest {
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
       new ProductTypeElement("ownerEntityId", AlgebraicType.createU64Type()),
+      new ProductTypeElement("timestamp", AlgebraicType.createU64Type()),
     ]);
   }
 

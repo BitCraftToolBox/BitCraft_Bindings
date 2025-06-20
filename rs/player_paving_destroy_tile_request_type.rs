@@ -12,6 +12,7 @@ use super::offset_coordinates_small_message_type::OffsetCoordinatesSmallMessage;
 #[sats(crate = __lib)]
 pub struct PlayerPavingDestroyTileRequest {
     pub coordinates: OffsetCoordinatesSmallMessage,
+    pub timestamp: u64,
 }
 
 impl __sdk::InModule for PlayerPavingDestroyTileRequest {

@@ -33,10 +33,10 @@ import {
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
 
-import { PlayerPavingDestroyTileRequest as __PlayerPavingDestroyTileRequest } from "./player_paving_destroy_tile_request_type";
-
 export type CheatPavingDestroy = {
-  request: __PlayerPavingDestroyTileRequest,
+  x: number,
+  z: number,
+  dimension: number,
 };
 
 /**
@@ -49,7 +49,9 @@ export namespace CheatPavingDestroy {
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("request", __PlayerPavingDestroyTileRequest.getTypeScriptAlgebraicType()),
+      new ProductTypeElement("x", AlgebraicType.createI32Type()),
+      new ProductTypeElement("z", AlgebraicType.createI32Type()),
+      new ProductTypeElement("dimension", AlgebraicType.createU32Type()),
     ]);
   }
 

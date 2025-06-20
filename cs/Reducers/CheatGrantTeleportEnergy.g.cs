@@ -14,12 +14,12 @@ namespace SpacetimeDB.Types
 {
     public sealed partial class RemoteReducers : RemoteBase
     {
-        public delegate void CheatGrantTeleportEnergyHandler(ReducerEventContext ctx, ulong playerEntityId);
+        public delegate void CheatGrantTeleportEnergyHandler(ReducerEventContext ctx, ulong playerEntityId, float amount);
         public event CheatGrantTeleportEnergyHandler? OnCheatGrantTeleportEnergy;
 
-        public void CheatGrantTeleportEnergy(ulong playerEntityId)
+        public void CheatGrantTeleportEnergy(ulong playerEntityId, float amount)
         {
-            conn.InternalCallReducer(new Reducer.CheatGrantTeleportEnergy(playerEntityId), this.SetCallReducerFlags.CheatGrantTeleportEnergyFlags);
+            conn.InternalCallReducer(new Reducer.CheatGrantTeleportEnergy(playerEntityId, amount), this.SetCallReducerFlags.CheatGrantTeleportEnergyFlags);
         }
 
         public bool InvokeCheatGrantTeleportEnergy(ReducerEventContext ctx, Reducer.CheatGrantTeleportEnergy args)
@@ -38,7 +38,8 @@ namespace SpacetimeDB.Types
             }
             OnCheatGrantTeleportEnergy(
                 ctx,
-                args.PlayerEntityId
+                args.PlayerEntityId,
+                args.Amount
             );
             return true;
         }
@@ -52,10 +53,16 @@ namespace SpacetimeDB.Types
         {
             [DataMember(Name = "player_entity_id")]
             public ulong PlayerEntityId;
+            [DataMember(Name = "amount")]
+            public float Amount;
 
-            public CheatGrantTeleportEnergy(ulong PlayerEntityId)
+            public CheatGrantTeleportEnergy(
+                ulong PlayerEntityId,
+                float Amount
+            )
             {
                 this.PlayerEntityId = PlayerEntityId;
+                this.Amount = Amount;
             }
 
             public CheatGrantTeleportEnergy()

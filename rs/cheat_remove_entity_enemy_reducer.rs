@@ -6,18 +6,16 @@
 #![allow(unused, clippy::all)]
 use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
-use super::cheat_remove_entity_request_type::CheatRemoveEntityRequest;
-
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct CheatRemoveEntityEnemyArgs {
-    pub request: CheatRemoveEntityRequest,
+    pub enemy_entity_id: u64,
 }
 
 impl From<CheatRemoveEntityEnemyArgs> for super::Reducer {
     fn from(args: CheatRemoveEntityEnemyArgs) -> Self {
         Self::CheatRemoveEntityEnemy {
-            request: args.request,
+            enemy_entity_id: args.enemy_entity_id,
         }
     }
 }
@@ -38,7 +36,7 @@ pub trait cheat_remove_entity_enemy {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_cheat_remove_entity_enemy`] callbacks.
-    fn cheat_remove_entity_enemy(&self, request: CheatRemoveEntityRequest) -> __sdk::Result<()>;
+    fn cheat_remove_entity_enemy(&self, enemy_entity_id: u64) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `cheat_remove_entity_enemy`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -48,7 +46,7 @@ pub trait cheat_remove_entity_enemy {
     /// to cancel the callback.
     fn on_cheat_remove_entity_enemy(
         &self,
-        callback: impl FnMut(&super::ReducerEventContext, &CheatRemoveEntityRequest) + Send + 'static,
+        callback: impl FnMut(&super::ReducerEventContext, &u64) + Send + 'static,
     ) -> CheatRemoveEntityEnemyCallbackId;
     /// Cancel a callback previously registered by [`Self::on_cheat_remove_entity_enemy`],
     /// causing it not to run in the future.
@@ -56,17 +54,15 @@ pub trait cheat_remove_entity_enemy {
 }
 
 impl cheat_remove_entity_enemy for super::RemoteReducers {
-    fn cheat_remove_entity_enemy(&self, request: CheatRemoveEntityRequest) -> __sdk::Result<()> {
+    fn cheat_remove_entity_enemy(&self, enemy_entity_id: u64) -> __sdk::Result<()> {
         self.imp.call_reducer(
             "cheat_remove_entity_enemy",
-            CheatRemoveEntityEnemyArgs { request },
+            CheatRemoveEntityEnemyArgs { enemy_entity_id },
         )
     }
     fn on_cheat_remove_entity_enemy(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &CheatRemoveEntityRequest)
-            + Send
-            + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &u64) + Send + 'static,
     ) -> CheatRemoveEntityEnemyCallbackId {
         CheatRemoveEntityEnemyCallbackId(self.imp.on_reducer(
             "cheat_remove_entity_enemy",
@@ -74,7 +70,7 @@ impl cheat_remove_entity_enemy for super::RemoteReducers {
                 let super::ReducerEventContext {
                     event:
                         __sdk::ReducerEvent {
-                            reducer: super::Reducer::CheatRemoveEntityEnemy { request },
+                            reducer: super::Reducer::CheatRemoveEntityEnemy { enemy_entity_id },
                             ..
                         },
                     ..
@@ -82,7 +78,7 @@ impl cheat_remove_entity_enemy for super::RemoteReducers {
                 else {
                     unreachable!()
                 };
-                callback(ctx, request)
+                callback(ctx, enemy_entity_id)
             }),
         ))
     }

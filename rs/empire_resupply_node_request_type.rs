@@ -6,11 +6,13 @@
 #![allow(unused, clippy::all)]
 use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
+use super::pocket_key_type::PocketKey;
+
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub struct EmpireResupplyNodeRequest {
     pub building_entity_id: u64,
-    pub cargo_id: i32,
+    pub from_pocket: PocketKey,
 }
 
 impl __sdk::InModule for EmpireResupplyNodeRequest {

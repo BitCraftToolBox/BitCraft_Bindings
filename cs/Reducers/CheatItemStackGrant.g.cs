@@ -14,12 +14,12 @@ namespace SpacetimeDB.Types
 {
     public sealed partial class RemoteReducers : RemoteBase
     {
-        public delegate void CheatItemStackGrantHandler(ReducerEventContext ctx, CheatItemStackGrantRequest request);
+        public delegate void CheatItemStackGrantHandler(ReducerEventContext ctx, ulong playerEntityId, int itemId, int quantity, bool isCargo);
         public event CheatItemStackGrantHandler? OnCheatItemStackGrant;
 
-        public void CheatItemStackGrant(CheatItemStackGrantRequest request)
+        public void CheatItemStackGrant(ulong playerEntityId, int itemId, int quantity, bool isCargo)
         {
-            conn.InternalCallReducer(new Reducer.CheatItemStackGrant(request), this.SetCallReducerFlags.CheatItemStackGrantFlags);
+            conn.InternalCallReducer(new Reducer.CheatItemStackGrant(playerEntityId, itemId, quantity, isCargo), this.SetCallReducerFlags.CheatItemStackGrantFlags);
         }
 
         public bool InvokeCheatItemStackGrant(ReducerEventContext ctx, Reducer.CheatItemStackGrant args)
@@ -38,7 +38,10 @@ namespace SpacetimeDB.Types
             }
             OnCheatItemStackGrant(
                 ctx,
-                args.Request
+                args.PlayerEntityId,
+                args.ItemId,
+                args.Quantity,
+                args.IsCargo
             );
             return true;
         }
@@ -50,17 +53,30 @@ namespace SpacetimeDB.Types
         [DataContract]
         public sealed partial class CheatItemStackGrant : Reducer, IReducerArgs
         {
-            [DataMember(Name = "request")]
-            public CheatItemStackGrantRequest Request;
+            [DataMember(Name = "player_entity_id")]
+            public ulong PlayerEntityId;
+            [DataMember(Name = "item_id")]
+            public int ItemId;
+            [DataMember(Name = "quantity")]
+            public int Quantity;
+            [DataMember(Name = "is_cargo")]
+            public bool IsCargo;
 
-            public CheatItemStackGrant(CheatItemStackGrantRequest Request)
+            public CheatItemStackGrant(
+                ulong PlayerEntityId,
+                int ItemId,
+                int Quantity,
+                bool IsCargo
+            )
             {
-                this.Request = Request;
+                this.PlayerEntityId = PlayerEntityId;
+                this.ItemId = ItemId;
+                this.Quantity = Quantity;
+                this.IsCargo = IsCargo;
             }
 
             public CheatItemStackGrant()
             {
-                this.Request = new();
             }
 
             string IReducerArgs.ReducerName => "cheat_item_stack_grant";

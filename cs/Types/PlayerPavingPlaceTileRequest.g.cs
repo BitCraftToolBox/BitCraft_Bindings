@@ -19,14 +19,18 @@ namespace SpacetimeDB.Types
         public OffsetCoordinatesSmallMessage Coordinates;
         [DataMember(Name = "tile_type_id")]
         public int TileTypeId;
+        [DataMember(Name = "timestamp")]
+        public ulong Timestamp;
 
         public PlayerPavingPlaceTileRequest(
             OffsetCoordinatesSmallMessage Coordinates,
-            int TileTypeId
+            int TileTypeId,
+            ulong Timestamp
         )
         {
             this.Coordinates = Coordinates;
             this.TileTypeId = TileTypeId;
+            this.Timestamp = Timestamp;
         }
 
         public PlayerPavingPlaceTileRequest()

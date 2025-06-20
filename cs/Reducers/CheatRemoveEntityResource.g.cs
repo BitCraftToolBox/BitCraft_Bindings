@@ -14,12 +14,12 @@ namespace SpacetimeDB.Types
 {
     public sealed partial class RemoteReducers : RemoteBase
     {
-        public delegate void CheatRemoveEntityResourceHandler(ReducerEventContext ctx, CheatRemoveEntityRequest request);
+        public delegate void CheatRemoveEntityResourceHandler(ReducerEventContext ctx, ulong targetEntityId);
         public event CheatRemoveEntityResourceHandler? OnCheatRemoveEntityResource;
 
-        public void CheatRemoveEntityResource(CheatRemoveEntityRequest request)
+        public void CheatRemoveEntityResource(ulong targetEntityId)
         {
-            conn.InternalCallReducer(new Reducer.CheatRemoveEntityResource(request), this.SetCallReducerFlags.CheatRemoveEntityResourceFlags);
+            conn.InternalCallReducer(new Reducer.CheatRemoveEntityResource(targetEntityId), this.SetCallReducerFlags.CheatRemoveEntityResourceFlags);
         }
 
         public bool InvokeCheatRemoveEntityResource(ReducerEventContext ctx, Reducer.CheatRemoveEntityResource args)
@@ -38,7 +38,7 @@ namespace SpacetimeDB.Types
             }
             OnCheatRemoveEntityResource(
                 ctx,
-                args.Request
+                args.TargetEntityId
             );
             return true;
         }
@@ -50,17 +50,16 @@ namespace SpacetimeDB.Types
         [DataContract]
         public sealed partial class CheatRemoveEntityResource : Reducer, IReducerArgs
         {
-            [DataMember(Name = "request")]
-            public CheatRemoveEntityRequest Request;
+            [DataMember(Name = "target_entity_id")]
+            public ulong TargetEntityId;
 
-            public CheatRemoveEntityResource(CheatRemoveEntityRequest Request)
+            public CheatRemoveEntityResource(ulong TargetEntityId)
             {
-                this.Request = Request;
+                this.TargetEntityId = TargetEntityId;
             }
 
             public CheatRemoveEntityResource()
             {
-                this.Request = new();
             }
 
             string IReducerArgs.ReducerName => "cheat_remove_entity_resource";

@@ -6,18 +6,22 @@
 #![allow(unused, clippy::all)]
 use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
-use super::cheat_item_stack_grant_request_type::CheatItemStackGrantRequest;
-
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct CheatItemStackGrantAndEquipArgs {
-    pub request: CheatItemStackGrantRequest,
+    pub player_entity_id: u64,
+    pub item_id: i32,
+    pub quantity: i32,
+    pub is_cargo: bool,
 }
 
 impl From<CheatItemStackGrantAndEquipArgs> for super::Reducer {
     fn from(args: CheatItemStackGrantAndEquipArgs) -> Self {
         Self::CheatItemStackGrantAndEquip {
-            request: args.request,
+            player_entity_id: args.player_entity_id,
+            item_id: args.item_id,
+            quantity: args.quantity,
+            is_cargo: args.is_cargo,
         }
     }
 }
@@ -40,7 +44,10 @@ pub trait cheat_item_stack_grant_and_equip {
     ///  and its status can be observed by listening for [`Self::on_cheat_item_stack_grant_and_equip`] callbacks.
     fn cheat_item_stack_grant_and_equip(
         &self,
-        request: CheatItemStackGrantRequest,
+        player_entity_id: u64,
+        item_id: i32,
+        quantity: i32,
+        is_cargo: bool,
     ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `cheat_item_stack_grant_and_equip`.
     ///
@@ -51,7 +58,7 @@ pub trait cheat_item_stack_grant_and_equip {
     /// to cancel the callback.
     fn on_cheat_item_stack_grant_and_equip(
         &self,
-        callback: impl FnMut(&super::ReducerEventContext, &CheatItemStackGrantRequest) + Send + 'static,
+        callback: impl FnMut(&super::ReducerEventContext, &u64, &i32, &i32, &bool) + Send + 'static,
     ) -> CheatItemStackGrantAndEquipCallbackId;
     /// Cancel a callback previously registered by [`Self::on_cheat_item_stack_grant_and_equip`],
     /// causing it not to run in the future.
@@ -64,18 +71,24 @@ pub trait cheat_item_stack_grant_and_equip {
 impl cheat_item_stack_grant_and_equip for super::RemoteReducers {
     fn cheat_item_stack_grant_and_equip(
         &self,
-        request: CheatItemStackGrantRequest,
+        player_entity_id: u64,
+        item_id: i32,
+        quantity: i32,
+        is_cargo: bool,
     ) -> __sdk::Result<()> {
         self.imp.call_reducer(
             "cheat_item_stack_grant_and_equip",
-            CheatItemStackGrantAndEquipArgs { request },
+            CheatItemStackGrantAndEquipArgs {
+                player_entity_id,
+                item_id,
+                quantity,
+                is_cargo,
+            },
         )
     }
     fn on_cheat_item_stack_grant_and_equip(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &CheatItemStackGrantRequest)
-            + Send
-            + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &u64, &i32, &i32, &bool) + Send + 'static,
     ) -> CheatItemStackGrantAndEquipCallbackId {
         CheatItemStackGrantAndEquipCallbackId(self.imp.on_reducer(
             "cheat_item_stack_grant_and_equip",
@@ -83,7 +96,13 @@ impl cheat_item_stack_grant_and_equip for super::RemoteReducers {
                 let super::ReducerEventContext {
                     event:
                         __sdk::ReducerEvent {
-                            reducer: super::Reducer::CheatItemStackGrantAndEquip { request },
+                            reducer:
+                                super::Reducer::CheatItemStackGrantAndEquip {
+                                    player_entity_id,
+                                    item_id,
+                                    quantity,
+                                    is_cargo,
+                                },
                             ..
                         },
                     ..
@@ -91,7 +110,7 @@ impl cheat_item_stack_grant_and_equip for super::RemoteReducers {
                 else {
                     unreachable!()
                 };
-                callback(ctx, request)
+                callback(ctx, player_entity_id, item_id, quantity, is_cargo)
             }),
         ))
     }

@@ -17,10 +17,16 @@ namespace SpacetimeDB.Types
     {
         [DataMember(Name = "progressive_action_entity_id")]
         public ulong ProgressiveActionEntityId;
+        [DataMember(Name = "timestamp")]
+        public ulong Timestamp;
 
-        public PlayerCraftContinueRequest(ulong ProgressiveActionEntityId)
+        public PlayerCraftContinueRequest(
+            ulong ProgressiveActionEntityId,
+            ulong Timestamp
+        )
         {
             this.ProgressiveActionEntityId = ProgressiveActionEntityId;
+            this.Timestamp = Timestamp;
         }
 
         public PlayerCraftContinueRequest()

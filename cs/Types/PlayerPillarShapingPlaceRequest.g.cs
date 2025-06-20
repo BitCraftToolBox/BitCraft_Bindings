@@ -19,14 +19,18 @@ namespace SpacetimeDB.Types
         public OffsetCoordinatesLargeMessage Coordinates;
         [DataMember(Name = "pillar_type_id")]
         public int PillarTypeId;
+        [DataMember(Name = "timestamp")]
+        public ulong Timestamp;
 
         public PlayerPillarShapingPlaceRequest(
             OffsetCoordinatesLargeMessage Coordinates,
-            int PillarTypeId
+            int PillarTypeId,
+            ulong Timestamp
         )
         {
             this.Coordinates = Coordinates;
             this.PillarTypeId = PillarTypeId;
+            this.Timestamp = Timestamp;
         }
 
         public PlayerPillarShapingPlaceRequest()
