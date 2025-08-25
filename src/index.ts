@@ -487,8 +487,8 @@ import { PlayerNotificationEventReducer } from "./player_notification_event_redu
 export { PlayerNotificationEventReducer };
 import { PlayerSetName } from "./player_set_name_reducer.ts";
 export { PlayerSetName };
-import { PlayerVoteAnswer } from "./player_vote_answer_reducer.ts";
-export { PlayerVoteAnswer };
+import { PlayerVoteAnswer as PlayerVoteAnswerReducer } from "./player_vote_answer_reducer.ts";
+export { PlayerVoteAnswerReducer };
 import { PlayerVoteConclude } from "./player_vote_conclude_reducer.ts";
 export { PlayerVoteConclude };
 import { ProcessInterModuleMessage } from "./process_inter_module_message_reducer.ts";
