@@ -941,8 +941,8 @@ import { PlayerTeleportWaystoneStart } from "./player_teleport_waystone_start_re
 export { PlayerTeleportWaystoneStart };
 import { PlayerUseElevator } from "./player_use_elevator_reducer.ts";
 export { PlayerUseElevator };
-import { PlayerVoteAnswer } from "./player_vote_answer_reducer.ts";
-export { PlayerVoteAnswer };
+import { PlayerVoteAnswer as PlayerVoteAnswerReducer } from "./player_vote_answer_reducer.ts";
+export { PlayerVoteAnswerReducer };
 import { PlayerVoteConclude } from "./player_vote_conclude_reducer.ts";
 export { PlayerVoteConclude };
 import { PocketSwapContents } from "./pocket_swap_contents_reducer.ts";
@@ -3012,7 +3012,7 @@ export { WorldRegionNameState };
 import { WorldRegionState } from "./world_region_state_type.ts";
 export { WorldRegionState };
 
-const REMOTE_MODULE = {
+export const REMOTE_MODULE = {
   tables: {
     a_i_debug_state: {
       tableName: "a_i_debug_state",
