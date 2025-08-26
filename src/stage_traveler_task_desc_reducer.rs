@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::traveler_task_desc_type::TravelerTaskDesc;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct StageTravelerTaskDescArgs {
-    pub records: Vec::<TravelerTaskDesc>,
+    pub records: Vec<TravelerTaskDesc>,
 }
 
 impl From<StageTravelerTaskDescArgs> for super::Reducer {
     fn from(args: StageTravelerTaskDescArgs) -> Self {
         Self::StageTravelerTaskDesc {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for StageTravelerTaskDescArgs {
@@ -42,8 +37,7 @@ pub trait stage_traveler_task_desc {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_stage_traveler_task_desc`] callbacks.
-    fn stage_traveler_task_desc(&self, records: Vec::<TravelerTaskDesc>,
-) -> __sdk::Result<()>;
+    fn stage_traveler_task_desc(&self, records: Vec<TravelerTaskDesc>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `stage_traveler_task_desc`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,47 @@ pub trait stage_traveler_task_desc {
     ///
     /// The returned [`StageTravelerTaskDescCallbackId`] can be passed to [`Self::remove_on_stage_traveler_task_desc`]
     /// to cancel the callback.
-    fn on_stage_traveler_task_desc(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<TravelerTaskDesc>, ) + Send + 'static) -> StageTravelerTaskDescCallbackId;
+    fn on_stage_traveler_task_desc(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<TravelerTaskDesc>) + Send + 'static,
+    ) -> StageTravelerTaskDescCallbackId;
     /// Cancel a callback previously registered by [`Self::on_stage_traveler_task_desc`],
     /// causing it not to run in the future.
     fn remove_on_stage_traveler_task_desc(&self, callback: StageTravelerTaskDescCallbackId);
 }
 
 impl stage_traveler_task_desc for super::RemoteReducers {
-    fn stage_traveler_task_desc(&self, records: Vec::<TravelerTaskDesc>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("stage_traveler_task_desc", StageTravelerTaskDescArgs { records,  })
+    fn stage_traveler_task_desc(&self, records: Vec<TravelerTaskDesc>) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "stage_traveler_task_desc",
+            StageTravelerTaskDescArgs { records },
+        )
     }
     fn on_stage_traveler_task_desc(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<TravelerTaskDesc>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<TravelerTaskDesc>) + Send + 'static,
     ) -> StageTravelerTaskDescCallbackId {
         StageTravelerTaskDescCallbackId(self.imp.on_reducer(
             "stage_traveler_task_desc",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::StageTravelerTaskDesc {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::StageTravelerTaskDesc { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
     fn remove_on_stage_traveler_task_desc(&self, callback: StageTravelerTaskDescCallbackId) {
-        self.imp.remove_on_reducer("stage_traveler_task_desc", callback.0)
+        self.imp
+            .remove_on_reducer("stage_traveler_task_desc", callback.0)
     }
 }
 
@@ -103,7 +105,7 @@ pub trait set_flags_for_stage_traveler_task_desc {
 
 impl set_flags_for_stage_traveler_task_desc for super::SetReducerFlags {
     fn stage_traveler_task_desc(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("stage_traveler_task_desc", flags);
+        self.imp
+            .set_call_reducer_flags("stage_traveler_task_desc", flags);
     }
 }
-

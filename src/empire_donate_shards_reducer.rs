@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::empire_donate_shards_request_type::EmpireDonateShardsRequest;
 
@@ -22,8 +17,8 @@ impl From<EmpireDonateShardsArgs> for super::Reducer {
     fn from(args: EmpireDonateShardsArgs) -> Self {
         Self::EmpireDonateShards {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for EmpireDonateShardsArgs {
@@ -42,8 +37,7 @@ pub trait empire_donate_shards {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_empire_donate_shards`] callbacks.
-    fn empire_donate_shards(&self, request: EmpireDonateShardsRequest,
-) -> __sdk::Result<()>;
+    fn empire_donate_shards(&self, request: EmpireDonateShardsRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `empire_donate_shards`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,47 @@ pub trait empire_donate_shards {
     ///
     /// The returned [`EmpireDonateShardsCallbackId`] can be passed to [`Self::remove_on_empire_donate_shards`]
     /// to cancel the callback.
-    fn on_empire_donate_shards(&self, callback: impl FnMut(&super::ReducerEventContext, &EmpireDonateShardsRequest, ) + Send + 'static) -> EmpireDonateShardsCallbackId;
+    fn on_empire_donate_shards(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &EmpireDonateShardsRequest) + Send + 'static,
+    ) -> EmpireDonateShardsCallbackId;
     /// Cancel a callback previously registered by [`Self::on_empire_donate_shards`],
     /// causing it not to run in the future.
     fn remove_on_empire_donate_shards(&self, callback: EmpireDonateShardsCallbackId);
 }
 
 impl empire_donate_shards for super::RemoteReducers {
-    fn empire_donate_shards(&self, request: EmpireDonateShardsRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("empire_donate_shards", EmpireDonateShardsArgs { request,  })
+    fn empire_donate_shards(&self, request: EmpireDonateShardsRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("empire_donate_shards", EmpireDonateShardsArgs { request })
     }
     fn on_empire_donate_shards(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &EmpireDonateShardsRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &EmpireDonateShardsRequest)
+            + Send
+            + 'static,
     ) -> EmpireDonateShardsCallbackId {
         EmpireDonateShardsCallbackId(self.imp.on_reducer(
             "empire_donate_shards",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::EmpireDonateShards {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::EmpireDonateShards { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
     fn remove_on_empire_donate_shards(&self, callback: EmpireDonateShardsCallbackId) {
-        self.imp.remove_on_reducer("empire_donate_shards", callback.0)
+        self.imp
+            .remove_on_reducer("empire_donate_shards", callback.0)
     }
 }
 
@@ -103,7 +105,7 @@ pub trait set_flags_for_empire_donate_shards {
 
 impl set_flags_for_empire_donate_shards for super::SetReducerFlags {
     fn empire_donate_shards(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("empire_donate_shards", flags);
+        self.imp
+            .set_call_reducer_flags("empire_donate_shards", flags);
     }
 }
-

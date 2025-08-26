@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::terraform_recipe_desc_type::TerraformRecipeDesc;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct StageTerraformRecipeDescArgs {
-    pub records: Vec::<TerraformRecipeDesc>,
+    pub records: Vec<TerraformRecipeDesc>,
 }
 
 impl From<StageTerraformRecipeDescArgs> for super::Reducer {
     fn from(args: StageTerraformRecipeDescArgs) -> Self {
         Self::StageTerraformRecipeDesc {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for StageTerraformRecipeDescArgs {
@@ -42,8 +37,7 @@ pub trait stage_terraform_recipe_desc {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_stage_terraform_recipe_desc`] callbacks.
-    fn stage_terraform_recipe_desc(&self, records: Vec::<TerraformRecipeDesc>,
-) -> __sdk::Result<()>;
+    fn stage_terraform_recipe_desc(&self, records: Vec<TerraformRecipeDesc>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `stage_terraform_recipe_desc`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,49 @@ pub trait stage_terraform_recipe_desc {
     ///
     /// The returned [`StageTerraformRecipeDescCallbackId`] can be passed to [`Self::remove_on_stage_terraform_recipe_desc`]
     /// to cancel the callback.
-    fn on_stage_terraform_recipe_desc(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<TerraformRecipeDesc>, ) + Send + 'static) -> StageTerraformRecipeDescCallbackId;
+    fn on_stage_terraform_recipe_desc(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<TerraformRecipeDesc>) + Send + 'static,
+    ) -> StageTerraformRecipeDescCallbackId;
     /// Cancel a callback previously registered by [`Self::on_stage_terraform_recipe_desc`],
     /// causing it not to run in the future.
     fn remove_on_stage_terraform_recipe_desc(&self, callback: StageTerraformRecipeDescCallbackId);
 }
 
 impl stage_terraform_recipe_desc for super::RemoteReducers {
-    fn stage_terraform_recipe_desc(&self, records: Vec::<TerraformRecipeDesc>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("stage_terraform_recipe_desc", StageTerraformRecipeDescArgs { records,  })
+    fn stage_terraform_recipe_desc(&self, records: Vec<TerraformRecipeDesc>) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "stage_terraform_recipe_desc",
+            StageTerraformRecipeDescArgs { records },
+        )
     }
     fn on_stage_terraform_recipe_desc(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<TerraformRecipeDesc>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<TerraformRecipeDesc>)
+            + Send
+            + 'static,
     ) -> StageTerraformRecipeDescCallbackId {
         StageTerraformRecipeDescCallbackId(self.imp.on_reducer(
             "stage_terraform_recipe_desc",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::StageTerraformRecipeDesc {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::StageTerraformRecipeDesc { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
     fn remove_on_stage_terraform_recipe_desc(&self, callback: StageTerraformRecipeDescCallbackId) {
-        self.imp.remove_on_reducer("stage_terraform_recipe_desc", callback.0)
+        self.imp
+            .remove_on_reducer("stage_terraform_recipe_desc", callback.0)
     }
 }
 
@@ -103,7 +107,7 @@ pub trait set_flags_for_stage_terraform_recipe_desc {
 
 impl set_flags_for_stage_terraform_recipe_desc for super::SetReducerFlags {
     fn stage_terraform_recipe_desc(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("stage_terraform_recipe_desc", flags);
+        self.imp
+            .set_call_reducer_flags("stage_terraform_recipe_desc", flags);
     }
 }
-

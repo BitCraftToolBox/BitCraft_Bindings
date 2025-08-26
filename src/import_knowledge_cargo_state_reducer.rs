@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::knowledge_cargo_state_type::KnowledgeCargoState;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct ImportKnowledgeCargoStateArgs {
-    pub records: Vec::<KnowledgeCargoState>,
+    pub records: Vec<KnowledgeCargoState>,
 }
 
 impl From<ImportKnowledgeCargoStateArgs> for super::Reducer {
     fn from(args: ImportKnowledgeCargoStateArgs) -> Self {
         Self::ImportKnowledgeCargoState {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ImportKnowledgeCargoStateArgs {
@@ -42,8 +37,7 @@ pub trait import_knowledge_cargo_state {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_import_knowledge_cargo_state`] callbacks.
-    fn import_knowledge_cargo_state(&self, records: Vec::<KnowledgeCargoState>,
-) -> __sdk::Result<()>;
+    fn import_knowledge_cargo_state(&self, records: Vec<KnowledgeCargoState>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `import_knowledge_cargo_state`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,52 @@ pub trait import_knowledge_cargo_state {
     ///
     /// The returned [`ImportKnowledgeCargoStateCallbackId`] can be passed to [`Self::remove_on_import_knowledge_cargo_state`]
     /// to cancel the callback.
-    fn on_import_knowledge_cargo_state(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<KnowledgeCargoState>, ) + Send + 'static) -> ImportKnowledgeCargoStateCallbackId;
+    fn on_import_knowledge_cargo_state(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<KnowledgeCargoState>) + Send + 'static,
+    ) -> ImportKnowledgeCargoStateCallbackId;
     /// Cancel a callback previously registered by [`Self::on_import_knowledge_cargo_state`],
     /// causing it not to run in the future.
     fn remove_on_import_knowledge_cargo_state(&self, callback: ImportKnowledgeCargoStateCallbackId);
 }
 
 impl import_knowledge_cargo_state for super::RemoteReducers {
-    fn import_knowledge_cargo_state(&self, records: Vec::<KnowledgeCargoState>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("import_knowledge_cargo_state", ImportKnowledgeCargoStateArgs { records,  })
+    fn import_knowledge_cargo_state(&self, records: Vec<KnowledgeCargoState>) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "import_knowledge_cargo_state",
+            ImportKnowledgeCargoStateArgs { records },
+        )
     }
     fn on_import_knowledge_cargo_state(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<KnowledgeCargoState>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<KnowledgeCargoState>)
+            + Send
+            + 'static,
     ) -> ImportKnowledgeCargoStateCallbackId {
         ImportKnowledgeCargoStateCallbackId(self.imp.on_reducer(
             "import_knowledge_cargo_state",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ImportKnowledgeCargoState {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ImportKnowledgeCargoState { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
-    fn remove_on_import_knowledge_cargo_state(&self, callback: ImportKnowledgeCargoStateCallbackId) {
-        self.imp.remove_on_reducer("import_knowledge_cargo_state", callback.0)
+    fn remove_on_import_knowledge_cargo_state(
+        &self,
+        callback: ImportKnowledgeCargoStateCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("import_knowledge_cargo_state", callback.0)
     }
 }
 
@@ -103,7 +110,7 @@ pub trait set_flags_for_import_knowledge_cargo_state {
 
 impl set_flags_for_import_knowledge_cargo_state for super::SetReducerFlags {
     fn import_knowledge_cargo_state(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("import_knowledge_cargo_state", flags);
+        self.imp
+            .set_call_reducer_flags("import_knowledge_cargo_state", flags);
     }
 }
-

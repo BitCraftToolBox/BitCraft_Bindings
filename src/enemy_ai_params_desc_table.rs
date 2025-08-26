@@ -3,15 +3,10 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use super::biome_type::Biome;
 use super::enemy_ai_params_desc_type::EnemyAiParamsDesc;
 use super::enemy_type_type::EnemyType;
-use super::biome_type::Biome;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `enemy_ai_params_desc`.
 ///
@@ -39,7 +34,9 @@ pub trait EnemyAiParamsDescTableAccess {
 impl EnemyAiParamsDescTableAccess for super::RemoteTables {
     fn enemy_ai_params_desc(&self) -> EnemyAiParamsDescTableHandle<'_> {
         EnemyAiParamsDescTableHandle {
-            imp: self.imp.get_table::<EnemyAiParamsDesc>("enemy_ai_params_desc"),
+            imp: self
+                .imp
+                .get_table::<EnemyAiParamsDesc>("enemy_ai_params_desc"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -52,8 +49,12 @@ impl<'ctx> __sdk::Table for EnemyAiParamsDescTableHandle<'ctx> {
     type Row = EnemyAiParamsDesc;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = EnemyAiParamsDesc> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = EnemyAiParamsDesc> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = EnemyAiParamsDescInsertCallbackId;
 
@@ -84,8 +85,7 @@ impl<'ctx> __sdk::Table for EnemyAiParamsDescTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<EnemyAiParamsDesc>("enemy_ai_params_desc");
+    let _table = client_cache.get_or_make_table::<EnemyAiParamsDesc>("enemy_ai_params_desc");
     _table.add_unique_constraint::<i32>("id", |row| &row.id);
 }
 pub struct EnemyAiParamsDescUpdateCallbackId(__sdk::CallbackId);
@@ -105,46 +105,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for EnemyAiParamsDescTableHandle<'ctx> {
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<EnemyAiParamsDesc>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<EnemyAiParamsDesc>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<EnemyAiParamsDesc>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `id` unique index on the table `enemy_ai_params_desc`,
-        /// which allows point queries on the field of the same name
-        /// via the [`EnemyAiParamsDescIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.enemy_ai_params_desc().id().find(...)`.
-        pub struct EnemyAiParamsDescIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<EnemyAiParamsDesc, i32>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `id` unique index on the table `enemy_ai_params_desc`,
+/// which allows point queries on the field of the same name
+/// via the [`EnemyAiParamsDescIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.enemy_ai_params_desc().id().find(...)`.
+pub struct EnemyAiParamsDescIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<EnemyAiParamsDesc, i32>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> EnemyAiParamsDescTableHandle<'ctx> {
-            /// Get a handle on the `id` unique index on the table `enemy_ai_params_desc`.
-            pub fn id(&self) -> EnemyAiParamsDescIdUnique<'ctx> {
-                EnemyAiParamsDescIdUnique {
-                    imp: self.imp.get_unique_constraint::<i32>("id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> EnemyAiParamsDescTableHandle<'ctx> {
+    /// Get a handle on the `id` unique index on the table `enemy_ai_params_desc`.
+    pub fn id(&self) -> EnemyAiParamsDescIdUnique<'ctx> {
+        EnemyAiParamsDescIdUnique {
+            imp: self.imp.get_unique_constraint::<i32>("id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> EnemyAiParamsDescIdUnique<'ctx> {
-            /// Find the subscribed row whose `id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &i32) -> Option<EnemyAiParamsDesc> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> EnemyAiParamsDescIdUnique<'ctx> {
+    /// Find the subscribed row whose `id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &i32) -> Option<EnemyAiParamsDesc> {
+        self.imp.find(col_val)
+    }
+}

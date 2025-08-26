@@ -3,13 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -18,17 +12,15 @@ pub struct TerrainChunkState {
     pub chunk_x: i32,
     pub chunk_z: i32,
     pub dimension: u32,
-    pub biomes: Vec::<u32>,
-    pub biome_density: Vec::<u32>,
-    pub elevations: Vec::<i16>,
-    pub water_levels: Vec::<i16>,
-    pub water_body_types: Vec::<u8>,
-    pub zoning_types: Vec::<u8>,
-    pub original_elevations: Vec::<i16>,
+    pub biomes: Vec<u32>,
+    pub biome_density: Vec<u32>,
+    pub elevations: Vec<i16>,
+    pub water_levels: Vec<i16>,
+    pub water_body_types: Vec<u8>,
+    pub zoning_types: Vec<u8>,
+    pub original_elevations: Vec<i16>,
 }
-
 
 impl __sdk::InModule for TerrainChunkState {
     type Module = super::RemoteModule;
 }
-

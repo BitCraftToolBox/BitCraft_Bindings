@@ -3,13 +3,8 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::permission_state_type::PermissionState;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `permission_state`.
 ///
@@ -50,8 +45,12 @@ impl<'ctx> __sdk::Table for PermissionStateTableHandle<'ctx> {
     type Row = PermissionState;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = PermissionState> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = PermissionState> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = PermissionStateInsertCallbackId;
 
@@ -82,8 +81,7 @@ impl<'ctx> __sdk::Table for PermissionStateTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<PermissionState>("permission_state");
+    let _table = client_cache.get_or_make_table::<PermissionState>("permission_state");
     _table.add_unique_constraint::<u64>("entity_id", |row| &row.entity_id);
 }
 pub struct PermissionStateUpdateCallbackId(__sdk::CallbackId);
@@ -103,46 +101,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for PermissionStateTableHandle<'ctx> {
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<PermissionState>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<PermissionState>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<PermissionState>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `entity_id` unique index on the table `permission_state`,
-        /// which allows point queries on the field of the same name
-        /// via the [`PermissionStateEntityIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.permission_state().entity_id().find(...)`.
-        pub struct PermissionStateEntityIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<PermissionState, u64>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `entity_id` unique index on the table `permission_state`,
+/// which allows point queries on the field of the same name
+/// via the [`PermissionStateEntityIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.permission_state().entity_id().find(...)`.
+pub struct PermissionStateEntityIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<PermissionState, u64>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> PermissionStateTableHandle<'ctx> {
-            /// Get a handle on the `entity_id` unique index on the table `permission_state`.
-            pub fn entity_id(&self) -> PermissionStateEntityIdUnique<'ctx> {
-                PermissionStateEntityIdUnique {
-                    imp: self.imp.get_unique_constraint::<u64>("entity_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> PermissionStateTableHandle<'ctx> {
+    /// Get a handle on the `entity_id` unique index on the table `permission_state`.
+    pub fn entity_id(&self) -> PermissionStateEntityIdUnique<'ctx> {
+        PermissionStateEntityIdUnique {
+            imp: self.imp.get_unique_constraint::<u64>("entity_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> PermissionStateEntityIdUnique<'ctx> {
-            /// Find the subscribed row whose `entity_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u64) -> Option<PermissionState> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> PermissionStateEntityIdUnique<'ctx> {
+    /// Find the subscribed row whose `entity_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u64) -> Option<PermissionState> {
+        self.imp.find(col_val)
+    }
+}

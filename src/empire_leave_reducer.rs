@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::empire_leave_request_type::EmpireLeaveRequest;
 
@@ -22,8 +17,8 @@ impl From<EmpireLeaveArgs> for super::Reducer {
     fn from(args: EmpireLeaveArgs) -> Self {
         Self::EmpireLeave {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for EmpireLeaveArgs {
@@ -42,8 +37,7 @@ pub trait empire_leave {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_empire_leave`] callbacks.
-    fn empire_leave(&self, request: EmpireLeaveRequest,
-) -> __sdk::Result<()>;
+    fn empire_leave(&self, request: EmpireLeaveRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `empire_leave`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,39 @@ pub trait empire_leave {
     ///
     /// The returned [`EmpireLeaveCallbackId`] can be passed to [`Self::remove_on_empire_leave`]
     /// to cancel the callback.
-    fn on_empire_leave(&self, callback: impl FnMut(&super::ReducerEventContext, &EmpireLeaveRequest, ) + Send + 'static) -> EmpireLeaveCallbackId;
+    fn on_empire_leave(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &EmpireLeaveRequest) + Send + 'static,
+    ) -> EmpireLeaveCallbackId;
     /// Cancel a callback previously registered by [`Self::on_empire_leave`],
     /// causing it not to run in the future.
     fn remove_on_empire_leave(&self, callback: EmpireLeaveCallbackId);
 }
 
 impl empire_leave for super::RemoteReducers {
-    fn empire_leave(&self, request: EmpireLeaveRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("empire_leave", EmpireLeaveArgs { request,  })
+    fn empire_leave(&self, request: EmpireLeaveRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("empire_leave", EmpireLeaveArgs { request })
     }
     fn on_empire_leave(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &EmpireLeaveRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &EmpireLeaveRequest) + Send + 'static,
     ) -> EmpireLeaveCallbackId {
         EmpireLeaveCallbackId(self.imp.on_reducer(
             "empire_leave",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::EmpireLeave {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::EmpireLeave { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
@@ -106,4 +105,3 @@ impl set_flags_for_empire_leave for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("empire_leave", flags);
     }
 }
-

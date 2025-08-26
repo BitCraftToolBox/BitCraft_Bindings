@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::deployable_state_type::DeployableState;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct ImportDeployableStateArgs {
-    pub records: Vec::<DeployableState>,
+    pub records: Vec<DeployableState>,
 }
 
 impl From<ImportDeployableStateArgs> for super::Reducer {
     fn from(args: ImportDeployableStateArgs) -> Self {
         Self::ImportDeployableState {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ImportDeployableStateArgs {
@@ -42,8 +37,7 @@ pub trait import_deployable_state {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_import_deployable_state`] callbacks.
-    fn import_deployable_state(&self, records: Vec::<DeployableState>,
-) -> __sdk::Result<()>;
+    fn import_deployable_state(&self, records: Vec<DeployableState>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `import_deployable_state`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,47 @@ pub trait import_deployable_state {
     ///
     /// The returned [`ImportDeployableStateCallbackId`] can be passed to [`Self::remove_on_import_deployable_state`]
     /// to cancel the callback.
-    fn on_import_deployable_state(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<DeployableState>, ) + Send + 'static) -> ImportDeployableStateCallbackId;
+    fn on_import_deployable_state(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<DeployableState>) + Send + 'static,
+    ) -> ImportDeployableStateCallbackId;
     /// Cancel a callback previously registered by [`Self::on_import_deployable_state`],
     /// causing it not to run in the future.
     fn remove_on_import_deployable_state(&self, callback: ImportDeployableStateCallbackId);
 }
 
 impl import_deployable_state for super::RemoteReducers {
-    fn import_deployable_state(&self, records: Vec::<DeployableState>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("import_deployable_state", ImportDeployableStateArgs { records,  })
+    fn import_deployable_state(&self, records: Vec<DeployableState>) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "import_deployable_state",
+            ImportDeployableStateArgs { records },
+        )
     }
     fn on_import_deployable_state(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<DeployableState>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<DeployableState>) + Send + 'static,
     ) -> ImportDeployableStateCallbackId {
         ImportDeployableStateCallbackId(self.imp.on_reducer(
             "import_deployable_state",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ImportDeployableState {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ImportDeployableState { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
     fn remove_on_import_deployable_state(&self, callback: ImportDeployableStateCallbackId) {
-        self.imp.remove_on_reducer("import_deployable_state", callback.0)
+        self.imp
+            .remove_on_reducer("import_deployable_state", callback.0)
     }
 }
 
@@ -103,7 +105,7 @@ pub trait set_flags_for_import_deployable_state {
 
 impl set_flags_for_import_deployable_state for super::SetReducerFlags {
     fn import_deployable_state(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("import_deployable_state", flags);
+        self.imp
+            .set_call_reducer_flags("import_deployable_state", flags);
     }
 }
-

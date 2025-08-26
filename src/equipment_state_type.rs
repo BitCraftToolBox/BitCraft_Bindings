@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::equipment_slot_type::EquipmentSlot;
 
@@ -16,11 +11,9 @@ use super::equipment_slot_type::EquipmentSlot;
 #[sats(crate = __lib)]
 pub struct EquipmentState {
     pub entity_id: u64,
-    pub equipment_slots: Vec::<EquipmentSlot>,
+    pub equipment_slots: Vec<EquipmentSlot>,
 }
-
 
 impl __sdk::InModule for EquipmentState {
     type Module = super::RemoteModule;
 }
-

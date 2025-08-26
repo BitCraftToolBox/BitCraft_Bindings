@@ -3,23 +3,15 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub struct CharacterStatsState {
     pub entity_id: u64,
-    pub values: Vec::<f32>,
+    pub values: Vec<f32>,
 }
-
 
 impl __sdk::InModule for CharacterStatsState {
     type Module = super::RemoteModule;
 }
-

@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::empire_settlement_state_type::EmpireSettlementState;
 
@@ -18,12 +13,8 @@ pub enum EmpireSettlementStateOp {
     Insert(EmpireSettlementState),
 
     Delete(EmpireSettlementState),
-
 }
-
-
 
 impl __sdk::InModule for EmpireSettlementStateOp {
     type Module = super::RemoteModule;
 }
-

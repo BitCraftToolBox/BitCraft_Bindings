@@ -3,14 +3,9 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-use super::knowledge_lore_state_type::KnowledgeLoreState;
 use super::knowledge_entry_type::KnowledgeEntry;
+use super::knowledge_lore_state_type::KnowledgeLoreState;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `knowledge_lore_state`.
 ///
@@ -38,7 +33,9 @@ pub trait KnowledgeLoreStateTableAccess {
 impl KnowledgeLoreStateTableAccess for super::RemoteTables {
     fn knowledge_lore_state(&self) -> KnowledgeLoreStateTableHandle<'_> {
         KnowledgeLoreStateTableHandle {
-            imp: self.imp.get_table::<KnowledgeLoreState>("knowledge_lore_state"),
+            imp: self
+                .imp
+                .get_table::<KnowledgeLoreState>("knowledge_lore_state"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -51,8 +48,12 @@ impl<'ctx> __sdk::Table for KnowledgeLoreStateTableHandle<'ctx> {
     type Row = KnowledgeLoreState;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = KnowledgeLoreState> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = KnowledgeLoreState> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = KnowledgeLoreStateInsertCallbackId;
 
@@ -83,8 +84,7 @@ impl<'ctx> __sdk::Table for KnowledgeLoreStateTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<KnowledgeLoreState>("knowledge_lore_state");
+    let _table = client_cache.get_or_make_table::<KnowledgeLoreState>("knowledge_lore_state");
     _table.add_unique_constraint::<u64>("entity_id", |row| &row.entity_id);
 }
 pub struct KnowledgeLoreStateUpdateCallbackId(__sdk::CallbackId);
@@ -104,46 +104,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for KnowledgeLoreStateTableHandle<'ctx> {
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<KnowledgeLoreState>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<KnowledgeLoreState>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<KnowledgeLoreState>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `entity_id` unique index on the table `knowledge_lore_state`,
-        /// which allows point queries on the field of the same name
-        /// via the [`KnowledgeLoreStateEntityIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.knowledge_lore_state().entity_id().find(...)`.
-        pub struct KnowledgeLoreStateEntityIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<KnowledgeLoreState, u64>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `entity_id` unique index on the table `knowledge_lore_state`,
+/// which allows point queries on the field of the same name
+/// via the [`KnowledgeLoreStateEntityIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.knowledge_lore_state().entity_id().find(...)`.
+pub struct KnowledgeLoreStateEntityIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<KnowledgeLoreState, u64>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> KnowledgeLoreStateTableHandle<'ctx> {
-            /// Get a handle on the `entity_id` unique index on the table `knowledge_lore_state`.
-            pub fn entity_id(&self) -> KnowledgeLoreStateEntityIdUnique<'ctx> {
-                KnowledgeLoreStateEntityIdUnique {
-                    imp: self.imp.get_unique_constraint::<u64>("entity_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> KnowledgeLoreStateTableHandle<'ctx> {
+    /// Get a handle on the `entity_id` unique index on the table `knowledge_lore_state`.
+    pub fn entity_id(&self) -> KnowledgeLoreStateEntityIdUnique<'ctx> {
+        KnowledgeLoreStateEntityIdUnique {
+            imp: self.imp.get_unique_constraint::<u64>("entity_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> KnowledgeLoreStateEntityIdUnique<'ctx> {
-            /// Find the subscribed row whose `entity_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u64) -> Option<KnowledgeLoreState> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> KnowledgeLoreStateEntityIdUnique<'ctx> {
+    /// Find the subscribed row whose `entity_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u64) -> Option<KnowledgeLoreState> {
+        self.imp.find(col_val)
+    }
+}

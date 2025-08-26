@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::exploration_chunks_state_type::ExplorationChunksState;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct ImportExplorationChunksStateArgs {
-    pub records: Vec::<ExplorationChunksState>,
+    pub records: Vec<ExplorationChunksState>,
 }
 
 impl From<ImportExplorationChunksStateArgs> for super::Reducer {
     fn from(args: ImportExplorationChunksStateArgs) -> Self {
         Self::ImportExplorationChunksState {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ImportExplorationChunksStateArgs {
@@ -42,8 +37,10 @@ pub trait import_exploration_chunks_state {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_import_exploration_chunks_state`] callbacks.
-    fn import_exploration_chunks_state(&self, records: Vec::<ExplorationChunksState>,
-) -> __sdk::Result<()>;
+    fn import_exploration_chunks_state(
+        &self,
+        records: Vec<ExplorationChunksState>,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `import_exploration_chunks_state`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +48,58 @@ pub trait import_exploration_chunks_state {
     ///
     /// The returned [`ImportExplorationChunksStateCallbackId`] can be passed to [`Self::remove_on_import_exploration_chunks_state`]
     /// to cancel the callback.
-    fn on_import_exploration_chunks_state(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<ExplorationChunksState>, ) + Send + 'static) -> ImportExplorationChunksStateCallbackId;
+    fn on_import_exploration_chunks_state(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<ExplorationChunksState>) + Send + 'static,
+    ) -> ImportExplorationChunksStateCallbackId;
     /// Cancel a callback previously registered by [`Self::on_import_exploration_chunks_state`],
     /// causing it not to run in the future.
-    fn remove_on_import_exploration_chunks_state(&self, callback: ImportExplorationChunksStateCallbackId);
+    fn remove_on_import_exploration_chunks_state(
+        &self,
+        callback: ImportExplorationChunksStateCallbackId,
+    );
 }
 
 impl import_exploration_chunks_state for super::RemoteReducers {
-    fn import_exploration_chunks_state(&self, records: Vec::<ExplorationChunksState>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("import_exploration_chunks_state", ImportExplorationChunksStateArgs { records,  })
+    fn import_exploration_chunks_state(
+        &self,
+        records: Vec<ExplorationChunksState>,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "import_exploration_chunks_state",
+            ImportExplorationChunksStateArgs { records },
+        )
     }
     fn on_import_exploration_chunks_state(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<ExplorationChunksState>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<ExplorationChunksState>)
+            + Send
+            + 'static,
     ) -> ImportExplorationChunksStateCallbackId {
         ImportExplorationChunksStateCallbackId(self.imp.on_reducer(
             "import_exploration_chunks_state",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ImportExplorationChunksState {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ImportExplorationChunksState { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
-    fn remove_on_import_exploration_chunks_state(&self, callback: ImportExplorationChunksStateCallbackId) {
-        self.imp.remove_on_reducer("import_exploration_chunks_state", callback.0)
+    fn remove_on_import_exploration_chunks_state(
+        &self,
+        callback: ImportExplorationChunksStateCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("import_exploration_chunks_state", callback.0)
     }
 }
 
@@ -103,7 +119,7 @@ pub trait set_flags_for_import_exploration_chunks_state {
 
 impl set_flags_for_import_exploration_chunks_state for super::SetReducerFlags {
     fn import_exploration_chunks_state(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("import_exploration_chunks_state", flags);
+        self.imp
+            .set_call_reducer_flags("import_exploration_chunks_state", flags);
     }
 }
-

@@ -3,16 +3,11 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::footprint_tile_type::FootprintTile;
-use super::rarity_type::Rarity;
 use super::item_stack_type::ItemStack;
+use super::rarity_type::Rarity;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -26,21 +21,19 @@ pub struct ResourceDesc {
     pub despawn_time: f32,
     pub model_asset_name: String,
     pub icon_asset_name: String,
-    pub on_destroy_yield: Vec::<ItemStack>,
+    pub on_destroy_yield: Vec<ItemStack>,
     pub on_destroy_yield_resource_id: i32,
     pub spawn_priority: i32,
-    pub footprint: Vec::<FootprintTile>,
+    pub footprint: Vec<FootprintTile>,
     pub tier: i32,
     pub tag: String,
     pub rarity: Rarity,
     pub compendium_entry: bool,
-    pub enemy_params_id: Vec::<i32>,
+    pub enemy_params_id: Vec<i32>,
     pub scheduled_respawn_time: f32,
     pub not_respawning: bool,
 }
 
-
 impl __sdk::InModule for ResourceDesc {
     type Module = super::RemoteModule;
 }
-

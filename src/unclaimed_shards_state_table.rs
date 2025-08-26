@@ -3,13 +3,8 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::unclaimed_shards_state_type::UnclaimedShardsState;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `unclaimed_shards_state`.
 ///
@@ -37,7 +32,9 @@ pub trait UnclaimedShardsStateTableAccess {
 impl UnclaimedShardsStateTableAccess for super::RemoteTables {
     fn unclaimed_shards_state(&self) -> UnclaimedShardsStateTableHandle<'_> {
         UnclaimedShardsStateTableHandle {
-            imp: self.imp.get_table::<UnclaimedShardsState>("unclaimed_shards_state"),
+            imp: self
+                .imp
+                .get_table::<UnclaimedShardsState>("unclaimed_shards_state"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -50,8 +47,12 @@ impl<'ctx> __sdk::Table for UnclaimedShardsStateTableHandle<'ctx> {
     type Row = UnclaimedShardsState;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = UnclaimedShardsState> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = UnclaimedShardsState> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = UnclaimedShardsStateInsertCallbackId;
 
@@ -82,8 +83,7 @@ impl<'ctx> __sdk::Table for UnclaimedShardsStateTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<UnclaimedShardsState>("unclaimed_shards_state");
+    let _table = client_cache.get_or_make_table::<UnclaimedShardsState>("unclaimed_shards_state");
     _table.add_unique_constraint::<__sdk::Identity>("identity", |row| &row.identity);
 }
 pub struct UnclaimedShardsStateUpdateCallbackId(__sdk::CallbackId);
@@ -103,46 +103,45 @@ impl<'ctx> __sdk::TableWithPrimaryKey for UnclaimedShardsStateTableHandle<'ctx> 
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<UnclaimedShardsState>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<UnclaimedShardsState>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<UnclaimedShardsState>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `identity` unique index on the table `unclaimed_shards_state`,
-        /// which allows point queries on the field of the same name
-        /// via the [`UnclaimedShardsStateIdentityUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.unclaimed_shards_state().identity().find(...)`.
-        pub struct UnclaimedShardsStateIdentityUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<UnclaimedShardsState, __sdk::Identity>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `identity` unique index on the table `unclaimed_shards_state`,
+/// which allows point queries on the field of the same name
+/// via the [`UnclaimedShardsStateIdentityUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.unclaimed_shards_state().identity().find(...)`.
+pub struct UnclaimedShardsStateIdentityUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<UnclaimedShardsState, __sdk::Identity>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> UnclaimedShardsStateTableHandle<'ctx> {
-            /// Get a handle on the `identity` unique index on the table `unclaimed_shards_state`.
-            pub fn identity(&self) -> UnclaimedShardsStateIdentityUnique<'ctx> {
-                UnclaimedShardsStateIdentityUnique {
-                    imp: self.imp.get_unique_constraint::<__sdk::Identity>("identity"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> UnclaimedShardsStateTableHandle<'ctx> {
+    /// Get a handle on the `identity` unique index on the table `unclaimed_shards_state`.
+    pub fn identity(&self) -> UnclaimedShardsStateIdentityUnique<'ctx> {
+        UnclaimedShardsStateIdentityUnique {
+            imp: self
+                .imp
+                .get_unique_constraint::<__sdk::Identity>("identity"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> UnclaimedShardsStateIdentityUnique<'ctx> {
-            /// Find the subscribed row whose `identity` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &__sdk::Identity) -> Option<UnclaimedShardsState> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> UnclaimedShardsStateIdentityUnique<'ctx> {
+    /// Find the subscribed row whose `identity` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &__sdk::Identity) -> Option<UnclaimedShardsState> {
+        self.imp.find(col_val)
+    }
+}

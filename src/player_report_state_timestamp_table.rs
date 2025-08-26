@@ -3,13 +3,8 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::player_report_state_timestamp_type::PlayerReportStateTimestamp;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `player_report_state_timestamp`.
 ///
@@ -37,7 +32,9 @@ pub trait PlayerReportStateTimestampTableAccess {
 impl PlayerReportStateTimestampTableAccess for super::RemoteTables {
     fn player_report_state_timestamp(&self) -> PlayerReportStateTimestampTableHandle<'_> {
         PlayerReportStateTimestampTableHandle {
-            imp: self.imp.get_table::<PlayerReportStateTimestamp>("player_report_state_timestamp"),
+            imp: self
+                .imp
+                .get_table::<PlayerReportStateTimestamp>("player_report_state_timestamp"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -50,8 +47,12 @@ impl<'ctx> __sdk::Table for PlayerReportStateTimestampTableHandle<'ctx> {
     type Row = PlayerReportStateTimestamp;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = PlayerReportStateTimestamp> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = PlayerReportStateTimestamp> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = PlayerReportStateTimestampInsertCallbackId;
 
@@ -82,8 +83,8 @@ impl<'ctx> __sdk::Table for PlayerReportStateTimestampTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<PlayerReportStateTimestamp>("player_report_state_timestamp");
+    let _table = client_cache
+        .get_or_make_table::<PlayerReportStateTimestamp>("player_report_state_timestamp");
     _table.add_unique_constraint::<u64>("entity_id", |row| &row.entity_id);
 }
 pub struct PlayerReportStateTimestampUpdateCallbackId(__sdk::CallbackId);
@@ -103,46 +104,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for PlayerReportStateTimestampTableHandle<
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<PlayerReportStateTimestamp>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<PlayerReportStateTimestamp>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<PlayerReportStateTimestamp>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `entity_id` unique index on the table `player_report_state_timestamp`,
-        /// which allows point queries on the field of the same name
-        /// via the [`PlayerReportStateTimestampEntityIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.player_report_state_timestamp().entity_id().find(...)`.
-        pub struct PlayerReportStateTimestampEntityIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<PlayerReportStateTimestamp, u64>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `entity_id` unique index on the table `player_report_state_timestamp`,
+/// which allows point queries on the field of the same name
+/// via the [`PlayerReportStateTimestampEntityIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.player_report_state_timestamp().entity_id().find(...)`.
+pub struct PlayerReportStateTimestampEntityIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<PlayerReportStateTimestamp, u64>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> PlayerReportStateTimestampTableHandle<'ctx> {
-            /// Get a handle on the `entity_id` unique index on the table `player_report_state_timestamp`.
-            pub fn entity_id(&self) -> PlayerReportStateTimestampEntityIdUnique<'ctx> {
-                PlayerReportStateTimestampEntityIdUnique {
-                    imp: self.imp.get_unique_constraint::<u64>("entity_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> PlayerReportStateTimestampTableHandle<'ctx> {
+    /// Get a handle on the `entity_id` unique index on the table `player_report_state_timestamp`.
+    pub fn entity_id(&self) -> PlayerReportStateTimestampEntityIdUnique<'ctx> {
+        PlayerReportStateTimestampEntityIdUnique {
+            imp: self.imp.get_unique_constraint::<u64>("entity_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> PlayerReportStateTimestampEntityIdUnique<'ctx> {
-            /// Find the subscribed row whose `entity_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u64) -> Option<PlayerReportStateTimestamp> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> PlayerReportStateTimestampEntityIdUnique<'ctx> {
+    /// Find the subscribed row whose `entity_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u64) -> Option<PlayerReportStateTimestamp> {
+        self.imp.find(col_val)
+    }
+}

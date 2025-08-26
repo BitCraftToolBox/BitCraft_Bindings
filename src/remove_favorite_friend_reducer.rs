@@ -3,13 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -21,8 +15,8 @@ impl From<RemoveFavoriteFriendArgs> for super::Reducer {
     fn from(args: RemoveFavoriteFriendArgs) -> Self {
         Self::RemoveFavoriteFriend {
             player_entity_id: args.player_entity_id,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for RemoveFavoriteFriendArgs {
@@ -41,8 +35,7 @@ pub trait remove_favorite_friend {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_remove_favorite_friend`] callbacks.
-    fn remove_favorite_friend(&self, player_entity_id: u64,
-) -> __sdk::Result<()>;
+    fn remove_favorite_friend(&self, player_entity_id: u64) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `remove_favorite_friend`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -50,39 +43,47 @@ pub trait remove_favorite_friend {
     ///
     /// The returned [`RemoveFavoriteFriendCallbackId`] can be passed to [`Self::remove_on_remove_favorite_friend`]
     /// to cancel the callback.
-    fn on_remove_favorite_friend(&self, callback: impl FnMut(&super::ReducerEventContext, &u64, ) + Send + 'static) -> RemoveFavoriteFriendCallbackId;
+    fn on_remove_favorite_friend(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &u64) + Send + 'static,
+    ) -> RemoveFavoriteFriendCallbackId;
     /// Cancel a callback previously registered by [`Self::on_remove_favorite_friend`],
     /// causing it not to run in the future.
     fn remove_on_remove_favorite_friend(&self, callback: RemoveFavoriteFriendCallbackId);
 }
 
 impl remove_favorite_friend for super::RemoteReducers {
-    fn remove_favorite_friend(&self, player_entity_id: u64,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("remove_favorite_friend", RemoveFavoriteFriendArgs { player_entity_id,  })
+    fn remove_favorite_friend(&self, player_entity_id: u64) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "remove_favorite_friend",
+            RemoveFavoriteFriendArgs { player_entity_id },
+        )
     }
     fn on_remove_favorite_friend(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &u64, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &u64) + Send + 'static,
     ) -> RemoveFavoriteFriendCallbackId {
         RemoveFavoriteFriendCallbackId(self.imp.on_reducer(
             "remove_favorite_friend",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::RemoveFavoriteFriend {
-                            player_entity_id, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::RemoveFavoriteFriend { player_entity_id },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, player_entity_id, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, player_entity_id)
             }),
         ))
     }
     fn remove_on_remove_favorite_friend(&self, callback: RemoveFavoriteFriendCallbackId) {
-        self.imp.remove_on_reducer("remove_favorite_friend", callback.0)
+        self.imp
+            .remove_on_reducer("remove_favorite_friend", callback.0)
     }
 }
 
@@ -102,7 +103,7 @@ pub trait set_flags_for_remove_favorite_friend {
 
 impl set_flags_for_remove_favorite_friend for super::SetReducerFlags {
     fn remove_favorite_friend(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("remove_favorite_friend", flags);
+        self.imp
+            .set_call_reducer_flags("remove_favorite_friend", flags);
     }
 }
-

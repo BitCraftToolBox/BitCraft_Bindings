@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::teleport_location_type::TeleportLocation;
 
@@ -25,8 +20,6 @@ pub struct PlayerState {
     pub traveler_tasks_expiration: i32,
 }
 
-
 impl __sdk::InModule for PlayerState {
     type Module = super::RemoteModule;
 }
-

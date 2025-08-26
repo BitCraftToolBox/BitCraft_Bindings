@@ -3,15 +3,10 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use super::trade_pocket_type::TradePocket;
 use super::trade_session_state_type::TradeSessionState;
 use super::trade_session_status_type::TradeSessionStatus;
-use super::trade_pocket_type::TradePocket;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `trade_session_state`.
 ///
@@ -39,7 +34,9 @@ pub trait TradeSessionStateTableAccess {
 impl TradeSessionStateTableAccess for super::RemoteTables {
     fn trade_session_state(&self) -> TradeSessionStateTableHandle<'_> {
         TradeSessionStateTableHandle {
-            imp: self.imp.get_table::<TradeSessionState>("trade_session_state"),
+            imp: self
+                .imp
+                .get_table::<TradeSessionState>("trade_session_state"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -52,8 +49,12 @@ impl<'ctx> __sdk::Table for TradeSessionStateTableHandle<'ctx> {
     type Row = TradeSessionState;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = TradeSessionState> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = TradeSessionState> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = TradeSessionStateInsertCallbackId;
 
@@ -84,8 +85,7 @@ impl<'ctx> __sdk::Table for TradeSessionStateTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<TradeSessionState>("trade_session_state");
+    let _table = client_cache.get_or_make_table::<TradeSessionState>("trade_session_state");
     _table.add_unique_constraint::<u64>("entity_id", |row| &row.entity_id);
 }
 pub struct TradeSessionStateUpdateCallbackId(__sdk::CallbackId);
@@ -105,46 +105,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for TradeSessionStateTableHandle<'ctx> {
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<TradeSessionState>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<TradeSessionState>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<TradeSessionState>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `entity_id` unique index on the table `trade_session_state`,
-        /// which allows point queries on the field of the same name
-        /// via the [`TradeSessionStateEntityIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.trade_session_state().entity_id().find(...)`.
-        pub struct TradeSessionStateEntityIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<TradeSessionState, u64>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `entity_id` unique index on the table `trade_session_state`,
+/// which allows point queries on the field of the same name
+/// via the [`TradeSessionStateEntityIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.trade_session_state().entity_id().find(...)`.
+pub struct TradeSessionStateEntityIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<TradeSessionState, u64>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> TradeSessionStateTableHandle<'ctx> {
-            /// Get a handle on the `entity_id` unique index on the table `trade_session_state`.
-            pub fn entity_id(&self) -> TradeSessionStateEntityIdUnique<'ctx> {
-                TradeSessionStateEntityIdUnique {
-                    imp: self.imp.get_unique_constraint::<u64>("entity_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> TradeSessionStateTableHandle<'ctx> {
+    /// Get a handle on the `entity_id` unique index on the table `trade_session_state`.
+    pub fn entity_id(&self) -> TradeSessionStateEntityIdUnique<'ctx> {
+        TradeSessionStateEntityIdUnique {
+            imp: self.imp.get_unique_constraint::<u64>("entity_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> TradeSessionStateEntityIdUnique<'ctx> {
-            /// Find the subscribed row whose `entity_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u64) -> Option<TradeSessionState> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> TradeSessionStateEntityIdUnique<'ctx> {
+    /// Find the subscribed row whose `entity_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u64) -> Option<TradeSessionState> {
+        self.imp.find(col_val)
+    }
+}

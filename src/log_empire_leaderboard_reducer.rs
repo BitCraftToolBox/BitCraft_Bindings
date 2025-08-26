@@ -3,23 +3,16 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
-pub(super) struct LogEmpireLeaderboardArgs {
-    }
+pub(super) struct LogEmpireLeaderboardArgs {}
 
 impl From<LogEmpireLeaderboardArgs> for super::Reducer {
     fn from(args: LogEmpireLeaderboardArgs) -> Self {
         Self::LogEmpireLeaderboard
-}
+    }
 }
 
 impl __sdk::InModule for LogEmpireLeaderboardArgs {
@@ -38,7 +31,7 @@ pub trait log_empire_leaderboard {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_log_empire_leaderboard`] callbacks.
-    fn log_empire_leaderboard(&self, ) -> __sdk::Result<()>;
+    fn log_empire_leaderboard(&self) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `log_empire_leaderboard`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -46,38 +39,45 @@ pub trait log_empire_leaderboard {
     ///
     /// The returned [`LogEmpireLeaderboardCallbackId`] can be passed to [`Self::remove_on_log_empire_leaderboard`]
     /// to cancel the callback.
-    fn on_log_empire_leaderboard(&self, callback: impl FnMut(&super::ReducerEventContext, ) + Send + 'static) -> LogEmpireLeaderboardCallbackId;
+    fn on_log_empire_leaderboard(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext) + Send + 'static,
+    ) -> LogEmpireLeaderboardCallbackId;
     /// Cancel a callback previously registered by [`Self::on_log_empire_leaderboard`],
     /// causing it not to run in the future.
     fn remove_on_log_empire_leaderboard(&self, callback: LogEmpireLeaderboardCallbackId);
 }
 
 impl log_empire_leaderboard for super::RemoteReducers {
-    fn log_empire_leaderboard(&self, ) -> __sdk::Result<()> {
-        self.imp.call_reducer("log_empire_leaderboard", LogEmpireLeaderboardArgs {  })
+    fn log_empire_leaderboard(&self) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("log_empire_leaderboard", LogEmpireLeaderboardArgs {})
     }
     fn on_log_empire_leaderboard(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext) + Send + 'static,
     ) -> LogEmpireLeaderboardCallbackId {
         LogEmpireLeaderboardCallbackId(self.imp.on_reducer(
             "log_empire_leaderboard",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::LogEmpireLeaderboard {
-                            
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::LogEmpireLeaderboard {},
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx)
             }),
         ))
     }
     fn remove_on_log_empire_leaderboard(&self, callback: LogEmpireLeaderboardCallbackId) {
-        self.imp.remove_on_reducer("log_empire_leaderboard", callback.0)
+        self.imp
+            .remove_on_reducer("log_empire_leaderboard", callback.0)
     }
 }
 
@@ -97,7 +97,7 @@ pub trait set_flags_for_log_empire_leaderboard {
 
 impl set_flags_for_log_empire_leaderboard for super::SetReducerFlags {
     fn log_empire_leaderboard(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("log_empire_leaderboard", flags);
+        self.imp
+            .set_call_reducer_flags("log_empire_leaderboard", flags);
     }
 }
-

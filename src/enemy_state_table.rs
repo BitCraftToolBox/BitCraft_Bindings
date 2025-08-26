@@ -3,15 +3,10 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::enemy_state_type::EnemyState;
-use super::enemy_type_type::EnemyType;
 use super::enemy_status_type::EnemyStatus;
+use super::enemy_type_type::EnemyType;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `enemy_state`.
 ///
@@ -52,8 +47,12 @@ impl<'ctx> __sdk::Table for EnemyStateTableHandle<'ctx> {
     type Row = EnemyState;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = EnemyState> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = EnemyState> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = EnemyStateInsertCallbackId;
 
@@ -84,8 +83,7 @@ impl<'ctx> __sdk::Table for EnemyStateTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<EnemyState>("enemy_state");
+    let _table = client_cache.get_or_make_table::<EnemyState>("enemy_state");
     _table.add_unique_constraint::<u64>("entity_id", |row| &row.entity_id);
 }
 pub struct EnemyStateUpdateCallbackId(__sdk::CallbackId);
@@ -105,46 +103,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for EnemyStateTableHandle<'ctx> {
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<EnemyState>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<EnemyState>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<EnemyState>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `entity_id` unique index on the table `enemy_state`,
-        /// which allows point queries on the field of the same name
-        /// via the [`EnemyStateEntityIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.enemy_state().entity_id().find(...)`.
-        pub struct EnemyStateEntityIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<EnemyState, u64>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `entity_id` unique index on the table `enemy_state`,
+/// which allows point queries on the field of the same name
+/// via the [`EnemyStateEntityIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.enemy_state().entity_id().find(...)`.
+pub struct EnemyStateEntityIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<EnemyState, u64>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> EnemyStateTableHandle<'ctx> {
-            /// Get a handle on the `entity_id` unique index on the table `enemy_state`.
-            pub fn entity_id(&self) -> EnemyStateEntityIdUnique<'ctx> {
-                EnemyStateEntityIdUnique {
-                    imp: self.imp.get_unique_constraint::<u64>("entity_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> EnemyStateTableHandle<'ctx> {
+    /// Get a handle on the `entity_id` unique index on the table `enemy_state`.
+    pub fn entity_id(&self) -> EnemyStateEntityIdUnique<'ctx> {
+        EnemyStateEntityIdUnique {
+            imp: self.imp.get_unique_constraint::<u64>("entity_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> EnemyStateEntityIdUnique<'ctx> {
-            /// Find the subscribed row whose `entity_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u64) -> Option<EnemyState> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> EnemyStateEntityIdUnique<'ctx> {
+    /// Find the subscribed row whose `entity_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u64) -> Option<EnemyState> {
+        self.imp.find(col_val)
+    }
+}

@@ -3,13 +3,8 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::inter_module_response_message_counter_type::InterModuleResponseMessageCounter;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `inter_module_response_message_counter`.
 ///
@@ -31,13 +26,19 @@ pub struct InterModuleResponseMessageCounterTableHandle<'ctx> {
 pub trait InterModuleResponseMessageCounterTableAccess {
     #[allow(non_snake_case)]
     /// Obtain a [`InterModuleResponseMessageCounterTableHandle`], which mediates access to the table `inter_module_response_message_counter`.
-    fn inter_module_response_message_counter(&self) -> InterModuleResponseMessageCounterTableHandle<'_>;
+    fn inter_module_response_message_counter(
+        &self,
+    ) -> InterModuleResponseMessageCounterTableHandle<'_>;
 }
 
 impl InterModuleResponseMessageCounterTableAccess for super::RemoteTables {
-    fn inter_module_response_message_counter(&self) -> InterModuleResponseMessageCounterTableHandle<'_> {
+    fn inter_module_response_message_counter(
+        &self,
+    ) -> InterModuleResponseMessageCounterTableHandle<'_> {
         InterModuleResponseMessageCounterTableHandle {
-            imp: self.imp.get_table::<InterModuleResponseMessageCounter>("inter_module_response_message_counter"),
+            imp: self.imp.get_table::<InterModuleResponseMessageCounter>(
+                "inter_module_response_message_counter",
+            ),
             ctx: std::marker::PhantomData,
         }
     }
@@ -50,8 +51,12 @@ impl<'ctx> __sdk::Table for InterModuleResponseMessageCounterTableHandle<'ctx> {
     type Row = InterModuleResponseMessageCounter;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = InterModuleResponseMessageCounter> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = InterModuleResponseMessageCounter> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = InterModuleResponseMessageCounterInsertCallbackId;
 
@@ -82,8 +87,9 @@ impl<'ctx> __sdk::Table for InterModuleResponseMessageCounterTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<InterModuleResponseMessageCounter>("inter_module_response_message_counter");
+    let _table = client_cache.get_or_make_table::<InterModuleResponseMessageCounter>(
+        "inter_module_response_message_counter",
+    );
     _table.add_unique_constraint::<u8>("dst_module_id", |row| &row.dst_module_id);
 }
 pub struct InterModuleResponseMessageCounterUpdateCallbackId(__sdk::CallbackId);
@@ -103,7 +109,6 @@ impl<'ctx> __sdk::TableWithPrimaryKey for InterModuleResponseMessageCounterTable
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
@@ -112,37 +117,38 @@ pub(super) fn parse_table_update(
         __sdk::InternalError::failed_parse(
             "TableUpdate<InterModuleResponseMessageCounter>",
             "TableUpdate",
-        ).with_cause(e).into()
+        )
+        .with_cause(e)
+        .into()
     })
 }
 
-        /// Access to the `dst_module_id` unique index on the table `inter_module_response_message_counter`,
-        /// which allows point queries on the field of the same name
-        /// via the [`InterModuleResponseMessageCounterDstModuleIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.inter_module_response_message_counter().dst_module_id().find(...)`.
-        pub struct InterModuleResponseMessageCounterDstModuleIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<InterModuleResponseMessageCounter, u8>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `dst_module_id` unique index on the table `inter_module_response_message_counter`,
+/// which allows point queries on the field of the same name
+/// via the [`InterModuleResponseMessageCounterDstModuleIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.inter_module_response_message_counter().dst_module_id().find(...)`.
+pub struct InterModuleResponseMessageCounterDstModuleIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<InterModuleResponseMessageCounter, u8>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> InterModuleResponseMessageCounterTableHandle<'ctx> {
-            /// Get a handle on the `dst_module_id` unique index on the table `inter_module_response_message_counter`.
-            pub fn dst_module_id(&self) -> InterModuleResponseMessageCounterDstModuleIdUnique<'ctx> {
-                InterModuleResponseMessageCounterDstModuleIdUnique {
-                    imp: self.imp.get_unique_constraint::<u8>("dst_module_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> InterModuleResponseMessageCounterTableHandle<'ctx> {
+    /// Get a handle on the `dst_module_id` unique index on the table `inter_module_response_message_counter`.
+    pub fn dst_module_id(&self) -> InterModuleResponseMessageCounterDstModuleIdUnique<'ctx> {
+        InterModuleResponseMessageCounterDstModuleIdUnique {
+            imp: self.imp.get_unique_constraint::<u8>("dst_module_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> InterModuleResponseMessageCounterDstModuleIdUnique<'ctx> {
-            /// Find the subscribed row whose `dst_module_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u8) -> Option<InterModuleResponseMessageCounter> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> InterModuleResponseMessageCounterDstModuleIdUnique<'ctx> {
+    /// Find the subscribed row whose `dst_module_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u8) -> Option<InterModuleResponseMessageCounter> {
+        self.imp.find(col_val)
+    }
+}

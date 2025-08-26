@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::empire_dismantle_request_type::EmpireDismantleRequest;
 
@@ -22,8 +17,8 @@ impl From<EmpireDismantleArgs> for super::Reducer {
     fn from(args: EmpireDismantleArgs) -> Self {
         Self::EmpireDismantle {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for EmpireDismantleArgs {
@@ -42,8 +37,7 @@ pub trait empire_dismantle {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_empire_dismantle`] callbacks.
-    fn empire_dismantle(&self, request: EmpireDismantleRequest,
-) -> __sdk::Result<()>;
+    fn empire_dismantle(&self, request: EmpireDismantleRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `empire_dismantle`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,39 @@ pub trait empire_dismantle {
     ///
     /// The returned [`EmpireDismantleCallbackId`] can be passed to [`Self::remove_on_empire_dismantle`]
     /// to cancel the callback.
-    fn on_empire_dismantle(&self, callback: impl FnMut(&super::ReducerEventContext, &EmpireDismantleRequest, ) + Send + 'static) -> EmpireDismantleCallbackId;
+    fn on_empire_dismantle(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &EmpireDismantleRequest) + Send + 'static,
+    ) -> EmpireDismantleCallbackId;
     /// Cancel a callback previously registered by [`Self::on_empire_dismantle`],
     /// causing it not to run in the future.
     fn remove_on_empire_dismantle(&self, callback: EmpireDismantleCallbackId);
 }
 
 impl empire_dismantle for super::RemoteReducers {
-    fn empire_dismantle(&self, request: EmpireDismantleRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("empire_dismantle", EmpireDismantleArgs { request,  })
+    fn empire_dismantle(&self, request: EmpireDismantleRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("empire_dismantle", EmpireDismantleArgs { request })
     }
     fn on_empire_dismantle(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &EmpireDismantleRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &EmpireDismantleRequest) + Send + 'static,
     ) -> EmpireDismantleCallbackId {
         EmpireDismantleCallbackId(self.imp.on_reducer(
             "empire_dismantle",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::EmpireDismantle {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::EmpireDismantle { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
@@ -106,4 +105,3 @@ impl set_flags_for_empire_dismantle for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("empire_dismantle", flags);
     }
 }
-

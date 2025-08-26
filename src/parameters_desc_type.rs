@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::movement_speed_type::MovementSpeed;
 
@@ -16,7 +11,7 @@ use super::movement_speed_type::MovementSpeed;
 #[sats(crate = __lib)]
 pub struct ParametersDesc {
     pub version: i32,
-    pub default_speed: Vec::<MovementSpeed>,
+    pub default_speed: Vec<MovementSpeed>,
     pub default_num_inventory_pockets: i32,
     pub skill_yield_power_exponent: f32,
     pub skill_yield_log_base: f32,
@@ -101,7 +96,7 @@ pub struct ParametersDesc {
     pub dropped_inventory_despawn_seconds: i32,
     pub enemy_loot_ownership_seconds: i32,
     pub traveler_tasks_per_npc: i32,
-    pub traveler_tasks_times_of_day: Vec::<i32>,
+    pub traveler_tasks_times_of_day: Vec<i32>,
     pub teleport_channel_time_home: f32,
     pub teleport_channel_time_waystone: f32,
     pub teleportation_home_energy_cost: f32,
@@ -118,8 +113,6 @@ pub struct ParametersDesc {
     pub player_housing_income_time_of_day: f32,
 }
 
-
 impl __sdk::InModule for ParametersDesc {
     type Module = super::RemoteModule;
 }
-

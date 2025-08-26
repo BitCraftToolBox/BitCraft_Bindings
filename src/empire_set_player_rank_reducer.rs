@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::empire_set_player_rank_request_type::EmpireSetPlayerRankRequest;
 
@@ -22,8 +17,8 @@ impl From<EmpireSetPlayerRankArgs> for super::Reducer {
     fn from(args: EmpireSetPlayerRankArgs) -> Self {
         Self::EmpireSetPlayerRank {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for EmpireSetPlayerRankArgs {
@@ -42,8 +37,7 @@ pub trait empire_set_player_rank {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_empire_set_player_rank`] callbacks.
-    fn empire_set_player_rank(&self, request: EmpireSetPlayerRankRequest,
-) -> __sdk::Result<()>;
+    fn empire_set_player_rank(&self, request: EmpireSetPlayerRankRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `empire_set_player_rank`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,49 @@ pub trait empire_set_player_rank {
     ///
     /// The returned [`EmpireSetPlayerRankCallbackId`] can be passed to [`Self::remove_on_empire_set_player_rank`]
     /// to cancel the callback.
-    fn on_empire_set_player_rank(&self, callback: impl FnMut(&super::ReducerEventContext, &EmpireSetPlayerRankRequest, ) + Send + 'static) -> EmpireSetPlayerRankCallbackId;
+    fn on_empire_set_player_rank(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &EmpireSetPlayerRankRequest) + Send + 'static,
+    ) -> EmpireSetPlayerRankCallbackId;
     /// Cancel a callback previously registered by [`Self::on_empire_set_player_rank`],
     /// causing it not to run in the future.
     fn remove_on_empire_set_player_rank(&self, callback: EmpireSetPlayerRankCallbackId);
 }
 
 impl empire_set_player_rank for super::RemoteReducers {
-    fn empire_set_player_rank(&self, request: EmpireSetPlayerRankRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("empire_set_player_rank", EmpireSetPlayerRankArgs { request,  })
+    fn empire_set_player_rank(&self, request: EmpireSetPlayerRankRequest) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "empire_set_player_rank",
+            EmpireSetPlayerRankArgs { request },
+        )
     }
     fn on_empire_set_player_rank(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &EmpireSetPlayerRankRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &EmpireSetPlayerRankRequest)
+            + Send
+            + 'static,
     ) -> EmpireSetPlayerRankCallbackId {
         EmpireSetPlayerRankCallbackId(self.imp.on_reducer(
             "empire_set_player_rank",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::EmpireSetPlayerRank {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::EmpireSetPlayerRank { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
     fn remove_on_empire_set_player_rank(&self, callback: EmpireSetPlayerRankCallbackId) {
-        self.imp.remove_on_reducer("empire_set_player_rank", callback.0)
+        self.imp
+            .remove_on_reducer("empire_set_player_rank", callback.0)
     }
 }
 
@@ -103,7 +107,7 @@ pub trait set_flags_for_empire_set_player_rank {
 
 impl set_flags_for_empire_set_player_rank for super::SetReducerFlags {
     fn empire_set_player_rank(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("empire_set_player_rank", flags);
+        self.imp
+            .set_call_reducer_flags("empire_set_player_rank", flags);
     }
 }
-

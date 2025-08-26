@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::knowledge_entity_entry_type::KnowledgeEntityEntry;
 
@@ -16,11 +11,9 @@ use super::knowledge_entity_entry_type::KnowledgeEntityEntry;
 #[sats(crate = __lib)]
 pub struct KnowledgeClaimState {
     pub entity_id: u64,
-    pub entries: Vec::<KnowledgeEntityEntry>,
+    pub entries: Vec<KnowledgeEntityEntry>,
 }
-
 
 impl __sdk::InModule for KnowledgeClaimState {
     type Module = super::RemoteModule;
 }
-

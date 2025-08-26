@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::empire_player_data_state_type::EmpirePlayerDataState;
 
@@ -18,12 +13,8 @@ pub enum EmpirePlayerDataStateOp {
     Insert(EmpirePlayerDataState),
 
     Delete(EmpirePlayerDataState),
-
 }
-
-
 
 impl __sdk::InModule for EmpirePlayerDataStateOp {
     type Module = super::RemoteModule;
 }
-

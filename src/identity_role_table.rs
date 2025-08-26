@@ -3,14 +3,9 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::identity_role_type::IdentityRole;
 use super::role_type::Role;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `identity_role`.
 ///
@@ -51,8 +46,12 @@ impl<'ctx> __sdk::Table for IdentityRoleTableHandle<'ctx> {
     type Row = IdentityRole;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = IdentityRole> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = IdentityRole> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = IdentityRoleInsertCallbackId;
 
@@ -83,8 +82,7 @@ impl<'ctx> __sdk::Table for IdentityRoleTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<IdentityRole>("identity_role");
+    let _table = client_cache.get_or_make_table::<IdentityRole>("identity_role");
     _table.add_unique_constraint::<__sdk::Identity>("identity", |row| &row.identity);
 }
 pub struct IdentityRoleUpdateCallbackId(__sdk::CallbackId);
@@ -104,46 +102,45 @@ impl<'ctx> __sdk::TableWithPrimaryKey for IdentityRoleTableHandle<'ctx> {
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<IdentityRole>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<IdentityRole>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<IdentityRole>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `identity` unique index on the table `identity_role`,
-        /// which allows point queries on the field of the same name
-        /// via the [`IdentityRoleIdentityUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.identity_role().identity().find(...)`.
-        pub struct IdentityRoleIdentityUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<IdentityRole, __sdk::Identity>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `identity` unique index on the table `identity_role`,
+/// which allows point queries on the field of the same name
+/// via the [`IdentityRoleIdentityUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.identity_role().identity().find(...)`.
+pub struct IdentityRoleIdentityUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<IdentityRole, __sdk::Identity>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> IdentityRoleTableHandle<'ctx> {
-            /// Get a handle on the `identity` unique index on the table `identity_role`.
-            pub fn identity(&self) -> IdentityRoleIdentityUnique<'ctx> {
-                IdentityRoleIdentityUnique {
-                    imp: self.imp.get_unique_constraint::<__sdk::Identity>("identity"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> IdentityRoleTableHandle<'ctx> {
+    /// Get a handle on the `identity` unique index on the table `identity_role`.
+    pub fn identity(&self) -> IdentityRoleIdentityUnique<'ctx> {
+        IdentityRoleIdentityUnique {
+            imp: self
+                .imp
+                .get_unique_constraint::<__sdk::Identity>("identity"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> IdentityRoleIdentityUnique<'ctx> {
-            /// Find the subscribed row whose `identity` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &__sdk::Identity) -> Option<IdentityRole> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> IdentityRoleIdentityUnique<'ctx> {
+    /// Find the subscribed row whose `identity` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &__sdk::Identity) -> Option<IdentityRole> {
+        self.imp.find(col_val)
+    }
+}

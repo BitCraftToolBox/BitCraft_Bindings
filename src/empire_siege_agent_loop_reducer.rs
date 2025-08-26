@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::empire_siege_loop_timer_type::EmpireSiegeLoopTimer;
 
@@ -20,10 +15,8 @@ pub(super) struct EmpireSiegeAgentLoopArgs {
 
 impl From<EmpireSiegeAgentLoopArgs> for super::Reducer {
     fn from(args: EmpireSiegeAgentLoopArgs) -> Self {
-        Self::EmpireSiegeAgentLoop {
-            timer: args.timer,
-}
-}
+        Self::EmpireSiegeAgentLoop { timer: args.timer }
+    }
 }
 
 impl __sdk::InModule for EmpireSiegeAgentLoopArgs {
@@ -42,8 +35,7 @@ pub trait empire_siege_agent_loop {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_empire_siege_agent_loop`] callbacks.
-    fn empire_siege_agent_loop(&self, timer: EmpireSiegeLoopTimer,
-) -> __sdk::Result<()>;
+    fn empire_siege_agent_loop(&self, timer: EmpireSiegeLoopTimer) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `empire_siege_agent_loop`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +43,47 @@ pub trait empire_siege_agent_loop {
     ///
     /// The returned [`EmpireSiegeAgentLoopCallbackId`] can be passed to [`Self::remove_on_empire_siege_agent_loop`]
     /// to cancel the callback.
-    fn on_empire_siege_agent_loop(&self, callback: impl FnMut(&super::ReducerEventContext, &EmpireSiegeLoopTimer, ) + Send + 'static) -> EmpireSiegeAgentLoopCallbackId;
+    fn on_empire_siege_agent_loop(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &EmpireSiegeLoopTimer) + Send + 'static,
+    ) -> EmpireSiegeAgentLoopCallbackId;
     /// Cancel a callback previously registered by [`Self::on_empire_siege_agent_loop`],
     /// causing it not to run in the future.
     fn remove_on_empire_siege_agent_loop(&self, callback: EmpireSiegeAgentLoopCallbackId);
 }
 
 impl empire_siege_agent_loop for super::RemoteReducers {
-    fn empire_siege_agent_loop(&self, timer: EmpireSiegeLoopTimer,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("empire_siege_agent_loop", EmpireSiegeAgentLoopArgs { timer,  })
+    fn empire_siege_agent_loop(&self, timer: EmpireSiegeLoopTimer) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "empire_siege_agent_loop",
+            EmpireSiegeAgentLoopArgs { timer },
+        )
     }
     fn on_empire_siege_agent_loop(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &EmpireSiegeLoopTimer, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &EmpireSiegeLoopTimer) + Send + 'static,
     ) -> EmpireSiegeAgentLoopCallbackId {
         EmpireSiegeAgentLoopCallbackId(self.imp.on_reducer(
             "empire_siege_agent_loop",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::EmpireSiegeAgentLoop {
-                            timer, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::EmpireSiegeAgentLoop { timer },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, timer, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, timer)
             }),
         ))
     }
     fn remove_on_empire_siege_agent_loop(&self, callback: EmpireSiegeAgentLoopCallbackId) {
-        self.imp.remove_on_reducer("empire_siege_agent_loop", callback.0)
+        self.imp
+            .remove_on_reducer("empire_siege_agent_loop", callback.0)
     }
 }
 
@@ -103,7 +103,7 @@ pub trait set_flags_for_empire_siege_agent_loop {
 
 impl set_flags_for_empire_siege_agent_loop for super::SetReducerFlags {
     fn empire_siege_agent_loop(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("empire_siege_agent_loop", flags);
+        self.imp
+            .set_call_reducer_flags("empire_siege_agent_loop", flags);
     }
 }
-

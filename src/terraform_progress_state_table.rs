@@ -3,13 +3,8 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::terraform_progress_state_type::TerraformProgressState;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `terraform_progress_state`.
 ///
@@ -37,7 +32,9 @@ pub trait TerraformProgressStateTableAccess {
 impl TerraformProgressStateTableAccess for super::RemoteTables {
     fn terraform_progress_state(&self) -> TerraformProgressStateTableHandle<'_> {
         TerraformProgressStateTableHandle {
-            imp: self.imp.get_table::<TerraformProgressState>("terraform_progress_state"),
+            imp: self
+                .imp
+                .get_table::<TerraformProgressState>("terraform_progress_state"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -50,8 +47,12 @@ impl<'ctx> __sdk::Table for TerraformProgressStateTableHandle<'ctx> {
     type Row = TerraformProgressState;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = TerraformProgressState> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = TerraformProgressState> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = TerraformProgressStateInsertCallbackId;
 
@@ -82,8 +83,8 @@ impl<'ctx> __sdk::Table for TerraformProgressStateTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<TerraformProgressState>("terraform_progress_state");
+    let _table =
+        client_cache.get_or_make_table::<TerraformProgressState>("terraform_progress_state");
     _table.add_unique_constraint::<u64>("entity_id", |row| &row.entity_id);
 }
 pub struct TerraformProgressStateUpdateCallbackId(__sdk::CallbackId);
@@ -103,46 +104,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for TerraformProgressStateTableHandle<'ctx
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<TerraformProgressState>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<TerraformProgressState>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<TerraformProgressState>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `entity_id` unique index on the table `terraform_progress_state`,
-        /// which allows point queries on the field of the same name
-        /// via the [`TerraformProgressStateEntityIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.terraform_progress_state().entity_id().find(...)`.
-        pub struct TerraformProgressStateEntityIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<TerraformProgressState, u64>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `entity_id` unique index on the table `terraform_progress_state`,
+/// which allows point queries on the field of the same name
+/// via the [`TerraformProgressStateEntityIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.terraform_progress_state().entity_id().find(...)`.
+pub struct TerraformProgressStateEntityIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<TerraformProgressState, u64>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> TerraformProgressStateTableHandle<'ctx> {
-            /// Get a handle on the `entity_id` unique index on the table `terraform_progress_state`.
-            pub fn entity_id(&self) -> TerraformProgressStateEntityIdUnique<'ctx> {
-                TerraformProgressStateEntityIdUnique {
-                    imp: self.imp.get_unique_constraint::<u64>("entity_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> TerraformProgressStateTableHandle<'ctx> {
+    /// Get a handle on the `entity_id` unique index on the table `terraform_progress_state`.
+    pub fn entity_id(&self) -> TerraformProgressStateEntityIdUnique<'ctx> {
+        TerraformProgressStateEntityIdUnique {
+            imp: self.imp.get_unique_constraint::<u64>("entity_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> TerraformProgressStateEntityIdUnique<'ctx> {
-            /// Find the subscribed row whose `entity_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u64) -> Option<TerraformProgressState> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> TerraformProgressStateEntityIdUnique<'ctx> {
+    /// Find the subscribed row whose `entity_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u64) -> Option<TerraformProgressState> {
+        self.imp.find(col_val)
+    }
+}

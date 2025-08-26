@@ -3,13 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -23,8 +17,8 @@ impl From<DirectMessagePostMessageArgs> for super::Reducer {
         Self::DirectMessagePostMessage {
             receiver: args.receiver,
             text: args.text,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for DirectMessagePostMessageArgs {
@@ -43,9 +37,7 @@ pub trait direct_message_post_message {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_direct_message_post_message`] callbacks.
-    fn direct_message_post_message(&self, receiver: String,
-text: String,
-) -> __sdk::Result<()>;
+    fn direct_message_post_message(&self, receiver: String, text: String) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `direct_message_post_message`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -53,40 +45,47 @@ text: String,
     ///
     /// The returned [`DirectMessagePostMessageCallbackId`] can be passed to [`Self::remove_on_direct_message_post_message`]
     /// to cancel the callback.
-    fn on_direct_message_post_message(&self, callback: impl FnMut(&super::ReducerEventContext, &String, &String, ) + Send + 'static) -> DirectMessagePostMessageCallbackId;
+    fn on_direct_message_post_message(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &String, &String) + Send + 'static,
+    ) -> DirectMessagePostMessageCallbackId;
     /// Cancel a callback previously registered by [`Self::on_direct_message_post_message`],
     /// causing it not to run in the future.
     fn remove_on_direct_message_post_message(&self, callback: DirectMessagePostMessageCallbackId);
 }
 
 impl direct_message_post_message for super::RemoteReducers {
-    fn direct_message_post_message(&self, receiver: String,
-text: String,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("direct_message_post_message", DirectMessagePostMessageArgs { receiver, text,  })
+    fn direct_message_post_message(&self, receiver: String, text: String) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "direct_message_post_message",
+            DirectMessagePostMessageArgs { receiver, text },
+        )
     }
     fn on_direct_message_post_message(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &String, &String, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &String, &String) + Send + 'static,
     ) -> DirectMessagePostMessageCallbackId {
         DirectMessagePostMessageCallbackId(self.imp.on_reducer(
             "direct_message_post_message",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::DirectMessagePostMessage {
-                            receiver, text, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::DirectMessagePostMessage { receiver, text },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, receiver, text, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, receiver, text)
             }),
         ))
     }
     fn remove_on_direct_message_post_message(&self, callback: DirectMessagePostMessageCallbackId) {
-        self.imp.remove_on_reducer("direct_message_post_message", callback.0)
+        self.imp
+            .remove_on_reducer("direct_message_post_message", callback.0)
     }
 }
 
@@ -106,7 +105,7 @@ pub trait set_flags_for_direct_message_post_message {
 
 impl set_flags_for_direct_message_post_message for super::SetReducerFlags {
     fn direct_message_post_message(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("direct_message_post_message", flags);
+        self.imp
+            .set_call_reducer_flags("direct_message_post_message", flags);
     }
 }
-

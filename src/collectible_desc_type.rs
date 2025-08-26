@@ -3,15 +3,10 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
-use super::rarity_type::Rarity;
 use super::collectible_type_type::CollectibleType;
+use super::rarity_type::Rarity;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -35,12 +30,10 @@ pub struct CollectibleDesc {
     pub tag: String,
     pub display_string: String,
     pub item_deed_id: i32,
-    pub required_knowledges_to_use: Vec::<i32>,
-    pub required_knowledges_to_convert: Vec::<i32>,
+    pub required_knowledges_to_use: Vec<i32>,
+    pub required_knowledges_to_convert: Vec<i32>,
 }
-
 
 impl __sdk::InModule for CollectibleDesc {
     type Module = super::RemoteModule;
 }
-

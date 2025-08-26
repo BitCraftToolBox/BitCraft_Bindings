@@ -3,13 +3,8 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::wall_desc_type::WallDesc;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `wall_desc`.
 ///
@@ -50,8 +45,12 @@ impl<'ctx> __sdk::Table for WallDescTableHandle<'ctx> {
     type Row = WallDesc;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = WallDesc> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = WallDesc> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = WallDescInsertCallbackId;
 
@@ -82,8 +81,7 @@ impl<'ctx> __sdk::Table for WallDescTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<WallDesc>("wall_desc");
+    let _table = client_cache.get_or_make_table::<WallDesc>("wall_desc");
     _table.add_unique_constraint::<i32>("building_id", |row| &row.building_id);
 }
 pub struct WallDescUpdateCallbackId(__sdk::CallbackId);
@@ -103,46 +101,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for WallDescTableHandle<'ctx> {
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<WallDesc>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<WallDesc>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<WallDesc>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `building_id` unique index on the table `wall_desc`,
-        /// which allows point queries on the field of the same name
-        /// via the [`WallDescBuildingIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.wall_desc().building_id().find(...)`.
-        pub struct WallDescBuildingIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<WallDesc, i32>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `building_id` unique index on the table `wall_desc`,
+/// which allows point queries on the field of the same name
+/// via the [`WallDescBuildingIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.wall_desc().building_id().find(...)`.
+pub struct WallDescBuildingIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<WallDesc, i32>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> WallDescTableHandle<'ctx> {
-            /// Get a handle on the `building_id` unique index on the table `wall_desc`.
-            pub fn building_id(&self) -> WallDescBuildingIdUnique<'ctx> {
-                WallDescBuildingIdUnique {
-                    imp: self.imp.get_unique_constraint::<i32>("building_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> WallDescTableHandle<'ctx> {
+    /// Get a handle on the `building_id` unique index on the table `wall_desc`.
+    pub fn building_id(&self) -> WallDescBuildingIdUnique<'ctx> {
+        WallDescBuildingIdUnique {
+            imp: self.imp.get_unique_constraint::<i32>("building_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> WallDescBuildingIdUnique<'ctx> {
-            /// Find the subscribed row whose `building_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &i32) -> Option<WallDesc> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> WallDescBuildingIdUnique<'ctx> {
+    /// Find the subscribed row whose `building_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &i32) -> Option<WallDesc> {
+        self.imp.find(col_val)
+    }
+}

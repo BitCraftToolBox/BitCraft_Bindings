@@ -3,13 +3,8 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::empire_decay_loop_timer_type::EmpireDecayLoopTimer;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `empire_decay_loop_timer`.
 ///
@@ -37,7 +32,9 @@ pub trait EmpireDecayLoopTimerTableAccess {
 impl EmpireDecayLoopTimerTableAccess for super::RemoteTables {
     fn empire_decay_loop_timer(&self) -> EmpireDecayLoopTimerTableHandle<'_> {
         EmpireDecayLoopTimerTableHandle {
-            imp: self.imp.get_table::<EmpireDecayLoopTimer>("empire_decay_loop_timer"),
+            imp: self
+                .imp
+                .get_table::<EmpireDecayLoopTimer>("empire_decay_loop_timer"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -50,8 +47,12 @@ impl<'ctx> __sdk::Table for EmpireDecayLoopTimerTableHandle<'ctx> {
     type Row = EmpireDecayLoopTimer;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = EmpireDecayLoopTimer> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = EmpireDecayLoopTimer> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = EmpireDecayLoopTimerInsertCallbackId;
 
@@ -82,8 +83,7 @@ impl<'ctx> __sdk::Table for EmpireDecayLoopTimerTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<EmpireDecayLoopTimer>("empire_decay_loop_timer");
+    let _table = client_cache.get_or_make_table::<EmpireDecayLoopTimer>("empire_decay_loop_timer");
     _table.add_unique_constraint::<u64>("scheduled_id", |row| &row.scheduled_id);
 }
 pub struct EmpireDecayLoopTimerUpdateCallbackId(__sdk::CallbackId);
@@ -103,46 +103,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for EmpireDecayLoopTimerTableHandle<'ctx> 
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<EmpireDecayLoopTimer>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<EmpireDecayLoopTimer>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<EmpireDecayLoopTimer>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `scheduled_id` unique index on the table `empire_decay_loop_timer`,
-        /// which allows point queries on the field of the same name
-        /// via the [`EmpireDecayLoopTimerScheduledIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.empire_decay_loop_timer().scheduled_id().find(...)`.
-        pub struct EmpireDecayLoopTimerScheduledIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<EmpireDecayLoopTimer, u64>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `scheduled_id` unique index on the table `empire_decay_loop_timer`,
+/// which allows point queries on the field of the same name
+/// via the [`EmpireDecayLoopTimerScheduledIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.empire_decay_loop_timer().scheduled_id().find(...)`.
+pub struct EmpireDecayLoopTimerScheduledIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<EmpireDecayLoopTimer, u64>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> EmpireDecayLoopTimerTableHandle<'ctx> {
-            /// Get a handle on the `scheduled_id` unique index on the table `empire_decay_loop_timer`.
-            pub fn scheduled_id(&self) -> EmpireDecayLoopTimerScheduledIdUnique<'ctx> {
-                EmpireDecayLoopTimerScheduledIdUnique {
-                    imp: self.imp.get_unique_constraint::<u64>("scheduled_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> EmpireDecayLoopTimerTableHandle<'ctx> {
+    /// Get a handle on the `scheduled_id` unique index on the table `empire_decay_loop_timer`.
+    pub fn scheduled_id(&self) -> EmpireDecayLoopTimerScheduledIdUnique<'ctx> {
+        EmpireDecayLoopTimerScheduledIdUnique {
+            imp: self.imp.get_unique_constraint::<u64>("scheduled_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> EmpireDecayLoopTimerScheduledIdUnique<'ctx> {
-            /// Find the subscribed row whose `scheduled_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u64) -> Option<EmpireDecayLoopTimer> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> EmpireDecayLoopTimerScheduledIdUnique<'ctx> {
+    /// Find the subscribed row whose `scheduled_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u64) -> Option<EmpireDecayLoopTimer> {
+        self.imp.find(col_val)
+    }
+}

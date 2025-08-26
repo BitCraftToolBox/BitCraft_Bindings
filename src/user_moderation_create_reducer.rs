@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::user_moderation_create_user_policy_request_type::UserModerationCreateUserPolicyRequest;
 
@@ -22,8 +17,8 @@ impl From<UserModerationCreateArgs> for super::Reducer {
     fn from(args: UserModerationCreateArgs) -> Self {
         Self::UserModerationCreate {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for UserModerationCreateArgs {
@@ -42,8 +37,10 @@ pub trait user_moderation_create {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_user_moderation_create`] callbacks.
-    fn user_moderation_create(&self, request: UserModerationCreateUserPolicyRequest,
-) -> __sdk::Result<()>;
+    fn user_moderation_create(
+        &self,
+        request: UserModerationCreateUserPolicyRequest,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `user_moderation_create`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +48,54 @@ pub trait user_moderation_create {
     ///
     /// The returned [`UserModerationCreateCallbackId`] can be passed to [`Self::remove_on_user_moderation_create`]
     /// to cancel the callback.
-    fn on_user_moderation_create(&self, callback: impl FnMut(&super::ReducerEventContext, &UserModerationCreateUserPolicyRequest, ) + Send + 'static) -> UserModerationCreateCallbackId;
+    fn on_user_moderation_create(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &UserModerationCreateUserPolicyRequest)
+            + Send
+            + 'static,
+    ) -> UserModerationCreateCallbackId;
     /// Cancel a callback previously registered by [`Self::on_user_moderation_create`],
     /// causing it not to run in the future.
     fn remove_on_user_moderation_create(&self, callback: UserModerationCreateCallbackId);
 }
 
 impl user_moderation_create for super::RemoteReducers {
-    fn user_moderation_create(&self, request: UserModerationCreateUserPolicyRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("user_moderation_create", UserModerationCreateArgs { request,  })
+    fn user_moderation_create(
+        &self,
+        request: UserModerationCreateUserPolicyRequest,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "user_moderation_create",
+            UserModerationCreateArgs { request },
+        )
     }
     fn on_user_moderation_create(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &UserModerationCreateUserPolicyRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &UserModerationCreateUserPolicyRequest)
+            + Send
+            + 'static,
     ) -> UserModerationCreateCallbackId {
         UserModerationCreateCallbackId(self.imp.on_reducer(
             "user_moderation_create",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::UserModerationCreate {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::UserModerationCreate { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
     fn remove_on_user_moderation_create(&self, callback: UserModerationCreateCallbackId) {
-        self.imp.remove_on_reducer("user_moderation_create", callback.0)
+        self.imp
+            .remove_on_reducer("user_moderation_create", callback.0)
     }
 }
 
@@ -103,7 +115,7 @@ pub trait set_flags_for_user_moderation_create {
 
 impl set_flags_for_user_moderation_create for super::SetReducerFlags {
     fn user_moderation_create(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("user_moderation_create", flags);
+        self.imp
+            .set_call_reducer_flags("user_moderation_create", flags);
     }
 }
-

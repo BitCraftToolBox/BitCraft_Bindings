@@ -3,13 +3,8 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::world_region_name_state_type::WorldRegionNameState;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `world_region_name_state`.
 ///
@@ -37,7 +32,9 @@ pub trait WorldRegionNameStateTableAccess {
 impl WorldRegionNameStateTableAccess for super::RemoteTables {
     fn world_region_name_state(&self) -> WorldRegionNameStateTableHandle<'_> {
         WorldRegionNameStateTableHandle {
-            imp: self.imp.get_table::<WorldRegionNameState>("world_region_name_state"),
+            imp: self
+                .imp
+                .get_table::<WorldRegionNameState>("world_region_name_state"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -50,8 +47,12 @@ impl<'ctx> __sdk::Table for WorldRegionNameStateTableHandle<'ctx> {
     type Row = WorldRegionNameState;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = WorldRegionNameState> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = WorldRegionNameState> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = WorldRegionNameStateInsertCallbackId;
 
@@ -82,8 +83,7 @@ impl<'ctx> __sdk::Table for WorldRegionNameStateTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<WorldRegionNameState>("world_region_name_state");
+    let _table = client_cache.get_or_make_table::<WorldRegionNameState>("world_region_name_state");
     _table.add_unique_constraint::<u16>("id", |row| &row.id);
 }
 pub struct WorldRegionNameStateUpdateCallbackId(__sdk::CallbackId);
@@ -103,46 +103,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for WorldRegionNameStateTableHandle<'ctx> 
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<WorldRegionNameState>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<WorldRegionNameState>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<WorldRegionNameState>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `id` unique index on the table `world_region_name_state`,
-        /// which allows point queries on the field of the same name
-        /// via the [`WorldRegionNameStateIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.world_region_name_state().id().find(...)`.
-        pub struct WorldRegionNameStateIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<WorldRegionNameState, u16>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `id` unique index on the table `world_region_name_state`,
+/// which allows point queries on the field of the same name
+/// via the [`WorldRegionNameStateIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.world_region_name_state().id().find(...)`.
+pub struct WorldRegionNameStateIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<WorldRegionNameState, u16>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> WorldRegionNameStateTableHandle<'ctx> {
-            /// Get a handle on the `id` unique index on the table `world_region_name_state`.
-            pub fn id(&self) -> WorldRegionNameStateIdUnique<'ctx> {
-                WorldRegionNameStateIdUnique {
-                    imp: self.imp.get_unique_constraint::<u16>("id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> WorldRegionNameStateTableHandle<'ctx> {
+    /// Get a handle on the `id` unique index on the table `world_region_name_state`.
+    pub fn id(&self) -> WorldRegionNameStateIdUnique<'ctx> {
+        WorldRegionNameStateIdUnique {
+            imp: self.imp.get_unique_constraint::<u16>("id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> WorldRegionNameStateIdUnique<'ctx> {
-            /// Find the subscribed row whose `id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u16) -> Option<WorldRegionNameState> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> WorldRegionNameStateIdUnique<'ctx> {
+    /// Find the subscribed row whose `id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u16) -> Option<WorldRegionNameState> {
+        self.imp.find(col_val)
+    }
+}

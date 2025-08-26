@@ -3,23 +3,16 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
-pub(super) struct AdminRecalculateEmpireUpkeepsArgs {
-    }
+pub(super) struct AdminRecalculateEmpireUpkeepsArgs {}
 
 impl From<AdminRecalculateEmpireUpkeepsArgs> for super::Reducer {
     fn from(args: AdminRecalculateEmpireUpkeepsArgs) -> Self {
         Self::AdminRecalculateEmpireUpkeeps
-}
+    }
 }
 
 impl __sdk::InModule for AdminRecalculateEmpireUpkeepsArgs {
@@ -38,7 +31,7 @@ pub trait admin_recalculate_empire_upkeeps {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_admin_recalculate_empire_upkeeps`] callbacks.
-    fn admin_recalculate_empire_upkeeps(&self, ) -> __sdk::Result<()>;
+    fn admin_recalculate_empire_upkeeps(&self) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `admin_recalculate_empire_upkeeps`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -46,38 +39,53 @@ pub trait admin_recalculate_empire_upkeeps {
     ///
     /// The returned [`AdminRecalculateEmpireUpkeepsCallbackId`] can be passed to [`Self::remove_on_admin_recalculate_empire_upkeeps`]
     /// to cancel the callback.
-    fn on_admin_recalculate_empire_upkeeps(&self, callback: impl FnMut(&super::ReducerEventContext, ) + Send + 'static) -> AdminRecalculateEmpireUpkeepsCallbackId;
+    fn on_admin_recalculate_empire_upkeeps(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext) + Send + 'static,
+    ) -> AdminRecalculateEmpireUpkeepsCallbackId;
     /// Cancel a callback previously registered by [`Self::on_admin_recalculate_empire_upkeeps`],
     /// causing it not to run in the future.
-    fn remove_on_admin_recalculate_empire_upkeeps(&self, callback: AdminRecalculateEmpireUpkeepsCallbackId);
+    fn remove_on_admin_recalculate_empire_upkeeps(
+        &self,
+        callback: AdminRecalculateEmpireUpkeepsCallbackId,
+    );
 }
 
 impl admin_recalculate_empire_upkeeps for super::RemoteReducers {
-    fn admin_recalculate_empire_upkeeps(&self, ) -> __sdk::Result<()> {
-        self.imp.call_reducer("admin_recalculate_empire_upkeeps", AdminRecalculateEmpireUpkeepsArgs {  })
+    fn admin_recalculate_empire_upkeeps(&self) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "admin_recalculate_empire_upkeeps",
+            AdminRecalculateEmpireUpkeepsArgs {},
+        )
     }
     fn on_admin_recalculate_empire_upkeeps(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext) + Send + 'static,
     ) -> AdminRecalculateEmpireUpkeepsCallbackId {
         AdminRecalculateEmpireUpkeepsCallbackId(self.imp.on_reducer(
             "admin_recalculate_empire_upkeeps",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::AdminRecalculateEmpireUpkeeps {
-                            
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::AdminRecalculateEmpireUpkeeps {},
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx)
             }),
         ))
     }
-    fn remove_on_admin_recalculate_empire_upkeeps(&self, callback: AdminRecalculateEmpireUpkeepsCallbackId) {
-        self.imp.remove_on_reducer("admin_recalculate_empire_upkeeps", callback.0)
+    fn remove_on_admin_recalculate_empire_upkeeps(
+        &self,
+        callback: AdminRecalculateEmpireUpkeepsCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("admin_recalculate_empire_upkeeps", callback.0)
     }
 }
 
@@ -97,7 +105,7 @@ pub trait set_flags_for_admin_recalculate_empire_upkeeps {
 
 impl set_flags_for_admin_recalculate_empire_upkeeps for super::SetReducerFlags {
     fn admin_recalculate_empire_upkeeps(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("admin_recalculate_empire_upkeeps", flags);
+        self.imp
+            .set_call_reducer_flags("admin_recalculate_empire_upkeeps", flags);
     }
 }
-

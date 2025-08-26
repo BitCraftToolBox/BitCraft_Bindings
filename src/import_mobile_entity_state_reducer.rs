@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::mobile_entity_state_type::MobileEntityState;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct ImportMobileEntityStateArgs {
-    pub records: Vec::<MobileEntityState>,
+    pub records: Vec<MobileEntityState>,
 }
 
 impl From<ImportMobileEntityStateArgs> for super::Reducer {
     fn from(args: ImportMobileEntityStateArgs) -> Self {
         Self::ImportMobileEntityState {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ImportMobileEntityStateArgs {
@@ -42,8 +37,7 @@ pub trait import_mobile_entity_state {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_import_mobile_entity_state`] callbacks.
-    fn import_mobile_entity_state(&self, records: Vec::<MobileEntityState>,
-) -> __sdk::Result<()>;
+    fn import_mobile_entity_state(&self, records: Vec<MobileEntityState>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `import_mobile_entity_state`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,47 @@ pub trait import_mobile_entity_state {
     ///
     /// The returned [`ImportMobileEntityStateCallbackId`] can be passed to [`Self::remove_on_import_mobile_entity_state`]
     /// to cancel the callback.
-    fn on_import_mobile_entity_state(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<MobileEntityState>, ) + Send + 'static) -> ImportMobileEntityStateCallbackId;
+    fn on_import_mobile_entity_state(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<MobileEntityState>) + Send + 'static,
+    ) -> ImportMobileEntityStateCallbackId;
     /// Cancel a callback previously registered by [`Self::on_import_mobile_entity_state`],
     /// causing it not to run in the future.
     fn remove_on_import_mobile_entity_state(&self, callback: ImportMobileEntityStateCallbackId);
 }
 
 impl import_mobile_entity_state for super::RemoteReducers {
-    fn import_mobile_entity_state(&self, records: Vec::<MobileEntityState>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("import_mobile_entity_state", ImportMobileEntityStateArgs { records,  })
+    fn import_mobile_entity_state(&self, records: Vec<MobileEntityState>) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "import_mobile_entity_state",
+            ImportMobileEntityStateArgs { records },
+        )
     }
     fn on_import_mobile_entity_state(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<MobileEntityState>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<MobileEntityState>) + Send + 'static,
     ) -> ImportMobileEntityStateCallbackId {
         ImportMobileEntityStateCallbackId(self.imp.on_reducer(
             "import_mobile_entity_state",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ImportMobileEntityState {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ImportMobileEntityState { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
     fn remove_on_import_mobile_entity_state(&self, callback: ImportMobileEntityStateCallbackId) {
-        self.imp.remove_on_reducer("import_mobile_entity_state", callback.0)
+        self.imp
+            .remove_on_reducer("import_mobile_entity_state", callback.0)
     }
 }
 
@@ -103,7 +105,7 @@ pub trait set_flags_for_import_mobile_entity_state {
 
 impl set_flags_for_import_mobile_entity_state for super::SetReducerFlags {
     fn import_mobile_entity_state(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("import_mobile_entity_state", flags);
+        self.imp
+            .set_call_reducer_flags("import_mobile_entity_state", flags);
     }
 }
-

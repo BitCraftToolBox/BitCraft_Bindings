@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::knowledge_state_type::KnowledgeState;
 
@@ -19,8 +14,6 @@ pub struct KnowledgeEntityEntry {
     pub state: KnowledgeState,
 }
 
-
 impl __sdk::InModule for KnowledgeEntityEntry {
     type Module = super::RemoteModule;
 }
-

@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::empire_rank_state_type::EmpireRankState;
 
@@ -18,12 +13,8 @@ pub enum EmpireRankStateOp {
     Insert(EmpireRankState),
 
     Delete(EmpireRankState),
-
 }
-
-
 
 impl __sdk::InModule for EmpireRankStateOp {
     type Module = super::RemoteModule;
 }
-

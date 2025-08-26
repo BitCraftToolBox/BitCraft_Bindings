@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::wall_desc_type::WallDesc;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct ImportWallDescArgs {
-    pub records: Vec::<WallDesc>,
+    pub records: Vec<WallDesc>,
 }
 
 impl From<ImportWallDescArgs> for super::Reducer {
     fn from(args: ImportWallDescArgs) -> Self {
         Self::ImportWallDesc {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ImportWallDescArgs {
@@ -42,8 +37,7 @@ pub trait import_wall_desc {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_import_wall_desc`] callbacks.
-    fn import_wall_desc(&self, records: Vec::<WallDesc>,
-) -> __sdk::Result<()>;
+    fn import_wall_desc(&self, records: Vec<WallDesc>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `import_wall_desc`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,39 @@ pub trait import_wall_desc {
     ///
     /// The returned [`ImportWallDescCallbackId`] can be passed to [`Self::remove_on_import_wall_desc`]
     /// to cancel the callback.
-    fn on_import_wall_desc(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<WallDesc>, ) + Send + 'static) -> ImportWallDescCallbackId;
+    fn on_import_wall_desc(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<WallDesc>) + Send + 'static,
+    ) -> ImportWallDescCallbackId;
     /// Cancel a callback previously registered by [`Self::on_import_wall_desc`],
     /// causing it not to run in the future.
     fn remove_on_import_wall_desc(&self, callback: ImportWallDescCallbackId);
 }
 
 impl import_wall_desc for super::RemoteReducers {
-    fn import_wall_desc(&self, records: Vec::<WallDesc>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("import_wall_desc", ImportWallDescArgs { records,  })
+    fn import_wall_desc(&self, records: Vec<WallDesc>) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("import_wall_desc", ImportWallDescArgs { records })
     }
     fn on_import_wall_desc(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<WallDesc>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<WallDesc>) + Send + 'static,
     ) -> ImportWallDescCallbackId {
         ImportWallDescCallbackId(self.imp.on_reducer(
             "import_wall_desc",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ImportWallDesc {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ImportWallDesc { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
@@ -106,4 +105,3 @@ impl set_flags_for_import_wall_desc for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("import_wall_desc", flags);
     }
 }
-

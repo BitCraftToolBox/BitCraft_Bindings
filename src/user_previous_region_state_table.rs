@@ -3,14 +3,9 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-use super::user_previous_region_state_type::UserPreviousRegionState;
 use super::float_hex_tile_message_type::FloatHexTileMessage;
+use super::user_previous_region_state_type::UserPreviousRegionState;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `user_previous_region_state`.
 ///
@@ -38,7 +33,9 @@ pub trait UserPreviousRegionStateTableAccess {
 impl UserPreviousRegionStateTableAccess for super::RemoteTables {
     fn user_previous_region_state(&self) -> UserPreviousRegionStateTableHandle<'_> {
         UserPreviousRegionStateTableHandle {
-            imp: self.imp.get_table::<UserPreviousRegionState>("user_previous_region_state"),
+            imp: self
+                .imp
+                .get_table::<UserPreviousRegionState>("user_previous_region_state"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -51,8 +48,12 @@ impl<'ctx> __sdk::Table for UserPreviousRegionStateTableHandle<'ctx> {
     type Row = UserPreviousRegionState;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = UserPreviousRegionState> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = UserPreviousRegionState> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = UserPreviousRegionStateInsertCallbackId;
 
@@ -83,8 +84,8 @@ impl<'ctx> __sdk::Table for UserPreviousRegionStateTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<UserPreviousRegionState>("user_previous_region_state");
+    let _table =
+        client_cache.get_or_make_table::<UserPreviousRegionState>("user_previous_region_state");
     _table.add_unique_constraint::<__sdk::Identity>("identity", |row| &row.identity);
 }
 pub struct UserPreviousRegionStateUpdateCallbackId(__sdk::CallbackId);
@@ -104,46 +105,45 @@ impl<'ctx> __sdk::TableWithPrimaryKey for UserPreviousRegionStateTableHandle<'ct
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<UserPreviousRegionState>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<UserPreviousRegionState>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<UserPreviousRegionState>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `identity` unique index on the table `user_previous_region_state`,
-        /// which allows point queries on the field of the same name
-        /// via the [`UserPreviousRegionStateIdentityUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.user_previous_region_state().identity().find(...)`.
-        pub struct UserPreviousRegionStateIdentityUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<UserPreviousRegionState, __sdk::Identity>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `identity` unique index on the table `user_previous_region_state`,
+/// which allows point queries on the field of the same name
+/// via the [`UserPreviousRegionStateIdentityUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.user_previous_region_state().identity().find(...)`.
+pub struct UserPreviousRegionStateIdentityUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<UserPreviousRegionState, __sdk::Identity>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> UserPreviousRegionStateTableHandle<'ctx> {
-            /// Get a handle on the `identity` unique index on the table `user_previous_region_state`.
-            pub fn identity(&self) -> UserPreviousRegionStateIdentityUnique<'ctx> {
-                UserPreviousRegionStateIdentityUnique {
-                    imp: self.imp.get_unique_constraint::<__sdk::Identity>("identity"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> UserPreviousRegionStateTableHandle<'ctx> {
+    /// Get a handle on the `identity` unique index on the table `user_previous_region_state`.
+    pub fn identity(&self) -> UserPreviousRegionStateIdentityUnique<'ctx> {
+        UserPreviousRegionStateIdentityUnique {
+            imp: self
+                .imp
+                .get_unique_constraint::<__sdk::Identity>("identity"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> UserPreviousRegionStateIdentityUnique<'ctx> {
-            /// Find the subscribed row whose `identity` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &__sdk::Identity) -> Option<UserPreviousRegionState> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> UserPreviousRegionStateIdentityUnique<'ctx> {
+    /// Find the subscribed row whose `identity` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &__sdk::Identity) -> Option<UserPreviousRegionState> {
+        self.imp.find(col_val)
+    }
+}

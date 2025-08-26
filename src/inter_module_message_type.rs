@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::message_contents_type::MessageContents;
 
@@ -20,8 +15,6 @@ pub struct InterModuleMessage {
     pub contents: MessageContents,
 }
 
-
 impl __sdk::InModule for InterModuleMessage {
     type Module = super::RemoteModule;
 }
-

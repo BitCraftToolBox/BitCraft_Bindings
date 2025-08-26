@@ -3,13 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -21,8 +15,8 @@ impl From<AuthenticateArgs> for super::Reducer {
     fn from(args: AuthenticateArgs) -> Self {
         Self::Authenticate {
             identity: args.identity,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for AuthenticateArgs {
@@ -41,8 +35,7 @@ pub trait authenticate {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_authenticate`] callbacks.
-    fn authenticate(&self, identity: String,
-) -> __sdk::Result<()>;
+    fn authenticate(&self, identity: String) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `authenticate`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -50,34 +43,39 @@ pub trait authenticate {
     ///
     /// The returned [`AuthenticateCallbackId`] can be passed to [`Self::remove_on_authenticate`]
     /// to cancel the callback.
-    fn on_authenticate(&self, callback: impl FnMut(&super::ReducerEventContext, &String, ) + Send + 'static) -> AuthenticateCallbackId;
+    fn on_authenticate(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &String) + Send + 'static,
+    ) -> AuthenticateCallbackId;
     /// Cancel a callback previously registered by [`Self::on_authenticate`],
     /// causing it not to run in the future.
     fn remove_on_authenticate(&self, callback: AuthenticateCallbackId);
 }
 
 impl authenticate for super::RemoteReducers {
-    fn authenticate(&self, identity: String,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("authenticate", AuthenticateArgs { identity,  })
+    fn authenticate(&self, identity: String) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("authenticate", AuthenticateArgs { identity })
     }
     fn on_authenticate(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &String, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &String) + Send + 'static,
     ) -> AuthenticateCallbackId {
         AuthenticateCallbackId(self.imp.on_reducer(
             "authenticate",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::Authenticate {
-                            identity, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::Authenticate { identity },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, identity, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, identity)
             }),
         ))
     }
@@ -105,4 +103,3 @@ impl set_flags_for_authenticate for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("authenticate", flags);
     }
 }
-

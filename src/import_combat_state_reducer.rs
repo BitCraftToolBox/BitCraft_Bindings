@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::combat_state_type::CombatState;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct ImportCombatStateArgs {
-    pub records: Vec::<CombatState>,
+    pub records: Vec<CombatState>,
 }
 
 impl From<ImportCombatStateArgs> for super::Reducer {
     fn from(args: ImportCombatStateArgs) -> Self {
         Self::ImportCombatState {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ImportCombatStateArgs {
@@ -42,8 +37,7 @@ pub trait import_combat_state {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_import_combat_state`] callbacks.
-    fn import_combat_state(&self, records: Vec::<CombatState>,
-) -> __sdk::Result<()>;
+    fn import_combat_state(&self, records: Vec<CombatState>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `import_combat_state`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,45 @@ pub trait import_combat_state {
     ///
     /// The returned [`ImportCombatStateCallbackId`] can be passed to [`Self::remove_on_import_combat_state`]
     /// to cancel the callback.
-    fn on_import_combat_state(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<CombatState>, ) + Send + 'static) -> ImportCombatStateCallbackId;
+    fn on_import_combat_state(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<CombatState>) + Send + 'static,
+    ) -> ImportCombatStateCallbackId;
     /// Cancel a callback previously registered by [`Self::on_import_combat_state`],
     /// causing it not to run in the future.
     fn remove_on_import_combat_state(&self, callback: ImportCombatStateCallbackId);
 }
 
 impl import_combat_state for super::RemoteReducers {
-    fn import_combat_state(&self, records: Vec::<CombatState>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("import_combat_state", ImportCombatStateArgs { records,  })
+    fn import_combat_state(&self, records: Vec<CombatState>) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("import_combat_state", ImportCombatStateArgs { records })
     }
     fn on_import_combat_state(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<CombatState>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<CombatState>) + Send + 'static,
     ) -> ImportCombatStateCallbackId {
         ImportCombatStateCallbackId(self.imp.on_reducer(
             "import_combat_state",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ImportCombatState {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ImportCombatState { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
     fn remove_on_import_combat_state(&self, callback: ImportCombatStateCallbackId) {
-        self.imp.remove_on_reducer("import_combat_state", callback.0)
+        self.imp
+            .remove_on_reducer("import_combat_state", callback.0)
     }
 }
 
@@ -103,7 +103,7 @@ pub trait set_flags_for_import_combat_state {
 
 impl set_flags_for_import_combat_state for super::SetReducerFlags {
     fn import_combat_state(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("import_combat_state", flags);
+        self.imp
+            .set_call_reducer_flags("import_combat_state", flags);
     }
 }
-

@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::pathfinding_desc_type::PathfindingDesc;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct ImportPathfindingDescArgs {
-    pub records: Vec::<PathfindingDesc>,
+    pub records: Vec<PathfindingDesc>,
 }
 
 impl From<ImportPathfindingDescArgs> for super::Reducer {
     fn from(args: ImportPathfindingDescArgs) -> Self {
         Self::ImportPathfindingDesc {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ImportPathfindingDescArgs {
@@ -42,8 +37,7 @@ pub trait import_pathfinding_desc {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_import_pathfinding_desc`] callbacks.
-    fn import_pathfinding_desc(&self, records: Vec::<PathfindingDesc>,
-) -> __sdk::Result<()>;
+    fn import_pathfinding_desc(&self, records: Vec<PathfindingDesc>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `import_pathfinding_desc`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,47 @@ pub trait import_pathfinding_desc {
     ///
     /// The returned [`ImportPathfindingDescCallbackId`] can be passed to [`Self::remove_on_import_pathfinding_desc`]
     /// to cancel the callback.
-    fn on_import_pathfinding_desc(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<PathfindingDesc>, ) + Send + 'static) -> ImportPathfindingDescCallbackId;
+    fn on_import_pathfinding_desc(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<PathfindingDesc>) + Send + 'static,
+    ) -> ImportPathfindingDescCallbackId;
     /// Cancel a callback previously registered by [`Self::on_import_pathfinding_desc`],
     /// causing it not to run in the future.
     fn remove_on_import_pathfinding_desc(&self, callback: ImportPathfindingDescCallbackId);
 }
 
 impl import_pathfinding_desc for super::RemoteReducers {
-    fn import_pathfinding_desc(&self, records: Vec::<PathfindingDesc>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("import_pathfinding_desc", ImportPathfindingDescArgs { records,  })
+    fn import_pathfinding_desc(&self, records: Vec<PathfindingDesc>) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "import_pathfinding_desc",
+            ImportPathfindingDescArgs { records },
+        )
     }
     fn on_import_pathfinding_desc(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<PathfindingDesc>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<PathfindingDesc>) + Send + 'static,
     ) -> ImportPathfindingDescCallbackId {
         ImportPathfindingDescCallbackId(self.imp.on_reducer(
             "import_pathfinding_desc",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ImportPathfindingDesc {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ImportPathfindingDesc { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
     fn remove_on_import_pathfinding_desc(&self, callback: ImportPathfindingDescCallbackId) {
-        self.imp.remove_on_reducer("import_pathfinding_desc", callback.0)
+        self.imp
+            .remove_on_reducer("import_pathfinding_desc", callback.0)
     }
 }
 
@@ -103,7 +105,7 @@ pub trait set_flags_for_import_pathfinding_desc {
 
 impl set_flags_for_import_pathfinding_desc for super::SetReducerFlags {
     fn import_pathfinding_desc(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("import_pathfinding_desc", flags);
+        self.imp
+            .set_call_reducer_flags("import_pathfinding_desc", flags);
     }
 }
-

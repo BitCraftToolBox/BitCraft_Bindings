@@ -3,13 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -25,8 +19,8 @@ impl From<AdminRenameEmpireRankArgs> for super::Reducer {
             empire_name: args.empire_name,
             rank: args.rank,
             new_name: args.new_name,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for AdminRenameEmpireRankArgs {
@@ -45,10 +39,12 @@ pub trait admin_rename_empire_rank {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_admin_rename_empire_rank`] callbacks.
-    fn admin_rename_empire_rank(&self, empire_name: String,
-rank: u8,
-new_name: String,
-) -> __sdk::Result<()>;
+    fn admin_rename_empire_rank(
+        &self,
+        empire_name: String,
+        rank: u8,
+        new_name: String,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `admin_rename_empire_rank`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -56,41 +52,61 @@ new_name: String,
     ///
     /// The returned [`AdminRenameEmpireRankCallbackId`] can be passed to [`Self::remove_on_admin_rename_empire_rank`]
     /// to cancel the callback.
-    fn on_admin_rename_empire_rank(&self, callback: impl FnMut(&super::ReducerEventContext, &String, &u8, &String, ) + Send + 'static) -> AdminRenameEmpireRankCallbackId;
+    fn on_admin_rename_empire_rank(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &String, &u8, &String) + Send + 'static,
+    ) -> AdminRenameEmpireRankCallbackId;
     /// Cancel a callback previously registered by [`Self::on_admin_rename_empire_rank`],
     /// causing it not to run in the future.
     fn remove_on_admin_rename_empire_rank(&self, callback: AdminRenameEmpireRankCallbackId);
 }
 
 impl admin_rename_empire_rank for super::RemoteReducers {
-    fn admin_rename_empire_rank(&self, empire_name: String,
-rank: u8,
-new_name: String,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("admin_rename_empire_rank", AdminRenameEmpireRankArgs { empire_name, rank, new_name,  })
+    fn admin_rename_empire_rank(
+        &self,
+        empire_name: String,
+        rank: u8,
+        new_name: String,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "admin_rename_empire_rank",
+            AdminRenameEmpireRankArgs {
+                empire_name,
+                rank,
+                new_name,
+            },
+        )
     }
     fn on_admin_rename_empire_rank(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &String, &u8, &String, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &String, &u8, &String) + Send + 'static,
     ) -> AdminRenameEmpireRankCallbackId {
         AdminRenameEmpireRankCallbackId(self.imp.on_reducer(
             "admin_rename_empire_rank",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::AdminRenameEmpireRank {
-                            empire_name, rank, new_name, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer:
+                                super::Reducer::AdminRenameEmpireRank {
+                                    empire_name,
+                                    rank,
+                                    new_name,
+                                },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, empire_name, rank, new_name, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, empire_name, rank, new_name)
             }),
         ))
     }
     fn remove_on_admin_rename_empire_rank(&self, callback: AdminRenameEmpireRankCallbackId) {
-        self.imp.remove_on_reducer("admin_rename_empire_rank", callback.0)
+        self.imp
+            .remove_on_reducer("admin_rename_empire_rank", callback.0)
     }
 }
 
@@ -110,7 +126,7 @@ pub trait set_flags_for_admin_rename_empire_rank {
 
 impl set_flags_for_admin_rename_empire_rank for super::SetReducerFlags {
     fn admin_rename_empire_rank(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("admin_rename_empire_rank", flags);
+        self.imp
+            .set_call_reducer_flags("admin_rename_empire_rank", flags);
     }
 }
-

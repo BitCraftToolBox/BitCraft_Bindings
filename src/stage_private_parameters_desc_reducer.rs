@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::private_parameters_desc_type::PrivateParametersDesc;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct StagePrivateParametersDescArgs {
-    pub records: Vec::<PrivateParametersDesc>,
+    pub records: Vec<PrivateParametersDesc>,
 }
 
 impl From<StagePrivateParametersDescArgs> for super::Reducer {
     fn from(args: StagePrivateParametersDescArgs) -> Self {
         Self::StagePrivateParametersDesc {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for StagePrivateParametersDescArgs {
@@ -42,8 +37,10 @@ pub trait stage_private_parameters_desc {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_stage_private_parameters_desc`] callbacks.
-    fn stage_private_parameters_desc(&self, records: Vec::<PrivateParametersDesc>,
-) -> __sdk::Result<()>;
+    fn stage_private_parameters_desc(
+        &self,
+        records: Vec<PrivateParametersDesc>,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `stage_private_parameters_desc`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +48,58 @@ pub trait stage_private_parameters_desc {
     ///
     /// The returned [`StagePrivateParametersDescCallbackId`] can be passed to [`Self::remove_on_stage_private_parameters_desc`]
     /// to cancel the callback.
-    fn on_stage_private_parameters_desc(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<PrivateParametersDesc>, ) + Send + 'static) -> StagePrivateParametersDescCallbackId;
+    fn on_stage_private_parameters_desc(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<PrivateParametersDesc>) + Send + 'static,
+    ) -> StagePrivateParametersDescCallbackId;
     /// Cancel a callback previously registered by [`Self::on_stage_private_parameters_desc`],
     /// causing it not to run in the future.
-    fn remove_on_stage_private_parameters_desc(&self, callback: StagePrivateParametersDescCallbackId);
+    fn remove_on_stage_private_parameters_desc(
+        &self,
+        callback: StagePrivateParametersDescCallbackId,
+    );
 }
 
 impl stage_private_parameters_desc for super::RemoteReducers {
-    fn stage_private_parameters_desc(&self, records: Vec::<PrivateParametersDesc>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("stage_private_parameters_desc", StagePrivateParametersDescArgs { records,  })
+    fn stage_private_parameters_desc(
+        &self,
+        records: Vec<PrivateParametersDesc>,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "stage_private_parameters_desc",
+            StagePrivateParametersDescArgs { records },
+        )
     }
     fn on_stage_private_parameters_desc(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<PrivateParametersDesc>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<PrivateParametersDesc>)
+            + Send
+            + 'static,
     ) -> StagePrivateParametersDescCallbackId {
         StagePrivateParametersDescCallbackId(self.imp.on_reducer(
             "stage_private_parameters_desc",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::StagePrivateParametersDesc {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::StagePrivateParametersDesc { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
-    fn remove_on_stage_private_parameters_desc(&self, callback: StagePrivateParametersDescCallbackId) {
-        self.imp.remove_on_reducer("stage_private_parameters_desc", callback.0)
+    fn remove_on_stage_private_parameters_desc(
+        &self,
+        callback: StagePrivateParametersDescCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("stage_private_parameters_desc", callback.0)
     }
 }
 
@@ -103,7 +119,7 @@ pub trait set_flags_for_stage_private_parameters_desc {
 
 impl set_flags_for_stage_private_parameters_desc for super::SetReducerFlags {
     fn stage_private_parameters_desc(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("stage_private_parameters_desc", flags);
+        self.imp
+            .set_call_reducer_flags("stage_private_parameters_desc", flags);
     }
 }
-

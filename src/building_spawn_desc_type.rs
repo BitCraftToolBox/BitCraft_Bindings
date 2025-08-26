@@ -3,16 +3,11 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::building_spawn_type_type::BuildingSpawnType;
-use super::npc_type_type::NpcType;
 use super::enemy_type_type::EnemyType;
+use super::npc_type_type::NpcType;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -23,15 +18,13 @@ pub struct BuildingSpawnDesc {
     pub z: i32,
     pub direction: i32,
     pub spawn_type: BuildingSpawnType,
-    pub traveler_type: Option::<NpcType>,
-    pub enemy_type: Option::<EnemyType>,
-    pub spawn_ids: Vec::<i32>,
+    pub traveler_type: Option<NpcType>,
+    pub enemy_type: Option<EnemyType>,
+    pub spawn_ids: Vec<i32>,
     pub respawn_time_min: f32,
     pub respawn_time_max: f32,
 }
 
-
 impl __sdk::InModule for BuildingSpawnDesc {
     type Module = super::RemoteModule;
 }
-

@@ -3,23 +3,16 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
-pub(super) struct PlayerCreateArgs {
-    }
+pub(super) struct PlayerCreateArgs {}
 
 impl From<PlayerCreateArgs> for super::Reducer {
     fn from(args: PlayerCreateArgs) -> Self {
         Self::PlayerCreate
-}
+    }
 }
 
 impl __sdk::InModule for PlayerCreateArgs {
@@ -38,7 +31,7 @@ pub trait player_create {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_player_create`] callbacks.
-    fn player_create(&self, ) -> __sdk::Result<()>;
+    fn player_create(&self) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `player_create`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -46,33 +39,38 @@ pub trait player_create {
     ///
     /// The returned [`PlayerCreateCallbackId`] can be passed to [`Self::remove_on_player_create`]
     /// to cancel the callback.
-    fn on_player_create(&self, callback: impl FnMut(&super::ReducerEventContext, ) + Send + 'static) -> PlayerCreateCallbackId;
+    fn on_player_create(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext) + Send + 'static,
+    ) -> PlayerCreateCallbackId;
     /// Cancel a callback previously registered by [`Self::on_player_create`],
     /// causing it not to run in the future.
     fn remove_on_player_create(&self, callback: PlayerCreateCallbackId);
 }
 
 impl player_create for super::RemoteReducers {
-    fn player_create(&self, ) -> __sdk::Result<()> {
-        self.imp.call_reducer("player_create", PlayerCreateArgs {  })
+    fn player_create(&self) -> __sdk::Result<()> {
+        self.imp.call_reducer("player_create", PlayerCreateArgs {})
     }
     fn on_player_create(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext) + Send + 'static,
     ) -> PlayerCreateCallbackId {
         PlayerCreateCallbackId(self.imp.on_reducer(
             "player_create",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::PlayerCreate {
-                            
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::PlayerCreate {},
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx)
             }),
         ))
     }
@@ -100,4 +98,3 @@ impl set_flags_for_player_create for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("player_create", flags);
     }
 }
-

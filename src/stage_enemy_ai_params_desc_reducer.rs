@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::enemy_ai_params_desc_type::EnemyAiParamsDesc;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct StageEnemyAiParamsDescArgs {
-    pub records: Vec::<EnemyAiParamsDesc>,
+    pub records: Vec<EnemyAiParamsDesc>,
 }
 
 impl From<StageEnemyAiParamsDescArgs> for super::Reducer {
     fn from(args: StageEnemyAiParamsDescArgs) -> Self {
         Self::StageEnemyAiParamsDesc {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for StageEnemyAiParamsDescArgs {
@@ -42,8 +37,7 @@ pub trait stage_enemy_ai_params_desc {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_stage_enemy_ai_params_desc`] callbacks.
-    fn stage_enemy_ai_params_desc(&self, records: Vec::<EnemyAiParamsDesc>,
-) -> __sdk::Result<()>;
+    fn stage_enemy_ai_params_desc(&self, records: Vec<EnemyAiParamsDesc>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `stage_enemy_ai_params_desc`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,47 @@ pub trait stage_enemy_ai_params_desc {
     ///
     /// The returned [`StageEnemyAiParamsDescCallbackId`] can be passed to [`Self::remove_on_stage_enemy_ai_params_desc`]
     /// to cancel the callback.
-    fn on_stage_enemy_ai_params_desc(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<EnemyAiParamsDesc>, ) + Send + 'static) -> StageEnemyAiParamsDescCallbackId;
+    fn on_stage_enemy_ai_params_desc(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<EnemyAiParamsDesc>) + Send + 'static,
+    ) -> StageEnemyAiParamsDescCallbackId;
     /// Cancel a callback previously registered by [`Self::on_stage_enemy_ai_params_desc`],
     /// causing it not to run in the future.
     fn remove_on_stage_enemy_ai_params_desc(&self, callback: StageEnemyAiParamsDescCallbackId);
 }
 
 impl stage_enemy_ai_params_desc for super::RemoteReducers {
-    fn stage_enemy_ai_params_desc(&self, records: Vec::<EnemyAiParamsDesc>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("stage_enemy_ai_params_desc", StageEnemyAiParamsDescArgs { records,  })
+    fn stage_enemy_ai_params_desc(&self, records: Vec<EnemyAiParamsDesc>) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "stage_enemy_ai_params_desc",
+            StageEnemyAiParamsDescArgs { records },
+        )
     }
     fn on_stage_enemy_ai_params_desc(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<EnemyAiParamsDesc>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<EnemyAiParamsDesc>) + Send + 'static,
     ) -> StageEnemyAiParamsDescCallbackId {
         StageEnemyAiParamsDescCallbackId(self.imp.on_reducer(
             "stage_enemy_ai_params_desc",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::StageEnemyAiParamsDesc {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::StageEnemyAiParamsDesc { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
     fn remove_on_stage_enemy_ai_params_desc(&self, callback: StageEnemyAiParamsDescCallbackId) {
-        self.imp.remove_on_reducer("stage_enemy_ai_params_desc", callback.0)
+        self.imp
+            .remove_on_reducer("stage_enemy_ai_params_desc", callback.0)
     }
 }
 
@@ -103,7 +105,7 @@ pub trait set_flags_for_stage_enemy_ai_params_desc {
 
 impl set_flags_for_stage_enemy_ai_params_desc for super::SetReducerFlags {
     fn stage_enemy_ai_params_desc(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("stage_enemy_ai_params_desc", flags);
+        self.imp
+            .set_call_reducer_flags("stage_enemy_ai_params_desc", flags);
     }
 }
-

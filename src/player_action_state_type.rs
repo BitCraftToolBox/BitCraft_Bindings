@@ -3,16 +3,11 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_action_layer_type::PlayerActionLayer;
-use super::player_action_type_type::PlayerActionType;
 use super::player_action_result_type::PlayerActionResult;
+use super::player_action_type_type::PlayerActionType;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -22,8 +17,8 @@ pub struct PlayerActionState {
     pub entity_id: u64,
     pub start_time: u64,
     pub duration: u64,
-    pub target: Option::<u64>,
-    pub recipe_id: Option::<i32>,
+    pub target: Option<u64>,
+    pub recipe_id: Option<i32>,
     pub action_type: PlayerActionType,
     pub layer: PlayerActionLayer,
     pub last_action_result: PlayerActionResult,
@@ -31,8 +26,6 @@ pub struct PlayerActionState {
     pub pad: u32,
 }
 
-
 impl __sdk::InModule for PlayerActionState {
     type Module = super::RemoteModule;
 }
-

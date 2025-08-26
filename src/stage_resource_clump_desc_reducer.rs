@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::resource_clump_desc_type::ResourceClumpDesc;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct StageResourceClumpDescArgs {
-    pub records: Vec::<ResourceClumpDesc>,
+    pub records: Vec<ResourceClumpDesc>,
 }
 
 impl From<StageResourceClumpDescArgs> for super::Reducer {
     fn from(args: StageResourceClumpDescArgs) -> Self {
         Self::StageResourceClumpDesc {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for StageResourceClumpDescArgs {
@@ -42,8 +37,7 @@ pub trait stage_resource_clump_desc {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_stage_resource_clump_desc`] callbacks.
-    fn stage_resource_clump_desc(&self, records: Vec::<ResourceClumpDesc>,
-) -> __sdk::Result<()>;
+    fn stage_resource_clump_desc(&self, records: Vec<ResourceClumpDesc>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `stage_resource_clump_desc`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,47 @@ pub trait stage_resource_clump_desc {
     ///
     /// The returned [`StageResourceClumpDescCallbackId`] can be passed to [`Self::remove_on_stage_resource_clump_desc`]
     /// to cancel the callback.
-    fn on_stage_resource_clump_desc(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<ResourceClumpDesc>, ) + Send + 'static) -> StageResourceClumpDescCallbackId;
+    fn on_stage_resource_clump_desc(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<ResourceClumpDesc>) + Send + 'static,
+    ) -> StageResourceClumpDescCallbackId;
     /// Cancel a callback previously registered by [`Self::on_stage_resource_clump_desc`],
     /// causing it not to run in the future.
     fn remove_on_stage_resource_clump_desc(&self, callback: StageResourceClumpDescCallbackId);
 }
 
 impl stage_resource_clump_desc for super::RemoteReducers {
-    fn stage_resource_clump_desc(&self, records: Vec::<ResourceClumpDesc>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("stage_resource_clump_desc", StageResourceClumpDescArgs { records,  })
+    fn stage_resource_clump_desc(&self, records: Vec<ResourceClumpDesc>) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "stage_resource_clump_desc",
+            StageResourceClumpDescArgs { records },
+        )
     }
     fn on_stage_resource_clump_desc(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<ResourceClumpDesc>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<ResourceClumpDesc>) + Send + 'static,
     ) -> StageResourceClumpDescCallbackId {
         StageResourceClumpDescCallbackId(self.imp.on_reducer(
             "stage_resource_clump_desc",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::StageResourceClumpDesc {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::StageResourceClumpDesc { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
     fn remove_on_stage_resource_clump_desc(&self, callback: StageResourceClumpDescCallbackId) {
-        self.imp.remove_on_reducer("stage_resource_clump_desc", callback.0)
+        self.imp
+            .remove_on_reducer("stage_resource_clump_desc", callback.0)
     }
 }
 
@@ -103,7 +105,7 @@ pub trait set_flags_for_stage_resource_clump_desc {
 
 impl set_flags_for_stage_resource_clump_desc for super::SetReducerFlags {
     fn stage_resource_clump_desc(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("stage_resource_clump_desc", flags);
+        self.imp
+            .set_call_reducer_flags("stage_resource_clump_desc", flags);
     }
 }
-

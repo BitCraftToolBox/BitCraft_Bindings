@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::gate_desc_type::GateDesc;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct ImportGateDescArgs {
-    pub records: Vec::<GateDesc>,
+    pub records: Vec<GateDesc>,
 }
 
 impl From<ImportGateDescArgs> for super::Reducer {
     fn from(args: ImportGateDescArgs) -> Self {
         Self::ImportGateDesc {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ImportGateDescArgs {
@@ -42,8 +37,7 @@ pub trait import_gate_desc {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_import_gate_desc`] callbacks.
-    fn import_gate_desc(&self, records: Vec::<GateDesc>,
-) -> __sdk::Result<()>;
+    fn import_gate_desc(&self, records: Vec<GateDesc>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `import_gate_desc`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,39 @@ pub trait import_gate_desc {
     ///
     /// The returned [`ImportGateDescCallbackId`] can be passed to [`Self::remove_on_import_gate_desc`]
     /// to cancel the callback.
-    fn on_import_gate_desc(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<GateDesc>, ) + Send + 'static) -> ImportGateDescCallbackId;
+    fn on_import_gate_desc(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<GateDesc>) + Send + 'static,
+    ) -> ImportGateDescCallbackId;
     /// Cancel a callback previously registered by [`Self::on_import_gate_desc`],
     /// causing it not to run in the future.
     fn remove_on_import_gate_desc(&self, callback: ImportGateDescCallbackId);
 }
 
 impl import_gate_desc for super::RemoteReducers {
-    fn import_gate_desc(&self, records: Vec::<GateDesc>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("import_gate_desc", ImportGateDescArgs { records,  })
+    fn import_gate_desc(&self, records: Vec<GateDesc>) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("import_gate_desc", ImportGateDescArgs { records })
     }
     fn on_import_gate_desc(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<GateDesc>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<GateDesc>) + Send + 'static,
     ) -> ImportGateDescCallbackId {
         ImportGateDescCallbackId(self.imp.on_reducer(
             "import_gate_desc",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ImportGateDesc {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ImportGateDesc { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
@@ -106,4 +105,3 @@ impl set_flags_for_import_gate_desc for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("import_gate_desc", flags);
     }
 }
-

@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::offset_coordinates_small_message_type::OffsetCoordinatesSmallMessage;
 
@@ -20,8 +15,6 @@ pub struct ClaimCreateEmpireSettlementMsg {
     pub location: OffsetCoordinatesSmallMessage,
 }
 
-
 impl __sdk::InModule for ClaimCreateEmpireSettlementMsg {
     type Module = super::RemoteModule;
 }
-

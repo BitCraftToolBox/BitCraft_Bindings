@@ -3,22 +3,17 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::building_function_type::BuildingFunction;
-use super::footprint_tile_type::FootprintTile;
 use super::building_interaction_level_type::BuildingInteractionLevel;
+use super::footprint_tile_type::FootprintTile;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub struct BuildingDesc {
     pub id: i32,
-    pub functions: Vec::<BuildingFunction>,
+    pub functions: Vec<BuildingFunction>,
     pub name: String,
     pub description: String,
     pub rested_buff_duration: i32,
@@ -27,7 +22,7 @@ pub struct BuildingDesc {
     pub icon_asset_name: String,
     pub unenterable: bool,
     pub wilderness: bool,
-    pub footprint: Vec::<FootprintTile>,
+    pub footprint: Vec<FootprintTile>,
     pub max_health: i32,
     pub ignore_damage: bool,
     pub defense_level: i32,
@@ -41,8 +36,6 @@ pub struct BuildingDesc {
     pub not_deconstructible: bool,
 }
 
-
 impl __sdk::InModule for BuildingDesc {
     type Module = super::RemoteModule;
 }
-

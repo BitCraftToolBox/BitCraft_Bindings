@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::traveler_trade_order_desc_type::TravelerTradeOrderDesc;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct StageTravelerTradeOrderDescArgs {
-    pub records: Vec::<TravelerTradeOrderDesc>,
+    pub records: Vec<TravelerTradeOrderDesc>,
 }
 
 impl From<StageTravelerTradeOrderDescArgs> for super::Reducer {
     fn from(args: StageTravelerTradeOrderDescArgs) -> Self {
         Self::StageTravelerTradeOrderDesc {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for StageTravelerTradeOrderDescArgs {
@@ -42,8 +37,10 @@ pub trait stage_traveler_trade_order_desc {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_stage_traveler_trade_order_desc`] callbacks.
-    fn stage_traveler_trade_order_desc(&self, records: Vec::<TravelerTradeOrderDesc>,
-) -> __sdk::Result<()>;
+    fn stage_traveler_trade_order_desc(
+        &self,
+        records: Vec<TravelerTradeOrderDesc>,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `stage_traveler_trade_order_desc`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +48,58 @@ pub trait stage_traveler_trade_order_desc {
     ///
     /// The returned [`StageTravelerTradeOrderDescCallbackId`] can be passed to [`Self::remove_on_stage_traveler_trade_order_desc`]
     /// to cancel the callback.
-    fn on_stage_traveler_trade_order_desc(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<TravelerTradeOrderDesc>, ) + Send + 'static) -> StageTravelerTradeOrderDescCallbackId;
+    fn on_stage_traveler_trade_order_desc(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<TravelerTradeOrderDesc>) + Send + 'static,
+    ) -> StageTravelerTradeOrderDescCallbackId;
     /// Cancel a callback previously registered by [`Self::on_stage_traveler_trade_order_desc`],
     /// causing it not to run in the future.
-    fn remove_on_stage_traveler_trade_order_desc(&self, callback: StageTravelerTradeOrderDescCallbackId);
+    fn remove_on_stage_traveler_trade_order_desc(
+        &self,
+        callback: StageTravelerTradeOrderDescCallbackId,
+    );
 }
 
 impl stage_traveler_trade_order_desc for super::RemoteReducers {
-    fn stage_traveler_trade_order_desc(&self, records: Vec::<TravelerTradeOrderDesc>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("stage_traveler_trade_order_desc", StageTravelerTradeOrderDescArgs { records,  })
+    fn stage_traveler_trade_order_desc(
+        &self,
+        records: Vec<TravelerTradeOrderDesc>,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "stage_traveler_trade_order_desc",
+            StageTravelerTradeOrderDescArgs { records },
+        )
     }
     fn on_stage_traveler_trade_order_desc(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<TravelerTradeOrderDesc>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<TravelerTradeOrderDesc>)
+            + Send
+            + 'static,
     ) -> StageTravelerTradeOrderDescCallbackId {
         StageTravelerTradeOrderDescCallbackId(self.imp.on_reducer(
             "stage_traveler_trade_order_desc",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::StageTravelerTradeOrderDesc {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::StageTravelerTradeOrderDesc { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
-    fn remove_on_stage_traveler_trade_order_desc(&self, callback: StageTravelerTradeOrderDescCallbackId) {
-        self.imp.remove_on_reducer("stage_traveler_trade_order_desc", callback.0)
+    fn remove_on_stage_traveler_trade_order_desc(
+        &self,
+        callback: StageTravelerTradeOrderDescCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("stage_traveler_trade_order_desc", callback.0)
     }
 }
 
@@ -103,7 +119,7 @@ pub trait set_flags_for_stage_traveler_trade_order_desc {
 
 impl set_flags_for_stage_traveler_trade_order_desc for super::SetReducerFlags {
     fn stage_traveler_trade_order_desc(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("stage_traveler_trade_order_desc", flags);
+        self.imp
+            .set_call_reducer_flags("stage_traveler_trade_order_desc", flags);
     }
 }
-

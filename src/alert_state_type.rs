@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::alert_type_type::AlertType;
 
@@ -22,8 +17,6 @@ pub struct AlertState {
     pub alert_type: AlertType,
 }
 
-
 impl __sdk::InModule for AlertState {
     type Module = super::RemoteModule;
 }
-

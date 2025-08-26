@@ -3,14 +3,9 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::deployable_collectible_state_type::DeployableCollectibleState;
 use super::offset_coordinates_small_message_type::OffsetCoordinatesSmallMessage;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `deployable_collectible_state`.
 ///
@@ -38,7 +33,9 @@ pub trait DeployableCollectibleStateTableAccess {
 impl DeployableCollectibleStateTableAccess for super::RemoteTables {
     fn deployable_collectible_state(&self) -> DeployableCollectibleStateTableHandle<'_> {
         DeployableCollectibleStateTableHandle {
-            imp: self.imp.get_table::<DeployableCollectibleState>("deployable_collectible_state"),
+            imp: self
+                .imp
+                .get_table::<DeployableCollectibleState>("deployable_collectible_state"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -51,8 +48,12 @@ impl<'ctx> __sdk::Table for DeployableCollectibleStateTableHandle<'ctx> {
     type Row = DeployableCollectibleState;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = DeployableCollectibleState> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = DeployableCollectibleState> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = DeployableCollectibleStateInsertCallbackId;
 
@@ -83,8 +84,8 @@ impl<'ctx> __sdk::Table for DeployableCollectibleStateTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<DeployableCollectibleState>("deployable_collectible_state");
+    let _table = client_cache
+        .get_or_make_table::<DeployableCollectibleState>("deployable_collectible_state");
     _table.add_unique_constraint::<u64>("deployable_entity_id", |row| &row.deployable_entity_id);
 }
 pub struct DeployableCollectibleStateUpdateCallbackId(__sdk::CallbackId);
@@ -104,46 +105,45 @@ impl<'ctx> __sdk::TableWithPrimaryKey for DeployableCollectibleStateTableHandle<
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<DeployableCollectibleState>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<DeployableCollectibleState>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<DeployableCollectibleState>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `deployable_entity_id` unique index on the table `deployable_collectible_state`,
-        /// which allows point queries on the field of the same name
-        /// via the [`DeployableCollectibleStateDeployableEntityIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.deployable_collectible_state().deployable_entity_id().find(...)`.
-        pub struct DeployableCollectibleStateDeployableEntityIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<DeployableCollectibleState, u64>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `deployable_entity_id` unique index on the table `deployable_collectible_state`,
+/// which allows point queries on the field of the same name
+/// via the [`DeployableCollectibleStateDeployableEntityIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.deployable_collectible_state().deployable_entity_id().find(...)`.
+pub struct DeployableCollectibleStateDeployableEntityIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<DeployableCollectibleState, u64>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> DeployableCollectibleStateTableHandle<'ctx> {
-            /// Get a handle on the `deployable_entity_id` unique index on the table `deployable_collectible_state`.
-            pub fn deployable_entity_id(&self) -> DeployableCollectibleStateDeployableEntityIdUnique<'ctx> {
-                DeployableCollectibleStateDeployableEntityIdUnique {
-                    imp: self.imp.get_unique_constraint::<u64>("deployable_entity_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> DeployableCollectibleStateTableHandle<'ctx> {
+    /// Get a handle on the `deployable_entity_id` unique index on the table `deployable_collectible_state`.
+    pub fn deployable_entity_id(&self) -> DeployableCollectibleStateDeployableEntityIdUnique<'ctx> {
+        DeployableCollectibleStateDeployableEntityIdUnique {
+            imp: self
+                .imp
+                .get_unique_constraint::<u64>("deployable_entity_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> DeployableCollectibleStateDeployableEntityIdUnique<'ctx> {
-            /// Find the subscribed row whose `deployable_entity_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u64) -> Option<DeployableCollectibleState> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> DeployableCollectibleStateDeployableEntityIdUnique<'ctx> {
+    /// Find the subscribed row whose `deployable_entity_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u64) -> Option<DeployableCollectibleState> {
+        self.imp.find(col_val)
+    }
+}

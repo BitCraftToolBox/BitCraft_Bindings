@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::passive_craft_status_type::PassiveCraftStatus;
 
@@ -21,11 +16,9 @@ pub struct PassiveCraftState {
     pub building_entity_id: u64,
     pub timestamp: __sdk::Timestamp,
     pub status: PassiveCraftStatus,
-    pub slot: Option::<u32>,
+    pub slot: Option<u32>,
 }
-
 
 impl __sdk::InModule for PassiveCraftState {
     type Module = super::RemoteModule;
 }
-

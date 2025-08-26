@@ -3,13 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -21,8 +15,8 @@ impl From<EmpireMoveCapitalArgs> for super::Reducer {
     fn from(args: EmpireMoveCapitalArgs) -> Self {
         Self::EmpireMoveCapital {
             target_claim_entity_id: args.target_claim_entity_id,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for EmpireMoveCapitalArgs {
@@ -41,8 +35,7 @@ pub trait empire_move_capital {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_empire_move_capital`] callbacks.
-    fn empire_move_capital(&self, target_claim_entity_id: u64,
-) -> __sdk::Result<()>;
+    fn empire_move_capital(&self, target_claim_entity_id: u64) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `empire_move_capital`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -50,39 +43,52 @@ pub trait empire_move_capital {
     ///
     /// The returned [`EmpireMoveCapitalCallbackId`] can be passed to [`Self::remove_on_empire_move_capital`]
     /// to cancel the callback.
-    fn on_empire_move_capital(&self, callback: impl FnMut(&super::ReducerEventContext, &u64, ) + Send + 'static) -> EmpireMoveCapitalCallbackId;
+    fn on_empire_move_capital(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &u64) + Send + 'static,
+    ) -> EmpireMoveCapitalCallbackId;
     /// Cancel a callback previously registered by [`Self::on_empire_move_capital`],
     /// causing it not to run in the future.
     fn remove_on_empire_move_capital(&self, callback: EmpireMoveCapitalCallbackId);
 }
 
 impl empire_move_capital for super::RemoteReducers {
-    fn empire_move_capital(&self, target_claim_entity_id: u64,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("empire_move_capital", EmpireMoveCapitalArgs { target_claim_entity_id,  })
+    fn empire_move_capital(&self, target_claim_entity_id: u64) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "empire_move_capital",
+            EmpireMoveCapitalArgs {
+                target_claim_entity_id,
+            },
+        )
     }
     fn on_empire_move_capital(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &u64, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &u64) + Send + 'static,
     ) -> EmpireMoveCapitalCallbackId {
         EmpireMoveCapitalCallbackId(self.imp.on_reducer(
             "empire_move_capital",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::EmpireMoveCapital {
-                            target_claim_entity_id, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer:
+                                super::Reducer::EmpireMoveCapital {
+                                    target_claim_entity_id,
+                                },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, target_claim_entity_id, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, target_claim_entity_id)
             }),
         ))
     }
     fn remove_on_empire_move_capital(&self, callback: EmpireMoveCapitalCallbackId) {
-        self.imp.remove_on_reducer("empire_move_capital", callback.0)
+        self.imp
+            .remove_on_reducer("empire_move_capital", callback.0)
     }
 }
 
@@ -102,7 +108,7 @@ pub trait set_flags_for_empire_move_capital {
 
 impl set_flags_for_empire_move_capital for super::SetReducerFlags {
     fn empire_move_capital(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("empire_move_capital", flags);
+        self.imp
+            .set_call_reducer_flags("empire_move_capital", flags);
     }
 }
-

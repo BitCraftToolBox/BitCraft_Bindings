@@ -3,14 +3,9 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-use super::food_desc_type::FoodDesc;
 use super::buff_effect_type::BuffEffect;
+use super::food_desc_type::FoodDesc;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `food_desc`.
 ///
@@ -51,8 +46,12 @@ impl<'ctx> __sdk::Table for FoodDescTableHandle<'ctx> {
     type Row = FoodDesc;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = FoodDesc> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = FoodDesc> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = FoodDescInsertCallbackId;
 
@@ -83,8 +82,7 @@ impl<'ctx> __sdk::Table for FoodDescTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<FoodDesc>("food_desc");
+    let _table = client_cache.get_or_make_table::<FoodDesc>("food_desc");
     _table.add_unique_constraint::<i32>("item_id", |row| &row.item_id);
 }
 pub struct FoodDescUpdateCallbackId(__sdk::CallbackId);
@@ -104,46 +102,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for FoodDescTableHandle<'ctx> {
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<FoodDesc>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<FoodDesc>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<FoodDesc>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `item_id` unique index on the table `food_desc`,
-        /// which allows point queries on the field of the same name
-        /// via the [`FoodDescItemIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.food_desc().item_id().find(...)`.
-        pub struct FoodDescItemIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<FoodDesc, i32>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `item_id` unique index on the table `food_desc`,
+/// which allows point queries on the field of the same name
+/// via the [`FoodDescItemIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.food_desc().item_id().find(...)`.
+pub struct FoodDescItemIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<FoodDesc, i32>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> FoodDescTableHandle<'ctx> {
-            /// Get a handle on the `item_id` unique index on the table `food_desc`.
-            pub fn item_id(&self) -> FoodDescItemIdUnique<'ctx> {
-                FoodDescItemIdUnique {
-                    imp: self.imp.get_unique_constraint::<i32>("item_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> FoodDescTableHandle<'ctx> {
+    /// Get a handle on the `item_id` unique index on the table `food_desc`.
+    pub fn item_id(&self) -> FoodDescItemIdUnique<'ctx> {
+        FoodDescItemIdUnique {
+            imp: self.imp.get_unique_constraint::<i32>("item_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> FoodDescItemIdUnique<'ctx> {
-            /// Find the subscribed row whose `item_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &i32) -> Option<FoodDesc> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> FoodDescItemIdUnique<'ctx> {
+    /// Find the subscribed row whose `item_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &i32) -> Option<FoodDesc> {
+        self.imp.find(col_val)
+    }
+}

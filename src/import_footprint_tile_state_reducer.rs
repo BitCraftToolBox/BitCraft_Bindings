@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::footprint_tile_state_type::FootprintTileState;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct ImportFootprintTileStateArgs {
-    pub records: Vec::<FootprintTileState>,
+    pub records: Vec<FootprintTileState>,
 }
 
 impl From<ImportFootprintTileStateArgs> for super::Reducer {
     fn from(args: ImportFootprintTileStateArgs) -> Self {
         Self::ImportFootprintTileState {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ImportFootprintTileStateArgs {
@@ -42,8 +37,7 @@ pub trait import_footprint_tile_state {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_import_footprint_tile_state`] callbacks.
-    fn import_footprint_tile_state(&self, records: Vec::<FootprintTileState>,
-) -> __sdk::Result<()>;
+    fn import_footprint_tile_state(&self, records: Vec<FootprintTileState>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `import_footprint_tile_state`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,47 @@ pub trait import_footprint_tile_state {
     ///
     /// The returned [`ImportFootprintTileStateCallbackId`] can be passed to [`Self::remove_on_import_footprint_tile_state`]
     /// to cancel the callback.
-    fn on_import_footprint_tile_state(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<FootprintTileState>, ) + Send + 'static) -> ImportFootprintTileStateCallbackId;
+    fn on_import_footprint_tile_state(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<FootprintTileState>) + Send + 'static,
+    ) -> ImportFootprintTileStateCallbackId;
     /// Cancel a callback previously registered by [`Self::on_import_footprint_tile_state`],
     /// causing it not to run in the future.
     fn remove_on_import_footprint_tile_state(&self, callback: ImportFootprintTileStateCallbackId);
 }
 
 impl import_footprint_tile_state for super::RemoteReducers {
-    fn import_footprint_tile_state(&self, records: Vec::<FootprintTileState>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("import_footprint_tile_state", ImportFootprintTileStateArgs { records,  })
+    fn import_footprint_tile_state(&self, records: Vec<FootprintTileState>) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "import_footprint_tile_state",
+            ImportFootprintTileStateArgs { records },
+        )
     }
     fn on_import_footprint_tile_state(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<FootprintTileState>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<FootprintTileState>) + Send + 'static,
     ) -> ImportFootprintTileStateCallbackId {
         ImportFootprintTileStateCallbackId(self.imp.on_reducer(
             "import_footprint_tile_state",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ImportFootprintTileState {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ImportFootprintTileState { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
     fn remove_on_import_footprint_tile_state(&self, callback: ImportFootprintTileStateCallbackId) {
-        self.imp.remove_on_reducer("import_footprint_tile_state", callback.0)
+        self.imp
+            .remove_on_reducer("import_footprint_tile_state", callback.0)
     }
 }
 
@@ -103,7 +105,7 @@ pub trait set_flags_for_import_footprint_tile_state {
 
 impl set_flags_for_import_footprint_tile_state for super::SetReducerFlags {
     fn import_footprint_tile_state(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("import_footprint_tile_state", flags);
+        self.imp
+            .set_call_reducer_flags("import_footprint_tile_state", flags);
     }
 }
-

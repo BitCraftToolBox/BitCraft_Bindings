@@ -3,13 +3,8 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::empire_craft_supplies_timer_type::EmpireCraftSuppliesTimer;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `empire_craft_supplies_timer`.
 ///
@@ -37,7 +32,9 @@ pub trait EmpireCraftSuppliesTimerTableAccess {
 impl EmpireCraftSuppliesTimerTableAccess for super::RemoteTables {
     fn empire_craft_supplies_timer(&self) -> EmpireCraftSuppliesTimerTableHandle<'_> {
         EmpireCraftSuppliesTimerTableHandle {
-            imp: self.imp.get_table::<EmpireCraftSuppliesTimer>("empire_craft_supplies_timer"),
+            imp: self
+                .imp
+                .get_table::<EmpireCraftSuppliesTimer>("empire_craft_supplies_timer"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -50,8 +47,12 @@ impl<'ctx> __sdk::Table for EmpireCraftSuppliesTimerTableHandle<'ctx> {
     type Row = EmpireCraftSuppliesTimer;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = EmpireCraftSuppliesTimer> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = EmpireCraftSuppliesTimer> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = EmpireCraftSuppliesTimerInsertCallbackId;
 
@@ -82,8 +83,8 @@ impl<'ctx> __sdk::Table for EmpireCraftSuppliesTimerTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<EmpireCraftSuppliesTimer>("empire_craft_supplies_timer");
+    let _table =
+        client_cache.get_or_make_table::<EmpireCraftSuppliesTimer>("empire_craft_supplies_timer");
     _table.add_unique_constraint::<u64>("scheduled_id", |row| &row.scheduled_id);
 }
 pub struct EmpireCraftSuppliesTimerUpdateCallbackId(__sdk::CallbackId);
@@ -103,46 +104,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for EmpireCraftSuppliesTimerTableHandle<'c
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<EmpireCraftSuppliesTimer>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<EmpireCraftSuppliesTimer>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<EmpireCraftSuppliesTimer>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `scheduled_id` unique index on the table `empire_craft_supplies_timer`,
-        /// which allows point queries on the field of the same name
-        /// via the [`EmpireCraftSuppliesTimerScheduledIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.empire_craft_supplies_timer().scheduled_id().find(...)`.
-        pub struct EmpireCraftSuppliesTimerScheduledIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<EmpireCraftSuppliesTimer, u64>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `scheduled_id` unique index on the table `empire_craft_supplies_timer`,
+/// which allows point queries on the field of the same name
+/// via the [`EmpireCraftSuppliesTimerScheduledIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.empire_craft_supplies_timer().scheduled_id().find(...)`.
+pub struct EmpireCraftSuppliesTimerScheduledIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<EmpireCraftSuppliesTimer, u64>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> EmpireCraftSuppliesTimerTableHandle<'ctx> {
-            /// Get a handle on the `scheduled_id` unique index on the table `empire_craft_supplies_timer`.
-            pub fn scheduled_id(&self) -> EmpireCraftSuppliesTimerScheduledIdUnique<'ctx> {
-                EmpireCraftSuppliesTimerScheduledIdUnique {
-                    imp: self.imp.get_unique_constraint::<u64>("scheduled_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> EmpireCraftSuppliesTimerTableHandle<'ctx> {
+    /// Get a handle on the `scheduled_id` unique index on the table `empire_craft_supplies_timer`.
+    pub fn scheduled_id(&self) -> EmpireCraftSuppliesTimerScheduledIdUnique<'ctx> {
+        EmpireCraftSuppliesTimerScheduledIdUnique {
+            imp: self.imp.get_unique_constraint::<u64>("scheduled_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> EmpireCraftSuppliesTimerScheduledIdUnique<'ctx> {
-            /// Find the subscribed row whose `scheduled_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u64) -> Option<EmpireCraftSuppliesTimer> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> EmpireCraftSuppliesTimerScheduledIdUnique<'ctx> {
+    /// Find the subscribed row whose `scheduled_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u64) -> Option<EmpireCraftSuppliesTimer> {
+        self.imp.find(col_val)
+    }
+}

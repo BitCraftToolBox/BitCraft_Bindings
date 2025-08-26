@@ -3,13 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -21,8 +15,8 @@ impl From<BlockIdentityArgs> for super::Reducer {
     fn from(args: BlockIdentityArgs) -> Self {
         Self::BlockIdentity {
             identity: args.identity,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for BlockIdentityArgs {
@@ -41,8 +35,7 @@ pub trait block_identity {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_block_identity`] callbacks.
-    fn block_identity(&self, identity: String,
-) -> __sdk::Result<()>;
+    fn block_identity(&self, identity: String) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `block_identity`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -50,34 +43,39 @@ pub trait block_identity {
     ///
     /// The returned [`BlockIdentityCallbackId`] can be passed to [`Self::remove_on_block_identity`]
     /// to cancel the callback.
-    fn on_block_identity(&self, callback: impl FnMut(&super::ReducerEventContext, &String, ) + Send + 'static) -> BlockIdentityCallbackId;
+    fn on_block_identity(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &String) + Send + 'static,
+    ) -> BlockIdentityCallbackId;
     /// Cancel a callback previously registered by [`Self::on_block_identity`],
     /// causing it not to run in the future.
     fn remove_on_block_identity(&self, callback: BlockIdentityCallbackId);
 }
 
 impl block_identity for super::RemoteReducers {
-    fn block_identity(&self, identity: String,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("block_identity", BlockIdentityArgs { identity,  })
+    fn block_identity(&self, identity: String) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("block_identity", BlockIdentityArgs { identity })
     }
     fn on_block_identity(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &String, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &String) + Send + 'static,
     ) -> BlockIdentityCallbackId {
         BlockIdentityCallbackId(self.imp.on_reducer(
             "block_identity",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::BlockIdentity {
-                            identity, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::BlockIdentity { identity },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, identity, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, identity)
             }),
         ))
     }
@@ -105,4 +103,3 @@ impl set_flags_for_block_identity for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("block_identity", flags);
     }
 }
-

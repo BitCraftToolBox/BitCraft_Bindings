@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::tool_requirement_type::ToolRequirement;
 
@@ -17,15 +12,13 @@ use super::tool_requirement_type::ToolRequirement;
 pub struct TerraformRecipeDesc {
     pub difference: i16,
     pub actions_count: i32,
-    pub tool_requirement: Option::<ToolRequirement>,
+    pub tool_requirement: Option<ToolRequirement>,
     pub stamina_per_action: f32,
     pub time_per_action: f32,
     pub tool_mesh_index: i32,
     pub recipe_performance_id: i32,
 }
 
-
 impl __sdk::InModule for TerraformRecipeDesc {
     type Module = super::RemoteModule;
 }
-

@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::rarity_type::Rarity;
 
@@ -31,8 +26,6 @@ pub struct ItemDesc {
     pub item_list_id: i32,
 }
 
-
 impl __sdk::InModule for ItemDesc {
     type Module = super::RemoteModule;
 }
-

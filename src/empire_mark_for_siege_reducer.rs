@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::empire_mark_for_siege_request_type::EmpireMarkForSiegeRequest;
 
@@ -22,8 +17,8 @@ impl From<EmpireMarkForSiegeArgs> for super::Reducer {
     fn from(args: EmpireMarkForSiegeArgs) -> Self {
         Self::EmpireMarkForSiege {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for EmpireMarkForSiegeArgs {
@@ -42,8 +37,7 @@ pub trait empire_mark_for_siege {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_empire_mark_for_siege`] callbacks.
-    fn empire_mark_for_siege(&self, request: EmpireMarkForSiegeRequest,
-) -> __sdk::Result<()>;
+    fn empire_mark_for_siege(&self, request: EmpireMarkForSiegeRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `empire_mark_for_siege`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,47 @@ pub trait empire_mark_for_siege {
     ///
     /// The returned [`EmpireMarkForSiegeCallbackId`] can be passed to [`Self::remove_on_empire_mark_for_siege`]
     /// to cancel the callback.
-    fn on_empire_mark_for_siege(&self, callback: impl FnMut(&super::ReducerEventContext, &EmpireMarkForSiegeRequest, ) + Send + 'static) -> EmpireMarkForSiegeCallbackId;
+    fn on_empire_mark_for_siege(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &EmpireMarkForSiegeRequest) + Send + 'static,
+    ) -> EmpireMarkForSiegeCallbackId;
     /// Cancel a callback previously registered by [`Self::on_empire_mark_for_siege`],
     /// causing it not to run in the future.
     fn remove_on_empire_mark_for_siege(&self, callback: EmpireMarkForSiegeCallbackId);
 }
 
 impl empire_mark_for_siege for super::RemoteReducers {
-    fn empire_mark_for_siege(&self, request: EmpireMarkForSiegeRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("empire_mark_for_siege", EmpireMarkForSiegeArgs { request,  })
+    fn empire_mark_for_siege(&self, request: EmpireMarkForSiegeRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("empire_mark_for_siege", EmpireMarkForSiegeArgs { request })
     }
     fn on_empire_mark_for_siege(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &EmpireMarkForSiegeRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &EmpireMarkForSiegeRequest)
+            + Send
+            + 'static,
     ) -> EmpireMarkForSiegeCallbackId {
         EmpireMarkForSiegeCallbackId(self.imp.on_reducer(
             "empire_mark_for_siege",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::EmpireMarkForSiege {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::EmpireMarkForSiege { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
     fn remove_on_empire_mark_for_siege(&self, callback: EmpireMarkForSiegeCallbackId) {
-        self.imp.remove_on_reducer("empire_mark_for_siege", callback.0)
+        self.imp
+            .remove_on_reducer("empire_mark_for_siege", callback.0)
     }
 }
 
@@ -103,7 +105,7 @@ pub trait set_flags_for_empire_mark_for_siege {
 
 impl set_flags_for_empire_mark_for_siege for super::SetReducerFlags {
     fn empire_mark_for_siege(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("empire_mark_for_siege", flags);
+        self.imp
+            .set_call_reducer_flags("empire_mark_for_siege", flags);
     }
 }
-

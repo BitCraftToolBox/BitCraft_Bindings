@@ -3,14 +3,9 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-use super::vault_state_type::VaultState;
 use super::vault_collectible_type::VaultCollectible;
+use super::vault_state_type::VaultState;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `vault_state`.
 ///
@@ -51,8 +46,12 @@ impl<'ctx> __sdk::Table for VaultStateTableHandle<'ctx> {
     type Row = VaultState;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = VaultState> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = VaultState> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = VaultStateInsertCallbackId;
 
@@ -83,8 +82,7 @@ impl<'ctx> __sdk::Table for VaultStateTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<VaultState>("vault_state");
+    let _table = client_cache.get_or_make_table::<VaultState>("vault_state");
     _table.add_unique_constraint::<u64>("entity_id", |row| &row.entity_id);
 }
 pub struct VaultStateUpdateCallbackId(__sdk::CallbackId);
@@ -104,46 +102,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for VaultStateTableHandle<'ctx> {
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<VaultState>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<VaultState>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<VaultState>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `entity_id` unique index on the table `vault_state`,
-        /// which allows point queries on the field of the same name
-        /// via the [`VaultStateEntityIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.vault_state().entity_id().find(...)`.
-        pub struct VaultStateEntityIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<VaultState, u64>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `entity_id` unique index on the table `vault_state`,
+/// which allows point queries on the field of the same name
+/// via the [`VaultStateEntityIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.vault_state().entity_id().find(...)`.
+pub struct VaultStateEntityIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<VaultState, u64>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> VaultStateTableHandle<'ctx> {
-            /// Get a handle on the `entity_id` unique index on the table `vault_state`.
-            pub fn entity_id(&self) -> VaultStateEntityIdUnique<'ctx> {
-                VaultStateEntityIdUnique {
-                    imp: self.imp.get_unique_constraint::<u64>("entity_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> VaultStateTableHandle<'ctx> {
+    /// Get a handle on the `entity_id` unique index on the table `vault_state`.
+    pub fn entity_id(&self) -> VaultStateEntityIdUnique<'ctx> {
+        VaultStateEntityIdUnique {
+            imp: self.imp.get_unique_constraint::<u64>("entity_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> VaultStateEntityIdUnique<'ctx> {
-            /// Find the subscribed row whose `entity_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u64) -> Option<VaultState> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> VaultStateEntityIdUnique<'ctx> {
+    /// Find the subscribed row whose `entity_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u64) -> Option<VaultState> {
+        self.imp.find(col_val)
+    }
+}

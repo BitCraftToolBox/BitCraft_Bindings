@@ -3,13 +3,8 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::empire_siege_engine_state_type::EmpireSiegeEngineState;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `empire_siege_engine_state`.
 ///
@@ -37,7 +32,9 @@ pub trait EmpireSiegeEngineStateTableAccess {
 impl EmpireSiegeEngineStateTableAccess for super::RemoteTables {
     fn empire_siege_engine_state(&self) -> EmpireSiegeEngineStateTableHandle<'_> {
         EmpireSiegeEngineStateTableHandle {
-            imp: self.imp.get_table::<EmpireSiegeEngineState>("empire_siege_engine_state"),
+            imp: self
+                .imp
+                .get_table::<EmpireSiegeEngineState>("empire_siege_engine_state"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -50,8 +47,12 @@ impl<'ctx> __sdk::Table for EmpireSiegeEngineStateTableHandle<'ctx> {
     type Row = EmpireSiegeEngineState;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = EmpireSiegeEngineState> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = EmpireSiegeEngineState> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = EmpireSiegeEngineStateInsertCallbackId;
 
@@ -82,8 +83,8 @@ impl<'ctx> __sdk::Table for EmpireSiegeEngineStateTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<EmpireSiegeEngineState>("empire_siege_engine_state");
+    let _table =
+        client_cache.get_or_make_table::<EmpireSiegeEngineState>("empire_siege_engine_state");
     _table.add_unique_constraint::<u64>("entity_id", |row| &row.entity_id);
     _table.add_unique_constraint::<u64>("building_entity_id", |row| &row.building_entity_id);
 }
@@ -104,76 +105,73 @@ impl<'ctx> __sdk::TableWithPrimaryKey for EmpireSiegeEngineStateTableHandle<'ctx
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<EmpireSiegeEngineState>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<EmpireSiegeEngineState>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<EmpireSiegeEngineState>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `entity_id` unique index on the table `empire_siege_engine_state`,
-        /// which allows point queries on the field of the same name
-        /// via the [`EmpireSiegeEngineStateEntityIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.empire_siege_engine_state().entity_id().find(...)`.
-        pub struct EmpireSiegeEngineStateEntityIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<EmpireSiegeEngineState, u64>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `entity_id` unique index on the table `empire_siege_engine_state`,
+/// which allows point queries on the field of the same name
+/// via the [`EmpireSiegeEngineStateEntityIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.empire_siege_engine_state().entity_id().find(...)`.
+pub struct EmpireSiegeEngineStateEntityIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<EmpireSiegeEngineState, u64>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> EmpireSiegeEngineStateTableHandle<'ctx> {
-            /// Get a handle on the `entity_id` unique index on the table `empire_siege_engine_state`.
-            pub fn entity_id(&self) -> EmpireSiegeEngineStateEntityIdUnique<'ctx> {
-                EmpireSiegeEngineStateEntityIdUnique {
-                    imp: self.imp.get_unique_constraint::<u64>("entity_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> EmpireSiegeEngineStateTableHandle<'ctx> {
+    /// Get a handle on the `entity_id` unique index on the table `empire_siege_engine_state`.
+    pub fn entity_id(&self) -> EmpireSiegeEngineStateEntityIdUnique<'ctx> {
+        EmpireSiegeEngineStateEntityIdUnique {
+            imp: self.imp.get_unique_constraint::<u64>("entity_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> EmpireSiegeEngineStateEntityIdUnique<'ctx> {
-            /// Find the subscribed row whose `entity_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u64) -> Option<EmpireSiegeEngineState> {
-                self.imp.find(col_val)
-            }
-        }
-        
-        /// Access to the `building_entity_id` unique index on the table `empire_siege_engine_state`,
-        /// which allows point queries on the field of the same name
-        /// via the [`EmpireSiegeEngineStateBuildingEntityIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.empire_siege_engine_state().building_entity_id().find(...)`.
-        pub struct EmpireSiegeEngineStateBuildingEntityIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<EmpireSiegeEngineState, u64>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+impl<'ctx> EmpireSiegeEngineStateEntityIdUnique<'ctx> {
+    /// Find the subscribed row whose `entity_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u64) -> Option<EmpireSiegeEngineState> {
+        self.imp.find(col_val)
+    }
+}
 
-        impl<'ctx> EmpireSiegeEngineStateTableHandle<'ctx> {
-            /// Get a handle on the `building_entity_id` unique index on the table `empire_siege_engine_state`.
-            pub fn building_entity_id(&self) -> EmpireSiegeEngineStateBuildingEntityIdUnique<'ctx> {
-                EmpireSiegeEngineStateBuildingEntityIdUnique {
-                    imp: self.imp.get_unique_constraint::<u64>("building_entity_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
-        }
+/// Access to the `building_entity_id` unique index on the table `empire_siege_engine_state`,
+/// which allows point queries on the field of the same name
+/// via the [`EmpireSiegeEngineStateBuildingEntityIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.empire_siege_engine_state().building_entity_id().find(...)`.
+pub struct EmpireSiegeEngineStateBuildingEntityIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<EmpireSiegeEngineState, u64>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> EmpireSiegeEngineStateBuildingEntityIdUnique<'ctx> {
-            /// Find the subscribed row whose `building_entity_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u64) -> Option<EmpireSiegeEngineState> {
-                self.imp.find(col_val)
-            }
+impl<'ctx> EmpireSiegeEngineStateTableHandle<'ctx> {
+    /// Get a handle on the `building_entity_id` unique index on the table `empire_siege_engine_state`.
+    pub fn building_entity_id(&self) -> EmpireSiegeEngineStateBuildingEntityIdUnique<'ctx> {
+        EmpireSiegeEngineStateBuildingEntityIdUnique {
+            imp: self.imp.get_unique_constraint::<u64>("building_entity_id"),
+            phantom: std::marker::PhantomData,
         }
-        
+    }
+}
+
+impl<'ctx> EmpireSiegeEngineStateBuildingEntityIdUnique<'ctx> {
+    /// Find the subscribed row whose `building_entity_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u64) -> Option<EmpireSiegeEngineState> {
+        self.imp.find(col_val)
+    }
+}

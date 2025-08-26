@@ -3,15 +3,10 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
-use super::enemy_type_type::EnemyType;
 use super::biome_type::Biome;
+use super::enemy_type_type::EnemyType;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -29,8 +24,6 @@ pub struct EnemyAiParamsDesc {
     pub spawn_frequency_minutes: f32,
 }
 
-
 impl __sdk::InModule for EnemyAiParamsDesc {
     type Module = super::RemoteModule;
 }
-

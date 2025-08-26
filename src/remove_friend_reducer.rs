@@ -3,13 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -21,8 +15,8 @@ impl From<RemoveFriendArgs> for super::Reducer {
     fn from(args: RemoveFriendArgs) -> Self {
         Self::RemoveFriend {
             player_entity_id: args.player_entity_id,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for RemoveFriendArgs {
@@ -41,8 +35,7 @@ pub trait remove_friend {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_remove_friend`] callbacks.
-    fn remove_friend(&self, player_entity_id: u64,
-) -> __sdk::Result<()>;
+    fn remove_friend(&self, player_entity_id: u64) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `remove_friend`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -50,34 +43,39 @@ pub trait remove_friend {
     ///
     /// The returned [`RemoveFriendCallbackId`] can be passed to [`Self::remove_on_remove_friend`]
     /// to cancel the callback.
-    fn on_remove_friend(&self, callback: impl FnMut(&super::ReducerEventContext, &u64, ) + Send + 'static) -> RemoveFriendCallbackId;
+    fn on_remove_friend(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &u64) + Send + 'static,
+    ) -> RemoveFriendCallbackId;
     /// Cancel a callback previously registered by [`Self::on_remove_friend`],
     /// causing it not to run in the future.
     fn remove_on_remove_friend(&self, callback: RemoveFriendCallbackId);
 }
 
 impl remove_friend for super::RemoteReducers {
-    fn remove_friend(&self, player_entity_id: u64,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("remove_friend", RemoveFriendArgs { player_entity_id,  })
+    fn remove_friend(&self, player_entity_id: u64) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("remove_friend", RemoveFriendArgs { player_entity_id })
     }
     fn on_remove_friend(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &u64, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &u64) + Send + 'static,
     ) -> RemoveFriendCallbackId {
         RemoveFriendCallbackId(self.imp.on_reducer(
             "remove_friend",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::RemoveFriend {
-                            player_entity_id, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::RemoveFriend { player_entity_id },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, player_entity_id, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, player_entity_id)
             }),
         ))
     }
@@ -105,4 +103,3 @@ impl set_flags_for_remove_friend for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("remove_friend", flags);
     }
 }
-

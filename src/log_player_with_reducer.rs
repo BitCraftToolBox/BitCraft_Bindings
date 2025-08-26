@@ -3,23 +3,16 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
-pub(super) struct LogPlayerWithArgs {
-    }
+pub(super) struct LogPlayerWithArgs {}
 
 impl From<LogPlayerWithArgs> for super::Reducer {
     fn from(args: LogPlayerWithArgs) -> Self {
         Self::LogPlayerWith
-}
+    }
 }
 
 impl __sdk::InModule for LogPlayerWithArgs {
@@ -38,7 +31,7 @@ pub trait log_player_with {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_log_player_with`] callbacks.
-    fn log_player_with(&self, ) -> __sdk::Result<()>;
+    fn log_player_with(&self) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `log_player_with_`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -46,33 +39,39 @@ pub trait log_player_with {
     ///
     /// The returned [`LogPlayerWithCallbackId`] can be passed to [`Self::remove_on_log_player_with`]
     /// to cancel the callback.
-    fn on_log_player_with(&self, callback: impl FnMut(&super::ReducerEventContext, ) + Send + 'static) -> LogPlayerWithCallbackId;
+    fn on_log_player_with(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext) + Send + 'static,
+    ) -> LogPlayerWithCallbackId;
     /// Cancel a callback previously registered by [`Self::on_log_player_with`],
     /// causing it not to run in the future.
     fn remove_on_log_player_with(&self, callback: LogPlayerWithCallbackId);
 }
 
 impl log_player_with for super::RemoteReducers {
-    fn log_player_with(&self, ) -> __sdk::Result<()> {
-        self.imp.call_reducer("log_player_with_", LogPlayerWithArgs {  })
+    fn log_player_with(&self) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("log_player_with_", LogPlayerWithArgs {})
     }
     fn on_log_player_with(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext) + Send + 'static,
     ) -> LogPlayerWithCallbackId {
         LogPlayerWithCallbackId(self.imp.on_reducer(
             "log_player_with_",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::LogPlayerWith {
-                            
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::LogPlayerWith {},
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx)
             }),
         ))
     }
@@ -100,4 +99,3 @@ impl set_flags_for_log_player_with for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("log_player_with_", flags);
     }
 }
-

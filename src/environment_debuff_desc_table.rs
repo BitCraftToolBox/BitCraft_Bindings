@@ -3,14 +3,9 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::environment_debuff_desc_type::EnvironmentDebuffDesc;
 use super::environment_resistance_type_type::EnvironmentResistanceType;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `environment_debuff_desc`.
 ///
@@ -38,7 +33,9 @@ pub trait EnvironmentDebuffDescTableAccess {
 impl EnvironmentDebuffDescTableAccess for super::RemoteTables {
     fn environment_debuff_desc(&self) -> EnvironmentDebuffDescTableHandle<'_> {
         EnvironmentDebuffDescTableHandle {
-            imp: self.imp.get_table::<EnvironmentDebuffDesc>("environment_debuff_desc"),
+            imp: self
+                .imp
+                .get_table::<EnvironmentDebuffDesc>("environment_debuff_desc"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -51,8 +48,12 @@ impl<'ctx> __sdk::Table for EnvironmentDebuffDescTableHandle<'ctx> {
     type Row = EnvironmentDebuffDesc;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = EnvironmentDebuffDesc> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = EnvironmentDebuffDesc> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = EnvironmentDebuffDescInsertCallbackId;
 
@@ -83,8 +84,7 @@ impl<'ctx> __sdk::Table for EnvironmentDebuffDescTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<EnvironmentDebuffDesc>("environment_debuff_desc");
+    let _table = client_cache.get_or_make_table::<EnvironmentDebuffDesc>("environment_debuff_desc");
     _table.add_unique_constraint::<i32>("buff_id", |row| &row.buff_id);
 }
 pub struct EnvironmentDebuffDescUpdateCallbackId(__sdk::CallbackId);
@@ -104,46 +104,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for EnvironmentDebuffDescTableHandle<'ctx>
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<EnvironmentDebuffDesc>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<EnvironmentDebuffDesc>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<EnvironmentDebuffDesc>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `buff_id` unique index on the table `environment_debuff_desc`,
-        /// which allows point queries on the field of the same name
-        /// via the [`EnvironmentDebuffDescBuffIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.environment_debuff_desc().buff_id().find(...)`.
-        pub struct EnvironmentDebuffDescBuffIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<EnvironmentDebuffDesc, i32>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `buff_id` unique index on the table `environment_debuff_desc`,
+/// which allows point queries on the field of the same name
+/// via the [`EnvironmentDebuffDescBuffIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.environment_debuff_desc().buff_id().find(...)`.
+pub struct EnvironmentDebuffDescBuffIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<EnvironmentDebuffDesc, i32>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> EnvironmentDebuffDescTableHandle<'ctx> {
-            /// Get a handle on the `buff_id` unique index on the table `environment_debuff_desc`.
-            pub fn buff_id(&self) -> EnvironmentDebuffDescBuffIdUnique<'ctx> {
-                EnvironmentDebuffDescBuffIdUnique {
-                    imp: self.imp.get_unique_constraint::<i32>("buff_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> EnvironmentDebuffDescTableHandle<'ctx> {
+    /// Get a handle on the `buff_id` unique index on the table `environment_debuff_desc`.
+    pub fn buff_id(&self) -> EnvironmentDebuffDescBuffIdUnique<'ctx> {
+        EnvironmentDebuffDescBuffIdUnique {
+            imp: self.imp.get_unique_constraint::<i32>("buff_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> EnvironmentDebuffDescBuffIdUnique<'ctx> {
-            /// Find the subscribed row whose `buff_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &i32) -> Option<EnvironmentDebuffDesc> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> EnvironmentDebuffDescBuffIdUnique<'ctx> {
+    /// Find the subscribed row whose `buff_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &i32) -> Option<EnvironmentDebuffDesc> {
+        self.imp.find(col_val)
+    }
+}

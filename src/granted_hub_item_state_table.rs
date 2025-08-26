@@ -3,14 +3,9 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::granted_hub_item_state_type::GrantedHubItemState;
 use super::hub_item_type_type::HubItemType;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `granted_hub_item_state`.
 ///
@@ -38,7 +33,9 @@ pub trait GrantedHubItemStateTableAccess {
 impl GrantedHubItemStateTableAccess for super::RemoteTables {
     fn granted_hub_item_state(&self) -> GrantedHubItemStateTableHandle<'_> {
         GrantedHubItemStateTableHandle {
-            imp: self.imp.get_table::<GrantedHubItemState>("granted_hub_item_state"),
+            imp: self
+                .imp
+                .get_table::<GrantedHubItemState>("granted_hub_item_state"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -51,8 +48,12 @@ impl<'ctx> __sdk::Table for GrantedHubItemStateTableHandle<'ctx> {
     type Row = GrantedHubItemState;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = GrantedHubItemState> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = GrantedHubItemState> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = GrantedHubItemStateInsertCallbackId;
 
@@ -83,8 +84,7 @@ impl<'ctx> __sdk::Table for GrantedHubItemStateTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<GrantedHubItemState>("granted_hub_item_state");
+    let _table = client_cache.get_or_make_table::<GrantedHubItemState>("granted_hub_item_state");
     _table.add_unique_constraint::<u64>("entity_id", |row| &row.entity_id);
 }
 pub struct GrantedHubItemStateUpdateCallbackId(__sdk::CallbackId);
@@ -104,46 +104,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for GrantedHubItemStateTableHandle<'ctx> {
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<GrantedHubItemState>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<GrantedHubItemState>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<GrantedHubItemState>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `entity_id` unique index on the table `granted_hub_item_state`,
-        /// which allows point queries on the field of the same name
-        /// via the [`GrantedHubItemStateEntityIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.granted_hub_item_state().entity_id().find(...)`.
-        pub struct GrantedHubItemStateEntityIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<GrantedHubItemState, u64>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `entity_id` unique index on the table `granted_hub_item_state`,
+/// which allows point queries on the field of the same name
+/// via the [`GrantedHubItemStateEntityIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.granted_hub_item_state().entity_id().find(...)`.
+pub struct GrantedHubItemStateEntityIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<GrantedHubItemState, u64>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> GrantedHubItemStateTableHandle<'ctx> {
-            /// Get a handle on the `entity_id` unique index on the table `granted_hub_item_state`.
-            pub fn entity_id(&self) -> GrantedHubItemStateEntityIdUnique<'ctx> {
-                GrantedHubItemStateEntityIdUnique {
-                    imp: self.imp.get_unique_constraint::<u64>("entity_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> GrantedHubItemStateTableHandle<'ctx> {
+    /// Get a handle on the `entity_id` unique index on the table `granted_hub_item_state`.
+    pub fn entity_id(&self) -> GrantedHubItemStateEntityIdUnique<'ctx> {
+        GrantedHubItemStateEntityIdUnique {
+            imp: self.imp.get_unique_constraint::<u64>("entity_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> GrantedHubItemStateEntityIdUnique<'ctx> {
-            /// Find the subscribed row whose `entity_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u64) -> Option<GrantedHubItemState> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> GrantedHubItemStateEntityIdUnique<'ctx> {
+    /// Find the subscribed row whose `entity_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u64) -> Option<GrantedHubItemState> {
+        self.imp.find(col_val)
+    }
+}

@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::knowledge_scroll_desc_type::KnowledgeScrollDesc;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct StageKnowledgeScrollDescArgs {
-    pub records: Vec::<KnowledgeScrollDesc>,
+    pub records: Vec<KnowledgeScrollDesc>,
 }
 
 impl From<StageKnowledgeScrollDescArgs> for super::Reducer {
     fn from(args: StageKnowledgeScrollDescArgs) -> Self {
         Self::StageKnowledgeScrollDesc {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for StageKnowledgeScrollDescArgs {
@@ -42,8 +37,7 @@ pub trait stage_knowledge_scroll_desc {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_stage_knowledge_scroll_desc`] callbacks.
-    fn stage_knowledge_scroll_desc(&self, records: Vec::<KnowledgeScrollDesc>,
-) -> __sdk::Result<()>;
+    fn stage_knowledge_scroll_desc(&self, records: Vec<KnowledgeScrollDesc>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `stage_knowledge_scroll_desc`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,49 @@ pub trait stage_knowledge_scroll_desc {
     ///
     /// The returned [`StageKnowledgeScrollDescCallbackId`] can be passed to [`Self::remove_on_stage_knowledge_scroll_desc`]
     /// to cancel the callback.
-    fn on_stage_knowledge_scroll_desc(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<KnowledgeScrollDesc>, ) + Send + 'static) -> StageKnowledgeScrollDescCallbackId;
+    fn on_stage_knowledge_scroll_desc(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<KnowledgeScrollDesc>) + Send + 'static,
+    ) -> StageKnowledgeScrollDescCallbackId;
     /// Cancel a callback previously registered by [`Self::on_stage_knowledge_scroll_desc`],
     /// causing it not to run in the future.
     fn remove_on_stage_knowledge_scroll_desc(&self, callback: StageKnowledgeScrollDescCallbackId);
 }
 
 impl stage_knowledge_scroll_desc for super::RemoteReducers {
-    fn stage_knowledge_scroll_desc(&self, records: Vec::<KnowledgeScrollDesc>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("stage_knowledge_scroll_desc", StageKnowledgeScrollDescArgs { records,  })
+    fn stage_knowledge_scroll_desc(&self, records: Vec<KnowledgeScrollDesc>) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "stage_knowledge_scroll_desc",
+            StageKnowledgeScrollDescArgs { records },
+        )
     }
     fn on_stage_knowledge_scroll_desc(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<KnowledgeScrollDesc>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<KnowledgeScrollDesc>)
+            + Send
+            + 'static,
     ) -> StageKnowledgeScrollDescCallbackId {
         StageKnowledgeScrollDescCallbackId(self.imp.on_reducer(
             "stage_knowledge_scroll_desc",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::StageKnowledgeScrollDesc {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::StageKnowledgeScrollDesc { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
     fn remove_on_stage_knowledge_scroll_desc(&self, callback: StageKnowledgeScrollDescCallbackId) {
-        self.imp.remove_on_reducer("stage_knowledge_scroll_desc", callback.0)
+        self.imp
+            .remove_on_reducer("stage_knowledge_scroll_desc", callback.0)
     }
 }
 
@@ -103,7 +107,7 @@ pub trait set_flags_for_stage_knowledge_scroll_desc {
 
 impl set_flags_for_stage_knowledge_scroll_desc for super::SetReducerFlags {
     fn stage_knowledge_scroll_desc(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("stage_knowledge_scroll_desc", flags);
+        self.imp
+            .set_call_reducer_flags("stage_knowledge_scroll_desc", flags);
     }
 }
-

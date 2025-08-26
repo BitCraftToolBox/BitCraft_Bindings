@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::item_stack_type::ItemStack;
 
@@ -20,16 +15,14 @@ pub struct ClaimTechDesc {
     pub tier: i32,
     pub supplies_cost: i32,
     pub research_time: i32,
-    pub requirements: Vec::<i32>,
-    pub input: Vec::<ItemStack>,
+    pub requirements: Vec<i32>,
+    pub input: Vec<ItemStack>,
     pub members: i32,
     pub area: i32,
     pub supplies: i32,
     pub xp_to_mint_hex_coin: u32,
 }
 
-
 impl __sdk::InModule for ClaimTechDesc {
     type Module = super::RemoteModule;
 }
-

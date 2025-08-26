@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::float_hex_tile_message_type::FloatHexTileMessage;
 
@@ -22,8 +17,6 @@ pub struct UserPreviousRegionState {
     pub teleport_energy_cost: f32,
 }
 
-
 impl __sdk::InModule for UserPreviousRegionState {
     type Module = super::RemoteModule;
 }
-

@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::empire_mark_for_expansion_request_type::EmpireMarkForExpansionRequest;
 
@@ -22,8 +17,8 @@ impl From<EmpireMarkForExpansionArgs> for super::Reducer {
     fn from(args: EmpireMarkForExpansionArgs) -> Self {
         Self::EmpireMarkForExpansion {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for EmpireMarkForExpansionArgs {
@@ -42,8 +37,10 @@ pub trait empire_mark_for_expansion {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_empire_mark_for_expansion`] callbacks.
-    fn empire_mark_for_expansion(&self, request: EmpireMarkForExpansionRequest,
-) -> __sdk::Result<()>;
+    fn empire_mark_for_expansion(
+        &self,
+        request: EmpireMarkForExpansionRequest,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `empire_mark_for_expansion`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +48,54 @@ pub trait empire_mark_for_expansion {
     ///
     /// The returned [`EmpireMarkForExpansionCallbackId`] can be passed to [`Self::remove_on_empire_mark_for_expansion`]
     /// to cancel the callback.
-    fn on_empire_mark_for_expansion(&self, callback: impl FnMut(&super::ReducerEventContext, &EmpireMarkForExpansionRequest, ) + Send + 'static) -> EmpireMarkForExpansionCallbackId;
+    fn on_empire_mark_for_expansion(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &EmpireMarkForExpansionRequest)
+            + Send
+            + 'static,
+    ) -> EmpireMarkForExpansionCallbackId;
     /// Cancel a callback previously registered by [`Self::on_empire_mark_for_expansion`],
     /// causing it not to run in the future.
     fn remove_on_empire_mark_for_expansion(&self, callback: EmpireMarkForExpansionCallbackId);
 }
 
 impl empire_mark_for_expansion for super::RemoteReducers {
-    fn empire_mark_for_expansion(&self, request: EmpireMarkForExpansionRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("empire_mark_for_expansion", EmpireMarkForExpansionArgs { request,  })
+    fn empire_mark_for_expansion(
+        &self,
+        request: EmpireMarkForExpansionRequest,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "empire_mark_for_expansion",
+            EmpireMarkForExpansionArgs { request },
+        )
     }
     fn on_empire_mark_for_expansion(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &EmpireMarkForExpansionRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &EmpireMarkForExpansionRequest)
+            + Send
+            + 'static,
     ) -> EmpireMarkForExpansionCallbackId {
         EmpireMarkForExpansionCallbackId(self.imp.on_reducer(
             "empire_mark_for_expansion",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::EmpireMarkForExpansion {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::EmpireMarkForExpansion { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
     fn remove_on_empire_mark_for_expansion(&self, callback: EmpireMarkForExpansionCallbackId) {
-        self.imp.remove_on_reducer("empire_mark_for_expansion", callback.0)
+        self.imp
+            .remove_on_reducer("empire_mark_for_expansion", callback.0)
     }
 }
 
@@ -103,7 +115,7 @@ pub trait set_flags_for_empire_mark_for_expansion {
 
 impl set_flags_for_empire_mark_for_expansion for super::SetReducerFlags {
     fn empire_mark_for_expansion(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("empire_mark_for_expansion", flags);
+        self.imp
+            .set_call_reducer_flags("empire_mark_for_expansion", flags);
     }
 }
-

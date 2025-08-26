@@ -3,14 +3,9 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::visibility_state_type::VisibilityState;
 use super::visibility_type_type::VisibilityType;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `visibility_state`.
 ///
@@ -51,8 +46,12 @@ impl<'ctx> __sdk::Table for VisibilityStateTableHandle<'ctx> {
     type Row = VisibilityState;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = VisibilityState> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = VisibilityState> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = VisibilityStateInsertCallbackId;
 
@@ -83,8 +82,7 @@ impl<'ctx> __sdk::Table for VisibilityStateTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<VisibilityState>("visibility_state");
+    let _table = client_cache.get_or_make_table::<VisibilityState>("visibility_state");
     _table.add_unique_constraint::<u64>("entity_id", |row| &row.entity_id);
 }
 pub struct VisibilityStateUpdateCallbackId(__sdk::CallbackId);
@@ -104,46 +102,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for VisibilityStateTableHandle<'ctx> {
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<VisibilityState>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<VisibilityState>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<VisibilityState>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `entity_id` unique index on the table `visibility_state`,
-        /// which allows point queries on the field of the same name
-        /// via the [`VisibilityStateEntityIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.visibility_state().entity_id().find(...)`.
-        pub struct VisibilityStateEntityIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<VisibilityState, u64>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `entity_id` unique index on the table `visibility_state`,
+/// which allows point queries on the field of the same name
+/// via the [`VisibilityStateEntityIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.visibility_state().entity_id().find(...)`.
+pub struct VisibilityStateEntityIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<VisibilityState, u64>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> VisibilityStateTableHandle<'ctx> {
-            /// Get a handle on the `entity_id` unique index on the table `visibility_state`.
-            pub fn entity_id(&self) -> VisibilityStateEntityIdUnique<'ctx> {
-                VisibilityStateEntityIdUnique {
-                    imp: self.imp.get_unique_constraint::<u64>("entity_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> VisibilityStateTableHandle<'ctx> {
+    /// Get a handle on the `entity_id` unique index on the table `visibility_state`.
+    pub fn entity_id(&self) -> VisibilityStateEntityIdUnique<'ctx> {
+        VisibilityStateEntityIdUnique {
+            imp: self.imp.get_unique_constraint::<u64>("entity_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> VisibilityStateEntityIdUnique<'ctx> {
-            /// Find the subscribed row whose `entity_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u64) -> Option<VisibilityState> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> VisibilityStateEntityIdUnique<'ctx> {
+    /// Find the subscribed row whose `entity_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u64) -> Option<VisibilityState> {
+        self.imp.find(col_val)
+    }
+}

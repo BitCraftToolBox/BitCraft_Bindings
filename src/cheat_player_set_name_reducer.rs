@@ -3,13 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -23,8 +17,8 @@ impl From<CheatPlayerSetNameArgs> for super::Reducer {
         Self::CheatPlayerSetName {
             player_entity_id: args.player_entity_id,
             name: args.name,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for CheatPlayerSetNameArgs {
@@ -43,9 +37,7 @@ pub trait cheat_player_set_name {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_cheat_player_set_name`] callbacks.
-    fn cheat_player_set_name(&self, player_entity_id: u64,
-name: String,
-) -> __sdk::Result<()>;
+    fn cheat_player_set_name(&self, player_entity_id: u64, name: String) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `cheat_player_set_name`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -53,40 +45,54 @@ name: String,
     ///
     /// The returned [`CheatPlayerSetNameCallbackId`] can be passed to [`Self::remove_on_cheat_player_set_name`]
     /// to cancel the callback.
-    fn on_cheat_player_set_name(&self, callback: impl FnMut(&super::ReducerEventContext, &u64, &String, ) + Send + 'static) -> CheatPlayerSetNameCallbackId;
+    fn on_cheat_player_set_name(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &u64, &String) + Send + 'static,
+    ) -> CheatPlayerSetNameCallbackId;
     /// Cancel a callback previously registered by [`Self::on_cheat_player_set_name`],
     /// causing it not to run in the future.
     fn remove_on_cheat_player_set_name(&self, callback: CheatPlayerSetNameCallbackId);
 }
 
 impl cheat_player_set_name for super::RemoteReducers {
-    fn cheat_player_set_name(&self, player_entity_id: u64,
-name: String,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("cheat_player_set_name", CheatPlayerSetNameArgs { player_entity_id, name,  })
+    fn cheat_player_set_name(&self, player_entity_id: u64, name: String) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "cheat_player_set_name",
+            CheatPlayerSetNameArgs {
+                player_entity_id,
+                name,
+            },
+        )
     }
     fn on_cheat_player_set_name(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &u64, &String, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &u64, &String) + Send + 'static,
     ) -> CheatPlayerSetNameCallbackId {
         CheatPlayerSetNameCallbackId(self.imp.on_reducer(
             "cheat_player_set_name",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::CheatPlayerSetName {
-                            player_entity_id, name, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer:
+                                super::Reducer::CheatPlayerSetName {
+                                    player_entity_id,
+                                    name,
+                                },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, player_entity_id, name, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, player_entity_id, name)
             }),
         ))
     }
     fn remove_on_cheat_player_set_name(&self, callback: CheatPlayerSetNameCallbackId) {
-        self.imp.remove_on_reducer("cheat_player_set_name", callback.0)
+        self.imp
+            .remove_on_reducer("cheat_player_set_name", callback.0)
     }
 }
 
@@ -106,7 +112,7 @@ pub trait set_flags_for_cheat_player_set_name {
 
 impl set_flags_for_cheat_player_set_name for super::SetReducerFlags {
     fn cheat_player_set_name(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("cheat_player_set_name", flags);
+        self.imp
+            .set_call_reducer_flags("cheat_player_set_name", flags);
     }
 }
-

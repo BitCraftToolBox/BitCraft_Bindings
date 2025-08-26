@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::distant_visible_entity_desc_type::DistantVisibleEntityDesc;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct StageDistantVisibleEntityDescArgs {
-    pub records: Vec::<DistantVisibleEntityDesc>,
+    pub records: Vec<DistantVisibleEntityDesc>,
 }
 
 impl From<StageDistantVisibleEntityDescArgs> for super::Reducer {
     fn from(args: StageDistantVisibleEntityDescArgs) -> Self {
         Self::StageDistantVisibleEntityDesc {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for StageDistantVisibleEntityDescArgs {
@@ -42,8 +37,10 @@ pub trait stage_distant_visible_entity_desc {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_stage_distant_visible_entity_desc`] callbacks.
-    fn stage_distant_visible_entity_desc(&self, records: Vec::<DistantVisibleEntityDesc>,
-) -> __sdk::Result<()>;
+    fn stage_distant_visible_entity_desc(
+        &self,
+        records: Vec<DistantVisibleEntityDesc>,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `stage_distant_visible_entity_desc`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +48,60 @@ pub trait stage_distant_visible_entity_desc {
     ///
     /// The returned [`StageDistantVisibleEntityDescCallbackId`] can be passed to [`Self::remove_on_stage_distant_visible_entity_desc`]
     /// to cancel the callback.
-    fn on_stage_distant_visible_entity_desc(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<DistantVisibleEntityDesc>, ) + Send + 'static) -> StageDistantVisibleEntityDescCallbackId;
+    fn on_stage_distant_visible_entity_desc(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<DistantVisibleEntityDesc>)
+            + Send
+            + 'static,
+    ) -> StageDistantVisibleEntityDescCallbackId;
     /// Cancel a callback previously registered by [`Self::on_stage_distant_visible_entity_desc`],
     /// causing it not to run in the future.
-    fn remove_on_stage_distant_visible_entity_desc(&self, callback: StageDistantVisibleEntityDescCallbackId);
+    fn remove_on_stage_distant_visible_entity_desc(
+        &self,
+        callback: StageDistantVisibleEntityDescCallbackId,
+    );
 }
 
 impl stage_distant_visible_entity_desc for super::RemoteReducers {
-    fn stage_distant_visible_entity_desc(&self, records: Vec::<DistantVisibleEntityDesc>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("stage_distant_visible_entity_desc", StageDistantVisibleEntityDescArgs { records,  })
+    fn stage_distant_visible_entity_desc(
+        &self,
+        records: Vec<DistantVisibleEntityDesc>,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "stage_distant_visible_entity_desc",
+            StageDistantVisibleEntityDescArgs { records },
+        )
     }
     fn on_stage_distant_visible_entity_desc(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<DistantVisibleEntityDesc>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<DistantVisibleEntityDesc>)
+            + Send
+            + 'static,
     ) -> StageDistantVisibleEntityDescCallbackId {
         StageDistantVisibleEntityDescCallbackId(self.imp.on_reducer(
             "stage_distant_visible_entity_desc",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::StageDistantVisibleEntityDesc {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::StageDistantVisibleEntityDesc { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
-    fn remove_on_stage_distant_visible_entity_desc(&self, callback: StageDistantVisibleEntityDescCallbackId) {
-        self.imp.remove_on_reducer("stage_distant_visible_entity_desc", callback.0)
+    fn remove_on_stage_distant_visible_entity_desc(
+        &self,
+        callback: StageDistantVisibleEntityDescCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("stage_distant_visible_entity_desc", callback.0)
     }
 }
 
@@ -103,7 +121,7 @@ pub trait set_flags_for_stage_distant_visible_entity_desc {
 
 impl set_flags_for_stage_distant_visible_entity_desc for super::SetReducerFlags {
     fn stage_distant_visible_entity_desc(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("stage_distant_visible_entity_desc", flags);
+        self.imp
+            .set_call_reducer_flags("stage_distant_visible_entity_desc", flags);
     }
 }
-

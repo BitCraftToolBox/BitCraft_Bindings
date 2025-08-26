@@ -3,13 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -21,8 +15,8 @@ impl From<CheatEmpireSiegeCancelArgs> for super::Reducer {
     fn from(args: CheatEmpireSiegeCancelArgs) -> Self {
         Self::CheatEmpireSiegeCancel {
             siege_node_entity_id: args.siege_node_entity_id,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for CheatEmpireSiegeCancelArgs {
@@ -41,8 +35,7 @@ pub trait cheat_empire_siege_cancel {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_cheat_empire_siege_cancel`] callbacks.
-    fn cheat_empire_siege_cancel(&self, siege_node_entity_id: u64,
-) -> __sdk::Result<()>;
+    fn cheat_empire_siege_cancel(&self, siege_node_entity_id: u64) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `cheat_empire_siege_cancel`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -50,39 +43,52 @@ pub trait cheat_empire_siege_cancel {
     ///
     /// The returned [`CheatEmpireSiegeCancelCallbackId`] can be passed to [`Self::remove_on_cheat_empire_siege_cancel`]
     /// to cancel the callback.
-    fn on_cheat_empire_siege_cancel(&self, callback: impl FnMut(&super::ReducerEventContext, &u64, ) + Send + 'static) -> CheatEmpireSiegeCancelCallbackId;
+    fn on_cheat_empire_siege_cancel(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &u64) + Send + 'static,
+    ) -> CheatEmpireSiegeCancelCallbackId;
     /// Cancel a callback previously registered by [`Self::on_cheat_empire_siege_cancel`],
     /// causing it not to run in the future.
     fn remove_on_cheat_empire_siege_cancel(&self, callback: CheatEmpireSiegeCancelCallbackId);
 }
 
 impl cheat_empire_siege_cancel for super::RemoteReducers {
-    fn cheat_empire_siege_cancel(&self, siege_node_entity_id: u64,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("cheat_empire_siege_cancel", CheatEmpireSiegeCancelArgs { siege_node_entity_id,  })
+    fn cheat_empire_siege_cancel(&self, siege_node_entity_id: u64) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "cheat_empire_siege_cancel",
+            CheatEmpireSiegeCancelArgs {
+                siege_node_entity_id,
+            },
+        )
     }
     fn on_cheat_empire_siege_cancel(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &u64, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &u64) + Send + 'static,
     ) -> CheatEmpireSiegeCancelCallbackId {
         CheatEmpireSiegeCancelCallbackId(self.imp.on_reducer(
             "cheat_empire_siege_cancel",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::CheatEmpireSiegeCancel {
-                            siege_node_entity_id, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer:
+                                super::Reducer::CheatEmpireSiegeCancel {
+                                    siege_node_entity_id,
+                                },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, siege_node_entity_id, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, siege_node_entity_id)
             }),
         ))
     }
     fn remove_on_cheat_empire_siege_cancel(&self, callback: CheatEmpireSiegeCancelCallbackId) {
-        self.imp.remove_on_reducer("cheat_empire_siege_cancel", callback.0)
+        self.imp
+            .remove_on_reducer("cheat_empire_siege_cancel", callback.0)
     }
 }
 
@@ -102,7 +108,7 @@ pub trait set_flags_for_cheat_empire_siege_cancel {
 
 impl set_flags_for_cheat_empire_siege_cancel for super::SetReducerFlags {
     fn cheat_empire_siege_cancel(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("cheat_empire_siege_cancel", flags);
+        self.imp
+            .set_call_reducer_flags("cheat_empire_siege_cancel", flags);
     }
 }
-

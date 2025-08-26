@@ -3,13 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -21,8 +15,8 @@ impl From<EmpireSetNobilityThresholdArgs> for super::Reducer {
     fn from(args: EmpireSetNobilityThresholdArgs) -> Self {
         Self::EmpireSetNobilityThreshold {
             threshold: args.threshold,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for EmpireSetNobilityThresholdArgs {
@@ -41,8 +35,7 @@ pub trait empire_set_nobility_threshold {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_empire_set_nobility_threshold`] callbacks.
-    fn empire_set_nobility_threshold(&self, threshold: i32,
-) -> __sdk::Result<()>;
+    fn empire_set_nobility_threshold(&self, threshold: i32) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `empire_set_nobility_threshold`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -50,39 +43,53 @@ pub trait empire_set_nobility_threshold {
     ///
     /// The returned [`EmpireSetNobilityThresholdCallbackId`] can be passed to [`Self::remove_on_empire_set_nobility_threshold`]
     /// to cancel the callback.
-    fn on_empire_set_nobility_threshold(&self, callback: impl FnMut(&super::ReducerEventContext, &i32, ) + Send + 'static) -> EmpireSetNobilityThresholdCallbackId;
+    fn on_empire_set_nobility_threshold(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &i32) + Send + 'static,
+    ) -> EmpireSetNobilityThresholdCallbackId;
     /// Cancel a callback previously registered by [`Self::on_empire_set_nobility_threshold`],
     /// causing it not to run in the future.
-    fn remove_on_empire_set_nobility_threshold(&self, callback: EmpireSetNobilityThresholdCallbackId);
+    fn remove_on_empire_set_nobility_threshold(
+        &self,
+        callback: EmpireSetNobilityThresholdCallbackId,
+    );
 }
 
 impl empire_set_nobility_threshold for super::RemoteReducers {
-    fn empire_set_nobility_threshold(&self, threshold: i32,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("empire_set_nobility_threshold", EmpireSetNobilityThresholdArgs { threshold,  })
+    fn empire_set_nobility_threshold(&self, threshold: i32) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "empire_set_nobility_threshold",
+            EmpireSetNobilityThresholdArgs { threshold },
+        )
     }
     fn on_empire_set_nobility_threshold(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &i32, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &i32) + Send + 'static,
     ) -> EmpireSetNobilityThresholdCallbackId {
         EmpireSetNobilityThresholdCallbackId(self.imp.on_reducer(
             "empire_set_nobility_threshold",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::EmpireSetNobilityThreshold {
-                            threshold, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::EmpireSetNobilityThreshold { threshold },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, threshold, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, threshold)
             }),
         ))
     }
-    fn remove_on_empire_set_nobility_threshold(&self, callback: EmpireSetNobilityThresholdCallbackId) {
-        self.imp.remove_on_reducer("empire_set_nobility_threshold", callback.0)
+    fn remove_on_empire_set_nobility_threshold(
+        &self,
+        callback: EmpireSetNobilityThresholdCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("empire_set_nobility_threshold", callback.0)
     }
 }
 
@@ -102,7 +109,7 @@ pub trait set_flags_for_empire_set_nobility_threshold {
 
 impl set_flags_for_empire_set_nobility_threshold for super::SetReducerFlags {
     fn empire_set_nobility_threshold(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("empire_set_nobility_threshold", flags);
+        self.imp
+            .set_call_reducer_flags("empire_set_nobility_threshold", flags);
     }
 }
-

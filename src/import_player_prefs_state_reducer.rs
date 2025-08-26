@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_prefs_state_type::PlayerPrefsState;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct ImportPlayerPrefsStateArgs {
-    pub records: Vec::<PlayerPrefsState>,
+    pub records: Vec<PlayerPrefsState>,
 }
 
 impl From<ImportPlayerPrefsStateArgs> for super::Reducer {
     fn from(args: ImportPlayerPrefsStateArgs) -> Self {
         Self::ImportPlayerPrefsState {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ImportPlayerPrefsStateArgs {
@@ -42,8 +37,7 @@ pub trait import_player_prefs_state {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_import_player_prefs_state`] callbacks.
-    fn import_player_prefs_state(&self, records: Vec::<PlayerPrefsState>,
-) -> __sdk::Result<()>;
+    fn import_player_prefs_state(&self, records: Vec<PlayerPrefsState>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `import_player_prefs_state`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,47 @@ pub trait import_player_prefs_state {
     ///
     /// The returned [`ImportPlayerPrefsStateCallbackId`] can be passed to [`Self::remove_on_import_player_prefs_state`]
     /// to cancel the callback.
-    fn on_import_player_prefs_state(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<PlayerPrefsState>, ) + Send + 'static) -> ImportPlayerPrefsStateCallbackId;
+    fn on_import_player_prefs_state(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<PlayerPrefsState>) + Send + 'static,
+    ) -> ImportPlayerPrefsStateCallbackId;
     /// Cancel a callback previously registered by [`Self::on_import_player_prefs_state`],
     /// causing it not to run in the future.
     fn remove_on_import_player_prefs_state(&self, callback: ImportPlayerPrefsStateCallbackId);
 }
 
 impl import_player_prefs_state for super::RemoteReducers {
-    fn import_player_prefs_state(&self, records: Vec::<PlayerPrefsState>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("import_player_prefs_state", ImportPlayerPrefsStateArgs { records,  })
+    fn import_player_prefs_state(&self, records: Vec<PlayerPrefsState>) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "import_player_prefs_state",
+            ImportPlayerPrefsStateArgs { records },
+        )
     }
     fn on_import_player_prefs_state(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<PlayerPrefsState>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<PlayerPrefsState>) + Send + 'static,
     ) -> ImportPlayerPrefsStateCallbackId {
         ImportPlayerPrefsStateCallbackId(self.imp.on_reducer(
             "import_player_prefs_state",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ImportPlayerPrefsState {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ImportPlayerPrefsState { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
     fn remove_on_import_player_prefs_state(&self, callback: ImportPlayerPrefsStateCallbackId) {
-        self.imp.remove_on_reducer("import_player_prefs_state", callback.0)
+        self.imp
+            .remove_on_reducer("import_player_prefs_state", callback.0)
     }
 }
 
@@ -103,7 +105,7 @@ pub trait set_flags_for_import_player_prefs_state {
 
 impl set_flags_for_import_player_prefs_state for super::SetReducerFlags {
     fn import_player_prefs_state(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("import_player_prefs_state", flags);
+        self.imp
+            .set_call_reducer_flags("import_player_prefs_state", flags);
     }
 }
-

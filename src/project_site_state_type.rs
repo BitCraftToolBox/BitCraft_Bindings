@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::item_stack_type::ItemStack;
 
@@ -18,8 +13,8 @@ pub struct ProjectSiteState {
     pub entity_id: u64,
     pub construction_recipe_id: i32,
     pub resource_placement_recipe_id: i32,
-    pub items: Vec::<ItemStack>,
-    pub cargos: Vec::<ItemStack>,
+    pub items: Vec<ItemStack>,
+    pub cargos: Vec<ItemStack>,
     pub progress: i32,
     pub last_crit_outcome: i32,
     pub owner_id: u64,
@@ -27,8 +22,6 @@ pub struct ProjectSiteState {
     pub last_hit_timestamp: __sdk::Timestamp,
 }
 
-
 impl __sdk::InModule for ProjectSiteState {
     type Module = super::RemoteModule;
 }
-

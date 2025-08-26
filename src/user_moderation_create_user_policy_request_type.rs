@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::user_moderation_policy_type::UserModerationPolicy;
 
@@ -20,8 +15,6 @@ pub struct UserModerationCreateUserPolicyRequest {
     pub duration_ms: u64,
 }
 
-
 impl __sdk::InModule for UserModerationCreateUserPolicyRequest {
     type Module = super::RemoteModule;
 }
-

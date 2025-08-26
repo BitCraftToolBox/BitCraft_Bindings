@@ -3,13 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -18,11 +12,9 @@ pub struct HerdState {
     pub enemy_ai_params_desc_id: i32,
     pub current_population: i32,
     pub ignore_eagerness: bool,
-    pub population_variance: Vec::<f32>,
+    pub population_variance: Vec<f32>,
 }
-
 
 impl __sdk::InModule for HerdState {
     type Module = super::RemoteModule;
 }
-

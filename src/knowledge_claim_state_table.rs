@@ -3,14 +3,9 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::knowledge_claim_state_type::KnowledgeClaimState;
 use super::knowledge_entity_entry_type::KnowledgeEntityEntry;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `knowledge_claim_state`.
 ///
@@ -38,7 +33,9 @@ pub trait KnowledgeClaimStateTableAccess {
 impl KnowledgeClaimStateTableAccess for super::RemoteTables {
     fn knowledge_claim_state(&self) -> KnowledgeClaimStateTableHandle<'_> {
         KnowledgeClaimStateTableHandle {
-            imp: self.imp.get_table::<KnowledgeClaimState>("knowledge_claim_state"),
+            imp: self
+                .imp
+                .get_table::<KnowledgeClaimState>("knowledge_claim_state"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -51,8 +48,12 @@ impl<'ctx> __sdk::Table for KnowledgeClaimStateTableHandle<'ctx> {
     type Row = KnowledgeClaimState;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = KnowledgeClaimState> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = KnowledgeClaimState> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = KnowledgeClaimStateInsertCallbackId;
 
@@ -83,8 +84,7 @@ impl<'ctx> __sdk::Table for KnowledgeClaimStateTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<KnowledgeClaimState>("knowledge_claim_state");
+    let _table = client_cache.get_or_make_table::<KnowledgeClaimState>("knowledge_claim_state");
     _table.add_unique_constraint::<u64>("entity_id", |row| &row.entity_id);
 }
 pub struct KnowledgeClaimStateUpdateCallbackId(__sdk::CallbackId);
@@ -104,46 +104,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for KnowledgeClaimStateTableHandle<'ctx> {
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<KnowledgeClaimState>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<KnowledgeClaimState>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<KnowledgeClaimState>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `entity_id` unique index on the table `knowledge_claim_state`,
-        /// which allows point queries on the field of the same name
-        /// via the [`KnowledgeClaimStateEntityIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.knowledge_claim_state().entity_id().find(...)`.
-        pub struct KnowledgeClaimStateEntityIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<KnowledgeClaimState, u64>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `entity_id` unique index on the table `knowledge_claim_state`,
+/// which allows point queries on the field of the same name
+/// via the [`KnowledgeClaimStateEntityIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.knowledge_claim_state().entity_id().find(...)`.
+pub struct KnowledgeClaimStateEntityIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<KnowledgeClaimState, u64>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> KnowledgeClaimStateTableHandle<'ctx> {
-            /// Get a handle on the `entity_id` unique index on the table `knowledge_claim_state`.
-            pub fn entity_id(&self) -> KnowledgeClaimStateEntityIdUnique<'ctx> {
-                KnowledgeClaimStateEntityIdUnique {
-                    imp: self.imp.get_unique_constraint::<u64>("entity_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> KnowledgeClaimStateTableHandle<'ctx> {
+    /// Get a handle on the `entity_id` unique index on the table `knowledge_claim_state`.
+    pub fn entity_id(&self) -> KnowledgeClaimStateEntityIdUnique<'ctx> {
+        KnowledgeClaimStateEntityIdUnique {
+            imp: self.imp.get_unique_constraint::<u64>("entity_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> KnowledgeClaimStateEntityIdUnique<'ctx> {
-            /// Find the subscribed row whose `entity_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u64) -> Option<KnowledgeClaimState> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> KnowledgeClaimStateEntityIdUnique<'ctx> {
+    /// Find the subscribed row whose `entity_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u64) -> Option<KnowledgeClaimState> {
+        self.imp.find(col_val)
+    }
+}

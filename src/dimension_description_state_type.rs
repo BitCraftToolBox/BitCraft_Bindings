@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::dimension_type_type::DimensionType;
 
@@ -27,8 +22,6 @@ pub struct DimensionDescriptionState {
     pub dimension_type: DimensionType,
 }
 
-
 impl __sdk::InModule for DimensionDescriptionState {
     type Module = super::RemoteModule;
 }
-

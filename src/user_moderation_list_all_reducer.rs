@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::user_moderation_create_user_policy_request_type::UserModerationCreateUserPolicyRequest;
 
@@ -22,8 +17,8 @@ impl From<UserModerationListAllArgs> for super::Reducer {
     fn from(args: UserModerationListAllArgs) -> Self {
         Self::UserModerationListAll {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for UserModerationListAllArgs {
@@ -42,8 +37,10 @@ pub trait user_moderation_list_all {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_user_moderation_list_all`] callbacks.
-    fn user_moderation_list_all(&self, request: UserModerationCreateUserPolicyRequest,
-) -> __sdk::Result<()>;
+    fn user_moderation_list_all(
+        &self,
+        request: UserModerationCreateUserPolicyRequest,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `user_moderation_list_all`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +48,54 @@ pub trait user_moderation_list_all {
     ///
     /// The returned [`UserModerationListAllCallbackId`] can be passed to [`Self::remove_on_user_moderation_list_all`]
     /// to cancel the callback.
-    fn on_user_moderation_list_all(&self, callback: impl FnMut(&super::ReducerEventContext, &UserModerationCreateUserPolicyRequest, ) + Send + 'static) -> UserModerationListAllCallbackId;
+    fn on_user_moderation_list_all(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &UserModerationCreateUserPolicyRequest)
+            + Send
+            + 'static,
+    ) -> UserModerationListAllCallbackId;
     /// Cancel a callback previously registered by [`Self::on_user_moderation_list_all`],
     /// causing it not to run in the future.
     fn remove_on_user_moderation_list_all(&self, callback: UserModerationListAllCallbackId);
 }
 
 impl user_moderation_list_all for super::RemoteReducers {
-    fn user_moderation_list_all(&self, request: UserModerationCreateUserPolicyRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("user_moderation_list_all", UserModerationListAllArgs { request,  })
+    fn user_moderation_list_all(
+        &self,
+        request: UserModerationCreateUserPolicyRequest,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "user_moderation_list_all",
+            UserModerationListAllArgs { request },
+        )
     }
     fn on_user_moderation_list_all(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &UserModerationCreateUserPolicyRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &UserModerationCreateUserPolicyRequest)
+            + Send
+            + 'static,
     ) -> UserModerationListAllCallbackId {
         UserModerationListAllCallbackId(self.imp.on_reducer(
             "user_moderation_list_all",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::UserModerationListAll {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::UserModerationListAll { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
     fn remove_on_user_moderation_list_all(&self, callback: UserModerationListAllCallbackId) {
-        self.imp.remove_on_reducer("user_moderation_list_all", callback.0)
+        self.imp
+            .remove_on_reducer("user_moderation_list_all", callback.0)
     }
 }
 
@@ -103,7 +115,7 @@ pub trait set_flags_for_user_moderation_list_all {
 
 impl set_flags_for_user_moderation_list_all for super::SetReducerFlags {
     fn user_moderation_list_all(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("user_moderation_list_all", flags);
+        self.imp
+            .set_call_reducer_flags("user_moderation_list_all", flags);
     }
 }
-

@@ -3,23 +3,16 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
-pub(super) struct PlayerClaimDailyShardsArgs {
-    }
+pub(super) struct PlayerClaimDailyShardsArgs {}
 
 impl From<PlayerClaimDailyShardsArgs> for super::Reducer {
     fn from(args: PlayerClaimDailyShardsArgs) -> Self {
         Self::PlayerClaimDailyShards
-}
+    }
 }
 
 impl __sdk::InModule for PlayerClaimDailyShardsArgs {
@@ -38,7 +31,7 @@ pub trait player_claim_daily_shards {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_player_claim_daily_shards`] callbacks.
-    fn player_claim_daily_shards(&self, ) -> __sdk::Result<()>;
+    fn player_claim_daily_shards(&self) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `player_claim_daily_shards`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -46,38 +39,45 @@ pub trait player_claim_daily_shards {
     ///
     /// The returned [`PlayerClaimDailyShardsCallbackId`] can be passed to [`Self::remove_on_player_claim_daily_shards`]
     /// to cancel the callback.
-    fn on_player_claim_daily_shards(&self, callback: impl FnMut(&super::ReducerEventContext, ) + Send + 'static) -> PlayerClaimDailyShardsCallbackId;
+    fn on_player_claim_daily_shards(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext) + Send + 'static,
+    ) -> PlayerClaimDailyShardsCallbackId;
     /// Cancel a callback previously registered by [`Self::on_player_claim_daily_shards`],
     /// causing it not to run in the future.
     fn remove_on_player_claim_daily_shards(&self, callback: PlayerClaimDailyShardsCallbackId);
 }
 
 impl player_claim_daily_shards for super::RemoteReducers {
-    fn player_claim_daily_shards(&self, ) -> __sdk::Result<()> {
-        self.imp.call_reducer("player_claim_daily_shards", PlayerClaimDailyShardsArgs {  })
+    fn player_claim_daily_shards(&self) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("player_claim_daily_shards", PlayerClaimDailyShardsArgs {})
     }
     fn on_player_claim_daily_shards(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext) + Send + 'static,
     ) -> PlayerClaimDailyShardsCallbackId {
         PlayerClaimDailyShardsCallbackId(self.imp.on_reducer(
             "player_claim_daily_shards",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::PlayerClaimDailyShards {
-                            
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::PlayerClaimDailyShards {},
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx)
             }),
         ))
     }
     fn remove_on_player_claim_daily_shards(&self, callback: PlayerClaimDailyShardsCallbackId) {
-        self.imp.remove_on_reducer("player_claim_daily_shards", callback.0)
+        self.imp
+            .remove_on_reducer("player_claim_daily_shards", callback.0)
     }
 }
 
@@ -97,7 +97,7 @@ pub trait set_flags_for_player_claim_daily_shards {
 
 impl set_flags_for_player_claim_daily_shards for super::SetReducerFlags {
     fn player_claim_daily_shards(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("player_claim_daily_shards", flags);
+        self.imp
+            .set_call_reducer_flags("player_claim_daily_shards", flags);
     }
 }
-

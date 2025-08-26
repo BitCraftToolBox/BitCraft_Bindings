@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::identity_role_type::IdentityRole;
 
@@ -18,12 +13,8 @@ pub enum IdentityRoleOp {
     Insert(IdentityRole),
 
     Delete(IdentityRole),
-
 }
-
-
 
 impl __sdk::InModule for IdentityRoleOp {
     type Module = super::RemoteModule;
 }
-

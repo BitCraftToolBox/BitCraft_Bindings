@@ -3,20 +3,15 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
-use super::surface_type_type::SurfaceType;
-use super::skill_type_type::SkillType;
 use super::buff_category_type::BuffCategory;
-use super::progressive_action_status_type::ProgressiveActionStatus;
 use super::chat_channel_type::ChatChannel;
-use super::permission_type::Permission;
 use super::permission_group_type::PermissionGroup;
+use super::permission_type::Permission;
+use super::progressive_action_status_type::ProgressiveActionStatus;
+use super::skill_type_type::SkillType;
+use super::surface_type_type::SurfaceType;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -31,8 +26,6 @@ pub struct TheGreatPlaceHolderTable {
     pub permission_group: PermissionGroup,
 }
 
-
 impl __sdk::InModule for TheGreatPlaceHolderTable {
     type Module = super::RemoteModule;
 }
-

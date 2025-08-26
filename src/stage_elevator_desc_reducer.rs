@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::elevator_desc_type::ElevatorDesc;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct StageElevatorDescArgs {
-    pub records: Vec::<ElevatorDesc>,
+    pub records: Vec<ElevatorDesc>,
 }
 
 impl From<StageElevatorDescArgs> for super::Reducer {
     fn from(args: StageElevatorDescArgs) -> Self {
         Self::StageElevatorDesc {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for StageElevatorDescArgs {
@@ -42,8 +37,7 @@ pub trait stage_elevator_desc {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_stage_elevator_desc`] callbacks.
-    fn stage_elevator_desc(&self, records: Vec::<ElevatorDesc>,
-) -> __sdk::Result<()>;
+    fn stage_elevator_desc(&self, records: Vec<ElevatorDesc>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `stage_elevator_desc`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,45 @@ pub trait stage_elevator_desc {
     ///
     /// The returned [`StageElevatorDescCallbackId`] can be passed to [`Self::remove_on_stage_elevator_desc`]
     /// to cancel the callback.
-    fn on_stage_elevator_desc(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<ElevatorDesc>, ) + Send + 'static) -> StageElevatorDescCallbackId;
+    fn on_stage_elevator_desc(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<ElevatorDesc>) + Send + 'static,
+    ) -> StageElevatorDescCallbackId;
     /// Cancel a callback previously registered by [`Self::on_stage_elevator_desc`],
     /// causing it not to run in the future.
     fn remove_on_stage_elevator_desc(&self, callback: StageElevatorDescCallbackId);
 }
 
 impl stage_elevator_desc for super::RemoteReducers {
-    fn stage_elevator_desc(&self, records: Vec::<ElevatorDesc>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("stage_elevator_desc", StageElevatorDescArgs { records,  })
+    fn stage_elevator_desc(&self, records: Vec<ElevatorDesc>) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("stage_elevator_desc", StageElevatorDescArgs { records })
     }
     fn on_stage_elevator_desc(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<ElevatorDesc>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<ElevatorDesc>) + Send + 'static,
     ) -> StageElevatorDescCallbackId {
         StageElevatorDescCallbackId(self.imp.on_reducer(
             "stage_elevator_desc",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::StageElevatorDesc {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::StageElevatorDesc { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
     fn remove_on_stage_elevator_desc(&self, callback: StageElevatorDescCallbackId) {
-        self.imp.remove_on_reducer("stage_elevator_desc", callback.0)
+        self.imp
+            .remove_on_reducer("stage_elevator_desc", callback.0)
     }
 }
 
@@ -103,7 +103,7 @@ pub trait set_flags_for_stage_elevator_desc {
 
 impl set_flags_for_stage_elevator_desc for super::SetReducerFlags {
     fn stage_elevator_desc(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("stage_elevator_desc", flags);
+        self.imp
+            .set_call_reducer_flags("stage_elevator_desc", flags);
     }
 }
-

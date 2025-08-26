@@ -3,13 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -21,8 +15,8 @@ impl From<AdminDeleteModerationActionLogEntryArgs> for super::Reducer {
     fn from(args: AdminDeleteModerationActionLogEntryArgs) -> Self {
         Self::AdminDeleteModerationActionLogEntry {
             entity_id: args.entity_id,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for AdminDeleteModerationActionLogEntryArgs {
@@ -41,8 +35,7 @@ pub trait admin_delete_moderation_action_log_entry {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_admin_delete_moderation_action_log_entry`] callbacks.
-    fn admin_delete_moderation_action_log_entry(&self, entity_id: u64,
-) -> __sdk::Result<()>;
+    fn admin_delete_moderation_action_log_entry(&self, entity_id: u64) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `admin_delete_moderation_action_log_entry`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -50,39 +43,54 @@ pub trait admin_delete_moderation_action_log_entry {
     ///
     /// The returned [`AdminDeleteModerationActionLogEntryCallbackId`] can be passed to [`Self::remove_on_admin_delete_moderation_action_log_entry`]
     /// to cancel the callback.
-    fn on_admin_delete_moderation_action_log_entry(&self, callback: impl FnMut(&super::ReducerEventContext, &u64, ) + Send + 'static) -> AdminDeleteModerationActionLogEntryCallbackId;
+    fn on_admin_delete_moderation_action_log_entry(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &u64) + Send + 'static,
+    ) -> AdminDeleteModerationActionLogEntryCallbackId;
     /// Cancel a callback previously registered by [`Self::on_admin_delete_moderation_action_log_entry`],
     /// causing it not to run in the future.
-    fn remove_on_admin_delete_moderation_action_log_entry(&self, callback: AdminDeleteModerationActionLogEntryCallbackId);
+    fn remove_on_admin_delete_moderation_action_log_entry(
+        &self,
+        callback: AdminDeleteModerationActionLogEntryCallbackId,
+    );
 }
 
 impl admin_delete_moderation_action_log_entry for super::RemoteReducers {
-    fn admin_delete_moderation_action_log_entry(&self, entity_id: u64,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("admin_delete_moderation_action_log_entry", AdminDeleteModerationActionLogEntryArgs { entity_id,  })
+    fn admin_delete_moderation_action_log_entry(&self, entity_id: u64) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "admin_delete_moderation_action_log_entry",
+            AdminDeleteModerationActionLogEntryArgs { entity_id },
+        )
     }
     fn on_admin_delete_moderation_action_log_entry(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &u64, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &u64) + Send + 'static,
     ) -> AdminDeleteModerationActionLogEntryCallbackId {
         AdminDeleteModerationActionLogEntryCallbackId(self.imp.on_reducer(
             "admin_delete_moderation_action_log_entry",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::AdminDeleteModerationActionLogEntry {
-                            entity_id, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer:
+                                super::Reducer::AdminDeleteModerationActionLogEntry { entity_id },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, entity_id, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, entity_id)
             }),
         ))
     }
-    fn remove_on_admin_delete_moderation_action_log_entry(&self, callback: AdminDeleteModerationActionLogEntryCallbackId) {
-        self.imp.remove_on_reducer("admin_delete_moderation_action_log_entry", callback.0)
+    fn remove_on_admin_delete_moderation_action_log_entry(
+        &self,
+        callback: AdminDeleteModerationActionLogEntryCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("admin_delete_moderation_action_log_entry", callback.0)
     }
 }
 
@@ -102,7 +110,7 @@ pub trait set_flags_for_admin_delete_moderation_action_log_entry {
 
 impl set_flags_for_admin_delete_moderation_action_log_entry for super::SetReducerFlags {
     fn admin_delete_moderation_action_log_entry(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("admin_delete_moderation_action_log_entry", flags);
+        self.imp
+            .set_call_reducer_flags("admin_delete_moderation_action_log_entry", flags);
     }
 }
-

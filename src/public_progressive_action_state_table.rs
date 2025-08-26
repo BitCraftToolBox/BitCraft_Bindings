@@ -3,13 +3,8 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::public_progressive_action_state_type::PublicProgressiveActionState;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `public_progressive_action_state`.
 ///
@@ -37,7 +32,9 @@ pub trait PublicProgressiveActionStateTableAccess {
 impl PublicProgressiveActionStateTableAccess for super::RemoteTables {
     fn public_progressive_action_state(&self) -> PublicProgressiveActionStateTableHandle<'_> {
         PublicProgressiveActionStateTableHandle {
-            imp: self.imp.get_table::<PublicProgressiveActionState>("public_progressive_action_state"),
+            imp: self
+                .imp
+                .get_table::<PublicProgressiveActionState>("public_progressive_action_state"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -50,8 +47,12 @@ impl<'ctx> __sdk::Table for PublicProgressiveActionStateTableHandle<'ctx> {
     type Row = PublicProgressiveActionState;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = PublicProgressiveActionState> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = PublicProgressiveActionState> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = PublicProgressiveActionStateInsertCallbackId;
 
@@ -82,8 +83,8 @@ impl<'ctx> __sdk::Table for PublicProgressiveActionStateTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<PublicProgressiveActionState>("public_progressive_action_state");
+    let _table = client_cache
+        .get_or_make_table::<PublicProgressiveActionState>("public_progressive_action_state");
     _table.add_unique_constraint::<u64>("entity_id", |row| &row.entity_id);
 }
 pub struct PublicProgressiveActionStateUpdateCallbackId(__sdk::CallbackId);
@@ -103,7 +104,6 @@ impl<'ctx> __sdk::TableWithPrimaryKey for PublicProgressiveActionStateTableHandl
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
@@ -112,37 +112,38 @@ pub(super) fn parse_table_update(
         __sdk::InternalError::failed_parse(
             "TableUpdate<PublicProgressiveActionState>",
             "TableUpdate",
-        ).with_cause(e).into()
+        )
+        .with_cause(e)
+        .into()
     })
 }
 
-        /// Access to the `entity_id` unique index on the table `public_progressive_action_state`,
-        /// which allows point queries on the field of the same name
-        /// via the [`PublicProgressiveActionStateEntityIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.public_progressive_action_state().entity_id().find(...)`.
-        pub struct PublicProgressiveActionStateEntityIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<PublicProgressiveActionState, u64>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `entity_id` unique index on the table `public_progressive_action_state`,
+/// which allows point queries on the field of the same name
+/// via the [`PublicProgressiveActionStateEntityIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.public_progressive_action_state().entity_id().find(...)`.
+pub struct PublicProgressiveActionStateEntityIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<PublicProgressiveActionState, u64>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> PublicProgressiveActionStateTableHandle<'ctx> {
-            /// Get a handle on the `entity_id` unique index on the table `public_progressive_action_state`.
-            pub fn entity_id(&self) -> PublicProgressiveActionStateEntityIdUnique<'ctx> {
-                PublicProgressiveActionStateEntityIdUnique {
-                    imp: self.imp.get_unique_constraint::<u64>("entity_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> PublicProgressiveActionStateTableHandle<'ctx> {
+    /// Get a handle on the `entity_id` unique index on the table `public_progressive_action_state`.
+    pub fn entity_id(&self) -> PublicProgressiveActionStateEntityIdUnique<'ctx> {
+        PublicProgressiveActionStateEntityIdUnique {
+            imp: self.imp.get_unique_constraint::<u64>("entity_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> PublicProgressiveActionStateEntityIdUnique<'ctx> {
-            /// Find the subscribed row whose `entity_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u64) -> Option<PublicProgressiveActionState> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> PublicProgressiveActionStateEntityIdUnique<'ctx> {
+    /// Find the subscribed row whose `entity_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u64) -> Option<PublicProgressiveActionState> {
+        self.imp.find(col_val)
+    }
+}

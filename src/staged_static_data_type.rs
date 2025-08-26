@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::static_data_upload_type::StaticDataUpload;
 
@@ -19,8 +14,6 @@ pub struct StagedStaticData {
     pub static_data: StaticDataUpload,
 }
 
-
 impl __sdk::InModule for StagedStaticData {
     type Module = super::RemoteModule;
 }
-

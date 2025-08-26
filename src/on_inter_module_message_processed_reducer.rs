@@ -3,19 +3,13 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct OnInterModuleMessageProcessedArgs {
     pub id: u64,
-    pub error: Option::<String>,
+    pub error: Option<String>,
 }
 
 impl From<OnInterModuleMessageProcessedArgs> for super::Reducer {
@@ -23,8 +17,8 @@ impl From<OnInterModuleMessageProcessedArgs> for super::Reducer {
         Self::OnInterModuleMessageProcessed {
             id: args.id,
             error: args.error,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for OnInterModuleMessageProcessedArgs {
@@ -43,9 +37,11 @@ pub trait on_inter_module_message_processed {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_on_inter_module_message_processed`] callbacks.
-    fn on_inter_module_message_processed(&self, id: u64,
-error: Option::<String>,
-) -> __sdk::Result<()>;
+    fn on_inter_module_message_processed(
+        &self,
+        id: u64,
+        error: Option<String>,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `on_inter_module_message_processed`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -53,40 +49,57 @@ error: Option::<String>,
     ///
     /// The returned [`OnInterModuleMessageProcessedCallbackId`] can be passed to [`Self::remove_on_on_inter_module_message_processed`]
     /// to cancel the callback.
-    fn on_on_inter_module_message_processed(&self, callback: impl FnMut(&super::ReducerEventContext, &u64, &Option::<String>, ) + Send + 'static) -> OnInterModuleMessageProcessedCallbackId;
+    fn on_on_inter_module_message_processed(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &u64, &Option<String>) + Send + 'static,
+    ) -> OnInterModuleMessageProcessedCallbackId;
     /// Cancel a callback previously registered by [`Self::on_on_inter_module_message_processed`],
     /// causing it not to run in the future.
-    fn remove_on_on_inter_module_message_processed(&self, callback: OnInterModuleMessageProcessedCallbackId);
+    fn remove_on_on_inter_module_message_processed(
+        &self,
+        callback: OnInterModuleMessageProcessedCallbackId,
+    );
 }
 
 impl on_inter_module_message_processed for super::RemoteReducers {
-    fn on_inter_module_message_processed(&self, id: u64,
-error: Option::<String>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("on_inter_module_message_processed", OnInterModuleMessageProcessedArgs { id, error,  })
+    fn on_inter_module_message_processed(
+        &self,
+        id: u64,
+        error: Option<String>,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "on_inter_module_message_processed",
+            OnInterModuleMessageProcessedArgs { id, error },
+        )
     }
     fn on_on_inter_module_message_processed(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &u64, &Option::<String>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &u64, &Option<String>) + Send + 'static,
     ) -> OnInterModuleMessageProcessedCallbackId {
         OnInterModuleMessageProcessedCallbackId(self.imp.on_reducer(
             "on_inter_module_message_processed",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::OnInterModuleMessageProcessed {
-                            id, error, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::OnInterModuleMessageProcessed { id, error },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, id, error, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, id, error)
             }),
         ))
     }
-    fn remove_on_on_inter_module_message_processed(&self, callback: OnInterModuleMessageProcessedCallbackId) {
-        self.imp.remove_on_reducer("on_inter_module_message_processed", callback.0)
+    fn remove_on_on_inter_module_message_processed(
+        &self,
+        callback: OnInterModuleMessageProcessedCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("on_inter_module_message_processed", callback.0)
     }
 }
 
@@ -106,7 +119,7 @@ pub trait set_flags_for_on_inter_module_message_processed {
 
 impl set_flags_for_on_inter_module_message_processed for super::SetReducerFlags {
     fn on_inter_module_message_processed(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("on_inter_module_message_processed", flags);
+        self.imp
+            .set_call_reducer_flags("on_inter_module_message_processed", flags);
     }
 }
-

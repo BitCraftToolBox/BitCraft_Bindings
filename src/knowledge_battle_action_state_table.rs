@@ -3,14 +3,9 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::knowledge_battle_action_state_type::KnowledgeBattleActionState;
 use super::knowledge_entry_type::KnowledgeEntry;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `knowledge_battle_action_state`.
 ///
@@ -38,7 +33,9 @@ pub trait KnowledgeBattleActionStateTableAccess {
 impl KnowledgeBattleActionStateTableAccess for super::RemoteTables {
     fn knowledge_battle_action_state(&self) -> KnowledgeBattleActionStateTableHandle<'_> {
         KnowledgeBattleActionStateTableHandle {
-            imp: self.imp.get_table::<KnowledgeBattleActionState>("knowledge_battle_action_state"),
+            imp: self
+                .imp
+                .get_table::<KnowledgeBattleActionState>("knowledge_battle_action_state"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -51,8 +48,12 @@ impl<'ctx> __sdk::Table for KnowledgeBattleActionStateTableHandle<'ctx> {
     type Row = KnowledgeBattleActionState;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = KnowledgeBattleActionState> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = KnowledgeBattleActionState> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = KnowledgeBattleActionStateInsertCallbackId;
 
@@ -83,8 +84,8 @@ impl<'ctx> __sdk::Table for KnowledgeBattleActionStateTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<KnowledgeBattleActionState>("knowledge_battle_action_state");
+    let _table = client_cache
+        .get_or_make_table::<KnowledgeBattleActionState>("knowledge_battle_action_state");
     _table.add_unique_constraint::<u64>("entity_id", |row| &row.entity_id);
 }
 pub struct KnowledgeBattleActionStateUpdateCallbackId(__sdk::CallbackId);
@@ -104,46 +105,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for KnowledgeBattleActionStateTableHandle<
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<KnowledgeBattleActionState>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<KnowledgeBattleActionState>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<KnowledgeBattleActionState>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `entity_id` unique index on the table `knowledge_battle_action_state`,
-        /// which allows point queries on the field of the same name
-        /// via the [`KnowledgeBattleActionStateEntityIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.knowledge_battle_action_state().entity_id().find(...)`.
-        pub struct KnowledgeBattleActionStateEntityIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<KnowledgeBattleActionState, u64>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `entity_id` unique index on the table `knowledge_battle_action_state`,
+/// which allows point queries on the field of the same name
+/// via the [`KnowledgeBattleActionStateEntityIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.knowledge_battle_action_state().entity_id().find(...)`.
+pub struct KnowledgeBattleActionStateEntityIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<KnowledgeBattleActionState, u64>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> KnowledgeBattleActionStateTableHandle<'ctx> {
-            /// Get a handle on the `entity_id` unique index on the table `knowledge_battle_action_state`.
-            pub fn entity_id(&self) -> KnowledgeBattleActionStateEntityIdUnique<'ctx> {
-                KnowledgeBattleActionStateEntityIdUnique {
-                    imp: self.imp.get_unique_constraint::<u64>("entity_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> KnowledgeBattleActionStateTableHandle<'ctx> {
+    /// Get a handle on the `entity_id` unique index on the table `knowledge_battle_action_state`.
+    pub fn entity_id(&self) -> KnowledgeBattleActionStateEntityIdUnique<'ctx> {
+        KnowledgeBattleActionStateEntityIdUnique {
+            imp: self.imp.get_unique_constraint::<u64>("entity_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> KnowledgeBattleActionStateEntityIdUnique<'ctx> {
-            /// Find the subscribed row whose `entity_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u64) -> Option<KnowledgeBattleActionState> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> KnowledgeBattleActionStateEntityIdUnique<'ctx> {
+    /// Find the subscribed row whose `entity_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u64) -> Option<KnowledgeBattleActionState> {
+        self.imp.find(col_val)
+    }
+}

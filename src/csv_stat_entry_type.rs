@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::character_stat_type_type::CharacterStatType;
 
@@ -20,8 +15,6 @@ pub struct CsvStatEntry {
     pub is_pct: bool,
 }
 
-
 impl __sdk::InModule for CsvStatEntry {
     type Module = super::RemoteModule;
 }
-

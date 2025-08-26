@@ -3,13 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -23,8 +17,8 @@ impl From<AdminMarkUserReportAsActionedArgs> for super::Reducer {
         Self::AdminMarkUserReportAsActioned {
             entity_id: args.entity_id,
             actioned: args.actioned,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for AdminMarkUserReportAsActionedArgs {
@@ -43,9 +37,11 @@ pub trait admin_mark_user_report_as_actioned {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_admin_mark_user_report_as_actioned`] callbacks.
-    fn admin_mark_user_report_as_actioned(&self, entity_id: u64,
-actioned: bool,
-) -> __sdk::Result<()>;
+    fn admin_mark_user_report_as_actioned(
+        &self,
+        entity_id: u64,
+        actioned: bool,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `admin_mark_user_report_as_actioned`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -53,40 +49,64 @@ actioned: bool,
     ///
     /// The returned [`AdminMarkUserReportAsActionedCallbackId`] can be passed to [`Self::remove_on_admin_mark_user_report_as_actioned`]
     /// to cancel the callback.
-    fn on_admin_mark_user_report_as_actioned(&self, callback: impl FnMut(&super::ReducerEventContext, &u64, &bool, ) + Send + 'static) -> AdminMarkUserReportAsActionedCallbackId;
+    fn on_admin_mark_user_report_as_actioned(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &u64, &bool) + Send + 'static,
+    ) -> AdminMarkUserReportAsActionedCallbackId;
     /// Cancel a callback previously registered by [`Self::on_admin_mark_user_report_as_actioned`],
     /// causing it not to run in the future.
-    fn remove_on_admin_mark_user_report_as_actioned(&self, callback: AdminMarkUserReportAsActionedCallbackId);
+    fn remove_on_admin_mark_user_report_as_actioned(
+        &self,
+        callback: AdminMarkUserReportAsActionedCallbackId,
+    );
 }
 
 impl admin_mark_user_report_as_actioned for super::RemoteReducers {
-    fn admin_mark_user_report_as_actioned(&self, entity_id: u64,
-actioned: bool,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("admin_mark_user_report_as_actioned", AdminMarkUserReportAsActionedArgs { entity_id, actioned,  })
+    fn admin_mark_user_report_as_actioned(
+        &self,
+        entity_id: u64,
+        actioned: bool,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "admin_mark_user_report_as_actioned",
+            AdminMarkUserReportAsActionedArgs {
+                entity_id,
+                actioned,
+            },
+        )
     }
     fn on_admin_mark_user_report_as_actioned(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &u64, &bool, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &u64, &bool) + Send + 'static,
     ) -> AdminMarkUserReportAsActionedCallbackId {
         AdminMarkUserReportAsActionedCallbackId(self.imp.on_reducer(
             "admin_mark_user_report_as_actioned",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::AdminMarkUserReportAsActioned {
-                            entity_id, actioned, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer:
+                                super::Reducer::AdminMarkUserReportAsActioned {
+                                    entity_id,
+                                    actioned,
+                                },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, entity_id, actioned, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, entity_id, actioned)
             }),
         ))
     }
-    fn remove_on_admin_mark_user_report_as_actioned(&self, callback: AdminMarkUserReportAsActionedCallbackId) {
-        self.imp.remove_on_reducer("admin_mark_user_report_as_actioned", callback.0)
+    fn remove_on_admin_mark_user_report_as_actioned(
+        &self,
+        callback: AdminMarkUserReportAsActionedCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("admin_mark_user_report_as_actioned", callback.0)
     }
 }
 
@@ -106,7 +126,7 @@ pub trait set_flags_for_admin_mark_user_report_as_actioned {
 
 impl set_flags_for_admin_mark_user_report_as_actioned for super::SetReducerFlags {
     fn admin_mark_user_report_as_actioned(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("admin_mark_user_report_as_actioned", flags);
+        self.imp
+            .set_call_reducer_flags("admin_mark_user_report_as_actioned", flags);
     }
 }
-

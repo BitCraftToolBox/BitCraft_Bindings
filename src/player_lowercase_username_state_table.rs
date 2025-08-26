@@ -3,13 +3,8 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::player_lowercase_username_state_type::PlayerLowercaseUsernameState;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `player_lowercase_username_state`.
 ///
@@ -37,7 +32,9 @@ pub trait PlayerLowercaseUsernameStateTableAccess {
 impl PlayerLowercaseUsernameStateTableAccess for super::RemoteTables {
     fn player_lowercase_username_state(&self) -> PlayerLowercaseUsernameStateTableHandle<'_> {
         PlayerLowercaseUsernameStateTableHandle {
-            imp: self.imp.get_table::<PlayerLowercaseUsernameState>("player_lowercase_username_state"),
+            imp: self
+                .imp
+                .get_table::<PlayerLowercaseUsernameState>("player_lowercase_username_state"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -50,8 +47,12 @@ impl<'ctx> __sdk::Table for PlayerLowercaseUsernameStateTableHandle<'ctx> {
     type Row = PlayerLowercaseUsernameState;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = PlayerLowercaseUsernameState> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = PlayerLowercaseUsernameState> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = PlayerLowercaseUsernameStateInsertCallbackId;
 
@@ -82,8 +83,8 @@ impl<'ctx> __sdk::Table for PlayerLowercaseUsernameStateTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<PlayerLowercaseUsernameState>("player_lowercase_username_state");
+    let _table = client_cache
+        .get_or_make_table::<PlayerLowercaseUsernameState>("player_lowercase_username_state");
     _table.add_unique_constraint::<u64>("entity_id", |row| &row.entity_id);
     _table.add_unique_constraint::<String>("username_lowercase", |row| &row.username_lowercase);
 }
@@ -104,7 +105,6 @@ impl<'ctx> __sdk::TableWithPrimaryKey for PlayerLowercaseUsernameStateTableHandl
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
@@ -113,67 +113,70 @@ pub(super) fn parse_table_update(
         __sdk::InternalError::failed_parse(
             "TableUpdate<PlayerLowercaseUsernameState>",
             "TableUpdate",
-        ).with_cause(e).into()
+        )
+        .with_cause(e)
+        .into()
     })
 }
 
-        /// Access to the `entity_id` unique index on the table `player_lowercase_username_state`,
-        /// which allows point queries on the field of the same name
-        /// via the [`PlayerLowercaseUsernameStateEntityIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.player_lowercase_username_state().entity_id().find(...)`.
-        pub struct PlayerLowercaseUsernameStateEntityIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<PlayerLowercaseUsernameState, u64>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `entity_id` unique index on the table `player_lowercase_username_state`,
+/// which allows point queries on the field of the same name
+/// via the [`PlayerLowercaseUsernameStateEntityIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.player_lowercase_username_state().entity_id().find(...)`.
+pub struct PlayerLowercaseUsernameStateEntityIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<PlayerLowercaseUsernameState, u64>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> PlayerLowercaseUsernameStateTableHandle<'ctx> {
-            /// Get a handle on the `entity_id` unique index on the table `player_lowercase_username_state`.
-            pub fn entity_id(&self) -> PlayerLowercaseUsernameStateEntityIdUnique<'ctx> {
-                PlayerLowercaseUsernameStateEntityIdUnique {
-                    imp: self.imp.get_unique_constraint::<u64>("entity_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> PlayerLowercaseUsernameStateTableHandle<'ctx> {
+    /// Get a handle on the `entity_id` unique index on the table `player_lowercase_username_state`.
+    pub fn entity_id(&self) -> PlayerLowercaseUsernameStateEntityIdUnique<'ctx> {
+        PlayerLowercaseUsernameStateEntityIdUnique {
+            imp: self.imp.get_unique_constraint::<u64>("entity_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> PlayerLowercaseUsernameStateEntityIdUnique<'ctx> {
-            /// Find the subscribed row whose `entity_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u64) -> Option<PlayerLowercaseUsernameState> {
-                self.imp.find(col_val)
-            }
-        }
-        
-        /// Access to the `username_lowercase` unique index on the table `player_lowercase_username_state`,
-        /// which allows point queries on the field of the same name
-        /// via the [`PlayerLowercaseUsernameStateUsernameLowercaseUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.player_lowercase_username_state().username_lowercase().find(...)`.
-        pub struct PlayerLowercaseUsernameStateUsernameLowercaseUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<PlayerLowercaseUsernameState, String>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+impl<'ctx> PlayerLowercaseUsernameStateEntityIdUnique<'ctx> {
+    /// Find the subscribed row whose `entity_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u64) -> Option<PlayerLowercaseUsernameState> {
+        self.imp.find(col_val)
+    }
+}
 
-        impl<'ctx> PlayerLowercaseUsernameStateTableHandle<'ctx> {
-            /// Get a handle on the `username_lowercase` unique index on the table `player_lowercase_username_state`.
-            pub fn username_lowercase(&self) -> PlayerLowercaseUsernameStateUsernameLowercaseUnique<'ctx> {
-                PlayerLowercaseUsernameStateUsernameLowercaseUnique {
-                    imp: self.imp.get_unique_constraint::<String>("username_lowercase"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
-        }
+/// Access to the `username_lowercase` unique index on the table `player_lowercase_username_state`,
+/// which allows point queries on the field of the same name
+/// via the [`PlayerLowercaseUsernameStateUsernameLowercaseUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.player_lowercase_username_state().username_lowercase().find(...)`.
+pub struct PlayerLowercaseUsernameStateUsernameLowercaseUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<PlayerLowercaseUsernameState, String>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> PlayerLowercaseUsernameStateUsernameLowercaseUnique<'ctx> {
-            /// Find the subscribed row whose `username_lowercase` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &String) -> Option<PlayerLowercaseUsernameState> {
-                self.imp.find(col_val)
-            }
+impl<'ctx> PlayerLowercaseUsernameStateTableHandle<'ctx> {
+    /// Get a handle on the `username_lowercase` unique index on the table `player_lowercase_username_state`.
+    pub fn username_lowercase(&self) -> PlayerLowercaseUsernameStateUsernameLowercaseUnique<'ctx> {
+        PlayerLowercaseUsernameStateUsernameLowercaseUnique {
+            imp: self
+                .imp
+                .get_unique_constraint::<String>("username_lowercase"),
+            phantom: std::marker::PhantomData,
         }
-        
+    }
+}
+
+impl<'ctx> PlayerLowercaseUsernameStateUsernameLowercaseUnique<'ctx> {
+    /// Find the subscribed row whose `username_lowercase` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &String) -> Option<PlayerLowercaseUsernameState> {
+        self.imp.find(col_val)
+    }
+}

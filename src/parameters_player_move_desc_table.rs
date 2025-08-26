@@ -3,14 +3,9 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-use super::parameters_player_move_desc_type::ParametersPlayerMoveDesc;
 use super::movement_speed_type::MovementSpeed;
+use super::parameters_player_move_desc_type::ParametersPlayerMoveDesc;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `parameters_player_move_desc`.
 ///
@@ -38,7 +33,9 @@ pub trait ParametersPlayerMoveDescTableAccess {
 impl ParametersPlayerMoveDescTableAccess for super::RemoteTables {
     fn parameters_player_move_desc(&self) -> ParametersPlayerMoveDescTableHandle<'_> {
         ParametersPlayerMoveDescTableHandle {
-            imp: self.imp.get_table::<ParametersPlayerMoveDesc>("parameters_player_move_desc"),
+            imp: self
+                .imp
+                .get_table::<ParametersPlayerMoveDesc>("parameters_player_move_desc"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -51,8 +48,12 @@ impl<'ctx> __sdk::Table for ParametersPlayerMoveDescTableHandle<'ctx> {
     type Row = ParametersPlayerMoveDesc;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = ParametersPlayerMoveDesc> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = ParametersPlayerMoveDesc> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = ParametersPlayerMoveDescInsertCallbackId;
 
@@ -83,8 +84,8 @@ impl<'ctx> __sdk::Table for ParametersPlayerMoveDescTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<ParametersPlayerMoveDesc>("parameters_player_move_desc");
+    let _table =
+        client_cache.get_or_make_table::<ParametersPlayerMoveDesc>("parameters_player_move_desc");
     _table.add_unique_constraint::<i32>("version", |row| &row.version);
 }
 pub struct ParametersPlayerMoveDescUpdateCallbackId(__sdk::CallbackId);
@@ -104,46 +105,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for ParametersPlayerMoveDescTableHandle<'c
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<ParametersPlayerMoveDesc>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<ParametersPlayerMoveDesc>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<ParametersPlayerMoveDesc>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `version` unique index on the table `parameters_player_move_desc`,
-        /// which allows point queries on the field of the same name
-        /// via the [`ParametersPlayerMoveDescVersionUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.parameters_player_move_desc().version().find(...)`.
-        pub struct ParametersPlayerMoveDescVersionUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<ParametersPlayerMoveDesc, i32>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `version` unique index on the table `parameters_player_move_desc`,
+/// which allows point queries on the field of the same name
+/// via the [`ParametersPlayerMoveDescVersionUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.parameters_player_move_desc().version().find(...)`.
+pub struct ParametersPlayerMoveDescVersionUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<ParametersPlayerMoveDesc, i32>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> ParametersPlayerMoveDescTableHandle<'ctx> {
-            /// Get a handle on the `version` unique index on the table `parameters_player_move_desc`.
-            pub fn version(&self) -> ParametersPlayerMoveDescVersionUnique<'ctx> {
-                ParametersPlayerMoveDescVersionUnique {
-                    imp: self.imp.get_unique_constraint::<i32>("version"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> ParametersPlayerMoveDescTableHandle<'ctx> {
+    /// Get a handle on the `version` unique index on the table `parameters_player_move_desc`.
+    pub fn version(&self) -> ParametersPlayerMoveDescVersionUnique<'ctx> {
+        ParametersPlayerMoveDescVersionUnique {
+            imp: self.imp.get_unique_constraint::<i32>("version"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> ParametersPlayerMoveDescVersionUnique<'ctx> {
-            /// Find the subscribed row whose `version` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &i32) -> Option<ParametersPlayerMoveDesc> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> ParametersPlayerMoveDescVersionUnique<'ctx> {
+    /// Find the subscribed row whose `version` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &i32) -> Option<ParametersPlayerMoveDesc> {
+        self.imp.find(col_val)
+    }
+}

@@ -3,13 +3,8 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::empire_supplies_desc_type::EmpireSuppliesDesc;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `empire_supplies_desc`.
 ///
@@ -37,7 +32,9 @@ pub trait EmpireSuppliesDescTableAccess {
 impl EmpireSuppliesDescTableAccess for super::RemoteTables {
     fn empire_supplies_desc(&self) -> EmpireSuppliesDescTableHandle<'_> {
         EmpireSuppliesDescTableHandle {
-            imp: self.imp.get_table::<EmpireSuppliesDesc>("empire_supplies_desc"),
+            imp: self
+                .imp
+                .get_table::<EmpireSuppliesDesc>("empire_supplies_desc"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -50,8 +47,12 @@ impl<'ctx> __sdk::Table for EmpireSuppliesDescTableHandle<'ctx> {
     type Row = EmpireSuppliesDesc;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = EmpireSuppliesDesc> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = EmpireSuppliesDesc> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = EmpireSuppliesDescInsertCallbackId;
 
@@ -82,8 +83,7 @@ impl<'ctx> __sdk::Table for EmpireSuppliesDescTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<EmpireSuppliesDesc>("empire_supplies_desc");
+    let _table = client_cache.get_or_make_table::<EmpireSuppliesDesc>("empire_supplies_desc");
     _table.add_unique_constraint::<i32>("cargo_id", |row| &row.cargo_id);
 }
 pub struct EmpireSuppliesDescUpdateCallbackId(__sdk::CallbackId);
@@ -103,46 +103,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for EmpireSuppliesDescTableHandle<'ctx> {
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<EmpireSuppliesDesc>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<EmpireSuppliesDesc>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<EmpireSuppliesDesc>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `cargo_id` unique index on the table `empire_supplies_desc`,
-        /// which allows point queries on the field of the same name
-        /// via the [`EmpireSuppliesDescCargoIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.empire_supplies_desc().cargo_id().find(...)`.
-        pub struct EmpireSuppliesDescCargoIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<EmpireSuppliesDesc, i32>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `cargo_id` unique index on the table `empire_supplies_desc`,
+/// which allows point queries on the field of the same name
+/// via the [`EmpireSuppliesDescCargoIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.empire_supplies_desc().cargo_id().find(...)`.
+pub struct EmpireSuppliesDescCargoIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<EmpireSuppliesDesc, i32>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> EmpireSuppliesDescTableHandle<'ctx> {
-            /// Get a handle on the `cargo_id` unique index on the table `empire_supplies_desc`.
-            pub fn cargo_id(&self) -> EmpireSuppliesDescCargoIdUnique<'ctx> {
-                EmpireSuppliesDescCargoIdUnique {
-                    imp: self.imp.get_unique_constraint::<i32>("cargo_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> EmpireSuppliesDescTableHandle<'ctx> {
+    /// Get a handle on the `cargo_id` unique index on the table `empire_supplies_desc`.
+    pub fn cargo_id(&self) -> EmpireSuppliesDescCargoIdUnique<'ctx> {
+        EmpireSuppliesDescCargoIdUnique {
+            imp: self.imp.get_unique_constraint::<i32>("cargo_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> EmpireSuppliesDescCargoIdUnique<'ctx> {
-            /// Find the subscribed row whose `cargo_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &i32) -> Option<EmpireSuppliesDesc> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> EmpireSuppliesDescCargoIdUnique<'ctx> {
+    /// Find the subscribed row whose `cargo_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &i32) -> Option<EmpireSuppliesDesc> {
+        self.imp.find(col_val)
+    }
+}

@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::chest_loot_rarity_type::ChestLootRarity;
 
@@ -17,11 +12,9 @@ use super::chest_loot_rarity_type::ChestLootRarity;
 pub struct ChestRarityDesc {
     pub id: i32,
     pub name: String,
-    pub loot_rarities: Vec::<ChestLootRarity>,
+    pub loot_rarities: Vec<ChestLootRarity>,
 }
-
 
 impl __sdk::InModule for ChestRarityDesc {
     type Module = super::RemoteModule;
 }
-

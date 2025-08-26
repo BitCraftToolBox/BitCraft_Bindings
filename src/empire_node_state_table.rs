@@ -3,14 +3,9 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::empire_node_state_type::EmpireNodeState;
 use super::offset_coordinates_small_message_type::OffsetCoordinatesSmallMessage;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `empire_node_state`.
 ///
@@ -51,8 +46,12 @@ impl<'ctx> __sdk::Table for EmpireNodeStateTableHandle<'ctx> {
     type Row = EmpireNodeState;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = EmpireNodeState> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = EmpireNodeState> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = EmpireNodeStateInsertCallbackId;
 
@@ -83,8 +82,7 @@ impl<'ctx> __sdk::Table for EmpireNodeStateTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<EmpireNodeState>("empire_node_state");
+    let _table = client_cache.get_or_make_table::<EmpireNodeState>("empire_node_state");
     _table.add_unique_constraint::<u64>("entity_id", |row| &row.entity_id);
 }
 pub struct EmpireNodeStateUpdateCallbackId(__sdk::CallbackId);
@@ -104,46 +102,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for EmpireNodeStateTableHandle<'ctx> {
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<EmpireNodeState>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<EmpireNodeState>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<EmpireNodeState>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `entity_id` unique index on the table `empire_node_state`,
-        /// which allows point queries on the field of the same name
-        /// via the [`EmpireNodeStateEntityIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.empire_node_state().entity_id().find(...)`.
-        pub struct EmpireNodeStateEntityIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<EmpireNodeState, u64>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `entity_id` unique index on the table `empire_node_state`,
+/// which allows point queries on the field of the same name
+/// via the [`EmpireNodeStateEntityIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.empire_node_state().entity_id().find(...)`.
+pub struct EmpireNodeStateEntityIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<EmpireNodeState, u64>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> EmpireNodeStateTableHandle<'ctx> {
-            /// Get a handle on the `entity_id` unique index on the table `empire_node_state`.
-            pub fn entity_id(&self) -> EmpireNodeStateEntityIdUnique<'ctx> {
-                EmpireNodeStateEntityIdUnique {
-                    imp: self.imp.get_unique_constraint::<u64>("entity_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> EmpireNodeStateTableHandle<'ctx> {
+    /// Get a handle on the `entity_id` unique index on the table `empire_node_state`.
+    pub fn entity_id(&self) -> EmpireNodeStateEntityIdUnique<'ctx> {
+        EmpireNodeStateEntityIdUnique {
+            imp: self.imp.get_unique_constraint::<u64>("entity_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> EmpireNodeStateEntityIdUnique<'ctx> {
-            /// Find the subscribed row whose `entity_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u64) -> Option<EmpireNodeState> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> EmpireNodeStateEntityIdUnique<'ctx> {
+    /// Find the subscribed row whose `entity_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u64) -> Option<EmpireNodeState> {
+        self.imp.find(col_val)
+    }
+}

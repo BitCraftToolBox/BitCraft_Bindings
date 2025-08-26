@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::cargo_desc_type::CargoDesc;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct ImportCargoDescArgs {
-    pub records: Vec::<CargoDesc>,
+    pub records: Vec<CargoDesc>,
 }
 
 impl From<ImportCargoDescArgs> for super::Reducer {
     fn from(args: ImportCargoDescArgs) -> Self {
         Self::ImportCargoDesc {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ImportCargoDescArgs {
@@ -42,8 +37,7 @@ pub trait import_cargo_desc {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_import_cargo_desc`] callbacks.
-    fn import_cargo_desc(&self, records: Vec::<CargoDesc>,
-) -> __sdk::Result<()>;
+    fn import_cargo_desc(&self, records: Vec<CargoDesc>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `import_cargo_desc`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,39 @@ pub trait import_cargo_desc {
     ///
     /// The returned [`ImportCargoDescCallbackId`] can be passed to [`Self::remove_on_import_cargo_desc`]
     /// to cancel the callback.
-    fn on_import_cargo_desc(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<CargoDesc>, ) + Send + 'static) -> ImportCargoDescCallbackId;
+    fn on_import_cargo_desc(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<CargoDesc>) + Send + 'static,
+    ) -> ImportCargoDescCallbackId;
     /// Cancel a callback previously registered by [`Self::on_import_cargo_desc`],
     /// causing it not to run in the future.
     fn remove_on_import_cargo_desc(&self, callback: ImportCargoDescCallbackId);
 }
 
 impl import_cargo_desc for super::RemoteReducers {
-    fn import_cargo_desc(&self, records: Vec::<CargoDesc>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("import_cargo_desc", ImportCargoDescArgs { records,  })
+    fn import_cargo_desc(&self, records: Vec<CargoDesc>) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("import_cargo_desc", ImportCargoDescArgs { records })
     }
     fn on_import_cargo_desc(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<CargoDesc>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<CargoDesc>) + Send + 'static,
     ) -> ImportCargoDescCallbackId {
         ImportCargoDescCallbackId(self.imp.on_reducer(
             "import_cargo_desc",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ImportCargoDesc {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ImportCargoDesc { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
@@ -106,4 +105,3 @@ impl set_flags_for_import_cargo_desc for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("import_cargo_desc", flags);
     }
 }
-

@@ -3,14 +3,9 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::cargo_desc_type::CargoDesc;
 use super::rarity_type::Rarity;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `cargo_desc`.
 ///
@@ -51,8 +46,12 @@ impl<'ctx> __sdk::Table for CargoDescTableHandle<'ctx> {
     type Row = CargoDesc;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = CargoDesc> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = CargoDesc> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = CargoDescInsertCallbackId;
 
@@ -83,8 +82,7 @@ impl<'ctx> __sdk::Table for CargoDescTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<CargoDesc>("cargo_desc");
+    let _table = client_cache.get_or_make_table::<CargoDesc>("cargo_desc");
     _table.add_unique_constraint::<i32>("id", |row| &row.id);
 }
 pub struct CargoDescUpdateCallbackId(__sdk::CallbackId);
@@ -104,46 +102,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for CargoDescTableHandle<'ctx> {
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<CargoDesc>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<CargoDesc>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<CargoDesc>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `id` unique index on the table `cargo_desc`,
-        /// which allows point queries on the field of the same name
-        /// via the [`CargoDescIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.cargo_desc().id().find(...)`.
-        pub struct CargoDescIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<CargoDesc, i32>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `id` unique index on the table `cargo_desc`,
+/// which allows point queries on the field of the same name
+/// via the [`CargoDescIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.cargo_desc().id().find(...)`.
+pub struct CargoDescIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<CargoDesc, i32>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> CargoDescTableHandle<'ctx> {
-            /// Get a handle on the `id` unique index on the table `cargo_desc`.
-            pub fn id(&self) -> CargoDescIdUnique<'ctx> {
-                CargoDescIdUnique {
-                    imp: self.imp.get_unique_constraint::<i32>("id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> CargoDescTableHandle<'ctx> {
+    /// Get a handle on the `id` unique index on the table `cargo_desc`.
+    pub fn id(&self) -> CargoDescIdUnique<'ctx> {
+        CargoDescIdUnique {
+            imp: self.imp.get_unique_constraint::<i32>("id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> CargoDescIdUnique<'ctx> {
-            /// Find the subscribed row whose `id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &i32) -> Option<CargoDesc> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> CargoDescIdUnique<'ctx> {
+    /// Find the subscribed row whose `id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &i32) -> Option<CargoDesc> {
+        self.imp.find(col_val)
+    }
+}

@@ -3,16 +3,11 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-use super::resource_desc_type::ResourceDesc;
 use super::footprint_tile_type::FootprintTile;
-use super::rarity_type::Rarity;
 use super::item_stack_type::ItemStack;
+use super::rarity_type::Rarity;
+use super::resource_desc_type::ResourceDesc;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `resource_desc`.
 ///
@@ -53,8 +48,12 @@ impl<'ctx> __sdk::Table for ResourceDescTableHandle<'ctx> {
     type Row = ResourceDesc;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = ResourceDesc> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = ResourceDesc> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = ResourceDescInsertCallbackId;
 
@@ -85,8 +84,7 @@ impl<'ctx> __sdk::Table for ResourceDescTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<ResourceDesc>("resource_desc");
+    let _table = client_cache.get_or_make_table::<ResourceDesc>("resource_desc");
     _table.add_unique_constraint::<i32>("id", |row| &row.id);
 }
 pub struct ResourceDescUpdateCallbackId(__sdk::CallbackId);
@@ -106,46 +104,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for ResourceDescTableHandle<'ctx> {
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<ResourceDesc>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<ResourceDesc>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<ResourceDesc>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `id` unique index on the table `resource_desc`,
-        /// which allows point queries on the field of the same name
-        /// via the [`ResourceDescIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.resource_desc().id().find(...)`.
-        pub struct ResourceDescIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<ResourceDesc, i32>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `id` unique index on the table `resource_desc`,
+/// which allows point queries on the field of the same name
+/// via the [`ResourceDescIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.resource_desc().id().find(...)`.
+pub struct ResourceDescIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<ResourceDesc, i32>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> ResourceDescTableHandle<'ctx> {
-            /// Get a handle on the `id` unique index on the table `resource_desc`.
-            pub fn id(&self) -> ResourceDescIdUnique<'ctx> {
-                ResourceDescIdUnique {
-                    imp: self.imp.get_unique_constraint::<i32>("id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> ResourceDescTableHandle<'ctx> {
+    /// Get a handle on the `id` unique index on the table `resource_desc`.
+    pub fn id(&self) -> ResourceDescIdUnique<'ctx> {
+        ResourceDescIdUnique {
+            imp: self.imp.get_unique_constraint::<i32>("id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> ResourceDescIdUnique<'ctx> {
-            /// Find the subscribed row whose `id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &i32) -> Option<ResourceDesc> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> ResourceDescIdUnique<'ctx> {
+    /// Find the subscribed row whose `id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &i32) -> Option<ResourceDesc> {
+        self.imp.find(col_val)
+    }
+}

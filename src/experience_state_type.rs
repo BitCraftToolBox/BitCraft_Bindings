@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::experience_stack_type::ExperienceStack;
 
@@ -16,11 +11,9 @@ use super::experience_stack_type::ExperienceStack;
 #[sats(crate = __lib)]
 pub struct ExperienceState {
     pub entity_id: u64,
-    pub experience_stacks: Vec::<ExperienceStack>,
+    pub experience_stacks: Vec<ExperienceStack>,
 }
-
 
 impl __sdk::InModule for ExperienceState {
     type Module = super::RemoteModule;
 }
-

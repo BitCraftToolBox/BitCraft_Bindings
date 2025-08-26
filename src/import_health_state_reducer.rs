@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::health_state_type::HealthState;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct ImportHealthStateArgs {
-    pub records: Vec::<HealthState>,
+    pub records: Vec<HealthState>,
 }
 
 impl From<ImportHealthStateArgs> for super::Reducer {
     fn from(args: ImportHealthStateArgs) -> Self {
         Self::ImportHealthState {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ImportHealthStateArgs {
@@ -42,8 +37,7 @@ pub trait import_health_state {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_import_health_state`] callbacks.
-    fn import_health_state(&self, records: Vec::<HealthState>,
-) -> __sdk::Result<()>;
+    fn import_health_state(&self, records: Vec<HealthState>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `import_health_state`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,45 @@ pub trait import_health_state {
     ///
     /// The returned [`ImportHealthStateCallbackId`] can be passed to [`Self::remove_on_import_health_state`]
     /// to cancel the callback.
-    fn on_import_health_state(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<HealthState>, ) + Send + 'static) -> ImportHealthStateCallbackId;
+    fn on_import_health_state(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<HealthState>) + Send + 'static,
+    ) -> ImportHealthStateCallbackId;
     /// Cancel a callback previously registered by [`Self::on_import_health_state`],
     /// causing it not to run in the future.
     fn remove_on_import_health_state(&self, callback: ImportHealthStateCallbackId);
 }
 
 impl import_health_state for super::RemoteReducers {
-    fn import_health_state(&self, records: Vec::<HealthState>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("import_health_state", ImportHealthStateArgs { records,  })
+    fn import_health_state(&self, records: Vec<HealthState>) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("import_health_state", ImportHealthStateArgs { records })
     }
     fn on_import_health_state(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<HealthState>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<HealthState>) + Send + 'static,
     ) -> ImportHealthStateCallbackId {
         ImportHealthStateCallbackId(self.imp.on_reducer(
             "import_health_state",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ImportHealthState {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ImportHealthState { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
     fn remove_on_import_health_state(&self, callback: ImportHealthStateCallbackId) {
-        self.imp.remove_on_reducer("import_health_state", callback.0)
+        self.imp
+            .remove_on_reducer("import_health_state", callback.0)
     }
 }
 
@@ -103,7 +103,7 @@ pub trait set_flags_for_import_health_state {
 
 impl set_flags_for_import_health_state for super::SetReducerFlags {
     fn import_health_state(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("import_health_state", flags);
+        self.imp
+            .set_call_reducer_flags("import_health_state", flags);
     }
 }
-

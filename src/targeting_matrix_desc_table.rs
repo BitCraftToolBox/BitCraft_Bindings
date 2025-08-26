@@ -3,13 +3,8 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::targeting_matrix_desc_type::TargetingMatrixDesc;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `targeting_matrix_desc`.
 ///
@@ -37,7 +32,9 @@ pub trait TargetingMatrixDescTableAccess {
 impl TargetingMatrixDescTableAccess for super::RemoteTables {
     fn targeting_matrix_desc(&self) -> TargetingMatrixDescTableHandle<'_> {
         TargetingMatrixDescTableHandle {
-            imp: self.imp.get_table::<TargetingMatrixDesc>("targeting_matrix_desc"),
+            imp: self
+                .imp
+                .get_table::<TargetingMatrixDesc>("targeting_matrix_desc"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -50,8 +47,12 @@ impl<'ctx> __sdk::Table for TargetingMatrixDescTableHandle<'ctx> {
     type Row = TargetingMatrixDesc;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = TargetingMatrixDesc> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = TargetingMatrixDesc> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = TargetingMatrixDescInsertCallbackId;
 
@@ -82,8 +83,7 @@ impl<'ctx> __sdk::Table for TargetingMatrixDescTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<TargetingMatrixDesc>("targeting_matrix_desc");
+    let _table = client_cache.get_or_make_table::<TargetingMatrixDesc>("targeting_matrix_desc");
     _table.add_unique_constraint::<i32>("id", |row| &row.id);
 }
 pub struct TargetingMatrixDescUpdateCallbackId(__sdk::CallbackId);
@@ -103,46 +103,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for TargetingMatrixDescTableHandle<'ctx> {
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<TargetingMatrixDesc>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<TargetingMatrixDesc>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<TargetingMatrixDesc>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `id` unique index on the table `targeting_matrix_desc`,
-        /// which allows point queries on the field of the same name
-        /// via the [`TargetingMatrixDescIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.targeting_matrix_desc().id().find(...)`.
-        pub struct TargetingMatrixDescIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<TargetingMatrixDesc, i32>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `id` unique index on the table `targeting_matrix_desc`,
+/// which allows point queries on the field of the same name
+/// via the [`TargetingMatrixDescIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.targeting_matrix_desc().id().find(...)`.
+pub struct TargetingMatrixDescIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<TargetingMatrixDesc, i32>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> TargetingMatrixDescTableHandle<'ctx> {
-            /// Get a handle on the `id` unique index on the table `targeting_matrix_desc`.
-            pub fn id(&self) -> TargetingMatrixDescIdUnique<'ctx> {
-                TargetingMatrixDescIdUnique {
-                    imp: self.imp.get_unique_constraint::<i32>("id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> TargetingMatrixDescTableHandle<'ctx> {
+    /// Get a handle on the `id` unique index on the table `targeting_matrix_desc`.
+    pub fn id(&self) -> TargetingMatrixDescIdUnique<'ctx> {
+        TargetingMatrixDescIdUnique {
+            imp: self.imp.get_unique_constraint::<i32>("id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> TargetingMatrixDescIdUnique<'ctx> {
-            /// Find the subscribed row whose `id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &i32) -> Option<TargetingMatrixDesc> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> TargetingMatrixDescIdUnique<'ctx> {
+    /// Find the subscribed row whose `id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &i32) -> Option<TargetingMatrixDesc> {
+        self.imp.find(col_val)
+    }
+}

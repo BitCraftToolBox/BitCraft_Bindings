@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::resource_growth_recipe_desc_type::ResourceGrowthRecipeDesc;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct StageResourceGrowthRecipeDescArgs {
-    pub records: Vec::<ResourceGrowthRecipeDesc>,
+    pub records: Vec<ResourceGrowthRecipeDesc>,
 }
 
 impl From<StageResourceGrowthRecipeDescArgs> for super::Reducer {
     fn from(args: StageResourceGrowthRecipeDescArgs) -> Self {
         Self::StageResourceGrowthRecipeDesc {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for StageResourceGrowthRecipeDescArgs {
@@ -42,8 +37,10 @@ pub trait stage_resource_growth_recipe_desc {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_stage_resource_growth_recipe_desc`] callbacks.
-    fn stage_resource_growth_recipe_desc(&self, records: Vec::<ResourceGrowthRecipeDesc>,
-) -> __sdk::Result<()>;
+    fn stage_resource_growth_recipe_desc(
+        &self,
+        records: Vec<ResourceGrowthRecipeDesc>,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `stage_resource_growth_recipe_desc`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +48,60 @@ pub trait stage_resource_growth_recipe_desc {
     ///
     /// The returned [`StageResourceGrowthRecipeDescCallbackId`] can be passed to [`Self::remove_on_stage_resource_growth_recipe_desc`]
     /// to cancel the callback.
-    fn on_stage_resource_growth_recipe_desc(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<ResourceGrowthRecipeDesc>, ) + Send + 'static) -> StageResourceGrowthRecipeDescCallbackId;
+    fn on_stage_resource_growth_recipe_desc(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<ResourceGrowthRecipeDesc>)
+            + Send
+            + 'static,
+    ) -> StageResourceGrowthRecipeDescCallbackId;
     /// Cancel a callback previously registered by [`Self::on_stage_resource_growth_recipe_desc`],
     /// causing it not to run in the future.
-    fn remove_on_stage_resource_growth_recipe_desc(&self, callback: StageResourceGrowthRecipeDescCallbackId);
+    fn remove_on_stage_resource_growth_recipe_desc(
+        &self,
+        callback: StageResourceGrowthRecipeDescCallbackId,
+    );
 }
 
 impl stage_resource_growth_recipe_desc for super::RemoteReducers {
-    fn stage_resource_growth_recipe_desc(&self, records: Vec::<ResourceGrowthRecipeDesc>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("stage_resource_growth_recipe_desc", StageResourceGrowthRecipeDescArgs { records,  })
+    fn stage_resource_growth_recipe_desc(
+        &self,
+        records: Vec<ResourceGrowthRecipeDesc>,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "stage_resource_growth_recipe_desc",
+            StageResourceGrowthRecipeDescArgs { records },
+        )
     }
     fn on_stage_resource_growth_recipe_desc(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<ResourceGrowthRecipeDesc>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<ResourceGrowthRecipeDesc>)
+            + Send
+            + 'static,
     ) -> StageResourceGrowthRecipeDescCallbackId {
         StageResourceGrowthRecipeDescCallbackId(self.imp.on_reducer(
             "stage_resource_growth_recipe_desc",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::StageResourceGrowthRecipeDesc {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::StageResourceGrowthRecipeDesc { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
-    fn remove_on_stage_resource_growth_recipe_desc(&self, callback: StageResourceGrowthRecipeDescCallbackId) {
-        self.imp.remove_on_reducer("stage_resource_growth_recipe_desc", callback.0)
+    fn remove_on_stage_resource_growth_recipe_desc(
+        &self,
+        callback: StageResourceGrowthRecipeDescCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("stage_resource_growth_recipe_desc", callback.0)
     }
 }
 
@@ -103,7 +121,7 @@ pub trait set_flags_for_stage_resource_growth_recipe_desc {
 
 impl set_flags_for_stage_resource_growth_recipe_desc for super::SetReducerFlags {
     fn stage_resource_growth_recipe_desc(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("stage_resource_growth_recipe_desc", flags);
+        self.imp
+            .set_call_reducer_flags("stage_resource_growth_recipe_desc", flags);
     }
 }
-

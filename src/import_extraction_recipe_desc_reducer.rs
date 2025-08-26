@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::extraction_recipe_desc_type::ExtractionRecipeDesc;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct ImportExtractionRecipeDescArgs {
-    pub records: Vec::<ExtractionRecipeDesc>,
+    pub records: Vec<ExtractionRecipeDesc>,
 }
 
 impl From<ImportExtractionRecipeDescArgs> for super::Reducer {
     fn from(args: ImportExtractionRecipeDescArgs) -> Self {
         Self::ImportExtractionRecipeDesc {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ImportExtractionRecipeDescArgs {
@@ -42,8 +37,10 @@ pub trait import_extraction_recipe_desc {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_import_extraction_recipe_desc`] callbacks.
-    fn import_extraction_recipe_desc(&self, records: Vec::<ExtractionRecipeDesc>,
-) -> __sdk::Result<()>;
+    fn import_extraction_recipe_desc(
+        &self,
+        records: Vec<ExtractionRecipeDesc>,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `import_extraction_recipe_desc`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +48,58 @@ pub trait import_extraction_recipe_desc {
     ///
     /// The returned [`ImportExtractionRecipeDescCallbackId`] can be passed to [`Self::remove_on_import_extraction_recipe_desc`]
     /// to cancel the callback.
-    fn on_import_extraction_recipe_desc(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<ExtractionRecipeDesc>, ) + Send + 'static) -> ImportExtractionRecipeDescCallbackId;
+    fn on_import_extraction_recipe_desc(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<ExtractionRecipeDesc>) + Send + 'static,
+    ) -> ImportExtractionRecipeDescCallbackId;
     /// Cancel a callback previously registered by [`Self::on_import_extraction_recipe_desc`],
     /// causing it not to run in the future.
-    fn remove_on_import_extraction_recipe_desc(&self, callback: ImportExtractionRecipeDescCallbackId);
+    fn remove_on_import_extraction_recipe_desc(
+        &self,
+        callback: ImportExtractionRecipeDescCallbackId,
+    );
 }
 
 impl import_extraction_recipe_desc for super::RemoteReducers {
-    fn import_extraction_recipe_desc(&self, records: Vec::<ExtractionRecipeDesc>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("import_extraction_recipe_desc", ImportExtractionRecipeDescArgs { records,  })
+    fn import_extraction_recipe_desc(
+        &self,
+        records: Vec<ExtractionRecipeDesc>,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "import_extraction_recipe_desc",
+            ImportExtractionRecipeDescArgs { records },
+        )
     }
     fn on_import_extraction_recipe_desc(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<ExtractionRecipeDesc>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<ExtractionRecipeDesc>)
+            + Send
+            + 'static,
     ) -> ImportExtractionRecipeDescCallbackId {
         ImportExtractionRecipeDescCallbackId(self.imp.on_reducer(
             "import_extraction_recipe_desc",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ImportExtractionRecipeDesc {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ImportExtractionRecipeDesc { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
-    fn remove_on_import_extraction_recipe_desc(&self, callback: ImportExtractionRecipeDescCallbackId) {
-        self.imp.remove_on_reducer("import_extraction_recipe_desc", callback.0)
+    fn remove_on_import_extraction_recipe_desc(
+        &self,
+        callback: ImportExtractionRecipeDescCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("import_extraction_recipe_desc", callback.0)
     }
 }
 
@@ -103,7 +119,7 @@ pub trait set_flags_for_import_extraction_recipe_desc {
 
 impl set_flags_for_import_extraction_recipe_desc for super::SetReducerFlags {
     fn import_extraction_recipe_desc(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("import_extraction_recipe_desc", flags);
+        self.imp
+            .set_call_reducer_flags("import_extraction_recipe_desc", flags);
     }
 }
-

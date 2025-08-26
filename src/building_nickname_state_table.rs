@@ -3,13 +3,8 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::building_nickname_state_type::BuildingNicknameState;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `building_nickname_state`.
 ///
@@ -37,7 +32,9 @@ pub trait BuildingNicknameStateTableAccess {
 impl BuildingNicknameStateTableAccess for super::RemoteTables {
     fn building_nickname_state(&self) -> BuildingNicknameStateTableHandle<'_> {
         BuildingNicknameStateTableHandle {
-            imp: self.imp.get_table::<BuildingNicknameState>("building_nickname_state"),
+            imp: self
+                .imp
+                .get_table::<BuildingNicknameState>("building_nickname_state"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -50,8 +47,12 @@ impl<'ctx> __sdk::Table for BuildingNicknameStateTableHandle<'ctx> {
     type Row = BuildingNicknameState;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = BuildingNicknameState> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = BuildingNicknameState> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = BuildingNicknameStateInsertCallbackId;
 
@@ -82,8 +83,7 @@ impl<'ctx> __sdk::Table for BuildingNicknameStateTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<BuildingNicknameState>("building_nickname_state");
+    let _table = client_cache.get_or_make_table::<BuildingNicknameState>("building_nickname_state");
     _table.add_unique_constraint::<u64>("entity_id", |row| &row.entity_id);
 }
 pub struct BuildingNicknameStateUpdateCallbackId(__sdk::CallbackId);
@@ -103,46 +103,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for BuildingNicknameStateTableHandle<'ctx>
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<BuildingNicknameState>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<BuildingNicknameState>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<BuildingNicknameState>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `entity_id` unique index on the table `building_nickname_state`,
-        /// which allows point queries on the field of the same name
-        /// via the [`BuildingNicknameStateEntityIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.building_nickname_state().entity_id().find(...)`.
-        pub struct BuildingNicknameStateEntityIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<BuildingNicknameState, u64>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `entity_id` unique index on the table `building_nickname_state`,
+/// which allows point queries on the field of the same name
+/// via the [`BuildingNicknameStateEntityIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.building_nickname_state().entity_id().find(...)`.
+pub struct BuildingNicknameStateEntityIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<BuildingNicknameState, u64>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> BuildingNicknameStateTableHandle<'ctx> {
-            /// Get a handle on the `entity_id` unique index on the table `building_nickname_state`.
-            pub fn entity_id(&self) -> BuildingNicknameStateEntityIdUnique<'ctx> {
-                BuildingNicknameStateEntityIdUnique {
-                    imp: self.imp.get_unique_constraint::<u64>("entity_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> BuildingNicknameStateTableHandle<'ctx> {
+    /// Get a handle on the `entity_id` unique index on the table `building_nickname_state`.
+    pub fn entity_id(&self) -> BuildingNicknameStateEntityIdUnique<'ctx> {
+        BuildingNicknameStateEntityIdUnique {
+            imp: self.imp.get_unique_constraint::<u64>("entity_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> BuildingNicknameStateEntityIdUnique<'ctx> {
-            /// Find the subscribed row whose `entity_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u64) -> Option<BuildingNicknameState> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> BuildingNicknameStateEntityIdUnique<'ctx> {
+    /// Find the subscribed row whose `entity_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u64) -> Option<BuildingNicknameState> {
+        self.imp.find(col_val)
+    }
+}

@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::alert_state_type::AlertState;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct ImportAlertStateArgs {
-    pub records: Vec::<AlertState>,
+    pub records: Vec<AlertState>,
 }
 
 impl From<ImportAlertStateArgs> for super::Reducer {
     fn from(args: ImportAlertStateArgs) -> Self {
         Self::ImportAlertState {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ImportAlertStateArgs {
@@ -42,8 +37,7 @@ pub trait import_alert_state {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_import_alert_state`] callbacks.
-    fn import_alert_state(&self, records: Vec::<AlertState>,
-) -> __sdk::Result<()>;
+    fn import_alert_state(&self, records: Vec<AlertState>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `import_alert_state`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,39 @@ pub trait import_alert_state {
     ///
     /// The returned [`ImportAlertStateCallbackId`] can be passed to [`Self::remove_on_import_alert_state`]
     /// to cancel the callback.
-    fn on_import_alert_state(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<AlertState>, ) + Send + 'static) -> ImportAlertStateCallbackId;
+    fn on_import_alert_state(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<AlertState>) + Send + 'static,
+    ) -> ImportAlertStateCallbackId;
     /// Cancel a callback previously registered by [`Self::on_import_alert_state`],
     /// causing it not to run in the future.
     fn remove_on_import_alert_state(&self, callback: ImportAlertStateCallbackId);
 }
 
 impl import_alert_state for super::RemoteReducers {
-    fn import_alert_state(&self, records: Vec::<AlertState>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("import_alert_state", ImportAlertStateArgs { records,  })
+    fn import_alert_state(&self, records: Vec<AlertState>) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("import_alert_state", ImportAlertStateArgs { records })
     }
     fn on_import_alert_state(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<AlertState>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<AlertState>) + Send + 'static,
     ) -> ImportAlertStateCallbackId {
         ImportAlertStateCallbackId(self.imp.on_reducer(
             "import_alert_state",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ImportAlertState {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ImportAlertState { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
@@ -106,4 +105,3 @@ impl set_flags_for_import_alert_state for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("import_alert_state", flags);
     }
 }
-

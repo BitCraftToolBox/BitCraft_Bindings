@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_action_state_type::PlayerActionState;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct ImportPlayerActionStateArgs {
-    pub records: Vec::<PlayerActionState>,
+    pub records: Vec<PlayerActionState>,
 }
 
 impl From<ImportPlayerActionStateArgs> for super::Reducer {
     fn from(args: ImportPlayerActionStateArgs) -> Self {
         Self::ImportPlayerActionState {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ImportPlayerActionStateArgs {
@@ -42,8 +37,7 @@ pub trait import_player_action_state {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_import_player_action_state`] callbacks.
-    fn import_player_action_state(&self, records: Vec::<PlayerActionState>,
-) -> __sdk::Result<()>;
+    fn import_player_action_state(&self, records: Vec<PlayerActionState>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `import_player_action_state`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,47 @@ pub trait import_player_action_state {
     ///
     /// The returned [`ImportPlayerActionStateCallbackId`] can be passed to [`Self::remove_on_import_player_action_state`]
     /// to cancel the callback.
-    fn on_import_player_action_state(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<PlayerActionState>, ) + Send + 'static) -> ImportPlayerActionStateCallbackId;
+    fn on_import_player_action_state(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<PlayerActionState>) + Send + 'static,
+    ) -> ImportPlayerActionStateCallbackId;
     /// Cancel a callback previously registered by [`Self::on_import_player_action_state`],
     /// causing it not to run in the future.
     fn remove_on_import_player_action_state(&self, callback: ImportPlayerActionStateCallbackId);
 }
 
 impl import_player_action_state for super::RemoteReducers {
-    fn import_player_action_state(&self, records: Vec::<PlayerActionState>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("import_player_action_state", ImportPlayerActionStateArgs { records,  })
+    fn import_player_action_state(&self, records: Vec<PlayerActionState>) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "import_player_action_state",
+            ImportPlayerActionStateArgs { records },
+        )
     }
     fn on_import_player_action_state(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<PlayerActionState>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<PlayerActionState>) + Send + 'static,
     ) -> ImportPlayerActionStateCallbackId {
         ImportPlayerActionStateCallbackId(self.imp.on_reducer(
             "import_player_action_state",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ImportPlayerActionState {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ImportPlayerActionState { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
     fn remove_on_import_player_action_state(&self, callback: ImportPlayerActionStateCallbackId) {
-        self.imp.remove_on_reducer("import_player_action_state", callback.0)
+        self.imp
+            .remove_on_reducer("import_player_action_state", callback.0)
     }
 }
 
@@ -103,7 +105,7 @@ pub trait set_flags_for_import_player_action_state {
 
 impl set_flags_for_import_player_action_state for super::SetReducerFlags {
     fn import_player_action_state(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("import_player_action_state", flags);
+        self.imp
+            .set_call_reducer_flags("import_player_action_state", flags);
     }
 }
-

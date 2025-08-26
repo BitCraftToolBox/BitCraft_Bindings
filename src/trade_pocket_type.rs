@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::item_stack_type::ItemStack;
 
@@ -20,8 +15,6 @@ pub struct TradePocket {
     pub contents: ItemStack,
 }
 
-
 impl __sdk::InModule for TradePocket {
     type Module = super::RemoteModule;
 }
-

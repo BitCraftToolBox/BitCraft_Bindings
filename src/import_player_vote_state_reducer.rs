@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_vote_state_type::PlayerVoteState;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct ImportPlayerVoteStateArgs {
-    pub records: Vec::<PlayerVoteState>,
+    pub records: Vec<PlayerVoteState>,
 }
 
 impl From<ImportPlayerVoteStateArgs> for super::Reducer {
     fn from(args: ImportPlayerVoteStateArgs) -> Self {
         Self::ImportPlayerVoteState {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ImportPlayerVoteStateArgs {
@@ -42,8 +37,7 @@ pub trait import_player_vote_state {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_import_player_vote_state`] callbacks.
-    fn import_player_vote_state(&self, records: Vec::<PlayerVoteState>,
-) -> __sdk::Result<()>;
+    fn import_player_vote_state(&self, records: Vec<PlayerVoteState>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `import_player_vote_state`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,47 @@ pub trait import_player_vote_state {
     ///
     /// The returned [`ImportPlayerVoteStateCallbackId`] can be passed to [`Self::remove_on_import_player_vote_state`]
     /// to cancel the callback.
-    fn on_import_player_vote_state(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<PlayerVoteState>, ) + Send + 'static) -> ImportPlayerVoteStateCallbackId;
+    fn on_import_player_vote_state(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<PlayerVoteState>) + Send + 'static,
+    ) -> ImportPlayerVoteStateCallbackId;
     /// Cancel a callback previously registered by [`Self::on_import_player_vote_state`],
     /// causing it not to run in the future.
     fn remove_on_import_player_vote_state(&self, callback: ImportPlayerVoteStateCallbackId);
 }
 
 impl import_player_vote_state for super::RemoteReducers {
-    fn import_player_vote_state(&self, records: Vec::<PlayerVoteState>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("import_player_vote_state", ImportPlayerVoteStateArgs { records,  })
+    fn import_player_vote_state(&self, records: Vec<PlayerVoteState>) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "import_player_vote_state",
+            ImportPlayerVoteStateArgs { records },
+        )
     }
     fn on_import_player_vote_state(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<PlayerVoteState>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<PlayerVoteState>) + Send + 'static,
     ) -> ImportPlayerVoteStateCallbackId {
         ImportPlayerVoteStateCallbackId(self.imp.on_reducer(
             "import_player_vote_state",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ImportPlayerVoteState {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ImportPlayerVoteState { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
     fn remove_on_import_player_vote_state(&self, callback: ImportPlayerVoteStateCallbackId) {
-        self.imp.remove_on_reducer("import_player_vote_state", callback.0)
+        self.imp
+            .remove_on_reducer("import_player_vote_state", callback.0)
     }
 }
 
@@ -103,7 +105,7 @@ pub trait set_flags_for_import_player_vote_state {
 
 impl set_flags_for_import_player_vote_state for super::SetReducerFlags {
     fn import_player_vote_state(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("import_player_vote_state", flags);
+        self.imp
+            .set_call_reducer_flags("import_player_vote_state", flags);
     }
 }
-

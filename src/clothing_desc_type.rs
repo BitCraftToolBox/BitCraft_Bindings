@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::clothing_mask_type::ClothingMask;
 
@@ -19,8 +14,6 @@ pub struct ClothingDesc {
     pub mask: ClothingMask,
 }
 
-
 impl __sdk::InModule for ClothingDesc {
     type Module = super::RemoteModule;
 }
-

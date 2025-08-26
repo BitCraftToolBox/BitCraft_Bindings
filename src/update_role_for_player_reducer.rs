@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::role_type::Role;
 
@@ -24,8 +19,8 @@ impl From<UpdateRoleForPlayerArgs> for super::Reducer {
         Self::UpdateRoleForPlayer {
             player_entity_id: args.player_entity_id,
             role: args.role,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for UpdateRoleForPlayerArgs {
@@ -44,9 +39,7 @@ pub trait update_role_for_player {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_update_role_for_player`] callbacks.
-    fn update_role_for_player(&self, player_entity_id: u64,
-role: Role,
-) -> __sdk::Result<()>;
+    fn update_role_for_player(&self, player_entity_id: u64, role: Role) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `update_role_for_player`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -54,40 +47,54 @@ role: Role,
     ///
     /// The returned [`UpdateRoleForPlayerCallbackId`] can be passed to [`Self::remove_on_update_role_for_player`]
     /// to cancel the callback.
-    fn on_update_role_for_player(&self, callback: impl FnMut(&super::ReducerEventContext, &u64, &Role, ) + Send + 'static) -> UpdateRoleForPlayerCallbackId;
+    fn on_update_role_for_player(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &u64, &Role) + Send + 'static,
+    ) -> UpdateRoleForPlayerCallbackId;
     /// Cancel a callback previously registered by [`Self::on_update_role_for_player`],
     /// causing it not to run in the future.
     fn remove_on_update_role_for_player(&self, callback: UpdateRoleForPlayerCallbackId);
 }
 
 impl update_role_for_player for super::RemoteReducers {
-    fn update_role_for_player(&self, player_entity_id: u64,
-role: Role,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("update_role_for_player", UpdateRoleForPlayerArgs { player_entity_id, role,  })
+    fn update_role_for_player(&self, player_entity_id: u64, role: Role) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "update_role_for_player",
+            UpdateRoleForPlayerArgs {
+                player_entity_id,
+                role,
+            },
+        )
     }
     fn on_update_role_for_player(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &u64, &Role, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &u64, &Role) + Send + 'static,
     ) -> UpdateRoleForPlayerCallbackId {
         UpdateRoleForPlayerCallbackId(self.imp.on_reducer(
             "update_role_for_player",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::UpdateRoleForPlayer {
-                            player_entity_id, role, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer:
+                                super::Reducer::UpdateRoleForPlayer {
+                                    player_entity_id,
+                                    role,
+                                },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, player_entity_id, role, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, player_entity_id, role)
             }),
         ))
     }
     fn remove_on_update_role_for_player(&self, callback: UpdateRoleForPlayerCallbackId) {
-        self.imp.remove_on_reducer("update_role_for_player", callback.0)
+        self.imp
+            .remove_on_reducer("update_role_for_player", callback.0)
     }
 }
 
@@ -107,7 +114,7 @@ pub trait set_flags_for_update_role_for_player {
 
 impl set_flags_for_update_role_for_player for super::SetReducerFlags {
     fn update_role_for_player(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("update_role_for_player", flags);
+        self.imp
+            .set_call_reducer_flags("update_role_for_player", flags);
     }
 }
-

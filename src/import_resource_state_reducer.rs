@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::resource_state_type::ResourceState;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct ImportResourceStateArgs {
-    pub records: Vec::<ResourceState>,
+    pub records: Vec<ResourceState>,
 }
 
 impl From<ImportResourceStateArgs> for super::Reducer {
     fn from(args: ImportResourceStateArgs) -> Self {
         Self::ImportResourceState {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ImportResourceStateArgs {
@@ -42,8 +37,7 @@ pub trait import_resource_state {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_import_resource_state`] callbacks.
-    fn import_resource_state(&self, records: Vec::<ResourceState>,
-) -> __sdk::Result<()>;
+    fn import_resource_state(&self, records: Vec<ResourceState>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `import_resource_state`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,45 @@ pub trait import_resource_state {
     ///
     /// The returned [`ImportResourceStateCallbackId`] can be passed to [`Self::remove_on_import_resource_state`]
     /// to cancel the callback.
-    fn on_import_resource_state(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<ResourceState>, ) + Send + 'static) -> ImportResourceStateCallbackId;
+    fn on_import_resource_state(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<ResourceState>) + Send + 'static,
+    ) -> ImportResourceStateCallbackId;
     /// Cancel a callback previously registered by [`Self::on_import_resource_state`],
     /// causing it not to run in the future.
     fn remove_on_import_resource_state(&self, callback: ImportResourceStateCallbackId);
 }
 
 impl import_resource_state for super::RemoteReducers {
-    fn import_resource_state(&self, records: Vec::<ResourceState>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("import_resource_state", ImportResourceStateArgs { records,  })
+    fn import_resource_state(&self, records: Vec<ResourceState>) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("import_resource_state", ImportResourceStateArgs { records })
     }
     fn on_import_resource_state(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<ResourceState>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<ResourceState>) + Send + 'static,
     ) -> ImportResourceStateCallbackId {
         ImportResourceStateCallbackId(self.imp.on_reducer(
             "import_resource_state",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ImportResourceState {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ImportResourceState { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
     fn remove_on_import_resource_state(&self, callback: ImportResourceStateCallbackId) {
-        self.imp.remove_on_reducer("import_resource_state", callback.0)
+        self.imp
+            .remove_on_reducer("import_resource_state", callback.0)
     }
 }
 
@@ -103,7 +103,7 @@ pub trait set_flags_for_import_resource_state {
 
 impl set_flags_for_import_resource_state for super::SetReducerFlags {
     fn import_resource_state(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("import_resource_state", flags);
+        self.imp
+            .set_call_reducer_flags("import_resource_state", flags);
     }
 }
-

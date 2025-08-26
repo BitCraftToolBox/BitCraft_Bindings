@@ -3,13 +3,8 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::mobile_entity_state_type::MobileEntityState;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `mobile_entity_state`.
 ///
@@ -37,7 +32,9 @@ pub trait MobileEntityStateTableAccess {
 impl MobileEntityStateTableAccess for super::RemoteTables {
     fn mobile_entity_state(&self) -> MobileEntityStateTableHandle<'_> {
         MobileEntityStateTableHandle {
-            imp: self.imp.get_table::<MobileEntityState>("mobile_entity_state"),
+            imp: self
+                .imp
+                .get_table::<MobileEntityState>("mobile_entity_state"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -50,8 +47,12 @@ impl<'ctx> __sdk::Table for MobileEntityStateTableHandle<'ctx> {
     type Row = MobileEntityState;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = MobileEntityState> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = MobileEntityState> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = MobileEntityStateInsertCallbackId;
 
@@ -82,8 +83,7 @@ impl<'ctx> __sdk::Table for MobileEntityStateTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<MobileEntityState>("mobile_entity_state");
+    let _table = client_cache.get_or_make_table::<MobileEntityState>("mobile_entity_state");
     _table.add_unique_constraint::<u64>("entity_id", |row| &row.entity_id);
 }
 pub struct MobileEntityStateUpdateCallbackId(__sdk::CallbackId);
@@ -103,46 +103,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for MobileEntityStateTableHandle<'ctx> {
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<MobileEntityState>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<MobileEntityState>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<MobileEntityState>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `entity_id` unique index on the table `mobile_entity_state`,
-        /// which allows point queries on the field of the same name
-        /// via the [`MobileEntityStateEntityIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.mobile_entity_state().entity_id().find(...)`.
-        pub struct MobileEntityStateEntityIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<MobileEntityState, u64>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `entity_id` unique index on the table `mobile_entity_state`,
+/// which allows point queries on the field of the same name
+/// via the [`MobileEntityStateEntityIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.mobile_entity_state().entity_id().find(...)`.
+pub struct MobileEntityStateEntityIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<MobileEntityState, u64>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> MobileEntityStateTableHandle<'ctx> {
-            /// Get a handle on the `entity_id` unique index on the table `mobile_entity_state`.
-            pub fn entity_id(&self) -> MobileEntityStateEntityIdUnique<'ctx> {
-                MobileEntityStateEntityIdUnique {
-                    imp: self.imp.get_unique_constraint::<u64>("entity_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> MobileEntityStateTableHandle<'ctx> {
+    /// Get a handle on the `entity_id` unique index on the table `mobile_entity_state`.
+    pub fn entity_id(&self) -> MobileEntityStateEntityIdUnique<'ctx> {
+        MobileEntityStateEntityIdUnique {
+            imp: self.imp.get_unique_constraint::<u64>("entity_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> MobileEntityStateEntityIdUnique<'ctx> {
-            /// Find the subscribed row whose `entity_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u64) -> Option<MobileEntityState> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> MobileEntityStateEntityIdUnique<'ctx> {
+    /// Find the subscribed row whose `entity_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u64) -> Option<MobileEntityState> {
+        self.imp.find(col_val)
+    }
+}

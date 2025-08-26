@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::move_validation_params_desc_type::MoveValidationParamsDesc;
 
@@ -19,8 +14,6 @@ pub struct PrivateParametersDesc {
     pub move_validation: MoveValidationParamsDesc,
 }
 
-
 impl __sdk::InModule for PrivateParametersDesc {
     type Module = super::RemoteModule;
 }
-

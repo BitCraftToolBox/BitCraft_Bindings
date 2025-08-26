@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::npc_type_type::NpcType;
 
@@ -22,12 +17,10 @@ pub struct NpcState {
     pub next_action_timestamp: __sdk::Timestamp,
     pub move_duration: f32,
     pub started_moving: u64,
-    pub previous_buildings: Vec::<u64>,
+    pub previous_buildings: Vec<u64>,
     pub traveling: bool,
 }
-
 
 impl __sdk::InModule for NpcState {
     type Module = super::RemoteModule;
 }
-

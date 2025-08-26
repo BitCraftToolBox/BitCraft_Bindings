@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::empire_change_emblem_request_type::EmpireChangeEmblemRequest;
 
@@ -22,8 +17,8 @@ impl From<EmpireChangeEmblemArgs> for super::Reducer {
     fn from(args: EmpireChangeEmblemArgs) -> Self {
         Self::EmpireChangeEmblem {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for EmpireChangeEmblemArgs {
@@ -42,8 +37,7 @@ pub trait empire_change_emblem {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_empire_change_emblem`] callbacks.
-    fn empire_change_emblem(&self, request: EmpireChangeEmblemRequest,
-) -> __sdk::Result<()>;
+    fn empire_change_emblem(&self, request: EmpireChangeEmblemRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `empire_change_emblem`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,47 @@ pub trait empire_change_emblem {
     ///
     /// The returned [`EmpireChangeEmblemCallbackId`] can be passed to [`Self::remove_on_empire_change_emblem`]
     /// to cancel the callback.
-    fn on_empire_change_emblem(&self, callback: impl FnMut(&super::ReducerEventContext, &EmpireChangeEmblemRequest, ) + Send + 'static) -> EmpireChangeEmblemCallbackId;
+    fn on_empire_change_emblem(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &EmpireChangeEmblemRequest) + Send + 'static,
+    ) -> EmpireChangeEmblemCallbackId;
     /// Cancel a callback previously registered by [`Self::on_empire_change_emblem`],
     /// causing it not to run in the future.
     fn remove_on_empire_change_emblem(&self, callback: EmpireChangeEmblemCallbackId);
 }
 
 impl empire_change_emblem for super::RemoteReducers {
-    fn empire_change_emblem(&self, request: EmpireChangeEmblemRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("empire_change_emblem", EmpireChangeEmblemArgs { request,  })
+    fn empire_change_emblem(&self, request: EmpireChangeEmblemRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("empire_change_emblem", EmpireChangeEmblemArgs { request })
     }
     fn on_empire_change_emblem(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &EmpireChangeEmblemRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &EmpireChangeEmblemRequest)
+            + Send
+            + 'static,
     ) -> EmpireChangeEmblemCallbackId {
         EmpireChangeEmblemCallbackId(self.imp.on_reducer(
             "empire_change_emblem",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::EmpireChangeEmblem {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::EmpireChangeEmblem { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
     fn remove_on_empire_change_emblem(&self, callback: EmpireChangeEmblemCallbackId) {
-        self.imp.remove_on_reducer("empire_change_emblem", callback.0)
+        self.imp
+            .remove_on_reducer("empire_change_emblem", callback.0)
     }
 }
 
@@ -103,7 +105,7 @@ pub trait set_flags_for_empire_change_emblem {
 
 impl set_flags_for_empire_change_emblem for super::SetReducerFlags {
     fn empire_change_emblem(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("empire_change_emblem", flags);
+        self.imp
+            .set_call_reducer_flags("empire_change_emblem", flags);
     }
 }
-

@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::active_buff_type::ActiveBuff;
 
@@ -16,11 +11,9 @@ use super::active_buff_type::ActiveBuff;
 #[sats(crate = __lib)]
 pub struct ActiveBuffState {
     pub entity_id: u64,
-    pub active_buffs: Vec::<ActiveBuff>,
+    pub active_buffs: Vec<ActiveBuff>,
 }
-
 
 impl __sdk::InModule for ActiveBuffState {
     type Module = super::RemoteModule;
 }
-

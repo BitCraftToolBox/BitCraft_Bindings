@@ -3,13 +3,8 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::globals_type::Globals;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `globals`.
 ///
@@ -50,8 +45,12 @@ impl<'ctx> __sdk::Table for GlobalsTableHandle<'ctx> {
     type Row = Globals;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = Globals> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = Globals> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = GlobalsInsertCallbackId;
 
@@ -82,8 +81,7 @@ impl<'ctx> __sdk::Table for GlobalsTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<Globals>("globals");
+    let _table = client_cache.get_or_make_table::<Globals>("globals");
     _table.add_unique_constraint::<i32>("version", |row| &row.version);
 }
 pub struct GlobalsUpdateCallbackId(__sdk::CallbackId);
@@ -103,46 +101,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for GlobalsTableHandle<'ctx> {
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<Globals>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<Globals>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<Globals>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `version` unique index on the table `globals`,
-        /// which allows point queries on the field of the same name
-        /// via the [`GlobalsVersionUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.globals().version().find(...)`.
-        pub struct GlobalsVersionUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<Globals, i32>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `version` unique index on the table `globals`,
+/// which allows point queries on the field of the same name
+/// via the [`GlobalsVersionUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.globals().version().find(...)`.
+pub struct GlobalsVersionUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<Globals, i32>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> GlobalsTableHandle<'ctx> {
-            /// Get a handle on the `version` unique index on the table `globals`.
-            pub fn version(&self) -> GlobalsVersionUnique<'ctx> {
-                GlobalsVersionUnique {
-                    imp: self.imp.get_unique_constraint::<i32>("version"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> GlobalsTableHandle<'ctx> {
+    /// Get a handle on the `version` unique index on the table `globals`.
+    pub fn version(&self) -> GlobalsVersionUnique<'ctx> {
+        GlobalsVersionUnique {
+            imp: self.imp.get_unique_constraint::<i32>("version"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> GlobalsVersionUnique<'ctx> {
-            /// Find the subscribed row whose `version` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &i32) -> Option<Globals> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> GlobalsVersionUnique<'ctx> {
+    /// Find the subscribed row whose `version` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &i32) -> Option<Globals> {
+        self.imp.find(col_val)
+    }
+}

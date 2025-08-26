@@ -3,13 +3,8 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::npc_desc_type::NpcDesc;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `npc_desc`.
 ///
@@ -50,8 +45,12 @@ impl<'ctx> __sdk::Table for NpcDescTableHandle<'ctx> {
     type Row = NpcDesc;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = NpcDesc> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = NpcDesc> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = NpcDescInsertCallbackId;
 
@@ -82,8 +81,7 @@ impl<'ctx> __sdk::Table for NpcDescTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<NpcDesc>("npc_desc");
+    let _table = client_cache.get_or_make_table::<NpcDesc>("npc_desc");
     _table.add_unique_constraint::<i32>("npc_type", |row| &row.npc_type);
 }
 pub struct NpcDescUpdateCallbackId(__sdk::CallbackId);
@@ -103,46 +101,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for NpcDescTableHandle<'ctx> {
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<NpcDesc>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<NpcDesc>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<NpcDesc>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `npc_type` unique index on the table `npc_desc`,
-        /// which allows point queries on the field of the same name
-        /// via the [`NpcDescNpcTypeUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.npc_desc().npc_type().find(...)`.
-        pub struct NpcDescNpcTypeUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<NpcDesc, i32>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `npc_type` unique index on the table `npc_desc`,
+/// which allows point queries on the field of the same name
+/// via the [`NpcDescNpcTypeUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.npc_desc().npc_type().find(...)`.
+pub struct NpcDescNpcTypeUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<NpcDesc, i32>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> NpcDescTableHandle<'ctx> {
-            /// Get a handle on the `npc_type` unique index on the table `npc_desc`.
-            pub fn npc_type(&self) -> NpcDescNpcTypeUnique<'ctx> {
-                NpcDescNpcTypeUnique {
-                    imp: self.imp.get_unique_constraint::<i32>("npc_type"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> NpcDescTableHandle<'ctx> {
+    /// Get a handle on the `npc_type` unique index on the table `npc_desc`.
+    pub fn npc_type(&self) -> NpcDescNpcTypeUnique<'ctx> {
+        NpcDescNpcTypeUnique {
+            imp: self.imp.get_unique_constraint::<i32>("npc_type"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> NpcDescNpcTypeUnique<'ctx> {
-            /// Find the subscribed row whose `npc_type` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &i32) -> Option<NpcDesc> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> NpcDescNpcTypeUnique<'ctx> {
+    /// Find the subscribed row whose `npc_type` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &i32) -> Option<NpcDesc> {
+        self.imp.find(col_val)
+    }
+}

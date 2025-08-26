@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::hub_item_type_type::HubItemType;
 
@@ -28,8 +23,8 @@ impl From<AdminUpdateGrantedHubItemStateArgs> for super::Reducer {
             item_type: args.item_type,
             item_id: args.item_id,
             balance: args.balance,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for AdminUpdateGrantedHubItemStateArgs {
@@ -48,11 +43,13 @@ pub trait admin_update_granted_hub_item_state {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_admin_update_granted_hub_item_state`] callbacks.
-    fn admin_update_granted_hub_item_state(&self, identity: __sdk::Identity,
-item_type: HubItemType,
-item_id: i32,
-balance: u32,
-) -> __sdk::Result<()>;
+    fn admin_update_granted_hub_item_state(
+        &self,
+        identity: __sdk::Identity,
+        item_type: HubItemType,
+        item_id: i32,
+        balance: u32,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `admin_update_granted_hub_item_state`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -60,42 +57,74 @@ balance: u32,
     ///
     /// The returned [`AdminUpdateGrantedHubItemStateCallbackId`] can be passed to [`Self::remove_on_admin_update_granted_hub_item_state`]
     /// to cancel the callback.
-    fn on_admin_update_granted_hub_item_state(&self, callback: impl FnMut(&super::ReducerEventContext, &__sdk::Identity, &HubItemType, &i32, &u32, ) + Send + 'static) -> AdminUpdateGrantedHubItemStateCallbackId;
+    fn on_admin_update_granted_hub_item_state(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &__sdk::Identity, &HubItemType, &i32, &u32)
+            + Send
+            + 'static,
+    ) -> AdminUpdateGrantedHubItemStateCallbackId;
     /// Cancel a callback previously registered by [`Self::on_admin_update_granted_hub_item_state`],
     /// causing it not to run in the future.
-    fn remove_on_admin_update_granted_hub_item_state(&self, callback: AdminUpdateGrantedHubItemStateCallbackId);
+    fn remove_on_admin_update_granted_hub_item_state(
+        &self,
+        callback: AdminUpdateGrantedHubItemStateCallbackId,
+    );
 }
 
 impl admin_update_granted_hub_item_state for super::RemoteReducers {
-    fn admin_update_granted_hub_item_state(&self, identity: __sdk::Identity,
-item_type: HubItemType,
-item_id: i32,
-balance: u32,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("admin_update_granted_hub_item_state", AdminUpdateGrantedHubItemStateArgs { identity, item_type, item_id, balance,  })
+    fn admin_update_granted_hub_item_state(
+        &self,
+        identity: __sdk::Identity,
+        item_type: HubItemType,
+        item_id: i32,
+        balance: u32,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "admin_update_granted_hub_item_state",
+            AdminUpdateGrantedHubItemStateArgs {
+                identity,
+                item_type,
+                item_id,
+                balance,
+            },
+        )
     }
     fn on_admin_update_granted_hub_item_state(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &__sdk::Identity, &HubItemType, &i32, &u32, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &__sdk::Identity, &HubItemType, &i32, &u32)
+            + Send
+            + 'static,
     ) -> AdminUpdateGrantedHubItemStateCallbackId {
         AdminUpdateGrantedHubItemStateCallbackId(self.imp.on_reducer(
             "admin_update_granted_hub_item_state",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::AdminUpdateGrantedHubItemState {
-                            identity, item_type, item_id, balance, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer:
+                                super::Reducer::AdminUpdateGrantedHubItemState {
+                                    identity,
+                                    item_type,
+                                    item_id,
+                                    balance,
+                                },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, identity, item_type, item_id, balance, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, identity, item_type, item_id, balance)
             }),
         ))
     }
-    fn remove_on_admin_update_granted_hub_item_state(&self, callback: AdminUpdateGrantedHubItemStateCallbackId) {
-        self.imp.remove_on_reducer("admin_update_granted_hub_item_state", callback.0)
+    fn remove_on_admin_update_granted_hub_item_state(
+        &self,
+        callback: AdminUpdateGrantedHubItemStateCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("admin_update_granted_hub_item_state", callback.0)
     }
 }
 
@@ -115,7 +144,7 @@ pub trait set_flags_for_admin_update_granted_hub_item_state {
 
 impl set_flags_for_admin_update_granted_hub_item_state for super::SetReducerFlags {
     fn admin_update_granted_hub_item_state(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("admin_update_granted_hub_item_state", flags);
+        self.imp
+            .set_call_reducer_flags("admin_update_granted_hub_item_state", flags);
     }
 }
-

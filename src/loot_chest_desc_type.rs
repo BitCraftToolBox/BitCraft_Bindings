@@ -3,13 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -18,11 +12,9 @@ pub struct LootChestDesc {
     pub name: String,
     pub chest_rarity: i32,
     pub prefab_address: String,
-    pub loot_tables: Vec::<i32>,
+    pub loot_tables: Vec<i32>,
 }
-
 
 impl __sdk::InModule for LootChestDesc {
     type Module = super::RemoteModule;
 }
-

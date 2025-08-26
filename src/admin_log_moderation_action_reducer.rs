@@ -3,13 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -33,8 +27,8 @@ impl From<AdminLogModerationActionArgs> for super::Reducer {
             action_type: args.action_type,
             moderation_notice: args.moderation_notice,
             details: args.details,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for AdminLogModerationActionArgs {
@@ -53,14 +47,16 @@ pub trait admin_log_moderation_action {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_admin_log_moderation_action`] callbacks.
-    fn admin_log_moderation_action(&self, report_entity_id: u64,
-reported_player_entity_id: u64,
-admin_name: String,
-reported_player_username: String,
-action_type: String,
-moderation_notice: String,
-details: String,
-) -> __sdk::Result<()>;
+    fn admin_log_moderation_action(
+        &self,
+        report_entity_id: u64,
+        reported_player_entity_id: u64,
+        admin_name: String,
+        reported_player_username: String,
+        action_type: String,
+        moderation_notice: String,
+        details: String,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `admin_log_moderation_action`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -68,45 +64,102 @@ details: String,
     ///
     /// The returned [`AdminLogModerationActionCallbackId`] can be passed to [`Self::remove_on_admin_log_moderation_action`]
     /// to cancel the callback.
-    fn on_admin_log_moderation_action(&self, callback: impl FnMut(&super::ReducerEventContext, &u64, &u64, &String, &String, &String, &String, &String, ) + Send + 'static) -> AdminLogModerationActionCallbackId;
+    fn on_admin_log_moderation_action(
+        &self,
+        callback: impl FnMut(
+                &super::ReducerEventContext,
+                &u64,
+                &u64,
+                &String,
+                &String,
+                &String,
+                &String,
+                &String,
+            ) + Send
+            + 'static,
+    ) -> AdminLogModerationActionCallbackId;
     /// Cancel a callback previously registered by [`Self::on_admin_log_moderation_action`],
     /// causing it not to run in the future.
     fn remove_on_admin_log_moderation_action(&self, callback: AdminLogModerationActionCallbackId);
 }
 
 impl admin_log_moderation_action for super::RemoteReducers {
-    fn admin_log_moderation_action(&self, report_entity_id: u64,
-reported_player_entity_id: u64,
-admin_name: String,
-reported_player_username: String,
-action_type: String,
-moderation_notice: String,
-details: String,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("admin_log_moderation_action", AdminLogModerationActionArgs { report_entity_id, reported_player_entity_id, admin_name, reported_player_username, action_type, moderation_notice, details,  })
+    fn admin_log_moderation_action(
+        &self,
+        report_entity_id: u64,
+        reported_player_entity_id: u64,
+        admin_name: String,
+        reported_player_username: String,
+        action_type: String,
+        moderation_notice: String,
+        details: String,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "admin_log_moderation_action",
+            AdminLogModerationActionArgs {
+                report_entity_id,
+                reported_player_entity_id,
+                admin_name,
+                reported_player_username,
+                action_type,
+                moderation_notice,
+                details,
+            },
+        )
     }
     fn on_admin_log_moderation_action(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &u64, &u64, &String, &String, &String, &String, &String, ) + Send + 'static,
+        mut callback: impl FnMut(
+                &super::ReducerEventContext,
+                &u64,
+                &u64,
+                &String,
+                &String,
+                &String,
+                &String,
+                &String,
+            ) + Send
+            + 'static,
     ) -> AdminLogModerationActionCallbackId {
         AdminLogModerationActionCallbackId(self.imp.on_reducer(
             "admin_log_moderation_action",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::AdminLogModerationAction {
-                            report_entity_id, reported_player_entity_id, admin_name, reported_player_username, action_type, moderation_notice, details, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer:
+                                super::Reducer::AdminLogModerationAction {
+                                    report_entity_id,
+                                    reported_player_entity_id,
+                                    admin_name,
+                                    reported_player_username,
+                                    action_type,
+                                    moderation_notice,
+                                    details,
+                                },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, report_entity_id, reported_player_entity_id, admin_name, reported_player_username, action_type, moderation_notice, details, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(
+                    ctx,
+                    report_entity_id,
+                    reported_player_entity_id,
+                    admin_name,
+                    reported_player_username,
+                    action_type,
+                    moderation_notice,
+                    details,
+                )
             }),
         ))
     }
     fn remove_on_admin_log_moderation_action(&self, callback: AdminLogModerationActionCallbackId) {
-        self.imp.remove_on_reducer("admin_log_moderation_action", callback.0)
+        self.imp
+            .remove_on_reducer("admin_log_moderation_action", callback.0)
     }
 }
 
@@ -126,7 +179,7 @@ pub trait set_flags_for_admin_log_moderation_action {
 
 impl set_flags_for_admin_log_moderation_action for super::SetReducerFlags {
     fn admin_log_moderation_action(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("admin_log_moderation_action", flags);
+        self.imp
+            .set_call_reducer_flags("admin_log_moderation_action", flags);
     }
 }
-

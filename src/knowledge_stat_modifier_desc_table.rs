@@ -3,14 +3,9 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-use super::knowledge_stat_modifier_desc_type::KnowledgeStatModifierDesc;
 use super::csv_stat_entry_type::CsvStatEntry;
+use super::knowledge_stat_modifier_desc_type::KnowledgeStatModifierDesc;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `knowledge_stat_modifier_desc`.
 ///
@@ -38,7 +33,9 @@ pub trait KnowledgeStatModifierDescTableAccess {
 impl KnowledgeStatModifierDescTableAccess for super::RemoteTables {
     fn knowledge_stat_modifier_desc(&self) -> KnowledgeStatModifierDescTableHandle<'_> {
         KnowledgeStatModifierDescTableHandle {
-            imp: self.imp.get_table::<KnowledgeStatModifierDesc>("knowledge_stat_modifier_desc"),
+            imp: self
+                .imp
+                .get_table::<KnowledgeStatModifierDesc>("knowledge_stat_modifier_desc"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -51,8 +48,12 @@ impl<'ctx> __sdk::Table for KnowledgeStatModifierDescTableHandle<'ctx> {
     type Row = KnowledgeStatModifierDesc;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = KnowledgeStatModifierDesc> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = KnowledgeStatModifierDesc> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = KnowledgeStatModifierDescInsertCallbackId;
 
@@ -83,9 +84,10 @@ impl<'ctx> __sdk::Table for KnowledgeStatModifierDescTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<KnowledgeStatModifierDesc>("knowledge_stat_modifier_desc");
-    _table.add_unique_constraint::<i32>("secondary_knowledge_id", |row| &row.secondary_knowledge_id);
+    let _table =
+        client_cache.get_or_make_table::<KnowledgeStatModifierDesc>("knowledge_stat_modifier_desc");
+    _table
+        .add_unique_constraint::<i32>("secondary_knowledge_id", |row| &row.secondary_knowledge_id);
 }
 pub struct KnowledgeStatModifierDescUpdateCallbackId(__sdk::CallbackId);
 
@@ -104,46 +106,47 @@ impl<'ctx> __sdk::TableWithPrimaryKey for KnowledgeStatModifierDescTableHandle<'
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<KnowledgeStatModifierDesc>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<KnowledgeStatModifierDesc>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<KnowledgeStatModifierDesc>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `secondary_knowledge_id` unique index on the table `knowledge_stat_modifier_desc`,
-        /// which allows point queries on the field of the same name
-        /// via the [`KnowledgeStatModifierDescSecondaryKnowledgeIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.knowledge_stat_modifier_desc().secondary_knowledge_id().find(...)`.
-        pub struct KnowledgeStatModifierDescSecondaryKnowledgeIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<KnowledgeStatModifierDesc, i32>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `secondary_knowledge_id` unique index on the table `knowledge_stat_modifier_desc`,
+/// which allows point queries on the field of the same name
+/// via the [`KnowledgeStatModifierDescSecondaryKnowledgeIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.knowledge_stat_modifier_desc().secondary_knowledge_id().find(...)`.
+pub struct KnowledgeStatModifierDescSecondaryKnowledgeIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<KnowledgeStatModifierDesc, i32>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> KnowledgeStatModifierDescTableHandle<'ctx> {
-            /// Get a handle on the `secondary_knowledge_id` unique index on the table `knowledge_stat_modifier_desc`.
-            pub fn secondary_knowledge_id(&self) -> KnowledgeStatModifierDescSecondaryKnowledgeIdUnique<'ctx> {
-                KnowledgeStatModifierDescSecondaryKnowledgeIdUnique {
-                    imp: self.imp.get_unique_constraint::<i32>("secondary_knowledge_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> KnowledgeStatModifierDescTableHandle<'ctx> {
+    /// Get a handle on the `secondary_knowledge_id` unique index on the table `knowledge_stat_modifier_desc`.
+    pub fn secondary_knowledge_id(
+        &self,
+    ) -> KnowledgeStatModifierDescSecondaryKnowledgeIdUnique<'ctx> {
+        KnowledgeStatModifierDescSecondaryKnowledgeIdUnique {
+            imp: self
+                .imp
+                .get_unique_constraint::<i32>("secondary_knowledge_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> KnowledgeStatModifierDescSecondaryKnowledgeIdUnique<'ctx> {
-            /// Find the subscribed row whose `secondary_knowledge_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &i32) -> Option<KnowledgeStatModifierDesc> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> KnowledgeStatModifierDescSecondaryKnowledgeIdUnique<'ctx> {
+    /// Find the subscribed row whose `secondary_knowledge_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &i32) -> Option<KnowledgeStatModifierDesc> {
+        self.imp.find(col_val)
+    }
+}

@@ -3,14 +3,9 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-use super::user_moderation_state_type::UserModerationState;
 use super::user_moderation_policy_type::UserModerationPolicy;
+use super::user_moderation_state_type::UserModerationState;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `user_moderation_state`.
 ///
@@ -38,7 +33,9 @@ pub trait UserModerationStateTableAccess {
 impl UserModerationStateTableAccess for super::RemoteTables {
     fn user_moderation_state(&self) -> UserModerationStateTableHandle<'_> {
         UserModerationStateTableHandle {
-            imp: self.imp.get_table::<UserModerationState>("user_moderation_state"),
+            imp: self
+                .imp
+                .get_table::<UserModerationState>("user_moderation_state"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -51,8 +48,12 @@ impl<'ctx> __sdk::Table for UserModerationStateTableHandle<'ctx> {
     type Row = UserModerationState;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = UserModerationState> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = UserModerationState> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = UserModerationStateInsertCallbackId;
 
@@ -83,8 +84,7 @@ impl<'ctx> __sdk::Table for UserModerationStateTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<UserModerationState>("user_moderation_state");
+    let _table = client_cache.get_or_make_table::<UserModerationState>("user_moderation_state");
     _table.add_unique_constraint::<u64>("entity_id", |row| &row.entity_id);
 }
 pub struct UserModerationStateUpdateCallbackId(__sdk::CallbackId);
@@ -104,46 +104,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for UserModerationStateTableHandle<'ctx> {
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<UserModerationState>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<UserModerationState>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<UserModerationState>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `entity_id` unique index on the table `user_moderation_state`,
-        /// which allows point queries on the field of the same name
-        /// via the [`UserModerationStateEntityIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.user_moderation_state().entity_id().find(...)`.
-        pub struct UserModerationStateEntityIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<UserModerationState, u64>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `entity_id` unique index on the table `user_moderation_state`,
+/// which allows point queries on the field of the same name
+/// via the [`UserModerationStateEntityIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.user_moderation_state().entity_id().find(...)`.
+pub struct UserModerationStateEntityIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<UserModerationState, u64>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> UserModerationStateTableHandle<'ctx> {
-            /// Get a handle on the `entity_id` unique index on the table `user_moderation_state`.
-            pub fn entity_id(&self) -> UserModerationStateEntityIdUnique<'ctx> {
-                UserModerationStateEntityIdUnique {
-                    imp: self.imp.get_unique_constraint::<u64>("entity_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> UserModerationStateTableHandle<'ctx> {
+    /// Get a handle on the `entity_id` unique index on the table `user_moderation_state`.
+    pub fn entity_id(&self) -> UserModerationStateEntityIdUnique<'ctx> {
+        UserModerationStateEntityIdUnique {
+            imp: self.imp.get_unique_constraint::<u64>("entity_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> UserModerationStateEntityIdUnique<'ctx> {
-            /// Find the subscribed row whose `entity_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u64) -> Option<UserModerationState> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> UserModerationStateEntityIdUnique<'ctx> {
+    /// Find the subscribed row whose `entity_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u64) -> Option<UserModerationState> {
+        self.imp.find(col_val)
+    }
+}

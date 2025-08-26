@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::admin_broadcast_type::AdminBroadcast;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct ImportAdminBroadcastArgs {
-    pub records: Vec::<AdminBroadcast>,
+    pub records: Vec<AdminBroadcast>,
 }
 
 impl From<ImportAdminBroadcastArgs> for super::Reducer {
     fn from(args: ImportAdminBroadcastArgs) -> Self {
         Self::ImportAdminBroadcast {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ImportAdminBroadcastArgs {
@@ -42,8 +37,7 @@ pub trait import_admin_broadcast {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_import_admin_broadcast`] callbacks.
-    fn import_admin_broadcast(&self, records: Vec::<AdminBroadcast>,
-) -> __sdk::Result<()>;
+    fn import_admin_broadcast(&self, records: Vec<AdminBroadcast>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `import_admin_broadcast`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,47 @@ pub trait import_admin_broadcast {
     ///
     /// The returned [`ImportAdminBroadcastCallbackId`] can be passed to [`Self::remove_on_import_admin_broadcast`]
     /// to cancel the callback.
-    fn on_import_admin_broadcast(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<AdminBroadcast>, ) + Send + 'static) -> ImportAdminBroadcastCallbackId;
+    fn on_import_admin_broadcast(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<AdminBroadcast>) + Send + 'static,
+    ) -> ImportAdminBroadcastCallbackId;
     /// Cancel a callback previously registered by [`Self::on_import_admin_broadcast`],
     /// causing it not to run in the future.
     fn remove_on_import_admin_broadcast(&self, callback: ImportAdminBroadcastCallbackId);
 }
 
 impl import_admin_broadcast for super::RemoteReducers {
-    fn import_admin_broadcast(&self, records: Vec::<AdminBroadcast>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("import_admin_broadcast", ImportAdminBroadcastArgs { records,  })
+    fn import_admin_broadcast(&self, records: Vec<AdminBroadcast>) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "import_admin_broadcast",
+            ImportAdminBroadcastArgs { records },
+        )
     }
     fn on_import_admin_broadcast(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<AdminBroadcast>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<AdminBroadcast>) + Send + 'static,
     ) -> ImportAdminBroadcastCallbackId {
         ImportAdminBroadcastCallbackId(self.imp.on_reducer(
             "import_admin_broadcast",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ImportAdminBroadcast {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ImportAdminBroadcast { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
     fn remove_on_import_admin_broadcast(&self, callback: ImportAdminBroadcastCallbackId) {
-        self.imp.remove_on_reducer("import_admin_broadcast", callback.0)
+        self.imp
+            .remove_on_reducer("import_admin_broadcast", callback.0)
     }
 }
 
@@ -103,7 +105,7 @@ pub trait set_flags_for_import_admin_broadcast {
 
 impl set_flags_for_import_admin_broadcast for super::SetReducerFlags {
     fn import_admin_broadcast(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("import_admin_broadcast", flags);
+        self.imp
+            .set_call_reducer_flags("import_admin_broadcast", flags);
     }
 }
-

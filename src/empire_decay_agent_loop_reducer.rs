@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::empire_decay_loop_timer_type::EmpireDecayLoopTimer;
 
@@ -20,10 +15,8 @@ pub(super) struct EmpireDecayAgentLoopArgs {
 
 impl From<EmpireDecayAgentLoopArgs> for super::Reducer {
     fn from(args: EmpireDecayAgentLoopArgs) -> Self {
-        Self::EmpireDecayAgentLoop {
-            timer: args.timer,
-}
-}
+        Self::EmpireDecayAgentLoop { timer: args.timer }
+    }
 }
 
 impl __sdk::InModule for EmpireDecayAgentLoopArgs {
@@ -42,8 +35,7 @@ pub trait empire_decay_agent_loop {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_empire_decay_agent_loop`] callbacks.
-    fn empire_decay_agent_loop(&self, timer: EmpireDecayLoopTimer,
-) -> __sdk::Result<()>;
+    fn empire_decay_agent_loop(&self, timer: EmpireDecayLoopTimer) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `empire_decay_agent_loop`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +43,47 @@ pub trait empire_decay_agent_loop {
     ///
     /// The returned [`EmpireDecayAgentLoopCallbackId`] can be passed to [`Self::remove_on_empire_decay_agent_loop`]
     /// to cancel the callback.
-    fn on_empire_decay_agent_loop(&self, callback: impl FnMut(&super::ReducerEventContext, &EmpireDecayLoopTimer, ) + Send + 'static) -> EmpireDecayAgentLoopCallbackId;
+    fn on_empire_decay_agent_loop(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &EmpireDecayLoopTimer) + Send + 'static,
+    ) -> EmpireDecayAgentLoopCallbackId;
     /// Cancel a callback previously registered by [`Self::on_empire_decay_agent_loop`],
     /// causing it not to run in the future.
     fn remove_on_empire_decay_agent_loop(&self, callback: EmpireDecayAgentLoopCallbackId);
 }
 
 impl empire_decay_agent_loop for super::RemoteReducers {
-    fn empire_decay_agent_loop(&self, timer: EmpireDecayLoopTimer,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("empire_decay_agent_loop", EmpireDecayAgentLoopArgs { timer,  })
+    fn empire_decay_agent_loop(&self, timer: EmpireDecayLoopTimer) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "empire_decay_agent_loop",
+            EmpireDecayAgentLoopArgs { timer },
+        )
     }
     fn on_empire_decay_agent_loop(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &EmpireDecayLoopTimer, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &EmpireDecayLoopTimer) + Send + 'static,
     ) -> EmpireDecayAgentLoopCallbackId {
         EmpireDecayAgentLoopCallbackId(self.imp.on_reducer(
             "empire_decay_agent_loop",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::EmpireDecayAgentLoop {
-                            timer, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::EmpireDecayAgentLoop { timer },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, timer, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, timer)
             }),
         ))
     }
     fn remove_on_empire_decay_agent_loop(&self, callback: EmpireDecayAgentLoopCallbackId) {
-        self.imp.remove_on_reducer("empire_decay_agent_loop", callback.0)
+        self.imp
+            .remove_on_reducer("empire_decay_agent_loop", callback.0)
     }
 }
 
@@ -103,7 +103,7 @@ pub trait set_flags_for_empire_decay_agent_loop {
 
 impl set_flags_for_empire_decay_agent_loop for super::SetReducerFlags {
     fn empire_decay_agent_loop(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("empire_decay_agent_loop", flags);
+        self.imp
+            .set_call_reducer_flags("empire_decay_agent_loop", flags);
     }
 }
-

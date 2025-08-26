@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::empire_set_directive_message_request_type::EmpireSetDirectiveMessageRequest;
 
@@ -22,8 +17,8 @@ impl From<EmpireSetDirectiveMessageArgs> for super::Reducer {
     fn from(args: EmpireSetDirectiveMessageArgs) -> Self {
         Self::EmpireSetDirectiveMessage {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for EmpireSetDirectiveMessageArgs {
@@ -42,8 +37,10 @@ pub trait empire_set_directive_message {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_empire_set_directive_message`] callbacks.
-    fn empire_set_directive_message(&self, request: EmpireSetDirectiveMessageRequest,
-) -> __sdk::Result<()>;
+    fn empire_set_directive_message(
+        &self,
+        request: EmpireSetDirectiveMessageRequest,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `empire_set_directive_message`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +48,57 @@ pub trait empire_set_directive_message {
     ///
     /// The returned [`EmpireSetDirectiveMessageCallbackId`] can be passed to [`Self::remove_on_empire_set_directive_message`]
     /// to cancel the callback.
-    fn on_empire_set_directive_message(&self, callback: impl FnMut(&super::ReducerEventContext, &EmpireSetDirectiveMessageRequest, ) + Send + 'static) -> EmpireSetDirectiveMessageCallbackId;
+    fn on_empire_set_directive_message(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &EmpireSetDirectiveMessageRequest)
+            + Send
+            + 'static,
+    ) -> EmpireSetDirectiveMessageCallbackId;
     /// Cancel a callback previously registered by [`Self::on_empire_set_directive_message`],
     /// causing it not to run in the future.
     fn remove_on_empire_set_directive_message(&self, callback: EmpireSetDirectiveMessageCallbackId);
 }
 
 impl empire_set_directive_message for super::RemoteReducers {
-    fn empire_set_directive_message(&self, request: EmpireSetDirectiveMessageRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("empire_set_directive_message", EmpireSetDirectiveMessageArgs { request,  })
+    fn empire_set_directive_message(
+        &self,
+        request: EmpireSetDirectiveMessageRequest,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "empire_set_directive_message",
+            EmpireSetDirectiveMessageArgs { request },
+        )
     }
     fn on_empire_set_directive_message(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &EmpireSetDirectiveMessageRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &EmpireSetDirectiveMessageRequest)
+            + Send
+            + 'static,
     ) -> EmpireSetDirectiveMessageCallbackId {
         EmpireSetDirectiveMessageCallbackId(self.imp.on_reducer(
             "empire_set_directive_message",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::EmpireSetDirectiveMessage {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::EmpireSetDirectiveMessage { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
-    fn remove_on_empire_set_directive_message(&self, callback: EmpireSetDirectiveMessageCallbackId) {
-        self.imp.remove_on_reducer("empire_set_directive_message", callback.0)
+    fn remove_on_empire_set_directive_message(
+        &self,
+        callback: EmpireSetDirectiveMessageCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("empire_set_directive_message", callback.0)
     }
 }
 
@@ -103,7 +118,7 @@ pub trait set_flags_for_empire_set_directive_message {
 
 impl set_flags_for_empire_set_directive_message for super::SetReducerFlags {
     fn empire_set_directive_message(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("empire_set_directive_message", flags);
+        self.imp
+            .set_call_reducer_flags("empire_set_directive_message", flags);
     }
 }
-

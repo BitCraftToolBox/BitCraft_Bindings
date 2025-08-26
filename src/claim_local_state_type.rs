@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::offset_coordinates_small_message_type::OffsetCoordinatesSmallMessage;
 
@@ -20,7 +15,7 @@ pub struct ClaimLocalState {
     pub building_maintenance: f32,
     pub num_tiles: i32,
     pub num_tile_neighbors: u32,
-    pub location: Option::<OffsetCoordinatesSmallMessage>,
+    pub location: Option<OffsetCoordinatesSmallMessage>,
     pub treasury: u32,
     pub xp_gained_since_last_coin_minting: u32,
     pub supplies_purchase_threshold: u32,
@@ -28,8 +23,6 @@ pub struct ClaimLocalState {
     pub building_description_id: i32,
 }
 
-
 impl __sdk::InModule for ClaimLocalState {
     type Module = super::RemoteModule;
 }
-

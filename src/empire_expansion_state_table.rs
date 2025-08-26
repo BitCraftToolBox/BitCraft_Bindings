@@ -3,13 +3,8 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::empire_expansion_state_type::EmpireExpansionState;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `empire_expansion_state`.
 ///
@@ -37,7 +32,9 @@ pub trait EmpireExpansionStateTableAccess {
 impl EmpireExpansionStateTableAccess for super::RemoteTables {
     fn empire_expansion_state(&self) -> EmpireExpansionStateTableHandle<'_> {
         EmpireExpansionStateTableHandle {
-            imp: self.imp.get_table::<EmpireExpansionState>("empire_expansion_state"),
+            imp: self
+                .imp
+                .get_table::<EmpireExpansionState>("empire_expansion_state"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -50,8 +47,12 @@ impl<'ctx> __sdk::Table for EmpireExpansionStateTableHandle<'ctx> {
     type Row = EmpireExpansionState;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = EmpireExpansionState> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = EmpireExpansionState> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = EmpireExpansionStateInsertCallbackId;
 
@@ -82,8 +83,7 @@ impl<'ctx> __sdk::Table for EmpireExpansionStateTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<EmpireExpansionState>("empire_expansion_state");
+    let _table = client_cache.get_or_make_table::<EmpireExpansionState>("empire_expansion_state");
     _table.add_unique_constraint::<u64>("chunk_index", |row| &row.chunk_index);
 }
 pub struct EmpireExpansionStateUpdateCallbackId(__sdk::CallbackId);
@@ -103,46 +103,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for EmpireExpansionStateTableHandle<'ctx> 
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<EmpireExpansionState>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<EmpireExpansionState>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<EmpireExpansionState>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `chunk_index` unique index on the table `empire_expansion_state`,
-        /// which allows point queries on the field of the same name
-        /// via the [`EmpireExpansionStateChunkIndexUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.empire_expansion_state().chunk_index().find(...)`.
-        pub struct EmpireExpansionStateChunkIndexUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<EmpireExpansionState, u64>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `chunk_index` unique index on the table `empire_expansion_state`,
+/// which allows point queries on the field of the same name
+/// via the [`EmpireExpansionStateChunkIndexUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.empire_expansion_state().chunk_index().find(...)`.
+pub struct EmpireExpansionStateChunkIndexUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<EmpireExpansionState, u64>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> EmpireExpansionStateTableHandle<'ctx> {
-            /// Get a handle on the `chunk_index` unique index on the table `empire_expansion_state`.
-            pub fn chunk_index(&self) -> EmpireExpansionStateChunkIndexUnique<'ctx> {
-                EmpireExpansionStateChunkIndexUnique {
-                    imp: self.imp.get_unique_constraint::<u64>("chunk_index"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> EmpireExpansionStateTableHandle<'ctx> {
+    /// Get a handle on the `chunk_index` unique index on the table `empire_expansion_state`.
+    pub fn chunk_index(&self) -> EmpireExpansionStateChunkIndexUnique<'ctx> {
+        EmpireExpansionStateChunkIndexUnique {
+            imp: self.imp.get_unique_constraint::<u64>("chunk_index"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> EmpireExpansionStateChunkIndexUnique<'ctx> {
-            /// Find the subscribed row whose `chunk_index` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u64) -> Option<EmpireExpansionState> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> EmpireExpansionStateChunkIndexUnique<'ctx> {
+    /// Find the subscribed row whose `chunk_index` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u64) -> Option<EmpireExpansionState> {
+        self.imp.find(col_val)
+    }
+}

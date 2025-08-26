@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::visibility_type_type::VisibilityType;
 
@@ -22,8 +17,8 @@ impl From<SetVisibilityArgs> for super::Reducer {
     fn from(args: SetVisibilityArgs) -> Self {
         Self::SetVisibility {
             visibility: args.visibility,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for SetVisibilityArgs {
@@ -42,8 +37,7 @@ pub trait set_visibility {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_set_visibility`] callbacks.
-    fn set_visibility(&self, visibility: VisibilityType,
-) -> __sdk::Result<()>;
+    fn set_visibility(&self, visibility: VisibilityType) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `set_visibility`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,39 @@ pub trait set_visibility {
     ///
     /// The returned [`SetVisibilityCallbackId`] can be passed to [`Self::remove_on_set_visibility`]
     /// to cancel the callback.
-    fn on_set_visibility(&self, callback: impl FnMut(&super::ReducerEventContext, &VisibilityType, ) + Send + 'static) -> SetVisibilityCallbackId;
+    fn on_set_visibility(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &VisibilityType) + Send + 'static,
+    ) -> SetVisibilityCallbackId;
     /// Cancel a callback previously registered by [`Self::on_set_visibility`],
     /// causing it not to run in the future.
     fn remove_on_set_visibility(&self, callback: SetVisibilityCallbackId);
 }
 
 impl set_visibility for super::RemoteReducers {
-    fn set_visibility(&self, visibility: VisibilityType,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("set_visibility", SetVisibilityArgs { visibility,  })
+    fn set_visibility(&self, visibility: VisibilityType) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("set_visibility", SetVisibilityArgs { visibility })
     }
     fn on_set_visibility(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &VisibilityType, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &VisibilityType) + Send + 'static,
     ) -> SetVisibilityCallbackId {
         SetVisibilityCallbackId(self.imp.on_reducer(
             "set_visibility",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::SetVisibility {
-                            visibility, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::SetVisibility { visibility },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, visibility, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, visibility)
             }),
         ))
     }
@@ -106,4 +105,3 @@ impl set_flags_for_set_visibility for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("set_visibility", flags);
     }
 }
-

@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::deployable_desc_type::DeployableDesc;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct ImportDeployableDescArgs {
-    pub records: Vec::<DeployableDesc>,
+    pub records: Vec<DeployableDesc>,
 }
 
 impl From<ImportDeployableDescArgs> for super::Reducer {
     fn from(args: ImportDeployableDescArgs) -> Self {
         Self::ImportDeployableDesc {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ImportDeployableDescArgs {
@@ -42,8 +37,7 @@ pub trait import_deployable_desc {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_import_deployable_desc`] callbacks.
-    fn import_deployable_desc(&self, records: Vec::<DeployableDesc>,
-) -> __sdk::Result<()>;
+    fn import_deployable_desc(&self, records: Vec<DeployableDesc>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `import_deployable_desc`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,47 @@ pub trait import_deployable_desc {
     ///
     /// The returned [`ImportDeployableDescCallbackId`] can be passed to [`Self::remove_on_import_deployable_desc`]
     /// to cancel the callback.
-    fn on_import_deployable_desc(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<DeployableDesc>, ) + Send + 'static) -> ImportDeployableDescCallbackId;
+    fn on_import_deployable_desc(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<DeployableDesc>) + Send + 'static,
+    ) -> ImportDeployableDescCallbackId;
     /// Cancel a callback previously registered by [`Self::on_import_deployable_desc`],
     /// causing it not to run in the future.
     fn remove_on_import_deployable_desc(&self, callback: ImportDeployableDescCallbackId);
 }
 
 impl import_deployable_desc for super::RemoteReducers {
-    fn import_deployable_desc(&self, records: Vec::<DeployableDesc>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("import_deployable_desc", ImportDeployableDescArgs { records,  })
+    fn import_deployable_desc(&self, records: Vec<DeployableDesc>) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "import_deployable_desc",
+            ImportDeployableDescArgs { records },
+        )
     }
     fn on_import_deployable_desc(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<DeployableDesc>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<DeployableDesc>) + Send + 'static,
     ) -> ImportDeployableDescCallbackId {
         ImportDeployableDescCallbackId(self.imp.on_reducer(
             "import_deployable_desc",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ImportDeployableDesc {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ImportDeployableDesc { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
     fn remove_on_import_deployable_desc(&self, callback: ImportDeployableDescCallbackId) {
-        self.imp.remove_on_reducer("import_deployable_desc", callback.0)
+        self.imp
+            .remove_on_reducer("import_deployable_desc", callback.0)
     }
 }
 
@@ -103,7 +105,7 @@ pub trait set_flags_for_import_deployable_desc {
 
 impl set_flags_for_import_deployable_desc for super::SetReducerFlags {
     fn import_deployable_desc(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("import_deployable_desc", flags);
+        self.imp
+            .set_call_reducer_flags("import_deployable_desc", flags);
     }
 }
-

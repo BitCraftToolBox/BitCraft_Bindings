@@ -3,13 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -23,8 +17,8 @@ impl From<CheatEmpireSiegeAddSuppliesArgs> for super::Reducer {
         Self::CheatEmpireSiegeAddSupplies {
             siege_node_entity_id: args.siege_node_entity_id,
             supplies: args.supplies,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for CheatEmpireSiegeAddSuppliesArgs {
@@ -43,9 +37,11 @@ pub trait cheat_empire_siege_add_supplies {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_cheat_empire_siege_add_supplies`] callbacks.
-    fn cheat_empire_siege_add_supplies(&self, siege_node_entity_id: u64,
-supplies: i32,
-) -> __sdk::Result<()>;
+    fn cheat_empire_siege_add_supplies(
+        &self,
+        siege_node_entity_id: u64,
+        supplies: i32,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `cheat_empire_siege_add_supplies`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -53,40 +49,64 @@ supplies: i32,
     ///
     /// The returned [`CheatEmpireSiegeAddSuppliesCallbackId`] can be passed to [`Self::remove_on_cheat_empire_siege_add_supplies`]
     /// to cancel the callback.
-    fn on_cheat_empire_siege_add_supplies(&self, callback: impl FnMut(&super::ReducerEventContext, &u64, &i32, ) + Send + 'static) -> CheatEmpireSiegeAddSuppliesCallbackId;
+    fn on_cheat_empire_siege_add_supplies(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &u64, &i32) + Send + 'static,
+    ) -> CheatEmpireSiegeAddSuppliesCallbackId;
     /// Cancel a callback previously registered by [`Self::on_cheat_empire_siege_add_supplies`],
     /// causing it not to run in the future.
-    fn remove_on_cheat_empire_siege_add_supplies(&self, callback: CheatEmpireSiegeAddSuppliesCallbackId);
+    fn remove_on_cheat_empire_siege_add_supplies(
+        &self,
+        callback: CheatEmpireSiegeAddSuppliesCallbackId,
+    );
 }
 
 impl cheat_empire_siege_add_supplies for super::RemoteReducers {
-    fn cheat_empire_siege_add_supplies(&self, siege_node_entity_id: u64,
-supplies: i32,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("cheat_empire_siege_add_supplies", CheatEmpireSiegeAddSuppliesArgs { siege_node_entity_id, supplies,  })
+    fn cheat_empire_siege_add_supplies(
+        &self,
+        siege_node_entity_id: u64,
+        supplies: i32,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "cheat_empire_siege_add_supplies",
+            CheatEmpireSiegeAddSuppliesArgs {
+                siege_node_entity_id,
+                supplies,
+            },
+        )
     }
     fn on_cheat_empire_siege_add_supplies(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &u64, &i32, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &u64, &i32) + Send + 'static,
     ) -> CheatEmpireSiegeAddSuppliesCallbackId {
         CheatEmpireSiegeAddSuppliesCallbackId(self.imp.on_reducer(
             "cheat_empire_siege_add_supplies",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::CheatEmpireSiegeAddSupplies {
-                            siege_node_entity_id, supplies, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer:
+                                super::Reducer::CheatEmpireSiegeAddSupplies {
+                                    siege_node_entity_id,
+                                    supplies,
+                                },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, siege_node_entity_id, supplies, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, siege_node_entity_id, supplies)
             }),
         ))
     }
-    fn remove_on_cheat_empire_siege_add_supplies(&self, callback: CheatEmpireSiegeAddSuppliesCallbackId) {
-        self.imp.remove_on_reducer("cheat_empire_siege_add_supplies", callback.0)
+    fn remove_on_cheat_empire_siege_add_supplies(
+        &self,
+        callback: CheatEmpireSiegeAddSuppliesCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("cheat_empire_siege_add_supplies", callback.0)
     }
 }
 
@@ -106,7 +126,7 @@ pub trait set_flags_for_cheat_empire_siege_add_supplies {
 
 impl set_flags_for_cheat_empire_siege_add_supplies for super::SetReducerFlags {
     fn cheat_empire_siege_add_supplies(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("cheat_empire_siege_add_supplies", flags);
+        self.imp
+            .set_call_reducer_flags("cheat_empire_siege_add_supplies", flags);
     }
 }
-

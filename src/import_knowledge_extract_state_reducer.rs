@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::knowledge_extract_state_type::KnowledgeExtractState;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct ImportKnowledgeExtractStateArgs {
-    pub records: Vec::<KnowledgeExtractState>,
+    pub records: Vec<KnowledgeExtractState>,
 }
 
 impl From<ImportKnowledgeExtractStateArgs> for super::Reducer {
     fn from(args: ImportKnowledgeExtractStateArgs) -> Self {
         Self::ImportKnowledgeExtractState {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ImportKnowledgeExtractStateArgs {
@@ -42,8 +37,10 @@ pub trait import_knowledge_extract_state {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_import_knowledge_extract_state`] callbacks.
-    fn import_knowledge_extract_state(&self, records: Vec::<KnowledgeExtractState>,
-) -> __sdk::Result<()>;
+    fn import_knowledge_extract_state(
+        &self,
+        records: Vec<KnowledgeExtractState>,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `import_knowledge_extract_state`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +48,58 @@ pub trait import_knowledge_extract_state {
     ///
     /// The returned [`ImportKnowledgeExtractStateCallbackId`] can be passed to [`Self::remove_on_import_knowledge_extract_state`]
     /// to cancel the callback.
-    fn on_import_knowledge_extract_state(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<KnowledgeExtractState>, ) + Send + 'static) -> ImportKnowledgeExtractStateCallbackId;
+    fn on_import_knowledge_extract_state(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<KnowledgeExtractState>) + Send + 'static,
+    ) -> ImportKnowledgeExtractStateCallbackId;
     /// Cancel a callback previously registered by [`Self::on_import_knowledge_extract_state`],
     /// causing it not to run in the future.
-    fn remove_on_import_knowledge_extract_state(&self, callback: ImportKnowledgeExtractStateCallbackId);
+    fn remove_on_import_knowledge_extract_state(
+        &self,
+        callback: ImportKnowledgeExtractStateCallbackId,
+    );
 }
 
 impl import_knowledge_extract_state for super::RemoteReducers {
-    fn import_knowledge_extract_state(&self, records: Vec::<KnowledgeExtractState>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("import_knowledge_extract_state", ImportKnowledgeExtractStateArgs { records,  })
+    fn import_knowledge_extract_state(
+        &self,
+        records: Vec<KnowledgeExtractState>,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "import_knowledge_extract_state",
+            ImportKnowledgeExtractStateArgs { records },
+        )
     }
     fn on_import_knowledge_extract_state(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<KnowledgeExtractState>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<KnowledgeExtractState>)
+            + Send
+            + 'static,
     ) -> ImportKnowledgeExtractStateCallbackId {
         ImportKnowledgeExtractStateCallbackId(self.imp.on_reducer(
             "import_knowledge_extract_state",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ImportKnowledgeExtractState {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ImportKnowledgeExtractState { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
-    fn remove_on_import_knowledge_extract_state(&self, callback: ImportKnowledgeExtractStateCallbackId) {
-        self.imp.remove_on_reducer("import_knowledge_extract_state", callback.0)
+    fn remove_on_import_knowledge_extract_state(
+        &self,
+        callback: ImportKnowledgeExtractStateCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("import_knowledge_extract_state", callback.0)
     }
 }
 
@@ -103,7 +119,7 @@ pub trait set_flags_for_import_knowledge_extract_state {
 
 impl set_flags_for_import_knowledge_extract_state for super::SetReducerFlags {
     fn import_knowledge_extract_state(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("import_knowledge_extract_state", flags);
+        self.imp
+            .set_call_reducer_flags("import_knowledge_extract_state", flags);
     }
 }
-

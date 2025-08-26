@@ -3,16 +3,11 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
-use super::rarity_type::Rarity;
 use super::experience_stack_f_32_type::ExperienceStackF32;
 use super::probabilistic_item_stack_type::ProbabilisticItemStack;
+use super::rarity_type::Rarity;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -21,7 +16,7 @@ pub struct EnemyDesc {
     pub name: String,
     pub pathfinding_id: i32,
     pub targeting_matrix_id: i32,
-    pub combat_actions_ids: Vec::<i32>,
+    pub combat_actions_ids: Vec<i32>,
     pub description: String,
     pub min_speed: i32,
     pub max_speed: i32,
@@ -51,16 +46,14 @@ pub struct EnemyDesc {
     pub defense_level: i32,
     pub prefab_address: String,
     pub icon_address: String,
-    pub extracted_item_stacks: Vec::<ProbabilisticItemStack>,
-    pub experience_per_damage_dealt: Vec::<ExperienceStackF32>,
+    pub extracted_item_stacks: Vec<ProbabilisticItemStack>,
+    pub experience_per_damage_dealt: Vec<ExperienceStackF32>,
     pub tier: i32,
     pub tag: String,
     pub rarity: Rarity,
     pub huntable: bool,
 }
 
-
 impl __sdk::InModule for EnemyDesc {
     type Module = super::RemoteModule;
 }
-

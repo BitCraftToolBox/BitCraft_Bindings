@@ -3,14 +3,9 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::building_claim_desc_type::BuildingClaimDesc;
 use super::claim_type_type::ClaimType;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `building_claim_desc`.
 ///
@@ -38,7 +33,9 @@ pub trait BuildingClaimDescTableAccess {
 impl BuildingClaimDescTableAccess for super::RemoteTables {
     fn building_claim_desc(&self) -> BuildingClaimDescTableHandle<'_> {
         BuildingClaimDescTableHandle {
-            imp: self.imp.get_table::<BuildingClaimDesc>("building_claim_desc"),
+            imp: self
+                .imp
+                .get_table::<BuildingClaimDesc>("building_claim_desc"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -51,8 +48,12 @@ impl<'ctx> __sdk::Table for BuildingClaimDescTableHandle<'ctx> {
     type Row = BuildingClaimDesc;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = BuildingClaimDesc> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = BuildingClaimDesc> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = BuildingClaimDescInsertCallbackId;
 
@@ -83,8 +84,7 @@ impl<'ctx> __sdk::Table for BuildingClaimDescTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<BuildingClaimDesc>("building_claim_desc");
+    let _table = client_cache.get_or_make_table::<BuildingClaimDesc>("building_claim_desc");
     _table.add_unique_constraint::<i32>("building_id", |row| &row.building_id);
 }
 pub struct BuildingClaimDescUpdateCallbackId(__sdk::CallbackId);
@@ -104,46 +104,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for BuildingClaimDescTableHandle<'ctx> {
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<BuildingClaimDesc>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<BuildingClaimDesc>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<BuildingClaimDesc>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `building_id` unique index on the table `building_claim_desc`,
-        /// which allows point queries on the field of the same name
-        /// via the [`BuildingClaimDescBuildingIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.building_claim_desc().building_id().find(...)`.
-        pub struct BuildingClaimDescBuildingIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<BuildingClaimDesc, i32>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `building_id` unique index on the table `building_claim_desc`,
+/// which allows point queries on the field of the same name
+/// via the [`BuildingClaimDescBuildingIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.building_claim_desc().building_id().find(...)`.
+pub struct BuildingClaimDescBuildingIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<BuildingClaimDesc, i32>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> BuildingClaimDescTableHandle<'ctx> {
-            /// Get a handle on the `building_id` unique index on the table `building_claim_desc`.
-            pub fn building_id(&self) -> BuildingClaimDescBuildingIdUnique<'ctx> {
-                BuildingClaimDescBuildingIdUnique {
-                    imp: self.imp.get_unique_constraint::<i32>("building_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> BuildingClaimDescTableHandle<'ctx> {
+    /// Get a handle on the `building_id` unique index on the table `building_claim_desc`.
+    pub fn building_id(&self) -> BuildingClaimDescBuildingIdUnique<'ctx> {
+        BuildingClaimDescBuildingIdUnique {
+            imp: self.imp.get_unique_constraint::<i32>("building_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> BuildingClaimDescBuildingIdUnique<'ctx> {
-            /// Find the subscribed row whose `building_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &i32) -> Option<BuildingClaimDesc> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> BuildingClaimDescBuildingIdUnique<'ctx> {
+    /// Find the subscribed row whose `building_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &i32) -> Option<BuildingClaimDesc> {
+        self.imp.find(col_val)
+    }
+}

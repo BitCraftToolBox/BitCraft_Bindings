@@ -3,13 +3,8 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::loot_rarity_desc_type::LootRarityDesc;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `loot_rarity_desc`.
 ///
@@ -50,8 +45,12 @@ impl<'ctx> __sdk::Table for LootRarityDescTableHandle<'ctx> {
     type Row = LootRarityDesc;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = LootRarityDesc> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = LootRarityDesc> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = LootRarityDescInsertCallbackId;
 
@@ -82,8 +81,7 @@ impl<'ctx> __sdk::Table for LootRarityDescTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<LootRarityDesc>("loot_rarity_desc");
+    let _table = client_cache.get_or_make_table::<LootRarityDesc>("loot_rarity_desc");
     _table.add_unique_constraint::<i32>("id", |row| &row.id);
 }
 pub struct LootRarityDescUpdateCallbackId(__sdk::CallbackId);
@@ -103,46 +101,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for LootRarityDescTableHandle<'ctx> {
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<LootRarityDesc>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<LootRarityDesc>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<LootRarityDesc>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `id` unique index on the table `loot_rarity_desc`,
-        /// which allows point queries on the field of the same name
-        /// via the [`LootRarityDescIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.loot_rarity_desc().id().find(...)`.
-        pub struct LootRarityDescIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<LootRarityDesc, i32>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `id` unique index on the table `loot_rarity_desc`,
+/// which allows point queries on the field of the same name
+/// via the [`LootRarityDescIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.loot_rarity_desc().id().find(...)`.
+pub struct LootRarityDescIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<LootRarityDesc, i32>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> LootRarityDescTableHandle<'ctx> {
-            /// Get a handle on the `id` unique index on the table `loot_rarity_desc`.
-            pub fn id(&self) -> LootRarityDescIdUnique<'ctx> {
-                LootRarityDescIdUnique {
-                    imp: self.imp.get_unique_constraint::<i32>("id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> LootRarityDescTableHandle<'ctx> {
+    /// Get a handle on the `id` unique index on the table `loot_rarity_desc`.
+    pub fn id(&self) -> LootRarityDescIdUnique<'ctx> {
+        LootRarityDescIdUnique {
+            imp: self.imp.get_unique_constraint::<i32>("id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> LootRarityDescIdUnique<'ctx> {
-            /// Find the subscribed row whose `id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &i32) -> Option<LootRarityDesc> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> LootRarityDescIdUnique<'ctx> {
+    /// Find the subscribed row whose `id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &i32) -> Option<LootRarityDesc> {
+        self.imp.find(col_val)
+    }
+}

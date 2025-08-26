@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::building_nickname_state_type::BuildingNicknameState;
 
@@ -18,12 +13,8 @@ pub enum BuildingNicknameStateOp {
     Insert(BuildingNicknameState),
 
     Delete(BuildingNicknameState),
-
 }
-
-
 
 impl __sdk::InModule for BuildingNicknameStateOp {
     type Module = super::RemoteModule;
 }
-

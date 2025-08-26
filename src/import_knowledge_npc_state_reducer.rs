@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::knowledge_npc_state_type::KnowledgeNpcState;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct ImportKnowledgeNpcStateArgs {
-    pub records: Vec::<KnowledgeNpcState>,
+    pub records: Vec<KnowledgeNpcState>,
 }
 
 impl From<ImportKnowledgeNpcStateArgs> for super::Reducer {
     fn from(args: ImportKnowledgeNpcStateArgs) -> Self {
         Self::ImportKnowledgeNpcState {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ImportKnowledgeNpcStateArgs {
@@ -42,8 +37,7 @@ pub trait import_knowledge_npc_state {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_import_knowledge_npc_state`] callbacks.
-    fn import_knowledge_npc_state(&self, records: Vec::<KnowledgeNpcState>,
-) -> __sdk::Result<()>;
+    fn import_knowledge_npc_state(&self, records: Vec<KnowledgeNpcState>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `import_knowledge_npc_state`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,47 @@ pub trait import_knowledge_npc_state {
     ///
     /// The returned [`ImportKnowledgeNpcStateCallbackId`] can be passed to [`Self::remove_on_import_knowledge_npc_state`]
     /// to cancel the callback.
-    fn on_import_knowledge_npc_state(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<KnowledgeNpcState>, ) + Send + 'static) -> ImportKnowledgeNpcStateCallbackId;
+    fn on_import_knowledge_npc_state(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<KnowledgeNpcState>) + Send + 'static,
+    ) -> ImportKnowledgeNpcStateCallbackId;
     /// Cancel a callback previously registered by [`Self::on_import_knowledge_npc_state`],
     /// causing it not to run in the future.
     fn remove_on_import_knowledge_npc_state(&self, callback: ImportKnowledgeNpcStateCallbackId);
 }
 
 impl import_knowledge_npc_state for super::RemoteReducers {
-    fn import_knowledge_npc_state(&self, records: Vec::<KnowledgeNpcState>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("import_knowledge_npc_state", ImportKnowledgeNpcStateArgs { records,  })
+    fn import_knowledge_npc_state(&self, records: Vec<KnowledgeNpcState>) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "import_knowledge_npc_state",
+            ImportKnowledgeNpcStateArgs { records },
+        )
     }
     fn on_import_knowledge_npc_state(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<KnowledgeNpcState>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<KnowledgeNpcState>) + Send + 'static,
     ) -> ImportKnowledgeNpcStateCallbackId {
         ImportKnowledgeNpcStateCallbackId(self.imp.on_reducer(
             "import_knowledge_npc_state",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ImportKnowledgeNpcState {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ImportKnowledgeNpcState { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
     fn remove_on_import_knowledge_npc_state(&self, callback: ImportKnowledgeNpcStateCallbackId) {
-        self.imp.remove_on_reducer("import_knowledge_npc_state", callback.0)
+        self.imp
+            .remove_on_reducer("import_knowledge_npc_state", callback.0)
     }
 }
 
@@ -103,7 +105,7 @@ pub trait set_flags_for_import_knowledge_npc_state {
 
 impl set_flags_for_import_knowledge_npc_state for super::SetReducerFlags {
     fn import_knowledge_npc_state(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("import_knowledge_npc_state", flags);
+        self.imp
+            .set_call_reducer_flags("import_knowledge_npc_state", flags);
     }
 }
-

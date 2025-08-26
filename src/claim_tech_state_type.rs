@@ -3,26 +3,18 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub struct ClaimTechState {
     pub entity_id: u64,
-    pub learned: Vec::<i32>,
+    pub learned: Vec<i32>,
     pub researching: i32,
     pub start_timestamp: __sdk::Timestamp,
-    pub scheduled_id: Option::<u64>,
+    pub scheduled_id: Option<u64>,
 }
-
 
 impl __sdk::InModule for ClaimTechState {
     type Module = super::RemoteModule;
 }
-

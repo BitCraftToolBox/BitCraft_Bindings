@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::rarity_type::Rarity;
 
@@ -32,7 +27,7 @@ pub struct CargoDesc {
     pub animator_state: String,
     pub movement_modifier: f32,
     pub blocks_path: bool,
-    pub on_destroy_yield_cargos: Vec::<i32>,
+    pub on_destroy_yield_cargos: Vec<i32>,
     pub despawn_time: f32,
     pub tier: i32,
     pub tag: String,
@@ -40,8 +35,6 @@ pub struct CargoDesc {
     pub not_pickupable: bool,
 }
 
-
 impl __sdk::InModule for CargoDesc {
     type Module = super::RemoteModule;
 }
-

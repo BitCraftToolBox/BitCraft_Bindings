@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::report_player_direct_chat_message_type::ReportPlayerDirectChatMessage;
 
@@ -22,8 +17,8 @@ impl From<ReportDirectMessageArgs> for super::Reducer {
     fn from(args: ReportDirectMessageArgs) -> Self {
         Self::ReportDirectMessage {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ReportDirectMessageArgs {
@@ -42,8 +37,7 @@ pub trait report_direct_message {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_report_direct_message`] callbacks.
-    fn report_direct_message(&self, request: ReportPlayerDirectChatMessage,
-) -> __sdk::Result<()>;
+    fn report_direct_message(&self, request: ReportPlayerDirectChatMessage) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `report_direct_message`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,49 @@ pub trait report_direct_message {
     ///
     /// The returned [`ReportDirectMessageCallbackId`] can be passed to [`Self::remove_on_report_direct_message`]
     /// to cancel the callback.
-    fn on_report_direct_message(&self, callback: impl FnMut(&super::ReducerEventContext, &ReportPlayerDirectChatMessage, ) + Send + 'static) -> ReportDirectMessageCallbackId;
+    fn on_report_direct_message(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &ReportPlayerDirectChatMessage)
+            + Send
+            + 'static,
+    ) -> ReportDirectMessageCallbackId;
     /// Cancel a callback previously registered by [`Self::on_report_direct_message`],
     /// causing it not to run in the future.
     fn remove_on_report_direct_message(&self, callback: ReportDirectMessageCallbackId);
 }
 
 impl report_direct_message for super::RemoteReducers {
-    fn report_direct_message(&self, request: ReportPlayerDirectChatMessage,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("report_direct_message", ReportDirectMessageArgs { request,  })
+    fn report_direct_message(&self, request: ReportPlayerDirectChatMessage) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("report_direct_message", ReportDirectMessageArgs { request })
     }
     fn on_report_direct_message(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &ReportPlayerDirectChatMessage, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &ReportPlayerDirectChatMessage)
+            + Send
+            + 'static,
     ) -> ReportDirectMessageCallbackId {
         ReportDirectMessageCallbackId(self.imp.on_reducer(
             "report_direct_message",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ReportDirectMessage {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ReportDirectMessage { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
     fn remove_on_report_direct_message(&self, callback: ReportDirectMessageCallbackId) {
-        self.imp.remove_on_reducer("report_direct_message", callback.0)
+        self.imp
+            .remove_on_reducer("report_direct_message", callback.0)
     }
 }
 
@@ -103,7 +107,7 @@ pub trait set_flags_for_report_direct_message {
 
 impl set_flags_for_report_direct_message for super::SetReducerFlags {
     fn report_direct_message(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("report_direct_message", flags);
+        self.imp
+            .set_call_reducer_flags("report_direct_message", flags);
     }
 }
-

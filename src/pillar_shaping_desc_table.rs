@@ -3,15 +3,10 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-use super::pillar_shaping_desc_type::PillarShapingDesc;
-use super::input_item_stack_type::InputItemStack;
 use super::experience_stack_f_32_type::ExperienceStackF32;
+use super::input_item_stack_type::InputItemStack;
+use super::pillar_shaping_desc_type::PillarShapingDesc;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `pillar_shaping_desc`.
 ///
@@ -39,7 +34,9 @@ pub trait PillarShapingDescTableAccess {
 impl PillarShapingDescTableAccess for super::RemoteTables {
     fn pillar_shaping_desc(&self) -> PillarShapingDescTableHandle<'_> {
         PillarShapingDescTableHandle {
-            imp: self.imp.get_table::<PillarShapingDesc>("pillar_shaping_desc"),
+            imp: self
+                .imp
+                .get_table::<PillarShapingDesc>("pillar_shaping_desc"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -52,8 +49,12 @@ impl<'ctx> __sdk::Table for PillarShapingDescTableHandle<'ctx> {
     type Row = PillarShapingDesc;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = PillarShapingDesc> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = PillarShapingDesc> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = PillarShapingDescInsertCallbackId;
 
@@ -84,8 +85,7 @@ impl<'ctx> __sdk::Table for PillarShapingDescTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<PillarShapingDesc>("pillar_shaping_desc");
+    let _table = client_cache.get_or_make_table::<PillarShapingDesc>("pillar_shaping_desc");
     _table.add_unique_constraint::<i32>("id", |row| &row.id);
 }
 pub struct PillarShapingDescUpdateCallbackId(__sdk::CallbackId);
@@ -105,46 +105,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for PillarShapingDescTableHandle<'ctx> {
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<PillarShapingDesc>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<PillarShapingDesc>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<PillarShapingDesc>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `id` unique index on the table `pillar_shaping_desc`,
-        /// which allows point queries on the field of the same name
-        /// via the [`PillarShapingDescIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.pillar_shaping_desc().id().find(...)`.
-        pub struct PillarShapingDescIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<PillarShapingDesc, i32>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `id` unique index on the table `pillar_shaping_desc`,
+/// which allows point queries on the field of the same name
+/// via the [`PillarShapingDescIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.pillar_shaping_desc().id().find(...)`.
+pub struct PillarShapingDescIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<PillarShapingDesc, i32>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> PillarShapingDescTableHandle<'ctx> {
-            /// Get a handle on the `id` unique index on the table `pillar_shaping_desc`.
-            pub fn id(&self) -> PillarShapingDescIdUnique<'ctx> {
-                PillarShapingDescIdUnique {
-                    imp: self.imp.get_unique_constraint::<i32>("id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> PillarShapingDescTableHandle<'ctx> {
+    /// Get a handle on the `id` unique index on the table `pillar_shaping_desc`.
+    pub fn id(&self) -> PillarShapingDescIdUnique<'ctx> {
+        PillarShapingDescIdUnique {
+            imp: self.imp.get_unique_constraint::<i32>("id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> PillarShapingDescIdUnique<'ctx> {
-            /// Find the subscribed row whose `id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &i32) -> Option<PillarShapingDesc> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> PillarShapingDescIdUnique<'ctx> {
+    /// Find the subscribed row whose `id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &i32) -> Option<PillarShapingDesc> {
+        self.imp.find(col_val)
+    }
+}

@@ -3,13 +3,8 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::building_function_type_mapping_desc_type::BuildingFunctionTypeMappingDesc;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `building_function_type_mapping_desc`.
 ///
@@ -31,13 +26,18 @@ pub struct BuildingFunctionTypeMappingDescTableHandle<'ctx> {
 pub trait BuildingFunctionTypeMappingDescTableAccess {
     #[allow(non_snake_case)]
     /// Obtain a [`BuildingFunctionTypeMappingDescTableHandle`], which mediates access to the table `building_function_type_mapping_desc`.
-    fn building_function_type_mapping_desc(&self) -> BuildingFunctionTypeMappingDescTableHandle<'_>;
+    fn building_function_type_mapping_desc(&self)
+        -> BuildingFunctionTypeMappingDescTableHandle<'_>;
 }
 
 impl BuildingFunctionTypeMappingDescTableAccess for super::RemoteTables {
-    fn building_function_type_mapping_desc(&self) -> BuildingFunctionTypeMappingDescTableHandle<'_> {
+    fn building_function_type_mapping_desc(
+        &self,
+    ) -> BuildingFunctionTypeMappingDescTableHandle<'_> {
         BuildingFunctionTypeMappingDescTableHandle {
-            imp: self.imp.get_table::<BuildingFunctionTypeMappingDesc>("building_function_type_mapping_desc"),
+            imp: self.imp.get_table::<BuildingFunctionTypeMappingDesc>(
+                "building_function_type_mapping_desc",
+            ),
             ctx: std::marker::PhantomData,
         }
     }
@@ -50,8 +50,12 @@ impl<'ctx> __sdk::Table for BuildingFunctionTypeMappingDescTableHandle<'ctx> {
     type Row = BuildingFunctionTypeMappingDesc;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = BuildingFunctionTypeMappingDesc> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = BuildingFunctionTypeMappingDesc> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = BuildingFunctionTypeMappingDescInsertCallbackId;
 
@@ -82,8 +86,9 @@ impl<'ctx> __sdk::Table for BuildingFunctionTypeMappingDescTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<BuildingFunctionTypeMappingDesc>("building_function_type_mapping_desc");
+    let _table = client_cache.get_or_make_table::<BuildingFunctionTypeMappingDesc>(
+        "building_function_type_mapping_desc",
+    );
     _table.add_unique_constraint::<i32>("type_id", |row| &row.type_id);
 }
 pub struct BuildingFunctionTypeMappingDescUpdateCallbackId(__sdk::CallbackId);
@@ -103,7 +108,6 @@ impl<'ctx> __sdk::TableWithPrimaryKey for BuildingFunctionTypeMappingDescTableHa
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
@@ -112,37 +116,38 @@ pub(super) fn parse_table_update(
         __sdk::InternalError::failed_parse(
             "TableUpdate<BuildingFunctionTypeMappingDesc>",
             "TableUpdate",
-        ).with_cause(e).into()
+        )
+        .with_cause(e)
+        .into()
     })
 }
 
-        /// Access to the `type_id` unique index on the table `building_function_type_mapping_desc`,
-        /// which allows point queries on the field of the same name
-        /// via the [`BuildingFunctionTypeMappingDescTypeIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.building_function_type_mapping_desc().type_id().find(...)`.
-        pub struct BuildingFunctionTypeMappingDescTypeIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<BuildingFunctionTypeMappingDesc, i32>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `type_id` unique index on the table `building_function_type_mapping_desc`,
+/// which allows point queries on the field of the same name
+/// via the [`BuildingFunctionTypeMappingDescTypeIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.building_function_type_mapping_desc().type_id().find(...)`.
+pub struct BuildingFunctionTypeMappingDescTypeIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<BuildingFunctionTypeMappingDesc, i32>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> BuildingFunctionTypeMappingDescTableHandle<'ctx> {
-            /// Get a handle on the `type_id` unique index on the table `building_function_type_mapping_desc`.
-            pub fn type_id(&self) -> BuildingFunctionTypeMappingDescTypeIdUnique<'ctx> {
-                BuildingFunctionTypeMappingDescTypeIdUnique {
-                    imp: self.imp.get_unique_constraint::<i32>("type_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> BuildingFunctionTypeMappingDescTableHandle<'ctx> {
+    /// Get a handle on the `type_id` unique index on the table `building_function_type_mapping_desc`.
+    pub fn type_id(&self) -> BuildingFunctionTypeMappingDescTypeIdUnique<'ctx> {
+        BuildingFunctionTypeMappingDescTypeIdUnique {
+            imp: self.imp.get_unique_constraint::<i32>("type_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> BuildingFunctionTypeMappingDescTypeIdUnique<'ctx> {
-            /// Find the subscribed row whose `type_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &i32) -> Option<BuildingFunctionTypeMappingDesc> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> BuildingFunctionTypeMappingDescTypeIdUnique<'ctx> {
+    /// Find the subscribed row whose `type_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &i32) -> Option<BuildingFunctionTypeMappingDesc> {
+        self.imp.find(col_val)
+    }
+}

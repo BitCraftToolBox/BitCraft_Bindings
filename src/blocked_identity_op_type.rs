@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::blocked_identity_type::BlockedIdentity;
 
@@ -18,12 +13,8 @@ pub enum BlockedIdentityOp {
     Insert(BlockedIdentity),
 
     Delete(BlockedIdentity),
-
 }
-
-
 
 impl __sdk::InModule for BlockedIdentityOp {
     type Module = super::RemoteModule;
 }
-

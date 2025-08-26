@@ -3,13 +3,8 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::claim_tile_cost_type::ClaimTileCost;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `claim_tile_cost`.
 ///
@@ -50,8 +45,12 @@ impl<'ctx> __sdk::Table for ClaimTileCostTableHandle<'ctx> {
     type Row = ClaimTileCost;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = ClaimTileCost> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = ClaimTileCost> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = ClaimTileCostInsertCallbackId;
 
@@ -82,8 +81,7 @@ impl<'ctx> __sdk::Table for ClaimTileCostTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<ClaimTileCost>("claim_tile_cost");
+    let _table = client_cache.get_or_make_table::<ClaimTileCost>("claim_tile_cost");
     _table.add_unique_constraint::<i32>("tile_count", |row| &row.tile_count);
 }
 pub struct ClaimTileCostUpdateCallbackId(__sdk::CallbackId);
@@ -103,46 +101,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for ClaimTileCostTableHandle<'ctx> {
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<ClaimTileCost>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<ClaimTileCost>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<ClaimTileCost>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `tile_count` unique index on the table `claim_tile_cost`,
-        /// which allows point queries on the field of the same name
-        /// via the [`ClaimTileCostTileCountUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.claim_tile_cost().tile_count().find(...)`.
-        pub struct ClaimTileCostTileCountUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<ClaimTileCost, i32>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `tile_count` unique index on the table `claim_tile_cost`,
+/// which allows point queries on the field of the same name
+/// via the [`ClaimTileCostTileCountUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.claim_tile_cost().tile_count().find(...)`.
+pub struct ClaimTileCostTileCountUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<ClaimTileCost, i32>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> ClaimTileCostTableHandle<'ctx> {
-            /// Get a handle on the `tile_count` unique index on the table `claim_tile_cost`.
-            pub fn tile_count(&self) -> ClaimTileCostTileCountUnique<'ctx> {
-                ClaimTileCostTileCountUnique {
-                    imp: self.imp.get_unique_constraint::<i32>("tile_count"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> ClaimTileCostTableHandle<'ctx> {
+    /// Get a handle on the `tile_count` unique index on the table `claim_tile_cost`.
+    pub fn tile_count(&self) -> ClaimTileCostTileCountUnique<'ctx> {
+        ClaimTileCostTileCountUnique {
+            imp: self.imp.get_unique_constraint::<i32>("tile_count"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> ClaimTileCostTileCountUnique<'ctx> {
-            /// Find the subscribed row whose `tile_count` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &i32) -> Option<ClaimTileCost> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> ClaimTileCostTileCountUnique<'ctx> {
+    /// Find the subscribed row whose `tile_count` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &i32) -> Option<ClaimTileCost> {
+        self.imp.find(col_val)
+    }
+}

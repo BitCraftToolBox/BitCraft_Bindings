@@ -3,13 +3,8 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::region_sign_in_parameters_type::RegionSignInParameters;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `region_sign_in_parameters`.
 ///
@@ -37,7 +32,9 @@ pub trait RegionSignInParametersTableAccess {
 impl RegionSignInParametersTableAccess for super::RemoteTables {
     fn region_sign_in_parameters(&self) -> RegionSignInParametersTableHandle<'_> {
         RegionSignInParametersTableHandle {
-            imp: self.imp.get_table::<RegionSignInParameters>("region_sign_in_parameters"),
+            imp: self
+                .imp
+                .get_table::<RegionSignInParameters>("region_sign_in_parameters"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -50,8 +47,12 @@ impl<'ctx> __sdk::Table for RegionSignInParametersTableHandle<'ctx> {
     type Row = RegionSignInParameters;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = RegionSignInParameters> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = RegionSignInParameters> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = RegionSignInParametersInsertCallbackId;
 
@@ -82,8 +83,8 @@ impl<'ctx> __sdk::Table for RegionSignInParametersTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<RegionSignInParameters>("region_sign_in_parameters");
+    let _table =
+        client_cache.get_or_make_table::<RegionSignInParameters>("region_sign_in_parameters");
     _table.add_unique_constraint::<u8>("region_id", |row| &row.region_id);
 }
 pub struct RegionSignInParametersUpdateCallbackId(__sdk::CallbackId);
@@ -103,46 +104,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for RegionSignInParametersTableHandle<'ctx
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<RegionSignInParameters>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<RegionSignInParameters>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<RegionSignInParameters>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `region_id` unique index on the table `region_sign_in_parameters`,
-        /// which allows point queries on the field of the same name
-        /// via the [`RegionSignInParametersRegionIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.region_sign_in_parameters().region_id().find(...)`.
-        pub struct RegionSignInParametersRegionIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<RegionSignInParameters, u8>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `region_id` unique index on the table `region_sign_in_parameters`,
+/// which allows point queries on the field of the same name
+/// via the [`RegionSignInParametersRegionIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.region_sign_in_parameters().region_id().find(...)`.
+pub struct RegionSignInParametersRegionIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<RegionSignInParameters, u8>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> RegionSignInParametersTableHandle<'ctx> {
-            /// Get a handle on the `region_id` unique index on the table `region_sign_in_parameters`.
-            pub fn region_id(&self) -> RegionSignInParametersRegionIdUnique<'ctx> {
-                RegionSignInParametersRegionIdUnique {
-                    imp: self.imp.get_unique_constraint::<u8>("region_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> RegionSignInParametersTableHandle<'ctx> {
+    /// Get a handle on the `region_id` unique index on the table `region_sign_in_parameters`.
+    pub fn region_id(&self) -> RegionSignInParametersRegionIdUnique<'ctx> {
+        RegionSignInParametersRegionIdUnique {
+            imp: self.imp.get_unique_constraint::<u8>("region_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> RegionSignInParametersRegionIdUnique<'ctx> {
-            /// Find the subscribed row whose `region_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u8) -> Option<RegionSignInParameters> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> RegionSignInParametersRegionIdUnique<'ctx> {
+    /// Find the subscribed row whose `region_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u8) -> Option<RegionSignInParameters> {
+        self.imp.find(col_val)
+    }
+}

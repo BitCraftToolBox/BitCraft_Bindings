@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::environment_resistance_type_type::EnvironmentResistanceType;
 
@@ -24,8 +19,6 @@ pub struct EnvironmentDebuffDesc {
     pub resistance_met_text: String,
 }
 
-
 impl __sdk::InModule for EnvironmentDebuffDesc {
     type Module = super::RemoteModule;
 }
-

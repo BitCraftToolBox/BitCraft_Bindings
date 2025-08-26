@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::hub_item_type_type::HubItemType;
 
@@ -21,8 +16,6 @@ pub struct GrantHubItemMsg {
     pub quantity: u32,
 }
 
-
 impl __sdk::InModule for GrantHubItemMsg {
     type Module = super::RemoteModule;
 }
-

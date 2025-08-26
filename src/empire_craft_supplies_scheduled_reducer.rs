@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::empire_craft_supplies_timer_type::EmpireCraftSuppliesTimer;
 
@@ -20,10 +15,8 @@ pub(super) struct EmpireCraftSuppliesScheduledArgs {
 
 impl From<EmpireCraftSuppliesScheduledArgs> for super::Reducer {
     fn from(args: EmpireCraftSuppliesScheduledArgs) -> Self {
-        Self::EmpireCraftSuppliesScheduled {
-            timer: args.timer,
-}
-}
+        Self::EmpireCraftSuppliesScheduled { timer: args.timer }
+    }
 }
 
 impl __sdk::InModule for EmpireCraftSuppliesScheduledArgs {
@@ -42,8 +35,8 @@ pub trait empire_craft_supplies_scheduled {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_empire_craft_supplies_scheduled`] callbacks.
-    fn empire_craft_supplies_scheduled(&self, timer: EmpireCraftSuppliesTimer,
-) -> __sdk::Result<()>;
+    fn empire_craft_supplies_scheduled(&self, timer: EmpireCraftSuppliesTimer)
+        -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `empire_craft_supplies_scheduled`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +44,58 @@ pub trait empire_craft_supplies_scheduled {
     ///
     /// The returned [`EmpireCraftSuppliesScheduledCallbackId`] can be passed to [`Self::remove_on_empire_craft_supplies_scheduled`]
     /// to cancel the callback.
-    fn on_empire_craft_supplies_scheduled(&self, callback: impl FnMut(&super::ReducerEventContext, &EmpireCraftSuppliesTimer, ) + Send + 'static) -> EmpireCraftSuppliesScheduledCallbackId;
+    fn on_empire_craft_supplies_scheduled(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &EmpireCraftSuppliesTimer) + Send + 'static,
+    ) -> EmpireCraftSuppliesScheduledCallbackId;
     /// Cancel a callback previously registered by [`Self::on_empire_craft_supplies_scheduled`],
     /// causing it not to run in the future.
-    fn remove_on_empire_craft_supplies_scheduled(&self, callback: EmpireCraftSuppliesScheduledCallbackId);
+    fn remove_on_empire_craft_supplies_scheduled(
+        &self,
+        callback: EmpireCraftSuppliesScheduledCallbackId,
+    );
 }
 
 impl empire_craft_supplies_scheduled for super::RemoteReducers {
-    fn empire_craft_supplies_scheduled(&self, timer: EmpireCraftSuppliesTimer,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("empire_craft_supplies_scheduled", EmpireCraftSuppliesScheduledArgs { timer,  })
+    fn empire_craft_supplies_scheduled(
+        &self,
+        timer: EmpireCraftSuppliesTimer,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "empire_craft_supplies_scheduled",
+            EmpireCraftSuppliesScheduledArgs { timer },
+        )
     }
     fn on_empire_craft_supplies_scheduled(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &EmpireCraftSuppliesTimer, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &EmpireCraftSuppliesTimer)
+            + Send
+            + 'static,
     ) -> EmpireCraftSuppliesScheduledCallbackId {
         EmpireCraftSuppliesScheduledCallbackId(self.imp.on_reducer(
             "empire_craft_supplies_scheduled",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::EmpireCraftSuppliesScheduled {
-                            timer, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::EmpireCraftSuppliesScheduled { timer },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, timer, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, timer)
             }),
         ))
     }
-    fn remove_on_empire_craft_supplies_scheduled(&self, callback: EmpireCraftSuppliesScheduledCallbackId) {
-        self.imp.remove_on_reducer("empire_craft_supplies_scheduled", callback.0)
+    fn remove_on_empire_craft_supplies_scheduled(
+        &self,
+        callback: EmpireCraftSuppliesScheduledCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("empire_craft_supplies_scheduled", callback.0)
     }
 }
 
@@ -103,7 +115,7 @@ pub trait set_flags_for_empire_craft_supplies_scheduled {
 
 impl set_flags_for_empire_craft_supplies_scheduled for super::SetReducerFlags {
     fn empire_craft_supplies_scheduled(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("empire_craft_supplies_scheduled", flags);
+        self.imp
+            .set_call_reducer_flags("empire_craft_supplies_scheduled", flags);
     }
 }
-

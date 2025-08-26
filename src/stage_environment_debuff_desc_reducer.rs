@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::environment_debuff_desc_type::EnvironmentDebuffDesc;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct StageEnvironmentDebuffDescArgs {
-    pub records: Vec::<EnvironmentDebuffDesc>,
+    pub records: Vec<EnvironmentDebuffDesc>,
 }
 
 impl From<StageEnvironmentDebuffDescArgs> for super::Reducer {
     fn from(args: StageEnvironmentDebuffDescArgs) -> Self {
         Self::StageEnvironmentDebuffDesc {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for StageEnvironmentDebuffDescArgs {
@@ -42,8 +37,10 @@ pub trait stage_environment_debuff_desc {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_stage_environment_debuff_desc`] callbacks.
-    fn stage_environment_debuff_desc(&self, records: Vec::<EnvironmentDebuffDesc>,
-) -> __sdk::Result<()>;
+    fn stage_environment_debuff_desc(
+        &self,
+        records: Vec<EnvironmentDebuffDesc>,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `stage_environment_debuff_desc`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +48,58 @@ pub trait stage_environment_debuff_desc {
     ///
     /// The returned [`StageEnvironmentDebuffDescCallbackId`] can be passed to [`Self::remove_on_stage_environment_debuff_desc`]
     /// to cancel the callback.
-    fn on_stage_environment_debuff_desc(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<EnvironmentDebuffDesc>, ) + Send + 'static) -> StageEnvironmentDebuffDescCallbackId;
+    fn on_stage_environment_debuff_desc(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<EnvironmentDebuffDesc>) + Send + 'static,
+    ) -> StageEnvironmentDebuffDescCallbackId;
     /// Cancel a callback previously registered by [`Self::on_stage_environment_debuff_desc`],
     /// causing it not to run in the future.
-    fn remove_on_stage_environment_debuff_desc(&self, callback: StageEnvironmentDebuffDescCallbackId);
+    fn remove_on_stage_environment_debuff_desc(
+        &self,
+        callback: StageEnvironmentDebuffDescCallbackId,
+    );
 }
 
 impl stage_environment_debuff_desc for super::RemoteReducers {
-    fn stage_environment_debuff_desc(&self, records: Vec::<EnvironmentDebuffDesc>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("stage_environment_debuff_desc", StageEnvironmentDebuffDescArgs { records,  })
+    fn stage_environment_debuff_desc(
+        &self,
+        records: Vec<EnvironmentDebuffDesc>,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "stage_environment_debuff_desc",
+            StageEnvironmentDebuffDescArgs { records },
+        )
     }
     fn on_stage_environment_debuff_desc(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<EnvironmentDebuffDesc>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<EnvironmentDebuffDesc>)
+            + Send
+            + 'static,
     ) -> StageEnvironmentDebuffDescCallbackId {
         StageEnvironmentDebuffDescCallbackId(self.imp.on_reducer(
             "stage_environment_debuff_desc",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::StageEnvironmentDebuffDesc {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::StageEnvironmentDebuffDesc { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
-    fn remove_on_stage_environment_debuff_desc(&self, callback: StageEnvironmentDebuffDescCallbackId) {
-        self.imp.remove_on_reducer("stage_environment_debuff_desc", callback.0)
+    fn remove_on_stage_environment_debuff_desc(
+        &self,
+        callback: StageEnvironmentDebuffDescCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("stage_environment_debuff_desc", callback.0)
     }
 }
 
@@ -103,7 +119,7 @@ pub trait set_flags_for_stage_environment_debuff_desc {
 
 impl set_flags_for_stage_environment_debuff_desc for super::SetReducerFlags {
     fn stage_environment_debuff_desc(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("stage_environment_debuff_desc", flags);
+        self.imp
+            .set_call_reducer_flags("stage_environment_debuff_desc", flags);
     }
 }
-

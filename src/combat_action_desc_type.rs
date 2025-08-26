@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::buff_effect_type::BuffEffect;
 use super::level_requirement_type::LevelRequirement;
@@ -22,7 +17,7 @@ pub struct CombatActionDesc {
     pub range: u32,
     pub max_range: u32,
     pub auto_cast: bool,
-    pub weapon_type_requirements: Vec::<i32>,
+    pub weapon_type_requirements: Vec<i32>,
     pub lead_in_time: f32,
     pub can_move_during_lead_in: bool,
     pub cooldown: f32,
@@ -32,9 +27,9 @@ pub struct CombatActionDesc {
     pub accuracy_multiplier: f32,
     pub stamina_use: f32,
     pub weapon_durability_lost: i32,
-    pub self_buffs: Vec::<BuffEffect>,
-    pub target_buffs: Vec::<BuffEffect>,
-    pub level_requirement: Option::<LevelRequirement>,
+    pub self_buffs: Vec<BuffEffect>,
+    pub target_buffs: Vec<BuffEffect>,
+    pub level_requirement: Option<LevelRequirement>,
     pub icon_asset_name: String,
     pub player_animation_id: i32,
     pub npc_animation_name: String,
@@ -48,8 +43,6 @@ pub struct CombatActionDesc {
     pub threat_per_damage: f32,
 }
 
-
 impl __sdk::InModule for CombatActionDesc {
     type Module = super::RemoteModule;
 }
-

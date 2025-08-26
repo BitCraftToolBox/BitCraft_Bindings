@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::pathfinding_traversal_option_type::PathfindingTraversalOption;
 
@@ -23,12 +18,10 @@ pub struct PathfindingDesc {
     pub max_water_depth: i32,
     pub max_swim_height_delta: i32,
     pub avoid_light: bool,
-    pub climb_up_options: Vec::<PathfindingTraversalOption>,
-    pub climb_down_options: Vec::<PathfindingTraversalOption>,
+    pub climb_up_options: Vec<PathfindingTraversalOption>,
+    pub climb_down_options: Vec<PathfindingTraversalOption>,
 }
-
 
 impl __sdk::InModule for PathfindingDesc {
     type Module = super::RemoteModule;
 }
-

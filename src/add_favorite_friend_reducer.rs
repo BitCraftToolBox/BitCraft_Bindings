@@ -3,13 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -21,8 +15,8 @@ impl From<AddFavoriteFriendArgs> for super::Reducer {
     fn from(args: AddFavoriteFriendArgs) -> Self {
         Self::AddFavoriteFriend {
             player_entity_id: args.player_entity_id,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for AddFavoriteFriendArgs {
@@ -41,8 +35,7 @@ pub trait add_favorite_friend {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_add_favorite_friend`] callbacks.
-    fn add_favorite_friend(&self, player_entity_id: u64,
-) -> __sdk::Result<()>;
+    fn add_favorite_friend(&self, player_entity_id: u64) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `add_favorite_friend`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -50,39 +43,47 @@ pub trait add_favorite_friend {
     ///
     /// The returned [`AddFavoriteFriendCallbackId`] can be passed to [`Self::remove_on_add_favorite_friend`]
     /// to cancel the callback.
-    fn on_add_favorite_friend(&self, callback: impl FnMut(&super::ReducerEventContext, &u64, ) + Send + 'static) -> AddFavoriteFriendCallbackId;
+    fn on_add_favorite_friend(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &u64) + Send + 'static,
+    ) -> AddFavoriteFriendCallbackId;
     /// Cancel a callback previously registered by [`Self::on_add_favorite_friend`],
     /// causing it not to run in the future.
     fn remove_on_add_favorite_friend(&self, callback: AddFavoriteFriendCallbackId);
 }
 
 impl add_favorite_friend for super::RemoteReducers {
-    fn add_favorite_friend(&self, player_entity_id: u64,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("add_favorite_friend", AddFavoriteFriendArgs { player_entity_id,  })
+    fn add_favorite_friend(&self, player_entity_id: u64) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "add_favorite_friend",
+            AddFavoriteFriendArgs { player_entity_id },
+        )
     }
     fn on_add_favorite_friend(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &u64, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &u64) + Send + 'static,
     ) -> AddFavoriteFriendCallbackId {
         AddFavoriteFriendCallbackId(self.imp.on_reducer(
             "add_favorite_friend",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::AddFavoriteFriend {
-                            player_entity_id, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::AddFavoriteFriend { player_entity_id },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, player_entity_id, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, player_entity_id)
             }),
         ))
     }
     fn remove_on_add_favorite_friend(&self, callback: AddFavoriteFriendCallbackId) {
-        self.imp.remove_on_reducer("add_favorite_friend", callback.0)
+        self.imp
+            .remove_on_reducer("add_favorite_friend", callback.0)
     }
 }
 
@@ -102,7 +103,7 @@ pub trait set_flags_for_add_favorite_friend {
 
 impl set_flags_for_add_favorite_friend for super::SetReducerFlags {
     fn add_favorite_friend(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("add_favorite_friend", flags);
+        self.imp
+            .set_call_reducer_flags("add_favorite_friend", flags);
     }
 }
-

@@ -3,19 +3,13 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct LoadConfigArgs {
-    pub environment_names: Vec::<String>,
-    pub contents: Vec::<String>,
+    pub environment_names: Vec<String>,
+    pub contents: Vec<String>,
 }
 
 impl From<LoadConfigArgs> for super::Reducer {
@@ -23,8 +17,8 @@ impl From<LoadConfigArgs> for super::Reducer {
         Self::LoadConfig {
             environment_names: args.environment_names,
             contents: args.contents,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for LoadConfigArgs {
@@ -43,9 +37,11 @@ pub trait load_config {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_load_config`] callbacks.
-    fn load_config(&self, environment_names: Vec::<String>,
-contents: Vec::<String>,
-) -> __sdk::Result<()>;
+    fn load_config(
+        &self,
+        environment_names: Vec<String>,
+        contents: Vec<String>,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `load_config`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -53,35 +49,54 @@ contents: Vec::<String>,
     ///
     /// The returned [`LoadConfigCallbackId`] can be passed to [`Self::remove_on_load_config`]
     /// to cancel the callback.
-    fn on_load_config(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<String>, &Vec::<String>, ) + Send + 'static) -> LoadConfigCallbackId;
+    fn on_load_config(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<String>, &Vec<String>) + Send + 'static,
+    ) -> LoadConfigCallbackId;
     /// Cancel a callback previously registered by [`Self::on_load_config`],
     /// causing it not to run in the future.
     fn remove_on_load_config(&self, callback: LoadConfigCallbackId);
 }
 
 impl load_config for super::RemoteReducers {
-    fn load_config(&self, environment_names: Vec::<String>,
-contents: Vec::<String>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("load_config", LoadConfigArgs { environment_names, contents,  })
+    fn load_config(
+        &self,
+        environment_names: Vec<String>,
+        contents: Vec<String>,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "load_config",
+            LoadConfigArgs {
+                environment_names,
+                contents,
+            },
+        )
     }
     fn on_load_config(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<String>, &Vec::<String>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<String>, &Vec<String>)
+            + Send
+            + 'static,
     ) -> LoadConfigCallbackId {
         LoadConfigCallbackId(self.imp.on_reducer(
             "load_config",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::LoadConfig {
-                            environment_names, contents, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer:
+                                super::Reducer::LoadConfig {
+                                    environment_names,
+                                    contents,
+                                },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, environment_names, contents, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, environment_names, contents)
             }),
         ))
     }
@@ -109,4 +124,3 @@ impl set_flags_for_load_config for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("load_config", flags);
     }
 }
-

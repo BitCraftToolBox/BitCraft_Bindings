@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::building_repairs_desc_type::BuildingRepairsDesc;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct ImportBuildingRepairsDescArgs {
-    pub records: Vec::<BuildingRepairsDesc>,
+    pub records: Vec<BuildingRepairsDesc>,
 }
 
 impl From<ImportBuildingRepairsDescArgs> for super::Reducer {
     fn from(args: ImportBuildingRepairsDescArgs) -> Self {
         Self::ImportBuildingRepairsDesc {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ImportBuildingRepairsDescArgs {
@@ -42,8 +37,7 @@ pub trait import_building_repairs_desc {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_import_building_repairs_desc`] callbacks.
-    fn import_building_repairs_desc(&self, records: Vec::<BuildingRepairsDesc>,
-) -> __sdk::Result<()>;
+    fn import_building_repairs_desc(&self, records: Vec<BuildingRepairsDesc>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `import_building_repairs_desc`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,52 @@ pub trait import_building_repairs_desc {
     ///
     /// The returned [`ImportBuildingRepairsDescCallbackId`] can be passed to [`Self::remove_on_import_building_repairs_desc`]
     /// to cancel the callback.
-    fn on_import_building_repairs_desc(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<BuildingRepairsDesc>, ) + Send + 'static) -> ImportBuildingRepairsDescCallbackId;
+    fn on_import_building_repairs_desc(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<BuildingRepairsDesc>) + Send + 'static,
+    ) -> ImportBuildingRepairsDescCallbackId;
     /// Cancel a callback previously registered by [`Self::on_import_building_repairs_desc`],
     /// causing it not to run in the future.
     fn remove_on_import_building_repairs_desc(&self, callback: ImportBuildingRepairsDescCallbackId);
 }
 
 impl import_building_repairs_desc for super::RemoteReducers {
-    fn import_building_repairs_desc(&self, records: Vec::<BuildingRepairsDesc>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("import_building_repairs_desc", ImportBuildingRepairsDescArgs { records,  })
+    fn import_building_repairs_desc(&self, records: Vec<BuildingRepairsDesc>) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "import_building_repairs_desc",
+            ImportBuildingRepairsDescArgs { records },
+        )
     }
     fn on_import_building_repairs_desc(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<BuildingRepairsDesc>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<BuildingRepairsDesc>)
+            + Send
+            + 'static,
     ) -> ImportBuildingRepairsDescCallbackId {
         ImportBuildingRepairsDescCallbackId(self.imp.on_reducer(
             "import_building_repairs_desc",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ImportBuildingRepairsDesc {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ImportBuildingRepairsDesc { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
-    fn remove_on_import_building_repairs_desc(&self, callback: ImportBuildingRepairsDescCallbackId) {
-        self.imp.remove_on_reducer("import_building_repairs_desc", callback.0)
+    fn remove_on_import_building_repairs_desc(
+        &self,
+        callback: ImportBuildingRepairsDescCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("import_building_repairs_desc", callback.0)
     }
 }
 
@@ -103,7 +110,7 @@ pub trait set_flags_for_import_building_repairs_desc {
 
 impl set_flags_for_import_building_repairs_desc for super::SetReducerFlags {
     fn import_building_repairs_desc(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("import_building_repairs_desc", flags);
+        self.imp
+            .set_call_reducer_flags("import_building_repairs_desc", flags);
     }
 }
-

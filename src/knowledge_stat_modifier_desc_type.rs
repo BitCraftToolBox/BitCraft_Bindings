@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::csv_stat_entry_type::CsvStatEntry;
 
@@ -16,11 +11,9 @@ use super::csv_stat_entry_type::CsvStatEntry;
 #[sats(crate = __lib)]
 pub struct KnowledgeStatModifierDesc {
     pub secondary_knowledge_id: i32,
-    pub stats: Vec::<CsvStatEntry>,
+    pub stats: Vec<CsvStatEntry>,
 }
-
 
 impl __sdk::InModule for KnowledgeStatModifierDesc {
     type Module = super::RemoteModule;
 }
-
