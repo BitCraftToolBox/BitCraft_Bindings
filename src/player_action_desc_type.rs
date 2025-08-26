@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_action_layer_type::PlayerActionLayer;
 
@@ -17,11 +12,9 @@ use super::player_action_layer_type::PlayerActionLayer;
 pub struct PlayerActionDesc {
     pub action_type_id: i32,
     pub layer: PlayerActionLayer,
-    pub allowed_concurrent_action_ids: Vec::<i32>,
+    pub allowed_concurrent_action_ids: Vec<i32>,
 }
-
 
 impl __sdk::InModule for PlayerActionDesc {
     type Module = super::RemoteModule;
 }
-

@@ -3,13 +3,8 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::player_prefs_state_type::PlayerPrefsState;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `player_prefs_state`.
 ///
@@ -50,8 +45,12 @@ impl<'ctx> __sdk::Table for PlayerPrefsStateTableHandle<'ctx> {
     type Row = PlayerPrefsState;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = PlayerPrefsState> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = PlayerPrefsState> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = PlayerPrefsStateInsertCallbackId;
 
@@ -82,8 +81,7 @@ impl<'ctx> __sdk::Table for PlayerPrefsStateTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<PlayerPrefsState>("player_prefs_state");
+    let _table = client_cache.get_or_make_table::<PlayerPrefsState>("player_prefs_state");
     _table.add_unique_constraint::<u64>("entity_id", |row| &row.entity_id);
 }
 pub struct PlayerPrefsStateUpdateCallbackId(__sdk::CallbackId);
@@ -103,46 +101,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for PlayerPrefsStateTableHandle<'ctx> {
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<PlayerPrefsState>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<PlayerPrefsState>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<PlayerPrefsState>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `entity_id` unique index on the table `player_prefs_state`,
-        /// which allows point queries on the field of the same name
-        /// via the [`PlayerPrefsStateEntityIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.player_prefs_state().entity_id().find(...)`.
-        pub struct PlayerPrefsStateEntityIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<PlayerPrefsState, u64>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `entity_id` unique index on the table `player_prefs_state`,
+/// which allows point queries on the field of the same name
+/// via the [`PlayerPrefsStateEntityIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.player_prefs_state().entity_id().find(...)`.
+pub struct PlayerPrefsStateEntityIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<PlayerPrefsState, u64>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> PlayerPrefsStateTableHandle<'ctx> {
-            /// Get a handle on the `entity_id` unique index on the table `player_prefs_state`.
-            pub fn entity_id(&self) -> PlayerPrefsStateEntityIdUnique<'ctx> {
-                PlayerPrefsStateEntityIdUnique {
-                    imp: self.imp.get_unique_constraint::<u64>("entity_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> PlayerPrefsStateTableHandle<'ctx> {
+    /// Get a handle on the `entity_id` unique index on the table `player_prefs_state`.
+    pub fn entity_id(&self) -> PlayerPrefsStateEntityIdUnique<'ctx> {
+        PlayerPrefsStateEntityIdUnique {
+            imp: self.imp.get_unique_constraint::<u64>("entity_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> PlayerPrefsStateEntityIdUnique<'ctx> {
-            /// Find the subscribed row whose `entity_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u64) -> Option<PlayerPrefsState> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> PlayerPrefsStateEntityIdUnique<'ctx> {
+    /// Find the subscribed row whose `entity_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u64) -> Option<PlayerPrefsState> {
+        self.imp.find(col_val)
+    }
+}

@@ -3,13 +3,8 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::player_housing_income_loop_timer_type::PlayerHousingIncomeLoopTimer;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `player_housing_income_loop_timer`.
 ///
@@ -37,7 +32,9 @@ pub trait PlayerHousingIncomeLoopTimerTableAccess {
 impl PlayerHousingIncomeLoopTimerTableAccess for super::RemoteTables {
     fn player_housing_income_loop_timer(&self) -> PlayerHousingIncomeLoopTimerTableHandle<'_> {
         PlayerHousingIncomeLoopTimerTableHandle {
-            imp: self.imp.get_table::<PlayerHousingIncomeLoopTimer>("player_housing_income_loop_timer"),
+            imp: self
+                .imp
+                .get_table::<PlayerHousingIncomeLoopTimer>("player_housing_income_loop_timer"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -50,8 +47,12 @@ impl<'ctx> __sdk::Table for PlayerHousingIncomeLoopTimerTableHandle<'ctx> {
     type Row = PlayerHousingIncomeLoopTimer;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = PlayerHousingIncomeLoopTimer> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = PlayerHousingIncomeLoopTimer> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = PlayerHousingIncomeLoopTimerInsertCallbackId;
 
@@ -82,8 +83,8 @@ impl<'ctx> __sdk::Table for PlayerHousingIncomeLoopTimerTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<PlayerHousingIncomeLoopTimer>("player_housing_income_loop_timer");
+    let _table = client_cache
+        .get_or_make_table::<PlayerHousingIncomeLoopTimer>("player_housing_income_loop_timer");
     _table.add_unique_constraint::<u64>("scheduled_id", |row| &row.scheduled_id);
 }
 pub struct PlayerHousingIncomeLoopTimerUpdateCallbackId(__sdk::CallbackId);
@@ -103,7 +104,6 @@ impl<'ctx> __sdk::TableWithPrimaryKey for PlayerHousingIncomeLoopTimerTableHandl
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
@@ -112,37 +112,38 @@ pub(super) fn parse_table_update(
         __sdk::InternalError::failed_parse(
             "TableUpdate<PlayerHousingIncomeLoopTimer>",
             "TableUpdate",
-        ).with_cause(e).into()
+        )
+        .with_cause(e)
+        .into()
     })
 }
 
-        /// Access to the `scheduled_id` unique index on the table `player_housing_income_loop_timer`,
-        /// which allows point queries on the field of the same name
-        /// via the [`PlayerHousingIncomeLoopTimerScheduledIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.player_housing_income_loop_timer().scheduled_id().find(...)`.
-        pub struct PlayerHousingIncomeLoopTimerScheduledIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<PlayerHousingIncomeLoopTimer, u64>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `scheduled_id` unique index on the table `player_housing_income_loop_timer`,
+/// which allows point queries on the field of the same name
+/// via the [`PlayerHousingIncomeLoopTimerScheduledIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.player_housing_income_loop_timer().scheduled_id().find(...)`.
+pub struct PlayerHousingIncomeLoopTimerScheduledIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<PlayerHousingIncomeLoopTimer, u64>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> PlayerHousingIncomeLoopTimerTableHandle<'ctx> {
-            /// Get a handle on the `scheduled_id` unique index on the table `player_housing_income_loop_timer`.
-            pub fn scheduled_id(&self) -> PlayerHousingIncomeLoopTimerScheduledIdUnique<'ctx> {
-                PlayerHousingIncomeLoopTimerScheduledIdUnique {
-                    imp: self.imp.get_unique_constraint::<u64>("scheduled_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> PlayerHousingIncomeLoopTimerTableHandle<'ctx> {
+    /// Get a handle on the `scheduled_id` unique index on the table `player_housing_income_loop_timer`.
+    pub fn scheduled_id(&self) -> PlayerHousingIncomeLoopTimerScheduledIdUnique<'ctx> {
+        PlayerHousingIncomeLoopTimerScheduledIdUnique {
+            imp: self.imp.get_unique_constraint::<u64>("scheduled_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> PlayerHousingIncomeLoopTimerScheduledIdUnique<'ctx> {
-            /// Find the subscribed row whose `scheduled_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u64) -> Option<PlayerHousingIncomeLoopTimer> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> PlayerHousingIncomeLoopTimerScheduledIdUnique<'ctx> {
+    /// Find the subscribed row whose `scheduled_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u64) -> Option<PlayerHousingIncomeLoopTimer> {
+        self.imp.find(col_val)
+    }
+}

@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::world_region_state_type::WorldRegionState;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct ImportWorldRegionStateArgs {
-    pub records: Vec::<WorldRegionState>,
+    pub records: Vec<WorldRegionState>,
 }
 
 impl From<ImportWorldRegionStateArgs> for super::Reducer {
     fn from(args: ImportWorldRegionStateArgs) -> Self {
         Self::ImportWorldRegionState {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ImportWorldRegionStateArgs {
@@ -42,8 +37,7 @@ pub trait import_world_region_state {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_import_world_region_state`] callbacks.
-    fn import_world_region_state(&self, records: Vec::<WorldRegionState>,
-) -> __sdk::Result<()>;
+    fn import_world_region_state(&self, records: Vec<WorldRegionState>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `import_world_region_state`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,47 @@ pub trait import_world_region_state {
     ///
     /// The returned [`ImportWorldRegionStateCallbackId`] can be passed to [`Self::remove_on_import_world_region_state`]
     /// to cancel the callback.
-    fn on_import_world_region_state(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<WorldRegionState>, ) + Send + 'static) -> ImportWorldRegionStateCallbackId;
+    fn on_import_world_region_state(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<WorldRegionState>) + Send + 'static,
+    ) -> ImportWorldRegionStateCallbackId;
     /// Cancel a callback previously registered by [`Self::on_import_world_region_state`],
     /// causing it not to run in the future.
     fn remove_on_import_world_region_state(&self, callback: ImportWorldRegionStateCallbackId);
 }
 
 impl import_world_region_state for super::RemoteReducers {
-    fn import_world_region_state(&self, records: Vec::<WorldRegionState>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("import_world_region_state", ImportWorldRegionStateArgs { records,  })
+    fn import_world_region_state(&self, records: Vec<WorldRegionState>) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "import_world_region_state",
+            ImportWorldRegionStateArgs { records },
+        )
     }
     fn on_import_world_region_state(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<WorldRegionState>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<WorldRegionState>) + Send + 'static,
     ) -> ImportWorldRegionStateCallbackId {
         ImportWorldRegionStateCallbackId(self.imp.on_reducer(
             "import_world_region_state",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ImportWorldRegionState {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ImportWorldRegionState { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
     fn remove_on_import_world_region_state(&self, callback: ImportWorldRegionStateCallbackId) {
-        self.imp.remove_on_reducer("import_world_region_state", callback.0)
+        self.imp
+            .remove_on_reducer("import_world_region_state", callback.0)
     }
 }
 
@@ -103,7 +105,7 @@ pub trait set_flags_for_import_world_region_state {
 
 impl set_flags_for_import_world_region_state for super::SetReducerFlags {
     fn import_world_region_state(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("import_world_region_state", flags);
+        self.imp
+            .set_call_reducer_flags("import_world_region_state", flags);
     }
 }
-

@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::collectible_desc_type::CollectibleDesc;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct StageCollectibleDescArgs {
-    pub records: Vec::<CollectibleDesc>,
+    pub records: Vec<CollectibleDesc>,
 }
 
 impl From<StageCollectibleDescArgs> for super::Reducer {
     fn from(args: StageCollectibleDescArgs) -> Self {
         Self::StageCollectibleDesc {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for StageCollectibleDescArgs {
@@ -42,8 +37,7 @@ pub trait stage_collectible_desc {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_stage_collectible_desc`] callbacks.
-    fn stage_collectible_desc(&self, records: Vec::<CollectibleDesc>,
-) -> __sdk::Result<()>;
+    fn stage_collectible_desc(&self, records: Vec<CollectibleDesc>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `stage_collectible_desc`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,47 @@ pub trait stage_collectible_desc {
     ///
     /// The returned [`StageCollectibleDescCallbackId`] can be passed to [`Self::remove_on_stage_collectible_desc`]
     /// to cancel the callback.
-    fn on_stage_collectible_desc(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<CollectibleDesc>, ) + Send + 'static) -> StageCollectibleDescCallbackId;
+    fn on_stage_collectible_desc(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<CollectibleDesc>) + Send + 'static,
+    ) -> StageCollectibleDescCallbackId;
     /// Cancel a callback previously registered by [`Self::on_stage_collectible_desc`],
     /// causing it not to run in the future.
     fn remove_on_stage_collectible_desc(&self, callback: StageCollectibleDescCallbackId);
 }
 
 impl stage_collectible_desc for super::RemoteReducers {
-    fn stage_collectible_desc(&self, records: Vec::<CollectibleDesc>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("stage_collectible_desc", StageCollectibleDescArgs { records,  })
+    fn stage_collectible_desc(&self, records: Vec<CollectibleDesc>) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "stage_collectible_desc",
+            StageCollectibleDescArgs { records },
+        )
     }
     fn on_stage_collectible_desc(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<CollectibleDesc>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<CollectibleDesc>) + Send + 'static,
     ) -> StageCollectibleDescCallbackId {
         StageCollectibleDescCallbackId(self.imp.on_reducer(
             "stage_collectible_desc",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::StageCollectibleDesc {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::StageCollectibleDesc { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
     fn remove_on_stage_collectible_desc(&self, callback: StageCollectibleDescCallbackId) {
-        self.imp.remove_on_reducer("stage_collectible_desc", callback.0)
+        self.imp
+            .remove_on_reducer("stage_collectible_desc", callback.0)
     }
 }
 
@@ -103,7 +105,7 @@ pub trait set_flags_for_stage_collectible_desc {
 
 impl set_flags_for_stage_collectible_desc for super::SetReducerFlags {
     fn stage_collectible_desc(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("stage_collectible_desc", flags);
+        self.imp
+            .set_call_reducer_flags("stage_collectible_desc", flags);
     }
 }
-

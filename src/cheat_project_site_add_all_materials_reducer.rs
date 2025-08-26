@@ -3,13 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -21,8 +15,8 @@ impl From<CheatProjectSiteAddAllMaterialsArgs> for super::Reducer {
     fn from(args: CheatProjectSiteAddAllMaterialsArgs) -> Self {
         Self::CheatProjectSiteAddAllMaterials {
             project_site_entity_id: args.project_site_entity_id,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for CheatProjectSiteAddAllMaterialsArgs {
@@ -41,8 +35,10 @@ pub trait cheat_project_site_add_all_materials {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_cheat_project_site_add_all_materials`] callbacks.
-    fn cheat_project_site_add_all_materials(&self, project_site_entity_id: u64,
-) -> __sdk::Result<()>;
+    fn cheat_project_site_add_all_materials(
+        &self,
+        project_site_entity_id: u64,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `cheat_project_site_add_all_materials`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -50,39 +46,61 @@ pub trait cheat_project_site_add_all_materials {
     ///
     /// The returned [`CheatProjectSiteAddAllMaterialsCallbackId`] can be passed to [`Self::remove_on_cheat_project_site_add_all_materials`]
     /// to cancel the callback.
-    fn on_cheat_project_site_add_all_materials(&self, callback: impl FnMut(&super::ReducerEventContext, &u64, ) + Send + 'static) -> CheatProjectSiteAddAllMaterialsCallbackId;
+    fn on_cheat_project_site_add_all_materials(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &u64) + Send + 'static,
+    ) -> CheatProjectSiteAddAllMaterialsCallbackId;
     /// Cancel a callback previously registered by [`Self::on_cheat_project_site_add_all_materials`],
     /// causing it not to run in the future.
-    fn remove_on_cheat_project_site_add_all_materials(&self, callback: CheatProjectSiteAddAllMaterialsCallbackId);
+    fn remove_on_cheat_project_site_add_all_materials(
+        &self,
+        callback: CheatProjectSiteAddAllMaterialsCallbackId,
+    );
 }
 
 impl cheat_project_site_add_all_materials for super::RemoteReducers {
-    fn cheat_project_site_add_all_materials(&self, project_site_entity_id: u64,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("cheat_project_site_add_all_materials", CheatProjectSiteAddAllMaterialsArgs { project_site_entity_id,  })
+    fn cheat_project_site_add_all_materials(
+        &self,
+        project_site_entity_id: u64,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "cheat_project_site_add_all_materials",
+            CheatProjectSiteAddAllMaterialsArgs {
+                project_site_entity_id,
+            },
+        )
     }
     fn on_cheat_project_site_add_all_materials(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &u64, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &u64) + Send + 'static,
     ) -> CheatProjectSiteAddAllMaterialsCallbackId {
         CheatProjectSiteAddAllMaterialsCallbackId(self.imp.on_reducer(
             "cheat_project_site_add_all_materials",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::CheatProjectSiteAddAllMaterials {
-                            project_site_entity_id, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer:
+                                super::Reducer::CheatProjectSiteAddAllMaterials {
+                                    project_site_entity_id,
+                                },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, project_site_entity_id, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, project_site_entity_id)
             }),
         ))
     }
-    fn remove_on_cheat_project_site_add_all_materials(&self, callback: CheatProjectSiteAddAllMaterialsCallbackId) {
-        self.imp.remove_on_reducer("cheat_project_site_add_all_materials", callback.0)
+    fn remove_on_cheat_project_site_add_all_materials(
+        &self,
+        callback: CheatProjectSiteAddAllMaterialsCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("cheat_project_site_add_all_materials", callback.0)
     }
 }
 
@@ -102,7 +120,7 @@ pub trait set_flags_for_cheat_project_site_add_all_materials {
 
 impl set_flags_for_cheat_project_site_add_all_materials for super::SetReducerFlags {
     fn cheat_project_site_add_all_materials(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("cheat_project_site_add_all_materials", flags);
+        self.imp
+            .set_call_reducer_flags("cheat_project_site_add_all_materials", flags);
     }
 }
-

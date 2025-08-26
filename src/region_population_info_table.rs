@@ -3,13 +3,8 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::region_population_info_type::RegionPopulationInfo;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `region_population_info`.
 ///
@@ -37,7 +32,9 @@ pub trait RegionPopulationInfoTableAccess {
 impl RegionPopulationInfoTableAccess for super::RemoteTables {
     fn region_population_info(&self) -> RegionPopulationInfoTableHandle<'_> {
         RegionPopulationInfoTableHandle {
-            imp: self.imp.get_table::<RegionPopulationInfo>("region_population_info"),
+            imp: self
+                .imp
+                .get_table::<RegionPopulationInfo>("region_population_info"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -50,8 +47,12 @@ impl<'ctx> __sdk::Table for RegionPopulationInfoTableHandle<'ctx> {
     type Row = RegionPopulationInfo;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = RegionPopulationInfo> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = RegionPopulationInfo> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = RegionPopulationInfoInsertCallbackId;
 
@@ -82,8 +83,7 @@ impl<'ctx> __sdk::Table for RegionPopulationInfoTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<RegionPopulationInfo>("region_population_info");
+    let _table = client_cache.get_or_make_table::<RegionPopulationInfo>("region_population_info");
     _table.add_unique_constraint::<u8>("region_id", |row| &row.region_id);
 }
 pub struct RegionPopulationInfoUpdateCallbackId(__sdk::CallbackId);
@@ -103,46 +103,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for RegionPopulationInfoTableHandle<'ctx> 
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<RegionPopulationInfo>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<RegionPopulationInfo>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<RegionPopulationInfo>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `region_id` unique index on the table `region_population_info`,
-        /// which allows point queries on the field of the same name
-        /// via the [`RegionPopulationInfoRegionIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.region_population_info().region_id().find(...)`.
-        pub struct RegionPopulationInfoRegionIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<RegionPopulationInfo, u8>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `region_id` unique index on the table `region_population_info`,
+/// which allows point queries on the field of the same name
+/// via the [`RegionPopulationInfoRegionIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.region_population_info().region_id().find(...)`.
+pub struct RegionPopulationInfoRegionIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<RegionPopulationInfo, u8>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> RegionPopulationInfoTableHandle<'ctx> {
-            /// Get a handle on the `region_id` unique index on the table `region_population_info`.
-            pub fn region_id(&self) -> RegionPopulationInfoRegionIdUnique<'ctx> {
-                RegionPopulationInfoRegionIdUnique {
-                    imp: self.imp.get_unique_constraint::<u8>("region_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> RegionPopulationInfoTableHandle<'ctx> {
+    /// Get a handle on the `region_id` unique index on the table `region_population_info`.
+    pub fn region_id(&self) -> RegionPopulationInfoRegionIdUnique<'ctx> {
+        RegionPopulationInfoRegionIdUnique {
+            imp: self.imp.get_unique_constraint::<u8>("region_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> RegionPopulationInfoRegionIdUnique<'ctx> {
-            /// Find the subscribed row whose `region_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u8) -> Option<RegionPopulationInfo> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> RegionPopulationInfoRegionIdUnique<'ctx> {
+    /// Find the subscribed row whose `region_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u8) -> Option<RegionPopulationInfo> {
+        self.imp.find(col_val)
+    }
+}

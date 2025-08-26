@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::loot_table_desc_type::LootTableDesc;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct ImportLootTableDescArgs {
-    pub records: Vec::<LootTableDesc>,
+    pub records: Vec<LootTableDesc>,
 }
 
 impl From<ImportLootTableDescArgs> for super::Reducer {
     fn from(args: ImportLootTableDescArgs) -> Self {
         Self::ImportLootTableDesc {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ImportLootTableDescArgs {
@@ -42,8 +37,7 @@ pub trait import_loot_table_desc {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_import_loot_table_desc`] callbacks.
-    fn import_loot_table_desc(&self, records: Vec::<LootTableDesc>,
-) -> __sdk::Result<()>;
+    fn import_loot_table_desc(&self, records: Vec<LootTableDesc>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `import_loot_table_desc`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,47 @@ pub trait import_loot_table_desc {
     ///
     /// The returned [`ImportLootTableDescCallbackId`] can be passed to [`Self::remove_on_import_loot_table_desc`]
     /// to cancel the callback.
-    fn on_import_loot_table_desc(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<LootTableDesc>, ) + Send + 'static) -> ImportLootTableDescCallbackId;
+    fn on_import_loot_table_desc(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<LootTableDesc>) + Send + 'static,
+    ) -> ImportLootTableDescCallbackId;
     /// Cancel a callback previously registered by [`Self::on_import_loot_table_desc`],
     /// causing it not to run in the future.
     fn remove_on_import_loot_table_desc(&self, callback: ImportLootTableDescCallbackId);
 }
 
 impl import_loot_table_desc for super::RemoteReducers {
-    fn import_loot_table_desc(&self, records: Vec::<LootTableDesc>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("import_loot_table_desc", ImportLootTableDescArgs { records,  })
+    fn import_loot_table_desc(&self, records: Vec<LootTableDesc>) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "import_loot_table_desc",
+            ImportLootTableDescArgs { records },
+        )
     }
     fn on_import_loot_table_desc(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<LootTableDesc>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<LootTableDesc>) + Send + 'static,
     ) -> ImportLootTableDescCallbackId {
         ImportLootTableDescCallbackId(self.imp.on_reducer(
             "import_loot_table_desc",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ImportLootTableDesc {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ImportLootTableDesc { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
     fn remove_on_import_loot_table_desc(&self, callback: ImportLootTableDescCallbackId) {
-        self.imp.remove_on_reducer("import_loot_table_desc", callback.0)
+        self.imp
+            .remove_on_reducer("import_loot_table_desc", callback.0)
     }
 }
 
@@ -103,7 +105,7 @@ pub trait set_flags_for_import_loot_table_desc {
 
 impl set_flags_for_import_loot_table_desc for super::SetReducerFlags {
     fn import_loot_table_desc(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("import_loot_table_desc", flags);
+        self.imp
+            .set_call_reducer_flags("import_loot_table_desc", flags);
     }
 }
-

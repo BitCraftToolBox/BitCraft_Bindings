@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::claim_type_type::ClaimType;
 
@@ -21,8 +16,6 @@ pub struct BuildingClaimDesc {
     pub tier: i32,
 }
 
-
 impl __sdk::InModule for BuildingClaimDesc {
     type Module = super::RemoteModule;
 }
-

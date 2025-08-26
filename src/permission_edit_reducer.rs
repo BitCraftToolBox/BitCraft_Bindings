@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_permission_edit_request_type::PlayerPermissionEditRequest;
 
@@ -22,8 +17,8 @@ impl From<PermissionEditArgs> for super::Reducer {
     fn from(args: PermissionEditArgs) -> Self {
         Self::PermissionEdit {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for PermissionEditArgs {
@@ -42,8 +37,7 @@ pub trait permission_edit {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_permission_edit`] callbacks.
-    fn permission_edit(&self, request: PlayerPermissionEditRequest,
-) -> __sdk::Result<()>;
+    fn permission_edit(&self, request: PlayerPermissionEditRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `permission_edit`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,41 @@ pub trait permission_edit {
     ///
     /// The returned [`PermissionEditCallbackId`] can be passed to [`Self::remove_on_permission_edit`]
     /// to cancel the callback.
-    fn on_permission_edit(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerPermissionEditRequest, ) + Send + 'static) -> PermissionEditCallbackId;
+    fn on_permission_edit(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerPermissionEditRequest) + Send + 'static,
+    ) -> PermissionEditCallbackId;
     /// Cancel a callback previously registered by [`Self::on_permission_edit`],
     /// causing it not to run in the future.
     fn remove_on_permission_edit(&self, callback: PermissionEditCallbackId);
 }
 
 impl permission_edit for super::RemoteReducers {
-    fn permission_edit(&self, request: PlayerPermissionEditRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("permission_edit", PermissionEditArgs { request,  })
+    fn permission_edit(&self, request: PlayerPermissionEditRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("permission_edit", PermissionEditArgs { request })
     }
     fn on_permission_edit(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerPermissionEditRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerPermissionEditRequest)
+            + Send
+            + 'static,
     ) -> PermissionEditCallbackId {
         PermissionEditCallbackId(self.imp.on_reducer(
             "permission_edit",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::PermissionEdit {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::PermissionEdit { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
@@ -106,4 +107,3 @@ impl set_flags_for_permission_edit for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("permission_edit", flags);
     }
 }
-

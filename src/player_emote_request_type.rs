@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::offset_coordinates_small_message_type::OffsetCoordinatesSmallMessage;
 
@@ -16,11 +11,9 @@ use super::offset_coordinates_small_message_type::OffsetCoordinatesSmallMessage;
 #[sats(crate = __lib)]
 pub struct PlayerEmoteRequest {
     pub emote_id: i32,
-    pub face: Option::<OffsetCoordinatesSmallMessage>,
+    pub face: Option<OffsetCoordinatesSmallMessage>,
 }
-
 
 impl __sdk::InModule for PlayerEmoteRequest {
     type Module = super::RemoteModule;
 }
-

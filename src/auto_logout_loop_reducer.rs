@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::auto_logout_loop_timer_type::AutoLogoutLoopTimer;
 
@@ -20,10 +15,8 @@ pub(super) struct AutoLogoutLoopArgs {
 
 impl From<AutoLogoutLoopArgs> for super::Reducer {
     fn from(args: AutoLogoutLoopArgs) -> Self {
-        Self::AutoLogoutLoop {
-            timer: args.timer,
-}
-}
+        Self::AutoLogoutLoop { timer: args.timer }
+    }
 }
 
 impl __sdk::InModule for AutoLogoutLoopArgs {
@@ -42,8 +35,7 @@ pub trait auto_logout_loop {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_auto_logout_loop`] callbacks.
-    fn auto_logout_loop(&self, timer: AutoLogoutLoopTimer,
-) -> __sdk::Result<()>;
+    fn auto_logout_loop(&self, timer: AutoLogoutLoopTimer) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `auto_logout_loop`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +43,39 @@ pub trait auto_logout_loop {
     ///
     /// The returned [`AutoLogoutLoopCallbackId`] can be passed to [`Self::remove_on_auto_logout_loop`]
     /// to cancel the callback.
-    fn on_auto_logout_loop(&self, callback: impl FnMut(&super::ReducerEventContext, &AutoLogoutLoopTimer, ) + Send + 'static) -> AutoLogoutLoopCallbackId;
+    fn on_auto_logout_loop(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &AutoLogoutLoopTimer) + Send + 'static,
+    ) -> AutoLogoutLoopCallbackId;
     /// Cancel a callback previously registered by [`Self::on_auto_logout_loop`],
     /// causing it not to run in the future.
     fn remove_on_auto_logout_loop(&self, callback: AutoLogoutLoopCallbackId);
 }
 
 impl auto_logout_loop for super::RemoteReducers {
-    fn auto_logout_loop(&self, timer: AutoLogoutLoopTimer,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("auto_logout_loop", AutoLogoutLoopArgs { timer,  })
+    fn auto_logout_loop(&self, timer: AutoLogoutLoopTimer) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("auto_logout_loop", AutoLogoutLoopArgs { timer })
     }
     fn on_auto_logout_loop(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &AutoLogoutLoopTimer, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &AutoLogoutLoopTimer) + Send + 'static,
     ) -> AutoLogoutLoopCallbackId {
         AutoLogoutLoopCallbackId(self.imp.on_reducer(
             "auto_logout_loop",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::AutoLogoutLoop {
-                            timer, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::AutoLogoutLoop { timer },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, timer, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, timer)
             }),
         ))
     }
@@ -106,4 +103,3 @@ impl set_flags_for_auto_logout_loop for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("auto_logout_loop", flags);
     }
 }
-

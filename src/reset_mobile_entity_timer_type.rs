@@ -3,15 +3,10 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
-use super::offset_coordinates_float_type::OffsetCoordinatesFloat;
 use super::move_validation_strike_counter_state_type::MoveValidationStrikeCounterState;
+use super::offset_coordinates_float_type::OffsetCoordinatesFloat;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -19,12 +14,10 @@ pub struct ResetMobileEntityTimer {
     pub scheduled_id: u64,
     pub scheduled_at: __sdk::ScheduleAt,
     pub owner_entity_id: u64,
-    pub position: Option::<OffsetCoordinatesFloat>,
-    pub strike_counter_to_update: Option::<MoveValidationStrikeCounterState>,
+    pub position: Option<OffsetCoordinatesFloat>,
+    pub strike_counter_to_update: Option<MoveValidationStrikeCounterState>,
 }
-
 
 impl __sdk::InModule for ResetMobileEntityTimer {
     type Module = super::RemoteModule;
 }
-

@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::enemy_spawn_request_type::EnemySpawnRequest;
 
@@ -22,8 +17,8 @@ impl From<EnemySpawnArgs> for super::Reducer {
     fn from(args: EnemySpawnArgs) -> Self {
         Self::EnemySpawn {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for EnemySpawnArgs {
@@ -42,8 +37,7 @@ pub trait enemy_spawn {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_enemy_spawn`] callbacks.
-    fn enemy_spawn(&self, request: EnemySpawnRequest,
-) -> __sdk::Result<()>;
+    fn enemy_spawn(&self, request: EnemySpawnRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `enemy_spawn`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,39 @@ pub trait enemy_spawn {
     ///
     /// The returned [`EnemySpawnCallbackId`] can be passed to [`Self::remove_on_enemy_spawn`]
     /// to cancel the callback.
-    fn on_enemy_spawn(&self, callback: impl FnMut(&super::ReducerEventContext, &EnemySpawnRequest, ) + Send + 'static) -> EnemySpawnCallbackId;
+    fn on_enemy_spawn(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &EnemySpawnRequest) + Send + 'static,
+    ) -> EnemySpawnCallbackId;
     /// Cancel a callback previously registered by [`Self::on_enemy_spawn`],
     /// causing it not to run in the future.
     fn remove_on_enemy_spawn(&self, callback: EnemySpawnCallbackId);
 }
 
 impl enemy_spawn for super::RemoteReducers {
-    fn enemy_spawn(&self, request: EnemySpawnRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("enemy_spawn", EnemySpawnArgs { request,  })
+    fn enemy_spawn(&self, request: EnemySpawnRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("enemy_spawn", EnemySpawnArgs { request })
     }
     fn on_enemy_spawn(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &EnemySpawnRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &EnemySpawnRequest) + Send + 'static,
     ) -> EnemySpawnCallbackId {
         EnemySpawnCallbackId(self.imp.on_reducer(
             "enemy_spawn",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::EnemySpawn {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::EnemySpawn { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
@@ -106,4 +105,3 @@ impl set_flags_for_enemy_spawn for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("enemy_spawn", flags);
     }
 }
-

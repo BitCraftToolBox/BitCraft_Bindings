@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::entity_attack_request_type::EntityAttackRequest;
 
@@ -22,8 +17,8 @@ impl From<AttackStartArgs> for super::Reducer {
     fn from(args: AttackStartArgs) -> Self {
         Self::AttackStart {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for AttackStartArgs {
@@ -42,8 +37,7 @@ pub trait attack_start {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_attack_start`] callbacks.
-    fn attack_start(&self, request: EntityAttackRequest,
-) -> __sdk::Result<()>;
+    fn attack_start(&self, request: EntityAttackRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `attack_start`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,39 @@ pub trait attack_start {
     ///
     /// The returned [`AttackStartCallbackId`] can be passed to [`Self::remove_on_attack_start`]
     /// to cancel the callback.
-    fn on_attack_start(&self, callback: impl FnMut(&super::ReducerEventContext, &EntityAttackRequest, ) + Send + 'static) -> AttackStartCallbackId;
+    fn on_attack_start(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &EntityAttackRequest) + Send + 'static,
+    ) -> AttackStartCallbackId;
     /// Cancel a callback previously registered by [`Self::on_attack_start`],
     /// causing it not to run in the future.
     fn remove_on_attack_start(&self, callback: AttackStartCallbackId);
 }
 
 impl attack_start for super::RemoteReducers {
-    fn attack_start(&self, request: EntityAttackRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("attack_start", AttackStartArgs { request,  })
+    fn attack_start(&self, request: EntityAttackRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("attack_start", AttackStartArgs { request })
     }
     fn on_attack_start(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &EntityAttackRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &EntityAttackRequest) + Send + 'static,
     ) -> AttackStartCallbackId {
         AttackStartCallbackId(self.imp.on_reducer(
             "attack_start",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::AttackStart {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::AttackStart { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
@@ -106,4 +105,3 @@ impl set_flags_for_attack_start for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("attack_start", flags);
     }
 }
-

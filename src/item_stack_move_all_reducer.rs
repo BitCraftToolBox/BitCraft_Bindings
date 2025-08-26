@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_item_stack_move_all_request_type::PlayerItemStackMoveAllRequest;
 
@@ -22,8 +17,8 @@ impl From<ItemStackMoveAllArgs> for super::Reducer {
     fn from(args: ItemStackMoveAllArgs) -> Self {
         Self::ItemStackMoveAll {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ItemStackMoveAllArgs {
@@ -42,8 +37,7 @@ pub trait item_stack_move_all {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_item_stack_move_all`] callbacks.
-    fn item_stack_move_all(&self, request: PlayerItemStackMoveAllRequest,
-) -> __sdk::Result<()>;
+    fn item_stack_move_all(&self, request: PlayerItemStackMoveAllRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `item_stack_move_all`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,49 @@ pub trait item_stack_move_all {
     ///
     /// The returned [`ItemStackMoveAllCallbackId`] can be passed to [`Self::remove_on_item_stack_move_all`]
     /// to cancel the callback.
-    fn on_item_stack_move_all(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerItemStackMoveAllRequest, ) + Send + 'static) -> ItemStackMoveAllCallbackId;
+    fn on_item_stack_move_all(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerItemStackMoveAllRequest)
+            + Send
+            + 'static,
+    ) -> ItemStackMoveAllCallbackId;
     /// Cancel a callback previously registered by [`Self::on_item_stack_move_all`],
     /// causing it not to run in the future.
     fn remove_on_item_stack_move_all(&self, callback: ItemStackMoveAllCallbackId);
 }
 
 impl item_stack_move_all for super::RemoteReducers {
-    fn item_stack_move_all(&self, request: PlayerItemStackMoveAllRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("item_stack_move_all", ItemStackMoveAllArgs { request,  })
+    fn item_stack_move_all(&self, request: PlayerItemStackMoveAllRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("item_stack_move_all", ItemStackMoveAllArgs { request })
     }
     fn on_item_stack_move_all(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerItemStackMoveAllRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerItemStackMoveAllRequest)
+            + Send
+            + 'static,
     ) -> ItemStackMoveAllCallbackId {
         ItemStackMoveAllCallbackId(self.imp.on_reducer(
             "item_stack_move_all",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ItemStackMoveAll {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ItemStackMoveAll { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
     fn remove_on_item_stack_move_all(&self, callback: ItemStackMoveAllCallbackId) {
-        self.imp.remove_on_reducer("item_stack_move_all", callback.0)
+        self.imp
+            .remove_on_reducer("item_stack_move_all", callback.0)
     }
 }
 
@@ -103,7 +107,7 @@ pub trait set_flags_for_item_stack_move_all {
 
 impl set_flags_for_item_stack_move_all for super::SetReducerFlags {
     fn item_stack_move_all(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("item_stack_move_all", flags);
+        self.imp
+            .set_call_reducer_flags("item_stack_move_all", flags);
     }
 }
-

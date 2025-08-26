@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::empire_notification_type_type::EmpireNotificationType;
 
@@ -22,8 +17,6 @@ pub struct EmpireNotificationDesc {
     pub text: String,
 }
 
-
 impl __sdk::InModule for EmpireNotificationDesc {
     type Module = super::RemoteModule;
 }
-

@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_housing_desc_type::PlayerHousingDesc;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct ImportPlayerHousingDescArgs {
-    pub records: Vec::<PlayerHousingDesc>,
+    pub records: Vec<PlayerHousingDesc>,
 }
 
 impl From<ImportPlayerHousingDescArgs> for super::Reducer {
     fn from(args: ImportPlayerHousingDescArgs) -> Self {
         Self::ImportPlayerHousingDesc {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ImportPlayerHousingDescArgs {
@@ -42,8 +37,7 @@ pub trait import_player_housing_desc {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_import_player_housing_desc`] callbacks.
-    fn import_player_housing_desc(&self, records: Vec::<PlayerHousingDesc>,
-) -> __sdk::Result<()>;
+    fn import_player_housing_desc(&self, records: Vec<PlayerHousingDesc>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `import_player_housing_desc`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,47 @@ pub trait import_player_housing_desc {
     ///
     /// The returned [`ImportPlayerHousingDescCallbackId`] can be passed to [`Self::remove_on_import_player_housing_desc`]
     /// to cancel the callback.
-    fn on_import_player_housing_desc(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<PlayerHousingDesc>, ) + Send + 'static) -> ImportPlayerHousingDescCallbackId;
+    fn on_import_player_housing_desc(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<PlayerHousingDesc>) + Send + 'static,
+    ) -> ImportPlayerHousingDescCallbackId;
     /// Cancel a callback previously registered by [`Self::on_import_player_housing_desc`],
     /// causing it not to run in the future.
     fn remove_on_import_player_housing_desc(&self, callback: ImportPlayerHousingDescCallbackId);
 }
 
 impl import_player_housing_desc for super::RemoteReducers {
-    fn import_player_housing_desc(&self, records: Vec::<PlayerHousingDesc>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("import_player_housing_desc", ImportPlayerHousingDescArgs { records,  })
+    fn import_player_housing_desc(&self, records: Vec<PlayerHousingDesc>) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "import_player_housing_desc",
+            ImportPlayerHousingDescArgs { records },
+        )
     }
     fn on_import_player_housing_desc(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<PlayerHousingDesc>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<PlayerHousingDesc>) + Send + 'static,
     ) -> ImportPlayerHousingDescCallbackId {
         ImportPlayerHousingDescCallbackId(self.imp.on_reducer(
             "import_player_housing_desc",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ImportPlayerHousingDesc {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ImportPlayerHousingDesc { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
     fn remove_on_import_player_housing_desc(&self, callback: ImportPlayerHousingDescCallbackId) {
-        self.imp.remove_on_reducer("import_player_housing_desc", callback.0)
+        self.imp
+            .remove_on_reducer("import_player_housing_desc", callback.0)
     }
 }
 
@@ -103,7 +105,7 @@ pub trait set_flags_for_import_player_housing_desc {
 
 impl set_flags_for_import_player_housing_desc for super::SetReducerFlags {
     fn import_player_housing_desc(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("import_player_housing_desc", flags);
+        self.imp
+            .set_call_reducer_flags("import_player_housing_desc", flags);
     }
 }
-

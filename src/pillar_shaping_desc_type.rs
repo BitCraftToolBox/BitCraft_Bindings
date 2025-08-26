@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
-use super::input_item_stack_type::InputItemStack;
 use super::experience_stack_f_32_type::ExperienceStackF32;
+use super::input_item_stack_type::InputItemStack;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub struct PillarShapingDesc {
     pub id: i32,
     pub name: String,
-    pub consumed_item_stacks: Vec::<InputItemStack>,
+    pub consumed_item_stacks: Vec<InputItemStack>,
     pub input_cargo_id: i32,
     pub input_cargo_discovery_score: i32,
-    pub experience_per_progress: Vec::<ExperienceStackF32>,
-    pub discovery_triggers: Vec::<i32>,
-    pub required_knowledges: Vec::<i32>,
+    pub experience_per_progress: Vec<ExperienceStackF32>,
+    pub discovery_triggers: Vec<i32>,
+    pub required_knowledges: Vec<i32>,
     pub full_discovery_score: i32,
     pub duration: f32,
     pub prefab_address: String,
@@ -32,8 +27,6 @@ pub struct PillarShapingDesc {
     pub description: String,
 }
 
-
 impl __sdk::InModule for PillarShapingDesc {
     type Module = super::RemoteModule;
 }
-

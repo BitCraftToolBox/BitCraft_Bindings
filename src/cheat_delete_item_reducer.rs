@@ -3,13 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -23,8 +17,8 @@ impl From<CheatDeleteItemArgs> for super::Reducer {
         Self::CheatDeleteItem {
             inventory_entity_id: args.inventory_entity_id,
             pocket_index: args.pocket_index,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for CheatDeleteItemArgs {
@@ -43,9 +37,7 @@ pub trait cheat_delete_item {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_cheat_delete_item`] callbacks.
-    fn cheat_delete_item(&self, inventory_entity_id: u64,
-pocket_index: i32,
-) -> __sdk::Result<()>;
+    fn cheat_delete_item(&self, inventory_entity_id: u64, pocket_index: i32) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `cheat_delete_item`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -53,35 +45,48 @@ pocket_index: i32,
     ///
     /// The returned [`CheatDeleteItemCallbackId`] can be passed to [`Self::remove_on_cheat_delete_item`]
     /// to cancel the callback.
-    fn on_cheat_delete_item(&self, callback: impl FnMut(&super::ReducerEventContext, &u64, &i32, ) + Send + 'static) -> CheatDeleteItemCallbackId;
+    fn on_cheat_delete_item(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &u64, &i32) + Send + 'static,
+    ) -> CheatDeleteItemCallbackId;
     /// Cancel a callback previously registered by [`Self::on_cheat_delete_item`],
     /// causing it not to run in the future.
     fn remove_on_cheat_delete_item(&self, callback: CheatDeleteItemCallbackId);
 }
 
 impl cheat_delete_item for super::RemoteReducers {
-    fn cheat_delete_item(&self, inventory_entity_id: u64,
-pocket_index: i32,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("cheat_delete_item", CheatDeleteItemArgs { inventory_entity_id, pocket_index,  })
+    fn cheat_delete_item(&self, inventory_entity_id: u64, pocket_index: i32) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "cheat_delete_item",
+            CheatDeleteItemArgs {
+                inventory_entity_id,
+                pocket_index,
+            },
+        )
     }
     fn on_cheat_delete_item(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &u64, &i32, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &u64, &i32) + Send + 'static,
     ) -> CheatDeleteItemCallbackId {
         CheatDeleteItemCallbackId(self.imp.on_reducer(
             "cheat_delete_item",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::CheatDeleteItem {
-                            inventory_entity_id, pocket_index, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer:
+                                super::Reducer::CheatDeleteItem {
+                                    inventory_entity_id,
+                                    pocket_index,
+                                },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, inventory_entity_id, pocket_index, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, inventory_entity_id, pocket_index)
             }),
         ))
     }
@@ -109,4 +114,3 @@ impl set_flags_for_cheat_delete_item for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("cheat_delete_item", flags);
     }
 }
-

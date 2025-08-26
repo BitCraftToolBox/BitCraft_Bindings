@@ -3,13 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -25,8 +19,8 @@ impl From<CheatRemoveItemQuantityArgs> for super::Reducer {
             inventory_entity_id: args.inventory_entity_id,
             pocket_index: args.pocket_index,
             quantity_to_remove: args.quantity_to_remove,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for CheatRemoveItemQuantityArgs {
@@ -45,10 +39,12 @@ pub trait cheat_remove_item_quantity {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_cheat_remove_item_quantity`] callbacks.
-    fn cheat_remove_item_quantity(&self, inventory_entity_id: u64,
-pocket_index: i32,
-quantity_to_remove: i32,
-) -> __sdk::Result<()>;
+    fn cheat_remove_item_quantity(
+        &self,
+        inventory_entity_id: u64,
+        pocket_index: i32,
+        quantity_to_remove: i32,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `cheat_remove_item_quantity`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -56,41 +52,61 @@ quantity_to_remove: i32,
     ///
     /// The returned [`CheatRemoveItemQuantityCallbackId`] can be passed to [`Self::remove_on_cheat_remove_item_quantity`]
     /// to cancel the callback.
-    fn on_cheat_remove_item_quantity(&self, callback: impl FnMut(&super::ReducerEventContext, &u64, &i32, &i32, ) + Send + 'static) -> CheatRemoveItemQuantityCallbackId;
+    fn on_cheat_remove_item_quantity(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &u64, &i32, &i32) + Send + 'static,
+    ) -> CheatRemoveItemQuantityCallbackId;
     /// Cancel a callback previously registered by [`Self::on_cheat_remove_item_quantity`],
     /// causing it not to run in the future.
     fn remove_on_cheat_remove_item_quantity(&self, callback: CheatRemoveItemQuantityCallbackId);
 }
 
 impl cheat_remove_item_quantity for super::RemoteReducers {
-    fn cheat_remove_item_quantity(&self, inventory_entity_id: u64,
-pocket_index: i32,
-quantity_to_remove: i32,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("cheat_remove_item_quantity", CheatRemoveItemQuantityArgs { inventory_entity_id, pocket_index, quantity_to_remove,  })
+    fn cheat_remove_item_quantity(
+        &self,
+        inventory_entity_id: u64,
+        pocket_index: i32,
+        quantity_to_remove: i32,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "cheat_remove_item_quantity",
+            CheatRemoveItemQuantityArgs {
+                inventory_entity_id,
+                pocket_index,
+                quantity_to_remove,
+            },
+        )
     }
     fn on_cheat_remove_item_quantity(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &u64, &i32, &i32, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &u64, &i32, &i32) + Send + 'static,
     ) -> CheatRemoveItemQuantityCallbackId {
         CheatRemoveItemQuantityCallbackId(self.imp.on_reducer(
             "cheat_remove_item_quantity",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::CheatRemoveItemQuantity {
-                            inventory_entity_id, pocket_index, quantity_to_remove, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer:
+                                super::Reducer::CheatRemoveItemQuantity {
+                                    inventory_entity_id,
+                                    pocket_index,
+                                    quantity_to_remove,
+                                },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, inventory_entity_id, pocket_index, quantity_to_remove, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, inventory_entity_id, pocket_index, quantity_to_remove)
             }),
         ))
     }
     fn remove_on_cheat_remove_item_quantity(&self, callback: CheatRemoveItemQuantityCallbackId) {
-        self.imp.remove_on_reducer("cheat_remove_item_quantity", callback.0)
+        self.imp
+            .remove_on_reducer("cheat_remove_item_quantity", callback.0)
     }
 }
 
@@ -110,7 +126,7 @@ pub trait set_flags_for_cheat_remove_item_quantity {
 
 impl set_flags_for_cheat_remove_item_quantity for super::SetReducerFlags {
     fn cheat_remove_item_quantity(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("cheat_remove_item_quantity", flags);
+        self.imp
+            .set_call_reducer_flags("cheat_remove_item_quantity", flags);
     }
 }
-

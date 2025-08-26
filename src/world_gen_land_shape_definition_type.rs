@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::world_gen_noise_specs_type::WorldGenNoiseSpecs;
 use super::world_gen_rect_int_type::WorldGenRectInt;
@@ -21,8 +16,6 @@ pub struct WorldGenLandShapeDefinition {
     pub land_threshold: f32,
 }
 
-
 impl __sdk::InModule for WorldGenLandShapeDefinition {
     type Module = super::RemoteModule;
 }
-

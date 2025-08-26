@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::item_stack_type::ItemStack;
 
@@ -22,8 +17,6 @@ pub struct ClosedListingState {
     pub timestamp: __sdk::Timestamp,
 }
 
-
 impl __sdk::InModule for ClosedListingState {
     type Module = super::RemoteModule;
 }
-

@@ -3,23 +3,16 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
-pub(super) struct AdminCollapseRuinsArgs {
-    }
+pub(super) struct AdminCollapseRuinsArgs {}
 
 impl From<AdminCollapseRuinsArgs> for super::Reducer {
     fn from(args: AdminCollapseRuinsArgs) -> Self {
         Self::AdminCollapseRuins
-}
+    }
 }
 
 impl __sdk::InModule for AdminCollapseRuinsArgs {
@@ -38,7 +31,7 @@ pub trait admin_collapse_ruins {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_admin_collapse_ruins`] callbacks.
-    fn admin_collapse_ruins(&self, ) -> __sdk::Result<()>;
+    fn admin_collapse_ruins(&self) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `admin_collapse_ruins`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -46,38 +39,45 @@ pub trait admin_collapse_ruins {
     ///
     /// The returned [`AdminCollapseRuinsCallbackId`] can be passed to [`Self::remove_on_admin_collapse_ruins`]
     /// to cancel the callback.
-    fn on_admin_collapse_ruins(&self, callback: impl FnMut(&super::ReducerEventContext, ) + Send + 'static) -> AdminCollapseRuinsCallbackId;
+    fn on_admin_collapse_ruins(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext) + Send + 'static,
+    ) -> AdminCollapseRuinsCallbackId;
     /// Cancel a callback previously registered by [`Self::on_admin_collapse_ruins`],
     /// causing it not to run in the future.
     fn remove_on_admin_collapse_ruins(&self, callback: AdminCollapseRuinsCallbackId);
 }
 
 impl admin_collapse_ruins for super::RemoteReducers {
-    fn admin_collapse_ruins(&self, ) -> __sdk::Result<()> {
-        self.imp.call_reducer("admin_collapse_ruins", AdminCollapseRuinsArgs {  })
+    fn admin_collapse_ruins(&self) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("admin_collapse_ruins", AdminCollapseRuinsArgs {})
     }
     fn on_admin_collapse_ruins(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext) + Send + 'static,
     ) -> AdminCollapseRuinsCallbackId {
         AdminCollapseRuinsCallbackId(self.imp.on_reducer(
             "admin_collapse_ruins",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::AdminCollapseRuins {
-                            
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::AdminCollapseRuins {},
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx)
             }),
         ))
     }
     fn remove_on_admin_collapse_ruins(&self, callback: AdminCollapseRuinsCallbackId) {
-        self.imp.remove_on_reducer("admin_collapse_ruins", callback.0)
+        self.imp
+            .remove_on_reducer("admin_collapse_ruins", callback.0)
     }
 }
 
@@ -97,7 +97,7 @@ pub trait set_flags_for_admin_collapse_ruins {
 
 impl set_flags_for_admin_collapse_ruins for super::SetReducerFlags {
     fn admin_collapse_ruins(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("admin_collapse_ruins", flags);
+        self.imp
+            .set_call_reducer_flags("admin_collapse_ruins", flags);
     }
 }
-

@@ -3,13 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -29,8 +23,8 @@ impl From<InsertDeveloperIdentityArgs> for super::Reducer {
             service_name: args.service_name,
             email: args.email,
             is_external: args.is_external,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for InsertDeveloperIdentityArgs {
@@ -49,12 +43,14 @@ pub trait insert_developer_identity {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_insert_developer_identity`] callbacks.
-    fn insert_developer_identity(&self, identity: String,
-developer_name: String,
-service_name: String,
-email: String,
-is_external: bool,
-) -> __sdk::Result<()>;
+    fn insert_developer_identity(
+        &self,
+        identity: String,
+        developer_name: String,
+        service_name: String,
+        email: String,
+        is_external: bool,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `insert_developer_identity`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -62,43 +58,78 @@ is_external: bool,
     ///
     /// The returned [`InsertDeveloperIdentityCallbackId`] can be passed to [`Self::remove_on_insert_developer_identity`]
     /// to cancel the callback.
-    fn on_insert_developer_identity(&self, callback: impl FnMut(&super::ReducerEventContext, &String, &String, &String, &String, &bool, ) + Send + 'static) -> InsertDeveloperIdentityCallbackId;
+    fn on_insert_developer_identity(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &String, &String, &String, &String, &bool)
+            + Send
+            + 'static,
+    ) -> InsertDeveloperIdentityCallbackId;
     /// Cancel a callback previously registered by [`Self::on_insert_developer_identity`],
     /// causing it not to run in the future.
     fn remove_on_insert_developer_identity(&self, callback: InsertDeveloperIdentityCallbackId);
 }
 
 impl insert_developer_identity for super::RemoteReducers {
-    fn insert_developer_identity(&self, identity: String,
-developer_name: String,
-service_name: String,
-email: String,
-is_external: bool,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("insert_developer_identity", InsertDeveloperIdentityArgs { identity, developer_name, service_name, email, is_external,  })
+    fn insert_developer_identity(
+        &self,
+        identity: String,
+        developer_name: String,
+        service_name: String,
+        email: String,
+        is_external: bool,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "insert_developer_identity",
+            InsertDeveloperIdentityArgs {
+                identity,
+                developer_name,
+                service_name,
+                email,
+                is_external,
+            },
+        )
     }
     fn on_insert_developer_identity(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &String, &String, &String, &String, &bool, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &String, &String, &String, &String, &bool)
+            + Send
+            + 'static,
     ) -> InsertDeveloperIdentityCallbackId {
         InsertDeveloperIdentityCallbackId(self.imp.on_reducer(
             "insert_developer_identity",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::InsertDeveloperIdentity {
-                            identity, developer_name, service_name, email, is_external, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer:
+                                super::Reducer::InsertDeveloperIdentity {
+                                    identity,
+                                    developer_name,
+                                    service_name,
+                                    email,
+                                    is_external,
+                                },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, identity, developer_name, service_name, email, is_external, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(
+                    ctx,
+                    identity,
+                    developer_name,
+                    service_name,
+                    email,
+                    is_external,
+                )
             }),
         ))
     }
     fn remove_on_insert_developer_identity(&self, callback: InsertDeveloperIdentityCallbackId) {
-        self.imp.remove_on_reducer("insert_developer_identity", callback.0)
+        self.imp
+            .remove_on_reducer("insert_developer_identity", callback.0)
     }
 }
 
@@ -118,7 +149,7 @@ pub trait set_flags_for_insert_developer_identity {
 
 impl set_flags_for_insert_developer_identity for super::SetReducerFlags {
     fn insert_developer_identity(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("insert_developer_identity", flags);
+        self.imp
+            .set_call_reducer_flags("insert_developer_identity", flags);
     }
 }
-

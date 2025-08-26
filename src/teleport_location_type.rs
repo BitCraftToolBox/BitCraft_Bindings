@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::offset_coordinates_small_message_type::OffsetCoordinatesSmallMessage;
 use super::teleport_location_type_type::TeleportLocationType;
@@ -20,8 +15,6 @@ pub struct TeleportLocation {
     pub location_type: TeleportLocationType,
 }
 
-
 impl __sdk::InModule for TeleportLocation {
     type Module = super::RemoteModule;
 }
-

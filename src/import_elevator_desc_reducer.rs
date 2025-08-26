@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::elevator_desc_type::ElevatorDesc;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct ImportElevatorDescArgs {
-    pub records: Vec::<ElevatorDesc>,
+    pub records: Vec<ElevatorDesc>,
 }
 
 impl From<ImportElevatorDescArgs> for super::Reducer {
     fn from(args: ImportElevatorDescArgs) -> Self {
         Self::ImportElevatorDesc {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ImportElevatorDescArgs {
@@ -42,8 +37,7 @@ pub trait import_elevator_desc {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_import_elevator_desc`] callbacks.
-    fn import_elevator_desc(&self, records: Vec::<ElevatorDesc>,
-) -> __sdk::Result<()>;
+    fn import_elevator_desc(&self, records: Vec<ElevatorDesc>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `import_elevator_desc`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,45 @@ pub trait import_elevator_desc {
     ///
     /// The returned [`ImportElevatorDescCallbackId`] can be passed to [`Self::remove_on_import_elevator_desc`]
     /// to cancel the callback.
-    fn on_import_elevator_desc(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<ElevatorDesc>, ) + Send + 'static) -> ImportElevatorDescCallbackId;
+    fn on_import_elevator_desc(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<ElevatorDesc>) + Send + 'static,
+    ) -> ImportElevatorDescCallbackId;
     /// Cancel a callback previously registered by [`Self::on_import_elevator_desc`],
     /// causing it not to run in the future.
     fn remove_on_import_elevator_desc(&self, callback: ImportElevatorDescCallbackId);
 }
 
 impl import_elevator_desc for super::RemoteReducers {
-    fn import_elevator_desc(&self, records: Vec::<ElevatorDesc>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("import_elevator_desc", ImportElevatorDescArgs { records,  })
+    fn import_elevator_desc(&self, records: Vec<ElevatorDesc>) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("import_elevator_desc", ImportElevatorDescArgs { records })
     }
     fn on_import_elevator_desc(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<ElevatorDesc>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<ElevatorDesc>) + Send + 'static,
     ) -> ImportElevatorDescCallbackId {
         ImportElevatorDescCallbackId(self.imp.on_reducer(
             "import_elevator_desc",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ImportElevatorDesc {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ImportElevatorDesc { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
     fn remove_on_import_elevator_desc(&self, callback: ImportElevatorDescCallbackId) {
-        self.imp.remove_on_reducer("import_elevator_desc", callback.0)
+        self.imp
+            .remove_on_reducer("import_elevator_desc", callback.0)
     }
 }
 
@@ -103,7 +103,7 @@ pub trait set_flags_for_import_elevator_desc {
 
 impl set_flags_for_import_elevator_desc for super::SetReducerFlags {
     fn import_elevator_desc(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("import_elevator_desc", flags);
+        self.imp
+            .set_call_reducer_flags("import_elevator_desc", flags);
     }
 }
-

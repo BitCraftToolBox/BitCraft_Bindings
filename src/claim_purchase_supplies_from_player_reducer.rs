@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::claim_purchase_supplies_from_player_request_type::ClaimPurchaseSuppliesFromPlayerRequest;
 
@@ -22,8 +17,8 @@ impl From<ClaimPurchaseSuppliesFromPlayerArgs> for super::Reducer {
     fn from(args: ClaimPurchaseSuppliesFromPlayerArgs) -> Self {
         Self::ClaimPurchaseSuppliesFromPlayer {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ClaimPurchaseSuppliesFromPlayerArgs {
@@ -42,8 +37,10 @@ pub trait claim_purchase_supplies_from_player {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_claim_purchase_supplies_from_player`] callbacks.
-    fn claim_purchase_supplies_from_player(&self, request: ClaimPurchaseSuppliesFromPlayerRequest,
-) -> __sdk::Result<()>;
+    fn claim_purchase_supplies_from_player(
+        &self,
+        request: ClaimPurchaseSuppliesFromPlayerRequest,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `claim_purchase_supplies_from_player`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +48,60 @@ pub trait claim_purchase_supplies_from_player {
     ///
     /// The returned [`ClaimPurchaseSuppliesFromPlayerCallbackId`] can be passed to [`Self::remove_on_claim_purchase_supplies_from_player`]
     /// to cancel the callback.
-    fn on_claim_purchase_supplies_from_player(&self, callback: impl FnMut(&super::ReducerEventContext, &ClaimPurchaseSuppliesFromPlayerRequest, ) + Send + 'static) -> ClaimPurchaseSuppliesFromPlayerCallbackId;
+    fn on_claim_purchase_supplies_from_player(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &ClaimPurchaseSuppliesFromPlayerRequest)
+            + Send
+            + 'static,
+    ) -> ClaimPurchaseSuppliesFromPlayerCallbackId;
     /// Cancel a callback previously registered by [`Self::on_claim_purchase_supplies_from_player`],
     /// causing it not to run in the future.
-    fn remove_on_claim_purchase_supplies_from_player(&self, callback: ClaimPurchaseSuppliesFromPlayerCallbackId);
+    fn remove_on_claim_purchase_supplies_from_player(
+        &self,
+        callback: ClaimPurchaseSuppliesFromPlayerCallbackId,
+    );
 }
 
 impl claim_purchase_supplies_from_player for super::RemoteReducers {
-    fn claim_purchase_supplies_from_player(&self, request: ClaimPurchaseSuppliesFromPlayerRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("claim_purchase_supplies_from_player", ClaimPurchaseSuppliesFromPlayerArgs { request,  })
+    fn claim_purchase_supplies_from_player(
+        &self,
+        request: ClaimPurchaseSuppliesFromPlayerRequest,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "claim_purchase_supplies_from_player",
+            ClaimPurchaseSuppliesFromPlayerArgs { request },
+        )
     }
     fn on_claim_purchase_supplies_from_player(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &ClaimPurchaseSuppliesFromPlayerRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &ClaimPurchaseSuppliesFromPlayerRequest)
+            + Send
+            + 'static,
     ) -> ClaimPurchaseSuppliesFromPlayerCallbackId {
         ClaimPurchaseSuppliesFromPlayerCallbackId(self.imp.on_reducer(
             "claim_purchase_supplies_from_player",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ClaimPurchaseSuppliesFromPlayer {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ClaimPurchaseSuppliesFromPlayer { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
-    fn remove_on_claim_purchase_supplies_from_player(&self, callback: ClaimPurchaseSuppliesFromPlayerCallbackId) {
-        self.imp.remove_on_reducer("claim_purchase_supplies_from_player", callback.0)
+    fn remove_on_claim_purchase_supplies_from_player(
+        &self,
+        callback: ClaimPurchaseSuppliesFromPlayerCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("claim_purchase_supplies_from_player", callback.0)
     }
 }
 
@@ -103,7 +121,7 @@ pub trait set_flags_for_claim_purchase_supplies_from_player {
 
 impl set_flags_for_claim_purchase_supplies_from_player for super::SetReducerFlags {
     fn claim_purchase_supplies_from_player(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("claim_purchase_supplies_from_player", flags);
+        self.imp
+            .set_call_reducer_flags("claim_purchase_supplies_from_player", flags);
     }
 }
-

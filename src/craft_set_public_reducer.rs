@@ -3,13 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -23,8 +17,8 @@ impl From<CraftSetPublicArgs> for super::Reducer {
         Self::CraftSetPublic {
             progressive_action_entity_id: args.progressive_action_entity_id,
             is_public: args.is_public,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for CraftSetPublicArgs {
@@ -43,9 +37,11 @@ pub trait craft_set_public {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_craft_set_public`] callbacks.
-    fn craft_set_public(&self, progressive_action_entity_id: u64,
-is_public: bool,
-) -> __sdk::Result<()>;
+    fn craft_set_public(
+        &self,
+        progressive_action_entity_id: u64,
+        is_public: bool,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `craft_set_public`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -53,35 +49,52 @@ is_public: bool,
     ///
     /// The returned [`CraftSetPublicCallbackId`] can be passed to [`Self::remove_on_craft_set_public`]
     /// to cancel the callback.
-    fn on_craft_set_public(&self, callback: impl FnMut(&super::ReducerEventContext, &u64, &bool, ) + Send + 'static) -> CraftSetPublicCallbackId;
+    fn on_craft_set_public(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &u64, &bool) + Send + 'static,
+    ) -> CraftSetPublicCallbackId;
     /// Cancel a callback previously registered by [`Self::on_craft_set_public`],
     /// causing it not to run in the future.
     fn remove_on_craft_set_public(&self, callback: CraftSetPublicCallbackId);
 }
 
 impl craft_set_public for super::RemoteReducers {
-    fn craft_set_public(&self, progressive_action_entity_id: u64,
-is_public: bool,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("craft_set_public", CraftSetPublicArgs { progressive_action_entity_id, is_public,  })
+    fn craft_set_public(
+        &self,
+        progressive_action_entity_id: u64,
+        is_public: bool,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "craft_set_public",
+            CraftSetPublicArgs {
+                progressive_action_entity_id,
+                is_public,
+            },
+        )
     }
     fn on_craft_set_public(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &u64, &bool, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &u64, &bool) + Send + 'static,
     ) -> CraftSetPublicCallbackId {
         CraftSetPublicCallbackId(self.imp.on_reducer(
             "craft_set_public",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::CraftSetPublic {
-                            progressive_action_entity_id, is_public, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer:
+                                super::Reducer::CraftSetPublic {
+                                    progressive_action_entity_id,
+                                    is_public,
+                                },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, progressive_action_entity_id, is_public, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, progressive_action_entity_id, is_public)
             }),
         ))
     }
@@ -109,4 +122,3 @@ impl set_flags_for_craft_set_public for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("craft_set_public", flags);
     }
 }
-

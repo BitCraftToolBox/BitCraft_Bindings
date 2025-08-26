@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_claim_add_member_request_type::PlayerClaimAddMemberRequest;
 
@@ -22,8 +17,8 @@ impl From<ClaimAddMemberArgs> for super::Reducer {
     fn from(args: ClaimAddMemberArgs) -> Self {
         Self::ClaimAddMember {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ClaimAddMemberArgs {
@@ -42,8 +37,7 @@ pub trait claim_add_member {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_claim_add_member`] callbacks.
-    fn claim_add_member(&self, request: PlayerClaimAddMemberRequest,
-) -> __sdk::Result<()>;
+    fn claim_add_member(&self, request: PlayerClaimAddMemberRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `claim_add_member`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,41 @@ pub trait claim_add_member {
     ///
     /// The returned [`ClaimAddMemberCallbackId`] can be passed to [`Self::remove_on_claim_add_member`]
     /// to cancel the callback.
-    fn on_claim_add_member(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerClaimAddMemberRequest, ) + Send + 'static) -> ClaimAddMemberCallbackId;
+    fn on_claim_add_member(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerClaimAddMemberRequest) + Send + 'static,
+    ) -> ClaimAddMemberCallbackId;
     /// Cancel a callback previously registered by [`Self::on_claim_add_member`],
     /// causing it not to run in the future.
     fn remove_on_claim_add_member(&self, callback: ClaimAddMemberCallbackId);
 }
 
 impl claim_add_member for super::RemoteReducers {
-    fn claim_add_member(&self, request: PlayerClaimAddMemberRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("claim_add_member", ClaimAddMemberArgs { request,  })
+    fn claim_add_member(&self, request: PlayerClaimAddMemberRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("claim_add_member", ClaimAddMemberArgs { request })
     }
     fn on_claim_add_member(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerClaimAddMemberRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerClaimAddMemberRequest)
+            + Send
+            + 'static,
     ) -> ClaimAddMemberCallbackId {
         ClaimAddMemberCallbackId(self.imp.on_reducer(
             "claim_add_member",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ClaimAddMember {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ClaimAddMember { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
@@ -106,4 +107,3 @@ impl set_flags_for_claim_add_member for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("claim_add_member", flags);
     }
 }
-

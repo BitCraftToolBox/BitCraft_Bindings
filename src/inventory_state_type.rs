@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::pocket_type::Pocket;
 
@@ -16,15 +11,13 @@ use super::pocket_type::Pocket;
 #[sats(crate = __lib)]
 pub struct InventoryState {
     pub entity_id: u64,
-    pub pockets: Vec::<Pocket>,
+    pub pockets: Vec<Pocket>,
     pub inventory_index: i32,
     pub cargo_index: i32,
     pub owner_entity_id: u64,
     pub player_owner_entity_id: u64,
 }
 
-
 impl __sdk::InModule for InventoryState {
     type Module = super::RemoteModule;
 }
-

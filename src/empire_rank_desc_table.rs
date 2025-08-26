@@ -3,13 +3,8 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::empire_rank_desc_type::EmpireRankDesc;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `empire_rank_desc`.
 ///
@@ -50,8 +45,12 @@ impl<'ctx> __sdk::Table for EmpireRankDescTableHandle<'ctx> {
     type Row = EmpireRankDesc;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = EmpireRankDesc> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = EmpireRankDesc> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = EmpireRankDescInsertCallbackId;
 
@@ -82,8 +81,7 @@ impl<'ctx> __sdk::Table for EmpireRankDescTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<EmpireRankDesc>("empire_rank_desc");
+    let _table = client_cache.get_or_make_table::<EmpireRankDesc>("empire_rank_desc");
     _table.add_unique_constraint::<i32>("rank", |row| &row.rank);
 }
 pub struct EmpireRankDescUpdateCallbackId(__sdk::CallbackId);
@@ -103,46 +101,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for EmpireRankDescTableHandle<'ctx> {
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<EmpireRankDesc>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<EmpireRankDesc>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<EmpireRankDesc>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `rank` unique index on the table `empire_rank_desc`,
-        /// which allows point queries on the field of the same name
-        /// via the [`EmpireRankDescRankUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.empire_rank_desc().rank().find(...)`.
-        pub struct EmpireRankDescRankUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<EmpireRankDesc, i32>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `rank` unique index on the table `empire_rank_desc`,
+/// which allows point queries on the field of the same name
+/// via the [`EmpireRankDescRankUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.empire_rank_desc().rank().find(...)`.
+pub struct EmpireRankDescRankUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<EmpireRankDesc, i32>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> EmpireRankDescTableHandle<'ctx> {
-            /// Get a handle on the `rank` unique index on the table `empire_rank_desc`.
-            pub fn rank(&self) -> EmpireRankDescRankUnique<'ctx> {
-                EmpireRankDescRankUnique {
-                    imp: self.imp.get_unique_constraint::<i32>("rank"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> EmpireRankDescTableHandle<'ctx> {
+    /// Get a handle on the `rank` unique index on the table `empire_rank_desc`.
+    pub fn rank(&self) -> EmpireRankDescRankUnique<'ctx> {
+        EmpireRankDescRankUnique {
+            imp: self.imp.get_unique_constraint::<i32>("rank"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> EmpireRankDescRankUnique<'ctx> {
-            /// Find the subscribed row whose `rank` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &i32) -> Option<EmpireRankDesc> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> EmpireRankDescRankUnique<'ctx> {
+    /// Find the subscribed row whose `rank` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &i32) -> Option<EmpireRankDesc> {
+        self.imp.find(col_val)
+    }
+}

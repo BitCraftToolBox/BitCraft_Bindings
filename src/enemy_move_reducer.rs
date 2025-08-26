@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::enemy_move_request_type::EnemyMoveRequest;
 
@@ -22,8 +17,8 @@ impl From<EnemyMoveArgs> for super::Reducer {
     fn from(args: EnemyMoveArgs) -> Self {
         Self::EnemyMove {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for EnemyMoveArgs {
@@ -42,8 +37,7 @@ pub trait enemy_move {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_enemy_move`] callbacks.
-    fn enemy_move(&self, request: EnemyMoveRequest,
-) -> __sdk::Result<()>;
+    fn enemy_move(&self, request: EnemyMoveRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `enemy_move`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,39 @@ pub trait enemy_move {
     ///
     /// The returned [`EnemyMoveCallbackId`] can be passed to [`Self::remove_on_enemy_move`]
     /// to cancel the callback.
-    fn on_enemy_move(&self, callback: impl FnMut(&super::ReducerEventContext, &EnemyMoveRequest, ) + Send + 'static) -> EnemyMoveCallbackId;
+    fn on_enemy_move(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &EnemyMoveRequest) + Send + 'static,
+    ) -> EnemyMoveCallbackId;
     /// Cancel a callback previously registered by [`Self::on_enemy_move`],
     /// causing it not to run in the future.
     fn remove_on_enemy_move(&self, callback: EnemyMoveCallbackId);
 }
 
 impl enemy_move for super::RemoteReducers {
-    fn enemy_move(&self, request: EnemyMoveRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("enemy_move", EnemyMoveArgs { request,  })
+    fn enemy_move(&self, request: EnemyMoveRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("enemy_move", EnemyMoveArgs { request })
     }
     fn on_enemy_move(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &EnemyMoveRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &EnemyMoveRequest) + Send + 'static,
     ) -> EnemyMoveCallbackId {
         EnemyMoveCallbackId(self.imp.on_reducer(
             "enemy_move",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::EnemyMove {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::EnemyMove { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
@@ -106,4 +105,3 @@ impl set_flags_for_enemy_move for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("enemy_move", flags);
     }
 }
-

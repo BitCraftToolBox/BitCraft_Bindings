@@ -3,23 +3,16 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
-pub(super) struct LogClaimTierLeaderboardArgs {
-    }
+pub(super) struct LogClaimTierLeaderboardArgs {}
 
 impl From<LogClaimTierLeaderboardArgs> for super::Reducer {
     fn from(args: LogClaimTierLeaderboardArgs) -> Self {
         Self::LogClaimTierLeaderboard
-}
+    }
 }
 
 impl __sdk::InModule for LogClaimTierLeaderboardArgs {
@@ -38,7 +31,7 @@ pub trait log_claim_tier_leaderboard {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_log_claim_tier_leaderboard`] callbacks.
-    fn log_claim_tier_leaderboard(&self, ) -> __sdk::Result<()>;
+    fn log_claim_tier_leaderboard(&self) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `log_claim_tier_leaderboard`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -46,38 +39,45 @@ pub trait log_claim_tier_leaderboard {
     ///
     /// The returned [`LogClaimTierLeaderboardCallbackId`] can be passed to [`Self::remove_on_log_claim_tier_leaderboard`]
     /// to cancel the callback.
-    fn on_log_claim_tier_leaderboard(&self, callback: impl FnMut(&super::ReducerEventContext, ) + Send + 'static) -> LogClaimTierLeaderboardCallbackId;
+    fn on_log_claim_tier_leaderboard(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext) + Send + 'static,
+    ) -> LogClaimTierLeaderboardCallbackId;
     /// Cancel a callback previously registered by [`Self::on_log_claim_tier_leaderboard`],
     /// causing it not to run in the future.
     fn remove_on_log_claim_tier_leaderboard(&self, callback: LogClaimTierLeaderboardCallbackId);
 }
 
 impl log_claim_tier_leaderboard for super::RemoteReducers {
-    fn log_claim_tier_leaderboard(&self, ) -> __sdk::Result<()> {
-        self.imp.call_reducer("log_claim_tier_leaderboard", LogClaimTierLeaderboardArgs {  })
+    fn log_claim_tier_leaderboard(&self) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("log_claim_tier_leaderboard", LogClaimTierLeaderboardArgs {})
     }
     fn on_log_claim_tier_leaderboard(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext) + Send + 'static,
     ) -> LogClaimTierLeaderboardCallbackId {
         LogClaimTierLeaderboardCallbackId(self.imp.on_reducer(
             "log_claim_tier_leaderboard",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::LogClaimTierLeaderboard {
-                            
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::LogClaimTierLeaderboard {},
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx)
             }),
         ))
     }
     fn remove_on_log_claim_tier_leaderboard(&self, callback: LogClaimTierLeaderboardCallbackId) {
-        self.imp.remove_on_reducer("log_claim_tier_leaderboard", callback.0)
+        self.imp
+            .remove_on_reducer("log_claim_tier_leaderboard", callback.0)
     }
 }
 
@@ -97,7 +97,7 @@ pub trait set_flags_for_log_claim_tier_leaderboard {
 
 impl set_flags_for_log_claim_tier_leaderboard for super::SetReducerFlags {
     fn log_claim_tier_leaderboard(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("log_claim_tier_leaderboard", flags);
+        self.imp
+            .set_call_reducer_flags("log_claim_tier_leaderboard", flags);
     }
 }
-

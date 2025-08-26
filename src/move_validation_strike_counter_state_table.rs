@@ -3,13 +3,8 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::move_validation_strike_counter_state_type::MoveValidationStrikeCounterState;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `move_validation_strike_counter_state`.
 ///
@@ -31,13 +26,19 @@ pub struct MoveValidationStrikeCounterStateTableHandle<'ctx> {
 pub trait MoveValidationStrikeCounterStateTableAccess {
     #[allow(non_snake_case)]
     /// Obtain a [`MoveValidationStrikeCounterStateTableHandle`], which mediates access to the table `move_validation_strike_counter_state`.
-    fn move_validation_strike_counter_state(&self) -> MoveValidationStrikeCounterStateTableHandle<'_>;
+    fn move_validation_strike_counter_state(
+        &self,
+    ) -> MoveValidationStrikeCounterStateTableHandle<'_>;
 }
 
 impl MoveValidationStrikeCounterStateTableAccess for super::RemoteTables {
-    fn move_validation_strike_counter_state(&self) -> MoveValidationStrikeCounterStateTableHandle<'_> {
+    fn move_validation_strike_counter_state(
+        &self,
+    ) -> MoveValidationStrikeCounterStateTableHandle<'_> {
         MoveValidationStrikeCounterStateTableHandle {
-            imp: self.imp.get_table::<MoveValidationStrikeCounterState>("move_validation_strike_counter_state"),
+            imp: self.imp.get_table::<MoveValidationStrikeCounterState>(
+                "move_validation_strike_counter_state",
+            ),
             ctx: std::marker::PhantomData,
         }
     }
@@ -50,8 +51,12 @@ impl<'ctx> __sdk::Table for MoveValidationStrikeCounterStateTableHandle<'ctx> {
     type Row = MoveValidationStrikeCounterState;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = MoveValidationStrikeCounterState> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = MoveValidationStrikeCounterState> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = MoveValidationStrikeCounterStateInsertCallbackId;
 
@@ -82,8 +87,9 @@ impl<'ctx> __sdk::Table for MoveValidationStrikeCounterStateTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<MoveValidationStrikeCounterState>("move_validation_strike_counter_state");
+    let _table = client_cache.get_or_make_table::<MoveValidationStrikeCounterState>(
+        "move_validation_strike_counter_state",
+    );
     _table.add_unique_constraint::<u64>("entity_id", |row| &row.entity_id);
 }
 pub struct MoveValidationStrikeCounterStateUpdateCallbackId(__sdk::CallbackId);
@@ -103,7 +109,6 @@ impl<'ctx> __sdk::TableWithPrimaryKey for MoveValidationStrikeCounterStateTableH
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
@@ -112,37 +117,38 @@ pub(super) fn parse_table_update(
         __sdk::InternalError::failed_parse(
             "TableUpdate<MoveValidationStrikeCounterState>",
             "TableUpdate",
-        ).with_cause(e).into()
+        )
+        .with_cause(e)
+        .into()
     })
 }
 
-        /// Access to the `entity_id` unique index on the table `move_validation_strike_counter_state`,
-        /// which allows point queries on the field of the same name
-        /// via the [`MoveValidationStrikeCounterStateEntityIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.move_validation_strike_counter_state().entity_id().find(...)`.
-        pub struct MoveValidationStrikeCounterStateEntityIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<MoveValidationStrikeCounterState, u64>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `entity_id` unique index on the table `move_validation_strike_counter_state`,
+/// which allows point queries on the field of the same name
+/// via the [`MoveValidationStrikeCounterStateEntityIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.move_validation_strike_counter_state().entity_id().find(...)`.
+pub struct MoveValidationStrikeCounterStateEntityIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<MoveValidationStrikeCounterState, u64>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> MoveValidationStrikeCounterStateTableHandle<'ctx> {
-            /// Get a handle on the `entity_id` unique index on the table `move_validation_strike_counter_state`.
-            pub fn entity_id(&self) -> MoveValidationStrikeCounterStateEntityIdUnique<'ctx> {
-                MoveValidationStrikeCounterStateEntityIdUnique {
-                    imp: self.imp.get_unique_constraint::<u64>("entity_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> MoveValidationStrikeCounterStateTableHandle<'ctx> {
+    /// Get a handle on the `entity_id` unique index on the table `move_validation_strike_counter_state`.
+    pub fn entity_id(&self) -> MoveValidationStrikeCounterStateEntityIdUnique<'ctx> {
+        MoveValidationStrikeCounterStateEntityIdUnique {
+            imp: self.imp.get_unique_constraint::<u64>("entity_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> MoveValidationStrikeCounterStateEntityIdUnique<'ctx> {
-            /// Find the subscribed row whose `entity_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u64) -> Option<MoveValidationStrikeCounterState> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> MoveValidationStrikeCounterStateEntityIdUnique<'ctx> {
+    /// Find the subscribed row whose `entity_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u64) -> Option<MoveValidationStrikeCounterState> {
+        self.imp.find(col_val)
+    }
+}

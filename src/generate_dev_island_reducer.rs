@@ -3,23 +3,16 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
-pub(super) struct GenerateDevIslandArgs {
-    }
+pub(super) struct GenerateDevIslandArgs {}
 
 impl From<GenerateDevIslandArgs> for super::Reducer {
     fn from(args: GenerateDevIslandArgs) -> Self {
         Self::GenerateDevIsland
-}
+    }
 }
 
 impl __sdk::InModule for GenerateDevIslandArgs {
@@ -38,7 +31,7 @@ pub trait generate_dev_island {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_generate_dev_island`] callbacks.
-    fn generate_dev_island(&self, ) -> __sdk::Result<()>;
+    fn generate_dev_island(&self) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `generate_dev_island`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -46,38 +39,45 @@ pub trait generate_dev_island {
     ///
     /// The returned [`GenerateDevIslandCallbackId`] can be passed to [`Self::remove_on_generate_dev_island`]
     /// to cancel the callback.
-    fn on_generate_dev_island(&self, callback: impl FnMut(&super::ReducerEventContext, ) + Send + 'static) -> GenerateDevIslandCallbackId;
+    fn on_generate_dev_island(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext) + Send + 'static,
+    ) -> GenerateDevIslandCallbackId;
     /// Cancel a callback previously registered by [`Self::on_generate_dev_island`],
     /// causing it not to run in the future.
     fn remove_on_generate_dev_island(&self, callback: GenerateDevIslandCallbackId);
 }
 
 impl generate_dev_island for super::RemoteReducers {
-    fn generate_dev_island(&self, ) -> __sdk::Result<()> {
-        self.imp.call_reducer("generate_dev_island", GenerateDevIslandArgs {  })
+    fn generate_dev_island(&self) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("generate_dev_island", GenerateDevIslandArgs {})
     }
     fn on_generate_dev_island(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext) + Send + 'static,
     ) -> GenerateDevIslandCallbackId {
         GenerateDevIslandCallbackId(self.imp.on_reducer(
             "generate_dev_island",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::GenerateDevIsland {
-                            
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::GenerateDevIsland {},
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx)
             }),
         ))
     }
     fn remove_on_generate_dev_island(&self, callback: GenerateDevIslandCallbackId) {
-        self.imp.remove_on_reducer("generate_dev_island", callback.0)
+        self.imp
+            .remove_on_reducer("generate_dev_island", callback.0)
     }
 }
 
@@ -97,7 +97,7 @@ pub trait set_flags_for_generate_dev_island {
 
 impl set_flags_for_generate_dev_island for super::SetReducerFlags {
     fn generate_dev_island(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("generate_dev_island", flags);
+        self.imp
+            .set_call_reducer_flags("generate_dev_island", flags);
     }
 }
-

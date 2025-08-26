@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::pocket_key_type::PocketKey;
 
@@ -20,8 +15,6 @@ pub struct PlayerPocketSwapContentsRequest {
     pub quantity: i32,
 }
 
-
 impl __sdk::InModule for PlayerPocketSwapContentsRequest {
     type Module = super::RemoteModule;
 }
-

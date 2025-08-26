@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::building_state_type::BuildingState;
 
@@ -17,12 +12,10 @@ use super::building_state_type::BuildingState;
 pub struct WorldGenGeneratedBuilding {
     pub x: i32,
     pub z: i32,
-    pub building: Option::<BuildingState>,
+    pub building: Option<BuildingState>,
     pub dimension: u32,
 }
-
 
 impl __sdk::InModule for WorldGenGeneratedBuilding {
     type Module = super::RemoteModule;
 }
-

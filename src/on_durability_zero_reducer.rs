@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::on_durability_zero_timer_type::OnDurabilityZeroTimer;
 
@@ -20,10 +15,8 @@ pub(super) struct OnDurabilityZeroArgs {
 
 impl From<OnDurabilityZeroArgs> for super::Reducer {
     fn from(args: OnDurabilityZeroArgs) -> Self {
-        Self::OnDurabilityZero {
-            timer: args.timer,
-}
-}
+        Self::OnDurabilityZero { timer: args.timer }
+    }
 }
 
 impl __sdk::InModule for OnDurabilityZeroArgs {
@@ -42,8 +35,7 @@ pub trait on_durability_zero {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_on_durability_zero`] callbacks.
-    fn on_durability_zero(&self, timer: OnDurabilityZeroTimer,
-) -> __sdk::Result<()>;
+    fn on_durability_zero(&self, timer: OnDurabilityZeroTimer) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `on_durability_zero`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +43,39 @@ pub trait on_durability_zero {
     ///
     /// The returned [`OnDurabilityZeroCallbackId`] can be passed to [`Self::remove_on_on_durability_zero`]
     /// to cancel the callback.
-    fn on_on_durability_zero(&self, callback: impl FnMut(&super::ReducerEventContext, &OnDurabilityZeroTimer, ) + Send + 'static) -> OnDurabilityZeroCallbackId;
+    fn on_on_durability_zero(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &OnDurabilityZeroTimer) + Send + 'static,
+    ) -> OnDurabilityZeroCallbackId;
     /// Cancel a callback previously registered by [`Self::on_on_durability_zero`],
     /// causing it not to run in the future.
     fn remove_on_on_durability_zero(&self, callback: OnDurabilityZeroCallbackId);
 }
 
 impl on_durability_zero for super::RemoteReducers {
-    fn on_durability_zero(&self, timer: OnDurabilityZeroTimer,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("on_durability_zero", OnDurabilityZeroArgs { timer,  })
+    fn on_durability_zero(&self, timer: OnDurabilityZeroTimer) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("on_durability_zero", OnDurabilityZeroArgs { timer })
     }
     fn on_on_durability_zero(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &OnDurabilityZeroTimer, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &OnDurabilityZeroTimer) + Send + 'static,
     ) -> OnDurabilityZeroCallbackId {
         OnDurabilityZeroCallbackId(self.imp.on_reducer(
             "on_durability_zero",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::OnDurabilityZero {
-                            timer, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::OnDurabilityZero { timer },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, timer, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, timer)
             }),
         ))
     }
@@ -106,4 +103,3 @@ impl set_flags_for_on_durability_zero for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("on_durability_zero", flags);
     }
 }
-

@@ -3,16 +3,11 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
-use super::world_gen_vector_2_int_type::WorldGenVector2Int;
-use super::world_gen_noise_specs_type::WorldGenNoiseSpecs;
 use super::world_gen_noise_based_elevation_layer_blending_mode_type::WorldGenNoiseBasedElevationLayerBlendingMode;
+use super::world_gen_noise_specs_type::WorldGenNoiseSpecs;
+use super::world_gen_vector_2_int_type::WorldGenVector2Int;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -23,8 +18,6 @@ pub struct WorldGenNoiseBasedElevationLayer {
     pub noise: WorldGenNoiseSpecs,
 }
 
-
 impl __sdk::InModule for WorldGenNoiseBasedElevationLayer {
     type Module = super::RemoteModule;
 }
-

@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::building_decay_loop_timer_type::BuildingDecayLoopTimer;
 
@@ -20,10 +15,8 @@ pub(super) struct BuildingDecayAgentLoopArgs {
 
 impl From<BuildingDecayAgentLoopArgs> for super::Reducer {
     fn from(args: BuildingDecayAgentLoopArgs) -> Self {
-        Self::BuildingDecayAgentLoop {
-            timer: args.timer,
-}
-}
+        Self::BuildingDecayAgentLoop { timer: args.timer }
+    }
 }
 
 impl __sdk::InModule for BuildingDecayAgentLoopArgs {
@@ -42,8 +35,7 @@ pub trait building_decay_agent_loop {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_building_decay_agent_loop`] callbacks.
-    fn building_decay_agent_loop(&self, timer: BuildingDecayLoopTimer,
-) -> __sdk::Result<()>;
+    fn building_decay_agent_loop(&self, timer: BuildingDecayLoopTimer) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `building_decay_agent_loop`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +43,47 @@ pub trait building_decay_agent_loop {
     ///
     /// The returned [`BuildingDecayAgentLoopCallbackId`] can be passed to [`Self::remove_on_building_decay_agent_loop`]
     /// to cancel the callback.
-    fn on_building_decay_agent_loop(&self, callback: impl FnMut(&super::ReducerEventContext, &BuildingDecayLoopTimer, ) + Send + 'static) -> BuildingDecayAgentLoopCallbackId;
+    fn on_building_decay_agent_loop(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &BuildingDecayLoopTimer) + Send + 'static,
+    ) -> BuildingDecayAgentLoopCallbackId;
     /// Cancel a callback previously registered by [`Self::on_building_decay_agent_loop`],
     /// causing it not to run in the future.
     fn remove_on_building_decay_agent_loop(&self, callback: BuildingDecayAgentLoopCallbackId);
 }
 
 impl building_decay_agent_loop for super::RemoteReducers {
-    fn building_decay_agent_loop(&self, timer: BuildingDecayLoopTimer,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("building_decay_agent_loop", BuildingDecayAgentLoopArgs { timer,  })
+    fn building_decay_agent_loop(&self, timer: BuildingDecayLoopTimer) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "building_decay_agent_loop",
+            BuildingDecayAgentLoopArgs { timer },
+        )
     }
     fn on_building_decay_agent_loop(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &BuildingDecayLoopTimer, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &BuildingDecayLoopTimer) + Send + 'static,
     ) -> BuildingDecayAgentLoopCallbackId {
         BuildingDecayAgentLoopCallbackId(self.imp.on_reducer(
             "building_decay_agent_loop",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::BuildingDecayAgentLoop {
-                            timer, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::BuildingDecayAgentLoop { timer },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, timer, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, timer)
             }),
         ))
     }
     fn remove_on_building_decay_agent_loop(&self, callback: BuildingDecayAgentLoopCallbackId) {
-        self.imp.remove_on_reducer("building_decay_agent_loop", callback.0)
+        self.imp
+            .remove_on_reducer("building_decay_agent_loop", callback.0)
     }
 }
 
@@ -103,7 +103,7 @@ pub trait set_flags_for_building_decay_agent_loop {
 
 impl set_flags_for_building_decay_agent_loop for super::SetReducerFlags {
     fn building_decay_agent_loop(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("building_decay_agent_loop", flags);
+        self.imp
+            .set_call_reducer_flags("building_decay_agent_loop", flags);
     }
 }
-

@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_death_timer_type::PlayerDeathTimer;
 
@@ -20,10 +15,8 @@ pub(super) struct PlayerDeathStartArgs {
 
 impl From<PlayerDeathStartArgs> for super::Reducer {
     fn from(args: PlayerDeathStartArgs) -> Self {
-        Self::PlayerDeathStart {
-            timer: args.timer,
-}
-}
+        Self::PlayerDeathStart { timer: args.timer }
+    }
 }
 
 impl __sdk::InModule for PlayerDeathStartArgs {
@@ -42,8 +35,7 @@ pub trait player_death_start {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_player_death_start`] callbacks.
-    fn player_death_start(&self, timer: PlayerDeathTimer,
-) -> __sdk::Result<()>;
+    fn player_death_start(&self, timer: PlayerDeathTimer) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `player_death_start`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +43,39 @@ pub trait player_death_start {
     ///
     /// The returned [`PlayerDeathStartCallbackId`] can be passed to [`Self::remove_on_player_death_start`]
     /// to cancel the callback.
-    fn on_player_death_start(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerDeathTimer, ) + Send + 'static) -> PlayerDeathStartCallbackId;
+    fn on_player_death_start(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerDeathTimer) + Send + 'static,
+    ) -> PlayerDeathStartCallbackId;
     /// Cancel a callback previously registered by [`Self::on_player_death_start`],
     /// causing it not to run in the future.
     fn remove_on_player_death_start(&self, callback: PlayerDeathStartCallbackId);
 }
 
 impl player_death_start for super::RemoteReducers {
-    fn player_death_start(&self, timer: PlayerDeathTimer,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("player_death_start", PlayerDeathStartArgs { timer,  })
+    fn player_death_start(&self, timer: PlayerDeathTimer) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("player_death_start", PlayerDeathStartArgs { timer })
     }
     fn on_player_death_start(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerDeathTimer, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerDeathTimer) + Send + 'static,
     ) -> PlayerDeathStartCallbackId {
         PlayerDeathStartCallbackId(self.imp.on_reducer(
             "player_death_start",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::PlayerDeathStart {
-                            timer, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::PlayerDeathStart { timer },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, timer, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, timer)
             }),
         ))
     }
@@ -106,4 +103,3 @@ impl set_flags_for_player_death_start for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("player_death_start", flags);
     }
 }
-

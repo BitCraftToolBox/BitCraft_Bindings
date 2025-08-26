@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_terraform_cancel_request_type::PlayerTerraformCancelRequest;
 
@@ -22,8 +17,8 @@ impl From<TerraformCancelArgs> for super::Reducer {
     fn from(args: TerraformCancelArgs) -> Self {
         Self::TerraformCancel {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for TerraformCancelArgs {
@@ -42,8 +37,7 @@ pub trait terraform_cancel {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_terraform_cancel`] callbacks.
-    fn terraform_cancel(&self, request: PlayerTerraformCancelRequest,
-) -> __sdk::Result<()>;
+    fn terraform_cancel(&self, request: PlayerTerraformCancelRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `terraform_cancel`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,43 @@ pub trait terraform_cancel {
     ///
     /// The returned [`TerraformCancelCallbackId`] can be passed to [`Self::remove_on_terraform_cancel`]
     /// to cancel the callback.
-    fn on_terraform_cancel(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerTerraformCancelRequest, ) + Send + 'static) -> TerraformCancelCallbackId;
+    fn on_terraform_cancel(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerTerraformCancelRequest)
+            + Send
+            + 'static,
+    ) -> TerraformCancelCallbackId;
     /// Cancel a callback previously registered by [`Self::on_terraform_cancel`],
     /// causing it not to run in the future.
     fn remove_on_terraform_cancel(&self, callback: TerraformCancelCallbackId);
 }
 
 impl terraform_cancel for super::RemoteReducers {
-    fn terraform_cancel(&self, request: PlayerTerraformCancelRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("terraform_cancel", TerraformCancelArgs { request,  })
+    fn terraform_cancel(&self, request: PlayerTerraformCancelRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("terraform_cancel", TerraformCancelArgs { request })
     }
     fn on_terraform_cancel(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerTerraformCancelRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerTerraformCancelRequest)
+            + Send
+            + 'static,
     ) -> TerraformCancelCallbackId {
         TerraformCancelCallbackId(self.imp.on_reducer(
             "terraform_cancel",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::TerraformCancel {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::TerraformCancel { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
@@ -106,4 +109,3 @@ impl set_flags_for_terraform_cancel for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("terraform_cancel", flags);
     }
 }
-

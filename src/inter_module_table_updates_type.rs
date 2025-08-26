@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::blocked_identity_op_type::BlockedIdentityOp;
 use super::building_nickname_state_op_type::BuildingNicknameStateOp;
@@ -37,33 +32,31 @@ use super::user_state_op_type::UserStateOp;
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub struct InterModuleTableUpdates {
-    pub blocked_identity: Option::<Vec::<BlockedIdentityOp>>,
-    pub building_nickname_state: Option::<Vec::<BuildingNicknameStateOp>>,
-    pub building_state: Option::<Vec::<BuildingStateOp>>,
-    pub claim_member_state: Option::<Vec::<ClaimMemberStateOp>>,
-    pub claim_state: Option::<Vec::<ClaimStateOp>>,
-    pub empire_chunk_state: Option::<Vec::<EmpireChunkStateOp>>,
-    pub empire_expansion_state: Option::<Vec::<EmpireExpansionStateOp>>,
-    pub empire_node_siege_state: Option::<Vec::<EmpireNodeSiegeStateOp>>,
-    pub empire_node_state: Option::<Vec::<EmpireNodeStateOp>>,
-    pub empire_player_data_state: Option::<Vec::<EmpirePlayerDataStateOp>>,
-    pub empire_rank_state: Option::<Vec::<EmpireRankStateOp>>,
-    pub empire_settlement_state: Option::<Vec::<EmpireSettlementStateOp>>,
-    pub empire_state: Option::<Vec::<EmpireStateOp>>,
-    pub identity_role: Option::<Vec::<IdentityRoleOp>>,
-    pub location_state: Option::<Vec::<LocationStateOp>>,
-    pub player_housing_state: Option::<Vec::<PlayerHousingStateOp>>,
-    pub player_report_state: Option::<Vec::<PlayerReportStateOp>>,
-    pub region_connection_info: Option::<Vec::<RegionConnectionInfoOp>>,
-    pub region_population_info: Option::<Vec::<RegionPopulationInfoOp>>,
-    pub region_sign_in_parameters: Option::<Vec::<RegionSignInParametersOp>>,
-    pub user_authentication_state: Option::<Vec::<UserAuthenticationStateOp>>,
-    pub user_moderation_state: Option::<Vec::<UserModerationStateOp>>,
-    pub user_state: Option::<Vec::<UserStateOp>>,
+    pub blocked_identity: Option<Vec<BlockedIdentityOp>>,
+    pub building_nickname_state: Option<Vec<BuildingNicknameStateOp>>,
+    pub building_state: Option<Vec<BuildingStateOp>>,
+    pub claim_member_state: Option<Vec<ClaimMemberStateOp>>,
+    pub claim_state: Option<Vec<ClaimStateOp>>,
+    pub empire_chunk_state: Option<Vec<EmpireChunkStateOp>>,
+    pub empire_expansion_state: Option<Vec<EmpireExpansionStateOp>>,
+    pub empire_node_siege_state: Option<Vec<EmpireNodeSiegeStateOp>>,
+    pub empire_node_state: Option<Vec<EmpireNodeStateOp>>,
+    pub empire_player_data_state: Option<Vec<EmpirePlayerDataStateOp>>,
+    pub empire_rank_state: Option<Vec<EmpireRankStateOp>>,
+    pub empire_settlement_state: Option<Vec<EmpireSettlementStateOp>>,
+    pub empire_state: Option<Vec<EmpireStateOp>>,
+    pub identity_role: Option<Vec<IdentityRoleOp>>,
+    pub location_state: Option<Vec<LocationStateOp>>,
+    pub player_housing_state: Option<Vec<PlayerHousingStateOp>>,
+    pub player_report_state: Option<Vec<PlayerReportStateOp>>,
+    pub region_connection_info: Option<Vec<RegionConnectionInfoOp>>,
+    pub region_population_info: Option<Vec<RegionPopulationInfoOp>>,
+    pub region_sign_in_parameters: Option<Vec<RegionSignInParametersOp>>,
+    pub user_authentication_state: Option<Vec<UserAuthenticationStateOp>>,
+    pub user_moderation_state: Option<Vec<UserModerationStateOp>>,
+    pub user_state: Option<Vec<UserStateOp>>,
 }
-
 
 impl __sdk::InModule for InterModuleTableUpdates {
     type Module = super::RemoteModule;
 }
-

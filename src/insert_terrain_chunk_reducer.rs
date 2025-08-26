@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::terrain_chunk_state_type::TerrainChunkState;
 use super::world_gen_generated_building_type::WorldGenGeneratedBuilding;
@@ -18,8 +13,8 @@ use super::world_gen_generated_resource_deposit_type::WorldGenGeneratedResourceD
 #[sats(crate = __lib)]
 pub(super) struct InsertTerrainChunkArgs {
     pub terrain_chunk: TerrainChunkState,
-    pub buildings: Vec::<WorldGenGeneratedBuilding>,
-    pub resources: Vec::<WorldGenGeneratedResourceDeposit>,
+    pub buildings: Vec<WorldGenGeneratedBuilding>,
+    pub resources: Vec<WorldGenGeneratedResourceDeposit>,
 }
 
 impl From<InsertTerrainChunkArgs> for super::Reducer {
@@ -28,8 +23,8 @@ impl From<InsertTerrainChunkArgs> for super::Reducer {
             terrain_chunk: args.terrain_chunk,
             buildings: args.buildings,
             resources: args.resources,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for InsertTerrainChunkArgs {
@@ -48,10 +43,12 @@ pub trait insert_terrain_chunk {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_insert_terrain_chunk`] callbacks.
-    fn insert_terrain_chunk(&self, terrain_chunk: TerrainChunkState,
-buildings: Vec::<WorldGenGeneratedBuilding>,
-resources: Vec::<WorldGenGeneratedResourceDeposit>,
-) -> __sdk::Result<()>;
+    fn insert_terrain_chunk(
+        &self,
+        terrain_chunk: TerrainChunkState,
+        buildings: Vec<WorldGenGeneratedBuilding>,
+        resources: Vec<WorldGenGeneratedResourceDeposit>,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `insert_terrain_chunk`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -59,41 +56,73 @@ resources: Vec::<WorldGenGeneratedResourceDeposit>,
     ///
     /// The returned [`InsertTerrainChunkCallbackId`] can be passed to [`Self::remove_on_insert_terrain_chunk`]
     /// to cancel the callback.
-    fn on_insert_terrain_chunk(&self, callback: impl FnMut(&super::ReducerEventContext, &TerrainChunkState, &Vec::<WorldGenGeneratedBuilding>, &Vec::<WorldGenGeneratedResourceDeposit>, ) + Send + 'static) -> InsertTerrainChunkCallbackId;
+    fn on_insert_terrain_chunk(
+        &self,
+        callback: impl FnMut(
+                &super::ReducerEventContext,
+                &TerrainChunkState,
+                &Vec<WorldGenGeneratedBuilding>,
+                &Vec<WorldGenGeneratedResourceDeposit>,
+            ) + Send
+            + 'static,
+    ) -> InsertTerrainChunkCallbackId;
     /// Cancel a callback previously registered by [`Self::on_insert_terrain_chunk`],
     /// causing it not to run in the future.
     fn remove_on_insert_terrain_chunk(&self, callback: InsertTerrainChunkCallbackId);
 }
 
 impl insert_terrain_chunk for super::RemoteReducers {
-    fn insert_terrain_chunk(&self, terrain_chunk: TerrainChunkState,
-buildings: Vec::<WorldGenGeneratedBuilding>,
-resources: Vec::<WorldGenGeneratedResourceDeposit>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("insert_terrain_chunk", InsertTerrainChunkArgs { terrain_chunk, buildings, resources,  })
+    fn insert_terrain_chunk(
+        &self,
+        terrain_chunk: TerrainChunkState,
+        buildings: Vec<WorldGenGeneratedBuilding>,
+        resources: Vec<WorldGenGeneratedResourceDeposit>,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "insert_terrain_chunk",
+            InsertTerrainChunkArgs {
+                terrain_chunk,
+                buildings,
+                resources,
+            },
+        )
     }
     fn on_insert_terrain_chunk(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &TerrainChunkState, &Vec::<WorldGenGeneratedBuilding>, &Vec::<WorldGenGeneratedResourceDeposit>, ) + Send + 'static,
+        mut callback: impl FnMut(
+                &super::ReducerEventContext,
+                &TerrainChunkState,
+                &Vec<WorldGenGeneratedBuilding>,
+                &Vec<WorldGenGeneratedResourceDeposit>,
+            ) + Send
+            + 'static,
     ) -> InsertTerrainChunkCallbackId {
         InsertTerrainChunkCallbackId(self.imp.on_reducer(
             "insert_terrain_chunk",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::InsertTerrainChunk {
-                            terrain_chunk, buildings, resources, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer:
+                                super::Reducer::InsertTerrainChunk {
+                                    terrain_chunk,
+                                    buildings,
+                                    resources,
+                                },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, terrain_chunk, buildings, resources, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, terrain_chunk, buildings, resources)
             }),
         ))
     }
     fn remove_on_insert_terrain_chunk(&self, callback: InsertTerrainChunkCallbackId) {
-        self.imp.remove_on_reducer("insert_terrain_chunk", callback.0)
+        self.imp
+            .remove_on_reducer("insert_terrain_chunk", callback.0)
     }
 }
 
@@ -113,7 +142,7 @@ pub trait set_flags_for_insert_terrain_chunk {
 
 impl set_flags_for_insert_terrain_chunk for super::SetReducerFlags {
     fn insert_terrain_chunk(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("insert_terrain_chunk", flags);
+        self.imp
+            .set_call_reducer_flags("insert_terrain_chunk", flags);
     }
 }
-

@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::cheat_experience_grant_request_type::CheatExperienceGrantRequest;
 
@@ -22,8 +17,8 @@ impl From<CheatExperienceGrantArgs> for super::Reducer {
     fn from(args: CheatExperienceGrantArgs) -> Self {
         Self::CheatExperienceGrant {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for CheatExperienceGrantArgs {
@@ -42,8 +37,7 @@ pub trait cheat_experience_grant {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_cheat_experience_grant`] callbacks.
-    fn cheat_experience_grant(&self, request: CheatExperienceGrantRequest,
-) -> __sdk::Result<()>;
+    fn cheat_experience_grant(&self, request: CheatExperienceGrantRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `cheat_experience_grant`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,49 @@ pub trait cheat_experience_grant {
     ///
     /// The returned [`CheatExperienceGrantCallbackId`] can be passed to [`Self::remove_on_cheat_experience_grant`]
     /// to cancel the callback.
-    fn on_cheat_experience_grant(&self, callback: impl FnMut(&super::ReducerEventContext, &CheatExperienceGrantRequest, ) + Send + 'static) -> CheatExperienceGrantCallbackId;
+    fn on_cheat_experience_grant(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &CheatExperienceGrantRequest) + Send + 'static,
+    ) -> CheatExperienceGrantCallbackId;
     /// Cancel a callback previously registered by [`Self::on_cheat_experience_grant`],
     /// causing it not to run in the future.
     fn remove_on_cheat_experience_grant(&self, callback: CheatExperienceGrantCallbackId);
 }
 
 impl cheat_experience_grant for super::RemoteReducers {
-    fn cheat_experience_grant(&self, request: CheatExperienceGrantRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("cheat_experience_grant", CheatExperienceGrantArgs { request,  })
+    fn cheat_experience_grant(&self, request: CheatExperienceGrantRequest) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "cheat_experience_grant",
+            CheatExperienceGrantArgs { request },
+        )
     }
     fn on_cheat_experience_grant(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &CheatExperienceGrantRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &CheatExperienceGrantRequest)
+            + Send
+            + 'static,
     ) -> CheatExperienceGrantCallbackId {
         CheatExperienceGrantCallbackId(self.imp.on_reducer(
             "cheat_experience_grant",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::CheatExperienceGrant {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::CheatExperienceGrant { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
     fn remove_on_cheat_experience_grant(&self, callback: CheatExperienceGrantCallbackId) {
-        self.imp.remove_on_reducer("cheat_experience_grant", callback.0)
+        self.imp
+            .remove_on_reducer("cheat_experience_grant", callback.0)
     }
 }
 
@@ -103,7 +107,7 @@ pub trait set_flags_for_cheat_experience_grant {
 
 impl set_flags_for_cheat_experience_grant for super::SetReducerFlags {
     fn cheat_experience_grant(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("cheat_experience_grant", flags);
+        self.imp
+            .set_call_reducer_flags("cheat_experience_grant", flags);
     }
 }
-

@@ -3,24 +3,16 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub struct EmpireColorDesc {
     pub id: i32,
     pub color_argb: u64,
-    pub color_2_argb: Option::<u64>,
+    pub color_2_argb: Option<u64>,
 }
-
 
 impl __sdk::InModule for EmpireColorDesc {
     type Module = super::RemoteModule;
 }
-

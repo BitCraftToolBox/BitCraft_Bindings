@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_claim_set_member_permissions_request_type::PlayerClaimSetMemberPermissionsRequest;
 
@@ -22,8 +17,8 @@ impl From<ClaimSetMemberPermissionsArgs> for super::Reducer {
     fn from(args: ClaimSetMemberPermissionsArgs) -> Self {
         Self::ClaimSetMemberPermissions {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ClaimSetMemberPermissionsArgs {
@@ -42,8 +37,10 @@ pub trait claim_set_member_permissions {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_claim_set_member_permissions`] callbacks.
-    fn claim_set_member_permissions(&self, request: PlayerClaimSetMemberPermissionsRequest,
-) -> __sdk::Result<()>;
+    fn claim_set_member_permissions(
+        &self,
+        request: PlayerClaimSetMemberPermissionsRequest,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `claim_set_member_permissions`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +48,57 @@ pub trait claim_set_member_permissions {
     ///
     /// The returned [`ClaimSetMemberPermissionsCallbackId`] can be passed to [`Self::remove_on_claim_set_member_permissions`]
     /// to cancel the callback.
-    fn on_claim_set_member_permissions(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerClaimSetMemberPermissionsRequest, ) + Send + 'static) -> ClaimSetMemberPermissionsCallbackId;
+    fn on_claim_set_member_permissions(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerClaimSetMemberPermissionsRequest)
+            + Send
+            + 'static,
+    ) -> ClaimSetMemberPermissionsCallbackId;
     /// Cancel a callback previously registered by [`Self::on_claim_set_member_permissions`],
     /// causing it not to run in the future.
     fn remove_on_claim_set_member_permissions(&self, callback: ClaimSetMemberPermissionsCallbackId);
 }
 
 impl claim_set_member_permissions for super::RemoteReducers {
-    fn claim_set_member_permissions(&self, request: PlayerClaimSetMemberPermissionsRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("claim_set_member_permissions", ClaimSetMemberPermissionsArgs { request,  })
+    fn claim_set_member_permissions(
+        &self,
+        request: PlayerClaimSetMemberPermissionsRequest,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "claim_set_member_permissions",
+            ClaimSetMemberPermissionsArgs { request },
+        )
     }
     fn on_claim_set_member_permissions(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerClaimSetMemberPermissionsRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerClaimSetMemberPermissionsRequest)
+            + Send
+            + 'static,
     ) -> ClaimSetMemberPermissionsCallbackId {
         ClaimSetMemberPermissionsCallbackId(self.imp.on_reducer(
             "claim_set_member_permissions",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ClaimSetMemberPermissions {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ClaimSetMemberPermissions { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
-    fn remove_on_claim_set_member_permissions(&self, callback: ClaimSetMemberPermissionsCallbackId) {
-        self.imp.remove_on_reducer("claim_set_member_permissions", callback.0)
+    fn remove_on_claim_set_member_permissions(
+        &self,
+        callback: ClaimSetMemberPermissionsCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("claim_set_member_permissions", callback.0)
     }
 }
 
@@ -103,7 +118,7 @@ pub trait set_flags_for_claim_set_member_permissions {
 
 impl set_flags_for_claim_set_member_permissions for super::SetReducerFlags {
     fn claim_set_member_permissions(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("claim_set_member_permissions", flags);
+        self.imp
+            .set_call_reducer_flags("claim_set_member_permissions", flags);
     }
 }
-

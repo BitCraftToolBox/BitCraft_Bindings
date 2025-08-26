@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::gate_desc_type::GateDesc;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct StageGateDescArgs {
-    pub records: Vec::<GateDesc>,
+    pub records: Vec<GateDesc>,
 }
 
 impl From<StageGateDescArgs> for super::Reducer {
     fn from(args: StageGateDescArgs) -> Self {
         Self::StageGateDesc {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for StageGateDescArgs {
@@ -42,8 +37,7 @@ pub trait stage_gate_desc {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_stage_gate_desc`] callbacks.
-    fn stage_gate_desc(&self, records: Vec::<GateDesc>,
-) -> __sdk::Result<()>;
+    fn stage_gate_desc(&self, records: Vec<GateDesc>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `stage_gate_desc`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,39 @@ pub trait stage_gate_desc {
     ///
     /// The returned [`StageGateDescCallbackId`] can be passed to [`Self::remove_on_stage_gate_desc`]
     /// to cancel the callback.
-    fn on_stage_gate_desc(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<GateDesc>, ) + Send + 'static) -> StageGateDescCallbackId;
+    fn on_stage_gate_desc(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<GateDesc>) + Send + 'static,
+    ) -> StageGateDescCallbackId;
     /// Cancel a callback previously registered by [`Self::on_stage_gate_desc`],
     /// causing it not to run in the future.
     fn remove_on_stage_gate_desc(&self, callback: StageGateDescCallbackId);
 }
 
 impl stage_gate_desc for super::RemoteReducers {
-    fn stage_gate_desc(&self, records: Vec::<GateDesc>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("stage_gate_desc", StageGateDescArgs { records,  })
+    fn stage_gate_desc(&self, records: Vec<GateDesc>) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("stage_gate_desc", StageGateDescArgs { records })
     }
     fn on_stage_gate_desc(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<GateDesc>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<GateDesc>) + Send + 'static,
     ) -> StageGateDescCallbackId {
         StageGateDescCallbackId(self.imp.on_reducer(
             "stage_gate_desc",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::StageGateDesc {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::StageGateDesc { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
@@ -106,4 +105,3 @@ impl set_flags_for_stage_gate_desc for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("stage_gate_desc", flags);
     }
 }
-

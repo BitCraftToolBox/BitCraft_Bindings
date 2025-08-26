@@ -3,14 +3,9 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::respawn_resource_in_chunk_timer_type::RespawnResourceInChunkTimer;
 use super::small_hex_tile_message_type::SmallHexTileMessage;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `respawn_resource_in_chunk_timer`.
 ///
@@ -38,7 +33,9 @@ pub trait RespawnResourceInChunkTimerTableAccess {
 impl RespawnResourceInChunkTimerTableAccess for super::RemoteTables {
     fn respawn_resource_in_chunk_timer(&self) -> RespawnResourceInChunkTimerTableHandle<'_> {
         RespawnResourceInChunkTimerTableHandle {
-            imp: self.imp.get_table::<RespawnResourceInChunkTimer>("respawn_resource_in_chunk_timer"),
+            imp: self
+                .imp
+                .get_table::<RespawnResourceInChunkTimer>("respawn_resource_in_chunk_timer"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -51,8 +48,12 @@ impl<'ctx> __sdk::Table for RespawnResourceInChunkTimerTableHandle<'ctx> {
     type Row = RespawnResourceInChunkTimer;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = RespawnResourceInChunkTimer> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = RespawnResourceInChunkTimer> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = RespawnResourceInChunkTimerInsertCallbackId;
 
@@ -83,8 +84,8 @@ impl<'ctx> __sdk::Table for RespawnResourceInChunkTimerTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<RespawnResourceInChunkTimer>("respawn_resource_in_chunk_timer");
+    let _table = client_cache
+        .get_or_make_table::<RespawnResourceInChunkTimer>("respawn_resource_in_chunk_timer");
     _table.add_unique_constraint::<u64>("scheduled_id", |row| &row.scheduled_id);
 }
 pub struct RespawnResourceInChunkTimerUpdateCallbackId(__sdk::CallbackId);
@@ -104,7 +105,6 @@ impl<'ctx> __sdk::TableWithPrimaryKey for RespawnResourceInChunkTimerTableHandle
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
@@ -113,37 +113,38 @@ pub(super) fn parse_table_update(
         __sdk::InternalError::failed_parse(
             "TableUpdate<RespawnResourceInChunkTimer>",
             "TableUpdate",
-        ).with_cause(e).into()
+        )
+        .with_cause(e)
+        .into()
     })
 }
 
-        /// Access to the `scheduled_id` unique index on the table `respawn_resource_in_chunk_timer`,
-        /// which allows point queries on the field of the same name
-        /// via the [`RespawnResourceInChunkTimerScheduledIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.respawn_resource_in_chunk_timer().scheduled_id().find(...)`.
-        pub struct RespawnResourceInChunkTimerScheduledIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<RespawnResourceInChunkTimer, u64>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `scheduled_id` unique index on the table `respawn_resource_in_chunk_timer`,
+/// which allows point queries on the field of the same name
+/// via the [`RespawnResourceInChunkTimerScheduledIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.respawn_resource_in_chunk_timer().scheduled_id().find(...)`.
+pub struct RespawnResourceInChunkTimerScheduledIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<RespawnResourceInChunkTimer, u64>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> RespawnResourceInChunkTimerTableHandle<'ctx> {
-            /// Get a handle on the `scheduled_id` unique index on the table `respawn_resource_in_chunk_timer`.
-            pub fn scheduled_id(&self) -> RespawnResourceInChunkTimerScheduledIdUnique<'ctx> {
-                RespawnResourceInChunkTimerScheduledIdUnique {
-                    imp: self.imp.get_unique_constraint::<u64>("scheduled_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> RespawnResourceInChunkTimerTableHandle<'ctx> {
+    /// Get a handle on the `scheduled_id` unique index on the table `respawn_resource_in_chunk_timer`.
+    pub fn scheduled_id(&self) -> RespawnResourceInChunkTimerScheduledIdUnique<'ctx> {
+        RespawnResourceInChunkTimerScheduledIdUnique {
+            imp: self.imp.get_unique_constraint::<u64>("scheduled_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> RespawnResourceInChunkTimerScheduledIdUnique<'ctx> {
-            /// Find the subscribed row whose `scheduled_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u64) -> Option<RespawnResourceInChunkTimer> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> RespawnResourceInChunkTimerScheduledIdUnique<'ctx> {
+    /// Find the subscribed row whose `scheduled_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u64) -> Option<RespawnResourceInChunkTimer> {
+        self.imp.find(col_val)
+    }
+}

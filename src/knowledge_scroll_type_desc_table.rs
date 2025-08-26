@@ -3,13 +3,8 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::knowledge_scroll_type_desc_type::KnowledgeScrollTypeDesc;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `knowledge_scroll_type_desc`.
 ///
@@ -37,7 +32,9 @@ pub trait KnowledgeScrollTypeDescTableAccess {
 impl KnowledgeScrollTypeDescTableAccess for super::RemoteTables {
     fn knowledge_scroll_type_desc(&self) -> KnowledgeScrollTypeDescTableHandle<'_> {
         KnowledgeScrollTypeDescTableHandle {
-            imp: self.imp.get_table::<KnowledgeScrollTypeDesc>("knowledge_scroll_type_desc"),
+            imp: self
+                .imp
+                .get_table::<KnowledgeScrollTypeDesc>("knowledge_scroll_type_desc"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -50,8 +47,12 @@ impl<'ctx> __sdk::Table for KnowledgeScrollTypeDescTableHandle<'ctx> {
     type Row = KnowledgeScrollTypeDesc;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = KnowledgeScrollTypeDesc> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = KnowledgeScrollTypeDesc> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = KnowledgeScrollTypeDescInsertCallbackId;
 
@@ -82,8 +83,8 @@ impl<'ctx> __sdk::Table for KnowledgeScrollTypeDescTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<KnowledgeScrollTypeDesc>("knowledge_scroll_type_desc");
+    let _table =
+        client_cache.get_or_make_table::<KnowledgeScrollTypeDesc>("knowledge_scroll_type_desc");
     _table.add_unique_constraint::<i32>("id", |row| &row.id);
 }
 pub struct KnowledgeScrollTypeDescUpdateCallbackId(__sdk::CallbackId);
@@ -103,46 +104,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for KnowledgeScrollTypeDescTableHandle<'ct
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<KnowledgeScrollTypeDesc>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<KnowledgeScrollTypeDesc>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<KnowledgeScrollTypeDesc>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `id` unique index on the table `knowledge_scroll_type_desc`,
-        /// which allows point queries on the field of the same name
-        /// via the [`KnowledgeScrollTypeDescIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.knowledge_scroll_type_desc().id().find(...)`.
-        pub struct KnowledgeScrollTypeDescIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<KnowledgeScrollTypeDesc, i32>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `id` unique index on the table `knowledge_scroll_type_desc`,
+/// which allows point queries on the field of the same name
+/// via the [`KnowledgeScrollTypeDescIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.knowledge_scroll_type_desc().id().find(...)`.
+pub struct KnowledgeScrollTypeDescIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<KnowledgeScrollTypeDesc, i32>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> KnowledgeScrollTypeDescTableHandle<'ctx> {
-            /// Get a handle on the `id` unique index on the table `knowledge_scroll_type_desc`.
-            pub fn id(&self) -> KnowledgeScrollTypeDescIdUnique<'ctx> {
-                KnowledgeScrollTypeDescIdUnique {
-                    imp: self.imp.get_unique_constraint::<i32>("id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> KnowledgeScrollTypeDescTableHandle<'ctx> {
+    /// Get a handle on the `id` unique index on the table `knowledge_scroll_type_desc`.
+    pub fn id(&self) -> KnowledgeScrollTypeDescIdUnique<'ctx> {
+        KnowledgeScrollTypeDescIdUnique {
+            imp: self.imp.get_unique_constraint::<i32>("id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> KnowledgeScrollTypeDescIdUnique<'ctx> {
-            /// Find the subscribed row whose `id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &i32) -> Option<KnowledgeScrollTypeDesc> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> KnowledgeScrollTypeDescIdUnique<'ctx> {
+    /// Find the subscribed row whose `id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &i32) -> Option<KnowledgeScrollTypeDesc> {
+        self.imp.find(col_val)
+    }
+}

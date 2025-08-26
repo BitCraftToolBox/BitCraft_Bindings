@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_claim_add_recruitment_request_type::PlayerClaimAddRecruitmentRequest;
 
@@ -22,8 +17,8 @@ impl From<ClaimAddRecruitmentArgs> for super::Reducer {
     fn from(args: ClaimAddRecruitmentArgs) -> Self {
         Self::ClaimAddRecruitment {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ClaimAddRecruitmentArgs {
@@ -42,8 +37,8 @@ pub trait claim_add_recruitment {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_claim_add_recruitment`] callbacks.
-    fn claim_add_recruitment(&self, request: PlayerClaimAddRecruitmentRequest,
-) -> __sdk::Result<()>;
+    fn claim_add_recruitment(&self, request: PlayerClaimAddRecruitmentRequest)
+        -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `claim_add_recruitment`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +46,52 @@ pub trait claim_add_recruitment {
     ///
     /// The returned [`ClaimAddRecruitmentCallbackId`] can be passed to [`Self::remove_on_claim_add_recruitment`]
     /// to cancel the callback.
-    fn on_claim_add_recruitment(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerClaimAddRecruitmentRequest, ) + Send + 'static) -> ClaimAddRecruitmentCallbackId;
+    fn on_claim_add_recruitment(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerClaimAddRecruitmentRequest)
+            + Send
+            + 'static,
+    ) -> ClaimAddRecruitmentCallbackId;
     /// Cancel a callback previously registered by [`Self::on_claim_add_recruitment`],
     /// causing it not to run in the future.
     fn remove_on_claim_add_recruitment(&self, callback: ClaimAddRecruitmentCallbackId);
 }
 
 impl claim_add_recruitment for super::RemoteReducers {
-    fn claim_add_recruitment(&self, request: PlayerClaimAddRecruitmentRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("claim_add_recruitment", ClaimAddRecruitmentArgs { request,  })
+    fn claim_add_recruitment(
+        &self,
+        request: PlayerClaimAddRecruitmentRequest,
+    ) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("claim_add_recruitment", ClaimAddRecruitmentArgs { request })
     }
     fn on_claim_add_recruitment(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerClaimAddRecruitmentRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerClaimAddRecruitmentRequest)
+            + Send
+            + 'static,
     ) -> ClaimAddRecruitmentCallbackId {
         ClaimAddRecruitmentCallbackId(self.imp.on_reducer(
             "claim_add_recruitment",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ClaimAddRecruitment {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ClaimAddRecruitment { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
     fn remove_on_claim_add_recruitment(&self, callback: ClaimAddRecruitmentCallbackId) {
-        self.imp.remove_on_reducer("claim_add_recruitment", callback.0)
+        self.imp
+            .remove_on_reducer("claim_add_recruitment", callback.0)
     }
 }
 
@@ -103,7 +111,7 @@ pub trait set_flags_for_claim_add_recruitment {
 
 impl set_flags_for_claim_add_recruitment for super::SetReducerFlags {
     fn claim_add_recruitment(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("claim_add_recruitment", flags);
+        self.imp
+            .set_call_reducer_flags("claim_add_recruitment", flags);
     }
 }
-

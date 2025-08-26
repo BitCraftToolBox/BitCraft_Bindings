@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::empire_territory_desc_type::EmpireTerritoryDesc;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct ImportEmpireTerritoryDescArgs {
-    pub records: Vec::<EmpireTerritoryDesc>,
+    pub records: Vec<EmpireTerritoryDesc>,
 }
 
 impl From<ImportEmpireTerritoryDescArgs> for super::Reducer {
     fn from(args: ImportEmpireTerritoryDescArgs) -> Self {
         Self::ImportEmpireTerritoryDesc {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ImportEmpireTerritoryDescArgs {
@@ -42,8 +37,7 @@ pub trait import_empire_territory_desc {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_import_empire_territory_desc`] callbacks.
-    fn import_empire_territory_desc(&self, records: Vec::<EmpireTerritoryDesc>,
-) -> __sdk::Result<()>;
+    fn import_empire_territory_desc(&self, records: Vec<EmpireTerritoryDesc>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `import_empire_territory_desc`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,52 @@ pub trait import_empire_territory_desc {
     ///
     /// The returned [`ImportEmpireTerritoryDescCallbackId`] can be passed to [`Self::remove_on_import_empire_territory_desc`]
     /// to cancel the callback.
-    fn on_import_empire_territory_desc(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<EmpireTerritoryDesc>, ) + Send + 'static) -> ImportEmpireTerritoryDescCallbackId;
+    fn on_import_empire_territory_desc(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<EmpireTerritoryDesc>) + Send + 'static,
+    ) -> ImportEmpireTerritoryDescCallbackId;
     /// Cancel a callback previously registered by [`Self::on_import_empire_territory_desc`],
     /// causing it not to run in the future.
     fn remove_on_import_empire_territory_desc(&self, callback: ImportEmpireTerritoryDescCallbackId);
 }
 
 impl import_empire_territory_desc for super::RemoteReducers {
-    fn import_empire_territory_desc(&self, records: Vec::<EmpireTerritoryDesc>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("import_empire_territory_desc", ImportEmpireTerritoryDescArgs { records,  })
+    fn import_empire_territory_desc(&self, records: Vec<EmpireTerritoryDesc>) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "import_empire_territory_desc",
+            ImportEmpireTerritoryDescArgs { records },
+        )
     }
     fn on_import_empire_territory_desc(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<EmpireTerritoryDesc>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<EmpireTerritoryDesc>)
+            + Send
+            + 'static,
     ) -> ImportEmpireTerritoryDescCallbackId {
         ImportEmpireTerritoryDescCallbackId(self.imp.on_reducer(
             "import_empire_territory_desc",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ImportEmpireTerritoryDesc {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ImportEmpireTerritoryDesc { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
-    fn remove_on_import_empire_territory_desc(&self, callback: ImportEmpireTerritoryDescCallbackId) {
-        self.imp.remove_on_reducer("import_empire_territory_desc", callback.0)
+    fn remove_on_import_empire_territory_desc(
+        &self,
+        callback: ImportEmpireTerritoryDescCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("import_empire_territory_desc", callback.0)
     }
 }
 
@@ -103,7 +110,7 @@ pub trait set_flags_for_import_empire_territory_desc {
 
 impl set_flags_for_import_empire_territory_desc for super::SetReducerFlags {
     fn import_empire_territory_desc(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("import_empire_territory_desc", flags);
+        self.imp
+            .set_call_reducer_flags("import_empire_territory_desc", flags);
     }
 }
-

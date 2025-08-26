@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::interior_collapse_trigger_state_type::InteriorCollapseTriggerState;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct ImportInteriorCollapseTriggerStateArgs {
-    pub records: Vec::<InteriorCollapseTriggerState>,
+    pub records: Vec<InteriorCollapseTriggerState>,
 }
 
 impl From<ImportInteriorCollapseTriggerStateArgs> for super::Reducer {
     fn from(args: ImportInteriorCollapseTriggerStateArgs) -> Self {
         Self::ImportInteriorCollapseTriggerState {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ImportInteriorCollapseTriggerStateArgs {
@@ -42,8 +37,10 @@ pub trait import_interior_collapse_trigger_state {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_import_interior_collapse_trigger_state`] callbacks.
-    fn import_interior_collapse_trigger_state(&self, records: Vec::<InteriorCollapseTriggerState>,
-) -> __sdk::Result<()>;
+    fn import_interior_collapse_trigger_state(
+        &self,
+        records: Vec<InteriorCollapseTriggerState>,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `import_interior_collapse_trigger_state`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +48,60 @@ pub trait import_interior_collapse_trigger_state {
     ///
     /// The returned [`ImportInteriorCollapseTriggerStateCallbackId`] can be passed to [`Self::remove_on_import_interior_collapse_trigger_state`]
     /// to cancel the callback.
-    fn on_import_interior_collapse_trigger_state(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<InteriorCollapseTriggerState>, ) + Send + 'static) -> ImportInteriorCollapseTriggerStateCallbackId;
+    fn on_import_interior_collapse_trigger_state(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<InteriorCollapseTriggerState>)
+            + Send
+            + 'static,
+    ) -> ImportInteriorCollapseTriggerStateCallbackId;
     /// Cancel a callback previously registered by [`Self::on_import_interior_collapse_trigger_state`],
     /// causing it not to run in the future.
-    fn remove_on_import_interior_collapse_trigger_state(&self, callback: ImportInteriorCollapseTriggerStateCallbackId);
+    fn remove_on_import_interior_collapse_trigger_state(
+        &self,
+        callback: ImportInteriorCollapseTriggerStateCallbackId,
+    );
 }
 
 impl import_interior_collapse_trigger_state for super::RemoteReducers {
-    fn import_interior_collapse_trigger_state(&self, records: Vec::<InteriorCollapseTriggerState>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("import_interior_collapse_trigger_state", ImportInteriorCollapseTriggerStateArgs { records,  })
+    fn import_interior_collapse_trigger_state(
+        &self,
+        records: Vec<InteriorCollapseTriggerState>,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "import_interior_collapse_trigger_state",
+            ImportInteriorCollapseTriggerStateArgs { records },
+        )
     }
     fn on_import_interior_collapse_trigger_state(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<InteriorCollapseTriggerState>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<InteriorCollapseTriggerState>)
+            + Send
+            + 'static,
     ) -> ImportInteriorCollapseTriggerStateCallbackId {
         ImportInteriorCollapseTriggerStateCallbackId(self.imp.on_reducer(
             "import_interior_collapse_trigger_state",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ImportInteriorCollapseTriggerState {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ImportInteriorCollapseTriggerState { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
-    fn remove_on_import_interior_collapse_trigger_state(&self, callback: ImportInteriorCollapseTriggerStateCallbackId) {
-        self.imp.remove_on_reducer("import_interior_collapse_trigger_state", callback.0)
+    fn remove_on_import_interior_collapse_trigger_state(
+        &self,
+        callback: ImportInteriorCollapseTriggerStateCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("import_interior_collapse_trigger_state", callback.0)
     }
 }
 
@@ -103,7 +121,7 @@ pub trait set_flags_for_import_interior_collapse_trigger_state {
 
 impl set_flags_for_import_interior_collapse_trigger_state for super::SetReducerFlags {
     fn import_interior_collapse_trigger_state(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("import_interior_collapse_trigger_state", flags);
+        self.imp
+            .set_call_reducer_flags("import_interior_collapse_trigger_state", flags);
     }
 }
-

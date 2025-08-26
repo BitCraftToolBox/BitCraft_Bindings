@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_claim_remove_recruitment_request_type::PlayerClaimRemoveRecruitmentRequest;
 
@@ -22,8 +17,8 @@ impl From<ClaimRemoveRecruitmentArgs> for super::Reducer {
     fn from(args: ClaimRemoveRecruitmentArgs) -> Self {
         Self::ClaimRemoveRecruitment {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ClaimRemoveRecruitmentArgs {
@@ -42,8 +37,10 @@ pub trait claim_remove_recruitment {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_claim_remove_recruitment`] callbacks.
-    fn claim_remove_recruitment(&self, request: PlayerClaimRemoveRecruitmentRequest,
-) -> __sdk::Result<()>;
+    fn claim_remove_recruitment(
+        &self,
+        request: PlayerClaimRemoveRecruitmentRequest,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `claim_remove_recruitment`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +48,54 @@ pub trait claim_remove_recruitment {
     ///
     /// The returned [`ClaimRemoveRecruitmentCallbackId`] can be passed to [`Self::remove_on_claim_remove_recruitment`]
     /// to cancel the callback.
-    fn on_claim_remove_recruitment(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerClaimRemoveRecruitmentRequest, ) + Send + 'static) -> ClaimRemoveRecruitmentCallbackId;
+    fn on_claim_remove_recruitment(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerClaimRemoveRecruitmentRequest)
+            + Send
+            + 'static,
+    ) -> ClaimRemoveRecruitmentCallbackId;
     /// Cancel a callback previously registered by [`Self::on_claim_remove_recruitment`],
     /// causing it not to run in the future.
     fn remove_on_claim_remove_recruitment(&self, callback: ClaimRemoveRecruitmentCallbackId);
 }
 
 impl claim_remove_recruitment for super::RemoteReducers {
-    fn claim_remove_recruitment(&self, request: PlayerClaimRemoveRecruitmentRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("claim_remove_recruitment", ClaimRemoveRecruitmentArgs { request,  })
+    fn claim_remove_recruitment(
+        &self,
+        request: PlayerClaimRemoveRecruitmentRequest,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "claim_remove_recruitment",
+            ClaimRemoveRecruitmentArgs { request },
+        )
     }
     fn on_claim_remove_recruitment(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerClaimRemoveRecruitmentRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerClaimRemoveRecruitmentRequest)
+            + Send
+            + 'static,
     ) -> ClaimRemoveRecruitmentCallbackId {
         ClaimRemoveRecruitmentCallbackId(self.imp.on_reducer(
             "claim_remove_recruitment",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ClaimRemoveRecruitment {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ClaimRemoveRecruitment { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
     fn remove_on_claim_remove_recruitment(&self, callback: ClaimRemoveRecruitmentCallbackId) {
-        self.imp.remove_on_reducer("claim_remove_recruitment", callback.0)
+        self.imp
+            .remove_on_reducer("claim_remove_recruitment", callback.0)
     }
 }
 
@@ -103,7 +115,7 @@ pub trait set_flags_for_claim_remove_recruitment {
 
 impl set_flags_for_claim_remove_recruitment for super::SetReducerFlags {
     fn claim_remove_recruitment(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("claim_remove_recruitment", flags);
+        self.imp
+            .set_call_reducer_flags("claim_remove_recruitment", flags);
     }
 }
-

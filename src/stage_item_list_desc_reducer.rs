@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::item_list_desc_type::ItemListDesc;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct StageItemListDescArgs {
-    pub records: Vec::<ItemListDesc>,
+    pub records: Vec<ItemListDesc>,
 }
 
 impl From<StageItemListDescArgs> for super::Reducer {
     fn from(args: StageItemListDescArgs) -> Self {
         Self::StageItemListDesc {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for StageItemListDescArgs {
@@ -42,8 +37,7 @@ pub trait stage_item_list_desc {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_stage_item_list_desc`] callbacks.
-    fn stage_item_list_desc(&self, records: Vec::<ItemListDesc>,
-) -> __sdk::Result<()>;
+    fn stage_item_list_desc(&self, records: Vec<ItemListDesc>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `stage_item_list_desc`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,45 @@ pub trait stage_item_list_desc {
     ///
     /// The returned [`StageItemListDescCallbackId`] can be passed to [`Self::remove_on_stage_item_list_desc`]
     /// to cancel the callback.
-    fn on_stage_item_list_desc(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<ItemListDesc>, ) + Send + 'static) -> StageItemListDescCallbackId;
+    fn on_stage_item_list_desc(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<ItemListDesc>) + Send + 'static,
+    ) -> StageItemListDescCallbackId;
     /// Cancel a callback previously registered by [`Self::on_stage_item_list_desc`],
     /// causing it not to run in the future.
     fn remove_on_stage_item_list_desc(&self, callback: StageItemListDescCallbackId);
 }
 
 impl stage_item_list_desc for super::RemoteReducers {
-    fn stage_item_list_desc(&self, records: Vec::<ItemListDesc>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("stage_item_list_desc", StageItemListDescArgs { records,  })
+    fn stage_item_list_desc(&self, records: Vec<ItemListDesc>) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("stage_item_list_desc", StageItemListDescArgs { records })
     }
     fn on_stage_item_list_desc(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<ItemListDesc>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<ItemListDesc>) + Send + 'static,
     ) -> StageItemListDescCallbackId {
         StageItemListDescCallbackId(self.imp.on_reducer(
             "stage_item_list_desc",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::StageItemListDesc {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::StageItemListDesc { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
     fn remove_on_stage_item_list_desc(&self, callback: StageItemListDescCallbackId) {
-        self.imp.remove_on_reducer("stage_item_list_desc", callback.0)
+        self.imp
+            .remove_on_reducer("stage_item_list_desc", callback.0)
     }
 }
 
@@ -103,7 +103,7 @@ pub trait set_flags_for_stage_item_list_desc {
 
 impl set_flags_for_stage_item_list_desc for super::SetReducerFlags {
     fn stage_item_list_desc(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("stage_item_list_desc", flags);
+        self.imp
+            .set_call_reducer_flags("stage_item_list_desc", flags);
     }
 }
-

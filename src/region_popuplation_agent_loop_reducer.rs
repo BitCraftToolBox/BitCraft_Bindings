@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::region_population_loop_timer_type::RegionPopulationLoopTimer;
 
@@ -20,10 +15,8 @@ pub(super) struct RegionPopuplationAgentLoopArgs {
 
 impl From<RegionPopuplationAgentLoopArgs> for super::Reducer {
     fn from(args: RegionPopuplationAgentLoopArgs) -> Self {
-        Self::RegionPopuplationAgentLoop {
-            timer: args.timer,
-}
-}
+        Self::RegionPopuplationAgentLoop { timer: args.timer }
+    }
 }
 
 impl __sdk::InModule for RegionPopuplationAgentLoopArgs {
@@ -42,8 +35,7 @@ pub trait region_popuplation_agent_loop {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_region_popuplation_agent_loop`] callbacks.
-    fn region_popuplation_agent_loop(&self, timer: RegionPopulationLoopTimer,
-) -> __sdk::Result<()>;
+    fn region_popuplation_agent_loop(&self, timer: RegionPopulationLoopTimer) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `region_popuplation_agent_loop`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +43,55 @@ pub trait region_popuplation_agent_loop {
     ///
     /// The returned [`RegionPopuplationAgentLoopCallbackId`] can be passed to [`Self::remove_on_region_popuplation_agent_loop`]
     /// to cancel the callback.
-    fn on_region_popuplation_agent_loop(&self, callback: impl FnMut(&super::ReducerEventContext, &RegionPopulationLoopTimer, ) + Send + 'static) -> RegionPopuplationAgentLoopCallbackId;
+    fn on_region_popuplation_agent_loop(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &RegionPopulationLoopTimer) + Send + 'static,
+    ) -> RegionPopuplationAgentLoopCallbackId;
     /// Cancel a callback previously registered by [`Self::on_region_popuplation_agent_loop`],
     /// causing it not to run in the future.
-    fn remove_on_region_popuplation_agent_loop(&self, callback: RegionPopuplationAgentLoopCallbackId);
+    fn remove_on_region_popuplation_agent_loop(
+        &self,
+        callback: RegionPopuplationAgentLoopCallbackId,
+    );
 }
 
 impl region_popuplation_agent_loop for super::RemoteReducers {
-    fn region_popuplation_agent_loop(&self, timer: RegionPopulationLoopTimer,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("region_popuplation_agent_loop", RegionPopuplationAgentLoopArgs { timer,  })
+    fn region_popuplation_agent_loop(&self, timer: RegionPopulationLoopTimer) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "region_popuplation_agent_loop",
+            RegionPopuplationAgentLoopArgs { timer },
+        )
     }
     fn on_region_popuplation_agent_loop(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &RegionPopulationLoopTimer, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &RegionPopulationLoopTimer)
+            + Send
+            + 'static,
     ) -> RegionPopuplationAgentLoopCallbackId {
         RegionPopuplationAgentLoopCallbackId(self.imp.on_reducer(
             "region_popuplation_agent_loop",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::RegionPopuplationAgentLoop {
-                            timer, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::RegionPopuplationAgentLoop { timer },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, timer, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, timer)
             }),
         ))
     }
-    fn remove_on_region_popuplation_agent_loop(&self, callback: RegionPopuplationAgentLoopCallbackId) {
-        self.imp.remove_on_reducer("region_popuplation_agent_loop", callback.0)
+    fn remove_on_region_popuplation_agent_loop(
+        &self,
+        callback: RegionPopuplationAgentLoopCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("region_popuplation_agent_loop", callback.0)
     }
 }
 
@@ -103,7 +111,7 @@ pub trait set_flags_for_region_popuplation_agent_loop {
 
 impl set_flags_for_region_popuplation_agent_loop for super::SetReducerFlags {
     fn region_popuplation_agent_loop(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("region_popuplation_agent_loop", flags);
+        self.imp
+            .set_call_reducer_flags("region_popuplation_agent_loop", flags);
     }
 }
-

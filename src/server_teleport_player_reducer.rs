@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::teleport_player_timer_type::TeleportPlayerTimer;
 
@@ -20,10 +15,8 @@ pub(super) struct ServerTeleportPlayerArgs {
 
 impl From<ServerTeleportPlayerArgs> for super::Reducer {
     fn from(args: ServerTeleportPlayerArgs) -> Self {
-        Self::ServerTeleportPlayer {
-            timer: args.timer,
-}
-}
+        Self::ServerTeleportPlayer { timer: args.timer }
+    }
 }
 
 impl __sdk::InModule for ServerTeleportPlayerArgs {
@@ -42,8 +35,7 @@ pub trait server_teleport_player {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_server_teleport_player`] callbacks.
-    fn server_teleport_player(&self, timer: TeleportPlayerTimer,
-) -> __sdk::Result<()>;
+    fn server_teleport_player(&self, timer: TeleportPlayerTimer) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `server_teleport_player`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +43,45 @@ pub trait server_teleport_player {
     ///
     /// The returned [`ServerTeleportPlayerCallbackId`] can be passed to [`Self::remove_on_server_teleport_player`]
     /// to cancel the callback.
-    fn on_server_teleport_player(&self, callback: impl FnMut(&super::ReducerEventContext, &TeleportPlayerTimer, ) + Send + 'static) -> ServerTeleportPlayerCallbackId;
+    fn on_server_teleport_player(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &TeleportPlayerTimer) + Send + 'static,
+    ) -> ServerTeleportPlayerCallbackId;
     /// Cancel a callback previously registered by [`Self::on_server_teleport_player`],
     /// causing it not to run in the future.
     fn remove_on_server_teleport_player(&self, callback: ServerTeleportPlayerCallbackId);
 }
 
 impl server_teleport_player for super::RemoteReducers {
-    fn server_teleport_player(&self, timer: TeleportPlayerTimer,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("server_teleport_player", ServerTeleportPlayerArgs { timer,  })
+    fn server_teleport_player(&self, timer: TeleportPlayerTimer) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("server_teleport_player", ServerTeleportPlayerArgs { timer })
     }
     fn on_server_teleport_player(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &TeleportPlayerTimer, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &TeleportPlayerTimer) + Send + 'static,
     ) -> ServerTeleportPlayerCallbackId {
         ServerTeleportPlayerCallbackId(self.imp.on_reducer(
             "server_teleport_player",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ServerTeleportPlayer {
-                            timer, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ServerTeleportPlayer { timer },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, timer, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, timer)
             }),
         ))
     }
     fn remove_on_server_teleport_player(&self, callback: ServerTeleportPlayerCallbackId) {
-        self.imp.remove_on_reducer("server_teleport_player", callback.0)
+        self.imp
+            .remove_on_reducer("server_teleport_player", callback.0)
     }
 }
 
@@ -103,7 +101,7 @@ pub trait set_flags_for_server_teleport_player {
 
 impl set_flags_for_server_teleport_player for super::SetReducerFlags {
     fn server_teleport_player(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("server_teleport_player", flags);
+        self.imp
+            .set_call_reducer_flags("server_teleport_player", flags);
     }
 }
-

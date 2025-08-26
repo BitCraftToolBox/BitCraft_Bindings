@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_craft_cancel_request_type::PlayerCraftCancelRequest;
 
@@ -22,8 +17,8 @@ impl From<CraftCancelArgs> for super::Reducer {
     fn from(args: CraftCancelArgs) -> Self {
         Self::CraftCancel {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for CraftCancelArgs {
@@ -42,8 +37,7 @@ pub trait craft_cancel {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_craft_cancel`] callbacks.
-    fn craft_cancel(&self, request: PlayerCraftCancelRequest,
-) -> __sdk::Result<()>;
+    fn craft_cancel(&self, request: PlayerCraftCancelRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `craft_cancel`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,41 @@ pub trait craft_cancel {
     ///
     /// The returned [`CraftCancelCallbackId`] can be passed to [`Self::remove_on_craft_cancel`]
     /// to cancel the callback.
-    fn on_craft_cancel(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerCraftCancelRequest, ) + Send + 'static) -> CraftCancelCallbackId;
+    fn on_craft_cancel(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerCraftCancelRequest) + Send + 'static,
+    ) -> CraftCancelCallbackId;
     /// Cancel a callback previously registered by [`Self::on_craft_cancel`],
     /// causing it not to run in the future.
     fn remove_on_craft_cancel(&self, callback: CraftCancelCallbackId);
 }
 
 impl craft_cancel for super::RemoteReducers {
-    fn craft_cancel(&self, request: PlayerCraftCancelRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("craft_cancel", CraftCancelArgs { request,  })
+    fn craft_cancel(&self, request: PlayerCraftCancelRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("craft_cancel", CraftCancelArgs { request })
     }
     fn on_craft_cancel(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerCraftCancelRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerCraftCancelRequest)
+            + Send
+            + 'static,
     ) -> CraftCancelCallbackId {
         CraftCancelCallbackId(self.imp.on_reducer(
             "craft_cancel",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::CraftCancel {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::CraftCancel { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
@@ -106,4 +107,3 @@ impl set_flags_for_craft_cancel for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("craft_cancel", flags);
     }
 }
-

@@ -3,16 +3,11 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
+use super::common_rng_type::CommonRng;
 use super::resource_clump_info_type::ResourceClumpInfo;
 use super::resource_info_type::ResourceInfo;
-use super::common_rng_type::CommonRng;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -20,13 +15,11 @@ pub struct ResourcesLog {
     pub version: i32,
     pub world_width: u64,
     pub world_height: u64,
-    pub resource_clumps: Vec::<ResourceClumpInfo>,
-    pub resources: Vec::<ResourceInfo>,
+    pub resource_clumps: Vec<ResourceClumpInfo>,
+    pub resources: Vec<ResourceInfo>,
     pub random: CommonRng,
 }
-
 
 impl __sdk::InModule for ResourcesLog {
     type Module = super::RemoteModule;
 }
-

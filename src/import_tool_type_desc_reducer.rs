@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::tool_type_desc_type::ToolTypeDesc;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct ImportToolTypeDescArgs {
-    pub records: Vec::<ToolTypeDesc>,
+    pub records: Vec<ToolTypeDesc>,
 }
 
 impl From<ImportToolTypeDescArgs> for super::Reducer {
     fn from(args: ImportToolTypeDescArgs) -> Self {
         Self::ImportToolTypeDesc {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ImportToolTypeDescArgs {
@@ -42,8 +37,7 @@ pub trait import_tool_type_desc {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_import_tool_type_desc`] callbacks.
-    fn import_tool_type_desc(&self, records: Vec::<ToolTypeDesc>,
-) -> __sdk::Result<()>;
+    fn import_tool_type_desc(&self, records: Vec<ToolTypeDesc>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `import_tool_type_desc`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,45 @@ pub trait import_tool_type_desc {
     ///
     /// The returned [`ImportToolTypeDescCallbackId`] can be passed to [`Self::remove_on_import_tool_type_desc`]
     /// to cancel the callback.
-    fn on_import_tool_type_desc(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<ToolTypeDesc>, ) + Send + 'static) -> ImportToolTypeDescCallbackId;
+    fn on_import_tool_type_desc(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<ToolTypeDesc>) + Send + 'static,
+    ) -> ImportToolTypeDescCallbackId;
     /// Cancel a callback previously registered by [`Self::on_import_tool_type_desc`],
     /// causing it not to run in the future.
     fn remove_on_import_tool_type_desc(&self, callback: ImportToolTypeDescCallbackId);
 }
 
 impl import_tool_type_desc for super::RemoteReducers {
-    fn import_tool_type_desc(&self, records: Vec::<ToolTypeDesc>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("import_tool_type_desc", ImportToolTypeDescArgs { records,  })
+    fn import_tool_type_desc(&self, records: Vec<ToolTypeDesc>) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("import_tool_type_desc", ImportToolTypeDescArgs { records })
     }
     fn on_import_tool_type_desc(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<ToolTypeDesc>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<ToolTypeDesc>) + Send + 'static,
     ) -> ImportToolTypeDescCallbackId {
         ImportToolTypeDescCallbackId(self.imp.on_reducer(
             "import_tool_type_desc",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ImportToolTypeDesc {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ImportToolTypeDesc { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
     fn remove_on_import_tool_type_desc(&self, callback: ImportToolTypeDescCallbackId) {
-        self.imp.remove_on_reducer("import_tool_type_desc", callback.0)
+        self.imp
+            .remove_on_reducer("import_tool_type_desc", callback.0)
     }
 }
 
@@ -103,7 +103,7 @@ pub trait set_flags_for_import_tool_type_desc {
 
 impl set_flags_for_import_tool_type_desc for super::SetReducerFlags {
     fn import_tool_type_desc(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("import_tool_type_desc", flags);
+        self.imp
+            .set_call_reducer_flags("import_tool_type_desc", flags);
     }
 }
-

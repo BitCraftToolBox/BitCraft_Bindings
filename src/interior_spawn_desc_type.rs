@@ -3,16 +3,11 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
-use super::npc_type_type::NpcType;
 use super::enemy_type_type::EnemyType;
 use super::interior_spawn_type_type::InteriorSpawnType;
+use super::npc_type_type::NpcType;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -26,7 +21,7 @@ pub struct InteriorSpawnDesc {
     pub spawn_type: InteriorSpawnType,
     pub building_id: i32,
     pub paving_id: i32,
-    pub loot_chests: Vec::<i32>,
+    pub loot_chests: Vec<i32>,
     pub resource_clump_id: i32,
     pub enemy_type: EnemyType,
     pub traveler_type: NpcType,
@@ -35,8 +30,6 @@ pub struct InteriorSpawnDesc {
     pub collapse_trigger: bool,
 }
 
-
 impl __sdk::InModule for InteriorSpawnDesc {
     type Module = super::RemoteModule;
 }
-

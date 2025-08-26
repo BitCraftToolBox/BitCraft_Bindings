@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::end_grace_period_timer_type::EndGracePeriodTimer;
 
@@ -20,10 +15,8 @@ pub(super) struct EndGracePeriodArgs {
 
 impl From<EndGracePeriodArgs> for super::Reducer {
     fn from(args: EndGracePeriodArgs) -> Self {
-        Self::EndGracePeriod {
-            timer: args.timer,
-}
-}
+        Self::EndGracePeriod { timer: args.timer }
+    }
 }
 
 impl __sdk::InModule for EndGracePeriodArgs {
@@ -42,8 +35,7 @@ pub trait end_grace_period {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_end_grace_period`] callbacks.
-    fn end_grace_period(&self, timer: EndGracePeriodTimer,
-) -> __sdk::Result<()>;
+    fn end_grace_period(&self, timer: EndGracePeriodTimer) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `end_grace_period`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +43,39 @@ pub trait end_grace_period {
     ///
     /// The returned [`EndGracePeriodCallbackId`] can be passed to [`Self::remove_on_end_grace_period`]
     /// to cancel the callback.
-    fn on_end_grace_period(&self, callback: impl FnMut(&super::ReducerEventContext, &EndGracePeriodTimer, ) + Send + 'static) -> EndGracePeriodCallbackId;
+    fn on_end_grace_period(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &EndGracePeriodTimer) + Send + 'static,
+    ) -> EndGracePeriodCallbackId;
     /// Cancel a callback previously registered by [`Self::on_end_grace_period`],
     /// causing it not to run in the future.
     fn remove_on_end_grace_period(&self, callback: EndGracePeriodCallbackId);
 }
 
 impl end_grace_period for super::RemoteReducers {
-    fn end_grace_period(&self, timer: EndGracePeriodTimer,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("end_grace_period", EndGracePeriodArgs { timer,  })
+    fn end_grace_period(&self, timer: EndGracePeriodTimer) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("end_grace_period", EndGracePeriodArgs { timer })
     }
     fn on_end_grace_period(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &EndGracePeriodTimer, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &EndGracePeriodTimer) + Send + 'static,
     ) -> EndGracePeriodCallbackId {
         EndGracePeriodCallbackId(self.imp.on_reducer(
             "end_grace_period",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::EndGracePeriod {
-                            timer, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::EndGracePeriod { timer },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, timer, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, timer)
             }),
         ))
     }
@@ -106,4 +103,3 @@ impl set_flags_for_end_grace_period for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("end_grace_period", flags);
     }
 }
-

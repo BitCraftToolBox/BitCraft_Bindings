@@ -3,13 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -21,8 +15,8 @@ impl From<AdminResetOnboardingCompletelyArgs> for super::Reducer {
     fn from(args: AdminResetOnboardingCompletelyArgs) -> Self {
         Self::AdminResetOnboardingCompletely {
             entity_id: args.entity_id,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for AdminResetOnboardingCompletelyArgs {
@@ -41,8 +35,7 @@ pub trait admin_reset_onboarding_completely {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_admin_reset_onboarding_completely`] callbacks.
-    fn admin_reset_onboarding_completely(&self, entity_id: u64,
-) -> __sdk::Result<()>;
+    fn admin_reset_onboarding_completely(&self, entity_id: u64) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `admin_reset_onboarding_completely`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -50,39 +43,53 @@ pub trait admin_reset_onboarding_completely {
     ///
     /// The returned [`AdminResetOnboardingCompletelyCallbackId`] can be passed to [`Self::remove_on_admin_reset_onboarding_completely`]
     /// to cancel the callback.
-    fn on_admin_reset_onboarding_completely(&self, callback: impl FnMut(&super::ReducerEventContext, &u64, ) + Send + 'static) -> AdminResetOnboardingCompletelyCallbackId;
+    fn on_admin_reset_onboarding_completely(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &u64) + Send + 'static,
+    ) -> AdminResetOnboardingCompletelyCallbackId;
     /// Cancel a callback previously registered by [`Self::on_admin_reset_onboarding_completely`],
     /// causing it not to run in the future.
-    fn remove_on_admin_reset_onboarding_completely(&self, callback: AdminResetOnboardingCompletelyCallbackId);
+    fn remove_on_admin_reset_onboarding_completely(
+        &self,
+        callback: AdminResetOnboardingCompletelyCallbackId,
+    );
 }
 
 impl admin_reset_onboarding_completely for super::RemoteReducers {
-    fn admin_reset_onboarding_completely(&self, entity_id: u64,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("admin_reset_onboarding_completely", AdminResetOnboardingCompletelyArgs { entity_id,  })
+    fn admin_reset_onboarding_completely(&self, entity_id: u64) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "admin_reset_onboarding_completely",
+            AdminResetOnboardingCompletelyArgs { entity_id },
+        )
     }
     fn on_admin_reset_onboarding_completely(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &u64, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &u64) + Send + 'static,
     ) -> AdminResetOnboardingCompletelyCallbackId {
         AdminResetOnboardingCompletelyCallbackId(self.imp.on_reducer(
             "admin_reset_onboarding_completely",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::AdminResetOnboardingCompletely {
-                            entity_id, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::AdminResetOnboardingCompletely { entity_id },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, entity_id, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, entity_id)
             }),
         ))
     }
-    fn remove_on_admin_reset_onboarding_completely(&self, callback: AdminResetOnboardingCompletelyCallbackId) {
-        self.imp.remove_on_reducer("admin_reset_onboarding_completely", callback.0)
+    fn remove_on_admin_reset_onboarding_completely(
+        &self,
+        callback: AdminResetOnboardingCompletelyCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("admin_reset_onboarding_completely", callback.0)
     }
 }
 
@@ -102,7 +109,7 @@ pub trait set_flags_for_admin_reset_onboarding_completely {
 
 impl set_flags_for_admin_reset_onboarding_completely for super::SetReducerFlags {
     fn admin_reset_onboarding_completely(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("admin_reset_onboarding_completely", flags);
+        self.imp
+            .set_call_reducer_flags("admin_reset_onboarding_completely", flags);
     }
 }
-

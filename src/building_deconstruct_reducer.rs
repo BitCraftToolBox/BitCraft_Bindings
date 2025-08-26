@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_building_deconstruct_request_type::PlayerBuildingDeconstructRequest;
 
@@ -22,8 +17,8 @@ impl From<BuildingDeconstructArgs> for super::Reducer {
     fn from(args: BuildingDeconstructArgs) -> Self {
         Self::BuildingDeconstruct {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for BuildingDeconstructArgs {
@@ -42,8 +37,7 @@ pub trait building_deconstruct {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_building_deconstruct`] callbacks.
-    fn building_deconstruct(&self, request: PlayerBuildingDeconstructRequest,
-) -> __sdk::Result<()>;
+    fn building_deconstruct(&self, request: PlayerBuildingDeconstructRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `building_deconstruct`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,49 @@ pub trait building_deconstruct {
     ///
     /// The returned [`BuildingDeconstructCallbackId`] can be passed to [`Self::remove_on_building_deconstruct`]
     /// to cancel the callback.
-    fn on_building_deconstruct(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerBuildingDeconstructRequest, ) + Send + 'static) -> BuildingDeconstructCallbackId;
+    fn on_building_deconstruct(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerBuildingDeconstructRequest)
+            + Send
+            + 'static,
+    ) -> BuildingDeconstructCallbackId;
     /// Cancel a callback previously registered by [`Self::on_building_deconstruct`],
     /// causing it not to run in the future.
     fn remove_on_building_deconstruct(&self, callback: BuildingDeconstructCallbackId);
 }
 
 impl building_deconstruct for super::RemoteReducers {
-    fn building_deconstruct(&self, request: PlayerBuildingDeconstructRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("building_deconstruct", BuildingDeconstructArgs { request,  })
+    fn building_deconstruct(&self, request: PlayerBuildingDeconstructRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("building_deconstruct", BuildingDeconstructArgs { request })
     }
     fn on_building_deconstruct(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerBuildingDeconstructRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerBuildingDeconstructRequest)
+            + Send
+            + 'static,
     ) -> BuildingDeconstructCallbackId {
         BuildingDeconstructCallbackId(self.imp.on_reducer(
             "building_deconstruct",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::BuildingDeconstruct {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::BuildingDeconstruct { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
     fn remove_on_building_deconstruct(&self, callback: BuildingDeconstructCallbackId) {
-        self.imp.remove_on_reducer("building_deconstruct", callback.0)
+        self.imp
+            .remove_on_reducer("building_deconstruct", callback.0)
     }
 }
 
@@ -103,7 +107,7 @@ pub trait set_flags_for_building_deconstruct {
 
 impl set_flags_for_building_deconstruct for super::SetReducerFlags {
     fn building_deconstruct(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("building_deconstruct", flags);
+        self.imp
+            .set_call_reducer_flags("building_deconstruct", flags);
     }
 }
-

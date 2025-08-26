@@ -3,23 +3,16 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
-pub(super) struct AdminResetAllHerdLocationsArgs {
-    }
+pub(super) struct AdminResetAllHerdLocationsArgs {}
 
 impl From<AdminResetAllHerdLocationsArgs> for super::Reducer {
     fn from(args: AdminResetAllHerdLocationsArgs) -> Self {
         Self::AdminResetAllHerdLocations
-}
+    }
 }
 
 impl __sdk::InModule for AdminResetAllHerdLocationsArgs {
@@ -38,7 +31,7 @@ pub trait admin_reset_all_herd_locations {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_admin_reset_all_herd_locations`] callbacks.
-    fn admin_reset_all_herd_locations(&self, ) -> __sdk::Result<()>;
+    fn admin_reset_all_herd_locations(&self) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `admin_reset_all_herd_locations`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -46,38 +39,53 @@ pub trait admin_reset_all_herd_locations {
     ///
     /// The returned [`AdminResetAllHerdLocationsCallbackId`] can be passed to [`Self::remove_on_admin_reset_all_herd_locations`]
     /// to cancel the callback.
-    fn on_admin_reset_all_herd_locations(&self, callback: impl FnMut(&super::ReducerEventContext, ) + Send + 'static) -> AdminResetAllHerdLocationsCallbackId;
+    fn on_admin_reset_all_herd_locations(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext) + Send + 'static,
+    ) -> AdminResetAllHerdLocationsCallbackId;
     /// Cancel a callback previously registered by [`Self::on_admin_reset_all_herd_locations`],
     /// causing it not to run in the future.
-    fn remove_on_admin_reset_all_herd_locations(&self, callback: AdminResetAllHerdLocationsCallbackId);
+    fn remove_on_admin_reset_all_herd_locations(
+        &self,
+        callback: AdminResetAllHerdLocationsCallbackId,
+    );
 }
 
 impl admin_reset_all_herd_locations for super::RemoteReducers {
-    fn admin_reset_all_herd_locations(&self, ) -> __sdk::Result<()> {
-        self.imp.call_reducer("admin_reset_all_herd_locations", AdminResetAllHerdLocationsArgs {  })
+    fn admin_reset_all_herd_locations(&self) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "admin_reset_all_herd_locations",
+            AdminResetAllHerdLocationsArgs {},
+        )
     }
     fn on_admin_reset_all_herd_locations(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext) + Send + 'static,
     ) -> AdminResetAllHerdLocationsCallbackId {
         AdminResetAllHerdLocationsCallbackId(self.imp.on_reducer(
             "admin_reset_all_herd_locations",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::AdminResetAllHerdLocations {
-                            
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::AdminResetAllHerdLocations {},
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx)
             }),
         ))
     }
-    fn remove_on_admin_reset_all_herd_locations(&self, callback: AdminResetAllHerdLocationsCallbackId) {
-        self.imp.remove_on_reducer("admin_reset_all_herd_locations", callback.0)
+    fn remove_on_admin_reset_all_herd_locations(
+        &self,
+        callback: AdminResetAllHerdLocationsCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("admin_reset_all_herd_locations", callback.0)
     }
 }
 
@@ -97,7 +105,7 @@ pub trait set_flags_for_admin_reset_all_herd_locations {
 
 impl set_flags_for_admin_reset_all_herd_locations for super::SetReducerFlags {
     fn admin_reset_all_herd_locations(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("admin_reset_all_herd_locations", flags);
+        self.imp
+            .set_call_reducer_flags("admin_reset_all_herd_locations", flags);
     }
 }
-

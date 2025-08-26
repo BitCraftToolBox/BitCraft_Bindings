@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::knowledge_enemy_state_type::KnowledgeEnemyState;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct ImportKnowledgeEnemyStateArgs {
-    pub records: Vec::<KnowledgeEnemyState>,
+    pub records: Vec<KnowledgeEnemyState>,
 }
 
 impl From<ImportKnowledgeEnemyStateArgs> for super::Reducer {
     fn from(args: ImportKnowledgeEnemyStateArgs) -> Self {
         Self::ImportKnowledgeEnemyState {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ImportKnowledgeEnemyStateArgs {
@@ -42,8 +37,7 @@ pub trait import_knowledge_enemy_state {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_import_knowledge_enemy_state`] callbacks.
-    fn import_knowledge_enemy_state(&self, records: Vec::<KnowledgeEnemyState>,
-) -> __sdk::Result<()>;
+    fn import_knowledge_enemy_state(&self, records: Vec<KnowledgeEnemyState>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `import_knowledge_enemy_state`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,52 @@ pub trait import_knowledge_enemy_state {
     ///
     /// The returned [`ImportKnowledgeEnemyStateCallbackId`] can be passed to [`Self::remove_on_import_knowledge_enemy_state`]
     /// to cancel the callback.
-    fn on_import_knowledge_enemy_state(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<KnowledgeEnemyState>, ) + Send + 'static) -> ImportKnowledgeEnemyStateCallbackId;
+    fn on_import_knowledge_enemy_state(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<KnowledgeEnemyState>) + Send + 'static,
+    ) -> ImportKnowledgeEnemyStateCallbackId;
     /// Cancel a callback previously registered by [`Self::on_import_knowledge_enemy_state`],
     /// causing it not to run in the future.
     fn remove_on_import_knowledge_enemy_state(&self, callback: ImportKnowledgeEnemyStateCallbackId);
 }
 
 impl import_knowledge_enemy_state for super::RemoteReducers {
-    fn import_knowledge_enemy_state(&self, records: Vec::<KnowledgeEnemyState>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("import_knowledge_enemy_state", ImportKnowledgeEnemyStateArgs { records,  })
+    fn import_knowledge_enemy_state(&self, records: Vec<KnowledgeEnemyState>) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "import_knowledge_enemy_state",
+            ImportKnowledgeEnemyStateArgs { records },
+        )
     }
     fn on_import_knowledge_enemy_state(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<KnowledgeEnemyState>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<KnowledgeEnemyState>)
+            + Send
+            + 'static,
     ) -> ImportKnowledgeEnemyStateCallbackId {
         ImportKnowledgeEnemyStateCallbackId(self.imp.on_reducer(
             "import_knowledge_enemy_state",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ImportKnowledgeEnemyState {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ImportKnowledgeEnemyState { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
-    fn remove_on_import_knowledge_enemy_state(&self, callback: ImportKnowledgeEnemyStateCallbackId) {
-        self.imp.remove_on_reducer("import_knowledge_enemy_state", callback.0)
+    fn remove_on_import_knowledge_enemy_state(
+        &self,
+        callback: ImportKnowledgeEnemyStateCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("import_knowledge_enemy_state", callback.0)
     }
 }
 
@@ -103,7 +110,7 @@ pub trait set_flags_for_import_knowledge_enemy_state {
 
 impl set_flags_for_import_knowledge_enemy_state for super::SetReducerFlags {
     fn import_knowledge_enemy_state(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("import_knowledge_enemy_state", flags);
+        self.imp
+            .set_call_reducer_flags("import_knowledge_enemy_state", flags);
     }
 }
-

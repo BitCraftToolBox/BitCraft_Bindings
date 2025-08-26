@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::knowledge_entry_type::KnowledgeEntry;
 
@@ -16,11 +11,9 @@ use super::knowledge_entry_type::KnowledgeEntry;
 #[sats(crate = __lib)]
 pub struct KnowledgePillarShapingState {
     pub entity_id: u64,
-    pub entries: Vec::<KnowledgeEntry>,
+    pub entries: Vec<KnowledgeEntry>,
 }
-
 
 impl __sdk::InModule for KnowledgePillarShapingState {
     type Module = super::RemoteModule;
 }
-

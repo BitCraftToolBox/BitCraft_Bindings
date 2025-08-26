@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::duel_despawn_timer_type::DuelDespawnTimer;
 
@@ -20,10 +15,8 @@ pub(super) struct DuelDespawnArgs {
 
 impl From<DuelDespawnArgs> for super::Reducer {
     fn from(args: DuelDespawnArgs) -> Self {
-        Self::DuelDespawn {
-            timer: args.timer,
-}
-}
+        Self::DuelDespawn { timer: args.timer }
+    }
 }
 
 impl __sdk::InModule for DuelDespawnArgs {
@@ -42,8 +35,7 @@ pub trait duel_despawn {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_duel_despawn`] callbacks.
-    fn duel_despawn(&self, timer: DuelDespawnTimer,
-) -> __sdk::Result<()>;
+    fn duel_despawn(&self, timer: DuelDespawnTimer) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `duel_despawn`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +43,39 @@ pub trait duel_despawn {
     ///
     /// The returned [`DuelDespawnCallbackId`] can be passed to [`Self::remove_on_duel_despawn`]
     /// to cancel the callback.
-    fn on_duel_despawn(&self, callback: impl FnMut(&super::ReducerEventContext, &DuelDespawnTimer, ) + Send + 'static) -> DuelDespawnCallbackId;
+    fn on_duel_despawn(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &DuelDespawnTimer) + Send + 'static,
+    ) -> DuelDespawnCallbackId;
     /// Cancel a callback previously registered by [`Self::on_duel_despawn`],
     /// causing it not to run in the future.
     fn remove_on_duel_despawn(&self, callback: DuelDespawnCallbackId);
 }
 
 impl duel_despawn for super::RemoteReducers {
-    fn duel_despawn(&self, timer: DuelDespawnTimer,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("duel_despawn", DuelDespawnArgs { timer,  })
+    fn duel_despawn(&self, timer: DuelDespawnTimer) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("duel_despawn", DuelDespawnArgs { timer })
     }
     fn on_duel_despawn(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &DuelDespawnTimer, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &DuelDespawnTimer) + Send + 'static,
     ) -> DuelDespawnCallbackId {
         DuelDespawnCallbackId(self.imp.on_reducer(
             "duel_despawn",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::DuelDespawn {
-                            timer, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::DuelDespawn { timer },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, timer, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, timer)
             }),
         ))
     }
@@ -106,4 +103,3 @@ impl set_flags_for_duel_despawn for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("duel_despawn", flags);
     }
 }
-

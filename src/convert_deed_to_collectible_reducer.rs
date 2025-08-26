@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_convert_deed_to_collectible_request_type::PlayerConvertDeedToCollectibleRequest;
 
@@ -22,8 +17,8 @@ impl From<ConvertDeedToCollectibleArgs> for super::Reducer {
     fn from(args: ConvertDeedToCollectibleArgs) -> Self {
         Self::ConvertDeedToCollectible {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ConvertDeedToCollectibleArgs {
@@ -42,8 +37,10 @@ pub trait convert_deed_to_collectible {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_convert_deed_to_collectible`] callbacks.
-    fn convert_deed_to_collectible(&self, request: PlayerConvertDeedToCollectibleRequest,
-) -> __sdk::Result<()>;
+    fn convert_deed_to_collectible(
+        &self,
+        request: PlayerConvertDeedToCollectibleRequest,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `convert_deed_to_collectible`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +48,54 @@ pub trait convert_deed_to_collectible {
     ///
     /// The returned [`ConvertDeedToCollectibleCallbackId`] can be passed to [`Self::remove_on_convert_deed_to_collectible`]
     /// to cancel the callback.
-    fn on_convert_deed_to_collectible(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerConvertDeedToCollectibleRequest, ) + Send + 'static) -> ConvertDeedToCollectibleCallbackId;
+    fn on_convert_deed_to_collectible(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerConvertDeedToCollectibleRequest)
+            + Send
+            + 'static,
+    ) -> ConvertDeedToCollectibleCallbackId;
     /// Cancel a callback previously registered by [`Self::on_convert_deed_to_collectible`],
     /// causing it not to run in the future.
     fn remove_on_convert_deed_to_collectible(&self, callback: ConvertDeedToCollectibleCallbackId);
 }
 
 impl convert_deed_to_collectible for super::RemoteReducers {
-    fn convert_deed_to_collectible(&self, request: PlayerConvertDeedToCollectibleRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("convert_deed_to_collectible", ConvertDeedToCollectibleArgs { request,  })
+    fn convert_deed_to_collectible(
+        &self,
+        request: PlayerConvertDeedToCollectibleRequest,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "convert_deed_to_collectible",
+            ConvertDeedToCollectibleArgs { request },
+        )
     }
     fn on_convert_deed_to_collectible(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerConvertDeedToCollectibleRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerConvertDeedToCollectibleRequest)
+            + Send
+            + 'static,
     ) -> ConvertDeedToCollectibleCallbackId {
         ConvertDeedToCollectibleCallbackId(self.imp.on_reducer(
             "convert_deed_to_collectible",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ConvertDeedToCollectible {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ConvertDeedToCollectible { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
     fn remove_on_convert_deed_to_collectible(&self, callback: ConvertDeedToCollectibleCallbackId) {
-        self.imp.remove_on_reducer("convert_deed_to_collectible", callback.0)
+        self.imp
+            .remove_on_reducer("convert_deed_to_collectible", callback.0)
     }
 }
 
@@ -103,7 +115,7 @@ pub trait set_flags_for_convert_deed_to_collectible {
 
 impl set_flags_for_convert_deed_to_collectible for super::SetReducerFlags {
     fn convert_deed_to_collectible(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("convert_deed_to_collectible", flags);
+        self.imp
+            .set_call_reducer_flags("convert_deed_to_collectible", flags);
     }
 }
-

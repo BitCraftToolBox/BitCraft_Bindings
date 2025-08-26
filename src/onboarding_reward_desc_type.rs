@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::item_stack_type::ItemStack;
 
@@ -16,11 +11,9 @@ use super::item_stack_type::ItemStack;
 #[sats(crate = __lib)]
 pub struct OnboardingRewardDesc {
     pub state_id: u16,
-    pub item_stack_rewards: Vec::<ItemStack>,
+    pub item_stack_rewards: Vec<ItemStack>,
 }
-
 
 impl __sdk::InModule for OnboardingRewardDesc {
     type Module = super::RemoteModule;
 }
-

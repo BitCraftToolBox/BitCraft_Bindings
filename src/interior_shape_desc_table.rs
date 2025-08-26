@@ -3,14 +3,9 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-use super::interior_shape_desc_type::InteriorShapeDesc;
 use super::footprint_tile_type::FootprintTile;
+use super::interior_shape_desc_type::InteriorShapeDesc;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `interior_shape_desc`.
 ///
@@ -38,7 +33,9 @@ pub trait InteriorShapeDescTableAccess {
 impl InteriorShapeDescTableAccess for super::RemoteTables {
     fn interior_shape_desc(&self) -> InteriorShapeDescTableHandle<'_> {
         InteriorShapeDescTableHandle {
-            imp: self.imp.get_table::<InteriorShapeDesc>("interior_shape_desc"),
+            imp: self
+                .imp
+                .get_table::<InteriorShapeDesc>("interior_shape_desc"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -51,8 +48,12 @@ impl<'ctx> __sdk::Table for InteriorShapeDescTableHandle<'ctx> {
     type Row = InteriorShapeDesc;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = InteriorShapeDesc> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = InteriorShapeDesc> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = InteriorShapeDescInsertCallbackId;
 
@@ -83,8 +84,7 @@ impl<'ctx> __sdk::Table for InteriorShapeDescTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<InteriorShapeDesc>("interior_shape_desc");
+    let _table = client_cache.get_or_make_table::<InteriorShapeDesc>("interior_shape_desc");
     _table.add_unique_constraint::<i32>("id", |row| &row.id);
 }
 pub struct InteriorShapeDescUpdateCallbackId(__sdk::CallbackId);
@@ -104,46 +104,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for InteriorShapeDescTableHandle<'ctx> {
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<InteriorShapeDesc>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<InteriorShapeDesc>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<InteriorShapeDesc>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `id` unique index on the table `interior_shape_desc`,
-        /// which allows point queries on the field of the same name
-        /// via the [`InteriorShapeDescIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.interior_shape_desc().id().find(...)`.
-        pub struct InteriorShapeDescIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<InteriorShapeDesc, i32>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `id` unique index on the table `interior_shape_desc`,
+/// which allows point queries on the field of the same name
+/// via the [`InteriorShapeDescIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.interior_shape_desc().id().find(...)`.
+pub struct InteriorShapeDescIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<InteriorShapeDesc, i32>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> InteriorShapeDescTableHandle<'ctx> {
-            /// Get a handle on the `id` unique index on the table `interior_shape_desc`.
-            pub fn id(&self) -> InteriorShapeDescIdUnique<'ctx> {
-                InteriorShapeDescIdUnique {
-                    imp: self.imp.get_unique_constraint::<i32>("id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> InteriorShapeDescTableHandle<'ctx> {
+    /// Get a handle on the `id` unique index on the table `interior_shape_desc`.
+    pub fn id(&self) -> InteriorShapeDescIdUnique<'ctx> {
+        InteriorShapeDescIdUnique {
+            imp: self.imp.get_unique_constraint::<i32>("id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> InteriorShapeDescIdUnique<'ctx> {
-            /// Find the subscribed row whose `id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &i32) -> Option<InteriorShapeDesc> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> InteriorShapeDescIdUnique<'ctx> {
+    /// Find the subscribed row whose `id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &i32) -> Option<InteriorShapeDesc> {
+        self.imp.find(col_val)
+    }
+}

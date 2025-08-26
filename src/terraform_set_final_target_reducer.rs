@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_terraform_set_final_target_request_type::PlayerTerraformSetFinalTargetRequest;
 
@@ -22,8 +17,8 @@ impl From<TerraformSetFinalTargetArgs> for super::Reducer {
     fn from(args: TerraformSetFinalTargetArgs) -> Self {
         Self::TerraformSetFinalTarget {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for TerraformSetFinalTargetArgs {
@@ -42,8 +37,10 @@ pub trait terraform_set_final_target {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_terraform_set_final_target`] callbacks.
-    fn terraform_set_final_target(&self, request: PlayerTerraformSetFinalTargetRequest,
-) -> __sdk::Result<()>;
+    fn terraform_set_final_target(
+        &self,
+        request: PlayerTerraformSetFinalTargetRequest,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `terraform_set_final_target`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +48,54 @@ pub trait terraform_set_final_target {
     ///
     /// The returned [`TerraformSetFinalTargetCallbackId`] can be passed to [`Self::remove_on_terraform_set_final_target`]
     /// to cancel the callback.
-    fn on_terraform_set_final_target(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerTerraformSetFinalTargetRequest, ) + Send + 'static) -> TerraformSetFinalTargetCallbackId;
+    fn on_terraform_set_final_target(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerTerraformSetFinalTargetRequest)
+            + Send
+            + 'static,
+    ) -> TerraformSetFinalTargetCallbackId;
     /// Cancel a callback previously registered by [`Self::on_terraform_set_final_target`],
     /// causing it not to run in the future.
     fn remove_on_terraform_set_final_target(&self, callback: TerraformSetFinalTargetCallbackId);
 }
 
 impl terraform_set_final_target for super::RemoteReducers {
-    fn terraform_set_final_target(&self, request: PlayerTerraformSetFinalTargetRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("terraform_set_final_target", TerraformSetFinalTargetArgs { request,  })
+    fn terraform_set_final_target(
+        &self,
+        request: PlayerTerraformSetFinalTargetRequest,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "terraform_set_final_target",
+            TerraformSetFinalTargetArgs { request },
+        )
     }
     fn on_terraform_set_final_target(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerTerraformSetFinalTargetRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerTerraformSetFinalTargetRequest)
+            + Send
+            + 'static,
     ) -> TerraformSetFinalTargetCallbackId {
         TerraformSetFinalTargetCallbackId(self.imp.on_reducer(
             "terraform_set_final_target",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::TerraformSetFinalTarget {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::TerraformSetFinalTarget { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
     fn remove_on_terraform_set_final_target(&self, callback: TerraformSetFinalTargetCallbackId) {
-        self.imp.remove_on_reducer("terraform_set_final_target", callback.0)
+        self.imp
+            .remove_on_reducer("terraform_set_final_target", callback.0)
     }
 }
 
@@ -103,7 +115,7 @@ pub trait set_flags_for_terraform_set_final_target {
 
 impl set_flags_for_terraform_set_final_target for super::SetReducerFlags {
     fn terraform_set_final_target(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("terraform_set_final_target", flags);
+        self.imp
+            .set_call_reducer_flags("terraform_set_final_target", flags);
     }
 }
-

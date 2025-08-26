@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::deployable_store_request_type::DeployableStoreRequest;
 
@@ -22,8 +17,8 @@ impl From<DeployableStoreArgs> for super::Reducer {
     fn from(args: DeployableStoreArgs) -> Self {
         Self::DeployableStore {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for DeployableStoreArgs {
@@ -42,8 +37,7 @@ pub trait deployable_store {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_deployable_store`] callbacks.
-    fn deployable_store(&self, request: DeployableStoreRequest,
-) -> __sdk::Result<()>;
+    fn deployable_store(&self, request: DeployableStoreRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `deployable_store`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,39 @@ pub trait deployable_store {
     ///
     /// The returned [`DeployableStoreCallbackId`] can be passed to [`Self::remove_on_deployable_store`]
     /// to cancel the callback.
-    fn on_deployable_store(&self, callback: impl FnMut(&super::ReducerEventContext, &DeployableStoreRequest, ) + Send + 'static) -> DeployableStoreCallbackId;
+    fn on_deployable_store(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &DeployableStoreRequest) + Send + 'static,
+    ) -> DeployableStoreCallbackId;
     /// Cancel a callback previously registered by [`Self::on_deployable_store`],
     /// causing it not to run in the future.
     fn remove_on_deployable_store(&self, callback: DeployableStoreCallbackId);
 }
 
 impl deployable_store for super::RemoteReducers {
-    fn deployable_store(&self, request: DeployableStoreRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("deployable_store", DeployableStoreArgs { request,  })
+    fn deployable_store(&self, request: DeployableStoreRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("deployable_store", DeployableStoreArgs { request })
     }
     fn on_deployable_store(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &DeployableStoreRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &DeployableStoreRequest) + Send + 'static,
     ) -> DeployableStoreCallbackId {
         DeployableStoreCallbackId(self.imp.on_reducer(
             "deployable_store",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::DeployableStore {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::DeployableStore { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
@@ -106,4 +105,3 @@ impl set_flags_for_deployable_store for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("deployable_store", flags);
     }
 }
-

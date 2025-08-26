@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::destroy_dimension_network_timer_type::DestroyDimensionNetworkTimer;
 
@@ -20,10 +15,8 @@ pub(super) struct DestroyDimensionNetworkArgs {
 
 impl From<DestroyDimensionNetworkArgs> for super::Reducer {
     fn from(args: DestroyDimensionNetworkArgs) -> Self {
-        Self::DestroyDimensionNetwork {
-            timer: args.timer,
-}
-}
+        Self::DestroyDimensionNetwork { timer: args.timer }
+    }
 }
 
 impl __sdk::InModule for DestroyDimensionNetworkArgs {
@@ -42,8 +35,7 @@ pub trait destroy_dimension_network {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_destroy_dimension_network`] callbacks.
-    fn destroy_dimension_network(&self, timer: DestroyDimensionNetworkTimer,
-) -> __sdk::Result<()>;
+    fn destroy_dimension_network(&self, timer: DestroyDimensionNetworkTimer) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `destroy_dimension_network`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +43,51 @@ pub trait destroy_dimension_network {
     ///
     /// The returned [`DestroyDimensionNetworkCallbackId`] can be passed to [`Self::remove_on_destroy_dimension_network`]
     /// to cancel the callback.
-    fn on_destroy_dimension_network(&self, callback: impl FnMut(&super::ReducerEventContext, &DestroyDimensionNetworkTimer, ) + Send + 'static) -> DestroyDimensionNetworkCallbackId;
+    fn on_destroy_dimension_network(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &DestroyDimensionNetworkTimer)
+            + Send
+            + 'static,
+    ) -> DestroyDimensionNetworkCallbackId;
     /// Cancel a callback previously registered by [`Self::on_destroy_dimension_network`],
     /// causing it not to run in the future.
     fn remove_on_destroy_dimension_network(&self, callback: DestroyDimensionNetworkCallbackId);
 }
 
 impl destroy_dimension_network for super::RemoteReducers {
-    fn destroy_dimension_network(&self, timer: DestroyDimensionNetworkTimer,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("destroy_dimension_network", DestroyDimensionNetworkArgs { timer,  })
+    fn destroy_dimension_network(&self, timer: DestroyDimensionNetworkTimer) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "destroy_dimension_network",
+            DestroyDimensionNetworkArgs { timer },
+        )
     }
     fn on_destroy_dimension_network(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &DestroyDimensionNetworkTimer, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &DestroyDimensionNetworkTimer)
+            + Send
+            + 'static,
     ) -> DestroyDimensionNetworkCallbackId {
         DestroyDimensionNetworkCallbackId(self.imp.on_reducer(
             "destroy_dimension_network",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::DestroyDimensionNetwork {
-                            timer, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::DestroyDimensionNetwork { timer },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, timer, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, timer)
             }),
         ))
     }
     fn remove_on_destroy_dimension_network(&self, callback: DestroyDimensionNetworkCallbackId) {
-        self.imp.remove_on_reducer("destroy_dimension_network", callback.0)
+        self.imp
+            .remove_on_reducer("destroy_dimension_network", callback.0)
     }
 }
 
@@ -103,7 +107,7 @@ pub trait set_flags_for_destroy_dimension_network {
 
 impl set_flags_for_destroy_dimension_network for super::SetReducerFlags {
     fn destroy_dimension_network(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("destroy_dimension_network", flags);
+        self.imp
+            .set_call_reducer_flags("destroy_dimension_network", flags);
     }
 }
-

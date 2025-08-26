@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_acquire_knowledge_from_entities_request_type::PlayerAcquireKnowledgeFromEntitiesRequest;
 
@@ -22,8 +17,8 @@ impl From<AcquireKnowledgeFromEntitiesArgs> for super::Reducer {
     fn from(args: AcquireKnowledgeFromEntitiesArgs) -> Self {
         Self::AcquireKnowledgeFromEntities {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for AcquireKnowledgeFromEntitiesArgs {
@@ -42,8 +37,10 @@ pub trait acquire_knowledge_from_entities {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_acquire_knowledge_from_entities`] callbacks.
-    fn acquire_knowledge_from_entities(&self, request: PlayerAcquireKnowledgeFromEntitiesRequest,
-) -> __sdk::Result<()>;
+    fn acquire_knowledge_from_entities(
+        &self,
+        request: PlayerAcquireKnowledgeFromEntitiesRequest,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `acquire_knowledge_from_entities`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +48,60 @@ pub trait acquire_knowledge_from_entities {
     ///
     /// The returned [`AcquireKnowledgeFromEntitiesCallbackId`] can be passed to [`Self::remove_on_acquire_knowledge_from_entities`]
     /// to cancel the callback.
-    fn on_acquire_knowledge_from_entities(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerAcquireKnowledgeFromEntitiesRequest, ) + Send + 'static) -> AcquireKnowledgeFromEntitiesCallbackId;
+    fn on_acquire_knowledge_from_entities(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerAcquireKnowledgeFromEntitiesRequest)
+            + Send
+            + 'static,
+    ) -> AcquireKnowledgeFromEntitiesCallbackId;
     /// Cancel a callback previously registered by [`Self::on_acquire_knowledge_from_entities`],
     /// causing it not to run in the future.
-    fn remove_on_acquire_knowledge_from_entities(&self, callback: AcquireKnowledgeFromEntitiesCallbackId);
+    fn remove_on_acquire_knowledge_from_entities(
+        &self,
+        callback: AcquireKnowledgeFromEntitiesCallbackId,
+    );
 }
 
 impl acquire_knowledge_from_entities for super::RemoteReducers {
-    fn acquire_knowledge_from_entities(&self, request: PlayerAcquireKnowledgeFromEntitiesRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("acquire_knowledge_from_entities", AcquireKnowledgeFromEntitiesArgs { request,  })
+    fn acquire_knowledge_from_entities(
+        &self,
+        request: PlayerAcquireKnowledgeFromEntitiesRequest,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "acquire_knowledge_from_entities",
+            AcquireKnowledgeFromEntitiesArgs { request },
+        )
     }
     fn on_acquire_knowledge_from_entities(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerAcquireKnowledgeFromEntitiesRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerAcquireKnowledgeFromEntitiesRequest)
+            + Send
+            + 'static,
     ) -> AcquireKnowledgeFromEntitiesCallbackId {
         AcquireKnowledgeFromEntitiesCallbackId(self.imp.on_reducer(
             "acquire_knowledge_from_entities",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::AcquireKnowledgeFromEntities {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::AcquireKnowledgeFromEntities { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
-    fn remove_on_acquire_knowledge_from_entities(&self, callback: AcquireKnowledgeFromEntitiesCallbackId) {
-        self.imp.remove_on_reducer("acquire_knowledge_from_entities", callback.0)
+    fn remove_on_acquire_knowledge_from_entities(
+        &self,
+        callback: AcquireKnowledgeFromEntitiesCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("acquire_knowledge_from_entities", callback.0)
     }
 }
 
@@ -103,7 +121,7 @@ pub trait set_flags_for_acquire_knowledge_from_entities {
 
 impl set_flags_for_acquire_knowledge_from_entities for super::SetReducerFlags {
     fn acquire_knowledge_from_entities(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("acquire_knowledge_from_entities", flags);
+        self.imp
+            .set_call_reducer_flags("acquire_knowledge_from_entities", flags);
     }
 }
-

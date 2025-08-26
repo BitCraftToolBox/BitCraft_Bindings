@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_project_site_advance_project_request_type::PlayerProjectSiteAdvanceProjectRequest;
 
@@ -22,8 +17,8 @@ impl From<ProjectSiteAdvanceProjectArgs> for super::Reducer {
     fn from(args: ProjectSiteAdvanceProjectArgs) -> Self {
         Self::ProjectSiteAdvanceProject {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ProjectSiteAdvanceProjectArgs {
@@ -42,8 +37,10 @@ pub trait project_site_advance_project {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_project_site_advance_project`] callbacks.
-    fn project_site_advance_project(&self, request: PlayerProjectSiteAdvanceProjectRequest,
-) -> __sdk::Result<()>;
+    fn project_site_advance_project(
+        &self,
+        request: PlayerProjectSiteAdvanceProjectRequest,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `project_site_advance_project`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +48,57 @@ pub trait project_site_advance_project {
     ///
     /// The returned [`ProjectSiteAdvanceProjectCallbackId`] can be passed to [`Self::remove_on_project_site_advance_project`]
     /// to cancel the callback.
-    fn on_project_site_advance_project(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerProjectSiteAdvanceProjectRequest, ) + Send + 'static) -> ProjectSiteAdvanceProjectCallbackId;
+    fn on_project_site_advance_project(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerProjectSiteAdvanceProjectRequest)
+            + Send
+            + 'static,
+    ) -> ProjectSiteAdvanceProjectCallbackId;
     /// Cancel a callback previously registered by [`Self::on_project_site_advance_project`],
     /// causing it not to run in the future.
     fn remove_on_project_site_advance_project(&self, callback: ProjectSiteAdvanceProjectCallbackId);
 }
 
 impl project_site_advance_project for super::RemoteReducers {
-    fn project_site_advance_project(&self, request: PlayerProjectSiteAdvanceProjectRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("project_site_advance_project", ProjectSiteAdvanceProjectArgs { request,  })
+    fn project_site_advance_project(
+        &self,
+        request: PlayerProjectSiteAdvanceProjectRequest,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "project_site_advance_project",
+            ProjectSiteAdvanceProjectArgs { request },
+        )
     }
     fn on_project_site_advance_project(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerProjectSiteAdvanceProjectRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerProjectSiteAdvanceProjectRequest)
+            + Send
+            + 'static,
     ) -> ProjectSiteAdvanceProjectCallbackId {
         ProjectSiteAdvanceProjectCallbackId(self.imp.on_reducer(
             "project_site_advance_project",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ProjectSiteAdvanceProject {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ProjectSiteAdvanceProject { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
-    fn remove_on_project_site_advance_project(&self, callback: ProjectSiteAdvanceProjectCallbackId) {
-        self.imp.remove_on_reducer("project_site_advance_project", callback.0)
+    fn remove_on_project_site_advance_project(
+        &self,
+        callback: ProjectSiteAdvanceProjectCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("project_site_advance_project", callback.0)
     }
 }
 
@@ -103,7 +118,7 @@ pub trait set_flags_for_project_site_advance_project {
 
 impl set_flags_for_project_site_advance_project for super::SetReducerFlags {
     fn project_site_advance_project(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("project_site_advance_project", flags);
+        self.imp
+            .set_call_reducer_flags("project_site_advance_project", flags);
     }
 }
-

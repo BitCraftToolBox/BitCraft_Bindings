@@ -3,14 +3,9 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::lost_items_state_type::LostItemsState;
 use super::offset_coordinates_small_message_type::OffsetCoordinatesSmallMessage;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `lost_items_state`.
 ///
@@ -51,8 +46,12 @@ impl<'ctx> __sdk::Table for LostItemsStateTableHandle<'ctx> {
     type Row = LostItemsState;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = LostItemsState> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = LostItemsState> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = LostItemsStateInsertCallbackId;
 
@@ -83,8 +82,7 @@ impl<'ctx> __sdk::Table for LostItemsStateTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<LostItemsState>("lost_items_state");
+    let _table = client_cache.get_or_make_table::<LostItemsState>("lost_items_state");
     _table.add_unique_constraint::<u64>("inventory_entity_id", |row| &row.inventory_entity_id);
 }
 pub struct LostItemsStateUpdateCallbackId(__sdk::CallbackId);
@@ -104,46 +102,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for LostItemsStateTableHandle<'ctx> {
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<LostItemsState>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<LostItemsState>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<LostItemsState>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `inventory_entity_id` unique index on the table `lost_items_state`,
-        /// which allows point queries on the field of the same name
-        /// via the [`LostItemsStateInventoryEntityIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.lost_items_state().inventory_entity_id().find(...)`.
-        pub struct LostItemsStateInventoryEntityIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<LostItemsState, u64>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `inventory_entity_id` unique index on the table `lost_items_state`,
+/// which allows point queries on the field of the same name
+/// via the [`LostItemsStateInventoryEntityIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.lost_items_state().inventory_entity_id().find(...)`.
+pub struct LostItemsStateInventoryEntityIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<LostItemsState, u64>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> LostItemsStateTableHandle<'ctx> {
-            /// Get a handle on the `inventory_entity_id` unique index on the table `lost_items_state`.
-            pub fn inventory_entity_id(&self) -> LostItemsStateInventoryEntityIdUnique<'ctx> {
-                LostItemsStateInventoryEntityIdUnique {
-                    imp: self.imp.get_unique_constraint::<u64>("inventory_entity_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> LostItemsStateTableHandle<'ctx> {
+    /// Get a handle on the `inventory_entity_id` unique index on the table `lost_items_state`.
+    pub fn inventory_entity_id(&self) -> LostItemsStateInventoryEntityIdUnique<'ctx> {
+        LostItemsStateInventoryEntityIdUnique {
+            imp: self.imp.get_unique_constraint::<u64>("inventory_entity_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> LostItemsStateInventoryEntityIdUnique<'ctx> {
-            /// Find the subscribed row whose `inventory_entity_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u64) -> Option<LostItemsState> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> LostItemsStateInventoryEntityIdUnique<'ctx> {
+    /// Find the subscribed row whose `inventory_entity_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u64) -> Option<LostItemsState> {
+        self.imp.find(col_val)
+    }
+}

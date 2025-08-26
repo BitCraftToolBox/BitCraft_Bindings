@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::chat_channel_type::ChatChannel;
 
@@ -30,8 +25,8 @@ impl From<AdminCreateChatMessageArgs> for super::Reducer {
             title_id: args.title_id,
             target_id: args.target_id,
             new_message_text: args.new_message_text,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for AdminCreateChatMessageArgs {
@@ -50,12 +45,14 @@ pub trait admin_create_chat_message {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_admin_create_chat_message`] callbacks.
-    fn admin_create_chat_message(&self, channel_id: ChatChannel,
-username: String,
-title_id: i32,
-target_id: u64,
-new_message_text: String,
-) -> __sdk::Result<()>;
+    fn admin_create_chat_message(
+        &self,
+        channel_id: ChatChannel,
+        username: String,
+        title_id: i32,
+        target_id: u64,
+        new_message_text: String,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `admin_create_chat_message`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -63,43 +60,78 @@ new_message_text: String,
     ///
     /// The returned [`AdminCreateChatMessageCallbackId`] can be passed to [`Self::remove_on_admin_create_chat_message`]
     /// to cancel the callback.
-    fn on_admin_create_chat_message(&self, callback: impl FnMut(&super::ReducerEventContext, &ChatChannel, &String, &i32, &u64, &String, ) + Send + 'static) -> AdminCreateChatMessageCallbackId;
+    fn on_admin_create_chat_message(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &ChatChannel, &String, &i32, &u64, &String)
+            + Send
+            + 'static,
+    ) -> AdminCreateChatMessageCallbackId;
     /// Cancel a callback previously registered by [`Self::on_admin_create_chat_message`],
     /// causing it not to run in the future.
     fn remove_on_admin_create_chat_message(&self, callback: AdminCreateChatMessageCallbackId);
 }
 
 impl admin_create_chat_message for super::RemoteReducers {
-    fn admin_create_chat_message(&self, channel_id: ChatChannel,
-username: String,
-title_id: i32,
-target_id: u64,
-new_message_text: String,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("admin_create_chat_message", AdminCreateChatMessageArgs { channel_id, username, title_id, target_id, new_message_text,  })
+    fn admin_create_chat_message(
+        &self,
+        channel_id: ChatChannel,
+        username: String,
+        title_id: i32,
+        target_id: u64,
+        new_message_text: String,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "admin_create_chat_message",
+            AdminCreateChatMessageArgs {
+                channel_id,
+                username,
+                title_id,
+                target_id,
+                new_message_text,
+            },
+        )
     }
     fn on_admin_create_chat_message(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &ChatChannel, &String, &i32, &u64, &String, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &ChatChannel, &String, &i32, &u64, &String)
+            + Send
+            + 'static,
     ) -> AdminCreateChatMessageCallbackId {
         AdminCreateChatMessageCallbackId(self.imp.on_reducer(
             "admin_create_chat_message",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::AdminCreateChatMessage {
-                            channel_id, username, title_id, target_id, new_message_text, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer:
+                                super::Reducer::AdminCreateChatMessage {
+                                    channel_id,
+                                    username,
+                                    title_id,
+                                    target_id,
+                                    new_message_text,
+                                },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, channel_id, username, title_id, target_id, new_message_text, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(
+                    ctx,
+                    channel_id,
+                    username,
+                    title_id,
+                    target_id,
+                    new_message_text,
+                )
             }),
         ))
     }
     fn remove_on_admin_create_chat_message(&self, callback: AdminCreateChatMessageCallbackId) {
-        self.imp.remove_on_reducer("admin_create_chat_message", callback.0)
+        self.imp
+            .remove_on_reducer("admin_create_chat_message", callback.0)
     }
 }
 
@@ -119,7 +151,7 @@ pub trait set_flags_for_admin_create_chat_message {
 
 impl set_flags_for_admin_create_chat_message for super::SetReducerFlags {
     fn admin_create_chat_message(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("admin_create_chat_message", flags);
+        self.imp
+            .set_call_reducer_flags("admin_create_chat_message", flags);
     }
 }
-

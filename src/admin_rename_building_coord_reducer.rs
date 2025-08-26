@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::offset_coordinates_small_message_type::OffsetCoordinatesSmallMessage;
 
@@ -24,8 +19,8 @@ impl From<AdminRenameBuildingCoordArgs> for super::Reducer {
         Self::AdminRenameBuildingCoord {
             coord: args.coord,
             new_name: args.new_name,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for AdminRenameBuildingCoordArgs {
@@ -44,9 +39,11 @@ pub trait admin_rename_building_coord {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_admin_rename_building_coord`] callbacks.
-    fn admin_rename_building_coord(&self, coord: OffsetCoordinatesSmallMessage,
-new_name: String,
-) -> __sdk::Result<()>;
+    fn admin_rename_building_coord(
+        &self,
+        coord: OffsetCoordinatesSmallMessage,
+        new_name: String,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `admin_rename_building_coord`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -54,40 +51,55 @@ new_name: String,
     ///
     /// The returned [`AdminRenameBuildingCoordCallbackId`] can be passed to [`Self::remove_on_admin_rename_building_coord`]
     /// to cancel the callback.
-    fn on_admin_rename_building_coord(&self, callback: impl FnMut(&super::ReducerEventContext, &OffsetCoordinatesSmallMessage, &String, ) + Send + 'static) -> AdminRenameBuildingCoordCallbackId;
+    fn on_admin_rename_building_coord(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &OffsetCoordinatesSmallMessage, &String)
+            + Send
+            + 'static,
+    ) -> AdminRenameBuildingCoordCallbackId;
     /// Cancel a callback previously registered by [`Self::on_admin_rename_building_coord`],
     /// causing it not to run in the future.
     fn remove_on_admin_rename_building_coord(&self, callback: AdminRenameBuildingCoordCallbackId);
 }
 
 impl admin_rename_building_coord for super::RemoteReducers {
-    fn admin_rename_building_coord(&self, coord: OffsetCoordinatesSmallMessage,
-new_name: String,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("admin_rename_building_coord", AdminRenameBuildingCoordArgs { coord, new_name,  })
+    fn admin_rename_building_coord(
+        &self,
+        coord: OffsetCoordinatesSmallMessage,
+        new_name: String,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "admin_rename_building_coord",
+            AdminRenameBuildingCoordArgs { coord, new_name },
+        )
     }
     fn on_admin_rename_building_coord(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &OffsetCoordinatesSmallMessage, &String, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &OffsetCoordinatesSmallMessage, &String)
+            + Send
+            + 'static,
     ) -> AdminRenameBuildingCoordCallbackId {
         AdminRenameBuildingCoordCallbackId(self.imp.on_reducer(
             "admin_rename_building_coord",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::AdminRenameBuildingCoord {
-                            coord, new_name, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::AdminRenameBuildingCoord { coord, new_name },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, coord, new_name, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, coord, new_name)
             }),
         ))
     }
     fn remove_on_admin_rename_building_coord(&self, callback: AdminRenameBuildingCoordCallbackId) {
-        self.imp.remove_on_reducer("admin_rename_building_coord", callback.0)
+        self.imp
+            .remove_on_reducer("admin_rename_building_coord", callback.0)
     }
 }
 
@@ -107,7 +119,7 @@ pub trait set_flags_for_admin_rename_building_coord {
 
 impl set_flags_for_admin_rename_building_coord for super::SetReducerFlags {
     fn admin_rename_building_coord(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("admin_rename_building_coord", flags);
+        self.imp
+            .set_call_reducer_flags("admin_rename_building_coord", flags);
     }
 }
-

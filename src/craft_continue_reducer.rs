@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_craft_continue_request_type::PlayerCraftContinueRequest;
 
@@ -22,8 +17,8 @@ impl From<CraftContinueArgs> for super::Reducer {
     fn from(args: CraftContinueArgs) -> Self {
         Self::CraftContinue {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for CraftContinueArgs {
@@ -42,8 +37,7 @@ pub trait craft_continue {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_craft_continue`] callbacks.
-    fn craft_continue(&self, request: PlayerCraftContinueRequest,
-) -> __sdk::Result<()>;
+    fn craft_continue(&self, request: PlayerCraftContinueRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `craft_continue`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,41 @@ pub trait craft_continue {
     ///
     /// The returned [`CraftContinueCallbackId`] can be passed to [`Self::remove_on_craft_continue`]
     /// to cancel the callback.
-    fn on_craft_continue(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerCraftContinueRequest, ) + Send + 'static) -> CraftContinueCallbackId;
+    fn on_craft_continue(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerCraftContinueRequest) + Send + 'static,
+    ) -> CraftContinueCallbackId;
     /// Cancel a callback previously registered by [`Self::on_craft_continue`],
     /// causing it not to run in the future.
     fn remove_on_craft_continue(&self, callback: CraftContinueCallbackId);
 }
 
 impl craft_continue for super::RemoteReducers {
-    fn craft_continue(&self, request: PlayerCraftContinueRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("craft_continue", CraftContinueArgs { request,  })
+    fn craft_continue(&self, request: PlayerCraftContinueRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("craft_continue", CraftContinueArgs { request })
     }
     fn on_craft_continue(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerCraftContinueRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerCraftContinueRequest)
+            + Send
+            + 'static,
     ) -> CraftContinueCallbackId {
         CraftContinueCallbackId(self.imp.on_reducer(
             "craft_continue",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::CraftContinue {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::CraftContinue { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
@@ -106,4 +107,3 @@ impl set_flags_for_craft_continue for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("craft_continue", flags);
     }
 }
-

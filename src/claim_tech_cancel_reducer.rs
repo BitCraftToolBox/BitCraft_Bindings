@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_claim_tech_cancel_request_type::PlayerClaimTechCancelRequest;
 
@@ -22,8 +17,8 @@ impl From<ClaimTechCancelArgs> for super::Reducer {
     fn from(args: ClaimTechCancelArgs) -> Self {
         Self::ClaimTechCancel {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ClaimTechCancelArgs {
@@ -42,8 +37,7 @@ pub trait claim_tech_cancel {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_claim_tech_cancel`] callbacks.
-    fn claim_tech_cancel(&self, request: PlayerClaimTechCancelRequest,
-) -> __sdk::Result<()>;
+    fn claim_tech_cancel(&self, request: PlayerClaimTechCancelRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `claim_tech_cancel`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,43 @@ pub trait claim_tech_cancel {
     ///
     /// The returned [`ClaimTechCancelCallbackId`] can be passed to [`Self::remove_on_claim_tech_cancel`]
     /// to cancel the callback.
-    fn on_claim_tech_cancel(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerClaimTechCancelRequest, ) + Send + 'static) -> ClaimTechCancelCallbackId;
+    fn on_claim_tech_cancel(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerClaimTechCancelRequest)
+            + Send
+            + 'static,
+    ) -> ClaimTechCancelCallbackId;
     /// Cancel a callback previously registered by [`Self::on_claim_tech_cancel`],
     /// causing it not to run in the future.
     fn remove_on_claim_tech_cancel(&self, callback: ClaimTechCancelCallbackId);
 }
 
 impl claim_tech_cancel for super::RemoteReducers {
-    fn claim_tech_cancel(&self, request: PlayerClaimTechCancelRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("claim_tech_cancel", ClaimTechCancelArgs { request,  })
+    fn claim_tech_cancel(&self, request: PlayerClaimTechCancelRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("claim_tech_cancel", ClaimTechCancelArgs { request })
     }
     fn on_claim_tech_cancel(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerClaimTechCancelRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerClaimTechCancelRequest)
+            + Send
+            + 'static,
     ) -> ClaimTechCancelCallbackId {
         ClaimTechCancelCallbackId(self.imp.on_reducer(
             "claim_tech_cancel",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ClaimTechCancel {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ClaimTechCancel { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
@@ -106,4 +109,3 @@ impl set_flags_for_claim_tech_cancel for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("claim_tech_cancel", flags);
     }
 }
-

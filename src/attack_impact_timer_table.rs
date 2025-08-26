@@ -3,14 +3,9 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::attack_impact_timer_type::AttackImpactTimer;
 use super::entity_type_type::EntityType;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `attack_impact_timer`.
 ///
@@ -38,7 +33,9 @@ pub trait AttackImpactTimerTableAccess {
 impl AttackImpactTimerTableAccess for super::RemoteTables {
     fn attack_impact_timer(&self) -> AttackImpactTimerTableHandle<'_> {
         AttackImpactTimerTableHandle {
-            imp: self.imp.get_table::<AttackImpactTimer>("attack_impact_timer"),
+            imp: self
+                .imp
+                .get_table::<AttackImpactTimer>("attack_impact_timer"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -51,8 +48,12 @@ impl<'ctx> __sdk::Table for AttackImpactTimerTableHandle<'ctx> {
     type Row = AttackImpactTimer;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = AttackImpactTimer> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = AttackImpactTimer> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = AttackImpactTimerInsertCallbackId;
 
@@ -83,8 +84,7 @@ impl<'ctx> __sdk::Table for AttackImpactTimerTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<AttackImpactTimer>("attack_impact_timer");
+    let _table = client_cache.get_or_make_table::<AttackImpactTimer>("attack_impact_timer");
     _table.add_unique_constraint::<u64>("scheduled_id", |row| &row.scheduled_id);
 }
 pub struct AttackImpactTimerUpdateCallbackId(__sdk::CallbackId);
@@ -104,46 +104,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for AttackImpactTimerTableHandle<'ctx> {
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<AttackImpactTimer>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<AttackImpactTimer>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<AttackImpactTimer>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `scheduled_id` unique index on the table `attack_impact_timer`,
-        /// which allows point queries on the field of the same name
-        /// via the [`AttackImpactTimerScheduledIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.attack_impact_timer().scheduled_id().find(...)`.
-        pub struct AttackImpactTimerScheduledIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<AttackImpactTimer, u64>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `scheduled_id` unique index on the table `attack_impact_timer`,
+/// which allows point queries on the field of the same name
+/// via the [`AttackImpactTimerScheduledIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.attack_impact_timer().scheduled_id().find(...)`.
+pub struct AttackImpactTimerScheduledIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<AttackImpactTimer, u64>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> AttackImpactTimerTableHandle<'ctx> {
-            /// Get a handle on the `scheduled_id` unique index on the table `attack_impact_timer`.
-            pub fn scheduled_id(&self) -> AttackImpactTimerScheduledIdUnique<'ctx> {
-                AttackImpactTimerScheduledIdUnique {
-                    imp: self.imp.get_unique_constraint::<u64>("scheduled_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> AttackImpactTimerTableHandle<'ctx> {
+    /// Get a handle on the `scheduled_id` unique index on the table `attack_impact_timer`.
+    pub fn scheduled_id(&self) -> AttackImpactTimerScheduledIdUnique<'ctx> {
+        AttackImpactTimerScheduledIdUnique {
+            imp: self.imp.get_unique_constraint::<u64>("scheduled_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> AttackImpactTimerScheduledIdUnique<'ctx> {
-            /// Find the subscribed row whose `scheduled_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u64) -> Option<AttackImpactTimer> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> AttackImpactTimerScheduledIdUnique<'ctx> {
+    /// Find the subscribed row whose `scheduled_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u64) -> Option<AttackImpactTimer> {
+        self.imp.find(col_val)
+    }
+}

@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_item_convert_request_type::PlayerItemConvertRequest;
 
@@ -22,8 +17,8 @@ impl From<ItemConvertStartArgs> for super::Reducer {
     fn from(args: ItemConvertStartArgs) -> Self {
         Self::ItemConvertStart {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ItemConvertStartArgs {
@@ -42,8 +37,7 @@ pub trait item_convert_start {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_item_convert_start`] callbacks.
-    fn item_convert_start(&self, request: PlayerItemConvertRequest,
-) -> __sdk::Result<()>;
+    fn item_convert_start(&self, request: PlayerItemConvertRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `item_convert_start`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,41 @@ pub trait item_convert_start {
     ///
     /// The returned [`ItemConvertStartCallbackId`] can be passed to [`Self::remove_on_item_convert_start`]
     /// to cancel the callback.
-    fn on_item_convert_start(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerItemConvertRequest, ) + Send + 'static) -> ItemConvertStartCallbackId;
+    fn on_item_convert_start(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerItemConvertRequest) + Send + 'static,
+    ) -> ItemConvertStartCallbackId;
     /// Cancel a callback previously registered by [`Self::on_item_convert_start`],
     /// causing it not to run in the future.
     fn remove_on_item_convert_start(&self, callback: ItemConvertStartCallbackId);
 }
 
 impl item_convert_start for super::RemoteReducers {
-    fn item_convert_start(&self, request: PlayerItemConvertRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("item_convert_start", ItemConvertStartArgs { request,  })
+    fn item_convert_start(&self, request: PlayerItemConvertRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("item_convert_start", ItemConvertStartArgs { request })
     }
     fn on_item_convert_start(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerItemConvertRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerItemConvertRequest)
+            + Send
+            + 'static,
     ) -> ItemConvertStartCallbackId {
         ItemConvertStartCallbackId(self.imp.on_reducer(
             "item_convert_start",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ItemConvertStart {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ItemConvertStart { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
@@ -106,4 +107,3 @@ impl set_flags_for_item_convert_start for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("item_convert_start", flags);
     }
 }
-

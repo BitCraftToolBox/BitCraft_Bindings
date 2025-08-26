@@ -3,13 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -23,8 +17,8 @@ impl From<AdminRenameBuildingArgs> for super::Reducer {
         Self::AdminRenameBuilding {
             building_name: args.building_name,
             new_name: args.new_name,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for AdminRenameBuildingArgs {
@@ -43,9 +37,7 @@ pub trait admin_rename_building {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_admin_rename_building`] callbacks.
-    fn admin_rename_building(&self, building_name: String,
-new_name: String,
-) -> __sdk::Result<()>;
+    fn admin_rename_building(&self, building_name: String, new_name: String) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `admin_rename_building`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -53,40 +45,54 @@ new_name: String,
     ///
     /// The returned [`AdminRenameBuildingCallbackId`] can be passed to [`Self::remove_on_admin_rename_building`]
     /// to cancel the callback.
-    fn on_admin_rename_building(&self, callback: impl FnMut(&super::ReducerEventContext, &String, &String, ) + Send + 'static) -> AdminRenameBuildingCallbackId;
+    fn on_admin_rename_building(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &String, &String) + Send + 'static,
+    ) -> AdminRenameBuildingCallbackId;
     /// Cancel a callback previously registered by [`Self::on_admin_rename_building`],
     /// causing it not to run in the future.
     fn remove_on_admin_rename_building(&self, callback: AdminRenameBuildingCallbackId);
 }
 
 impl admin_rename_building for super::RemoteReducers {
-    fn admin_rename_building(&self, building_name: String,
-new_name: String,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("admin_rename_building", AdminRenameBuildingArgs { building_name, new_name,  })
+    fn admin_rename_building(&self, building_name: String, new_name: String) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "admin_rename_building",
+            AdminRenameBuildingArgs {
+                building_name,
+                new_name,
+            },
+        )
     }
     fn on_admin_rename_building(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &String, &String, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &String, &String) + Send + 'static,
     ) -> AdminRenameBuildingCallbackId {
         AdminRenameBuildingCallbackId(self.imp.on_reducer(
             "admin_rename_building",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::AdminRenameBuilding {
-                            building_name, new_name, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer:
+                                super::Reducer::AdminRenameBuilding {
+                                    building_name,
+                                    new_name,
+                                },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, building_name, new_name, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, building_name, new_name)
             }),
         ))
     }
     fn remove_on_admin_rename_building(&self, callback: AdminRenameBuildingCallbackId) {
-        self.imp.remove_on_reducer("admin_rename_building", callback.0)
+        self.imp
+            .remove_on_reducer("admin_rename_building", callback.0)
     }
 }
 
@@ -106,7 +112,7 @@ pub trait set_flags_for_admin_rename_building {
 
 impl set_flags_for_admin_rename_building for super::SetReducerFlags {
     fn admin_rename_building(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("admin_rename_building", flags);
+        self.imp
+            .set_call_reducer_flags("admin_rename_building", flags);
     }
 }
-

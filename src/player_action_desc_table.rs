@@ -3,14 +3,9 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::player_action_desc_type::PlayerActionDesc;
 use super::player_action_layer_type::PlayerActionLayer;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `player_action_desc`.
 ///
@@ -51,8 +46,12 @@ impl<'ctx> __sdk::Table for PlayerActionDescTableHandle<'ctx> {
     type Row = PlayerActionDesc;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = PlayerActionDesc> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = PlayerActionDesc> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = PlayerActionDescInsertCallbackId;
 
@@ -83,8 +82,7 @@ impl<'ctx> __sdk::Table for PlayerActionDescTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<PlayerActionDesc>("player_action_desc");
+    let _table = client_cache.get_or_make_table::<PlayerActionDesc>("player_action_desc");
     _table.add_unique_constraint::<i32>("action_type_id", |row| &row.action_type_id);
 }
 pub struct PlayerActionDescUpdateCallbackId(__sdk::CallbackId);
@@ -104,46 +102,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for PlayerActionDescTableHandle<'ctx> {
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<PlayerActionDesc>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<PlayerActionDesc>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<PlayerActionDesc>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `action_type_id` unique index on the table `player_action_desc`,
-        /// which allows point queries on the field of the same name
-        /// via the [`PlayerActionDescActionTypeIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.player_action_desc().action_type_id().find(...)`.
-        pub struct PlayerActionDescActionTypeIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<PlayerActionDesc, i32>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `action_type_id` unique index on the table `player_action_desc`,
+/// which allows point queries on the field of the same name
+/// via the [`PlayerActionDescActionTypeIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.player_action_desc().action_type_id().find(...)`.
+pub struct PlayerActionDescActionTypeIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<PlayerActionDesc, i32>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> PlayerActionDescTableHandle<'ctx> {
-            /// Get a handle on the `action_type_id` unique index on the table `player_action_desc`.
-            pub fn action_type_id(&self) -> PlayerActionDescActionTypeIdUnique<'ctx> {
-                PlayerActionDescActionTypeIdUnique {
-                    imp: self.imp.get_unique_constraint::<i32>("action_type_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> PlayerActionDescTableHandle<'ctx> {
+    /// Get a handle on the `action_type_id` unique index on the table `player_action_desc`.
+    pub fn action_type_id(&self) -> PlayerActionDescActionTypeIdUnique<'ctx> {
+        PlayerActionDescActionTypeIdUnique {
+            imp: self.imp.get_unique_constraint::<i32>("action_type_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> PlayerActionDescActionTypeIdUnique<'ctx> {
-            /// Find the subscribed row whose `action_type_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &i32) -> Option<PlayerActionDesc> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> PlayerActionDescActionTypeIdUnique<'ctx> {
+    /// Find the subscribed row whose `action_type_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &i32) -> Option<PlayerActionDesc> {
+        self.imp.find(col_val)
+    }
+}

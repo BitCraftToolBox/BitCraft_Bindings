@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_complete_task_request_type::PlayerCompleteTaskRequest;
 
@@ -22,8 +17,8 @@ impl From<PlayerCompleteTaskArgs> for super::Reducer {
     fn from(args: PlayerCompleteTaskArgs) -> Self {
         Self::PlayerCompleteTask {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for PlayerCompleteTaskArgs {
@@ -42,8 +37,7 @@ pub trait player_complete_task {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_player_complete_task`] callbacks.
-    fn player_complete_task(&self, request: PlayerCompleteTaskRequest,
-) -> __sdk::Result<()>;
+    fn player_complete_task(&self, request: PlayerCompleteTaskRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `player_complete_task`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,47 @@ pub trait player_complete_task {
     ///
     /// The returned [`PlayerCompleteTaskCallbackId`] can be passed to [`Self::remove_on_player_complete_task`]
     /// to cancel the callback.
-    fn on_player_complete_task(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerCompleteTaskRequest, ) + Send + 'static) -> PlayerCompleteTaskCallbackId;
+    fn on_player_complete_task(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerCompleteTaskRequest) + Send + 'static,
+    ) -> PlayerCompleteTaskCallbackId;
     /// Cancel a callback previously registered by [`Self::on_player_complete_task`],
     /// causing it not to run in the future.
     fn remove_on_player_complete_task(&self, callback: PlayerCompleteTaskCallbackId);
 }
 
 impl player_complete_task for super::RemoteReducers {
-    fn player_complete_task(&self, request: PlayerCompleteTaskRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("player_complete_task", PlayerCompleteTaskArgs { request,  })
+    fn player_complete_task(&self, request: PlayerCompleteTaskRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("player_complete_task", PlayerCompleteTaskArgs { request })
     }
     fn on_player_complete_task(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerCompleteTaskRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerCompleteTaskRequest)
+            + Send
+            + 'static,
     ) -> PlayerCompleteTaskCallbackId {
         PlayerCompleteTaskCallbackId(self.imp.on_reducer(
             "player_complete_task",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::PlayerCompleteTask {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::PlayerCompleteTask { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
     fn remove_on_player_complete_task(&self, callback: PlayerCompleteTaskCallbackId) {
-        self.imp.remove_on_reducer("player_complete_task", callback.0)
+        self.imp
+            .remove_on_reducer("player_complete_task", callback.0)
     }
 }
 
@@ -103,7 +105,7 @@ pub trait set_flags_for_player_complete_task {
 
 impl set_flags_for_player_complete_task for super::SetReducerFlags {
     fn player_complete_task(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("player_complete_task", flags);
+        self.imp
+            .set_call_reducer_flags("player_complete_task", flags);
     }
 }
-

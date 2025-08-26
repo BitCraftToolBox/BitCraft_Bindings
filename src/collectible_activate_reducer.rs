@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_collectible_activate_request_type::PlayerCollectibleActivateRequest;
 
@@ -22,8 +17,8 @@ impl From<CollectibleActivateArgs> for super::Reducer {
     fn from(args: CollectibleActivateArgs) -> Self {
         Self::CollectibleActivate {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for CollectibleActivateArgs {
@@ -42,8 +37,7 @@ pub trait collectible_activate {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_collectible_activate`] callbacks.
-    fn collectible_activate(&self, request: PlayerCollectibleActivateRequest,
-) -> __sdk::Result<()>;
+    fn collectible_activate(&self, request: PlayerCollectibleActivateRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `collectible_activate`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,49 @@ pub trait collectible_activate {
     ///
     /// The returned [`CollectibleActivateCallbackId`] can be passed to [`Self::remove_on_collectible_activate`]
     /// to cancel the callback.
-    fn on_collectible_activate(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerCollectibleActivateRequest, ) + Send + 'static) -> CollectibleActivateCallbackId;
+    fn on_collectible_activate(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerCollectibleActivateRequest)
+            + Send
+            + 'static,
+    ) -> CollectibleActivateCallbackId;
     /// Cancel a callback previously registered by [`Self::on_collectible_activate`],
     /// causing it not to run in the future.
     fn remove_on_collectible_activate(&self, callback: CollectibleActivateCallbackId);
 }
 
 impl collectible_activate for super::RemoteReducers {
-    fn collectible_activate(&self, request: PlayerCollectibleActivateRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("collectible_activate", CollectibleActivateArgs { request,  })
+    fn collectible_activate(&self, request: PlayerCollectibleActivateRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("collectible_activate", CollectibleActivateArgs { request })
     }
     fn on_collectible_activate(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerCollectibleActivateRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerCollectibleActivateRequest)
+            + Send
+            + 'static,
     ) -> CollectibleActivateCallbackId {
         CollectibleActivateCallbackId(self.imp.on_reducer(
             "collectible_activate",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::CollectibleActivate {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::CollectibleActivate { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
     fn remove_on_collectible_activate(&self, callback: CollectibleActivateCallbackId) {
-        self.imp.remove_on_reducer("collectible_activate", callback.0)
+        self.imp
+            .remove_on_reducer("collectible_activate", callback.0)
     }
 }
 
@@ -103,7 +107,7 @@ pub trait set_flags_for_collectible_activate {
 
 impl set_flags_for_collectible_activate for super::SetReducerFlags {
     fn collectible_activate(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("collectible_activate", flags);
+        self.imp
+            .set_call_reducer_flags("collectible_activate", flags);
     }
 }
-

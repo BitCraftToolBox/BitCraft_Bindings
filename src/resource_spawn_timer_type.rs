@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::small_hex_tile_message_type::SmallHexTileMessage;
 
@@ -17,7 +12,7 @@ use super::small_hex_tile_message_type::SmallHexTileMessage;
 pub struct ResourceSpawnTimer {
     pub scheduled_id: u64,
     pub scheduled_at: __sdk::ScheduleAt,
-    pub entity_id: Option::<u64>,
+    pub entity_id: Option<u64>,
     pub resource_id: i32,
     pub coordinates: SmallHexTileMessage,
     pub direction_index: i32,
@@ -26,8 +21,6 @@ pub struct ResourceSpawnTimer {
     pub check_resources: bool,
 }
 
-
 impl __sdk::InModule for ResourceSpawnTimer {
     type Module = super::RemoteModule;
 }
-

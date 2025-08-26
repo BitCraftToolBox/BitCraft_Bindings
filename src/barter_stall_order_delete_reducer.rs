@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_barter_stall_order_delete_request_type::PlayerBarterStallOrderDeleteRequest;
 
@@ -22,8 +17,8 @@ impl From<BarterStallOrderDeleteArgs> for super::Reducer {
     fn from(args: BarterStallOrderDeleteArgs) -> Self {
         Self::BarterStallOrderDelete {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for BarterStallOrderDeleteArgs {
@@ -42,8 +37,10 @@ pub trait barter_stall_order_delete {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_barter_stall_order_delete`] callbacks.
-    fn barter_stall_order_delete(&self, request: PlayerBarterStallOrderDeleteRequest,
-) -> __sdk::Result<()>;
+    fn barter_stall_order_delete(
+        &self,
+        request: PlayerBarterStallOrderDeleteRequest,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `barter_stall_order_delete`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +48,54 @@ pub trait barter_stall_order_delete {
     ///
     /// The returned [`BarterStallOrderDeleteCallbackId`] can be passed to [`Self::remove_on_barter_stall_order_delete`]
     /// to cancel the callback.
-    fn on_barter_stall_order_delete(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerBarterStallOrderDeleteRequest, ) + Send + 'static) -> BarterStallOrderDeleteCallbackId;
+    fn on_barter_stall_order_delete(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerBarterStallOrderDeleteRequest)
+            + Send
+            + 'static,
+    ) -> BarterStallOrderDeleteCallbackId;
     /// Cancel a callback previously registered by [`Self::on_barter_stall_order_delete`],
     /// causing it not to run in the future.
     fn remove_on_barter_stall_order_delete(&self, callback: BarterStallOrderDeleteCallbackId);
 }
 
 impl barter_stall_order_delete for super::RemoteReducers {
-    fn barter_stall_order_delete(&self, request: PlayerBarterStallOrderDeleteRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("barter_stall_order_delete", BarterStallOrderDeleteArgs { request,  })
+    fn barter_stall_order_delete(
+        &self,
+        request: PlayerBarterStallOrderDeleteRequest,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "barter_stall_order_delete",
+            BarterStallOrderDeleteArgs { request },
+        )
     }
     fn on_barter_stall_order_delete(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerBarterStallOrderDeleteRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerBarterStallOrderDeleteRequest)
+            + Send
+            + 'static,
     ) -> BarterStallOrderDeleteCallbackId {
         BarterStallOrderDeleteCallbackId(self.imp.on_reducer(
             "barter_stall_order_delete",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::BarterStallOrderDelete {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::BarterStallOrderDelete { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
     fn remove_on_barter_stall_order_delete(&self, callback: BarterStallOrderDeleteCallbackId) {
-        self.imp.remove_on_reducer("barter_stall_order_delete", callback.0)
+        self.imp
+            .remove_on_reducer("barter_stall_order_delete", callback.0)
     }
 }
 
@@ -103,7 +115,7 @@ pub trait set_flags_for_barter_stall_order_delete {
 
 impl set_flags_for_barter_stall_order_delete for super::SetReducerFlags {
     fn barter_stall_order_delete(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("barter_stall_order_delete", flags);
+        self.imp
+            .set_call_reducer_flags("barter_stall_order_delete", flags);
     }
 }
-

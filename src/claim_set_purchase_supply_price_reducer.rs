@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::claim_set_purchase_supply_price_request_type::ClaimSetPurchaseSupplyPriceRequest;
 
@@ -22,8 +17,8 @@ impl From<ClaimSetPurchaseSupplyPriceArgs> for super::Reducer {
     fn from(args: ClaimSetPurchaseSupplyPriceArgs) -> Self {
         Self::ClaimSetPurchaseSupplyPrice {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ClaimSetPurchaseSupplyPriceArgs {
@@ -42,8 +37,10 @@ pub trait claim_set_purchase_supply_price {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_claim_set_purchase_supply_price`] callbacks.
-    fn claim_set_purchase_supply_price(&self, request: ClaimSetPurchaseSupplyPriceRequest,
-) -> __sdk::Result<()>;
+    fn claim_set_purchase_supply_price(
+        &self,
+        request: ClaimSetPurchaseSupplyPriceRequest,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `claim_set_purchase_supply_price`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +48,60 @@ pub trait claim_set_purchase_supply_price {
     ///
     /// The returned [`ClaimSetPurchaseSupplyPriceCallbackId`] can be passed to [`Self::remove_on_claim_set_purchase_supply_price`]
     /// to cancel the callback.
-    fn on_claim_set_purchase_supply_price(&self, callback: impl FnMut(&super::ReducerEventContext, &ClaimSetPurchaseSupplyPriceRequest, ) + Send + 'static) -> ClaimSetPurchaseSupplyPriceCallbackId;
+    fn on_claim_set_purchase_supply_price(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &ClaimSetPurchaseSupplyPriceRequest)
+            + Send
+            + 'static,
+    ) -> ClaimSetPurchaseSupplyPriceCallbackId;
     /// Cancel a callback previously registered by [`Self::on_claim_set_purchase_supply_price`],
     /// causing it not to run in the future.
-    fn remove_on_claim_set_purchase_supply_price(&self, callback: ClaimSetPurchaseSupplyPriceCallbackId);
+    fn remove_on_claim_set_purchase_supply_price(
+        &self,
+        callback: ClaimSetPurchaseSupplyPriceCallbackId,
+    );
 }
 
 impl claim_set_purchase_supply_price for super::RemoteReducers {
-    fn claim_set_purchase_supply_price(&self, request: ClaimSetPurchaseSupplyPriceRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("claim_set_purchase_supply_price", ClaimSetPurchaseSupplyPriceArgs { request,  })
+    fn claim_set_purchase_supply_price(
+        &self,
+        request: ClaimSetPurchaseSupplyPriceRequest,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "claim_set_purchase_supply_price",
+            ClaimSetPurchaseSupplyPriceArgs { request },
+        )
     }
     fn on_claim_set_purchase_supply_price(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &ClaimSetPurchaseSupplyPriceRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &ClaimSetPurchaseSupplyPriceRequest)
+            + Send
+            + 'static,
     ) -> ClaimSetPurchaseSupplyPriceCallbackId {
         ClaimSetPurchaseSupplyPriceCallbackId(self.imp.on_reducer(
             "claim_set_purchase_supply_price",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ClaimSetPurchaseSupplyPrice {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ClaimSetPurchaseSupplyPrice { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
-    fn remove_on_claim_set_purchase_supply_price(&self, callback: ClaimSetPurchaseSupplyPriceCallbackId) {
-        self.imp.remove_on_reducer("claim_set_purchase_supply_price", callback.0)
+    fn remove_on_claim_set_purchase_supply_price(
+        &self,
+        callback: ClaimSetPurchaseSupplyPriceCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("claim_set_purchase_supply_price", callback.0)
     }
 }
 
@@ -103,7 +121,7 @@ pub trait set_flags_for_claim_set_purchase_supply_price {
 
 impl set_flags_for_claim_set_purchase_supply_price for super::SetReducerFlags {
     fn claim_set_purchase_supply_price(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("claim_set_purchase_supply_price", flags);
+        self.imp
+            .set_call_reducer_flags("claim_set_purchase_supply_price", flags);
     }
 }
-

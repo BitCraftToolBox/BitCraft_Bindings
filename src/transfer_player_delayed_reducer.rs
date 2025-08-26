@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::transfer_player_timer_type::TransferPlayerTimer;
 
@@ -20,10 +15,8 @@ pub(super) struct TransferPlayerDelayedArgs {
 
 impl From<TransferPlayerDelayedArgs> for super::Reducer {
     fn from(args: TransferPlayerDelayedArgs) -> Self {
-        Self::TransferPlayerDelayed {
-            timer: args.timer,
-}
-}
+        Self::TransferPlayerDelayed { timer: args.timer }
+    }
 }
 
 impl __sdk::InModule for TransferPlayerDelayedArgs {
@@ -42,8 +35,7 @@ pub trait transfer_player_delayed {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_transfer_player_delayed`] callbacks.
-    fn transfer_player_delayed(&self, timer: TransferPlayerTimer,
-) -> __sdk::Result<()>;
+    fn transfer_player_delayed(&self, timer: TransferPlayerTimer) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `transfer_player_delayed`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +43,47 @@ pub trait transfer_player_delayed {
     ///
     /// The returned [`TransferPlayerDelayedCallbackId`] can be passed to [`Self::remove_on_transfer_player_delayed`]
     /// to cancel the callback.
-    fn on_transfer_player_delayed(&self, callback: impl FnMut(&super::ReducerEventContext, &TransferPlayerTimer, ) + Send + 'static) -> TransferPlayerDelayedCallbackId;
+    fn on_transfer_player_delayed(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &TransferPlayerTimer) + Send + 'static,
+    ) -> TransferPlayerDelayedCallbackId;
     /// Cancel a callback previously registered by [`Self::on_transfer_player_delayed`],
     /// causing it not to run in the future.
     fn remove_on_transfer_player_delayed(&self, callback: TransferPlayerDelayedCallbackId);
 }
 
 impl transfer_player_delayed for super::RemoteReducers {
-    fn transfer_player_delayed(&self, timer: TransferPlayerTimer,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("transfer_player_delayed", TransferPlayerDelayedArgs { timer,  })
+    fn transfer_player_delayed(&self, timer: TransferPlayerTimer) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "transfer_player_delayed",
+            TransferPlayerDelayedArgs { timer },
+        )
     }
     fn on_transfer_player_delayed(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &TransferPlayerTimer, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &TransferPlayerTimer) + Send + 'static,
     ) -> TransferPlayerDelayedCallbackId {
         TransferPlayerDelayedCallbackId(self.imp.on_reducer(
             "transfer_player_delayed",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::TransferPlayerDelayed {
-                            timer, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::TransferPlayerDelayed { timer },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, timer, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, timer)
             }),
         ))
     }
     fn remove_on_transfer_player_delayed(&self, callback: TransferPlayerDelayedCallbackId) {
-        self.imp.remove_on_reducer("transfer_player_delayed", callback.0)
+        self.imp
+            .remove_on_reducer("transfer_player_delayed", callback.0)
     }
 }
 
@@ -103,7 +103,7 @@ pub trait set_flags_for_transfer_player_delayed {
 
 impl set_flags_for_transfer_player_delayed for super::SetReducerFlags {
     fn transfer_player_delayed(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("transfer_player_delayed", flags);
+        self.imp
+            .set_call_reducer_flags("transfer_player_delayed", flags);
     }
 }
-

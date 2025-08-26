@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::target_update_request_type::TargetUpdateRequest;
 
@@ -22,8 +17,8 @@ impl From<TargetUpdateArgs> for super::Reducer {
     fn from(args: TargetUpdateArgs) -> Self {
         Self::TargetUpdate {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for TargetUpdateArgs {
@@ -42,8 +37,7 @@ pub trait target_update {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_target_update`] callbacks.
-    fn target_update(&self, request: TargetUpdateRequest,
-) -> __sdk::Result<()>;
+    fn target_update(&self, request: TargetUpdateRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `target_update`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,39 @@ pub trait target_update {
     ///
     /// The returned [`TargetUpdateCallbackId`] can be passed to [`Self::remove_on_target_update`]
     /// to cancel the callback.
-    fn on_target_update(&self, callback: impl FnMut(&super::ReducerEventContext, &TargetUpdateRequest, ) + Send + 'static) -> TargetUpdateCallbackId;
+    fn on_target_update(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &TargetUpdateRequest) + Send + 'static,
+    ) -> TargetUpdateCallbackId;
     /// Cancel a callback previously registered by [`Self::on_target_update`],
     /// causing it not to run in the future.
     fn remove_on_target_update(&self, callback: TargetUpdateCallbackId);
 }
 
 impl target_update for super::RemoteReducers {
-    fn target_update(&self, request: TargetUpdateRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("target_update", TargetUpdateArgs { request,  })
+    fn target_update(&self, request: TargetUpdateRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("target_update", TargetUpdateArgs { request })
     }
     fn on_target_update(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &TargetUpdateRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &TargetUpdateRequest) + Send + 'static,
     ) -> TargetUpdateCallbackId {
         TargetUpdateCallbackId(self.imp.on_reducer(
             "target_update",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::TargetUpdate {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::TargetUpdate { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
@@ -106,4 +105,3 @@ impl set_flags_for_target_update for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("target_update", flags);
     }
 }
-

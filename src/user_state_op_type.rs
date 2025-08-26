@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::user_state_type::UserState;
 
@@ -18,12 +13,8 @@ pub enum UserStateOp {
     Insert(UserState),
 
     Delete(UserState),
-
 }
-
-
 
 impl __sdk::InModule for UserStateOp {
     type Module = super::RemoteModule;
 }
-

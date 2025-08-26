@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::world_gen_land_shape_definition_type::WorldGenLandShapeDefinition;
 
@@ -16,11 +11,9 @@ use super::world_gen_land_shape_definition_type::WorldGenLandShapeDefinition;
 #[sats(crate = __lib)]
 pub struct WorldGenWorldMapDefinition {
     pub debug_step: i32,
-    pub shapes: Vec::<WorldGenLandShapeDefinition>,
+    pub shapes: Vec<WorldGenLandShapeDefinition>,
 }
-
 
 impl __sdk::InModule for WorldGenWorldMapDefinition {
     type Module = super::RemoteModule;
 }
-

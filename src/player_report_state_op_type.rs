@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_report_state_type::PlayerReportState;
 
@@ -18,12 +13,8 @@ pub enum PlayerReportStateOp {
     Insert(PlayerReportState),
 
     Delete(PlayerReportState),
-
 }
-
-
 
 impl __sdk::InModule for PlayerReportStateOp {
     type Module = super::RemoteModule;
 }
-

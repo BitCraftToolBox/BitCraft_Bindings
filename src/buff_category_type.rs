@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -41,12 +36,8 @@ pub enum BuffCategory {
     ElevatorSickness,
 
     NearbyFlame,
-
 }
-
-
 
 impl __sdk::InModule for BuffCategory {
     type Module = super::RemoteModule;
 }
-

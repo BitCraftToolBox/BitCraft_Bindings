@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::rent_deposit_coins_request_type::RentDepositCoinsRequest;
 
@@ -22,8 +17,8 @@ impl From<RentDepositCoinsArgs> for super::Reducer {
     fn from(args: RentDepositCoinsArgs) -> Self {
         Self::RentDepositCoins {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for RentDepositCoinsArgs {
@@ -42,8 +37,7 @@ pub trait rent_deposit_coins {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_rent_deposit_coins`] callbacks.
-    fn rent_deposit_coins(&self, request: RentDepositCoinsRequest,
-) -> __sdk::Result<()>;
+    fn rent_deposit_coins(&self, request: RentDepositCoinsRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `rent_deposit_coins`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,39 @@ pub trait rent_deposit_coins {
     ///
     /// The returned [`RentDepositCoinsCallbackId`] can be passed to [`Self::remove_on_rent_deposit_coins`]
     /// to cancel the callback.
-    fn on_rent_deposit_coins(&self, callback: impl FnMut(&super::ReducerEventContext, &RentDepositCoinsRequest, ) + Send + 'static) -> RentDepositCoinsCallbackId;
+    fn on_rent_deposit_coins(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &RentDepositCoinsRequest) + Send + 'static,
+    ) -> RentDepositCoinsCallbackId;
     /// Cancel a callback previously registered by [`Self::on_rent_deposit_coins`],
     /// causing it not to run in the future.
     fn remove_on_rent_deposit_coins(&self, callback: RentDepositCoinsCallbackId);
 }
 
 impl rent_deposit_coins for super::RemoteReducers {
-    fn rent_deposit_coins(&self, request: RentDepositCoinsRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("rent_deposit_coins", RentDepositCoinsArgs { request,  })
+    fn rent_deposit_coins(&self, request: RentDepositCoinsRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("rent_deposit_coins", RentDepositCoinsArgs { request })
     }
     fn on_rent_deposit_coins(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &RentDepositCoinsRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &RentDepositCoinsRequest) + Send + 'static,
     ) -> RentDepositCoinsCallbackId {
         RentDepositCoinsCallbackId(self.imp.on_reducer(
             "rent_deposit_coins",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::RentDepositCoins {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::RentDepositCoins { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
@@ -106,4 +105,3 @@ impl set_flags_for_rent_deposit_coins for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("rent_deposit_coins", flags);
     }
 }
-

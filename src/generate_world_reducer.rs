@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::world_gen_world_definition_type::WorldGenWorldDefinition;
 
@@ -22,8 +17,8 @@ impl From<GenerateWorldArgs> for super::Reducer {
     fn from(args: GenerateWorldArgs) -> Self {
         Self::GenerateWorld {
             world_definition: args.world_definition,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for GenerateWorldArgs {
@@ -42,8 +37,7 @@ pub trait generate_world {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_generate_world`] callbacks.
-    fn generate_world(&self, world_definition: WorldGenWorldDefinition,
-) -> __sdk::Result<()>;
+    fn generate_world(&self, world_definition: WorldGenWorldDefinition) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `generate_world`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,39 @@ pub trait generate_world {
     ///
     /// The returned [`GenerateWorldCallbackId`] can be passed to [`Self::remove_on_generate_world`]
     /// to cancel the callback.
-    fn on_generate_world(&self, callback: impl FnMut(&super::ReducerEventContext, &WorldGenWorldDefinition, ) + Send + 'static) -> GenerateWorldCallbackId;
+    fn on_generate_world(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &WorldGenWorldDefinition) + Send + 'static,
+    ) -> GenerateWorldCallbackId;
     /// Cancel a callback previously registered by [`Self::on_generate_world`],
     /// causing it not to run in the future.
     fn remove_on_generate_world(&self, callback: GenerateWorldCallbackId);
 }
 
 impl generate_world for super::RemoteReducers {
-    fn generate_world(&self, world_definition: WorldGenWorldDefinition,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("generate_world", GenerateWorldArgs { world_definition,  })
+    fn generate_world(&self, world_definition: WorldGenWorldDefinition) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("generate_world", GenerateWorldArgs { world_definition })
     }
     fn on_generate_world(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &WorldGenWorldDefinition, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &WorldGenWorldDefinition) + Send + 'static,
     ) -> GenerateWorldCallbackId {
         GenerateWorldCallbackId(self.imp.on_reducer(
             "generate_world",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::GenerateWorld {
-                            world_definition, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::GenerateWorld { world_definition },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, world_definition, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, world_definition)
             }),
         ))
     }
@@ -106,4 +105,3 @@ impl set_flags_for_generate_world for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("generate_world", flags);
     }
 }
-

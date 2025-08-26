@@ -3,22 +3,14 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub struct PlayerAcquireKnowledgeFromEntitiesRequest {
-    pub discovered_entities_id: Vec::<u64>,
+    pub discovered_entities_id: Vec<u64>,
 }
-
 
 impl __sdk::InModule for PlayerAcquireKnowledgeFromEntitiesRequest {
     type Module = super::RemoteModule;
 }
-

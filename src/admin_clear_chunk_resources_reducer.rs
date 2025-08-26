@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::admin_clear_resource_timer_type::AdminClearResourceTimer;
 
@@ -20,10 +15,8 @@ pub(super) struct AdminClearChunkResourcesArgs {
 
 impl From<AdminClearChunkResourcesArgs> for super::Reducer {
     fn from(args: AdminClearChunkResourcesArgs) -> Self {
-        Self::AdminClearChunkResources {
-            timer: args.timer,
-}
-}
+        Self::AdminClearChunkResources { timer: args.timer }
+    }
 }
 
 impl __sdk::InModule for AdminClearChunkResourcesArgs {
@@ -42,8 +35,7 @@ pub trait admin_clear_chunk_resources {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_admin_clear_chunk_resources`] callbacks.
-    fn admin_clear_chunk_resources(&self, timer: AdminClearResourceTimer,
-) -> __sdk::Result<()>;
+    fn admin_clear_chunk_resources(&self, timer: AdminClearResourceTimer) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `admin_clear_chunk_resources`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +43,47 @@ pub trait admin_clear_chunk_resources {
     ///
     /// The returned [`AdminClearChunkResourcesCallbackId`] can be passed to [`Self::remove_on_admin_clear_chunk_resources`]
     /// to cancel the callback.
-    fn on_admin_clear_chunk_resources(&self, callback: impl FnMut(&super::ReducerEventContext, &AdminClearResourceTimer, ) + Send + 'static) -> AdminClearChunkResourcesCallbackId;
+    fn on_admin_clear_chunk_resources(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &AdminClearResourceTimer) + Send + 'static,
+    ) -> AdminClearChunkResourcesCallbackId;
     /// Cancel a callback previously registered by [`Self::on_admin_clear_chunk_resources`],
     /// causing it not to run in the future.
     fn remove_on_admin_clear_chunk_resources(&self, callback: AdminClearChunkResourcesCallbackId);
 }
 
 impl admin_clear_chunk_resources for super::RemoteReducers {
-    fn admin_clear_chunk_resources(&self, timer: AdminClearResourceTimer,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("admin_clear_chunk_resources", AdminClearChunkResourcesArgs { timer,  })
+    fn admin_clear_chunk_resources(&self, timer: AdminClearResourceTimer) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "admin_clear_chunk_resources",
+            AdminClearChunkResourcesArgs { timer },
+        )
     }
     fn on_admin_clear_chunk_resources(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &AdminClearResourceTimer, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &AdminClearResourceTimer) + Send + 'static,
     ) -> AdminClearChunkResourcesCallbackId {
         AdminClearChunkResourcesCallbackId(self.imp.on_reducer(
             "admin_clear_chunk_resources",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::AdminClearChunkResources {
-                            timer, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::AdminClearChunkResources { timer },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, timer, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, timer)
             }),
         ))
     }
     fn remove_on_admin_clear_chunk_resources(&self, callback: AdminClearChunkResourcesCallbackId) {
-        self.imp.remove_on_reducer("admin_clear_chunk_resources", callback.0)
+        self.imp
+            .remove_on_reducer("admin_clear_chunk_resources", callback.0)
     }
 }
 
@@ -103,7 +103,7 @@ pub trait set_flags_for_admin_clear_chunk_resources {
 
 impl set_flags_for_admin_clear_chunk_resources for super::SetReducerFlags {
     fn admin_clear_chunk_resources(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("admin_clear_chunk_resources", flags);
+        self.imp
+            .set_call_reducer_flags("admin_clear_chunk_resources", flags);
     }
 }
-

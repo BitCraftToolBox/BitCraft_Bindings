@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::claim_resupply_request_type::ClaimResupplyRequest;
 
@@ -22,8 +17,8 @@ impl From<ClaimResupplyStartArgs> for super::Reducer {
     fn from(args: ClaimResupplyStartArgs) -> Self {
         Self::ClaimResupplyStart {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ClaimResupplyStartArgs {
@@ -42,8 +37,7 @@ pub trait claim_resupply_start {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_claim_resupply_start`] callbacks.
-    fn claim_resupply_start(&self, request: ClaimResupplyRequest,
-) -> __sdk::Result<()>;
+    fn claim_resupply_start(&self, request: ClaimResupplyRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `claim_resupply_start`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,45 @@ pub trait claim_resupply_start {
     ///
     /// The returned [`ClaimResupplyStartCallbackId`] can be passed to [`Self::remove_on_claim_resupply_start`]
     /// to cancel the callback.
-    fn on_claim_resupply_start(&self, callback: impl FnMut(&super::ReducerEventContext, &ClaimResupplyRequest, ) + Send + 'static) -> ClaimResupplyStartCallbackId;
+    fn on_claim_resupply_start(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &ClaimResupplyRequest) + Send + 'static,
+    ) -> ClaimResupplyStartCallbackId;
     /// Cancel a callback previously registered by [`Self::on_claim_resupply_start`],
     /// causing it not to run in the future.
     fn remove_on_claim_resupply_start(&self, callback: ClaimResupplyStartCallbackId);
 }
 
 impl claim_resupply_start for super::RemoteReducers {
-    fn claim_resupply_start(&self, request: ClaimResupplyRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("claim_resupply_start", ClaimResupplyStartArgs { request,  })
+    fn claim_resupply_start(&self, request: ClaimResupplyRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("claim_resupply_start", ClaimResupplyStartArgs { request })
     }
     fn on_claim_resupply_start(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &ClaimResupplyRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &ClaimResupplyRequest) + Send + 'static,
     ) -> ClaimResupplyStartCallbackId {
         ClaimResupplyStartCallbackId(self.imp.on_reducer(
             "claim_resupply_start",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ClaimResupplyStart {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ClaimResupplyStart { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
     fn remove_on_claim_resupply_start(&self, callback: ClaimResupplyStartCallbackId) {
-        self.imp.remove_on_reducer("claim_resupply_start", callback.0)
+        self.imp
+            .remove_on_reducer("claim_resupply_start", callback.0)
     }
 }
 
@@ -103,7 +103,7 @@ pub trait set_flags_for_claim_resupply_start {
 
 impl set_flags_for_claim_resupply_start for super::SetReducerFlags {
     fn claim_resupply_start(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("claim_resupply_start", flags);
+        self.imp
+            .set_call_reducer_flags("claim_resupply_start", flags);
     }
 }
-

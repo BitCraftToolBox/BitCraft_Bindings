@@ -3,13 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -25,8 +19,8 @@ impl From<AdminDeleteAllItemsOfTypeArgs> for super::Reducer {
             player_username: args.player_username,
             item_id: args.item_id,
             is_cargo: args.is_cargo,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for AdminDeleteAllItemsOfTypeArgs {
@@ -45,10 +39,12 @@ pub trait admin_delete_all_items_of_type {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_admin_delete_all_items_of_type`] callbacks.
-    fn admin_delete_all_items_of_type(&self, player_username: String,
-item_id: i32,
-is_cargo: bool,
-) -> __sdk::Result<()>;
+    fn admin_delete_all_items_of_type(
+        &self,
+        player_username: String,
+        item_id: i32,
+        is_cargo: bool,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `admin_delete_all_items_of_type`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -56,41 +52,67 @@ is_cargo: bool,
     ///
     /// The returned [`AdminDeleteAllItemsOfTypeCallbackId`] can be passed to [`Self::remove_on_admin_delete_all_items_of_type`]
     /// to cancel the callback.
-    fn on_admin_delete_all_items_of_type(&self, callback: impl FnMut(&super::ReducerEventContext, &String, &i32, &bool, ) + Send + 'static) -> AdminDeleteAllItemsOfTypeCallbackId;
+    fn on_admin_delete_all_items_of_type(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &String, &i32, &bool) + Send + 'static,
+    ) -> AdminDeleteAllItemsOfTypeCallbackId;
     /// Cancel a callback previously registered by [`Self::on_admin_delete_all_items_of_type`],
     /// causing it not to run in the future.
-    fn remove_on_admin_delete_all_items_of_type(&self, callback: AdminDeleteAllItemsOfTypeCallbackId);
+    fn remove_on_admin_delete_all_items_of_type(
+        &self,
+        callback: AdminDeleteAllItemsOfTypeCallbackId,
+    );
 }
 
 impl admin_delete_all_items_of_type for super::RemoteReducers {
-    fn admin_delete_all_items_of_type(&self, player_username: String,
-item_id: i32,
-is_cargo: bool,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("admin_delete_all_items_of_type", AdminDeleteAllItemsOfTypeArgs { player_username, item_id, is_cargo,  })
+    fn admin_delete_all_items_of_type(
+        &self,
+        player_username: String,
+        item_id: i32,
+        is_cargo: bool,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "admin_delete_all_items_of_type",
+            AdminDeleteAllItemsOfTypeArgs {
+                player_username,
+                item_id,
+                is_cargo,
+            },
+        )
     }
     fn on_admin_delete_all_items_of_type(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &String, &i32, &bool, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &String, &i32, &bool) + Send + 'static,
     ) -> AdminDeleteAllItemsOfTypeCallbackId {
         AdminDeleteAllItemsOfTypeCallbackId(self.imp.on_reducer(
             "admin_delete_all_items_of_type",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::AdminDeleteAllItemsOfType {
-                            player_username, item_id, is_cargo, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer:
+                                super::Reducer::AdminDeleteAllItemsOfType {
+                                    player_username,
+                                    item_id,
+                                    is_cargo,
+                                },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, player_username, item_id, is_cargo, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, player_username, item_id, is_cargo)
             }),
         ))
     }
-    fn remove_on_admin_delete_all_items_of_type(&self, callback: AdminDeleteAllItemsOfTypeCallbackId) {
-        self.imp.remove_on_reducer("admin_delete_all_items_of_type", callback.0)
+    fn remove_on_admin_delete_all_items_of_type(
+        &self,
+        callback: AdminDeleteAllItemsOfTypeCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("admin_delete_all_items_of_type", callback.0)
     }
 }
 
@@ -110,7 +132,7 @@ pub trait set_flags_for_admin_delete_all_items_of_type {
 
 impl set_flags_for_admin_delete_all_items_of_type for super::SetReducerFlags {
     fn admin_delete_all_items_of_type(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("admin_delete_all_items_of_type", flags);
+        self.imp
+            .set_call_reducer_flags("admin_delete_all_items_of_type", flags);
     }
 }
-

@@ -3,13 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -29,11 +23,9 @@ pub struct InteriorInstanceDesc {
     pub max_zoom: f32,
     pub min_angle: f32,
     pub max_angle: f32,
-    pub intertior_environment_id: Option::<i32>,
+    pub intertior_environment_id: Option<i32>,
 }
-
 
 impl __sdk::InModule for InteriorInstanceDesc {
     type Module = super::RemoteModule;
 }
-

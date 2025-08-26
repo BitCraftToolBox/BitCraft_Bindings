@@ -3,13 +3,8 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::weapon_desc_type::WeaponDesc;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `weapon_desc`.
 ///
@@ -50,8 +45,12 @@ impl<'ctx> __sdk::Table for WeaponDescTableHandle<'ctx> {
     type Row = WeaponDesc;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = WeaponDesc> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = WeaponDesc> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = WeaponDescInsertCallbackId;
 
@@ -82,8 +81,7 @@ impl<'ctx> __sdk::Table for WeaponDescTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<WeaponDesc>("weapon_desc");
+    let _table = client_cache.get_or_make_table::<WeaponDesc>("weapon_desc");
     _table.add_unique_constraint::<i32>("item_id", |row| &row.item_id);
 }
 pub struct WeaponDescUpdateCallbackId(__sdk::CallbackId);
@@ -103,46 +101,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for WeaponDescTableHandle<'ctx> {
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<WeaponDesc>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<WeaponDesc>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<WeaponDesc>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `item_id` unique index on the table `weapon_desc`,
-        /// which allows point queries on the field of the same name
-        /// via the [`WeaponDescItemIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.weapon_desc().item_id().find(...)`.
-        pub struct WeaponDescItemIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<WeaponDesc, i32>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `item_id` unique index on the table `weapon_desc`,
+/// which allows point queries on the field of the same name
+/// via the [`WeaponDescItemIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.weapon_desc().item_id().find(...)`.
+pub struct WeaponDescItemIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<WeaponDesc, i32>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> WeaponDescTableHandle<'ctx> {
-            /// Get a handle on the `item_id` unique index on the table `weapon_desc`.
-            pub fn item_id(&self) -> WeaponDescItemIdUnique<'ctx> {
-                WeaponDescItemIdUnique {
-                    imp: self.imp.get_unique_constraint::<i32>("item_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> WeaponDescTableHandle<'ctx> {
+    /// Get a handle on the `item_id` unique index on the table `weapon_desc`.
+    pub fn item_id(&self) -> WeaponDescItemIdUnique<'ctx> {
+        WeaponDescItemIdUnique {
+            imp: self.imp.get_unique_constraint::<i32>("item_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> WeaponDescItemIdUnique<'ctx> {
-            /// Find the subscribed row whose `item_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &i32) -> Option<WeaponDesc> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> WeaponDescItemIdUnique<'ctx> {
+    /// Find the subscribed row whose `item_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &i32) -> Option<WeaponDesc> {
+        self.imp.find(col_val)
+    }
+}

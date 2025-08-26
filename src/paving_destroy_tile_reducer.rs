@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_paving_destroy_tile_request_type::PlayerPavingDestroyTileRequest;
 
@@ -22,8 +17,8 @@ impl From<PavingDestroyTileArgs> for super::Reducer {
     fn from(args: PavingDestroyTileArgs) -> Self {
         Self::PavingDestroyTile {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for PavingDestroyTileArgs {
@@ -42,8 +37,7 @@ pub trait paving_destroy_tile {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_paving_destroy_tile`] callbacks.
-    fn paving_destroy_tile(&self, request: PlayerPavingDestroyTileRequest,
-) -> __sdk::Result<()>;
+    fn paving_destroy_tile(&self, request: PlayerPavingDestroyTileRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `paving_destroy_tile`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,49 @@ pub trait paving_destroy_tile {
     ///
     /// The returned [`PavingDestroyTileCallbackId`] can be passed to [`Self::remove_on_paving_destroy_tile`]
     /// to cancel the callback.
-    fn on_paving_destroy_tile(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerPavingDestroyTileRequest, ) + Send + 'static) -> PavingDestroyTileCallbackId;
+    fn on_paving_destroy_tile(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerPavingDestroyTileRequest)
+            + Send
+            + 'static,
+    ) -> PavingDestroyTileCallbackId;
     /// Cancel a callback previously registered by [`Self::on_paving_destroy_tile`],
     /// causing it not to run in the future.
     fn remove_on_paving_destroy_tile(&self, callback: PavingDestroyTileCallbackId);
 }
 
 impl paving_destroy_tile for super::RemoteReducers {
-    fn paving_destroy_tile(&self, request: PlayerPavingDestroyTileRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("paving_destroy_tile", PavingDestroyTileArgs { request,  })
+    fn paving_destroy_tile(&self, request: PlayerPavingDestroyTileRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("paving_destroy_tile", PavingDestroyTileArgs { request })
     }
     fn on_paving_destroy_tile(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerPavingDestroyTileRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerPavingDestroyTileRequest)
+            + Send
+            + 'static,
     ) -> PavingDestroyTileCallbackId {
         PavingDestroyTileCallbackId(self.imp.on_reducer(
             "paving_destroy_tile",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::PavingDestroyTile {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::PavingDestroyTile { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
     fn remove_on_paving_destroy_tile(&self, callback: PavingDestroyTileCallbackId) {
-        self.imp.remove_on_reducer("paving_destroy_tile", callback.0)
+        self.imp
+            .remove_on_reducer("paving_destroy_tile", callback.0)
     }
 }
 
@@ -103,7 +107,7 @@ pub trait set_flags_for_paving_destroy_tile {
 
 impl set_flags_for_paving_destroy_tile for super::SetReducerFlags {
     fn paving_destroy_tile(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("paving_destroy_tile", flags);
+        self.imp
+            .set_call_reducer_flags("paving_destroy_tile", flags);
     }
 }
-

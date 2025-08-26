@@ -3,23 +3,16 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::world_gen_animation_curve_keyframe_type::WorldGenAnimationCurveKeyframe;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub struct WorldGenAnimationCurve {
-    pub keyframes: Vec::<WorldGenAnimationCurveKeyframe>,
+    pub keyframes: Vec<WorldGenAnimationCurveKeyframe>,
 }
-
 
 impl __sdk::InModule for WorldGenAnimationCurve {
     type Module = super::RemoteModule;
 }
-

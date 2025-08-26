@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::empire_icon_desc_type::EmpireIconDesc;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct StageEmpireIconDescArgs {
-    pub records: Vec::<EmpireIconDesc>,
+    pub records: Vec<EmpireIconDesc>,
 }
 
 impl From<StageEmpireIconDescArgs> for super::Reducer {
     fn from(args: StageEmpireIconDescArgs) -> Self {
         Self::StageEmpireIconDesc {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for StageEmpireIconDescArgs {
@@ -42,8 +37,7 @@ pub trait stage_empire_icon_desc {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_stage_empire_icon_desc`] callbacks.
-    fn stage_empire_icon_desc(&self, records: Vec::<EmpireIconDesc>,
-) -> __sdk::Result<()>;
+    fn stage_empire_icon_desc(&self, records: Vec<EmpireIconDesc>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `stage_empire_icon_desc`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,47 @@ pub trait stage_empire_icon_desc {
     ///
     /// The returned [`StageEmpireIconDescCallbackId`] can be passed to [`Self::remove_on_stage_empire_icon_desc`]
     /// to cancel the callback.
-    fn on_stage_empire_icon_desc(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<EmpireIconDesc>, ) + Send + 'static) -> StageEmpireIconDescCallbackId;
+    fn on_stage_empire_icon_desc(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<EmpireIconDesc>) + Send + 'static,
+    ) -> StageEmpireIconDescCallbackId;
     /// Cancel a callback previously registered by [`Self::on_stage_empire_icon_desc`],
     /// causing it not to run in the future.
     fn remove_on_stage_empire_icon_desc(&self, callback: StageEmpireIconDescCallbackId);
 }
 
 impl stage_empire_icon_desc for super::RemoteReducers {
-    fn stage_empire_icon_desc(&self, records: Vec::<EmpireIconDesc>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("stage_empire_icon_desc", StageEmpireIconDescArgs { records,  })
+    fn stage_empire_icon_desc(&self, records: Vec<EmpireIconDesc>) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "stage_empire_icon_desc",
+            StageEmpireIconDescArgs { records },
+        )
     }
     fn on_stage_empire_icon_desc(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<EmpireIconDesc>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<EmpireIconDesc>) + Send + 'static,
     ) -> StageEmpireIconDescCallbackId {
         StageEmpireIconDescCallbackId(self.imp.on_reducer(
             "stage_empire_icon_desc",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::StageEmpireIconDesc {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::StageEmpireIconDesc { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
     fn remove_on_stage_empire_icon_desc(&self, callback: StageEmpireIconDescCallbackId) {
-        self.imp.remove_on_reducer("stage_empire_icon_desc", callback.0)
+        self.imp
+            .remove_on_reducer("stage_empire_icon_desc", callback.0)
     }
 }
 
@@ -103,7 +105,7 @@ pub trait set_flags_for_stage_empire_icon_desc {
 
 impl set_flags_for_stage_empire_icon_desc for super::SetReducerFlags {
     fn stage_empire_icon_desc(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("stage_empire_icon_desc", flags);
+        self.imp
+            .set_call_reducer_flags("stage_empire_icon_desc", flags);
     }
 }
-

@@ -3,23 +3,16 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
-pub(super) struct AdminUpdateLoreKnowledgeArgs {
-    }
+pub(super) struct AdminUpdateLoreKnowledgeArgs {}
 
 impl From<AdminUpdateLoreKnowledgeArgs> for super::Reducer {
     fn from(args: AdminUpdateLoreKnowledgeArgs) -> Self {
         Self::AdminUpdateLoreKnowledge
-}
+    }
 }
 
 impl __sdk::InModule for AdminUpdateLoreKnowledgeArgs {
@@ -38,7 +31,7 @@ pub trait admin_update_lore_knowledge {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_admin_update_lore_knowledge`] callbacks.
-    fn admin_update_lore_knowledge(&self, ) -> __sdk::Result<()>;
+    fn admin_update_lore_knowledge(&self) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `admin_update_lore_knowledge`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -46,38 +39,47 @@ pub trait admin_update_lore_knowledge {
     ///
     /// The returned [`AdminUpdateLoreKnowledgeCallbackId`] can be passed to [`Self::remove_on_admin_update_lore_knowledge`]
     /// to cancel the callback.
-    fn on_admin_update_lore_knowledge(&self, callback: impl FnMut(&super::ReducerEventContext, ) + Send + 'static) -> AdminUpdateLoreKnowledgeCallbackId;
+    fn on_admin_update_lore_knowledge(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext) + Send + 'static,
+    ) -> AdminUpdateLoreKnowledgeCallbackId;
     /// Cancel a callback previously registered by [`Self::on_admin_update_lore_knowledge`],
     /// causing it not to run in the future.
     fn remove_on_admin_update_lore_knowledge(&self, callback: AdminUpdateLoreKnowledgeCallbackId);
 }
 
 impl admin_update_lore_knowledge for super::RemoteReducers {
-    fn admin_update_lore_knowledge(&self, ) -> __sdk::Result<()> {
-        self.imp.call_reducer("admin_update_lore_knowledge", AdminUpdateLoreKnowledgeArgs {  })
+    fn admin_update_lore_knowledge(&self) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "admin_update_lore_knowledge",
+            AdminUpdateLoreKnowledgeArgs {},
+        )
     }
     fn on_admin_update_lore_knowledge(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext) + Send + 'static,
     ) -> AdminUpdateLoreKnowledgeCallbackId {
         AdminUpdateLoreKnowledgeCallbackId(self.imp.on_reducer(
             "admin_update_lore_knowledge",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::AdminUpdateLoreKnowledge {
-                            
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::AdminUpdateLoreKnowledge {},
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx)
             }),
         ))
     }
     fn remove_on_admin_update_lore_knowledge(&self, callback: AdminUpdateLoreKnowledgeCallbackId) {
-        self.imp.remove_on_reducer("admin_update_lore_knowledge", callback.0)
+        self.imp
+            .remove_on_reducer("admin_update_lore_knowledge", callback.0)
     }
 }
 
@@ -97,7 +99,7 @@ pub trait set_flags_for_admin_update_lore_knowledge {
 
 impl set_flags_for_admin_update_lore_knowledge for super::SetReducerFlags {
     fn admin_update_lore_knowledge(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("admin_update_lore_knowledge", flags);
+        self.imp
+            .set_call_reducer_flags("admin_update_lore_knowledge", flags);
     }
 }
-

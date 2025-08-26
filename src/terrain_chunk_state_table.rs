@@ -3,13 +3,8 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::terrain_chunk_state_type::TerrainChunkState;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `terrain_chunk_state`.
 ///
@@ -37,7 +32,9 @@ pub trait TerrainChunkStateTableAccess {
 impl TerrainChunkStateTableAccess for super::RemoteTables {
     fn terrain_chunk_state(&self) -> TerrainChunkStateTableHandle<'_> {
         TerrainChunkStateTableHandle {
-            imp: self.imp.get_table::<TerrainChunkState>("terrain_chunk_state"),
+            imp: self
+                .imp
+                .get_table::<TerrainChunkState>("terrain_chunk_state"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -50,8 +47,12 @@ impl<'ctx> __sdk::Table for TerrainChunkStateTableHandle<'ctx> {
     type Row = TerrainChunkState;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = TerrainChunkState> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = TerrainChunkState> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = TerrainChunkStateInsertCallbackId;
 
@@ -82,8 +83,7 @@ impl<'ctx> __sdk::Table for TerrainChunkStateTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<TerrainChunkState>("terrain_chunk_state");
+    let _table = client_cache.get_or_make_table::<TerrainChunkState>("terrain_chunk_state");
     _table.add_unique_constraint::<u64>("chunk_index", |row| &row.chunk_index);
 }
 pub struct TerrainChunkStateUpdateCallbackId(__sdk::CallbackId);
@@ -103,46 +103,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for TerrainChunkStateTableHandle<'ctx> {
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<TerrainChunkState>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<TerrainChunkState>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<TerrainChunkState>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `chunk_index` unique index on the table `terrain_chunk_state`,
-        /// which allows point queries on the field of the same name
-        /// via the [`TerrainChunkStateChunkIndexUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.terrain_chunk_state().chunk_index().find(...)`.
-        pub struct TerrainChunkStateChunkIndexUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<TerrainChunkState, u64>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `chunk_index` unique index on the table `terrain_chunk_state`,
+/// which allows point queries on the field of the same name
+/// via the [`TerrainChunkStateChunkIndexUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.terrain_chunk_state().chunk_index().find(...)`.
+pub struct TerrainChunkStateChunkIndexUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<TerrainChunkState, u64>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> TerrainChunkStateTableHandle<'ctx> {
-            /// Get a handle on the `chunk_index` unique index on the table `terrain_chunk_state`.
-            pub fn chunk_index(&self) -> TerrainChunkStateChunkIndexUnique<'ctx> {
-                TerrainChunkStateChunkIndexUnique {
-                    imp: self.imp.get_unique_constraint::<u64>("chunk_index"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> TerrainChunkStateTableHandle<'ctx> {
+    /// Get a handle on the `chunk_index` unique index on the table `terrain_chunk_state`.
+    pub fn chunk_index(&self) -> TerrainChunkStateChunkIndexUnique<'ctx> {
+        TerrainChunkStateChunkIndexUnique {
+            imp: self.imp.get_unique_constraint::<u64>("chunk_index"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> TerrainChunkStateChunkIndexUnique<'ctx> {
-            /// Find the subscribed row whose `chunk_index` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u64) -> Option<TerrainChunkState> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> TerrainChunkStateChunkIndexUnique<'ctx> {
+    /// Find the subscribed row whose `chunk_index` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u64) -> Option<TerrainChunkState> {
+        self.imp.find(col_val)
+    }
+}

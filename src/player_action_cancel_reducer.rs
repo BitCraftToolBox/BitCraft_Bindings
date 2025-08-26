@@ -3,13 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -21,8 +15,8 @@ impl From<PlayerActionCancelArgs> for super::Reducer {
     fn from(args: PlayerActionCancelArgs) -> Self {
         Self::PlayerActionCancel {
             client_cancel: args.client_cancel,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for PlayerActionCancelArgs {
@@ -41,8 +35,7 @@ pub trait player_action_cancel {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_player_action_cancel`] callbacks.
-    fn player_action_cancel(&self, client_cancel: bool,
-) -> __sdk::Result<()>;
+    fn player_action_cancel(&self, client_cancel: bool) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `player_action_cancel`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -50,39 +43,47 @@ pub trait player_action_cancel {
     ///
     /// The returned [`PlayerActionCancelCallbackId`] can be passed to [`Self::remove_on_player_action_cancel`]
     /// to cancel the callback.
-    fn on_player_action_cancel(&self, callback: impl FnMut(&super::ReducerEventContext, &bool, ) + Send + 'static) -> PlayerActionCancelCallbackId;
+    fn on_player_action_cancel(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &bool) + Send + 'static,
+    ) -> PlayerActionCancelCallbackId;
     /// Cancel a callback previously registered by [`Self::on_player_action_cancel`],
     /// causing it not to run in the future.
     fn remove_on_player_action_cancel(&self, callback: PlayerActionCancelCallbackId);
 }
 
 impl player_action_cancel for super::RemoteReducers {
-    fn player_action_cancel(&self, client_cancel: bool,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("player_action_cancel", PlayerActionCancelArgs { client_cancel,  })
+    fn player_action_cancel(&self, client_cancel: bool) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "player_action_cancel",
+            PlayerActionCancelArgs { client_cancel },
+        )
     }
     fn on_player_action_cancel(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &bool, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &bool) + Send + 'static,
     ) -> PlayerActionCancelCallbackId {
         PlayerActionCancelCallbackId(self.imp.on_reducer(
             "player_action_cancel",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::PlayerActionCancel {
-                            client_cancel, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::PlayerActionCancel { client_cancel },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, client_cancel, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, client_cancel)
             }),
         ))
     }
     fn remove_on_player_action_cancel(&self, callback: PlayerActionCancelCallbackId) {
-        self.imp.remove_on_reducer("player_action_cancel", callback.0)
+        self.imp
+            .remove_on_reducer("player_action_cancel", callback.0)
     }
 }
 
@@ -102,7 +103,7 @@ pub trait set_flags_for_player_action_cancel {
 
 impl set_flags_for_player_action_cancel for super::SetReducerFlags {
     fn player_action_cancel(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("player_action_cancel", flags);
+        self.imp
+            .set_call_reducer_flags("player_action_cancel", flags);
     }
 }
-

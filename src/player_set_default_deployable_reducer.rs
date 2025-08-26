@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_set_default_deployable_request_type::PlayerSetDefaultDeployableRequest;
 
@@ -22,8 +17,8 @@ impl From<PlayerSetDefaultDeployableArgs> for super::Reducer {
     fn from(args: PlayerSetDefaultDeployableArgs) -> Self {
         Self::PlayerSetDefaultDeployable {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for PlayerSetDefaultDeployableArgs {
@@ -42,8 +37,10 @@ pub trait player_set_default_deployable {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_player_set_default_deployable`] callbacks.
-    fn player_set_default_deployable(&self, request: PlayerSetDefaultDeployableRequest,
-) -> __sdk::Result<()>;
+    fn player_set_default_deployable(
+        &self,
+        request: PlayerSetDefaultDeployableRequest,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `player_set_default_deployable`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +48,60 @@ pub trait player_set_default_deployable {
     ///
     /// The returned [`PlayerSetDefaultDeployableCallbackId`] can be passed to [`Self::remove_on_player_set_default_deployable`]
     /// to cancel the callback.
-    fn on_player_set_default_deployable(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerSetDefaultDeployableRequest, ) + Send + 'static) -> PlayerSetDefaultDeployableCallbackId;
+    fn on_player_set_default_deployable(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerSetDefaultDeployableRequest)
+            + Send
+            + 'static,
+    ) -> PlayerSetDefaultDeployableCallbackId;
     /// Cancel a callback previously registered by [`Self::on_player_set_default_deployable`],
     /// causing it not to run in the future.
-    fn remove_on_player_set_default_deployable(&self, callback: PlayerSetDefaultDeployableCallbackId);
+    fn remove_on_player_set_default_deployable(
+        &self,
+        callback: PlayerSetDefaultDeployableCallbackId,
+    );
 }
 
 impl player_set_default_deployable for super::RemoteReducers {
-    fn player_set_default_deployable(&self, request: PlayerSetDefaultDeployableRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("player_set_default_deployable", PlayerSetDefaultDeployableArgs { request,  })
+    fn player_set_default_deployable(
+        &self,
+        request: PlayerSetDefaultDeployableRequest,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "player_set_default_deployable",
+            PlayerSetDefaultDeployableArgs { request },
+        )
     }
     fn on_player_set_default_deployable(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerSetDefaultDeployableRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerSetDefaultDeployableRequest)
+            + Send
+            + 'static,
     ) -> PlayerSetDefaultDeployableCallbackId {
         PlayerSetDefaultDeployableCallbackId(self.imp.on_reducer(
             "player_set_default_deployable",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::PlayerSetDefaultDeployable {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::PlayerSetDefaultDeployable { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
-    fn remove_on_player_set_default_deployable(&self, callback: PlayerSetDefaultDeployableCallbackId) {
-        self.imp.remove_on_reducer("player_set_default_deployable", callback.0)
+    fn remove_on_player_set_default_deployable(
+        &self,
+        callback: PlayerSetDefaultDeployableCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("player_set_default_deployable", callback.0)
     }
 }
 
@@ -103,7 +121,7 @@ pub trait set_flags_for_player_set_default_deployable {
 
 impl set_flags_for_player_set_default_deployable for super::SetReducerFlags {
     fn player_set_default_deployable(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("player_set_default_deployable", flags);
+        self.imp
+            .set_call_reducer_flags("player_set_default_deployable", flags);
     }
 }
-

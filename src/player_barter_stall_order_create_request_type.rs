@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::item_stack_type::ItemStack;
 
@@ -17,14 +12,12 @@ use super::item_stack_type::ItemStack;
 pub struct PlayerBarterStallOrderCreateRequest {
     pub shop_entity_id: u64,
     pub remaining_stock: i32,
-    pub offer_items: Option::<ItemStack>,
+    pub offer_items: Option<ItemStack>,
     pub offer_cargo_id: i32,
-    pub required_items: Vec::<ItemStack>,
-    pub required_cargos: Vec::<i32>,
+    pub required_items: Vec<ItemStack>,
+    pub required_cargos: Vec<i32>,
 }
-
 
 impl __sdk::InModule for PlayerBarterStallOrderCreateRequest {
     type Module = super::RemoteModule;
 }
-

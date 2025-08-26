@@ -3,13 +3,8 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::loot_chest_despawn_timer_type::LootChestDespawnTimer;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `loot_chest_despawn_timer`.
 ///
@@ -37,7 +32,9 @@ pub trait LootChestDespawnTimerTableAccess {
 impl LootChestDespawnTimerTableAccess for super::RemoteTables {
     fn loot_chest_despawn_timer(&self) -> LootChestDespawnTimerTableHandle<'_> {
         LootChestDespawnTimerTableHandle {
-            imp: self.imp.get_table::<LootChestDespawnTimer>("loot_chest_despawn_timer"),
+            imp: self
+                .imp
+                .get_table::<LootChestDespawnTimer>("loot_chest_despawn_timer"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -50,8 +47,12 @@ impl<'ctx> __sdk::Table for LootChestDespawnTimerTableHandle<'ctx> {
     type Row = LootChestDespawnTimer;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = LootChestDespawnTimer> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = LootChestDespawnTimer> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = LootChestDespawnTimerInsertCallbackId;
 
@@ -82,8 +83,8 @@ impl<'ctx> __sdk::Table for LootChestDespawnTimerTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<LootChestDespawnTimer>("loot_chest_despawn_timer");
+    let _table =
+        client_cache.get_or_make_table::<LootChestDespawnTimer>("loot_chest_despawn_timer");
     _table.add_unique_constraint::<u64>("scheduled_id", |row| &row.scheduled_id);
 }
 pub struct LootChestDespawnTimerUpdateCallbackId(__sdk::CallbackId);
@@ -103,46 +104,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for LootChestDespawnTimerTableHandle<'ctx>
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<LootChestDespawnTimer>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<LootChestDespawnTimer>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<LootChestDespawnTimer>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `scheduled_id` unique index on the table `loot_chest_despawn_timer`,
-        /// which allows point queries on the field of the same name
-        /// via the [`LootChestDespawnTimerScheduledIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.loot_chest_despawn_timer().scheduled_id().find(...)`.
-        pub struct LootChestDespawnTimerScheduledIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<LootChestDespawnTimer, u64>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `scheduled_id` unique index on the table `loot_chest_despawn_timer`,
+/// which allows point queries on the field of the same name
+/// via the [`LootChestDespawnTimerScheduledIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.loot_chest_despawn_timer().scheduled_id().find(...)`.
+pub struct LootChestDespawnTimerScheduledIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<LootChestDespawnTimer, u64>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> LootChestDespawnTimerTableHandle<'ctx> {
-            /// Get a handle on the `scheduled_id` unique index on the table `loot_chest_despawn_timer`.
-            pub fn scheduled_id(&self) -> LootChestDespawnTimerScheduledIdUnique<'ctx> {
-                LootChestDespawnTimerScheduledIdUnique {
-                    imp: self.imp.get_unique_constraint::<u64>("scheduled_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> LootChestDespawnTimerTableHandle<'ctx> {
+    /// Get a handle on the `scheduled_id` unique index on the table `loot_chest_despawn_timer`.
+    pub fn scheduled_id(&self) -> LootChestDespawnTimerScheduledIdUnique<'ctx> {
+        LootChestDespawnTimerScheduledIdUnique {
+            imp: self.imp.get_unique_constraint::<u64>("scheduled_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> LootChestDespawnTimerScheduledIdUnique<'ctx> {
-            /// Find the subscribed row whose `scheduled_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u64) -> Option<LootChestDespawnTimer> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> LootChestDespawnTimerScheduledIdUnique<'ctx> {
+    /// Find the subscribed row whose `scheduled_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u64) -> Option<LootChestDespawnTimer> {
+        self.imp.find(col_val)
+    }
+}

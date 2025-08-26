@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::deployable_deploy_request_type::DeployableDeployRequest;
 
@@ -22,8 +17,8 @@ impl From<DeployableDeployArgs> for super::Reducer {
     fn from(args: DeployableDeployArgs) -> Self {
         Self::DeployableDeploy {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for DeployableDeployArgs {
@@ -42,8 +37,7 @@ pub trait deployable_deploy {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_deployable_deploy`] callbacks.
-    fn deployable_deploy(&self, request: DeployableDeployRequest,
-) -> __sdk::Result<()>;
+    fn deployable_deploy(&self, request: DeployableDeployRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `deployable_deploy`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,39 @@ pub trait deployable_deploy {
     ///
     /// The returned [`DeployableDeployCallbackId`] can be passed to [`Self::remove_on_deployable_deploy`]
     /// to cancel the callback.
-    fn on_deployable_deploy(&self, callback: impl FnMut(&super::ReducerEventContext, &DeployableDeployRequest, ) + Send + 'static) -> DeployableDeployCallbackId;
+    fn on_deployable_deploy(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &DeployableDeployRequest) + Send + 'static,
+    ) -> DeployableDeployCallbackId;
     /// Cancel a callback previously registered by [`Self::on_deployable_deploy`],
     /// causing it not to run in the future.
     fn remove_on_deployable_deploy(&self, callback: DeployableDeployCallbackId);
 }
 
 impl deployable_deploy for super::RemoteReducers {
-    fn deployable_deploy(&self, request: DeployableDeployRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("deployable_deploy", DeployableDeployArgs { request,  })
+    fn deployable_deploy(&self, request: DeployableDeployRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("deployable_deploy", DeployableDeployArgs { request })
     }
     fn on_deployable_deploy(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &DeployableDeployRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &DeployableDeployRequest) + Send + 'static,
     ) -> DeployableDeployCallbackId {
         DeployableDeployCallbackId(self.imp.on_reducer(
             "deployable_deploy",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::DeployableDeploy {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::DeployableDeploy { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
@@ -106,4 +105,3 @@ impl set_flags_for_deployable_deploy for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("deployable_deploy", flags);
     }
 }
-

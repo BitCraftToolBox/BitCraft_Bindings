@@ -3,13 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -21,8 +15,8 @@ impl From<PlayerRespawnArgs> for super::Reducer {
     fn from(args: PlayerRespawnArgs) -> Self {
         Self::PlayerRespawn {
             teleport_home: args.teleport_home,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for PlayerRespawnArgs {
@@ -41,8 +35,7 @@ pub trait player_respawn {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_player_respawn`] callbacks.
-    fn player_respawn(&self, teleport_home: bool,
-) -> __sdk::Result<()>;
+    fn player_respawn(&self, teleport_home: bool) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `player_respawn`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -50,34 +43,39 @@ pub trait player_respawn {
     ///
     /// The returned [`PlayerRespawnCallbackId`] can be passed to [`Self::remove_on_player_respawn`]
     /// to cancel the callback.
-    fn on_player_respawn(&self, callback: impl FnMut(&super::ReducerEventContext, &bool, ) + Send + 'static) -> PlayerRespawnCallbackId;
+    fn on_player_respawn(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &bool) + Send + 'static,
+    ) -> PlayerRespawnCallbackId;
     /// Cancel a callback previously registered by [`Self::on_player_respawn`],
     /// causing it not to run in the future.
     fn remove_on_player_respawn(&self, callback: PlayerRespawnCallbackId);
 }
 
 impl player_respawn for super::RemoteReducers {
-    fn player_respawn(&self, teleport_home: bool,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("player_respawn", PlayerRespawnArgs { teleport_home,  })
+    fn player_respawn(&self, teleport_home: bool) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("player_respawn", PlayerRespawnArgs { teleport_home })
     }
     fn on_player_respawn(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &bool, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &bool) + Send + 'static,
     ) -> PlayerRespawnCallbackId {
         PlayerRespawnCallbackId(self.imp.on_reducer(
             "player_respawn",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::PlayerRespawn {
-                            teleport_home, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::PlayerRespawn { teleport_home },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, teleport_home, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, teleport_home)
             }),
         ))
     }
@@ -105,4 +103,3 @@ impl set_flags_for_player_respawn for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("player_respawn", flags);
     }
 }
-

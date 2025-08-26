@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_terraform_request_type::PlayerTerraformRequest;
 
@@ -22,8 +17,8 @@ impl From<TerraformStartArgs> for super::Reducer {
     fn from(args: TerraformStartArgs) -> Self {
         Self::TerraformStart {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for TerraformStartArgs {
@@ -42,8 +37,7 @@ pub trait terraform_start {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_terraform_start`] callbacks.
-    fn terraform_start(&self, request: PlayerTerraformRequest,
-) -> __sdk::Result<()>;
+    fn terraform_start(&self, request: PlayerTerraformRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `terraform_start`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,39 @@ pub trait terraform_start {
     ///
     /// The returned [`TerraformStartCallbackId`] can be passed to [`Self::remove_on_terraform_start`]
     /// to cancel the callback.
-    fn on_terraform_start(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerTerraformRequest, ) + Send + 'static) -> TerraformStartCallbackId;
+    fn on_terraform_start(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerTerraformRequest) + Send + 'static,
+    ) -> TerraformStartCallbackId;
     /// Cancel a callback previously registered by [`Self::on_terraform_start`],
     /// causing it not to run in the future.
     fn remove_on_terraform_start(&self, callback: TerraformStartCallbackId);
 }
 
 impl terraform_start for super::RemoteReducers {
-    fn terraform_start(&self, request: PlayerTerraformRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("terraform_start", TerraformStartArgs { request,  })
+    fn terraform_start(&self, request: PlayerTerraformRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("terraform_start", TerraformStartArgs { request })
     }
     fn on_terraform_start(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerTerraformRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerTerraformRequest) + Send + 'static,
     ) -> TerraformStartCallbackId {
         TerraformStartCallbackId(self.imp.on_reducer(
             "terraform_start",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::TerraformStart {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::TerraformStart { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
@@ -106,4 +105,3 @@ impl set_flags_for_terraform_start for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("terraform_start", flags);
     }
 }
-

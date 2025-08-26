@@ -3,13 +3,8 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::dropped_inventory_ownership_timer_type::DroppedInventoryOwnershipTimer;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `dropped_inventory_ownership_timer`.
 ///
@@ -37,7 +32,9 @@ pub trait DroppedInventoryOwnershipTimerTableAccess {
 impl DroppedInventoryOwnershipTimerTableAccess for super::RemoteTables {
     fn dropped_inventory_ownership_timer(&self) -> DroppedInventoryOwnershipTimerTableHandle<'_> {
         DroppedInventoryOwnershipTimerTableHandle {
-            imp: self.imp.get_table::<DroppedInventoryOwnershipTimer>("dropped_inventory_ownership_timer"),
+            imp: self
+                .imp
+                .get_table::<DroppedInventoryOwnershipTimer>("dropped_inventory_ownership_timer"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -50,8 +47,12 @@ impl<'ctx> __sdk::Table for DroppedInventoryOwnershipTimerTableHandle<'ctx> {
     type Row = DroppedInventoryOwnershipTimer;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = DroppedInventoryOwnershipTimer> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = DroppedInventoryOwnershipTimer> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = DroppedInventoryOwnershipTimerInsertCallbackId;
 
@@ -82,8 +83,8 @@ impl<'ctx> __sdk::Table for DroppedInventoryOwnershipTimerTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<DroppedInventoryOwnershipTimer>("dropped_inventory_ownership_timer");
+    let _table = client_cache
+        .get_or_make_table::<DroppedInventoryOwnershipTimer>("dropped_inventory_ownership_timer");
     _table.add_unique_constraint::<u64>("scheduled_id", |row| &row.scheduled_id);
 }
 pub struct DroppedInventoryOwnershipTimerUpdateCallbackId(__sdk::CallbackId);
@@ -103,7 +104,6 @@ impl<'ctx> __sdk::TableWithPrimaryKey for DroppedInventoryOwnershipTimerTableHan
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
@@ -112,37 +112,38 @@ pub(super) fn parse_table_update(
         __sdk::InternalError::failed_parse(
             "TableUpdate<DroppedInventoryOwnershipTimer>",
             "TableUpdate",
-        ).with_cause(e).into()
+        )
+        .with_cause(e)
+        .into()
     })
 }
 
-        /// Access to the `scheduled_id` unique index on the table `dropped_inventory_ownership_timer`,
-        /// which allows point queries on the field of the same name
-        /// via the [`DroppedInventoryOwnershipTimerScheduledIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.dropped_inventory_ownership_timer().scheduled_id().find(...)`.
-        pub struct DroppedInventoryOwnershipTimerScheduledIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<DroppedInventoryOwnershipTimer, u64>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `scheduled_id` unique index on the table `dropped_inventory_ownership_timer`,
+/// which allows point queries on the field of the same name
+/// via the [`DroppedInventoryOwnershipTimerScheduledIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.dropped_inventory_ownership_timer().scheduled_id().find(...)`.
+pub struct DroppedInventoryOwnershipTimerScheduledIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<DroppedInventoryOwnershipTimer, u64>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> DroppedInventoryOwnershipTimerTableHandle<'ctx> {
-            /// Get a handle on the `scheduled_id` unique index on the table `dropped_inventory_ownership_timer`.
-            pub fn scheduled_id(&self) -> DroppedInventoryOwnershipTimerScheduledIdUnique<'ctx> {
-                DroppedInventoryOwnershipTimerScheduledIdUnique {
-                    imp: self.imp.get_unique_constraint::<u64>("scheduled_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> DroppedInventoryOwnershipTimerTableHandle<'ctx> {
+    /// Get a handle on the `scheduled_id` unique index on the table `dropped_inventory_ownership_timer`.
+    pub fn scheduled_id(&self) -> DroppedInventoryOwnershipTimerScheduledIdUnique<'ctx> {
+        DroppedInventoryOwnershipTimerScheduledIdUnique {
+            imp: self.imp.get_unique_constraint::<u64>("scheduled_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> DroppedInventoryOwnershipTimerScheduledIdUnique<'ctx> {
-            /// Find the subscribed row whose `scheduled_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u64) -> Option<DroppedInventoryOwnershipTimer> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> DroppedInventoryOwnershipTimerScheduledIdUnique<'ctx> {
+    /// Find the subscribed row whose `scheduled_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u64) -> Option<DroppedInventoryOwnershipTimer> {
+        self.imp.find(col_val)
+    }
+}

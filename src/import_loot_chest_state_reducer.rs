@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::loot_chest_state_type::LootChestState;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct ImportLootChestStateArgs {
-    pub records: Vec::<LootChestState>,
+    pub records: Vec<LootChestState>,
 }
 
 impl From<ImportLootChestStateArgs> for super::Reducer {
     fn from(args: ImportLootChestStateArgs) -> Self {
         Self::ImportLootChestState {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ImportLootChestStateArgs {
@@ -42,8 +37,7 @@ pub trait import_loot_chest_state {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_import_loot_chest_state`] callbacks.
-    fn import_loot_chest_state(&self, records: Vec::<LootChestState>,
-) -> __sdk::Result<()>;
+    fn import_loot_chest_state(&self, records: Vec<LootChestState>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `import_loot_chest_state`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,47 @@ pub trait import_loot_chest_state {
     ///
     /// The returned [`ImportLootChestStateCallbackId`] can be passed to [`Self::remove_on_import_loot_chest_state`]
     /// to cancel the callback.
-    fn on_import_loot_chest_state(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<LootChestState>, ) + Send + 'static) -> ImportLootChestStateCallbackId;
+    fn on_import_loot_chest_state(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<LootChestState>) + Send + 'static,
+    ) -> ImportLootChestStateCallbackId;
     /// Cancel a callback previously registered by [`Self::on_import_loot_chest_state`],
     /// causing it not to run in the future.
     fn remove_on_import_loot_chest_state(&self, callback: ImportLootChestStateCallbackId);
 }
 
 impl import_loot_chest_state for super::RemoteReducers {
-    fn import_loot_chest_state(&self, records: Vec::<LootChestState>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("import_loot_chest_state", ImportLootChestStateArgs { records,  })
+    fn import_loot_chest_state(&self, records: Vec<LootChestState>) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "import_loot_chest_state",
+            ImportLootChestStateArgs { records },
+        )
     }
     fn on_import_loot_chest_state(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<LootChestState>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<LootChestState>) + Send + 'static,
     ) -> ImportLootChestStateCallbackId {
         ImportLootChestStateCallbackId(self.imp.on_reducer(
             "import_loot_chest_state",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ImportLootChestState {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ImportLootChestState { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
     fn remove_on_import_loot_chest_state(&self, callback: ImportLootChestStateCallbackId) {
-        self.imp.remove_on_reducer("import_loot_chest_state", callback.0)
+        self.imp
+            .remove_on_reducer("import_loot_chest_state", callback.0)
     }
 }
 
@@ -103,7 +105,7 @@ pub trait set_flags_for_import_loot_chest_state {
 
 impl set_flags_for_import_loot_chest_state for super::SetReducerFlags {
     fn import_loot_chest_state(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("import_loot_chest_state", flags);
+        self.imp
+            .set_call_reducer_flags("import_loot_chest_state", flags);
     }
 }
-

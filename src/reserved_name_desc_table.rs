@@ -3,13 +3,8 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::reserved_name_desc_type::ReservedNameDesc;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `reserved_name_desc`.
 ///
@@ -50,8 +45,12 @@ impl<'ctx> __sdk::Table for ReservedNameDescTableHandle<'ctx> {
     type Row = ReservedNameDesc;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = ReservedNameDesc> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = ReservedNameDesc> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = ReservedNameDescInsertCallbackId;
 
@@ -82,8 +81,7 @@ impl<'ctx> __sdk::Table for ReservedNameDescTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<ReservedNameDesc>("reserved_name_desc");
+    let _table = client_cache.get_or_make_table::<ReservedNameDesc>("reserved_name_desc");
     _table.add_unique_constraint::<String>("name", |row| &row.name);
 }
 pub struct ReservedNameDescUpdateCallbackId(__sdk::CallbackId);
@@ -103,46 +101,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for ReservedNameDescTableHandle<'ctx> {
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<ReservedNameDesc>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<ReservedNameDesc>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<ReservedNameDesc>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `name` unique index on the table `reserved_name_desc`,
-        /// which allows point queries on the field of the same name
-        /// via the [`ReservedNameDescNameUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.reserved_name_desc().name().find(...)`.
-        pub struct ReservedNameDescNameUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<ReservedNameDesc, String>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `name` unique index on the table `reserved_name_desc`,
+/// which allows point queries on the field of the same name
+/// via the [`ReservedNameDescNameUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.reserved_name_desc().name().find(...)`.
+pub struct ReservedNameDescNameUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<ReservedNameDesc, String>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> ReservedNameDescTableHandle<'ctx> {
-            /// Get a handle on the `name` unique index on the table `reserved_name_desc`.
-            pub fn name(&self) -> ReservedNameDescNameUnique<'ctx> {
-                ReservedNameDescNameUnique {
-                    imp: self.imp.get_unique_constraint::<String>("name"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> ReservedNameDescTableHandle<'ctx> {
+    /// Get a handle on the `name` unique index on the table `reserved_name_desc`.
+    pub fn name(&self) -> ReservedNameDescNameUnique<'ctx> {
+        ReservedNameDescNameUnique {
+            imp: self.imp.get_unique_constraint::<String>("name"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> ReservedNameDescNameUnique<'ctx> {
-            /// Find the subscribed row whose `name` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &String) -> Option<ReservedNameDesc> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> ReservedNameDescNameUnique<'ctx> {
+    /// Find the subscribed row whose `name` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &String) -> Option<ReservedNameDesc> {
+        self.imp.find(col_val)
+    }
+}

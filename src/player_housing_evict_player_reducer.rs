@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_housing_evict_player_request_type::PlayerHousingEvictPlayerRequest;
 
@@ -22,8 +17,8 @@ impl From<PlayerHousingEvictPlayerArgs> for super::Reducer {
     fn from(args: PlayerHousingEvictPlayerArgs) -> Self {
         Self::PlayerHousingEvictPlayer {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for PlayerHousingEvictPlayerArgs {
@@ -42,8 +37,10 @@ pub trait player_housing_evict_player {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_player_housing_evict_player`] callbacks.
-    fn player_housing_evict_player(&self, request: PlayerHousingEvictPlayerRequest,
-) -> __sdk::Result<()>;
+    fn player_housing_evict_player(
+        &self,
+        request: PlayerHousingEvictPlayerRequest,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `player_housing_evict_player`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +48,54 @@ pub trait player_housing_evict_player {
     ///
     /// The returned [`PlayerHousingEvictPlayerCallbackId`] can be passed to [`Self::remove_on_player_housing_evict_player`]
     /// to cancel the callback.
-    fn on_player_housing_evict_player(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerHousingEvictPlayerRequest, ) + Send + 'static) -> PlayerHousingEvictPlayerCallbackId;
+    fn on_player_housing_evict_player(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerHousingEvictPlayerRequest)
+            + Send
+            + 'static,
+    ) -> PlayerHousingEvictPlayerCallbackId;
     /// Cancel a callback previously registered by [`Self::on_player_housing_evict_player`],
     /// causing it not to run in the future.
     fn remove_on_player_housing_evict_player(&self, callback: PlayerHousingEvictPlayerCallbackId);
 }
 
 impl player_housing_evict_player for super::RemoteReducers {
-    fn player_housing_evict_player(&self, request: PlayerHousingEvictPlayerRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("player_housing_evict_player", PlayerHousingEvictPlayerArgs { request,  })
+    fn player_housing_evict_player(
+        &self,
+        request: PlayerHousingEvictPlayerRequest,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "player_housing_evict_player",
+            PlayerHousingEvictPlayerArgs { request },
+        )
     }
     fn on_player_housing_evict_player(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerHousingEvictPlayerRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerHousingEvictPlayerRequest)
+            + Send
+            + 'static,
     ) -> PlayerHousingEvictPlayerCallbackId {
         PlayerHousingEvictPlayerCallbackId(self.imp.on_reducer(
             "player_housing_evict_player",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::PlayerHousingEvictPlayer {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::PlayerHousingEvictPlayer { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
     fn remove_on_player_housing_evict_player(&self, callback: PlayerHousingEvictPlayerCallbackId) {
-        self.imp.remove_on_reducer("player_housing_evict_player", callback.0)
+        self.imp
+            .remove_on_reducer("player_housing_evict_player", callback.0)
     }
 }
 
@@ -103,7 +115,7 @@ pub trait set_flags_for_player_housing_evict_player {
 
 impl set_flags_for_player_housing_evict_player for super::SetReducerFlags {
     fn player_housing_evict_player(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("player_housing_evict_player", flags);
+        self.imp
+            .set_call_reducer_flags("player_housing_evict_player", flags);
     }
 }
-

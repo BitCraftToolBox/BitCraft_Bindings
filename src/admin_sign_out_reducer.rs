@@ -3,13 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -21,8 +15,8 @@ impl From<AdminSignOutArgs> for super::Reducer {
     fn from(args: AdminSignOutArgs) -> Self {
         Self::AdminSignOut {
             identity: args.identity,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for AdminSignOutArgs {
@@ -41,8 +35,7 @@ pub trait admin_sign_out {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_admin_sign_out`] callbacks.
-    fn admin_sign_out(&self, identity: __sdk::Identity,
-) -> __sdk::Result<()>;
+    fn admin_sign_out(&self, identity: __sdk::Identity) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `admin_sign_out`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -50,34 +43,39 @@ pub trait admin_sign_out {
     ///
     /// The returned [`AdminSignOutCallbackId`] can be passed to [`Self::remove_on_admin_sign_out`]
     /// to cancel the callback.
-    fn on_admin_sign_out(&self, callback: impl FnMut(&super::ReducerEventContext, &__sdk::Identity, ) + Send + 'static) -> AdminSignOutCallbackId;
+    fn on_admin_sign_out(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &__sdk::Identity) + Send + 'static,
+    ) -> AdminSignOutCallbackId;
     /// Cancel a callback previously registered by [`Self::on_admin_sign_out`],
     /// causing it not to run in the future.
     fn remove_on_admin_sign_out(&self, callback: AdminSignOutCallbackId);
 }
 
 impl admin_sign_out for super::RemoteReducers {
-    fn admin_sign_out(&self, identity: __sdk::Identity,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("admin_sign_out", AdminSignOutArgs { identity,  })
+    fn admin_sign_out(&self, identity: __sdk::Identity) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("admin_sign_out", AdminSignOutArgs { identity })
     }
     fn on_admin_sign_out(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &__sdk::Identity, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &__sdk::Identity) + Send + 'static,
     ) -> AdminSignOutCallbackId {
         AdminSignOutCallbackId(self.imp.on_reducer(
             "admin_sign_out",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::AdminSignOut {
-                            identity, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::AdminSignOut { identity },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, identity, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, identity)
             }),
         ))
     }
@@ -105,4 +103,3 @@ impl set_flags_for_admin_sign_out for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("admin_sign_out", flags);
     }
 }
-

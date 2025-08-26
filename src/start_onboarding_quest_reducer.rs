@@ -3,13 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -19,10 +13,8 @@ pub(super) struct StartOnboardingQuestArgs {
 
 impl From<StartOnboardingQuestArgs> for super::Reducer {
     fn from(args: StartOnboardingQuestArgs) -> Self {
-        Self::StartOnboardingQuest {
-            id: args.id,
-}
-}
+        Self::StartOnboardingQuest { id: args.id }
+    }
 }
 
 impl __sdk::InModule for StartOnboardingQuestArgs {
@@ -41,8 +33,7 @@ pub trait start_onboarding_quest {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_start_onboarding_quest`] callbacks.
-    fn start_onboarding_quest(&self, id: u16,
-) -> __sdk::Result<()>;
+    fn start_onboarding_quest(&self, id: u16) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `start_onboarding_quest`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -50,39 +41,45 @@ pub trait start_onboarding_quest {
     ///
     /// The returned [`StartOnboardingQuestCallbackId`] can be passed to [`Self::remove_on_start_onboarding_quest`]
     /// to cancel the callback.
-    fn on_start_onboarding_quest(&self, callback: impl FnMut(&super::ReducerEventContext, &u16, ) + Send + 'static) -> StartOnboardingQuestCallbackId;
+    fn on_start_onboarding_quest(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &u16) + Send + 'static,
+    ) -> StartOnboardingQuestCallbackId;
     /// Cancel a callback previously registered by [`Self::on_start_onboarding_quest`],
     /// causing it not to run in the future.
     fn remove_on_start_onboarding_quest(&self, callback: StartOnboardingQuestCallbackId);
 }
 
 impl start_onboarding_quest for super::RemoteReducers {
-    fn start_onboarding_quest(&self, id: u16,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("start_onboarding_quest", StartOnboardingQuestArgs { id,  })
+    fn start_onboarding_quest(&self, id: u16) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("start_onboarding_quest", StartOnboardingQuestArgs { id })
     }
     fn on_start_onboarding_quest(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &u16, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &u16) + Send + 'static,
     ) -> StartOnboardingQuestCallbackId {
         StartOnboardingQuestCallbackId(self.imp.on_reducer(
             "start_onboarding_quest",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::StartOnboardingQuest {
-                            id, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::StartOnboardingQuest { id },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, id, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, id)
             }),
         ))
     }
     fn remove_on_start_onboarding_quest(&self, callback: StartOnboardingQuestCallbackId) {
-        self.imp.remove_on_reducer("start_onboarding_quest", callback.0)
+        self.imp
+            .remove_on_reducer("start_onboarding_quest", callback.0)
     }
 }
 
@@ -102,7 +99,7 @@ pub trait set_flags_for_start_onboarding_quest {
 
 impl set_flags_for_start_onboarding_quest for super::SetReducerFlags {
     fn start_onboarding_quest(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("start_onboarding_quest", flags);
+        self.imp
+            .set_call_reducer_flags("start_onboarding_quest", flags);
     }
 }
-

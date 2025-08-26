@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::knowledge_resource_placement_state_type::KnowledgeResourcePlacementState;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct ImportKnowledgeResourcePlacementStateArgs {
-    pub records: Vec::<KnowledgeResourcePlacementState>,
+    pub records: Vec<KnowledgeResourcePlacementState>,
 }
 
 impl From<ImportKnowledgeResourcePlacementStateArgs> for super::Reducer {
     fn from(args: ImportKnowledgeResourcePlacementStateArgs) -> Self {
         Self::ImportKnowledgeResourcePlacementState {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ImportKnowledgeResourcePlacementStateArgs {
@@ -42,8 +37,10 @@ pub trait import_knowledge_resource_placement_state {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_import_knowledge_resource_placement_state`] callbacks.
-    fn import_knowledge_resource_placement_state(&self, records: Vec::<KnowledgeResourcePlacementState>,
-) -> __sdk::Result<()>;
+    fn import_knowledge_resource_placement_state(
+        &self,
+        records: Vec<KnowledgeResourcePlacementState>,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `import_knowledge_resource_placement_state`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +48,61 @@ pub trait import_knowledge_resource_placement_state {
     ///
     /// The returned [`ImportKnowledgeResourcePlacementStateCallbackId`] can be passed to [`Self::remove_on_import_knowledge_resource_placement_state`]
     /// to cancel the callback.
-    fn on_import_knowledge_resource_placement_state(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<KnowledgeResourcePlacementState>, ) + Send + 'static) -> ImportKnowledgeResourcePlacementStateCallbackId;
+    fn on_import_knowledge_resource_placement_state(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<KnowledgeResourcePlacementState>)
+            + Send
+            + 'static,
+    ) -> ImportKnowledgeResourcePlacementStateCallbackId;
     /// Cancel a callback previously registered by [`Self::on_import_knowledge_resource_placement_state`],
     /// causing it not to run in the future.
-    fn remove_on_import_knowledge_resource_placement_state(&self, callback: ImportKnowledgeResourcePlacementStateCallbackId);
+    fn remove_on_import_knowledge_resource_placement_state(
+        &self,
+        callback: ImportKnowledgeResourcePlacementStateCallbackId,
+    );
 }
 
 impl import_knowledge_resource_placement_state for super::RemoteReducers {
-    fn import_knowledge_resource_placement_state(&self, records: Vec::<KnowledgeResourcePlacementState>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("import_knowledge_resource_placement_state", ImportKnowledgeResourcePlacementStateArgs { records,  })
+    fn import_knowledge_resource_placement_state(
+        &self,
+        records: Vec<KnowledgeResourcePlacementState>,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "import_knowledge_resource_placement_state",
+            ImportKnowledgeResourcePlacementStateArgs { records },
+        )
     }
     fn on_import_knowledge_resource_placement_state(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<KnowledgeResourcePlacementState>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<KnowledgeResourcePlacementState>)
+            + Send
+            + 'static,
     ) -> ImportKnowledgeResourcePlacementStateCallbackId {
         ImportKnowledgeResourcePlacementStateCallbackId(self.imp.on_reducer(
             "import_knowledge_resource_placement_state",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ImportKnowledgeResourcePlacementState {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer:
+                                super::Reducer::ImportKnowledgeResourcePlacementState { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
-    fn remove_on_import_knowledge_resource_placement_state(&self, callback: ImportKnowledgeResourcePlacementStateCallbackId) {
-        self.imp.remove_on_reducer("import_knowledge_resource_placement_state", callback.0)
+    fn remove_on_import_knowledge_resource_placement_state(
+        &self,
+        callback: ImportKnowledgeResourcePlacementStateCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("import_knowledge_resource_placement_state", callback.0)
     }
 }
 
@@ -103,7 +122,7 @@ pub trait set_flags_for_import_knowledge_resource_placement_state {
 
 impl set_flags_for_import_knowledge_resource_placement_state for super::SetReducerFlags {
     fn import_knowledge_resource_placement_state(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("import_knowledge_resource_placement_state", flags);
+        self.imp
+            .set_call_reducer_flags("import_knowledge_resource_placement_state", flags);
     }
 }
-

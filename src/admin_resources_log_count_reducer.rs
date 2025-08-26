@@ -3,13 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -21,8 +15,8 @@ impl From<AdminResourcesLogCountArgs> for super::Reducer {
     fn from(args: AdminResourcesLogCountArgs) -> Self {
         Self::AdminResourcesLogCount {
             threshold: args.threshold,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for AdminResourcesLogCountArgs {
@@ -41,8 +35,7 @@ pub trait admin_resources_log_count {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_admin_resources_log_count`] callbacks.
-    fn admin_resources_log_count(&self, threshold: f32,
-) -> __sdk::Result<()>;
+    fn admin_resources_log_count(&self, threshold: f32) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `admin_resources_log_count`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -50,39 +43,47 @@ pub trait admin_resources_log_count {
     ///
     /// The returned [`AdminResourcesLogCountCallbackId`] can be passed to [`Self::remove_on_admin_resources_log_count`]
     /// to cancel the callback.
-    fn on_admin_resources_log_count(&self, callback: impl FnMut(&super::ReducerEventContext, &f32, ) + Send + 'static) -> AdminResourcesLogCountCallbackId;
+    fn on_admin_resources_log_count(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &f32) + Send + 'static,
+    ) -> AdminResourcesLogCountCallbackId;
     /// Cancel a callback previously registered by [`Self::on_admin_resources_log_count`],
     /// causing it not to run in the future.
     fn remove_on_admin_resources_log_count(&self, callback: AdminResourcesLogCountCallbackId);
 }
 
 impl admin_resources_log_count for super::RemoteReducers {
-    fn admin_resources_log_count(&self, threshold: f32,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("admin_resources_log_count", AdminResourcesLogCountArgs { threshold,  })
+    fn admin_resources_log_count(&self, threshold: f32) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "admin_resources_log_count",
+            AdminResourcesLogCountArgs { threshold },
+        )
     }
     fn on_admin_resources_log_count(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &f32, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &f32) + Send + 'static,
     ) -> AdminResourcesLogCountCallbackId {
         AdminResourcesLogCountCallbackId(self.imp.on_reducer(
             "admin_resources_log_count",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::AdminResourcesLogCount {
-                            threshold, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::AdminResourcesLogCount { threshold },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, threshold, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, threshold)
             }),
         ))
     }
     fn remove_on_admin_resources_log_count(&self, callback: AdminResourcesLogCountCallbackId) {
-        self.imp.remove_on_reducer("admin_resources_log_count", callback.0)
+        self.imp
+            .remove_on_reducer("admin_resources_log_count", callback.0)
     }
 }
 
@@ -102,7 +103,7 @@ pub trait set_flags_for_admin_resources_log_count {
 
 impl set_flags_for_admin_resources_log_count for super::SetReducerFlags {
     fn admin_resources_log_count(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("admin_resources_log_count", flags);
+        self.imp
+            .set_call_reducer_flags("admin_resources_log_count", flags);
     }
 }
-

@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_achievement_claim_request_type::PlayerAchievementClaimRequest;
 
@@ -22,8 +17,8 @@ impl From<AchievementClaimArgs> for super::Reducer {
     fn from(args: AchievementClaimArgs) -> Self {
         Self::AchievementClaim {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for AchievementClaimArgs {
@@ -42,8 +37,7 @@ pub trait achievement_claim {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_achievement_claim`] callbacks.
-    fn achievement_claim(&self, request: PlayerAchievementClaimRequest,
-) -> __sdk::Result<()>;
+    fn achievement_claim(&self, request: PlayerAchievementClaimRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `achievement_claim`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,43 @@ pub trait achievement_claim {
     ///
     /// The returned [`AchievementClaimCallbackId`] can be passed to [`Self::remove_on_achievement_claim`]
     /// to cancel the callback.
-    fn on_achievement_claim(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerAchievementClaimRequest, ) + Send + 'static) -> AchievementClaimCallbackId;
+    fn on_achievement_claim(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerAchievementClaimRequest)
+            + Send
+            + 'static,
+    ) -> AchievementClaimCallbackId;
     /// Cancel a callback previously registered by [`Self::on_achievement_claim`],
     /// causing it not to run in the future.
     fn remove_on_achievement_claim(&self, callback: AchievementClaimCallbackId);
 }
 
 impl achievement_claim for super::RemoteReducers {
-    fn achievement_claim(&self, request: PlayerAchievementClaimRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("achievement_claim", AchievementClaimArgs { request,  })
+    fn achievement_claim(&self, request: PlayerAchievementClaimRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("achievement_claim", AchievementClaimArgs { request })
     }
     fn on_achievement_claim(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerAchievementClaimRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerAchievementClaimRequest)
+            + Send
+            + 'static,
     ) -> AchievementClaimCallbackId {
         AchievementClaimCallbackId(self.imp.on_reducer(
             "achievement_claim",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::AchievementClaim {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::AchievementClaim { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
@@ -106,4 +109,3 @@ impl set_flags_for_achievement_claim for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("achievement_claim", flags);
     }
 }
-

@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::offset_coordinates_float_type::OffsetCoordinatesFloat;
 
@@ -19,12 +14,10 @@ pub struct DeployableDismountTimer {
     pub scheduled_at: __sdk::ScheduleAt,
     pub deployable_entity_id: u64,
     pub player_entity_id: u64,
-    pub coordinates: Option::<OffsetCoordinatesFloat>,
+    pub coordinates: Option<OffsetCoordinatesFloat>,
     pub skip_deployable_icon: bool,
 }
-
 
 impl __sdk::InModule for DeployableDismountTimer {
     type Module = super::RemoteModule;
 }
-

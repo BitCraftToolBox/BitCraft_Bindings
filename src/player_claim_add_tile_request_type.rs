@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::offset_coordinates_small_message_type::OffsetCoordinatesSmallMessage;
 
@@ -19,8 +14,6 @@ pub struct PlayerClaimAddTileRequest {
     pub coordinates: OffsetCoordinatesSmallMessage,
 }
 
-
 impl __sdk::InModule for PlayerClaimAddTileRequest {
     type Module = super::RemoteModule;
 }
-

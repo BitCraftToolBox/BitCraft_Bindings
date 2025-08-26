@@ -3,13 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -21,8 +15,8 @@ impl From<DeployableMoveOffBoundsArgs> for super::Reducer {
     fn from(args: DeployableMoveOffBoundsArgs) -> Self {
         Self::DeployableMoveOffBounds {
             deployable_entity_id: args.deployable_entity_id,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for DeployableMoveOffBoundsArgs {
@@ -41,8 +35,7 @@ pub trait deployable_move_off_bounds {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_deployable_move_off_bounds`] callbacks.
-    fn deployable_move_off_bounds(&self, deployable_entity_id: u64,
-) -> __sdk::Result<()>;
+    fn deployable_move_off_bounds(&self, deployable_entity_id: u64) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `deployable_move_off_bounds`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -50,39 +43,52 @@ pub trait deployable_move_off_bounds {
     ///
     /// The returned [`DeployableMoveOffBoundsCallbackId`] can be passed to [`Self::remove_on_deployable_move_off_bounds`]
     /// to cancel the callback.
-    fn on_deployable_move_off_bounds(&self, callback: impl FnMut(&super::ReducerEventContext, &u64, ) + Send + 'static) -> DeployableMoveOffBoundsCallbackId;
+    fn on_deployable_move_off_bounds(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &u64) + Send + 'static,
+    ) -> DeployableMoveOffBoundsCallbackId;
     /// Cancel a callback previously registered by [`Self::on_deployable_move_off_bounds`],
     /// causing it not to run in the future.
     fn remove_on_deployable_move_off_bounds(&self, callback: DeployableMoveOffBoundsCallbackId);
 }
 
 impl deployable_move_off_bounds for super::RemoteReducers {
-    fn deployable_move_off_bounds(&self, deployable_entity_id: u64,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("deployable_move_off_bounds", DeployableMoveOffBoundsArgs { deployable_entity_id,  })
+    fn deployable_move_off_bounds(&self, deployable_entity_id: u64) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "deployable_move_off_bounds",
+            DeployableMoveOffBoundsArgs {
+                deployable_entity_id,
+            },
+        )
     }
     fn on_deployable_move_off_bounds(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &u64, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &u64) + Send + 'static,
     ) -> DeployableMoveOffBoundsCallbackId {
         DeployableMoveOffBoundsCallbackId(self.imp.on_reducer(
             "deployable_move_off_bounds",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::DeployableMoveOffBounds {
-                            deployable_entity_id, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer:
+                                super::Reducer::DeployableMoveOffBounds {
+                                    deployable_entity_id,
+                                },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, deployable_entity_id, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, deployable_entity_id)
             }),
         ))
     }
     fn remove_on_deployable_move_off_bounds(&self, callback: DeployableMoveOffBoundsCallbackId) {
-        self.imp.remove_on_reducer("deployable_move_off_bounds", callback.0)
+        self.imp
+            .remove_on_reducer("deployable_move_off_bounds", callback.0)
     }
 }
 
@@ -102,7 +108,7 @@ pub trait set_flags_for_deployable_move_off_bounds {
 
 impl set_flags_for_deployable_move_off_bounds for super::SetReducerFlags {
     fn deployable_move_off_bounds(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("deployable_move_off_bounds", flags);
+        self.imp
+            .set_call_reducer_flags("deployable_move_off_bounds", flags);
     }
 }
-

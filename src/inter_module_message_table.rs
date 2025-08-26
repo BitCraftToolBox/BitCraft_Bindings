@@ -3,14 +3,9 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::inter_module_message_type::InterModuleMessage;
 use super::message_contents_type::MessageContents;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `inter_module_message`.
 ///
@@ -38,7 +33,9 @@ pub trait InterModuleMessageTableAccess {
 impl InterModuleMessageTableAccess for super::RemoteTables {
     fn inter_module_message(&self) -> InterModuleMessageTableHandle<'_> {
         InterModuleMessageTableHandle {
-            imp: self.imp.get_table::<InterModuleMessage>("inter_module_message"),
+            imp: self
+                .imp
+                .get_table::<InterModuleMessage>("inter_module_message"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -51,8 +48,12 @@ impl<'ctx> __sdk::Table for InterModuleMessageTableHandle<'ctx> {
     type Row = InterModuleMessage;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = InterModuleMessage> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = InterModuleMessage> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = InterModuleMessageInsertCallbackId;
 
@@ -83,8 +84,7 @@ impl<'ctx> __sdk::Table for InterModuleMessageTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<InterModuleMessage>("inter_module_message");
+    let _table = client_cache.get_or_make_table::<InterModuleMessage>("inter_module_message");
     _table.add_unique_constraint::<u64>("id", |row| &row.id);
 }
 pub struct InterModuleMessageUpdateCallbackId(__sdk::CallbackId);
@@ -104,46 +104,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for InterModuleMessageTableHandle<'ctx> {
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<InterModuleMessage>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<InterModuleMessage>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<InterModuleMessage>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `id` unique index on the table `inter_module_message`,
-        /// which allows point queries on the field of the same name
-        /// via the [`InterModuleMessageIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.inter_module_message().id().find(...)`.
-        pub struct InterModuleMessageIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<InterModuleMessage, u64>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `id` unique index on the table `inter_module_message`,
+/// which allows point queries on the field of the same name
+/// via the [`InterModuleMessageIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.inter_module_message().id().find(...)`.
+pub struct InterModuleMessageIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<InterModuleMessage, u64>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> InterModuleMessageTableHandle<'ctx> {
-            /// Get a handle on the `id` unique index on the table `inter_module_message`.
-            pub fn id(&self) -> InterModuleMessageIdUnique<'ctx> {
-                InterModuleMessageIdUnique {
-                    imp: self.imp.get_unique_constraint::<u64>("id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> InterModuleMessageTableHandle<'ctx> {
+    /// Get a handle on the `id` unique index on the table `inter_module_message`.
+    pub fn id(&self) -> InterModuleMessageIdUnique<'ctx> {
+        InterModuleMessageIdUnique {
+            imp: self.imp.get_unique_constraint::<u64>("id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> InterModuleMessageIdUnique<'ctx> {
-            /// Find the subscribed row whose `id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u64) -> Option<InterModuleMessage> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> InterModuleMessageIdUnique<'ctx> {
+    /// Find the subscribed row whose `id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u64) -> Option<InterModuleMessage> {
+        self.imp.find(col_val)
+    }
+}

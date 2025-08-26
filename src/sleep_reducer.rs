@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_sleep_request_type::PlayerSleepRequest;
 
@@ -22,8 +17,8 @@ impl From<SleepArgs> for super::Reducer {
     fn from(args: SleepArgs) -> Self {
         Self::Sleep {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for SleepArgs {
@@ -42,8 +37,7 @@ pub trait sleep {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_sleep`] callbacks.
-    fn sleep(&self, request: PlayerSleepRequest,
-) -> __sdk::Result<()>;
+    fn sleep(&self, request: PlayerSleepRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `sleep`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,38 @@ pub trait sleep {
     ///
     /// The returned [`SleepCallbackId`] can be passed to [`Self::remove_on_sleep`]
     /// to cancel the callback.
-    fn on_sleep(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerSleepRequest, ) + Send + 'static) -> SleepCallbackId;
+    fn on_sleep(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerSleepRequest) + Send + 'static,
+    ) -> SleepCallbackId;
     /// Cancel a callback previously registered by [`Self::on_sleep`],
     /// causing it not to run in the future.
     fn remove_on_sleep(&self, callback: SleepCallbackId);
 }
 
 impl sleep for super::RemoteReducers {
-    fn sleep(&self, request: PlayerSleepRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("sleep", SleepArgs { request,  })
+    fn sleep(&self, request: PlayerSleepRequest) -> __sdk::Result<()> {
+        self.imp.call_reducer("sleep", SleepArgs { request })
     }
     fn on_sleep(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerSleepRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerSleepRequest) + Send + 'static,
     ) -> SleepCallbackId {
         SleepCallbackId(self.imp.on_reducer(
             "sleep",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::Sleep {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::Sleep { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
@@ -106,4 +104,3 @@ impl set_flags_for_sleep for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("sleep", flags);
     }
 }
-

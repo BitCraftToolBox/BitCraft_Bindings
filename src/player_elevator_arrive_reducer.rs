@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_use_elevator_timer_type::PlayerUseElevatorTimer;
 
@@ -20,10 +15,8 @@ pub(super) struct PlayerElevatorArriveArgs {
 
 impl From<PlayerElevatorArriveArgs> for super::Reducer {
     fn from(args: PlayerElevatorArriveArgs) -> Self {
-        Self::PlayerElevatorArrive {
-            timer: args.timer,
-}
-}
+        Self::PlayerElevatorArrive { timer: args.timer }
+    }
 }
 
 impl __sdk::InModule for PlayerElevatorArriveArgs {
@@ -42,8 +35,7 @@ pub trait player_elevator_arrive {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_player_elevator_arrive`] callbacks.
-    fn player_elevator_arrive(&self, timer: PlayerUseElevatorTimer,
-) -> __sdk::Result<()>;
+    fn player_elevator_arrive(&self, timer: PlayerUseElevatorTimer) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `player_elevator_arrive`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +43,45 @@ pub trait player_elevator_arrive {
     ///
     /// The returned [`PlayerElevatorArriveCallbackId`] can be passed to [`Self::remove_on_player_elevator_arrive`]
     /// to cancel the callback.
-    fn on_player_elevator_arrive(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerUseElevatorTimer, ) + Send + 'static) -> PlayerElevatorArriveCallbackId;
+    fn on_player_elevator_arrive(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerUseElevatorTimer) + Send + 'static,
+    ) -> PlayerElevatorArriveCallbackId;
     /// Cancel a callback previously registered by [`Self::on_player_elevator_arrive`],
     /// causing it not to run in the future.
     fn remove_on_player_elevator_arrive(&self, callback: PlayerElevatorArriveCallbackId);
 }
 
 impl player_elevator_arrive for super::RemoteReducers {
-    fn player_elevator_arrive(&self, timer: PlayerUseElevatorTimer,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("player_elevator_arrive", PlayerElevatorArriveArgs { timer,  })
+    fn player_elevator_arrive(&self, timer: PlayerUseElevatorTimer) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("player_elevator_arrive", PlayerElevatorArriveArgs { timer })
     }
     fn on_player_elevator_arrive(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerUseElevatorTimer, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerUseElevatorTimer) + Send + 'static,
     ) -> PlayerElevatorArriveCallbackId {
         PlayerElevatorArriveCallbackId(self.imp.on_reducer(
             "player_elevator_arrive",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::PlayerElevatorArrive {
-                            timer, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::PlayerElevatorArrive { timer },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, timer, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, timer)
             }),
         ))
     }
     fn remove_on_player_elevator_arrive(&self, callback: PlayerElevatorArriveCallbackId) {
-        self.imp.remove_on_reducer("player_elevator_arrive", callback.0)
+        self.imp
+            .remove_on_reducer("player_elevator_arrive", callback.0)
     }
 }
 
@@ -103,7 +101,7 @@ pub trait set_flags_for_player_elevator_arrive {
 
 impl set_flags_for_player_elevator_arrive for super::SetReducerFlags {
     fn player_elevator_arrive(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("player_elevator_arrive", flags);
+        self.imp
+            .set_call_reducer_flags("player_elevator_arrive", flags);
     }
 }
-

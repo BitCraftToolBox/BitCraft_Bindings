@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::location_state_type::LocationState;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct ImportLocationStateArgs {
-    pub records: Vec::<LocationState>,
+    pub records: Vec<LocationState>,
 }
 
 impl From<ImportLocationStateArgs> for super::Reducer {
     fn from(args: ImportLocationStateArgs) -> Self {
         Self::ImportLocationState {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ImportLocationStateArgs {
@@ -42,8 +37,7 @@ pub trait import_location_state {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_import_location_state`] callbacks.
-    fn import_location_state(&self, records: Vec::<LocationState>,
-) -> __sdk::Result<()>;
+    fn import_location_state(&self, records: Vec<LocationState>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `import_location_state`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,45 @@ pub trait import_location_state {
     ///
     /// The returned [`ImportLocationStateCallbackId`] can be passed to [`Self::remove_on_import_location_state`]
     /// to cancel the callback.
-    fn on_import_location_state(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<LocationState>, ) + Send + 'static) -> ImportLocationStateCallbackId;
+    fn on_import_location_state(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<LocationState>) + Send + 'static,
+    ) -> ImportLocationStateCallbackId;
     /// Cancel a callback previously registered by [`Self::on_import_location_state`],
     /// causing it not to run in the future.
     fn remove_on_import_location_state(&self, callback: ImportLocationStateCallbackId);
 }
 
 impl import_location_state for super::RemoteReducers {
-    fn import_location_state(&self, records: Vec::<LocationState>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("import_location_state", ImportLocationStateArgs { records,  })
+    fn import_location_state(&self, records: Vec<LocationState>) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("import_location_state", ImportLocationStateArgs { records })
     }
     fn on_import_location_state(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<LocationState>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<LocationState>) + Send + 'static,
     ) -> ImportLocationStateCallbackId {
         ImportLocationStateCallbackId(self.imp.on_reducer(
             "import_location_state",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ImportLocationState {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ImportLocationState { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
     fn remove_on_import_location_state(&self, callback: ImportLocationStateCallbackId) {
-        self.imp.remove_on_reducer("import_location_state", callback.0)
+        self.imp
+            .remove_on_reducer("import_location_state", callback.0)
     }
 }
 
@@ -103,7 +103,7 @@ pub trait set_flags_for_import_location_state {
 
 impl set_flags_for_import_location_state for super::SetReducerFlags {
     fn import_location_state(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("import_location_state", flags);
+        self.imp
+            .set_call_reducer_flags("import_location_state", flags);
     }
 }
-

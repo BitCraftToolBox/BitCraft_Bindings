@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_trade_accept_session_request_type::PlayerTradeAcceptSessionRequest;
 
@@ -22,8 +17,8 @@ impl From<TradeAcceptSessionArgs> for super::Reducer {
     fn from(args: TradeAcceptSessionArgs) -> Self {
         Self::TradeAcceptSession {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for TradeAcceptSessionArgs {
@@ -42,8 +37,7 @@ pub trait trade_accept_session {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_trade_accept_session`] callbacks.
-    fn trade_accept_session(&self, request: PlayerTradeAcceptSessionRequest,
-) -> __sdk::Result<()>;
+    fn trade_accept_session(&self, request: PlayerTradeAcceptSessionRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `trade_accept_session`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,49 @@ pub trait trade_accept_session {
     ///
     /// The returned [`TradeAcceptSessionCallbackId`] can be passed to [`Self::remove_on_trade_accept_session`]
     /// to cancel the callback.
-    fn on_trade_accept_session(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerTradeAcceptSessionRequest, ) + Send + 'static) -> TradeAcceptSessionCallbackId;
+    fn on_trade_accept_session(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerTradeAcceptSessionRequest)
+            + Send
+            + 'static,
+    ) -> TradeAcceptSessionCallbackId;
     /// Cancel a callback previously registered by [`Self::on_trade_accept_session`],
     /// causing it not to run in the future.
     fn remove_on_trade_accept_session(&self, callback: TradeAcceptSessionCallbackId);
 }
 
 impl trade_accept_session for super::RemoteReducers {
-    fn trade_accept_session(&self, request: PlayerTradeAcceptSessionRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("trade_accept_session", TradeAcceptSessionArgs { request,  })
+    fn trade_accept_session(&self, request: PlayerTradeAcceptSessionRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("trade_accept_session", TradeAcceptSessionArgs { request })
     }
     fn on_trade_accept_session(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerTradeAcceptSessionRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerTradeAcceptSessionRequest)
+            + Send
+            + 'static,
     ) -> TradeAcceptSessionCallbackId {
         TradeAcceptSessionCallbackId(self.imp.on_reducer(
             "trade_accept_session",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::TradeAcceptSession {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::TradeAcceptSession { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
     fn remove_on_trade_accept_session(&self, callback: TradeAcceptSessionCallbackId) {
-        self.imp.remove_on_reducer("trade_accept_session", callback.0)
+        self.imp
+            .remove_on_reducer("trade_accept_session", callback.0)
     }
 }
 
@@ -103,7 +107,7 @@ pub trait set_flags_for_trade_accept_session {
 
 impl set_flags_for_trade_accept_session for super::SetReducerFlags {
     fn trade_accept_session(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("trade_accept_session", flags);
+        self.imp
+            .set_call_reducer_flags("trade_accept_session", flags);
     }
 }
-

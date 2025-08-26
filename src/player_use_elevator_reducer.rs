@@ -3,13 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -21,8 +15,8 @@ impl From<PlayerUseElevatorArgs> for super::Reducer {
     fn from(args: PlayerUseElevatorArgs) -> Self {
         Self::PlayerUseElevator {
             platform_entity_id: args.platform_entity_id,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for PlayerUseElevatorArgs {
@@ -41,8 +35,7 @@ pub trait player_use_elevator {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_player_use_elevator`] callbacks.
-    fn player_use_elevator(&self, platform_entity_id: u64,
-) -> __sdk::Result<()>;
+    fn player_use_elevator(&self, platform_entity_id: u64) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `player_use_elevator`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -50,39 +43,47 @@ pub trait player_use_elevator {
     ///
     /// The returned [`PlayerUseElevatorCallbackId`] can be passed to [`Self::remove_on_player_use_elevator`]
     /// to cancel the callback.
-    fn on_player_use_elevator(&self, callback: impl FnMut(&super::ReducerEventContext, &u64, ) + Send + 'static) -> PlayerUseElevatorCallbackId;
+    fn on_player_use_elevator(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &u64) + Send + 'static,
+    ) -> PlayerUseElevatorCallbackId;
     /// Cancel a callback previously registered by [`Self::on_player_use_elevator`],
     /// causing it not to run in the future.
     fn remove_on_player_use_elevator(&self, callback: PlayerUseElevatorCallbackId);
 }
 
 impl player_use_elevator for super::RemoteReducers {
-    fn player_use_elevator(&self, platform_entity_id: u64,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("player_use_elevator", PlayerUseElevatorArgs { platform_entity_id,  })
+    fn player_use_elevator(&self, platform_entity_id: u64) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "player_use_elevator",
+            PlayerUseElevatorArgs { platform_entity_id },
+        )
     }
     fn on_player_use_elevator(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &u64, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &u64) + Send + 'static,
     ) -> PlayerUseElevatorCallbackId {
         PlayerUseElevatorCallbackId(self.imp.on_reducer(
             "player_use_elevator",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::PlayerUseElevator {
-                            platform_entity_id, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::PlayerUseElevator { platform_entity_id },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, platform_entity_id, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, platform_entity_id)
             }),
         ))
     }
     fn remove_on_player_use_elevator(&self, callback: PlayerUseElevatorCallbackId) {
-        self.imp.remove_on_reducer("player_use_elevator", callback.0)
+        self.imp
+            .remove_on_reducer("player_use_elevator", callback.0)
     }
 }
 
@@ -102,7 +103,7 @@ pub trait set_flags_for_player_use_elevator {
 
 impl set_flags_for_player_use_elevator for super::SetReducerFlags {
     fn player_use_elevator(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("player_use_elevator", flags);
+        self.imp
+            .set_call_reducer_flags("player_use_elevator", flags);
     }
 }
-

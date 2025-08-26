@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::traveler_task_desc_type::TravelerTaskDesc;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct ImportTravelerTaskDescArgs {
-    pub records: Vec::<TravelerTaskDesc>,
+    pub records: Vec<TravelerTaskDesc>,
 }
 
 impl From<ImportTravelerTaskDescArgs> for super::Reducer {
     fn from(args: ImportTravelerTaskDescArgs) -> Self {
         Self::ImportTravelerTaskDesc {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ImportTravelerTaskDescArgs {
@@ -42,8 +37,7 @@ pub trait import_traveler_task_desc {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_import_traveler_task_desc`] callbacks.
-    fn import_traveler_task_desc(&self, records: Vec::<TravelerTaskDesc>,
-) -> __sdk::Result<()>;
+    fn import_traveler_task_desc(&self, records: Vec<TravelerTaskDesc>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `import_traveler_task_desc`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,47 @@ pub trait import_traveler_task_desc {
     ///
     /// The returned [`ImportTravelerTaskDescCallbackId`] can be passed to [`Self::remove_on_import_traveler_task_desc`]
     /// to cancel the callback.
-    fn on_import_traveler_task_desc(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<TravelerTaskDesc>, ) + Send + 'static) -> ImportTravelerTaskDescCallbackId;
+    fn on_import_traveler_task_desc(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<TravelerTaskDesc>) + Send + 'static,
+    ) -> ImportTravelerTaskDescCallbackId;
     /// Cancel a callback previously registered by [`Self::on_import_traveler_task_desc`],
     /// causing it not to run in the future.
     fn remove_on_import_traveler_task_desc(&self, callback: ImportTravelerTaskDescCallbackId);
 }
 
 impl import_traveler_task_desc for super::RemoteReducers {
-    fn import_traveler_task_desc(&self, records: Vec::<TravelerTaskDesc>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("import_traveler_task_desc", ImportTravelerTaskDescArgs { records,  })
+    fn import_traveler_task_desc(&self, records: Vec<TravelerTaskDesc>) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "import_traveler_task_desc",
+            ImportTravelerTaskDescArgs { records },
+        )
     }
     fn on_import_traveler_task_desc(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<TravelerTaskDesc>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<TravelerTaskDesc>) + Send + 'static,
     ) -> ImportTravelerTaskDescCallbackId {
         ImportTravelerTaskDescCallbackId(self.imp.on_reducer(
             "import_traveler_task_desc",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ImportTravelerTaskDesc {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ImportTravelerTaskDesc { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
     fn remove_on_import_traveler_task_desc(&self, callback: ImportTravelerTaskDescCallbackId) {
-        self.imp.remove_on_reducer("import_traveler_task_desc", callback.0)
+        self.imp
+            .remove_on_reducer("import_traveler_task_desc", callback.0)
     }
 }
 
@@ -103,7 +105,7 @@ pub trait set_flags_for_import_traveler_task_desc {
 
 impl set_flags_for_import_traveler_task_desc for super::SetReducerFlags {
     fn import_traveler_task_desc(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("import_traveler_task_desc", flags);
+        self.imp
+            .set_call_reducer_flags("import_traveler_task_desc", flags);
     }
 }
-

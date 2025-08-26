@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::cheat_discover_map_request_type::CheatDiscoverMapRequest;
 
@@ -22,8 +17,8 @@ impl From<CheatDiscoverMapArgs> for super::Reducer {
     fn from(args: CheatDiscoverMapArgs) -> Self {
         Self::CheatDiscoverMap {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for CheatDiscoverMapArgs {
@@ -42,8 +37,7 @@ pub trait cheat_discover_map {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_cheat_discover_map`] callbacks.
-    fn cheat_discover_map(&self, request: CheatDiscoverMapRequest,
-) -> __sdk::Result<()>;
+    fn cheat_discover_map(&self, request: CheatDiscoverMapRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `cheat_discover_map`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,39 @@ pub trait cheat_discover_map {
     ///
     /// The returned [`CheatDiscoverMapCallbackId`] can be passed to [`Self::remove_on_cheat_discover_map`]
     /// to cancel the callback.
-    fn on_cheat_discover_map(&self, callback: impl FnMut(&super::ReducerEventContext, &CheatDiscoverMapRequest, ) + Send + 'static) -> CheatDiscoverMapCallbackId;
+    fn on_cheat_discover_map(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &CheatDiscoverMapRequest) + Send + 'static,
+    ) -> CheatDiscoverMapCallbackId;
     /// Cancel a callback previously registered by [`Self::on_cheat_discover_map`],
     /// causing it not to run in the future.
     fn remove_on_cheat_discover_map(&self, callback: CheatDiscoverMapCallbackId);
 }
 
 impl cheat_discover_map for super::RemoteReducers {
-    fn cheat_discover_map(&self, request: CheatDiscoverMapRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("cheat_discover_map", CheatDiscoverMapArgs { request,  })
+    fn cheat_discover_map(&self, request: CheatDiscoverMapRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("cheat_discover_map", CheatDiscoverMapArgs { request })
     }
     fn on_cheat_discover_map(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &CheatDiscoverMapRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &CheatDiscoverMapRequest) + Send + 'static,
     ) -> CheatDiscoverMapCallbackId {
         CheatDiscoverMapCallbackId(self.imp.on_reducer(
             "cheat_discover_map",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::CheatDiscoverMap {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::CheatDiscoverMap { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
@@ -106,4 +105,3 @@ impl set_flags_for_cheat_discover_map for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("cheat_discover_map", flags);
     }
 }
-

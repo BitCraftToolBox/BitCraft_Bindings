@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_item_use_request_type::PlayerItemUseRequest;
 
@@ -22,8 +17,8 @@ impl From<ItemUseArgs> for super::Reducer {
     fn from(args: ItemUseArgs) -> Self {
         Self::ItemUse {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ItemUseArgs {
@@ -42,8 +37,7 @@ pub trait item_use {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_item_use`] callbacks.
-    fn item_use(&self, request: PlayerItemUseRequest,
-) -> __sdk::Result<()>;
+    fn item_use(&self, request: PlayerItemUseRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `item_use`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,38 @@ pub trait item_use {
     ///
     /// The returned [`ItemUseCallbackId`] can be passed to [`Self::remove_on_item_use`]
     /// to cancel the callback.
-    fn on_item_use(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerItemUseRequest, ) + Send + 'static) -> ItemUseCallbackId;
+    fn on_item_use(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerItemUseRequest) + Send + 'static,
+    ) -> ItemUseCallbackId;
     /// Cancel a callback previously registered by [`Self::on_item_use`],
     /// causing it not to run in the future.
     fn remove_on_item_use(&self, callback: ItemUseCallbackId);
 }
 
 impl item_use for super::RemoteReducers {
-    fn item_use(&self, request: PlayerItemUseRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("item_use", ItemUseArgs { request,  })
+    fn item_use(&self, request: PlayerItemUseRequest) -> __sdk::Result<()> {
+        self.imp.call_reducer("item_use", ItemUseArgs { request })
     }
     fn on_item_use(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerItemUseRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerItemUseRequest) + Send + 'static,
     ) -> ItemUseCallbackId {
         ItemUseCallbackId(self.imp.on_reducer(
             "item_use",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ItemUse {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ItemUse { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
@@ -106,4 +104,3 @@ impl set_flags_for_item_use for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("item_use", flags);
     }
 }
-

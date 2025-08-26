@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_retrieve_lost_item_request_type::PlayerRetrieveLostItemRequest;
 
@@ -22,8 +17,8 @@ impl From<RetrieveLostItemArgs> for super::Reducer {
     fn from(args: RetrieveLostItemArgs) -> Self {
         Self::RetrieveLostItem {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for RetrieveLostItemArgs {
@@ -42,8 +37,7 @@ pub trait retrieve_lost_item {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_retrieve_lost_item`] callbacks.
-    fn retrieve_lost_item(&self, request: PlayerRetrieveLostItemRequest,
-) -> __sdk::Result<()>;
+    fn retrieve_lost_item(&self, request: PlayerRetrieveLostItemRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `retrieve_lost_item`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,43 @@ pub trait retrieve_lost_item {
     ///
     /// The returned [`RetrieveLostItemCallbackId`] can be passed to [`Self::remove_on_retrieve_lost_item`]
     /// to cancel the callback.
-    fn on_retrieve_lost_item(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerRetrieveLostItemRequest, ) + Send + 'static) -> RetrieveLostItemCallbackId;
+    fn on_retrieve_lost_item(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerRetrieveLostItemRequest)
+            + Send
+            + 'static,
+    ) -> RetrieveLostItemCallbackId;
     /// Cancel a callback previously registered by [`Self::on_retrieve_lost_item`],
     /// causing it not to run in the future.
     fn remove_on_retrieve_lost_item(&self, callback: RetrieveLostItemCallbackId);
 }
 
 impl retrieve_lost_item for super::RemoteReducers {
-    fn retrieve_lost_item(&self, request: PlayerRetrieveLostItemRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("retrieve_lost_item", RetrieveLostItemArgs { request,  })
+    fn retrieve_lost_item(&self, request: PlayerRetrieveLostItemRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("retrieve_lost_item", RetrieveLostItemArgs { request })
     }
     fn on_retrieve_lost_item(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerRetrieveLostItemRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerRetrieveLostItemRequest)
+            + Send
+            + 'static,
     ) -> RetrieveLostItemCallbackId {
         RetrieveLostItemCallbackId(self.imp.on_reducer(
             "retrieve_lost_item",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::RetrieveLostItem {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::RetrieveLostItem { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
@@ -106,4 +109,3 @@ impl set_flags_for_retrieve_lost_item for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("retrieve_lost_item", flags);
     }
 }
-

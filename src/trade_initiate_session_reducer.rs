@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_trade_initiate_session_request_type::PlayerTradeInitiateSessionRequest;
 
@@ -22,8 +17,8 @@ impl From<TradeInitiateSessionArgs> for super::Reducer {
     fn from(args: TradeInitiateSessionArgs) -> Self {
         Self::TradeInitiateSession {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for TradeInitiateSessionArgs {
@@ -42,8 +37,10 @@ pub trait trade_initiate_session {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_trade_initiate_session`] callbacks.
-    fn trade_initiate_session(&self, request: PlayerTradeInitiateSessionRequest,
-) -> __sdk::Result<()>;
+    fn trade_initiate_session(
+        &self,
+        request: PlayerTradeInitiateSessionRequest,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `trade_initiate_session`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +48,54 @@ pub trait trade_initiate_session {
     ///
     /// The returned [`TradeInitiateSessionCallbackId`] can be passed to [`Self::remove_on_trade_initiate_session`]
     /// to cancel the callback.
-    fn on_trade_initiate_session(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerTradeInitiateSessionRequest, ) + Send + 'static) -> TradeInitiateSessionCallbackId;
+    fn on_trade_initiate_session(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerTradeInitiateSessionRequest)
+            + Send
+            + 'static,
+    ) -> TradeInitiateSessionCallbackId;
     /// Cancel a callback previously registered by [`Self::on_trade_initiate_session`],
     /// causing it not to run in the future.
     fn remove_on_trade_initiate_session(&self, callback: TradeInitiateSessionCallbackId);
 }
 
 impl trade_initiate_session for super::RemoteReducers {
-    fn trade_initiate_session(&self, request: PlayerTradeInitiateSessionRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("trade_initiate_session", TradeInitiateSessionArgs { request,  })
+    fn trade_initiate_session(
+        &self,
+        request: PlayerTradeInitiateSessionRequest,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "trade_initiate_session",
+            TradeInitiateSessionArgs { request },
+        )
     }
     fn on_trade_initiate_session(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerTradeInitiateSessionRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerTradeInitiateSessionRequest)
+            + Send
+            + 'static,
     ) -> TradeInitiateSessionCallbackId {
         TradeInitiateSessionCallbackId(self.imp.on_reducer(
             "trade_initiate_session",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::TradeInitiateSession {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::TradeInitiateSession { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
     fn remove_on_trade_initiate_session(&self, callback: TradeInitiateSessionCallbackId) {
-        self.imp.remove_on_reducer("trade_initiate_session", callback.0)
+        self.imp
+            .remove_on_reducer("trade_initiate_session", callback.0)
     }
 }
 
@@ -103,7 +115,7 @@ pub trait set_flags_for_trade_initiate_session {
 
 impl set_flags_for_trade_initiate_session for super::SetReducerFlags {
     fn trade_initiate_session(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("trade_initiate_session", flags);
+        self.imp
+            .set_call_reducer_flags("trade_initiate_session", flags);
     }
 }
-

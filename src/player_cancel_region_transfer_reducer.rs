@@ -3,23 +3,16 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
-pub(super) struct PlayerCancelRegionTransferArgs {
-    }
+pub(super) struct PlayerCancelRegionTransferArgs {}
 
 impl From<PlayerCancelRegionTransferArgs> for super::Reducer {
     fn from(args: PlayerCancelRegionTransferArgs) -> Self {
         Self::PlayerCancelRegionTransfer
-}
+    }
 }
 
 impl __sdk::InModule for PlayerCancelRegionTransferArgs {
@@ -38,7 +31,7 @@ pub trait player_cancel_region_transfer {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_player_cancel_region_transfer`] callbacks.
-    fn player_cancel_region_transfer(&self, ) -> __sdk::Result<()>;
+    fn player_cancel_region_transfer(&self) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `player_cancel_region_transfer`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -46,38 +39,53 @@ pub trait player_cancel_region_transfer {
     ///
     /// The returned [`PlayerCancelRegionTransferCallbackId`] can be passed to [`Self::remove_on_player_cancel_region_transfer`]
     /// to cancel the callback.
-    fn on_player_cancel_region_transfer(&self, callback: impl FnMut(&super::ReducerEventContext, ) + Send + 'static) -> PlayerCancelRegionTransferCallbackId;
+    fn on_player_cancel_region_transfer(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext) + Send + 'static,
+    ) -> PlayerCancelRegionTransferCallbackId;
     /// Cancel a callback previously registered by [`Self::on_player_cancel_region_transfer`],
     /// causing it not to run in the future.
-    fn remove_on_player_cancel_region_transfer(&self, callback: PlayerCancelRegionTransferCallbackId);
+    fn remove_on_player_cancel_region_transfer(
+        &self,
+        callback: PlayerCancelRegionTransferCallbackId,
+    );
 }
 
 impl player_cancel_region_transfer for super::RemoteReducers {
-    fn player_cancel_region_transfer(&self, ) -> __sdk::Result<()> {
-        self.imp.call_reducer("player_cancel_region_transfer", PlayerCancelRegionTransferArgs {  })
+    fn player_cancel_region_transfer(&self) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "player_cancel_region_transfer",
+            PlayerCancelRegionTransferArgs {},
+        )
     }
     fn on_player_cancel_region_transfer(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext) + Send + 'static,
     ) -> PlayerCancelRegionTransferCallbackId {
         PlayerCancelRegionTransferCallbackId(self.imp.on_reducer(
             "player_cancel_region_transfer",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::PlayerCancelRegionTransfer {
-                            
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::PlayerCancelRegionTransfer {},
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx)
             }),
         ))
     }
-    fn remove_on_player_cancel_region_transfer(&self, callback: PlayerCancelRegionTransferCallbackId) {
-        self.imp.remove_on_reducer("player_cancel_region_transfer", callback.0)
+    fn remove_on_player_cancel_region_transfer(
+        &self,
+        callback: PlayerCancelRegionTransferCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("player_cancel_region_transfer", callback.0)
     }
 }
 
@@ -97,7 +105,7 @@ pub trait set_flags_for_player_cancel_region_transfer {
 
 impl set_flags_for_player_cancel_region_transfer for super::SetReducerFlags {
     fn player_cancel_region_transfer(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("player_cancel_region_transfer", flags);
+        self.imp
+            .set_call_reducer_flags("player_cancel_region_transfer", flags);
     }
 }
-

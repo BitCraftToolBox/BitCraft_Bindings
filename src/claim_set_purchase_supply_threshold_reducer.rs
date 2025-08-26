@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::claim_set_purchase_supply_threshold_request_type::ClaimSetPurchaseSupplyThresholdRequest;
 
@@ -22,8 +17,8 @@ impl From<ClaimSetPurchaseSupplyThresholdArgs> for super::Reducer {
     fn from(args: ClaimSetPurchaseSupplyThresholdArgs) -> Self {
         Self::ClaimSetPurchaseSupplyThreshold {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ClaimSetPurchaseSupplyThresholdArgs {
@@ -42,8 +37,10 @@ pub trait claim_set_purchase_supply_threshold {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_claim_set_purchase_supply_threshold`] callbacks.
-    fn claim_set_purchase_supply_threshold(&self, request: ClaimSetPurchaseSupplyThresholdRequest,
-) -> __sdk::Result<()>;
+    fn claim_set_purchase_supply_threshold(
+        &self,
+        request: ClaimSetPurchaseSupplyThresholdRequest,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `claim_set_purchase_supply_threshold`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +48,60 @@ pub trait claim_set_purchase_supply_threshold {
     ///
     /// The returned [`ClaimSetPurchaseSupplyThresholdCallbackId`] can be passed to [`Self::remove_on_claim_set_purchase_supply_threshold`]
     /// to cancel the callback.
-    fn on_claim_set_purchase_supply_threshold(&self, callback: impl FnMut(&super::ReducerEventContext, &ClaimSetPurchaseSupplyThresholdRequest, ) + Send + 'static) -> ClaimSetPurchaseSupplyThresholdCallbackId;
+    fn on_claim_set_purchase_supply_threshold(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &ClaimSetPurchaseSupplyThresholdRequest)
+            + Send
+            + 'static,
+    ) -> ClaimSetPurchaseSupplyThresholdCallbackId;
     /// Cancel a callback previously registered by [`Self::on_claim_set_purchase_supply_threshold`],
     /// causing it not to run in the future.
-    fn remove_on_claim_set_purchase_supply_threshold(&self, callback: ClaimSetPurchaseSupplyThresholdCallbackId);
+    fn remove_on_claim_set_purchase_supply_threshold(
+        &self,
+        callback: ClaimSetPurchaseSupplyThresholdCallbackId,
+    );
 }
 
 impl claim_set_purchase_supply_threshold for super::RemoteReducers {
-    fn claim_set_purchase_supply_threshold(&self, request: ClaimSetPurchaseSupplyThresholdRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("claim_set_purchase_supply_threshold", ClaimSetPurchaseSupplyThresholdArgs { request,  })
+    fn claim_set_purchase_supply_threshold(
+        &self,
+        request: ClaimSetPurchaseSupplyThresholdRequest,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "claim_set_purchase_supply_threshold",
+            ClaimSetPurchaseSupplyThresholdArgs { request },
+        )
     }
     fn on_claim_set_purchase_supply_threshold(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &ClaimSetPurchaseSupplyThresholdRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &ClaimSetPurchaseSupplyThresholdRequest)
+            + Send
+            + 'static,
     ) -> ClaimSetPurchaseSupplyThresholdCallbackId {
         ClaimSetPurchaseSupplyThresholdCallbackId(self.imp.on_reducer(
             "claim_set_purchase_supply_threshold",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ClaimSetPurchaseSupplyThreshold {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ClaimSetPurchaseSupplyThreshold { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
-    fn remove_on_claim_set_purchase_supply_threshold(&self, callback: ClaimSetPurchaseSupplyThresholdCallbackId) {
-        self.imp.remove_on_reducer("claim_set_purchase_supply_threshold", callback.0)
+    fn remove_on_claim_set_purchase_supply_threshold(
+        &self,
+        callback: ClaimSetPurchaseSupplyThresholdCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("claim_set_purchase_supply_threshold", callback.0)
     }
 }
 
@@ -103,7 +121,7 @@ pub trait set_flags_for_claim_set_purchase_supply_threshold {
 
 impl set_flags_for_claim_set_purchase_supply_threshold for super::SetReducerFlags {
     fn claim_set_purchase_supply_threshold(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("claim_set_purchase_supply_threshold", flags);
+        self.imp
+            .set_call_reducer_flags("claim_set_purchase_supply_threshold", flags);
     }
 }
-

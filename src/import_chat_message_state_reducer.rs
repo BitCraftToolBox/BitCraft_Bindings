@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::chat_message_state_type::ChatMessageState;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct ImportChatMessageStateArgs {
-    pub records: Vec::<ChatMessageState>,
+    pub records: Vec<ChatMessageState>,
 }
 
 impl From<ImportChatMessageStateArgs> for super::Reducer {
     fn from(args: ImportChatMessageStateArgs) -> Self {
         Self::ImportChatMessageState {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ImportChatMessageStateArgs {
@@ -42,8 +37,7 @@ pub trait import_chat_message_state {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_import_chat_message_state`] callbacks.
-    fn import_chat_message_state(&self, records: Vec::<ChatMessageState>,
-) -> __sdk::Result<()>;
+    fn import_chat_message_state(&self, records: Vec<ChatMessageState>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `import_chat_message_state`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,47 @@ pub trait import_chat_message_state {
     ///
     /// The returned [`ImportChatMessageStateCallbackId`] can be passed to [`Self::remove_on_import_chat_message_state`]
     /// to cancel the callback.
-    fn on_import_chat_message_state(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<ChatMessageState>, ) + Send + 'static) -> ImportChatMessageStateCallbackId;
+    fn on_import_chat_message_state(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<ChatMessageState>) + Send + 'static,
+    ) -> ImportChatMessageStateCallbackId;
     /// Cancel a callback previously registered by [`Self::on_import_chat_message_state`],
     /// causing it not to run in the future.
     fn remove_on_import_chat_message_state(&self, callback: ImportChatMessageStateCallbackId);
 }
 
 impl import_chat_message_state for super::RemoteReducers {
-    fn import_chat_message_state(&self, records: Vec::<ChatMessageState>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("import_chat_message_state", ImportChatMessageStateArgs { records,  })
+    fn import_chat_message_state(&self, records: Vec<ChatMessageState>) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "import_chat_message_state",
+            ImportChatMessageStateArgs { records },
+        )
     }
     fn on_import_chat_message_state(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<ChatMessageState>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<ChatMessageState>) + Send + 'static,
     ) -> ImportChatMessageStateCallbackId {
         ImportChatMessageStateCallbackId(self.imp.on_reducer(
             "import_chat_message_state",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ImportChatMessageState {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ImportChatMessageState { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
     fn remove_on_import_chat_message_state(&self, callback: ImportChatMessageStateCallbackId) {
-        self.imp.remove_on_reducer("import_chat_message_state", callback.0)
+        self.imp
+            .remove_on_reducer("import_chat_message_state", callback.0)
     }
 }
 
@@ -103,7 +105,7 @@ pub trait set_flags_for_import_chat_message_state {
 
 impl set_flags_for_import_chat_message_state for super::SetReducerFlags {
     fn import_chat_message_state(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("import_chat_message_state", flags);
+        self.imp
+            .set_call_reducer_flags("import_chat_message_state", flags);
     }
 }
-

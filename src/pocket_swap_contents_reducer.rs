@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_pocket_swap_contents_request_type::PlayerPocketSwapContentsRequest;
 
@@ -22,8 +17,8 @@ impl From<PocketSwapContentsArgs> for super::Reducer {
     fn from(args: PocketSwapContentsArgs) -> Self {
         Self::PocketSwapContents {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for PocketSwapContentsArgs {
@@ -42,8 +37,7 @@ pub trait pocket_swap_contents {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_pocket_swap_contents`] callbacks.
-    fn pocket_swap_contents(&self, request: PlayerPocketSwapContentsRequest,
-) -> __sdk::Result<()>;
+    fn pocket_swap_contents(&self, request: PlayerPocketSwapContentsRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `pocket_swap_contents`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,49 @@ pub trait pocket_swap_contents {
     ///
     /// The returned [`PocketSwapContentsCallbackId`] can be passed to [`Self::remove_on_pocket_swap_contents`]
     /// to cancel the callback.
-    fn on_pocket_swap_contents(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerPocketSwapContentsRequest, ) + Send + 'static) -> PocketSwapContentsCallbackId;
+    fn on_pocket_swap_contents(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerPocketSwapContentsRequest)
+            + Send
+            + 'static,
+    ) -> PocketSwapContentsCallbackId;
     /// Cancel a callback previously registered by [`Self::on_pocket_swap_contents`],
     /// causing it not to run in the future.
     fn remove_on_pocket_swap_contents(&self, callback: PocketSwapContentsCallbackId);
 }
 
 impl pocket_swap_contents for super::RemoteReducers {
-    fn pocket_swap_contents(&self, request: PlayerPocketSwapContentsRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("pocket_swap_contents", PocketSwapContentsArgs { request,  })
+    fn pocket_swap_contents(&self, request: PlayerPocketSwapContentsRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("pocket_swap_contents", PocketSwapContentsArgs { request })
     }
     fn on_pocket_swap_contents(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerPocketSwapContentsRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerPocketSwapContentsRequest)
+            + Send
+            + 'static,
     ) -> PocketSwapContentsCallbackId {
         PocketSwapContentsCallbackId(self.imp.on_reducer(
             "pocket_swap_contents",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::PocketSwapContents {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::PocketSwapContents { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
     fn remove_on_pocket_swap_contents(&self, callback: PocketSwapContentsCallbackId) {
-        self.imp.remove_on_reducer("pocket_swap_contents", callback.0)
+        self.imp
+            .remove_on_reducer("pocket_swap_contents", callback.0)
     }
 }
 
@@ -103,7 +107,7 @@ pub trait set_flags_for_pocket_swap_contents {
 
 impl set_flags_for_pocket_swap_contents for super::SetReducerFlags {
     fn pocket_swap_contents(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("pocket_swap_contents", flags);
+        self.imp
+            .set_call_reducer_flags("pocket_swap_contents", flags);
     }
 }
-

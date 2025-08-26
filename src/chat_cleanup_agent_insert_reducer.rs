@@ -3,23 +3,16 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
-pub(super) struct ChatCleanupAgentInsertArgs {
-    }
+pub(super) struct ChatCleanupAgentInsertArgs {}
 
 impl From<ChatCleanupAgentInsertArgs> for super::Reducer {
     fn from(args: ChatCleanupAgentInsertArgs) -> Self {
         Self::ChatCleanupAgentInsert
-}
+    }
 }
 
 impl __sdk::InModule for ChatCleanupAgentInsertArgs {
@@ -38,7 +31,7 @@ pub trait chat_cleanup_agent_insert {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_chat_cleanup_agent_insert`] callbacks.
-    fn chat_cleanup_agent_insert(&self, ) -> __sdk::Result<()>;
+    fn chat_cleanup_agent_insert(&self) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `chat_cleanup_agent_insert`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -46,38 +39,45 @@ pub trait chat_cleanup_agent_insert {
     ///
     /// The returned [`ChatCleanupAgentInsertCallbackId`] can be passed to [`Self::remove_on_chat_cleanup_agent_insert`]
     /// to cancel the callback.
-    fn on_chat_cleanup_agent_insert(&self, callback: impl FnMut(&super::ReducerEventContext, ) + Send + 'static) -> ChatCleanupAgentInsertCallbackId;
+    fn on_chat_cleanup_agent_insert(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext) + Send + 'static,
+    ) -> ChatCleanupAgentInsertCallbackId;
     /// Cancel a callback previously registered by [`Self::on_chat_cleanup_agent_insert`],
     /// causing it not to run in the future.
     fn remove_on_chat_cleanup_agent_insert(&self, callback: ChatCleanupAgentInsertCallbackId);
 }
 
 impl chat_cleanup_agent_insert for super::RemoteReducers {
-    fn chat_cleanup_agent_insert(&self, ) -> __sdk::Result<()> {
-        self.imp.call_reducer("chat_cleanup_agent_insert", ChatCleanupAgentInsertArgs {  })
+    fn chat_cleanup_agent_insert(&self) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("chat_cleanup_agent_insert", ChatCleanupAgentInsertArgs {})
     }
     fn on_chat_cleanup_agent_insert(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext) + Send + 'static,
     ) -> ChatCleanupAgentInsertCallbackId {
         ChatCleanupAgentInsertCallbackId(self.imp.on_reducer(
             "chat_cleanup_agent_insert",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ChatCleanupAgentInsert {
-                            
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ChatCleanupAgentInsert {},
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx)
             }),
         ))
     }
     fn remove_on_chat_cleanup_agent_insert(&self, callback: ChatCleanupAgentInsertCallbackId) {
-        self.imp.remove_on_reducer("chat_cleanup_agent_insert", callback.0)
+        self.imp
+            .remove_on_reducer("chat_cleanup_agent_insert", callback.0)
     }
 }
 
@@ -97,7 +97,7 @@ pub trait set_flags_for_chat_cleanup_agent_insert {
 
 impl set_flags_for_chat_cleanup_agent_insert for super::SetReducerFlags {
     fn chat_cleanup_agent_insert(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("chat_cleanup_agent_insert", flags);
+        self.imp
+            .set_call_reducer_flags("chat_cleanup_agent_insert", flags);
     }
 }
-

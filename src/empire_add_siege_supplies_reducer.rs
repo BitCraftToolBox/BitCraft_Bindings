@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::empire_add_siege_supplies_request_type::EmpireAddSiegeSuppliesRequest;
 
@@ -22,8 +17,8 @@ impl From<EmpireAddSiegeSuppliesArgs> for super::Reducer {
     fn from(args: EmpireAddSiegeSuppliesArgs) -> Self {
         Self::EmpireAddSiegeSupplies {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for EmpireAddSiegeSuppliesArgs {
@@ -42,8 +37,10 @@ pub trait empire_add_siege_supplies {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_empire_add_siege_supplies`] callbacks.
-    fn empire_add_siege_supplies(&self, request: EmpireAddSiegeSuppliesRequest,
-) -> __sdk::Result<()>;
+    fn empire_add_siege_supplies(
+        &self,
+        request: EmpireAddSiegeSuppliesRequest,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `empire_add_siege_supplies`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +48,54 @@ pub trait empire_add_siege_supplies {
     ///
     /// The returned [`EmpireAddSiegeSuppliesCallbackId`] can be passed to [`Self::remove_on_empire_add_siege_supplies`]
     /// to cancel the callback.
-    fn on_empire_add_siege_supplies(&self, callback: impl FnMut(&super::ReducerEventContext, &EmpireAddSiegeSuppliesRequest, ) + Send + 'static) -> EmpireAddSiegeSuppliesCallbackId;
+    fn on_empire_add_siege_supplies(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &EmpireAddSiegeSuppliesRequest)
+            + Send
+            + 'static,
+    ) -> EmpireAddSiegeSuppliesCallbackId;
     /// Cancel a callback previously registered by [`Self::on_empire_add_siege_supplies`],
     /// causing it not to run in the future.
     fn remove_on_empire_add_siege_supplies(&self, callback: EmpireAddSiegeSuppliesCallbackId);
 }
 
 impl empire_add_siege_supplies for super::RemoteReducers {
-    fn empire_add_siege_supplies(&self, request: EmpireAddSiegeSuppliesRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("empire_add_siege_supplies", EmpireAddSiegeSuppliesArgs { request,  })
+    fn empire_add_siege_supplies(
+        &self,
+        request: EmpireAddSiegeSuppliesRequest,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "empire_add_siege_supplies",
+            EmpireAddSiegeSuppliesArgs { request },
+        )
     }
     fn on_empire_add_siege_supplies(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &EmpireAddSiegeSuppliesRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &EmpireAddSiegeSuppliesRequest)
+            + Send
+            + 'static,
     ) -> EmpireAddSiegeSuppliesCallbackId {
         EmpireAddSiegeSuppliesCallbackId(self.imp.on_reducer(
             "empire_add_siege_supplies",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::EmpireAddSiegeSupplies {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::EmpireAddSiegeSupplies { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
     fn remove_on_empire_add_siege_supplies(&self, callback: EmpireAddSiegeSuppliesCallbackId) {
-        self.imp.remove_on_reducer("empire_add_siege_supplies", callback.0)
+        self.imp
+            .remove_on_reducer("empire_add_siege_supplies", callback.0)
     }
 }
 
@@ -103,7 +115,7 @@ pub trait set_flags_for_empire_add_siege_supplies {
 
 impl set_flags_for_empire_add_siege_supplies for super::SetReducerFlags {
     fn empire_add_siege_supplies(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("empire_add_siege_supplies", flags);
+        self.imp
+            .set_call_reducer_flags("empire_add_siege_supplies", flags);
     }
 }
-

@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_craft_collect_all_request_type::PlayerCraftCollectAllRequest;
 
@@ -22,8 +17,8 @@ impl From<CraftCollectAllArgs> for super::Reducer {
     fn from(args: CraftCollectAllArgs) -> Self {
         Self::CraftCollectAll {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for CraftCollectAllArgs {
@@ -42,8 +37,7 @@ pub trait craft_collect_all {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_craft_collect_all`] callbacks.
-    fn craft_collect_all(&self, request: PlayerCraftCollectAllRequest,
-) -> __sdk::Result<()>;
+    fn craft_collect_all(&self, request: PlayerCraftCollectAllRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `craft_collect_all`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,43 @@ pub trait craft_collect_all {
     ///
     /// The returned [`CraftCollectAllCallbackId`] can be passed to [`Self::remove_on_craft_collect_all`]
     /// to cancel the callback.
-    fn on_craft_collect_all(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerCraftCollectAllRequest, ) + Send + 'static) -> CraftCollectAllCallbackId;
+    fn on_craft_collect_all(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerCraftCollectAllRequest)
+            + Send
+            + 'static,
+    ) -> CraftCollectAllCallbackId;
     /// Cancel a callback previously registered by [`Self::on_craft_collect_all`],
     /// causing it not to run in the future.
     fn remove_on_craft_collect_all(&self, callback: CraftCollectAllCallbackId);
 }
 
 impl craft_collect_all for super::RemoteReducers {
-    fn craft_collect_all(&self, request: PlayerCraftCollectAllRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("craft_collect_all", CraftCollectAllArgs { request,  })
+    fn craft_collect_all(&self, request: PlayerCraftCollectAllRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("craft_collect_all", CraftCollectAllArgs { request })
     }
     fn on_craft_collect_all(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerCraftCollectAllRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerCraftCollectAllRequest)
+            + Send
+            + 'static,
     ) -> CraftCollectAllCallbackId {
         CraftCollectAllCallbackId(self.imp.on_reducer(
             "craft_collect_all",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::CraftCollectAll {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::CraftCollectAll { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
@@ -106,4 +109,3 @@ impl set_flags_for_craft_collect_all for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("craft_collect_all", flags);
     }
 }
-

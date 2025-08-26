@@ -3,13 +3,8 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::reset_chunk_index_timer_type::ResetChunkIndexTimer;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `reset_chunk_index_timer`.
 ///
@@ -37,7 +32,9 @@ pub trait ResetChunkIndexTimerTableAccess {
 impl ResetChunkIndexTimerTableAccess for super::RemoteTables {
     fn reset_chunk_index_timer(&self) -> ResetChunkIndexTimerTableHandle<'_> {
         ResetChunkIndexTimerTableHandle {
-            imp: self.imp.get_table::<ResetChunkIndexTimer>("reset_chunk_index_timer"),
+            imp: self
+                .imp
+                .get_table::<ResetChunkIndexTimer>("reset_chunk_index_timer"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -50,8 +47,12 @@ impl<'ctx> __sdk::Table for ResetChunkIndexTimerTableHandle<'ctx> {
     type Row = ResetChunkIndexTimer;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = ResetChunkIndexTimer> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = ResetChunkIndexTimer> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = ResetChunkIndexTimerInsertCallbackId;
 
@@ -82,8 +83,7 @@ impl<'ctx> __sdk::Table for ResetChunkIndexTimerTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<ResetChunkIndexTimer>("reset_chunk_index_timer");
+    let _table = client_cache.get_or_make_table::<ResetChunkIndexTimer>("reset_chunk_index_timer");
     _table.add_unique_constraint::<u64>("scheduled_id", |row| &row.scheduled_id);
 }
 pub struct ResetChunkIndexTimerUpdateCallbackId(__sdk::CallbackId);
@@ -103,46 +103,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for ResetChunkIndexTimerTableHandle<'ctx> 
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<ResetChunkIndexTimer>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<ResetChunkIndexTimer>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<ResetChunkIndexTimer>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `scheduled_id` unique index on the table `reset_chunk_index_timer`,
-        /// which allows point queries on the field of the same name
-        /// via the [`ResetChunkIndexTimerScheduledIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.reset_chunk_index_timer().scheduled_id().find(...)`.
-        pub struct ResetChunkIndexTimerScheduledIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<ResetChunkIndexTimer, u64>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `scheduled_id` unique index on the table `reset_chunk_index_timer`,
+/// which allows point queries on the field of the same name
+/// via the [`ResetChunkIndexTimerScheduledIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.reset_chunk_index_timer().scheduled_id().find(...)`.
+pub struct ResetChunkIndexTimerScheduledIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<ResetChunkIndexTimer, u64>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> ResetChunkIndexTimerTableHandle<'ctx> {
-            /// Get a handle on the `scheduled_id` unique index on the table `reset_chunk_index_timer`.
-            pub fn scheduled_id(&self) -> ResetChunkIndexTimerScheduledIdUnique<'ctx> {
-                ResetChunkIndexTimerScheduledIdUnique {
-                    imp: self.imp.get_unique_constraint::<u64>("scheduled_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> ResetChunkIndexTimerTableHandle<'ctx> {
+    /// Get a handle on the `scheduled_id` unique index on the table `reset_chunk_index_timer`.
+    pub fn scheduled_id(&self) -> ResetChunkIndexTimerScheduledIdUnique<'ctx> {
+        ResetChunkIndexTimerScheduledIdUnique {
+            imp: self.imp.get_unique_constraint::<u64>("scheduled_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> ResetChunkIndexTimerScheduledIdUnique<'ctx> {
-            /// Find the subscribed row whose `scheduled_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u64) -> Option<ResetChunkIndexTimer> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> ResetChunkIndexTimerScheduledIdUnique<'ctx> {
+    /// Find the subscribed row whose `scheduled_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u64) -> Option<ResetChunkIndexTimer> {
+        self.imp.find(col_val)
+    }
+}

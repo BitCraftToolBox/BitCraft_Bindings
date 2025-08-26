@@ -3,23 +3,16 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
-pub(super) struct AdminClearUnattachedHerdsArgs {
-    }
+pub(super) struct AdminClearUnattachedHerdsArgs {}
 
 impl From<AdminClearUnattachedHerdsArgs> for super::Reducer {
     fn from(args: AdminClearUnattachedHerdsArgs) -> Self {
         Self::AdminClearUnattachedHerds
-}
+    }
 }
 
 impl __sdk::InModule for AdminClearUnattachedHerdsArgs {
@@ -38,7 +31,7 @@ pub trait admin_clear_unattached_herds {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_admin_clear_unattached_herds`] callbacks.
-    fn admin_clear_unattached_herds(&self, ) -> __sdk::Result<()>;
+    fn admin_clear_unattached_herds(&self) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `admin_clear_unattached_herds`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -46,38 +39,50 @@ pub trait admin_clear_unattached_herds {
     ///
     /// The returned [`AdminClearUnattachedHerdsCallbackId`] can be passed to [`Self::remove_on_admin_clear_unattached_herds`]
     /// to cancel the callback.
-    fn on_admin_clear_unattached_herds(&self, callback: impl FnMut(&super::ReducerEventContext, ) + Send + 'static) -> AdminClearUnattachedHerdsCallbackId;
+    fn on_admin_clear_unattached_herds(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext) + Send + 'static,
+    ) -> AdminClearUnattachedHerdsCallbackId;
     /// Cancel a callback previously registered by [`Self::on_admin_clear_unattached_herds`],
     /// causing it not to run in the future.
     fn remove_on_admin_clear_unattached_herds(&self, callback: AdminClearUnattachedHerdsCallbackId);
 }
 
 impl admin_clear_unattached_herds for super::RemoteReducers {
-    fn admin_clear_unattached_herds(&self, ) -> __sdk::Result<()> {
-        self.imp.call_reducer("admin_clear_unattached_herds", AdminClearUnattachedHerdsArgs {  })
+    fn admin_clear_unattached_herds(&self) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "admin_clear_unattached_herds",
+            AdminClearUnattachedHerdsArgs {},
+        )
     }
     fn on_admin_clear_unattached_herds(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext) + Send + 'static,
     ) -> AdminClearUnattachedHerdsCallbackId {
         AdminClearUnattachedHerdsCallbackId(self.imp.on_reducer(
             "admin_clear_unattached_herds",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::AdminClearUnattachedHerds {
-                            
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::AdminClearUnattachedHerds {},
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx)
             }),
         ))
     }
-    fn remove_on_admin_clear_unattached_herds(&self, callback: AdminClearUnattachedHerdsCallbackId) {
-        self.imp.remove_on_reducer("admin_clear_unattached_herds", callback.0)
+    fn remove_on_admin_clear_unattached_herds(
+        &self,
+        callback: AdminClearUnattachedHerdsCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("admin_clear_unattached_herds", callback.0)
     }
 }
 
@@ -97,7 +102,7 @@ pub trait set_flags_for_admin_clear_unattached_herds {
 
 impl set_flags_for_admin_clear_unattached_herds for super::SetReducerFlags {
     fn admin_clear_unattached_herds(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("admin_clear_unattached_herds", flags);
+        self.imp
+            .set_call_reducer_flags("admin_clear_unattached_herds", flags);
     }
 }
-

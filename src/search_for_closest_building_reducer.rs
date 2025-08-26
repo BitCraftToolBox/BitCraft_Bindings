@@ -3,26 +3,20 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct SearchForClosestBuildingArgs {
-    pub building_description_ids: Vec::<i32>,
+    pub building_description_ids: Vec<i32>,
 }
 
 impl From<SearchForClosestBuildingArgs> for super::Reducer {
     fn from(args: SearchForClosestBuildingArgs) -> Self {
         Self::SearchForClosestBuilding {
             building_description_ids: args.building_description_ids,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for SearchForClosestBuildingArgs {
@@ -41,8 +35,7 @@ pub trait search_for_closest_building {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_search_for_closest_building`] callbacks.
-    fn search_for_closest_building(&self, building_description_ids: Vec::<i32>,
-) -> __sdk::Result<()>;
+    fn search_for_closest_building(&self, building_description_ids: Vec<i32>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `search_for_closest_building`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -50,39 +43,52 @@ pub trait search_for_closest_building {
     ///
     /// The returned [`SearchForClosestBuildingCallbackId`] can be passed to [`Self::remove_on_search_for_closest_building`]
     /// to cancel the callback.
-    fn on_search_for_closest_building(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<i32>, ) + Send + 'static) -> SearchForClosestBuildingCallbackId;
+    fn on_search_for_closest_building(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<i32>) + Send + 'static,
+    ) -> SearchForClosestBuildingCallbackId;
     /// Cancel a callback previously registered by [`Self::on_search_for_closest_building`],
     /// causing it not to run in the future.
     fn remove_on_search_for_closest_building(&self, callback: SearchForClosestBuildingCallbackId);
 }
 
 impl search_for_closest_building for super::RemoteReducers {
-    fn search_for_closest_building(&self, building_description_ids: Vec::<i32>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("search_for_closest_building", SearchForClosestBuildingArgs { building_description_ids,  })
+    fn search_for_closest_building(&self, building_description_ids: Vec<i32>) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "search_for_closest_building",
+            SearchForClosestBuildingArgs {
+                building_description_ids,
+            },
+        )
     }
     fn on_search_for_closest_building(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<i32>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<i32>) + Send + 'static,
     ) -> SearchForClosestBuildingCallbackId {
         SearchForClosestBuildingCallbackId(self.imp.on_reducer(
             "search_for_closest_building",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::SearchForClosestBuilding {
-                            building_description_ids, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer:
+                                super::Reducer::SearchForClosestBuilding {
+                                    building_description_ids,
+                                },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, building_description_ids, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, building_description_ids)
             }),
         ))
     }
     fn remove_on_search_for_closest_building(&self, callback: SearchForClosestBuildingCallbackId) {
-        self.imp.remove_on_reducer("search_for_closest_building", callback.0)
+        self.imp
+            .remove_on_reducer("search_for_closest_building", callback.0)
     }
 }
 
@@ -102,7 +108,7 @@ pub trait set_flags_for_search_for_closest_building {
 
 impl set_flags_for_search_for_closest_building for super::SetReducerFlags {
     fn search_for_closest_building(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("search_for_closest_building", flags);
+        self.imp
+            .set_call_reducer_flags("search_for_closest_building", flags);
     }
 }
-

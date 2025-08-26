@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_project_site_place_request_type::PlayerProjectSitePlaceRequest;
 
@@ -22,8 +17,8 @@ impl From<CheatBuildingPlaceArgs> for super::Reducer {
     fn from(args: CheatBuildingPlaceArgs) -> Self {
         Self::CheatBuildingPlace {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for CheatBuildingPlaceArgs {
@@ -42,8 +37,7 @@ pub trait cheat_building_place {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_cheat_building_place`] callbacks.
-    fn cheat_building_place(&self, request: PlayerProjectSitePlaceRequest,
-) -> __sdk::Result<()>;
+    fn cheat_building_place(&self, request: PlayerProjectSitePlaceRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `cheat_building_place`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,49 @@ pub trait cheat_building_place {
     ///
     /// The returned [`CheatBuildingPlaceCallbackId`] can be passed to [`Self::remove_on_cheat_building_place`]
     /// to cancel the callback.
-    fn on_cheat_building_place(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerProjectSitePlaceRequest, ) + Send + 'static) -> CheatBuildingPlaceCallbackId;
+    fn on_cheat_building_place(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerProjectSitePlaceRequest)
+            + Send
+            + 'static,
+    ) -> CheatBuildingPlaceCallbackId;
     /// Cancel a callback previously registered by [`Self::on_cheat_building_place`],
     /// causing it not to run in the future.
     fn remove_on_cheat_building_place(&self, callback: CheatBuildingPlaceCallbackId);
 }
 
 impl cheat_building_place for super::RemoteReducers {
-    fn cheat_building_place(&self, request: PlayerProjectSitePlaceRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("cheat_building_place", CheatBuildingPlaceArgs { request,  })
+    fn cheat_building_place(&self, request: PlayerProjectSitePlaceRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("cheat_building_place", CheatBuildingPlaceArgs { request })
     }
     fn on_cheat_building_place(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerProjectSitePlaceRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerProjectSitePlaceRequest)
+            + Send
+            + 'static,
     ) -> CheatBuildingPlaceCallbackId {
         CheatBuildingPlaceCallbackId(self.imp.on_reducer(
             "cheat_building_place",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::CheatBuildingPlace {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::CheatBuildingPlace { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
     fn remove_on_cheat_building_place(&self, callback: CheatBuildingPlaceCallbackId) {
-        self.imp.remove_on_reducer("cheat_building_place", callback.0)
+        self.imp
+            .remove_on_reducer("cheat_building_place", callback.0)
     }
 }
 
@@ -103,7 +107,7 @@ pub trait set_flags_for_cheat_building_place {
 
 impl set_flags_for_cheat_building_place for super::SetReducerFlags {
     fn cheat_building_place(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("cheat_building_place", flags);
+        self.imp
+            .set_call_reducer_flags("cheat_building_place", flags);
     }
 }
-

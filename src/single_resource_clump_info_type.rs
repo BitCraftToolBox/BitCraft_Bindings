@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::resource_clump_info_type::ResourceClumpInfo;
 
@@ -19,8 +14,6 @@ pub struct SingleResourceClumpInfo {
     pub resource_clump_info: ResourceClumpInfo,
 }
 
-
 impl __sdk::InModule for SingleResourceClumpInfo {
     type Module = super::RemoteModule;
 }
-

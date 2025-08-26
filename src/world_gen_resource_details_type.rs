@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::world_gen_vector_2_int_type::WorldGenVector2Int;
 
@@ -23,8 +18,6 @@ pub struct WorldGenResourceDetails {
     pub spawns_on_uneven_terrain: bool,
 }
 
-
 impl __sdk::InModule for WorldGenResourceDetails {
     type Module = super::RemoteModule;
 }
-

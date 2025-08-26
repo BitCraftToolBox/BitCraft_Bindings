@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::knowledge_battle_action_state_type::KnowledgeBattleActionState;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct ImportKnowledgeBattleActionStateArgs {
-    pub records: Vec::<KnowledgeBattleActionState>,
+    pub records: Vec<KnowledgeBattleActionState>,
 }
 
 impl From<ImportKnowledgeBattleActionStateArgs> for super::Reducer {
     fn from(args: ImportKnowledgeBattleActionStateArgs) -> Self {
         Self::ImportKnowledgeBattleActionState {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ImportKnowledgeBattleActionStateArgs {
@@ -42,8 +37,10 @@ pub trait import_knowledge_battle_action_state {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_import_knowledge_battle_action_state`] callbacks.
-    fn import_knowledge_battle_action_state(&self, records: Vec::<KnowledgeBattleActionState>,
-) -> __sdk::Result<()>;
+    fn import_knowledge_battle_action_state(
+        &self,
+        records: Vec<KnowledgeBattleActionState>,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `import_knowledge_battle_action_state`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +48,60 @@ pub trait import_knowledge_battle_action_state {
     ///
     /// The returned [`ImportKnowledgeBattleActionStateCallbackId`] can be passed to [`Self::remove_on_import_knowledge_battle_action_state`]
     /// to cancel the callback.
-    fn on_import_knowledge_battle_action_state(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<KnowledgeBattleActionState>, ) + Send + 'static) -> ImportKnowledgeBattleActionStateCallbackId;
+    fn on_import_knowledge_battle_action_state(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<KnowledgeBattleActionState>)
+            + Send
+            + 'static,
+    ) -> ImportKnowledgeBattleActionStateCallbackId;
     /// Cancel a callback previously registered by [`Self::on_import_knowledge_battle_action_state`],
     /// causing it not to run in the future.
-    fn remove_on_import_knowledge_battle_action_state(&self, callback: ImportKnowledgeBattleActionStateCallbackId);
+    fn remove_on_import_knowledge_battle_action_state(
+        &self,
+        callback: ImportKnowledgeBattleActionStateCallbackId,
+    );
 }
 
 impl import_knowledge_battle_action_state for super::RemoteReducers {
-    fn import_knowledge_battle_action_state(&self, records: Vec::<KnowledgeBattleActionState>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("import_knowledge_battle_action_state", ImportKnowledgeBattleActionStateArgs { records,  })
+    fn import_knowledge_battle_action_state(
+        &self,
+        records: Vec<KnowledgeBattleActionState>,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "import_knowledge_battle_action_state",
+            ImportKnowledgeBattleActionStateArgs { records },
+        )
     }
     fn on_import_knowledge_battle_action_state(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<KnowledgeBattleActionState>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<KnowledgeBattleActionState>)
+            + Send
+            + 'static,
     ) -> ImportKnowledgeBattleActionStateCallbackId {
         ImportKnowledgeBattleActionStateCallbackId(self.imp.on_reducer(
             "import_knowledge_battle_action_state",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ImportKnowledgeBattleActionState {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ImportKnowledgeBattleActionState { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
-    fn remove_on_import_knowledge_battle_action_state(&self, callback: ImportKnowledgeBattleActionStateCallbackId) {
-        self.imp.remove_on_reducer("import_knowledge_battle_action_state", callback.0)
+    fn remove_on_import_knowledge_battle_action_state(
+        &self,
+        callback: ImportKnowledgeBattleActionStateCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("import_knowledge_battle_action_state", callback.0)
     }
 }
 
@@ -103,7 +121,7 @@ pub trait set_flags_for_import_knowledge_battle_action_state {
 
 impl set_flags_for_import_knowledge_battle_action_state for super::SetReducerFlags {
     fn import_knowledge_battle_action_state(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("import_knowledge_battle_action_state", flags);
+        self.imp
+            .set_call_reducer_flags("import_knowledge_battle_action_state", flags);
     }
 }
-

@@ -3,13 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -21,8 +15,8 @@ impl From<DeployableMoveOffClaimArgs> for super::Reducer {
     fn from(args: DeployableMoveOffClaimArgs) -> Self {
         Self::DeployableMoveOffClaim {
             deployable_entity_id: args.deployable_entity_id,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for DeployableMoveOffClaimArgs {
@@ -41,8 +35,7 @@ pub trait deployable_move_off_claim {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_deployable_move_off_claim`] callbacks.
-    fn deployable_move_off_claim(&self, deployable_entity_id: u64,
-) -> __sdk::Result<()>;
+    fn deployable_move_off_claim(&self, deployable_entity_id: u64) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `deployable_move_off_claim`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -50,39 +43,52 @@ pub trait deployable_move_off_claim {
     ///
     /// The returned [`DeployableMoveOffClaimCallbackId`] can be passed to [`Self::remove_on_deployable_move_off_claim`]
     /// to cancel the callback.
-    fn on_deployable_move_off_claim(&self, callback: impl FnMut(&super::ReducerEventContext, &u64, ) + Send + 'static) -> DeployableMoveOffClaimCallbackId;
+    fn on_deployable_move_off_claim(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &u64) + Send + 'static,
+    ) -> DeployableMoveOffClaimCallbackId;
     /// Cancel a callback previously registered by [`Self::on_deployable_move_off_claim`],
     /// causing it not to run in the future.
     fn remove_on_deployable_move_off_claim(&self, callback: DeployableMoveOffClaimCallbackId);
 }
 
 impl deployable_move_off_claim for super::RemoteReducers {
-    fn deployable_move_off_claim(&self, deployable_entity_id: u64,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("deployable_move_off_claim", DeployableMoveOffClaimArgs { deployable_entity_id,  })
+    fn deployable_move_off_claim(&self, deployable_entity_id: u64) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "deployable_move_off_claim",
+            DeployableMoveOffClaimArgs {
+                deployable_entity_id,
+            },
+        )
     }
     fn on_deployable_move_off_claim(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &u64, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &u64) + Send + 'static,
     ) -> DeployableMoveOffClaimCallbackId {
         DeployableMoveOffClaimCallbackId(self.imp.on_reducer(
             "deployable_move_off_claim",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::DeployableMoveOffClaim {
-                            deployable_entity_id, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer:
+                                super::Reducer::DeployableMoveOffClaim {
+                                    deployable_entity_id,
+                                },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, deployable_entity_id, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, deployable_entity_id)
             }),
         ))
     }
     fn remove_on_deployable_move_off_claim(&self, callback: DeployableMoveOffClaimCallbackId) {
-        self.imp.remove_on_reducer("deployable_move_off_claim", callback.0)
+        self.imp
+            .remove_on_reducer("deployable_move_off_claim", callback.0)
     }
 }
 
@@ -102,7 +108,7 @@ pub trait set_flags_for_deployable_move_off_claim {
 
 impl set_flags_for_deployable_move_off_claim for super::SetReducerFlags {
     fn deployable_move_off_claim(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("deployable_move_off_claim", flags);
+        self.imp
+            .set_call_reducer_flags("deployable_move_off_claim", flags);
     }
 }
-

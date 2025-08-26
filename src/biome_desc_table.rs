@@ -3,13 +3,8 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::biome_desc_type::BiomeDesc;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `biome_desc`.
 ///
@@ -50,8 +45,12 @@ impl<'ctx> __sdk::Table for BiomeDescTableHandle<'ctx> {
     type Row = BiomeDesc;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = BiomeDesc> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = BiomeDesc> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = BiomeDescInsertCallbackId;
 
@@ -82,8 +81,7 @@ impl<'ctx> __sdk::Table for BiomeDescTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<BiomeDesc>("biome_desc");
+    let _table = client_cache.get_or_make_table::<BiomeDesc>("biome_desc");
     _table.add_unique_constraint::<u8>("biome_type", |row| &row.biome_type);
 }
 pub struct BiomeDescUpdateCallbackId(__sdk::CallbackId);
@@ -103,46 +101,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for BiomeDescTableHandle<'ctx> {
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<BiomeDesc>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<BiomeDesc>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<BiomeDesc>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `biome_type` unique index on the table `biome_desc`,
-        /// which allows point queries on the field of the same name
-        /// via the [`BiomeDescBiomeTypeUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.biome_desc().biome_type().find(...)`.
-        pub struct BiomeDescBiomeTypeUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<BiomeDesc, u8>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `biome_type` unique index on the table `biome_desc`,
+/// which allows point queries on the field of the same name
+/// via the [`BiomeDescBiomeTypeUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.biome_desc().biome_type().find(...)`.
+pub struct BiomeDescBiomeTypeUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<BiomeDesc, u8>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> BiomeDescTableHandle<'ctx> {
-            /// Get a handle on the `biome_type` unique index on the table `biome_desc`.
-            pub fn biome_type(&self) -> BiomeDescBiomeTypeUnique<'ctx> {
-                BiomeDescBiomeTypeUnique {
-                    imp: self.imp.get_unique_constraint::<u8>("biome_type"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> BiomeDescTableHandle<'ctx> {
+    /// Get a handle on the `biome_type` unique index on the table `biome_desc`.
+    pub fn biome_type(&self) -> BiomeDescBiomeTypeUnique<'ctx> {
+        BiomeDescBiomeTypeUnique {
+            imp: self.imp.get_unique_constraint::<u8>("biome_type"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> BiomeDescBiomeTypeUnique<'ctx> {
-            /// Find the subscribed row whose `biome_type` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u8) -> Option<BiomeDesc> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> BiomeDescBiomeTypeUnique<'ctx> {
+    /// Find the subscribed row whose `biome_type` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u8) -> Option<BiomeDesc> {
+        self.imp.find(col_val)
+    }
+}

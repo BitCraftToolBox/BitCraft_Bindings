@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::enemy_spawn_request_type::EnemySpawnRequest;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct EnemySpawnBatchArgs {
-    pub requests: Vec::<EnemySpawnRequest>,
+    pub requests: Vec<EnemySpawnRequest>,
 }
 
 impl From<EnemySpawnBatchArgs> for super::Reducer {
     fn from(args: EnemySpawnBatchArgs) -> Self {
         Self::EnemySpawnBatch {
             requests: args.requests,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for EnemySpawnBatchArgs {
@@ -42,8 +37,7 @@ pub trait enemy_spawn_batch {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_enemy_spawn_batch`] callbacks.
-    fn enemy_spawn_batch(&self, requests: Vec::<EnemySpawnRequest>,
-) -> __sdk::Result<()>;
+    fn enemy_spawn_batch(&self, requests: Vec<EnemySpawnRequest>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `enemy_spawn_batch`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,39 @@ pub trait enemy_spawn_batch {
     ///
     /// The returned [`EnemySpawnBatchCallbackId`] can be passed to [`Self::remove_on_enemy_spawn_batch`]
     /// to cancel the callback.
-    fn on_enemy_spawn_batch(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<EnemySpawnRequest>, ) + Send + 'static) -> EnemySpawnBatchCallbackId;
+    fn on_enemy_spawn_batch(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<EnemySpawnRequest>) + Send + 'static,
+    ) -> EnemySpawnBatchCallbackId;
     /// Cancel a callback previously registered by [`Self::on_enemy_spawn_batch`],
     /// causing it not to run in the future.
     fn remove_on_enemy_spawn_batch(&self, callback: EnemySpawnBatchCallbackId);
 }
 
 impl enemy_spawn_batch for super::RemoteReducers {
-    fn enemy_spawn_batch(&self, requests: Vec::<EnemySpawnRequest>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("enemy_spawn_batch", EnemySpawnBatchArgs { requests,  })
+    fn enemy_spawn_batch(&self, requests: Vec<EnemySpawnRequest>) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("enemy_spawn_batch", EnemySpawnBatchArgs { requests })
     }
     fn on_enemy_spawn_batch(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<EnemySpawnRequest>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<EnemySpawnRequest>) + Send + 'static,
     ) -> EnemySpawnBatchCallbackId {
         EnemySpawnBatchCallbackId(self.imp.on_reducer(
             "enemy_spawn_batch",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::EnemySpawnBatch {
-                            requests, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::EnemySpawnBatch { requests },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, requests, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, requests)
             }),
         ))
     }
@@ -106,4 +105,3 @@ impl set_flags_for_enemy_spawn_batch for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("enemy_spawn_batch", flags);
     }
 }
-

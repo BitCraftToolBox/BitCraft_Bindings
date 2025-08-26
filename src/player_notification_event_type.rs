@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::notification_severity_type::NotificationSeverity;
 
@@ -22,8 +17,6 @@ pub struct PlayerNotificationEvent {
     pub severity: NotificationSeverity,
 }
 
-
 impl __sdk::InModule for PlayerNotificationEvent {
     type Module = super::RemoteModule;
 }
-

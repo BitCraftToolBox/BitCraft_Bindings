@@ -3,14 +3,9 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-use super::interior_network_desc_type::InteriorNetworkDesc;
 use super::dimension_type_type::DimensionType;
+use super::interior_network_desc_type::InteriorNetworkDesc;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `interior_network_desc`.
 ///
@@ -38,7 +33,9 @@ pub trait InteriorNetworkDescTableAccess {
 impl InteriorNetworkDescTableAccess for super::RemoteTables {
     fn interior_network_desc(&self) -> InteriorNetworkDescTableHandle<'_> {
         InteriorNetworkDescTableHandle {
-            imp: self.imp.get_table::<InteriorNetworkDesc>("interior_network_desc"),
+            imp: self
+                .imp
+                .get_table::<InteriorNetworkDesc>("interior_network_desc"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -51,8 +48,12 @@ impl<'ctx> __sdk::Table for InteriorNetworkDescTableHandle<'ctx> {
     type Row = InteriorNetworkDesc;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = InteriorNetworkDesc> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = InteriorNetworkDesc> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = InteriorNetworkDescInsertCallbackId;
 
@@ -83,8 +84,7 @@ impl<'ctx> __sdk::Table for InteriorNetworkDescTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<InteriorNetworkDesc>("interior_network_desc");
+    let _table = client_cache.get_or_make_table::<InteriorNetworkDesc>("interior_network_desc");
     _table.add_unique_constraint::<i32>("building_id", |row| &row.building_id);
 }
 pub struct InteriorNetworkDescUpdateCallbackId(__sdk::CallbackId);
@@ -104,46 +104,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for InteriorNetworkDescTableHandle<'ctx> {
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<InteriorNetworkDesc>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<InteriorNetworkDesc>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<InteriorNetworkDesc>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `building_id` unique index on the table `interior_network_desc`,
-        /// which allows point queries on the field of the same name
-        /// via the [`InteriorNetworkDescBuildingIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.interior_network_desc().building_id().find(...)`.
-        pub struct InteriorNetworkDescBuildingIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<InteriorNetworkDesc, i32>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `building_id` unique index on the table `interior_network_desc`,
+/// which allows point queries on the field of the same name
+/// via the [`InteriorNetworkDescBuildingIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.interior_network_desc().building_id().find(...)`.
+pub struct InteriorNetworkDescBuildingIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<InteriorNetworkDesc, i32>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> InteriorNetworkDescTableHandle<'ctx> {
-            /// Get a handle on the `building_id` unique index on the table `interior_network_desc`.
-            pub fn building_id(&self) -> InteriorNetworkDescBuildingIdUnique<'ctx> {
-                InteriorNetworkDescBuildingIdUnique {
-                    imp: self.imp.get_unique_constraint::<i32>("building_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> InteriorNetworkDescTableHandle<'ctx> {
+    /// Get a handle on the `building_id` unique index on the table `interior_network_desc`.
+    pub fn building_id(&self) -> InteriorNetworkDescBuildingIdUnique<'ctx> {
+        InteriorNetworkDescBuildingIdUnique {
+            imp: self.imp.get_unique_constraint::<i32>("building_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> InteriorNetworkDescBuildingIdUnique<'ctx> {
-            /// Find the subscribed row whose `building_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &i32) -> Option<InteriorNetworkDesc> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> InteriorNetworkDescBuildingIdUnique<'ctx> {
+    /// Find the subscribed row whose `building_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &i32) -> Option<InteriorNetworkDesc> {
+        self.imp.find(col_val)
+    }
+}

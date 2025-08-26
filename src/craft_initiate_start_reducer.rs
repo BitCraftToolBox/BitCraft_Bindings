@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_craft_initiate_request_type::PlayerCraftInitiateRequest;
 
@@ -22,8 +17,8 @@ impl From<CraftInitiateStartArgs> for super::Reducer {
     fn from(args: CraftInitiateStartArgs) -> Self {
         Self::CraftInitiateStart {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for CraftInitiateStartArgs {
@@ -42,8 +37,7 @@ pub trait craft_initiate_start {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_craft_initiate_start`] callbacks.
-    fn craft_initiate_start(&self, request: PlayerCraftInitiateRequest,
-) -> __sdk::Result<()>;
+    fn craft_initiate_start(&self, request: PlayerCraftInitiateRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `craft_initiate_start`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,47 @@ pub trait craft_initiate_start {
     ///
     /// The returned [`CraftInitiateStartCallbackId`] can be passed to [`Self::remove_on_craft_initiate_start`]
     /// to cancel the callback.
-    fn on_craft_initiate_start(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerCraftInitiateRequest, ) + Send + 'static) -> CraftInitiateStartCallbackId;
+    fn on_craft_initiate_start(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerCraftInitiateRequest) + Send + 'static,
+    ) -> CraftInitiateStartCallbackId;
     /// Cancel a callback previously registered by [`Self::on_craft_initiate_start`],
     /// causing it not to run in the future.
     fn remove_on_craft_initiate_start(&self, callback: CraftInitiateStartCallbackId);
 }
 
 impl craft_initiate_start for super::RemoteReducers {
-    fn craft_initiate_start(&self, request: PlayerCraftInitiateRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("craft_initiate_start", CraftInitiateStartArgs { request,  })
+    fn craft_initiate_start(&self, request: PlayerCraftInitiateRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("craft_initiate_start", CraftInitiateStartArgs { request })
     }
     fn on_craft_initiate_start(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerCraftInitiateRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerCraftInitiateRequest)
+            + Send
+            + 'static,
     ) -> CraftInitiateStartCallbackId {
         CraftInitiateStartCallbackId(self.imp.on_reducer(
             "craft_initiate_start",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::CraftInitiateStart {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::CraftInitiateStart { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
     fn remove_on_craft_initiate_start(&self, callback: CraftInitiateStartCallbackId) {
-        self.imp.remove_on_reducer("craft_initiate_start", callback.0)
+        self.imp
+            .remove_on_reducer("craft_initiate_start", callback.0)
     }
 }
 
@@ -103,7 +105,7 @@ pub trait set_flags_for_craft_initiate_start {
 
 impl set_flags_for_craft_initiate_start for super::SetReducerFlags {
     fn craft_initiate_start(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("craft_initiate_start", flags);
+        self.imp
+            .set_call_reducer_flags("craft_initiate_start", flags);
     }
 }
-

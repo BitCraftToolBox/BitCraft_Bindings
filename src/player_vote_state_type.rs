@@ -3,15 +3,10 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
-use super::player_vote_type_type::PlayerVoteType;
 use super::player_vote_answer_type::PlayerVoteAnswer;
+use super::player_vote_type_type::PlayerVoteType;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -19,8 +14,8 @@ pub struct PlayerVoteState {
     pub entity_id: u64,
     pub vote_type: PlayerVoteType,
     pub initiator_entity_id: u64,
-    pub participants_entity_id: Vec::<u64>,
-    pub answers: Vec::<PlayerVoteAnswer>,
+    pub participants_entity_id: Vec<u64>,
+    pub answers: Vec<PlayerVoteAnswer>,
     pub initiator_name: String,
     pub pass_threshold: f32,
     pub outcome: PlayerVoteAnswer,
@@ -29,8 +24,6 @@ pub struct PlayerVoteState {
     pub outcome_str: String,
 }
 
-
 impl __sdk::InModule for PlayerVoteState {
     type Module = super::RemoteModule;
 }
-

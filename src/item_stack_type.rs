@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::item_type_type::ItemType;
 
@@ -18,11 +13,9 @@ pub struct ItemStack {
     pub item_id: i32,
     pub quantity: i32,
     pub item_type: ItemType,
-    pub durability: Option::<i32>,
+    pub durability: Option<i32>,
 }
-
 
 impl __sdk::InModule for ItemStack {
     type Module = super::RemoteModule;
 }
-

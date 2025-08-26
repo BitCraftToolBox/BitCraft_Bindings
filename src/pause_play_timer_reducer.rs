@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_pause_play_timer_request_type::PlayerPausePlayTimerRequest;
 
@@ -22,8 +17,8 @@ impl From<PausePlayTimerArgs> for super::Reducer {
     fn from(args: PausePlayTimerArgs) -> Self {
         Self::PausePlayTimer {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for PausePlayTimerArgs {
@@ -42,8 +37,7 @@ pub trait pause_play_timer {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_pause_play_timer`] callbacks.
-    fn pause_play_timer(&self, request: PlayerPausePlayTimerRequest,
-) -> __sdk::Result<()>;
+    fn pause_play_timer(&self, request: PlayerPausePlayTimerRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `pause_play_timer`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,41 @@ pub trait pause_play_timer {
     ///
     /// The returned [`PausePlayTimerCallbackId`] can be passed to [`Self::remove_on_pause_play_timer`]
     /// to cancel the callback.
-    fn on_pause_play_timer(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerPausePlayTimerRequest, ) + Send + 'static) -> PausePlayTimerCallbackId;
+    fn on_pause_play_timer(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerPausePlayTimerRequest) + Send + 'static,
+    ) -> PausePlayTimerCallbackId;
     /// Cancel a callback previously registered by [`Self::on_pause_play_timer`],
     /// causing it not to run in the future.
     fn remove_on_pause_play_timer(&self, callback: PausePlayTimerCallbackId);
 }
 
 impl pause_play_timer for super::RemoteReducers {
-    fn pause_play_timer(&self, request: PlayerPausePlayTimerRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("pause_play_timer", PausePlayTimerArgs { request,  })
+    fn pause_play_timer(&self, request: PlayerPausePlayTimerRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("pause_play_timer", PausePlayTimerArgs { request })
     }
     fn on_pause_play_timer(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerPausePlayTimerRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerPausePlayTimerRequest)
+            + Send
+            + 'static,
     ) -> PausePlayTimerCallbackId {
         PausePlayTimerCallbackId(self.imp.on_reducer(
             "pause_play_timer",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::PausePlayTimer {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::PausePlayTimer { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
@@ -106,4 +107,3 @@ impl set_flags_for_pause_play_timer for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("pause_play_timer", flags);
     }
 }
-

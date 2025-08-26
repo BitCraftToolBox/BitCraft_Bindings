@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::rent_evict_timer_type::RentEvictTimer;
 
@@ -20,10 +15,8 @@ pub(super) struct RentEvictTermArgs {
 
 impl From<RentEvictTermArgs> for super::Reducer {
     fn from(args: RentEvictTermArgs) -> Self {
-        Self::RentEvictTerm {
-            timer: args.timer,
-}
-}
+        Self::RentEvictTerm { timer: args.timer }
+    }
 }
 
 impl __sdk::InModule for RentEvictTermArgs {
@@ -42,8 +35,7 @@ pub trait rent_evict_term {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_rent_evict_term`] callbacks.
-    fn rent_evict_term(&self, timer: RentEvictTimer,
-) -> __sdk::Result<()>;
+    fn rent_evict_term(&self, timer: RentEvictTimer) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `rent_evict_term`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +43,39 @@ pub trait rent_evict_term {
     ///
     /// The returned [`RentEvictTermCallbackId`] can be passed to [`Self::remove_on_rent_evict_term`]
     /// to cancel the callback.
-    fn on_rent_evict_term(&self, callback: impl FnMut(&super::ReducerEventContext, &RentEvictTimer, ) + Send + 'static) -> RentEvictTermCallbackId;
+    fn on_rent_evict_term(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &RentEvictTimer) + Send + 'static,
+    ) -> RentEvictTermCallbackId;
     /// Cancel a callback previously registered by [`Self::on_rent_evict_term`],
     /// causing it not to run in the future.
     fn remove_on_rent_evict_term(&self, callback: RentEvictTermCallbackId);
 }
 
 impl rent_evict_term for super::RemoteReducers {
-    fn rent_evict_term(&self, timer: RentEvictTimer,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("rent_evict_term", RentEvictTermArgs { timer,  })
+    fn rent_evict_term(&self, timer: RentEvictTimer) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("rent_evict_term", RentEvictTermArgs { timer })
     }
     fn on_rent_evict_term(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &RentEvictTimer, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &RentEvictTimer) + Send + 'static,
     ) -> RentEvictTermCallbackId {
         RentEvictTermCallbackId(self.imp.on_reducer(
             "rent_evict_term",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::RentEvictTerm {
-                            timer, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::RentEvictTerm { timer },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, timer, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, timer)
             }),
         ))
     }
@@ -106,4 +103,3 @@ impl set_flags_for_rent_evict_term for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("rent_evict_term", flags);
     }
 }
-

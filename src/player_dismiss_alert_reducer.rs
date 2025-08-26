@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_dismiss_alert_request_type::PlayerDismissAlertRequest;
 
@@ -22,8 +17,8 @@ impl From<PlayerDismissAlertArgs> for super::Reducer {
     fn from(args: PlayerDismissAlertArgs) -> Self {
         Self::PlayerDismissAlert {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for PlayerDismissAlertArgs {
@@ -42,8 +37,7 @@ pub trait player_dismiss_alert {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_player_dismiss_alert`] callbacks.
-    fn player_dismiss_alert(&self, request: PlayerDismissAlertRequest,
-) -> __sdk::Result<()>;
+    fn player_dismiss_alert(&self, request: PlayerDismissAlertRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `player_dismiss_alert`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,47 @@ pub trait player_dismiss_alert {
     ///
     /// The returned [`PlayerDismissAlertCallbackId`] can be passed to [`Self::remove_on_player_dismiss_alert`]
     /// to cancel the callback.
-    fn on_player_dismiss_alert(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerDismissAlertRequest, ) + Send + 'static) -> PlayerDismissAlertCallbackId;
+    fn on_player_dismiss_alert(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerDismissAlertRequest) + Send + 'static,
+    ) -> PlayerDismissAlertCallbackId;
     /// Cancel a callback previously registered by [`Self::on_player_dismiss_alert`],
     /// causing it not to run in the future.
     fn remove_on_player_dismiss_alert(&self, callback: PlayerDismissAlertCallbackId);
 }
 
 impl player_dismiss_alert for super::RemoteReducers {
-    fn player_dismiss_alert(&self, request: PlayerDismissAlertRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("player_dismiss_alert", PlayerDismissAlertArgs { request,  })
+    fn player_dismiss_alert(&self, request: PlayerDismissAlertRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("player_dismiss_alert", PlayerDismissAlertArgs { request })
     }
     fn on_player_dismiss_alert(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerDismissAlertRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerDismissAlertRequest)
+            + Send
+            + 'static,
     ) -> PlayerDismissAlertCallbackId {
         PlayerDismissAlertCallbackId(self.imp.on_reducer(
             "player_dismiss_alert",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::PlayerDismissAlert {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::PlayerDismissAlert { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
     fn remove_on_player_dismiss_alert(&self, callback: PlayerDismissAlertCallbackId) {
-        self.imp.remove_on_reducer("player_dismiss_alert", callback.0)
+        self.imp
+            .remove_on_reducer("player_dismiss_alert", callback.0)
     }
 }
 
@@ -103,7 +105,7 @@ pub trait set_flags_for_player_dismiss_alert {
 
 impl set_flags_for_player_dismiss_alert for super::SetReducerFlags {
     fn player_dismiss_alert(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("player_dismiss_alert", flags);
+        self.imp
+            .set_call_reducer_flags("player_dismiss_alert", flags);
     }
 }
-

@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::empire_icon_desc_type::EmpireIconDesc;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct ImportEmpireIconDescArgs {
-    pub records: Vec::<EmpireIconDesc>,
+    pub records: Vec<EmpireIconDesc>,
 }
 
 impl From<ImportEmpireIconDescArgs> for super::Reducer {
     fn from(args: ImportEmpireIconDescArgs) -> Self {
         Self::ImportEmpireIconDesc {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ImportEmpireIconDescArgs {
@@ -42,8 +37,7 @@ pub trait import_empire_icon_desc {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_import_empire_icon_desc`] callbacks.
-    fn import_empire_icon_desc(&self, records: Vec::<EmpireIconDesc>,
-) -> __sdk::Result<()>;
+    fn import_empire_icon_desc(&self, records: Vec<EmpireIconDesc>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `import_empire_icon_desc`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,47 @@ pub trait import_empire_icon_desc {
     ///
     /// The returned [`ImportEmpireIconDescCallbackId`] can be passed to [`Self::remove_on_import_empire_icon_desc`]
     /// to cancel the callback.
-    fn on_import_empire_icon_desc(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<EmpireIconDesc>, ) + Send + 'static) -> ImportEmpireIconDescCallbackId;
+    fn on_import_empire_icon_desc(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<EmpireIconDesc>) + Send + 'static,
+    ) -> ImportEmpireIconDescCallbackId;
     /// Cancel a callback previously registered by [`Self::on_import_empire_icon_desc`],
     /// causing it not to run in the future.
     fn remove_on_import_empire_icon_desc(&self, callback: ImportEmpireIconDescCallbackId);
 }
 
 impl import_empire_icon_desc for super::RemoteReducers {
-    fn import_empire_icon_desc(&self, records: Vec::<EmpireIconDesc>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("import_empire_icon_desc", ImportEmpireIconDescArgs { records,  })
+    fn import_empire_icon_desc(&self, records: Vec<EmpireIconDesc>) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "import_empire_icon_desc",
+            ImportEmpireIconDescArgs { records },
+        )
     }
     fn on_import_empire_icon_desc(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<EmpireIconDesc>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<EmpireIconDesc>) + Send + 'static,
     ) -> ImportEmpireIconDescCallbackId {
         ImportEmpireIconDescCallbackId(self.imp.on_reducer(
             "import_empire_icon_desc",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ImportEmpireIconDesc {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ImportEmpireIconDesc { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
     fn remove_on_import_empire_icon_desc(&self, callback: ImportEmpireIconDescCallbackId) {
-        self.imp.remove_on_reducer("import_empire_icon_desc", callback.0)
+        self.imp
+            .remove_on_reducer("import_empire_icon_desc", callback.0)
     }
 }
 
@@ -103,7 +105,7 @@ pub trait set_flags_for_import_empire_icon_desc {
 
 impl set_flags_for_import_empire_icon_desc for super::SetReducerFlags {
     fn import_empire_icon_desc(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("import_empire_icon_desc", flags);
+        self.imp
+            .set_call_reducer_flags("import_empire_icon_desc", flags);
     }
 }
-

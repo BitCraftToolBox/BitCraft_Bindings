@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_claim_remove_tile_request_type::PlayerClaimRemoveTileRequest;
 
@@ -22,8 +17,8 @@ impl From<ClaimRemoveTileArgs> for super::Reducer {
     fn from(args: ClaimRemoveTileArgs) -> Self {
         Self::ClaimRemoveTile {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ClaimRemoveTileArgs {
@@ -42,8 +37,7 @@ pub trait claim_remove_tile {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_claim_remove_tile`] callbacks.
-    fn claim_remove_tile(&self, request: PlayerClaimRemoveTileRequest,
-) -> __sdk::Result<()>;
+    fn claim_remove_tile(&self, request: PlayerClaimRemoveTileRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `claim_remove_tile`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,43 @@ pub trait claim_remove_tile {
     ///
     /// The returned [`ClaimRemoveTileCallbackId`] can be passed to [`Self::remove_on_claim_remove_tile`]
     /// to cancel the callback.
-    fn on_claim_remove_tile(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerClaimRemoveTileRequest, ) + Send + 'static) -> ClaimRemoveTileCallbackId;
+    fn on_claim_remove_tile(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerClaimRemoveTileRequest)
+            + Send
+            + 'static,
+    ) -> ClaimRemoveTileCallbackId;
     /// Cancel a callback previously registered by [`Self::on_claim_remove_tile`],
     /// causing it not to run in the future.
     fn remove_on_claim_remove_tile(&self, callback: ClaimRemoveTileCallbackId);
 }
 
 impl claim_remove_tile for super::RemoteReducers {
-    fn claim_remove_tile(&self, request: PlayerClaimRemoveTileRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("claim_remove_tile", ClaimRemoveTileArgs { request,  })
+    fn claim_remove_tile(&self, request: PlayerClaimRemoveTileRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("claim_remove_tile", ClaimRemoveTileArgs { request })
     }
     fn on_claim_remove_tile(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerClaimRemoveTileRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerClaimRemoveTileRequest)
+            + Send
+            + 'static,
     ) -> ClaimRemoveTileCallbackId {
         ClaimRemoveTileCallbackId(self.imp.on_reducer(
             "claim_remove_tile",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ClaimRemoveTile {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ClaimRemoveTile { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
@@ -106,4 +109,3 @@ impl set_flags_for_claim_remove_tile for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("claim_remove_tile", flags);
     }
 }
-

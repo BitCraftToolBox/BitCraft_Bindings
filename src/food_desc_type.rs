@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::buff_effect_type::BuffEffect;
 
@@ -23,11 +18,9 @@ pub struct FoodDesc {
     pub hunger: f32,
     pub teleportation_energy: f32,
     pub consumable_while_in_combat: bool,
-    pub buffs: Vec::<BuffEffect>,
+    pub buffs: Vec<BuffEffect>,
 }
-
 
 impl __sdk::InModule for FoodDesc {
     type Module = super::RemoteModule;
 }
-

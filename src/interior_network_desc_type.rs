@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::dimension_type_type::DimensionType;
 
@@ -19,11 +14,9 @@ pub struct InteriorNetworkDesc {
     pub dimension_type: DimensionType,
     pub trigger_collapse_time: u32,
     pub respawn_time: u32,
-    pub child_interior_instances: Vec::<i32>,
+    pub child_interior_instances: Vec<i32>,
 }
-
 
 impl __sdk::InModule for InteriorNetworkDesc {
     type Module = super::RemoteModule;
 }
-

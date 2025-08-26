@@ -3,13 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -25,8 +19,8 @@ impl From<AdminFindItemsInTradesArgs> for super::Reducer {
             item_id: args.item_id,
             is_cargo: args.is_cargo,
             min_threshold: args.min_threshold,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for AdminFindItemsInTradesArgs {
@@ -45,10 +39,12 @@ pub trait admin_find_items_in_trades {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_admin_find_items_in_trades`] callbacks.
-    fn admin_find_items_in_trades(&self, item_id: i32,
-is_cargo: bool,
-min_threshold: u64,
-) -> __sdk::Result<()>;
+    fn admin_find_items_in_trades(
+        &self,
+        item_id: i32,
+        is_cargo: bool,
+        min_threshold: u64,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `admin_find_items_in_trades`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -56,41 +52,61 @@ min_threshold: u64,
     ///
     /// The returned [`AdminFindItemsInTradesCallbackId`] can be passed to [`Self::remove_on_admin_find_items_in_trades`]
     /// to cancel the callback.
-    fn on_admin_find_items_in_trades(&self, callback: impl FnMut(&super::ReducerEventContext, &i32, &bool, &u64, ) + Send + 'static) -> AdminFindItemsInTradesCallbackId;
+    fn on_admin_find_items_in_trades(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &i32, &bool, &u64) + Send + 'static,
+    ) -> AdminFindItemsInTradesCallbackId;
     /// Cancel a callback previously registered by [`Self::on_admin_find_items_in_trades`],
     /// causing it not to run in the future.
     fn remove_on_admin_find_items_in_trades(&self, callback: AdminFindItemsInTradesCallbackId);
 }
 
 impl admin_find_items_in_trades for super::RemoteReducers {
-    fn admin_find_items_in_trades(&self, item_id: i32,
-is_cargo: bool,
-min_threshold: u64,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("admin_find_items_in_trades", AdminFindItemsInTradesArgs { item_id, is_cargo, min_threshold,  })
+    fn admin_find_items_in_trades(
+        &self,
+        item_id: i32,
+        is_cargo: bool,
+        min_threshold: u64,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "admin_find_items_in_trades",
+            AdminFindItemsInTradesArgs {
+                item_id,
+                is_cargo,
+                min_threshold,
+            },
+        )
     }
     fn on_admin_find_items_in_trades(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &i32, &bool, &u64, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &i32, &bool, &u64) + Send + 'static,
     ) -> AdminFindItemsInTradesCallbackId {
         AdminFindItemsInTradesCallbackId(self.imp.on_reducer(
             "admin_find_items_in_trades",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::AdminFindItemsInTrades {
-                            item_id, is_cargo, min_threshold, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer:
+                                super::Reducer::AdminFindItemsInTrades {
+                                    item_id,
+                                    is_cargo,
+                                    min_threshold,
+                                },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, item_id, is_cargo, min_threshold, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, item_id, is_cargo, min_threshold)
             }),
         ))
     }
     fn remove_on_admin_find_items_in_trades(&self, callback: AdminFindItemsInTradesCallbackId) {
-        self.imp.remove_on_reducer("admin_find_items_in_trades", callback.0)
+        self.imp
+            .remove_on_reducer("admin_find_items_in_trades", callback.0)
     }
 }
 
@@ -110,7 +126,7 @@ pub trait set_flags_for_admin_find_items_in_trades {
 
 impl set_flags_for_admin_find_items_in_trades for super::SetReducerFlags {
     fn admin_find_items_in_trades(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("admin_find_items_in_trades", flags);
+        self.imp
+            .set_call_reducer_flags("admin_find_items_in_trades", flags);
     }
 }
-

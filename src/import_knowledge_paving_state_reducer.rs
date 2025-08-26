@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::knowledge_paving_state_type::KnowledgePavingState;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct ImportKnowledgePavingStateArgs {
-    pub records: Vec::<KnowledgePavingState>,
+    pub records: Vec<KnowledgePavingState>,
 }
 
 impl From<ImportKnowledgePavingStateArgs> for super::Reducer {
     fn from(args: ImportKnowledgePavingStateArgs) -> Self {
         Self::ImportKnowledgePavingState {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ImportKnowledgePavingStateArgs {
@@ -42,8 +37,10 @@ pub trait import_knowledge_paving_state {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_import_knowledge_paving_state`] callbacks.
-    fn import_knowledge_paving_state(&self, records: Vec::<KnowledgePavingState>,
-) -> __sdk::Result<()>;
+    fn import_knowledge_paving_state(
+        &self,
+        records: Vec<KnowledgePavingState>,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `import_knowledge_paving_state`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +48,58 @@ pub trait import_knowledge_paving_state {
     ///
     /// The returned [`ImportKnowledgePavingStateCallbackId`] can be passed to [`Self::remove_on_import_knowledge_paving_state`]
     /// to cancel the callback.
-    fn on_import_knowledge_paving_state(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<KnowledgePavingState>, ) + Send + 'static) -> ImportKnowledgePavingStateCallbackId;
+    fn on_import_knowledge_paving_state(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<KnowledgePavingState>) + Send + 'static,
+    ) -> ImportKnowledgePavingStateCallbackId;
     /// Cancel a callback previously registered by [`Self::on_import_knowledge_paving_state`],
     /// causing it not to run in the future.
-    fn remove_on_import_knowledge_paving_state(&self, callback: ImportKnowledgePavingStateCallbackId);
+    fn remove_on_import_knowledge_paving_state(
+        &self,
+        callback: ImportKnowledgePavingStateCallbackId,
+    );
 }
 
 impl import_knowledge_paving_state for super::RemoteReducers {
-    fn import_knowledge_paving_state(&self, records: Vec::<KnowledgePavingState>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("import_knowledge_paving_state", ImportKnowledgePavingStateArgs { records,  })
+    fn import_knowledge_paving_state(
+        &self,
+        records: Vec<KnowledgePavingState>,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "import_knowledge_paving_state",
+            ImportKnowledgePavingStateArgs { records },
+        )
     }
     fn on_import_knowledge_paving_state(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<KnowledgePavingState>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<KnowledgePavingState>)
+            + Send
+            + 'static,
     ) -> ImportKnowledgePavingStateCallbackId {
         ImportKnowledgePavingStateCallbackId(self.imp.on_reducer(
             "import_knowledge_paving_state",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ImportKnowledgePavingState {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ImportKnowledgePavingState { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
-    fn remove_on_import_knowledge_paving_state(&self, callback: ImportKnowledgePavingStateCallbackId) {
-        self.imp.remove_on_reducer("import_knowledge_paving_state", callback.0)
+    fn remove_on_import_knowledge_paving_state(
+        &self,
+        callback: ImportKnowledgePavingStateCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("import_knowledge_paving_state", callback.0)
     }
 }
 
@@ -103,7 +119,7 @@ pub trait set_flags_for_import_knowledge_paving_state {
 
 impl set_flags_for_import_knowledge_paving_state for super::SetReducerFlags {
     fn import_knowledge_paving_state(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("import_knowledge_paving_state", flags);
+        self.imp
+            .set_call_reducer_flags("import_knowledge_paving_state", flags);
     }
 }
-

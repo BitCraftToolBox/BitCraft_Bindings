@@ -3,20 +3,15 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
-use super::hex_direction_type::HexDirection;
-use super::float_hex_tile_message_type::FloatHexTileMessage;
 use super::chunk_coordinates_message_type::ChunkCoordinatesMessage;
 use super::claim_permission_type::ClaimPermission;
+use super::float_hex_tile_message_type::FloatHexTileMessage;
+use super::hex_direction_type::HexDirection;
+use super::item_conversion_location_context_type::ItemConversionLocationContext;
 use super::large_hex_tile_message_type::LargeHexTileMessage;
 use super::terrain_cell_type::TerrainCell;
-use super::item_conversion_location_context_type::ItemConversionLocationContext;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -30,8 +25,6 @@ pub struct ForceGenerateTypes {
     pub item_conversion_locatin_context: ItemConversionLocationContext,
 }
 
-
 impl __sdk::InModule for ForceGenerateTypes {
     type Module = super::RemoteModule;
 }
-

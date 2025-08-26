@@ -3,14 +3,9 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::destroy_dimension_network_timer_type::DestroyDimensionNetworkTimer;
 use super::offset_coordinates_float_type::OffsetCoordinatesFloat;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `destroy_dimension_network_timer`.
 ///
@@ -38,7 +33,9 @@ pub trait DestroyDimensionNetworkTimerTableAccess {
 impl DestroyDimensionNetworkTimerTableAccess for super::RemoteTables {
     fn destroy_dimension_network_timer(&self) -> DestroyDimensionNetworkTimerTableHandle<'_> {
         DestroyDimensionNetworkTimerTableHandle {
-            imp: self.imp.get_table::<DestroyDimensionNetworkTimer>("destroy_dimension_network_timer"),
+            imp: self
+                .imp
+                .get_table::<DestroyDimensionNetworkTimer>("destroy_dimension_network_timer"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -51,8 +48,12 @@ impl<'ctx> __sdk::Table for DestroyDimensionNetworkTimerTableHandle<'ctx> {
     type Row = DestroyDimensionNetworkTimer;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = DestroyDimensionNetworkTimer> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = DestroyDimensionNetworkTimer> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = DestroyDimensionNetworkTimerInsertCallbackId;
 
@@ -83,8 +84,8 @@ impl<'ctx> __sdk::Table for DestroyDimensionNetworkTimerTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<DestroyDimensionNetworkTimer>("destroy_dimension_network_timer");
+    let _table = client_cache
+        .get_or_make_table::<DestroyDimensionNetworkTimer>("destroy_dimension_network_timer");
     _table.add_unique_constraint::<u64>("scheduled_id", |row| &row.scheduled_id);
 }
 pub struct DestroyDimensionNetworkTimerUpdateCallbackId(__sdk::CallbackId);
@@ -104,7 +105,6 @@ impl<'ctx> __sdk::TableWithPrimaryKey for DestroyDimensionNetworkTimerTableHandl
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
@@ -113,37 +113,38 @@ pub(super) fn parse_table_update(
         __sdk::InternalError::failed_parse(
             "TableUpdate<DestroyDimensionNetworkTimer>",
             "TableUpdate",
-        ).with_cause(e).into()
+        )
+        .with_cause(e)
+        .into()
     })
 }
 
-        /// Access to the `scheduled_id` unique index on the table `destroy_dimension_network_timer`,
-        /// which allows point queries on the field of the same name
-        /// via the [`DestroyDimensionNetworkTimerScheduledIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.destroy_dimension_network_timer().scheduled_id().find(...)`.
-        pub struct DestroyDimensionNetworkTimerScheduledIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<DestroyDimensionNetworkTimer, u64>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `scheduled_id` unique index on the table `destroy_dimension_network_timer`,
+/// which allows point queries on the field of the same name
+/// via the [`DestroyDimensionNetworkTimerScheduledIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.destroy_dimension_network_timer().scheduled_id().find(...)`.
+pub struct DestroyDimensionNetworkTimerScheduledIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<DestroyDimensionNetworkTimer, u64>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> DestroyDimensionNetworkTimerTableHandle<'ctx> {
-            /// Get a handle on the `scheduled_id` unique index on the table `destroy_dimension_network_timer`.
-            pub fn scheduled_id(&self) -> DestroyDimensionNetworkTimerScheduledIdUnique<'ctx> {
-                DestroyDimensionNetworkTimerScheduledIdUnique {
-                    imp: self.imp.get_unique_constraint::<u64>("scheduled_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> DestroyDimensionNetworkTimerTableHandle<'ctx> {
+    /// Get a handle on the `scheduled_id` unique index on the table `destroy_dimension_network_timer`.
+    pub fn scheduled_id(&self) -> DestroyDimensionNetworkTimerScheduledIdUnique<'ctx> {
+        DestroyDimensionNetworkTimerScheduledIdUnique {
+            imp: self.imp.get_unique_constraint::<u64>("scheduled_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> DestroyDimensionNetworkTimerScheduledIdUnique<'ctx> {
-            /// Find the subscribed row whose `scheduled_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u64) -> Option<DestroyDimensionNetworkTimer> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> DestroyDimensionNetworkTimerScheduledIdUnique<'ctx> {
+    /// Find the subscribed row whose `scheduled_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u64) -> Option<DestroyDimensionNetworkTimer> {
+        self.imp.find(col_val)
+    }
+}

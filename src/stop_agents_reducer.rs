@@ -3,23 +3,16 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
-pub(super) struct StopAgentsArgs {
-    }
+pub(super) struct StopAgentsArgs {}
 
 impl From<StopAgentsArgs> for super::Reducer {
     fn from(args: StopAgentsArgs) -> Self {
         Self::StopAgents
-}
+    }
 }
 
 impl __sdk::InModule for StopAgentsArgs {
@@ -38,7 +31,7 @@ pub trait stop_agents {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_stop_agents`] callbacks.
-    fn stop_agents(&self, ) -> __sdk::Result<()>;
+    fn stop_agents(&self) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `stop_agents`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -46,33 +39,38 @@ pub trait stop_agents {
     ///
     /// The returned [`StopAgentsCallbackId`] can be passed to [`Self::remove_on_stop_agents`]
     /// to cancel the callback.
-    fn on_stop_agents(&self, callback: impl FnMut(&super::ReducerEventContext, ) + Send + 'static) -> StopAgentsCallbackId;
+    fn on_stop_agents(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext) + Send + 'static,
+    ) -> StopAgentsCallbackId;
     /// Cancel a callback previously registered by [`Self::on_stop_agents`],
     /// causing it not to run in the future.
     fn remove_on_stop_agents(&self, callback: StopAgentsCallbackId);
 }
 
 impl stop_agents for super::RemoteReducers {
-    fn stop_agents(&self, ) -> __sdk::Result<()> {
-        self.imp.call_reducer("stop_agents", StopAgentsArgs {  })
+    fn stop_agents(&self) -> __sdk::Result<()> {
+        self.imp.call_reducer("stop_agents", StopAgentsArgs {})
     }
     fn on_stop_agents(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext) + Send + 'static,
     ) -> StopAgentsCallbackId {
         StopAgentsCallbackId(self.imp.on_reducer(
             "stop_agents",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::StopAgents {
-                            
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::StopAgents {},
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx)
             }),
         ))
     }
@@ -100,4 +98,3 @@ impl set_flags_for_stop_agents for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("stop_agents", flags);
     }
 }
-

@@ -3,16 +3,11 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-use super::resources_log_type::ResourcesLog;
+use super::common_rng_type::CommonRng;
 use super::resource_clump_info_type::ResourceClumpInfo;
 use super::resource_info_type::ResourceInfo;
-use super::common_rng_type::CommonRng;
+use super::resources_log_type::ResourcesLog;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `resources_log`.
 ///
@@ -53,8 +48,12 @@ impl<'ctx> __sdk::Table for ResourcesLogTableHandle<'ctx> {
     type Row = ResourcesLog;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = ResourcesLog> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = ResourcesLog> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = ResourcesLogInsertCallbackId;
 
@@ -85,8 +84,7 @@ impl<'ctx> __sdk::Table for ResourcesLogTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<ResourcesLog>("resources_log");
+    let _table = client_cache.get_or_make_table::<ResourcesLog>("resources_log");
     _table.add_unique_constraint::<i32>("version", |row| &row.version);
 }
 pub struct ResourcesLogUpdateCallbackId(__sdk::CallbackId);
@@ -106,46 +104,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for ResourcesLogTableHandle<'ctx> {
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<ResourcesLog>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<ResourcesLog>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<ResourcesLog>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `version` unique index on the table `resources_log`,
-        /// which allows point queries on the field of the same name
-        /// via the [`ResourcesLogVersionUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.resources_log().version().find(...)`.
-        pub struct ResourcesLogVersionUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<ResourcesLog, i32>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `version` unique index on the table `resources_log`,
+/// which allows point queries on the field of the same name
+/// via the [`ResourcesLogVersionUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.resources_log().version().find(...)`.
+pub struct ResourcesLogVersionUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<ResourcesLog, i32>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> ResourcesLogTableHandle<'ctx> {
-            /// Get a handle on the `version` unique index on the table `resources_log`.
-            pub fn version(&self) -> ResourcesLogVersionUnique<'ctx> {
-                ResourcesLogVersionUnique {
-                    imp: self.imp.get_unique_constraint::<i32>("version"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> ResourcesLogTableHandle<'ctx> {
+    /// Get a handle on the `version` unique index on the table `resources_log`.
+    pub fn version(&self) -> ResourcesLogVersionUnique<'ctx> {
+        ResourcesLogVersionUnique {
+            imp: self.imp.get_unique_constraint::<i32>("version"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> ResourcesLogVersionUnique<'ctx> {
-            /// Find the subscribed row whose `version` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &i32) -> Option<ResourcesLog> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> ResourcesLogVersionUnique<'ctx> {
+    /// Find the subscribed row whose `version` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &i32) -> Option<ResourcesLog> {
+        self.imp.find(col_val)
+    }
+}

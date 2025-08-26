@@ -3,15 +3,10 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-use super::teleport_player_timer_type::TeleportPlayerTimer;
 use super::offset_coordinates_float_type::OffsetCoordinatesFloat;
 use super::server_teleport_reason_type::ServerTeleportReason;
+use super::teleport_player_timer_type::TeleportPlayerTimer;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `teleport_player_timer`.
 ///
@@ -39,7 +34,9 @@ pub trait TeleportPlayerTimerTableAccess {
 impl TeleportPlayerTimerTableAccess for super::RemoteTables {
     fn teleport_player_timer(&self) -> TeleportPlayerTimerTableHandle<'_> {
         TeleportPlayerTimerTableHandle {
-            imp: self.imp.get_table::<TeleportPlayerTimer>("teleport_player_timer"),
+            imp: self
+                .imp
+                .get_table::<TeleportPlayerTimer>("teleport_player_timer"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -52,8 +49,12 @@ impl<'ctx> __sdk::Table for TeleportPlayerTimerTableHandle<'ctx> {
     type Row = TeleportPlayerTimer;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = TeleportPlayerTimer> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = TeleportPlayerTimer> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = TeleportPlayerTimerInsertCallbackId;
 
@@ -84,8 +85,7 @@ impl<'ctx> __sdk::Table for TeleportPlayerTimerTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<TeleportPlayerTimer>("teleport_player_timer");
+    let _table = client_cache.get_or_make_table::<TeleportPlayerTimer>("teleport_player_timer");
     _table.add_unique_constraint::<u64>("scheduled_id", |row| &row.scheduled_id);
 }
 pub struct TeleportPlayerTimerUpdateCallbackId(__sdk::CallbackId);
@@ -105,46 +105,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for TeleportPlayerTimerTableHandle<'ctx> {
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<TeleportPlayerTimer>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<TeleportPlayerTimer>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<TeleportPlayerTimer>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `scheduled_id` unique index on the table `teleport_player_timer`,
-        /// which allows point queries on the field of the same name
-        /// via the [`TeleportPlayerTimerScheduledIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.teleport_player_timer().scheduled_id().find(...)`.
-        pub struct TeleportPlayerTimerScheduledIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<TeleportPlayerTimer, u64>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `scheduled_id` unique index on the table `teleport_player_timer`,
+/// which allows point queries on the field of the same name
+/// via the [`TeleportPlayerTimerScheduledIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.teleport_player_timer().scheduled_id().find(...)`.
+pub struct TeleportPlayerTimerScheduledIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<TeleportPlayerTimer, u64>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> TeleportPlayerTimerTableHandle<'ctx> {
-            /// Get a handle on the `scheduled_id` unique index on the table `teleport_player_timer`.
-            pub fn scheduled_id(&self) -> TeleportPlayerTimerScheduledIdUnique<'ctx> {
-                TeleportPlayerTimerScheduledIdUnique {
-                    imp: self.imp.get_unique_constraint::<u64>("scheduled_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> TeleportPlayerTimerTableHandle<'ctx> {
+    /// Get a handle on the `scheduled_id` unique index on the table `teleport_player_timer`.
+    pub fn scheduled_id(&self) -> TeleportPlayerTimerScheduledIdUnique<'ctx> {
+        TeleportPlayerTimerScheduledIdUnique {
+            imp: self.imp.get_unique_constraint::<u64>("scheduled_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> TeleportPlayerTimerScheduledIdUnique<'ctx> {
-            /// Find the subscribed row whose `scheduled_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u64) -> Option<TeleportPlayerTimer> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> TeleportPlayerTimerScheduledIdUnique<'ctx> {
+    /// Find the subscribed row whose `scheduled_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u64) -> Option<TeleportPlayerTimer> {
+        self.imp.find(col_val)
+    }
+}

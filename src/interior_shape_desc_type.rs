@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::footprint_tile_type::FootprintTile;
 
@@ -16,15 +11,13 @@ use super::footprint_tile_type::FootprintTile;
 #[sats(crate = __lib)]
 pub struct InteriorShapeDesc {
     pub id: i32,
-    pub footprint: Vec::<FootprintTile>,
+    pub footprint: Vec<FootprintTile>,
     pub min_x: i32,
     pub min_z: i32,
     pub size_x: i32,
     pub size_z: i32,
 }
 
-
 impl __sdk::InModule for InteriorShapeDesc {
     type Module = super::RemoteModule;
 }
-

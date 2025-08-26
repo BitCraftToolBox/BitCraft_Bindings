@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::rent_collector_loop_timer_type::RentCollectorLoopTimer;
 
@@ -20,10 +15,8 @@ pub(super) struct RentCollectorAgentLoopArgs {
 
 impl From<RentCollectorAgentLoopArgs> for super::Reducer {
     fn from(args: RentCollectorAgentLoopArgs) -> Self {
-        Self::RentCollectorAgentLoop {
-            timer: args.timer,
-}
-}
+        Self::RentCollectorAgentLoop { timer: args.timer }
+    }
 }
 
 impl __sdk::InModule for RentCollectorAgentLoopArgs {
@@ -42,8 +35,7 @@ pub trait rent_collector_agent_loop {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_rent_collector_agent_loop`] callbacks.
-    fn rent_collector_agent_loop(&self, timer: RentCollectorLoopTimer,
-) -> __sdk::Result<()>;
+    fn rent_collector_agent_loop(&self, timer: RentCollectorLoopTimer) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `rent_collector_agent_loop`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +43,47 @@ pub trait rent_collector_agent_loop {
     ///
     /// The returned [`RentCollectorAgentLoopCallbackId`] can be passed to [`Self::remove_on_rent_collector_agent_loop`]
     /// to cancel the callback.
-    fn on_rent_collector_agent_loop(&self, callback: impl FnMut(&super::ReducerEventContext, &RentCollectorLoopTimer, ) + Send + 'static) -> RentCollectorAgentLoopCallbackId;
+    fn on_rent_collector_agent_loop(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &RentCollectorLoopTimer) + Send + 'static,
+    ) -> RentCollectorAgentLoopCallbackId;
     /// Cancel a callback previously registered by [`Self::on_rent_collector_agent_loop`],
     /// causing it not to run in the future.
     fn remove_on_rent_collector_agent_loop(&self, callback: RentCollectorAgentLoopCallbackId);
 }
 
 impl rent_collector_agent_loop for super::RemoteReducers {
-    fn rent_collector_agent_loop(&self, timer: RentCollectorLoopTimer,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("rent_collector_agent_loop", RentCollectorAgentLoopArgs { timer,  })
+    fn rent_collector_agent_loop(&self, timer: RentCollectorLoopTimer) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "rent_collector_agent_loop",
+            RentCollectorAgentLoopArgs { timer },
+        )
     }
     fn on_rent_collector_agent_loop(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &RentCollectorLoopTimer, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &RentCollectorLoopTimer) + Send + 'static,
     ) -> RentCollectorAgentLoopCallbackId {
         RentCollectorAgentLoopCallbackId(self.imp.on_reducer(
             "rent_collector_agent_loop",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::RentCollectorAgentLoop {
-                            timer, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::RentCollectorAgentLoop { timer },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, timer, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, timer)
             }),
         ))
     }
     fn remove_on_rent_collector_agent_loop(&self, callback: RentCollectorAgentLoopCallbackId) {
-        self.imp.remove_on_reducer("rent_collector_agent_loop", callback.0)
+        self.imp
+            .remove_on_reducer("rent_collector_agent_loop", callback.0)
     }
 }
 
@@ -103,7 +103,7 @@ pub trait set_flags_for_rent_collector_agent_loop {
 
 impl set_flags_for_rent_collector_agent_loop for super::SetReducerFlags {
     fn rent_collector_agent_loop(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("rent_collector_agent_loop", flags);
+        self.imp
+            .set_call_reducer_flags("rent_collector_agent_loop", flags);
     }
 }
-

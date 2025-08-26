@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_trade_remove_item_request_type::PlayerTradeRemoveItemRequest;
 
@@ -22,8 +17,8 @@ impl From<TradeRemoveItemArgs> for super::Reducer {
     fn from(args: TradeRemoveItemArgs) -> Self {
         Self::TradeRemoveItem {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for TradeRemoveItemArgs {
@@ -42,8 +37,7 @@ pub trait trade_remove_item {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_trade_remove_item`] callbacks.
-    fn trade_remove_item(&self, request: PlayerTradeRemoveItemRequest,
-) -> __sdk::Result<()>;
+    fn trade_remove_item(&self, request: PlayerTradeRemoveItemRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `trade_remove_item`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,43 @@ pub trait trade_remove_item {
     ///
     /// The returned [`TradeRemoveItemCallbackId`] can be passed to [`Self::remove_on_trade_remove_item`]
     /// to cancel the callback.
-    fn on_trade_remove_item(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerTradeRemoveItemRequest, ) + Send + 'static) -> TradeRemoveItemCallbackId;
+    fn on_trade_remove_item(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerTradeRemoveItemRequest)
+            + Send
+            + 'static,
+    ) -> TradeRemoveItemCallbackId;
     /// Cancel a callback previously registered by [`Self::on_trade_remove_item`],
     /// causing it not to run in the future.
     fn remove_on_trade_remove_item(&self, callback: TradeRemoveItemCallbackId);
 }
 
 impl trade_remove_item for super::RemoteReducers {
-    fn trade_remove_item(&self, request: PlayerTradeRemoveItemRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("trade_remove_item", TradeRemoveItemArgs { request,  })
+    fn trade_remove_item(&self, request: PlayerTradeRemoveItemRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("trade_remove_item", TradeRemoveItemArgs { request })
     }
     fn on_trade_remove_item(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerTradeRemoveItemRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerTradeRemoveItemRequest)
+            + Send
+            + 'static,
     ) -> TradeRemoveItemCallbackId {
         TradeRemoveItemCallbackId(self.imp.on_reducer(
             "trade_remove_item",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::TradeRemoveItem {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::TradeRemoveItem { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
@@ -106,4 +109,3 @@ impl set_flags_for_trade_remove_item for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("trade_remove_item", flags);
     }
 }
-

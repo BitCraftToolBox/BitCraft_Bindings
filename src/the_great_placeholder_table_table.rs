@@ -3,20 +3,15 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-use super::the_great_place_holder_table_type::TheGreatPlaceHolderTable;
-use super::chat_channel_type::ChatChannel;
-use super::surface_type_type::SurfaceType;
-use super::permission_type::Permission;
-use super::permission_group_type::PermissionGroup;
-use super::skill_type_type::SkillType;
 use super::buff_category_type::BuffCategory;
+use super::chat_channel_type::ChatChannel;
+use super::permission_group_type::PermissionGroup;
+use super::permission_type::Permission;
 use super::progressive_action_status_type::ProgressiveActionStatus;
+use super::skill_type_type::SkillType;
+use super::surface_type_type::SurfaceType;
+use super::the_great_place_holder_table_type::TheGreatPlaceHolderTable;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `the_great_placeholder_table`.
 ///
@@ -44,7 +39,9 @@ pub trait TheGreatPlaceholderTableTableAccess {
 impl TheGreatPlaceholderTableTableAccess for super::RemoteTables {
     fn the_great_placeholder_table(&self) -> TheGreatPlaceholderTableTableHandle<'_> {
         TheGreatPlaceholderTableTableHandle {
-            imp: self.imp.get_table::<TheGreatPlaceHolderTable>("the_great_placeholder_table"),
+            imp: self
+                .imp
+                .get_table::<TheGreatPlaceHolderTable>("the_great_placeholder_table"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -57,8 +54,12 @@ impl<'ctx> __sdk::Table for TheGreatPlaceholderTableTableHandle<'ctx> {
     type Row = TheGreatPlaceHolderTable;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = TheGreatPlaceHolderTable> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = TheGreatPlaceHolderTable> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = TheGreatPlaceholderTableInsertCallbackId;
 
@@ -89,8 +90,8 @@ impl<'ctx> __sdk::Table for TheGreatPlaceholderTableTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<TheGreatPlaceHolderTable>("the_great_placeholder_table");
+    let _table =
+        client_cache.get_or_make_table::<TheGreatPlaceHolderTable>("the_great_placeholder_table");
     _table.add_unique_constraint::<u64>("placeholder_id", |row| &row.placeholder_id);
 }
 pub struct TheGreatPlaceholderTableUpdateCallbackId(__sdk::CallbackId);
@@ -110,46 +111,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for TheGreatPlaceholderTableTableHandle<'c
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<TheGreatPlaceHolderTable>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<TheGreatPlaceHolderTable>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<TheGreatPlaceHolderTable>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `placeholder_id` unique index on the table `the_great_placeholder_table`,
-        /// which allows point queries on the field of the same name
-        /// via the [`TheGreatPlaceholderTablePlaceholderIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.the_great_placeholder_table().placeholder_id().find(...)`.
-        pub struct TheGreatPlaceholderTablePlaceholderIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<TheGreatPlaceHolderTable, u64>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `placeholder_id` unique index on the table `the_great_placeholder_table`,
+/// which allows point queries on the field of the same name
+/// via the [`TheGreatPlaceholderTablePlaceholderIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.the_great_placeholder_table().placeholder_id().find(...)`.
+pub struct TheGreatPlaceholderTablePlaceholderIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<TheGreatPlaceHolderTable, u64>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> TheGreatPlaceholderTableTableHandle<'ctx> {
-            /// Get a handle on the `placeholder_id` unique index on the table `the_great_placeholder_table`.
-            pub fn placeholder_id(&self) -> TheGreatPlaceholderTablePlaceholderIdUnique<'ctx> {
-                TheGreatPlaceholderTablePlaceholderIdUnique {
-                    imp: self.imp.get_unique_constraint::<u64>("placeholder_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> TheGreatPlaceholderTableTableHandle<'ctx> {
+    /// Get a handle on the `placeholder_id` unique index on the table `the_great_placeholder_table`.
+    pub fn placeholder_id(&self) -> TheGreatPlaceholderTablePlaceholderIdUnique<'ctx> {
+        TheGreatPlaceholderTablePlaceholderIdUnique {
+            imp: self.imp.get_unique_constraint::<u64>("placeholder_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> TheGreatPlaceholderTablePlaceholderIdUnique<'ctx> {
-            /// Find the subscribed row whose `placeholder_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u64) -> Option<TheGreatPlaceHolderTable> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> TheGreatPlaceholderTablePlaceholderIdUnique<'ctx> {
+    /// Find the subscribed row whose `placeholder_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u64) -> Option<TheGreatPlaceHolderTable> {
+        self.imp.find(col_val)
+    }
+}

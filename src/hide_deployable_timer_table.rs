@@ -3,13 +3,8 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::hide_deployable_timer_type::HideDeployableTimer;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `hide_deployable_timer`.
 ///
@@ -37,7 +32,9 @@ pub trait HideDeployableTimerTableAccess {
 impl HideDeployableTimerTableAccess for super::RemoteTables {
     fn hide_deployable_timer(&self) -> HideDeployableTimerTableHandle<'_> {
         HideDeployableTimerTableHandle {
-            imp: self.imp.get_table::<HideDeployableTimer>("hide_deployable_timer"),
+            imp: self
+                .imp
+                .get_table::<HideDeployableTimer>("hide_deployable_timer"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -50,8 +47,12 @@ impl<'ctx> __sdk::Table for HideDeployableTimerTableHandle<'ctx> {
     type Row = HideDeployableTimer;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = HideDeployableTimer> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = HideDeployableTimer> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = HideDeployableTimerInsertCallbackId;
 
@@ -82,8 +83,7 @@ impl<'ctx> __sdk::Table for HideDeployableTimerTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<HideDeployableTimer>("hide_deployable_timer");
+    let _table = client_cache.get_or_make_table::<HideDeployableTimer>("hide_deployable_timer");
     _table.add_unique_constraint::<u64>("scheduled_id", |row| &row.scheduled_id);
     _table.add_unique_constraint::<u64>("entity_id", |row| &row.entity_id);
 }
@@ -104,76 +104,73 @@ impl<'ctx> __sdk::TableWithPrimaryKey for HideDeployableTimerTableHandle<'ctx> {
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<HideDeployableTimer>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<HideDeployableTimer>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<HideDeployableTimer>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `scheduled_id` unique index on the table `hide_deployable_timer`,
-        /// which allows point queries on the field of the same name
-        /// via the [`HideDeployableTimerScheduledIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.hide_deployable_timer().scheduled_id().find(...)`.
-        pub struct HideDeployableTimerScheduledIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<HideDeployableTimer, u64>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `scheduled_id` unique index on the table `hide_deployable_timer`,
+/// which allows point queries on the field of the same name
+/// via the [`HideDeployableTimerScheduledIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.hide_deployable_timer().scheduled_id().find(...)`.
+pub struct HideDeployableTimerScheduledIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<HideDeployableTimer, u64>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> HideDeployableTimerTableHandle<'ctx> {
-            /// Get a handle on the `scheduled_id` unique index on the table `hide_deployable_timer`.
-            pub fn scheduled_id(&self) -> HideDeployableTimerScheduledIdUnique<'ctx> {
-                HideDeployableTimerScheduledIdUnique {
-                    imp: self.imp.get_unique_constraint::<u64>("scheduled_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> HideDeployableTimerTableHandle<'ctx> {
+    /// Get a handle on the `scheduled_id` unique index on the table `hide_deployable_timer`.
+    pub fn scheduled_id(&self) -> HideDeployableTimerScheduledIdUnique<'ctx> {
+        HideDeployableTimerScheduledIdUnique {
+            imp: self.imp.get_unique_constraint::<u64>("scheduled_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> HideDeployableTimerScheduledIdUnique<'ctx> {
-            /// Find the subscribed row whose `scheduled_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u64) -> Option<HideDeployableTimer> {
-                self.imp.find(col_val)
-            }
-        }
-        
-        /// Access to the `entity_id` unique index on the table `hide_deployable_timer`,
-        /// which allows point queries on the field of the same name
-        /// via the [`HideDeployableTimerEntityIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.hide_deployable_timer().entity_id().find(...)`.
-        pub struct HideDeployableTimerEntityIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<HideDeployableTimer, u64>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+impl<'ctx> HideDeployableTimerScheduledIdUnique<'ctx> {
+    /// Find the subscribed row whose `scheduled_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u64) -> Option<HideDeployableTimer> {
+        self.imp.find(col_val)
+    }
+}
 
-        impl<'ctx> HideDeployableTimerTableHandle<'ctx> {
-            /// Get a handle on the `entity_id` unique index on the table `hide_deployable_timer`.
-            pub fn entity_id(&self) -> HideDeployableTimerEntityIdUnique<'ctx> {
-                HideDeployableTimerEntityIdUnique {
-                    imp: self.imp.get_unique_constraint::<u64>("entity_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
-        }
+/// Access to the `entity_id` unique index on the table `hide_deployable_timer`,
+/// which allows point queries on the field of the same name
+/// via the [`HideDeployableTimerEntityIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.hide_deployable_timer().entity_id().find(...)`.
+pub struct HideDeployableTimerEntityIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<HideDeployableTimer, u64>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> HideDeployableTimerEntityIdUnique<'ctx> {
-            /// Find the subscribed row whose `entity_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u64) -> Option<HideDeployableTimer> {
-                self.imp.find(col_val)
-            }
+impl<'ctx> HideDeployableTimerTableHandle<'ctx> {
+    /// Get a handle on the `entity_id` unique index on the table `hide_deployable_timer`.
+    pub fn entity_id(&self) -> HideDeployableTimerEntityIdUnique<'ctx> {
+        HideDeployableTimerEntityIdUnique {
+            imp: self.imp.get_unique_constraint::<u64>("entity_id"),
+            phantom: std::marker::PhantomData,
         }
-        
+    }
+}
+
+impl<'ctx> HideDeployableTimerEntityIdUnique<'ctx> {
+    /// Find the subscribed row whose `entity_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u64) -> Option<HideDeployableTimer> {
+        self.imp.find(col_val)
+    }
+}

@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_housing_state_type::PlayerHousingState;
 
@@ -18,12 +13,8 @@ pub enum PlayerHousingStateOp {
     Insert(PlayerHousingState),
 
     Delete(PlayerHousingState),
-
 }
-
-
 
 impl __sdk::InModule for PlayerHousingStateOp {
     type Module = super::RemoteModule;
 }
-

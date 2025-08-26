@@ -3,13 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -23,8 +17,8 @@ impl From<TradeCancelServerArgs> for super::Reducer {
         Self::TradeCancelServer {
             session_entity_id: args.session_entity_id,
             resolution_message: args.resolution_message,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for TradeCancelServerArgs {
@@ -43,9 +37,11 @@ pub trait trade_cancel_server {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_trade_cancel_server`] callbacks.
-    fn trade_cancel_server(&self, session_entity_id: u64,
-resolution_message: String,
-) -> __sdk::Result<()>;
+    fn trade_cancel_server(
+        &self,
+        session_entity_id: u64,
+        resolution_message: String,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `trade_cancel_server`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -53,40 +49,58 @@ resolution_message: String,
     ///
     /// The returned [`TradeCancelServerCallbackId`] can be passed to [`Self::remove_on_trade_cancel_server`]
     /// to cancel the callback.
-    fn on_trade_cancel_server(&self, callback: impl FnMut(&super::ReducerEventContext, &u64, &String, ) + Send + 'static) -> TradeCancelServerCallbackId;
+    fn on_trade_cancel_server(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &u64, &String) + Send + 'static,
+    ) -> TradeCancelServerCallbackId;
     /// Cancel a callback previously registered by [`Self::on_trade_cancel_server`],
     /// causing it not to run in the future.
     fn remove_on_trade_cancel_server(&self, callback: TradeCancelServerCallbackId);
 }
 
 impl trade_cancel_server for super::RemoteReducers {
-    fn trade_cancel_server(&self, session_entity_id: u64,
-resolution_message: String,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("trade_cancel_server", TradeCancelServerArgs { session_entity_id, resolution_message,  })
+    fn trade_cancel_server(
+        &self,
+        session_entity_id: u64,
+        resolution_message: String,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "trade_cancel_server",
+            TradeCancelServerArgs {
+                session_entity_id,
+                resolution_message,
+            },
+        )
     }
     fn on_trade_cancel_server(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &u64, &String, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &u64, &String) + Send + 'static,
     ) -> TradeCancelServerCallbackId {
         TradeCancelServerCallbackId(self.imp.on_reducer(
             "trade_cancel_server",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::TradeCancelServer {
-                            session_entity_id, resolution_message, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer:
+                                super::Reducer::TradeCancelServer {
+                                    session_entity_id,
+                                    resolution_message,
+                                },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, session_entity_id, resolution_message, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, session_entity_id, resolution_message)
             }),
         ))
     }
     fn remove_on_trade_cancel_server(&self, callback: TradeCancelServerCallbackId) {
-        self.imp.remove_on_reducer("trade_cancel_server", callback.0)
+        self.imp
+            .remove_on_reducer("trade_cancel_server", callback.0)
     }
 }
 
@@ -106,7 +120,7 @@ pub trait set_flags_for_trade_cancel_server {
 
 impl set_flags_for_trade_cancel_server for super::SetReducerFlags {
     fn trade_cancel_server(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("trade_cancel_server", flags);
+        self.imp
+            .set_call_reducer_flags("trade_cancel_server", flags);
     }
 }
-

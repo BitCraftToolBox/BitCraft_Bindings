@@ -3,17 +3,12 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
+use super::experience_stack_f_32_type::ExperienceStackF32;
+use super::input_item_stack_type::InputItemStack;
 use super::level_requirement_type::LevelRequirement;
 use super::tool_requirement_type::ToolRequirement;
-use super::input_item_stack_type::InputItemStack;
-use super::experience_stack_f_32_type::ExperienceStackF32;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -24,14 +19,14 @@ pub struct ConstructionRecipeDesc {
     pub stamina_requirement: f32,
     pub consumed_building: i32,
     pub required_interior_tier: i32,
-    pub level_requirements: Vec::<LevelRequirement>,
-    pub tool_requirements: Vec::<ToolRequirement>,
-    pub consumed_item_stacks: Vec::<InputItemStack>,
-    pub consumed_cargo_stacks: Vec::<InputItemStack>,
+    pub level_requirements: Vec<LevelRequirement>,
+    pub tool_requirements: Vec<ToolRequirement>,
+    pub consumed_item_stacks: Vec<InputItemStack>,
+    pub consumed_cargo_stacks: Vec<InputItemStack>,
     pub consumed_shards: i32,
-    pub experience_per_progress: Vec::<ExperienceStackF32>,
-    pub discovery_triggers: Vec::<i32>,
-    pub required_knowledges: Vec::<i32>,
+    pub experience_per_progress: Vec<ExperienceStackF32>,
+    pub discovery_triggers: Vec<i32>,
+    pub required_knowledges: Vec<i32>,
     pub required_claim_tech_id: i32,
     pub full_discovery_score: i32,
     pub tool_mesh_index: i32,
@@ -42,8 +37,6 @@ pub struct ConstructionRecipeDesc {
     pub recipe_performance_id: i32,
 }
 
-
 impl __sdk::InModule for ConstructionRecipeDesc {
     type Module = super::RemoteModule;
 }
-

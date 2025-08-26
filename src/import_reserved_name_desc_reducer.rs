@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::reserved_name_desc_type::ReservedNameDesc;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct ImportReservedNameDescArgs {
-    pub records: Vec::<ReservedNameDesc>,
+    pub records: Vec<ReservedNameDesc>,
 }
 
 impl From<ImportReservedNameDescArgs> for super::Reducer {
     fn from(args: ImportReservedNameDescArgs) -> Self {
         Self::ImportReservedNameDesc {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ImportReservedNameDescArgs {
@@ -42,8 +37,7 @@ pub trait import_reserved_name_desc {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_import_reserved_name_desc`] callbacks.
-    fn import_reserved_name_desc(&self, records: Vec::<ReservedNameDesc>,
-) -> __sdk::Result<()>;
+    fn import_reserved_name_desc(&self, records: Vec<ReservedNameDesc>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `import_reserved_name_desc`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,47 @@ pub trait import_reserved_name_desc {
     ///
     /// The returned [`ImportReservedNameDescCallbackId`] can be passed to [`Self::remove_on_import_reserved_name_desc`]
     /// to cancel the callback.
-    fn on_import_reserved_name_desc(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<ReservedNameDesc>, ) + Send + 'static) -> ImportReservedNameDescCallbackId;
+    fn on_import_reserved_name_desc(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<ReservedNameDesc>) + Send + 'static,
+    ) -> ImportReservedNameDescCallbackId;
     /// Cancel a callback previously registered by [`Self::on_import_reserved_name_desc`],
     /// causing it not to run in the future.
     fn remove_on_import_reserved_name_desc(&self, callback: ImportReservedNameDescCallbackId);
 }
 
 impl import_reserved_name_desc for super::RemoteReducers {
-    fn import_reserved_name_desc(&self, records: Vec::<ReservedNameDesc>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("import_reserved_name_desc", ImportReservedNameDescArgs { records,  })
+    fn import_reserved_name_desc(&self, records: Vec<ReservedNameDesc>) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "import_reserved_name_desc",
+            ImportReservedNameDescArgs { records },
+        )
     }
     fn on_import_reserved_name_desc(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<ReservedNameDesc>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<ReservedNameDesc>) + Send + 'static,
     ) -> ImportReservedNameDescCallbackId {
         ImportReservedNameDescCallbackId(self.imp.on_reducer(
             "import_reserved_name_desc",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ImportReservedNameDesc {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ImportReservedNameDesc { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
     fn remove_on_import_reserved_name_desc(&self, callback: ImportReservedNameDescCallbackId) {
-        self.imp.remove_on_reducer("import_reserved_name_desc", callback.0)
+        self.imp
+            .remove_on_reducer("import_reserved_name_desc", callback.0)
     }
 }
 
@@ -103,7 +105,7 @@ pub trait set_flags_for_import_reserved_name_desc {
 
 impl set_flags_for_import_reserved_name_desc for super::SetReducerFlags {
     fn import_reserved_name_desc(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("import_reserved_name_desc", flags);
+        self.imp
+            .set_call_reducer_flags("import_reserved_name_desc", flags);
     }
 }
-

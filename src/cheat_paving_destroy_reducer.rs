@@ -3,13 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -25,8 +19,8 @@ impl From<CheatPavingDestroyArgs> for super::Reducer {
             x: args.x,
             z: args.z,
             dimension: args.dimension,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for CheatPavingDestroyArgs {
@@ -45,10 +39,7 @@ pub trait cheat_paving_destroy {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_cheat_paving_destroy`] callbacks.
-    fn cheat_paving_destroy(&self, x: i32,
-z: i32,
-dimension: u32,
-) -> __sdk::Result<()>;
+    fn cheat_paving_destroy(&self, x: i32, z: i32, dimension: u32) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `cheat_paving_destroy`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -56,41 +47,47 @@ dimension: u32,
     ///
     /// The returned [`CheatPavingDestroyCallbackId`] can be passed to [`Self::remove_on_cheat_paving_destroy`]
     /// to cancel the callback.
-    fn on_cheat_paving_destroy(&self, callback: impl FnMut(&super::ReducerEventContext, &i32, &i32, &u32, ) + Send + 'static) -> CheatPavingDestroyCallbackId;
+    fn on_cheat_paving_destroy(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &i32, &i32, &u32) + Send + 'static,
+    ) -> CheatPavingDestroyCallbackId;
     /// Cancel a callback previously registered by [`Self::on_cheat_paving_destroy`],
     /// causing it not to run in the future.
     fn remove_on_cheat_paving_destroy(&self, callback: CheatPavingDestroyCallbackId);
 }
 
 impl cheat_paving_destroy for super::RemoteReducers {
-    fn cheat_paving_destroy(&self, x: i32,
-z: i32,
-dimension: u32,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("cheat_paving_destroy", CheatPavingDestroyArgs { x, z, dimension,  })
+    fn cheat_paving_destroy(&self, x: i32, z: i32, dimension: u32) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "cheat_paving_destroy",
+            CheatPavingDestroyArgs { x, z, dimension },
+        )
     }
     fn on_cheat_paving_destroy(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &i32, &i32, &u32, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &i32, &i32, &u32) + Send + 'static,
     ) -> CheatPavingDestroyCallbackId {
         CheatPavingDestroyCallbackId(self.imp.on_reducer(
             "cheat_paving_destroy",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::CheatPavingDestroy {
-                            x, z, dimension, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::CheatPavingDestroy { x, z, dimension },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, x, z, dimension, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, x, z, dimension)
             }),
         ))
     }
     fn remove_on_cheat_paving_destroy(&self, callback: CheatPavingDestroyCallbackId) {
-        self.imp.remove_on_reducer("cheat_paving_destroy", callback.0)
+        self.imp
+            .remove_on_reducer("cheat_paving_destroy", callback.0)
     }
 }
 
@@ -110,7 +107,7 @@ pub trait set_flags_for_cheat_paving_destroy {
 
 impl set_flags_for_cheat_paving_destroy for super::SetReducerFlags {
     fn cheat_paving_destroy(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("cheat_paving_destroy", flags);
+        self.imp
+            .set_call_reducer_flags("cheat_paving_destroy", flags);
     }
 }
-

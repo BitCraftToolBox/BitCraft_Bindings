@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::wall_desc_type::WallDesc;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct StageWallDescArgs {
-    pub records: Vec::<WallDesc>,
+    pub records: Vec<WallDesc>,
 }
 
 impl From<StageWallDescArgs> for super::Reducer {
     fn from(args: StageWallDescArgs) -> Self {
         Self::StageWallDesc {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for StageWallDescArgs {
@@ -42,8 +37,7 @@ pub trait stage_wall_desc {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_stage_wall_desc`] callbacks.
-    fn stage_wall_desc(&self, records: Vec::<WallDesc>,
-) -> __sdk::Result<()>;
+    fn stage_wall_desc(&self, records: Vec<WallDesc>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `stage_wall_desc`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,39 @@ pub trait stage_wall_desc {
     ///
     /// The returned [`StageWallDescCallbackId`] can be passed to [`Self::remove_on_stage_wall_desc`]
     /// to cancel the callback.
-    fn on_stage_wall_desc(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<WallDesc>, ) + Send + 'static) -> StageWallDescCallbackId;
+    fn on_stage_wall_desc(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<WallDesc>) + Send + 'static,
+    ) -> StageWallDescCallbackId;
     /// Cancel a callback previously registered by [`Self::on_stage_wall_desc`],
     /// causing it not to run in the future.
     fn remove_on_stage_wall_desc(&self, callback: StageWallDescCallbackId);
 }
 
 impl stage_wall_desc for super::RemoteReducers {
-    fn stage_wall_desc(&self, records: Vec::<WallDesc>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("stage_wall_desc", StageWallDescArgs { records,  })
+    fn stage_wall_desc(&self, records: Vec<WallDesc>) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("stage_wall_desc", StageWallDescArgs { records })
     }
     fn on_stage_wall_desc(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<WallDesc>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<WallDesc>) + Send + 'static,
     ) -> StageWallDescCallbackId {
         StageWallDescCallbackId(self.imp.on_reducer(
             "stage_wall_desc",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::StageWallDesc {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::StageWallDesc { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
@@ -106,4 +105,3 @@ impl set_flags_for_stage_wall_desc for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("stage_wall_desc", flags);
     }
 }
-

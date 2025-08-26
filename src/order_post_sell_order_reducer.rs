@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_post_order_request_type::PlayerPostOrderRequest;
 
@@ -22,8 +17,8 @@ impl From<OrderPostSellOrderArgs> for super::Reducer {
     fn from(args: OrderPostSellOrderArgs) -> Self {
         Self::OrderPostSellOrder {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for OrderPostSellOrderArgs {
@@ -42,8 +37,7 @@ pub trait order_post_sell_order {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_order_post_sell_order`] callbacks.
-    fn order_post_sell_order(&self, request: PlayerPostOrderRequest,
-) -> __sdk::Result<()>;
+    fn order_post_sell_order(&self, request: PlayerPostOrderRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `order_post_sell_order`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,45 @@ pub trait order_post_sell_order {
     ///
     /// The returned [`OrderPostSellOrderCallbackId`] can be passed to [`Self::remove_on_order_post_sell_order`]
     /// to cancel the callback.
-    fn on_order_post_sell_order(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerPostOrderRequest, ) + Send + 'static) -> OrderPostSellOrderCallbackId;
+    fn on_order_post_sell_order(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerPostOrderRequest) + Send + 'static,
+    ) -> OrderPostSellOrderCallbackId;
     /// Cancel a callback previously registered by [`Self::on_order_post_sell_order`],
     /// causing it not to run in the future.
     fn remove_on_order_post_sell_order(&self, callback: OrderPostSellOrderCallbackId);
 }
 
 impl order_post_sell_order for super::RemoteReducers {
-    fn order_post_sell_order(&self, request: PlayerPostOrderRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("order_post_sell_order", OrderPostSellOrderArgs { request,  })
+    fn order_post_sell_order(&self, request: PlayerPostOrderRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("order_post_sell_order", OrderPostSellOrderArgs { request })
     }
     fn on_order_post_sell_order(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerPostOrderRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerPostOrderRequest) + Send + 'static,
     ) -> OrderPostSellOrderCallbackId {
         OrderPostSellOrderCallbackId(self.imp.on_reducer(
             "order_post_sell_order",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::OrderPostSellOrder {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::OrderPostSellOrder { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
     fn remove_on_order_post_sell_order(&self, callback: OrderPostSellOrderCallbackId) {
-        self.imp.remove_on_reducer("order_post_sell_order", callback.0)
+        self.imp
+            .remove_on_reducer("order_post_sell_order", callback.0)
     }
 }
 
@@ -103,7 +103,7 @@ pub trait set_flags_for_order_post_sell_order {
 
 impl set_flags_for_order_post_sell_order for super::SetReducerFlags {
     fn order_post_sell_order(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("order_post_sell_order", flags);
+        self.imp
+            .set_call_reducer_flags("order_post_sell_order", flags);
     }
 }
-

@@ -3,15 +3,10 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
-use super::offset_coordinates_small_message_type::OffsetCoordinatesSmallMessage;
 use super::enemy_type_type::EnemyType;
+use super::offset_coordinates_small_message_type::OffsetCoordinatesSmallMessage;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -22,8 +17,6 @@ pub struct EnemyMobMonitorState {
     pub herd_location: OffsetCoordinatesSmallMessage,
 }
 
-
 impl __sdk::InModule for EnemyMobMonitorState {
     type Module = super::RemoteModule;
 }
-

@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::resources_log_type::ResourcesLog;
 
@@ -22,8 +17,8 @@ impl From<InsertResourcesLogArgs> for super::Reducer {
     fn from(args: InsertResourcesLogArgs) -> Self {
         Self::InsertResourcesLog {
             resources_log: args.resources_log,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for InsertResourcesLogArgs {
@@ -42,8 +37,7 @@ pub trait insert_resources_log {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_insert_resources_log`] callbacks.
-    fn insert_resources_log(&self, resources_log: ResourcesLog,
-) -> __sdk::Result<()>;
+    fn insert_resources_log(&self, resources_log: ResourcesLog) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `insert_resources_log`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,47 @@ pub trait insert_resources_log {
     ///
     /// The returned [`InsertResourcesLogCallbackId`] can be passed to [`Self::remove_on_insert_resources_log`]
     /// to cancel the callback.
-    fn on_insert_resources_log(&self, callback: impl FnMut(&super::ReducerEventContext, &ResourcesLog, ) + Send + 'static) -> InsertResourcesLogCallbackId;
+    fn on_insert_resources_log(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &ResourcesLog) + Send + 'static,
+    ) -> InsertResourcesLogCallbackId;
     /// Cancel a callback previously registered by [`Self::on_insert_resources_log`],
     /// causing it not to run in the future.
     fn remove_on_insert_resources_log(&self, callback: InsertResourcesLogCallbackId);
 }
 
 impl insert_resources_log for super::RemoteReducers {
-    fn insert_resources_log(&self, resources_log: ResourcesLog,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("insert_resources_log", InsertResourcesLogArgs { resources_log,  })
+    fn insert_resources_log(&self, resources_log: ResourcesLog) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "insert_resources_log",
+            InsertResourcesLogArgs { resources_log },
+        )
     }
     fn on_insert_resources_log(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &ResourcesLog, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &ResourcesLog) + Send + 'static,
     ) -> InsertResourcesLogCallbackId {
         InsertResourcesLogCallbackId(self.imp.on_reducer(
             "insert_resources_log",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::InsertResourcesLog {
-                            resources_log, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::InsertResourcesLog { resources_log },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, resources_log, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, resources_log)
             }),
         ))
     }
     fn remove_on_insert_resources_log(&self, callback: InsertResourcesLogCallbackId) {
-        self.imp.remove_on_reducer("insert_resources_log", callback.0)
+        self.imp
+            .remove_on_reducer("insert_resources_log", callback.0)
     }
 }
 
@@ -103,7 +105,7 @@ pub trait set_flags_for_insert_resources_log {
 
 impl set_flags_for_insert_resources_log for super::SetReducerFlags {
     fn insert_resources_log(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("insert_resources_log", flags);
+        self.imp
+            .set_call_reducer_flags("insert_resources_log", flags);
     }
 }
-

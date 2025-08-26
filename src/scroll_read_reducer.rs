@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_scroll_read_request_type::PlayerScrollReadRequest;
 
@@ -22,8 +17,8 @@ impl From<ScrollReadArgs> for super::Reducer {
     fn from(args: ScrollReadArgs) -> Self {
         Self::ScrollRead {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ScrollReadArgs {
@@ -42,8 +37,7 @@ pub trait scroll_read {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_scroll_read`] callbacks.
-    fn scroll_read(&self, request: PlayerScrollReadRequest,
-) -> __sdk::Result<()>;
+    fn scroll_read(&self, request: PlayerScrollReadRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `scroll_read`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,39 @@ pub trait scroll_read {
     ///
     /// The returned [`ScrollReadCallbackId`] can be passed to [`Self::remove_on_scroll_read`]
     /// to cancel the callback.
-    fn on_scroll_read(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerScrollReadRequest, ) + Send + 'static) -> ScrollReadCallbackId;
+    fn on_scroll_read(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerScrollReadRequest) + Send + 'static,
+    ) -> ScrollReadCallbackId;
     /// Cancel a callback previously registered by [`Self::on_scroll_read`],
     /// causing it not to run in the future.
     fn remove_on_scroll_read(&self, callback: ScrollReadCallbackId);
 }
 
 impl scroll_read for super::RemoteReducers {
-    fn scroll_read(&self, request: PlayerScrollReadRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("scroll_read", ScrollReadArgs { request,  })
+    fn scroll_read(&self, request: PlayerScrollReadRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("scroll_read", ScrollReadArgs { request })
     }
     fn on_scroll_read(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerScrollReadRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerScrollReadRequest) + Send + 'static,
     ) -> ScrollReadCallbackId {
         ScrollReadCallbackId(self.imp.on_reducer(
             "scroll_read",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ScrollRead {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ScrollRead { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
@@ -106,4 +105,3 @@ impl set_flags_for_scroll_read for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("scroll_read", flags);
     }
 }
-

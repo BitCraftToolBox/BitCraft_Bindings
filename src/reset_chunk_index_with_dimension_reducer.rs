@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::reset_chunk_index_timer_type::ResetChunkIndexTimer;
 
@@ -20,10 +15,8 @@ pub(super) struct ResetChunkIndexWithDimensionArgs {
 
 impl From<ResetChunkIndexWithDimensionArgs> for super::Reducer {
     fn from(args: ResetChunkIndexWithDimensionArgs) -> Self {
-        Self::ResetChunkIndexWithDimension {
-            timer: args.timer,
-}
-}
+        Self::ResetChunkIndexWithDimension { timer: args.timer }
+    }
 }
 
 impl __sdk::InModule for ResetChunkIndexWithDimensionArgs {
@@ -42,8 +35,7 @@ pub trait reset_chunk_index_with_dimension {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_reset_chunk_index_with_dimension`] callbacks.
-    fn reset_chunk_index_with_dimension(&self, timer: ResetChunkIndexTimer,
-) -> __sdk::Result<()>;
+    fn reset_chunk_index_with_dimension(&self, timer: ResetChunkIndexTimer) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `reset_chunk_index_with_dimension`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +43,53 @@ pub trait reset_chunk_index_with_dimension {
     ///
     /// The returned [`ResetChunkIndexWithDimensionCallbackId`] can be passed to [`Self::remove_on_reset_chunk_index_with_dimension`]
     /// to cancel the callback.
-    fn on_reset_chunk_index_with_dimension(&self, callback: impl FnMut(&super::ReducerEventContext, &ResetChunkIndexTimer, ) + Send + 'static) -> ResetChunkIndexWithDimensionCallbackId;
+    fn on_reset_chunk_index_with_dimension(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &ResetChunkIndexTimer) + Send + 'static,
+    ) -> ResetChunkIndexWithDimensionCallbackId;
     /// Cancel a callback previously registered by [`Self::on_reset_chunk_index_with_dimension`],
     /// causing it not to run in the future.
-    fn remove_on_reset_chunk_index_with_dimension(&self, callback: ResetChunkIndexWithDimensionCallbackId);
+    fn remove_on_reset_chunk_index_with_dimension(
+        &self,
+        callback: ResetChunkIndexWithDimensionCallbackId,
+    );
 }
 
 impl reset_chunk_index_with_dimension for super::RemoteReducers {
-    fn reset_chunk_index_with_dimension(&self, timer: ResetChunkIndexTimer,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("reset_chunk_index_with_dimension", ResetChunkIndexWithDimensionArgs { timer,  })
+    fn reset_chunk_index_with_dimension(&self, timer: ResetChunkIndexTimer) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "reset_chunk_index_with_dimension",
+            ResetChunkIndexWithDimensionArgs { timer },
+        )
     }
     fn on_reset_chunk_index_with_dimension(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &ResetChunkIndexTimer, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &ResetChunkIndexTimer) + Send + 'static,
     ) -> ResetChunkIndexWithDimensionCallbackId {
         ResetChunkIndexWithDimensionCallbackId(self.imp.on_reducer(
             "reset_chunk_index_with_dimension",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ResetChunkIndexWithDimension {
-                            timer, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ResetChunkIndexWithDimension { timer },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, timer, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, timer)
             }),
         ))
     }
-    fn remove_on_reset_chunk_index_with_dimension(&self, callback: ResetChunkIndexWithDimensionCallbackId) {
-        self.imp.remove_on_reducer("reset_chunk_index_with_dimension", callback.0)
+    fn remove_on_reset_chunk_index_with_dimension(
+        &self,
+        callback: ResetChunkIndexWithDimensionCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("reset_chunk_index_with_dimension", callback.0)
     }
 }
 
@@ -103,7 +109,7 @@ pub trait set_flags_for_reset_chunk_index_with_dimension {
 
 impl set_flags_for_reset_chunk_index_with_dimension for super::SetReducerFlags {
     fn reset_chunk_index_with_dimension(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("reset_chunk_index_with_dimension", flags);
+        self.imp
+            .set_call_reducer_flags("reset_chunk_index_with_dimension", flags);
     }
 }
-

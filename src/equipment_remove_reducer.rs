@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_equipment_remove_request_type::PlayerEquipmentRemoveRequest;
 
@@ -22,8 +17,8 @@ impl From<EquipmentRemoveArgs> for super::Reducer {
     fn from(args: EquipmentRemoveArgs) -> Self {
         Self::EquipmentRemove {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for EquipmentRemoveArgs {
@@ -42,8 +37,7 @@ pub trait equipment_remove {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_equipment_remove`] callbacks.
-    fn equipment_remove(&self, request: PlayerEquipmentRemoveRequest,
-) -> __sdk::Result<()>;
+    fn equipment_remove(&self, request: PlayerEquipmentRemoveRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `equipment_remove`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,43 @@ pub trait equipment_remove {
     ///
     /// The returned [`EquipmentRemoveCallbackId`] can be passed to [`Self::remove_on_equipment_remove`]
     /// to cancel the callback.
-    fn on_equipment_remove(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerEquipmentRemoveRequest, ) + Send + 'static) -> EquipmentRemoveCallbackId;
+    fn on_equipment_remove(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerEquipmentRemoveRequest)
+            + Send
+            + 'static,
+    ) -> EquipmentRemoveCallbackId;
     /// Cancel a callback previously registered by [`Self::on_equipment_remove`],
     /// causing it not to run in the future.
     fn remove_on_equipment_remove(&self, callback: EquipmentRemoveCallbackId);
 }
 
 impl equipment_remove for super::RemoteReducers {
-    fn equipment_remove(&self, request: PlayerEquipmentRemoveRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("equipment_remove", EquipmentRemoveArgs { request,  })
+    fn equipment_remove(&self, request: PlayerEquipmentRemoveRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("equipment_remove", EquipmentRemoveArgs { request })
     }
     fn on_equipment_remove(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerEquipmentRemoveRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerEquipmentRemoveRequest)
+            + Send
+            + 'static,
     ) -> EquipmentRemoveCallbackId {
         EquipmentRemoveCallbackId(self.imp.on_reducer(
             "equipment_remove",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::EquipmentRemove {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::EquipmentRemove { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
@@ -106,4 +109,3 @@ impl set_flags_for_equipment_remove for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("equipment_remove", flags);
     }
 }
-

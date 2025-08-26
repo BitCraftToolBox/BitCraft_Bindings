@@ -3,14 +3,9 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::empire_settlement_state_type::EmpireSettlementState;
 use super::offset_coordinates_small_message_type::OffsetCoordinatesSmallMessage;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `empire_settlement_state`.
 ///
@@ -38,7 +33,9 @@ pub trait EmpireSettlementStateTableAccess {
 impl EmpireSettlementStateTableAccess for super::RemoteTables {
     fn empire_settlement_state(&self) -> EmpireSettlementStateTableHandle<'_> {
         EmpireSettlementStateTableHandle {
-            imp: self.imp.get_table::<EmpireSettlementState>("empire_settlement_state"),
+            imp: self
+                .imp
+                .get_table::<EmpireSettlementState>("empire_settlement_state"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -51,8 +48,12 @@ impl<'ctx> __sdk::Table for EmpireSettlementStateTableHandle<'ctx> {
     type Row = EmpireSettlementState;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = EmpireSettlementState> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = EmpireSettlementState> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = EmpireSettlementStateInsertCallbackId;
 
@@ -83,8 +84,7 @@ impl<'ctx> __sdk::Table for EmpireSettlementStateTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<EmpireSettlementState>("empire_settlement_state");
+    let _table = client_cache.get_or_make_table::<EmpireSettlementState>("empire_settlement_state");
     _table.add_unique_constraint::<u64>("building_entity_id", |row| &row.building_entity_id);
     _table.add_unique_constraint::<u64>("claim_entity_id", |row| &row.claim_entity_id);
 }
@@ -105,76 +105,73 @@ impl<'ctx> __sdk::TableWithPrimaryKey for EmpireSettlementStateTableHandle<'ctx>
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<EmpireSettlementState>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<EmpireSettlementState>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<EmpireSettlementState>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `building_entity_id` unique index on the table `empire_settlement_state`,
-        /// which allows point queries on the field of the same name
-        /// via the [`EmpireSettlementStateBuildingEntityIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.empire_settlement_state().building_entity_id().find(...)`.
-        pub struct EmpireSettlementStateBuildingEntityIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<EmpireSettlementState, u64>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `building_entity_id` unique index on the table `empire_settlement_state`,
+/// which allows point queries on the field of the same name
+/// via the [`EmpireSettlementStateBuildingEntityIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.empire_settlement_state().building_entity_id().find(...)`.
+pub struct EmpireSettlementStateBuildingEntityIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<EmpireSettlementState, u64>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> EmpireSettlementStateTableHandle<'ctx> {
-            /// Get a handle on the `building_entity_id` unique index on the table `empire_settlement_state`.
-            pub fn building_entity_id(&self) -> EmpireSettlementStateBuildingEntityIdUnique<'ctx> {
-                EmpireSettlementStateBuildingEntityIdUnique {
-                    imp: self.imp.get_unique_constraint::<u64>("building_entity_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> EmpireSettlementStateTableHandle<'ctx> {
+    /// Get a handle on the `building_entity_id` unique index on the table `empire_settlement_state`.
+    pub fn building_entity_id(&self) -> EmpireSettlementStateBuildingEntityIdUnique<'ctx> {
+        EmpireSettlementStateBuildingEntityIdUnique {
+            imp: self.imp.get_unique_constraint::<u64>("building_entity_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> EmpireSettlementStateBuildingEntityIdUnique<'ctx> {
-            /// Find the subscribed row whose `building_entity_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u64) -> Option<EmpireSettlementState> {
-                self.imp.find(col_val)
-            }
-        }
-        
-        /// Access to the `claim_entity_id` unique index on the table `empire_settlement_state`,
-        /// which allows point queries on the field of the same name
-        /// via the [`EmpireSettlementStateClaimEntityIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.empire_settlement_state().claim_entity_id().find(...)`.
-        pub struct EmpireSettlementStateClaimEntityIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<EmpireSettlementState, u64>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+impl<'ctx> EmpireSettlementStateBuildingEntityIdUnique<'ctx> {
+    /// Find the subscribed row whose `building_entity_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u64) -> Option<EmpireSettlementState> {
+        self.imp.find(col_val)
+    }
+}
 
-        impl<'ctx> EmpireSettlementStateTableHandle<'ctx> {
-            /// Get a handle on the `claim_entity_id` unique index on the table `empire_settlement_state`.
-            pub fn claim_entity_id(&self) -> EmpireSettlementStateClaimEntityIdUnique<'ctx> {
-                EmpireSettlementStateClaimEntityIdUnique {
-                    imp: self.imp.get_unique_constraint::<u64>("claim_entity_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
-        }
+/// Access to the `claim_entity_id` unique index on the table `empire_settlement_state`,
+/// which allows point queries on the field of the same name
+/// via the [`EmpireSettlementStateClaimEntityIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.empire_settlement_state().claim_entity_id().find(...)`.
+pub struct EmpireSettlementStateClaimEntityIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<EmpireSettlementState, u64>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> EmpireSettlementStateClaimEntityIdUnique<'ctx> {
-            /// Find the subscribed row whose `claim_entity_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u64) -> Option<EmpireSettlementState> {
-                self.imp.find(col_val)
-            }
+impl<'ctx> EmpireSettlementStateTableHandle<'ctx> {
+    /// Get a handle on the `claim_entity_id` unique index on the table `empire_settlement_state`.
+    pub fn claim_entity_id(&self) -> EmpireSettlementStateClaimEntityIdUnique<'ctx> {
+        EmpireSettlementStateClaimEntityIdUnique {
+            imp: self.imp.get_unique_constraint::<u64>("claim_entity_id"),
+            phantom: std::marker::PhantomData,
         }
-        
+    }
+}
+
+impl<'ctx> EmpireSettlementStateClaimEntityIdUnique<'ctx> {
+    /// Find the subscribed row whose `claim_entity_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u64) -> Option<EmpireSettlementState> {
+        self.imp.find(col_val)
+    }
+}

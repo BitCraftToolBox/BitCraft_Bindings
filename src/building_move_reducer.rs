@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_building_move_request_type::PlayerBuildingMoveRequest;
 
@@ -22,8 +17,8 @@ impl From<BuildingMoveArgs> for super::Reducer {
     fn from(args: BuildingMoveArgs) -> Self {
         Self::BuildingMove {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for BuildingMoveArgs {
@@ -42,8 +37,7 @@ pub trait building_move {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_building_move`] callbacks.
-    fn building_move(&self, request: PlayerBuildingMoveRequest,
-) -> __sdk::Result<()>;
+    fn building_move(&self, request: PlayerBuildingMoveRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `building_move`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,41 @@ pub trait building_move {
     ///
     /// The returned [`BuildingMoveCallbackId`] can be passed to [`Self::remove_on_building_move`]
     /// to cancel the callback.
-    fn on_building_move(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerBuildingMoveRequest, ) + Send + 'static) -> BuildingMoveCallbackId;
+    fn on_building_move(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerBuildingMoveRequest) + Send + 'static,
+    ) -> BuildingMoveCallbackId;
     /// Cancel a callback previously registered by [`Self::on_building_move`],
     /// causing it not to run in the future.
     fn remove_on_building_move(&self, callback: BuildingMoveCallbackId);
 }
 
 impl building_move for super::RemoteReducers {
-    fn building_move(&self, request: PlayerBuildingMoveRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("building_move", BuildingMoveArgs { request,  })
+    fn building_move(&self, request: PlayerBuildingMoveRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("building_move", BuildingMoveArgs { request })
     }
     fn on_building_move(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerBuildingMoveRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerBuildingMoveRequest)
+            + Send
+            + 'static,
     ) -> BuildingMoveCallbackId {
         BuildingMoveCallbackId(self.imp.on_reducer(
             "building_move",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::BuildingMove {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::BuildingMove { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
@@ -106,4 +107,3 @@ impl set_flags_for_building_move for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("building_move", flags);
     }
 }
-

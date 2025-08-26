@@ -3,18 +3,13 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::csv_stat_entry_type::CsvStatEntry;
-use super::experience_stack_f_32_type::ExperienceStackF32;
 use super::deployable_type_type::DeployableType;
-use super::movement_type_type::MovementType;
+use super::experience_stack_f_32_type::ExperienceStackF32;
 use super::movement_speed_type::MovementSpeed;
+use super::movement_type_type::MovementType;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -27,7 +22,7 @@ pub struct DeployableDesc {
     pub pathfinding_id: i32,
     pub movement_type: MovementType,
     pub can_enter_portals: bool,
-    pub speed: Vec::<MovementSpeed>,
+    pub speed: Vec<MovementSpeed>,
     pub use_player_speed_modifier: bool,
     pub placeable_on_land: bool,
     pub placeable_in_water: bool,
@@ -38,19 +33,17 @@ pub struct DeployableDesc {
     pub item_slot_size: i32,
     pub cargo_slot_size: i32,
     pub model_address: String,
-    pub stats: Vec::<CsvStatEntry>,
-    pub player_animations_in_deployable_slots: Vec::<i32>,
+    pub stats: Vec<CsvStatEntry>,
+    pub player_animations_in_deployable_slots: Vec<i32>,
     pub allow_driver_extract: bool,
     pub allow_passenger_extract: bool,
     pub show_for_secs_after_owner_logout: i32,
     pub allow_emote_while_driver: bool,
     pub allow_emote_while_passenger: bool,
-    pub experience_per_progress: Vec::<ExperienceStackF32>,
+    pub experience_per_progress: Vec<ExperienceStackF32>,
     pub mounting_radius: f32,
 }
-
 
 impl __sdk::InModule for DeployableDesc {
     type Module = super::RemoteModule;
 }
-

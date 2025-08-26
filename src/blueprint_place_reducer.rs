@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::offset_coordinates_small_message_type::OffsetCoordinatesSmallMessage;
 
@@ -30,8 +25,8 @@ impl From<BlueprintPlaceArgs> for super::Reducer {
             settings_json: args.settings_json,
             rotation: args.rotation,
             elevation_offset: args.elevation_offset,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for BlueprintPlaceArgs {
@@ -50,12 +45,14 @@ pub trait blueprint_place {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_blueprint_place`] callbacks.
-    fn blueprint_place(&self, center: OffsetCoordinatesSmallMessage,
-blueprint_json: String,
-settings_json: String,
-rotation: i32,
-elevation_offset: i16,
-) -> __sdk::Result<()>;
+    fn blueprint_place(
+        &self,
+        center: OffsetCoordinatesSmallMessage,
+        blueprint_json: String,
+        settings_json: String,
+        rotation: i32,
+        elevation_offset: i16,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `blueprint_place`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -63,38 +60,84 @@ elevation_offset: i16,
     ///
     /// The returned [`BlueprintPlaceCallbackId`] can be passed to [`Self::remove_on_blueprint_place`]
     /// to cancel the callback.
-    fn on_blueprint_place(&self, callback: impl FnMut(&super::ReducerEventContext, &OffsetCoordinatesSmallMessage, &String, &String, &i32, &i16, ) + Send + 'static) -> BlueprintPlaceCallbackId;
+    fn on_blueprint_place(
+        &self,
+        callback: impl FnMut(
+                &super::ReducerEventContext,
+                &OffsetCoordinatesSmallMessage,
+                &String,
+                &String,
+                &i32,
+                &i16,
+            ) + Send
+            + 'static,
+    ) -> BlueprintPlaceCallbackId;
     /// Cancel a callback previously registered by [`Self::on_blueprint_place`],
     /// causing it not to run in the future.
     fn remove_on_blueprint_place(&self, callback: BlueprintPlaceCallbackId);
 }
 
 impl blueprint_place for super::RemoteReducers {
-    fn blueprint_place(&self, center: OffsetCoordinatesSmallMessage,
-blueprint_json: String,
-settings_json: String,
-rotation: i32,
-elevation_offset: i16,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("blueprint_place", BlueprintPlaceArgs { center, blueprint_json, settings_json, rotation, elevation_offset,  })
+    fn blueprint_place(
+        &self,
+        center: OffsetCoordinatesSmallMessage,
+        blueprint_json: String,
+        settings_json: String,
+        rotation: i32,
+        elevation_offset: i16,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "blueprint_place",
+            BlueprintPlaceArgs {
+                center,
+                blueprint_json,
+                settings_json,
+                rotation,
+                elevation_offset,
+            },
+        )
     }
     fn on_blueprint_place(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &OffsetCoordinatesSmallMessage, &String, &String, &i32, &i16, ) + Send + 'static,
+        mut callback: impl FnMut(
+                &super::ReducerEventContext,
+                &OffsetCoordinatesSmallMessage,
+                &String,
+                &String,
+                &i32,
+                &i16,
+            ) + Send
+            + 'static,
     ) -> BlueprintPlaceCallbackId {
         BlueprintPlaceCallbackId(self.imp.on_reducer(
             "blueprint_place",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::BlueprintPlace {
-                            center, blueprint_json, settings_json, rotation, elevation_offset, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer:
+                                super::Reducer::BlueprintPlace {
+                                    center,
+                                    blueprint_json,
+                                    settings_json,
+                                    rotation,
+                                    elevation_offset,
+                                },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, center, blueprint_json, settings_json, rotation, elevation_offset, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(
+                    ctx,
+                    center,
+                    blueprint_json,
+                    settings_json,
+                    rotation,
+                    elevation_offset,
+                )
             }),
         ))
     }
@@ -122,4 +165,3 @@ impl set_flags_for_blueprint_place for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("blueprint_place", flags);
     }
 }
-

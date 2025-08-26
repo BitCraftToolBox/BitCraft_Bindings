@@ -3,13 +3,8 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::starving_loop_timer_type::StarvingLoopTimer;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `starving_loop_timer`.
 ///
@@ -37,7 +32,9 @@ pub trait StarvingLoopTimerTableAccess {
 impl StarvingLoopTimerTableAccess for super::RemoteTables {
     fn starving_loop_timer(&self) -> StarvingLoopTimerTableHandle<'_> {
         StarvingLoopTimerTableHandle {
-            imp: self.imp.get_table::<StarvingLoopTimer>("starving_loop_timer"),
+            imp: self
+                .imp
+                .get_table::<StarvingLoopTimer>("starving_loop_timer"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -50,8 +47,12 @@ impl<'ctx> __sdk::Table for StarvingLoopTimerTableHandle<'ctx> {
     type Row = StarvingLoopTimer;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = StarvingLoopTimer> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = StarvingLoopTimer> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = StarvingLoopTimerInsertCallbackId;
 
@@ -82,8 +83,7 @@ impl<'ctx> __sdk::Table for StarvingLoopTimerTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<StarvingLoopTimer>("starving_loop_timer");
+    let _table = client_cache.get_or_make_table::<StarvingLoopTimer>("starving_loop_timer");
     _table.add_unique_constraint::<u64>("scheduled_id", |row| &row.scheduled_id);
 }
 pub struct StarvingLoopTimerUpdateCallbackId(__sdk::CallbackId);
@@ -103,46 +103,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for StarvingLoopTimerTableHandle<'ctx> {
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<StarvingLoopTimer>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<StarvingLoopTimer>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<StarvingLoopTimer>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `scheduled_id` unique index on the table `starving_loop_timer`,
-        /// which allows point queries on the field of the same name
-        /// via the [`StarvingLoopTimerScheduledIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.starving_loop_timer().scheduled_id().find(...)`.
-        pub struct StarvingLoopTimerScheduledIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<StarvingLoopTimer, u64>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `scheduled_id` unique index on the table `starving_loop_timer`,
+/// which allows point queries on the field of the same name
+/// via the [`StarvingLoopTimerScheduledIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.starving_loop_timer().scheduled_id().find(...)`.
+pub struct StarvingLoopTimerScheduledIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<StarvingLoopTimer, u64>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> StarvingLoopTimerTableHandle<'ctx> {
-            /// Get a handle on the `scheduled_id` unique index on the table `starving_loop_timer`.
-            pub fn scheduled_id(&self) -> StarvingLoopTimerScheduledIdUnique<'ctx> {
-                StarvingLoopTimerScheduledIdUnique {
-                    imp: self.imp.get_unique_constraint::<u64>("scheduled_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> StarvingLoopTimerTableHandle<'ctx> {
+    /// Get a handle on the `scheduled_id` unique index on the table `starving_loop_timer`.
+    pub fn scheduled_id(&self) -> StarvingLoopTimerScheduledIdUnique<'ctx> {
+        StarvingLoopTimerScheduledIdUnique {
+            imp: self.imp.get_unique_constraint::<u64>("scheduled_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> StarvingLoopTimerScheduledIdUnique<'ctx> {
-            /// Find the subscribed row whose `scheduled_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u64) -> Option<StarvingLoopTimer> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> StarvingLoopTimerScheduledIdUnique<'ctx> {
+    /// Find the subscribed row whose `scheduled_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u64) -> Option<StarvingLoopTimer> {
+        self.imp.find(col_val)
+    }
+}

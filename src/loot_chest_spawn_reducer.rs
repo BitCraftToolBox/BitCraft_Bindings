@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::loot_chest_spawn_timer_type::LootChestSpawnTimer;
 
@@ -20,10 +15,8 @@ pub(super) struct LootChestSpawnArgs {
 
 impl From<LootChestSpawnArgs> for super::Reducer {
     fn from(args: LootChestSpawnArgs) -> Self {
-        Self::LootChestSpawn {
-            timer: args.timer,
-}
-}
+        Self::LootChestSpawn { timer: args.timer }
+    }
 }
 
 impl __sdk::InModule for LootChestSpawnArgs {
@@ -42,8 +35,7 @@ pub trait loot_chest_spawn {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_loot_chest_spawn`] callbacks.
-    fn loot_chest_spawn(&self, timer: LootChestSpawnTimer,
-) -> __sdk::Result<()>;
+    fn loot_chest_spawn(&self, timer: LootChestSpawnTimer) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `loot_chest_spawn`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +43,39 @@ pub trait loot_chest_spawn {
     ///
     /// The returned [`LootChestSpawnCallbackId`] can be passed to [`Self::remove_on_loot_chest_spawn`]
     /// to cancel the callback.
-    fn on_loot_chest_spawn(&self, callback: impl FnMut(&super::ReducerEventContext, &LootChestSpawnTimer, ) + Send + 'static) -> LootChestSpawnCallbackId;
+    fn on_loot_chest_spawn(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &LootChestSpawnTimer) + Send + 'static,
+    ) -> LootChestSpawnCallbackId;
     /// Cancel a callback previously registered by [`Self::on_loot_chest_spawn`],
     /// causing it not to run in the future.
     fn remove_on_loot_chest_spawn(&self, callback: LootChestSpawnCallbackId);
 }
 
 impl loot_chest_spawn for super::RemoteReducers {
-    fn loot_chest_spawn(&self, timer: LootChestSpawnTimer,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("loot_chest_spawn", LootChestSpawnArgs { timer,  })
+    fn loot_chest_spawn(&self, timer: LootChestSpawnTimer) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("loot_chest_spawn", LootChestSpawnArgs { timer })
     }
     fn on_loot_chest_spawn(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &LootChestSpawnTimer, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &LootChestSpawnTimer) + Send + 'static,
     ) -> LootChestSpawnCallbackId {
         LootChestSpawnCallbackId(self.imp.on_reducer(
             "loot_chest_spawn",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::LootChestSpawn {
-                            timer, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::LootChestSpawn { timer },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, timer, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, timer)
             }),
         ))
     }
@@ -106,4 +103,3 @@ impl set_flags_for_loot_chest_spawn for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("loot_chest_spawn", flags);
     }
 }
-

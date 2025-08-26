@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::report_player_message_type::ReportPlayerMessage;
 
@@ -22,8 +17,8 @@ impl From<ReportPlayerArgs> for super::Reducer {
     fn from(args: ReportPlayerArgs) -> Self {
         Self::ReportPlayer {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ReportPlayerArgs {
@@ -42,8 +37,7 @@ pub trait report_player {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_report_player`] callbacks.
-    fn report_player(&self, request: ReportPlayerMessage,
-) -> __sdk::Result<()>;
+    fn report_player(&self, request: ReportPlayerMessage) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `report_player`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,39 @@ pub trait report_player {
     ///
     /// The returned [`ReportPlayerCallbackId`] can be passed to [`Self::remove_on_report_player`]
     /// to cancel the callback.
-    fn on_report_player(&self, callback: impl FnMut(&super::ReducerEventContext, &ReportPlayerMessage, ) + Send + 'static) -> ReportPlayerCallbackId;
+    fn on_report_player(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &ReportPlayerMessage) + Send + 'static,
+    ) -> ReportPlayerCallbackId;
     /// Cancel a callback previously registered by [`Self::on_report_player`],
     /// causing it not to run in the future.
     fn remove_on_report_player(&self, callback: ReportPlayerCallbackId);
 }
 
 impl report_player for super::RemoteReducers {
-    fn report_player(&self, request: ReportPlayerMessage,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("report_player", ReportPlayerArgs { request,  })
+    fn report_player(&self, request: ReportPlayerMessage) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("report_player", ReportPlayerArgs { request })
     }
     fn on_report_player(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &ReportPlayerMessage, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &ReportPlayerMessage) + Send + 'static,
     ) -> ReportPlayerCallbackId {
         ReportPlayerCallbackId(self.imp.on_reducer(
             "report_player",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ReportPlayer {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ReportPlayer { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
@@ -106,4 +105,3 @@ impl set_flags_for_report_player for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("report_player", flags);
     }
 }
-

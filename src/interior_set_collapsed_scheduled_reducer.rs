@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::interior_set_collapsed_timer_type::InteriorSetCollapsedTimer;
 
@@ -20,10 +15,8 @@ pub(super) struct InteriorSetCollapsedScheduledArgs {
 
 impl From<InteriorSetCollapsedScheduledArgs> for super::Reducer {
     fn from(args: InteriorSetCollapsedScheduledArgs) -> Self {
-        Self::InteriorSetCollapsedScheduled {
-            timer: args.timer,
-}
-}
+        Self::InteriorSetCollapsedScheduled { timer: args.timer }
+    }
 }
 
 impl __sdk::InModule for InteriorSetCollapsedScheduledArgs {
@@ -42,8 +35,10 @@ pub trait interior_set_collapsed_scheduled {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_interior_set_collapsed_scheduled`] callbacks.
-    fn interior_set_collapsed_scheduled(&self, timer: InteriorSetCollapsedTimer,
-) -> __sdk::Result<()>;
+    fn interior_set_collapsed_scheduled(
+        &self,
+        timer: InteriorSetCollapsedTimer,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `interior_set_collapsed_scheduled`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +46,58 @@ pub trait interior_set_collapsed_scheduled {
     ///
     /// The returned [`InteriorSetCollapsedScheduledCallbackId`] can be passed to [`Self::remove_on_interior_set_collapsed_scheduled`]
     /// to cancel the callback.
-    fn on_interior_set_collapsed_scheduled(&self, callback: impl FnMut(&super::ReducerEventContext, &InteriorSetCollapsedTimer, ) + Send + 'static) -> InteriorSetCollapsedScheduledCallbackId;
+    fn on_interior_set_collapsed_scheduled(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &InteriorSetCollapsedTimer) + Send + 'static,
+    ) -> InteriorSetCollapsedScheduledCallbackId;
     /// Cancel a callback previously registered by [`Self::on_interior_set_collapsed_scheduled`],
     /// causing it not to run in the future.
-    fn remove_on_interior_set_collapsed_scheduled(&self, callback: InteriorSetCollapsedScheduledCallbackId);
+    fn remove_on_interior_set_collapsed_scheduled(
+        &self,
+        callback: InteriorSetCollapsedScheduledCallbackId,
+    );
 }
 
 impl interior_set_collapsed_scheduled for super::RemoteReducers {
-    fn interior_set_collapsed_scheduled(&self, timer: InteriorSetCollapsedTimer,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("interior_set_collapsed_scheduled", InteriorSetCollapsedScheduledArgs { timer,  })
+    fn interior_set_collapsed_scheduled(
+        &self,
+        timer: InteriorSetCollapsedTimer,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "interior_set_collapsed_scheduled",
+            InteriorSetCollapsedScheduledArgs { timer },
+        )
     }
     fn on_interior_set_collapsed_scheduled(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &InteriorSetCollapsedTimer, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &InteriorSetCollapsedTimer)
+            + Send
+            + 'static,
     ) -> InteriorSetCollapsedScheduledCallbackId {
         InteriorSetCollapsedScheduledCallbackId(self.imp.on_reducer(
             "interior_set_collapsed_scheduled",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::InteriorSetCollapsedScheduled {
-                            timer, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::InteriorSetCollapsedScheduled { timer },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, timer, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, timer)
             }),
         ))
     }
-    fn remove_on_interior_set_collapsed_scheduled(&self, callback: InteriorSetCollapsedScheduledCallbackId) {
-        self.imp.remove_on_reducer("interior_set_collapsed_scheduled", callback.0)
+    fn remove_on_interior_set_collapsed_scheduled(
+        &self,
+        callback: InteriorSetCollapsedScheduledCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("interior_set_collapsed_scheduled", callback.0)
     }
 }
 
@@ -103,7 +117,7 @@ pub trait set_flags_for_interior_set_collapsed_scheduled {
 
 impl set_flags_for_interior_set_collapsed_scheduled for super::SetReducerFlags {
     fn interior_set_collapsed_scheduled(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("interior_set_collapsed_scheduled", flags);
+        self.imp
+            .set_call_reducer_flags("interior_set_collapsed_scheduled", flags);
     }
 }
-

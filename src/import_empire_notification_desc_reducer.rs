@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::empire_notification_desc_type::EmpireNotificationDesc;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct ImportEmpireNotificationDescArgs {
-    pub records: Vec::<EmpireNotificationDesc>,
+    pub records: Vec<EmpireNotificationDesc>,
 }
 
 impl From<ImportEmpireNotificationDescArgs> for super::Reducer {
     fn from(args: ImportEmpireNotificationDescArgs) -> Self {
         Self::ImportEmpireNotificationDesc {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ImportEmpireNotificationDescArgs {
@@ -42,8 +37,10 @@ pub trait import_empire_notification_desc {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_import_empire_notification_desc`] callbacks.
-    fn import_empire_notification_desc(&self, records: Vec::<EmpireNotificationDesc>,
-) -> __sdk::Result<()>;
+    fn import_empire_notification_desc(
+        &self,
+        records: Vec<EmpireNotificationDesc>,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `import_empire_notification_desc`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +48,58 @@ pub trait import_empire_notification_desc {
     ///
     /// The returned [`ImportEmpireNotificationDescCallbackId`] can be passed to [`Self::remove_on_import_empire_notification_desc`]
     /// to cancel the callback.
-    fn on_import_empire_notification_desc(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<EmpireNotificationDesc>, ) + Send + 'static) -> ImportEmpireNotificationDescCallbackId;
+    fn on_import_empire_notification_desc(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<EmpireNotificationDesc>) + Send + 'static,
+    ) -> ImportEmpireNotificationDescCallbackId;
     /// Cancel a callback previously registered by [`Self::on_import_empire_notification_desc`],
     /// causing it not to run in the future.
-    fn remove_on_import_empire_notification_desc(&self, callback: ImportEmpireNotificationDescCallbackId);
+    fn remove_on_import_empire_notification_desc(
+        &self,
+        callback: ImportEmpireNotificationDescCallbackId,
+    );
 }
 
 impl import_empire_notification_desc for super::RemoteReducers {
-    fn import_empire_notification_desc(&self, records: Vec::<EmpireNotificationDesc>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("import_empire_notification_desc", ImportEmpireNotificationDescArgs { records,  })
+    fn import_empire_notification_desc(
+        &self,
+        records: Vec<EmpireNotificationDesc>,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "import_empire_notification_desc",
+            ImportEmpireNotificationDescArgs { records },
+        )
     }
     fn on_import_empire_notification_desc(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<EmpireNotificationDesc>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<EmpireNotificationDesc>)
+            + Send
+            + 'static,
     ) -> ImportEmpireNotificationDescCallbackId {
         ImportEmpireNotificationDescCallbackId(self.imp.on_reducer(
             "import_empire_notification_desc",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ImportEmpireNotificationDesc {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ImportEmpireNotificationDesc { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
-    fn remove_on_import_empire_notification_desc(&self, callback: ImportEmpireNotificationDescCallbackId) {
-        self.imp.remove_on_reducer("import_empire_notification_desc", callback.0)
+    fn remove_on_import_empire_notification_desc(
+        &self,
+        callback: ImportEmpireNotificationDescCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("import_empire_notification_desc", callback.0)
     }
 }
 
@@ -103,7 +119,7 @@ pub trait set_flags_for_import_empire_notification_desc {
 
 impl set_flags_for_import_empire_notification_desc for super::SetReducerFlags {
     fn import_empire_notification_desc(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("import_empire_notification_desc", flags);
+        self.imp
+            .set_call_reducer_flags("import_empire_notification_desc", flags);
     }
 }
-

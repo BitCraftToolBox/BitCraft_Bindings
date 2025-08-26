@@ -3,13 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -25,8 +19,8 @@ impl From<AdminResourceForceRegenArgs> for super::Reducer {
             resource_id: args.resource_id,
             iterations: args.iterations,
             ignore_target_count: args.ignore_target_count,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for AdminResourceForceRegenArgs {
@@ -45,10 +39,12 @@ pub trait admin_resource_force_regen {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_admin_resource_force_regen`] callbacks.
-    fn admin_resource_force_regen(&self, resource_id: i32,
-iterations: i32,
-ignore_target_count: bool,
-) -> __sdk::Result<()>;
+    fn admin_resource_force_regen(
+        &self,
+        resource_id: i32,
+        iterations: i32,
+        ignore_target_count: bool,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `admin_resource_force_regen`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -56,41 +52,61 @@ ignore_target_count: bool,
     ///
     /// The returned [`AdminResourceForceRegenCallbackId`] can be passed to [`Self::remove_on_admin_resource_force_regen`]
     /// to cancel the callback.
-    fn on_admin_resource_force_regen(&self, callback: impl FnMut(&super::ReducerEventContext, &i32, &i32, &bool, ) + Send + 'static) -> AdminResourceForceRegenCallbackId;
+    fn on_admin_resource_force_regen(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &i32, &i32, &bool) + Send + 'static,
+    ) -> AdminResourceForceRegenCallbackId;
     /// Cancel a callback previously registered by [`Self::on_admin_resource_force_regen`],
     /// causing it not to run in the future.
     fn remove_on_admin_resource_force_regen(&self, callback: AdminResourceForceRegenCallbackId);
 }
 
 impl admin_resource_force_regen for super::RemoteReducers {
-    fn admin_resource_force_regen(&self, resource_id: i32,
-iterations: i32,
-ignore_target_count: bool,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("admin_resource_force_regen", AdminResourceForceRegenArgs { resource_id, iterations, ignore_target_count,  })
+    fn admin_resource_force_regen(
+        &self,
+        resource_id: i32,
+        iterations: i32,
+        ignore_target_count: bool,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "admin_resource_force_regen",
+            AdminResourceForceRegenArgs {
+                resource_id,
+                iterations,
+                ignore_target_count,
+            },
+        )
     }
     fn on_admin_resource_force_regen(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &i32, &i32, &bool, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &i32, &i32, &bool) + Send + 'static,
     ) -> AdminResourceForceRegenCallbackId {
         AdminResourceForceRegenCallbackId(self.imp.on_reducer(
             "admin_resource_force_regen",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::AdminResourceForceRegen {
-                            resource_id, iterations, ignore_target_count, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer:
+                                super::Reducer::AdminResourceForceRegen {
+                                    resource_id,
+                                    iterations,
+                                    ignore_target_count,
+                                },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, resource_id, iterations, ignore_target_count, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, resource_id, iterations, ignore_target_count)
             }),
         ))
     }
     fn remove_on_admin_resource_force_regen(&self, callback: AdminResourceForceRegenCallbackId) {
-        self.imp.remove_on_reducer("admin_resource_force_regen", callback.0)
+        self.imp
+            .remove_on_reducer("admin_resource_force_regen", callback.0)
     }
 }
 
@@ -110,7 +126,7 @@ pub trait set_flags_for_admin_resource_force_regen {
 
 impl set_flags_for_admin_resource_force_regen for super::SetReducerFlags {
     fn admin_resource_force_regen(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("admin_resource_force_regen", flags);
+        self.imp
+            .set_call_reducer_flags("admin_resource_force_regen", flags);
     }
 }
-

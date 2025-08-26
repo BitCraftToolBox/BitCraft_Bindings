@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::region_population_info_type::RegionPopulationInfo;
 
@@ -18,12 +13,8 @@ pub enum RegionPopulationInfoOp {
     Insert(RegionPopulationInfo),
 
     Delete(RegionPopulationInfo),
-
 }
-
-
 
 impl __sdk::InModule for RegionPopulationInfoOp {
     type Module = super::RemoteModule;
 }
-

@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_region_transfer_event_type::PlayerRegionTransferEvent;
 
@@ -20,10 +15,8 @@ pub(super) struct PlayerRegionTransferEventReducerArgs {
 
 impl From<PlayerRegionTransferEventReducerArgs> for super::Reducer {
     fn from(args: PlayerRegionTransferEventReducerArgs) -> Self {
-        Self::PlayerRegionTransferEventReducer {
-            timer: args.timer,
-}
-}
+        Self::PlayerRegionTransferEventReducer { timer: args.timer }
+    }
 }
 
 impl __sdk::InModule for PlayerRegionTransferEventReducerArgs {
@@ -42,8 +35,10 @@ pub trait player_region_transfer_event_reducer {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_player_region_transfer_event_reducer`] callbacks.
-    fn player_region_transfer_event_reducer(&self, timer: PlayerRegionTransferEvent,
-) -> __sdk::Result<()>;
+    fn player_region_transfer_event_reducer(
+        &self,
+        timer: PlayerRegionTransferEvent,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `player_region_transfer_event_reducer`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +46,58 @@ pub trait player_region_transfer_event_reducer {
     ///
     /// The returned [`PlayerRegionTransferEventReducerCallbackId`] can be passed to [`Self::remove_on_player_region_transfer_event_reducer`]
     /// to cancel the callback.
-    fn on_player_region_transfer_event_reducer(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerRegionTransferEvent, ) + Send + 'static) -> PlayerRegionTransferEventReducerCallbackId;
+    fn on_player_region_transfer_event_reducer(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerRegionTransferEvent) + Send + 'static,
+    ) -> PlayerRegionTransferEventReducerCallbackId;
     /// Cancel a callback previously registered by [`Self::on_player_region_transfer_event_reducer`],
     /// causing it not to run in the future.
-    fn remove_on_player_region_transfer_event_reducer(&self, callback: PlayerRegionTransferEventReducerCallbackId);
+    fn remove_on_player_region_transfer_event_reducer(
+        &self,
+        callback: PlayerRegionTransferEventReducerCallbackId,
+    );
 }
 
 impl player_region_transfer_event_reducer for super::RemoteReducers {
-    fn player_region_transfer_event_reducer(&self, timer: PlayerRegionTransferEvent,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("player_region_transfer_event_reducer", PlayerRegionTransferEventReducerArgs { timer,  })
+    fn player_region_transfer_event_reducer(
+        &self,
+        timer: PlayerRegionTransferEvent,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "player_region_transfer_event_reducer",
+            PlayerRegionTransferEventReducerArgs { timer },
+        )
     }
     fn on_player_region_transfer_event_reducer(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerRegionTransferEvent, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerRegionTransferEvent)
+            + Send
+            + 'static,
     ) -> PlayerRegionTransferEventReducerCallbackId {
         PlayerRegionTransferEventReducerCallbackId(self.imp.on_reducer(
             "player_region_transfer_event_reducer",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::PlayerRegionTransferEventReducer {
-                            timer, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::PlayerRegionTransferEventReducer { timer },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, timer, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, timer)
             }),
         ))
     }
-    fn remove_on_player_region_transfer_event_reducer(&self, callback: PlayerRegionTransferEventReducerCallbackId) {
-        self.imp.remove_on_reducer("player_region_transfer_event_reducer", callback.0)
+    fn remove_on_player_region_transfer_event_reducer(
+        &self,
+        callback: PlayerRegionTransferEventReducerCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("player_region_transfer_event_reducer", callback.0)
     }
 }
 
@@ -103,7 +117,7 @@ pub trait set_flags_for_player_region_transfer_event_reducer {
 
 impl set_flags_for_player_region_transfer_event_reducer for super::SetReducerFlags {
     fn player_region_transfer_event_reducer(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("player_region_transfer_event_reducer", flags);
+        self.imp
+            .set_call_reducer_flags("player_region_transfer_event_reducer", flags);
     }
 }
-

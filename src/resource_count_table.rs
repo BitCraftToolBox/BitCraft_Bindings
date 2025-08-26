@@ -3,13 +3,8 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::resource_count_type::ResourceCount;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `resource_count`.
 ///
@@ -50,8 +45,12 @@ impl<'ctx> __sdk::Table for ResourceCountTableHandle<'ctx> {
     type Row = ResourceCount;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = ResourceCount> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = ResourceCount> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = ResourceCountInsertCallbackId;
 
@@ -82,8 +81,7 @@ impl<'ctx> __sdk::Table for ResourceCountTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<ResourceCount>("resource_count");
+    let _table = client_cache.get_or_make_table::<ResourceCount>("resource_count");
     _table.add_unique_constraint::<i32>("resource_id", |row| &row.resource_id);
 }
 pub struct ResourceCountUpdateCallbackId(__sdk::CallbackId);
@@ -103,46 +101,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for ResourceCountTableHandle<'ctx> {
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<ResourceCount>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<ResourceCount>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<ResourceCount>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `resource_id` unique index on the table `resource_count`,
-        /// which allows point queries on the field of the same name
-        /// via the [`ResourceCountResourceIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.resource_count().resource_id().find(...)`.
-        pub struct ResourceCountResourceIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<ResourceCount, i32>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `resource_id` unique index on the table `resource_count`,
+/// which allows point queries on the field of the same name
+/// via the [`ResourceCountResourceIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.resource_count().resource_id().find(...)`.
+pub struct ResourceCountResourceIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<ResourceCount, i32>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> ResourceCountTableHandle<'ctx> {
-            /// Get a handle on the `resource_id` unique index on the table `resource_count`.
-            pub fn resource_id(&self) -> ResourceCountResourceIdUnique<'ctx> {
-                ResourceCountResourceIdUnique {
-                    imp: self.imp.get_unique_constraint::<i32>("resource_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> ResourceCountTableHandle<'ctx> {
+    /// Get a handle on the `resource_id` unique index on the table `resource_count`.
+    pub fn resource_id(&self) -> ResourceCountResourceIdUnique<'ctx> {
+        ResourceCountResourceIdUnique {
+            imp: self.imp.get_unique_constraint::<i32>("resource_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> ResourceCountResourceIdUnique<'ctx> {
-            /// Find the subscribed row whose `resource_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &i32) -> Option<ResourceCount> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> ResourceCountResourceIdUnique<'ctx> {
+    /// Find the subscribed row whose `resource_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &i32) -> Option<ResourceCount> {
+        self.imp.find(col_val)
+    }
+}

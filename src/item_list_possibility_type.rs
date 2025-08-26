@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::item_stack_type::ItemStack;
 
@@ -16,11 +11,9 @@ use super::item_stack_type::ItemStack;
 #[sats(crate = __lib)]
 pub struct ItemListPossibility {
     pub probability: f32,
-    pub items: Vec::<ItemStack>,
+    pub items: Vec<ItemStack>,
 }
-
 
 impl __sdk::InModule for ItemListPossibility {
     type Module = super::RemoteModule;
 }
-

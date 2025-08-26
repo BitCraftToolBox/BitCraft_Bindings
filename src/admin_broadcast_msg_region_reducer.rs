@@ -3,13 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -23,8 +17,8 @@ impl From<AdminBroadcastMsgRegionArgs> for super::Reducer {
         Self::AdminBroadcastMsgRegion {
             title: args.title,
             message: args.message,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for AdminBroadcastMsgRegionArgs {
@@ -43,9 +37,7 @@ pub trait admin_broadcast_msg_region {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_admin_broadcast_msg_region`] callbacks.
-    fn admin_broadcast_msg_region(&self, title: String,
-message: String,
-) -> __sdk::Result<()>;
+    fn admin_broadcast_msg_region(&self, title: String, message: String) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `admin_broadcast_msg_region`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -53,40 +45,47 @@ message: String,
     ///
     /// The returned [`AdminBroadcastMsgRegionCallbackId`] can be passed to [`Self::remove_on_admin_broadcast_msg_region`]
     /// to cancel the callback.
-    fn on_admin_broadcast_msg_region(&self, callback: impl FnMut(&super::ReducerEventContext, &String, &String, ) + Send + 'static) -> AdminBroadcastMsgRegionCallbackId;
+    fn on_admin_broadcast_msg_region(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &String, &String) + Send + 'static,
+    ) -> AdminBroadcastMsgRegionCallbackId;
     /// Cancel a callback previously registered by [`Self::on_admin_broadcast_msg_region`],
     /// causing it not to run in the future.
     fn remove_on_admin_broadcast_msg_region(&self, callback: AdminBroadcastMsgRegionCallbackId);
 }
 
 impl admin_broadcast_msg_region for super::RemoteReducers {
-    fn admin_broadcast_msg_region(&self, title: String,
-message: String,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("admin_broadcast_msg_region", AdminBroadcastMsgRegionArgs { title, message,  })
+    fn admin_broadcast_msg_region(&self, title: String, message: String) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "admin_broadcast_msg_region",
+            AdminBroadcastMsgRegionArgs { title, message },
+        )
     }
     fn on_admin_broadcast_msg_region(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &String, &String, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &String, &String) + Send + 'static,
     ) -> AdminBroadcastMsgRegionCallbackId {
         AdminBroadcastMsgRegionCallbackId(self.imp.on_reducer(
             "admin_broadcast_msg_region",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::AdminBroadcastMsgRegion {
-                            title, message, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::AdminBroadcastMsgRegion { title, message },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, title, message, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, title, message)
             }),
         ))
     }
     fn remove_on_admin_broadcast_msg_region(&self, callback: AdminBroadcastMsgRegionCallbackId) {
-        self.imp.remove_on_reducer("admin_broadcast_msg_region", callback.0)
+        self.imp
+            .remove_on_reducer("admin_broadcast_msg_region", callback.0)
     }
 }
 
@@ -106,7 +105,7 @@ pub trait set_flags_for_admin_broadcast_msg_region {
 
 impl set_flags_for_admin_broadcast_msg_region for super::SetReducerFlags {
     fn admin_broadcast_msg_region(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("admin_broadcast_msg_region", flags);
+        self.imp
+            .set_call_reducer_flags("admin_broadcast_msg_region", flags);
     }
 }
-

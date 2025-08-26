@@ -3,23 +3,16 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
-pub(super) struct PlayerRegionCrossoverArgs {
-    }
+pub(super) struct PlayerRegionCrossoverArgs {}
 
 impl From<PlayerRegionCrossoverArgs> for super::Reducer {
     fn from(args: PlayerRegionCrossoverArgs) -> Self {
         Self::PlayerRegionCrossover
-}
+    }
 }
 
 impl __sdk::InModule for PlayerRegionCrossoverArgs {
@@ -38,7 +31,7 @@ pub trait player_region_crossover {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_player_region_crossover`] callbacks.
-    fn player_region_crossover(&self, ) -> __sdk::Result<()>;
+    fn player_region_crossover(&self) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `player_region_crossover`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -46,38 +39,45 @@ pub trait player_region_crossover {
     ///
     /// The returned [`PlayerRegionCrossoverCallbackId`] can be passed to [`Self::remove_on_player_region_crossover`]
     /// to cancel the callback.
-    fn on_player_region_crossover(&self, callback: impl FnMut(&super::ReducerEventContext, ) + Send + 'static) -> PlayerRegionCrossoverCallbackId;
+    fn on_player_region_crossover(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext) + Send + 'static,
+    ) -> PlayerRegionCrossoverCallbackId;
     /// Cancel a callback previously registered by [`Self::on_player_region_crossover`],
     /// causing it not to run in the future.
     fn remove_on_player_region_crossover(&self, callback: PlayerRegionCrossoverCallbackId);
 }
 
 impl player_region_crossover for super::RemoteReducers {
-    fn player_region_crossover(&self, ) -> __sdk::Result<()> {
-        self.imp.call_reducer("player_region_crossover", PlayerRegionCrossoverArgs {  })
+    fn player_region_crossover(&self) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("player_region_crossover", PlayerRegionCrossoverArgs {})
     }
     fn on_player_region_crossover(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext) + Send + 'static,
     ) -> PlayerRegionCrossoverCallbackId {
         PlayerRegionCrossoverCallbackId(self.imp.on_reducer(
             "player_region_crossover",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::PlayerRegionCrossover {
-                            
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::PlayerRegionCrossover {},
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx)
             }),
         ))
     }
     fn remove_on_player_region_crossover(&self, callback: PlayerRegionCrossoverCallbackId) {
-        self.imp.remove_on_reducer("player_region_crossover", callback.0)
+        self.imp
+            .remove_on_reducer("player_region_crossover", callback.0)
     }
 }
 
@@ -97,7 +97,7 @@ pub trait set_flags_for_player_region_crossover {
 
 impl set_flags_for_player_region_crossover for super::SetReducerFlags {
     fn player_region_crossover(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("player_region_crossover", flags);
+        self.imp
+            .set_call_reducer_flags("player_region_crossover", flags);
     }
 }
-

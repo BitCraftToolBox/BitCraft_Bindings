@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_project_site_add_materials_request_type::PlayerProjectSiteAddMaterialsRequest;
 
@@ -22,8 +17,8 @@ impl From<ProjectSiteAddMaterialsArgs> for super::Reducer {
     fn from(args: ProjectSiteAddMaterialsArgs) -> Self {
         Self::ProjectSiteAddMaterials {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ProjectSiteAddMaterialsArgs {
@@ -42,8 +37,10 @@ pub trait project_site_add_materials {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_project_site_add_materials`] callbacks.
-    fn project_site_add_materials(&self, request: PlayerProjectSiteAddMaterialsRequest,
-) -> __sdk::Result<()>;
+    fn project_site_add_materials(
+        &self,
+        request: PlayerProjectSiteAddMaterialsRequest,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `project_site_add_materials`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +48,54 @@ pub trait project_site_add_materials {
     ///
     /// The returned [`ProjectSiteAddMaterialsCallbackId`] can be passed to [`Self::remove_on_project_site_add_materials`]
     /// to cancel the callback.
-    fn on_project_site_add_materials(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerProjectSiteAddMaterialsRequest, ) + Send + 'static) -> ProjectSiteAddMaterialsCallbackId;
+    fn on_project_site_add_materials(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerProjectSiteAddMaterialsRequest)
+            + Send
+            + 'static,
+    ) -> ProjectSiteAddMaterialsCallbackId;
     /// Cancel a callback previously registered by [`Self::on_project_site_add_materials`],
     /// causing it not to run in the future.
     fn remove_on_project_site_add_materials(&self, callback: ProjectSiteAddMaterialsCallbackId);
 }
 
 impl project_site_add_materials for super::RemoteReducers {
-    fn project_site_add_materials(&self, request: PlayerProjectSiteAddMaterialsRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("project_site_add_materials", ProjectSiteAddMaterialsArgs { request,  })
+    fn project_site_add_materials(
+        &self,
+        request: PlayerProjectSiteAddMaterialsRequest,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "project_site_add_materials",
+            ProjectSiteAddMaterialsArgs { request },
+        )
     }
     fn on_project_site_add_materials(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerProjectSiteAddMaterialsRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerProjectSiteAddMaterialsRequest)
+            + Send
+            + 'static,
     ) -> ProjectSiteAddMaterialsCallbackId {
         ProjectSiteAddMaterialsCallbackId(self.imp.on_reducer(
             "project_site_add_materials",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ProjectSiteAddMaterials {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ProjectSiteAddMaterials { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
     fn remove_on_project_site_add_materials(&self, callback: ProjectSiteAddMaterialsCallbackId) {
-        self.imp.remove_on_reducer("project_site_add_materials", callback.0)
+        self.imp
+            .remove_on_reducer("project_site_add_materials", callback.0)
     }
 }
 
@@ -103,7 +115,7 @@ pub trait set_flags_for_project_site_add_materials {
 
 impl set_flags_for_project_site_add_materials for super::SetReducerFlags {
     fn project_site_add_materials(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("project_site_add_materials", flags);
+        self.imp
+            .set_call_reducer_flags("project_site_add_materials", flags);
     }
 }
-

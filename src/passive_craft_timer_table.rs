@@ -3,13 +3,8 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::passive_craft_timer_type::PassiveCraftTimer;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `passive_craft_timer`.
 ///
@@ -37,7 +32,9 @@ pub trait PassiveCraftTimerTableAccess {
 impl PassiveCraftTimerTableAccess for super::RemoteTables {
     fn passive_craft_timer(&self) -> PassiveCraftTimerTableHandle<'_> {
         PassiveCraftTimerTableHandle {
-            imp: self.imp.get_table::<PassiveCraftTimer>("passive_craft_timer"),
+            imp: self
+                .imp
+                .get_table::<PassiveCraftTimer>("passive_craft_timer"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -50,8 +47,12 @@ impl<'ctx> __sdk::Table for PassiveCraftTimerTableHandle<'ctx> {
     type Row = PassiveCraftTimer;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = PassiveCraftTimer> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = PassiveCraftTimer> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = PassiveCraftTimerInsertCallbackId;
 
@@ -82,8 +83,7 @@ impl<'ctx> __sdk::Table for PassiveCraftTimerTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<PassiveCraftTimer>("passive_craft_timer");
+    let _table = client_cache.get_or_make_table::<PassiveCraftTimer>("passive_craft_timer");
     _table.add_unique_constraint::<u64>("scheduled_id", |row| &row.scheduled_id);
     _table.add_unique_constraint::<u64>("craft_entity_id", |row| &row.craft_entity_id);
 }
@@ -104,76 +104,73 @@ impl<'ctx> __sdk::TableWithPrimaryKey for PassiveCraftTimerTableHandle<'ctx> {
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<PassiveCraftTimer>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<PassiveCraftTimer>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<PassiveCraftTimer>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `scheduled_id` unique index on the table `passive_craft_timer`,
-        /// which allows point queries on the field of the same name
-        /// via the [`PassiveCraftTimerScheduledIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.passive_craft_timer().scheduled_id().find(...)`.
-        pub struct PassiveCraftTimerScheduledIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<PassiveCraftTimer, u64>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `scheduled_id` unique index on the table `passive_craft_timer`,
+/// which allows point queries on the field of the same name
+/// via the [`PassiveCraftTimerScheduledIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.passive_craft_timer().scheduled_id().find(...)`.
+pub struct PassiveCraftTimerScheduledIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<PassiveCraftTimer, u64>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> PassiveCraftTimerTableHandle<'ctx> {
-            /// Get a handle on the `scheduled_id` unique index on the table `passive_craft_timer`.
-            pub fn scheduled_id(&self) -> PassiveCraftTimerScheduledIdUnique<'ctx> {
-                PassiveCraftTimerScheduledIdUnique {
-                    imp: self.imp.get_unique_constraint::<u64>("scheduled_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> PassiveCraftTimerTableHandle<'ctx> {
+    /// Get a handle on the `scheduled_id` unique index on the table `passive_craft_timer`.
+    pub fn scheduled_id(&self) -> PassiveCraftTimerScheduledIdUnique<'ctx> {
+        PassiveCraftTimerScheduledIdUnique {
+            imp: self.imp.get_unique_constraint::<u64>("scheduled_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> PassiveCraftTimerScheduledIdUnique<'ctx> {
-            /// Find the subscribed row whose `scheduled_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u64) -> Option<PassiveCraftTimer> {
-                self.imp.find(col_val)
-            }
-        }
-        
-        /// Access to the `craft_entity_id` unique index on the table `passive_craft_timer`,
-        /// which allows point queries on the field of the same name
-        /// via the [`PassiveCraftTimerCraftEntityIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.passive_craft_timer().craft_entity_id().find(...)`.
-        pub struct PassiveCraftTimerCraftEntityIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<PassiveCraftTimer, u64>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+impl<'ctx> PassiveCraftTimerScheduledIdUnique<'ctx> {
+    /// Find the subscribed row whose `scheduled_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u64) -> Option<PassiveCraftTimer> {
+        self.imp.find(col_val)
+    }
+}
 
-        impl<'ctx> PassiveCraftTimerTableHandle<'ctx> {
-            /// Get a handle on the `craft_entity_id` unique index on the table `passive_craft_timer`.
-            pub fn craft_entity_id(&self) -> PassiveCraftTimerCraftEntityIdUnique<'ctx> {
-                PassiveCraftTimerCraftEntityIdUnique {
-                    imp: self.imp.get_unique_constraint::<u64>("craft_entity_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
-        }
+/// Access to the `craft_entity_id` unique index on the table `passive_craft_timer`,
+/// which allows point queries on the field of the same name
+/// via the [`PassiveCraftTimerCraftEntityIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.passive_craft_timer().craft_entity_id().find(...)`.
+pub struct PassiveCraftTimerCraftEntityIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<PassiveCraftTimer, u64>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> PassiveCraftTimerCraftEntityIdUnique<'ctx> {
-            /// Find the subscribed row whose `craft_entity_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u64) -> Option<PassiveCraftTimer> {
-                self.imp.find(col_val)
-            }
+impl<'ctx> PassiveCraftTimerTableHandle<'ctx> {
+    /// Get a handle on the `craft_entity_id` unique index on the table `passive_craft_timer`.
+    pub fn craft_entity_id(&self) -> PassiveCraftTimerCraftEntityIdUnique<'ctx> {
+        PassiveCraftTimerCraftEntityIdUnique {
+            imp: self.imp.get_unique_constraint::<u64>("craft_entity_id"),
+            phantom: std::marker::PhantomData,
         }
-        
+    }
+}
+
+impl<'ctx> PassiveCraftTimerCraftEntityIdUnique<'ctx> {
+    /// Find the subscribed row whose `craft_entity_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u64) -> Option<PassiveCraftTimer> {
+        self.imp.find(col_val)
+    }
+}

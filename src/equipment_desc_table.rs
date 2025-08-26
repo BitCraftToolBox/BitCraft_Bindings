@@ -3,19 +3,14 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-use super::equipment_desc_type::EquipmentDesc;
+use super::clothing_visual_type::ClothingVisual;
 use super::csv_stat_entry_type::CsvStatEntry;
-use super::level_requirement_type::LevelRequirement;
+use super::equipment_desc_type::EquipmentDesc;
 use super::equipment_slot_type_type::EquipmentSlotType;
 use super::equipment_visual_type_type::EquipmentVisualType;
-use super::clothing_visual_type::ClothingVisual;
 use super::hand_equipment_visual_type::HandEquipmentVisual;
+use super::level_requirement_type::LevelRequirement;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `equipment_desc`.
 ///
@@ -56,8 +51,12 @@ impl<'ctx> __sdk::Table for EquipmentDescTableHandle<'ctx> {
     type Row = EquipmentDesc;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = EquipmentDesc> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = EquipmentDesc> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = EquipmentDescInsertCallbackId;
 
@@ -88,8 +87,7 @@ impl<'ctx> __sdk::Table for EquipmentDescTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<EquipmentDesc>("equipment_desc");
+    let _table = client_cache.get_or_make_table::<EquipmentDesc>("equipment_desc");
     _table.add_unique_constraint::<i32>("item_id", |row| &row.item_id);
 }
 pub struct EquipmentDescUpdateCallbackId(__sdk::CallbackId);
@@ -109,46 +107,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for EquipmentDescTableHandle<'ctx> {
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<EquipmentDesc>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<EquipmentDesc>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<EquipmentDesc>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `item_id` unique index on the table `equipment_desc`,
-        /// which allows point queries on the field of the same name
-        /// via the [`EquipmentDescItemIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.equipment_desc().item_id().find(...)`.
-        pub struct EquipmentDescItemIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<EquipmentDesc, i32>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `item_id` unique index on the table `equipment_desc`,
+/// which allows point queries on the field of the same name
+/// via the [`EquipmentDescItemIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.equipment_desc().item_id().find(...)`.
+pub struct EquipmentDescItemIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<EquipmentDesc, i32>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> EquipmentDescTableHandle<'ctx> {
-            /// Get a handle on the `item_id` unique index on the table `equipment_desc`.
-            pub fn item_id(&self) -> EquipmentDescItemIdUnique<'ctx> {
-                EquipmentDescItemIdUnique {
-                    imp: self.imp.get_unique_constraint::<i32>("item_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> EquipmentDescTableHandle<'ctx> {
+    /// Get a handle on the `item_id` unique index on the table `equipment_desc`.
+    pub fn item_id(&self) -> EquipmentDescItemIdUnique<'ctx> {
+        EquipmentDescItemIdUnique {
+            imp: self.imp.get_unique_constraint::<i32>("item_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> EquipmentDescItemIdUnique<'ctx> {
-            /// Find the subscribed row whose `item_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &i32) -> Option<EquipmentDesc> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> EquipmentDescItemIdUnique<'ctx> {
+    /// Find the subscribed row whose `item_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &i32) -> Option<EquipmentDesc> {
+        self.imp.find(col_val)
+    }
+}

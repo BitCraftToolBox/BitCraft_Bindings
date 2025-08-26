@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::attack_impact_timer_type::AttackImpactTimer;
 
@@ -20,10 +15,8 @@ pub(super) struct AttackImpactArgs {
 
 impl From<AttackImpactArgs> for super::Reducer {
     fn from(args: AttackImpactArgs) -> Self {
-        Self::AttackImpact {
-            timer: args.timer,
-}
-}
+        Self::AttackImpact { timer: args.timer }
+    }
 }
 
 impl __sdk::InModule for AttackImpactArgs {
@@ -42,8 +35,7 @@ pub trait attack_impact {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_attack_impact`] callbacks.
-    fn attack_impact(&self, timer: AttackImpactTimer,
-) -> __sdk::Result<()>;
+    fn attack_impact(&self, timer: AttackImpactTimer) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `attack_impact`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +43,39 @@ pub trait attack_impact {
     ///
     /// The returned [`AttackImpactCallbackId`] can be passed to [`Self::remove_on_attack_impact`]
     /// to cancel the callback.
-    fn on_attack_impact(&self, callback: impl FnMut(&super::ReducerEventContext, &AttackImpactTimer, ) + Send + 'static) -> AttackImpactCallbackId;
+    fn on_attack_impact(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &AttackImpactTimer) + Send + 'static,
+    ) -> AttackImpactCallbackId;
     /// Cancel a callback previously registered by [`Self::on_attack_impact`],
     /// causing it not to run in the future.
     fn remove_on_attack_impact(&self, callback: AttackImpactCallbackId);
 }
 
 impl attack_impact for super::RemoteReducers {
-    fn attack_impact(&self, timer: AttackImpactTimer,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("attack_impact", AttackImpactArgs { timer,  })
+    fn attack_impact(&self, timer: AttackImpactTimer) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("attack_impact", AttackImpactArgs { timer })
     }
     fn on_attack_impact(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &AttackImpactTimer, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &AttackImpactTimer) + Send + 'static,
     ) -> AttackImpactCallbackId {
         AttackImpactCallbackId(self.imp.on_reducer(
             "attack_impact",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::AttackImpact {
-                            timer, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::AttackImpact { timer },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, timer, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, timer)
             }),
         ))
     }
@@ -106,4 +103,3 @@ impl set_flags_for_attack_impact for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("attack_impact", flags);
     }
 }
-

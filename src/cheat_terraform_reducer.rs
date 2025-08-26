@@ -3,13 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -27,8 +21,8 @@ impl From<CheatTerraformArgs> for super::Reducer {
             z: args.z,
             dimension: args.dimension,
             delta: args.delta,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for CheatTerraformArgs {
@@ -47,11 +41,7 @@ pub trait cheat_terraform {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_cheat_terraform`] callbacks.
-    fn cheat_terraform(&self, x: i32,
-z: i32,
-dimension: u32,
-delta: i32,
-) -> __sdk::Result<()>;
+    fn cheat_terraform(&self, x: i32, z: i32, dimension: u32, delta: i32) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `cheat_terraform`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -59,37 +49,52 @@ delta: i32,
     ///
     /// The returned [`CheatTerraformCallbackId`] can be passed to [`Self::remove_on_cheat_terraform`]
     /// to cancel the callback.
-    fn on_cheat_terraform(&self, callback: impl FnMut(&super::ReducerEventContext, &i32, &i32, &u32, &i32, ) + Send + 'static) -> CheatTerraformCallbackId;
+    fn on_cheat_terraform(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &i32, &i32, &u32, &i32) + Send + 'static,
+    ) -> CheatTerraformCallbackId;
     /// Cancel a callback previously registered by [`Self::on_cheat_terraform`],
     /// causing it not to run in the future.
     fn remove_on_cheat_terraform(&self, callback: CheatTerraformCallbackId);
 }
 
 impl cheat_terraform for super::RemoteReducers {
-    fn cheat_terraform(&self, x: i32,
-z: i32,
-dimension: u32,
-delta: i32,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("cheat_terraform", CheatTerraformArgs { x, z, dimension, delta,  })
+    fn cheat_terraform(&self, x: i32, z: i32, dimension: u32, delta: i32) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "cheat_terraform",
+            CheatTerraformArgs {
+                x,
+                z,
+                dimension,
+                delta,
+            },
+        )
     }
     fn on_cheat_terraform(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &i32, &i32, &u32, &i32, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &i32, &i32, &u32, &i32) + Send + 'static,
     ) -> CheatTerraformCallbackId {
         CheatTerraformCallbackId(self.imp.on_reducer(
             "cheat_terraform",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::CheatTerraform {
-                            x, z, dimension, delta, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer:
+                                super::Reducer::CheatTerraform {
+                                    x,
+                                    z,
+                                    dimension,
+                                    delta,
+                                },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, x, z, dimension, delta, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, x, z, dimension, delta)
             }),
         ))
     }
@@ -117,4 +122,3 @@ impl set_flags_for_cheat_terraform for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("cheat_terraform", flags);
     }
 }
-

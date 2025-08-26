@@ -3,13 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -21,8 +15,8 @@ impl From<PassiveCraftCancelArgs> for super::Reducer {
     fn from(args: PassiveCraftCancelArgs) -> Self {
         Self::PassiveCraftCancel {
             passive_craft_entity_id: args.passive_craft_entity_id,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for PassiveCraftCancelArgs {
@@ -41,8 +35,7 @@ pub trait passive_craft_cancel {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_passive_craft_cancel`] callbacks.
-    fn passive_craft_cancel(&self, passive_craft_entity_id: u64,
-) -> __sdk::Result<()>;
+    fn passive_craft_cancel(&self, passive_craft_entity_id: u64) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `passive_craft_cancel`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -50,39 +43,52 @@ pub trait passive_craft_cancel {
     ///
     /// The returned [`PassiveCraftCancelCallbackId`] can be passed to [`Self::remove_on_passive_craft_cancel`]
     /// to cancel the callback.
-    fn on_passive_craft_cancel(&self, callback: impl FnMut(&super::ReducerEventContext, &u64, ) + Send + 'static) -> PassiveCraftCancelCallbackId;
+    fn on_passive_craft_cancel(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &u64) + Send + 'static,
+    ) -> PassiveCraftCancelCallbackId;
     /// Cancel a callback previously registered by [`Self::on_passive_craft_cancel`],
     /// causing it not to run in the future.
     fn remove_on_passive_craft_cancel(&self, callback: PassiveCraftCancelCallbackId);
 }
 
 impl passive_craft_cancel for super::RemoteReducers {
-    fn passive_craft_cancel(&self, passive_craft_entity_id: u64,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("passive_craft_cancel", PassiveCraftCancelArgs { passive_craft_entity_id,  })
+    fn passive_craft_cancel(&self, passive_craft_entity_id: u64) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "passive_craft_cancel",
+            PassiveCraftCancelArgs {
+                passive_craft_entity_id,
+            },
+        )
     }
     fn on_passive_craft_cancel(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &u64, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &u64) + Send + 'static,
     ) -> PassiveCraftCancelCallbackId {
         PassiveCraftCancelCallbackId(self.imp.on_reducer(
             "passive_craft_cancel",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::PassiveCraftCancel {
-                            passive_craft_entity_id, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer:
+                                super::Reducer::PassiveCraftCancel {
+                                    passive_craft_entity_id,
+                                },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, passive_craft_entity_id, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, passive_craft_entity_id)
             }),
         ))
     }
     fn remove_on_passive_craft_cancel(&self, callback: PassiveCraftCancelCallbackId) {
-        self.imp.remove_on_reducer("passive_craft_cancel", callback.0)
+        self.imp
+            .remove_on_reducer("passive_craft_cancel", callback.0)
     }
 }
 
@@ -102,7 +108,7 @@ pub trait set_flags_for_passive_craft_cancel {
 
 impl set_flags_for_passive_craft_cancel for super::SetReducerFlags {
     fn passive_craft_cancel(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("passive_craft_cancel", flags);
+        self.imp
+            .set_call_reducer_flags("passive_craft_cancel", flags);
     }
 }
-

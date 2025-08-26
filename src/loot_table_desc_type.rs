@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::probabilistic_item_stack_type::ProbabilisticItemStack;
 
@@ -17,11 +12,9 @@ use super::probabilistic_item_stack_type::ProbabilisticItemStack;
 pub struct LootTableDesc {
     pub id: i32,
     pub loot_rarity: i32,
-    pub loot_item_stacks: Vec::<ProbabilisticItemStack>,
+    pub loot_item_stacks: Vec<ProbabilisticItemStack>,
 }
-
 
 impl __sdk::InModule for LootTableDesc {
     type Module = super::RemoteModule;
 }
-

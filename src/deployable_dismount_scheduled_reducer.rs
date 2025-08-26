@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::deployable_dismount_timer_type::DeployableDismountTimer;
 
@@ -20,10 +15,8 @@ pub(super) struct DeployableDismountScheduledArgs {
 
 impl From<DeployableDismountScheduledArgs> for super::Reducer {
     fn from(args: DeployableDismountScheduledArgs) -> Self {
-        Self::DeployableDismountScheduled {
-            timer: args.timer,
-}
-}
+        Self::DeployableDismountScheduled { timer: args.timer }
+    }
 }
 
 impl __sdk::InModule for DeployableDismountScheduledArgs {
@@ -42,8 +35,7 @@ pub trait deployable_dismount_scheduled {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_deployable_dismount_scheduled`] callbacks.
-    fn deployable_dismount_scheduled(&self, timer: DeployableDismountTimer,
-) -> __sdk::Result<()>;
+    fn deployable_dismount_scheduled(&self, timer: DeployableDismountTimer) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `deployable_dismount_scheduled`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +43,53 @@ pub trait deployable_dismount_scheduled {
     ///
     /// The returned [`DeployableDismountScheduledCallbackId`] can be passed to [`Self::remove_on_deployable_dismount_scheduled`]
     /// to cancel the callback.
-    fn on_deployable_dismount_scheduled(&self, callback: impl FnMut(&super::ReducerEventContext, &DeployableDismountTimer, ) + Send + 'static) -> DeployableDismountScheduledCallbackId;
+    fn on_deployable_dismount_scheduled(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &DeployableDismountTimer) + Send + 'static,
+    ) -> DeployableDismountScheduledCallbackId;
     /// Cancel a callback previously registered by [`Self::on_deployable_dismount_scheduled`],
     /// causing it not to run in the future.
-    fn remove_on_deployable_dismount_scheduled(&self, callback: DeployableDismountScheduledCallbackId);
+    fn remove_on_deployable_dismount_scheduled(
+        &self,
+        callback: DeployableDismountScheduledCallbackId,
+    );
 }
 
 impl deployable_dismount_scheduled for super::RemoteReducers {
-    fn deployable_dismount_scheduled(&self, timer: DeployableDismountTimer,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("deployable_dismount_scheduled", DeployableDismountScheduledArgs { timer,  })
+    fn deployable_dismount_scheduled(&self, timer: DeployableDismountTimer) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "deployable_dismount_scheduled",
+            DeployableDismountScheduledArgs { timer },
+        )
     }
     fn on_deployable_dismount_scheduled(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &DeployableDismountTimer, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &DeployableDismountTimer) + Send + 'static,
     ) -> DeployableDismountScheduledCallbackId {
         DeployableDismountScheduledCallbackId(self.imp.on_reducer(
             "deployable_dismount_scheduled",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::DeployableDismountScheduled {
-                            timer, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::DeployableDismountScheduled { timer },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, timer, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, timer)
             }),
         ))
     }
-    fn remove_on_deployable_dismount_scheduled(&self, callback: DeployableDismountScheduledCallbackId) {
-        self.imp.remove_on_reducer("deployable_dismount_scheduled", callback.0)
+    fn remove_on_deployable_dismount_scheduled(
+        &self,
+        callback: DeployableDismountScheduledCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("deployable_dismount_scheduled", callback.0)
     }
 }
 
@@ -103,7 +109,7 @@ pub trait set_flags_for_deployable_dismount_scheduled {
 
 impl set_flags_for_deployable_dismount_scheduled for super::SetReducerFlags {
     fn deployable_dismount_scheduled(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("deployable_dismount_scheduled", flags);
+        self.imp
+            .set_call_reducer_flags("deployable_dismount_scheduled", flags);
     }
 }
-

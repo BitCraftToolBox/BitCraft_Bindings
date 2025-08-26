@@ -3,13 +3,8 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::user_authentication_state_type::UserAuthenticationState;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `user_authentication_state`.
 ///
@@ -37,7 +32,9 @@ pub trait UserAuthenticationStateTableAccess {
 impl UserAuthenticationStateTableAccess for super::RemoteTables {
     fn user_authentication_state(&self) -> UserAuthenticationStateTableHandle<'_> {
         UserAuthenticationStateTableHandle {
-            imp: self.imp.get_table::<UserAuthenticationState>("user_authentication_state"),
+            imp: self
+                .imp
+                .get_table::<UserAuthenticationState>("user_authentication_state"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -50,8 +47,12 @@ impl<'ctx> __sdk::Table for UserAuthenticationStateTableHandle<'ctx> {
     type Row = UserAuthenticationState;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = UserAuthenticationState> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = UserAuthenticationState> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = UserAuthenticationStateInsertCallbackId;
 
@@ -82,8 +83,8 @@ impl<'ctx> __sdk::Table for UserAuthenticationStateTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<UserAuthenticationState>("user_authentication_state");
+    let _table =
+        client_cache.get_or_make_table::<UserAuthenticationState>("user_authentication_state");
     _table.add_unique_constraint::<__sdk::Identity>("identity", |row| &row.identity);
 }
 pub struct UserAuthenticationStateUpdateCallbackId(__sdk::CallbackId);
@@ -103,46 +104,45 @@ impl<'ctx> __sdk::TableWithPrimaryKey for UserAuthenticationStateTableHandle<'ct
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<UserAuthenticationState>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<UserAuthenticationState>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<UserAuthenticationState>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `identity` unique index on the table `user_authentication_state`,
-        /// which allows point queries on the field of the same name
-        /// via the [`UserAuthenticationStateIdentityUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.user_authentication_state().identity().find(...)`.
-        pub struct UserAuthenticationStateIdentityUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<UserAuthenticationState, __sdk::Identity>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `identity` unique index on the table `user_authentication_state`,
+/// which allows point queries on the field of the same name
+/// via the [`UserAuthenticationStateIdentityUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.user_authentication_state().identity().find(...)`.
+pub struct UserAuthenticationStateIdentityUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<UserAuthenticationState, __sdk::Identity>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> UserAuthenticationStateTableHandle<'ctx> {
-            /// Get a handle on the `identity` unique index on the table `user_authentication_state`.
-            pub fn identity(&self) -> UserAuthenticationStateIdentityUnique<'ctx> {
-                UserAuthenticationStateIdentityUnique {
-                    imp: self.imp.get_unique_constraint::<__sdk::Identity>("identity"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> UserAuthenticationStateTableHandle<'ctx> {
+    /// Get a handle on the `identity` unique index on the table `user_authentication_state`.
+    pub fn identity(&self) -> UserAuthenticationStateIdentityUnique<'ctx> {
+        UserAuthenticationStateIdentityUnique {
+            imp: self
+                .imp
+                .get_unique_constraint::<__sdk::Identity>("identity"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> UserAuthenticationStateIdentityUnique<'ctx> {
-            /// Find the subscribed row whose `identity` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &__sdk::Identity) -> Option<UserAuthenticationState> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> UserAuthenticationStateIdentityUnique<'ctx> {
+    /// Find the subscribed row whose `identity` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &__sdk::Identity) -> Option<UserAuthenticationState> {
+        self.imp.find(col_val)
+    }
+}

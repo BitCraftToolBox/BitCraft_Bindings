@@ -3,23 +3,16 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
-pub(super) struct AdminRestoreAllCollapsedRuinsArgs {
-    }
+pub(super) struct AdminRestoreAllCollapsedRuinsArgs {}
 
 impl From<AdminRestoreAllCollapsedRuinsArgs> for super::Reducer {
     fn from(args: AdminRestoreAllCollapsedRuinsArgs) -> Self {
         Self::AdminRestoreAllCollapsedRuins
-}
+    }
 }
 
 impl __sdk::InModule for AdminRestoreAllCollapsedRuinsArgs {
@@ -38,7 +31,7 @@ pub trait admin_restore_all_collapsed_ruins {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_admin_restore_all_collapsed_ruins`] callbacks.
-    fn admin_restore_all_collapsed_ruins(&self, ) -> __sdk::Result<()>;
+    fn admin_restore_all_collapsed_ruins(&self) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `admin_restore_all_collapsed_ruins`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -46,38 +39,53 @@ pub trait admin_restore_all_collapsed_ruins {
     ///
     /// The returned [`AdminRestoreAllCollapsedRuinsCallbackId`] can be passed to [`Self::remove_on_admin_restore_all_collapsed_ruins`]
     /// to cancel the callback.
-    fn on_admin_restore_all_collapsed_ruins(&self, callback: impl FnMut(&super::ReducerEventContext, ) + Send + 'static) -> AdminRestoreAllCollapsedRuinsCallbackId;
+    fn on_admin_restore_all_collapsed_ruins(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext) + Send + 'static,
+    ) -> AdminRestoreAllCollapsedRuinsCallbackId;
     /// Cancel a callback previously registered by [`Self::on_admin_restore_all_collapsed_ruins`],
     /// causing it not to run in the future.
-    fn remove_on_admin_restore_all_collapsed_ruins(&self, callback: AdminRestoreAllCollapsedRuinsCallbackId);
+    fn remove_on_admin_restore_all_collapsed_ruins(
+        &self,
+        callback: AdminRestoreAllCollapsedRuinsCallbackId,
+    );
 }
 
 impl admin_restore_all_collapsed_ruins for super::RemoteReducers {
-    fn admin_restore_all_collapsed_ruins(&self, ) -> __sdk::Result<()> {
-        self.imp.call_reducer("admin_restore_all_collapsed_ruins", AdminRestoreAllCollapsedRuinsArgs {  })
+    fn admin_restore_all_collapsed_ruins(&self) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "admin_restore_all_collapsed_ruins",
+            AdminRestoreAllCollapsedRuinsArgs {},
+        )
     }
     fn on_admin_restore_all_collapsed_ruins(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext) + Send + 'static,
     ) -> AdminRestoreAllCollapsedRuinsCallbackId {
         AdminRestoreAllCollapsedRuinsCallbackId(self.imp.on_reducer(
             "admin_restore_all_collapsed_ruins",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::AdminRestoreAllCollapsedRuins {
-                            
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::AdminRestoreAllCollapsedRuins {},
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx)
             }),
         ))
     }
-    fn remove_on_admin_restore_all_collapsed_ruins(&self, callback: AdminRestoreAllCollapsedRuinsCallbackId) {
-        self.imp.remove_on_reducer("admin_restore_all_collapsed_ruins", callback.0)
+    fn remove_on_admin_restore_all_collapsed_ruins(
+        &self,
+        callback: AdminRestoreAllCollapsedRuinsCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("admin_restore_all_collapsed_ruins", callback.0)
     }
 }
 
@@ -97,7 +105,7 @@ pub trait set_flags_for_admin_restore_all_collapsed_ruins {
 
 impl set_flags_for_admin_restore_all_collapsed_ruins for super::SetReducerFlags {
     fn admin_restore_all_collapsed_ruins(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("admin_restore_all_collapsed_ruins", flags);
+        self.imp
+            .set_call_reducer_flags("admin_restore_all_collapsed_ruins", flags);
     }
 }
-

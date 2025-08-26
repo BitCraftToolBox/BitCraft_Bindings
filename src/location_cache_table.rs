@@ -3,15 +3,10 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::location_cache_type::LocationCache;
-use super::small_hex_tile_message_type::SmallHexTileMessage;
 use super::ruins_entity_value_pair_type::RuinsEntityValuePair;
+use super::small_hex_tile_message_type::SmallHexTileMessage;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `location_cache`.
 ///
@@ -52,8 +47,12 @@ impl<'ctx> __sdk::Table for LocationCacheTableHandle<'ctx> {
     type Row = LocationCache;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = LocationCache> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = LocationCache> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = LocationCacheInsertCallbackId;
 
@@ -84,8 +83,7 @@ impl<'ctx> __sdk::Table for LocationCacheTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<LocationCache>("location_cache");
+    let _table = client_cache.get_or_make_table::<LocationCache>("location_cache");
     _table.add_unique_constraint::<i32>("version", |row| &row.version);
 }
 pub struct LocationCacheUpdateCallbackId(__sdk::CallbackId);
@@ -105,46 +103,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for LocationCacheTableHandle<'ctx> {
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<LocationCache>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<LocationCache>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<LocationCache>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `version` unique index on the table `location_cache`,
-        /// which allows point queries on the field of the same name
-        /// via the [`LocationCacheVersionUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.location_cache().version().find(...)`.
-        pub struct LocationCacheVersionUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<LocationCache, i32>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `version` unique index on the table `location_cache`,
+/// which allows point queries on the field of the same name
+/// via the [`LocationCacheVersionUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.location_cache().version().find(...)`.
+pub struct LocationCacheVersionUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<LocationCache, i32>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> LocationCacheTableHandle<'ctx> {
-            /// Get a handle on the `version` unique index on the table `location_cache`.
-            pub fn version(&self) -> LocationCacheVersionUnique<'ctx> {
-                LocationCacheVersionUnique {
-                    imp: self.imp.get_unique_constraint::<i32>("version"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> LocationCacheTableHandle<'ctx> {
+    /// Get a handle on the `version` unique index on the table `location_cache`.
+    pub fn version(&self) -> LocationCacheVersionUnique<'ctx> {
+        LocationCacheVersionUnique {
+            imp: self.imp.get_unique_constraint::<i32>("version"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> LocationCacheVersionUnique<'ctx> {
-            /// Find the subscribed row whose `version` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &i32) -> Option<LocationCache> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> LocationCacheVersionUnique<'ctx> {
+    /// Find the subscribed row whose `version` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &i32) -> Option<LocationCache> {
+        self.imp.find(col_val)
+    }
+}

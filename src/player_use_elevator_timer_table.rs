@@ -3,13 +3,8 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::player_use_elevator_timer_type::PlayerUseElevatorTimer;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `player_use_elevator_timer`.
 ///
@@ -37,7 +32,9 @@ pub trait PlayerUseElevatorTimerTableAccess {
 impl PlayerUseElevatorTimerTableAccess for super::RemoteTables {
     fn player_use_elevator_timer(&self) -> PlayerUseElevatorTimerTableHandle<'_> {
         PlayerUseElevatorTimerTableHandle {
-            imp: self.imp.get_table::<PlayerUseElevatorTimer>("player_use_elevator_timer"),
+            imp: self
+                .imp
+                .get_table::<PlayerUseElevatorTimer>("player_use_elevator_timer"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -50,8 +47,12 @@ impl<'ctx> __sdk::Table for PlayerUseElevatorTimerTableHandle<'ctx> {
     type Row = PlayerUseElevatorTimer;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = PlayerUseElevatorTimer> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = PlayerUseElevatorTimer> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = PlayerUseElevatorTimerInsertCallbackId;
 
@@ -82,12 +83,16 @@ impl<'ctx> __sdk::Table for PlayerUseElevatorTimerTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<PlayerUseElevatorTimer>("player_use_elevator_timer");
+    let _table =
+        client_cache.get_or_make_table::<PlayerUseElevatorTimer>("player_use_elevator_timer");
     _table.add_unique_constraint::<u64>("scheduled_id", |row| &row.scheduled_id);
     _table.add_unique_constraint::<u64>("player_entity_id", |row| &row.player_entity_id);
-    _table.add_unique_constraint::<u64>("origin_platform_entity_id", |row| &row.origin_platform_entity_id);
-    _table.add_unique_constraint::<u64>("destination_platform_entity_id", |row| &row.destination_platform_entity_id);
+    _table.add_unique_constraint::<u64>("origin_platform_entity_id", |row| {
+        &row.origin_platform_entity_id
+    });
+    _table.add_unique_constraint::<u64>("destination_platform_entity_id", |row| {
+        &row.destination_platform_entity_id
+    });
 }
 pub struct PlayerUseElevatorTimerUpdateCallbackId(__sdk::CallbackId);
 
@@ -106,136 +111,141 @@ impl<'ctx> __sdk::TableWithPrimaryKey for PlayerUseElevatorTimerTableHandle<'ctx
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<PlayerUseElevatorTimer>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<PlayerUseElevatorTimer>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<PlayerUseElevatorTimer>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `scheduled_id` unique index on the table `player_use_elevator_timer`,
-        /// which allows point queries on the field of the same name
-        /// via the [`PlayerUseElevatorTimerScheduledIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.player_use_elevator_timer().scheduled_id().find(...)`.
-        pub struct PlayerUseElevatorTimerScheduledIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<PlayerUseElevatorTimer, u64>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `scheduled_id` unique index on the table `player_use_elevator_timer`,
+/// which allows point queries on the field of the same name
+/// via the [`PlayerUseElevatorTimerScheduledIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.player_use_elevator_timer().scheduled_id().find(...)`.
+pub struct PlayerUseElevatorTimerScheduledIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<PlayerUseElevatorTimer, u64>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> PlayerUseElevatorTimerTableHandle<'ctx> {
-            /// Get a handle on the `scheduled_id` unique index on the table `player_use_elevator_timer`.
-            pub fn scheduled_id(&self) -> PlayerUseElevatorTimerScheduledIdUnique<'ctx> {
-                PlayerUseElevatorTimerScheduledIdUnique {
-                    imp: self.imp.get_unique_constraint::<u64>("scheduled_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> PlayerUseElevatorTimerTableHandle<'ctx> {
+    /// Get a handle on the `scheduled_id` unique index on the table `player_use_elevator_timer`.
+    pub fn scheduled_id(&self) -> PlayerUseElevatorTimerScheduledIdUnique<'ctx> {
+        PlayerUseElevatorTimerScheduledIdUnique {
+            imp: self.imp.get_unique_constraint::<u64>("scheduled_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> PlayerUseElevatorTimerScheduledIdUnique<'ctx> {
-            /// Find the subscribed row whose `scheduled_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u64) -> Option<PlayerUseElevatorTimer> {
-                self.imp.find(col_val)
-            }
-        }
-        
-        /// Access to the `player_entity_id` unique index on the table `player_use_elevator_timer`,
-        /// which allows point queries on the field of the same name
-        /// via the [`PlayerUseElevatorTimerPlayerEntityIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.player_use_elevator_timer().player_entity_id().find(...)`.
-        pub struct PlayerUseElevatorTimerPlayerEntityIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<PlayerUseElevatorTimer, u64>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+impl<'ctx> PlayerUseElevatorTimerScheduledIdUnique<'ctx> {
+    /// Find the subscribed row whose `scheduled_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u64) -> Option<PlayerUseElevatorTimer> {
+        self.imp.find(col_val)
+    }
+}
 
-        impl<'ctx> PlayerUseElevatorTimerTableHandle<'ctx> {
-            /// Get a handle on the `player_entity_id` unique index on the table `player_use_elevator_timer`.
-            pub fn player_entity_id(&self) -> PlayerUseElevatorTimerPlayerEntityIdUnique<'ctx> {
-                PlayerUseElevatorTimerPlayerEntityIdUnique {
-                    imp: self.imp.get_unique_constraint::<u64>("player_entity_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
-        }
+/// Access to the `player_entity_id` unique index on the table `player_use_elevator_timer`,
+/// which allows point queries on the field of the same name
+/// via the [`PlayerUseElevatorTimerPlayerEntityIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.player_use_elevator_timer().player_entity_id().find(...)`.
+pub struct PlayerUseElevatorTimerPlayerEntityIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<PlayerUseElevatorTimer, u64>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> PlayerUseElevatorTimerPlayerEntityIdUnique<'ctx> {
-            /// Find the subscribed row whose `player_entity_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u64) -> Option<PlayerUseElevatorTimer> {
-                self.imp.find(col_val)
-            }
+impl<'ctx> PlayerUseElevatorTimerTableHandle<'ctx> {
+    /// Get a handle on the `player_entity_id` unique index on the table `player_use_elevator_timer`.
+    pub fn player_entity_id(&self) -> PlayerUseElevatorTimerPlayerEntityIdUnique<'ctx> {
+        PlayerUseElevatorTimerPlayerEntityIdUnique {
+            imp: self.imp.get_unique_constraint::<u64>("player_entity_id"),
+            phantom: std::marker::PhantomData,
         }
-        
-        /// Access to the `origin_platform_entity_id` unique index on the table `player_use_elevator_timer`,
-        /// which allows point queries on the field of the same name
-        /// via the [`PlayerUseElevatorTimerOriginPlatformEntityIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.player_use_elevator_timer().origin_platform_entity_id().find(...)`.
-        pub struct PlayerUseElevatorTimerOriginPlatformEntityIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<PlayerUseElevatorTimer, u64>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+    }
+}
 
-        impl<'ctx> PlayerUseElevatorTimerTableHandle<'ctx> {
-            /// Get a handle on the `origin_platform_entity_id` unique index on the table `player_use_elevator_timer`.
-            pub fn origin_platform_entity_id(&self) -> PlayerUseElevatorTimerOriginPlatformEntityIdUnique<'ctx> {
-                PlayerUseElevatorTimerOriginPlatformEntityIdUnique {
-                    imp: self.imp.get_unique_constraint::<u64>("origin_platform_entity_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
-        }
+impl<'ctx> PlayerUseElevatorTimerPlayerEntityIdUnique<'ctx> {
+    /// Find the subscribed row whose `player_entity_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u64) -> Option<PlayerUseElevatorTimer> {
+        self.imp.find(col_val)
+    }
+}
 
-        impl<'ctx> PlayerUseElevatorTimerOriginPlatformEntityIdUnique<'ctx> {
-            /// Find the subscribed row whose `origin_platform_entity_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u64) -> Option<PlayerUseElevatorTimer> {
-                self.imp.find(col_val)
-            }
-        }
-        
-        /// Access to the `destination_platform_entity_id` unique index on the table `player_use_elevator_timer`,
-        /// which allows point queries on the field of the same name
-        /// via the [`PlayerUseElevatorTimerDestinationPlatformEntityIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.player_use_elevator_timer().destination_platform_entity_id().find(...)`.
-        pub struct PlayerUseElevatorTimerDestinationPlatformEntityIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<PlayerUseElevatorTimer, u64>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `origin_platform_entity_id` unique index on the table `player_use_elevator_timer`,
+/// which allows point queries on the field of the same name
+/// via the [`PlayerUseElevatorTimerOriginPlatformEntityIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.player_use_elevator_timer().origin_platform_entity_id().find(...)`.
+pub struct PlayerUseElevatorTimerOriginPlatformEntityIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<PlayerUseElevatorTimer, u64>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> PlayerUseElevatorTimerTableHandle<'ctx> {
-            /// Get a handle on the `destination_platform_entity_id` unique index on the table `player_use_elevator_timer`.
-            pub fn destination_platform_entity_id(&self) -> PlayerUseElevatorTimerDestinationPlatformEntityIdUnique<'ctx> {
-                PlayerUseElevatorTimerDestinationPlatformEntityIdUnique {
-                    imp: self.imp.get_unique_constraint::<u64>("destination_platform_entity_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> PlayerUseElevatorTimerTableHandle<'ctx> {
+    /// Get a handle on the `origin_platform_entity_id` unique index on the table `player_use_elevator_timer`.
+    pub fn origin_platform_entity_id(
+        &self,
+    ) -> PlayerUseElevatorTimerOriginPlatformEntityIdUnique<'ctx> {
+        PlayerUseElevatorTimerOriginPlatformEntityIdUnique {
+            imp: self
+                .imp
+                .get_unique_constraint::<u64>("origin_platform_entity_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> PlayerUseElevatorTimerDestinationPlatformEntityIdUnique<'ctx> {
-            /// Find the subscribed row whose `destination_platform_entity_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u64) -> Option<PlayerUseElevatorTimer> {
-                self.imp.find(col_val)
-            }
+impl<'ctx> PlayerUseElevatorTimerOriginPlatformEntityIdUnique<'ctx> {
+    /// Find the subscribed row whose `origin_platform_entity_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u64) -> Option<PlayerUseElevatorTimer> {
+        self.imp.find(col_val)
+    }
+}
+
+/// Access to the `destination_platform_entity_id` unique index on the table `player_use_elevator_timer`,
+/// which allows point queries on the field of the same name
+/// via the [`PlayerUseElevatorTimerDestinationPlatformEntityIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.player_use_elevator_timer().destination_platform_entity_id().find(...)`.
+pub struct PlayerUseElevatorTimerDestinationPlatformEntityIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<PlayerUseElevatorTimer, u64>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
+
+impl<'ctx> PlayerUseElevatorTimerTableHandle<'ctx> {
+    /// Get a handle on the `destination_platform_entity_id` unique index on the table `player_use_elevator_timer`.
+    pub fn destination_platform_entity_id(
+        &self,
+    ) -> PlayerUseElevatorTimerDestinationPlatformEntityIdUnique<'ctx> {
+        PlayerUseElevatorTimerDestinationPlatformEntityIdUnique {
+            imp: self
+                .imp
+                .get_unique_constraint::<u64>("destination_platform_entity_id"),
+            phantom: std::marker::PhantomData,
         }
-        
+    }
+}
+
+impl<'ctx> PlayerUseElevatorTimerDestinationPlatformEntityIdUnique<'ctx> {
+    /// Find the subscribed row whose `destination_platform_entity_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u64) -> Option<PlayerUseElevatorTimer> {
+        self.imp.find(col_val)
+    }
+}

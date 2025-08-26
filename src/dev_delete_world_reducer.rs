@@ -3,23 +3,16 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
-pub(super) struct DevDeleteWorldArgs {
-    }
+pub(super) struct DevDeleteWorldArgs {}
 
 impl From<DevDeleteWorldArgs> for super::Reducer {
     fn from(args: DevDeleteWorldArgs) -> Self {
         Self::DevDeleteWorld
-}
+    }
 }
 
 impl __sdk::InModule for DevDeleteWorldArgs {
@@ -38,7 +31,7 @@ pub trait dev_delete_world {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_dev_delete_world`] callbacks.
-    fn dev_delete_world(&self, ) -> __sdk::Result<()>;
+    fn dev_delete_world(&self) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `dev_delete_world`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -46,33 +39,39 @@ pub trait dev_delete_world {
     ///
     /// The returned [`DevDeleteWorldCallbackId`] can be passed to [`Self::remove_on_dev_delete_world`]
     /// to cancel the callback.
-    fn on_dev_delete_world(&self, callback: impl FnMut(&super::ReducerEventContext, ) + Send + 'static) -> DevDeleteWorldCallbackId;
+    fn on_dev_delete_world(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext) + Send + 'static,
+    ) -> DevDeleteWorldCallbackId;
     /// Cancel a callback previously registered by [`Self::on_dev_delete_world`],
     /// causing it not to run in the future.
     fn remove_on_dev_delete_world(&self, callback: DevDeleteWorldCallbackId);
 }
 
 impl dev_delete_world for super::RemoteReducers {
-    fn dev_delete_world(&self, ) -> __sdk::Result<()> {
-        self.imp.call_reducer("dev_delete_world", DevDeleteWorldArgs {  })
+    fn dev_delete_world(&self) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("dev_delete_world", DevDeleteWorldArgs {})
     }
     fn on_dev_delete_world(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext) + Send + 'static,
     ) -> DevDeleteWorldCallbackId {
         DevDeleteWorldCallbackId(self.imp.on_reducer(
             "dev_delete_world",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::DevDeleteWorld {
-                            
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::DevDeleteWorld {},
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx)
             }),
         ))
     }
@@ -100,4 +99,3 @@ impl set_flags_for_dev_delete_world for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("dev_delete_world", flags);
     }
 }
-

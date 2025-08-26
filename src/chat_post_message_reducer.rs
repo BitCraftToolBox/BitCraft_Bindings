@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_chat_post_message_request_type::PlayerChatPostMessageRequest;
 
@@ -22,8 +17,8 @@ impl From<ChatPostMessageArgs> for super::Reducer {
     fn from(args: ChatPostMessageArgs) -> Self {
         Self::ChatPostMessage {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ChatPostMessageArgs {
@@ -42,8 +37,7 @@ pub trait chat_post_message {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_chat_post_message`] callbacks.
-    fn chat_post_message(&self, request: PlayerChatPostMessageRequest,
-) -> __sdk::Result<()>;
+    fn chat_post_message(&self, request: PlayerChatPostMessageRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `chat_post_message`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,43 @@ pub trait chat_post_message {
     ///
     /// The returned [`ChatPostMessageCallbackId`] can be passed to [`Self::remove_on_chat_post_message`]
     /// to cancel the callback.
-    fn on_chat_post_message(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerChatPostMessageRequest, ) + Send + 'static) -> ChatPostMessageCallbackId;
+    fn on_chat_post_message(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerChatPostMessageRequest)
+            + Send
+            + 'static,
+    ) -> ChatPostMessageCallbackId;
     /// Cancel a callback previously registered by [`Self::on_chat_post_message`],
     /// causing it not to run in the future.
     fn remove_on_chat_post_message(&self, callback: ChatPostMessageCallbackId);
 }
 
 impl chat_post_message for super::RemoteReducers {
-    fn chat_post_message(&self, request: PlayerChatPostMessageRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("chat_post_message", ChatPostMessageArgs { request,  })
+    fn chat_post_message(&self, request: PlayerChatPostMessageRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("chat_post_message", ChatPostMessageArgs { request })
     }
     fn on_chat_post_message(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerChatPostMessageRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerChatPostMessageRequest)
+            + Send
+            + 'static,
     ) -> ChatPostMessageCallbackId {
         ChatPostMessageCallbackId(self.imp.on_reducer(
             "chat_post_message",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ChatPostMessage {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ChatPostMessage { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
@@ -106,4 +109,3 @@ impl set_flags_for_chat_post_message for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("chat_post_message", flags);
     }
 }
-

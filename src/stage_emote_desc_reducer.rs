@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::emote_desc_type::EmoteDesc;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct StageEmoteDescArgs {
-    pub records: Vec::<EmoteDesc>,
+    pub records: Vec<EmoteDesc>,
 }
 
 impl From<StageEmoteDescArgs> for super::Reducer {
     fn from(args: StageEmoteDescArgs) -> Self {
         Self::StageEmoteDesc {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for StageEmoteDescArgs {
@@ -42,8 +37,7 @@ pub trait stage_emote_desc {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_stage_emote_desc`] callbacks.
-    fn stage_emote_desc(&self, records: Vec::<EmoteDesc>,
-) -> __sdk::Result<()>;
+    fn stage_emote_desc(&self, records: Vec<EmoteDesc>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `stage_emote_desc`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,39 @@ pub trait stage_emote_desc {
     ///
     /// The returned [`StageEmoteDescCallbackId`] can be passed to [`Self::remove_on_stage_emote_desc`]
     /// to cancel the callback.
-    fn on_stage_emote_desc(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<EmoteDesc>, ) + Send + 'static) -> StageEmoteDescCallbackId;
+    fn on_stage_emote_desc(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<EmoteDesc>) + Send + 'static,
+    ) -> StageEmoteDescCallbackId;
     /// Cancel a callback previously registered by [`Self::on_stage_emote_desc`],
     /// causing it not to run in the future.
     fn remove_on_stage_emote_desc(&self, callback: StageEmoteDescCallbackId);
 }
 
 impl stage_emote_desc for super::RemoteReducers {
-    fn stage_emote_desc(&self, records: Vec::<EmoteDesc>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("stage_emote_desc", StageEmoteDescArgs { records,  })
+    fn stage_emote_desc(&self, records: Vec<EmoteDesc>) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("stage_emote_desc", StageEmoteDescArgs { records })
     }
     fn on_stage_emote_desc(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<EmoteDesc>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<EmoteDesc>) + Send + 'static,
     ) -> StageEmoteDescCallbackId {
         StageEmoteDescCallbackId(self.imp.on_reducer(
             "stage_emote_desc",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::StageEmoteDesc {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::StageEmoteDesc { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
@@ -106,4 +105,3 @@ impl set_flags_for_stage_emote_desc for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("stage_emote_desc", flags);
     }
 }
-

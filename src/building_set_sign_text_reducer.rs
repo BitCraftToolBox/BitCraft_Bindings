@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::building_set_sign_text_request_type::BuildingSetSignTextRequest;
 
@@ -22,8 +17,8 @@ impl From<BuildingSetSignTextArgs> for super::Reducer {
     fn from(args: BuildingSetSignTextArgs) -> Self {
         Self::BuildingSetSignText {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for BuildingSetSignTextArgs {
@@ -42,8 +37,7 @@ pub trait building_set_sign_text {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_building_set_sign_text`] callbacks.
-    fn building_set_sign_text(&self, request: BuildingSetSignTextRequest,
-) -> __sdk::Result<()>;
+    fn building_set_sign_text(&self, request: BuildingSetSignTextRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `building_set_sign_text`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,49 @@ pub trait building_set_sign_text {
     ///
     /// The returned [`BuildingSetSignTextCallbackId`] can be passed to [`Self::remove_on_building_set_sign_text`]
     /// to cancel the callback.
-    fn on_building_set_sign_text(&self, callback: impl FnMut(&super::ReducerEventContext, &BuildingSetSignTextRequest, ) + Send + 'static) -> BuildingSetSignTextCallbackId;
+    fn on_building_set_sign_text(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &BuildingSetSignTextRequest) + Send + 'static,
+    ) -> BuildingSetSignTextCallbackId;
     /// Cancel a callback previously registered by [`Self::on_building_set_sign_text`],
     /// causing it not to run in the future.
     fn remove_on_building_set_sign_text(&self, callback: BuildingSetSignTextCallbackId);
 }
 
 impl building_set_sign_text for super::RemoteReducers {
-    fn building_set_sign_text(&self, request: BuildingSetSignTextRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("building_set_sign_text", BuildingSetSignTextArgs { request,  })
+    fn building_set_sign_text(&self, request: BuildingSetSignTextRequest) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "building_set_sign_text",
+            BuildingSetSignTextArgs { request },
+        )
     }
     fn on_building_set_sign_text(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &BuildingSetSignTextRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &BuildingSetSignTextRequest)
+            + Send
+            + 'static,
     ) -> BuildingSetSignTextCallbackId {
         BuildingSetSignTextCallbackId(self.imp.on_reducer(
             "building_set_sign_text",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::BuildingSetSignText {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::BuildingSetSignText { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
     fn remove_on_building_set_sign_text(&self, callback: BuildingSetSignTextCallbackId) {
-        self.imp.remove_on_reducer("building_set_sign_text", callback.0)
+        self.imp
+            .remove_on_reducer("building_set_sign_text", callback.0)
     }
 }
 
@@ -103,7 +107,7 @@ pub trait set_flags_for_building_set_sign_text {
 
 impl set_flags_for_building_set_sign_text for super::SetReducerFlags {
     fn building_set_sign_text(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("building_set_sign_text", flags);
+        self.imp
+            .set_call_reducer_flags("building_set_sign_text", flags);
     }
 }
-

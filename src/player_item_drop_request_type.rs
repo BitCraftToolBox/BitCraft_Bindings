@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::pocket_key_type::PocketKey;
 
@@ -18,8 +13,6 @@ pub struct PlayerItemDropRequest {
     pub pocket: PocketKey,
 }
 
-
 impl __sdk::InModule for PlayerItemDropRequest {
     type Module = super::RemoteModule;
 }
-

@@ -3,26 +3,20 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct EnemyDespawnFromMobMonitorBatchArgs {
-    pub enemy_entity_ids: Vec::<u64>,
+    pub enemy_entity_ids: Vec<u64>,
 }
 
 impl From<EnemyDespawnFromMobMonitorBatchArgs> for super::Reducer {
     fn from(args: EnemyDespawnFromMobMonitorBatchArgs) -> Self {
         Self::EnemyDespawnFromMobMonitorBatch {
             enemy_entity_ids: args.enemy_entity_ids,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for EnemyDespawnFromMobMonitorBatchArgs {
@@ -41,8 +35,8 @@ pub trait enemy_despawn_from_mob_monitor_batch {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_enemy_despawn_from_mob_monitor_batch`] callbacks.
-    fn enemy_despawn_from_mob_monitor_batch(&self, enemy_entity_ids: Vec::<u64>,
-) -> __sdk::Result<()>;
+    fn enemy_despawn_from_mob_monitor_batch(&self, enemy_entity_ids: Vec<u64>)
+        -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `enemy_despawn_from_mob_monitor_batch`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -50,20 +44,31 @@ pub trait enemy_despawn_from_mob_monitor_batch {
     ///
     /// The returned [`EnemyDespawnFromMobMonitorBatchCallbackId`] can be passed to [`Self::remove_on_enemy_despawn_from_mob_monitor_batch`]
     /// to cancel the callback.
-    fn on_enemy_despawn_from_mob_monitor_batch(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<u64>, ) + Send + 'static) -> EnemyDespawnFromMobMonitorBatchCallbackId;
+    fn on_enemy_despawn_from_mob_monitor_batch(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<u64>) + Send + 'static,
+    ) -> EnemyDespawnFromMobMonitorBatchCallbackId;
     /// Cancel a callback previously registered by [`Self::on_enemy_despawn_from_mob_monitor_batch`],
     /// causing it not to run in the future.
-    fn remove_on_enemy_despawn_from_mob_monitor_batch(&self, callback: EnemyDespawnFromMobMonitorBatchCallbackId);
+    fn remove_on_enemy_despawn_from_mob_monitor_batch(
+        &self,
+        callback: EnemyDespawnFromMobMonitorBatchCallbackId,
+    );
 }
 
 impl enemy_despawn_from_mob_monitor_batch for super::RemoteReducers {
-    fn enemy_despawn_from_mob_monitor_batch(&self, enemy_entity_ids: Vec::<u64>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("enemy_despawn_from_mob_monitor_batch", EnemyDespawnFromMobMonitorBatchArgs { enemy_entity_ids,  })
+    fn enemy_despawn_from_mob_monitor_batch(
+        &self,
+        enemy_entity_ids: Vec<u64>,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "enemy_despawn_from_mob_monitor_batch",
+            EnemyDespawnFromMobMonitorBatchArgs { enemy_entity_ids },
+        )
     }
     fn on_enemy_despawn_from_mob_monitor_batch(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<u64>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<u64>) + Send + 'static,
     ) -> EnemyDespawnFromMobMonitorBatchCallbackId {
         EnemyDespawnFromMobMonitorBatchCallbackId(self.imp.on_reducer(
             "enemy_despawn_from_mob_monitor_batch",
@@ -81,8 +86,12 @@ impl enemy_despawn_from_mob_monitor_batch for super::RemoteReducers {
             }),
         ))
     }
-    fn remove_on_enemy_despawn_from_mob_monitor_batch(&self, callback: EnemyDespawnFromMobMonitorBatchCallbackId) {
-        self.imp.remove_on_reducer("enemy_despawn_from_mob_monitor_batch", callback.0)
+    fn remove_on_enemy_despawn_from_mob_monitor_batch(
+        &self,
+        callback: EnemyDespawnFromMobMonitorBatchCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("enemy_despawn_from_mob_monitor_batch", callback.0)
     }
 }
 
@@ -102,7 +111,7 @@ pub trait set_flags_for_enemy_despawn_from_mob_monitor_batch {
 
 impl set_flags_for_enemy_despawn_from_mob_monitor_batch for super::SetReducerFlags {
     fn enemy_despawn_from_mob_monitor_batch(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("enemy_despawn_from_mob_monitor_batch", flags);
+        self.imp
+            .set_call_reducer_flags("enemy_despawn_from_mob_monitor_batch", flags);
     }
 }
-

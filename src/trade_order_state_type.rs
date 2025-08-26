@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::item_stack_type::ItemStack;
 
@@ -18,15 +13,13 @@ pub struct TradeOrderState {
     pub entity_id: u64,
     pub shop_entity_id: u64,
     pub remaining_stock: i32,
-    pub offer_items: Vec::<ItemStack>,
-    pub offer_cargo_id: Vec::<i32>,
-    pub required_items: Vec::<ItemStack>,
-    pub required_cargo_id: Vec::<i32>,
-    pub traveler_trade_order_id: Option::<i32>,
+    pub offer_items: Vec<ItemStack>,
+    pub offer_cargo_id: Vec<i32>,
+    pub required_items: Vec<ItemStack>,
+    pub required_cargo_id: Vec<i32>,
+    pub traveler_trade_order_id: Option<i32>,
 }
-
 
 impl __sdk::InModule for TradeOrderState {
     type Module = super::RemoteModule;
 }
-

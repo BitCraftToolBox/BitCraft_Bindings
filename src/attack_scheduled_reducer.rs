@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::attack_timer_type::AttackTimer;
 
@@ -20,10 +15,8 @@ pub(super) struct AttackScheduledArgs {
 
 impl From<AttackScheduledArgs> for super::Reducer {
     fn from(args: AttackScheduledArgs) -> Self {
-        Self::AttackScheduled {
-            timer: args.timer,
-}
-}
+        Self::AttackScheduled { timer: args.timer }
+    }
 }
 
 impl __sdk::InModule for AttackScheduledArgs {
@@ -42,8 +35,7 @@ pub trait attack_scheduled {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_attack_scheduled`] callbacks.
-    fn attack_scheduled(&self, timer: AttackTimer,
-) -> __sdk::Result<()>;
+    fn attack_scheduled(&self, timer: AttackTimer) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `attack_scheduled`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +43,39 @@ pub trait attack_scheduled {
     ///
     /// The returned [`AttackScheduledCallbackId`] can be passed to [`Self::remove_on_attack_scheduled`]
     /// to cancel the callback.
-    fn on_attack_scheduled(&self, callback: impl FnMut(&super::ReducerEventContext, &AttackTimer, ) + Send + 'static) -> AttackScheduledCallbackId;
+    fn on_attack_scheduled(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &AttackTimer) + Send + 'static,
+    ) -> AttackScheduledCallbackId;
     /// Cancel a callback previously registered by [`Self::on_attack_scheduled`],
     /// causing it not to run in the future.
     fn remove_on_attack_scheduled(&self, callback: AttackScheduledCallbackId);
 }
 
 impl attack_scheduled for super::RemoteReducers {
-    fn attack_scheduled(&self, timer: AttackTimer,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("attack_scheduled", AttackScheduledArgs { timer,  })
+    fn attack_scheduled(&self, timer: AttackTimer) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("attack_scheduled", AttackScheduledArgs { timer })
     }
     fn on_attack_scheduled(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &AttackTimer, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &AttackTimer) + Send + 'static,
     ) -> AttackScheduledCallbackId {
         AttackScheduledCallbackId(self.imp.on_reducer(
             "attack_scheduled",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::AttackScheduled {
-                            timer, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::AttackScheduled { timer },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, timer, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, timer)
             }),
         ))
     }
@@ -106,4 +103,3 @@ impl set_flags_for_attack_scheduled for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("attack_scheduled", flags);
     }
 }
-

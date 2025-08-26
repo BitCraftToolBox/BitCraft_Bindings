@@ -3,13 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -21,8 +15,8 @@ impl From<CheatKillArgs> for super::Reducer {
     fn from(args: CheatKillArgs) -> Self {
         Self::CheatKill {
             entity_id: args.entity_id,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for CheatKillArgs {
@@ -41,8 +35,7 @@ pub trait cheat_kill {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_cheat_kill`] callbacks.
-    fn cheat_kill(&self, entity_id: u64,
-) -> __sdk::Result<()>;
+    fn cheat_kill(&self, entity_id: u64) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `cheat_kill`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -50,34 +43,39 @@ pub trait cheat_kill {
     ///
     /// The returned [`CheatKillCallbackId`] can be passed to [`Self::remove_on_cheat_kill`]
     /// to cancel the callback.
-    fn on_cheat_kill(&self, callback: impl FnMut(&super::ReducerEventContext, &u64, ) + Send + 'static) -> CheatKillCallbackId;
+    fn on_cheat_kill(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &u64) + Send + 'static,
+    ) -> CheatKillCallbackId;
     /// Cancel a callback previously registered by [`Self::on_cheat_kill`],
     /// causing it not to run in the future.
     fn remove_on_cheat_kill(&self, callback: CheatKillCallbackId);
 }
 
 impl cheat_kill for super::RemoteReducers {
-    fn cheat_kill(&self, entity_id: u64,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("cheat_kill", CheatKillArgs { entity_id,  })
+    fn cheat_kill(&self, entity_id: u64) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("cheat_kill", CheatKillArgs { entity_id })
     }
     fn on_cheat_kill(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &u64, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &u64) + Send + 'static,
     ) -> CheatKillCallbackId {
         CheatKillCallbackId(self.imp.on_reducer(
             "cheat_kill",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::CheatKill {
-                            entity_id, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::CheatKill { entity_id },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, entity_id, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, entity_id)
             }),
         ))
     }
@@ -105,4 +103,3 @@ impl set_flags_for_cheat_kill for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("cheat_kill", flags);
     }
 }
-

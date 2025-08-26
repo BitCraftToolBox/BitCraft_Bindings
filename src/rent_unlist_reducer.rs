@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::rent_unlist_request_type::RentUnlistRequest;
 
@@ -22,8 +17,8 @@ impl From<RentUnlistArgs> for super::Reducer {
     fn from(args: RentUnlistArgs) -> Self {
         Self::RentUnlist {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for RentUnlistArgs {
@@ -42,8 +37,7 @@ pub trait rent_unlist {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_rent_unlist`] callbacks.
-    fn rent_unlist(&self, request: RentUnlistRequest,
-) -> __sdk::Result<()>;
+    fn rent_unlist(&self, request: RentUnlistRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `rent_unlist`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,39 @@ pub trait rent_unlist {
     ///
     /// The returned [`RentUnlistCallbackId`] can be passed to [`Self::remove_on_rent_unlist`]
     /// to cancel the callback.
-    fn on_rent_unlist(&self, callback: impl FnMut(&super::ReducerEventContext, &RentUnlistRequest, ) + Send + 'static) -> RentUnlistCallbackId;
+    fn on_rent_unlist(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &RentUnlistRequest) + Send + 'static,
+    ) -> RentUnlistCallbackId;
     /// Cancel a callback previously registered by [`Self::on_rent_unlist`],
     /// causing it not to run in the future.
     fn remove_on_rent_unlist(&self, callback: RentUnlistCallbackId);
 }
 
 impl rent_unlist for super::RemoteReducers {
-    fn rent_unlist(&self, request: RentUnlistRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("rent_unlist", RentUnlistArgs { request,  })
+    fn rent_unlist(&self, request: RentUnlistRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("rent_unlist", RentUnlistArgs { request })
     }
     fn on_rent_unlist(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &RentUnlistRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &RentUnlistRequest) + Send + 'static,
     ) -> RentUnlistCallbackId {
         RentUnlistCallbackId(self.imp.on_reducer(
             "rent_unlist",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::RentUnlist {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::RentUnlist { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
@@ -106,4 +105,3 @@ impl set_flags_for_rent_unlist for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("rent_unlist", flags);
     }
 }
-

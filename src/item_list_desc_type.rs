@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::item_list_possibility_type::ItemListPossibility;
 
@@ -17,11 +12,9 @@ use super::item_list_possibility_type::ItemListPossibility;
 pub struct ItemListDesc {
     pub id: i32,
     pub name: String,
-    pub possibilities: Vec::<ItemListPossibility>,
+    pub possibilities: Vec<ItemListPossibility>,
 }
-
 
 impl __sdk::InModule for ItemListDesc {
     type Module = super::RemoteModule;
 }
-

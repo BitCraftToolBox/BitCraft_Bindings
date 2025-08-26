@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::starving_loop_timer_type::StarvingLoopTimer;
 
@@ -20,10 +15,8 @@ pub(super) struct StarvingAgentLoopArgs {
 
 impl From<StarvingAgentLoopArgs> for super::Reducer {
     fn from(args: StarvingAgentLoopArgs) -> Self {
-        Self::StarvingAgentLoop {
-            timer: args.timer,
-}
-}
+        Self::StarvingAgentLoop { timer: args.timer }
+    }
 }
 
 impl __sdk::InModule for StarvingAgentLoopArgs {
@@ -42,8 +35,7 @@ pub trait starving_agent_loop {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_starving_agent_loop`] callbacks.
-    fn starving_agent_loop(&self, timer: StarvingLoopTimer,
-) -> __sdk::Result<()>;
+    fn starving_agent_loop(&self, timer: StarvingLoopTimer) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `starving_agent_loop`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +43,45 @@ pub trait starving_agent_loop {
     ///
     /// The returned [`StarvingAgentLoopCallbackId`] can be passed to [`Self::remove_on_starving_agent_loop`]
     /// to cancel the callback.
-    fn on_starving_agent_loop(&self, callback: impl FnMut(&super::ReducerEventContext, &StarvingLoopTimer, ) + Send + 'static) -> StarvingAgentLoopCallbackId;
+    fn on_starving_agent_loop(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &StarvingLoopTimer) + Send + 'static,
+    ) -> StarvingAgentLoopCallbackId;
     /// Cancel a callback previously registered by [`Self::on_starving_agent_loop`],
     /// causing it not to run in the future.
     fn remove_on_starving_agent_loop(&self, callback: StarvingAgentLoopCallbackId);
 }
 
 impl starving_agent_loop for super::RemoteReducers {
-    fn starving_agent_loop(&self, timer: StarvingLoopTimer,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("starving_agent_loop", StarvingAgentLoopArgs { timer,  })
+    fn starving_agent_loop(&self, timer: StarvingLoopTimer) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("starving_agent_loop", StarvingAgentLoopArgs { timer })
     }
     fn on_starving_agent_loop(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &StarvingLoopTimer, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &StarvingLoopTimer) + Send + 'static,
     ) -> StarvingAgentLoopCallbackId {
         StarvingAgentLoopCallbackId(self.imp.on_reducer(
             "starving_agent_loop",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::StarvingAgentLoop {
-                            timer, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::StarvingAgentLoop { timer },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, timer, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, timer)
             }),
         ))
     }
     fn remove_on_starving_agent_loop(&self, callback: StarvingAgentLoopCallbackId) {
-        self.imp.remove_on_reducer("starving_agent_loop", callback.0)
+        self.imp
+            .remove_on_reducer("starving_agent_loop", callback.0)
     }
 }
 
@@ -103,7 +101,7 @@ pub trait set_flags_for_starving_agent_loop {
 
 impl set_flags_for_starving_agent_loop for super::SetReducerFlags {
     fn starving_agent_loop(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("starving_agent_loop", flags);
+        self.imp
+            .set_call_reducer_flags("starving_agent_loop", flags);
     }
 }
-

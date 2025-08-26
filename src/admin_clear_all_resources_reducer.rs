@@ -3,23 +3,16 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
-pub(super) struct AdminClearAllResourcesArgs {
-    }
+pub(super) struct AdminClearAllResourcesArgs {}
 
 impl From<AdminClearAllResourcesArgs> for super::Reducer {
     fn from(args: AdminClearAllResourcesArgs) -> Self {
         Self::AdminClearAllResources
-}
+    }
 }
 
 impl __sdk::InModule for AdminClearAllResourcesArgs {
@@ -38,7 +31,7 @@ pub trait admin_clear_all_resources {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_admin_clear_all_resources`] callbacks.
-    fn admin_clear_all_resources(&self, ) -> __sdk::Result<()>;
+    fn admin_clear_all_resources(&self) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `admin_clear_all_resources`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -46,38 +39,45 @@ pub trait admin_clear_all_resources {
     ///
     /// The returned [`AdminClearAllResourcesCallbackId`] can be passed to [`Self::remove_on_admin_clear_all_resources`]
     /// to cancel the callback.
-    fn on_admin_clear_all_resources(&self, callback: impl FnMut(&super::ReducerEventContext, ) + Send + 'static) -> AdminClearAllResourcesCallbackId;
+    fn on_admin_clear_all_resources(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext) + Send + 'static,
+    ) -> AdminClearAllResourcesCallbackId;
     /// Cancel a callback previously registered by [`Self::on_admin_clear_all_resources`],
     /// causing it not to run in the future.
     fn remove_on_admin_clear_all_resources(&self, callback: AdminClearAllResourcesCallbackId);
 }
 
 impl admin_clear_all_resources for super::RemoteReducers {
-    fn admin_clear_all_resources(&self, ) -> __sdk::Result<()> {
-        self.imp.call_reducer("admin_clear_all_resources", AdminClearAllResourcesArgs {  })
+    fn admin_clear_all_resources(&self) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("admin_clear_all_resources", AdminClearAllResourcesArgs {})
     }
     fn on_admin_clear_all_resources(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext) + Send + 'static,
     ) -> AdminClearAllResourcesCallbackId {
         AdminClearAllResourcesCallbackId(self.imp.on_reducer(
             "admin_clear_all_resources",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::AdminClearAllResources {
-                            
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::AdminClearAllResources {},
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx)
             }),
         ))
     }
     fn remove_on_admin_clear_all_resources(&self, callback: AdminClearAllResourcesCallbackId) {
-        self.imp.remove_on_reducer("admin_clear_all_resources", callback.0)
+        self.imp
+            .remove_on_reducer("admin_clear_all_resources", callback.0)
     }
 }
 
@@ -97,7 +97,7 @@ pub trait set_flags_for_admin_clear_all_resources {
 
 impl set_flags_for_admin_clear_all_resources for super::SetReducerFlags {
     fn admin_clear_all_resources(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("admin_clear_all_resources", flags);
+        self.imp
+            .set_call_reducer_flags("admin_clear_all_resources", flags);
     }
 }
-

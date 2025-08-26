@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_deployable_move_request_type::PlayerDeployableMoveRequest;
 
@@ -22,8 +17,8 @@ impl From<DeployableMoveArgs> for super::Reducer {
     fn from(args: DeployableMoveArgs) -> Self {
         Self::DeployableMove {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for DeployableMoveArgs {
@@ -42,8 +37,7 @@ pub trait deployable_move {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_deployable_move`] callbacks.
-    fn deployable_move(&self, request: PlayerDeployableMoveRequest,
-) -> __sdk::Result<()>;
+    fn deployable_move(&self, request: PlayerDeployableMoveRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `deployable_move`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,41 @@ pub trait deployable_move {
     ///
     /// The returned [`DeployableMoveCallbackId`] can be passed to [`Self::remove_on_deployable_move`]
     /// to cancel the callback.
-    fn on_deployable_move(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerDeployableMoveRequest, ) + Send + 'static) -> DeployableMoveCallbackId;
+    fn on_deployable_move(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerDeployableMoveRequest) + Send + 'static,
+    ) -> DeployableMoveCallbackId;
     /// Cancel a callback previously registered by [`Self::on_deployable_move`],
     /// causing it not to run in the future.
     fn remove_on_deployable_move(&self, callback: DeployableMoveCallbackId);
 }
 
 impl deployable_move for super::RemoteReducers {
-    fn deployable_move(&self, request: PlayerDeployableMoveRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("deployable_move", DeployableMoveArgs { request,  })
+    fn deployable_move(&self, request: PlayerDeployableMoveRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("deployable_move", DeployableMoveArgs { request })
     }
     fn on_deployable_move(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerDeployableMoveRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerDeployableMoveRequest)
+            + Send
+            + 'static,
     ) -> DeployableMoveCallbackId {
         DeployableMoveCallbackId(self.imp.on_reducer(
             "deployable_move",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::DeployableMove {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::DeployableMove { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
@@ -106,4 +107,3 @@ impl set_flags_for_deployable_move for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("deployable_move", flags);
     }
 }
-

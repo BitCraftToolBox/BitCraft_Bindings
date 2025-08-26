@@ -3,24 +3,17 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::world_gen_biome_definition_type::WorldGenBiomeDefinition;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub struct WorldGenBiomesMapDefinition {
-    pub biomes: Vec::<WorldGenBiomeDefinition>,
-    pub values: Vec::<u8>,
+    pub biomes: Vec<WorldGenBiomeDefinition>,
+    pub values: Vec<u8>,
 }
-
 
 impl __sdk::InModule for WorldGenBiomesMapDefinition {
     type Module = super::RemoteModule;
 }
-

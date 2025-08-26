@@ -3,13 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -21,8 +15,8 @@ impl From<PlayerHousingChangeEntranceArgs> for super::Reducer {
     fn from(args: PlayerHousingChangeEntranceArgs) -> Self {
         Self::PlayerHousingChangeEntrance {
             building_entity_id: args.building_entity_id,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for PlayerHousingChangeEntranceArgs {
@@ -41,8 +35,7 @@ pub trait player_housing_change_entrance {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_player_housing_change_entrance`] callbacks.
-    fn player_housing_change_entrance(&self, building_entity_id: u64,
-) -> __sdk::Result<()>;
+    fn player_housing_change_entrance(&self, building_entity_id: u64) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `player_housing_change_entrance`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -50,39 +43,54 @@ pub trait player_housing_change_entrance {
     ///
     /// The returned [`PlayerHousingChangeEntranceCallbackId`] can be passed to [`Self::remove_on_player_housing_change_entrance`]
     /// to cancel the callback.
-    fn on_player_housing_change_entrance(&self, callback: impl FnMut(&super::ReducerEventContext, &u64, ) + Send + 'static) -> PlayerHousingChangeEntranceCallbackId;
+    fn on_player_housing_change_entrance(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &u64) + Send + 'static,
+    ) -> PlayerHousingChangeEntranceCallbackId;
     /// Cancel a callback previously registered by [`Self::on_player_housing_change_entrance`],
     /// causing it not to run in the future.
-    fn remove_on_player_housing_change_entrance(&self, callback: PlayerHousingChangeEntranceCallbackId);
+    fn remove_on_player_housing_change_entrance(
+        &self,
+        callback: PlayerHousingChangeEntranceCallbackId,
+    );
 }
 
 impl player_housing_change_entrance for super::RemoteReducers {
-    fn player_housing_change_entrance(&self, building_entity_id: u64,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("player_housing_change_entrance", PlayerHousingChangeEntranceArgs { building_entity_id,  })
+    fn player_housing_change_entrance(&self, building_entity_id: u64) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "player_housing_change_entrance",
+            PlayerHousingChangeEntranceArgs { building_entity_id },
+        )
     }
     fn on_player_housing_change_entrance(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &u64, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &u64) + Send + 'static,
     ) -> PlayerHousingChangeEntranceCallbackId {
         PlayerHousingChangeEntranceCallbackId(self.imp.on_reducer(
             "player_housing_change_entrance",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::PlayerHousingChangeEntrance {
-                            building_entity_id, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer:
+                                super::Reducer::PlayerHousingChangeEntrance { building_entity_id },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, building_entity_id, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, building_entity_id)
             }),
         ))
     }
-    fn remove_on_player_housing_change_entrance(&self, callback: PlayerHousingChangeEntranceCallbackId) {
-        self.imp.remove_on_reducer("player_housing_change_entrance", callback.0)
+    fn remove_on_player_housing_change_entrance(
+        &self,
+        callback: PlayerHousingChangeEntranceCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("player_housing_change_entrance", callback.0)
     }
 }
 
@@ -102,7 +110,7 @@ pub trait set_flags_for_player_housing_change_entrance {
 
 impl set_flags_for_player_housing_change_entrance for super::SetReducerFlags {
     fn player_housing_change_entrance(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("player_housing_change_entrance", flags);
+        self.imp
+            .set_call_reducer_flags("player_housing_change_entrance", flags);
     }
 }
-

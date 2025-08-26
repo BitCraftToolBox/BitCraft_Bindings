@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::rent_add_tenant_request_type::RentAddTenantRequest;
 
@@ -22,8 +17,8 @@ impl From<RentAddTenantArgs> for super::Reducer {
     fn from(args: RentAddTenantArgs) -> Self {
         Self::RentAddTenant {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for RentAddTenantArgs {
@@ -42,8 +37,7 @@ pub trait rent_add_tenant {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_rent_add_tenant`] callbacks.
-    fn rent_add_tenant(&self, request: RentAddTenantRequest,
-) -> __sdk::Result<()>;
+    fn rent_add_tenant(&self, request: RentAddTenantRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `rent_add_tenant`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,39 @@ pub trait rent_add_tenant {
     ///
     /// The returned [`RentAddTenantCallbackId`] can be passed to [`Self::remove_on_rent_add_tenant`]
     /// to cancel the callback.
-    fn on_rent_add_tenant(&self, callback: impl FnMut(&super::ReducerEventContext, &RentAddTenantRequest, ) + Send + 'static) -> RentAddTenantCallbackId;
+    fn on_rent_add_tenant(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &RentAddTenantRequest) + Send + 'static,
+    ) -> RentAddTenantCallbackId;
     /// Cancel a callback previously registered by [`Self::on_rent_add_tenant`],
     /// causing it not to run in the future.
     fn remove_on_rent_add_tenant(&self, callback: RentAddTenantCallbackId);
 }
 
 impl rent_add_tenant for super::RemoteReducers {
-    fn rent_add_tenant(&self, request: RentAddTenantRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("rent_add_tenant", RentAddTenantArgs { request,  })
+    fn rent_add_tenant(&self, request: RentAddTenantRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("rent_add_tenant", RentAddTenantArgs { request })
     }
     fn on_rent_add_tenant(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &RentAddTenantRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &RentAddTenantRequest) + Send + 'static,
     ) -> RentAddTenantCallbackId {
         RentAddTenantCallbackId(self.imp.on_reducer(
             "rent_add_tenant",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::RentAddTenant {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::RentAddTenant { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
@@ -106,4 +105,3 @@ impl set_flags_for_rent_add_tenant for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("rent_add_tenant", flags);
     }
 }
-

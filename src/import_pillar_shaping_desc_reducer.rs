@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::pillar_shaping_desc_type::PillarShapingDesc;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct ImportPillarShapingDescArgs {
-    pub records: Vec::<PillarShapingDesc>,
+    pub records: Vec<PillarShapingDesc>,
 }
 
 impl From<ImportPillarShapingDescArgs> for super::Reducer {
     fn from(args: ImportPillarShapingDescArgs) -> Self {
         Self::ImportPillarShapingDesc {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ImportPillarShapingDescArgs {
@@ -42,8 +37,7 @@ pub trait import_pillar_shaping_desc {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_import_pillar_shaping_desc`] callbacks.
-    fn import_pillar_shaping_desc(&self, records: Vec::<PillarShapingDesc>,
-) -> __sdk::Result<()>;
+    fn import_pillar_shaping_desc(&self, records: Vec<PillarShapingDesc>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `import_pillar_shaping_desc`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,47 @@ pub trait import_pillar_shaping_desc {
     ///
     /// The returned [`ImportPillarShapingDescCallbackId`] can be passed to [`Self::remove_on_import_pillar_shaping_desc`]
     /// to cancel the callback.
-    fn on_import_pillar_shaping_desc(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<PillarShapingDesc>, ) + Send + 'static) -> ImportPillarShapingDescCallbackId;
+    fn on_import_pillar_shaping_desc(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<PillarShapingDesc>) + Send + 'static,
+    ) -> ImportPillarShapingDescCallbackId;
     /// Cancel a callback previously registered by [`Self::on_import_pillar_shaping_desc`],
     /// causing it not to run in the future.
     fn remove_on_import_pillar_shaping_desc(&self, callback: ImportPillarShapingDescCallbackId);
 }
 
 impl import_pillar_shaping_desc for super::RemoteReducers {
-    fn import_pillar_shaping_desc(&self, records: Vec::<PillarShapingDesc>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("import_pillar_shaping_desc", ImportPillarShapingDescArgs { records,  })
+    fn import_pillar_shaping_desc(&self, records: Vec<PillarShapingDesc>) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "import_pillar_shaping_desc",
+            ImportPillarShapingDescArgs { records },
+        )
     }
     fn on_import_pillar_shaping_desc(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<PillarShapingDesc>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<PillarShapingDesc>) + Send + 'static,
     ) -> ImportPillarShapingDescCallbackId {
         ImportPillarShapingDescCallbackId(self.imp.on_reducer(
             "import_pillar_shaping_desc",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ImportPillarShapingDesc {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ImportPillarShapingDesc { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
     fn remove_on_import_pillar_shaping_desc(&self, callback: ImportPillarShapingDescCallbackId) {
-        self.imp.remove_on_reducer("import_pillar_shaping_desc", callback.0)
+        self.imp
+            .remove_on_reducer("import_pillar_shaping_desc", callback.0)
     }
 }
 
@@ -103,7 +105,7 @@ pub trait set_flags_for_import_pillar_shaping_desc {
 
 impl set_flags_for_import_pillar_shaping_desc for super::SetReducerFlags {
     fn import_pillar_shaping_desc(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("import_pillar_shaping_desc", flags);
+        self.imp
+            .set_call_reducer_flags("import_pillar_shaping_desc", flags);
     }
 }
-

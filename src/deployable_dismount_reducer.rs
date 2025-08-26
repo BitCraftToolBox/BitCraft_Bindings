@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_deployable_dismount_request_type::PlayerDeployableDismountRequest;
 
@@ -22,8 +17,8 @@ impl From<DeployableDismountArgs> for super::Reducer {
     fn from(args: DeployableDismountArgs) -> Self {
         Self::DeployableDismount {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for DeployableDismountArgs {
@@ -42,8 +37,7 @@ pub trait deployable_dismount {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_deployable_dismount`] callbacks.
-    fn deployable_dismount(&self, request: PlayerDeployableDismountRequest,
-) -> __sdk::Result<()>;
+    fn deployable_dismount(&self, request: PlayerDeployableDismountRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `deployable_dismount`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,49 @@ pub trait deployable_dismount {
     ///
     /// The returned [`DeployableDismountCallbackId`] can be passed to [`Self::remove_on_deployable_dismount`]
     /// to cancel the callback.
-    fn on_deployable_dismount(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerDeployableDismountRequest, ) + Send + 'static) -> DeployableDismountCallbackId;
+    fn on_deployable_dismount(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerDeployableDismountRequest)
+            + Send
+            + 'static,
+    ) -> DeployableDismountCallbackId;
     /// Cancel a callback previously registered by [`Self::on_deployable_dismount`],
     /// causing it not to run in the future.
     fn remove_on_deployable_dismount(&self, callback: DeployableDismountCallbackId);
 }
 
 impl deployable_dismount for super::RemoteReducers {
-    fn deployable_dismount(&self, request: PlayerDeployableDismountRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("deployable_dismount", DeployableDismountArgs { request,  })
+    fn deployable_dismount(&self, request: PlayerDeployableDismountRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("deployable_dismount", DeployableDismountArgs { request })
     }
     fn on_deployable_dismount(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerDeployableDismountRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerDeployableDismountRequest)
+            + Send
+            + 'static,
     ) -> DeployableDismountCallbackId {
         DeployableDismountCallbackId(self.imp.on_reducer(
             "deployable_dismount",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::DeployableDismount {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::DeployableDismount { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
     fn remove_on_deployable_dismount(&self, callback: DeployableDismountCallbackId) {
-        self.imp.remove_on_reducer("deployable_dismount", callback.0)
+        self.imp
+            .remove_on_reducer("deployable_dismount", callback.0)
     }
 }
 
@@ -103,7 +107,7 @@ pub trait set_flags_for_deployable_dismount {
 
 impl set_flags_for_deployable_dismount for super::SetReducerFlags {
     fn deployable_dismount(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("deployable_dismount", flags);
+        self.imp
+            .set_call_reducer_flags("deployable_dismount", flags);
     }
 }
-

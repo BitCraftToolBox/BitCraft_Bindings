@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_housing_enter_request_type::PlayerHousingEnterRequest;
 
@@ -22,8 +17,8 @@ impl From<PlayerHousingEnterArgs> for super::Reducer {
     fn from(args: PlayerHousingEnterArgs) -> Self {
         Self::PlayerHousingEnter {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for PlayerHousingEnterArgs {
@@ -42,8 +37,7 @@ pub trait player_housing_enter {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_player_housing_enter`] callbacks.
-    fn player_housing_enter(&self, request: PlayerHousingEnterRequest,
-) -> __sdk::Result<()>;
+    fn player_housing_enter(&self, request: PlayerHousingEnterRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `player_housing_enter`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,47 @@ pub trait player_housing_enter {
     ///
     /// The returned [`PlayerHousingEnterCallbackId`] can be passed to [`Self::remove_on_player_housing_enter`]
     /// to cancel the callback.
-    fn on_player_housing_enter(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerHousingEnterRequest, ) + Send + 'static) -> PlayerHousingEnterCallbackId;
+    fn on_player_housing_enter(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerHousingEnterRequest) + Send + 'static,
+    ) -> PlayerHousingEnterCallbackId;
     /// Cancel a callback previously registered by [`Self::on_player_housing_enter`],
     /// causing it not to run in the future.
     fn remove_on_player_housing_enter(&self, callback: PlayerHousingEnterCallbackId);
 }
 
 impl player_housing_enter for super::RemoteReducers {
-    fn player_housing_enter(&self, request: PlayerHousingEnterRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("player_housing_enter", PlayerHousingEnterArgs { request,  })
+    fn player_housing_enter(&self, request: PlayerHousingEnterRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("player_housing_enter", PlayerHousingEnterArgs { request })
     }
     fn on_player_housing_enter(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerHousingEnterRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerHousingEnterRequest)
+            + Send
+            + 'static,
     ) -> PlayerHousingEnterCallbackId {
         PlayerHousingEnterCallbackId(self.imp.on_reducer(
             "player_housing_enter",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::PlayerHousingEnter {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::PlayerHousingEnter { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
     fn remove_on_player_housing_enter(&self, callback: PlayerHousingEnterCallbackId) {
-        self.imp.remove_on_reducer("player_housing_enter", callback.0)
+        self.imp
+            .remove_on_reducer("player_housing_enter", callback.0)
     }
 }
 
@@ -103,7 +105,7 @@ pub trait set_flags_for_player_housing_enter {
 
 impl set_flags_for_player_housing_enter for super::SetReducerFlags {
     fn player_housing_enter(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("player_housing_enter", flags);
+        self.imp
+            .set_call_reducer_flags("player_housing_enter", flags);
     }
 }
-

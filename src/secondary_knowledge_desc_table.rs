@@ -3,13 +3,8 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::secondary_knowledge_desc_type::SecondaryKnowledgeDesc;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `secondary_knowledge_desc`.
 ///
@@ -37,7 +32,9 @@ pub trait SecondaryKnowledgeDescTableAccess {
 impl SecondaryKnowledgeDescTableAccess for super::RemoteTables {
     fn secondary_knowledge_desc(&self) -> SecondaryKnowledgeDescTableHandle<'_> {
         SecondaryKnowledgeDescTableHandle {
-            imp: self.imp.get_table::<SecondaryKnowledgeDesc>("secondary_knowledge_desc"),
+            imp: self
+                .imp
+                .get_table::<SecondaryKnowledgeDesc>("secondary_knowledge_desc"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -50,8 +47,12 @@ impl<'ctx> __sdk::Table for SecondaryKnowledgeDescTableHandle<'ctx> {
     type Row = SecondaryKnowledgeDesc;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = SecondaryKnowledgeDesc> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = SecondaryKnowledgeDesc> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = SecondaryKnowledgeDescInsertCallbackId;
 
@@ -82,8 +83,8 @@ impl<'ctx> __sdk::Table for SecondaryKnowledgeDescTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<SecondaryKnowledgeDesc>("secondary_knowledge_desc");
+    let _table =
+        client_cache.get_or_make_table::<SecondaryKnowledgeDesc>("secondary_knowledge_desc");
     _table.add_unique_constraint::<i32>("id", |row| &row.id);
 }
 pub struct SecondaryKnowledgeDescUpdateCallbackId(__sdk::CallbackId);
@@ -103,46 +104,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for SecondaryKnowledgeDescTableHandle<'ctx
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<SecondaryKnowledgeDesc>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<SecondaryKnowledgeDesc>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<SecondaryKnowledgeDesc>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `id` unique index on the table `secondary_knowledge_desc`,
-        /// which allows point queries on the field of the same name
-        /// via the [`SecondaryKnowledgeDescIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.secondary_knowledge_desc().id().find(...)`.
-        pub struct SecondaryKnowledgeDescIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<SecondaryKnowledgeDesc, i32>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `id` unique index on the table `secondary_knowledge_desc`,
+/// which allows point queries on the field of the same name
+/// via the [`SecondaryKnowledgeDescIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.secondary_knowledge_desc().id().find(...)`.
+pub struct SecondaryKnowledgeDescIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<SecondaryKnowledgeDesc, i32>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> SecondaryKnowledgeDescTableHandle<'ctx> {
-            /// Get a handle on the `id` unique index on the table `secondary_knowledge_desc`.
-            pub fn id(&self) -> SecondaryKnowledgeDescIdUnique<'ctx> {
-                SecondaryKnowledgeDescIdUnique {
-                    imp: self.imp.get_unique_constraint::<i32>("id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> SecondaryKnowledgeDescTableHandle<'ctx> {
+    /// Get a handle on the `id` unique index on the table `secondary_knowledge_desc`.
+    pub fn id(&self) -> SecondaryKnowledgeDescIdUnique<'ctx> {
+        SecondaryKnowledgeDescIdUnique {
+            imp: self.imp.get_unique_constraint::<i32>("id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> SecondaryKnowledgeDescIdUnique<'ctx> {
-            /// Find the subscribed row whose `id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &i32) -> Option<SecondaryKnowledgeDesc> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> SecondaryKnowledgeDescIdUnique<'ctx> {
+    /// Find the subscribed row whose `id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &i32) -> Option<SecondaryKnowledgeDesc> {
+        self.imp.find(col_val)
+    }
+}

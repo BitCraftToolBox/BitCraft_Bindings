@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::trade_session_loop_timer_type::TradeSessionLoopTimer;
 
@@ -20,10 +15,8 @@ pub(super) struct TradeSessionsAgentLoopArgs {
 
 impl From<TradeSessionsAgentLoopArgs> for super::Reducer {
     fn from(args: TradeSessionsAgentLoopArgs) -> Self {
-        Self::TradeSessionsAgentLoop {
-            timer: args.timer,
-}
-}
+        Self::TradeSessionsAgentLoop { timer: args.timer }
+    }
 }
 
 impl __sdk::InModule for TradeSessionsAgentLoopArgs {
@@ -42,8 +35,7 @@ pub trait trade_sessions_agent_loop {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_trade_sessions_agent_loop`] callbacks.
-    fn trade_sessions_agent_loop(&self, timer: TradeSessionLoopTimer,
-) -> __sdk::Result<()>;
+    fn trade_sessions_agent_loop(&self, timer: TradeSessionLoopTimer) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `trade_sessions_agent_loop`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +43,47 @@ pub trait trade_sessions_agent_loop {
     ///
     /// The returned [`TradeSessionsAgentLoopCallbackId`] can be passed to [`Self::remove_on_trade_sessions_agent_loop`]
     /// to cancel the callback.
-    fn on_trade_sessions_agent_loop(&self, callback: impl FnMut(&super::ReducerEventContext, &TradeSessionLoopTimer, ) + Send + 'static) -> TradeSessionsAgentLoopCallbackId;
+    fn on_trade_sessions_agent_loop(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &TradeSessionLoopTimer) + Send + 'static,
+    ) -> TradeSessionsAgentLoopCallbackId;
     /// Cancel a callback previously registered by [`Self::on_trade_sessions_agent_loop`],
     /// causing it not to run in the future.
     fn remove_on_trade_sessions_agent_loop(&self, callback: TradeSessionsAgentLoopCallbackId);
 }
 
 impl trade_sessions_agent_loop for super::RemoteReducers {
-    fn trade_sessions_agent_loop(&self, timer: TradeSessionLoopTimer,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("trade_sessions_agent_loop", TradeSessionsAgentLoopArgs { timer,  })
+    fn trade_sessions_agent_loop(&self, timer: TradeSessionLoopTimer) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "trade_sessions_agent_loop",
+            TradeSessionsAgentLoopArgs { timer },
+        )
     }
     fn on_trade_sessions_agent_loop(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &TradeSessionLoopTimer, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &TradeSessionLoopTimer) + Send + 'static,
     ) -> TradeSessionsAgentLoopCallbackId {
         TradeSessionsAgentLoopCallbackId(self.imp.on_reducer(
             "trade_sessions_agent_loop",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::TradeSessionsAgentLoop {
-                            timer, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::TradeSessionsAgentLoop { timer },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, timer, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, timer)
             }),
         ))
     }
     fn remove_on_trade_sessions_agent_loop(&self, callback: TradeSessionsAgentLoopCallbackId) {
-        self.imp.remove_on_reducer("trade_sessions_agent_loop", callback.0)
+        self.imp
+            .remove_on_reducer("trade_sessions_agent_loop", callback.0)
     }
 }
 
@@ -103,7 +103,7 @@ pub trait set_flags_for_trade_sessions_agent_loop {
 
 impl set_flags_for_trade_sessions_agent_loop for super::SetReducerFlags {
     fn trade_sessions_agent_loop(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("trade_sessions_agent_loop", flags);
+        self.imp
+            .set_call_reducer_flags("trade_sessions_agent_loop", flags);
     }
 }
-

@@ -3,13 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -27,8 +21,8 @@ impl From<StartGeneratingWorldArgs> for super::Reducer {
             world_height: args.world_height,
             region_index: args.region_index,
             region_count: args.region_count,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for StartGeneratingWorldArgs {
@@ -47,11 +41,13 @@ pub trait start_generating_world {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_start_generating_world`] callbacks.
-    fn start_generating_world(&self, world_width: i32,
-world_height: i32,
-region_index: u8,
-region_count: u8,
-) -> __sdk::Result<()>;
+    fn start_generating_world(
+        &self,
+        world_width: i32,
+        world_height: i32,
+        region_index: u8,
+        region_count: u8,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `start_generating_world`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -59,42 +55,64 @@ region_count: u8,
     ///
     /// The returned [`StartGeneratingWorldCallbackId`] can be passed to [`Self::remove_on_start_generating_world`]
     /// to cancel the callback.
-    fn on_start_generating_world(&self, callback: impl FnMut(&super::ReducerEventContext, &i32, &i32, &u8, &u8, ) + Send + 'static) -> StartGeneratingWorldCallbackId;
+    fn on_start_generating_world(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &i32, &i32, &u8, &u8) + Send + 'static,
+    ) -> StartGeneratingWorldCallbackId;
     /// Cancel a callback previously registered by [`Self::on_start_generating_world`],
     /// causing it not to run in the future.
     fn remove_on_start_generating_world(&self, callback: StartGeneratingWorldCallbackId);
 }
 
 impl start_generating_world for super::RemoteReducers {
-    fn start_generating_world(&self, world_width: i32,
-world_height: i32,
-region_index: u8,
-region_count: u8,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("start_generating_world", StartGeneratingWorldArgs { world_width, world_height, region_index, region_count,  })
+    fn start_generating_world(
+        &self,
+        world_width: i32,
+        world_height: i32,
+        region_index: u8,
+        region_count: u8,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "start_generating_world",
+            StartGeneratingWorldArgs {
+                world_width,
+                world_height,
+                region_index,
+                region_count,
+            },
+        )
     }
     fn on_start_generating_world(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &i32, &i32, &u8, &u8, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &i32, &i32, &u8, &u8) + Send + 'static,
     ) -> StartGeneratingWorldCallbackId {
         StartGeneratingWorldCallbackId(self.imp.on_reducer(
             "start_generating_world",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::StartGeneratingWorld {
-                            world_width, world_height, region_index, region_count, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer:
+                                super::Reducer::StartGeneratingWorld {
+                                    world_width,
+                                    world_height,
+                                    region_index,
+                                    region_count,
+                                },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, world_width, world_height, region_index, region_count, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, world_width, world_height, region_index, region_count)
             }),
         ))
     }
     fn remove_on_start_generating_world(&self, callback: StartGeneratingWorldCallbackId) {
-        self.imp.remove_on_reducer("start_generating_world", callback.0)
+        self.imp
+            .remove_on_reducer("start_generating_world", callback.0)
     }
 }
 
@@ -114,7 +132,7 @@ pub trait set_flags_for_start_generating_world {
 
 impl set_flags_for_start_generating_world for super::SetReducerFlags {
     fn start_generating_world(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("start_generating_world", flags);
+        self.imp
+            .set_call_reducer_flags("start_generating_world", flags);
     }
 }
-

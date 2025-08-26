@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_emote_request_type::PlayerEmoteRequest;
 
@@ -22,8 +17,8 @@ impl From<EmoteStartArgs> for super::Reducer {
     fn from(args: EmoteStartArgs) -> Self {
         Self::EmoteStart {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for EmoteStartArgs {
@@ -42,8 +37,7 @@ pub trait emote_start {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_emote_start`] callbacks.
-    fn emote_start(&self, request: PlayerEmoteRequest,
-) -> __sdk::Result<()>;
+    fn emote_start(&self, request: PlayerEmoteRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `emote_start`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,39 @@ pub trait emote_start {
     ///
     /// The returned [`EmoteStartCallbackId`] can be passed to [`Self::remove_on_emote_start`]
     /// to cancel the callback.
-    fn on_emote_start(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerEmoteRequest, ) + Send + 'static) -> EmoteStartCallbackId;
+    fn on_emote_start(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerEmoteRequest) + Send + 'static,
+    ) -> EmoteStartCallbackId;
     /// Cancel a callback previously registered by [`Self::on_emote_start`],
     /// causing it not to run in the future.
     fn remove_on_emote_start(&self, callback: EmoteStartCallbackId);
 }
 
 impl emote_start for super::RemoteReducers {
-    fn emote_start(&self, request: PlayerEmoteRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("emote_start", EmoteStartArgs { request,  })
+    fn emote_start(&self, request: PlayerEmoteRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("emote_start", EmoteStartArgs { request })
     }
     fn on_emote_start(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerEmoteRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerEmoteRequest) + Send + 'static,
     ) -> EmoteStartCallbackId {
         EmoteStartCallbackId(self.imp.on_reducer(
             "emote_start",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::EmoteStart {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::EmoteStart { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
@@ -106,4 +105,3 @@ impl set_flags_for_emote_start for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("emote_start", flags);
     }
 }
-

@@ -3,14 +3,9 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::resource_spawn_timer_type::ResourceSpawnTimer;
 use super::small_hex_tile_message_type::SmallHexTileMessage;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `resource_spawn_timer`.
 ///
@@ -38,7 +33,9 @@ pub trait ResourceSpawnTimerTableAccess {
 impl ResourceSpawnTimerTableAccess for super::RemoteTables {
     fn resource_spawn_timer(&self) -> ResourceSpawnTimerTableHandle<'_> {
         ResourceSpawnTimerTableHandle {
-            imp: self.imp.get_table::<ResourceSpawnTimer>("resource_spawn_timer"),
+            imp: self
+                .imp
+                .get_table::<ResourceSpawnTimer>("resource_spawn_timer"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -51,8 +48,12 @@ impl<'ctx> __sdk::Table for ResourceSpawnTimerTableHandle<'ctx> {
     type Row = ResourceSpawnTimer;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = ResourceSpawnTimer> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = ResourceSpawnTimer> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = ResourceSpawnTimerInsertCallbackId;
 
@@ -83,8 +84,7 @@ impl<'ctx> __sdk::Table for ResourceSpawnTimerTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<ResourceSpawnTimer>("resource_spawn_timer");
+    let _table = client_cache.get_or_make_table::<ResourceSpawnTimer>("resource_spawn_timer");
     _table.add_unique_constraint::<u64>("scheduled_id", |row| &row.scheduled_id);
 }
 pub struct ResourceSpawnTimerUpdateCallbackId(__sdk::CallbackId);
@@ -104,46 +104,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for ResourceSpawnTimerTableHandle<'ctx> {
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<ResourceSpawnTimer>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<ResourceSpawnTimer>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<ResourceSpawnTimer>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `scheduled_id` unique index on the table `resource_spawn_timer`,
-        /// which allows point queries on the field of the same name
-        /// via the [`ResourceSpawnTimerScheduledIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.resource_spawn_timer().scheduled_id().find(...)`.
-        pub struct ResourceSpawnTimerScheduledIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<ResourceSpawnTimer, u64>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `scheduled_id` unique index on the table `resource_spawn_timer`,
+/// which allows point queries on the field of the same name
+/// via the [`ResourceSpawnTimerScheduledIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.resource_spawn_timer().scheduled_id().find(...)`.
+pub struct ResourceSpawnTimerScheduledIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<ResourceSpawnTimer, u64>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> ResourceSpawnTimerTableHandle<'ctx> {
-            /// Get a handle on the `scheduled_id` unique index on the table `resource_spawn_timer`.
-            pub fn scheduled_id(&self) -> ResourceSpawnTimerScheduledIdUnique<'ctx> {
-                ResourceSpawnTimerScheduledIdUnique {
-                    imp: self.imp.get_unique_constraint::<u64>("scheduled_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> ResourceSpawnTimerTableHandle<'ctx> {
+    /// Get a handle on the `scheduled_id` unique index on the table `resource_spawn_timer`.
+    pub fn scheduled_id(&self) -> ResourceSpawnTimerScheduledIdUnique<'ctx> {
+        ResourceSpawnTimerScheduledIdUnique {
+            imp: self.imp.get_unique_constraint::<u64>("scheduled_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> ResourceSpawnTimerScheduledIdUnique<'ctx> {
-            /// Find the subscribed row whose `scheduled_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u64) -> Option<ResourceSpawnTimer> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> ResourceSpawnTimerScheduledIdUnique<'ctx> {
+    /// Find the subscribed row whose `scheduled_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u64) -> Option<ResourceSpawnTimer> {
+        self.imp.find(col_val)
+    }
+}

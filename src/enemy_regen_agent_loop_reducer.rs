@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::enemy_regen_loop_timer_type::EnemyRegenLoopTimer;
 
@@ -20,10 +15,8 @@ pub(super) struct EnemyRegenAgentLoopArgs {
 
 impl From<EnemyRegenAgentLoopArgs> for super::Reducer {
     fn from(args: EnemyRegenAgentLoopArgs) -> Self {
-        Self::EnemyRegenAgentLoop {
-            timer: args.timer,
-}
-}
+        Self::EnemyRegenAgentLoop { timer: args.timer }
+    }
 }
 
 impl __sdk::InModule for EnemyRegenAgentLoopArgs {
@@ -42,8 +35,7 @@ pub trait enemy_regen_agent_loop {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_enemy_regen_agent_loop`] callbacks.
-    fn enemy_regen_agent_loop(&self, timer: EnemyRegenLoopTimer,
-) -> __sdk::Result<()>;
+    fn enemy_regen_agent_loop(&self, timer: EnemyRegenLoopTimer) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `enemy_regen_agent_loop`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +43,45 @@ pub trait enemy_regen_agent_loop {
     ///
     /// The returned [`EnemyRegenAgentLoopCallbackId`] can be passed to [`Self::remove_on_enemy_regen_agent_loop`]
     /// to cancel the callback.
-    fn on_enemy_regen_agent_loop(&self, callback: impl FnMut(&super::ReducerEventContext, &EnemyRegenLoopTimer, ) + Send + 'static) -> EnemyRegenAgentLoopCallbackId;
+    fn on_enemy_regen_agent_loop(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &EnemyRegenLoopTimer) + Send + 'static,
+    ) -> EnemyRegenAgentLoopCallbackId;
     /// Cancel a callback previously registered by [`Self::on_enemy_regen_agent_loop`],
     /// causing it not to run in the future.
     fn remove_on_enemy_regen_agent_loop(&self, callback: EnemyRegenAgentLoopCallbackId);
 }
 
 impl enemy_regen_agent_loop for super::RemoteReducers {
-    fn enemy_regen_agent_loop(&self, timer: EnemyRegenLoopTimer,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("enemy_regen_agent_loop", EnemyRegenAgentLoopArgs { timer,  })
+    fn enemy_regen_agent_loop(&self, timer: EnemyRegenLoopTimer) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("enemy_regen_agent_loop", EnemyRegenAgentLoopArgs { timer })
     }
     fn on_enemy_regen_agent_loop(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &EnemyRegenLoopTimer, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &EnemyRegenLoopTimer) + Send + 'static,
     ) -> EnemyRegenAgentLoopCallbackId {
         EnemyRegenAgentLoopCallbackId(self.imp.on_reducer(
             "enemy_regen_agent_loop",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::EnemyRegenAgentLoop {
-                            timer, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::EnemyRegenAgentLoop { timer },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, timer, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, timer)
             }),
         ))
     }
     fn remove_on_enemy_regen_agent_loop(&self, callback: EnemyRegenAgentLoopCallbackId) {
-        self.imp.remove_on_reducer("enemy_regen_agent_loop", callback.0)
+        self.imp
+            .remove_on_reducer("enemy_regen_agent_loop", callback.0)
     }
 }
 
@@ -103,7 +101,7 @@ pub trait set_flags_for_enemy_regen_agent_loop {
 
 impl set_flags_for_enemy_regen_agent_loop for super::SetReducerFlags {
     fn enemy_regen_agent_loop(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("enemy_regen_agent_loop", flags);
+        self.imp
+            .set_call_reducer_flags("enemy_regen_agent_loop", flags);
     }
 }
-

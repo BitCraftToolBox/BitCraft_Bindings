@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_item_drop_request_type::PlayerItemDropRequest;
 
@@ -22,8 +17,8 @@ impl From<ItemDropArgs> for super::Reducer {
     fn from(args: ItemDropArgs) -> Self {
         Self::ItemDrop {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ItemDropArgs {
@@ -42,8 +37,7 @@ pub trait item_drop {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_item_drop`] callbacks.
-    fn item_drop(&self, request: PlayerItemDropRequest,
-) -> __sdk::Result<()>;
+    fn item_drop(&self, request: PlayerItemDropRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `item_drop`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,38 @@ pub trait item_drop {
     ///
     /// The returned [`ItemDropCallbackId`] can be passed to [`Self::remove_on_item_drop`]
     /// to cancel the callback.
-    fn on_item_drop(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerItemDropRequest, ) + Send + 'static) -> ItemDropCallbackId;
+    fn on_item_drop(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerItemDropRequest) + Send + 'static,
+    ) -> ItemDropCallbackId;
     /// Cancel a callback previously registered by [`Self::on_item_drop`],
     /// causing it not to run in the future.
     fn remove_on_item_drop(&self, callback: ItemDropCallbackId);
 }
 
 impl item_drop for super::RemoteReducers {
-    fn item_drop(&self, request: PlayerItemDropRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("item_drop", ItemDropArgs { request,  })
+    fn item_drop(&self, request: PlayerItemDropRequest) -> __sdk::Result<()> {
+        self.imp.call_reducer("item_drop", ItemDropArgs { request })
     }
     fn on_item_drop(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerItemDropRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerItemDropRequest) + Send + 'static,
     ) -> ItemDropCallbackId {
         ItemDropCallbackId(self.imp.on_reducer(
             "item_drop",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ItemDrop {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ItemDrop { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
@@ -106,4 +104,3 @@ impl set_flags_for_item_drop for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("item_drop", flags);
     }
 }
-

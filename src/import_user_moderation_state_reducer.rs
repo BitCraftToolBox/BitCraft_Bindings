@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::user_moderation_state_type::UserModerationState;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct ImportUserModerationStateArgs {
-    pub records: Vec::<UserModerationState>,
+    pub records: Vec<UserModerationState>,
 }
 
 impl From<ImportUserModerationStateArgs> for super::Reducer {
     fn from(args: ImportUserModerationStateArgs) -> Self {
         Self::ImportUserModerationState {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ImportUserModerationStateArgs {
@@ -42,8 +37,7 @@ pub trait import_user_moderation_state {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_import_user_moderation_state`] callbacks.
-    fn import_user_moderation_state(&self, records: Vec::<UserModerationState>,
-) -> __sdk::Result<()>;
+    fn import_user_moderation_state(&self, records: Vec<UserModerationState>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `import_user_moderation_state`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,52 @@ pub trait import_user_moderation_state {
     ///
     /// The returned [`ImportUserModerationStateCallbackId`] can be passed to [`Self::remove_on_import_user_moderation_state`]
     /// to cancel the callback.
-    fn on_import_user_moderation_state(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<UserModerationState>, ) + Send + 'static) -> ImportUserModerationStateCallbackId;
+    fn on_import_user_moderation_state(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<UserModerationState>) + Send + 'static,
+    ) -> ImportUserModerationStateCallbackId;
     /// Cancel a callback previously registered by [`Self::on_import_user_moderation_state`],
     /// causing it not to run in the future.
     fn remove_on_import_user_moderation_state(&self, callback: ImportUserModerationStateCallbackId);
 }
 
 impl import_user_moderation_state for super::RemoteReducers {
-    fn import_user_moderation_state(&self, records: Vec::<UserModerationState>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("import_user_moderation_state", ImportUserModerationStateArgs { records,  })
+    fn import_user_moderation_state(&self, records: Vec<UserModerationState>) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "import_user_moderation_state",
+            ImportUserModerationStateArgs { records },
+        )
     }
     fn on_import_user_moderation_state(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<UserModerationState>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<UserModerationState>)
+            + Send
+            + 'static,
     ) -> ImportUserModerationStateCallbackId {
         ImportUserModerationStateCallbackId(self.imp.on_reducer(
             "import_user_moderation_state",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ImportUserModerationState {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ImportUserModerationState { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
-    fn remove_on_import_user_moderation_state(&self, callback: ImportUserModerationStateCallbackId) {
-        self.imp.remove_on_reducer("import_user_moderation_state", callback.0)
+    fn remove_on_import_user_moderation_state(
+        &self,
+        callback: ImportUserModerationStateCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("import_user_moderation_state", callback.0)
     }
 }
 
@@ -103,7 +110,7 @@ pub trait set_flags_for_import_user_moderation_state {
 
 impl set_flags_for_import_user_moderation_state for super::SetReducerFlags {
     fn import_user_moderation_state(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("import_user_moderation_state", flags);
+        self.imp
+            .set_call_reducer_flags("import_user_moderation_state", flags);
     }
 }
-

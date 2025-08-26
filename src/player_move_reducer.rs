@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_move_request_type::PlayerMoveRequest;
 
@@ -22,8 +17,8 @@ impl From<PlayerMoveArgs> for super::Reducer {
     fn from(args: PlayerMoveArgs) -> Self {
         Self::PlayerMove {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for PlayerMoveArgs {
@@ -42,8 +37,7 @@ pub trait player_move {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_player_move`] callbacks.
-    fn player_move(&self, request: PlayerMoveRequest,
-) -> __sdk::Result<()>;
+    fn player_move(&self, request: PlayerMoveRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `player_move`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,39 @@ pub trait player_move {
     ///
     /// The returned [`PlayerMoveCallbackId`] can be passed to [`Self::remove_on_player_move`]
     /// to cancel the callback.
-    fn on_player_move(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerMoveRequest, ) + Send + 'static) -> PlayerMoveCallbackId;
+    fn on_player_move(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerMoveRequest) + Send + 'static,
+    ) -> PlayerMoveCallbackId;
     /// Cancel a callback previously registered by [`Self::on_player_move`],
     /// causing it not to run in the future.
     fn remove_on_player_move(&self, callback: PlayerMoveCallbackId);
 }
 
 impl player_move for super::RemoteReducers {
-    fn player_move(&self, request: PlayerMoveRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("player_move", PlayerMoveArgs { request,  })
+    fn player_move(&self, request: PlayerMoveRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("player_move", PlayerMoveArgs { request })
     }
     fn on_player_move(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerMoveRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerMoveRequest) + Send + 'static,
     ) -> PlayerMoveCallbackId {
         PlayerMoveCallbackId(self.imp.on_reducer(
             "player_move",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::PlayerMove {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::PlayerMove { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
@@ -106,4 +105,3 @@ impl set_flags_for_player_move for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("player_move", flags);
     }
 }
-

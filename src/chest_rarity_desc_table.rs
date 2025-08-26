@@ -3,14 +3,9 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-use super::chest_rarity_desc_type::ChestRarityDesc;
 use super::chest_loot_rarity_type::ChestLootRarity;
+use super::chest_rarity_desc_type::ChestRarityDesc;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `chest_rarity_desc`.
 ///
@@ -51,8 +46,12 @@ impl<'ctx> __sdk::Table for ChestRarityDescTableHandle<'ctx> {
     type Row = ChestRarityDesc;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = ChestRarityDesc> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = ChestRarityDesc> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = ChestRarityDescInsertCallbackId;
 
@@ -83,8 +82,7 @@ impl<'ctx> __sdk::Table for ChestRarityDescTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<ChestRarityDesc>("chest_rarity_desc");
+    let _table = client_cache.get_or_make_table::<ChestRarityDesc>("chest_rarity_desc");
     _table.add_unique_constraint::<i32>("id", |row| &row.id);
 }
 pub struct ChestRarityDescUpdateCallbackId(__sdk::CallbackId);
@@ -104,46 +102,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for ChestRarityDescTableHandle<'ctx> {
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<ChestRarityDesc>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<ChestRarityDesc>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<ChestRarityDesc>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `id` unique index on the table `chest_rarity_desc`,
-        /// which allows point queries on the field of the same name
-        /// via the [`ChestRarityDescIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.chest_rarity_desc().id().find(...)`.
-        pub struct ChestRarityDescIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<ChestRarityDesc, i32>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `id` unique index on the table `chest_rarity_desc`,
+/// which allows point queries on the field of the same name
+/// via the [`ChestRarityDescIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.chest_rarity_desc().id().find(...)`.
+pub struct ChestRarityDescIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<ChestRarityDesc, i32>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> ChestRarityDescTableHandle<'ctx> {
-            /// Get a handle on the `id` unique index on the table `chest_rarity_desc`.
-            pub fn id(&self) -> ChestRarityDescIdUnique<'ctx> {
-                ChestRarityDescIdUnique {
-                    imp: self.imp.get_unique_constraint::<i32>("id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> ChestRarityDescTableHandle<'ctx> {
+    /// Get a handle on the `id` unique index on the table `chest_rarity_desc`.
+    pub fn id(&self) -> ChestRarityDescIdUnique<'ctx> {
+        ChestRarityDescIdUnique {
+            imp: self.imp.get_unique_constraint::<i32>("id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> ChestRarityDescIdUnique<'ctx> {
-            /// Find the subscribed row whose `id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &i32) -> Option<ChestRarityDesc> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> ChestRarityDescIdUnique<'ctx> {
+    /// Find the subscribed row whose `id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &i32) -> Option<ChestRarityDesc> {
+        self.imp.find(col_val)
+    }
+}

@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::offset_coordinates_small_message_type::OffsetCoordinatesSmallMessage;
 
@@ -19,11 +14,9 @@ pub struct DeployableCollectibleState {
     pub owner_entity_id: u64,
     pub collectible_id: i32,
     pub deployable_desc_id: i32,
-    pub location: Option::<OffsetCoordinatesSmallMessage>,
+    pub location: Option<OffsetCoordinatesSmallMessage>,
 }
-
 
 impl __sdk::InModule for DeployableCollectibleState {
     type Module = super::RemoteModule;
 }
-

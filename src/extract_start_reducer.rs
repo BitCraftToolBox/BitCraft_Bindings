@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_extract_request_type::PlayerExtractRequest;
 
@@ -22,8 +17,8 @@ impl From<ExtractStartArgs> for super::Reducer {
     fn from(args: ExtractStartArgs) -> Self {
         Self::ExtractStart {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ExtractStartArgs {
@@ -42,8 +37,7 @@ pub trait extract_start {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_extract_start`] callbacks.
-    fn extract_start(&self, request: PlayerExtractRequest,
-) -> __sdk::Result<()>;
+    fn extract_start(&self, request: PlayerExtractRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `extract_start`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,39 @@ pub trait extract_start {
     ///
     /// The returned [`ExtractStartCallbackId`] can be passed to [`Self::remove_on_extract_start`]
     /// to cancel the callback.
-    fn on_extract_start(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerExtractRequest, ) + Send + 'static) -> ExtractStartCallbackId;
+    fn on_extract_start(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerExtractRequest) + Send + 'static,
+    ) -> ExtractStartCallbackId;
     /// Cancel a callback previously registered by [`Self::on_extract_start`],
     /// causing it not to run in the future.
     fn remove_on_extract_start(&self, callback: ExtractStartCallbackId);
 }
 
 impl extract_start for super::RemoteReducers {
-    fn extract_start(&self, request: PlayerExtractRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("extract_start", ExtractStartArgs { request,  })
+    fn extract_start(&self, request: PlayerExtractRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("extract_start", ExtractStartArgs { request })
     }
     fn on_extract_start(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerExtractRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerExtractRequest) + Send + 'static,
     ) -> ExtractStartCallbackId {
         ExtractStartCallbackId(self.imp.on_reducer(
             "extract_start",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ExtractStart {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ExtractStart { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
@@ -106,4 +105,3 @@ impl set_flags_for_extract_start for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("extract_start", flags);
     }
 }
-

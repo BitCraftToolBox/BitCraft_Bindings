@@ -3,13 +3,8 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::interior_portal_connections_desc_type::InteriorPortalConnectionsDesc;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `interior_portal_connections_desc`.
 ///
@@ -37,7 +32,9 @@ pub trait InteriorPortalConnectionsDescTableAccess {
 impl InteriorPortalConnectionsDescTableAccess for super::RemoteTables {
     fn interior_portal_connections_desc(&self) -> InteriorPortalConnectionsDescTableHandle<'_> {
         InteriorPortalConnectionsDescTableHandle {
-            imp: self.imp.get_table::<InteriorPortalConnectionsDesc>("interior_portal_connections_desc"),
+            imp: self
+                .imp
+                .get_table::<InteriorPortalConnectionsDesc>("interior_portal_connections_desc"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -50,8 +47,12 @@ impl<'ctx> __sdk::Table for InteriorPortalConnectionsDescTableHandle<'ctx> {
     type Row = InteriorPortalConnectionsDesc;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = InteriorPortalConnectionsDesc> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = InteriorPortalConnectionsDesc> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = InteriorPortalConnectionsDescInsertCallbackId;
 
@@ -82,8 +83,8 @@ impl<'ctx> __sdk::Table for InteriorPortalConnectionsDescTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<InteriorPortalConnectionsDesc>("interior_portal_connections_desc");
+    let _table = client_cache
+        .get_or_make_table::<InteriorPortalConnectionsDesc>("interior_portal_connections_desc");
     _table.add_unique_constraint::<i32>("id", |row| &row.id);
 }
 pub struct InteriorPortalConnectionsDescUpdateCallbackId(__sdk::CallbackId);
@@ -103,7 +104,6 @@ impl<'ctx> __sdk::TableWithPrimaryKey for InteriorPortalConnectionsDescTableHand
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
@@ -112,37 +112,38 @@ pub(super) fn parse_table_update(
         __sdk::InternalError::failed_parse(
             "TableUpdate<InteriorPortalConnectionsDesc>",
             "TableUpdate",
-        ).with_cause(e).into()
+        )
+        .with_cause(e)
+        .into()
     })
 }
 
-        /// Access to the `id` unique index on the table `interior_portal_connections_desc`,
-        /// which allows point queries on the field of the same name
-        /// via the [`InteriorPortalConnectionsDescIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.interior_portal_connections_desc().id().find(...)`.
-        pub struct InteriorPortalConnectionsDescIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<InteriorPortalConnectionsDesc, i32>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `id` unique index on the table `interior_portal_connections_desc`,
+/// which allows point queries on the field of the same name
+/// via the [`InteriorPortalConnectionsDescIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.interior_portal_connections_desc().id().find(...)`.
+pub struct InteriorPortalConnectionsDescIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<InteriorPortalConnectionsDesc, i32>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> InteriorPortalConnectionsDescTableHandle<'ctx> {
-            /// Get a handle on the `id` unique index on the table `interior_portal_connections_desc`.
-            pub fn id(&self) -> InteriorPortalConnectionsDescIdUnique<'ctx> {
-                InteriorPortalConnectionsDescIdUnique {
-                    imp: self.imp.get_unique_constraint::<i32>("id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> InteriorPortalConnectionsDescTableHandle<'ctx> {
+    /// Get a handle on the `id` unique index on the table `interior_portal_connections_desc`.
+    pub fn id(&self) -> InteriorPortalConnectionsDescIdUnique<'ctx> {
+        InteriorPortalConnectionsDescIdUnique {
+            imp: self.imp.get_unique_constraint::<i32>("id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> InteriorPortalConnectionsDescIdUnique<'ctx> {
-            /// Find the subscribed row whose `id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &i32) -> Option<InteriorPortalConnectionsDesc> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> InteriorPortalConnectionsDescIdUnique<'ctx> {
+    /// Find the subscribed row whose `id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &i32) -> Option<InteriorPortalConnectionsDesc> {
+        self.imp.find(col_val)
+    }
+}

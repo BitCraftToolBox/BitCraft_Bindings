@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::resources_regen_loop_timer_type::ResourcesRegenLoopTimer;
 
@@ -20,10 +15,8 @@ pub(super) struct ResourcesRegenArgs {
 
 impl From<ResourcesRegenArgs> for super::Reducer {
     fn from(args: ResourcesRegenArgs) -> Self {
-        Self::ResourcesRegen {
-            timer: args.timer,
-}
-}
+        Self::ResourcesRegen { timer: args.timer }
+    }
 }
 
 impl __sdk::InModule for ResourcesRegenArgs {
@@ -42,8 +35,7 @@ pub trait resources_regen {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_resources_regen`] callbacks.
-    fn resources_regen(&self, timer: ResourcesRegenLoopTimer,
-) -> __sdk::Result<()>;
+    fn resources_regen(&self, timer: ResourcesRegenLoopTimer) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `resources_regen`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +43,39 @@ pub trait resources_regen {
     ///
     /// The returned [`ResourcesRegenCallbackId`] can be passed to [`Self::remove_on_resources_regen`]
     /// to cancel the callback.
-    fn on_resources_regen(&self, callback: impl FnMut(&super::ReducerEventContext, &ResourcesRegenLoopTimer, ) + Send + 'static) -> ResourcesRegenCallbackId;
+    fn on_resources_regen(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &ResourcesRegenLoopTimer) + Send + 'static,
+    ) -> ResourcesRegenCallbackId;
     /// Cancel a callback previously registered by [`Self::on_resources_regen`],
     /// causing it not to run in the future.
     fn remove_on_resources_regen(&self, callback: ResourcesRegenCallbackId);
 }
 
 impl resources_regen for super::RemoteReducers {
-    fn resources_regen(&self, timer: ResourcesRegenLoopTimer,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("resources_regen", ResourcesRegenArgs { timer,  })
+    fn resources_regen(&self, timer: ResourcesRegenLoopTimer) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("resources_regen", ResourcesRegenArgs { timer })
     }
     fn on_resources_regen(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &ResourcesRegenLoopTimer, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &ResourcesRegenLoopTimer) + Send + 'static,
     ) -> ResourcesRegenCallbackId {
         ResourcesRegenCallbackId(self.imp.on_reducer(
             "resources_regen",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ResourcesRegen {
-                            timer, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ResourcesRegen { timer },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, timer, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, timer)
             }),
         ))
     }
@@ -106,4 +103,3 @@ impl set_flags_for_resources_regen for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("resources_regen", flags);
     }
 }
-

@@ -3,13 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -21,8 +15,8 @@ impl From<SynchronizeTimeArgs> for super::Reducer {
     fn from(args: SynchronizeTimeArgs) -> Self {
         Self::SynchronizeTime {
             client_time: args.client_time,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for SynchronizeTimeArgs {
@@ -41,8 +35,7 @@ pub trait synchronize_time {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_synchronize_time`] callbacks.
-    fn synchronize_time(&self, client_time: f64,
-) -> __sdk::Result<()>;
+    fn synchronize_time(&self, client_time: f64) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `synchronize_time`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -50,34 +43,39 @@ pub trait synchronize_time {
     ///
     /// The returned [`SynchronizeTimeCallbackId`] can be passed to [`Self::remove_on_synchronize_time`]
     /// to cancel the callback.
-    fn on_synchronize_time(&self, callback: impl FnMut(&super::ReducerEventContext, &f64, ) + Send + 'static) -> SynchronizeTimeCallbackId;
+    fn on_synchronize_time(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &f64) + Send + 'static,
+    ) -> SynchronizeTimeCallbackId;
     /// Cancel a callback previously registered by [`Self::on_synchronize_time`],
     /// causing it not to run in the future.
     fn remove_on_synchronize_time(&self, callback: SynchronizeTimeCallbackId);
 }
 
 impl synchronize_time for super::RemoteReducers {
-    fn synchronize_time(&self, client_time: f64,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("synchronize_time", SynchronizeTimeArgs { client_time,  })
+    fn synchronize_time(&self, client_time: f64) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("synchronize_time", SynchronizeTimeArgs { client_time })
     }
     fn on_synchronize_time(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &f64, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &f64) + Send + 'static,
     ) -> SynchronizeTimeCallbackId {
         SynchronizeTimeCallbackId(self.imp.on_reducer(
             "synchronize_time",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::SynchronizeTime {
-                            client_time, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::SynchronizeTime { client_time },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, client_time, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, client_time)
             }),
         ))
     }
@@ -105,4 +103,3 @@ impl set_flags_for_synchronize_time for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("synchronize_time", flags);
     }
 }
-

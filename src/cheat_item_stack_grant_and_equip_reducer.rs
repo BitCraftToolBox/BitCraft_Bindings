@@ -3,13 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -27,8 +21,8 @@ impl From<CheatItemStackGrantAndEquipArgs> for super::Reducer {
             item_id: args.item_id,
             quantity: args.quantity,
             is_cargo: args.is_cargo,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for CheatItemStackGrantAndEquipArgs {
@@ -47,11 +41,13 @@ pub trait cheat_item_stack_grant_and_equip {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_cheat_item_stack_grant_and_equip`] callbacks.
-    fn cheat_item_stack_grant_and_equip(&self, player_entity_id: u64,
-item_id: i32,
-quantity: i32,
-is_cargo: bool,
-) -> __sdk::Result<()>;
+    fn cheat_item_stack_grant_and_equip(
+        &self,
+        player_entity_id: u64,
+        item_id: i32,
+        quantity: i32,
+        is_cargo: bool,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `cheat_item_stack_grant_and_equip`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -59,42 +55,70 @@ is_cargo: bool,
     ///
     /// The returned [`CheatItemStackGrantAndEquipCallbackId`] can be passed to [`Self::remove_on_cheat_item_stack_grant_and_equip`]
     /// to cancel the callback.
-    fn on_cheat_item_stack_grant_and_equip(&self, callback: impl FnMut(&super::ReducerEventContext, &u64, &i32, &i32, &bool, ) + Send + 'static) -> CheatItemStackGrantAndEquipCallbackId;
+    fn on_cheat_item_stack_grant_and_equip(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &u64, &i32, &i32, &bool) + Send + 'static,
+    ) -> CheatItemStackGrantAndEquipCallbackId;
     /// Cancel a callback previously registered by [`Self::on_cheat_item_stack_grant_and_equip`],
     /// causing it not to run in the future.
-    fn remove_on_cheat_item_stack_grant_and_equip(&self, callback: CheatItemStackGrantAndEquipCallbackId);
+    fn remove_on_cheat_item_stack_grant_and_equip(
+        &self,
+        callback: CheatItemStackGrantAndEquipCallbackId,
+    );
 }
 
 impl cheat_item_stack_grant_and_equip for super::RemoteReducers {
-    fn cheat_item_stack_grant_and_equip(&self, player_entity_id: u64,
-item_id: i32,
-quantity: i32,
-is_cargo: bool,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("cheat_item_stack_grant_and_equip", CheatItemStackGrantAndEquipArgs { player_entity_id, item_id, quantity, is_cargo,  })
+    fn cheat_item_stack_grant_and_equip(
+        &self,
+        player_entity_id: u64,
+        item_id: i32,
+        quantity: i32,
+        is_cargo: bool,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "cheat_item_stack_grant_and_equip",
+            CheatItemStackGrantAndEquipArgs {
+                player_entity_id,
+                item_id,
+                quantity,
+                is_cargo,
+            },
+        )
     }
     fn on_cheat_item_stack_grant_and_equip(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &u64, &i32, &i32, &bool, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &u64, &i32, &i32, &bool) + Send + 'static,
     ) -> CheatItemStackGrantAndEquipCallbackId {
         CheatItemStackGrantAndEquipCallbackId(self.imp.on_reducer(
             "cheat_item_stack_grant_and_equip",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::CheatItemStackGrantAndEquip {
-                            player_entity_id, item_id, quantity, is_cargo, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer:
+                                super::Reducer::CheatItemStackGrantAndEquip {
+                                    player_entity_id,
+                                    item_id,
+                                    quantity,
+                                    is_cargo,
+                                },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, player_entity_id, item_id, quantity, is_cargo, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, player_entity_id, item_id, quantity, is_cargo)
             }),
         ))
     }
-    fn remove_on_cheat_item_stack_grant_and_equip(&self, callback: CheatItemStackGrantAndEquipCallbackId) {
-        self.imp.remove_on_reducer("cheat_item_stack_grant_and_equip", callback.0)
+    fn remove_on_cheat_item_stack_grant_and_equip(
+        &self,
+        callback: CheatItemStackGrantAndEquipCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("cheat_item_stack_grant_and_equip", callback.0)
     }
 }
 
@@ -114,7 +138,7 @@ pub trait set_flags_for_cheat_item_stack_grant_and_equip {
 
 impl set_flags_for_cheat_item_stack_grant_and_equip for super::SetReducerFlags {
     fn cheat_item_stack_grant_and_equip(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("cheat_item_stack_grant_and_equip", flags);
+        self.imp
+            .set_call_reducer_flags("cheat_item_stack_grant_and_equip", flags);
     }
 }
-

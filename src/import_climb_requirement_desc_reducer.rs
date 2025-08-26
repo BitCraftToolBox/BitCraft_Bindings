@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::climb_requirement_desc_type::ClimbRequirementDesc;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct ImportClimbRequirementDescArgs {
-    pub records: Vec::<ClimbRequirementDesc>,
+    pub records: Vec<ClimbRequirementDesc>,
 }
 
 impl From<ImportClimbRequirementDescArgs> for super::Reducer {
     fn from(args: ImportClimbRequirementDescArgs) -> Self {
         Self::ImportClimbRequirementDesc {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ImportClimbRequirementDescArgs {
@@ -42,8 +37,10 @@ pub trait import_climb_requirement_desc {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_import_climb_requirement_desc`] callbacks.
-    fn import_climb_requirement_desc(&self, records: Vec::<ClimbRequirementDesc>,
-) -> __sdk::Result<()>;
+    fn import_climb_requirement_desc(
+        &self,
+        records: Vec<ClimbRequirementDesc>,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `import_climb_requirement_desc`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +48,58 @@ pub trait import_climb_requirement_desc {
     ///
     /// The returned [`ImportClimbRequirementDescCallbackId`] can be passed to [`Self::remove_on_import_climb_requirement_desc`]
     /// to cancel the callback.
-    fn on_import_climb_requirement_desc(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<ClimbRequirementDesc>, ) + Send + 'static) -> ImportClimbRequirementDescCallbackId;
+    fn on_import_climb_requirement_desc(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<ClimbRequirementDesc>) + Send + 'static,
+    ) -> ImportClimbRequirementDescCallbackId;
     /// Cancel a callback previously registered by [`Self::on_import_climb_requirement_desc`],
     /// causing it not to run in the future.
-    fn remove_on_import_climb_requirement_desc(&self, callback: ImportClimbRequirementDescCallbackId);
+    fn remove_on_import_climb_requirement_desc(
+        &self,
+        callback: ImportClimbRequirementDescCallbackId,
+    );
 }
 
 impl import_climb_requirement_desc for super::RemoteReducers {
-    fn import_climb_requirement_desc(&self, records: Vec::<ClimbRequirementDesc>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("import_climb_requirement_desc", ImportClimbRequirementDescArgs { records,  })
+    fn import_climb_requirement_desc(
+        &self,
+        records: Vec<ClimbRequirementDesc>,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "import_climb_requirement_desc",
+            ImportClimbRequirementDescArgs { records },
+        )
     }
     fn on_import_climb_requirement_desc(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<ClimbRequirementDesc>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<ClimbRequirementDesc>)
+            + Send
+            + 'static,
     ) -> ImportClimbRequirementDescCallbackId {
         ImportClimbRequirementDescCallbackId(self.imp.on_reducer(
             "import_climb_requirement_desc",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ImportClimbRequirementDesc {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ImportClimbRequirementDesc { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
-    fn remove_on_import_climb_requirement_desc(&self, callback: ImportClimbRequirementDescCallbackId) {
-        self.imp.remove_on_reducer("import_climb_requirement_desc", callback.0)
+    fn remove_on_import_climb_requirement_desc(
+        &self,
+        callback: ImportClimbRequirementDescCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("import_climb_requirement_desc", callback.0)
     }
 }
 
@@ -103,7 +119,7 @@ pub trait set_flags_for_import_climb_requirement_desc {
 
 impl set_flags_for_import_climb_requirement_desc for super::SetReducerFlags {
     fn import_climb_requirement_desc(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("import_climb_requirement_desc", flags);
+        self.imp
+            .set_call_reducer_flags("import_climb_requirement_desc", flags);
     }
 }
-

@@ -3,14 +3,9 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-use super::single_resource_clump_info_type::SingleResourceClumpInfo;
 use super::resource_clump_info_type::ResourceClumpInfo;
+use super::single_resource_clump_info_type::SingleResourceClumpInfo;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `single_resource_clump_info`.
 ///
@@ -38,7 +33,9 @@ pub trait SingleResourceClumpInfoTableAccess {
 impl SingleResourceClumpInfoTableAccess for super::RemoteTables {
     fn single_resource_clump_info(&self) -> SingleResourceClumpInfoTableHandle<'_> {
         SingleResourceClumpInfoTableHandle {
-            imp: self.imp.get_table::<SingleResourceClumpInfo>("single_resource_clump_info"),
+            imp: self
+                .imp
+                .get_table::<SingleResourceClumpInfo>("single_resource_clump_info"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -51,8 +48,12 @@ impl<'ctx> __sdk::Table for SingleResourceClumpInfoTableHandle<'ctx> {
     type Row = SingleResourceClumpInfo;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = SingleResourceClumpInfo> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = SingleResourceClumpInfo> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = SingleResourceClumpInfoInsertCallbackId;
 
@@ -83,8 +84,8 @@ impl<'ctx> __sdk::Table for SingleResourceClumpInfoTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<SingleResourceClumpInfo>("single_resource_clump_info");
+    let _table =
+        client_cache.get_or_make_table::<SingleResourceClumpInfo>("single_resource_clump_info");
     _table.add_unique_constraint::<i32>("clump_id", |row| &row.clump_id);
 }
 pub struct SingleResourceClumpInfoUpdateCallbackId(__sdk::CallbackId);
@@ -104,46 +105,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for SingleResourceClumpInfoTableHandle<'ct
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<SingleResourceClumpInfo>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<SingleResourceClumpInfo>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<SingleResourceClumpInfo>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `clump_id` unique index on the table `single_resource_clump_info`,
-        /// which allows point queries on the field of the same name
-        /// via the [`SingleResourceClumpInfoClumpIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.single_resource_clump_info().clump_id().find(...)`.
-        pub struct SingleResourceClumpInfoClumpIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<SingleResourceClumpInfo, i32>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `clump_id` unique index on the table `single_resource_clump_info`,
+/// which allows point queries on the field of the same name
+/// via the [`SingleResourceClumpInfoClumpIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.single_resource_clump_info().clump_id().find(...)`.
+pub struct SingleResourceClumpInfoClumpIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<SingleResourceClumpInfo, i32>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> SingleResourceClumpInfoTableHandle<'ctx> {
-            /// Get a handle on the `clump_id` unique index on the table `single_resource_clump_info`.
-            pub fn clump_id(&self) -> SingleResourceClumpInfoClumpIdUnique<'ctx> {
-                SingleResourceClumpInfoClumpIdUnique {
-                    imp: self.imp.get_unique_constraint::<i32>("clump_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> SingleResourceClumpInfoTableHandle<'ctx> {
+    /// Get a handle on the `clump_id` unique index on the table `single_resource_clump_info`.
+    pub fn clump_id(&self) -> SingleResourceClumpInfoClumpIdUnique<'ctx> {
+        SingleResourceClumpInfoClumpIdUnique {
+            imp: self.imp.get_unique_constraint::<i32>("clump_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> SingleResourceClumpInfoClumpIdUnique<'ctx> {
-            /// Find the subscribed row whose `clump_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &i32) -> Option<SingleResourceClumpInfo> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> SingleResourceClumpInfoClumpIdUnique<'ctx> {
+    /// Find the subscribed row whose `clump_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &i32) -> Option<SingleResourceClumpInfo> {
+        self.imp.find(col_val)
+    }
+}

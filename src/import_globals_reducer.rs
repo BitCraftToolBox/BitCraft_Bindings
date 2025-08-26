@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::globals_type::Globals;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct ImportGlobalsArgs {
-    pub records: Vec::<Globals>,
+    pub records: Vec<Globals>,
 }
 
 impl From<ImportGlobalsArgs> for super::Reducer {
     fn from(args: ImportGlobalsArgs) -> Self {
         Self::ImportGlobals {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ImportGlobalsArgs {
@@ -42,8 +37,7 @@ pub trait import_globals {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_import_globals`] callbacks.
-    fn import_globals(&self, records: Vec::<Globals>,
-) -> __sdk::Result<()>;
+    fn import_globals(&self, records: Vec<Globals>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `import_globals`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,39 @@ pub trait import_globals {
     ///
     /// The returned [`ImportGlobalsCallbackId`] can be passed to [`Self::remove_on_import_globals`]
     /// to cancel the callback.
-    fn on_import_globals(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<Globals>, ) + Send + 'static) -> ImportGlobalsCallbackId;
+    fn on_import_globals(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<Globals>) + Send + 'static,
+    ) -> ImportGlobalsCallbackId;
     /// Cancel a callback previously registered by [`Self::on_import_globals`],
     /// causing it not to run in the future.
     fn remove_on_import_globals(&self, callback: ImportGlobalsCallbackId);
 }
 
 impl import_globals for super::RemoteReducers {
-    fn import_globals(&self, records: Vec::<Globals>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("import_globals", ImportGlobalsArgs { records,  })
+    fn import_globals(&self, records: Vec<Globals>) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("import_globals", ImportGlobalsArgs { records })
     }
     fn on_import_globals(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<Globals>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<Globals>) + Send + 'static,
     ) -> ImportGlobalsCallbackId {
         ImportGlobalsCallbackId(self.imp.on_reducer(
             "import_globals",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ImportGlobals {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ImportGlobals { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
@@ -106,4 +105,3 @@ impl set_flags_for_import_globals for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("import_globals", flags);
     }
 }
-

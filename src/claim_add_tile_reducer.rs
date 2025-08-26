@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_claim_add_tile_request_type::PlayerClaimAddTileRequest;
 
@@ -22,8 +17,8 @@ impl From<ClaimAddTileArgs> for super::Reducer {
     fn from(args: ClaimAddTileArgs) -> Self {
         Self::ClaimAddTile {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ClaimAddTileArgs {
@@ -42,8 +37,7 @@ pub trait claim_add_tile {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_claim_add_tile`] callbacks.
-    fn claim_add_tile(&self, request: PlayerClaimAddTileRequest,
-) -> __sdk::Result<()>;
+    fn claim_add_tile(&self, request: PlayerClaimAddTileRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `claim_add_tile`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,41 @@ pub trait claim_add_tile {
     ///
     /// The returned [`ClaimAddTileCallbackId`] can be passed to [`Self::remove_on_claim_add_tile`]
     /// to cancel the callback.
-    fn on_claim_add_tile(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerClaimAddTileRequest, ) + Send + 'static) -> ClaimAddTileCallbackId;
+    fn on_claim_add_tile(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerClaimAddTileRequest) + Send + 'static,
+    ) -> ClaimAddTileCallbackId;
     /// Cancel a callback previously registered by [`Self::on_claim_add_tile`],
     /// causing it not to run in the future.
     fn remove_on_claim_add_tile(&self, callback: ClaimAddTileCallbackId);
 }
 
 impl claim_add_tile for super::RemoteReducers {
-    fn claim_add_tile(&self, request: PlayerClaimAddTileRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("claim_add_tile", ClaimAddTileArgs { request,  })
+    fn claim_add_tile(&self, request: PlayerClaimAddTileRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("claim_add_tile", ClaimAddTileArgs { request })
     }
     fn on_claim_add_tile(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerClaimAddTileRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerClaimAddTileRequest)
+            + Send
+            + 'static,
     ) -> ClaimAddTileCallbackId {
         ClaimAddTileCallbackId(self.imp.on_reducer(
             "claim_add_tile",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ClaimAddTile {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ClaimAddTile { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
@@ -106,4 +107,3 @@ impl set_flags_for_claim_add_tile for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("claim_add_tile", flags);
     }
 }
-

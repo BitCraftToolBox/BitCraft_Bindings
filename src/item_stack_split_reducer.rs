@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_item_stack_split_request_type::PlayerItemStackSplitRequest;
 
@@ -22,8 +17,8 @@ impl From<ItemStackSplitArgs> for super::Reducer {
     fn from(args: ItemStackSplitArgs) -> Self {
         Self::ItemStackSplit {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ItemStackSplitArgs {
@@ -42,8 +37,7 @@ pub trait item_stack_split {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_item_stack_split`] callbacks.
-    fn item_stack_split(&self, request: PlayerItemStackSplitRequest,
-) -> __sdk::Result<()>;
+    fn item_stack_split(&self, request: PlayerItemStackSplitRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `item_stack_split`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,41 @@ pub trait item_stack_split {
     ///
     /// The returned [`ItemStackSplitCallbackId`] can be passed to [`Self::remove_on_item_stack_split`]
     /// to cancel the callback.
-    fn on_item_stack_split(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerItemStackSplitRequest, ) + Send + 'static) -> ItemStackSplitCallbackId;
+    fn on_item_stack_split(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerItemStackSplitRequest) + Send + 'static,
+    ) -> ItemStackSplitCallbackId;
     /// Cancel a callback previously registered by [`Self::on_item_stack_split`],
     /// causing it not to run in the future.
     fn remove_on_item_stack_split(&self, callback: ItemStackSplitCallbackId);
 }
 
 impl item_stack_split for super::RemoteReducers {
-    fn item_stack_split(&self, request: PlayerItemStackSplitRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("item_stack_split", ItemStackSplitArgs { request,  })
+    fn item_stack_split(&self, request: PlayerItemStackSplitRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("item_stack_split", ItemStackSplitArgs { request })
     }
     fn on_item_stack_split(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerItemStackSplitRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerItemStackSplitRequest)
+            + Send
+            + 'static,
     ) -> ItemStackSplitCallbackId {
         ItemStackSplitCallbackId(self.imp.on_reducer(
             "item_stack_split",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ItemStackSplit {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ItemStackSplit { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
@@ -106,4 +107,3 @@ impl set_flags_for_item_stack_split for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("item_stack_split", flags);
     }
 }
-

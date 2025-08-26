@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::empire_start_siege_request_type::EmpireStartSiegeRequest;
 
@@ -22,8 +17,8 @@ impl From<EmpireDeploySiegeEngineStartArgs> for super::Reducer {
     fn from(args: EmpireDeploySiegeEngineStartArgs) -> Self {
         Self::EmpireDeploySiegeEngineStart {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for EmpireDeploySiegeEngineStartArgs {
@@ -42,8 +37,10 @@ pub trait empire_deploy_siege_engine_start {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_empire_deploy_siege_engine_start`] callbacks.
-    fn empire_deploy_siege_engine_start(&self, request: EmpireStartSiegeRequest,
-) -> __sdk::Result<()>;
+    fn empire_deploy_siege_engine_start(
+        &self,
+        request: EmpireStartSiegeRequest,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `empire_deploy_siege_engine_start`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +48,56 @@ pub trait empire_deploy_siege_engine_start {
     ///
     /// The returned [`EmpireDeploySiegeEngineStartCallbackId`] can be passed to [`Self::remove_on_empire_deploy_siege_engine_start`]
     /// to cancel the callback.
-    fn on_empire_deploy_siege_engine_start(&self, callback: impl FnMut(&super::ReducerEventContext, &EmpireStartSiegeRequest, ) + Send + 'static) -> EmpireDeploySiegeEngineStartCallbackId;
+    fn on_empire_deploy_siege_engine_start(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &EmpireStartSiegeRequest) + Send + 'static,
+    ) -> EmpireDeploySiegeEngineStartCallbackId;
     /// Cancel a callback previously registered by [`Self::on_empire_deploy_siege_engine_start`],
     /// causing it not to run in the future.
-    fn remove_on_empire_deploy_siege_engine_start(&self, callback: EmpireDeploySiegeEngineStartCallbackId);
+    fn remove_on_empire_deploy_siege_engine_start(
+        &self,
+        callback: EmpireDeploySiegeEngineStartCallbackId,
+    );
 }
 
 impl empire_deploy_siege_engine_start for super::RemoteReducers {
-    fn empire_deploy_siege_engine_start(&self, request: EmpireStartSiegeRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("empire_deploy_siege_engine_start", EmpireDeploySiegeEngineStartArgs { request,  })
+    fn empire_deploy_siege_engine_start(
+        &self,
+        request: EmpireStartSiegeRequest,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "empire_deploy_siege_engine_start",
+            EmpireDeploySiegeEngineStartArgs { request },
+        )
     }
     fn on_empire_deploy_siege_engine_start(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &EmpireStartSiegeRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &EmpireStartSiegeRequest) + Send + 'static,
     ) -> EmpireDeploySiegeEngineStartCallbackId {
         EmpireDeploySiegeEngineStartCallbackId(self.imp.on_reducer(
             "empire_deploy_siege_engine_start",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::EmpireDeploySiegeEngineStart {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::EmpireDeploySiegeEngineStart { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
-    fn remove_on_empire_deploy_siege_engine_start(&self, callback: EmpireDeploySiegeEngineStartCallbackId) {
-        self.imp.remove_on_reducer("empire_deploy_siege_engine_start", callback.0)
+    fn remove_on_empire_deploy_siege_engine_start(
+        &self,
+        callback: EmpireDeploySiegeEngineStartCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("empire_deploy_siege_engine_start", callback.0)
     }
 }
 
@@ -103,7 +117,7 @@ pub trait set_flags_for_empire_deploy_siege_engine_start {
 
 impl set_flags_for_empire_deploy_siege_engine_start for super::SetReducerFlags {
     fn empire_deploy_siege_engine_start(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("empire_deploy_siege_engine_start", flags);
+        self.imp
+            .set_call_reducer_flags("empire_deploy_siege_engine_start", flags);
     }
 }
-

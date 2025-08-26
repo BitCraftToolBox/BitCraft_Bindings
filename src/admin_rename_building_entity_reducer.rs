@@ -3,13 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -23,8 +17,8 @@ impl From<AdminRenameBuildingEntityArgs> for super::Reducer {
         Self::AdminRenameBuildingEntity {
             entity_id: args.entity_id,
             new_name: args.new_name,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for AdminRenameBuildingEntityArgs {
@@ -43,9 +37,7 @@ pub trait admin_rename_building_entity {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_admin_rename_building_entity`] callbacks.
-    fn admin_rename_building_entity(&self, entity_id: u64,
-new_name: String,
-) -> __sdk::Result<()>;
+    fn admin_rename_building_entity(&self, entity_id: u64, new_name: String) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `admin_rename_building_entity`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -53,40 +45,57 @@ new_name: String,
     ///
     /// The returned [`AdminRenameBuildingEntityCallbackId`] can be passed to [`Self::remove_on_admin_rename_building_entity`]
     /// to cancel the callback.
-    fn on_admin_rename_building_entity(&self, callback: impl FnMut(&super::ReducerEventContext, &u64, &String, ) + Send + 'static) -> AdminRenameBuildingEntityCallbackId;
+    fn on_admin_rename_building_entity(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &u64, &String) + Send + 'static,
+    ) -> AdminRenameBuildingEntityCallbackId;
     /// Cancel a callback previously registered by [`Self::on_admin_rename_building_entity`],
     /// causing it not to run in the future.
     fn remove_on_admin_rename_building_entity(&self, callback: AdminRenameBuildingEntityCallbackId);
 }
 
 impl admin_rename_building_entity for super::RemoteReducers {
-    fn admin_rename_building_entity(&self, entity_id: u64,
-new_name: String,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("admin_rename_building_entity", AdminRenameBuildingEntityArgs { entity_id, new_name,  })
+    fn admin_rename_building_entity(&self, entity_id: u64, new_name: String) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "admin_rename_building_entity",
+            AdminRenameBuildingEntityArgs {
+                entity_id,
+                new_name,
+            },
+        )
     }
     fn on_admin_rename_building_entity(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &u64, &String, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &u64, &String) + Send + 'static,
     ) -> AdminRenameBuildingEntityCallbackId {
         AdminRenameBuildingEntityCallbackId(self.imp.on_reducer(
             "admin_rename_building_entity",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::AdminRenameBuildingEntity {
-                            entity_id, new_name, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer:
+                                super::Reducer::AdminRenameBuildingEntity {
+                                    entity_id,
+                                    new_name,
+                                },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, entity_id, new_name, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, entity_id, new_name)
             }),
         ))
     }
-    fn remove_on_admin_rename_building_entity(&self, callback: AdminRenameBuildingEntityCallbackId) {
-        self.imp.remove_on_reducer("admin_rename_building_entity", callback.0)
+    fn remove_on_admin_rename_building_entity(
+        &self,
+        callback: AdminRenameBuildingEntityCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("admin_rename_building_entity", callback.0)
     }
 }
 
@@ -106,7 +115,7 @@ pub trait set_flags_for_admin_rename_building_entity {
 
 impl set_flags_for_admin_rename_building_entity for super::SetReducerFlags {
     fn admin_rename_building_entity(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("admin_rename_building_entity", flags);
+        self.imp
+            .set_call_reducer_flags("admin_rename_building_entity", flags);
     }
 }
-

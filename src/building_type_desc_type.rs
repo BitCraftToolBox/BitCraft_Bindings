@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::building_category_type::BuildingCategory;
 
@@ -18,11 +13,9 @@ pub struct BuildingTypeDesc {
     pub id: i32,
     pub name: String,
     pub category: BuildingCategory,
-    pub actions: Vec::<String>,
+    pub actions: Vec<String>,
 }
-
 
 impl __sdk::InModule for BuildingTypeDesc {
     type Module = super::RemoteModule;
 }
-

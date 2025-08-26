@@ -3,30 +3,23 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
-use super::item_stack_type::ItemStack;
-use super::experience_stack_f_32_type::ExperienceStackF32;
 use super::capped_level_requirement_type::CappedLevelRequirement;
+use super::experience_stack_f_32_type::ExperienceStackF32;
+use super::item_stack_type::ItemStack;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub struct TravelerTaskDesc {
     pub id: i32,
     pub level_requirement: CappedLevelRequirement,
-    pub required_items: Vec::<ItemStack>,
-    pub rewarded_items: Vec::<ItemStack>,
+    pub required_items: Vec<ItemStack>,
+    pub rewarded_items: Vec<ItemStack>,
     pub rewarded_experience: ExperienceStackF32,
     pub description: String,
 }
 
-
 impl __sdk::InModule for TravelerTaskDesc {
     type Module = super::RemoteModule;
 }
-

@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::claim_tile_cost_type::ClaimTileCost;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct StageClaimTileCostArgs {
-    pub records: Vec::<ClaimTileCost>,
+    pub records: Vec<ClaimTileCost>,
 }
 
 impl From<StageClaimTileCostArgs> for super::Reducer {
     fn from(args: StageClaimTileCostArgs) -> Self {
         Self::StageClaimTileCost {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for StageClaimTileCostArgs {
@@ -42,8 +37,7 @@ pub trait stage_claim_tile_cost {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_stage_claim_tile_cost`] callbacks.
-    fn stage_claim_tile_cost(&self, records: Vec::<ClaimTileCost>,
-) -> __sdk::Result<()>;
+    fn stage_claim_tile_cost(&self, records: Vec<ClaimTileCost>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `stage_claim_tile_cost`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,45 @@ pub trait stage_claim_tile_cost {
     ///
     /// The returned [`StageClaimTileCostCallbackId`] can be passed to [`Self::remove_on_stage_claim_tile_cost`]
     /// to cancel the callback.
-    fn on_stage_claim_tile_cost(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<ClaimTileCost>, ) + Send + 'static) -> StageClaimTileCostCallbackId;
+    fn on_stage_claim_tile_cost(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<ClaimTileCost>) + Send + 'static,
+    ) -> StageClaimTileCostCallbackId;
     /// Cancel a callback previously registered by [`Self::on_stage_claim_tile_cost`],
     /// causing it not to run in the future.
     fn remove_on_stage_claim_tile_cost(&self, callback: StageClaimTileCostCallbackId);
 }
 
 impl stage_claim_tile_cost for super::RemoteReducers {
-    fn stage_claim_tile_cost(&self, records: Vec::<ClaimTileCost>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("stage_claim_tile_cost", StageClaimTileCostArgs { records,  })
+    fn stage_claim_tile_cost(&self, records: Vec<ClaimTileCost>) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("stage_claim_tile_cost", StageClaimTileCostArgs { records })
     }
     fn on_stage_claim_tile_cost(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<ClaimTileCost>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<ClaimTileCost>) + Send + 'static,
     ) -> StageClaimTileCostCallbackId {
         StageClaimTileCostCallbackId(self.imp.on_reducer(
             "stage_claim_tile_cost",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::StageClaimTileCost {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::StageClaimTileCost { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
     fn remove_on_stage_claim_tile_cost(&self, callback: StageClaimTileCostCallbackId) {
-        self.imp.remove_on_reducer("stage_claim_tile_cost", callback.0)
+        self.imp
+            .remove_on_reducer("stage_claim_tile_cost", callback.0)
     }
 }
 
@@ -103,7 +103,7 @@ pub trait set_flags_for_stage_claim_tile_cost {
 
 impl set_flags_for_stage_claim_tile_cost for super::SetReducerFlags {
     fn stage_claim_tile_cost(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("stage_claim_tile_cost", flags);
+        self.imp
+            .set_call_reducer_flags("stage_claim_tile_cost", flags);
     }
 }
-

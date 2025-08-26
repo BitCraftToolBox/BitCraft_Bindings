@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_claim_take_ownership_request_type::PlayerClaimTakeOwnershipRequest;
 
@@ -22,8 +17,8 @@ impl From<ClaimTakeOwnershipArgs> for super::Reducer {
     fn from(args: ClaimTakeOwnershipArgs) -> Self {
         Self::ClaimTakeOwnership {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ClaimTakeOwnershipArgs {
@@ -42,8 +37,7 @@ pub trait claim_take_ownership {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_claim_take_ownership`] callbacks.
-    fn claim_take_ownership(&self, request: PlayerClaimTakeOwnershipRequest,
-) -> __sdk::Result<()>;
+    fn claim_take_ownership(&self, request: PlayerClaimTakeOwnershipRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `claim_take_ownership`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,49 @@ pub trait claim_take_ownership {
     ///
     /// The returned [`ClaimTakeOwnershipCallbackId`] can be passed to [`Self::remove_on_claim_take_ownership`]
     /// to cancel the callback.
-    fn on_claim_take_ownership(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerClaimTakeOwnershipRequest, ) + Send + 'static) -> ClaimTakeOwnershipCallbackId;
+    fn on_claim_take_ownership(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerClaimTakeOwnershipRequest)
+            + Send
+            + 'static,
+    ) -> ClaimTakeOwnershipCallbackId;
     /// Cancel a callback previously registered by [`Self::on_claim_take_ownership`],
     /// causing it not to run in the future.
     fn remove_on_claim_take_ownership(&self, callback: ClaimTakeOwnershipCallbackId);
 }
 
 impl claim_take_ownership for super::RemoteReducers {
-    fn claim_take_ownership(&self, request: PlayerClaimTakeOwnershipRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("claim_take_ownership", ClaimTakeOwnershipArgs { request,  })
+    fn claim_take_ownership(&self, request: PlayerClaimTakeOwnershipRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("claim_take_ownership", ClaimTakeOwnershipArgs { request })
     }
     fn on_claim_take_ownership(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerClaimTakeOwnershipRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerClaimTakeOwnershipRequest)
+            + Send
+            + 'static,
     ) -> ClaimTakeOwnershipCallbackId {
         ClaimTakeOwnershipCallbackId(self.imp.on_reducer(
             "claim_take_ownership",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ClaimTakeOwnership {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ClaimTakeOwnership { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
     fn remove_on_claim_take_ownership(&self, callback: ClaimTakeOwnershipCallbackId) {
-        self.imp.remove_on_reducer("claim_take_ownership", callback.0)
+        self.imp
+            .remove_on_reducer("claim_take_ownership", callback.0)
     }
 }
 
@@ -103,7 +107,7 @@ pub trait set_flags_for_claim_take_ownership {
 
 impl set_flags_for_claim_take_ownership for super::SetReducerFlags {
     fn claim_take_ownership(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("claim_take_ownership", flags);
+        self.imp
+            .set_call_reducer_flags("claim_take_ownership", flags);
     }
 }
-

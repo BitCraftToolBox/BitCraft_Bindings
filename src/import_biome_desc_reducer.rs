@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::biome_desc_type::BiomeDesc;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct ImportBiomeDescArgs {
-    pub records: Vec::<BiomeDesc>,
+    pub records: Vec<BiomeDesc>,
 }
 
 impl From<ImportBiomeDescArgs> for super::Reducer {
     fn from(args: ImportBiomeDescArgs) -> Self {
         Self::ImportBiomeDesc {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ImportBiomeDescArgs {
@@ -42,8 +37,7 @@ pub trait import_biome_desc {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_import_biome_desc`] callbacks.
-    fn import_biome_desc(&self, records: Vec::<BiomeDesc>,
-) -> __sdk::Result<()>;
+    fn import_biome_desc(&self, records: Vec<BiomeDesc>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `import_biome_desc`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,39 @@ pub trait import_biome_desc {
     ///
     /// The returned [`ImportBiomeDescCallbackId`] can be passed to [`Self::remove_on_import_biome_desc`]
     /// to cancel the callback.
-    fn on_import_biome_desc(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<BiomeDesc>, ) + Send + 'static) -> ImportBiomeDescCallbackId;
+    fn on_import_biome_desc(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<BiomeDesc>) + Send + 'static,
+    ) -> ImportBiomeDescCallbackId;
     /// Cancel a callback previously registered by [`Self::on_import_biome_desc`],
     /// causing it not to run in the future.
     fn remove_on_import_biome_desc(&self, callback: ImportBiomeDescCallbackId);
 }
 
 impl import_biome_desc for super::RemoteReducers {
-    fn import_biome_desc(&self, records: Vec::<BiomeDesc>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("import_biome_desc", ImportBiomeDescArgs { records,  })
+    fn import_biome_desc(&self, records: Vec<BiomeDesc>) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("import_biome_desc", ImportBiomeDescArgs { records })
     }
     fn on_import_biome_desc(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<BiomeDesc>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<BiomeDesc>) + Send + 'static,
     ) -> ImportBiomeDescCallbackId {
         ImportBiomeDescCallbackId(self.imp.on_reducer(
             "import_biome_desc",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ImportBiomeDesc {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ImportBiomeDesc { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
@@ -106,4 +105,3 @@ impl set_flags_for_import_biome_desc for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("import_biome_desc", flags);
     }
 }
-

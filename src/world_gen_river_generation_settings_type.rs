@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::world_gen_animation_curve_type::WorldGenAnimationCurve;
 use super::world_gen_river_pathfinding_costs_type::WorldGenRiverPathfindingCosts;
@@ -21,11 +16,9 @@ pub struct WorldGenRiverGenerationSettings {
     pub erosion: f32,
     pub min_lake_circumference: i32,
     pub pathfinding_node_limit: i32,
-    pub pathfinding_costs: Vec::<WorldGenRiverPathfindingCosts>,
+    pub pathfinding_costs: Vec<WorldGenRiverPathfindingCosts>,
 }
-
 
 impl __sdk::InModule for WorldGenRiverGenerationSettings {
     type Module = super::RemoteModule;
 }
-

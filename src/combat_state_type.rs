@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::action_cooldown_type::ActionCooldown;
 
@@ -18,11 +13,9 @@ pub struct CombatState {
     pub entity_id: u64,
     pub last_attacked_timestamp: u64,
     pub last_performed_action_entity_id: u64,
-    pub global_cooldown: Option::<ActionCooldown>,
+    pub global_cooldown: Option<ActionCooldown>,
 }
-
 
 impl __sdk::InModule for CombatState {
     type Module = super::RemoteModule;
 }
-

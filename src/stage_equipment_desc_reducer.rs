@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::equipment_desc_type::EquipmentDesc;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct StageEquipmentDescArgs {
-    pub records: Vec::<EquipmentDesc>,
+    pub records: Vec<EquipmentDesc>,
 }
 
 impl From<StageEquipmentDescArgs> for super::Reducer {
     fn from(args: StageEquipmentDescArgs) -> Self {
         Self::StageEquipmentDesc {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for StageEquipmentDescArgs {
@@ -42,8 +37,7 @@ pub trait stage_equipment_desc {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_stage_equipment_desc`] callbacks.
-    fn stage_equipment_desc(&self, records: Vec::<EquipmentDesc>,
-) -> __sdk::Result<()>;
+    fn stage_equipment_desc(&self, records: Vec<EquipmentDesc>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `stage_equipment_desc`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,45 @@ pub trait stage_equipment_desc {
     ///
     /// The returned [`StageEquipmentDescCallbackId`] can be passed to [`Self::remove_on_stage_equipment_desc`]
     /// to cancel the callback.
-    fn on_stage_equipment_desc(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<EquipmentDesc>, ) + Send + 'static) -> StageEquipmentDescCallbackId;
+    fn on_stage_equipment_desc(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<EquipmentDesc>) + Send + 'static,
+    ) -> StageEquipmentDescCallbackId;
     /// Cancel a callback previously registered by [`Self::on_stage_equipment_desc`],
     /// causing it not to run in the future.
     fn remove_on_stage_equipment_desc(&self, callback: StageEquipmentDescCallbackId);
 }
 
 impl stage_equipment_desc for super::RemoteReducers {
-    fn stage_equipment_desc(&self, records: Vec::<EquipmentDesc>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("stage_equipment_desc", StageEquipmentDescArgs { records,  })
+    fn stage_equipment_desc(&self, records: Vec<EquipmentDesc>) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("stage_equipment_desc", StageEquipmentDescArgs { records })
     }
     fn on_stage_equipment_desc(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<EquipmentDesc>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<EquipmentDesc>) + Send + 'static,
     ) -> StageEquipmentDescCallbackId {
         StageEquipmentDescCallbackId(self.imp.on_reducer(
             "stage_equipment_desc",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::StageEquipmentDesc {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::StageEquipmentDesc { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
     fn remove_on_stage_equipment_desc(&self, callback: StageEquipmentDescCallbackId) {
-        self.imp.remove_on_reducer("stage_equipment_desc", callback.0)
+        self.imp
+            .remove_on_reducer("stage_equipment_desc", callback.0)
     }
 }
 
@@ -103,7 +103,7 @@ pub trait set_flags_for_stage_equipment_desc {
 
 impl set_flags_for_stage_equipment_desc for super::SetReducerFlags {
     fn stage_equipment_desc(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("stage_equipment_desc", flags);
+        self.imp
+            .set_call_reducer_flags("stage_equipment_desc", flags);
     }
 }
-

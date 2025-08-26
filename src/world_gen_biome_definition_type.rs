@@ -3,16 +3,11 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::world_gen_animation_curve_type::WorldGenAnimationCurve;
-use super::world_gen_noise_specs_type::WorldGenNoiseSpecs;
 use super::world_gen_noise_based_elevation_layer_type::WorldGenNoiseBasedElevationLayer;
+use super::world_gen_noise_specs_type::WorldGenNoiseSpecs;
 use super::world_gen_river_generation_settings_type::WorldGenRiverGenerationSettings;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
@@ -22,7 +17,7 @@ pub struct WorldGenBiomeDefinition {
     pub distance_to_biomes_curve: WorldGenAnimationCurve,
     pub transition_length: i32,
     pub noise_sea_multiplier: WorldGenAnimationCurve,
-    pub noise_based_elevation_layers: Vec::<WorldGenNoiseBasedElevationLayer>,
+    pub noise_based_elevation_layers: Vec<WorldGenNoiseBasedElevationLayer>,
     pub max_lake_depth: i32,
     pub terracing: bool,
     pub grass_density: i32,
@@ -31,11 +26,9 @@ pub struct WorldGenBiomeDefinition {
     pub lake_depth_multiplier: i32,
     pub lake_depth_smoothing: f32,
     pub lake_sea_barriers: bool,
-    pub river_generation_settings: Option::<WorldGenRiverGenerationSettings>,
+    pub river_generation_settings: Option<WorldGenRiverGenerationSettings>,
 }
-
 
 impl __sdk::InModule for WorldGenBiomeDefinition {
     type Module = super::RemoteModule;
 }
-

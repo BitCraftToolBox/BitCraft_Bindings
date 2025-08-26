@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_teleport_home_request_type::PlayerTeleportHomeRequest;
 
@@ -22,8 +17,8 @@ impl From<PlayerTeleportHomeStartArgs> for super::Reducer {
     fn from(args: PlayerTeleportHomeStartArgs) -> Self {
         Self::PlayerTeleportHomeStart {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for PlayerTeleportHomeStartArgs {
@@ -42,8 +37,7 @@ pub trait player_teleport_home_start {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_player_teleport_home_start`] callbacks.
-    fn player_teleport_home_start(&self, request: PlayerTeleportHomeRequest,
-) -> __sdk::Result<()>;
+    fn player_teleport_home_start(&self, request: PlayerTeleportHomeRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `player_teleport_home_start`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,49 @@ pub trait player_teleport_home_start {
     ///
     /// The returned [`PlayerTeleportHomeStartCallbackId`] can be passed to [`Self::remove_on_player_teleport_home_start`]
     /// to cancel the callback.
-    fn on_player_teleport_home_start(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerTeleportHomeRequest, ) + Send + 'static) -> PlayerTeleportHomeStartCallbackId;
+    fn on_player_teleport_home_start(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerTeleportHomeRequest) + Send + 'static,
+    ) -> PlayerTeleportHomeStartCallbackId;
     /// Cancel a callback previously registered by [`Self::on_player_teleport_home_start`],
     /// causing it not to run in the future.
     fn remove_on_player_teleport_home_start(&self, callback: PlayerTeleportHomeStartCallbackId);
 }
 
 impl player_teleport_home_start for super::RemoteReducers {
-    fn player_teleport_home_start(&self, request: PlayerTeleportHomeRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("player_teleport_home_start", PlayerTeleportHomeStartArgs { request,  })
+    fn player_teleport_home_start(&self, request: PlayerTeleportHomeRequest) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "player_teleport_home_start",
+            PlayerTeleportHomeStartArgs { request },
+        )
     }
     fn on_player_teleport_home_start(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerTeleportHomeRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerTeleportHomeRequest)
+            + Send
+            + 'static,
     ) -> PlayerTeleportHomeStartCallbackId {
         PlayerTeleportHomeStartCallbackId(self.imp.on_reducer(
             "player_teleport_home_start",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::PlayerTeleportHomeStart {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::PlayerTeleportHomeStart { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
     fn remove_on_player_teleport_home_start(&self, callback: PlayerTeleportHomeStartCallbackId) {
-        self.imp.remove_on_reducer("player_teleport_home_start", callback.0)
+        self.imp
+            .remove_on_reducer("player_teleport_home_start", callback.0)
     }
 }
 
@@ -103,7 +107,7 @@ pub trait set_flags_for_player_teleport_home_start {
 
 impl set_flags_for_player_teleport_home_start for super::SetReducerFlags {
     fn player_teleport_home_start(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("player_teleport_home_start", flags);
+        self.imp
+            .set_call_reducer_flags("player_teleport_home_start", flags);
     }
 }
-

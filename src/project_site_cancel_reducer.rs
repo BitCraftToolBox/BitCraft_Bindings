@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_project_site_cancel_request_type::PlayerProjectSiteCancelRequest;
 
@@ -22,8 +17,8 @@ impl From<ProjectSiteCancelArgs> for super::Reducer {
     fn from(args: ProjectSiteCancelArgs) -> Self {
         Self::ProjectSiteCancel {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ProjectSiteCancelArgs {
@@ -42,8 +37,7 @@ pub trait project_site_cancel {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_project_site_cancel`] callbacks.
-    fn project_site_cancel(&self, request: PlayerProjectSiteCancelRequest,
-) -> __sdk::Result<()>;
+    fn project_site_cancel(&self, request: PlayerProjectSiteCancelRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `project_site_cancel`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,49 @@ pub trait project_site_cancel {
     ///
     /// The returned [`ProjectSiteCancelCallbackId`] can be passed to [`Self::remove_on_project_site_cancel`]
     /// to cancel the callback.
-    fn on_project_site_cancel(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerProjectSiteCancelRequest, ) + Send + 'static) -> ProjectSiteCancelCallbackId;
+    fn on_project_site_cancel(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerProjectSiteCancelRequest)
+            + Send
+            + 'static,
+    ) -> ProjectSiteCancelCallbackId;
     /// Cancel a callback previously registered by [`Self::on_project_site_cancel`],
     /// causing it not to run in the future.
     fn remove_on_project_site_cancel(&self, callback: ProjectSiteCancelCallbackId);
 }
 
 impl project_site_cancel for super::RemoteReducers {
-    fn project_site_cancel(&self, request: PlayerProjectSiteCancelRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("project_site_cancel", ProjectSiteCancelArgs { request,  })
+    fn project_site_cancel(&self, request: PlayerProjectSiteCancelRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("project_site_cancel", ProjectSiteCancelArgs { request })
     }
     fn on_project_site_cancel(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerProjectSiteCancelRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerProjectSiteCancelRequest)
+            + Send
+            + 'static,
     ) -> ProjectSiteCancelCallbackId {
         ProjectSiteCancelCallbackId(self.imp.on_reducer(
             "project_site_cancel",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ProjectSiteCancel {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ProjectSiteCancel { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
     fn remove_on_project_site_cancel(&self, callback: ProjectSiteCancelCallbackId) {
-        self.imp.remove_on_reducer("project_site_cancel", callback.0)
+        self.imp
+            .remove_on_reducer("project_site_cancel", callback.0)
     }
 }
 
@@ -103,7 +107,7 @@ pub trait set_flags_for_project_site_cancel {
 
 impl set_flags_for_project_site_cancel for super::SetReducerFlags {
     fn project_site_cancel(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("project_site_cancel", flags);
+        self.imp
+            .set_call_reducer_flags("project_site_cancel", flags);
     }
 }
-

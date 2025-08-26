@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::offset_coordinates_float_type::OffsetCoordinatesFloat;
 
@@ -17,13 +12,11 @@ use super::offset_coordinates_float_type::OffsetCoordinatesFloat;
 pub struct PlayerDeployableMoveRequest {
     pub deployable_entity_id: u64,
     pub timestamp: u64,
-    pub destination: Option::<OffsetCoordinatesFloat>,
-    pub origin: Option::<OffsetCoordinatesFloat>,
+    pub destination: Option<OffsetCoordinatesFloat>,
+    pub origin: Option<OffsetCoordinatesFloat>,
     pub duration: f32,
 }
-
 
 impl __sdk::InModule for PlayerDeployableMoveRequest {
     type Module = super::RemoteModule;
 }
-

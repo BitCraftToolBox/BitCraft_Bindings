@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::passive_craft_timer_type::PassiveCraftTimer;
 
@@ -20,10 +15,8 @@ pub(super) struct PassiveCraftProcessArgs {
 
 impl From<PassiveCraftProcessArgs> for super::Reducer {
     fn from(args: PassiveCraftProcessArgs) -> Self {
-        Self::PassiveCraftProcess {
-            timer: args.timer,
-}
-}
+        Self::PassiveCraftProcess { timer: args.timer }
+    }
 }
 
 impl __sdk::InModule for PassiveCraftProcessArgs {
@@ -42,8 +35,7 @@ pub trait passive_craft_process {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_passive_craft_process`] callbacks.
-    fn passive_craft_process(&self, timer: PassiveCraftTimer,
-) -> __sdk::Result<()>;
+    fn passive_craft_process(&self, timer: PassiveCraftTimer) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `passive_craft_process`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +43,45 @@ pub trait passive_craft_process {
     ///
     /// The returned [`PassiveCraftProcessCallbackId`] can be passed to [`Self::remove_on_passive_craft_process`]
     /// to cancel the callback.
-    fn on_passive_craft_process(&self, callback: impl FnMut(&super::ReducerEventContext, &PassiveCraftTimer, ) + Send + 'static) -> PassiveCraftProcessCallbackId;
+    fn on_passive_craft_process(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PassiveCraftTimer) + Send + 'static,
+    ) -> PassiveCraftProcessCallbackId;
     /// Cancel a callback previously registered by [`Self::on_passive_craft_process`],
     /// causing it not to run in the future.
     fn remove_on_passive_craft_process(&self, callback: PassiveCraftProcessCallbackId);
 }
 
 impl passive_craft_process for super::RemoteReducers {
-    fn passive_craft_process(&self, timer: PassiveCraftTimer,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("passive_craft_process", PassiveCraftProcessArgs { timer,  })
+    fn passive_craft_process(&self, timer: PassiveCraftTimer) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("passive_craft_process", PassiveCraftProcessArgs { timer })
     }
     fn on_passive_craft_process(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PassiveCraftTimer, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PassiveCraftTimer) + Send + 'static,
     ) -> PassiveCraftProcessCallbackId {
         PassiveCraftProcessCallbackId(self.imp.on_reducer(
             "passive_craft_process",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::PassiveCraftProcess {
-                            timer, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::PassiveCraftProcess { timer },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, timer, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, timer)
             }),
         ))
     }
     fn remove_on_passive_craft_process(&self, callback: PassiveCraftProcessCallbackId) {
-        self.imp.remove_on_reducer("passive_craft_process", callback.0)
+        self.imp
+            .remove_on_reducer("passive_craft_process", callback.0)
     }
 }
 
@@ -103,7 +101,7 @@ pub trait set_flags_for_passive_craft_process {
 
 impl set_flags_for_passive_craft_process for super::SetReducerFlags {
     fn passive_craft_process(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("passive_craft_process", flags);
+        self.imp
+            .set_call_reducer_flags("passive_craft_process", flags);
     }
 }
-

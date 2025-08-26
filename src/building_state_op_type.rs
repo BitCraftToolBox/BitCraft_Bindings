@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::building_state_type::BuildingState;
 
@@ -18,12 +13,8 @@ pub enum BuildingStateOp {
     Insert(BuildingState),
 
     Delete(BuildingState),
-
 }
-
-
 
 impl __sdk::InModule for BuildingStateOp {
     type Module = super::RemoteModule;
 }
-

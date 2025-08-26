@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::resource_state_type::ResourceState;
 
@@ -17,12 +12,10 @@ use super::resource_state_type::ResourceState;
 pub struct WorldGenGeneratedResourceDeposit {
     pub x: i32,
     pub z: i32,
-    pub deposit: Option::<ResourceState>,
+    pub deposit: Option<ResourceState>,
     pub dimension: u32,
 }
-
 
 impl __sdk::InModule for WorldGenGeneratedResourceDeposit {
     type Module = super::RemoteModule;
 }
-

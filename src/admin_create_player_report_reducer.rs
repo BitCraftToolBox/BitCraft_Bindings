@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::create_player_report_request_type::CreatePlayerReportRequest;
 
@@ -22,8 +17,8 @@ impl From<AdminCreatePlayerReportArgs> for super::Reducer {
     fn from(args: AdminCreatePlayerReportArgs) -> Self {
         Self::AdminCreatePlayerReport {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for AdminCreatePlayerReportArgs {
@@ -42,8 +37,7 @@ pub trait admin_create_player_report {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_admin_create_player_report`] callbacks.
-    fn admin_create_player_report(&self, request: CreatePlayerReportRequest,
-) -> __sdk::Result<()>;
+    fn admin_create_player_report(&self, request: CreatePlayerReportRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `admin_create_player_report`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,49 @@ pub trait admin_create_player_report {
     ///
     /// The returned [`AdminCreatePlayerReportCallbackId`] can be passed to [`Self::remove_on_admin_create_player_report`]
     /// to cancel the callback.
-    fn on_admin_create_player_report(&self, callback: impl FnMut(&super::ReducerEventContext, &CreatePlayerReportRequest, ) + Send + 'static) -> AdminCreatePlayerReportCallbackId;
+    fn on_admin_create_player_report(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &CreatePlayerReportRequest) + Send + 'static,
+    ) -> AdminCreatePlayerReportCallbackId;
     /// Cancel a callback previously registered by [`Self::on_admin_create_player_report`],
     /// causing it not to run in the future.
     fn remove_on_admin_create_player_report(&self, callback: AdminCreatePlayerReportCallbackId);
 }
 
 impl admin_create_player_report for super::RemoteReducers {
-    fn admin_create_player_report(&self, request: CreatePlayerReportRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("admin_create_player_report", AdminCreatePlayerReportArgs { request,  })
+    fn admin_create_player_report(&self, request: CreatePlayerReportRequest) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "admin_create_player_report",
+            AdminCreatePlayerReportArgs { request },
+        )
     }
     fn on_admin_create_player_report(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &CreatePlayerReportRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &CreatePlayerReportRequest)
+            + Send
+            + 'static,
     ) -> AdminCreatePlayerReportCallbackId {
         AdminCreatePlayerReportCallbackId(self.imp.on_reducer(
             "admin_create_player_report",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::AdminCreatePlayerReport {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::AdminCreatePlayerReport { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
     fn remove_on_admin_create_player_report(&self, callback: AdminCreatePlayerReportCallbackId) {
-        self.imp.remove_on_reducer("admin_create_player_report", callback.0)
+        self.imp
+            .remove_on_reducer("admin_create_player_report", callback.0)
     }
 }
 
@@ -103,7 +107,7 @@ pub trait set_flags_for_admin_create_player_report {
 
 impl set_flags_for_admin_create_player_report for super::SetReducerFlags {
     fn admin_create_player_report(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("admin_create_player_report", flags);
+        self.imp
+            .set_call_reducer_flags("admin_create_player_report", flags);
     }
 }
-

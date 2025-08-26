@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::chat_cleanup_timer_type::ChatCleanupTimer;
 
@@ -20,10 +15,8 @@ pub(super) struct ChatCleanupAgentLoopArgs {
 
 impl From<ChatCleanupAgentLoopArgs> for super::Reducer {
     fn from(args: ChatCleanupAgentLoopArgs) -> Self {
-        Self::ChatCleanupAgentLoop {
-            timer: args.timer,
-}
-}
+        Self::ChatCleanupAgentLoop { timer: args.timer }
+    }
 }
 
 impl __sdk::InModule for ChatCleanupAgentLoopArgs {
@@ -42,8 +35,7 @@ pub trait chat_cleanup_agent_loop {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_chat_cleanup_agent_loop`] callbacks.
-    fn chat_cleanup_agent_loop(&self, timer: ChatCleanupTimer,
-) -> __sdk::Result<()>;
+    fn chat_cleanup_agent_loop(&self, timer: ChatCleanupTimer) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `chat_cleanup_agent_loop`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +43,47 @@ pub trait chat_cleanup_agent_loop {
     ///
     /// The returned [`ChatCleanupAgentLoopCallbackId`] can be passed to [`Self::remove_on_chat_cleanup_agent_loop`]
     /// to cancel the callback.
-    fn on_chat_cleanup_agent_loop(&self, callback: impl FnMut(&super::ReducerEventContext, &ChatCleanupTimer, ) + Send + 'static) -> ChatCleanupAgentLoopCallbackId;
+    fn on_chat_cleanup_agent_loop(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &ChatCleanupTimer) + Send + 'static,
+    ) -> ChatCleanupAgentLoopCallbackId;
     /// Cancel a callback previously registered by [`Self::on_chat_cleanup_agent_loop`],
     /// causing it not to run in the future.
     fn remove_on_chat_cleanup_agent_loop(&self, callback: ChatCleanupAgentLoopCallbackId);
 }
 
 impl chat_cleanup_agent_loop for super::RemoteReducers {
-    fn chat_cleanup_agent_loop(&self, timer: ChatCleanupTimer,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("chat_cleanup_agent_loop", ChatCleanupAgentLoopArgs { timer,  })
+    fn chat_cleanup_agent_loop(&self, timer: ChatCleanupTimer) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "chat_cleanup_agent_loop",
+            ChatCleanupAgentLoopArgs { timer },
+        )
     }
     fn on_chat_cleanup_agent_loop(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &ChatCleanupTimer, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &ChatCleanupTimer) + Send + 'static,
     ) -> ChatCleanupAgentLoopCallbackId {
         ChatCleanupAgentLoopCallbackId(self.imp.on_reducer(
             "chat_cleanup_agent_loop",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ChatCleanupAgentLoop {
-                            timer, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ChatCleanupAgentLoop { timer },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, timer, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, timer)
             }),
         ))
     }
     fn remove_on_chat_cleanup_agent_loop(&self, callback: ChatCleanupAgentLoopCallbackId) {
-        self.imp.remove_on_reducer("chat_cleanup_agent_loop", callback.0)
+        self.imp
+            .remove_on_reducer("chat_cleanup_agent_loop", callback.0)
     }
 }
 
@@ -103,7 +103,7 @@ pub trait set_flags_for_chat_cleanup_agent_loop {
 
 impl set_flags_for_chat_cleanup_agent_loop for super::SetReducerFlags {
     fn chat_cleanup_agent_loop(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("chat_cleanup_agent_loop", flags);
+        self.imp
+            .set_call_reducer_flags("chat_cleanup_agent_loop", flags);
     }
 }
-

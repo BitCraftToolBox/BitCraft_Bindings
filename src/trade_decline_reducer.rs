@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_trade_decline_request_type::PlayerTradeDeclineRequest;
 
@@ -22,8 +17,8 @@ impl From<TradeDeclineArgs> for super::Reducer {
     fn from(args: TradeDeclineArgs) -> Self {
         Self::TradeDecline {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for TradeDeclineArgs {
@@ -42,8 +37,7 @@ pub trait trade_decline {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_trade_decline`] callbacks.
-    fn trade_decline(&self, request: PlayerTradeDeclineRequest,
-) -> __sdk::Result<()>;
+    fn trade_decline(&self, request: PlayerTradeDeclineRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `trade_decline`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,41 @@ pub trait trade_decline {
     ///
     /// The returned [`TradeDeclineCallbackId`] can be passed to [`Self::remove_on_trade_decline`]
     /// to cancel the callback.
-    fn on_trade_decline(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerTradeDeclineRequest, ) + Send + 'static) -> TradeDeclineCallbackId;
+    fn on_trade_decline(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerTradeDeclineRequest) + Send + 'static,
+    ) -> TradeDeclineCallbackId;
     /// Cancel a callback previously registered by [`Self::on_trade_decline`],
     /// causing it not to run in the future.
     fn remove_on_trade_decline(&self, callback: TradeDeclineCallbackId);
 }
 
 impl trade_decline for super::RemoteReducers {
-    fn trade_decline(&self, request: PlayerTradeDeclineRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("trade_decline", TradeDeclineArgs { request,  })
+    fn trade_decline(&self, request: PlayerTradeDeclineRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("trade_decline", TradeDeclineArgs { request })
     }
     fn on_trade_decline(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerTradeDeclineRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerTradeDeclineRequest)
+            + Send
+            + 'static,
     ) -> TradeDeclineCallbackId {
         TradeDeclineCallbackId(self.imp.on_reducer(
             "trade_decline",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::TradeDecline {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::TradeDecline { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
@@ -106,4 +107,3 @@ impl set_flags_for_trade_decline for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("trade_decline", flags);
     }
 }
-

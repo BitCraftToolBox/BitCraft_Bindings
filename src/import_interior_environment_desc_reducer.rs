@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::interior_environment_desc_type::InteriorEnvironmentDesc;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct ImportInteriorEnvironmentDescArgs {
-    pub records: Vec::<InteriorEnvironmentDesc>,
+    pub records: Vec<InteriorEnvironmentDesc>,
 }
 
 impl From<ImportInteriorEnvironmentDescArgs> for super::Reducer {
     fn from(args: ImportInteriorEnvironmentDescArgs) -> Self {
         Self::ImportInteriorEnvironmentDesc {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ImportInteriorEnvironmentDescArgs {
@@ -42,8 +37,10 @@ pub trait import_interior_environment_desc {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_import_interior_environment_desc`] callbacks.
-    fn import_interior_environment_desc(&self, records: Vec::<InteriorEnvironmentDesc>,
-) -> __sdk::Result<()>;
+    fn import_interior_environment_desc(
+        &self,
+        records: Vec<InteriorEnvironmentDesc>,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `import_interior_environment_desc`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +48,60 @@ pub trait import_interior_environment_desc {
     ///
     /// The returned [`ImportInteriorEnvironmentDescCallbackId`] can be passed to [`Self::remove_on_import_interior_environment_desc`]
     /// to cancel the callback.
-    fn on_import_interior_environment_desc(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<InteriorEnvironmentDesc>, ) + Send + 'static) -> ImportInteriorEnvironmentDescCallbackId;
+    fn on_import_interior_environment_desc(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<InteriorEnvironmentDesc>)
+            + Send
+            + 'static,
+    ) -> ImportInteriorEnvironmentDescCallbackId;
     /// Cancel a callback previously registered by [`Self::on_import_interior_environment_desc`],
     /// causing it not to run in the future.
-    fn remove_on_import_interior_environment_desc(&self, callback: ImportInteriorEnvironmentDescCallbackId);
+    fn remove_on_import_interior_environment_desc(
+        &self,
+        callback: ImportInteriorEnvironmentDescCallbackId,
+    );
 }
 
 impl import_interior_environment_desc for super::RemoteReducers {
-    fn import_interior_environment_desc(&self, records: Vec::<InteriorEnvironmentDesc>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("import_interior_environment_desc", ImportInteriorEnvironmentDescArgs { records,  })
+    fn import_interior_environment_desc(
+        &self,
+        records: Vec<InteriorEnvironmentDesc>,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "import_interior_environment_desc",
+            ImportInteriorEnvironmentDescArgs { records },
+        )
     }
     fn on_import_interior_environment_desc(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<InteriorEnvironmentDesc>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<InteriorEnvironmentDesc>)
+            + Send
+            + 'static,
     ) -> ImportInteriorEnvironmentDescCallbackId {
         ImportInteriorEnvironmentDescCallbackId(self.imp.on_reducer(
             "import_interior_environment_desc",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ImportInteriorEnvironmentDesc {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ImportInteriorEnvironmentDesc { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
-    fn remove_on_import_interior_environment_desc(&self, callback: ImportInteriorEnvironmentDescCallbackId) {
-        self.imp.remove_on_reducer("import_interior_environment_desc", callback.0)
+    fn remove_on_import_interior_environment_desc(
+        &self,
+        callback: ImportInteriorEnvironmentDescCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("import_interior_environment_desc", callback.0)
     }
 }
 
@@ -103,7 +121,7 @@ pub trait set_flags_for_import_interior_environment_desc {
 
 impl set_flags_for_import_interior_environment_desc for super::SetReducerFlags {
     fn import_interior_environment_desc(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("import_interior_environment_desc", flags);
+        self.imp
+            .set_call_reducer_flags("import_interior_environment_desc", flags);
     }
 }
-

@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::item_list_desc_type::ItemListDesc;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct ImportItemListDescArgs {
-    pub records: Vec::<ItemListDesc>,
+    pub records: Vec<ItemListDesc>,
 }
 
 impl From<ImportItemListDescArgs> for super::Reducer {
     fn from(args: ImportItemListDescArgs) -> Self {
         Self::ImportItemListDesc {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ImportItemListDescArgs {
@@ -42,8 +37,7 @@ pub trait import_item_list_desc {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_import_item_list_desc`] callbacks.
-    fn import_item_list_desc(&self, records: Vec::<ItemListDesc>,
-) -> __sdk::Result<()>;
+    fn import_item_list_desc(&self, records: Vec<ItemListDesc>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `import_item_list_desc`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,45 @@ pub trait import_item_list_desc {
     ///
     /// The returned [`ImportItemListDescCallbackId`] can be passed to [`Self::remove_on_import_item_list_desc`]
     /// to cancel the callback.
-    fn on_import_item_list_desc(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<ItemListDesc>, ) + Send + 'static) -> ImportItemListDescCallbackId;
+    fn on_import_item_list_desc(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<ItemListDesc>) + Send + 'static,
+    ) -> ImportItemListDescCallbackId;
     /// Cancel a callback previously registered by [`Self::on_import_item_list_desc`],
     /// causing it not to run in the future.
     fn remove_on_import_item_list_desc(&self, callback: ImportItemListDescCallbackId);
 }
 
 impl import_item_list_desc for super::RemoteReducers {
-    fn import_item_list_desc(&self, records: Vec::<ItemListDesc>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("import_item_list_desc", ImportItemListDescArgs { records,  })
+    fn import_item_list_desc(&self, records: Vec<ItemListDesc>) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("import_item_list_desc", ImportItemListDescArgs { records })
     }
     fn on_import_item_list_desc(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<ItemListDesc>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<ItemListDesc>) + Send + 'static,
     ) -> ImportItemListDescCallbackId {
         ImportItemListDescCallbackId(self.imp.on_reducer(
             "import_item_list_desc",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ImportItemListDesc {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ImportItemListDesc { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
     fn remove_on_import_item_list_desc(&self, callback: ImportItemListDescCallbackId) {
-        self.imp.remove_on_reducer("import_item_list_desc", callback.0)
+        self.imp
+            .remove_on_reducer("import_item_list_desc", callback.0)
     }
 }
 
@@ -103,7 +103,7 @@ pub trait set_flags_for_import_item_list_desc {
 
 impl set_flags_for_import_item_list_desc for super::SetReducerFlags {
     fn import_item_list_desc(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("import_item_list_desc", flags);
+        self.imp
+            .set_call_reducer_flags("import_item_list_desc", flags);
     }
 }
-

@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_equipment_add_request_type::PlayerEquipmentAddRequest;
 
@@ -22,8 +17,8 @@ impl From<EquipmentAddArgs> for super::Reducer {
     fn from(args: EquipmentAddArgs) -> Self {
         Self::EquipmentAdd {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for EquipmentAddArgs {
@@ -42,8 +37,7 @@ pub trait equipment_add {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_equipment_add`] callbacks.
-    fn equipment_add(&self, request: PlayerEquipmentAddRequest,
-) -> __sdk::Result<()>;
+    fn equipment_add(&self, request: PlayerEquipmentAddRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `equipment_add`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,41 @@ pub trait equipment_add {
     ///
     /// The returned [`EquipmentAddCallbackId`] can be passed to [`Self::remove_on_equipment_add`]
     /// to cancel the callback.
-    fn on_equipment_add(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerEquipmentAddRequest, ) + Send + 'static) -> EquipmentAddCallbackId;
+    fn on_equipment_add(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerEquipmentAddRequest) + Send + 'static,
+    ) -> EquipmentAddCallbackId;
     /// Cancel a callback previously registered by [`Self::on_equipment_add`],
     /// causing it not to run in the future.
     fn remove_on_equipment_add(&self, callback: EquipmentAddCallbackId);
 }
 
 impl equipment_add for super::RemoteReducers {
-    fn equipment_add(&self, request: PlayerEquipmentAddRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("equipment_add", EquipmentAddArgs { request,  })
+    fn equipment_add(&self, request: PlayerEquipmentAddRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("equipment_add", EquipmentAddArgs { request })
     }
     fn on_equipment_add(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerEquipmentAddRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerEquipmentAddRequest)
+            + Send
+            + 'static,
     ) -> EquipmentAddCallbackId {
         EquipmentAddCallbackId(self.imp.on_reducer(
             "equipment_add",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::EquipmentAdd {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::EquipmentAdd { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
@@ -106,4 +107,3 @@ impl set_flags_for_equipment_add for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("equipment_add", flags);
     }
 }
-

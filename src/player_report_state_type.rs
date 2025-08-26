@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::chat_message_state_type::ChatMessageState;
 
@@ -21,14 +16,12 @@ pub struct PlayerReportState {
     pub reported_player_username: String,
     pub report_type: String,
     pub report_message: String,
-    pub reported_chat_message: Option::<ChatMessageState>,
-    pub chat_channel_context: Option::<Vec::<ChatMessageState>>,
-    pub chat_user_context: Option::<Vec::<ChatMessageState>>,
+    pub reported_chat_message: Option<ChatMessageState>,
+    pub chat_channel_context: Option<Vec<ChatMessageState>>,
+    pub chat_user_context: Option<Vec<ChatMessageState>>,
     pub actioned: bool,
 }
-
 
 impl __sdk::InModule for PlayerReportState {
     type Module = super::RemoteModule;
 }
-

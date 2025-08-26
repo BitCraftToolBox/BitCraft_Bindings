@@ -3,13 +3,8 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::player_death_timer_type::PlayerDeathTimer;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `player_death_timer`.
 ///
@@ -50,8 +45,12 @@ impl<'ctx> __sdk::Table for PlayerDeathTimerTableHandle<'ctx> {
     type Row = PlayerDeathTimer;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = PlayerDeathTimer> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = PlayerDeathTimer> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = PlayerDeathTimerInsertCallbackId;
 
@@ -82,8 +81,7 @@ impl<'ctx> __sdk::Table for PlayerDeathTimerTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<PlayerDeathTimer>("player_death_timer");
+    let _table = client_cache.get_or_make_table::<PlayerDeathTimer>("player_death_timer");
     _table.add_unique_constraint::<u64>("scheduled_id", |row| &row.scheduled_id);
     _table.add_unique_constraint::<u64>("player_entity_id", |row| &row.player_entity_id);
 }
@@ -104,76 +102,73 @@ impl<'ctx> __sdk::TableWithPrimaryKey for PlayerDeathTimerTableHandle<'ctx> {
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<PlayerDeathTimer>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<PlayerDeathTimer>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<PlayerDeathTimer>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `scheduled_id` unique index on the table `player_death_timer`,
-        /// which allows point queries on the field of the same name
-        /// via the [`PlayerDeathTimerScheduledIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.player_death_timer().scheduled_id().find(...)`.
-        pub struct PlayerDeathTimerScheduledIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<PlayerDeathTimer, u64>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `scheduled_id` unique index on the table `player_death_timer`,
+/// which allows point queries on the field of the same name
+/// via the [`PlayerDeathTimerScheduledIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.player_death_timer().scheduled_id().find(...)`.
+pub struct PlayerDeathTimerScheduledIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<PlayerDeathTimer, u64>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> PlayerDeathTimerTableHandle<'ctx> {
-            /// Get a handle on the `scheduled_id` unique index on the table `player_death_timer`.
-            pub fn scheduled_id(&self) -> PlayerDeathTimerScheduledIdUnique<'ctx> {
-                PlayerDeathTimerScheduledIdUnique {
-                    imp: self.imp.get_unique_constraint::<u64>("scheduled_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> PlayerDeathTimerTableHandle<'ctx> {
+    /// Get a handle on the `scheduled_id` unique index on the table `player_death_timer`.
+    pub fn scheduled_id(&self) -> PlayerDeathTimerScheduledIdUnique<'ctx> {
+        PlayerDeathTimerScheduledIdUnique {
+            imp: self.imp.get_unique_constraint::<u64>("scheduled_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> PlayerDeathTimerScheduledIdUnique<'ctx> {
-            /// Find the subscribed row whose `scheduled_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u64) -> Option<PlayerDeathTimer> {
-                self.imp.find(col_val)
-            }
-        }
-        
-        /// Access to the `player_entity_id` unique index on the table `player_death_timer`,
-        /// which allows point queries on the field of the same name
-        /// via the [`PlayerDeathTimerPlayerEntityIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.player_death_timer().player_entity_id().find(...)`.
-        pub struct PlayerDeathTimerPlayerEntityIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<PlayerDeathTimer, u64>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+impl<'ctx> PlayerDeathTimerScheduledIdUnique<'ctx> {
+    /// Find the subscribed row whose `scheduled_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u64) -> Option<PlayerDeathTimer> {
+        self.imp.find(col_val)
+    }
+}
 
-        impl<'ctx> PlayerDeathTimerTableHandle<'ctx> {
-            /// Get a handle on the `player_entity_id` unique index on the table `player_death_timer`.
-            pub fn player_entity_id(&self) -> PlayerDeathTimerPlayerEntityIdUnique<'ctx> {
-                PlayerDeathTimerPlayerEntityIdUnique {
-                    imp: self.imp.get_unique_constraint::<u64>("player_entity_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
-        }
+/// Access to the `player_entity_id` unique index on the table `player_death_timer`,
+/// which allows point queries on the field of the same name
+/// via the [`PlayerDeathTimerPlayerEntityIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.player_death_timer().player_entity_id().find(...)`.
+pub struct PlayerDeathTimerPlayerEntityIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<PlayerDeathTimer, u64>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> PlayerDeathTimerPlayerEntityIdUnique<'ctx> {
-            /// Find the subscribed row whose `player_entity_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u64) -> Option<PlayerDeathTimer> {
-                self.imp.find(col_val)
-            }
+impl<'ctx> PlayerDeathTimerTableHandle<'ctx> {
+    /// Get a handle on the `player_entity_id` unique index on the table `player_death_timer`.
+    pub fn player_entity_id(&self) -> PlayerDeathTimerPlayerEntityIdUnique<'ctx> {
+        PlayerDeathTimerPlayerEntityIdUnique {
+            imp: self.imp.get_unique_constraint::<u64>("player_entity_id"),
+            phantom: std::marker::PhantomData,
         }
-        
+    }
+}
+
+impl<'ctx> PlayerDeathTimerPlayerEntityIdUnique<'ctx> {
+    /// Find the subscribed row whose `player_entity_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u64) -> Option<PlayerDeathTimer> {
+        self.imp.find(col_val)
+    }
+}

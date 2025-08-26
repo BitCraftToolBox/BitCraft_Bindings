@@ -3,13 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -21,8 +15,8 @@ impl From<InventorySortArgs> for super::Reducer {
     fn from(args: InventorySortArgs) -> Self {
         Self::InventorySort {
             target_entity_id: args.target_entity_id,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for InventorySortArgs {
@@ -41,8 +35,7 @@ pub trait inventory_sort {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_inventory_sort`] callbacks.
-    fn inventory_sort(&self, target_entity_id: u64,
-) -> __sdk::Result<()>;
+    fn inventory_sort(&self, target_entity_id: u64) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `inventory_sort`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -50,34 +43,39 @@ pub trait inventory_sort {
     ///
     /// The returned [`InventorySortCallbackId`] can be passed to [`Self::remove_on_inventory_sort`]
     /// to cancel the callback.
-    fn on_inventory_sort(&self, callback: impl FnMut(&super::ReducerEventContext, &u64, ) + Send + 'static) -> InventorySortCallbackId;
+    fn on_inventory_sort(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &u64) + Send + 'static,
+    ) -> InventorySortCallbackId;
     /// Cancel a callback previously registered by [`Self::on_inventory_sort`],
     /// causing it not to run in the future.
     fn remove_on_inventory_sort(&self, callback: InventorySortCallbackId);
 }
 
 impl inventory_sort for super::RemoteReducers {
-    fn inventory_sort(&self, target_entity_id: u64,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("inventory_sort", InventorySortArgs { target_entity_id,  })
+    fn inventory_sort(&self, target_entity_id: u64) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("inventory_sort", InventorySortArgs { target_entity_id })
     }
     fn on_inventory_sort(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &u64, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &u64) + Send + 'static,
     ) -> InventorySortCallbackId {
         InventorySortCallbackId(self.imp.on_reducer(
             "inventory_sort",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::InventorySort {
-                            target_entity_id, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::InventorySort { target_entity_id },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, target_entity_id, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, target_entity_id)
             }),
         ))
     }
@@ -105,4 +103,3 @@ impl set_flags_for_inventory_sort for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("inventory_sort", flags);
     }
 }
-

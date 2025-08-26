@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::claim_resupply_request_type::ClaimResupplyRequest;
 
@@ -22,8 +17,8 @@ impl From<ClaimResupplyArgs> for super::Reducer {
     fn from(args: ClaimResupplyArgs) -> Self {
         Self::ClaimResupply {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ClaimResupplyArgs {
@@ -42,8 +37,7 @@ pub trait claim_resupply {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_claim_resupply`] callbacks.
-    fn claim_resupply(&self, request: ClaimResupplyRequest,
-) -> __sdk::Result<()>;
+    fn claim_resupply(&self, request: ClaimResupplyRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `claim_resupply`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,39 @@ pub trait claim_resupply {
     ///
     /// The returned [`ClaimResupplyCallbackId`] can be passed to [`Self::remove_on_claim_resupply`]
     /// to cancel the callback.
-    fn on_claim_resupply(&self, callback: impl FnMut(&super::ReducerEventContext, &ClaimResupplyRequest, ) + Send + 'static) -> ClaimResupplyCallbackId;
+    fn on_claim_resupply(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &ClaimResupplyRequest) + Send + 'static,
+    ) -> ClaimResupplyCallbackId;
     /// Cancel a callback previously registered by [`Self::on_claim_resupply`],
     /// causing it not to run in the future.
     fn remove_on_claim_resupply(&self, callback: ClaimResupplyCallbackId);
 }
 
 impl claim_resupply for super::RemoteReducers {
-    fn claim_resupply(&self, request: ClaimResupplyRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("claim_resupply", ClaimResupplyArgs { request,  })
+    fn claim_resupply(&self, request: ClaimResupplyRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("claim_resupply", ClaimResupplyArgs { request })
     }
     fn on_claim_resupply(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &ClaimResupplyRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &ClaimResupplyRequest) + Send + 'static,
     ) -> ClaimResupplyCallbackId {
         ClaimResupplyCallbackId(self.imp.on_reducer(
             "claim_resupply",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ClaimResupply {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ClaimResupply { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
@@ -106,4 +105,3 @@ impl set_flags_for_claim_resupply for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("claim_resupply", flags);
     }
 }
-

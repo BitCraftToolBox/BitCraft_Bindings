@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::hide_deployable_timer_type::HideDeployableTimer;
 
@@ -20,10 +15,8 @@ pub(super) struct HideDeployableArgs {
 
 impl From<HideDeployableArgs> for super::Reducer {
     fn from(args: HideDeployableArgs) -> Self {
-        Self::HideDeployable {
-            timer: args.timer,
-}
-}
+        Self::HideDeployable { timer: args.timer }
+    }
 }
 
 impl __sdk::InModule for HideDeployableArgs {
@@ -42,8 +35,7 @@ pub trait hide_deployable {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_hide_deployable`] callbacks.
-    fn hide_deployable(&self, timer: HideDeployableTimer,
-) -> __sdk::Result<()>;
+    fn hide_deployable(&self, timer: HideDeployableTimer) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `hide_deployable`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +43,39 @@ pub trait hide_deployable {
     ///
     /// The returned [`HideDeployableCallbackId`] can be passed to [`Self::remove_on_hide_deployable`]
     /// to cancel the callback.
-    fn on_hide_deployable(&self, callback: impl FnMut(&super::ReducerEventContext, &HideDeployableTimer, ) + Send + 'static) -> HideDeployableCallbackId;
+    fn on_hide_deployable(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &HideDeployableTimer) + Send + 'static,
+    ) -> HideDeployableCallbackId;
     /// Cancel a callback previously registered by [`Self::on_hide_deployable`],
     /// causing it not to run in the future.
     fn remove_on_hide_deployable(&self, callback: HideDeployableCallbackId);
 }
 
 impl hide_deployable for super::RemoteReducers {
-    fn hide_deployable(&self, timer: HideDeployableTimer,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("hide_deployable", HideDeployableArgs { timer,  })
+    fn hide_deployable(&self, timer: HideDeployableTimer) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("hide_deployable", HideDeployableArgs { timer })
     }
     fn on_hide_deployable(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &HideDeployableTimer, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &HideDeployableTimer) + Send + 'static,
     ) -> HideDeployableCallbackId {
         HideDeployableCallbackId(self.imp.on_reducer(
             "hide_deployable",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::HideDeployable {
-                            timer, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::HideDeployable { timer },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, timer, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, timer)
             }),
         ))
     }
@@ -106,4 +103,3 @@ impl set_flags_for_hide_deployable for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("hide_deployable", flags);
     }
 }
-

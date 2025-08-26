@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::offset_coordinates_float_type::OffsetCoordinatesFloat;
 use super::server_teleport_reason_type::ServerTeleportReason;
@@ -23,8 +18,6 @@ pub struct TeleportPlayerTimer {
     pub reason: ServerTeleportReason,
 }
 
-
 impl __sdk::InModule for TeleportPlayerTimer {
     type Module = super::RemoteModule;
 }
-

@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::secondary_knowledge_desc_type::SecondaryKnowledgeDesc;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct ImportSecondaryKnowledgeDescArgs {
-    pub records: Vec::<SecondaryKnowledgeDesc>,
+    pub records: Vec<SecondaryKnowledgeDesc>,
 }
 
 impl From<ImportSecondaryKnowledgeDescArgs> for super::Reducer {
     fn from(args: ImportSecondaryKnowledgeDescArgs) -> Self {
         Self::ImportSecondaryKnowledgeDesc {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ImportSecondaryKnowledgeDescArgs {
@@ -42,8 +37,10 @@ pub trait import_secondary_knowledge_desc {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_import_secondary_knowledge_desc`] callbacks.
-    fn import_secondary_knowledge_desc(&self, records: Vec::<SecondaryKnowledgeDesc>,
-) -> __sdk::Result<()>;
+    fn import_secondary_knowledge_desc(
+        &self,
+        records: Vec<SecondaryKnowledgeDesc>,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `import_secondary_knowledge_desc`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +48,58 @@ pub trait import_secondary_knowledge_desc {
     ///
     /// The returned [`ImportSecondaryKnowledgeDescCallbackId`] can be passed to [`Self::remove_on_import_secondary_knowledge_desc`]
     /// to cancel the callback.
-    fn on_import_secondary_knowledge_desc(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<SecondaryKnowledgeDesc>, ) + Send + 'static) -> ImportSecondaryKnowledgeDescCallbackId;
+    fn on_import_secondary_knowledge_desc(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<SecondaryKnowledgeDesc>) + Send + 'static,
+    ) -> ImportSecondaryKnowledgeDescCallbackId;
     /// Cancel a callback previously registered by [`Self::on_import_secondary_knowledge_desc`],
     /// causing it not to run in the future.
-    fn remove_on_import_secondary_knowledge_desc(&self, callback: ImportSecondaryKnowledgeDescCallbackId);
+    fn remove_on_import_secondary_knowledge_desc(
+        &self,
+        callback: ImportSecondaryKnowledgeDescCallbackId,
+    );
 }
 
 impl import_secondary_knowledge_desc for super::RemoteReducers {
-    fn import_secondary_knowledge_desc(&self, records: Vec::<SecondaryKnowledgeDesc>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("import_secondary_knowledge_desc", ImportSecondaryKnowledgeDescArgs { records,  })
+    fn import_secondary_knowledge_desc(
+        &self,
+        records: Vec<SecondaryKnowledgeDesc>,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "import_secondary_knowledge_desc",
+            ImportSecondaryKnowledgeDescArgs { records },
+        )
     }
     fn on_import_secondary_knowledge_desc(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<SecondaryKnowledgeDesc>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<SecondaryKnowledgeDesc>)
+            + Send
+            + 'static,
     ) -> ImportSecondaryKnowledgeDescCallbackId {
         ImportSecondaryKnowledgeDescCallbackId(self.imp.on_reducer(
             "import_secondary_knowledge_desc",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ImportSecondaryKnowledgeDesc {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ImportSecondaryKnowledgeDesc { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
-    fn remove_on_import_secondary_knowledge_desc(&self, callback: ImportSecondaryKnowledgeDescCallbackId) {
-        self.imp.remove_on_reducer("import_secondary_knowledge_desc", callback.0)
+    fn remove_on_import_secondary_knowledge_desc(
+        &self,
+        callback: ImportSecondaryKnowledgeDescCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("import_secondary_knowledge_desc", callback.0)
     }
 }
 
@@ -103,7 +119,7 @@ pub trait set_flags_for_import_secondary_knowledge_desc {
 
 impl set_flags_for_import_secondary_knowledge_desc for super::SetReducerFlags {
     fn import_secondary_knowledge_desc(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("import_secondary_knowledge_desc", flags);
+        self.imp
+            .set_call_reducer_flags("import_secondary_knowledge_desc", flags);
     }
 }
-

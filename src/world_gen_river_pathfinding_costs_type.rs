@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::world_gen_vector_2_int_type::WorldGenVector2Int;
 
@@ -19,8 +14,6 @@ pub struct WorldGenRiverPathfindingCosts {
     pub pathfinding_costs: f32,
 }
 
-
 impl __sdk::InModule for WorldGenRiverPathfindingCosts {
     type Module = super::RemoteModule;
 }
-

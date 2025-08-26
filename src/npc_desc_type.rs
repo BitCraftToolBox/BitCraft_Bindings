@@ -3,13 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
-
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
@@ -23,11 +17,9 @@ pub struct NpcDesc {
     pub prefab_address: String,
     pub icon_address: String,
     pub force_market_mode: bool,
-    pub task_skill_check: Vec::<i32>,
+    pub task_skill_check: Vec<i32>,
 }
-
 
 impl __sdk::InModule for NpcDesc {
     type Module = super::RemoteModule;
 }
-

@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_order_cancel_request_type::PlayerOrderCancelRequest;
 
@@ -22,8 +17,8 @@ impl From<OrderCancelArgs> for super::Reducer {
     fn from(args: OrderCancelArgs) -> Self {
         Self::OrderCancel {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for OrderCancelArgs {
@@ -42,8 +37,7 @@ pub trait order_cancel {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_order_cancel`] callbacks.
-    fn order_cancel(&self, request: PlayerOrderCancelRequest,
-) -> __sdk::Result<()>;
+    fn order_cancel(&self, request: PlayerOrderCancelRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `order_cancel`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,41 @@ pub trait order_cancel {
     ///
     /// The returned [`OrderCancelCallbackId`] can be passed to [`Self::remove_on_order_cancel`]
     /// to cancel the callback.
-    fn on_order_cancel(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerOrderCancelRequest, ) + Send + 'static) -> OrderCancelCallbackId;
+    fn on_order_cancel(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerOrderCancelRequest) + Send + 'static,
+    ) -> OrderCancelCallbackId;
     /// Cancel a callback previously registered by [`Self::on_order_cancel`],
     /// causing it not to run in the future.
     fn remove_on_order_cancel(&self, callback: OrderCancelCallbackId);
 }
 
 impl order_cancel for super::RemoteReducers {
-    fn order_cancel(&self, request: PlayerOrderCancelRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("order_cancel", OrderCancelArgs { request,  })
+    fn order_cancel(&self, request: PlayerOrderCancelRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("order_cancel", OrderCancelArgs { request })
     }
     fn on_order_cancel(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerOrderCancelRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerOrderCancelRequest)
+            + Send
+            + 'static,
     ) -> OrderCancelCallbackId {
         OrderCancelCallbackId(self.imp.on_reducer(
             "order_cancel",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::OrderCancel {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::OrderCancel { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
@@ -106,4 +107,3 @@ impl set_flags_for_order_cancel for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("order_cancel", flags);
     }
 }
-

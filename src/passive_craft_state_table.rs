@@ -3,14 +3,9 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::passive_craft_state_type::PassiveCraftState;
 use super::passive_craft_status_type::PassiveCraftStatus;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `passive_craft_state`.
 ///
@@ -38,7 +33,9 @@ pub trait PassiveCraftStateTableAccess {
 impl PassiveCraftStateTableAccess for super::RemoteTables {
     fn passive_craft_state(&self) -> PassiveCraftStateTableHandle<'_> {
         PassiveCraftStateTableHandle {
-            imp: self.imp.get_table::<PassiveCraftState>("passive_craft_state"),
+            imp: self
+                .imp
+                .get_table::<PassiveCraftState>("passive_craft_state"),
             ctx: std::marker::PhantomData,
         }
     }
@@ -51,8 +48,12 @@ impl<'ctx> __sdk::Table for PassiveCraftStateTableHandle<'ctx> {
     type Row = PassiveCraftState;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = PassiveCraftState> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = PassiveCraftState> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = PassiveCraftStateInsertCallbackId;
 
@@ -83,8 +84,7 @@ impl<'ctx> __sdk::Table for PassiveCraftStateTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<PassiveCraftState>("passive_craft_state");
+    let _table = client_cache.get_or_make_table::<PassiveCraftState>("passive_craft_state");
     _table.add_unique_constraint::<u64>("entity_id", |row| &row.entity_id);
 }
 pub struct PassiveCraftStateUpdateCallbackId(__sdk::CallbackId);
@@ -104,46 +104,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for PassiveCraftStateTableHandle<'ctx> {
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<PassiveCraftState>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<PassiveCraftState>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<PassiveCraftState>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `entity_id` unique index on the table `passive_craft_state`,
-        /// which allows point queries on the field of the same name
-        /// via the [`PassiveCraftStateEntityIdUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.passive_craft_state().entity_id().find(...)`.
-        pub struct PassiveCraftStateEntityIdUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<PassiveCraftState, u64>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `entity_id` unique index on the table `passive_craft_state`,
+/// which allows point queries on the field of the same name
+/// via the [`PassiveCraftStateEntityIdUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.passive_craft_state().entity_id().find(...)`.
+pub struct PassiveCraftStateEntityIdUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<PassiveCraftState, u64>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> PassiveCraftStateTableHandle<'ctx> {
-            /// Get a handle on the `entity_id` unique index on the table `passive_craft_state`.
-            pub fn entity_id(&self) -> PassiveCraftStateEntityIdUnique<'ctx> {
-                PassiveCraftStateEntityIdUnique {
-                    imp: self.imp.get_unique_constraint::<u64>("entity_id"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> PassiveCraftStateTableHandle<'ctx> {
+    /// Get a handle on the `entity_id` unique index on the table `passive_craft_state`.
+    pub fn entity_id(&self) -> PassiveCraftStateEntityIdUnique<'ctx> {
+        PassiveCraftStateEntityIdUnique {
+            imp: self.imp.get_unique_constraint::<u64>("entity_id"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> PassiveCraftStateEntityIdUnique<'ctx> {
-            /// Find the subscribed row whose `entity_id` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &u64) -> Option<PassiveCraftState> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> PassiveCraftStateEntityIdUnique<'ctx> {
+    /// Find the subscribed row whose `entity_id` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &u64) -> Option<PassiveCraftState> {
+        self.imp.find(col_val)
+    }
+}

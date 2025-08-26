@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::enemy_move_request_type::EnemyMoveRequest;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct EnemyMoveBatchArgs {
-    pub requests: Vec::<EnemyMoveRequest>,
+    pub requests: Vec<EnemyMoveRequest>,
 }
 
 impl From<EnemyMoveBatchArgs> for super::Reducer {
     fn from(args: EnemyMoveBatchArgs) -> Self {
         Self::EnemyMoveBatch {
             requests: args.requests,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for EnemyMoveBatchArgs {
@@ -42,8 +37,7 @@ pub trait enemy_move_batch {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_enemy_move_batch`] callbacks.
-    fn enemy_move_batch(&self, requests: Vec::<EnemyMoveRequest>,
-) -> __sdk::Result<()>;
+    fn enemy_move_batch(&self, requests: Vec<EnemyMoveRequest>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `enemy_move_batch`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,39 @@ pub trait enemy_move_batch {
     ///
     /// The returned [`EnemyMoveBatchCallbackId`] can be passed to [`Self::remove_on_enemy_move_batch`]
     /// to cancel the callback.
-    fn on_enemy_move_batch(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<EnemyMoveRequest>, ) + Send + 'static) -> EnemyMoveBatchCallbackId;
+    fn on_enemy_move_batch(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<EnemyMoveRequest>) + Send + 'static,
+    ) -> EnemyMoveBatchCallbackId;
     /// Cancel a callback previously registered by [`Self::on_enemy_move_batch`],
     /// causing it not to run in the future.
     fn remove_on_enemy_move_batch(&self, callback: EnemyMoveBatchCallbackId);
 }
 
 impl enemy_move_batch for super::RemoteReducers {
-    fn enemy_move_batch(&self, requests: Vec::<EnemyMoveRequest>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("enemy_move_batch", EnemyMoveBatchArgs { requests,  })
+    fn enemy_move_batch(&self, requests: Vec<EnemyMoveRequest>) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("enemy_move_batch", EnemyMoveBatchArgs { requests })
     }
     fn on_enemy_move_batch(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<EnemyMoveRequest>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<EnemyMoveRequest>) + Send + 'static,
     ) -> EnemyMoveBatchCallbackId {
         EnemyMoveBatchCallbackId(self.imp.on_reducer(
             "enemy_move_batch",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::EnemyMoveBatch {
-                            requests, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::EnemyMoveBatch { requests },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, requests, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, requests)
             }),
         ))
     }
@@ -106,4 +105,3 @@ impl set_flags_for_enemy_move_batch for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("enemy_move_batch", flags);
     }
 }
-

@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_deployable_mount_request_type::PlayerDeployableMountRequest;
 
@@ -22,8 +17,8 @@ impl From<DeployableMountArgs> for super::Reducer {
     fn from(args: DeployableMountArgs) -> Self {
         Self::DeployableMount {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for DeployableMountArgs {
@@ -42,8 +37,7 @@ pub trait deployable_mount {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_deployable_mount`] callbacks.
-    fn deployable_mount(&self, request: PlayerDeployableMountRequest,
-) -> __sdk::Result<()>;
+    fn deployable_mount(&self, request: PlayerDeployableMountRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `deployable_mount`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,43 @@ pub trait deployable_mount {
     ///
     /// The returned [`DeployableMountCallbackId`] can be passed to [`Self::remove_on_deployable_mount`]
     /// to cancel the callback.
-    fn on_deployable_mount(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerDeployableMountRequest, ) + Send + 'static) -> DeployableMountCallbackId;
+    fn on_deployable_mount(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerDeployableMountRequest)
+            + Send
+            + 'static,
+    ) -> DeployableMountCallbackId;
     /// Cancel a callback previously registered by [`Self::on_deployable_mount`],
     /// causing it not to run in the future.
     fn remove_on_deployable_mount(&self, callback: DeployableMountCallbackId);
 }
 
 impl deployable_mount for super::RemoteReducers {
-    fn deployable_mount(&self, request: PlayerDeployableMountRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("deployable_mount", DeployableMountArgs { request,  })
+    fn deployable_mount(&self, request: PlayerDeployableMountRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("deployable_mount", DeployableMountArgs { request })
     }
     fn on_deployable_mount(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerDeployableMountRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerDeployableMountRequest)
+            + Send
+            + 'static,
     ) -> DeployableMountCallbackId {
         DeployableMountCallbackId(self.imp.on_reducer(
             "deployable_mount",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::DeployableMount {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::DeployableMount { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
@@ -106,4 +109,3 @@ impl set_flags_for_deployable_mount for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("deployable_mount", flags);
     }
 }
-

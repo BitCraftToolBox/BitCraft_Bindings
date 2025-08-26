@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::knowledge_scroll_type_desc_type::KnowledgeScrollTypeDesc;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct ImportKnowledgeScrollTypeDescArgs {
-    pub records: Vec::<KnowledgeScrollTypeDesc>,
+    pub records: Vec<KnowledgeScrollTypeDesc>,
 }
 
 impl From<ImportKnowledgeScrollTypeDescArgs> for super::Reducer {
     fn from(args: ImportKnowledgeScrollTypeDescArgs) -> Self {
         Self::ImportKnowledgeScrollTypeDesc {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ImportKnowledgeScrollTypeDescArgs {
@@ -42,8 +37,10 @@ pub trait import_knowledge_scroll_type_desc {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_import_knowledge_scroll_type_desc`] callbacks.
-    fn import_knowledge_scroll_type_desc(&self, records: Vec::<KnowledgeScrollTypeDesc>,
-) -> __sdk::Result<()>;
+    fn import_knowledge_scroll_type_desc(
+        &self,
+        records: Vec<KnowledgeScrollTypeDesc>,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `import_knowledge_scroll_type_desc`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +48,60 @@ pub trait import_knowledge_scroll_type_desc {
     ///
     /// The returned [`ImportKnowledgeScrollTypeDescCallbackId`] can be passed to [`Self::remove_on_import_knowledge_scroll_type_desc`]
     /// to cancel the callback.
-    fn on_import_knowledge_scroll_type_desc(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<KnowledgeScrollTypeDesc>, ) + Send + 'static) -> ImportKnowledgeScrollTypeDescCallbackId;
+    fn on_import_knowledge_scroll_type_desc(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<KnowledgeScrollTypeDesc>)
+            + Send
+            + 'static,
+    ) -> ImportKnowledgeScrollTypeDescCallbackId;
     /// Cancel a callback previously registered by [`Self::on_import_knowledge_scroll_type_desc`],
     /// causing it not to run in the future.
-    fn remove_on_import_knowledge_scroll_type_desc(&self, callback: ImportKnowledgeScrollTypeDescCallbackId);
+    fn remove_on_import_knowledge_scroll_type_desc(
+        &self,
+        callback: ImportKnowledgeScrollTypeDescCallbackId,
+    );
 }
 
 impl import_knowledge_scroll_type_desc for super::RemoteReducers {
-    fn import_knowledge_scroll_type_desc(&self, records: Vec::<KnowledgeScrollTypeDesc>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("import_knowledge_scroll_type_desc", ImportKnowledgeScrollTypeDescArgs { records,  })
+    fn import_knowledge_scroll_type_desc(
+        &self,
+        records: Vec<KnowledgeScrollTypeDesc>,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "import_knowledge_scroll_type_desc",
+            ImportKnowledgeScrollTypeDescArgs { records },
+        )
     }
     fn on_import_knowledge_scroll_type_desc(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<KnowledgeScrollTypeDesc>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<KnowledgeScrollTypeDesc>)
+            + Send
+            + 'static,
     ) -> ImportKnowledgeScrollTypeDescCallbackId {
         ImportKnowledgeScrollTypeDescCallbackId(self.imp.on_reducer(
             "import_knowledge_scroll_type_desc",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ImportKnowledgeScrollTypeDesc {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ImportKnowledgeScrollTypeDesc { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
-    fn remove_on_import_knowledge_scroll_type_desc(&self, callback: ImportKnowledgeScrollTypeDescCallbackId) {
-        self.imp.remove_on_reducer("import_knowledge_scroll_type_desc", callback.0)
+    fn remove_on_import_knowledge_scroll_type_desc(
+        &self,
+        callback: ImportKnowledgeScrollTypeDescCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("import_knowledge_scroll_type_desc", callback.0)
     }
 }
 
@@ -103,7 +121,7 @@ pub trait set_flags_for_import_knowledge_scroll_type_desc {
 
 impl set_flags_for_import_knowledge_scroll_type_desc for super::SetReducerFlags {
     fn import_knowledge_scroll_type_desc(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("import_knowledge_scroll_type_desc", flags);
+        self.imp
+            .set_call_reducer_flags("import_knowledge_scroll_type_desc", flags);
     }
 }
-

@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_order_collect_request_type::PlayerOrderCollectRequest;
 
@@ -22,8 +17,8 @@ impl From<OrderCollectArgs> for super::Reducer {
     fn from(args: OrderCollectArgs) -> Self {
         Self::OrderCollect {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for OrderCollectArgs {
@@ -42,8 +37,7 @@ pub trait order_collect {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_order_collect`] callbacks.
-    fn order_collect(&self, request: PlayerOrderCollectRequest,
-) -> __sdk::Result<()>;
+    fn order_collect(&self, request: PlayerOrderCollectRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `order_collect`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,41 @@ pub trait order_collect {
     ///
     /// The returned [`OrderCollectCallbackId`] can be passed to [`Self::remove_on_order_collect`]
     /// to cancel the callback.
-    fn on_order_collect(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerOrderCollectRequest, ) + Send + 'static) -> OrderCollectCallbackId;
+    fn on_order_collect(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerOrderCollectRequest) + Send + 'static,
+    ) -> OrderCollectCallbackId;
     /// Cancel a callback previously registered by [`Self::on_order_collect`],
     /// causing it not to run in the future.
     fn remove_on_order_collect(&self, callback: OrderCollectCallbackId);
 }
 
 impl order_collect for super::RemoteReducers {
-    fn order_collect(&self, request: PlayerOrderCollectRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("order_collect", OrderCollectArgs { request,  })
+    fn order_collect(&self, request: PlayerOrderCollectRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("order_collect", OrderCollectArgs { request })
     }
     fn on_order_collect(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerOrderCollectRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerOrderCollectRequest)
+            + Send
+            + 'static,
     ) -> OrderCollectCallbackId {
         OrderCollectCallbackId(self.imp.on_reducer(
             "order_collect",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::OrderCollect {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::OrderCollect { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
@@ -106,4 +107,3 @@ impl set_flags_for_order_collect for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("order_collect", flags);
     }
 }
-

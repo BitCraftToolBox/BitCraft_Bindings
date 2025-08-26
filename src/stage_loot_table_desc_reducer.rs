@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::loot_table_desc_type::LootTableDesc;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct StageLootTableDescArgs {
-    pub records: Vec::<LootTableDesc>,
+    pub records: Vec<LootTableDesc>,
 }
 
 impl From<StageLootTableDescArgs> for super::Reducer {
     fn from(args: StageLootTableDescArgs) -> Self {
         Self::StageLootTableDesc {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for StageLootTableDescArgs {
@@ -42,8 +37,7 @@ pub trait stage_loot_table_desc {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_stage_loot_table_desc`] callbacks.
-    fn stage_loot_table_desc(&self, records: Vec::<LootTableDesc>,
-) -> __sdk::Result<()>;
+    fn stage_loot_table_desc(&self, records: Vec<LootTableDesc>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `stage_loot_table_desc`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,45 @@ pub trait stage_loot_table_desc {
     ///
     /// The returned [`StageLootTableDescCallbackId`] can be passed to [`Self::remove_on_stage_loot_table_desc`]
     /// to cancel the callback.
-    fn on_stage_loot_table_desc(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<LootTableDesc>, ) + Send + 'static) -> StageLootTableDescCallbackId;
+    fn on_stage_loot_table_desc(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<LootTableDesc>) + Send + 'static,
+    ) -> StageLootTableDescCallbackId;
     /// Cancel a callback previously registered by [`Self::on_stage_loot_table_desc`],
     /// causing it not to run in the future.
     fn remove_on_stage_loot_table_desc(&self, callback: StageLootTableDescCallbackId);
 }
 
 impl stage_loot_table_desc for super::RemoteReducers {
-    fn stage_loot_table_desc(&self, records: Vec::<LootTableDesc>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("stage_loot_table_desc", StageLootTableDescArgs { records,  })
+    fn stage_loot_table_desc(&self, records: Vec<LootTableDesc>) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("stage_loot_table_desc", StageLootTableDescArgs { records })
     }
     fn on_stage_loot_table_desc(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<LootTableDesc>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<LootTableDesc>) + Send + 'static,
     ) -> StageLootTableDescCallbackId {
         StageLootTableDescCallbackId(self.imp.on_reducer(
             "stage_loot_table_desc",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::StageLootTableDesc {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::StageLootTableDesc { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
     fn remove_on_stage_loot_table_desc(&self, callback: StageLootTableDescCallbackId) {
-        self.imp.remove_on_reducer("stage_loot_table_desc", callback.0)
+        self.imp
+            .remove_on_reducer("stage_loot_table_desc", callback.0)
     }
 }
 
@@ -103,7 +103,7 @@ pub trait set_flags_for_stage_loot_table_desc {
 
 impl set_flags_for_stage_loot_table_desc for super::SetReducerFlags {
     fn stage_loot_table_desc(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("stage_loot_table_desc", flags);
+        self.imp
+            .set_call_reducer_flags("stage_loot_table_desc", flags);
     }
 }
-

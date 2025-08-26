@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::dropped_inventory_despawn_timer_type::DroppedInventoryDespawnTimer;
 
@@ -20,10 +15,8 @@ pub(super) struct DroppedInventoryDespawnArgs {
 
 impl From<DroppedInventoryDespawnArgs> for super::Reducer {
     fn from(args: DroppedInventoryDespawnArgs) -> Self {
-        Self::DroppedInventoryDespawn {
-            timer: args.timer,
-}
-}
+        Self::DroppedInventoryDespawn { timer: args.timer }
+    }
 }
 
 impl __sdk::InModule for DroppedInventoryDespawnArgs {
@@ -42,8 +35,7 @@ pub trait dropped_inventory_despawn {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_dropped_inventory_despawn`] callbacks.
-    fn dropped_inventory_despawn(&self, timer: DroppedInventoryDespawnTimer,
-) -> __sdk::Result<()>;
+    fn dropped_inventory_despawn(&self, timer: DroppedInventoryDespawnTimer) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `dropped_inventory_despawn`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +43,51 @@ pub trait dropped_inventory_despawn {
     ///
     /// The returned [`DroppedInventoryDespawnCallbackId`] can be passed to [`Self::remove_on_dropped_inventory_despawn`]
     /// to cancel the callback.
-    fn on_dropped_inventory_despawn(&self, callback: impl FnMut(&super::ReducerEventContext, &DroppedInventoryDespawnTimer, ) + Send + 'static) -> DroppedInventoryDespawnCallbackId;
+    fn on_dropped_inventory_despawn(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &DroppedInventoryDespawnTimer)
+            + Send
+            + 'static,
+    ) -> DroppedInventoryDespawnCallbackId;
     /// Cancel a callback previously registered by [`Self::on_dropped_inventory_despawn`],
     /// causing it not to run in the future.
     fn remove_on_dropped_inventory_despawn(&self, callback: DroppedInventoryDespawnCallbackId);
 }
 
 impl dropped_inventory_despawn for super::RemoteReducers {
-    fn dropped_inventory_despawn(&self, timer: DroppedInventoryDespawnTimer,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("dropped_inventory_despawn", DroppedInventoryDespawnArgs { timer,  })
+    fn dropped_inventory_despawn(&self, timer: DroppedInventoryDespawnTimer) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "dropped_inventory_despawn",
+            DroppedInventoryDespawnArgs { timer },
+        )
     }
     fn on_dropped_inventory_despawn(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &DroppedInventoryDespawnTimer, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &DroppedInventoryDespawnTimer)
+            + Send
+            + 'static,
     ) -> DroppedInventoryDespawnCallbackId {
         DroppedInventoryDespawnCallbackId(self.imp.on_reducer(
             "dropped_inventory_despawn",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::DroppedInventoryDespawn {
-                            timer, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::DroppedInventoryDespawn { timer },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, timer, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, timer)
             }),
         ))
     }
     fn remove_on_dropped_inventory_despawn(&self, callback: DroppedInventoryDespawnCallbackId) {
-        self.imp.remove_on_reducer("dropped_inventory_despawn", callback.0)
+        self.imp
+            .remove_on_reducer("dropped_inventory_despawn", callback.0)
     }
 }
 
@@ -103,7 +107,7 @@ pub trait set_flags_for_dropped_inventory_despawn {
 
 impl set_flags_for_dropped_inventory_despawn for super::SetReducerFlags {
     fn dropped_inventory_despawn(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("dropped_inventory_despawn", flags);
+        self.imp
+            .set_call_reducer_flags("dropped_inventory_despawn", flags);
     }
 }
-

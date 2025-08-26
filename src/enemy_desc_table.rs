@@ -3,16 +3,11 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
 use super::enemy_desc_type::EnemyDesc;
-use super::rarity_type::Rarity;
 use super::experience_stack_f_32_type::ExperienceStackF32;
 use super::probabilistic_item_stack_type::ProbabilisticItemStack;
+use super::rarity_type::Rarity;
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `enemy_desc`.
 ///
@@ -53,8 +48,12 @@ impl<'ctx> __sdk::Table for EnemyDescTableHandle<'ctx> {
     type Row = EnemyDesc;
     type EventContext = super::EventContext;
 
-    fn count(&self) -> u64 { self.imp.count() }
-    fn iter(&self) -> impl Iterator<Item = EnemyDesc> + '_ { self.imp.iter() }
+    fn count(&self) -> u64 {
+        self.imp.count()
+    }
+    fn iter(&self) -> impl Iterator<Item = EnemyDesc> + '_ {
+        self.imp.iter()
+    }
 
     type InsertCallbackId = EnemyDescInsertCallbackId;
 
@@ -85,8 +84,7 @@ impl<'ctx> __sdk::Table for EnemyDescTableHandle<'ctx> {
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-
-        let _table = client_cache.get_or_make_table::<EnemyDesc>("enemy_desc");
+    let _table = client_cache.get_or_make_table::<EnemyDesc>("enemy_desc");
     _table.add_unique_constraint::<i32>("enemy_type", |row| &row.enemy_type);
 }
 pub struct EnemyDescUpdateCallbackId(__sdk::CallbackId);
@@ -106,46 +104,43 @@ impl<'ctx> __sdk::TableWithPrimaryKey for EnemyDescTableHandle<'ctx> {
     }
 }
 
-
 #[doc(hidden)]
 pub(super) fn parse_table_update(
     raw_updates: __ws::TableUpdate<__ws::BsatnFormat>,
 ) -> __sdk::Result<__sdk::TableUpdate<EnemyDesc>> {
     __sdk::TableUpdate::parse_table_update(raw_updates).map_err(|e| {
-        __sdk::InternalError::failed_parse(
-            "TableUpdate<EnemyDesc>",
-            "TableUpdate",
-        ).with_cause(e).into()
+        __sdk::InternalError::failed_parse("TableUpdate<EnemyDesc>", "TableUpdate")
+            .with_cause(e)
+            .into()
     })
 }
 
-        /// Access to the `enemy_type` unique index on the table `enemy_desc`,
-        /// which allows point queries on the field of the same name
-        /// via the [`EnemyDescEnemyTypeUnique::find`] method.
-        ///
-        /// Users are encouraged not to explicitly reference this type,
-        /// but to directly chain method calls,
-        /// like `ctx.db.enemy_desc().enemy_type().find(...)`.
-        pub struct EnemyDescEnemyTypeUnique<'ctx> {
-            imp: __sdk::UniqueConstraintHandle<EnemyDesc, i32>,
-            phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
-        }
+/// Access to the `enemy_type` unique index on the table `enemy_desc`,
+/// which allows point queries on the field of the same name
+/// via the [`EnemyDescEnemyTypeUnique::find`] method.
+///
+/// Users are encouraged not to explicitly reference this type,
+/// but to directly chain method calls,
+/// like `ctx.db.enemy_desc().enemy_type().find(...)`.
+pub struct EnemyDescEnemyTypeUnique<'ctx> {
+    imp: __sdk::UniqueConstraintHandle<EnemyDesc, i32>,
+    phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
+}
 
-        impl<'ctx> EnemyDescTableHandle<'ctx> {
-            /// Get a handle on the `enemy_type` unique index on the table `enemy_desc`.
-            pub fn enemy_type(&self) -> EnemyDescEnemyTypeUnique<'ctx> {
-                EnemyDescEnemyTypeUnique {
-                    imp: self.imp.get_unique_constraint::<i32>("enemy_type"),
-                    phantom: std::marker::PhantomData,
-                }
-            }
+impl<'ctx> EnemyDescTableHandle<'ctx> {
+    /// Get a handle on the `enemy_type` unique index on the table `enemy_desc`.
+    pub fn enemy_type(&self) -> EnemyDescEnemyTypeUnique<'ctx> {
+        EnemyDescEnemyTypeUnique {
+            imp: self.imp.get_unique_constraint::<i32>("enemy_type"),
+            phantom: std::marker::PhantomData,
         }
+    }
+}
 
-        impl<'ctx> EnemyDescEnemyTypeUnique<'ctx> {
-            /// Find the subscribed row whose `enemy_type` column value is equal to `col_val`,
-            /// if such a row is present in the client cache.
-            pub fn find(&self, col_val: &i32) -> Option<EnemyDesc> {
-                self.imp.find(col_val)
-            }
-        }
-        
+impl<'ctx> EnemyDescEnemyTypeUnique<'ctx> {
+    /// Find the subscribed row whose `enemy_type` column value is equal to `col_val`,
+    /// if such a row is present in the client cache.
+    pub fn find(&self, col_val: &i32) -> Option<EnemyDesc> {
+        self.imp.find(col_val)
+    }
+}

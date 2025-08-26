@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_building_move_request_type::PlayerBuildingMoveRequest;
 
@@ -22,8 +17,8 @@ impl From<CheatBuildingMoveArgs> for super::Reducer {
     fn from(args: CheatBuildingMoveArgs) -> Self {
         Self::CheatBuildingMove {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for CheatBuildingMoveArgs {
@@ -42,8 +37,7 @@ pub trait cheat_building_move {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_cheat_building_move`] callbacks.
-    fn cheat_building_move(&self, request: PlayerBuildingMoveRequest,
-) -> __sdk::Result<()>;
+    fn cheat_building_move(&self, request: PlayerBuildingMoveRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `cheat_building_move`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,47 @@ pub trait cheat_building_move {
     ///
     /// The returned [`CheatBuildingMoveCallbackId`] can be passed to [`Self::remove_on_cheat_building_move`]
     /// to cancel the callback.
-    fn on_cheat_building_move(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerBuildingMoveRequest, ) + Send + 'static) -> CheatBuildingMoveCallbackId;
+    fn on_cheat_building_move(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerBuildingMoveRequest) + Send + 'static,
+    ) -> CheatBuildingMoveCallbackId;
     /// Cancel a callback previously registered by [`Self::on_cheat_building_move`],
     /// causing it not to run in the future.
     fn remove_on_cheat_building_move(&self, callback: CheatBuildingMoveCallbackId);
 }
 
 impl cheat_building_move for super::RemoteReducers {
-    fn cheat_building_move(&self, request: PlayerBuildingMoveRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("cheat_building_move", CheatBuildingMoveArgs { request,  })
+    fn cheat_building_move(&self, request: PlayerBuildingMoveRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("cheat_building_move", CheatBuildingMoveArgs { request })
     }
     fn on_cheat_building_move(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerBuildingMoveRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerBuildingMoveRequest)
+            + Send
+            + 'static,
     ) -> CheatBuildingMoveCallbackId {
         CheatBuildingMoveCallbackId(self.imp.on_reducer(
             "cheat_building_move",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::CheatBuildingMove {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::CheatBuildingMove { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
     fn remove_on_cheat_building_move(&self, callback: CheatBuildingMoveCallbackId) {
-        self.imp.remove_on_reducer("cheat_building_move", callback.0)
+        self.imp
+            .remove_on_reducer("cheat_building_move", callback.0)
     }
 }
 
@@ -103,7 +105,7 @@ pub trait set_flags_for_cheat_building_move {
 
 impl set_flags_for_cheat_building_move for super::SetReducerFlags {
     fn cheat_building_move(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("cheat_building_move", flags);
+        self.imp
+            .set_call_reducer_flags("cheat_building_move", flags);
     }
 }
-

@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_climb_request_type::PlayerClimbRequest;
 
@@ -22,8 +17,8 @@ impl From<PlayerClimbArgs> for super::Reducer {
     fn from(args: PlayerClimbArgs) -> Self {
         Self::PlayerClimb {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for PlayerClimbArgs {
@@ -42,8 +37,7 @@ pub trait player_climb {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_player_climb`] callbacks.
-    fn player_climb(&self, request: PlayerClimbRequest,
-) -> __sdk::Result<()>;
+    fn player_climb(&self, request: PlayerClimbRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `player_climb`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,39 @@ pub trait player_climb {
     ///
     /// The returned [`PlayerClimbCallbackId`] can be passed to [`Self::remove_on_player_climb`]
     /// to cancel the callback.
-    fn on_player_climb(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerClimbRequest, ) + Send + 'static) -> PlayerClimbCallbackId;
+    fn on_player_climb(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerClimbRequest) + Send + 'static,
+    ) -> PlayerClimbCallbackId;
     /// Cancel a callback previously registered by [`Self::on_player_climb`],
     /// causing it not to run in the future.
     fn remove_on_player_climb(&self, callback: PlayerClimbCallbackId);
 }
 
 impl player_climb for super::RemoteReducers {
-    fn player_climb(&self, request: PlayerClimbRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("player_climb", PlayerClimbArgs { request,  })
+    fn player_climb(&self, request: PlayerClimbRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("player_climb", PlayerClimbArgs { request })
     }
     fn on_player_climb(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerClimbRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerClimbRequest) + Send + 'static,
     ) -> PlayerClimbCallbackId {
         PlayerClimbCallbackId(self.imp.on_reducer(
             "player_climb",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::PlayerClimb {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::PlayerClimb { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
@@ -106,4 +105,3 @@ impl set_flags_for_player_climb for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("player_climb", flags);
     }
 }
-

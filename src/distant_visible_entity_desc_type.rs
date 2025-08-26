@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::entity_type_type::EntityType;
 
@@ -20,8 +15,6 @@ pub struct DistantVisibleEntityDesc {
     pub description_id: i32,
 }
 
-
 impl __sdk::InModule for DistantVisibleEntityDesc {
     type Module = super::RemoteModule;
 }
-

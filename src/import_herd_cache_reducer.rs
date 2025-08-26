@@ -3,27 +3,22 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::herd_state_type::HerdState;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct ImportHerdCacheArgs {
-    pub records: Vec::<HerdState>,
+    pub records: Vec<HerdState>,
 }
 
 impl From<ImportHerdCacheArgs> for super::Reducer {
     fn from(args: ImportHerdCacheArgs) -> Self {
         Self::ImportHerdCache {
             records: args.records,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ImportHerdCacheArgs {
@@ -42,8 +37,7 @@ pub trait import_herd_cache {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_import_herd_cache`] callbacks.
-    fn import_herd_cache(&self, records: Vec::<HerdState>,
-) -> __sdk::Result<()>;
+    fn import_herd_cache(&self, records: Vec<HerdState>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `import_herd_cache`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +45,39 @@ pub trait import_herd_cache {
     ///
     /// The returned [`ImportHerdCacheCallbackId`] can be passed to [`Self::remove_on_import_herd_cache`]
     /// to cancel the callback.
-    fn on_import_herd_cache(&self, callback: impl FnMut(&super::ReducerEventContext, &Vec::<HerdState>, ) + Send + 'static) -> ImportHerdCacheCallbackId;
+    fn on_import_herd_cache(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<HerdState>) + Send + 'static,
+    ) -> ImportHerdCacheCallbackId;
     /// Cancel a callback previously registered by [`Self::on_import_herd_cache`],
     /// causing it not to run in the future.
     fn remove_on_import_herd_cache(&self, callback: ImportHerdCacheCallbackId);
 }
 
 impl import_herd_cache for super::RemoteReducers {
-    fn import_herd_cache(&self, records: Vec::<HerdState>,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("import_herd_cache", ImportHerdCacheArgs { records,  })
+    fn import_herd_cache(&self, records: Vec<HerdState>) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("import_herd_cache", ImportHerdCacheArgs { records })
     }
     fn on_import_herd_cache(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec::<HerdState>, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<HerdState>) + Send + 'static,
     ) -> ImportHerdCacheCallbackId {
         ImportHerdCacheCallbackId(self.imp.on_reducer(
             "import_herd_cache",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ImportHerdCache {
-                            records, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ImportHerdCache { records },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, records, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, records)
             }),
         ))
     }
@@ -106,4 +105,3 @@ impl set_flags_for_import_herd_cache for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("import_herd_cache", flags);
     }
 }
-

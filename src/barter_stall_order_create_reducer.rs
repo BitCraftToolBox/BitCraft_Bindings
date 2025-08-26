@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_barter_stall_order_create_request_type::PlayerBarterStallOrderCreateRequest;
 
@@ -22,8 +17,8 @@ impl From<BarterStallOrderCreateArgs> for super::Reducer {
     fn from(args: BarterStallOrderCreateArgs) -> Self {
         Self::BarterStallOrderCreate {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for BarterStallOrderCreateArgs {
@@ -42,8 +37,10 @@ pub trait barter_stall_order_create {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_barter_stall_order_create`] callbacks.
-    fn barter_stall_order_create(&self, request: PlayerBarterStallOrderCreateRequest,
-) -> __sdk::Result<()>;
+    fn barter_stall_order_create(
+        &self,
+        request: PlayerBarterStallOrderCreateRequest,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `barter_stall_order_create`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +48,54 @@ pub trait barter_stall_order_create {
     ///
     /// The returned [`BarterStallOrderCreateCallbackId`] can be passed to [`Self::remove_on_barter_stall_order_create`]
     /// to cancel the callback.
-    fn on_barter_stall_order_create(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerBarterStallOrderCreateRequest, ) + Send + 'static) -> BarterStallOrderCreateCallbackId;
+    fn on_barter_stall_order_create(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerBarterStallOrderCreateRequest)
+            + Send
+            + 'static,
+    ) -> BarterStallOrderCreateCallbackId;
     /// Cancel a callback previously registered by [`Self::on_barter_stall_order_create`],
     /// causing it not to run in the future.
     fn remove_on_barter_stall_order_create(&self, callback: BarterStallOrderCreateCallbackId);
 }
 
 impl barter_stall_order_create for super::RemoteReducers {
-    fn barter_stall_order_create(&self, request: PlayerBarterStallOrderCreateRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("barter_stall_order_create", BarterStallOrderCreateArgs { request,  })
+    fn barter_stall_order_create(
+        &self,
+        request: PlayerBarterStallOrderCreateRequest,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "barter_stall_order_create",
+            BarterStallOrderCreateArgs { request },
+        )
     }
     fn on_barter_stall_order_create(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerBarterStallOrderCreateRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerBarterStallOrderCreateRequest)
+            + Send
+            + 'static,
     ) -> BarterStallOrderCreateCallbackId {
         BarterStallOrderCreateCallbackId(self.imp.on_reducer(
             "barter_stall_order_create",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::BarterStallOrderCreate {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::BarterStallOrderCreate { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
     fn remove_on_barter_stall_order_create(&self, callback: BarterStallOrderCreateCallbackId) {
-        self.imp.remove_on_reducer("barter_stall_order_create", callback.0)
+        self.imp
+            .remove_on_reducer("barter_stall_order_create", callback.0)
     }
 }
 
@@ -103,7 +115,7 @@ pub trait set_flags_for_barter_stall_order_create {
 
 impl set_flags_for_barter_stall_order_create for super::SetReducerFlags {
     fn barter_stall_order_create(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("barter_stall_order_create", flags);
+        self.imp
+            .set_call_reducer_flags("barter_stall_order_create", flags);
     }
 }
-

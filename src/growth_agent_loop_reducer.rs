@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::growth_loop_timer_type::GrowthLoopTimer;
 
@@ -20,10 +15,8 @@ pub(super) struct GrowthAgentLoopArgs {
 
 impl From<GrowthAgentLoopArgs> for super::Reducer {
     fn from(args: GrowthAgentLoopArgs) -> Self {
-        Self::GrowthAgentLoop {
-            timer: args.timer,
-}
-}
+        Self::GrowthAgentLoop { timer: args.timer }
+    }
 }
 
 impl __sdk::InModule for GrowthAgentLoopArgs {
@@ -42,8 +35,7 @@ pub trait growth_agent_loop {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_growth_agent_loop`] callbacks.
-    fn growth_agent_loop(&self, timer: GrowthLoopTimer,
-) -> __sdk::Result<()>;
+    fn growth_agent_loop(&self, timer: GrowthLoopTimer) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `growth_agent_loop`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,34 +43,39 @@ pub trait growth_agent_loop {
     ///
     /// The returned [`GrowthAgentLoopCallbackId`] can be passed to [`Self::remove_on_growth_agent_loop`]
     /// to cancel the callback.
-    fn on_growth_agent_loop(&self, callback: impl FnMut(&super::ReducerEventContext, &GrowthLoopTimer, ) + Send + 'static) -> GrowthAgentLoopCallbackId;
+    fn on_growth_agent_loop(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &GrowthLoopTimer) + Send + 'static,
+    ) -> GrowthAgentLoopCallbackId;
     /// Cancel a callback previously registered by [`Self::on_growth_agent_loop`],
     /// causing it not to run in the future.
     fn remove_on_growth_agent_loop(&self, callback: GrowthAgentLoopCallbackId);
 }
 
 impl growth_agent_loop for super::RemoteReducers {
-    fn growth_agent_loop(&self, timer: GrowthLoopTimer,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("growth_agent_loop", GrowthAgentLoopArgs { timer,  })
+    fn growth_agent_loop(&self, timer: GrowthLoopTimer) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("growth_agent_loop", GrowthAgentLoopArgs { timer })
     }
     fn on_growth_agent_loop(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &GrowthLoopTimer, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &GrowthLoopTimer) + Send + 'static,
     ) -> GrowthAgentLoopCallbackId {
         GrowthAgentLoopCallbackId(self.imp.on_reducer(
             "growth_agent_loop",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::GrowthAgentLoop {
-                            timer, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::GrowthAgentLoop { timer },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, timer, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, timer)
             }),
         ))
     }
@@ -106,4 +103,3 @@ impl set_flags_for_growth_agent_loop for super::SetReducerFlags {
         self.imp.set_call_reducer_flags("growth_agent_loop", flags);
     }
 }
-

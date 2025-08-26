@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::player_claim_withdraw_from_treasury_request_type::PlayerClaimWithdrawFromTreasuryRequest;
 
@@ -22,8 +17,8 @@ impl From<ClaimWithdrawFromTreasuryArgs> for super::Reducer {
     fn from(args: ClaimWithdrawFromTreasuryArgs) -> Self {
         Self::ClaimWithdrawFromTreasury {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for ClaimWithdrawFromTreasuryArgs {
@@ -42,8 +37,10 @@ pub trait claim_withdraw_from_treasury {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_claim_withdraw_from_treasury`] callbacks.
-    fn claim_withdraw_from_treasury(&self, request: PlayerClaimWithdrawFromTreasuryRequest,
-) -> __sdk::Result<()>;
+    fn claim_withdraw_from_treasury(
+        &self,
+        request: PlayerClaimWithdrawFromTreasuryRequest,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `claim_withdraw_from_treasury`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +48,57 @@ pub trait claim_withdraw_from_treasury {
     ///
     /// The returned [`ClaimWithdrawFromTreasuryCallbackId`] can be passed to [`Self::remove_on_claim_withdraw_from_treasury`]
     /// to cancel the callback.
-    fn on_claim_withdraw_from_treasury(&self, callback: impl FnMut(&super::ReducerEventContext, &PlayerClaimWithdrawFromTreasuryRequest, ) + Send + 'static) -> ClaimWithdrawFromTreasuryCallbackId;
+    fn on_claim_withdraw_from_treasury(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerClaimWithdrawFromTreasuryRequest)
+            + Send
+            + 'static,
+    ) -> ClaimWithdrawFromTreasuryCallbackId;
     /// Cancel a callback previously registered by [`Self::on_claim_withdraw_from_treasury`],
     /// causing it not to run in the future.
     fn remove_on_claim_withdraw_from_treasury(&self, callback: ClaimWithdrawFromTreasuryCallbackId);
 }
 
 impl claim_withdraw_from_treasury for super::RemoteReducers {
-    fn claim_withdraw_from_treasury(&self, request: PlayerClaimWithdrawFromTreasuryRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("claim_withdraw_from_treasury", ClaimWithdrawFromTreasuryArgs { request,  })
+    fn claim_withdraw_from_treasury(
+        &self,
+        request: PlayerClaimWithdrawFromTreasuryRequest,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "claim_withdraw_from_treasury",
+            ClaimWithdrawFromTreasuryArgs { request },
+        )
     }
     fn on_claim_withdraw_from_treasury(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerClaimWithdrawFromTreasuryRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerClaimWithdrawFromTreasuryRequest)
+            + Send
+            + 'static,
     ) -> ClaimWithdrawFromTreasuryCallbackId {
         ClaimWithdrawFromTreasuryCallbackId(self.imp.on_reducer(
             "claim_withdraw_from_treasury",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::ClaimWithdrawFromTreasury {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::ClaimWithdrawFromTreasury { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
-    fn remove_on_claim_withdraw_from_treasury(&self, callback: ClaimWithdrawFromTreasuryCallbackId) {
-        self.imp.remove_on_reducer("claim_withdraw_from_treasury", callback.0)
+    fn remove_on_claim_withdraw_from_treasury(
+        &self,
+        callback: ClaimWithdrawFromTreasuryCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("claim_withdraw_from_treasury", callback.0)
     }
 }
 
@@ -103,7 +118,7 @@ pub trait set_flags_for_claim_withdraw_from_treasury {
 
 impl set_flags_for_claim_withdraw_from_treasury for super::SetReducerFlags {
     fn claim_withdraw_from_treasury(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("claim_withdraw_from_treasury", flags);
+        self.imp
+            .set_call_reducer_flags("claim_withdraw_from_treasury", flags);
     }
 }
-

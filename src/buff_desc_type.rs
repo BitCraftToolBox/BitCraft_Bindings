@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::csv_stat_entry_type::CsvStatEntry;
 use super::vfx_attachment_point_type::VfxAttachmentPoint;
@@ -25,13 +20,11 @@ pub struct BuffDesc {
     pub online_timestamp: bool,
     pub beneficial: bool,
     pub icon_asset_name: String,
-    pub stats: Vec::<CsvStatEntry>,
+    pub stats: Vec<CsvStatEntry>,
     pub vfx: String,
     pub vfx_attachment_point: VfxAttachmentPoint,
 }
 
-
 impl __sdk::InModule for BuffDesc {
     type Module = super::RemoteModule;
 }
-

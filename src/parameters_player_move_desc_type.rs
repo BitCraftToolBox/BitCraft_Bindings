@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::movement_speed_type::MovementSpeed;
 
@@ -16,11 +11,9 @@ use super::movement_speed_type::MovementSpeed;
 #[sats(crate = __lib)]
 pub struct ParametersPlayerMoveDesc {
     pub version: i32,
-    pub default_speed: Vec::<MovementSpeed>,
+    pub default_speed: Vec<MovementSpeed>,
 }
-
 
 impl __sdk::InModule for ParametersPlayerMoveDesc {
     type Module = super::RemoteModule;
 }
-

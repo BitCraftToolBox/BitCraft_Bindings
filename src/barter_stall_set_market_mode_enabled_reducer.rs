@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::barter_stall_set_market_mode_enabled_request_type::BarterStallSetMarketModeEnabledRequest;
 
@@ -22,8 +17,8 @@ impl From<BarterStallSetMarketModeEnabledArgs> for super::Reducer {
     fn from(args: BarterStallSetMarketModeEnabledArgs) -> Self {
         Self::BarterStallSetMarketModeEnabled {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for BarterStallSetMarketModeEnabledArgs {
@@ -42,8 +37,10 @@ pub trait barter_stall_set_market_mode_enabled {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_barter_stall_set_market_mode_enabled`] callbacks.
-    fn barter_stall_set_market_mode_enabled(&self, request: BarterStallSetMarketModeEnabledRequest,
-) -> __sdk::Result<()>;
+    fn barter_stall_set_market_mode_enabled(
+        &self,
+        request: BarterStallSetMarketModeEnabledRequest,
+    ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `barter_stall_set_market_mode_enabled`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +48,60 @@ pub trait barter_stall_set_market_mode_enabled {
     ///
     /// The returned [`BarterStallSetMarketModeEnabledCallbackId`] can be passed to [`Self::remove_on_barter_stall_set_market_mode_enabled`]
     /// to cancel the callback.
-    fn on_barter_stall_set_market_mode_enabled(&self, callback: impl FnMut(&super::ReducerEventContext, &BarterStallSetMarketModeEnabledRequest, ) + Send + 'static) -> BarterStallSetMarketModeEnabledCallbackId;
+    fn on_barter_stall_set_market_mode_enabled(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &BarterStallSetMarketModeEnabledRequest)
+            + Send
+            + 'static,
+    ) -> BarterStallSetMarketModeEnabledCallbackId;
     /// Cancel a callback previously registered by [`Self::on_barter_stall_set_market_mode_enabled`],
     /// causing it not to run in the future.
-    fn remove_on_barter_stall_set_market_mode_enabled(&self, callback: BarterStallSetMarketModeEnabledCallbackId);
+    fn remove_on_barter_stall_set_market_mode_enabled(
+        &self,
+        callback: BarterStallSetMarketModeEnabledCallbackId,
+    );
 }
 
 impl barter_stall_set_market_mode_enabled for super::RemoteReducers {
-    fn barter_stall_set_market_mode_enabled(&self, request: BarterStallSetMarketModeEnabledRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("barter_stall_set_market_mode_enabled", BarterStallSetMarketModeEnabledArgs { request,  })
+    fn barter_stall_set_market_mode_enabled(
+        &self,
+        request: BarterStallSetMarketModeEnabledRequest,
+    ) -> __sdk::Result<()> {
+        self.imp.call_reducer(
+            "barter_stall_set_market_mode_enabled",
+            BarterStallSetMarketModeEnabledArgs { request },
+        )
     }
     fn on_barter_stall_set_market_mode_enabled(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &BarterStallSetMarketModeEnabledRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &BarterStallSetMarketModeEnabledRequest)
+            + Send
+            + 'static,
     ) -> BarterStallSetMarketModeEnabledCallbackId {
         BarterStallSetMarketModeEnabledCallbackId(self.imp.on_reducer(
             "barter_stall_set_market_mode_enabled",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::BarterStallSetMarketModeEnabled {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::BarterStallSetMarketModeEnabled { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
-    fn remove_on_barter_stall_set_market_mode_enabled(&self, callback: BarterStallSetMarketModeEnabledCallbackId) {
-        self.imp.remove_on_reducer("barter_stall_set_market_mode_enabled", callback.0)
+    fn remove_on_barter_stall_set_market_mode_enabled(
+        &self,
+        callback: BarterStallSetMarketModeEnabledCallbackId,
+    ) {
+        self.imp
+            .remove_on_reducer("barter_stall_set_market_mode_enabled", callback.0)
     }
 }
 
@@ -103,7 +121,7 @@ pub trait set_flags_for_barter_stall_set_market_mode_enabled {
 
 impl set_flags_for_barter_stall_set_market_mode_enabled for super::SetReducerFlags {
     fn barter_stall_set_market_mode_enabled(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("barter_stall_set_market_mode_enabled", flags);
+        self.imp
+            .set_call_reducer_flags("barter_stall_set_market_mode_enabled", flags);
     }
 }
-

@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::empire_resupply_node_request_type::EmpireResupplyNodeRequest;
 
@@ -22,8 +17,8 @@ impl From<EmpireResupplyNodeArgs> for super::Reducer {
     fn from(args: EmpireResupplyNodeArgs) -> Self {
         Self::EmpireResupplyNode {
             request: args.request,
-}
-}
+        }
+    }
 }
 
 impl __sdk::InModule for EmpireResupplyNodeArgs {
@@ -42,8 +37,7 @@ pub trait empire_resupply_node {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_empire_resupply_node`] callbacks.
-    fn empire_resupply_node(&self, request: EmpireResupplyNodeRequest,
-) -> __sdk::Result<()>;
+    fn empire_resupply_node(&self, request: EmpireResupplyNodeRequest) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `empire_resupply_node`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +45,47 @@ pub trait empire_resupply_node {
     ///
     /// The returned [`EmpireResupplyNodeCallbackId`] can be passed to [`Self::remove_on_empire_resupply_node`]
     /// to cancel the callback.
-    fn on_empire_resupply_node(&self, callback: impl FnMut(&super::ReducerEventContext, &EmpireResupplyNodeRequest, ) + Send + 'static) -> EmpireResupplyNodeCallbackId;
+    fn on_empire_resupply_node(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &EmpireResupplyNodeRequest) + Send + 'static,
+    ) -> EmpireResupplyNodeCallbackId;
     /// Cancel a callback previously registered by [`Self::on_empire_resupply_node`],
     /// causing it not to run in the future.
     fn remove_on_empire_resupply_node(&self, callback: EmpireResupplyNodeCallbackId);
 }
 
 impl empire_resupply_node for super::RemoteReducers {
-    fn empire_resupply_node(&self, request: EmpireResupplyNodeRequest,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("empire_resupply_node", EmpireResupplyNodeArgs { request,  })
+    fn empire_resupply_node(&self, request: EmpireResupplyNodeRequest) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("empire_resupply_node", EmpireResupplyNodeArgs { request })
     }
     fn on_empire_resupply_node(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &EmpireResupplyNodeRequest, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &EmpireResupplyNodeRequest)
+            + Send
+            + 'static,
     ) -> EmpireResupplyNodeCallbackId {
         EmpireResupplyNodeCallbackId(self.imp.on_reducer(
             "empire_resupply_node",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::EmpireResupplyNode {
-                            request, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::EmpireResupplyNode { request },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, request, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, request)
             }),
         ))
     }
     fn remove_on_empire_resupply_node(&self, callback: EmpireResupplyNodeCallbackId) {
-        self.imp.remove_on_reducer("empire_resupply_node", callback.0)
+        self.imp
+            .remove_on_reducer("empire_resupply_node", callback.0)
     }
 }
 
@@ -103,7 +105,7 @@ pub trait set_flags_for_empire_resupply_node {
 
 impl set_flags_for_empire_resupply_node for super::SetReducerFlags {
     fn empire_resupply_node(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("empire_resupply_node", flags);
+        self.imp
+            .set_call_reducer_flags("empire_resupply_node", flags);
     }
 }
-

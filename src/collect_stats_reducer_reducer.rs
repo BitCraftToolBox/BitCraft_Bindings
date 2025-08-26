@@ -3,12 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
-use spacetimedb_sdk::__codegen::{
-	self as __sdk,
-	__lib,
-	__sats,
-	__ws,
-};
+use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::collect_stats_timer_type::CollectStatsTimer;
 
@@ -20,10 +15,8 @@ pub(super) struct CollectStatsReducerArgs {
 
 impl From<CollectStatsReducerArgs> for super::Reducer {
     fn from(args: CollectStatsReducerArgs) -> Self {
-        Self::CollectStatsReducer {
-            timer: args.timer,
-}
-}
+        Self::CollectStatsReducer { timer: args.timer }
+    }
 }
 
 impl __sdk::InModule for CollectStatsReducerArgs {
@@ -42,8 +35,7 @@ pub trait collect_stats_reducer {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_collect_stats_reducer`] callbacks.
-    fn collect_stats_reducer(&self, timer: CollectStatsTimer,
-) -> __sdk::Result<()>;
+    fn collect_stats_reducer(&self, timer: CollectStatsTimer) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `collect_stats_reducer`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -51,39 +43,45 @@ pub trait collect_stats_reducer {
     ///
     /// The returned [`CollectStatsReducerCallbackId`] can be passed to [`Self::remove_on_collect_stats_reducer`]
     /// to cancel the callback.
-    fn on_collect_stats_reducer(&self, callback: impl FnMut(&super::ReducerEventContext, &CollectStatsTimer, ) + Send + 'static) -> CollectStatsReducerCallbackId;
+    fn on_collect_stats_reducer(
+        &self,
+        callback: impl FnMut(&super::ReducerEventContext, &CollectStatsTimer) + Send + 'static,
+    ) -> CollectStatsReducerCallbackId;
     /// Cancel a callback previously registered by [`Self::on_collect_stats_reducer`],
     /// causing it not to run in the future.
     fn remove_on_collect_stats_reducer(&self, callback: CollectStatsReducerCallbackId);
 }
 
 impl collect_stats_reducer for super::RemoteReducers {
-    fn collect_stats_reducer(&self, timer: CollectStatsTimer,
-) -> __sdk::Result<()> {
-        self.imp.call_reducer("collect_stats_reducer", CollectStatsReducerArgs { timer,  })
+    fn collect_stats_reducer(&self, timer: CollectStatsTimer) -> __sdk::Result<()> {
+        self.imp
+            .call_reducer("collect_stats_reducer", CollectStatsReducerArgs { timer })
     }
     fn on_collect_stats_reducer(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &CollectStatsTimer, ) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &CollectStatsTimer) + Send + 'static,
     ) -> CollectStatsReducerCallbackId {
         CollectStatsReducerCallbackId(self.imp.on_reducer(
             "collect_stats_reducer",
             Box::new(move |ctx: &super::ReducerEventContext| {
                 let super::ReducerEventContext {
-                    event: __sdk::ReducerEvent {
-                        reducer: super::Reducer::CollectStatsReducer {
-                            timer, 
+                    event:
+                        __sdk::ReducerEvent {
+                            reducer: super::Reducer::CollectStatsReducer { timer },
+                            ..
                         },
-                        ..
-                    },
                     ..
-                } = ctx else { unreachable!() };
-                callback(ctx, timer, )
+                } = ctx
+                else {
+                    unreachable!()
+                };
+                callback(ctx, timer)
             }),
         ))
     }
     fn remove_on_collect_stats_reducer(&self, callback: CollectStatsReducerCallbackId) {
-        self.imp.remove_on_reducer("collect_stats_reducer", callback.0)
+        self.imp
+            .remove_on_reducer("collect_stats_reducer", callback.0)
     }
 }
 
@@ -103,7 +101,7 @@ pub trait set_flags_for_collect_stats_reducer {
 
 impl set_flags_for_collect_stats_reducer for super::SetReducerFlags {
     fn collect_stats_reducer(&self, flags: __ws::CallReducerFlags) {
-        self.imp.set_call_reducer_flags("collect_stats_reducer", flags);
+        self.imp
+            .set_call_reducer_flags("collect_stats_reducer", flags);
     }
 }
-
