@@ -7990,7 +7990,7 @@ export const REMOTE_MODULE = {
     },
   },
   versionInfo: {
-    cliVersion: "1.2.0",
+    cliVersion: "1.3.0",
   },
   // Constructors which are used by the DbConnectionImpl to
   // extract type information from the generated RemoteModule.
