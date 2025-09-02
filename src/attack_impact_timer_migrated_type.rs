@@ -5,21 +5,21 @@
 #![allow(unused, clippy::all)]
 use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
+use super::entity_type_type::EntityType;
+
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
-#[derive(Copy, Eq, Hash)]
-pub enum DimensionType {
-    Unknown,
-
-    Overworld,
-
-    AncientRuin,
-
-    BuildingInterior,
-
-    Dungeon,
+pub struct AttackImpactTimerMigrated {
+    pub scheduled_id: u64,
+    pub scheduled_at: __sdk::ScheduleAt,
+    pub attacker_entity_id: u64,
+    pub defender_entity_id: u64,
+    pub combat_action_id: i32,
+    pub attacker_type: EntityType,
+    pub defender_type: EntityType,
+    pub main_attack: bool,
 }
 
-impl __sdk::InModule for DimensionType {
+impl __sdk::InModule for AttackImpactTimerMigrated {
     type Module = super::RemoteModule;
 }

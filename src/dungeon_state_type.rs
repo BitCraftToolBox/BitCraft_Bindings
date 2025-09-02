@@ -5,21 +5,15 @@
 #![allow(unused, clippy::all)]
 use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
+use super::offset_coordinates_small_message_type::OffsetCoordinatesSmallMessage;
+
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
-#[derive(Copy, Eq, Hash)]
-pub enum DimensionType {
-    Unknown,
-
-    Overworld,
-
-    AncientRuin,
-
-    BuildingInterior,
-
-    Dungeon,
+pub struct DungeonState {
+    pub entity_id: u64,
+    pub location: OffsetCoordinatesSmallMessage,
 }
 
-impl __sdk::InModule for DimensionType {
+impl __sdk::InModule for DungeonState {
     type Module = super::RemoteModule;
 }

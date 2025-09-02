@@ -5,21 +5,15 @@
 #![allow(unused, clippy::all)]
 use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
+use super::static_data_upload_v_2_type::StaticDataUploadV2;
+
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
-#[derive(Copy, Eq, Hash)]
-pub enum DimensionType {
-    Unknown,
-
-    Overworld,
-
-    AncientRuin,
-
-    BuildingInterior,
-
-    Dungeon,
+pub struct StagedStaticDataV2 {
+    pub version: u32,
+    pub static_data: StaticDataUploadV2,
 }
 
-impl __sdk::InModule for DimensionType {
+impl __sdk::InModule for StagedStaticDataV2 {
     type Module = super::RemoteModule;
 }
