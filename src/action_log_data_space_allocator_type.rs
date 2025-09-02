@@ -5,21 +5,17 @@
 #![allow(unused, clippy::all)]
 use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
+use super::item_stack_type::ItemStack;
+
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
-#[derive(Copy, Eq, Hash)]
-pub enum DimensionType {
-    Unknown,
-
-    Overworld,
-
-    AncientRuin,
-
-    BuildingInterior,
-
-    Dungeon,
+pub struct ActionLogDataSpaceAllocator {
+    pub item_1: ItemStack,
+    pub item_2: ItemStack,
+    pub val_1: u64,
+    pub val_2: u64,
 }
 
-impl __sdk::InModule for DimensionType {
+impl __sdk::InModule for ActionLogDataSpaceAllocator {
     type Module = super::RemoteModule;
 }

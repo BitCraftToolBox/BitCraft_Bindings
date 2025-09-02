@@ -5,21 +5,17 @@
 #![allow(unused, clippy::all)]
 use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
+use super::footprint_tile_type::FootprintTile;
+
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
-#[derive(Copy, Eq, Hash)]
-pub enum DimensionType {
-    Unknown,
-
-    Overworld,
-
-    AncientRuin,
-
-    BuildingInterior,
-
-    Dungeon,
+pub struct CombatActionMultiHitDesc {
+    pub id: i32,
+    pub area_footprint: Vec<FootprintTile>,
+    pub max_secondary_targets: i32,
+    pub secondary_target_multiplier: f32,
 }
 
-impl __sdk::InModule for DimensionType {
+impl __sdk::InModule for CombatActionMultiHitDesc {
     type Module = super::RemoteModule;
 }

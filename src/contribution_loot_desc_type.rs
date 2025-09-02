@@ -7,19 +7,13 @@ use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
-#[derive(Copy, Eq, Hash)]
-pub enum DimensionType {
-    Unknown,
-
-    Overworld,
-
-    AncientRuin,
-
-    BuildingInterior,
-
-    Dungeon,
+pub struct ContributionLootDesc {
+    pub id: i32,
+    pub enemy_type_id: i32,
+    pub item_list_id: i32,
+    pub minimum_contribution: i32,
 }
 
-impl __sdk::InModule for DimensionType {
+impl __sdk::InModule for ContributionLootDesc {
     type Module = super::RemoteModule;
 }

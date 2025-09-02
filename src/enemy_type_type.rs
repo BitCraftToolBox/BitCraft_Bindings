@@ -72,6 +72,14 @@ pub enum EnemyType {
     Soldier,
 
     Queen,
+
+    Sentinel,
+
+    SentinelDungeonJakyl,
+
+    SentinelDungeonSkitch,
+
+    SentinelDungeonLargeJakyl,
 }
 
 impl __sdk::InModule for EnemyType {
