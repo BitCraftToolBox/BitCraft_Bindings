@@ -14,17 +14,17 @@ namespace BitCraftRegion.Types
 {
     public sealed partial class RemoteReducers : RemoteBase
     {
-        public delegate void StageCombatActionDescHandler(ReducerEventContext ctx, System.Collections.Generic.List<CombatActionDesc> records);
-        public event StageCombatActionDescHandler? OnStageCombatActionDesc;
+        public delegate void StageCombatActionDescV2Handler(ReducerEventContext ctx, System.Collections.Generic.List<CombatActionDescV2> records);
+        public event StageCombatActionDescV2Handler? OnStageCombatActionDescV2;
 
-        public void StageCombatActionDesc(System.Collections.Generic.List<CombatActionDesc> records)
+        public void StageCombatActionDescV2(System.Collections.Generic.List<CombatActionDescV2> records)
         {
-            conn.InternalCallReducer(new Reducer.StageCombatActionDesc(records), this.SetCallReducerFlags.StageCombatActionDescFlags);
+            conn.InternalCallReducer(new Reducer.StageCombatActionDescV2(records), this.SetCallReducerFlags.StageCombatActionDescV2Flags);
         }
 
-        public bool InvokeStageCombatActionDesc(ReducerEventContext ctx, Reducer.StageCombatActionDesc args)
+        public bool InvokeStageCombatActionDescV2(ReducerEventContext ctx, Reducer.StageCombatActionDescV2 args)
         {
-            if (OnStageCombatActionDesc == null)
+            if (OnStageCombatActionDescV2 == null)
             {
                 if (InternalOnUnhandledReducerError != null)
                 {
@@ -36,7 +36,7 @@ namespace BitCraftRegion.Types
                 }
                 return false;
             }
-            OnStageCombatActionDesc(
+            OnStageCombatActionDescV2(
                 ctx,
                 args.Records
             );
@@ -48,28 +48,28 @@ namespace BitCraftRegion.Types
     {
         [SpacetimeDB.Type]
         [DataContract]
-        public sealed partial class StageCombatActionDesc : Reducer, IReducerArgs
+        public sealed partial class StageCombatActionDescV2 : Reducer, IReducerArgs
         {
             [DataMember(Name = "records")]
-            public System.Collections.Generic.List<CombatActionDesc> Records;
+            public System.Collections.Generic.List<CombatActionDescV2> Records;
 
-            public StageCombatActionDesc(System.Collections.Generic.List<CombatActionDesc> Records)
+            public StageCombatActionDescV2(System.Collections.Generic.List<CombatActionDescV2> Records)
             {
                 this.Records = Records;
             }
 
-            public StageCombatActionDesc()
+            public StageCombatActionDescV2()
             {
                 this.Records = new();
             }
 
-            string IReducerArgs.ReducerName => "stage_combat_action_desc";
+            string IReducerArgs.ReducerName => "stage_combat_action_desc_v2";
         }
     }
 
     public sealed partial class SetReducerFlags
     {
-        internal CallReducerFlags StageCombatActionDescFlags;
-        public void StageCombatActionDesc(CallReducerFlags flags) => StageCombatActionDescFlags = flags;
+        internal CallReducerFlags StageCombatActionDescV2Flags;
+        public void StageCombatActionDescV2(CallReducerFlags flags) => StageCombatActionDescV2Flags = flags;
     }
 }

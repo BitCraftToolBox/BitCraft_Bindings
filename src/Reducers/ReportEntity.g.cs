@@ -14,17 +14,17 @@ namespace BitCraftRegion.Types
 {
     public sealed partial class RemoteReducers : RemoteBase
     {
-        public delegate void AttackImpactHandler(ReducerEventContext ctx, AttackImpactTimer timer);
-        public event AttackImpactHandler? OnAttackImpact;
+        public delegate void ReportEntityHandler(ReducerEventContext ctx, ReportEntityMessage request);
+        public event ReportEntityHandler? OnReportEntity;
 
-        public void AttackImpact(AttackImpactTimer timer)
+        public void ReportEntity(ReportEntityMessage request)
         {
-            conn.InternalCallReducer(new Reducer.AttackImpact(timer), this.SetCallReducerFlags.AttackImpactFlags);
+            conn.InternalCallReducer(new Reducer.ReportEntity(request), this.SetCallReducerFlags.ReportEntityFlags);
         }
 
-        public bool InvokeAttackImpact(ReducerEventContext ctx, Reducer.AttackImpact args)
+        public bool InvokeReportEntity(ReducerEventContext ctx, Reducer.ReportEntity args)
         {
-            if (OnAttackImpact == null)
+            if (OnReportEntity == null)
             {
                 if (InternalOnUnhandledReducerError != null)
                 {
@@ -36,9 +36,9 @@ namespace BitCraftRegion.Types
                 }
                 return false;
             }
-            OnAttackImpact(
+            OnReportEntity(
                 ctx,
-                args.Timer
+                args.Request
             );
             return true;
         }
@@ -48,28 +48,28 @@ namespace BitCraftRegion.Types
     {
         [SpacetimeDB.Type]
         [DataContract]
-        public sealed partial class AttackImpact : Reducer, IReducerArgs
+        public sealed partial class ReportEntity : Reducer, IReducerArgs
         {
-            [DataMember(Name = "_timer")]
-            public AttackImpactTimer Timer;
+            [DataMember(Name = "request")]
+            public ReportEntityMessage Request;
 
-            public AttackImpact(AttackImpactTimer Timer)
+            public ReportEntity(ReportEntityMessage Request)
             {
-                this.Timer = Timer;
+                this.Request = Request;
             }
 
-            public AttackImpact()
+            public ReportEntity()
             {
-                this.Timer = new();
+                this.Request = new();
             }
 
-            string IReducerArgs.ReducerName => "attack_impact";
+            string IReducerArgs.ReducerName => "report_entity";
         }
     }
 
     public sealed partial class SetReducerFlags
     {
-        internal CallReducerFlags AttackImpactFlags;
-        public void AttackImpact(CallReducerFlags flags) => AttackImpactFlags = flags;
+        internal CallReducerFlags ReportEntityFlags;
+        public void ReportEntity(CallReducerFlags flags) => ReportEntityFlags = flags;
     }
 }

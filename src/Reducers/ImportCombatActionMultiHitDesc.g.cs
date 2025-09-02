@@ -14,17 +14,17 @@ namespace BitCraftRegion.Types
 {
     public sealed partial class RemoteReducers : RemoteBase
     {
-        public delegate void ImportCombatActionDescHandler(ReducerEventContext ctx, System.Collections.Generic.List<CombatActionDesc> records);
-        public event ImportCombatActionDescHandler? OnImportCombatActionDesc;
+        public delegate void ImportCombatActionMultiHitDescHandler(ReducerEventContext ctx, System.Collections.Generic.List<CombatActionMultiHitDesc> records);
+        public event ImportCombatActionMultiHitDescHandler? OnImportCombatActionMultiHitDesc;
 
-        public void ImportCombatActionDesc(System.Collections.Generic.List<CombatActionDesc> records)
+        public void ImportCombatActionMultiHitDesc(System.Collections.Generic.List<CombatActionMultiHitDesc> records)
         {
-            conn.InternalCallReducer(new Reducer.ImportCombatActionDesc(records), this.SetCallReducerFlags.ImportCombatActionDescFlags);
+            conn.InternalCallReducer(new Reducer.ImportCombatActionMultiHitDesc(records), this.SetCallReducerFlags.ImportCombatActionMultiHitDescFlags);
         }
 
-        public bool InvokeImportCombatActionDesc(ReducerEventContext ctx, Reducer.ImportCombatActionDesc args)
+        public bool InvokeImportCombatActionMultiHitDesc(ReducerEventContext ctx, Reducer.ImportCombatActionMultiHitDesc args)
         {
-            if (OnImportCombatActionDesc == null)
+            if (OnImportCombatActionMultiHitDesc == null)
             {
                 if (InternalOnUnhandledReducerError != null)
                 {
@@ -36,7 +36,7 @@ namespace BitCraftRegion.Types
                 }
                 return false;
             }
-            OnImportCombatActionDesc(
+            OnImportCombatActionMultiHitDesc(
                 ctx,
                 args.Records
             );
@@ -48,28 +48,28 @@ namespace BitCraftRegion.Types
     {
         [SpacetimeDB.Type]
         [DataContract]
-        public sealed partial class ImportCombatActionDesc : Reducer, IReducerArgs
+        public sealed partial class ImportCombatActionMultiHitDesc : Reducer, IReducerArgs
         {
             [DataMember(Name = "records")]
-            public System.Collections.Generic.List<CombatActionDesc> Records;
+            public System.Collections.Generic.List<CombatActionMultiHitDesc> Records;
 
-            public ImportCombatActionDesc(System.Collections.Generic.List<CombatActionDesc> Records)
+            public ImportCombatActionMultiHitDesc(System.Collections.Generic.List<CombatActionMultiHitDesc> Records)
             {
                 this.Records = Records;
             }
 
-            public ImportCombatActionDesc()
+            public ImportCombatActionMultiHitDesc()
             {
                 this.Records = new();
             }
 
-            string IReducerArgs.ReducerName => "import_combat_action_desc";
+            string IReducerArgs.ReducerName => "import_combat_action_multi_hit_desc";
         }
     }
 
     public sealed partial class SetReducerFlags
     {
-        internal CallReducerFlags ImportCombatActionDescFlags;
-        public void ImportCombatActionDesc(CallReducerFlags flags) => ImportCombatActionDescFlags = flags;
+        internal CallReducerFlags ImportCombatActionMultiHitDescFlags;
+        public void ImportCombatActionMultiHitDesc(CallReducerFlags flags) => ImportCombatActionMultiHitDescFlags = flags;
     }
 }

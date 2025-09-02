@@ -14,17 +14,17 @@ namespace BitCraftRegion.Types
 {
     public sealed partial class RemoteReducers : RemoteBase
     {
-        public delegate void AttackImpactHandler(ReducerEventContext ctx, AttackImpactTimer timer);
-        public event AttackImpactHandler? OnAttackImpact;
+        public delegate void CheatClaimDeleteWallsHandler(ReducerEventContext ctx, ulong claimEntityId);
+        public event CheatClaimDeleteWallsHandler? OnCheatClaimDeleteWalls;
 
-        public void AttackImpact(AttackImpactTimer timer)
+        public void CheatClaimDeleteWalls(ulong claimEntityId)
         {
-            conn.InternalCallReducer(new Reducer.AttackImpact(timer), this.SetCallReducerFlags.AttackImpactFlags);
+            conn.InternalCallReducer(new Reducer.CheatClaimDeleteWalls(claimEntityId), this.SetCallReducerFlags.CheatClaimDeleteWallsFlags);
         }
 
-        public bool InvokeAttackImpact(ReducerEventContext ctx, Reducer.AttackImpact args)
+        public bool InvokeCheatClaimDeleteWalls(ReducerEventContext ctx, Reducer.CheatClaimDeleteWalls args)
         {
-            if (OnAttackImpact == null)
+            if (OnCheatClaimDeleteWalls == null)
             {
                 if (InternalOnUnhandledReducerError != null)
                 {
@@ -36,9 +36,9 @@ namespace BitCraftRegion.Types
                 }
                 return false;
             }
-            OnAttackImpact(
+            OnCheatClaimDeleteWalls(
                 ctx,
-                args.Timer
+                args.ClaimEntityId
             );
             return true;
         }
@@ -48,28 +48,27 @@ namespace BitCraftRegion.Types
     {
         [SpacetimeDB.Type]
         [DataContract]
-        public sealed partial class AttackImpact : Reducer, IReducerArgs
+        public sealed partial class CheatClaimDeleteWalls : Reducer, IReducerArgs
         {
-            [DataMember(Name = "_timer")]
-            public AttackImpactTimer Timer;
+            [DataMember(Name = "claim_entity_id")]
+            public ulong ClaimEntityId;
 
-            public AttackImpact(AttackImpactTimer Timer)
+            public CheatClaimDeleteWalls(ulong ClaimEntityId)
             {
-                this.Timer = Timer;
+                this.ClaimEntityId = ClaimEntityId;
             }
 
-            public AttackImpact()
+            public CheatClaimDeleteWalls()
             {
-                this.Timer = new();
             }
 
-            string IReducerArgs.ReducerName => "attack_impact";
+            string IReducerArgs.ReducerName => "cheat_claim_delete_walls";
         }
     }
 
     public sealed partial class SetReducerFlags
     {
-        internal CallReducerFlags AttackImpactFlags;
-        public void AttackImpact(CallReducerFlags flags) => AttackImpactFlags = flags;
+        internal CallReducerFlags CheatClaimDeleteWallsFlags;
+        public void CheatClaimDeleteWalls(CallReducerFlags flags) => CheatClaimDeleteWallsFlags = flags;
     }
 }

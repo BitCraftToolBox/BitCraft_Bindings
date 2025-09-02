@@ -14,17 +14,17 @@ namespace BitCraftRegion.Types
 {
     public sealed partial class RemoteReducers : RemoteBase
     {
-        public delegate void AttackImpactHandler(ReducerEventContext ctx, AttackImpactTimer timer);
-        public event AttackImpactHandler? OnAttackImpact;
+        public delegate void StorageLogCleanupLoopHandler(ReducerEventContext ctx, StorageLogCleanupLoopTimer timer);
+        public event StorageLogCleanupLoopHandler? OnStorageLogCleanupLoop;
 
-        public void AttackImpact(AttackImpactTimer timer)
+        public void StorageLogCleanupLoop(StorageLogCleanupLoopTimer timer)
         {
-            conn.InternalCallReducer(new Reducer.AttackImpact(timer), this.SetCallReducerFlags.AttackImpactFlags);
+            conn.InternalCallReducer(new Reducer.StorageLogCleanupLoop(timer), this.SetCallReducerFlags.StorageLogCleanupLoopFlags);
         }
 
-        public bool InvokeAttackImpact(ReducerEventContext ctx, Reducer.AttackImpact args)
+        public bool InvokeStorageLogCleanupLoop(ReducerEventContext ctx, Reducer.StorageLogCleanupLoop args)
         {
-            if (OnAttackImpact == null)
+            if (OnStorageLogCleanupLoop == null)
             {
                 if (InternalOnUnhandledReducerError != null)
                 {
@@ -36,7 +36,7 @@ namespace BitCraftRegion.Types
                 }
                 return false;
             }
-            OnAttackImpact(
+            OnStorageLogCleanupLoop(
                 ctx,
                 args.Timer
             );
@@ -48,28 +48,28 @@ namespace BitCraftRegion.Types
     {
         [SpacetimeDB.Type]
         [DataContract]
-        public sealed partial class AttackImpact : Reducer, IReducerArgs
+        public sealed partial class StorageLogCleanupLoop : Reducer, IReducerArgs
         {
             [DataMember(Name = "_timer")]
-            public AttackImpactTimer Timer;
+            public StorageLogCleanupLoopTimer Timer;
 
-            public AttackImpact(AttackImpactTimer Timer)
+            public StorageLogCleanupLoop(StorageLogCleanupLoopTimer Timer)
             {
                 this.Timer = Timer;
             }
 
-            public AttackImpact()
+            public StorageLogCleanupLoop()
             {
                 this.Timer = new();
             }
 
-            string IReducerArgs.ReducerName => "attack_impact";
+            string IReducerArgs.ReducerName => "storage_log_cleanup_loop";
         }
     }
 
     public sealed partial class SetReducerFlags
     {
-        internal CallReducerFlags AttackImpactFlags;
-        public void AttackImpact(CallReducerFlags flags) => AttackImpactFlags = flags;
+        internal CallReducerFlags StorageLogCleanupLoopFlags;
+        public void StorageLogCleanupLoop(CallReducerFlags flags) => StorageLogCleanupLoopFlags = flags;
     }
 }

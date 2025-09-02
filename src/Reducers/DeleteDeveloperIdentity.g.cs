@@ -14,17 +14,17 @@ namespace BitCraftRegion.Types
 {
     public sealed partial class RemoteReducers : RemoteBase
     {
-        public delegate void AttackImpactHandler(ReducerEventContext ctx, AttackImpactTimer timer);
-        public event AttackImpactHandler? OnAttackImpact;
+        public delegate void DeleteDeveloperIdentityHandler(ReducerEventContext ctx, string identity);
+        public event DeleteDeveloperIdentityHandler? OnDeleteDeveloperIdentity;
 
-        public void AttackImpact(AttackImpactTimer timer)
+        public void DeleteDeveloperIdentity(string identity)
         {
-            conn.InternalCallReducer(new Reducer.AttackImpact(timer), this.SetCallReducerFlags.AttackImpactFlags);
+            conn.InternalCallReducer(new Reducer.DeleteDeveloperIdentity(identity), this.SetCallReducerFlags.DeleteDeveloperIdentityFlags);
         }
 
-        public bool InvokeAttackImpact(ReducerEventContext ctx, Reducer.AttackImpact args)
+        public bool InvokeDeleteDeveloperIdentity(ReducerEventContext ctx, Reducer.DeleteDeveloperIdentity args)
         {
-            if (OnAttackImpact == null)
+            if (OnDeleteDeveloperIdentity == null)
             {
                 if (InternalOnUnhandledReducerError != null)
                 {
@@ -36,9 +36,9 @@ namespace BitCraftRegion.Types
                 }
                 return false;
             }
-            OnAttackImpact(
+            OnDeleteDeveloperIdentity(
                 ctx,
-                args.Timer
+                args.Identity
             );
             return true;
         }
@@ -48,28 +48,28 @@ namespace BitCraftRegion.Types
     {
         [SpacetimeDB.Type]
         [DataContract]
-        public sealed partial class AttackImpact : Reducer, IReducerArgs
+        public sealed partial class DeleteDeveloperIdentity : Reducer, IReducerArgs
         {
-            [DataMember(Name = "_timer")]
-            public AttackImpactTimer Timer;
+            [DataMember(Name = "identity")]
+            public string Identity;
 
-            public AttackImpact(AttackImpactTimer Timer)
+            public DeleteDeveloperIdentity(string Identity)
             {
-                this.Timer = Timer;
+                this.Identity = Identity;
             }
 
-            public AttackImpact()
+            public DeleteDeveloperIdentity()
             {
-                this.Timer = new();
+                this.Identity = "";
             }
 
-            string IReducerArgs.ReducerName => "attack_impact";
+            string IReducerArgs.ReducerName => "delete_developer_identity";
         }
     }
 
     public sealed partial class SetReducerFlags
     {
-        internal CallReducerFlags AttackImpactFlags;
-        public void AttackImpact(CallReducerFlags flags) => AttackImpactFlags = flags;
+        internal CallReducerFlags DeleteDeveloperIdentityFlags;
+        public void DeleteDeveloperIdentity(CallReducerFlags flags) => DeleteDeveloperIdentityFlags = flags;
     }
 }

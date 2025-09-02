@@ -14,17 +14,17 @@ namespace BitCraftRegion.Types
 {
     public sealed partial class RemoteReducers : RemoteBase
     {
-        public delegate void AttackImpactHandler(ReducerEventContext ctx, AttackImpactTimer timer);
-        public event AttackImpactHandler? OnAttackImpact;
+        public delegate void AttackImpactMigratedHandler(ReducerEventContext ctx, AttackImpactTimerMigrated timer);
+        public event AttackImpactMigratedHandler? OnAttackImpactMigrated;
 
-        public void AttackImpact(AttackImpactTimer timer)
+        public void AttackImpactMigrated(AttackImpactTimerMigrated timer)
         {
-            conn.InternalCallReducer(new Reducer.AttackImpact(timer), this.SetCallReducerFlags.AttackImpactFlags);
+            conn.InternalCallReducer(new Reducer.AttackImpactMigrated(timer), this.SetCallReducerFlags.AttackImpactMigratedFlags);
         }
 
-        public bool InvokeAttackImpact(ReducerEventContext ctx, Reducer.AttackImpact args)
+        public bool InvokeAttackImpactMigrated(ReducerEventContext ctx, Reducer.AttackImpactMigrated args)
         {
-            if (OnAttackImpact == null)
+            if (OnAttackImpactMigrated == null)
             {
                 if (InternalOnUnhandledReducerError != null)
                 {
@@ -36,7 +36,7 @@ namespace BitCraftRegion.Types
                 }
                 return false;
             }
-            OnAttackImpact(
+            OnAttackImpactMigrated(
                 ctx,
                 args.Timer
             );
@@ -48,28 +48,28 @@ namespace BitCraftRegion.Types
     {
         [SpacetimeDB.Type]
         [DataContract]
-        public sealed partial class AttackImpact : Reducer, IReducerArgs
+        public sealed partial class AttackImpactMigrated : Reducer, IReducerArgs
         {
-            [DataMember(Name = "_timer")]
-            public AttackImpactTimer Timer;
+            [DataMember(Name = "timer")]
+            public AttackImpactTimerMigrated Timer;
 
-            public AttackImpact(AttackImpactTimer Timer)
+            public AttackImpactMigrated(AttackImpactTimerMigrated Timer)
             {
                 this.Timer = Timer;
             }
 
-            public AttackImpact()
+            public AttackImpactMigrated()
             {
                 this.Timer = new();
             }
 
-            string IReducerArgs.ReducerName => "attack_impact";
+            string IReducerArgs.ReducerName => "attack_impact_migrated";
         }
     }
 
     public sealed partial class SetReducerFlags
     {
-        internal CallReducerFlags AttackImpactFlags;
-        public void AttackImpact(CallReducerFlags flags) => AttackImpactFlags = flags;
+        internal CallReducerFlags AttackImpactMigratedFlags;
+        public void AttackImpactMigrated(CallReducerFlags flags) => AttackImpactMigratedFlags = flags;
     }
 }
