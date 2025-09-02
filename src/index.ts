@@ -99,6 +99,8 @@ import { CommitStagedStaticData } from "./commit_staged_static_data_reducer.ts";
 export { CommitStagedStaticData };
 import { CurrentVersion } from "./current_version_reducer.ts";
 export { CurrentVersion };
+import { DeleteDeveloperIdentity } from "./delete_developer_identity_reducer.ts";
+export { DeleteDeveloperIdentity };
 import { DirectMessagePostMessage } from "./direct_message_post_message_reducer.ts";
 export { DirectMessagePostMessage };
 import { EmpireChangeEmblem } from "./empire_change_emblem_reducer.ts";
@@ -213,8 +215,8 @@ import { ImportClothingDesc } from "./import_clothing_desc_reducer.ts";
 export { ImportClothingDesc };
 import { ImportCollectibleDesc } from "./import_collectible_desc_reducer.ts";
 export { ImportCollectibleDesc };
-import { ImportCombatActionDesc } from "./import_combat_action_desc_reducer.ts";
-export { ImportCombatActionDesc };
+import { ImportCombatActionDescV2 } from "./import_combat_action_desc_v_2_reducer.ts";
+export { ImportCombatActionDescV2 };
 import { ImportCombatState } from "./import_combat_state_reducer.ts";
 export { ImportCombatState };
 import { ImportConfig } from "./import_config_reducer.ts";
@@ -543,10 +545,14 @@ import { StageClothingDesc } from "./stage_clothing_desc_reducer.ts";
 export { StageClothingDesc };
 import { StageCollectibleDesc } from "./stage_collectible_desc_reducer.ts";
 export { StageCollectibleDesc };
-import { StageCombatActionDesc } from "./stage_combat_action_desc_reducer.ts";
-export { StageCombatActionDesc };
+import { StageCombatActionDescV2 } from "./stage_combat_action_desc_v_2_reducer.ts";
+export { StageCombatActionDescV2 };
+import { StageCombatActionMultiHitDesc } from "./stage_combat_action_multi_hit_desc_reducer.ts";
+export { StageCombatActionMultiHitDesc };
 import { StageConstructionRecipeDesc } from "./stage_construction_recipe_desc_reducer.ts";
 export { StageConstructionRecipeDesc };
+import { StageContributionLootDesc } from "./stage_contribution_loot_desc_reducer.ts";
+export { StageContributionLootDesc };
 import { StageCraftingRecipeDesc } from "./stage_crafting_recipe_desc_reducer.ts";
 export { StageCraftingRecipeDesc };
 import { StageDeconstructionRecipeDesc } from "./stage_deconstruction_recipe_desc_reducer.ts";
@@ -773,12 +779,22 @@ import { CollectibleDescTableHandle } from "./collectible_desc_table.ts";
 export { CollectibleDescTableHandle };
 import { CombatActionDescTableHandle } from "./combat_action_desc_table.ts";
 export { CombatActionDescTableHandle };
+import { CombatActionDescV2TableHandle } from "./combat_action_desc_v_2_table.ts";
+export { CombatActionDescV2TableHandle };
+import { CombatActionMultiHitDescTableHandle } from "./combat_action_multi_hit_desc_table.ts";
+export { CombatActionMultiHitDescTableHandle };
+import { CombatDimensionStateTableHandle } from "./combat_dimension_state_table.ts";
+export { CombatDimensionStateTableHandle };
 import { CombatStateTableHandle } from "./combat_state_table.ts";
 export { CombatStateTableHandle };
 import { ConfigTableHandle } from "./config_table.ts";
 export { ConfigTableHandle };
 import { ConstructionRecipeDescTableHandle } from "./construction_recipe_desc_table.ts";
 export { ConstructionRecipeDescTableHandle };
+import { ContributionLootDescTableHandle } from "./contribution_loot_desc_table.ts";
+export { ContributionLootDescTableHandle };
+import { ContributionStateTableHandle } from "./contribution_state_table.ts";
+export { ContributionStateTableHandle };
 import { CraftingRecipeDescTableHandle } from "./crafting_recipe_desc_table.ts";
 export { CraftingRecipeDescTableHandle };
 import { DeconstructionRecipeDescTableHandle } from "./deconstruction_recipe_desc_table.ts";
@@ -805,6 +821,8 @@ import { DroppedInventoryStateTableHandle } from "./dropped_inventory_state_tabl
 export { DroppedInventoryStateTableHandle };
 import { DuelStateTableHandle } from "./duel_state_table.ts";
 export { DuelStateTableHandle };
+import { DungeonStateTableHandle } from "./dungeon_state_table.ts";
+export { DungeonStateTableHandle };
 import { ElevatorDescTableHandle } from "./elevator_desc_table.ts";
 export { ElevatorDescTableHandle };
 import { EmoteDescTableHandle } from "./emote_desc_table.ts";
@@ -919,6 +937,8 @@ import { InteriorInstanceDescTableHandle } from "./interior_instance_desc_table.
 export { InteriorInstanceDescTableHandle };
 import { InteriorNetworkDescTableHandle } from "./interior_network_desc_table.ts";
 export { InteriorNetworkDescTableHandle };
+import { InteriorPlayerCountStateTableHandle } from "./interior_player_count_state_table.ts";
+export { InteriorPlayerCountStateTableHandle };
 import { InteriorPortalConnectionsDescTableHandle } from "./interior_portal_connections_desc_table.ts";
 export { InteriorPortalConnectionsDescTableHandle };
 import { InteriorShapeDescTableHandle } from "./interior_shape_desc_table.ts";
@@ -1117,10 +1137,14 @@ import { SkillDescTableHandle } from "./skill_desc_table.ts";
 export { SkillDescTableHandle };
 import { StagedStaticDataTableHandle } from "./staged_static_data_table.ts";
 export { StagedStaticDataTableHandle };
+import { StagedStaticDataV2TableHandle } from "./staged_static_data_v_2_table.ts";
+export { StagedStaticDataV2TableHandle };
 import { StaminaStateTableHandle } from "./stamina_state_table.ts";
 export { StaminaStateTableHandle };
 import { StarvingPlayerStateTableHandle } from "./starving_player_state_table.ts";
 export { StarvingPlayerStateTableHandle };
+import { StorageLogStateTableHandle } from "./storage_log_state_table.ts";
+export { StorageLogStateTableHandle };
 import { TargetStateTableHandle } from "./target_state_table.ts";
 export { TargetStateTableHandle };
 import { TargetableStateTableHandle } from "./targetable_state_table.ts";
@@ -1193,6 +1217,14 @@ import { AchievementDesc } from "./achievement_desc_type.ts";
 export { AchievementDesc };
 import { ActionCooldown } from "./action_cooldown_type.ts";
 export { ActionCooldown };
+import { ActionLogData } from "./action_log_data_type.ts";
+export { ActionLogData };
+import { ActionLogDataSpaceAllocator } from "./action_log_data_space_allocator_type.ts";
+export { ActionLogDataSpaceAllocator };
+import { ActionLogState } from "./action_log_state_type.ts";
+export { ActionLogState };
+import { ActionLogSubjectType } from "./action_log_subject_type_type.ts";
+export { ActionLogSubjectType };
 import { ActionState } from "./action_state_type.ts";
 export { ActionState };
 import { ActiveBuff } from "./active_buff_type.ts";
@@ -1333,12 +1365,22 @@ import { CollectibleType } from "./collectible_type_type.ts";
 export { CollectibleType };
 import { CombatActionDesc } from "./combat_action_desc_type.ts";
 export { CombatActionDesc };
+import { CombatActionDescV2 } from "./combat_action_desc_v_2_type.ts";
+export { CombatActionDescV2 };
+import { CombatActionMultiHitDesc } from "./combat_action_multi_hit_desc_type.ts";
+export { CombatActionMultiHitDesc };
+import { CombatDimensionState } from "./combat_dimension_state_type.ts";
+export { CombatDimensionState };
 import { CombatState } from "./combat_state_type.ts";
 export { CombatState };
 import { Config } from "./config_type.ts";
 export { Config };
 import { ConstructionRecipeDesc } from "./construction_recipe_desc_type.ts";
 export { ConstructionRecipeDesc };
+import { ContributionLootDesc } from "./contribution_loot_desc_type.ts";
+export { ContributionLootDesc };
+import { ContributionState } from "./contribution_state_type.ts";
+export { ContributionState };
 import { CraftingRecipeDesc } from "./crafting_recipe_desc_type.ts";
 export { CraftingRecipeDesc };
 import { CsvStatEntry } from "./csv_stat_entry_type.ts";
@@ -1373,6 +1415,8 @@ import { DroppedInventoryState } from "./dropped_inventory_state_type.ts";
 export { DroppedInventoryState };
 import { DuelState } from "./duel_state_type.ts";
 export { DuelState };
+import { DungeonState } from "./dungeon_state_type.ts";
+export { DungeonState };
 import { ElevatorDesc } from "./elevator_desc_type.ts";
 export { ElevatorDesc };
 import { EmoteDesc } from "./emote_desc_type.ts";
@@ -1591,6 +1635,8 @@ import { InteriorInstanceDesc } from "./interior_instance_desc_type.ts";
 export { InteriorInstanceDesc };
 import { InteriorNetworkDesc } from "./interior_network_desc_type.ts";
 export { InteriorNetworkDesc };
+import { InteriorPlayerCountState } from "./interior_player_count_state_type.ts";
+export { InteriorPlayerCountState };
 import { InteriorPortalConnectionsDesc } from "./interior_portal_connections_desc_type.ts";
 export { InteriorPortalConnectionsDesc };
 import { InteriorShapeDesc } from "./interior_shape_desc_type.ts";
@@ -1903,12 +1949,16 @@ import { SkillType } from "./skill_type_type.ts";
 export { SkillType };
 import { StagedStaticData } from "./staged_static_data_type.ts";
 export { StagedStaticData };
+import { StagedStaticDataV2 } from "./staged_static_data_v_2_type.ts";
+export { StagedStaticDataV2 };
 import { StaminaState } from "./stamina_state_type.ts";
 export { StaminaState };
 import { StarvingPlayerState } from "./starving_player_state_type.ts";
 export { StarvingPlayerState };
 import { StaticDataUpload } from "./static_data_upload_type.ts";
 export { StaticDataUpload };
+import { StaticDataUploadV2 } from "./static_data_upload_v_2_type.ts";
+export { StaticDataUploadV2 };
 import { SurfaceType } from "./surface_type_type.ts";
 export { SurfaceType };
 import { TargetState } from "./target_state_type.ts";
@@ -2405,6 +2455,33 @@ const REMOTE_MODULE = {
         colType: CombatActionDesc.getTypeScriptAlgebraicType().product.elements[1].algebraicType,
       },
     },
+    combat_action_desc_v2: {
+      tableName: "combat_action_desc_v2",
+      rowType: CombatActionDescV2.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: CombatActionDescV2.getTypeScriptAlgebraicType().product.elements[1].algebraicType,
+      },
+    },
+    combat_action_multi_hit_desc: {
+      tableName: "combat_action_multi_hit_desc",
+      rowType: CombatActionMultiHitDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: CombatActionMultiHitDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    combat_dimension_state: {
+      tableName: "combat_dimension_state",
+      rowType: CombatDimensionState.getTypeScriptAlgebraicType(),
+      primaryKey: "dimensionId",
+      primaryKeyInfo: {
+        colName: "dimensionId",
+        colType: CombatDimensionState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     combat_state: {
       tableName: "combat_state",
       rowType: CombatState.getTypeScriptAlgebraicType(),
@@ -2430,6 +2507,24 @@ const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "id",
         colType: ConstructionRecipeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    contribution_loot_desc: {
+      tableName: "contribution_loot_desc",
+      rowType: ContributionLootDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: ContributionLootDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    contribution_state: {
+      tableName: "contribution_state",
+      rowType: ContributionState.getTypeScriptAlgebraicType(),
+      primaryKey: "entityId",
+      primaryKeyInfo: {
+        colName: "entityId",
+        colType: ContributionState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     crafting_recipe_desc: {
@@ -2547,6 +2642,15 @@ const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "entityId",
         colType: DuelState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    dungeon_state: {
+      tableName: "dungeon_state",
+      rowType: DungeonState.getTypeScriptAlgebraicType(),
+      primaryKey: "entityId",
+      primaryKeyInfo: {
+        colName: "entityId",
+        colType: DungeonState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     elevator_desc: {
@@ -3055,6 +3159,15 @@ const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "buildingId",
         colType: InteriorNetworkDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    interior_player_count_state: {
+      tableName: "interior_player_count_state",
+      rowType: InteriorPlayerCountState.getTypeScriptAlgebraicType(),
+      primaryKey: "entityId",
+      primaryKeyInfo: {
+        colName: "entityId",
+        colType: InteriorPlayerCountState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     interior_portal_connections_desc: {
@@ -3948,6 +4061,15 @@ const REMOTE_MODULE = {
         colType: StagedStaticData.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    staged_static_data_v2: {
+      tableName: "staged_static_data_v2",
+      rowType: StagedStaticDataV2.getTypeScriptAlgebraicType(),
+      primaryKey: "version",
+      primaryKeyInfo: {
+        colName: "version",
+        colType: StagedStaticDataV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     stamina_state: {
       tableName: "stamina_state",
       rowType: StaminaState.getTypeScriptAlgebraicType(),
@@ -3964,6 +4086,15 @@ const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "entityId",
         colType: StarvingPlayerState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    storage_log_state: {
+      tableName: "storage_log_state",
+      rowType: ActionLogState.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: ActionLogState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     target_state: {
@@ -4388,6 +4519,10 @@ const REMOTE_MODULE = {
       reducerName: "current_version",
       argsType: CurrentVersion.getTypeScriptAlgebraicType(),
     },
+    delete_developer_identity: {
+      reducerName: "delete_developer_identity",
+      argsType: DeleteDeveloperIdentity.getTypeScriptAlgebraicType(),
+    },
     direct_message_post_message: {
       reducerName: "direct_message_post_message",
       argsType: DirectMessagePostMessage.getTypeScriptAlgebraicType(),
@@ -4616,9 +4751,9 @@ const REMOTE_MODULE = {
       reducerName: "import_collectible_desc",
       argsType: ImportCollectibleDesc.getTypeScriptAlgebraicType(),
     },
-    import_combat_action_desc: {
-      reducerName: "import_combat_action_desc",
-      argsType: ImportCombatActionDesc.getTypeScriptAlgebraicType(),
+    import_combat_action_desc_v2: {
+      reducerName: "import_combat_action_desc_v2",
+      argsType: ImportCombatActionDescV2.getTypeScriptAlgebraicType(),
     },
     import_combat_state: {
       reducerName: "import_combat_state",
@@ -5276,13 +5411,21 @@ const REMOTE_MODULE = {
       reducerName: "stage_collectible_desc",
       argsType: StageCollectibleDesc.getTypeScriptAlgebraicType(),
     },
-    stage_combat_action_desc: {
-      reducerName: "stage_combat_action_desc",
-      argsType: StageCombatActionDesc.getTypeScriptAlgebraicType(),
+    stage_combat_action_desc_v2: {
+      reducerName: "stage_combat_action_desc_v2",
+      argsType: StageCombatActionDescV2.getTypeScriptAlgebraicType(),
+    },
+    stage_combat_action_multi_hit_desc: {
+      reducerName: "stage_combat_action_multi_hit_desc",
+      argsType: StageCombatActionMultiHitDesc.getTypeScriptAlgebraicType(),
     },
     stage_construction_recipe_desc: {
       reducerName: "stage_construction_recipe_desc",
       argsType: StageConstructionRecipeDesc.getTypeScriptAlgebraicType(),
+    },
+    stage_contribution_loot_desc: {
+      reducerName: "stage_contribution_loot_desc",
+      argsType: StageContributionLootDesc.getTypeScriptAlgebraicType(),
     },
     stage_crafting_recipe_desc: {
       reducerName: "stage_crafting_recipe_desc",
@@ -5619,6 +5762,7 @@ export type Reducer = never
 | { name: "ClearStagedStaticData", args: ClearStagedStaticData }
 | { name: "CommitStagedStaticData", args: CommitStagedStaticData }
 | { name: "CurrentVersion", args: CurrentVersion }
+| { name: "DeleteDeveloperIdentity", args: DeleteDeveloperIdentity }
 | { name: "DirectMessagePostMessage", args: DirectMessagePostMessage }
 | { name: "EmpireChangeEmblem", args: EmpireChangeEmblem }
 | { name: "EmpireCraftSupplies", args: EmpireCraftSupplies }
@@ -5676,7 +5820,7 @@ export type Reducer = never
 | { name: "ImportClimbRequirementDesc", args: ImportClimbRequirementDesc }
 | { name: "ImportClothingDesc", args: ImportClothingDesc }
 | { name: "ImportCollectibleDesc", args: ImportCollectibleDesc }
-| { name: "ImportCombatActionDesc", args: ImportCombatActionDesc }
+| { name: "ImportCombatActionDescV2", args: ImportCombatActionDescV2 }
 | { name: "ImportCombatState", args: ImportCombatState }
 | { name: "ImportConfig", args: ImportConfig }
 | { name: "ImportConstructionRecipeDesc", args: ImportConstructionRecipeDesc }
@@ -5841,8 +5985,10 @@ export type Reducer = never
 | { name: "StageClimbRequirementDesc", args: StageClimbRequirementDesc }
 | { name: "StageClothingDesc", args: StageClothingDesc }
 | { name: "StageCollectibleDesc", args: StageCollectibleDesc }
-| { name: "StageCombatActionDesc", args: StageCombatActionDesc }
+| { name: "StageCombatActionDescV2", args: StageCombatActionDescV2 }
+| { name: "StageCombatActionMultiHitDesc", args: StageCombatActionMultiHitDesc }
 | { name: "StageConstructionRecipeDesc", args: StageConstructionRecipeDesc }
+| { name: "StageContributionLootDesc", args: StageContributionLootDesc }
 | { name: "StageCraftingRecipeDesc", args: StageCraftingRecipeDesc }
 | { name: "StageDeconstructionRecipeDesc", args: StageDeconstructionRecipeDesc }
 | { name: "StageDeployableDesc", args: StageDeployableDesc }
@@ -6426,6 +6572,22 @@ export class RemoteReducers {
 
   removeOnCurrentVersion(callback: (ctx: ReducerEventContext) => void) {
     this.connection.offReducer("current_version", callback);
+  }
+
+  deleteDeveloperIdentity(identity: string) {
+    const __args = { identity };
+    let __writer = new BinaryWriter(1024);
+    DeleteDeveloperIdentity.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("delete_developer_identity", __argsBuffer, this.setCallReducerFlags.deleteDeveloperIdentityFlags);
+  }
+
+  onDeleteDeveloperIdentity(callback: (ctx: ReducerEventContext, identity: string) => void) {
+    this.connection.onReducer("delete_developer_identity", callback);
+  }
+
+  removeOnDeleteDeveloperIdentity(callback: (ctx: ReducerEventContext, identity: string) => void) {
+    this.connection.offReducer("delete_developer_identity", callback);
   }
 
   directMessagePostMessage(receiver: string, text: string) {
@@ -7320,20 +7482,20 @@ export class RemoteReducers {
     this.connection.offReducer("import_collectible_desc", callback);
   }
 
-  importCombatActionDesc(records: CombatActionDesc[]) {
+  importCombatActionDescV2(records: CombatActionDescV2[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
-    ImportCombatActionDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    ImportCombatActionDescV2.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
-    this.connection.callReducer("import_combat_action_desc", __argsBuffer, this.setCallReducerFlags.importCombatActionDescFlags);
+    this.connection.callReducer("import_combat_action_desc_v2", __argsBuffer, this.setCallReducerFlags.importCombatActionDescV2Flags);
   }
 
-  onImportCombatActionDesc(callback: (ctx: ReducerEventContext, records: CombatActionDesc[]) => void) {
-    this.connection.onReducer("import_combat_action_desc", callback);
+  onImportCombatActionDescV2(callback: (ctx: ReducerEventContext, records: CombatActionDescV2[]) => void) {
+    this.connection.onReducer("import_combat_action_desc_v2", callback);
   }
 
-  removeOnImportCombatActionDesc(callback: (ctx: ReducerEventContext, records: CombatActionDesc[]) => void) {
-    this.connection.offReducer("import_combat_action_desc", callback);
+  removeOnImportCombatActionDescV2(callback: (ctx: ReducerEventContext, records: CombatActionDescV2[]) => void) {
+    this.connection.offReducer("import_combat_action_desc_v2", callback);
   }
 
   importCombatState(records: CombatState[]) {
@@ -9940,20 +10102,36 @@ export class RemoteReducers {
     this.connection.offReducer("stage_collectible_desc", callback);
   }
 
-  stageCombatActionDesc(records: CombatActionDesc[]) {
+  stageCombatActionDescV2(records: CombatActionDescV2[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
-    StageCombatActionDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    StageCombatActionDescV2.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
-    this.connection.callReducer("stage_combat_action_desc", __argsBuffer, this.setCallReducerFlags.stageCombatActionDescFlags);
+    this.connection.callReducer("stage_combat_action_desc_v2", __argsBuffer, this.setCallReducerFlags.stageCombatActionDescV2Flags);
   }
 
-  onStageCombatActionDesc(callback: (ctx: ReducerEventContext, records: CombatActionDesc[]) => void) {
-    this.connection.onReducer("stage_combat_action_desc", callback);
+  onStageCombatActionDescV2(callback: (ctx: ReducerEventContext, records: CombatActionDescV2[]) => void) {
+    this.connection.onReducer("stage_combat_action_desc_v2", callback);
   }
 
-  removeOnStageCombatActionDesc(callback: (ctx: ReducerEventContext, records: CombatActionDesc[]) => void) {
-    this.connection.offReducer("stage_combat_action_desc", callback);
+  removeOnStageCombatActionDescV2(callback: (ctx: ReducerEventContext, records: CombatActionDescV2[]) => void) {
+    this.connection.offReducer("stage_combat_action_desc_v2", callback);
+  }
+
+  stageCombatActionMultiHitDesc(records: CombatActionMultiHitDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    StageCombatActionMultiHitDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("stage_combat_action_multi_hit_desc", __argsBuffer, this.setCallReducerFlags.stageCombatActionMultiHitDescFlags);
+  }
+
+  onStageCombatActionMultiHitDesc(callback: (ctx: ReducerEventContext, records: CombatActionMultiHitDesc[]) => void) {
+    this.connection.onReducer("stage_combat_action_multi_hit_desc", callback);
+  }
+
+  removeOnStageCombatActionMultiHitDesc(callback: (ctx: ReducerEventContext, records: CombatActionMultiHitDesc[]) => void) {
+    this.connection.offReducer("stage_combat_action_multi_hit_desc", callback);
   }
 
   stageConstructionRecipeDesc(records: ConstructionRecipeDesc[]) {
@@ -9970,6 +10148,22 @@ export class RemoteReducers {
 
   removeOnStageConstructionRecipeDesc(callback: (ctx: ReducerEventContext, records: ConstructionRecipeDesc[]) => void) {
     this.connection.offReducer("stage_construction_recipe_desc", callback);
+  }
+
+  stageContributionLootDesc(records: ContributionLootDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    StageContributionLootDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("stage_contribution_loot_desc", __argsBuffer, this.setCallReducerFlags.stageContributionLootDescFlags);
+  }
+
+  onStageContributionLootDesc(callback: (ctx: ReducerEventContext, records: ContributionLootDesc[]) => void) {
+    this.connection.onReducer("stage_contribution_loot_desc", callback);
+  }
+
+  removeOnStageContributionLootDesc(callback: (ctx: ReducerEventContext, records: ContributionLootDesc[]) => void) {
+    this.connection.offReducer("stage_contribution_loot_desc", callback);
   }
 
   stageCraftingRecipeDesc(records: CraftingRecipeDesc[]) {
@@ -11224,6 +11418,11 @@ export class SetReducerFlags {
     this.currentVersionFlags = flags;
   }
 
+  deleteDeveloperIdentityFlags: CallReducerFlags = 'FullUpdate';
+  deleteDeveloperIdentity(flags: CallReducerFlags) {
+    this.deleteDeveloperIdentityFlags = flags;
+  }
+
   directMessagePostMessageFlags: CallReducerFlags = 'FullUpdate';
   directMessagePostMessage(flags: CallReducerFlags) {
     this.directMessagePostMessageFlags = flags;
@@ -11499,9 +11698,9 @@ export class SetReducerFlags {
     this.importCollectibleDescFlags = flags;
   }
 
-  importCombatActionDescFlags: CallReducerFlags = 'FullUpdate';
-  importCombatActionDesc(flags: CallReducerFlags) {
-    this.importCombatActionDescFlags = flags;
+  importCombatActionDescV2Flags: CallReducerFlags = 'FullUpdate';
+  importCombatActionDescV2(flags: CallReducerFlags) {
+    this.importCombatActionDescV2Flags = flags;
   }
 
   importCombatStateFlags: CallReducerFlags = 'FullUpdate';
@@ -12324,14 +12523,24 @@ export class SetReducerFlags {
     this.stageCollectibleDescFlags = flags;
   }
 
-  stageCombatActionDescFlags: CallReducerFlags = 'FullUpdate';
-  stageCombatActionDesc(flags: CallReducerFlags) {
-    this.stageCombatActionDescFlags = flags;
+  stageCombatActionDescV2Flags: CallReducerFlags = 'FullUpdate';
+  stageCombatActionDescV2(flags: CallReducerFlags) {
+    this.stageCombatActionDescV2Flags = flags;
+  }
+
+  stageCombatActionMultiHitDescFlags: CallReducerFlags = 'FullUpdate';
+  stageCombatActionMultiHitDesc(flags: CallReducerFlags) {
+    this.stageCombatActionMultiHitDescFlags = flags;
   }
 
   stageConstructionRecipeDescFlags: CallReducerFlags = 'FullUpdate';
   stageConstructionRecipeDesc(flags: CallReducerFlags) {
     this.stageConstructionRecipeDescFlags = flags;
+  }
+
+  stageContributionLootDescFlags: CallReducerFlags = 'FullUpdate';
+  stageContributionLootDesc(flags: CallReducerFlags) {
+    this.stageContributionLootDescFlags = flags;
   }
 
   stageCraftingRecipeDescFlags: CallReducerFlags = 'FullUpdate';
@@ -12855,6 +13064,18 @@ export class RemoteTables {
     return new CombatActionDescTableHandle(this.connection.clientCache.getOrCreateTable<CombatActionDesc>(REMOTE_MODULE.tables.combat_action_desc));
   }
 
+  get combatActionDescV2(): CombatActionDescV2TableHandle {
+    return new CombatActionDescV2TableHandle(this.connection.clientCache.getOrCreateTable<CombatActionDescV2>(REMOTE_MODULE.tables.combat_action_desc_v2));
+  }
+
+  get combatActionMultiHitDesc(): CombatActionMultiHitDescTableHandle {
+    return new CombatActionMultiHitDescTableHandle(this.connection.clientCache.getOrCreateTable<CombatActionMultiHitDesc>(REMOTE_MODULE.tables.combat_action_multi_hit_desc));
+  }
+
+  get combatDimensionState(): CombatDimensionStateTableHandle {
+    return new CombatDimensionStateTableHandle(this.connection.clientCache.getOrCreateTable<CombatDimensionState>(REMOTE_MODULE.tables.combat_dimension_state));
+  }
+
   get combatState(): CombatStateTableHandle {
     return new CombatStateTableHandle(this.connection.clientCache.getOrCreateTable<CombatState>(REMOTE_MODULE.tables.combat_state));
   }
@@ -12865,6 +13086,14 @@ export class RemoteTables {
 
   get constructionRecipeDesc(): ConstructionRecipeDescTableHandle {
     return new ConstructionRecipeDescTableHandle(this.connection.clientCache.getOrCreateTable<ConstructionRecipeDesc>(REMOTE_MODULE.tables.construction_recipe_desc));
+  }
+
+  get contributionLootDesc(): ContributionLootDescTableHandle {
+    return new ContributionLootDescTableHandle(this.connection.clientCache.getOrCreateTable<ContributionLootDesc>(REMOTE_MODULE.tables.contribution_loot_desc));
+  }
+
+  get contributionState(): ContributionStateTableHandle {
+    return new ContributionStateTableHandle(this.connection.clientCache.getOrCreateTable<ContributionState>(REMOTE_MODULE.tables.contribution_state));
   }
 
   get craftingRecipeDesc(): CraftingRecipeDescTableHandle {
@@ -12917,6 +13146,10 @@ export class RemoteTables {
 
   get duelState(): DuelStateTableHandle {
     return new DuelStateTableHandle(this.connection.clientCache.getOrCreateTable<DuelState>(REMOTE_MODULE.tables.duel_state));
+  }
+
+  get dungeonState(): DungeonStateTableHandle {
+    return new DungeonStateTableHandle(this.connection.clientCache.getOrCreateTable<DungeonState>(REMOTE_MODULE.tables.dungeon_state));
   }
 
   get elevatorDesc(): ElevatorDescTableHandle {
@@ -13145,6 +13378,10 @@ export class RemoteTables {
 
   get interiorNetworkDesc(): InteriorNetworkDescTableHandle {
     return new InteriorNetworkDescTableHandle(this.connection.clientCache.getOrCreateTable<InteriorNetworkDesc>(REMOTE_MODULE.tables.interior_network_desc));
+  }
+
+  get interiorPlayerCountState(): InteriorPlayerCountStateTableHandle {
+    return new InteriorPlayerCountStateTableHandle(this.connection.clientCache.getOrCreateTable<InteriorPlayerCountState>(REMOTE_MODULE.tables.interior_player_count_state));
   }
 
   get interiorPortalConnectionsDesc(): InteriorPortalConnectionsDescTableHandle {
@@ -13543,12 +13780,20 @@ export class RemoteTables {
     return new StagedStaticDataTableHandle(this.connection.clientCache.getOrCreateTable<StagedStaticData>(REMOTE_MODULE.tables.staged_static_data));
   }
 
+  get stagedStaticDataV2(): StagedStaticDataV2TableHandle {
+    return new StagedStaticDataV2TableHandle(this.connection.clientCache.getOrCreateTable<StagedStaticDataV2>(REMOTE_MODULE.tables.staged_static_data_v2));
+  }
+
   get staminaState(): StaminaStateTableHandle {
     return new StaminaStateTableHandle(this.connection.clientCache.getOrCreateTable<StaminaState>(REMOTE_MODULE.tables.stamina_state));
   }
 
   get starvingPlayerState(): StarvingPlayerStateTableHandle {
     return new StarvingPlayerStateTableHandle(this.connection.clientCache.getOrCreateTable<StarvingPlayerState>(REMOTE_MODULE.tables.starving_player_state));
+  }
+
+  get storageLogState(): StorageLogStateTableHandle {
+    return new StorageLogStateTableHandle(this.connection.clientCache.getOrCreateTable<ActionLogState>(REMOTE_MODULE.tables.storage_log_state));
   }
 
   get targetState(): TargetStateTableHandle {
