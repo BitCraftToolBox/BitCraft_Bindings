@@ -19,6 +19,15 @@ namespace BitCraftGlobal.Types
         {
             protected override string RemoteTableName => "blocked_player_state";
 
+            public sealed class BlockedEntityIdIndex : BTreeIndexBase<ulong>
+            {
+                protected override ulong GetKey(BlockedPlayerState row) => row.BlockedEntityId;
+
+                public BlockedEntityIdIndex(BlockedPlayerStateHandle table) : base(table) { }
+            }
+
+            public readonly BlockedEntityIdIndex BlockedEntityId;
+
             public sealed class OwnerBlockedEntityIdIndex : BTreeIndexBase<(ulong OwnerEntityId, ulong BlockedEntityId)>
             {
                 protected override (ulong OwnerEntityId, ulong BlockedEntityId) GetKey(BlockedPlayerState row) => (row.OwnerEntityId, row.BlockedEntityId);
@@ -39,6 +48,7 @@ namespace BitCraftGlobal.Types
 
             internal BlockedPlayerStateHandle(DbConnection conn) : base(conn)
             {
+                BlockedEntityId = new(this);
                 OwnerBlockedEntityId = new(this);
                 OwnerEntityId = new(this);
             }

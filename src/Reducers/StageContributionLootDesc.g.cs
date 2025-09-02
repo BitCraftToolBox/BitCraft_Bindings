@@ -14,17 +14,17 @@ namespace BitCraftGlobal.Types
 {
     public sealed partial class RemoteReducers : RemoteBase
     {
-        public delegate void StageCombatActionDescHandler(ReducerEventContext ctx, System.Collections.Generic.List<CombatActionDesc> records);
-        public event StageCombatActionDescHandler? OnStageCombatActionDesc;
+        public delegate void StageContributionLootDescHandler(ReducerEventContext ctx, System.Collections.Generic.List<ContributionLootDesc> records);
+        public event StageContributionLootDescHandler? OnStageContributionLootDesc;
 
-        public void StageCombatActionDesc(System.Collections.Generic.List<CombatActionDesc> records)
+        public void StageContributionLootDesc(System.Collections.Generic.List<ContributionLootDesc> records)
         {
-            conn.InternalCallReducer(new Reducer.StageCombatActionDesc(records), this.SetCallReducerFlags.StageCombatActionDescFlags);
+            conn.InternalCallReducer(new Reducer.StageContributionLootDesc(records), this.SetCallReducerFlags.StageContributionLootDescFlags);
         }
 
-        public bool InvokeStageCombatActionDesc(ReducerEventContext ctx, Reducer.StageCombatActionDesc args)
+        public bool InvokeStageContributionLootDesc(ReducerEventContext ctx, Reducer.StageContributionLootDesc args)
         {
-            if (OnStageCombatActionDesc == null)
+            if (OnStageContributionLootDesc == null)
             {
                 if (InternalOnUnhandledReducerError != null)
                 {
@@ -36,7 +36,7 @@ namespace BitCraftGlobal.Types
                 }
                 return false;
             }
-            OnStageCombatActionDesc(
+            OnStageContributionLootDesc(
                 ctx,
                 args.Records
             );
@@ -48,28 +48,28 @@ namespace BitCraftGlobal.Types
     {
         [SpacetimeDB.Type]
         [DataContract]
-        public sealed partial class StageCombatActionDesc : Reducer, IReducerArgs
+        public sealed partial class StageContributionLootDesc : Reducer, IReducerArgs
         {
             [DataMember(Name = "records")]
-            public System.Collections.Generic.List<CombatActionDesc> Records;
+            public System.Collections.Generic.List<ContributionLootDesc> Records;
 
-            public StageCombatActionDesc(System.Collections.Generic.List<CombatActionDesc> Records)
+            public StageContributionLootDesc(System.Collections.Generic.List<ContributionLootDesc> Records)
             {
                 this.Records = Records;
             }
 
-            public StageCombatActionDesc()
+            public StageContributionLootDesc()
             {
                 this.Records = new();
             }
 
-            string IReducerArgs.ReducerName => "stage_combat_action_desc";
+            string IReducerArgs.ReducerName => "stage_contribution_loot_desc";
         }
     }
 
     public sealed partial class SetReducerFlags
     {
-        internal CallReducerFlags StageCombatActionDescFlags;
-        public void StageCombatActionDesc(CallReducerFlags flags) => StageCombatActionDescFlags = flags;
+        internal CallReducerFlags StageContributionLootDescFlags;
+        public void StageContributionLootDesc(CallReducerFlags flags) => StageContributionLootDescFlags = flags;
     }
 }

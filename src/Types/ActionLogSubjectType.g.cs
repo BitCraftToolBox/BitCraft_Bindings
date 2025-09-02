@@ -10,12 +10,8 @@ using SpacetimeDB;
 namespace BitCraftGlobal.Types
 {
     [SpacetimeDB.Type]
-    public enum DimensionType
+    public enum ActionLogSubjectType
     {
-        Unknown,
-        Overworld,
-        AncientRuin,
-        BuildingInterior,
-        Dungeon,
+        Player,
     }
 }

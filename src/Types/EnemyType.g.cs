@@ -44,5 +44,9 @@ namespace BitCraftGlobal.Types
         Drone,
         Soldier,
         Queen,
+        Sentinel,
+        SentinelDungeonJakyl,
+        SentinelDungeonSkitch,
+        SentinelDungeonLargeJakyl,
     }
 }
