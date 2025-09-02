@@ -40,6 +40,7 @@ export namespace DimensionType {
   export type Overworld = { tag: "Overworld" };
   export type AncientRuin = { tag: "AncientRuin" };
   export type BuildingInterior = { tag: "BuildingInterior" };
+  export type Dungeon = { tag: "Dungeon" };
 
   // Helper functions for constructing each variant of the tagged union.
   // ```
@@ -51,6 +52,7 @@ export namespace DimensionType {
   export const Overworld = { tag: "Overworld" };
   export const AncientRuin = { tag: "AncientRuin" };
   export const BuildingInterior = { tag: "BuildingInterior" };
+  export const Dungeon = { tag: "Dungeon" };
 
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createSumType([
@@ -58,6 +60,7 @@ export namespace DimensionType {
       new SumTypeVariant("Overworld", AlgebraicType.createProductType([])),
       new SumTypeVariant("AncientRuin", AlgebraicType.createProductType([])),
       new SumTypeVariant("BuildingInterior", AlgebraicType.createProductType([])),
+      new SumTypeVariant("Dungeon", AlgebraicType.createProductType([])),
     ]);
   }
 
@@ -72,7 +75,7 @@ export namespace DimensionType {
 }
 
 // The tagged union or sum type for the algebraic type `DimensionType`.
-export type DimensionType = DimensionType.Unknown | DimensionType.Overworld | DimensionType.AncientRuin | DimensionType.BuildingInterior;
+export type DimensionType = DimensionType.Unknown | DimensionType.Overworld | DimensionType.AncientRuin | DimensionType.BuildingInterior | DimensionType.Dungeon;
 
 export default DimensionType;
 

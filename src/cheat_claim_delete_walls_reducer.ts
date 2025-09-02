@@ -32,32 +32,30 @@ import {
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
 
-import { CombatActionDesc as __CombatActionDesc } from "./combat_action_desc_type";
-
-export type ImportCombatActionDesc = {
-  records: __CombatActionDesc[],
+export type CheatClaimDeleteWalls = {
+  claimEntityId: bigint,
 };
 
 /**
  * A namespace for generated helper functions.
  */
-export namespace ImportCombatActionDesc {
+export namespace CheatClaimDeleteWalls {
   /**
   * A function which returns this type represented as an AlgebraicType.
   * This function is derived from the AlgebraicType used to generate this type.
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("records", AlgebraicType.createArrayType(__CombatActionDesc.getTypeScriptAlgebraicType())),
+      new ProductTypeElement("claimEntityId", AlgebraicType.createU64Type()),
     ]);
   }
 
-  export function serialize(writer: BinaryWriter, value: ImportCombatActionDesc): void {
-    ImportCombatActionDesc.getTypeScriptAlgebraicType().serialize(writer, value);
+  export function serialize(writer: BinaryWriter, value: CheatClaimDeleteWalls): void {
+    CheatClaimDeleteWalls.getTypeScriptAlgebraicType().serialize(writer, value);
   }
 
-  export function deserialize(reader: BinaryReader): ImportCombatActionDesc {
-    return ImportCombatActionDesc.getTypeScriptAlgebraicType().deserialize(reader);
+  export function deserialize(reader: BinaryReader): CheatClaimDeleteWalls {
+    return CheatClaimDeleteWalls.getTypeScriptAlgebraicType().deserialize(reader);
   }
 
 }
