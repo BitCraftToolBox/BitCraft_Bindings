@@ -14,12 +14,12 @@ namespace BitCraftRegion.Types
 {
     public sealed partial class RemoteReducers : RemoteBase
     {
-        public delegate void PlayerHousingChangeEntranceHandler(ReducerEventContext ctx, ulong buildingEntityId);
+        public delegate void PlayerHousingChangeEntranceHandler(ReducerEventContext ctx, ulong buildingEntityId, int expectedTimeCost);
         public event PlayerHousingChangeEntranceHandler? OnPlayerHousingChangeEntrance;
 
-        public void PlayerHousingChangeEntrance(ulong buildingEntityId)
+        public void PlayerHousingChangeEntrance(ulong buildingEntityId, int expectedTimeCost)
         {
-            conn.InternalCallReducer(new Reducer.PlayerHousingChangeEntrance(buildingEntityId), this.SetCallReducerFlags.PlayerHousingChangeEntranceFlags);
+            conn.InternalCallReducer(new Reducer.PlayerHousingChangeEntrance(buildingEntityId, expectedTimeCost), this.SetCallReducerFlags.PlayerHousingChangeEntranceFlags);
         }
 
         public bool InvokePlayerHousingChangeEntrance(ReducerEventContext ctx, Reducer.PlayerHousingChangeEntrance args)
@@ -38,7 +38,8 @@ namespace BitCraftRegion.Types
             }
             OnPlayerHousingChangeEntrance(
                 ctx,
-                args.BuildingEntityId
+                args.BuildingEntityId,
+                args.ExpectedTimeCost
             );
             return true;
         }
@@ -52,10 +53,16 @@ namespace BitCraftRegion.Types
         {
             [DataMember(Name = "building_entity_id")]
             public ulong BuildingEntityId;
+            [DataMember(Name = "expected_time_cost")]
+            public int ExpectedTimeCost;
 
-            public PlayerHousingChangeEntrance(ulong BuildingEntityId)
+            public PlayerHousingChangeEntrance(
+                ulong BuildingEntityId,
+                int ExpectedTimeCost
+            )
             {
                 this.BuildingEntityId = BuildingEntityId;
+                this.ExpectedTimeCost = ExpectedTimeCost;
             }
 
             public PlayerHousingChangeEntrance()

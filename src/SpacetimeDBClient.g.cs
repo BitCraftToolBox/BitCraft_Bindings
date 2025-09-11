@@ -39,6 +39,7 @@ namespace BitCraftRegion.Types
             AddTable(AttackTimer = new(conn));
             AddTable(AutoClaimState = new(conn));
             AddTable(AutoLogoutLoopTimer = new(conn));
+            AddTable(BankState = new(conn));
             AddTable(BarterStallState = new(conn));
             AddTable(BiomeDesc = new(conn));
             AddTable(BlockedIdentity = new(conn));
@@ -84,6 +85,7 @@ namespace BitCraftRegion.Types
             AddTable(Config = new(conn));
             AddTable(ConstructionRecipeDesc = new(conn));
             AddTable(ContributionLootDesc = new(conn));
+            AddTable(ContributionLootDescV2 = new(conn));
             AddTable(ContributionState = new(conn));
             AddTable(CraftingRecipeDesc = new(conn));
             AddTable(DayNightLoopTimer = new(conn));
@@ -198,6 +200,7 @@ namespace BitCraftRegion.Types
             AddTable(LootRarityDesc = new(conn));
             AddTable(LootTableDesc = new(conn));
             AddTable(LostItemsState = new(conn));
+            AddTable(MarketplaceState = new(conn));
             AddTable(MobileEntityState = new(conn));
             AddTable(ModerationActionLogEntry = new(conn));
             AddTable(MountingState = new(conn));
@@ -225,6 +228,7 @@ namespace BitCraftRegion.Types
             AddTable(PlayerHousingDesc = new(conn));
             AddTable(PlayerHousingEvictPlayerTimer = new(conn));
             AddTable(PlayerHousingIncomeLoopTimer = new(conn));
+            AddTable(PlayerHousingMovingCostState = new(conn));
             AddTable(PlayerHousingState = new(conn));
             AddTable(PlayerLowercaseUsernameState = new(conn));
             AddTable(PlayerNoteState = new(conn));
@@ -279,6 +283,7 @@ namespace BitCraftRegion.Types
             AddTable(SkillDesc = new(conn));
             AddTable(StagedStaticData = new(conn));
             AddTable(StagedStaticDataV2 = new(conn));
+            AddTable(StagedStaticDataV3 = new(conn));
             AddTable(StaminaState = new(conn));
             AddTable(StarvingLoopTimer = new(conn));
             AddTable(StarvingPlayerState = new(conn));
@@ -315,6 +320,7 @@ namespace BitCraftRegion.Types
             AddTable(UserState = new(conn));
             AddTable(VaultState = new(conn));
             AddTable(WallDesc = new(conn));
+            AddTable(WaystoneState = new(conn));
             AddTable(WeaponDesc = new(conn));
             AddTable(WeaponTypeDesc = new(conn));
             AddTable(WorldRegionNameState = new(conn));
@@ -764,6 +770,7 @@ namespace BitCraftRegion.Types
             {
                 "achievement_claim" => BSATNHelpers.Decode<Reducer.AchievementClaim>(encodedArgs),
                 "acquire_knowledge_from_entities" => BSATNHelpers.Decode<Reducer.AcquireKnowledgeFromEntities>(encodedArgs),
+                "admin_add_specific_building_type_states" => BSATNHelpers.Decode<Reducer.AdminAddSpecificBuildingTypeStates>(encodedArgs),
                 "admin_alpha3_complete_onboarding" => BSATNHelpers.Decode<Reducer.AdminAlpha3CompleteOnboarding>(encodedArgs),
                 "admin_alpha3_reset_onboarding_to_fifth_temple_quest" => BSATNHelpers.Decode<Reducer.AdminAlpha3ResetOnboardingToFifthTempleQuest>(encodedArgs),
                 "admin_alpha3_reset_onboarding_to_first_expand_quest" => BSATNHelpers.Decode<Reducer.AdminAlpha3ResetOnboardingToFirstExpandQuest>(encodedArgs),
@@ -795,6 +802,7 @@ namespace BitCraftRegion.Types
                 "admin_find_items_in_trades" => BSATNHelpers.Decode<Reducer.AdminFindItemsInTrades>(encodedArgs),
                 "admin_grant_collectibles" => BSATNHelpers.Decode<Reducer.AdminGrantCollectibles>(encodedArgs),
                 "admin_modify_chat_message" => BSATNHelpers.Decode<Reducer.AdminModifyChatMessage>(encodedArgs),
+                "admin_patch_housing_costs" => BSATNHelpers.Decode<Reducer.AdminPatchHousingCosts>(encodedArgs),
                 "admin_rename_building" => BSATNHelpers.Decode<Reducer.AdminRenameBuilding>(encodedArgs),
                 "admin_rename_building_coord" => BSATNHelpers.Decode<Reducer.AdminRenameBuildingCoord>(encodedArgs),
                 "admin_rename_building_entity" => BSATNHelpers.Decode<Reducer.AdminRenameBuildingEntity>(encodedArgs),
@@ -857,6 +865,8 @@ namespace BitCraftRegion.Types
                 "cheat_delete_item" => BSATNHelpers.Decode<Reducer.CheatDeleteItem>(encodedArgs),
                 "cheat_deployable_store" => BSATNHelpers.Decode<Reducer.CheatDeployableStore>(encodedArgs),
                 "cheat_discover_map" => BSATNHelpers.Decode<Reducer.CheatDiscoverMap>(encodedArgs),
+                "cheat_drop_item_on_entity" => BSATNHelpers.Decode<Reducer.CheatDropItemOnEntity>(encodedArgs),
+                "cheat_drop_item_on_tile" => BSATNHelpers.Decode<Reducer.CheatDropItemOnTile>(encodedArgs),
                 "cheat_experience_grant" => BSATNHelpers.Decode<Reducer.CheatExperienceGrant>(encodedArgs),
                 "cheat_grant_knowledge" => BSATNHelpers.Decode<Reducer.CheatGrantKnowledge>(encodedArgs),
                 "cheat_grant_teleport_energy" => BSATNHelpers.Decode<Reducer.CheatGrantTeleportEnergy>(encodedArgs),
@@ -878,6 +888,7 @@ namespace BitCraftRegion.Types
                 "cheat_teleport_float" => BSATNHelpers.Decode<Reducer.CheatTeleportFloat>(encodedArgs),
                 "cheat_terraform" => BSATNHelpers.Decode<Reducer.CheatTerraform>(encodedArgs),
                 "cheat_toggle_active_collectible" => BSATNHelpers.Decode<Reducer.CheatToggleActiveCollectible>(encodedArgs),
+                "cheat_undiscover_map" => BSATNHelpers.Decode<Reducer.CheatUndiscoverMap>(encodedArgs),
                 "cheat_warp" => BSATNHelpers.Decode<Reducer.CheatWarp>(encodedArgs),
                 "claim_add_member" => BSATNHelpers.Decode<Reducer.ClaimAddMember>(encodedArgs),
                 "claim_add_recruitment" => BSATNHelpers.Decode<Reducer.ClaimAddRecruitment>(encodedArgs),
@@ -1373,6 +1384,7 @@ namespace BitCraftRegion.Types
                 "trade_swap_pockets" => BSATNHelpers.Decode<Reducer.TradeSwapPockets>(encodedArgs),
                 "transfer_player_delayed" => BSATNHelpers.Decode<Reducer.TransferPlayerDelayed>(encodedArgs),
                 "traveler_task_agent_loop" => BSATNHelpers.Decode<Reducer.TravelerTaskAgentLoop>(encodedArgs),
+                "update_moving_cost" => BSATNHelpers.Decode<Reducer.UpdateMovingCost>(encodedArgs),
                 "update_scheduled_timers_from_static_data" => BSATNHelpers.Decode<Reducer.UpdateScheduledTimersFromStaticData>(encodedArgs),
                 var reducer => throw new ArgumentOutOfRangeException("Reducer", $"Unknown reducer {reducer}")
             };
@@ -1397,6 +1409,7 @@ namespace BitCraftRegion.Types
             {
                 Reducer.AchievementClaim args => Reducers.InvokeAchievementClaim(eventContext, args),
                 Reducer.AcquireKnowledgeFromEntities args => Reducers.InvokeAcquireKnowledgeFromEntities(eventContext, args),
+                Reducer.AdminAddSpecificBuildingTypeStates args => Reducers.InvokeAdminAddSpecificBuildingTypeStates(eventContext, args),
                 Reducer.AdminAlpha3CompleteOnboarding args => Reducers.InvokeAdminAlpha3CompleteOnboarding(eventContext, args),
                 Reducer.AdminAlpha3ResetOnboardingToFifthTempleQuest args => Reducers.InvokeAdminAlpha3ResetOnboardingToFifthTempleQuest(eventContext, args),
                 Reducer.AdminAlpha3ResetOnboardingToFirstExpandQuest args => Reducers.InvokeAdminAlpha3ResetOnboardingToFirstExpandQuest(eventContext, args),
@@ -1428,6 +1441,7 @@ namespace BitCraftRegion.Types
                 Reducer.AdminFindItemsInTrades args => Reducers.InvokeAdminFindItemsInTrades(eventContext, args),
                 Reducer.AdminGrantCollectibles args => Reducers.InvokeAdminGrantCollectibles(eventContext, args),
                 Reducer.AdminModifyChatMessage args => Reducers.InvokeAdminModifyChatMessage(eventContext, args),
+                Reducer.AdminPatchHousingCosts args => Reducers.InvokeAdminPatchHousingCosts(eventContext, args),
                 Reducer.AdminRenameBuilding args => Reducers.InvokeAdminRenameBuilding(eventContext, args),
                 Reducer.AdminRenameBuildingCoord args => Reducers.InvokeAdminRenameBuildingCoord(eventContext, args),
                 Reducer.AdminRenameBuildingEntity args => Reducers.InvokeAdminRenameBuildingEntity(eventContext, args),
@@ -1490,6 +1504,8 @@ namespace BitCraftRegion.Types
                 Reducer.CheatDeleteItem args => Reducers.InvokeCheatDeleteItem(eventContext, args),
                 Reducer.CheatDeployableStore args => Reducers.InvokeCheatDeployableStore(eventContext, args),
                 Reducer.CheatDiscoverMap args => Reducers.InvokeCheatDiscoverMap(eventContext, args),
+                Reducer.CheatDropItemOnEntity args => Reducers.InvokeCheatDropItemOnEntity(eventContext, args),
+                Reducer.CheatDropItemOnTile args => Reducers.InvokeCheatDropItemOnTile(eventContext, args),
                 Reducer.CheatExperienceGrant args => Reducers.InvokeCheatExperienceGrant(eventContext, args),
                 Reducer.CheatGrantKnowledge args => Reducers.InvokeCheatGrantKnowledge(eventContext, args),
                 Reducer.CheatGrantTeleportEnergy args => Reducers.InvokeCheatGrantTeleportEnergy(eventContext, args),
@@ -1511,6 +1527,7 @@ namespace BitCraftRegion.Types
                 Reducer.CheatTeleportFloat args => Reducers.InvokeCheatTeleportFloat(eventContext, args),
                 Reducer.CheatTerraform args => Reducers.InvokeCheatTerraform(eventContext, args),
                 Reducer.CheatToggleActiveCollectible args => Reducers.InvokeCheatToggleActiveCollectible(eventContext, args),
+                Reducer.CheatUndiscoverMap args => Reducers.InvokeCheatUndiscoverMap(eventContext, args),
                 Reducer.CheatWarp args => Reducers.InvokeCheatWarp(eventContext, args),
                 Reducer.ClaimAddMember args => Reducers.InvokeClaimAddMember(eventContext, args),
                 Reducer.ClaimAddRecruitment args => Reducers.InvokeClaimAddRecruitment(eventContext, args),
@@ -2006,6 +2023,7 @@ namespace BitCraftRegion.Types
                 Reducer.TradeSwapPockets args => Reducers.InvokeTradeSwapPockets(eventContext, args),
                 Reducer.TransferPlayerDelayed args => Reducers.InvokeTransferPlayerDelayed(eventContext, args),
                 Reducer.TravelerTaskAgentLoop args => Reducers.InvokeTravelerTaskAgentLoop(eventContext, args),
+                Reducer.UpdateMovingCost args => Reducers.InvokeUpdateMovingCost(eventContext, args),
                 Reducer.UpdateScheduledTimersFromStaticData args => Reducers.InvokeUpdateScheduledTimersFromStaticData(eventContext, args),
                 _ => throw new ArgumentOutOfRangeException("Reducer", $"Unknown reducer {reducer}")
             };
