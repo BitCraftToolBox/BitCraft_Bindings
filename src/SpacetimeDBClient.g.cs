@@ -33,6 +33,7 @@ namespace BitCraftGlobal.Types
             AddTable(AttachedHerdsState = new(conn));
             AddTable(AttackOutcomeState = new(conn));
             AddTable(AutoClaimState = new(conn));
+            AddTable(BankState = new(conn));
             AddTable(BarterStallState = new(conn));
             AddTable(BiomeDesc = new(conn));
             AddTable(BlockedIdentity = new(conn));
@@ -74,6 +75,7 @@ namespace BitCraftGlobal.Types
             AddTable(Config = new(conn));
             AddTable(ConstructionRecipeDesc = new(conn));
             AddTable(ContributionLootDesc = new(conn));
+            AddTable(ContributionLootDescV2 = new(conn));
             AddTable(ContributionState = new(conn));
             AddTable(CraftingRecipeDesc = new(conn));
             AddTable(DeconstructionRecipeDesc = new(conn));
@@ -184,6 +186,7 @@ namespace BitCraftGlobal.Types
             AddTable(LootRarityDesc = new(conn));
             AddTable(LootTableDesc = new(conn));
             AddTable(LostItemsState = new(conn));
+            AddTable(MarketplaceState = new(conn));
             AddTable(MobileEntityState = new(conn));
             AddTable(ModerationActionLogEntry = new(conn));
             AddTable(MountingState = new(conn));
@@ -206,6 +209,7 @@ namespace BitCraftGlobal.Types
             AddTable(PlayerActionState = new(conn));
             AddTable(PlayerDeveloperNotificationState = new(conn));
             AddTable(PlayerHousingDesc = new(conn));
+            AddTable(PlayerHousingMovingCostState = new(conn));
             AddTable(PlayerHousingState = new(conn));
             AddTable(PlayerLowercaseUsernameState = new(conn));
             AddTable(PlayerNoteState = new(conn));
@@ -247,6 +251,7 @@ namespace BitCraftGlobal.Types
             AddTable(SkillDesc = new(conn));
             AddTable(StagedStaticData = new(conn));
             AddTable(StagedStaticDataV2 = new(conn));
+            AddTable(StagedStaticDataV3 = new(conn));
             AddTable(StaminaState = new(conn));
             AddTable(StarvingPlayerState = new(conn));
             AddTable(StorageLogState = new(conn));
@@ -271,6 +276,7 @@ namespace BitCraftGlobal.Types
             AddTable(UnclaimedCollectiblesState = new(conn));
             AddTable(UnclaimedShardsState = new(conn));
             AddTable(UserAuthenticationState = new(conn));
+            AddTable(UserCreationTimestampState = new(conn));
             AddTable(UserModerationState = new(conn));
             AddTable(UserPreviousRegionState = new(conn));
             AddTable(UserRegionState = new(conn));
@@ -278,6 +284,7 @@ namespace BitCraftGlobal.Types
             AddTable(VaultState = new(conn));
             AddTable(VisibilityState = new(conn));
             AddTable(WallDesc = new(conn));
+            AddTable(WaystoneState = new(conn));
             AddTable(WeaponDesc = new(conn));
             AddTable(WeaponTypeDesc = new(conn));
             AddTable(WorldRegionNameState = new(conn));
