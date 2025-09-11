@@ -31,34 +31,40 @@ import {
   type ReducerEventContextInterface,
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
-
-export type PlayerHousingChangeEntrance = {
-  buildingEntityId: bigint,
-  expectedTimeCost: number,
+export type ContributionLootDescV2 = {
+  id: number,
+  enemyTypeId: number,
+  itemListId: number,
+  minimumContribution: number,
+  weighted: boolean,
 };
 
 /**
  * A namespace for generated helper functions.
  */
-export namespace PlayerHousingChangeEntrance {
+export namespace ContributionLootDescV2 {
   /**
   * A function which returns this type represented as an AlgebraicType.
   * This function is derived from the AlgebraicType used to generate this type.
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("buildingEntityId", AlgebraicType.createU64Type()),
-      new ProductTypeElement("expectedTimeCost", AlgebraicType.createI32Type()),
+      new ProductTypeElement("id", AlgebraicType.createI32Type()),
+      new ProductTypeElement("enemyTypeId", AlgebraicType.createI32Type()),
+      new ProductTypeElement("itemListId", AlgebraicType.createI32Type()),
+      new ProductTypeElement("minimumContribution", AlgebraicType.createI32Type()),
+      new ProductTypeElement("weighted", AlgebraicType.createBoolType()),
     ]);
   }
 
-  export function serialize(writer: BinaryWriter, value: PlayerHousingChangeEntrance): void {
-    PlayerHousingChangeEntrance.getTypeScriptAlgebraicType().serialize(writer, value);
+  export function serialize(writer: BinaryWriter, value: ContributionLootDescV2): void {
+    ContributionLootDescV2.getTypeScriptAlgebraicType().serialize(writer, value);
   }
 
-  export function deserialize(reader: BinaryReader): PlayerHousingChangeEntrance {
-    return PlayerHousingChangeEntrance.getTypeScriptAlgebraicType().deserialize(reader);
+  export function deserialize(reader: BinaryReader): ContributionLootDescV2 {
+    return ContributionLootDescV2.getTypeScriptAlgebraicType().deserialize(reader);
   }
 
 }
+
 

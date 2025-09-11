@@ -32,32 +32,32 @@ import {
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
 
-export type PlayerHousingChangeEntrance = {
-  buildingEntityId: bigint,
-  expectedTimeCost: number,
+export type UpdateMovingCost = {
+  playerHousingEntityId: bigint,
+  movingCost: number,
 };
 
 /**
  * A namespace for generated helper functions.
  */
-export namespace PlayerHousingChangeEntrance {
+export namespace UpdateMovingCost {
   /**
   * A function which returns this type represented as an AlgebraicType.
   * This function is derived from the AlgebraicType used to generate this type.
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("buildingEntityId", AlgebraicType.createU64Type()),
-      new ProductTypeElement("expectedTimeCost", AlgebraicType.createI32Type()),
+      new ProductTypeElement("playerHousingEntityId", AlgebraicType.createU64Type()),
+      new ProductTypeElement("movingCost", AlgebraicType.createI32Type()),
     ]);
   }
 
-  export function serialize(writer: BinaryWriter, value: PlayerHousingChangeEntrance): void {
-    PlayerHousingChangeEntrance.getTypeScriptAlgebraicType().serialize(writer, value);
+  export function serialize(writer: BinaryWriter, value: UpdateMovingCost): void {
+    UpdateMovingCost.getTypeScriptAlgebraicType().serialize(writer, value);
   }
 
-  export function deserialize(reader: BinaryReader): PlayerHousingChangeEntrance {
-    return PlayerHousingChangeEntrance.getTypeScriptAlgebraicType().deserialize(reader);
+  export function deserialize(reader: BinaryReader): UpdateMovingCost {
+    return UpdateMovingCost.getTypeScriptAlgebraicType().deserialize(reader);
   }
 
 }

@@ -37,6 +37,8 @@ import { AchievementClaim } from "./achievement_claim_reducer.ts";
 export { AchievementClaim };
 import { AcquireKnowledgeFromEntities } from "./acquire_knowledge_from_entities_reducer.ts";
 export { AcquireKnowledgeFromEntities };
+import { AdminAddSpecificBuildingTypeStates } from "./admin_add_specific_building_type_states_reducer.ts";
+export { AdminAddSpecificBuildingTypeStates };
 import { AdminAlpha3CompleteOnboarding } from "./admin_alpha_3_complete_onboarding_reducer.ts";
 export { AdminAlpha3CompleteOnboarding };
 import { AdminAlpha3ResetOnboardingToFifthTempleQuest } from "./admin_alpha_3_reset_onboarding_to_fifth_temple_quest_reducer.ts";
@@ -99,6 +101,8 @@ import { AdminGrantCollectibles } from "./admin_grant_collectibles_reducer.ts";
 export { AdminGrantCollectibles };
 import { AdminModifyChatMessage } from "./admin_modify_chat_message_reducer.ts";
 export { AdminModifyChatMessage };
+import { AdminPatchHousingCosts } from "./admin_patch_housing_costs_reducer.ts";
+export { AdminPatchHousingCosts };
 import { AdminRenameBuilding } from "./admin_rename_building_reducer.ts";
 export { AdminRenameBuilding };
 import { AdminRenameBuildingCoord } from "./admin_rename_building_coord_reducer.ts";
@@ -223,6 +227,10 @@ import { CheatDeployableStore } from "./cheat_deployable_store_reducer.ts";
 export { CheatDeployableStore };
 import { CheatDiscoverMap } from "./cheat_discover_map_reducer.ts";
 export { CheatDiscoverMap };
+import { CheatDropItemOnEntity } from "./cheat_drop_item_on_entity_reducer.ts";
+export { CheatDropItemOnEntity };
+import { CheatDropItemOnTile } from "./cheat_drop_item_on_tile_reducer.ts";
+export { CheatDropItemOnTile };
 import { CheatExperienceGrant } from "./cheat_experience_grant_reducer.ts";
 export { CheatExperienceGrant };
 import { CheatGrantKnowledge } from "./cheat_grant_knowledge_reducer.ts";
@@ -265,6 +273,8 @@ import { CheatTerraform } from "./cheat_terraform_reducer.ts";
 export { CheatTerraform };
 import { CheatToggleActiveCollectible } from "./cheat_toggle_active_collectible_reducer.ts";
 export { CheatToggleActiveCollectible };
+import { CheatUndiscoverMap } from "./cheat_undiscover_map_reducer.ts";
+export { CheatUndiscoverMap };
 import { CheatWarp } from "./cheat_warp_reducer.ts";
 export { CheatWarp };
 import { ClaimAddMember } from "./claim_add_member_reducer.ts";
@@ -1255,6 +1265,8 @@ import { TransferPlayerDelayed } from "./transfer_player_delayed_reducer.ts";
 export { TransferPlayerDelayed };
 import { TravelerTaskAgentLoop } from "./traveler_task_agent_loop_reducer.ts";
 export { TravelerTaskAgentLoop };
+import { UpdateMovingCost } from "./update_moving_cost_reducer.ts";
+export { UpdateMovingCost };
 import { UpdateScheduledTimersFromStaticData } from "./update_scheduled_timers_from_static_data_reducer.ts";
 export { UpdateScheduledTimersFromStaticData };
 
@@ -1291,6 +1303,8 @@ import { AutoClaimStateTableHandle } from "./auto_claim_state_table.ts";
 export { AutoClaimStateTableHandle };
 import { AutoLogoutLoopTimerTableHandle } from "./auto_logout_loop_timer_table.ts";
 export { AutoLogoutLoopTimerTableHandle };
+import { BankStateTableHandle } from "./bank_state_table.ts";
+export { BankStateTableHandle };
 import { BarterStallStateTableHandle } from "./barter_stall_state_table.ts";
 export { BarterStallStateTableHandle };
 import { BiomeDescTableHandle } from "./biome_desc_table.ts";
@@ -1381,6 +1395,8 @@ import { ConstructionRecipeDescTableHandle } from "./construction_recipe_desc_ta
 export { ConstructionRecipeDescTableHandle };
 import { ContributionLootDescTableHandle } from "./contribution_loot_desc_table.ts";
 export { ContributionLootDescTableHandle };
+import { ContributionLootDescV2TableHandle } from "./contribution_loot_desc_v_2_table.ts";
+export { ContributionLootDescV2TableHandle };
 import { ContributionStateTableHandle } from "./contribution_state_table.ts";
 export { ContributionStateTableHandle };
 import { CraftingRecipeDescTableHandle } from "./crafting_recipe_desc_table.ts";
@@ -1609,6 +1625,8 @@ import { LootTableDescTableHandle } from "./loot_table_desc_table.ts";
 export { LootTableDescTableHandle };
 import { LostItemsStateTableHandle } from "./lost_items_state_table.ts";
 export { LostItemsStateTableHandle };
+import { MarketplaceStateTableHandle } from "./marketplace_state_table.ts";
+export { MarketplaceStateTableHandle };
 import { MobileEntityStateTableHandle } from "./mobile_entity_state_table.ts";
 export { MobileEntityStateTableHandle };
 import { ModerationActionLogEntryTableHandle } from "./moderation_action_log_entry_table.ts";
@@ -1663,6 +1681,8 @@ import { PlayerHousingEvictPlayerTimerTableHandle } from "./player_housing_evict
 export { PlayerHousingEvictPlayerTimerTableHandle };
 import { PlayerHousingIncomeLoopTimerTableHandle } from "./player_housing_income_loop_timer_table.ts";
 export { PlayerHousingIncomeLoopTimerTableHandle };
+import { PlayerHousingMovingCostStateTableHandle } from "./player_housing_moving_cost_state_table.ts";
+export { PlayerHousingMovingCostStateTableHandle };
 import { PlayerHousingStateTableHandle } from "./player_housing_state_table.ts";
 export { PlayerHousingStateTableHandle };
 import { PlayerLowercaseUsernameStateTableHandle } from "./player_lowercase_username_state_table.ts";
@@ -1771,6 +1791,8 @@ import { StagedStaticDataTableHandle } from "./staged_static_data_table.ts";
 export { StagedStaticDataTableHandle };
 import { StagedStaticDataV2TableHandle } from "./staged_static_data_v_2_table.ts";
 export { StagedStaticDataV2TableHandle };
+import { StagedStaticDataV3TableHandle } from "./staged_static_data_v_3_table.ts";
+export { StagedStaticDataV3TableHandle };
 import { StaminaStateTableHandle } from "./stamina_state_table.ts";
 export { StaminaStateTableHandle };
 import { StarvingLoopTimerTableHandle } from "./starving_loop_timer_table.ts";
@@ -1843,6 +1865,8 @@ import { VaultStateTableHandle } from "./vault_state_table.ts";
 export { VaultStateTableHandle };
 import { WallDescTableHandle } from "./wall_desc_table.ts";
 export { WallDescTableHandle };
+import { WaystoneStateTableHandle } from "./waystone_state_table.ts";
+export { WaystoneStateTableHandle };
 import { WeaponDescTableHandle } from "./weapon_desc_table.ts";
 export { WeaponDescTableHandle };
 import { WeaponTypeDescTableHandle } from "./weapon_type_desc_table.ts";
@@ -1903,6 +1927,8 @@ import { AutoClaimState } from "./auto_claim_state_type.ts";
 export { AutoClaimState };
 import { AutoLogoutLoopTimer } from "./auto_logout_loop_timer_type.ts";
 export { AutoLogoutLoopTimer };
+import { BankState } from "./bank_state_type.ts";
+export { BankState };
 import { BarterStallSetMarketModeEnabledRequest } from "./barter_stall_set_market_mode_enabled_request_type.ts";
 export { BarterStallSetMarketModeEnabledRequest };
 import { BarterStallState } from "./barter_stall_state_type.ts";
@@ -2075,6 +2101,8 @@ import { ConstructionRecipeDesc } from "./construction_recipe_desc_type.ts";
 export { ConstructionRecipeDesc };
 import { ContributionLootDesc } from "./contribution_loot_desc_type.ts";
 export { ContributionLootDesc };
+import { ContributionLootDescV2 } from "./contribution_loot_desc_v_2_type.ts";
+export { ContributionLootDescV2 };
 import { ContributionState } from "./contribution_state_type.ts";
 export { ContributionState };
 import { CraftingRecipeDesc } from "./crafting_recipe_desc_type.ts";
@@ -2441,6 +2469,8 @@ import { LootTableDesc } from "./loot_table_desc_type.ts";
 export { LootTableDesc };
 import { LostItemsState } from "./lost_items_state_type.ts";
 export { LostItemsState };
+import { MarketplaceState } from "./marketplace_state_type.ts";
+export { MarketplaceState };
 import { MessageContents } from "./message_contents_type.ts";
 export { MessageContents };
 import { MobileEntityState } from "./mobile_entity_state_type.ts";
@@ -2647,6 +2677,8 @@ import { PlayerHousingEvictPlayerTimer } from "./player_housing_evict_player_tim
 export { PlayerHousingEvictPlayerTimer };
 import { PlayerHousingIncomeLoopTimer } from "./player_housing_income_loop_timer_type.ts";
 export { PlayerHousingIncomeLoopTimer };
+import { PlayerHousingMovingCostState } from "./player_housing_moving_cost_state_type.ts";
+export { PlayerHousingMovingCostState };
 import { PlayerHousingRequestAccessRequest } from "./player_housing_request_access_request_type.ts";
 export { PlayerHousingRequestAccessRequest };
 import { PlayerHousingState } from "./player_housing_state_type.ts";
@@ -2915,6 +2947,8 @@ import { StagedStaticData } from "./staged_static_data_type.ts";
 export { StagedStaticData };
 import { StagedStaticDataV2 } from "./staged_static_data_v_2_type.ts";
 export { StagedStaticDataV2 };
+import { StagedStaticDataV3 } from "./staged_static_data_v_3_type.ts";
+export { StagedStaticDataV3 };
 import { StaminaState } from "./stamina_state_type.ts";
 export { StaminaState };
 import { StarvingLoopTimer } from "./starving_loop_timer_type.ts";
@@ -2925,6 +2959,8 @@ import { StaticDataUpload } from "./static_data_upload_type.ts";
 export { StaticDataUpload };
 import { StaticDataUploadV2 } from "./static_data_upload_v_2_type.ts";
 export { StaticDataUploadV2 };
+import { StaticDataUploadV3 } from "./static_data_upload_v_3_type.ts";
+export { StaticDataUploadV3 };
 import { StorageLogCleanupLoopTimer } from "./storage_log_cleanup_loop_timer_type.ts";
 export { StorageLogCleanupLoopTimer };
 import { SurfaceType } from "./surface_type_type.ts";
@@ -3025,6 +3061,8 @@ import { VfxAttachmentPoint } from "./vfx_attachment_point_type.ts";
 export { VfxAttachmentPoint };
 import { WallDesc } from "./wall_desc_type.ts";
 export { WallDesc };
+import { WaystoneState } from "./waystone_state_type.ts";
+export { WaystoneState };
 import { WeaponDesc } from "./weapon_desc_type.ts";
 export { WeaponDesc };
 import { WeaponTypeDesc } from "./weapon_type_desc_type.ts";
@@ -3228,6 +3266,15 @@ export const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "scheduledId",
         colType: AutoLogoutLoopTimer.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    bank_state: {
+      tableName: "bank_state",
+      rowType: BankState.getTypeScriptAlgebraicType(),
+      primaryKey: "buildingEntityId",
+      primaryKeyInfo: {
+        colName: "buildingEntityId",
+        colType: BankState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     barter_stall_state: {
@@ -3633,6 +3680,15 @@ export const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "id",
         colType: ContributionLootDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    contribution_loot_desc_v2: {
+      tableName: "contribution_loot_desc_v2",
+      rowType: ContributionLootDescV2.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: ContributionLootDescV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     contribution_state: {
@@ -4656,6 +4712,15 @@ export const REMOTE_MODULE = {
         colType: LostItemsState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    marketplace_state: {
+      tableName: "marketplace_state",
+      rowType: MarketplaceState.getTypeScriptAlgebraicType(),
+      primaryKey: "buildingEntityId",
+      primaryKeyInfo: {
+        colName: "buildingEntityId",
+        colType: MarketplaceState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     mobile_entity_state: {
       tableName: "mobile_entity_state",
       rowType: MobileEntityState.getTypeScriptAlgebraicType(),
@@ -4897,6 +4962,15 @@ export const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "scheduledId",
         colType: PlayerHousingIncomeLoopTimer.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    player_housing_moving_cost_state: {
+      tableName: "player_housing_moving_cost_state",
+      rowType: PlayerHousingMovingCostState.getTypeScriptAlgebraicType(),
+      primaryKey: "entityId",
+      primaryKeyInfo: {
+        colName: "entityId",
+        colType: PlayerHousingMovingCostState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     player_housing_state: {
@@ -5385,6 +5459,15 @@ export const REMOTE_MODULE = {
         colType: StagedStaticDataV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    staged_static_data_v3: {
+      tableName: "staged_static_data_v3",
+      rowType: StagedStaticDataV3.getTypeScriptAlgebraicType(),
+      primaryKey: "version",
+      primaryKeyInfo: {
+        colName: "version",
+        colType: StagedStaticDataV3.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     stamina_state: {
       tableName: "stamina_state",
       rowType: StaminaState.getTypeScriptAlgebraicType(),
@@ -5709,6 +5792,15 @@ export const REMOTE_MODULE = {
         colType: WallDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    waystone_state: {
+      tableName: "waystone_state",
+      rowType: WaystoneState.getTypeScriptAlgebraicType(),
+      primaryKey: "buildingEntityId",
+      primaryKeyInfo: {
+        colName: "buildingEntityId",
+        colType: WaystoneState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     weapon_desc: {
       tableName: "weapon_desc",
       rowType: WeaponDesc.getTypeScriptAlgebraicType(),
@@ -5754,6 +5846,10 @@ export const REMOTE_MODULE = {
     acquire_knowledge_from_entities: {
       reducerName: "acquire_knowledge_from_entities",
       argsType: AcquireKnowledgeFromEntities.getTypeScriptAlgebraicType(),
+    },
+    admin_add_specific_building_type_states: {
+      reducerName: "admin_add_specific_building_type_states",
+      argsType: AdminAddSpecificBuildingTypeStates.getTypeScriptAlgebraicType(),
     },
     admin_alpha3_complete_onboarding: {
       reducerName: "admin_alpha3_complete_onboarding",
@@ -5878,6 +5974,10 @@ export const REMOTE_MODULE = {
     admin_modify_chat_message: {
       reducerName: "admin_modify_chat_message",
       argsType: AdminModifyChatMessage.getTypeScriptAlgebraicType(),
+    },
+    admin_patch_housing_costs: {
+      reducerName: "admin_patch_housing_costs",
+      argsType: AdminPatchHousingCosts.getTypeScriptAlgebraicType(),
     },
     admin_rename_building: {
       reducerName: "admin_rename_building",
@@ -6127,6 +6227,14 @@ export const REMOTE_MODULE = {
       reducerName: "cheat_discover_map",
       argsType: CheatDiscoverMap.getTypeScriptAlgebraicType(),
     },
+    cheat_drop_item_on_entity: {
+      reducerName: "cheat_drop_item_on_entity",
+      argsType: CheatDropItemOnEntity.getTypeScriptAlgebraicType(),
+    },
+    cheat_drop_item_on_tile: {
+      reducerName: "cheat_drop_item_on_tile",
+      argsType: CheatDropItemOnTile.getTypeScriptAlgebraicType(),
+    },
     cheat_experience_grant: {
       reducerName: "cheat_experience_grant",
       argsType: CheatExperienceGrant.getTypeScriptAlgebraicType(),
@@ -6210,6 +6318,10 @@ export const REMOTE_MODULE = {
     cheat_toggle_active_collectible: {
       reducerName: "cheat_toggle_active_collectible",
       argsType: CheatToggleActiveCollectible.getTypeScriptAlgebraicType(),
+    },
+    cheat_undiscover_map: {
+      reducerName: "cheat_undiscover_map",
+      argsType: CheatUndiscoverMap.getTypeScriptAlgebraicType(),
     },
     cheat_warp: {
       reducerName: "cheat_warp",
@@ -8191,13 +8303,17 @@ export const REMOTE_MODULE = {
       reducerName: "traveler_task_agent_loop",
       argsType: TravelerTaskAgentLoop.getTypeScriptAlgebraicType(),
     },
+    update_moving_cost: {
+      reducerName: "update_moving_cost",
+      argsType: UpdateMovingCost.getTypeScriptAlgebraicType(),
+    },
     update_scheduled_timers_from_static_data: {
       reducerName: "update_scheduled_timers_from_static_data",
       argsType: UpdateScheduledTimersFromStaticData.getTypeScriptAlgebraicType(),
     },
   },
   versionInfo: {
-    cliVersion: "1.3.0",
+    cliVersion: "1.3.2",
   },
   // Constructors which are used by the DbConnectionImpl to
   // extract type information from the generated RemoteModule.
@@ -8227,6 +8343,7 @@ export const REMOTE_MODULE = {
 export type Reducer = never
 | { name: "AchievementClaim", args: AchievementClaim }
 | { name: "AcquireKnowledgeFromEntities", args: AcquireKnowledgeFromEntities }
+| { name: "AdminAddSpecificBuildingTypeStates", args: AdminAddSpecificBuildingTypeStates }
 | { name: "AdminAlpha3CompleteOnboarding", args: AdminAlpha3CompleteOnboarding }
 | { name: "AdminAlpha3ResetOnboardingToFifthTempleQuest", args: AdminAlpha3ResetOnboardingToFifthTempleQuest }
 | { name: "AdminAlpha3ResetOnboardingToFirstExpandQuest", args: AdminAlpha3ResetOnboardingToFirstExpandQuest }
@@ -8258,6 +8375,7 @@ export type Reducer = never
 | { name: "AdminFindItemsInTrades", args: AdminFindItemsInTrades }
 | { name: "AdminGrantCollectibles", args: AdminGrantCollectibles }
 | { name: "AdminModifyChatMessage", args: AdminModifyChatMessage }
+| { name: "AdminPatchHousingCosts", args: AdminPatchHousingCosts }
 | { name: "AdminRenameBuilding", args: AdminRenameBuilding }
 | { name: "AdminRenameBuildingCoord", args: AdminRenameBuildingCoord }
 | { name: "AdminRenameBuildingEntity", args: AdminRenameBuildingEntity }
@@ -8320,6 +8438,8 @@ export type Reducer = never
 | { name: "CheatDeleteItem", args: CheatDeleteItem }
 | { name: "CheatDeployableStore", args: CheatDeployableStore }
 | { name: "CheatDiscoverMap", args: CheatDiscoverMap }
+| { name: "CheatDropItemOnEntity", args: CheatDropItemOnEntity }
+| { name: "CheatDropItemOnTile", args: CheatDropItemOnTile }
 | { name: "CheatExperienceGrant", args: CheatExperienceGrant }
 | { name: "CheatGrantKnowledge", args: CheatGrantKnowledge }
 | { name: "CheatGrantTeleportEnergy", args: CheatGrantTeleportEnergy }
@@ -8341,6 +8461,7 @@ export type Reducer = never
 | { name: "CheatTeleportFloat", args: CheatTeleportFloat }
 | { name: "CheatTerraform", args: CheatTerraform }
 | { name: "CheatToggleActiveCollectible", args: CheatToggleActiveCollectible }
+| { name: "CheatUndiscoverMap", args: CheatUndiscoverMap }
 | { name: "CheatWarp", args: CheatWarp }
 | { name: "ClaimAddMember", args: ClaimAddMember }
 | { name: "ClaimAddRecruitment", args: ClaimAddRecruitment }
@@ -8836,6 +8957,7 @@ export type Reducer = never
 | { name: "TradeSwapPockets", args: TradeSwapPockets }
 | { name: "TransferPlayerDelayed", args: TransferPlayerDelayed }
 | { name: "TravelerTaskAgentLoop", args: TravelerTaskAgentLoop }
+| { name: "UpdateMovingCost", args: UpdateMovingCost }
 | { name: "UpdateScheduledTimersFromStaticData", args: UpdateScheduledTimersFromStaticData }
 ;
 
@@ -8872,6 +8994,18 @@ export class RemoteReducers {
 
   removeOnAcquireKnowledgeFromEntities(callback: (ctx: ReducerEventContext, request: PlayerAcquireKnowledgeFromEntitiesRequest) => void) {
     this.connection.offReducer("acquire_knowledge_from_entities", callback);
+  }
+
+  adminAddSpecificBuildingTypeStates() {
+    this.connection.callReducer("admin_add_specific_building_type_states", new Uint8Array(0), this.setCallReducerFlags.adminAddSpecificBuildingTypeStatesFlags);
+  }
+
+  onAdminAddSpecificBuildingTypeStates(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.onReducer("admin_add_specific_building_type_states", callback);
+  }
+
+  removeOnAdminAddSpecificBuildingTypeStates(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.offReducer("admin_add_specific_building_type_states", callback);
   }
 
   adminAlpha3CompleteOnboarding(entityId: bigint) {
@@ -9348,6 +9482,18 @@ export class RemoteReducers {
 
   removeOnAdminModifyChatMessage(callback: (ctx: ReducerEventContext, entityId: bigint, newMessageText: string) => void) {
     this.connection.offReducer("admin_modify_chat_message", callback);
+  }
+
+  adminPatchHousingCosts() {
+    this.connection.callReducer("admin_patch_housing_costs", new Uint8Array(0), this.setCallReducerFlags.adminPatchHousingCostsFlags);
+  }
+
+  onAdminPatchHousingCosts(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.onReducer("admin_patch_housing_costs", callback);
+  }
+
+  removeOnAdminPatchHousingCosts(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.offReducer("admin_patch_housing_costs", callback);
   }
 
   adminRenameBuilding(buildingName: string, newName: string) {
@@ -10314,6 +10460,38 @@ export class RemoteReducers {
     this.connection.offReducer("cheat_discover_map", callback);
   }
 
+  cheatDropItemOnEntity(entityId: bigint, itemId: number, quantity: number, isCargo: boolean, ownerEntityId: bigint) {
+    const __args = { entityId, itemId, quantity, isCargo, ownerEntityId };
+    let __writer = new BinaryWriter(1024);
+    CheatDropItemOnEntity.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("cheat_drop_item_on_entity", __argsBuffer, this.setCallReducerFlags.cheatDropItemOnEntityFlags);
+  }
+
+  onCheatDropItemOnEntity(callback: (ctx: ReducerEventContext, entityId: bigint, itemId: number, quantity: number, isCargo: boolean, ownerEntityId: bigint) => void) {
+    this.connection.onReducer("cheat_drop_item_on_entity", callback);
+  }
+
+  removeOnCheatDropItemOnEntity(callback: (ctx: ReducerEventContext, entityId: bigint, itemId: number, quantity: number, isCargo: boolean, ownerEntityId: bigint) => void) {
+    this.connection.offReducer("cheat_drop_item_on_entity", callback);
+  }
+
+  cheatDropItemOnTile(coord: SmallHexTileMessage, itemId: number, quantity: number, isCargo: boolean, ownerEntityId: bigint) {
+    const __args = { coord, itemId, quantity, isCargo, ownerEntityId };
+    let __writer = new BinaryWriter(1024);
+    CheatDropItemOnTile.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("cheat_drop_item_on_tile", __argsBuffer, this.setCallReducerFlags.cheatDropItemOnTileFlags);
+  }
+
+  onCheatDropItemOnTile(callback: (ctx: ReducerEventContext, coord: SmallHexTileMessage, itemId: number, quantity: number, isCargo: boolean, ownerEntityId: bigint) => void) {
+    this.connection.onReducer("cheat_drop_item_on_tile", callback);
+  }
+
+  removeOnCheatDropItemOnTile(callback: (ctx: ReducerEventContext, coord: SmallHexTileMessage, itemId: number, quantity: number, isCargo: boolean, ownerEntityId: bigint) => void) {
+    this.connection.offReducer("cheat_drop_item_on_tile", callback);
+  }
+
   cheatExperienceGrant(request: CheatExperienceGrantRequest) {
     const __args = { request };
     let __writer = new BinaryWriter(1024);
@@ -10648,6 +10826,22 @@ export class RemoteReducers {
 
   removeOnCheatToggleActiveCollectible(callback: (ctx: ReducerEventContext, request: CheatToggleActiveCollectibleRequest) => void) {
     this.connection.offReducer("cheat_toggle_active_collectible", callback);
+  }
+
+  cheatUndiscoverMap(playerEntityId: bigint) {
+    const __args = { playerEntityId };
+    let __writer = new BinaryWriter(1024);
+    CheatUndiscoverMap.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("cheat_undiscover_map", __argsBuffer, this.setCallReducerFlags.cheatUndiscoverMapFlags);
+  }
+
+  onCheatUndiscoverMap(callback: (ctx: ReducerEventContext, playerEntityId: bigint) => void) {
+    this.connection.onReducer("cheat_undiscover_map", callback);
+  }
+
+  removeOnCheatUndiscoverMap(callback: (ctx: ReducerEventContext, playerEntityId: bigint) => void) {
+    this.connection.offReducer("cheat_undiscover_map", callback);
   }
 
   cheatWarp(request: CheatWarpRequest) {
@@ -12794,7 +12988,7 @@ export class RemoteReducers {
     this.connection.offReducer("import_construction_recipe_desc", callback);
   }
 
-  importContributionLootDesc(records: ContributionLootDesc[]) {
+  importContributionLootDesc(records: ContributionLootDescV2[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
     ImportContributionLootDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
@@ -12802,11 +12996,11 @@ export class RemoteReducers {
     this.connection.callReducer("import_contribution_loot_desc", __argsBuffer, this.setCallReducerFlags.importContributionLootDescFlags);
   }
 
-  onImportContributionLootDesc(callback: (ctx: ReducerEventContext, records: ContributionLootDesc[]) => void) {
+  onImportContributionLootDesc(callback: (ctx: ReducerEventContext, records: ContributionLootDescV2[]) => void) {
     this.connection.onReducer("import_contribution_loot_desc", callback);
   }
 
-  removeOnImportContributionLootDesc(callback: (ctx: ReducerEventContext, records: ContributionLootDesc[]) => void) {
+  removeOnImportContributionLootDesc(callback: (ctx: ReducerEventContext, records: ContributionLootDescV2[]) => void) {
     this.connection.offReducer("import_contribution_loot_desc", callback);
   }
 
@@ -15726,19 +15920,19 @@ export class RemoteReducers {
     this.connection.offReducer("player_elevator_arrive", callback);
   }
 
-  playerHousingChangeEntrance(buildingEntityId: bigint) {
-    const __args = { buildingEntityId };
+  playerHousingChangeEntrance(buildingEntityId: bigint, expectedTimeCost: number) {
+    const __args = { buildingEntityId, expectedTimeCost };
     let __writer = new BinaryWriter(1024);
     PlayerHousingChangeEntrance.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("player_housing_change_entrance", __argsBuffer, this.setCallReducerFlags.playerHousingChangeEntranceFlags);
   }
 
-  onPlayerHousingChangeEntrance(callback: (ctx: ReducerEventContext, buildingEntityId: bigint) => void) {
+  onPlayerHousingChangeEntrance(callback: (ctx: ReducerEventContext, buildingEntityId: bigint, expectedTimeCost: number) => void) {
     this.connection.onReducer("player_housing_change_entrance", callback);
   }
 
-  removeOnPlayerHousingChangeEntrance(callback: (ctx: ReducerEventContext, buildingEntityId: bigint) => void) {
+  removeOnPlayerHousingChangeEntrance(callback: (ctx: ReducerEventContext, buildingEntityId: bigint, expectedTimeCost: number) => void) {
     this.connection.offReducer("player_housing_change_entrance", callback);
   }
 
@@ -17090,7 +17284,7 @@ export class RemoteReducers {
     this.connection.offReducer("stage_construction_recipe_desc", callback);
   }
 
-  stageContributionLootDesc(records: ContributionLootDesc[]) {
+  stageContributionLootDesc(records: ContributionLootDescV2[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
     StageContributionLootDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
@@ -17098,11 +17292,11 @@ export class RemoteReducers {
     this.connection.callReducer("stage_contribution_loot_desc", __argsBuffer, this.setCallReducerFlags.stageContributionLootDescFlags);
   }
 
-  onStageContributionLootDesc(callback: (ctx: ReducerEventContext, records: ContributionLootDesc[]) => void) {
+  onStageContributionLootDesc(callback: (ctx: ReducerEventContext, records: ContributionLootDescV2[]) => void) {
     this.connection.onReducer("stage_contribution_loot_desc", callback);
   }
 
-  removeOnStageContributionLootDesc(callback: (ctx: ReducerEventContext, records: ContributionLootDesc[]) => void) {
+  removeOnStageContributionLootDesc(callback: (ctx: ReducerEventContext, records: ContributionLootDescV2[]) => void) {
     this.connection.offReducer("stage_contribution_loot_desc", callback);
   }
 
@@ -18474,6 +18668,22 @@ export class RemoteReducers {
     this.connection.offReducer("traveler_task_agent_loop", callback);
   }
 
+  updateMovingCost(playerHousingEntityId: bigint, movingCost: number) {
+    const __args = { playerHousingEntityId, movingCost };
+    let __writer = new BinaryWriter(1024);
+    UpdateMovingCost.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("update_moving_cost", __argsBuffer, this.setCallReducerFlags.updateMovingCostFlags);
+  }
+
+  onUpdateMovingCost(callback: (ctx: ReducerEventContext, playerHousingEntityId: bigint, movingCost: number) => void) {
+    this.connection.onReducer("update_moving_cost", callback);
+  }
+
+  removeOnUpdateMovingCost(callback: (ctx: ReducerEventContext, playerHousingEntityId: bigint, movingCost: number) => void) {
+    this.connection.offReducer("update_moving_cost", callback);
+  }
+
   updateScheduledTimersFromStaticData() {
     this.connection.callReducer("update_scheduled_timers_from_static_data", new Uint8Array(0), this.setCallReducerFlags.updateScheduledTimersFromStaticDataFlags);
   }
@@ -18497,6 +18707,11 @@ export class SetReducerFlags {
   acquireKnowledgeFromEntitiesFlags: CallReducerFlags = 'FullUpdate';
   acquireKnowledgeFromEntities(flags: CallReducerFlags) {
     this.acquireKnowledgeFromEntitiesFlags = flags;
+  }
+
+  adminAddSpecificBuildingTypeStatesFlags: CallReducerFlags = 'FullUpdate';
+  adminAddSpecificBuildingTypeStates(flags: CallReducerFlags) {
+    this.adminAddSpecificBuildingTypeStatesFlags = flags;
   }
 
   adminAlpha3CompleteOnboardingFlags: CallReducerFlags = 'FullUpdate';
@@ -18652,6 +18867,11 @@ export class SetReducerFlags {
   adminModifyChatMessageFlags: CallReducerFlags = 'FullUpdate';
   adminModifyChatMessage(flags: CallReducerFlags) {
     this.adminModifyChatMessageFlags = flags;
+  }
+
+  adminPatchHousingCostsFlags: CallReducerFlags = 'FullUpdate';
+  adminPatchHousingCosts(flags: CallReducerFlags) {
+    this.adminPatchHousingCostsFlags = flags;
   }
 
   adminRenameBuildingFlags: CallReducerFlags = 'FullUpdate';
@@ -18964,6 +19184,16 @@ export class SetReducerFlags {
     this.cheatDiscoverMapFlags = flags;
   }
 
+  cheatDropItemOnEntityFlags: CallReducerFlags = 'FullUpdate';
+  cheatDropItemOnEntity(flags: CallReducerFlags) {
+    this.cheatDropItemOnEntityFlags = flags;
+  }
+
+  cheatDropItemOnTileFlags: CallReducerFlags = 'FullUpdate';
+  cheatDropItemOnTile(flags: CallReducerFlags) {
+    this.cheatDropItemOnTileFlags = flags;
+  }
+
   cheatExperienceGrantFlags: CallReducerFlags = 'FullUpdate';
   cheatExperienceGrant(flags: CallReducerFlags) {
     this.cheatExperienceGrantFlags = flags;
@@ -19067,6 +19297,11 @@ export class SetReducerFlags {
   cheatToggleActiveCollectibleFlags: CallReducerFlags = 'FullUpdate';
   cheatToggleActiveCollectible(flags: CallReducerFlags) {
     this.cheatToggleActiveCollectibleFlags = flags;
+  }
+
+  cheatUndiscoverMapFlags: CallReducerFlags = 'FullUpdate';
+  cheatUndiscoverMap(flags: CallReducerFlags) {
+    this.cheatUndiscoverMapFlags = flags;
   }
 
   cheatWarpFlags: CallReducerFlags = 'FullUpdate';
@@ -21534,6 +21769,11 @@ export class SetReducerFlags {
     this.travelerTaskAgentLoopFlags = flags;
   }
 
+  updateMovingCostFlags: CallReducerFlags = 'FullUpdate';
+  updateMovingCost(flags: CallReducerFlags) {
+    this.updateMovingCostFlags = flags;
+  }
+
   updateScheduledTimersFromStaticDataFlags: CallReducerFlags = 'FullUpdate';
   updateScheduledTimersFromStaticData(flags: CallReducerFlags) {
     this.updateScheduledTimersFromStaticDataFlags = flags;
@@ -21606,6 +21846,10 @@ export class RemoteTables {
 
   get autoLogoutLoopTimer(): AutoLogoutLoopTimerTableHandle {
     return new AutoLogoutLoopTimerTableHandle(this.connection.clientCache.getOrCreateTable<AutoLogoutLoopTimer>(REMOTE_MODULE.tables.auto_logout_loop_timer));
+  }
+
+  get bankState(): BankStateTableHandle {
+    return new BankStateTableHandle(this.connection.clientCache.getOrCreateTable<BankState>(REMOTE_MODULE.tables.bank_state));
   }
 
   get barterStallState(): BarterStallStateTableHandle {
@@ -21786,6 +22030,10 @@ export class RemoteTables {
 
   get contributionLootDesc(): ContributionLootDescTableHandle {
     return new ContributionLootDescTableHandle(this.connection.clientCache.getOrCreateTable<ContributionLootDesc>(REMOTE_MODULE.tables.contribution_loot_desc));
+  }
+
+  get contributionLootDescV2(): ContributionLootDescV2TableHandle {
+    return new ContributionLootDescV2TableHandle(this.connection.clientCache.getOrCreateTable<ContributionLootDescV2>(REMOTE_MODULE.tables.contribution_loot_desc_v2));
   }
 
   get contributionState(): ContributionStateTableHandle {
@@ -22244,6 +22492,10 @@ export class RemoteTables {
     return new LostItemsStateTableHandle(this.connection.clientCache.getOrCreateTable<LostItemsState>(REMOTE_MODULE.tables.lost_items_state));
   }
 
+  get marketplaceState(): MarketplaceStateTableHandle {
+    return new MarketplaceStateTableHandle(this.connection.clientCache.getOrCreateTable<MarketplaceState>(REMOTE_MODULE.tables.marketplace_state));
+  }
+
   get mobileEntityState(): MobileEntityStateTableHandle {
     return new MobileEntityStateTableHandle(this.connection.clientCache.getOrCreateTable<MobileEntityState>(REMOTE_MODULE.tables.mobile_entity_state));
   }
@@ -22350,6 +22602,10 @@ export class RemoteTables {
 
   get playerHousingIncomeLoopTimer(): PlayerHousingIncomeLoopTimerTableHandle {
     return new PlayerHousingIncomeLoopTimerTableHandle(this.connection.clientCache.getOrCreateTable<PlayerHousingIncomeLoopTimer>(REMOTE_MODULE.tables.player_housing_income_loop_timer));
+  }
+
+  get playerHousingMovingCostState(): PlayerHousingMovingCostStateTableHandle {
+    return new PlayerHousingMovingCostStateTableHandle(this.connection.clientCache.getOrCreateTable<PlayerHousingMovingCostState>(REMOTE_MODULE.tables.player_housing_moving_cost_state));
   }
 
   get playerHousingState(): PlayerHousingStateTableHandle {
@@ -22568,6 +22824,10 @@ export class RemoteTables {
     return new StagedStaticDataV2TableHandle(this.connection.clientCache.getOrCreateTable<StagedStaticDataV2>(REMOTE_MODULE.tables.staged_static_data_v2));
   }
 
+  get stagedStaticDataV3(): StagedStaticDataV3TableHandle {
+    return new StagedStaticDataV3TableHandle(this.connection.clientCache.getOrCreateTable<StagedStaticDataV3>(REMOTE_MODULE.tables.staged_static_data_v3));
+  }
+
   get staminaState(): StaminaStateTableHandle {
     return new StaminaStateTableHandle(this.connection.clientCache.getOrCreateTable<StaminaState>(REMOTE_MODULE.tables.stamina_state));
   }
@@ -22710,6 +22970,10 @@ export class RemoteTables {
 
   get wallDesc(): WallDescTableHandle {
     return new WallDescTableHandle(this.connection.clientCache.getOrCreateTable<WallDesc>(REMOTE_MODULE.tables.wall_desc));
+  }
+
+  get waystoneState(): WaystoneStateTableHandle {
+    return new WaystoneStateTableHandle(this.connection.clientCache.getOrCreateTable<WaystoneState>(REMOTE_MODULE.tables.waystone_state));
   }
 
   get weaponDesc(): WeaponDescTableHandle {

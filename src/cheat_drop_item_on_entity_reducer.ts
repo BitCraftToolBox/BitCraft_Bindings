@@ -32,32 +32,38 @@ import {
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
 
-export type PlayerHousingChangeEntrance = {
-  buildingEntityId: bigint,
-  expectedTimeCost: number,
+export type CheatDropItemOnEntity = {
+  entityId: bigint,
+  itemId: number,
+  quantity: number,
+  isCargo: boolean,
+  ownerEntityId: bigint,
 };
 
 /**
  * A namespace for generated helper functions.
  */
-export namespace PlayerHousingChangeEntrance {
+export namespace CheatDropItemOnEntity {
   /**
   * A function which returns this type represented as an AlgebraicType.
   * This function is derived from the AlgebraicType used to generate this type.
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("buildingEntityId", AlgebraicType.createU64Type()),
-      new ProductTypeElement("expectedTimeCost", AlgebraicType.createI32Type()),
+      new ProductTypeElement("entityId", AlgebraicType.createU64Type()),
+      new ProductTypeElement("itemId", AlgebraicType.createI32Type()),
+      new ProductTypeElement("quantity", AlgebraicType.createI32Type()),
+      new ProductTypeElement("isCargo", AlgebraicType.createBoolType()),
+      new ProductTypeElement("ownerEntityId", AlgebraicType.createU64Type()),
     ]);
   }
 
-  export function serialize(writer: BinaryWriter, value: PlayerHousingChangeEntrance): void {
-    PlayerHousingChangeEntrance.getTypeScriptAlgebraicType().serialize(writer, value);
+  export function serialize(writer: BinaryWriter, value: CheatDropItemOnEntity): void {
+    CheatDropItemOnEntity.getTypeScriptAlgebraicType().serialize(writer, value);
   }
 
-  export function deserialize(reader: BinaryReader): PlayerHousingChangeEntrance {
-    return PlayerHousingChangeEntrance.getTypeScriptAlgebraicType().deserialize(reader);
+  export function deserialize(reader: BinaryReader): CheatDropItemOnEntity {
+    return CheatDropItemOnEntity.getTypeScriptAlgebraicType().deserialize(reader);
   }
 
 }

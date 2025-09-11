@@ -32,32 +32,27 @@ import {
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
 
-export type PlayerHousingChangeEntrance = {
-  buildingEntityId: bigint,
-  expectedTimeCost: number,
-};
+export type AdminAddSpecificBuildingTypeStates = {};
 
 /**
  * A namespace for generated helper functions.
  */
-export namespace PlayerHousingChangeEntrance {
+export namespace AdminAddSpecificBuildingTypeStates {
   /**
   * A function which returns this type represented as an AlgebraicType.
   * This function is derived from the AlgebraicType used to generate this type.
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("buildingEntityId", AlgebraicType.createU64Type()),
-      new ProductTypeElement("expectedTimeCost", AlgebraicType.createI32Type()),
     ]);
   }
 
-  export function serialize(writer: BinaryWriter, value: PlayerHousingChangeEntrance): void {
-    PlayerHousingChangeEntrance.getTypeScriptAlgebraicType().serialize(writer, value);
+  export function serialize(writer: BinaryWriter, value: AdminAddSpecificBuildingTypeStates): void {
+    AdminAddSpecificBuildingTypeStates.getTypeScriptAlgebraicType().serialize(writer, value);
   }
 
-  export function deserialize(reader: BinaryReader): PlayerHousingChangeEntrance {
-    return PlayerHousingChangeEntrance.getTypeScriptAlgebraicType().deserialize(reader);
+  export function deserialize(reader: BinaryReader): AdminAddSpecificBuildingTypeStates {
+    return AdminAddSpecificBuildingTypeStates.getTypeScriptAlgebraicType().deserialize(reader);
   }
 
 }

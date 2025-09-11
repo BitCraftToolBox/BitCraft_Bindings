@@ -31,16 +31,18 @@ import {
   type ReducerEventContextInterface,
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
+import { SmallHexTileMessage as __SmallHexTileMessage } from "./small_hex_tile_message_type";
 
-export type PlayerHousingChangeEntrance = {
+export type WaystoneState = {
   buildingEntityId: bigint,
-  expectedTimeCost: number,
+  claimEntityId: bigint,
+  coordinates: __SmallHexTileMessage,
 };
 
 /**
  * A namespace for generated helper functions.
  */
-export namespace PlayerHousingChangeEntrance {
+export namespace WaystoneState {
   /**
   * A function which returns this type represented as an AlgebraicType.
   * This function is derived from the AlgebraicType used to generate this type.
@@ -48,17 +50,19 @@ export namespace PlayerHousingChangeEntrance {
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
       new ProductTypeElement("buildingEntityId", AlgebraicType.createU64Type()),
-      new ProductTypeElement("expectedTimeCost", AlgebraicType.createI32Type()),
+      new ProductTypeElement("claimEntityId", AlgebraicType.createU64Type()),
+      new ProductTypeElement("coordinates", __SmallHexTileMessage.getTypeScriptAlgebraicType()),
     ]);
   }
 
-  export function serialize(writer: BinaryWriter, value: PlayerHousingChangeEntrance): void {
-    PlayerHousingChangeEntrance.getTypeScriptAlgebraicType().serialize(writer, value);
+  export function serialize(writer: BinaryWriter, value: WaystoneState): void {
+    WaystoneState.getTypeScriptAlgebraicType().serialize(writer, value);
   }
 
-  export function deserialize(reader: BinaryReader): PlayerHousingChangeEntrance {
-    return PlayerHousingChangeEntrance.getTypeScriptAlgebraicType().deserialize(reader);
+  export function deserialize(reader: BinaryReader): WaystoneState {
+    return WaystoneState.getTypeScriptAlgebraicType().deserialize(reader);
   }
 
 }
+
 
