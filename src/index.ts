@@ -711,6 +711,8 @@ import { AttackOutcomeStateTableHandle } from "./attack_outcome_state_table.ts";
 export { AttackOutcomeStateTableHandle };
 import { AutoClaimStateTableHandle } from "./auto_claim_state_table.ts";
 export { AutoClaimStateTableHandle };
+import { BankStateTableHandle } from "./bank_state_table.ts";
+export { BankStateTableHandle };
 import { BarterStallStateTableHandle } from "./barter_stall_state_table.ts";
 export { BarterStallStateTableHandle };
 import { BiomeDescTableHandle } from "./biome_desc_table.ts";
@@ -793,6 +795,8 @@ import { ConstructionRecipeDescTableHandle } from "./construction_recipe_desc_ta
 export { ConstructionRecipeDescTableHandle };
 import { ContributionLootDescTableHandle } from "./contribution_loot_desc_table.ts";
 export { ContributionLootDescTableHandle };
+import { ContributionLootDescV2TableHandle } from "./contribution_loot_desc_v_2_table.ts";
+export { ContributionLootDescV2TableHandle };
 import { ContributionStateTableHandle } from "./contribution_state_table.ts";
 export { ContributionStateTableHandle };
 import { CraftingRecipeDescTableHandle } from "./crafting_recipe_desc_table.ts";
@@ -1013,6 +1017,8 @@ import { LootTableDescTableHandle } from "./loot_table_desc_table.ts";
 export { LootTableDescTableHandle };
 import { LostItemsStateTableHandle } from "./lost_items_state_table.ts";
 export { LostItemsStateTableHandle };
+import { MarketplaceStateTableHandle } from "./marketplace_state_table.ts";
+export { MarketplaceStateTableHandle };
 import { MobileEntityStateTableHandle } from "./mobile_entity_state_table.ts";
 export { MobileEntityStateTableHandle };
 import { ModerationActionLogEntryTableHandle } from "./moderation_action_log_entry_table.ts";
@@ -1057,6 +1063,8 @@ import { PlayerDeveloperNotificationStateTableHandle } from "./player_developer_
 export { PlayerDeveloperNotificationStateTableHandle };
 import { PlayerHousingDescTableHandle } from "./player_housing_desc_table.ts";
 export { PlayerHousingDescTableHandle };
+import { PlayerHousingMovingCostStateTableHandle } from "./player_housing_moving_cost_state_table.ts";
+export { PlayerHousingMovingCostStateTableHandle };
 import { PlayerHousingStateTableHandle } from "./player_housing_state_table.ts";
 export { PlayerHousingStateTableHandle };
 import { PlayerLowercaseUsernameStateTableHandle } from "./player_lowercase_username_state_table.ts";
@@ -1139,6 +1147,8 @@ import { StagedStaticDataTableHandle } from "./staged_static_data_table.ts";
 export { StagedStaticDataTableHandle };
 import { StagedStaticDataV2TableHandle } from "./staged_static_data_v_2_table.ts";
 export { StagedStaticDataV2TableHandle };
+import { StagedStaticDataV3TableHandle } from "./staged_static_data_v_3_table.ts";
+export { StagedStaticDataV3TableHandle };
 import { StaminaStateTableHandle } from "./stamina_state_table.ts";
 export { StaminaStateTableHandle };
 import { StarvingPlayerStateTableHandle } from "./starving_player_state_table.ts";
@@ -1187,6 +1197,8 @@ import { UnclaimedShardsStateTableHandle } from "./unclaimed_shards_state_table.
 export { UnclaimedShardsStateTableHandle };
 import { UserAuthenticationStateTableHandle } from "./user_authentication_state_table.ts";
 export { UserAuthenticationStateTableHandle };
+import { UserCreationTimestampStateTableHandle } from "./user_creation_timestamp_state_table.ts";
+export { UserCreationTimestampStateTableHandle };
 import { UserModerationStateTableHandle } from "./user_moderation_state_table.ts";
 export { UserModerationStateTableHandle };
 import { UserPreviousRegionStateTableHandle } from "./user_previous_region_state_table.ts";
@@ -1201,6 +1213,8 @@ import { VisibilityStateTableHandle } from "./visibility_state_table.ts";
 export { VisibilityStateTableHandle };
 import { WallDescTableHandle } from "./wall_desc_table.ts";
 export { WallDescTableHandle };
+import { WaystoneStateTableHandle } from "./waystone_state_table.ts";
+export { WaystoneStateTableHandle };
 import { WeaponDescTableHandle } from "./weapon_desc_table.ts";
 export { WeaponDescTableHandle };
 import { WeaponTypeDescTableHandle } from "./weapon_type_desc_table.ts";
@@ -1249,6 +1263,8 @@ import { AuctionListingState } from "./auction_listing_state_type.ts";
 export { AuctionListingState };
 import { AutoClaimState } from "./auto_claim_state_type.ts";
 export { AutoClaimState };
+import { BankState } from "./bank_state_type.ts";
+export { BankState };
 import { BarterStallState } from "./barter_stall_state_type.ts";
 export { BarterStallState };
 import { Biome } from "./biome_type.ts";
@@ -1379,6 +1395,8 @@ import { ConstructionRecipeDesc } from "./construction_recipe_desc_type.ts";
 export { ConstructionRecipeDesc };
 import { ContributionLootDesc } from "./contribution_loot_desc_type.ts";
 export { ContributionLootDesc };
+import { ContributionLootDescV2 } from "./contribution_loot_desc_v_2_type.ts";
+export { ContributionLootDescV2 };
 import { ContributionState } from "./contribution_state_type.ts";
 export { ContributionState };
 import { CraftingRecipeDesc } from "./crafting_recipe_desc_type.ts";
@@ -1735,6 +1753,8 @@ import { LootTableDesc } from "./loot_table_desc_type.ts";
 export { LootTableDesc };
 import { LostItemsState } from "./lost_items_state_type.ts";
 export { LostItemsState };
+import { MarketplaceState } from "./marketplace_state_type.ts";
+export { MarketplaceState };
 import { MessageContents } from "./message_contents_type.ts";
 export { MessageContents };
 import { MobileEntityState } from "./mobile_entity_state_type.ts";
@@ -1827,6 +1847,8 @@ import { PlayerDeveloperNotificationState } from "./player_developer_notificatio
 export { PlayerDeveloperNotificationState };
 import { PlayerHousingDesc } from "./player_housing_desc_type.ts";
 export { PlayerHousingDesc };
+import { PlayerHousingMovingCostState } from "./player_housing_moving_cost_state_type.ts";
+export { PlayerHousingMovingCostState };
 import { PlayerHousingState } from "./player_housing_state_type.ts";
 export { PlayerHousingState };
 import { PlayerHousingStateOp } from "./player_housing_state_op_type.ts";
@@ -1947,10 +1969,14 @@ import { SkillDesc } from "./skill_desc_type.ts";
 export { SkillDesc };
 import { SkillType } from "./skill_type_type.ts";
 export { SkillType };
+import { SmallHexTileMessage } from "./small_hex_tile_message_type.ts";
+export { SmallHexTileMessage };
 import { StagedStaticData } from "./staged_static_data_type.ts";
 export { StagedStaticData };
 import { StagedStaticDataV2 } from "./staged_static_data_v_2_type.ts";
 export { StagedStaticDataV2 };
+import { StagedStaticDataV3 } from "./staged_static_data_v_3_type.ts";
+export { StagedStaticDataV3 };
 import { StaminaState } from "./stamina_state_type.ts";
 export { StaminaState };
 import { StarvingPlayerState } from "./starving_player_state_type.ts";
@@ -1959,6 +1985,8 @@ import { StaticDataUpload } from "./static_data_upload_type.ts";
 export { StaticDataUpload };
 import { StaticDataUploadV2 } from "./static_data_upload_v_2_type.ts";
 export { StaticDataUploadV2 };
+import { StaticDataUploadV3 } from "./static_data_upload_v_3_type.ts";
+export { StaticDataUploadV3 };
 import { SurfaceType } from "./surface_type_type.ts";
 export { SurfaceType };
 import { TargetState } from "./target_state_type.ts";
@@ -2023,6 +2051,8 @@ import { UserAuthenticationState } from "./user_authentication_state_type.ts";
 export { UserAuthenticationState };
 import { UserAuthenticationStateOp } from "./user_authentication_state_op_type.ts";
 export { UserAuthenticationStateOp };
+import { UserCreationTimestampState } from "./user_creation_timestamp_state_type.ts";
+export { UserCreationTimestampState };
 import { UserModerationCreateUserPolicyRequest } from "./user_moderation_create_user_policy_request_type.ts";
 export { UserModerationCreateUserPolicyRequest };
 import { UserModerationPolicy } from "./user_moderation_policy_type.ts";
@@ -2053,6 +2083,8 @@ import { VisibilityType } from "./visibility_type_type.ts";
 export { VisibilityType };
 import { WallDesc } from "./wall_desc_type.ts";
 export { WallDesc };
+import { WaystoneState } from "./waystone_state_type.ts";
+export { WaystoneState };
 import { WeaponDesc } from "./weapon_desc_type.ts";
 export { WeaponDesc };
 import { WeaponTypeDesc } from "./weapon_type_desc_type.ts";
@@ -2152,6 +2184,15 @@ const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "entityId",
         colType: AutoClaimState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    bank_state: {
+      tableName: "bank_state",
+      rowType: BankState.getTypeScriptAlgebraicType(),
+      primaryKey: "buildingEntityId",
+      primaryKeyInfo: {
+        colName: "buildingEntityId",
+        colType: BankState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     barter_stall_state: {
@@ -2516,6 +2557,15 @@ const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "id",
         colType: ContributionLootDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    contribution_loot_desc_v2: {
+      tableName: "contribution_loot_desc_v2",
+      rowType: ContributionLootDescV2.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: ContributionLootDescV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     contribution_state: {
@@ -3503,6 +3553,15 @@ const REMOTE_MODULE = {
         colType: LostItemsState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    marketplace_state: {
+      tableName: "marketplace_state",
+      rowType: MarketplaceState.getTypeScriptAlgebraicType(),
+      primaryKey: "buildingEntityId",
+      primaryKeyInfo: {
+        colName: "buildingEntityId",
+        colType: MarketplaceState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     mobile_entity_state: {
       tableName: "mobile_entity_state",
       rowType: MobileEntityState.getTypeScriptAlgebraicType(),
@@ -3699,6 +3758,15 @@ const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "secondaryKnowledgeId",
         colType: PlayerHousingDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    player_housing_moving_cost_state: {
+      tableName: "player_housing_moving_cost_state",
+      rowType: PlayerHousingMovingCostState.getTypeScriptAlgebraicType(),
+      primaryKey: "entityId",
+      primaryKeyInfo: {
+        colName: "entityId",
+        colType: PlayerHousingMovingCostState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     player_housing_state: {
@@ -4070,6 +4138,15 @@ const REMOTE_MODULE = {
         colType: StagedStaticDataV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    staged_static_data_v3: {
+      tableName: "staged_static_data_v3",
+      rowType: StagedStaticDataV3.getTypeScriptAlgebraicType(),
+      primaryKey: "version",
+      primaryKeyInfo: {
+        colName: "version",
+        colType: StagedStaticDataV3.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     stamina_state: {
       tableName: "stamina_state",
       rowType: StaminaState.getTypeScriptAlgebraicType(),
@@ -4286,6 +4363,15 @@ const REMOTE_MODULE = {
         colType: UserAuthenticationState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    user_creation_timestamp_state: {
+      tableName: "user_creation_timestamp_state",
+      rowType: UserCreationTimestampState.getTypeScriptAlgebraicType(),
+      primaryKey: "identity",
+      primaryKeyInfo: {
+        colName: "identity",
+        colType: UserCreationTimestampState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     user_moderation_state: {
       tableName: "user_moderation_state",
       rowType: UserModerationState.getTypeScriptAlgebraicType(),
@@ -4347,6 +4433,15 @@ const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "buildingId",
         colType: WallDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    waystone_state: {
+      tableName: "waystone_state",
+      rowType: WaystoneState.getTypeScriptAlgebraicType(),
+      primaryKey: "buildingEntityId",
+      primaryKeyInfo: {
+        colName: "buildingEntityId",
+        colType: WaystoneState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     weapon_desc: {
@@ -5701,7 +5796,7 @@ const REMOTE_MODULE = {
     },
   },
   versionInfo: {
-    cliVersion: "1.3.0",
+    cliVersion: "1.3.2",
   },
   // Constructors which are used by the DbConnectionImpl to
   // extract type information from the generated RemoteModule.
@@ -10150,7 +10245,7 @@ export class RemoteReducers {
     this.connection.offReducer("stage_construction_recipe_desc", callback);
   }
 
-  stageContributionLootDesc(records: ContributionLootDesc[]) {
+  stageContributionLootDesc(records: ContributionLootDescV2[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
     StageContributionLootDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
@@ -10158,11 +10253,11 @@ export class RemoteReducers {
     this.connection.callReducer("stage_contribution_loot_desc", __argsBuffer, this.setCallReducerFlags.stageContributionLootDescFlags);
   }
 
-  onStageContributionLootDesc(callback: (ctx: ReducerEventContext, records: ContributionLootDesc[]) => void) {
+  onStageContributionLootDesc(callback: (ctx: ReducerEventContext, records: ContributionLootDescV2[]) => void) {
     this.connection.onReducer("stage_contribution_loot_desc", callback);
   }
 
-  removeOnStageContributionLootDesc(callback: (ctx: ReducerEventContext, records: ContributionLootDesc[]) => void) {
+  removeOnStageContributionLootDesc(callback: (ctx: ReducerEventContext, records: ContributionLootDescV2[]) => void) {
     this.connection.offReducer("stage_contribution_loot_desc", callback);
   }
 
@@ -12928,6 +13023,10 @@ export class RemoteTables {
     return new AutoClaimStateTableHandle(this.connection.clientCache.getOrCreateTable<AutoClaimState>(REMOTE_MODULE.tables.auto_claim_state));
   }
 
+  get bankState(): BankStateTableHandle {
+    return new BankStateTableHandle(this.connection.clientCache.getOrCreateTable<BankState>(REMOTE_MODULE.tables.bank_state));
+  }
+
   get barterStallState(): BarterStallStateTableHandle {
     return new BarterStallStateTableHandle(this.connection.clientCache.getOrCreateTable<BarterStallState>(REMOTE_MODULE.tables.barter_stall_state));
   }
@@ -13090,6 +13189,10 @@ export class RemoteTables {
 
   get contributionLootDesc(): ContributionLootDescTableHandle {
     return new ContributionLootDescTableHandle(this.connection.clientCache.getOrCreateTable<ContributionLootDesc>(REMOTE_MODULE.tables.contribution_loot_desc));
+  }
+
+  get contributionLootDescV2(): ContributionLootDescV2TableHandle {
+    return new ContributionLootDescV2TableHandle(this.connection.clientCache.getOrCreateTable<ContributionLootDescV2>(REMOTE_MODULE.tables.contribution_loot_desc_v2));
   }
 
   get contributionState(): ContributionStateTableHandle {
@@ -13532,6 +13635,10 @@ export class RemoteTables {
     return new LostItemsStateTableHandle(this.connection.clientCache.getOrCreateTable<LostItemsState>(REMOTE_MODULE.tables.lost_items_state));
   }
 
+  get marketplaceState(): MarketplaceStateTableHandle {
+    return new MarketplaceStateTableHandle(this.connection.clientCache.getOrCreateTable<MarketplaceState>(REMOTE_MODULE.tables.marketplace_state));
+  }
+
   get mobileEntityState(): MobileEntityStateTableHandle {
     return new MobileEntityStateTableHandle(this.connection.clientCache.getOrCreateTable<MobileEntityState>(REMOTE_MODULE.tables.mobile_entity_state));
   }
@@ -13618,6 +13725,10 @@ export class RemoteTables {
 
   get playerHousingDesc(): PlayerHousingDescTableHandle {
     return new PlayerHousingDescTableHandle(this.connection.clientCache.getOrCreateTable<PlayerHousingDesc>(REMOTE_MODULE.tables.player_housing_desc));
+  }
+
+  get playerHousingMovingCostState(): PlayerHousingMovingCostStateTableHandle {
+    return new PlayerHousingMovingCostStateTableHandle(this.connection.clientCache.getOrCreateTable<PlayerHousingMovingCostState>(REMOTE_MODULE.tables.player_housing_moving_cost_state));
   }
 
   get playerHousingState(): PlayerHousingStateTableHandle {
@@ -13784,6 +13895,10 @@ export class RemoteTables {
     return new StagedStaticDataV2TableHandle(this.connection.clientCache.getOrCreateTable<StagedStaticDataV2>(REMOTE_MODULE.tables.staged_static_data_v2));
   }
 
+  get stagedStaticDataV3(): StagedStaticDataV3TableHandle {
+    return new StagedStaticDataV3TableHandle(this.connection.clientCache.getOrCreateTable<StagedStaticDataV3>(REMOTE_MODULE.tables.staged_static_data_v3));
+  }
+
   get staminaState(): StaminaStateTableHandle {
     return new StaminaStateTableHandle(this.connection.clientCache.getOrCreateTable<StaminaState>(REMOTE_MODULE.tables.stamina_state));
   }
@@ -13880,6 +13995,10 @@ export class RemoteTables {
     return new UserAuthenticationStateTableHandle(this.connection.clientCache.getOrCreateTable<UserAuthenticationState>(REMOTE_MODULE.tables.user_authentication_state));
   }
 
+  get userCreationTimestampState(): UserCreationTimestampStateTableHandle {
+    return new UserCreationTimestampStateTableHandle(this.connection.clientCache.getOrCreateTable<UserCreationTimestampState>(REMOTE_MODULE.tables.user_creation_timestamp_state));
+  }
+
   get userModerationState(): UserModerationStateTableHandle {
     return new UserModerationStateTableHandle(this.connection.clientCache.getOrCreateTable<UserModerationState>(REMOTE_MODULE.tables.user_moderation_state));
   }
@@ -13906,6 +14025,10 @@ export class RemoteTables {
 
   get wallDesc(): WallDescTableHandle {
     return new WallDescTableHandle(this.connection.clientCache.getOrCreateTable<WallDesc>(REMOTE_MODULE.tables.wall_desc));
+  }
+
+  get waystoneState(): WaystoneStateTableHandle {
+    return new WaystoneStateTableHandle(this.connection.clientCache.getOrCreateTable<WaystoneState>(REMOTE_MODULE.tables.waystone_state));
   }
 
   get weaponDesc(): WeaponDescTableHandle {

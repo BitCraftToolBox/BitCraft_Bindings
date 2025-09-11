@@ -31,34 +31,34 @@ import {
   type ReducerEventContextInterface,
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
-
-import { ContributionLootDescV2 as __ContributionLootDescV2 } from "./contribution_loot_desc_v_2_type";
-
-export type StageContributionLootDesc = {
-  records: __ContributionLootDescV2[],
+export type PlayerHousingMovingCostState = {
+  entityId: bigint,
+  movingTimeCostMinutes: number,
 };
 
 /**
  * A namespace for generated helper functions.
  */
-export namespace StageContributionLootDesc {
+export namespace PlayerHousingMovingCostState {
   /**
   * A function which returns this type represented as an AlgebraicType.
   * This function is derived from the AlgebraicType used to generate this type.
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("records", AlgebraicType.createArrayType(__ContributionLootDescV2.getTypeScriptAlgebraicType())),
+      new ProductTypeElement("entityId", AlgebraicType.createU64Type()),
+      new ProductTypeElement("movingTimeCostMinutes", AlgebraicType.createI32Type()),
     ]);
   }
 
-  export function serialize(writer: BinaryWriter, value: StageContributionLootDesc): void {
-    StageContributionLootDesc.getTypeScriptAlgebraicType().serialize(writer, value);
+  export function serialize(writer: BinaryWriter, value: PlayerHousingMovingCostState): void {
+    PlayerHousingMovingCostState.getTypeScriptAlgebraicType().serialize(writer, value);
   }
 
-  export function deserialize(reader: BinaryReader): StageContributionLootDesc {
-    return StageContributionLootDesc.getTypeScriptAlgebraicType().deserialize(reader);
+  export function deserialize(reader: BinaryReader): PlayerHousingMovingCostState {
+    return PlayerHousingMovingCostState.getTypeScriptAlgebraicType().deserialize(reader);
   }
 
 }
+
 

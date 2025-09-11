@@ -31,34 +31,36 @@ import {
   type ReducerEventContextInterface,
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
-
-import { ContributionLootDescV2 as __ContributionLootDescV2 } from "./contribution_loot_desc_v_2_type";
-
-export type StageContributionLootDesc = {
-  records: __ContributionLootDescV2[],
+export type SmallHexTileMessage = {
+  x: number,
+  z: number,
+  dimension: number,
 };
 
 /**
  * A namespace for generated helper functions.
  */
-export namespace StageContributionLootDesc {
+export namespace SmallHexTileMessage {
   /**
   * A function which returns this type represented as an AlgebraicType.
   * This function is derived from the AlgebraicType used to generate this type.
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("records", AlgebraicType.createArrayType(__ContributionLootDescV2.getTypeScriptAlgebraicType())),
+      new ProductTypeElement("x", AlgebraicType.createI32Type()),
+      new ProductTypeElement("z", AlgebraicType.createI32Type()),
+      new ProductTypeElement("dimension", AlgebraicType.createU32Type()),
     ]);
   }
 
-  export function serialize(writer: BinaryWriter, value: StageContributionLootDesc): void {
-    StageContributionLootDesc.getTypeScriptAlgebraicType().serialize(writer, value);
+  export function serialize(writer: BinaryWriter, value: SmallHexTileMessage): void {
+    SmallHexTileMessage.getTypeScriptAlgebraicType().serialize(writer, value);
   }
 
-  export function deserialize(reader: BinaryReader): StageContributionLootDesc {
-    return StageContributionLootDesc.getTypeScriptAlgebraicType().deserialize(reader);
+  export function deserialize(reader: BinaryReader): SmallHexTileMessage {
+    return SmallHexTileMessage.getTypeScriptAlgebraicType().deserialize(reader);
   }
 
 }
+
 

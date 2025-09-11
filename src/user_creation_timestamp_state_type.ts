@@ -31,34 +31,34 @@ import {
   type ReducerEventContextInterface,
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
-
-import { ContributionLootDescV2 as __ContributionLootDescV2 } from "./contribution_loot_desc_v_2_type";
-
-export type StageContributionLootDesc = {
-  records: __ContributionLootDescV2[],
+export type UserCreationTimestampState = {
+  identity: Identity,
+  timestamp: Timestamp,
 };
 
 /**
  * A namespace for generated helper functions.
  */
-export namespace StageContributionLootDesc {
+export namespace UserCreationTimestampState {
   /**
   * A function which returns this type represented as an AlgebraicType.
   * This function is derived from the AlgebraicType used to generate this type.
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("records", AlgebraicType.createArrayType(__ContributionLootDescV2.getTypeScriptAlgebraicType())),
+      new ProductTypeElement("identity", AlgebraicType.createIdentityType()),
+      new ProductTypeElement("timestamp", AlgebraicType.createTimestampType()),
     ]);
   }
 
-  export function serialize(writer: BinaryWriter, value: StageContributionLootDesc): void {
-    StageContributionLootDesc.getTypeScriptAlgebraicType().serialize(writer, value);
+  export function serialize(writer: BinaryWriter, value: UserCreationTimestampState): void {
+    UserCreationTimestampState.getTypeScriptAlgebraicType().serialize(writer, value);
   }
 
-  export function deserialize(reader: BinaryReader): StageContributionLootDesc {
-    return StageContributionLootDesc.getTypeScriptAlgebraicType().deserialize(reader);
+  export function deserialize(reader: BinaryReader): UserCreationTimestampState {
+    return UserCreationTimestampState.getTypeScriptAlgebraicType().deserialize(reader);
   }
 
 }
+
 
