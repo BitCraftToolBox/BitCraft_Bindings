@@ -20,6 +20,7 @@ pub mod action_state_type;
 pub mod active_buff_state_table;
 pub mod active_buff_state_type;
 pub mod active_buff_type;
+pub mod admin_add_specific_building_type_states_reducer;
 pub mod admin_alpha_3_complete_onboarding_reducer;
 pub mod admin_alpha_3_reset_onboarding_to_fifth_temple_quest_reducer;
 pub mod admin_alpha_3_reset_onboarding_to_first_expand_quest_reducer;
@@ -56,6 +57,7 @@ pub mod admin_find_items_in_inventories_reducer;
 pub mod admin_find_items_in_trades_reducer;
 pub mod admin_grant_collectibles_reducer;
 pub mod admin_modify_chat_message_reducer;
+pub mod admin_patch_housing_costs_reducer;
 pub mod admin_rename_building_coord_reducer;
 pub mod admin_rename_building_entity_reducer;
 pub mod admin_rename_building_reducer;
@@ -110,6 +112,8 @@ pub mod auto_claim_state_type;
 pub mod auto_logout_loop_reducer;
 pub mod auto_logout_loop_timer_table;
 pub mod auto_logout_loop_timer_type;
+pub mod bank_state_table;
+pub mod bank_state_type;
 pub mod barter_stall_order_accept_reducer;
 pub mod barter_stall_order_create_reducer;
 pub mod barter_stall_order_delete_reducer;
@@ -204,6 +208,8 @@ pub mod cheat_delete_item_reducer;
 pub mod cheat_deployable_store_reducer;
 pub mod cheat_discover_map_reducer;
 pub mod cheat_discover_map_request_type;
+pub mod cheat_drop_item_on_entity_reducer;
+pub mod cheat_drop_item_on_tile_reducer;
 pub mod cheat_experience_grant_reducer;
 pub mod cheat_experience_grant_request_type;
 pub mod cheat_grant_knowledge_reducer;
@@ -231,6 +237,7 @@ pub mod cheat_teleport_float_request_type;
 pub mod cheat_terraform_reducer;
 pub mod cheat_toggle_active_collectible_reducer;
 pub mod cheat_toggle_active_collectible_request_type;
+pub mod cheat_undiscover_map_reducer;
 pub mod cheat_warp_reducer;
 pub mod cheat_warp_request_type;
 pub mod chest_loot_rarity_type;
@@ -323,6 +330,8 @@ pub mod construction_recipe_desc_table;
 pub mod construction_recipe_desc_type;
 pub mod contribution_loot_desc_table;
 pub mod contribution_loot_desc_type;
+pub mod contribution_loot_desc_v_2_table;
+pub mod contribution_loot_desc_v_2_type;
 pub mod contribution_state_table;
 pub mod contribution_state_type;
 pub mod convert_collectible_to_deed_reducer;
@@ -877,6 +886,8 @@ pub mod loot_table_desc_table;
 pub mod loot_table_desc_type;
 pub mod lost_items_state_table;
 pub mod lost_items_state_type;
+pub mod marketplace_state_table;
+pub mod marketplace_state_type;
 pub mod message_contents_type;
 pub mod mobile_entity_state_table;
 pub mod mobile_entity_state_type;
@@ -1046,6 +1057,8 @@ pub mod player_housing_evict_player_timer_type;
 pub mod player_housing_income_agent_loop_reducer;
 pub mod player_housing_income_loop_timer_table;
 pub mod player_housing_income_loop_timer_type;
+pub mod player_housing_moving_cost_state_table;
+pub mod player_housing_moving_cost_state_type;
 pub mod player_housing_request_access_reducer;
 pub mod player_housing_request_access_request_type;
 pub mod player_housing_state_op_type;
@@ -1378,6 +1391,8 @@ pub mod staged_static_data_table;
 pub mod staged_static_data_type;
 pub mod staged_static_data_v_2_table;
 pub mod staged_static_data_v_2_type;
+pub mod staged_static_data_v_3_table;
+pub mod staged_static_data_v_3_type;
 pub mod stamina_state_table;
 pub mod stamina_state_type;
 pub mod start_agents_reducer;
@@ -1390,6 +1405,7 @@ pub mod starving_player_state_table;
 pub mod starving_player_state_type;
 pub mod static_data_upload_type;
 pub mod static_data_upload_v_2_type;
+pub mod static_data_upload_v_3_type;
 pub mod stop_agents_reducer;
 pub mod storage_log_cleanup_loop_reducer;
 pub mod storage_log_cleanup_loop_timer_table;
@@ -1475,6 +1491,7 @@ pub mod unclaimed_collectibles_state_table;
 pub mod unclaimed_collectibles_state_type;
 pub mod unclaimed_shards_state_table;
 pub mod unclaimed_shards_state_type;
+pub mod update_moving_cost_reducer;
 pub mod update_scheduled_timers_from_static_data_reducer;
 pub mod user_authentication_state_op_type;
 pub mod user_authentication_state_table;
@@ -1495,6 +1512,8 @@ pub mod vault_state_type;
 pub mod vfx_attachment_point_type;
 pub mod wall_desc_table;
 pub mod wall_desc_type;
+pub mod waystone_state_table;
+pub mod waystone_state_type;
 pub mod weapon_desc_table;
 pub mod weapon_desc_type;
 pub mod weapon_type_desc_table;
@@ -1549,6 +1568,10 @@ pub use action_state_type::ActionState;
 pub use active_buff_state_table::*;
 pub use active_buff_state_type::ActiveBuffState;
 pub use active_buff_type::ActiveBuff;
+pub use admin_add_specific_building_type_states_reducer::{
+    admin_add_specific_building_type_states, set_flags_for_admin_add_specific_building_type_states,
+    AdminAddSpecificBuildingTypeStatesCallbackId,
+};
 pub use admin_alpha_3_complete_onboarding_reducer::{
     admin_alpha_3_complete_onboarding, set_flags_for_admin_alpha_3_complete_onboarding,
     AdminAlpha3CompleteOnboardingCallbackId,
@@ -1685,6 +1708,10 @@ pub use admin_modify_chat_message_reducer::{
     admin_modify_chat_message, set_flags_for_admin_modify_chat_message,
     AdminModifyChatMessageCallbackId,
 };
+pub use admin_patch_housing_costs_reducer::{
+    admin_patch_housing_costs, set_flags_for_admin_patch_housing_costs,
+    AdminPatchHousingCostsCallbackId,
+};
 pub use admin_rename_building_coord_reducer::{
     admin_rename_building_coord, set_flags_for_admin_rename_building_coord,
     AdminRenameBuildingCoordCallbackId,
@@ -1816,6 +1843,8 @@ pub use auto_logout_loop_reducer::{
 };
 pub use auto_logout_loop_timer_table::*;
 pub use auto_logout_loop_timer_type::AutoLogoutLoopTimer;
+pub use bank_state_table::*;
+pub use bank_state_type::BankState;
 pub use barter_stall_order_accept_reducer::{
     barter_stall_order_accept, set_flags_for_barter_stall_order_accept,
     BarterStallOrderAcceptCallbackId,
@@ -1988,6 +2017,13 @@ pub use cheat_discover_map_reducer::{
     cheat_discover_map, set_flags_for_cheat_discover_map, CheatDiscoverMapCallbackId,
 };
 pub use cheat_discover_map_request_type::CheatDiscoverMapRequest;
+pub use cheat_drop_item_on_entity_reducer::{
+    cheat_drop_item_on_entity, set_flags_for_cheat_drop_item_on_entity,
+    CheatDropItemOnEntityCallbackId,
+};
+pub use cheat_drop_item_on_tile_reducer::{
+    cheat_drop_item_on_tile, set_flags_for_cheat_drop_item_on_tile, CheatDropItemOnTileCallbackId,
+};
 pub use cheat_experience_grant_reducer::{
     cheat_experience_grant, set_flags_for_cheat_experience_grant, CheatExperienceGrantCallbackId,
 };
@@ -2067,6 +2103,9 @@ pub use cheat_toggle_active_collectible_reducer::{
     CheatToggleActiveCollectibleCallbackId,
 };
 pub use cheat_toggle_active_collectible_request_type::CheatToggleActiveCollectibleRequest;
+pub use cheat_undiscover_map_reducer::{
+    cheat_undiscover_map, set_flags_for_cheat_undiscover_map, CheatUndiscoverMapCallbackId,
+};
 pub use cheat_warp_reducer::{cheat_warp, set_flags_for_cheat_warp, CheatWarpCallbackId};
 pub use cheat_warp_request_type::CheatWarpRequest;
 pub use chest_loot_rarity_type::ChestLootRarity;
@@ -2225,6 +2264,8 @@ pub use construction_recipe_desc_table::*;
 pub use construction_recipe_desc_type::ConstructionRecipeDesc;
 pub use contribution_loot_desc_table::*;
 pub use contribution_loot_desc_type::ContributionLootDesc;
+pub use contribution_loot_desc_v_2_table::*;
+pub use contribution_loot_desc_v_2_type::ContributionLootDescV2;
 pub use contribution_state_table::*;
 pub use contribution_state_type::ContributionState;
 pub use convert_collectible_to_deed_reducer::{
@@ -3385,6 +3426,8 @@ pub use loot_table_desc_table::*;
 pub use loot_table_desc_type::LootTableDesc;
 pub use lost_items_state_table::*;
 pub use lost_items_state_type::LostItemsState;
+pub use marketplace_state_table::*;
+pub use marketplace_state_type::MarketplaceState;
 pub use message_contents_type::MessageContents;
 pub use mobile_entity_state_table::*;
 pub use mobile_entity_state_type::MobileEntityState;
@@ -3640,6 +3683,8 @@ pub use player_housing_income_agent_loop_reducer::{
 };
 pub use player_housing_income_loop_timer_table::*;
 pub use player_housing_income_loop_timer_type::PlayerHousingIncomeLoopTimer;
+pub use player_housing_moving_cost_state_table::*;
+pub use player_housing_moving_cost_state_type::PlayerHousingMovingCostState;
 pub use player_housing_request_access_reducer::{
     player_housing_request_access, set_flags_for_player_housing_request_access,
     PlayerHousingRequestAccessCallbackId,
@@ -4310,6 +4355,8 @@ pub use staged_static_data_table::*;
 pub use staged_static_data_type::StagedStaticData;
 pub use staged_static_data_v_2_table::*;
 pub use staged_static_data_v_2_type::StagedStaticDataV2;
+pub use staged_static_data_v_3_table::*;
+pub use staged_static_data_v_3_type::StagedStaticDataV3;
 pub use stamina_state_table::*;
 pub use stamina_state_type::StaminaState;
 pub use start_agents_reducer::{set_flags_for_start_agents, start_agents, StartAgentsCallbackId};
@@ -4328,6 +4375,7 @@ pub use starving_player_state_table::*;
 pub use starving_player_state_type::StarvingPlayerState;
 pub use static_data_upload_type::StaticDataUpload;
 pub use static_data_upload_v_2_type::StaticDataUploadV2;
+pub use static_data_upload_v_3_type::StaticDataUploadV3;
 pub use stop_agents_reducer::{set_flags_for_stop_agents, stop_agents, StopAgentsCallbackId};
 pub use storage_log_cleanup_loop_reducer::{
     set_flags_for_storage_log_cleanup_loop, storage_log_cleanup_loop,
@@ -4454,6 +4502,9 @@ pub use unclaimed_collectibles_state_table::*;
 pub use unclaimed_collectibles_state_type::UnclaimedCollectiblesState;
 pub use unclaimed_shards_state_table::*;
 pub use unclaimed_shards_state_type::UnclaimedShardsState;
+pub use update_moving_cost_reducer::{
+    set_flags_for_update_moving_cost, update_moving_cost, UpdateMovingCostCallbackId,
+};
 pub use update_scheduled_timers_from_static_data_reducer::{
     set_flags_for_update_scheduled_timers_from_static_data,
     update_scheduled_timers_from_static_data, UpdateScheduledTimersFromStaticDataCallbackId,
@@ -4477,6 +4528,8 @@ pub use vault_state_type::VaultState;
 pub use vfx_attachment_point_type::VfxAttachmentPoint;
 pub use wall_desc_table::*;
 pub use wall_desc_type::WallDesc;
+pub use waystone_state_table::*;
+pub use waystone_state_type::WaystoneState;
 pub use weapon_desc_table::*;
 pub use weapon_desc_type::WeaponDesc;
 pub use weapon_type_desc_table::*;
@@ -4525,6 +4578,7 @@ pub enum Reducer {
     AcquireKnowledgeFromEntities {
         request: PlayerAcquireKnowledgeFromEntitiesRequest,
     },
+    AdminAddSpecificBuildingTypeStates,
     AdminAlpha3CompleteOnboarding {
         entity_id: u64,
     },
@@ -4630,6 +4684,7 @@ pub enum Reducer {
         entity_id: u64,
         new_message_text: String,
     },
+    AdminPatchHousingCosts,
     AdminRenameBuilding {
         building_name: String,
         new_name: String,
@@ -4827,6 +4882,20 @@ pub enum Reducer {
     CheatDiscoverMap {
         request: CheatDiscoverMapRequest,
     },
+    CheatDropItemOnEntity {
+        entity_id: u64,
+        item_id: i32,
+        quantity: i32,
+        is_cargo: bool,
+        owner_entity_id: u64,
+    },
+    CheatDropItemOnTile {
+        coord: SmallHexTileMessage,
+        item_id: i32,
+        quantity: i32,
+        is_cargo: bool,
+        owner_entity_id: u64,
+    },
     CheatExperienceGrant {
         request: CheatExperienceGrantRequest,
     },
@@ -4904,6 +4973,9 @@ pub enum Reducer {
     },
     CheatToggleActiveCollectible {
         request: CheatToggleActiveCollectibleRequest,
+    },
+    CheatUndiscoverMap {
+        player_entity_id: u64,
     },
     CheatWarp {
         request: CheatWarpRequest,
@@ -5299,7 +5371,7 @@ pub enum Reducer {
         records: Vec<ConstructionRecipeDesc>,
     },
     ImportContributionLootDesc {
-        records: Vec<ContributionLootDesc>,
+        records: Vec<ContributionLootDescV2>,
     },
     ImportCraftingRecipeDesc {
         records: Vec<CraftingRecipeDesc>,
@@ -5858,6 +5930,7 @@ pub enum Reducer {
     },
     PlayerHousingChangeEntrance {
         building_entity_id: u64,
+        expected_time_cost: i32,
     },
     PlayerHousingEnter {
         request: PlayerHousingEnterRequest,
@@ -6105,7 +6178,7 @@ pub enum Reducer {
         records: Vec<ConstructionRecipeDesc>,
     },
     StageContributionLootDesc {
-        records: Vec<ContributionLootDesc>,
+        records: Vec<ContributionLootDescV2>,
     },
     StageCraftingRecipeDesc {
         records: Vec<CraftingRecipeDesc>,
@@ -6365,6 +6438,10 @@ pub enum Reducer {
     TravelerTaskAgentLoop {
         timer: TravelerTaskLoopTimer,
     },
+    UpdateMovingCost {
+        player_housing_entity_id: u64,
+        moving_cost: i32,
+    },
     UpdateScheduledTimersFromStaticData,
 }
 
@@ -6377,6 +6454,9 @@ impl __sdk::Reducer for Reducer {
         match self {
             Reducer::AchievementClaim { .. } => "achievement_claim",
             Reducer::AcquireKnowledgeFromEntities { .. } => "acquire_knowledge_from_entities",
+            Reducer::AdminAddSpecificBuildingTypeStates => {
+                "admin_add_specific_building_type_states"
+            }
             Reducer::AdminAlpha3CompleteOnboarding { .. } => "admin_alpha3_complete_onboarding",
             Reducer::AdminAlpha3ResetOnboardingToFifthTempleQuest { .. } => {
                 "admin_alpha3_reset_onboarding_to_fifth_temple_quest"
@@ -6428,6 +6508,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::AdminFindItemsInTrades { .. } => "admin_find_items_in_trades",
             Reducer::AdminGrantCollectibles { .. } => "admin_grant_collectibles",
             Reducer::AdminModifyChatMessage { .. } => "admin_modify_chat_message",
+            Reducer::AdminPatchHousingCosts => "admin_patch_housing_costs",
             Reducer::AdminRenameBuilding { .. } => "admin_rename_building",
             Reducer::AdminRenameBuildingCoord { .. } => "admin_rename_building_coord",
             Reducer::AdminRenameBuildingEntity { .. } => "admin_rename_building_entity",
@@ -6496,6 +6577,8 @@ impl __sdk::Reducer for Reducer {
             Reducer::CheatDeleteItem { .. } => "cheat_delete_item",
             Reducer::CheatDeployableStore { .. } => "cheat_deployable_store",
             Reducer::CheatDiscoverMap { .. } => "cheat_discover_map",
+            Reducer::CheatDropItemOnEntity { .. } => "cheat_drop_item_on_entity",
+            Reducer::CheatDropItemOnTile { .. } => "cheat_drop_item_on_tile",
             Reducer::CheatExperienceGrant { .. } => "cheat_experience_grant",
             Reducer::CheatGrantKnowledge { .. } => "cheat_grant_knowledge",
             Reducer::CheatGrantTeleportEnergy { .. } => "cheat_grant_teleport_energy",
@@ -6519,6 +6602,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::CheatTeleportFloat { .. } => "cheat_teleport_float",
             Reducer::CheatTerraform { .. } => "cheat_terraform",
             Reducer::CheatToggleActiveCollectible { .. } => "cheat_toggle_active_collectible",
+            Reducer::CheatUndiscoverMap { .. } => "cheat_undiscover_map",
             Reducer::CheatWarp { .. } => "cheat_warp",
             Reducer::ClaimAddMember { .. } => "claim_add_member",
             Reducer::ClaimAddRecruitment { .. } => "claim_add_recruitment",
@@ -7050,6 +7134,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::TradeSwapPockets { .. } => "trade_swap_pockets",
             Reducer::TransferPlayerDelayed { .. } => "transfer_player_delayed",
             Reducer::TravelerTaskAgentLoop { .. } => "traveler_task_agent_loop",
+            Reducer::UpdateMovingCost { .. } => "update_moving_cost",
             Reducer::UpdateScheduledTimersFromStaticData => {
                 "update_scheduled_timers_from_static_data"
             }
@@ -7062,6 +7147,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
         match &value.reducer_name[..] {
                         "achievement_claim" => Ok(__sdk::parse_reducer_args::<achievement_claim_reducer::AchievementClaimArgs>("achievement_claim", &value.args)?.into()),
             "acquire_knowledge_from_entities" => Ok(__sdk::parse_reducer_args::<acquire_knowledge_from_entities_reducer::AcquireKnowledgeFromEntitiesArgs>("acquire_knowledge_from_entities", &value.args)?.into()),
+            "admin_add_specific_building_type_states" => Ok(__sdk::parse_reducer_args::<admin_add_specific_building_type_states_reducer::AdminAddSpecificBuildingTypeStatesArgs>("admin_add_specific_building_type_states", &value.args)?.into()),
             "admin_alpha3_complete_onboarding" => Ok(__sdk::parse_reducer_args::<admin_alpha_3_complete_onboarding_reducer::AdminAlpha3CompleteOnboardingArgs>("admin_alpha3_complete_onboarding", &value.args)?.into()),
             "admin_alpha3_reset_onboarding_to_fifth_temple_quest" => Ok(__sdk::parse_reducer_args::<admin_alpha_3_reset_onboarding_to_fifth_temple_quest_reducer::AdminAlpha3ResetOnboardingToFifthTempleQuestArgs>("admin_alpha3_reset_onboarding_to_fifth_temple_quest", &value.args)?.into()),
             "admin_alpha3_reset_onboarding_to_first_expand_quest" => Ok(__sdk::parse_reducer_args::<admin_alpha_3_reset_onboarding_to_first_expand_quest_reducer::AdminAlpha3ResetOnboardingToFirstExpandQuestArgs>("admin_alpha3_reset_onboarding_to_first_expand_quest", &value.args)?.into()),
@@ -7093,6 +7179,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "admin_find_items_in_trades" => Ok(__sdk::parse_reducer_args::<admin_find_items_in_trades_reducer::AdminFindItemsInTradesArgs>("admin_find_items_in_trades", &value.args)?.into()),
             "admin_grant_collectibles" => Ok(__sdk::parse_reducer_args::<admin_grant_collectibles_reducer::AdminGrantCollectiblesArgs>("admin_grant_collectibles", &value.args)?.into()),
             "admin_modify_chat_message" => Ok(__sdk::parse_reducer_args::<admin_modify_chat_message_reducer::AdminModifyChatMessageArgs>("admin_modify_chat_message", &value.args)?.into()),
+            "admin_patch_housing_costs" => Ok(__sdk::parse_reducer_args::<admin_patch_housing_costs_reducer::AdminPatchHousingCostsArgs>("admin_patch_housing_costs", &value.args)?.into()),
             "admin_rename_building" => Ok(__sdk::parse_reducer_args::<admin_rename_building_reducer::AdminRenameBuildingArgs>("admin_rename_building", &value.args)?.into()),
             "admin_rename_building_coord" => Ok(__sdk::parse_reducer_args::<admin_rename_building_coord_reducer::AdminRenameBuildingCoordArgs>("admin_rename_building_coord", &value.args)?.into()),
             "admin_rename_building_entity" => Ok(__sdk::parse_reducer_args::<admin_rename_building_entity_reducer::AdminRenameBuildingEntityArgs>("admin_rename_building_entity", &value.args)?.into()),
@@ -7155,6 +7242,8 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "cheat_delete_item" => Ok(__sdk::parse_reducer_args::<cheat_delete_item_reducer::CheatDeleteItemArgs>("cheat_delete_item", &value.args)?.into()),
             "cheat_deployable_store" => Ok(__sdk::parse_reducer_args::<cheat_deployable_store_reducer::CheatDeployableStoreArgs>("cheat_deployable_store", &value.args)?.into()),
             "cheat_discover_map" => Ok(__sdk::parse_reducer_args::<cheat_discover_map_reducer::CheatDiscoverMapArgs>("cheat_discover_map", &value.args)?.into()),
+            "cheat_drop_item_on_entity" => Ok(__sdk::parse_reducer_args::<cheat_drop_item_on_entity_reducer::CheatDropItemOnEntityArgs>("cheat_drop_item_on_entity", &value.args)?.into()),
+            "cheat_drop_item_on_tile" => Ok(__sdk::parse_reducer_args::<cheat_drop_item_on_tile_reducer::CheatDropItemOnTileArgs>("cheat_drop_item_on_tile", &value.args)?.into()),
             "cheat_experience_grant" => Ok(__sdk::parse_reducer_args::<cheat_experience_grant_reducer::CheatExperienceGrantArgs>("cheat_experience_grant", &value.args)?.into()),
             "cheat_grant_knowledge" => Ok(__sdk::parse_reducer_args::<cheat_grant_knowledge_reducer::CheatGrantKnowledgeArgs>("cheat_grant_knowledge", &value.args)?.into()),
             "cheat_grant_teleport_energy" => Ok(__sdk::parse_reducer_args::<cheat_grant_teleport_energy_reducer::CheatGrantTeleportEnergyArgs>("cheat_grant_teleport_energy", &value.args)?.into()),
@@ -7176,6 +7265,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "cheat_teleport_float" => Ok(__sdk::parse_reducer_args::<cheat_teleport_float_reducer::CheatTeleportFloatArgs>("cheat_teleport_float", &value.args)?.into()),
             "cheat_terraform" => Ok(__sdk::parse_reducer_args::<cheat_terraform_reducer::CheatTerraformArgs>("cheat_terraform", &value.args)?.into()),
             "cheat_toggle_active_collectible" => Ok(__sdk::parse_reducer_args::<cheat_toggle_active_collectible_reducer::CheatToggleActiveCollectibleArgs>("cheat_toggle_active_collectible", &value.args)?.into()),
+            "cheat_undiscover_map" => Ok(__sdk::parse_reducer_args::<cheat_undiscover_map_reducer::CheatUndiscoverMapArgs>("cheat_undiscover_map", &value.args)?.into()),
             "cheat_warp" => Ok(__sdk::parse_reducer_args::<cheat_warp_reducer::CheatWarpArgs>("cheat_warp", &value.args)?.into()),
             "claim_add_member" => Ok(__sdk::parse_reducer_args::<claim_add_member_reducer::ClaimAddMemberArgs>("claim_add_member", &value.args)?.into()),
             "claim_add_recruitment" => Ok(__sdk::parse_reducer_args::<claim_add_recruitment_reducer::ClaimAddRecruitmentArgs>("claim_add_recruitment", &value.args)?.into()),
@@ -7671,6 +7761,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "trade_swap_pockets" => Ok(__sdk::parse_reducer_args::<trade_swap_pockets_reducer::TradeSwapPocketsArgs>("trade_swap_pockets", &value.args)?.into()),
             "transfer_player_delayed" => Ok(__sdk::parse_reducer_args::<transfer_player_delayed_reducer::TransferPlayerDelayedArgs>("transfer_player_delayed", &value.args)?.into()),
             "traveler_task_agent_loop" => Ok(__sdk::parse_reducer_args::<traveler_task_agent_loop_reducer::TravelerTaskAgentLoopArgs>("traveler_task_agent_loop", &value.args)?.into()),
+            "update_moving_cost" => Ok(__sdk::parse_reducer_args::<update_moving_cost_reducer::UpdateMovingCostArgs>("update_moving_cost", &value.args)?.into()),
             "update_scheduled_timers_from_static_data" => Ok(__sdk::parse_reducer_args::<update_scheduled_timers_from_static_data_reducer::UpdateScheduledTimersFromStaticDataArgs>("update_scheduled_timers_from_static_data", &value.args)?.into()),
             unknown => Err(__sdk::InternalError::unknown_name("reducer", unknown, "ReducerCallInfo").into()),
 }
@@ -7697,6 +7788,7 @@ pub struct DbUpdate {
     attack_timer: __sdk::TableUpdate<AttackTimer>,
     auto_claim_state: __sdk::TableUpdate<AutoClaimState>,
     auto_logout_loop_timer: __sdk::TableUpdate<AutoLogoutLoopTimer>,
+    bank_state: __sdk::TableUpdate<BankState>,
     barter_stall_state: __sdk::TableUpdate<BarterStallState>,
     biome_desc: __sdk::TableUpdate<BiomeDesc>,
     blocked_identity: __sdk::TableUpdate<BlockedIdentity>,
@@ -7742,6 +7834,7 @@ pub struct DbUpdate {
     config: __sdk::TableUpdate<Config>,
     construction_recipe_desc: __sdk::TableUpdate<ConstructionRecipeDesc>,
     contribution_loot_desc: __sdk::TableUpdate<ContributionLootDesc>,
+    contribution_loot_desc_v_2: __sdk::TableUpdate<ContributionLootDescV2>,
     contribution_state: __sdk::TableUpdate<ContributionState>,
     crafting_recipe_desc: __sdk::TableUpdate<CraftingRecipeDesc>,
     day_night_loop_timer: __sdk::TableUpdate<DayNightLoopTimer>,
@@ -7856,6 +7949,7 @@ pub struct DbUpdate {
     loot_rarity_desc: __sdk::TableUpdate<LootRarityDesc>,
     loot_table_desc: __sdk::TableUpdate<LootTableDesc>,
     lost_items_state: __sdk::TableUpdate<LostItemsState>,
+    marketplace_state: __sdk::TableUpdate<MarketplaceState>,
     mobile_entity_state: __sdk::TableUpdate<MobileEntityState>,
     moderation_action_log_entry: __sdk::TableUpdate<ModerationActionLogEntry>,
     mounting_state: __sdk::TableUpdate<MountingState>,
@@ -7883,6 +7977,7 @@ pub struct DbUpdate {
     player_housing_desc: __sdk::TableUpdate<PlayerHousingDesc>,
     player_housing_evict_player_timer: __sdk::TableUpdate<PlayerHousingEvictPlayerTimer>,
     player_housing_income_loop_timer: __sdk::TableUpdate<PlayerHousingIncomeLoopTimer>,
+    player_housing_moving_cost_state: __sdk::TableUpdate<PlayerHousingMovingCostState>,
     player_housing_state: __sdk::TableUpdate<PlayerHousingState>,
     player_lowercase_username_state: __sdk::TableUpdate<PlayerLowercaseUsernameState>,
     player_note_state: __sdk::TableUpdate<PlayerNoteState>,
@@ -7937,6 +8032,7 @@ pub struct DbUpdate {
     skill_desc: __sdk::TableUpdate<SkillDesc>,
     staged_static_data: __sdk::TableUpdate<StagedStaticData>,
     staged_static_data_v_2: __sdk::TableUpdate<StagedStaticDataV2>,
+    staged_static_data_v_3: __sdk::TableUpdate<StagedStaticDataV3>,
     stamina_state: __sdk::TableUpdate<StaminaState>,
     starving_loop_timer: __sdk::TableUpdate<StarvingLoopTimer>,
     starving_player_state: __sdk::TableUpdate<StarvingPlayerState>,
@@ -7973,6 +8069,7 @@ pub struct DbUpdate {
     user_state: __sdk::TableUpdate<UserState>,
     vault_state: __sdk::TableUpdate<VaultState>,
     wall_desc: __sdk::TableUpdate<WallDesc>,
+    waystone_state: __sdk::TableUpdate<WaystoneState>,
     weapon_desc: __sdk::TableUpdate<WeaponDesc>,
     weapon_type_desc: __sdk::TableUpdate<WeaponTypeDesc>,
     world_region_name_state: __sdk::TableUpdate<WorldRegionNameState>,
@@ -8035,6 +8132,9 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
                 "auto_logout_loop_timer" => db_update.auto_logout_loop_timer.append(
                     auto_logout_loop_timer_table::parse_table_update(table_update)?,
                 ),
+                "bank_state" => db_update
+                    .bank_state
+                    .append(bank_state_table::parse_table_update(table_update)?),
                 "barter_stall_state" => db_update
                     .barter_stall_state
                     .append(barter_stall_state_table::parse_table_update(table_update)?),
@@ -8173,6 +8273,9 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
                 ),
                 "contribution_loot_desc" => db_update.contribution_loot_desc.append(
                     contribution_loot_desc_table::parse_table_update(table_update)?,
+                ),
+                "contribution_loot_desc_v2" => db_update.contribution_loot_desc_v_2.append(
+                    contribution_loot_desc_v_2_table::parse_table_update(table_update)?,
                 ),
                 "contribution_state" => db_update
                     .contribution_state
@@ -8534,6 +8637,9 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
                 "lost_items_state" => db_update
                     .lost_items_state
                     .append(lost_items_state_table::parse_table_update(table_update)?),
+                "marketplace_state" => db_update
+                    .marketplace_state
+                    .append(marketplace_state_table::parse_table_update(table_update)?),
                 "mobile_entity_state" => db_update
                     .mobile_entity_state
                     .append(mobile_entity_state_table::parse_table_update(table_update)?),
@@ -8621,6 +8727,11 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
                 "player_housing_income_loop_timer" => {
                     db_update.player_housing_income_loop_timer.append(
                         player_housing_income_loop_timer_table::parse_table_update(table_update)?,
+                    )
+                }
+                "player_housing_moving_cost_state" => {
+                    db_update.player_housing_moving_cost_state.append(
+                        player_housing_moving_cost_state_table::parse_table_update(table_update)?,
                     )
                 }
                 "player_housing_state" => db_update.player_housing_state.append(
@@ -8793,6 +8904,9 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
                 "staged_static_data_v2" => db_update.staged_static_data_v_2.append(
                     staged_static_data_v_2_table::parse_table_update(table_update)?,
                 ),
+                "staged_static_data_v3" => db_update.staged_static_data_v_3.append(
+                    staged_static_data_v_3_table::parse_table_update(table_update)?,
+                ),
                 "stamina_state" => db_update
                     .stamina_state
                     .append(stamina_state_table::parse_table_update(table_update)?),
@@ -8907,6 +9021,9 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
                 "wall_desc" => db_update
                     .wall_desc
                     .append(wall_desc_table::parse_table_update(table_update)?),
+                "waystone_state" => db_update
+                    .waystone_state
+                    .append(waystone_state_table::parse_table_update(table_update)?),
                 "weapon_desc" => db_update
                     .weapon_desc
                     .append(weapon_desc_table::parse_table_update(table_update)?),
@@ -9014,6 +9131,9 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.auto_logout_loop_timer,
             )
             .with_updates_by_pk(|row| &row.scheduled_id);
+        diff.bank_state = cache
+            .apply_diff_to_table::<BankState>("bank_state", &self.bank_state)
+            .with_updates_by_pk(|row| &row.building_entity_id);
         diff.barter_stall_state = cache
             .apply_diff_to_table::<BarterStallState>("barter_stall_state", &self.barter_stall_state)
             .with_updates_by_pk(|row| &row.entity_id);
@@ -9207,6 +9327,12 @@ impl __sdk::DbUpdate for DbUpdate {
             .apply_diff_to_table::<ContributionLootDesc>(
                 "contribution_loot_desc",
                 &self.contribution_loot_desc,
+            )
+            .with_updates_by_pk(|row| &row.id);
+        diff.contribution_loot_desc_v_2 = cache
+            .apply_diff_to_table::<ContributionLootDescV2>(
+                "contribution_loot_desc_v2",
+                &self.contribution_loot_desc_v_2,
             )
             .with_updates_by_pk(|row| &row.id);
         diff.contribution_state = cache
@@ -9771,6 +9897,9 @@ impl __sdk::DbUpdate for DbUpdate {
         diff.lost_items_state = cache
             .apply_diff_to_table::<LostItemsState>("lost_items_state", &self.lost_items_state)
             .with_updates_by_pk(|row| &row.inventory_entity_id);
+        diff.marketplace_state = cache
+            .apply_diff_to_table::<MarketplaceState>("marketplace_state", &self.marketplace_state)
+            .with_updates_by_pk(|row| &row.building_entity_id);
         diff.mobile_entity_state = cache
             .apply_diff_to_table::<MobileEntityState>(
                 "mobile_entity_state",
@@ -9897,6 +10026,12 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.player_housing_income_loop_timer,
             )
             .with_updates_by_pk(|row| &row.scheduled_id);
+        diff.player_housing_moving_cost_state = cache
+            .apply_diff_to_table::<PlayerHousingMovingCostState>(
+                "player_housing_moving_cost_state",
+                &self.player_housing_moving_cost_state,
+            )
+            .with_updates_by_pk(|row| &row.entity_id);
         diff.player_housing_state = cache
             .apply_diff_to_table::<PlayerHousingState>(
                 "player_housing_state",
@@ -10164,6 +10299,12 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.staged_static_data_v_2,
             )
             .with_updates_by_pk(|row| &row.version);
+        diff.staged_static_data_v_3 = cache
+            .apply_diff_to_table::<StagedStaticDataV3>(
+                "staged_static_data_v3",
+                &self.staged_static_data_v_3,
+            )
+            .with_updates_by_pk(|row| &row.version);
         diff.stamina_state = cache
             .apply_diff_to_table::<StaminaState>("stamina_state", &self.stamina_state)
             .with_updates_by_pk(|row| &row.entity_id);
@@ -10338,6 +10479,9 @@ impl __sdk::DbUpdate for DbUpdate {
         diff.wall_desc = cache
             .apply_diff_to_table::<WallDesc>("wall_desc", &self.wall_desc)
             .with_updates_by_pk(|row| &row.building_id);
+        diff.waystone_state = cache
+            .apply_diff_to_table::<WaystoneState>("waystone_state", &self.waystone_state)
+            .with_updates_by_pk(|row| &row.building_entity_id);
         diff.weapon_desc = cache
             .apply_diff_to_table::<WeaponDesc>("weapon_desc", &self.weapon_desc)
             .with_updates_by_pk(|row| &row.item_id);
@@ -10378,6 +10522,7 @@ pub struct AppliedDiff<'r> {
     attack_timer: __sdk::TableAppliedDiff<'r, AttackTimer>,
     auto_claim_state: __sdk::TableAppliedDiff<'r, AutoClaimState>,
     auto_logout_loop_timer: __sdk::TableAppliedDiff<'r, AutoLogoutLoopTimer>,
+    bank_state: __sdk::TableAppliedDiff<'r, BankState>,
     barter_stall_state: __sdk::TableAppliedDiff<'r, BarterStallState>,
     biome_desc: __sdk::TableAppliedDiff<'r, BiomeDesc>,
     blocked_identity: __sdk::TableAppliedDiff<'r, BlockedIdentity>,
@@ -10424,6 +10569,7 @@ pub struct AppliedDiff<'r> {
     config: __sdk::TableAppliedDiff<'r, Config>,
     construction_recipe_desc: __sdk::TableAppliedDiff<'r, ConstructionRecipeDesc>,
     contribution_loot_desc: __sdk::TableAppliedDiff<'r, ContributionLootDesc>,
+    contribution_loot_desc_v_2: __sdk::TableAppliedDiff<'r, ContributionLootDescV2>,
     contribution_state: __sdk::TableAppliedDiff<'r, ContributionState>,
     crafting_recipe_desc: __sdk::TableAppliedDiff<'r, CraftingRecipeDesc>,
     day_night_loop_timer: __sdk::TableAppliedDiff<'r, DayNightLoopTimer>,
@@ -10540,6 +10686,7 @@ pub struct AppliedDiff<'r> {
     loot_rarity_desc: __sdk::TableAppliedDiff<'r, LootRarityDesc>,
     loot_table_desc: __sdk::TableAppliedDiff<'r, LootTableDesc>,
     lost_items_state: __sdk::TableAppliedDiff<'r, LostItemsState>,
+    marketplace_state: __sdk::TableAppliedDiff<'r, MarketplaceState>,
     mobile_entity_state: __sdk::TableAppliedDiff<'r, MobileEntityState>,
     moderation_action_log_entry: __sdk::TableAppliedDiff<'r, ModerationActionLogEntry>,
     mounting_state: __sdk::TableAppliedDiff<'r, MountingState>,
@@ -10568,6 +10715,7 @@ pub struct AppliedDiff<'r> {
     player_housing_desc: __sdk::TableAppliedDiff<'r, PlayerHousingDesc>,
     player_housing_evict_player_timer: __sdk::TableAppliedDiff<'r, PlayerHousingEvictPlayerTimer>,
     player_housing_income_loop_timer: __sdk::TableAppliedDiff<'r, PlayerHousingIncomeLoopTimer>,
+    player_housing_moving_cost_state: __sdk::TableAppliedDiff<'r, PlayerHousingMovingCostState>,
     player_housing_state: __sdk::TableAppliedDiff<'r, PlayerHousingState>,
     player_lowercase_username_state: __sdk::TableAppliedDiff<'r, PlayerLowercaseUsernameState>,
     player_note_state: __sdk::TableAppliedDiff<'r, PlayerNoteState>,
@@ -10622,6 +10770,7 @@ pub struct AppliedDiff<'r> {
     skill_desc: __sdk::TableAppliedDiff<'r, SkillDesc>,
     staged_static_data: __sdk::TableAppliedDiff<'r, StagedStaticData>,
     staged_static_data_v_2: __sdk::TableAppliedDiff<'r, StagedStaticDataV2>,
+    staged_static_data_v_3: __sdk::TableAppliedDiff<'r, StagedStaticDataV3>,
     stamina_state: __sdk::TableAppliedDiff<'r, StaminaState>,
     starving_loop_timer: __sdk::TableAppliedDiff<'r, StarvingLoopTimer>,
     starving_player_state: __sdk::TableAppliedDiff<'r, StarvingPlayerState>,
@@ -10659,6 +10808,7 @@ pub struct AppliedDiff<'r> {
     user_state: __sdk::TableAppliedDiff<'r, UserState>,
     vault_state: __sdk::TableAppliedDiff<'r, VaultState>,
     wall_desc: __sdk::TableAppliedDiff<'r, WallDesc>,
+    waystone_state: __sdk::TableAppliedDiff<'r, WaystoneState>,
     weapon_desc: __sdk::TableAppliedDiff<'r, WeaponDesc>,
     weapon_type_desc: __sdk::TableAppliedDiff<'r, WeaponTypeDesc>,
     world_region_name_state: __sdk::TableAppliedDiff<'r, WorldRegionNameState>,
@@ -10747,6 +10897,7 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             &self.auto_logout_loop_timer,
             event,
         );
+        callbacks.invoke_table_row_callbacks::<BankState>("bank_state", &self.bank_state, event);
         callbacks.invoke_table_row_callbacks::<BarterStallState>(
             "barter_stall_state",
             &self.barter_stall_state,
@@ -10950,6 +11101,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<ContributionLootDesc>(
             "contribution_loot_desc",
             &self.contribution_loot_desc,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<ContributionLootDescV2>(
+            "contribution_loot_desc_v2",
+            &self.contribution_loot_desc_v_2,
             event,
         );
         callbacks.invoke_table_row_callbacks::<ContributionState>(
@@ -11482,6 +11638,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             &self.lost_items_state,
             event,
         );
+        callbacks.invoke_table_row_callbacks::<MarketplaceState>(
+            "marketplace_state",
+            &self.marketplace_state,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<MobileEntityState>(
             "mobile_entity_state",
             &self.mobile_entity_state,
@@ -11607,6 +11768,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<PlayerHousingIncomeLoopTimer>(
             "player_housing_income_loop_timer",
             &self.player_housing_income_loop_timer,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<PlayerHousingMovingCostState>(
+            "player_housing_moving_cost_state",
+            &self.player_housing_moving_cost_state,
             event,
         );
         callbacks.invoke_table_row_callbacks::<PlayerHousingState>(
@@ -11871,6 +12037,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             &self.staged_static_data_v_2,
             event,
         );
+        callbacks.invoke_table_row_callbacks::<StagedStaticDataV3>(
+            "staged_static_data_v3",
+            &self.staged_static_data_v_3,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<StaminaState>(
             "stamina_state",
             &self.stamina_state,
@@ -12035,6 +12206,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<UserState>("user_state", &self.user_state, event);
         callbacks.invoke_table_row_callbacks::<VaultState>("vault_state", &self.vault_state, event);
         callbacks.invoke_table_row_callbacks::<WallDesc>("wall_desc", &self.wall_desc, event);
+        callbacks.invoke_table_row_callbacks::<WaystoneState>(
+            "waystone_state",
+            &self.waystone_state,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<WeaponDesc>("weapon_desc", &self.weapon_desc, event);
         callbacks.invoke_table_row_callbacks::<WeaponTypeDesc>(
             "weapon_type_desc",
@@ -12642,6 +12818,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         attack_timer_table::register_table(client_cache);
         auto_claim_state_table::register_table(client_cache);
         auto_logout_loop_timer_table::register_table(client_cache);
+        bank_state_table::register_table(client_cache);
         barter_stall_state_table::register_table(client_cache);
         biome_desc_table::register_table(client_cache);
         blocked_identity_table::register_table(client_cache);
@@ -12687,6 +12864,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         config_table::register_table(client_cache);
         construction_recipe_desc_table::register_table(client_cache);
         contribution_loot_desc_table::register_table(client_cache);
+        contribution_loot_desc_v_2_table::register_table(client_cache);
         contribution_state_table::register_table(client_cache);
         crafting_recipe_desc_table::register_table(client_cache);
         day_night_loop_timer_table::register_table(client_cache);
@@ -12801,6 +12979,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         loot_rarity_desc_table::register_table(client_cache);
         loot_table_desc_table::register_table(client_cache);
         lost_items_state_table::register_table(client_cache);
+        marketplace_state_table::register_table(client_cache);
         mobile_entity_state_table::register_table(client_cache);
         moderation_action_log_entry_table::register_table(client_cache);
         mounting_state_table::register_table(client_cache);
@@ -12828,6 +13007,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         player_housing_desc_table::register_table(client_cache);
         player_housing_evict_player_timer_table::register_table(client_cache);
         player_housing_income_loop_timer_table::register_table(client_cache);
+        player_housing_moving_cost_state_table::register_table(client_cache);
         player_housing_state_table::register_table(client_cache);
         player_lowercase_username_state_table::register_table(client_cache);
         player_note_state_table::register_table(client_cache);
@@ -12882,6 +13062,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         skill_desc_table::register_table(client_cache);
         staged_static_data_table::register_table(client_cache);
         staged_static_data_v_2_table::register_table(client_cache);
+        staged_static_data_v_3_table::register_table(client_cache);
         stamina_state_table::register_table(client_cache);
         starving_loop_timer_table::register_table(client_cache);
         starving_player_state_table::register_table(client_cache);
@@ -12918,6 +13099,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         user_state_table::register_table(client_cache);
         vault_state_table::register_table(client_cache);
         wall_desc_table::register_table(client_cache);
+        waystone_state_table::register_table(client_cache);
         weapon_desc_table::register_table(client_cache);
         weapon_type_desc_table::register_table(client_cache);
         world_region_name_state_table::register_table(client_cache);

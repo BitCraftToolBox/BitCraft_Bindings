@@ -5,12 +5,12 @@
 #![allow(unused, clippy::all)]
 use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
-use super::contribution_loot_desc_type::ContributionLootDesc;
+use super::contribution_loot_desc_v_2_type::ContributionLootDescV2;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct ImportContributionLootDescArgs {
-    pub records: Vec<ContributionLootDesc>,
+    pub records: Vec<ContributionLootDescV2>,
 }
 
 impl From<ImportContributionLootDescArgs> for super::Reducer {
@@ -39,7 +39,7 @@ pub trait import_contribution_loot_desc {
     ///  and its status can be observed by listening for [`Self::on_import_contribution_loot_desc`] callbacks.
     fn import_contribution_loot_desc(
         &self,
-        records: Vec<ContributionLootDesc>,
+        records: Vec<ContributionLootDescV2>,
     ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `import_contribution_loot_desc`.
     ///
@@ -50,7 +50,7 @@ pub trait import_contribution_loot_desc {
     /// to cancel the callback.
     fn on_import_contribution_loot_desc(
         &self,
-        callback: impl FnMut(&super::ReducerEventContext, &Vec<ContributionLootDesc>) + Send + 'static,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<ContributionLootDescV2>) + Send + 'static,
     ) -> ImportContributionLootDescCallbackId;
     /// Cancel a callback previously registered by [`Self::on_import_contribution_loot_desc`],
     /// causing it not to run in the future.
@@ -63,7 +63,7 @@ pub trait import_contribution_loot_desc {
 impl import_contribution_loot_desc for super::RemoteReducers {
     fn import_contribution_loot_desc(
         &self,
-        records: Vec<ContributionLootDesc>,
+        records: Vec<ContributionLootDescV2>,
     ) -> __sdk::Result<()> {
         self.imp.call_reducer(
             "import_contribution_loot_desc",
@@ -72,7 +72,7 @@ impl import_contribution_loot_desc for super::RemoteReducers {
     }
     fn on_import_contribution_loot_desc(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<ContributionLootDesc>)
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<ContributionLootDescV2>)
             + Send
             + 'static,
     ) -> ImportContributionLootDescCallbackId {
