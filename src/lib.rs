@@ -82,6 +82,7 @@ pub mod admin_set_sign_text_reducer;
 pub mod admin_sign_out_all_region_reducer;
 pub mod admin_sign_out_reducer;
 pub mod admin_sign_out_string_reducer;
+pub mod admin_unlock_house_reducer;
 pub mod admin_update_housing_portals_reducer;
 pub mod admin_update_light_source_states_reducer;
 pub mod admin_update_lore_knowledge_reducer;
@@ -1795,6 +1796,9 @@ pub use admin_sign_out_reducer::{
 };
 pub use admin_sign_out_string_reducer::{
     admin_sign_out_string, set_flags_for_admin_sign_out_string, AdminSignOutStringCallbackId,
+};
+pub use admin_unlock_house_reducer::{
+    admin_unlock_house, set_flags_for_admin_unlock_house, AdminUnlockHouseCallbackId,
 };
 pub use admin_update_housing_portals_reducer::{
     admin_update_housing_portals, set_flags_for_admin_update_housing_portals,
@@ -4764,6 +4768,9 @@ pub enum Reducer {
     AdminSignOutString {
         identity: String,
     },
+    AdminUnlockHouse {
+        player_entity_id: u64,
+    },
     AdminUpdateHousingPortals,
     AdminUpdateLightSourceStates,
     AdminUpdateLoreKnowledge,
@@ -6533,6 +6540,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::AdminSignOut { .. } => "admin_sign_out",
             Reducer::AdminSignOutAllRegion => "admin_sign_out_all_region",
             Reducer::AdminSignOutString { .. } => "admin_sign_out_string",
+            Reducer::AdminUnlockHouse { .. } => "admin_unlock_house",
             Reducer::AdminUpdateHousingPortals => "admin_update_housing_portals",
             Reducer::AdminUpdateLightSourceStates => "admin_update_light_source_states",
             Reducer::AdminUpdateLoreKnowledge => "admin_update_lore_knowledge",
@@ -7202,6 +7210,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "admin_sign_out" => Ok(__sdk::parse_reducer_args::<admin_sign_out_reducer::AdminSignOutArgs>("admin_sign_out", &value.args)?.into()),
             "admin_sign_out_all_region" => Ok(__sdk::parse_reducer_args::<admin_sign_out_all_region_reducer::AdminSignOutAllRegionArgs>("admin_sign_out_all_region", &value.args)?.into()),
             "admin_sign_out_string" => Ok(__sdk::parse_reducer_args::<admin_sign_out_string_reducer::AdminSignOutStringArgs>("admin_sign_out_string", &value.args)?.into()),
+            "admin_unlock_house" => Ok(__sdk::parse_reducer_args::<admin_unlock_house_reducer::AdminUnlockHouseArgs>("admin_unlock_house", &value.args)?.into()),
             "admin_update_housing_portals" => Ok(__sdk::parse_reducer_args::<admin_update_housing_portals_reducer::AdminUpdateHousingPortalsArgs>("admin_update_housing_portals", &value.args)?.into()),
             "admin_update_light_source_states" => Ok(__sdk::parse_reducer_args::<admin_update_light_source_states_reducer::AdminUpdateLightSourceStatesArgs>("admin_update_light_source_states", &value.args)?.into()),
             "admin_update_lore_knowledge" => Ok(__sdk::parse_reducer_args::<admin_update_lore_knowledge_reducer::AdminUpdateLoreKnowledgeArgs>("admin_update_lore_knowledge", &value.args)?.into()),
