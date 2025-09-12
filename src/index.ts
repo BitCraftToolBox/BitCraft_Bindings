@@ -147,6 +147,8 @@ import { AdminSignOutAllRegion } from "./admin_sign_out_all_region_reducer.ts";
 export { AdminSignOutAllRegion };
 import { AdminSignOutString } from "./admin_sign_out_string_reducer.ts";
 export { AdminSignOutString };
+import { AdminUnlockHouse } from "./admin_unlock_house_reducer.ts";
+export { AdminUnlockHouse };
 import { AdminUpdateHousingPortals } from "./admin_update_housing_portals_reducer.ts";
 export { AdminUpdateHousingPortals };
 import { AdminUpdateLightSourceStates } from "./admin_update_light_source_states_reducer.ts";
@@ -6067,6 +6069,10 @@ export const REMOTE_MODULE = {
       reducerName: "admin_sign_out_string",
       argsType: AdminSignOutString.getTypeScriptAlgebraicType(),
     },
+    admin_unlock_house: {
+      reducerName: "admin_unlock_house",
+      argsType: AdminUnlockHouse.getTypeScriptAlgebraicType(),
+    },
     admin_update_housing_portals: {
       reducerName: "admin_update_housing_portals",
       argsType: AdminUpdateHousingPortals.getTypeScriptAlgebraicType(),
@@ -8398,6 +8404,7 @@ export type Reducer = never
 | { name: "AdminSignOut", args: AdminSignOut }
 | { name: "AdminSignOutAllRegion", args: AdminSignOutAllRegion }
 | { name: "AdminSignOutString", args: AdminSignOutString }
+| { name: "AdminUnlockHouse", args: AdminUnlockHouse }
 | { name: "AdminUpdateHousingPortals", args: AdminUpdateHousingPortals }
 | { name: "AdminUpdateLightSourceStates", args: AdminUpdateLightSourceStates }
 | { name: "AdminUpdateLoreKnowledge", args: AdminUpdateLoreKnowledge }
@@ -9834,6 +9841,22 @@ export class RemoteReducers {
 
   removeOnAdminSignOutString(callback: (ctx: ReducerEventContext, identity: string) => void) {
     this.connection.offReducer("admin_sign_out_string", callback);
+  }
+
+  adminUnlockHouse(playerEntityId: bigint) {
+    const __args = { playerEntityId };
+    let __writer = new BinaryWriter(1024);
+    AdminUnlockHouse.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("admin_unlock_house", __argsBuffer, this.setCallReducerFlags.adminUnlockHouseFlags);
+  }
+
+  onAdminUnlockHouse(callback: (ctx: ReducerEventContext, playerEntityId: bigint) => void) {
+    this.connection.onReducer("admin_unlock_house", callback);
+  }
+
+  removeOnAdminUnlockHouse(callback: (ctx: ReducerEventContext, playerEntityId: bigint) => void) {
+    this.connection.offReducer("admin_unlock_house", callback);
   }
 
   adminUpdateHousingPortals() {
@@ -18982,6 +19005,11 @@ export class SetReducerFlags {
   adminSignOutStringFlags: CallReducerFlags = 'FullUpdate';
   adminSignOutString(flags: CallReducerFlags) {
     this.adminSignOutStringFlags = flags;
+  }
+
+  adminUnlockHouseFlags: CallReducerFlags = 'FullUpdate';
+  adminUnlockHouse(flags: CallReducerFlags) {
+    this.adminUnlockHouseFlags = flags;
   }
 
   adminUpdateHousingPortalsFlags: CallReducerFlags = 'FullUpdate';
