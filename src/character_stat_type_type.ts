@@ -90,6 +90,7 @@ export namespace CharacterStatType {
   export type Accuracy = { tag: "Accuracy" };
   export type MaxTeleportationEnergy = { tag: "MaxTeleportationEnergy" };
   export type TeleportationEnergyRegenRate = { tag: "TeleportationEnergyRegenRate" };
+  export type ConstructionPower = { tag: "ConstructionPower" };
 
   // Helper functions for constructing each variant of the tagged union.
   // ```
@@ -151,6 +152,7 @@ export namespace CharacterStatType {
   export const Accuracy = { tag: "Accuracy" };
   export const MaxTeleportationEnergy = { tag: "MaxTeleportationEnergy" };
   export const TeleportationEnergyRegenRate = { tag: "TeleportationEnergyRegenRate" };
+  export const ConstructionPower = { tag: "ConstructionPower" };
 
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createSumType([
@@ -208,6 +210,7 @@ export namespace CharacterStatType {
       new SumTypeVariant("Accuracy", AlgebraicType.createProductType([])),
       new SumTypeVariant("MaxTeleportationEnergy", AlgebraicType.createProductType([])),
       new SumTypeVariant("TeleportationEnergyRegenRate", AlgebraicType.createProductType([])),
+      new SumTypeVariant("ConstructionPower", AlgebraicType.createProductType([])),
     ]);
   }
 
@@ -222,7 +225,7 @@ export namespace CharacterStatType {
 }
 
 // The tagged union or sum type for the algebraic type `CharacterStatType`.
-export type CharacterStatType = CharacterStatType.MaxHealth | CharacterStatType.MaxStamina | CharacterStatType.PassiveHealthRegenRate | CharacterStatType.PassiveStaminaRegenRate | CharacterStatType.MovementMultiplier | CharacterStatType.SprintMultiplier | CharacterStatType.SprintStaminaDrain | CharacterStatType.Armor | CharacterStatType.CooldownMultiplier | CharacterStatType.HuntingWeaponPower | CharacterStatType.Strength | CharacterStatType.ColdProtection | CharacterStatType.HeatProtection | CharacterStatType.Evasion | CharacterStatType.ToolbeltSlots | CharacterStatType.CraftingSpeed | CharacterStatType.GatheringSpeed | CharacterStatType.BuildingSpeed | CharacterStatType.SatiationRegenRate | CharacterStatType.MaxSatiation | CharacterStatType.DefenseLevel | CharacterStatType.ForestrySpeed | CharacterStatType.CarpentrySpeed | CharacterStatType.MasonrySpeed | CharacterStatType.MiningSpeed | CharacterStatType.SmithingSpeed | CharacterStatType.ScholarSpeed | CharacterStatType.LeatherworkingSpeed | CharacterStatType.HuntingSpeed | CharacterStatType.TailoringSpeed | CharacterStatType.FarmingSpeed | CharacterStatType.FishingSpeed | CharacterStatType.CookingSpeed | CharacterStatType.ForagingSpeed | CharacterStatType.ForestryPower | CharacterStatType.CarpentryPower | CharacterStatType.MasonryPower | CharacterStatType.MiningPower | CharacterStatType.SmithingPower | CharacterStatType.ScholarPower | CharacterStatType.LeatherworkingPower | CharacterStatType.HuntingPower | CharacterStatType.TailoringPower | CharacterStatType.FarmingPower | CharacterStatType.FishingPower | CharacterStatType.CookingPower | CharacterStatType.ForagingPower | CharacterStatType.ActiveHealthRegenRate | CharacterStatType.ActiveStaminaRegenRate | CharacterStatType.ClimbProficiency | CharacterStatType.ExperienceRate | CharacterStatType.Accuracy | CharacterStatType.MaxTeleportationEnergy | CharacterStatType.TeleportationEnergyRegenRate;
+export type CharacterStatType = CharacterStatType.MaxHealth | CharacterStatType.MaxStamina | CharacterStatType.PassiveHealthRegenRate | CharacterStatType.PassiveStaminaRegenRate | CharacterStatType.MovementMultiplier | CharacterStatType.SprintMultiplier | CharacterStatType.SprintStaminaDrain | CharacterStatType.Armor | CharacterStatType.CooldownMultiplier | CharacterStatType.HuntingWeaponPower | CharacterStatType.Strength | CharacterStatType.ColdProtection | CharacterStatType.HeatProtection | CharacterStatType.Evasion | CharacterStatType.ToolbeltSlots | CharacterStatType.CraftingSpeed | CharacterStatType.GatheringSpeed | CharacterStatType.BuildingSpeed | CharacterStatType.SatiationRegenRate | CharacterStatType.MaxSatiation | CharacterStatType.DefenseLevel | CharacterStatType.ForestrySpeed | CharacterStatType.CarpentrySpeed | CharacterStatType.MasonrySpeed | CharacterStatType.MiningSpeed | CharacterStatType.SmithingSpeed | CharacterStatType.ScholarSpeed | CharacterStatType.LeatherworkingSpeed | CharacterStatType.HuntingSpeed | CharacterStatType.TailoringSpeed | CharacterStatType.FarmingSpeed | CharacterStatType.FishingSpeed | CharacterStatType.CookingSpeed | CharacterStatType.ForagingSpeed | CharacterStatType.ForestryPower | CharacterStatType.CarpentryPower | CharacterStatType.MasonryPower | CharacterStatType.MiningPower | CharacterStatType.SmithingPower | CharacterStatType.ScholarPower | CharacterStatType.LeatherworkingPower | CharacterStatType.HuntingPower | CharacterStatType.TailoringPower | CharacterStatType.FarmingPower | CharacterStatType.FishingPower | CharacterStatType.CookingPower | CharacterStatType.ForagingPower | CharacterStatType.ActiveHealthRegenRate | CharacterStatType.ActiveStaminaRegenRate | CharacterStatType.ClimbProficiency | CharacterStatType.ExperienceRate | CharacterStatType.Accuracy | CharacterStatType.MaxTeleportationEnergy | CharacterStatType.TeleportationEnergyRegenRate | CharacterStatType.ConstructionPower;
 
 export default CharacterStatType;
 

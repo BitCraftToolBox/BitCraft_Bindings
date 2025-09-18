@@ -31,34 +31,44 @@ import {
   type ReducerEventContextInterface,
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
-
-import { BuildingPortalDescV2 as __BuildingPortalDescV2 } from "./building_portal_desc_v_2_type";
-
-export type ImportBuildingPortalDesc = {
-  records: __BuildingPortalDescV2[],
+export type BuildingPortalDescV2 = {
+  id: number,
+  name: string,
+  buildingId: number,
+  allowDeployables: boolean,
+  enemyLock: boolean,
+  posX: number,
+  posZ: number,
 };
 
 /**
  * A namespace for generated helper functions.
  */
-export namespace ImportBuildingPortalDesc {
+export namespace BuildingPortalDescV2 {
   /**
   * A function which returns this type represented as an AlgebraicType.
   * This function is derived from the AlgebraicType used to generate this type.
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("records", AlgebraicType.createArrayType(__BuildingPortalDescV2.getTypeScriptAlgebraicType())),
+      new ProductTypeElement("id", AlgebraicType.createI32Type()),
+      new ProductTypeElement("name", AlgebraicType.createStringType()),
+      new ProductTypeElement("buildingId", AlgebraicType.createI32Type()),
+      new ProductTypeElement("allowDeployables", AlgebraicType.createBoolType()),
+      new ProductTypeElement("enemyLock", AlgebraicType.createBoolType()),
+      new ProductTypeElement("posX", AlgebraicType.createI32Type()),
+      new ProductTypeElement("posZ", AlgebraicType.createI32Type()),
     ]);
   }
 
-  export function serialize(writer: BinaryWriter, value: ImportBuildingPortalDesc): void {
-    ImportBuildingPortalDesc.getTypeScriptAlgebraicType().serialize(writer, value);
+  export function serialize(writer: BinaryWriter, value: BuildingPortalDescV2): void {
+    BuildingPortalDescV2.getTypeScriptAlgebraicType().serialize(writer, value);
   }
 
-  export function deserialize(reader: BinaryReader): ImportBuildingPortalDesc {
-    return ImportBuildingPortalDesc.getTypeScriptAlgebraicType().deserialize(reader);
+  export function deserialize(reader: BinaryReader): BuildingPortalDescV2 {
+    return BuildingPortalDescV2.getTypeScriptAlgebraicType().deserialize(reader);
   }
 
 }
+
 

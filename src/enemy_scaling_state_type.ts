@@ -31,34 +31,34 @@ import {
   type ReducerEventContextInterface,
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
-
-import { BuildingPortalDescV2 as __BuildingPortalDescV2 } from "./building_portal_desc_v_2_type";
-
-export type ImportBuildingPortalDesc = {
-  records: __BuildingPortalDescV2[],
+export type EnemyScalingState = {
+  entityId: bigint,
+  enemyScalingId: number,
 };
 
 /**
  * A namespace for generated helper functions.
  */
-export namespace ImportBuildingPortalDesc {
+export namespace EnemyScalingState {
   /**
   * A function which returns this type represented as an AlgebraicType.
   * This function is derived from the AlgebraicType used to generate this type.
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("records", AlgebraicType.createArrayType(__BuildingPortalDescV2.getTypeScriptAlgebraicType())),
+      new ProductTypeElement("entityId", AlgebraicType.createU64Type()),
+      new ProductTypeElement("enemyScalingId", AlgebraicType.createI32Type()),
     ]);
   }
 
-  export function serialize(writer: BinaryWriter, value: ImportBuildingPortalDesc): void {
-    ImportBuildingPortalDesc.getTypeScriptAlgebraicType().serialize(writer, value);
+  export function serialize(writer: BinaryWriter, value: EnemyScalingState): void {
+    EnemyScalingState.getTypeScriptAlgebraicType().serialize(writer, value);
   }
 
-  export function deserialize(reader: BinaryReader): ImportBuildingPortalDesc {
-    return ImportBuildingPortalDesc.getTypeScriptAlgebraicType().deserialize(reader);
+  export function deserialize(reader: BinaryReader): EnemyScalingState {
+    return EnemyScalingState.getTypeScriptAlgebraicType().deserialize(reader);
   }
 
 }
+
 
