@@ -32,32 +32,32 @@ import {
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
 
-import { CombatActionDescV2 as __CombatActionDescV2 } from "./combat_action_desc_v_2_type";
+import { BuildingPortalDescV2 as __BuildingPortalDescV2 } from "./building_portal_desc_v_2_type";
 
-export type StageCombatActionDescV2 = {
-  records: __CombatActionDescV2[],
+export type StageBuildingPortalDescV2 = {
+  records: __BuildingPortalDescV2[],
 };
 
 /**
  * A namespace for generated helper functions.
  */
-export namespace StageCombatActionDescV2 {
+export namespace StageBuildingPortalDescV2 {
   /**
   * A function which returns this type represented as an AlgebraicType.
   * This function is derived from the AlgebraicType used to generate this type.
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("records", AlgebraicType.createArrayType(__CombatActionDescV2.getTypeScriptAlgebraicType())),
+      new ProductTypeElement("records", AlgebraicType.createArrayType(__BuildingPortalDescV2.getTypeScriptAlgebraicType())),
     ]);
   }
 
-  export function serialize(writer: BinaryWriter, value: StageCombatActionDescV2): void {
-    StageCombatActionDescV2.getTypeScriptAlgebraicType().serialize(writer, value);
+  export function serialize(writer: BinaryWriter, value: StageBuildingPortalDescV2): void {
+    StageBuildingPortalDescV2.getTypeScriptAlgebraicType().serialize(writer, value);
   }
 
-  export function deserialize(reader: BinaryReader): StageCombatActionDescV2 {
-    return StageCombatActionDescV2.getTypeScriptAlgebraicType().deserialize(reader);
+  export function deserialize(reader: BinaryReader): StageBuildingPortalDescV2 {
+    return StageBuildingPortalDescV2.getTypeScriptAlgebraicType().deserialize(reader);
   }
 
 }
