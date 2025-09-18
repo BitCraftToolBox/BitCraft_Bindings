@@ -14,17 +14,17 @@ namespace BitCraftRegion.Types
 {
     public sealed partial class RemoteReducers : RemoteBase
     {
-        public delegate void ImportBuildingPortalDescHandler(ReducerEventContext ctx, System.Collections.Generic.List<BuildingPortalDesc> records);
-        public event ImportBuildingPortalDescHandler? OnImportBuildingPortalDesc;
+        public delegate void ImportEnemyScalingDescHandler(ReducerEventContext ctx, System.Collections.Generic.List<EnemyScalingDesc> records);
+        public event ImportEnemyScalingDescHandler? OnImportEnemyScalingDesc;
 
-        public void ImportBuildingPortalDesc(System.Collections.Generic.List<BuildingPortalDesc> records)
+        public void ImportEnemyScalingDesc(System.Collections.Generic.List<EnemyScalingDesc> records)
         {
-            conn.InternalCallReducer(new Reducer.ImportBuildingPortalDesc(records), this.SetCallReducerFlags.ImportBuildingPortalDescFlags);
+            conn.InternalCallReducer(new Reducer.ImportEnemyScalingDesc(records), this.SetCallReducerFlags.ImportEnemyScalingDescFlags);
         }
 
-        public bool InvokeImportBuildingPortalDesc(ReducerEventContext ctx, Reducer.ImportBuildingPortalDesc args)
+        public bool InvokeImportEnemyScalingDesc(ReducerEventContext ctx, Reducer.ImportEnemyScalingDesc args)
         {
-            if (OnImportBuildingPortalDesc == null)
+            if (OnImportEnemyScalingDesc == null)
             {
                 if (InternalOnUnhandledReducerError != null)
                 {
@@ -36,7 +36,7 @@ namespace BitCraftRegion.Types
                 }
                 return false;
             }
-            OnImportBuildingPortalDesc(
+            OnImportEnemyScalingDesc(
                 ctx,
                 args.Records
             );
@@ -48,28 +48,28 @@ namespace BitCraftRegion.Types
     {
         [SpacetimeDB.Type]
         [DataContract]
-        public sealed partial class ImportBuildingPortalDesc : Reducer, IReducerArgs
+        public sealed partial class ImportEnemyScalingDesc : Reducer, IReducerArgs
         {
             [DataMember(Name = "records")]
-            public System.Collections.Generic.List<BuildingPortalDesc> Records;
+            public System.Collections.Generic.List<EnemyScalingDesc> Records;
 
-            public ImportBuildingPortalDesc(System.Collections.Generic.List<BuildingPortalDesc> Records)
+            public ImportEnemyScalingDesc(System.Collections.Generic.List<EnemyScalingDesc> Records)
             {
                 this.Records = Records;
             }
 
-            public ImportBuildingPortalDesc()
+            public ImportEnemyScalingDesc()
             {
                 this.Records = new();
             }
 
-            string IReducerArgs.ReducerName => "import_building_portal_desc";
+            string IReducerArgs.ReducerName => "import_enemy_scaling_desc";
         }
     }
 
     public sealed partial class SetReducerFlags
     {
-        internal CallReducerFlags ImportBuildingPortalDescFlags;
-        public void ImportBuildingPortalDesc(CallReducerFlags flags) => ImportBuildingPortalDescFlags = flags;
+        internal CallReducerFlags ImportEnemyScalingDescFlags;
+        public void ImportEnemyScalingDesc(CallReducerFlags flags) => ImportEnemyScalingDescFlags = flags;
     }
 }

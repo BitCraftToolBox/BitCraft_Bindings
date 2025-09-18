@@ -52,6 +52,7 @@ namespace BitCraftRegion.Types
             AddTable(BuildingFunctionTypeMappingDesc = new(conn));
             AddTable(BuildingNicknameState = new(conn));
             AddTable(BuildingPortalDesc = new(conn));
+            AddTable(BuildingPortalDescV2 = new(conn));
             AddTable(BuildingRepairsDesc = new(conn));
             AddTable(BuildingSpawnDesc = new(conn));
             AddTable(BuildingState = new(conn));
@@ -79,6 +80,7 @@ namespace BitCraftRegion.Types
             AddTable(CollectibleDesc = new(conn));
             AddTable(CombatActionDesc = new(conn));
             AddTable(CombatActionDescV2 = new(conn));
+            AddTable(CombatActionDescV3 = new(conn));
             AddTable(CombatActionMultiHitDesc = new(conn));
             AddTable(CombatDimensionState = new(conn));
             AddTable(CombatState = new(conn));
@@ -129,6 +131,8 @@ namespace BitCraftRegion.Types
             AddTable(EnemyDespawnTimer = new(conn));
             AddTable(EnemyMobMonitorState = new(conn));
             AddTable(EnemyRegenLoopTimer = new(conn));
+            AddTable(EnemyScalingDesc = new(conn));
+            AddTable(EnemyScalingState = new(conn));
             AddTable(EnemyState = new(conn));
             AddTable(EnvironmentDebuffDesc = new(conn));
             AddTable(EnvironmentDebuffLoopTimer = new(conn));
@@ -284,6 +288,7 @@ namespace BitCraftRegion.Types
             AddTable(StagedStaticData = new(conn));
             AddTable(StagedStaticDataV2 = new(conn));
             AddTable(StagedStaticDataV3 = new(conn));
+            AddTable(StagedStaticDataV4 = new(conn));
             AddTable(StaminaState = new(conn));
             AddTable(StarvingLoopTimer = new(conn));
             AddTable(StarvingPlayerState = new(conn));
@@ -796,6 +801,7 @@ namespace BitCraftRegion.Types
                 "admin_delete_all_items_of_type" => BSATNHelpers.Decode<Reducer.AdminDeleteAllItemsOfType>(encodedArgs),
                 "admin_delete_chat_message" => BSATNHelpers.Decode<Reducer.AdminDeleteChatMessage>(encodedArgs),
                 "admin_despawn_overworld_enemies" => BSATNHelpers.Decode<Reducer.AdminDespawnOverworldEnemies>(encodedArgs),
+                "admin_dungeon_update_portals" => BSATNHelpers.Decode<Reducer.AdminDungeonUpdatePortals>(encodedArgs),
                 "admin_find_all_players_with_item" => BSATNHelpers.Decode<Reducer.AdminFindAllPlayersWithItem>(encodedArgs),
                 "admin_find_all_players_with_item_above_quantity" => BSATNHelpers.Decode<Reducer.AdminFindAllPlayersWithItemAboveQuantity>(encodedArgs),
                 "admin_find_items_in_inventories" => BSATNHelpers.Decode<Reducer.AdminFindItemsInInventories>(encodedArgs),
@@ -1002,7 +1008,7 @@ namespace BitCraftRegion.Types
                 "import_buff_type_desc" => BSATNHelpers.Decode<Reducer.ImportBuffTypeDesc>(encodedArgs),
                 "import_building_claim_desc" => BSATNHelpers.Decode<Reducer.ImportBuildingClaimDesc>(encodedArgs),
                 "import_building_desc" => BSATNHelpers.Decode<Reducer.ImportBuildingDesc>(encodedArgs),
-                "import_building_portal_desc" => BSATNHelpers.Decode<Reducer.ImportBuildingPortalDesc>(encodedArgs),
+                "import_building_portal_desc_v2" => BSATNHelpers.Decode<Reducer.ImportBuildingPortalDescV2>(encodedArgs),
                 "import_building_repairs_desc" => BSATNHelpers.Decode<Reducer.ImportBuildingRepairsDesc>(encodedArgs),
                 "import_building_spawn_desc" => BSATNHelpers.Decode<Reducer.ImportBuildingSpawnDesc>(encodedArgs),
                 "import_building_state" => BSATNHelpers.Decode<Reducer.ImportBuildingState>(encodedArgs),
@@ -1022,7 +1028,7 @@ namespace BitCraftRegion.Types
                 "import_climb_requirement_desc" => BSATNHelpers.Decode<Reducer.ImportClimbRequirementDesc>(encodedArgs),
                 "import_clothing_desc" => BSATNHelpers.Decode<Reducer.ImportClothingDesc>(encodedArgs),
                 "import_collectible_desc" => BSATNHelpers.Decode<Reducer.ImportCollectibleDesc>(encodedArgs),
-                "import_combat_action_desc_v2" => BSATNHelpers.Decode<Reducer.ImportCombatActionDescV2>(encodedArgs),
+                "import_combat_action_desc_v3" => BSATNHelpers.Decode<Reducer.ImportCombatActionDescV3>(encodedArgs),
                 "import_combat_action_multi_hit_desc" => BSATNHelpers.Decode<Reducer.ImportCombatActionMultiHitDesc>(encodedArgs),
                 "import_combat_state" => BSATNHelpers.Decode<Reducer.ImportCombatState>(encodedArgs),
                 "import_config" => BSATNHelpers.Decode<Reducer.ImportConfig>(encodedArgs),
@@ -1046,6 +1052,7 @@ namespace BitCraftRegion.Types
                 "import_empire_territory_desc" => BSATNHelpers.Decode<Reducer.ImportEmpireTerritoryDesc>(encodedArgs),
                 "import_enemy_ai_params_desc" => BSATNHelpers.Decode<Reducer.ImportEnemyAiParamsDesc>(encodedArgs),
                 "import_enemy_desc" => BSATNHelpers.Decode<Reducer.ImportEnemyDesc>(encodedArgs),
+                "import_enemy_scaling_desc" => BSATNHelpers.Decode<Reducer.ImportEnemyScalingDesc>(encodedArgs),
                 "import_enemy_state" => BSATNHelpers.Decode<Reducer.ImportEnemyState>(encodedArgs),
                 "import_environment_debuff_desc" => BSATNHelpers.Decode<Reducer.ImportEnvironmentDebuffDesc>(encodedArgs),
                 "import_equipment_desc" => BSATNHelpers.Decode<Reducer.ImportEquipmentDesc>(encodedArgs),
@@ -1177,6 +1184,7 @@ namespace BitCraftRegion.Types
                 "log_claim_tier_leaderboard" => BSATNHelpers.Decode<Reducer.LogClaimTierLeaderboard>(encodedArgs),
                 "loot_chest_despawn" => BSATNHelpers.Decode<Reducer.LootChestDespawn>(encodedArgs),
                 "loot_chest_spawn" => BSATNHelpers.Decode<Reducer.LootChestSpawn>(encodedArgs),
+                "migrate_character_stats" => BSATNHelpers.Decode<Reducer.MigrateCharacterStats>(encodedArgs),
                 "npc_ai_agent_loop" => BSATNHelpers.Decode<Reducer.NpcAiAgentLoop>(encodedArgs),
                 "on_durability_zero" => BSATNHelpers.Decode<Reducer.OnDurabilityZero>(encodedArgs),
                 "on_inter_module_message_processed" => BSATNHelpers.Decode<Reducer.OnInterModuleMessageProcessed>(encodedArgs),
@@ -1283,7 +1291,7 @@ namespace BitCraftRegion.Types
                 "stage_buff_type_desc" => BSATNHelpers.Decode<Reducer.StageBuffTypeDesc>(encodedArgs),
                 "stage_building_claim_desc" => BSATNHelpers.Decode<Reducer.StageBuildingClaimDesc>(encodedArgs),
                 "stage_building_desc" => BSATNHelpers.Decode<Reducer.StageBuildingDesc>(encodedArgs),
-                "stage_building_portal_desc" => BSATNHelpers.Decode<Reducer.StageBuildingPortalDesc>(encodedArgs),
+                "stage_building_portal_desc_v2" => BSATNHelpers.Decode<Reducer.StageBuildingPortalDescV2>(encodedArgs),
                 "stage_building_repairs_desc" => BSATNHelpers.Decode<Reducer.StageBuildingRepairsDesc>(encodedArgs),
                 "stage_building_spawn_desc" => BSATNHelpers.Decode<Reducer.StageBuildingSpawnDesc>(encodedArgs),
                 "stage_building_type_desc" => BSATNHelpers.Decode<Reducer.StageBuildingTypeDesc>(encodedArgs),
@@ -1295,7 +1303,7 @@ namespace BitCraftRegion.Types
                 "stage_climb_requirement_desc" => BSATNHelpers.Decode<Reducer.StageClimbRequirementDesc>(encodedArgs),
                 "stage_clothing_desc" => BSATNHelpers.Decode<Reducer.StageClothingDesc>(encodedArgs),
                 "stage_collectible_desc" => BSATNHelpers.Decode<Reducer.StageCollectibleDesc>(encodedArgs),
-                "stage_combat_action_desc_v2" => BSATNHelpers.Decode<Reducer.StageCombatActionDescV2>(encodedArgs),
+                "stage_combat_action_desc_v3" => BSATNHelpers.Decode<Reducer.StageCombatActionDescV3>(encodedArgs),
                 "stage_combat_action_multi_hit_desc" => BSATNHelpers.Decode<Reducer.StageCombatActionMultiHitDesc>(encodedArgs),
                 "stage_construction_recipe_desc" => BSATNHelpers.Decode<Reducer.StageConstructionRecipeDesc>(encodedArgs),
                 "stage_contribution_loot_desc" => BSATNHelpers.Decode<Reducer.StageContributionLootDesc>(encodedArgs),
@@ -1313,6 +1321,7 @@ namespace BitCraftRegion.Types
                 "stage_empire_territory_desc" => BSATNHelpers.Decode<Reducer.StageEmpireTerritoryDesc>(encodedArgs),
                 "stage_enemy_ai_params_desc" => BSATNHelpers.Decode<Reducer.StageEnemyAiParamsDesc>(encodedArgs),
                 "stage_enemy_desc" => BSATNHelpers.Decode<Reducer.StageEnemyDesc>(encodedArgs),
+                "stage_enemy_scaling_desc" => BSATNHelpers.Decode<Reducer.StageEnemyScalingDesc>(encodedArgs),
                 "stage_environment_debuff_desc" => BSATNHelpers.Decode<Reducer.StageEnvironmentDebuffDesc>(encodedArgs),
                 "stage_equipment_desc" => BSATNHelpers.Decode<Reducer.StageEquipmentDesc>(encodedArgs),
                 "stage_extraction_recipe_desc" => BSATNHelpers.Decode<Reducer.StageExtractionRecipeDesc>(encodedArgs),
@@ -1436,6 +1445,7 @@ namespace BitCraftRegion.Types
                 Reducer.AdminDeleteAllItemsOfType args => Reducers.InvokeAdminDeleteAllItemsOfType(eventContext, args),
                 Reducer.AdminDeleteChatMessage args => Reducers.InvokeAdminDeleteChatMessage(eventContext, args),
                 Reducer.AdminDespawnOverworldEnemies args => Reducers.InvokeAdminDespawnOverworldEnemies(eventContext, args),
+                Reducer.AdminDungeonUpdatePortals args => Reducers.InvokeAdminDungeonUpdatePortals(eventContext, args),
                 Reducer.AdminFindAllPlayersWithItem args => Reducers.InvokeAdminFindAllPlayersWithItem(eventContext, args),
                 Reducer.AdminFindAllPlayersWithItemAboveQuantity args => Reducers.InvokeAdminFindAllPlayersWithItemAboveQuantity(eventContext, args),
                 Reducer.AdminFindItemsInInventories args => Reducers.InvokeAdminFindItemsInInventories(eventContext, args),
@@ -1642,7 +1652,7 @@ namespace BitCraftRegion.Types
                 Reducer.ImportBuffTypeDesc args => Reducers.InvokeImportBuffTypeDesc(eventContext, args),
                 Reducer.ImportBuildingClaimDesc args => Reducers.InvokeImportBuildingClaimDesc(eventContext, args),
                 Reducer.ImportBuildingDesc args => Reducers.InvokeImportBuildingDesc(eventContext, args),
-                Reducer.ImportBuildingPortalDesc args => Reducers.InvokeImportBuildingPortalDesc(eventContext, args),
+                Reducer.ImportBuildingPortalDescV2 args => Reducers.InvokeImportBuildingPortalDescV2(eventContext, args),
                 Reducer.ImportBuildingRepairsDesc args => Reducers.InvokeImportBuildingRepairsDesc(eventContext, args),
                 Reducer.ImportBuildingSpawnDesc args => Reducers.InvokeImportBuildingSpawnDesc(eventContext, args),
                 Reducer.ImportBuildingState args => Reducers.InvokeImportBuildingState(eventContext, args),
@@ -1662,7 +1672,7 @@ namespace BitCraftRegion.Types
                 Reducer.ImportClimbRequirementDesc args => Reducers.InvokeImportClimbRequirementDesc(eventContext, args),
                 Reducer.ImportClothingDesc args => Reducers.InvokeImportClothingDesc(eventContext, args),
                 Reducer.ImportCollectibleDesc args => Reducers.InvokeImportCollectibleDesc(eventContext, args),
-                Reducer.ImportCombatActionDescV2 args => Reducers.InvokeImportCombatActionDescV2(eventContext, args),
+                Reducer.ImportCombatActionDescV3 args => Reducers.InvokeImportCombatActionDescV3(eventContext, args),
                 Reducer.ImportCombatActionMultiHitDesc args => Reducers.InvokeImportCombatActionMultiHitDesc(eventContext, args),
                 Reducer.ImportCombatState args => Reducers.InvokeImportCombatState(eventContext, args),
                 Reducer.ImportConfig args => Reducers.InvokeImportConfig(eventContext, args),
@@ -1686,6 +1696,7 @@ namespace BitCraftRegion.Types
                 Reducer.ImportEmpireTerritoryDesc args => Reducers.InvokeImportEmpireTerritoryDesc(eventContext, args),
                 Reducer.ImportEnemyAiParamsDesc args => Reducers.InvokeImportEnemyAiParamsDesc(eventContext, args),
                 Reducer.ImportEnemyDesc args => Reducers.InvokeImportEnemyDesc(eventContext, args),
+                Reducer.ImportEnemyScalingDesc args => Reducers.InvokeImportEnemyScalingDesc(eventContext, args),
                 Reducer.ImportEnemyState args => Reducers.InvokeImportEnemyState(eventContext, args),
                 Reducer.ImportEnvironmentDebuffDesc args => Reducers.InvokeImportEnvironmentDebuffDesc(eventContext, args),
                 Reducer.ImportEquipmentDesc args => Reducers.InvokeImportEquipmentDesc(eventContext, args),
@@ -1817,6 +1828,7 @@ namespace BitCraftRegion.Types
                 Reducer.LogClaimTierLeaderboard args => Reducers.InvokeLogClaimTierLeaderboard(eventContext, args),
                 Reducer.LootChestDespawn args => Reducers.InvokeLootChestDespawn(eventContext, args),
                 Reducer.LootChestSpawn args => Reducers.InvokeLootChestSpawn(eventContext, args),
+                Reducer.MigrateCharacterStats args => Reducers.InvokeMigrateCharacterStats(eventContext, args),
                 Reducer.NpcAiAgentLoop args => Reducers.InvokeNpcAiAgentLoop(eventContext, args),
                 Reducer.OnDurabilityZero args => Reducers.InvokeOnDurabilityZero(eventContext, args),
                 Reducer.OnInterModuleMessageProcessed args => Reducers.InvokeOnInterModuleMessageProcessed(eventContext, args),
@@ -1923,7 +1935,7 @@ namespace BitCraftRegion.Types
                 Reducer.StageBuffTypeDesc args => Reducers.InvokeStageBuffTypeDesc(eventContext, args),
                 Reducer.StageBuildingClaimDesc args => Reducers.InvokeStageBuildingClaimDesc(eventContext, args),
                 Reducer.StageBuildingDesc args => Reducers.InvokeStageBuildingDesc(eventContext, args),
-                Reducer.StageBuildingPortalDesc args => Reducers.InvokeStageBuildingPortalDesc(eventContext, args),
+                Reducer.StageBuildingPortalDescV2 args => Reducers.InvokeStageBuildingPortalDescV2(eventContext, args),
                 Reducer.StageBuildingRepairsDesc args => Reducers.InvokeStageBuildingRepairsDesc(eventContext, args),
                 Reducer.StageBuildingSpawnDesc args => Reducers.InvokeStageBuildingSpawnDesc(eventContext, args),
                 Reducer.StageBuildingTypeDesc args => Reducers.InvokeStageBuildingTypeDesc(eventContext, args),
@@ -1935,7 +1947,7 @@ namespace BitCraftRegion.Types
                 Reducer.StageClimbRequirementDesc args => Reducers.InvokeStageClimbRequirementDesc(eventContext, args),
                 Reducer.StageClothingDesc args => Reducers.InvokeStageClothingDesc(eventContext, args),
                 Reducer.StageCollectibleDesc args => Reducers.InvokeStageCollectibleDesc(eventContext, args),
-                Reducer.StageCombatActionDescV2 args => Reducers.InvokeStageCombatActionDescV2(eventContext, args),
+                Reducer.StageCombatActionDescV3 args => Reducers.InvokeStageCombatActionDescV3(eventContext, args),
                 Reducer.StageCombatActionMultiHitDesc args => Reducers.InvokeStageCombatActionMultiHitDesc(eventContext, args),
                 Reducer.StageConstructionRecipeDesc args => Reducers.InvokeStageConstructionRecipeDesc(eventContext, args),
                 Reducer.StageContributionLootDesc args => Reducers.InvokeStageContributionLootDesc(eventContext, args),
@@ -1953,6 +1965,7 @@ namespace BitCraftRegion.Types
                 Reducer.StageEmpireTerritoryDesc args => Reducers.InvokeStageEmpireTerritoryDesc(eventContext, args),
                 Reducer.StageEnemyAiParamsDesc args => Reducers.InvokeStageEnemyAiParamsDesc(eventContext, args),
                 Reducer.StageEnemyDesc args => Reducers.InvokeStageEnemyDesc(eventContext, args),
+                Reducer.StageEnemyScalingDesc args => Reducers.InvokeStageEnemyScalingDesc(eventContext, args),
                 Reducer.StageEnvironmentDebuffDesc args => Reducers.InvokeStageEnvironmentDebuffDesc(eventContext, args),
                 Reducer.StageEquipmentDesc args => Reducers.InvokeStageEquipmentDesc(eventContext, args),
                 Reducer.StageExtractionRecipeDesc args => Reducers.InvokeStageExtractionRecipeDesc(eventContext, args),

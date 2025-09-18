@@ -66,5 +66,6 @@ namespace BitCraftRegion.Types
         Accuracy,
         MaxTeleportationEnergy,
         TeleportationEnergyRegenRate,
+        ConstructionPower,
     }
 }
