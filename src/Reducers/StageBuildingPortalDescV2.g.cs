@@ -14,17 +14,17 @@ namespace BitCraftGlobal.Types
 {
     public sealed partial class RemoteReducers : RemoteBase
     {
-        public delegate void StageBuildingPortalDescHandler(ReducerEventContext ctx, System.Collections.Generic.List<BuildingPortalDesc> records);
-        public event StageBuildingPortalDescHandler? OnStageBuildingPortalDesc;
+        public delegate void StageBuildingPortalDescV2Handler(ReducerEventContext ctx, System.Collections.Generic.List<BuildingPortalDescV2> records);
+        public event StageBuildingPortalDescV2Handler? OnStageBuildingPortalDescV2;
 
-        public void StageBuildingPortalDesc(System.Collections.Generic.List<BuildingPortalDesc> records)
+        public void StageBuildingPortalDescV2(System.Collections.Generic.List<BuildingPortalDescV2> records)
         {
-            conn.InternalCallReducer(new Reducer.StageBuildingPortalDesc(records), this.SetCallReducerFlags.StageBuildingPortalDescFlags);
+            conn.InternalCallReducer(new Reducer.StageBuildingPortalDescV2(records), this.SetCallReducerFlags.StageBuildingPortalDescV2Flags);
         }
 
-        public bool InvokeStageBuildingPortalDesc(ReducerEventContext ctx, Reducer.StageBuildingPortalDesc args)
+        public bool InvokeStageBuildingPortalDescV2(ReducerEventContext ctx, Reducer.StageBuildingPortalDescV2 args)
         {
-            if (OnStageBuildingPortalDesc == null)
+            if (OnStageBuildingPortalDescV2 == null)
             {
                 if (InternalOnUnhandledReducerError != null)
                 {
@@ -36,7 +36,7 @@ namespace BitCraftGlobal.Types
                 }
                 return false;
             }
-            OnStageBuildingPortalDesc(
+            OnStageBuildingPortalDescV2(
                 ctx,
                 args.Records
             );
@@ -48,28 +48,28 @@ namespace BitCraftGlobal.Types
     {
         [SpacetimeDB.Type]
         [DataContract]
-        public sealed partial class StageBuildingPortalDesc : Reducer, IReducerArgs
+        public sealed partial class StageBuildingPortalDescV2 : Reducer, IReducerArgs
         {
             [DataMember(Name = "records")]
-            public System.Collections.Generic.List<BuildingPortalDesc> Records;
+            public System.Collections.Generic.List<BuildingPortalDescV2> Records;
 
-            public StageBuildingPortalDesc(System.Collections.Generic.List<BuildingPortalDesc> Records)
+            public StageBuildingPortalDescV2(System.Collections.Generic.List<BuildingPortalDescV2> Records)
             {
                 this.Records = Records;
             }
 
-            public StageBuildingPortalDesc()
+            public StageBuildingPortalDescV2()
             {
                 this.Records = new();
             }
 
-            string IReducerArgs.ReducerName => "stage_building_portal_desc";
+            string IReducerArgs.ReducerName => "stage_building_portal_desc_v2";
         }
     }
 
     public sealed partial class SetReducerFlags
     {
-        internal CallReducerFlags StageBuildingPortalDescFlags;
-        public void StageBuildingPortalDesc(CallReducerFlags flags) => StageBuildingPortalDescFlags = flags;
+        internal CallReducerFlags StageBuildingPortalDescV2Flags;
+        public void StageBuildingPortalDescV2(CallReducerFlags flags) => StageBuildingPortalDescV2Flags = flags;
     }
 }

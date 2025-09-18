@@ -66,5 +66,6 @@ namespace BitCraftGlobal.Types
         Accuracy,
         MaxTeleportationEnergy,
         TeleportationEnergyRegenRate,
+        ConstructionPower,
     }
 }

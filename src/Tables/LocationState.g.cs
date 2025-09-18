@@ -28,15 +28,6 @@ namespace BitCraftGlobal.Types
 
             public readonly ChunkIndexIndex ChunkIndex;
 
-            public sealed class DimensionIndex : BTreeIndexBase<uint>
-            {
-                protected override uint GetKey(LocationState row) => row.Dimension;
-
-                public DimensionIndex(LocationStateHandle table) : base(table) { }
-            }
-
-            public readonly DimensionIndex Dimension;
-
             public sealed class EntityIdUniqueIndex : UniqueIndexBase<ulong>
             {
                 protected override ulong GetKey(LocationState row) => row.EntityId;
@@ -58,7 +49,6 @@ namespace BitCraftGlobal.Types
             internal LocationStateHandle(DbConnection conn) : base(conn)
             {
                 ChunkIndex = new(this);
-                Dimension = new(this);
                 EntityId = new(this);
                 XZChunkIndex = new(this);
             }

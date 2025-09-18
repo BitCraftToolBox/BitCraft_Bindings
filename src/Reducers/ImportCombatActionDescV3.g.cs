@@ -14,17 +14,17 @@ namespace BitCraftGlobal.Types
 {
     public sealed partial class RemoteReducers : RemoteBase
     {
-        public delegate void ImportBuildingPortalDescHandler(ReducerEventContext ctx, System.Collections.Generic.List<BuildingPortalDescV2> records);
-        public event ImportBuildingPortalDescHandler? OnImportBuildingPortalDesc;
+        public delegate void ImportCombatActionDescV3Handler(ReducerEventContext ctx, System.Collections.Generic.List<CombatActionDescV3> records);
+        public event ImportCombatActionDescV3Handler? OnImportCombatActionDescV3;
 
-        public void ImportBuildingPortalDesc(System.Collections.Generic.List<BuildingPortalDescV2> records)
+        public void ImportCombatActionDescV3(System.Collections.Generic.List<CombatActionDescV3> records)
         {
-            conn.InternalCallReducer(new Reducer.ImportBuildingPortalDesc(records), this.SetCallReducerFlags.ImportBuildingPortalDescFlags);
+            conn.InternalCallReducer(new Reducer.ImportCombatActionDescV3(records), this.SetCallReducerFlags.ImportCombatActionDescV3Flags);
         }
 
-        public bool InvokeImportBuildingPortalDesc(ReducerEventContext ctx, Reducer.ImportBuildingPortalDesc args)
+        public bool InvokeImportCombatActionDescV3(ReducerEventContext ctx, Reducer.ImportCombatActionDescV3 args)
         {
-            if (OnImportBuildingPortalDesc == null)
+            if (OnImportCombatActionDescV3 == null)
             {
                 if (InternalOnUnhandledReducerError != null)
                 {
@@ -36,7 +36,7 @@ namespace BitCraftGlobal.Types
                 }
                 return false;
             }
-            OnImportBuildingPortalDesc(
+            OnImportCombatActionDescV3(
                 ctx,
                 args.Records
             );
@@ -48,28 +48,28 @@ namespace BitCraftGlobal.Types
     {
         [SpacetimeDB.Type]
         [DataContract]
-        public sealed partial class ImportBuildingPortalDesc : Reducer, IReducerArgs
+        public sealed partial class ImportCombatActionDescV3 : Reducer, IReducerArgs
         {
             [DataMember(Name = "records")]
-            public System.Collections.Generic.List<BuildingPortalDescV2> Records;
+            public System.Collections.Generic.List<CombatActionDescV3> Records;
 
-            public ImportBuildingPortalDesc(System.Collections.Generic.List<BuildingPortalDescV2> Records)
+            public ImportCombatActionDescV3(System.Collections.Generic.List<CombatActionDescV3> Records)
             {
                 this.Records = Records;
             }
 
-            public ImportBuildingPortalDesc()
+            public ImportCombatActionDescV3()
             {
                 this.Records = new();
             }
 
-            string IReducerArgs.ReducerName => "import_building_portal_desc";
+            string IReducerArgs.ReducerName => "import_combat_action_desc_v3";
         }
     }
 
     public sealed partial class SetReducerFlags
     {
-        internal CallReducerFlags ImportBuildingPortalDescFlags;
-        public void ImportBuildingPortalDesc(CallReducerFlags flags) => ImportBuildingPortalDescFlags = flags;
+        internal CallReducerFlags ImportCombatActionDescV3Flags;
+        public void ImportCombatActionDescV3(CallReducerFlags flags) => ImportCombatActionDescV3Flags = flags;
     }
 }

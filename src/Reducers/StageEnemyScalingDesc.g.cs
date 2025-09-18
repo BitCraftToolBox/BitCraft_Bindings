@@ -14,17 +14,17 @@ namespace BitCraftGlobal.Types
 {
     public sealed partial class RemoteReducers : RemoteBase
     {
-        public delegate void ImportCombatActionDescV2Handler(ReducerEventContext ctx, System.Collections.Generic.List<CombatActionDescV2> records);
-        public event ImportCombatActionDescV2Handler? OnImportCombatActionDescV2;
+        public delegate void StageEnemyScalingDescHandler(ReducerEventContext ctx, System.Collections.Generic.List<EnemyScalingDesc> records);
+        public event StageEnemyScalingDescHandler? OnStageEnemyScalingDesc;
 
-        public void ImportCombatActionDescV2(System.Collections.Generic.List<CombatActionDescV2> records)
+        public void StageEnemyScalingDesc(System.Collections.Generic.List<EnemyScalingDesc> records)
         {
-            conn.InternalCallReducer(new Reducer.ImportCombatActionDescV2(records), this.SetCallReducerFlags.ImportCombatActionDescV2Flags);
+            conn.InternalCallReducer(new Reducer.StageEnemyScalingDesc(records), this.SetCallReducerFlags.StageEnemyScalingDescFlags);
         }
 
-        public bool InvokeImportCombatActionDescV2(ReducerEventContext ctx, Reducer.ImportCombatActionDescV2 args)
+        public bool InvokeStageEnemyScalingDesc(ReducerEventContext ctx, Reducer.StageEnemyScalingDesc args)
         {
-            if (OnImportCombatActionDescV2 == null)
+            if (OnStageEnemyScalingDesc == null)
             {
                 if (InternalOnUnhandledReducerError != null)
                 {
@@ -36,7 +36,7 @@ namespace BitCraftGlobal.Types
                 }
                 return false;
             }
-            OnImportCombatActionDescV2(
+            OnStageEnemyScalingDesc(
                 ctx,
                 args.Records
             );
@@ -48,28 +48,28 @@ namespace BitCraftGlobal.Types
     {
         [SpacetimeDB.Type]
         [DataContract]
-        public sealed partial class ImportCombatActionDescV2 : Reducer, IReducerArgs
+        public sealed partial class StageEnemyScalingDesc : Reducer, IReducerArgs
         {
             [DataMember(Name = "records")]
-            public System.Collections.Generic.List<CombatActionDescV2> Records;
+            public System.Collections.Generic.List<EnemyScalingDesc> Records;
 
-            public ImportCombatActionDescV2(System.Collections.Generic.List<CombatActionDescV2> Records)
+            public StageEnemyScalingDesc(System.Collections.Generic.List<EnemyScalingDesc> Records)
             {
                 this.Records = Records;
             }
 
-            public ImportCombatActionDescV2()
+            public StageEnemyScalingDesc()
             {
                 this.Records = new();
             }
 
-            string IReducerArgs.ReducerName => "import_combat_action_desc_v2";
+            string IReducerArgs.ReducerName => "stage_enemy_scaling_desc";
         }
     }
 
     public sealed partial class SetReducerFlags
     {
-        internal CallReducerFlags ImportCombatActionDescV2Flags;
-        public void ImportCombatActionDescV2(CallReducerFlags flags) => ImportCombatActionDescV2Flags = flags;
+        internal CallReducerFlags StageEnemyScalingDescFlags;
+        public void StageEnemyScalingDesc(CallReducerFlags flags) => StageEnemyScalingDescFlags = flags;
     }
 }
