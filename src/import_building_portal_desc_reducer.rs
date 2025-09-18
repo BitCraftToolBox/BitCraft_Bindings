@@ -5,12 +5,12 @@
 #![allow(unused, clippy::all)]
 use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
-use super::building_portal_desc_type::BuildingPortalDesc;
+use super::building_portal_desc_v_2_type::BuildingPortalDescV2;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct ImportBuildingPortalDescArgs {
-    pub records: Vec<BuildingPortalDesc>,
+    pub records: Vec<BuildingPortalDescV2>,
 }
 
 impl From<ImportBuildingPortalDescArgs> for super::Reducer {
@@ -37,7 +37,7 @@ pub trait import_building_portal_desc {
     /// This method returns immediately, and errors only if we are unable to send the request.
     /// The reducer will run asynchronously in the future,
     ///  and its status can be observed by listening for [`Self::on_import_building_portal_desc`] callbacks.
-    fn import_building_portal_desc(&self, records: Vec<BuildingPortalDesc>) -> __sdk::Result<()>;
+    fn import_building_portal_desc(&self, records: Vec<BuildingPortalDescV2>) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `import_building_portal_desc`.
     ///
     /// Callbacks should inspect the [`__sdk::ReducerEvent`] contained in the [`super::ReducerEventContext`]
@@ -47,7 +47,7 @@ pub trait import_building_portal_desc {
     /// to cancel the callback.
     fn on_import_building_portal_desc(
         &self,
-        callback: impl FnMut(&super::ReducerEventContext, &Vec<BuildingPortalDesc>) + Send + 'static,
+        callback: impl FnMut(&super::ReducerEventContext, &Vec<BuildingPortalDescV2>) + Send + 'static,
     ) -> ImportBuildingPortalDescCallbackId;
     /// Cancel a callback previously registered by [`Self::on_import_building_portal_desc`],
     /// causing it not to run in the future.
@@ -55,7 +55,7 @@ pub trait import_building_portal_desc {
 }
 
 impl import_building_portal_desc for super::RemoteReducers {
-    fn import_building_portal_desc(&self, records: Vec<BuildingPortalDesc>) -> __sdk::Result<()> {
+    fn import_building_portal_desc(&self, records: Vec<BuildingPortalDescV2>) -> __sdk::Result<()> {
         self.imp.call_reducer(
             "import_building_portal_desc",
             ImportBuildingPortalDescArgs { records },
@@ -63,7 +63,9 @@ impl import_building_portal_desc for super::RemoteReducers {
     }
     fn on_import_building_portal_desc(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<BuildingPortalDesc>) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &Vec<BuildingPortalDescV2>)
+            + Send
+            + 'static,
     ) -> ImportBuildingPortalDescCallbackId {
         ImportBuildingPortalDescCallbackId(self.imp.on_reducer(
             "import_building_portal_desc",
