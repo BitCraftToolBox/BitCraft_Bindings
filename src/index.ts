@@ -4,29 +4,33 @@
 
 /* eslint-disable */
 /* tslint:disable */
+// @ts-nocheck
 import {
-  AlgebraicType as __AlgebraicTypeValue,
-  BinaryReader as __BinaryReader,
-  BinaryWriter as __BinaryWriter,
-  ClientCache as __ClientCache,
-  ConnectionId as __ConnectionId,
-  DbConnectionBuilder as __DbConnectionBuilder,
-  DbConnectionImpl as __DbConnectionImpl,
-  Identity as __Identity,
-  SubscriptionBuilderImpl as __SubscriptionBuilderImpl,
-  TableCache as __TableCache,
-  TimeDuration as __TimeDuration,
-  Timestamp as __Timestamp,
-  deepEqual as __deepEqual,
-  type AlgebraicType as __AlgebraicTypeType,
-  type AlgebraicTypeVariants as __AlgebraicTypeVariants,
-  type CallReducerFlags as __CallReducerFlags,
-  type ErrorContextInterface as __ErrorContextInterface,
-  type Event as __Event,
-  type EventContextInterface as __EventContextInterface,
-  type ReducerEventContextInterface as __ReducerEventContextInterface,
-  type SubscriptionEventContextInterface as __SubscriptionEventContextInterface,
-} from "spacetimedb";
+  AlgebraicType,
+  AlgebraicValue,
+  BinaryReader,
+  BinaryWriter,
+  ConnectionId,
+  DbConnectionBuilder,
+  DbConnectionImpl,
+  Identity,
+  ProductType,
+  ProductTypeElement,
+  SubscriptionBuilderImpl,
+  SumType,
+  SumTypeVariant,
+  TableCache,
+  TimeDuration,
+  Timestamp,
+  deepEqual,
+  type CallReducerFlags,
+  type DbContext,
+  type ErrorContextInterface,
+  type Event,
+  type EventContextInterface,
+  type ReducerEventContextInterface,
+  type SubscriptionEventContextInterface,
+} from "@clockworklabs/spacetimedb-sdk";
 
 // Import and reexport all reducer arg types
 import { AddFavoriteFriend } from "./add_favorite_friend_reducer.ts";
@@ -2160,7 +2164,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (AiDebugState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: AiDebugState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     achievement_desc: {
@@ -2169,7 +2173,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (AchievementDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: AchievementDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     action_state: {
@@ -2178,7 +2182,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (ActionState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: ActionState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     active_buff_state: {
@@ -2187,7 +2191,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (ActiveBuffState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: ActiveBuffState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     admin_broadcast: {
@@ -2196,7 +2200,7 @@ const REMOTE_MODULE = {
       primaryKey: "version",
       primaryKeyInfo: {
         colName: "version",
-        colType: (AdminBroadcast.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: AdminBroadcast.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     alert_desc: {
@@ -2205,7 +2209,7 @@ const REMOTE_MODULE = {
       primaryKey: "alertType",
       primaryKeyInfo: {
         colName: "alertType",
-        colType: (AlertDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: AlertDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     alert_state: {
@@ -2214,7 +2218,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (AlertState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: AlertState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     attached_herds_state: {
@@ -2223,7 +2227,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (AttachedHerdsState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: AttachedHerdsState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     attack_outcome_state: {
@@ -2232,7 +2236,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (AttackOutcomeState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: AttackOutcomeState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     auto_claim_state: {
@@ -2241,7 +2245,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (AutoClaimState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: AutoClaimState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     bank_state: {
@@ -2250,7 +2254,7 @@ const REMOTE_MODULE = {
       primaryKey: "buildingEntityId",
       primaryKeyInfo: {
         colName: "buildingEntityId",
-        colType: (BankState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: BankState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     barter_stall_state: {
@@ -2259,7 +2263,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (BarterStallState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: BarterStallState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     biome_desc: {
@@ -2268,7 +2272,7 @@ const REMOTE_MODULE = {
       primaryKey: "biomeType",
       primaryKeyInfo: {
         colName: "biomeType",
-        colType: (BiomeDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: BiomeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     blocked_identity: {
@@ -2277,7 +2281,7 @@ const REMOTE_MODULE = {
       primaryKey: "identity",
       primaryKeyInfo: {
         colName: "identity",
-        colType: (BlockedIdentity.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: BlockedIdentity.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     blocked_player_state: {
@@ -2290,7 +2294,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (BuffDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: BuffDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     buff_type_desc: {
@@ -2299,7 +2303,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (BuffTypeDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: BuffTypeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     building_claim_desc: {
@@ -2308,7 +2312,7 @@ const REMOTE_MODULE = {
       primaryKey: "buildingId",
       primaryKeyInfo: {
         colName: "buildingId",
-        colType: (BuildingClaimDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: BuildingClaimDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     building_desc: {
@@ -2317,7 +2321,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (BuildingDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: BuildingDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     building_function_type_mapping_desc: {
@@ -2326,7 +2330,7 @@ const REMOTE_MODULE = {
       primaryKey: "typeId",
       primaryKeyInfo: {
         colName: "typeId",
-        colType: (BuildingFunctionTypeMappingDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: BuildingFunctionTypeMappingDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     building_nickname_state: {
@@ -2335,7 +2339,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (BuildingNicknameState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: BuildingNicknameState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     building_portal_desc: {
@@ -2344,7 +2348,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (BuildingPortalDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: BuildingPortalDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     building_portal_desc_v2: {
@@ -2353,7 +2357,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (BuildingPortalDescV2.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: BuildingPortalDescV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     building_repairs_desc: {
@@ -2362,7 +2366,7 @@ const REMOTE_MODULE = {
       primaryKey: "cargoId",
       primaryKeyInfo: {
         colName: "cargoId",
-        colType: (BuildingRepairsDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: BuildingRepairsDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     building_spawn_desc: {
@@ -2371,7 +2375,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (BuildingSpawnDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: BuildingSpawnDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     building_state: {
@@ -2380,7 +2384,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (BuildingState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: BuildingState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     building_type_desc: {
@@ -2389,7 +2393,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (BuildingTypeDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: BuildingTypeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     buy_order_state: {
@@ -2398,7 +2402,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (AuctionListingState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: AuctionListingState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     cargo_desc: {
@@ -2407,7 +2411,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (CargoDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: CargoDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     character_stat_desc: {
@@ -2416,7 +2420,7 @@ const REMOTE_MODULE = {
       primaryKey: "statType",
       primaryKeyInfo: {
         colName: "statType",
-        colType: (CharacterStatDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: CharacterStatDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     character_stats_state: {
@@ -2425,7 +2429,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (CharacterStatsState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: CharacterStatsState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     chat_message_state: {
@@ -2434,7 +2438,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (ChatMessageState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: ChatMessageState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     chest_rarity_desc: {
@@ -2443,7 +2447,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (ChestRarityDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: ChestRarityDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     claim_local_state: {
@@ -2452,7 +2456,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (ClaimLocalState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: ClaimLocalState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     claim_member_state: {
@@ -2461,7 +2465,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (ClaimMemberState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: ClaimMemberState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     claim_recruitment_state: {
@@ -2470,7 +2474,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (ClaimRecruitmentState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: ClaimRecruitmentState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     claim_state: {
@@ -2479,7 +2483,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (ClaimState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: ClaimState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     claim_tech_desc: {
@@ -2488,7 +2492,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (ClaimTechDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: ClaimTechDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     claim_tech_state: {
@@ -2497,7 +2501,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (ClaimTechState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: ClaimTechState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     claim_tile_cost: {
@@ -2506,7 +2510,7 @@ const REMOTE_MODULE = {
       primaryKey: "tileCount",
       primaryKeyInfo: {
         colName: "tileCount",
-        colType: (ClaimTileCost.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: ClaimTileCost.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     claim_tile_state: {
@@ -2515,7 +2519,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (ClaimTileState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: ClaimTileState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     climb_requirement_desc: {
@@ -2524,7 +2528,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (ClimbRequirementDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: ClimbRequirementDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     closed_listing_state: {
@@ -2533,7 +2537,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (ClosedListingState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: ClosedListingState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     clothing_desc: {
@@ -2542,7 +2546,7 @@ const REMOTE_MODULE = {
       primaryKey: "itemId",
       primaryKeyInfo: {
         colName: "itemId",
-        colType: (ClothingDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: ClothingDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     collectible_desc: {
@@ -2551,7 +2555,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (CollectibleDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: CollectibleDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     combat_action_desc: {
@@ -2560,7 +2564,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (CombatActionDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[1].algebraicType,
+        colType: CombatActionDesc.getTypeScriptAlgebraicType().product.elements[1].algebraicType,
       },
     },
     combat_action_desc_v2: {
@@ -2569,7 +2573,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (CombatActionDescV2.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[1].algebraicType,
+        colType: CombatActionDescV2.getTypeScriptAlgebraicType().product.elements[1].algebraicType,
       },
     },
     combat_action_desc_v3: {
@@ -2578,7 +2582,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (CombatActionDescV3.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[1].algebraicType,
+        colType: CombatActionDescV3.getTypeScriptAlgebraicType().product.elements[1].algebraicType,
       },
     },
     combat_action_multi_hit_desc: {
@@ -2587,7 +2591,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (CombatActionMultiHitDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: CombatActionMultiHitDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     combat_dimension_state: {
@@ -2596,7 +2600,7 @@ const REMOTE_MODULE = {
       primaryKey: "dimensionId",
       primaryKeyInfo: {
         colName: "dimensionId",
-        colType: (CombatDimensionState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: CombatDimensionState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     combat_state: {
@@ -2605,7 +2609,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (CombatState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: CombatState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     config: {
@@ -2614,7 +2618,7 @@ const REMOTE_MODULE = {
       primaryKey: "version",
       primaryKeyInfo: {
         colName: "version",
-        colType: (Config.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: Config.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     construction_recipe_desc: {
@@ -2623,7 +2627,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (ConstructionRecipeDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: ConstructionRecipeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     contribution_loot_desc: {
@@ -2632,7 +2636,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (ContributionLootDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: ContributionLootDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     contribution_loot_desc_v2: {
@@ -2641,7 +2645,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (ContributionLootDescV2.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: ContributionLootDescV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     contribution_state: {
@@ -2650,7 +2654,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (ContributionState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: ContributionState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     crafting_recipe_desc: {
@@ -2659,7 +2663,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (CraftingRecipeDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: CraftingRecipeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     deconstruction_recipe_desc: {
@@ -2668,7 +2672,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (DeconstructionRecipeDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: DeconstructionRecipeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     deployable_collectible_state: {
@@ -2677,7 +2681,7 @@ const REMOTE_MODULE = {
       primaryKey: "deployableEntityId",
       primaryKeyInfo: {
         colName: "deployableEntityId",
-        colType: (DeployableCollectibleState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: DeployableCollectibleState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     deployable_collectible_state_v2: {
@@ -2686,7 +2690,7 @@ const REMOTE_MODULE = {
       primaryKey: "deployableEntityId",
       primaryKeyInfo: {
         colName: "deployableEntityId",
-        colType: (DeployableCollectibleStateV2.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: DeployableCollectibleStateV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     deployable_desc: {
@@ -2695,7 +2699,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (DeployableDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: DeployableDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     deployable_desc_v2: {
@@ -2704,7 +2708,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (DeployableDescV2.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: DeployableDescV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     deployable_state: {
@@ -2713,7 +2717,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (DeployableState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: DeployableState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     developer: {
@@ -2722,7 +2726,7 @@ const REMOTE_MODULE = {
       primaryKey: "identity",
       primaryKeyInfo: {
         colName: "identity",
-        colType: (Developer.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: Developer.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     dimension_description_state: {
@@ -2731,7 +2735,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (DimensionDescriptionState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: DimensionDescriptionState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     dimension_network_state: {
@@ -2740,7 +2744,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (DimensionNetworkState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: DimensionNetworkState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     direct_message_state: {
@@ -2749,7 +2753,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (DirectMessageState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: DirectMessageState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     distant_visible_entity: {
@@ -2758,7 +2762,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (DistantVisibleEntity.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: DistantVisibleEntity.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     distant_visible_entity_desc: {
@@ -2767,7 +2771,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (DistantVisibleEntityDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: DistantVisibleEntityDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     dropped_inventory_state: {
@@ -2776,7 +2780,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (DroppedInventoryState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: DroppedInventoryState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     duel_state: {
@@ -2785,7 +2789,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (DuelState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: DuelState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     dungeon_state: {
@@ -2794,7 +2798,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (DungeonState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: DungeonState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     elevator_desc: {
@@ -2803,7 +2807,7 @@ const REMOTE_MODULE = {
       primaryKey: "buildingId",
       primaryKeyInfo: {
         colName: "buildingId",
-        colType: (ElevatorDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: ElevatorDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     emote_desc: {
@@ -2812,7 +2816,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (EmoteDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: EmoteDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     empire_chunk_state: {
@@ -2821,7 +2825,7 @@ const REMOTE_MODULE = {
       primaryKey: "chunkIndex",
       primaryKeyInfo: {
         colName: "chunkIndex",
-        colType: (EmpireChunkState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: EmpireChunkState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     empire_color_desc: {
@@ -2830,7 +2834,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (EmpireColorDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: EmpireColorDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     empire_craft_supplies_timer: {
@@ -2839,7 +2843,7 @@ const REMOTE_MODULE = {
       primaryKey: "scheduledId",
       primaryKeyInfo: {
         colName: "scheduledId",
-        colType: (EmpireCraftSuppliesTimer.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: EmpireCraftSuppliesTimer.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     empire_decay_loop_timer: {
@@ -2848,7 +2852,7 @@ const REMOTE_MODULE = {
       primaryKey: "scheduledId",
       primaryKeyInfo: {
         colName: "scheduledId",
-        colType: (EmpireDecayLoopTimer.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: EmpireDecayLoopTimer.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     empire_directive_state: {
@@ -2857,7 +2861,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (EmpireDirectiveState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: EmpireDirectiveState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     empire_emblem_state: {
@@ -2866,7 +2870,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (EmpireEmblemState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: EmpireEmblemState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     empire_expansion_state: {
@@ -2875,7 +2879,7 @@ const REMOTE_MODULE = {
       primaryKey: "chunkIndex",
       primaryKeyInfo: {
         colName: "chunkIndex",
-        colType: (EmpireExpansionState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: EmpireExpansionState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     empire_foundry_state: {
@@ -2884,7 +2888,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (EmpireFoundryState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: EmpireFoundryState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     empire_icon_desc: {
@@ -2893,7 +2897,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (EmpireIconDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: EmpireIconDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     empire_log_state: {
@@ -2902,7 +2906,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (EmpireLogState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: EmpireLogState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     empire_node_siege_state: {
@@ -2911,7 +2915,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (EmpireNodeSiegeState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: EmpireNodeSiegeState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     empire_node_state: {
@@ -2920,7 +2924,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (EmpireNodeState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: EmpireNodeState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     empire_notification_desc: {
@@ -2929,7 +2933,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (EmpireNotificationDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: EmpireNotificationDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     empire_notification_state: {
@@ -2938,7 +2942,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (EmpireNotificationState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: EmpireNotificationState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     empire_player_data_state: {
@@ -2947,7 +2951,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (EmpirePlayerDataState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: EmpirePlayerDataState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     empire_player_log_state: {
@@ -2956,7 +2960,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (EmpirePlayerLogState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: EmpirePlayerLogState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     empire_rank_desc: {
@@ -2965,7 +2969,7 @@ const REMOTE_MODULE = {
       primaryKey: "rank",
       primaryKeyInfo: {
         colName: "rank",
-        colType: (EmpireRankDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: EmpireRankDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     empire_rank_state: {
@@ -2974,7 +2978,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (EmpireRankState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: EmpireRankState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     empire_settlement_state: {
@@ -2983,7 +2987,7 @@ const REMOTE_MODULE = {
       primaryKey: "buildingEntityId",
       primaryKeyInfo: {
         colName: "buildingEntityId",
-        colType: (EmpireSettlementState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: EmpireSettlementState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     empire_siege_engine_state: {
@@ -2992,7 +2996,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (EmpireSiegeEngineState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: EmpireSiegeEngineState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     empire_siege_loop_timer: {
@@ -3001,7 +3005,7 @@ const REMOTE_MODULE = {
       primaryKey: "scheduledId",
       primaryKeyInfo: {
         colName: "scheduledId",
-        colType: (EmpireSiegeLoopTimer.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: EmpireSiegeLoopTimer.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     empire_state: {
@@ -3010,7 +3014,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (EmpireState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: EmpireState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     empire_supplies_desc: {
@@ -3019,7 +3023,7 @@ const REMOTE_MODULE = {
       primaryKey: "cargoId",
       primaryKeyInfo: {
         colName: "cargoId",
-        colType: (EmpireSuppliesDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: EmpireSuppliesDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     empire_territory_desc: {
@@ -3028,7 +3032,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (EmpireTerritoryDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: EmpireTerritoryDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     enemy_ai_params_desc: {
@@ -3037,7 +3041,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (EnemyAiParamsDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: EnemyAiParamsDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     enemy_desc: {
@@ -3046,7 +3050,7 @@ const REMOTE_MODULE = {
       primaryKey: "enemyType",
       primaryKeyInfo: {
         colName: "enemyType",
-        colType: (EnemyDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: EnemyDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     enemy_mob_monitor_state: {
@@ -3055,7 +3059,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (EnemyMobMonitorState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: EnemyMobMonitorState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     enemy_scaling_desc: {
@@ -3064,7 +3068,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (EnemyScalingDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: EnemyScalingDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     enemy_scaling_state: {
@@ -3073,7 +3077,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (EnemyScalingState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: EnemyScalingState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     enemy_state: {
@@ -3082,7 +3086,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (EnemyState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: EnemyState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     environment_debuff_desc: {
@@ -3091,7 +3095,7 @@ const REMOTE_MODULE = {
       primaryKey: "buffId",
       primaryKeyInfo: {
         colName: "buffId",
-        colType: (EnvironmentDebuffDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: EnvironmentDebuffDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     equipment_desc: {
@@ -3100,7 +3104,7 @@ const REMOTE_MODULE = {
       primaryKey: "itemId",
       primaryKeyInfo: {
         colName: "itemId",
-        colType: (EquipmentDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: EquipmentDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     equipment_state: {
@@ -3109,7 +3113,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (EquipmentState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: EquipmentState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     experience_state: {
@@ -3118,7 +3122,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (ExperienceState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: ExperienceState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     exploration_chunks_state: {
@@ -3127,7 +3131,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (ExplorationChunksState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: ExplorationChunksState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     extract_outcome_state: {
@@ -3136,7 +3140,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (ExtractOutcomeState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: ExtractOutcomeState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     extraction_recipe_desc: {
@@ -3145,7 +3149,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (ExtractionRecipeDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: ExtractionRecipeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     food_desc: {
@@ -3154,7 +3158,7 @@ const REMOTE_MODULE = {
       primaryKey: "itemId",
       primaryKeyInfo: {
         colName: "itemId",
-        colType: (FoodDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: FoodDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     footprint_tile_state: {
@@ -3163,7 +3167,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (FootprintTileState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: FootprintTileState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     force_generate_types: {
@@ -3176,7 +3180,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (FriendsState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: FriendsState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     gate_desc: {
@@ -3185,7 +3189,7 @@ const REMOTE_MODULE = {
       primaryKey: "buildingId",
       primaryKeyInfo: {
         colName: "buildingId",
-        colType: (GateDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: GateDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     global_search_state: {
@@ -3194,7 +3198,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (GlobalSearchState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: GlobalSearchState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     globals: {
@@ -3203,7 +3207,7 @@ const REMOTE_MODULE = {
       primaryKey: "version",
       primaryKeyInfo: {
         colName: "version",
-        colType: (Globals.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: Globals.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     granted_hub_item_state: {
@@ -3212,7 +3216,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (GrantedHubItemState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: GrantedHubItemState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     growth_state: {
@@ -3221,7 +3225,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (GrowthState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: GrowthState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     health_state: {
@@ -3230,7 +3234,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (HealthState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: HealthState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     herd_state: {
@@ -3239,7 +3243,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (HerdState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: HerdState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     hexite_exchange_entry_desc: {
@@ -3248,7 +3252,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (HexiteExchangeEntryDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: HexiteExchangeEntryDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     identity_role: {
@@ -3257,7 +3261,7 @@ const REMOTE_MODULE = {
       primaryKey: "identity",
       primaryKeyInfo: {
         colName: "identity",
-        colType: (IdentityRole.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: IdentityRole.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     inter_module_message: {
@@ -3266,7 +3270,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (InterModuleMessage.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: InterModuleMessage.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     inter_module_message_counter: {
@@ -3275,7 +3279,7 @@ const REMOTE_MODULE = {
       primaryKey: "moduleId",
       primaryKeyInfo: {
         colName: "moduleId",
-        colType: (InterModuleMessageCounter.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: InterModuleMessageCounter.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     inter_module_message_v2: {
@@ -3284,7 +3288,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (InterModuleMessageV2.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: InterModuleMessageV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     inter_module_response_message_counter: {
@@ -3293,7 +3297,7 @@ const REMOTE_MODULE = {
       primaryKey: "dstModuleId",
       primaryKeyInfo: {
         colName: "dstModuleId",
-        colType: (InterModuleResponseMessageCounter.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: InterModuleResponseMessageCounter.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     interior_collapse_trigger_state: {
@@ -3302,7 +3306,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (InteriorCollapseTriggerState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: InteriorCollapseTriggerState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     interior_environment_desc: {
@@ -3311,7 +3315,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (InteriorEnvironmentDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: InteriorEnvironmentDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     interior_instance_desc: {
@@ -3320,7 +3324,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (InteriorInstanceDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: InteriorInstanceDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     interior_network_desc: {
@@ -3329,7 +3333,7 @@ const REMOTE_MODULE = {
       primaryKey: "buildingId",
       primaryKeyInfo: {
         colName: "buildingId",
-        colType: (InteriorNetworkDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: InteriorNetworkDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     interior_player_count_state: {
@@ -3338,7 +3342,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (InteriorPlayerCountState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: InteriorPlayerCountState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     interior_portal_connections_desc: {
@@ -3347,7 +3351,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (InteriorPortalConnectionsDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: InteriorPortalConnectionsDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     interior_shape_desc: {
@@ -3356,7 +3360,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (InteriorShapeDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: InteriorShapeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     interior_spawn_desc: {
@@ -3365,7 +3369,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (InteriorSpawnDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: InteriorSpawnDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     inventory_state: {
@@ -3374,7 +3378,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (InventoryState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: InventoryState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     item_conversion_recipe_desc: {
@@ -3383,7 +3387,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (ItemConversionRecipeDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: ItemConversionRecipeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     item_desc: {
@@ -3392,7 +3396,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (ItemDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: ItemDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     item_list_desc: {
@@ -3401,7 +3405,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (ItemListDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: ItemListDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     knowledge_achievement_state: {
@@ -3410,7 +3414,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (KnowledgeAchievementState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: KnowledgeAchievementState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     knowledge_battle_action_state: {
@@ -3419,7 +3423,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (KnowledgeBattleActionState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: KnowledgeBattleActionState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     knowledge_building_state: {
@@ -3428,7 +3432,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (KnowledgeBuildingState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: KnowledgeBuildingState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     knowledge_cargo_state: {
@@ -3437,7 +3441,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (KnowledgeCargoState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: KnowledgeCargoState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     knowledge_claim_state: {
@@ -3446,7 +3450,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (KnowledgeClaimState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: KnowledgeClaimState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     knowledge_construction_state: {
@@ -3455,7 +3459,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (KnowledgeConstructionState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: KnowledgeConstructionState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     knowledge_craft_state: {
@@ -3464,7 +3468,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (KnowledgeCraftState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: KnowledgeCraftState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     knowledge_deployable_state: {
@@ -3473,7 +3477,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (KnowledgeDeployableState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: KnowledgeDeployableState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     knowledge_enemy_state: {
@@ -3482,7 +3486,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (KnowledgeEnemyState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: KnowledgeEnemyState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     knowledge_extract_state: {
@@ -3491,7 +3495,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (KnowledgeExtractState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: KnowledgeExtractState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     knowledge_item_state: {
@@ -3500,7 +3504,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (KnowledgeItemState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: KnowledgeItemState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     knowledge_lore_state: {
@@ -3509,7 +3513,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (KnowledgeLoreState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: KnowledgeLoreState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     knowledge_npc_state: {
@@ -3518,7 +3522,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (KnowledgeNpcState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: KnowledgeNpcState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     knowledge_paving_state: {
@@ -3527,7 +3531,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (KnowledgePavingState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: KnowledgePavingState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     knowledge_pillar_shaping_state: {
@@ -3536,7 +3540,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (KnowledgePillarShapingState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: KnowledgePillarShapingState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     knowledge_resource_placement_state: {
@@ -3545,7 +3549,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (KnowledgeResourcePlacementState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: KnowledgeResourcePlacementState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     knowledge_resource_state: {
@@ -3554,7 +3558,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (KnowledgeResourceState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: KnowledgeResourceState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     knowledge_ruins_state: {
@@ -3563,7 +3567,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (KnowledgeRuinsState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: KnowledgeRuinsState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     knowledge_scroll_desc: {
@@ -3572,7 +3576,7 @@ const REMOTE_MODULE = {
       primaryKey: "itemId",
       primaryKeyInfo: {
         colName: "itemId",
-        colType: (KnowledgeScrollDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: KnowledgeScrollDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     knowledge_scroll_type_desc: {
@@ -3581,7 +3585,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (KnowledgeScrollTypeDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: KnowledgeScrollTypeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     knowledge_secondary_state: {
@@ -3590,7 +3594,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (KnowledgeSecondaryState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: KnowledgeSecondaryState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     knowledge_stat_modifier_desc: {
@@ -3599,7 +3603,7 @@ const REMOTE_MODULE = {
       primaryKey: "secondaryKnowledgeId",
       primaryKeyInfo: {
         colName: "secondaryKnowledgeId",
-        colType: (KnowledgeStatModifierDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: KnowledgeStatModifierDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     knowledge_vault_state: {
@@ -3608,7 +3612,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (KnowledgeVaultState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: KnowledgeVaultState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     light_source_state: {
@@ -3617,7 +3621,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (LightSourceState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: LightSourceState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     location_state: {
@@ -3626,7 +3630,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (LocationState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: LocationState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     loot_chest_desc: {
@@ -3635,7 +3639,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (LootChestDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: LootChestDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     loot_chest_state: {
@@ -3644,7 +3648,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (LootChestState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: LootChestState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     loot_rarity_desc: {
@@ -3653,7 +3657,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (LootRarityDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: LootRarityDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     loot_table_desc: {
@@ -3662,7 +3666,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (LootTableDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: LootTableDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     lost_items_state: {
@@ -3671,7 +3675,7 @@ const REMOTE_MODULE = {
       primaryKey: "inventoryEntityId",
       primaryKeyInfo: {
         colName: "inventoryEntityId",
-        colType: (LostItemsState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: LostItemsState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     marketplace_state: {
@@ -3680,7 +3684,7 @@ const REMOTE_MODULE = {
       primaryKey: "buildingEntityId",
       primaryKeyInfo: {
         colName: "buildingEntityId",
-        colType: (MarketplaceState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: MarketplaceState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     mobile_entity_state: {
@@ -3689,7 +3693,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (MobileEntityState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: MobileEntityState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     moderation_action_log_entry: {
@@ -3698,7 +3702,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (ModerationActionLogEntry.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: ModerationActionLogEntry.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     mounting_state: {
@@ -3707,7 +3711,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (MountingState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: MountingState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     move_validation_strike_counter_state: {
@@ -3716,7 +3720,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (MoveValidationStrikeCounterState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: MoveValidationStrikeCounterState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     npc_desc: {
@@ -3725,7 +3729,7 @@ const REMOTE_MODULE = {
       primaryKey: "npcType",
       primaryKeyInfo: {
         colName: "npcType",
-        colType: (NpcDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: NpcDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     npc_state: {
@@ -3734,7 +3738,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (NpcState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: NpcState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     onboarding_reward_desc: {
@@ -3743,7 +3747,7 @@ const REMOTE_MODULE = {
       primaryKey: "stateId",
       primaryKeyInfo: {
         colName: "stateId",
-        colType: (OnboardingRewardDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: OnboardingRewardDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     onboarding_state: {
@@ -3752,7 +3756,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (OnboardingState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: OnboardingState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     parameters_desc: {
@@ -3761,7 +3765,7 @@ const REMOTE_MODULE = {
       primaryKey: "version",
       primaryKeyInfo: {
         colName: "version",
-        colType: (ParametersDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: ParametersDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     parameters_player_move_desc: {
@@ -3770,7 +3774,7 @@ const REMOTE_MODULE = {
       primaryKey: "version",
       primaryKeyInfo: {
         colName: "version",
-        colType: (ParametersPlayerMoveDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: ParametersPlayerMoveDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     partial_experience_state: {
@@ -3779,7 +3783,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (PartialExperienceState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: PartialExperienceState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     passive_craft_state: {
@@ -3788,7 +3792,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (PassiveCraftState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: PassiveCraftState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     pathfinding_desc: {
@@ -3797,7 +3801,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (PathfindingDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: PathfindingDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     paved_tile_state: {
@@ -3806,7 +3810,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (PavedTileState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: PavedTileState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     paving_tile_desc: {
@@ -3815,7 +3819,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (PavingTileDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: PavingTileDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     permission_state: {
@@ -3824,7 +3828,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (PermissionState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: PermissionState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     pillar_shaping_desc: {
@@ -3833,7 +3837,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (PillarShapingDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: PillarShapingDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     pillar_shaping_state: {
@@ -3842,7 +3846,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (PillarShapingState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: PillarShapingState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     player_action_desc: {
@@ -3851,7 +3855,7 @@ const REMOTE_MODULE = {
       primaryKey: "actionTypeId",
       primaryKeyInfo: {
         colName: "actionTypeId",
-        colType: (PlayerActionDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: PlayerActionDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     player_action_state: {
@@ -3860,7 +3864,7 @@ const REMOTE_MODULE = {
       primaryKey: "autoId",
       primaryKeyInfo: {
         colName: "autoId",
-        colType: (PlayerActionState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: PlayerActionState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     player_developer_notification_state: {
@@ -3869,7 +3873,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (PlayerDeveloperNotificationState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: PlayerDeveloperNotificationState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     player_housing_desc: {
@@ -3878,7 +3882,7 @@ const REMOTE_MODULE = {
       primaryKey: "secondaryKnowledgeId",
       primaryKeyInfo: {
         colName: "secondaryKnowledgeId",
-        colType: (PlayerHousingDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: PlayerHousingDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     player_housing_moving_cost_state: {
@@ -3887,7 +3891,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (PlayerHousingMovingCostState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: PlayerHousingMovingCostState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     player_housing_state: {
@@ -3896,7 +3900,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (PlayerHousingState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: PlayerHousingState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     player_lowercase_username_state: {
@@ -3905,7 +3909,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (PlayerLowercaseUsernameState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: PlayerLowercaseUsernameState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     player_note_state: {
@@ -3914,7 +3918,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (PlayerNoteState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: PlayerNoteState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     player_notification_event: {
@@ -3923,7 +3927,7 @@ const REMOTE_MODULE = {
       primaryKey: "scheduledId",
       primaryKeyInfo: {
         colName: "scheduledId",
-        colType: (PlayerNotificationEvent.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: PlayerNotificationEvent.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     player_prefs_state: {
@@ -3932,7 +3936,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (PlayerPrefsState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: PlayerPrefsState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     player_queue_state: {
@@ -3941,7 +3945,7 @@ const REMOTE_MODULE = {
       primaryKey: "index",
       primaryKeyInfo: {
         colName: "index",
-        colType: (PlayerQueueState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: PlayerQueueState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     player_report_state: {
@@ -3950,7 +3954,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (PlayerReportState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: PlayerReportState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     player_report_state_timestamp: {
@@ -3959,7 +3963,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (PlayerReportStateTimestamp.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: PlayerReportStateTimestamp.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     player_settings_state: {
@@ -3968,7 +3972,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (PlayerSettingsState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: PlayerSettingsState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     player_shard_state: {
@@ -3977,7 +3981,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (PlayerShardState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: PlayerShardState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     player_state: {
@@ -3986,7 +3990,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (PlayerState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[1].algebraicType,
+        colType: PlayerState.getTypeScriptAlgebraicType().product.elements[1].algebraicType,
       },
     },
     player_timestamp_state: {
@@ -3995,7 +3999,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (PlayerTimestampState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: PlayerTimestampState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     player_username_state: {
@@ -4004,7 +4008,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (PlayerUsernameState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: PlayerUsernameState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     player_vote_conclude_timer: {
@@ -4013,7 +4017,7 @@ const REMOTE_MODULE = {
       primaryKey: "scheduledId",
       primaryKeyInfo: {
         colName: "scheduledId",
-        colType: (PlayerVoteConcludeTimer.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: PlayerVoteConcludeTimer.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     player_vote_state: {
@@ -4022,7 +4026,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (PlayerVoteState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: PlayerVoteState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     portal_state: {
@@ -4031,7 +4035,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (PortalState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: PortalState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     private_parameters_desc: {
@@ -4040,7 +4044,7 @@ const REMOTE_MODULE = {
       primaryKey: "version",
       primaryKeyInfo: {
         colName: "version",
-        colType: (PrivateParametersDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: PrivateParametersDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     progressive_action_state: {
@@ -4049,7 +4053,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (ProgressiveActionState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: ProgressiveActionState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     project_site_state: {
@@ -4058,7 +4062,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (ProjectSiteState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: ProjectSiteState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     public_progressive_action_state: {
@@ -4067,7 +4071,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (PublicProgressiveActionState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: PublicProgressiveActionState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     region_connection_info: {
@@ -4076,7 +4080,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (RegionConnectionInfo.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: RegionConnectionInfo.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     region_population_info: {
@@ -4085,7 +4089,7 @@ const REMOTE_MODULE = {
       primaryKey: "regionId",
       primaryKeyInfo: {
         colName: "regionId",
-        colType: (RegionPopulationInfo.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: RegionPopulationInfo.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     region_sign_in_parameters: {
@@ -4094,7 +4098,7 @@ const REMOTE_MODULE = {
       primaryKey: "regionId",
       primaryKeyInfo: {
         colName: "regionId",
-        colType: (RegionSignInParameters.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: RegionSignInParameters.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     rent_state: {
@@ -4103,7 +4107,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (RentState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: RentState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     reserved_name_desc: {
@@ -4112,7 +4116,7 @@ const REMOTE_MODULE = {
       primaryKey: "name",
       primaryKeyInfo: {
         colName: "name",
-        colType: (ReservedNameDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: ReservedNameDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     resource_clump_desc: {
@@ -4121,7 +4125,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (ResourceClumpDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: ResourceClumpDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     resource_count: {
@@ -4130,7 +4134,7 @@ const REMOTE_MODULE = {
       primaryKey: "resourceId",
       primaryKeyInfo: {
         colName: "resourceId",
-        colType: (ResourceCount.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: ResourceCount.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     resource_desc: {
@@ -4139,7 +4143,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (ResourceDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: ResourceDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     resource_growth_recipe_desc: {
@@ -4148,7 +4152,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (ResourceGrowthRecipeDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: ResourceGrowthRecipeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     resource_health_state: {
@@ -4157,7 +4161,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (ResourceHealthState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: ResourceHealthState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     resource_placement_recipe_desc: {
@@ -4166,7 +4170,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (ResourcePlacementRecipeDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: ResourcePlacementRecipeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     resource_state: {
@@ -4175,7 +4179,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (ResourceState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: ResourceState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     rez_sick_long_term_state: {
@@ -4184,7 +4188,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (RezSickLongTermState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: RezSickLongTermState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     satiation_state: {
@@ -4193,7 +4197,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (SatiationState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: SatiationState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     secondary_knowledge_desc: {
@@ -4202,7 +4206,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (SecondaryKnowledgeDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: SecondaryKnowledgeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     sell_order_state: {
@@ -4211,7 +4215,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (AuctionListingState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: AuctionListingState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     server_identity: {
@@ -4220,7 +4224,7 @@ const REMOTE_MODULE = {
       primaryKey: "version",
       primaryKeyInfo: {
         colName: "version",
-        colType: (ServerIdentity.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: ServerIdentity.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     signed_in_player_state: {
@@ -4229,7 +4233,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (SignedInPlayerState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: SignedInPlayerState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     single_resource_to_clump_desc: {
@@ -4238,7 +4242,7 @@ const REMOTE_MODULE = {
       primaryKey: "resourceId",
       primaryKeyInfo: {
         colName: "resourceId",
-        colType: (SingleResourceToClumpDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: SingleResourceToClumpDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     skill_desc: {
@@ -4247,7 +4251,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (SkillDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: SkillDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     staged_static_data: {
@@ -4256,7 +4260,7 @@ const REMOTE_MODULE = {
       primaryKey: "version",
       primaryKeyInfo: {
         colName: "version",
-        colType: (StagedStaticData.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: StagedStaticData.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     staged_static_data_v2: {
@@ -4265,7 +4269,7 @@ const REMOTE_MODULE = {
       primaryKey: "version",
       primaryKeyInfo: {
         colName: "version",
-        colType: (StagedStaticDataV2.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: StagedStaticDataV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     staged_static_data_v3: {
@@ -4274,7 +4278,7 @@ const REMOTE_MODULE = {
       primaryKey: "version",
       primaryKeyInfo: {
         colName: "version",
-        colType: (StagedStaticDataV3.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: StagedStaticDataV3.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     staged_static_data_v4: {
@@ -4283,7 +4287,7 @@ const REMOTE_MODULE = {
       primaryKey: "version",
       primaryKeyInfo: {
         colName: "version",
-        colType: (StagedStaticDataV4.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: StagedStaticDataV4.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     staged_static_data_v5: {
@@ -4292,7 +4296,7 @@ const REMOTE_MODULE = {
       primaryKey: "version",
       primaryKeyInfo: {
         colName: "version",
-        colType: (StagedStaticDataV5.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: StagedStaticDataV5.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     stamina_state: {
@@ -4301,7 +4305,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (StaminaState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: StaminaState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     starving_player_state: {
@@ -4310,7 +4314,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (StarvingPlayerState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: StarvingPlayerState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     storage_log_state: {
@@ -4319,7 +4323,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (ActionLogState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: ActionLogState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     target_state: {
@@ -4328,7 +4332,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (TargetState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: TargetState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     targetable_state: {
@@ -4337,7 +4341,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (TargetableState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: TargetableState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     targeting_matrix_desc: {
@@ -4346,7 +4350,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (TargetingMatrixDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: TargetingMatrixDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     teleport_item_desc: {
@@ -4355,7 +4359,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (TeleportItemDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: TeleportItemDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     teleportation_energy_state: {
@@ -4364,7 +4368,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (TeleportationEnergyState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: TeleportationEnergyState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     terraform_progress_state: {
@@ -4373,7 +4377,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (TerraformProgressState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: TerraformProgressState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     terraform_recipe_desc: {
@@ -4382,7 +4386,7 @@ const REMOTE_MODULE = {
       primaryKey: "difference",
       primaryKeyInfo: {
         colName: "difference",
-        colType: (TerraformRecipeDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: TerraformRecipeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     terrain_chunk_state: {
@@ -4391,7 +4395,7 @@ const REMOTE_MODULE = {
       primaryKey: "chunkIndex",
       primaryKeyInfo: {
         colName: "chunkIndex",
-        colType: (TerrainChunkState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: TerrainChunkState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     the_great_placeholder_table: {
@@ -4400,7 +4404,7 @@ const REMOTE_MODULE = {
       primaryKey: "placeholderId",
       primaryKeyInfo: {
         colName: "placeholderId",
-        colType: (TheGreatPlaceHolderTable.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: TheGreatPlaceHolderTable.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     threat_state: {
@@ -4409,7 +4413,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (ThreatState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: ThreatState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     tool_desc: {
@@ -4418,7 +4422,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (ToolDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: ToolDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     tool_type_desc: {
@@ -4427,7 +4431,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (ToolTypeDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: ToolTypeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     toolbar_state: {
@@ -4436,7 +4440,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (ToolbarState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: ToolbarState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     trade_order_state: {
@@ -4445,7 +4449,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (TradeOrderState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: TradeOrderState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     trade_session_state: {
@@ -4454,7 +4458,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (TradeSessionState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: TradeSessionState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     traveler_task_desc: {
@@ -4463,7 +4467,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (TravelerTaskDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: TravelerTaskDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     traveler_task_state: {
@@ -4472,7 +4476,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (TravelerTaskState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: TravelerTaskState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     traveler_trade_order_desc: {
@@ -4481,7 +4485,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (TravelerTradeOrderDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: TravelerTradeOrderDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     unclaimed_collectibles_state: {
@@ -4490,7 +4494,7 @@ const REMOTE_MODULE = {
       primaryKey: "identity",
       primaryKeyInfo: {
         colName: "identity",
-        colType: (UnclaimedCollectiblesState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: UnclaimedCollectiblesState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     unclaimed_shards_state: {
@@ -4499,7 +4503,7 @@ const REMOTE_MODULE = {
       primaryKey: "identity",
       primaryKeyInfo: {
         colName: "identity",
-        colType: (UnclaimedShardsState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: UnclaimedShardsState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     user_authentication_state: {
@@ -4508,7 +4512,7 @@ const REMOTE_MODULE = {
       primaryKey: "identity",
       primaryKeyInfo: {
         colName: "identity",
-        colType: (UserAuthenticationState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: UserAuthenticationState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     user_creation_timestamp_state: {
@@ -4517,7 +4521,7 @@ const REMOTE_MODULE = {
       primaryKey: "identity",
       primaryKeyInfo: {
         colName: "identity",
-        colType: (UserCreationTimestampState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: UserCreationTimestampState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     user_moderation_state: {
@@ -4526,7 +4530,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (UserModerationState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: UserModerationState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     user_previous_region_state: {
@@ -4535,7 +4539,7 @@ const REMOTE_MODULE = {
       primaryKey: "identity",
       primaryKeyInfo: {
         colName: "identity",
-        colType: (UserPreviousRegionState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: UserPreviousRegionState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     user_region_state: {
@@ -4544,7 +4548,7 @@ const REMOTE_MODULE = {
       primaryKey: "identity",
       primaryKeyInfo: {
         colName: "identity",
-        colType: (UserRegionState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: UserRegionState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     user_state: {
@@ -4553,7 +4557,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (UserState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[1].algebraicType,
+        colType: UserState.getTypeScriptAlgebraicType().product.elements[1].algebraicType,
       },
     },
     vault_state: {
@@ -4562,7 +4566,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (VaultState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: VaultState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     visibility_state: {
@@ -4571,7 +4575,7 @@ const REMOTE_MODULE = {
       primaryKey: "entityId",
       primaryKeyInfo: {
         colName: "entityId",
-        colType: (VisibilityState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: VisibilityState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     wall_desc: {
@@ -4580,7 +4584,7 @@ const REMOTE_MODULE = {
       primaryKey: "buildingId",
       primaryKeyInfo: {
         colName: "buildingId",
-        colType: (WallDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: WallDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     waystone_state: {
@@ -4589,7 +4593,7 @@ const REMOTE_MODULE = {
       primaryKey: "buildingEntityId",
       primaryKeyInfo: {
         colName: "buildingEntityId",
-        colType: (WaystoneState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: WaystoneState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     weapon_desc: {
@@ -4598,7 +4602,7 @@ const REMOTE_MODULE = {
       primaryKey: "itemId",
       primaryKeyInfo: {
         colName: "itemId",
-        colType: (WeaponDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: WeaponDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     weapon_type_desc: {
@@ -4607,7 +4611,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (WeaponTypeDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: WeaponTypeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     wind_dbg_desc: {
@@ -4616,7 +4620,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (WindDbgDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: WindDbgDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     wind_params_desc: {
@@ -4625,7 +4629,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (WindParamsDesc.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: WindParamsDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     world_region_name_state: {
@@ -4634,7 +4638,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (WorldRegionNameState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: WorldRegionNameState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     world_region_state: {
@@ -4643,7 +4647,7 @@ const REMOTE_MODULE = {
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: (WorldRegionState.getTypeScriptAlgebraicType() as __AlgebraicTypeVariants.Product).value.elements[0].algebraicType,
+        colType: WorldRegionState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
   },
@@ -5974,7 +5978,7 @@ const REMOTE_MODULE = {
     },
   },
   versionInfo: {
-    cliVersion: "1.4.0",
+    cliVersion: "1.3.2",
   },
   // Constructors which are used by the DbConnectionImpl to
   // extract type information from the generated RemoteModule.
@@ -5983,16 +5987,16 @@ const REMOTE_MODULE = {
   // all we do is build a TypeScript object which we could have done inside the
   // SDK, but if in the future we wanted to create a class this would be
   // necessary because classes have methods, so we'll keep it.
-  eventContextConstructor: (imp: __DbConnectionImpl, event: __Event<Reducer>) => {
+  eventContextConstructor: (imp: DbConnectionImpl, event: Event<Reducer>) => {
     return {
       ...(imp as DbConnection),
       event
     }
   },
-  dbViewConstructor: (imp: __DbConnectionImpl) => {
+  dbViewConstructor: (imp: DbConnectionImpl) => {
     return new RemoteTables(imp);
   },
-  reducersConstructor: (imp: __DbConnectionImpl, setReducerFlags: SetReducerFlags) => {
+  reducersConstructor: (imp: DbConnectionImpl, setReducerFlags: SetReducerFlags) => {
     return new RemoteReducers(imp, setReducerFlags);
   },
   setReducerFlagsConstructor: () => {
@@ -6336,12 +6340,12 @@ export type Reducer = never
 ;
 
 export class RemoteReducers {
-  constructor(private connection: __DbConnectionImpl, private setCallReducerFlags: SetReducerFlags) {}
+  constructor(private connection: DbConnectionImpl, private setCallReducerFlags: SetReducerFlags) {}
 
   addFavoriteFriend(playerEntityId: bigint) {
     const __args = { playerEntityId };
-    let __writer = new __BinaryWriter(1024);
-    AddFavoriteFriend.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    AddFavoriteFriend.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("add_favorite_friend", __argsBuffer, this.setCallReducerFlags.addFavoriteFriendFlags);
   }
@@ -6356,8 +6360,8 @@ export class RemoteReducers {
 
   addFriend(playerEntityId: bigint) {
     const __args = { playerEntityId };
-    let __writer = new __BinaryWriter(1024);
-    AddFriend.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    AddFriend.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("add_friend", __argsBuffer, this.setCallReducerFlags.addFriendFlags);
   }
@@ -6372,8 +6376,8 @@ export class RemoteReducers {
 
   adminBroadcastMsg(region: number, title: string, message: string) {
     const __args = { region, title, message };
-    let __writer = new __BinaryWriter(1024);
-    AdminBroadcastMsg.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    AdminBroadcastMsg.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("admin_broadcast_msg", __argsBuffer, this.setCallReducerFlags.adminBroadcastMsgFlags);
   }
@@ -6388,8 +6392,8 @@ export class RemoteReducers {
 
   adminCreateDirectChatMessage(username: string, titleId: number, receiverId: bigint, newMessageText: string) {
     const __args = { username, titleId, receiverId, newMessageText };
-    let __writer = new __BinaryWriter(1024);
-    AdminCreateDirectChatMessage.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    AdminCreateDirectChatMessage.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("admin_create_direct_chat_message", __argsBuffer, this.setCallReducerFlags.adminCreateDirectChatMessageFlags);
   }
@@ -6404,8 +6408,8 @@ export class RemoteReducers {
 
   adminDeleteModerationActionLogEntry(entityId: bigint) {
     const __args = { entityId };
-    let __writer = new __BinaryWriter(1024);
-    AdminDeleteModerationActionLogEntry.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    AdminDeleteModerationActionLogEntry.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("admin_delete_moderation_action_log_entry", __argsBuffer, this.setCallReducerFlags.adminDeleteModerationActionLogEntryFlags);
   }
@@ -6420,8 +6424,8 @@ export class RemoteReducers {
 
   adminGrantShards(identity: string, amount: number) {
     const __args = { identity, amount };
-    let __writer = new __BinaryWriter(1024);
-    AdminGrantShards.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    AdminGrantShards.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("admin_grant_shards", __argsBuffer, this.setCallReducerFlags.adminGrantShardsFlags);
   }
@@ -6436,8 +6440,8 @@ export class RemoteReducers {
 
   adminLogModerationAction(reportEntityId: bigint, reportedPlayerEntityId: bigint, adminName: string, reportedPlayerUsername: string, actionType: string, moderationNotice: string, details: string) {
     const __args = { reportEntityId, reportedPlayerEntityId, adminName, reportedPlayerUsername, actionType, moderationNotice, details };
-    let __writer = new __BinaryWriter(1024);
-    AdminLogModerationAction.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    AdminLogModerationAction.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("admin_log_moderation_action", __argsBuffer, this.setCallReducerFlags.adminLogModerationActionFlags);
   }
@@ -6452,8 +6456,8 @@ export class RemoteReducers {
 
   adminMarkUserReportAsActioned(entityId: bigint, actioned: boolean) {
     const __args = { entityId, actioned };
-    let __writer = new __BinaryWriter(1024);
-    AdminMarkUserReportAsActioned.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    AdminMarkUserReportAsActioned.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("admin_mark_user_report_as_actioned", __argsBuffer, this.setCallReducerFlags.adminMarkUserReportAsActionedFlags);
   }
@@ -6468,8 +6472,8 @@ export class RemoteReducers {
 
   adminNotifyPlayer(username: string, title: string, message: string) {
     const __args = { username, title, message };
-    let __writer = new __BinaryWriter(1024);
-    AdminNotifyPlayer.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    AdminNotifyPlayer.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("admin_notify_player", __argsBuffer, this.setCallReducerFlags.adminNotifyPlayerFlags);
   }
@@ -6484,8 +6488,8 @@ export class RemoteReducers {
 
   adminNotifyPlayerByIdentity(identity: string, title: string, message: string) {
     const __args = { identity, title, message };
-    let __writer = new __BinaryWriter(1024);
-    AdminNotifyPlayerByIdentity.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    AdminNotifyPlayerByIdentity.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("admin_notify_player_by_identity", __argsBuffer, this.setCallReducerFlags.adminNotifyPlayerByIdentityFlags);
   }
@@ -6512,8 +6516,8 @@ export class RemoteReducers {
 
   adminRenameEmpire(currentName: string, newName: string) {
     const __args = { currentName, newName };
-    let __writer = new __BinaryWriter(1024);
-    AdminRenameEmpire.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    AdminRenameEmpire.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("admin_rename_empire", __argsBuffer, this.setCallReducerFlags.adminRenameEmpireFlags);
   }
@@ -6528,8 +6532,8 @@ export class RemoteReducers {
 
   adminRenameEmpireEntity(entityId: bigint, newName: string) {
     const __args = { entityId, newName };
-    let __writer = new __BinaryWriter(1024);
-    AdminRenameEmpireEntity.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    AdminRenameEmpireEntity.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("admin_rename_empire_entity", __argsBuffer, this.setCallReducerFlags.adminRenameEmpireEntityFlags);
   }
@@ -6544,8 +6548,8 @@ export class RemoteReducers {
 
   adminRenameEmpireRank(empireName: string, rank: number, newName: string) {
     const __args = { empireName, rank, newName };
-    let __writer = new __BinaryWriter(1024);
-    AdminRenameEmpireRank.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    AdminRenameEmpireRank.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("admin_rename_empire_rank", __argsBuffer, this.setCallReducerFlags.adminRenameEmpireRankFlags);
   }
@@ -6560,8 +6564,8 @@ export class RemoteReducers {
 
   adminRenameEmpireRankEntity(empireEntityId: bigint, rank: number, newName: string) {
     const __args = { empireEntityId, rank, newName };
-    let __writer = new __BinaryWriter(1024);
-    AdminRenameEmpireRankEntity.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    AdminRenameEmpireRankEntity.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("admin_rename_empire_rank_entity", __argsBuffer, this.setCallReducerFlags.adminRenameEmpireRankEntityFlags);
   }
@@ -6576,8 +6580,8 @@ export class RemoteReducers {
 
   adminRenamePlayer(currentName: string, newName: string) {
     const __args = { currentName, newName };
-    let __writer = new __BinaryWriter(1024);
-    AdminRenamePlayer.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    AdminRenamePlayer.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("admin_rename_player", __argsBuffer, this.setCallReducerFlags.adminRenamePlayerFlags);
   }
@@ -6592,8 +6596,8 @@ export class RemoteReducers {
 
   adminRenamePlayerEntity(entityId: bigint, newName: string) {
     const __args = { entityId, newName };
-    let __writer = new __BinaryWriter(1024);
-    AdminRenamePlayerEntity.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    AdminRenamePlayerEntity.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("admin_rename_player_entity", __argsBuffer, this.setCallReducerFlags.adminRenamePlayerEntityFlags);
   }
@@ -6608,8 +6612,8 @@ export class RemoteReducers {
 
   adminSignOutAll(region: number) {
     const __args = { region };
-    let __writer = new __BinaryWriter(1024);
-    AdminSignOutAll.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    AdminSignOutAll.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("admin_sign_out_all", __argsBuffer, this.setCallReducerFlags.adminSignOutAllFlags);
   }
@@ -6624,8 +6628,8 @@ export class RemoteReducers {
 
   adminSkipQueueEntity(entityId: bigint) {
     const __args = { entityId };
-    let __writer = new __BinaryWriter(1024);
-    AdminSkipQueueEntity.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    AdminSkipQueueEntity.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("admin_skip_queue_entity", __argsBuffer, this.setCallReducerFlags.adminSkipQueueEntityFlags);
   }
@@ -6638,26 +6642,26 @@ export class RemoteReducers {
     this.connection.offReducer("admin_skip_queue_entity", callback);
   }
 
-  adminSkipQueueIdentity(identity: __Identity) {
+  adminSkipQueueIdentity(identity: Identity) {
     const __args = { identity };
-    let __writer = new __BinaryWriter(1024);
-    AdminSkipQueueIdentity.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    AdminSkipQueueIdentity.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("admin_skip_queue_identity", __argsBuffer, this.setCallReducerFlags.adminSkipQueueIdentityFlags);
   }
 
-  onAdminSkipQueueIdentity(callback: (ctx: ReducerEventContext, identity: __Identity) => void) {
+  onAdminSkipQueueIdentity(callback: (ctx: ReducerEventContext, identity: Identity) => void) {
     this.connection.onReducer("admin_skip_queue_identity", callback);
   }
 
-  removeOnAdminSkipQueueIdentity(callback: (ctx: ReducerEventContext, identity: __Identity) => void) {
+  removeOnAdminSkipQueueIdentity(callback: (ctx: ReducerEventContext, identity: Identity) => void) {
     this.connection.offReducer("admin_skip_queue_identity", callback);
   }
 
   adminSkipQueueName(name: string) {
     const __args = { name };
-    let __writer = new __BinaryWriter(1024);
-    AdminSkipQueueName.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    AdminSkipQueueName.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("admin_skip_queue_name", __argsBuffer, this.setCallReducerFlags.adminSkipQueueNameFlags);
   }
@@ -6670,26 +6674,26 @@ export class RemoteReducers {
     this.connection.offReducer("admin_skip_queue_name", callback);
   }
 
-  adminUpdateGrantedHubItemState(identity: __Identity, itemType: HubItemType, itemId: number, balance: number) {
+  adminUpdateGrantedHubItemState(identity: Identity, itemType: HubItemType, itemId: number, balance: number) {
     const __args = { identity, itemType, itemId, balance };
-    let __writer = new __BinaryWriter(1024);
-    AdminUpdateGrantedHubItemState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    AdminUpdateGrantedHubItemState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("admin_update_granted_hub_item_state", __argsBuffer, this.setCallReducerFlags.adminUpdateGrantedHubItemStateFlags);
   }
 
-  onAdminUpdateGrantedHubItemState(callback: (ctx: ReducerEventContext, identity: __Identity, itemType: HubItemType, itemId: number, balance: number) => void) {
+  onAdminUpdateGrantedHubItemState(callback: (ctx: ReducerEventContext, identity: Identity, itemType: HubItemType, itemId: number, balance: number) => void) {
     this.connection.onReducer("admin_update_granted_hub_item_state", callback);
   }
 
-  removeOnAdminUpdateGrantedHubItemState(callback: (ctx: ReducerEventContext, identity: __Identity, itemType: HubItemType, itemId: number, balance: number) => void) {
+  removeOnAdminUpdateGrantedHubItemState(callback: (ctx: ReducerEventContext, identity: Identity, itemType: HubItemType, itemId: number, balance: number) => void) {
     this.connection.offReducer("admin_update_granted_hub_item_state", callback);
   }
 
   adminUpdateSignInParameters(regionSignInParameters: RegionSignInParameters, region: number) {
     const __args = { regionSignInParameters, region };
-    let __writer = new __BinaryWriter(1024);
-    AdminUpdateSignInParameters.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    AdminUpdateSignInParameters.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("admin_update_sign_in_parameters", __argsBuffer, this.setCallReducerFlags.adminUpdateSignInParametersFlags);
   }
@@ -6704,8 +6708,8 @@ export class RemoteReducers {
 
   authenticate(identity: string) {
     const __args = { identity };
-    let __writer = new __BinaryWriter(1024);
-    Authenticate.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    Authenticate.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("authenticate", __argsBuffer, this.setCallReducerFlags.authenticateFlags);
   }
@@ -6720,8 +6724,8 @@ export class RemoteReducers {
 
   blockIdentity(identity: string) {
     const __args = { identity };
-    let __writer = new __BinaryWriter(1024);
-    BlockIdentity.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    BlockIdentity.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("block_identity", __argsBuffer, this.setCallReducerFlags.blockIdentityFlags);
   }
@@ -6736,8 +6740,8 @@ export class RemoteReducers {
 
   blockPlayer(playerEntityId: bigint) {
     const __args = { playerEntityId };
-    let __writer = new __BinaryWriter(1024);
-    BlockPlayer.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    BlockPlayer.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("block_player", __argsBuffer, this.setCallReducerFlags.blockPlayerFlags);
   }
@@ -6752,8 +6756,8 @@ export class RemoteReducers {
 
   cheatEmpireSiegeAddSupplies(siegeNodeEntityId: bigint, supplies: number) {
     const __args = { siegeNodeEntityId, supplies };
-    let __writer = new __BinaryWriter(1024);
-    CheatEmpireSiegeAddSupplies.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    CheatEmpireSiegeAddSupplies.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("cheat_empire_siege_add_supplies", __argsBuffer, this.setCallReducerFlags.cheatEmpireSiegeAddSuppliesFlags);
   }
@@ -6768,8 +6772,8 @@ export class RemoteReducers {
 
   cheatEmpireSiegeCancel(siegeNodeEntityId: bigint) {
     const __args = { siegeNodeEntityId };
-    let __writer = new __BinaryWriter(1024);
-    CheatEmpireSiegeCancel.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    CheatEmpireSiegeCancel.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("cheat_empire_siege_cancel", __argsBuffer, this.setCallReducerFlags.cheatEmpireSiegeCancelFlags);
   }
@@ -6784,8 +6788,8 @@ export class RemoteReducers {
 
   cheatPlayerSetName(playerEntityId: bigint, name: string) {
     const __args = { playerEntityId, name };
-    let __writer = new __BinaryWriter(1024);
-    CheatPlayerSetName.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    CheatPlayerSetName.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("cheat_player_set_name", __argsBuffer, this.setCallReducerFlags.cheatPlayerSetNameFlags);
   }
@@ -6800,8 +6804,8 @@ export class RemoteReducers {
 
   cheatShardsGrant(request: CheatShardsGrantRequest) {
     const __args = { request };
-    let __writer = new __BinaryWriter(1024);
-    CheatShardsGrant.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    CheatShardsGrant.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("cheat_shards_grant", __argsBuffer, this.setCallReducerFlags.cheatShardsGrantFlags);
   }
@@ -6852,8 +6856,8 @@ export class RemoteReducers {
 
   deleteDeveloperIdentity(identity: string) {
     const __args = { identity };
-    let __writer = new __BinaryWriter(1024);
-    DeleteDeveloperIdentity.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    DeleteDeveloperIdentity.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("delete_developer_identity", __argsBuffer, this.setCallReducerFlags.deleteDeveloperIdentityFlags);
   }
@@ -6868,8 +6872,8 @@ export class RemoteReducers {
 
   directMessagePostMessage(receiver: string, text: string) {
     const __args = { receiver, text };
-    let __writer = new __BinaryWriter(1024);
-    DirectMessagePostMessage.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    DirectMessagePostMessage.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("direct_message_post_message", __argsBuffer, this.setCallReducerFlags.directMessagePostMessageFlags);
   }
@@ -6884,8 +6888,8 @@ export class RemoteReducers {
 
   empireChangeEmblem(request: EmpireChangeEmblemRequest) {
     const __args = { request };
-    let __writer = new __BinaryWriter(1024);
-    EmpireChangeEmblem.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    EmpireChangeEmblem.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("empire_change_emblem", __argsBuffer, this.setCallReducerFlags.empireChangeEmblemFlags);
   }
@@ -6900,8 +6904,8 @@ export class RemoteReducers {
 
   empireCraftSupplies(foundryEntityId: bigint) {
     const __args = { foundryEntityId };
-    let __writer = new __BinaryWriter(1024);
-    EmpireCraftSupplies.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    EmpireCraftSupplies.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("empire_craft_supplies", __argsBuffer, this.setCallReducerFlags.empireCraftSuppliesFlags);
   }
@@ -6916,8 +6920,8 @@ export class RemoteReducers {
 
   empireCraftSuppliesScheduled(timer: EmpireCraftSuppliesTimer) {
     const __args = { timer };
-    let __writer = new __BinaryWriter(1024);
-    EmpireCraftSuppliesScheduled.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    EmpireCraftSuppliesScheduled.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("empire_craft_supplies_scheduled", __argsBuffer, this.setCallReducerFlags.empireCraftSuppliesScheduledFlags);
   }
@@ -6932,8 +6936,8 @@ export class RemoteReducers {
 
   empireDecayAgentLoop(timer: EmpireDecayLoopTimer) {
     const __args = { timer };
-    let __writer = new __BinaryWriter(1024);
-    EmpireDecayAgentLoop.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    EmpireDecayAgentLoop.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("empire_decay_agent_loop", __argsBuffer, this.setCallReducerFlags.empireDecayAgentLoopFlags);
   }
@@ -6948,8 +6952,8 @@ export class RemoteReducers {
 
   empireDismantle(request: EmpireDismantleRequest) {
     const __args = { request };
-    let __writer = new __BinaryWriter(1024);
-    EmpireDismantle.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    EmpireDismantle.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("empire_dismantle", __argsBuffer, this.setCallReducerFlags.empireDismantleFlags);
   }
@@ -6964,8 +6968,8 @@ export class RemoteReducers {
 
   empireDonateShards(request: EmpireDonateShardsRequest) {
     const __args = { request };
-    let __writer = new __BinaryWriter(1024);
-    EmpireDonateShards.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    EmpireDonateShards.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("empire_donate_shards", __argsBuffer, this.setCallReducerFlags.empireDonateShardsFlags);
   }
@@ -6980,8 +6984,8 @@ export class RemoteReducers {
 
   empireForm(request: EmpireFormRequest) {
     const __args = { request };
-    let __writer = new __BinaryWriter(1024);
-    EmpireForm.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    EmpireForm.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("empire_form", __argsBuffer, this.setCallReducerFlags.empireFormFlags);
   }
@@ -6996,8 +7000,8 @@ export class RemoteReducers {
 
   empireLeave(request: EmpireLeaveRequest) {
     const __args = { request };
-    let __writer = new __BinaryWriter(1024);
-    EmpireLeave.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    EmpireLeave.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("empire_leave", __argsBuffer, this.setCallReducerFlags.empireLeaveFlags);
   }
@@ -7012,8 +7016,8 @@ export class RemoteReducers {
 
   empireMarkForExpansion(request: EmpireMarkForExpansionRequest) {
     const __args = { request };
-    let __writer = new __BinaryWriter(1024);
-    EmpireMarkForExpansion.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    EmpireMarkForExpansion.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("empire_mark_for_expansion", __argsBuffer, this.setCallReducerFlags.empireMarkForExpansionFlags);
   }
@@ -7028,8 +7032,8 @@ export class RemoteReducers {
 
   empireMarkForSiege(request: EmpireMarkForSiegeRequest) {
     const __args = { request };
-    let __writer = new __BinaryWriter(1024);
-    EmpireMarkForSiege.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    EmpireMarkForSiege.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("empire_mark_for_siege", __argsBuffer, this.setCallReducerFlags.empireMarkForSiegeFlags);
   }
@@ -7044,8 +7048,8 @@ export class RemoteReducers {
 
   empireMoveCapital(targetClaimEntityId: bigint) {
     const __args = { targetClaimEntityId };
-    let __writer = new __BinaryWriter(1024);
-    EmpireMoveCapital.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    EmpireMoveCapital.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("empire_move_capital", __argsBuffer, this.setCallReducerFlags.empireMoveCapitalFlags);
   }
@@ -7060,8 +7064,8 @@ export class RemoteReducers {
 
   empirePlayerJoin(request: EmpirePlayerJoinRequest) {
     const __args = { request };
-    let __writer = new __BinaryWriter(1024);
-    EmpirePlayerJoin.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    EmpirePlayerJoin.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("empire_player_join", __argsBuffer, this.setCallReducerFlags.empirePlayerJoinFlags);
   }
@@ -7076,8 +7080,8 @@ export class RemoteReducers {
 
   empirePlayerLeave(request: EmpirePlayerLeaveRequest) {
     const __args = { request };
-    let __writer = new __BinaryWriter(1024);
-    EmpirePlayerLeave.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    EmpirePlayerLeave.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("empire_player_leave", __argsBuffer, this.setCallReducerFlags.empirePlayerLeaveFlags);
   }
@@ -7092,8 +7096,8 @@ export class RemoteReducers {
 
   empireRename(newName: string) {
     const __args = { newName };
-    let __writer = new __BinaryWriter(1024);
-    EmpireRename.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    EmpireRename.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("empire_rename", __argsBuffer, this.setCallReducerFlags.empireRenameFlags);
   }
@@ -7108,8 +7112,8 @@ export class RemoteReducers {
 
   empireSetDirectiveMessage(request: EmpireSetDirectiveMessageRequest) {
     const __args = { request };
-    let __writer = new __BinaryWriter(1024);
-    EmpireSetDirectiveMessage.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    EmpireSetDirectiveMessage.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("empire_set_directive_message", __argsBuffer, this.setCallReducerFlags.empireSetDirectiveMessageFlags);
   }
@@ -7124,8 +7128,8 @@ export class RemoteReducers {
 
   empireSetNobilityThreshold(threshold: number) {
     const __args = { threshold };
-    let __writer = new __BinaryWriter(1024);
-    EmpireSetNobilityThreshold.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    EmpireSetNobilityThreshold.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("empire_set_nobility_threshold", __argsBuffer, this.setCallReducerFlags.empireSetNobilityThresholdFlags);
   }
@@ -7140,8 +7144,8 @@ export class RemoteReducers {
 
   empireSetPlayerRank(request: EmpireSetPlayerRankRequest) {
     const __args = { request };
-    let __writer = new __BinaryWriter(1024);
-    EmpireSetPlayerRank.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    EmpireSetPlayerRank.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("empire_set_player_rank", __argsBuffer, this.setCallReducerFlags.empireSetPlayerRankFlags);
   }
@@ -7156,8 +7160,8 @@ export class RemoteReducers {
 
   empireSetRankTitle(request: EmpireSetRankTitleRequest) {
     const __args = { request };
-    let __writer = new __BinaryWriter(1024);
-    EmpireSetRankTitle.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    EmpireSetRankTitle.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("empire_set_rank_title", __argsBuffer, this.setCallReducerFlags.empireSetRankTitleFlags);
   }
@@ -7172,8 +7176,8 @@ export class RemoteReducers {
 
   empireSiegeAgentLoop(timer: EmpireSiegeLoopTimer) {
     const __args = { timer };
-    let __writer = new __BinaryWriter(1024);
-    EmpireSiegeAgentLoop.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    EmpireSiegeAgentLoop.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("empire_siege_agent_loop", __argsBuffer, this.setCallReducerFlags.empireSiegeAgentLoopFlags);
   }
@@ -7188,8 +7192,8 @@ export class RemoteReducers {
 
   empireSubmit(newEmpireEntityId: bigint) {
     const __args = { newEmpireEntityId };
-    let __writer = new __BinaryWriter(1024);
-    EmpireSubmit.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    EmpireSubmit.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("empire_submit", __argsBuffer, this.setCallReducerFlags.empireSubmitFlags);
   }
@@ -7216,8 +7220,8 @@ export class RemoteReducers {
 
   empireTransferEmperorship(targetPlayerEntityId: bigint) {
     const __args = { targetPlayerEntityId };
-    let __writer = new __BinaryWriter(1024);
-    EmpireTransferEmperorship.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    EmpireTransferEmperorship.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("empire_transfer_emperorship", __argsBuffer, this.setCallReducerFlags.empireTransferEmperorshipFlags);
   }
@@ -7232,8 +7236,8 @@ export class RemoteReducers {
 
   empireUpdatePermissions(request: EmpireUpdatePermissionsRequest) {
     const __args = { request };
-    let __writer = new __BinaryWriter(1024);
-    EmpireUpdatePermissions.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    EmpireUpdatePermissions.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("empire_update_permissions", __argsBuffer, this.setCallReducerFlags.empireUpdatePermissionsFlags);
   }
@@ -7264,8 +7268,8 @@ export class RemoteReducers {
 
   importAchievementDesc(records: AchievementDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportAchievementDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportAchievementDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_achievement_desc", __argsBuffer, this.setCallReducerFlags.importAchievementDescFlags);
   }
@@ -7280,8 +7284,8 @@ export class RemoteReducers {
 
   importActiveBuffState(records: ActiveBuffState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportActiveBuffState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportActiveBuffState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_active_buff_state", __argsBuffer, this.setCallReducerFlags.importActiveBuffStateFlags);
   }
@@ -7296,8 +7300,8 @@ export class RemoteReducers {
 
   importAdminBroadcast(records: AdminBroadcast[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportAdminBroadcast.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportAdminBroadcast.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_admin_broadcast", __argsBuffer, this.setCallReducerFlags.importAdminBroadcastFlags);
   }
@@ -7312,8 +7316,8 @@ export class RemoteReducers {
 
   importAlertDesc(records: AlertDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportAlertDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportAlertDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_alert_desc", __argsBuffer, this.setCallReducerFlags.importAlertDescFlags);
   }
@@ -7328,8 +7332,8 @@ export class RemoteReducers {
 
   importAlertState(records: AlertState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportAlertState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportAlertState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_alert_state", __argsBuffer, this.setCallReducerFlags.importAlertStateFlags);
   }
@@ -7344,8 +7348,8 @@ export class RemoteReducers {
 
   importAttackOutcomeState(records: AttackOutcomeState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportAttackOutcomeState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportAttackOutcomeState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_attack_outcome_state", __argsBuffer, this.setCallReducerFlags.importAttackOutcomeStateFlags);
   }
@@ -7360,8 +7364,8 @@ export class RemoteReducers {
 
   importBiomeDesc(records: BiomeDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportBiomeDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportBiomeDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_biome_desc", __argsBuffer, this.setCallReducerFlags.importBiomeDescFlags);
   }
@@ -7376,8 +7380,8 @@ export class RemoteReducers {
 
   importBuffDesc(records: BuffDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportBuffDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportBuffDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_buff_desc", __argsBuffer, this.setCallReducerFlags.importBuffDescFlags);
   }
@@ -7392,8 +7396,8 @@ export class RemoteReducers {
 
   importBuffTypeDesc(records: BuffTypeDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportBuffTypeDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportBuffTypeDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_buff_type_desc", __argsBuffer, this.setCallReducerFlags.importBuffTypeDescFlags);
   }
@@ -7408,8 +7412,8 @@ export class RemoteReducers {
 
   importBuildingClaimDesc(records: BuildingClaimDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportBuildingClaimDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportBuildingClaimDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_building_claim_desc", __argsBuffer, this.setCallReducerFlags.importBuildingClaimDescFlags);
   }
@@ -7424,8 +7428,8 @@ export class RemoteReducers {
 
   importBuildingDesc(records: BuildingDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportBuildingDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportBuildingDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_building_desc", __argsBuffer, this.setCallReducerFlags.importBuildingDescFlags);
   }
@@ -7440,8 +7444,8 @@ export class RemoteReducers {
 
   importBuildingPortalDesc(records: BuildingPortalDescV2[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportBuildingPortalDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportBuildingPortalDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_building_portal_desc", __argsBuffer, this.setCallReducerFlags.importBuildingPortalDescFlags);
   }
@@ -7456,8 +7460,8 @@ export class RemoteReducers {
 
   importBuildingRepairsDesc(records: BuildingRepairsDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportBuildingRepairsDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportBuildingRepairsDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_building_repairs_desc", __argsBuffer, this.setCallReducerFlags.importBuildingRepairsDescFlags);
   }
@@ -7472,8 +7476,8 @@ export class RemoteReducers {
 
   importBuildingSpawnDesc(records: BuildingSpawnDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportBuildingSpawnDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportBuildingSpawnDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_building_spawn_desc", __argsBuffer, this.setCallReducerFlags.importBuildingSpawnDescFlags);
   }
@@ -7488,8 +7492,8 @@ export class RemoteReducers {
 
   importBuildingState(records: BuildingState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportBuildingState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportBuildingState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_building_state", __argsBuffer, this.setCallReducerFlags.importBuildingStateFlags);
   }
@@ -7504,8 +7508,8 @@ export class RemoteReducers {
 
   importBuildingTypeDesc(records: BuildingTypeDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportBuildingTypeDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportBuildingTypeDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_building_type_desc", __argsBuffer, this.setCallReducerFlags.importBuildingTypeDescFlags);
   }
@@ -7520,8 +7524,8 @@ export class RemoteReducers {
 
   importCargoDesc(records: CargoDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportCargoDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportCargoDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_cargo_desc", __argsBuffer, this.setCallReducerFlags.importCargoDescFlags);
   }
@@ -7536,8 +7540,8 @@ export class RemoteReducers {
 
   importCharacterStatDesc(records: CharacterStatDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportCharacterStatDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportCharacterStatDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_character_stat_desc", __argsBuffer, this.setCallReducerFlags.importCharacterStatDescFlags);
   }
@@ -7552,8 +7556,8 @@ export class RemoteReducers {
 
   importCharacterStatsState(records: CharacterStatsState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportCharacterStatsState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportCharacterStatsState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_character_stats_state", __argsBuffer, this.setCallReducerFlags.importCharacterStatsStateFlags);
   }
@@ -7568,8 +7572,8 @@ export class RemoteReducers {
 
   importChatMessageState(records: ChatMessageState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportChatMessageState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportChatMessageState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_chat_message_state", __argsBuffer, this.setCallReducerFlags.importChatMessageStateFlags);
   }
@@ -7584,8 +7588,8 @@ export class RemoteReducers {
 
   importChestRarityDesc(records: ChestRarityDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportChestRarityDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportChestRarityDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_chest_rarity_desc", __argsBuffer, this.setCallReducerFlags.importChestRarityDescFlags);
   }
@@ -7600,8 +7604,8 @@ export class RemoteReducers {
 
   importClaimLocalState(records: ClaimLocalState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportClaimLocalState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportClaimLocalState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_claim_local_state", __argsBuffer, this.setCallReducerFlags.importClaimLocalStateFlags);
   }
@@ -7616,8 +7620,8 @@ export class RemoteReducers {
 
   importClaimRecruitmentState(records: ClaimRecruitmentState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportClaimRecruitmentState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportClaimRecruitmentState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_claim_recruitment_state", __argsBuffer, this.setCallReducerFlags.importClaimRecruitmentStateFlags);
   }
@@ -7632,8 +7636,8 @@ export class RemoteReducers {
 
   importClaimState(records: ClaimState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportClaimState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportClaimState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_claim_state", __argsBuffer, this.setCallReducerFlags.importClaimStateFlags);
   }
@@ -7648,8 +7652,8 @@ export class RemoteReducers {
 
   importClaimTechDesc(records: ClaimTechDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportClaimTechDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportClaimTechDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_claim_tech_desc", __argsBuffer, this.setCallReducerFlags.importClaimTechDescFlags);
   }
@@ -7664,8 +7668,8 @@ export class RemoteReducers {
 
   importClaimTechState(records: ClaimTechState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportClaimTechState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportClaimTechState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_claim_tech_state", __argsBuffer, this.setCallReducerFlags.importClaimTechStateFlags);
   }
@@ -7680,8 +7684,8 @@ export class RemoteReducers {
 
   importClaimTileCost(records: ClaimTileCost[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportClaimTileCost.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportClaimTileCost.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_claim_tile_cost", __argsBuffer, this.setCallReducerFlags.importClaimTileCostFlags);
   }
@@ -7696,8 +7700,8 @@ export class RemoteReducers {
 
   importClaimTileState(records: ClaimTileState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportClaimTileState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportClaimTileState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_claim_tile_state", __argsBuffer, this.setCallReducerFlags.importClaimTileStateFlags);
   }
@@ -7712,8 +7716,8 @@ export class RemoteReducers {
 
   importClimbRequirementDesc(records: ClimbRequirementDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportClimbRequirementDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportClimbRequirementDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_climb_requirement_desc", __argsBuffer, this.setCallReducerFlags.importClimbRequirementDescFlags);
   }
@@ -7728,8 +7732,8 @@ export class RemoteReducers {
 
   importClothingDesc(records: ClothingDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportClothingDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportClothingDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_clothing_desc", __argsBuffer, this.setCallReducerFlags.importClothingDescFlags);
   }
@@ -7744,8 +7748,8 @@ export class RemoteReducers {
 
   importCollectibleDesc(records: CollectibleDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportCollectibleDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportCollectibleDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_collectible_desc", __argsBuffer, this.setCallReducerFlags.importCollectibleDescFlags);
   }
@@ -7760,8 +7764,8 @@ export class RemoteReducers {
 
   importCombatActionDescV3(records: CombatActionDescV3[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportCombatActionDescV3.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportCombatActionDescV3.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_combat_action_desc_v3", __argsBuffer, this.setCallReducerFlags.importCombatActionDescV3Flags);
   }
@@ -7776,8 +7780,8 @@ export class RemoteReducers {
 
   importCombatState(records: CombatState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportCombatState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportCombatState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_combat_state", __argsBuffer, this.setCallReducerFlags.importCombatStateFlags);
   }
@@ -7792,8 +7796,8 @@ export class RemoteReducers {
 
   importConfig(records: Config[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportConfig.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportConfig.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_config", __argsBuffer, this.setCallReducerFlags.importConfigFlags);
   }
@@ -7808,8 +7812,8 @@ export class RemoteReducers {
 
   importConstructionRecipeDesc(records: ConstructionRecipeDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportConstructionRecipeDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportConstructionRecipeDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_construction_recipe_desc", __argsBuffer, this.setCallReducerFlags.importConstructionRecipeDescFlags);
   }
@@ -7824,8 +7828,8 @@ export class RemoteReducers {
 
   importCraftingRecipeDesc(records: CraftingRecipeDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportCraftingRecipeDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportCraftingRecipeDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_crafting_recipe_desc", __argsBuffer, this.setCallReducerFlags.importCraftingRecipeDescFlags);
   }
@@ -7840,8 +7844,8 @@ export class RemoteReducers {
 
   importDeconstructionRecipeDesc(records: DeconstructionRecipeDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportDeconstructionRecipeDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportDeconstructionRecipeDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_deconstruction_recipe_desc", __argsBuffer, this.setCallReducerFlags.importDeconstructionRecipeDescFlags);
   }
@@ -7856,8 +7860,8 @@ export class RemoteReducers {
 
   importDeployableDesc(records: DeployableDescV2[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportDeployableDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportDeployableDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_deployable_desc", __argsBuffer, this.setCallReducerFlags.importDeployableDescFlags);
   }
@@ -7872,8 +7876,8 @@ export class RemoteReducers {
 
   importDeployableState(records: DeployableState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportDeployableState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportDeployableState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_deployable_state", __argsBuffer, this.setCallReducerFlags.importDeployableStateFlags);
   }
@@ -7888,8 +7892,8 @@ export class RemoteReducers {
 
   importDimensionDescriptionState(records: DimensionDescriptionState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportDimensionDescriptionState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportDimensionDescriptionState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_dimension_description_state", __argsBuffer, this.setCallReducerFlags.importDimensionDescriptionStateFlags);
   }
@@ -7904,8 +7908,8 @@ export class RemoteReducers {
 
   importDimensionNetworkDescriptionState(records: DimensionNetworkState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportDimensionNetworkDescriptionState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportDimensionNetworkDescriptionState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_dimension_network_description_state", __argsBuffer, this.setCallReducerFlags.importDimensionNetworkDescriptionStateFlags);
   }
@@ -7920,8 +7924,8 @@ export class RemoteReducers {
 
   importDistantVisibleEntityDesc(records: DistantVisibleEntityDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportDistantVisibleEntityDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportDistantVisibleEntityDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_distant_visible_entity_desc", __argsBuffer, this.setCallReducerFlags.importDistantVisibleEntityDescFlags);
   }
@@ -7936,8 +7940,8 @@ export class RemoteReducers {
 
   importDroppedInventoryState(records: DroppedInventoryState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportDroppedInventoryState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportDroppedInventoryState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_dropped_inventory_state", __argsBuffer, this.setCallReducerFlags.importDroppedInventoryStateFlags);
   }
@@ -7952,8 +7956,8 @@ export class RemoteReducers {
 
   importElevatorDesc(records: ElevatorDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportElevatorDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportElevatorDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_elevator_desc", __argsBuffer, this.setCallReducerFlags.importElevatorDescFlags);
   }
@@ -7968,8 +7972,8 @@ export class RemoteReducers {
 
   importEmoteDesc(records: EmoteDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportEmoteDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportEmoteDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_emote_desc", __argsBuffer, this.setCallReducerFlags.importEmoteDescFlags);
   }
@@ -7984,8 +7988,8 @@ export class RemoteReducers {
 
   importEmpireColorsDesc(records: EmpireColorDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportEmpireColorsDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportEmpireColorsDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_empire_colors_desc", __argsBuffer, this.setCallReducerFlags.importEmpireColorsDescFlags);
   }
@@ -8000,8 +8004,8 @@ export class RemoteReducers {
 
   importEmpireNotificationDesc(records: EmpireNotificationDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportEmpireNotificationDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportEmpireNotificationDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_empire_notification_desc", __argsBuffer, this.setCallReducerFlags.importEmpireNotificationDescFlags);
   }
@@ -8016,8 +8020,8 @@ export class RemoteReducers {
 
   importEmpireRankDesc(records: EmpireRankDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportEmpireRankDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportEmpireRankDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_empire_rank_desc", __argsBuffer, this.setCallReducerFlags.importEmpireRankDescFlags);
   }
@@ -8032,8 +8036,8 @@ export class RemoteReducers {
 
   importEmpireSuppliesDesc(records: EmpireSuppliesDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportEmpireSuppliesDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportEmpireSuppliesDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_empire_supplies_desc", __argsBuffer, this.setCallReducerFlags.importEmpireSuppliesDescFlags);
   }
@@ -8048,8 +8052,8 @@ export class RemoteReducers {
 
   importEmpireTerritoryDesc(records: EmpireTerritoryDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportEmpireTerritoryDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportEmpireTerritoryDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_empire_territory_desc", __argsBuffer, this.setCallReducerFlags.importEmpireTerritoryDescFlags);
   }
@@ -8064,8 +8068,8 @@ export class RemoteReducers {
 
   importEnemyAiParamsDesc(records: EnemyAiParamsDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportEnemyAiParamsDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportEnemyAiParamsDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_enemy_ai_params_desc", __argsBuffer, this.setCallReducerFlags.importEnemyAiParamsDescFlags);
   }
@@ -8080,8 +8084,8 @@ export class RemoteReducers {
 
   importEnemyDesc(records: EnemyDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportEnemyDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportEnemyDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_enemy_desc", __argsBuffer, this.setCallReducerFlags.importEnemyDescFlags);
   }
@@ -8096,8 +8100,8 @@ export class RemoteReducers {
 
   importEnemyState(records: EnemyState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportEnemyState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportEnemyState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_enemy_state", __argsBuffer, this.setCallReducerFlags.importEnemyStateFlags);
   }
@@ -8112,8 +8116,8 @@ export class RemoteReducers {
 
   importEnvironmentDebuffDesc(records: EnvironmentDebuffDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportEnvironmentDebuffDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportEnvironmentDebuffDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_environment_debuff_desc", __argsBuffer, this.setCallReducerFlags.importEnvironmentDebuffDescFlags);
   }
@@ -8128,8 +8132,8 @@ export class RemoteReducers {
 
   importEquipmentDesc(records: EquipmentDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportEquipmentDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportEquipmentDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_equipment_desc", __argsBuffer, this.setCallReducerFlags.importEquipmentDescFlags);
   }
@@ -8144,8 +8148,8 @@ export class RemoteReducers {
 
   importEquipmentState(records: EquipmentState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportEquipmentState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportEquipmentState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_equipment_state", __argsBuffer, this.setCallReducerFlags.importEquipmentStateFlags);
   }
@@ -8160,8 +8164,8 @@ export class RemoteReducers {
 
   importExperienceState(records: ExperienceState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportExperienceState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportExperienceState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_experience_state", __argsBuffer, this.setCallReducerFlags.importExperienceStateFlags);
   }
@@ -8176,8 +8180,8 @@ export class RemoteReducers {
 
   importExplorationChunksState(records: ExplorationChunksState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportExplorationChunksState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportExplorationChunksState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_exploration_chunks_state", __argsBuffer, this.setCallReducerFlags.importExplorationChunksStateFlags);
   }
@@ -8192,8 +8196,8 @@ export class RemoteReducers {
 
   importExtractionRecipeDesc(records: ExtractionRecipeDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportExtractionRecipeDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportExtractionRecipeDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_extraction_recipe_desc", __argsBuffer, this.setCallReducerFlags.importExtractionRecipeDescFlags);
   }
@@ -8208,8 +8212,8 @@ export class RemoteReducers {
 
   importFoodDesc(records: FoodDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportFoodDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportFoodDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_food_desc", __argsBuffer, this.setCallReducerFlags.importFoodDescFlags);
   }
@@ -8224,8 +8228,8 @@ export class RemoteReducers {
 
   importFootprintTileState(records: FootprintTileState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportFootprintTileState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportFootprintTileState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_footprint_tile_state", __argsBuffer, this.setCallReducerFlags.importFootprintTileStateFlags);
   }
@@ -8240,8 +8244,8 @@ export class RemoteReducers {
 
   importGateDesc(records: GateDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportGateDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportGateDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_gate_desc", __argsBuffer, this.setCallReducerFlags.importGateDescFlags);
   }
@@ -8256,8 +8260,8 @@ export class RemoteReducers {
 
   importGlobals(records: Globals[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportGlobals.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportGlobals.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_globals", __argsBuffer, this.setCallReducerFlags.importGlobalsFlags);
   }
@@ -8272,8 +8276,8 @@ export class RemoteReducers {
 
   importGrowthState(records: GrowthState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportGrowthState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportGrowthState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_growth_state", __argsBuffer, this.setCallReducerFlags.importGrowthStateFlags);
   }
@@ -8288,8 +8292,8 @@ export class RemoteReducers {
 
   importHealthState(records: HealthState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportHealthState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportHealthState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_health_state", __argsBuffer, this.setCallReducerFlags.importHealthStateFlags);
   }
@@ -8304,8 +8308,8 @@ export class RemoteReducers {
 
   importHerdCache(records: HerdState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportHerdCache.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportHerdCache.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_herd_cache", __argsBuffer, this.setCallReducerFlags.importHerdCacheFlags);
   }
@@ -8320,8 +8324,8 @@ export class RemoteReducers {
 
   importHexiteExchangeEntryDesc(records: HexiteExchangeEntryDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportHexiteExchangeEntryDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportHexiteExchangeEntryDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_hexite_exchange_entry_desc", __argsBuffer, this.setCallReducerFlags.importHexiteExchangeEntryDescFlags);
   }
@@ -8336,8 +8340,8 @@ export class RemoteReducers {
 
   importIdentityRole(records: IdentityRole[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportIdentityRole.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportIdentityRole.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_identity_role", __argsBuffer, this.setCallReducerFlags.importIdentityRoleFlags);
   }
@@ -8352,8 +8356,8 @@ export class RemoteReducers {
 
   importInteriorCollapseTriggerState(records: InteriorCollapseTriggerState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportInteriorCollapseTriggerState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportInteriorCollapseTriggerState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_interior_collapse_trigger_state", __argsBuffer, this.setCallReducerFlags.importInteriorCollapseTriggerStateFlags);
   }
@@ -8368,8 +8372,8 @@ export class RemoteReducers {
 
   importInteriorInstanceDesc(records: InteriorInstanceDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportInteriorInstanceDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportInteriorInstanceDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_interior_instance_desc", __argsBuffer, this.setCallReducerFlags.importInteriorInstanceDescFlags);
   }
@@ -8384,8 +8388,8 @@ export class RemoteReducers {
 
   importInteriorNetworkDesc(records: InteriorNetworkDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportInteriorNetworkDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportInteriorNetworkDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_interior_network_desc", __argsBuffer, this.setCallReducerFlags.importInteriorNetworkDescFlags);
   }
@@ -8400,8 +8404,8 @@ export class RemoteReducers {
 
   importInteriorPortalConnectionsDesc(records: InteriorPortalConnectionsDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportInteriorPortalConnectionsDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportInteriorPortalConnectionsDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_interior_portal_connections_desc", __argsBuffer, this.setCallReducerFlags.importInteriorPortalConnectionsDescFlags);
   }
@@ -8416,8 +8420,8 @@ export class RemoteReducers {
 
   importInteriorShapeDesc(records: InteriorShapeDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportInteriorShapeDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportInteriorShapeDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_interior_shape_desc", __argsBuffer, this.setCallReducerFlags.importInteriorShapeDescFlags);
   }
@@ -8432,8 +8436,8 @@ export class RemoteReducers {
 
   importInteriorSpawnDesc(records: InteriorSpawnDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportInteriorSpawnDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportInteriorSpawnDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_interior_spawn_desc", __argsBuffer, this.setCallReducerFlags.importInteriorSpawnDescFlags);
   }
@@ -8448,8 +8452,8 @@ export class RemoteReducers {
 
   importInventoryState(records: InventoryState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportInventoryState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportInventoryState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_inventory_state", __argsBuffer, this.setCallReducerFlags.importInventoryStateFlags);
   }
@@ -8464,8 +8468,8 @@ export class RemoteReducers {
 
   importItemConversionRecipeDesc(records: ItemConversionRecipeDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportItemConversionRecipeDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportItemConversionRecipeDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_item_conversion_recipe_desc", __argsBuffer, this.setCallReducerFlags.importItemConversionRecipeDescFlags);
   }
@@ -8480,8 +8484,8 @@ export class RemoteReducers {
 
   importItemDesc(records: ItemDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportItemDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportItemDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_item_desc", __argsBuffer, this.setCallReducerFlags.importItemDescFlags);
   }
@@ -8496,8 +8500,8 @@ export class RemoteReducers {
 
   importItemListDesc(records: ItemListDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportItemListDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportItemListDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_item_list_desc", __argsBuffer, this.setCallReducerFlags.importItemListDescFlags);
   }
@@ -8512,8 +8516,8 @@ export class RemoteReducers {
 
   importKnowledgeAchievementState(records: KnowledgeAchievementState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportKnowledgeAchievementState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportKnowledgeAchievementState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_knowledge_achievement_state", __argsBuffer, this.setCallReducerFlags.importKnowledgeAchievementStateFlags);
   }
@@ -8528,8 +8532,8 @@ export class RemoteReducers {
 
   importKnowledgeBattleActionState(records: KnowledgeBattleActionState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportKnowledgeBattleActionState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportKnowledgeBattleActionState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_knowledge_battle_action_state", __argsBuffer, this.setCallReducerFlags.importKnowledgeBattleActionStateFlags);
   }
@@ -8544,8 +8548,8 @@ export class RemoteReducers {
 
   importKnowledgeBuildingState(records: KnowledgeBuildingState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportKnowledgeBuildingState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportKnowledgeBuildingState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_knowledge_building_state", __argsBuffer, this.setCallReducerFlags.importKnowledgeBuildingStateFlags);
   }
@@ -8560,8 +8564,8 @@ export class RemoteReducers {
 
   importKnowledgeCargoState(records: KnowledgeCargoState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportKnowledgeCargoState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportKnowledgeCargoState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_knowledge_cargo_state", __argsBuffer, this.setCallReducerFlags.importKnowledgeCargoStateFlags);
   }
@@ -8576,8 +8580,8 @@ export class RemoteReducers {
 
   importKnowledgeConstructionState(records: KnowledgeConstructionState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportKnowledgeConstructionState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportKnowledgeConstructionState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_knowledge_construction_state", __argsBuffer, this.setCallReducerFlags.importKnowledgeConstructionStateFlags);
   }
@@ -8592,8 +8596,8 @@ export class RemoteReducers {
 
   importKnowledgeCraftState(records: KnowledgeCraftState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportKnowledgeCraftState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportKnowledgeCraftState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_knowledge_craft_state", __argsBuffer, this.setCallReducerFlags.importKnowledgeCraftStateFlags);
   }
@@ -8608,8 +8612,8 @@ export class RemoteReducers {
 
   importKnowledgeDeployableState(records: KnowledgeDeployableState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportKnowledgeDeployableState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportKnowledgeDeployableState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_knowledge_deployable_state", __argsBuffer, this.setCallReducerFlags.importKnowledgeDeployableStateFlags);
   }
@@ -8624,8 +8628,8 @@ export class RemoteReducers {
 
   importKnowledgeEnemyState(records: KnowledgeEnemyState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportKnowledgeEnemyState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportKnowledgeEnemyState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_knowledge_enemy_state", __argsBuffer, this.setCallReducerFlags.importKnowledgeEnemyStateFlags);
   }
@@ -8640,8 +8644,8 @@ export class RemoteReducers {
 
   importKnowledgeExtractState(records: KnowledgeExtractState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportKnowledgeExtractState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportKnowledgeExtractState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_knowledge_extract_state", __argsBuffer, this.setCallReducerFlags.importKnowledgeExtractStateFlags);
   }
@@ -8656,8 +8660,8 @@ export class RemoteReducers {
 
   importKnowledgeItemState(records: KnowledgeItemState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportKnowledgeItemState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportKnowledgeItemState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_knowledge_item_state", __argsBuffer, this.setCallReducerFlags.importKnowledgeItemStateFlags);
   }
@@ -8672,8 +8676,8 @@ export class RemoteReducers {
 
   importKnowledgeLoreState(records: KnowledgeLoreState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportKnowledgeLoreState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportKnowledgeLoreState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_knowledge_lore_state", __argsBuffer, this.setCallReducerFlags.importKnowledgeLoreStateFlags);
   }
@@ -8688,8 +8692,8 @@ export class RemoteReducers {
 
   importKnowledgeNpcState(records: KnowledgeNpcState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportKnowledgeNpcState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportKnowledgeNpcState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_knowledge_npc_state", __argsBuffer, this.setCallReducerFlags.importKnowledgeNpcStateFlags);
   }
@@ -8704,8 +8708,8 @@ export class RemoteReducers {
 
   importKnowledgePavingState(records: KnowledgePavingState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportKnowledgePavingState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportKnowledgePavingState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_knowledge_paving_state", __argsBuffer, this.setCallReducerFlags.importKnowledgePavingStateFlags);
   }
@@ -8720,8 +8724,8 @@ export class RemoteReducers {
 
   importKnowledgeResourcePlacementState(records: KnowledgeResourcePlacementState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportKnowledgeResourcePlacementState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportKnowledgeResourcePlacementState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_knowledge_resource_placement_state", __argsBuffer, this.setCallReducerFlags.importKnowledgeResourcePlacementStateFlags);
   }
@@ -8736,8 +8740,8 @@ export class RemoteReducers {
 
   importKnowledgeResourceState(records: KnowledgeResourceState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportKnowledgeResourceState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportKnowledgeResourceState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_knowledge_resource_state", __argsBuffer, this.setCallReducerFlags.importKnowledgeResourceStateFlags);
   }
@@ -8752,8 +8756,8 @@ export class RemoteReducers {
 
   importKnowledgeRuinsState(records: KnowledgeRuinsState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportKnowledgeRuinsState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportKnowledgeRuinsState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_knowledge_ruins_state", __argsBuffer, this.setCallReducerFlags.importKnowledgeRuinsStateFlags);
   }
@@ -8768,8 +8772,8 @@ export class RemoteReducers {
 
   importKnowledgeScrollDesc(records: KnowledgeScrollDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportKnowledgeScrollDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportKnowledgeScrollDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_knowledge_scroll_desc", __argsBuffer, this.setCallReducerFlags.importKnowledgeScrollDescFlags);
   }
@@ -8784,8 +8788,8 @@ export class RemoteReducers {
 
   importKnowledgeScrollTypeDesc(records: KnowledgeScrollTypeDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportKnowledgeScrollTypeDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportKnowledgeScrollTypeDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_knowledge_scroll_type_desc", __argsBuffer, this.setCallReducerFlags.importKnowledgeScrollTypeDescFlags);
   }
@@ -8800,8 +8804,8 @@ export class RemoteReducers {
 
   importKnowledgeSecondaryState(records: KnowledgeSecondaryState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportKnowledgeSecondaryState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportKnowledgeSecondaryState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_knowledge_secondary_state", __argsBuffer, this.setCallReducerFlags.importKnowledgeSecondaryStateFlags);
   }
@@ -8816,8 +8820,8 @@ export class RemoteReducers {
 
   importKnowledgeStatModifierDesc(records: KnowledgeStatModifierDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportKnowledgeStatModifierDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportKnowledgeStatModifierDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_knowledge_stat_modifier_desc", __argsBuffer, this.setCallReducerFlags.importKnowledgeStatModifierDescFlags);
   }
@@ -8832,8 +8836,8 @@ export class RemoteReducers {
 
   importKnowledgeVaultState(records: KnowledgeVaultState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportKnowledgeVaultState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportKnowledgeVaultState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_knowledge_vault_state", __argsBuffer, this.setCallReducerFlags.importKnowledgeVaultStateFlags);
   }
@@ -8848,8 +8852,8 @@ export class RemoteReducers {
 
   importLocationState(records: LocationState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportLocationState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportLocationState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_location_state", __argsBuffer, this.setCallReducerFlags.importLocationStateFlags);
   }
@@ -8864,8 +8868,8 @@ export class RemoteReducers {
 
   importLootChestDesc(records: LootChestDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportLootChestDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportLootChestDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_loot_chest_desc", __argsBuffer, this.setCallReducerFlags.importLootChestDescFlags);
   }
@@ -8880,8 +8884,8 @@ export class RemoteReducers {
 
   importLootChestState(records: LootChestState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportLootChestState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportLootChestState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_loot_chest_state", __argsBuffer, this.setCallReducerFlags.importLootChestStateFlags);
   }
@@ -8896,8 +8900,8 @@ export class RemoteReducers {
 
   importLootRarityDesc(records: LootRarityDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportLootRarityDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportLootRarityDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_loot_rarity_desc", __argsBuffer, this.setCallReducerFlags.importLootRarityDescFlags);
   }
@@ -8912,8 +8916,8 @@ export class RemoteReducers {
 
   importLootTableDesc(records: LootTableDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportLootTableDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportLootTableDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_loot_table_desc", __argsBuffer, this.setCallReducerFlags.importLootTableDescFlags);
   }
@@ -8928,8 +8932,8 @@ export class RemoteReducers {
 
   importMobileEntityState(records: MobileEntityState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportMobileEntityState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportMobileEntityState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_mobile_entity_state", __argsBuffer, this.setCallReducerFlags.importMobileEntityStateFlags);
   }
@@ -8944,8 +8948,8 @@ export class RemoteReducers {
 
   importMountingState(records: MountingState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportMountingState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportMountingState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_mounting_state", __argsBuffer, this.setCallReducerFlags.importMountingStateFlags);
   }
@@ -8960,8 +8964,8 @@ export class RemoteReducers {
 
   importNpcDesc(records: NpcDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportNpcDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportNpcDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_npc_desc", __argsBuffer, this.setCallReducerFlags.importNpcDescFlags);
   }
@@ -8976,8 +8980,8 @@ export class RemoteReducers {
 
   importNpcState(records: NpcState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportNpcState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportNpcState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_npc_state", __argsBuffer, this.setCallReducerFlags.importNpcStateFlags);
   }
@@ -8992,8 +8996,8 @@ export class RemoteReducers {
 
   importOnboardingRewardDesc(records: OnboardingRewardDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportOnboardingRewardDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportOnboardingRewardDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_onboarding_reward_desc", __argsBuffer, this.setCallReducerFlags.importOnboardingRewardDescFlags);
   }
@@ -9008,8 +9012,8 @@ export class RemoteReducers {
 
   importOnboardingState(records: OnboardingState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportOnboardingState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportOnboardingState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_onboarding_state", __argsBuffer, this.setCallReducerFlags.importOnboardingStateFlags);
   }
@@ -9024,8 +9028,8 @@ export class RemoteReducers {
 
   importParametersDesc(records: ParametersDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportParametersDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportParametersDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_parameters_desc", __argsBuffer, this.setCallReducerFlags.importParametersDescFlags);
   }
@@ -9040,8 +9044,8 @@ export class RemoteReducers {
 
   importPathfindingDesc(records: PathfindingDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportPathfindingDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportPathfindingDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_pathfinding_desc", __argsBuffer, this.setCallReducerFlags.importPathfindingDescFlags);
   }
@@ -9056,8 +9060,8 @@ export class RemoteReducers {
 
   importPavedTileState(records: PavedTileState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportPavedTileState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportPavedTileState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_paved_tile_state", __argsBuffer, this.setCallReducerFlags.importPavedTileStateFlags);
   }
@@ -9072,8 +9076,8 @@ export class RemoteReducers {
 
   importPavingTileDesc(records: PavingTileDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportPavingTileDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportPavingTileDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_paving_tile_desc", __argsBuffer, this.setCallReducerFlags.importPavingTileDescFlags);
   }
@@ -9088,8 +9092,8 @@ export class RemoteReducers {
 
   importPlayerActionDesc(records: PlayerActionDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportPlayerActionDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportPlayerActionDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_player_action_desc", __argsBuffer, this.setCallReducerFlags.importPlayerActionDescFlags);
   }
@@ -9104,8 +9108,8 @@ export class RemoteReducers {
 
   importPlayerActionState(records: PlayerActionState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportPlayerActionState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportPlayerActionState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_player_action_state", __argsBuffer, this.setCallReducerFlags.importPlayerActionStateFlags);
   }
@@ -9120,8 +9124,8 @@ export class RemoteReducers {
 
   importPlayerPrefsState(records: PlayerPrefsState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportPlayerPrefsState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportPlayerPrefsState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_player_prefs_state", __argsBuffer, this.setCallReducerFlags.importPlayerPrefsStateFlags);
   }
@@ -9136,8 +9140,8 @@ export class RemoteReducers {
 
   importPlayerState(records: PlayerState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportPlayerState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportPlayerState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_player_state", __argsBuffer, this.setCallReducerFlags.importPlayerStateFlags);
   }
@@ -9152,8 +9156,8 @@ export class RemoteReducers {
 
   importPlayerVoteState(records: PlayerVoteState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportPlayerVoteState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportPlayerVoteState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_player_vote_state", __argsBuffer, this.setCallReducerFlags.importPlayerVoteStateFlags);
   }
@@ -9168,8 +9172,8 @@ export class RemoteReducers {
 
   importPortalState(records: PortalState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportPortalState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportPortalState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_portal_state", __argsBuffer, this.setCallReducerFlags.importPortalStateFlags);
   }
@@ -9184,8 +9188,8 @@ export class RemoteReducers {
 
   importPrivateParametersDesc(records: PrivateParametersDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportPrivateParametersDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportPrivateParametersDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_private_parameters_desc", __argsBuffer, this.setCallReducerFlags.importPrivateParametersDescFlags);
   }
@@ -9200,8 +9204,8 @@ export class RemoteReducers {
 
   importProgressiveActionState(records: ProgressiveActionState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportProgressiveActionState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportProgressiveActionState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_progressive_action_state", __argsBuffer, this.setCallReducerFlags.importProgressiveActionStateFlags);
   }
@@ -9216,8 +9220,8 @@ export class RemoteReducers {
 
   importProjectSiteState(records: ProjectSiteState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportProjectSiteState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportProjectSiteState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_project_site_state", __argsBuffer, this.setCallReducerFlags.importProjectSiteStateFlags);
   }
@@ -9232,8 +9236,8 @@ export class RemoteReducers {
 
   importRegionConnectionInfo(records: RegionConnectionInfo[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportRegionConnectionInfo.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportRegionConnectionInfo.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_region_connection_info", __argsBuffer, this.setCallReducerFlags.importRegionConnectionInfoFlags);
   }
@@ -9248,8 +9252,8 @@ export class RemoteReducers {
 
   importRegionSignInParameters(records: RegionSignInParameters[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportRegionSignInParameters.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportRegionSignInParameters.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_region_sign_in_parameters", __argsBuffer, this.setCallReducerFlags.importRegionSignInParametersFlags);
   }
@@ -9264,8 +9268,8 @@ export class RemoteReducers {
 
   importRentState(records: RentState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportRentState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportRentState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_rent_state", __argsBuffer, this.setCallReducerFlags.importRentStateFlags);
   }
@@ -9280,8 +9284,8 @@ export class RemoteReducers {
 
   importResourceClumpDesc(records: ResourceClumpDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportResourceClumpDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportResourceClumpDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_resource_clump_desc", __argsBuffer, this.setCallReducerFlags.importResourceClumpDescFlags);
   }
@@ -9296,8 +9300,8 @@ export class RemoteReducers {
 
   importResourceCount(records: ResourceCount[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportResourceCount.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportResourceCount.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_resource_count", __argsBuffer, this.setCallReducerFlags.importResourceCountFlags);
   }
@@ -9312,8 +9316,8 @@ export class RemoteReducers {
 
   importResourceDesc(records: ResourceDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportResourceDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportResourceDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_resource_desc", __argsBuffer, this.setCallReducerFlags.importResourceDescFlags);
   }
@@ -9328,8 +9332,8 @@ export class RemoteReducers {
 
   importResourceGrowthRecipeDesc(records: ResourceGrowthRecipeDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportResourceGrowthRecipeDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportResourceGrowthRecipeDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_resource_growth_recipe_desc", __argsBuffer, this.setCallReducerFlags.importResourceGrowthRecipeDescFlags);
   }
@@ -9344,8 +9348,8 @@ export class RemoteReducers {
 
   importResourcePlacementRecipeDesc(records: ResourcePlacementRecipeDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportResourcePlacementRecipeDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportResourcePlacementRecipeDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_resource_placement_recipe_desc", __argsBuffer, this.setCallReducerFlags.importResourcePlacementRecipeDescFlags);
   }
@@ -9360,8 +9364,8 @@ export class RemoteReducers {
 
   importResourceState(records: ResourceState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportResourceState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportResourceState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_resource_state", __argsBuffer, this.setCallReducerFlags.importResourceStateFlags);
   }
@@ -9376,8 +9380,8 @@ export class RemoteReducers {
 
   importSatiationState(records: SatiationState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportSatiationState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportSatiationState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_satiation_state", __argsBuffer, this.setCallReducerFlags.importSatiationStateFlags);
   }
@@ -9392,8 +9396,8 @@ export class RemoteReducers {
 
   importSecondaryKnowledgeDesc(records: SecondaryKnowledgeDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportSecondaryKnowledgeDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportSecondaryKnowledgeDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_secondary_knowledge_desc", __argsBuffer, this.setCallReducerFlags.importSecondaryKnowledgeDescFlags);
   }
@@ -9408,8 +9412,8 @@ export class RemoteReducers {
 
   importServerIdentity(records: ServerIdentity[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportServerIdentity.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportServerIdentity.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_server_identity", __argsBuffer, this.setCallReducerFlags.importServerIdentityFlags);
   }
@@ -9424,8 +9428,8 @@ export class RemoteReducers {
 
   importSignedInPlayerState(records: SignedInPlayerState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportSignedInPlayerState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportSignedInPlayerState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_signed_in_player_state", __argsBuffer, this.setCallReducerFlags.importSignedInPlayerStateFlags);
   }
@@ -9440,8 +9444,8 @@ export class RemoteReducers {
 
   importSkillDesc(records: SkillDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportSkillDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportSkillDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_skill_desc", __argsBuffer, this.setCallReducerFlags.importSkillDescFlags);
   }
@@ -9456,8 +9460,8 @@ export class RemoteReducers {
 
   importStaminaState(records: StaminaState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportStaminaState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportStaminaState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_stamina_state", __argsBuffer, this.setCallReducerFlags.importStaminaStateFlags);
   }
@@ -9472,8 +9476,8 @@ export class RemoteReducers {
 
   importTargetState(records: TargetState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportTargetState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportTargetState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_target_state", __argsBuffer, this.setCallReducerFlags.importTargetStateFlags);
   }
@@ -9488,8 +9492,8 @@ export class RemoteReducers {
 
   importTargetableState(records: TargetableState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportTargetableState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportTargetableState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_targetable_state", __argsBuffer, this.setCallReducerFlags.importTargetableStateFlags);
   }
@@ -9504,8 +9508,8 @@ export class RemoteReducers {
 
   importTargetingMatrixDesc(records: TargetingMatrixDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportTargetingMatrixDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportTargetingMatrixDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_targeting_matrix_desc", __argsBuffer, this.setCallReducerFlags.importTargetingMatrixDescFlags);
   }
@@ -9520,8 +9524,8 @@ export class RemoteReducers {
 
   importTeleportItemDesc(records: TeleportItemDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportTeleportItemDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportTeleportItemDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_teleport_item_desc", __argsBuffer, this.setCallReducerFlags.importTeleportItemDescFlags);
   }
@@ -9536,8 +9540,8 @@ export class RemoteReducers {
 
   importTerraformRecipeDesc(records: TerraformRecipeDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportTerraformRecipeDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportTerraformRecipeDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_terraform_recipe_desc", __argsBuffer, this.setCallReducerFlags.importTerraformRecipeDescFlags);
   }
@@ -9552,8 +9556,8 @@ export class RemoteReducers {
 
   importTerrainChunkState(records: TerrainChunkState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportTerrainChunkState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportTerrainChunkState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_terrain_chunk_state", __argsBuffer, this.setCallReducerFlags.importTerrainChunkStateFlags);
   }
@@ -9568,8 +9572,8 @@ export class RemoteReducers {
 
   importToolDesc(records: ToolDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportToolDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportToolDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_tool_desc", __argsBuffer, this.setCallReducerFlags.importToolDescFlags);
   }
@@ -9584,8 +9588,8 @@ export class RemoteReducers {
 
   importToolTypeDesc(records: ToolTypeDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportToolTypeDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportToolTypeDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_tool_type_desc", __argsBuffer, this.setCallReducerFlags.importToolTypeDescFlags);
   }
@@ -9600,8 +9604,8 @@ export class RemoteReducers {
 
   importTradeOrderState(records: TradeOrderState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportTradeOrderState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportTradeOrderState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_trade_order_state", __argsBuffer, this.setCallReducerFlags.importTradeOrderStateFlags);
   }
@@ -9616,8 +9620,8 @@ export class RemoteReducers {
 
   importTradeSessionState(records: TradeSessionState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportTradeSessionState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportTradeSessionState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_trade_session_state", __argsBuffer, this.setCallReducerFlags.importTradeSessionStateFlags);
   }
@@ -9632,8 +9636,8 @@ export class RemoteReducers {
 
   importTravelerTaskDesc(records: TravelerTaskDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportTravelerTaskDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportTravelerTaskDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_traveler_task_desc", __argsBuffer, this.setCallReducerFlags.importTravelerTaskDescFlags);
   }
@@ -9648,8 +9652,8 @@ export class RemoteReducers {
 
   importTravelerTradeOrderDesc(records: TravelerTradeOrderDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportTravelerTradeOrderDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportTravelerTradeOrderDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_traveler_trade_order_desc", __argsBuffer, this.setCallReducerFlags.importTravelerTradeOrderDescFlags);
   }
@@ -9664,8 +9668,8 @@ export class RemoteReducers {
 
   importUserModerationState(records: UserModerationState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportUserModerationState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportUserModerationState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_user_moderation_state", __argsBuffer, this.setCallReducerFlags.importUserModerationStateFlags);
   }
@@ -9680,8 +9684,8 @@ export class RemoteReducers {
 
   importUserState(records: UserState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportUserState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportUserState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_user_state", __argsBuffer, this.setCallReducerFlags.importUserStateFlags);
   }
@@ -9696,8 +9700,8 @@ export class RemoteReducers {
 
   importVaultState(records: VaultState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportVaultState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportVaultState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_vault_state", __argsBuffer, this.setCallReducerFlags.importVaultStateFlags);
   }
@@ -9712,8 +9716,8 @@ export class RemoteReducers {
 
   importWallDesc(records: WallDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportWallDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportWallDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_wall_desc", __argsBuffer, this.setCallReducerFlags.importWallDescFlags);
   }
@@ -9728,8 +9732,8 @@ export class RemoteReducers {
 
   importWeaponDesc(records: WeaponDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportWeaponDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportWeaponDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_weapon_desc", __argsBuffer, this.setCallReducerFlags.importWeaponDescFlags);
   }
@@ -9744,8 +9748,8 @@ export class RemoteReducers {
 
   importWeaponTypeDesc(records: WeaponTypeDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportWeaponTypeDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportWeaponTypeDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_weapon_type_desc", __argsBuffer, this.setCallReducerFlags.importWeaponTypeDescFlags);
   }
@@ -9760,8 +9764,8 @@ export class RemoteReducers {
 
   importWindParamsDesc(records: WindParamsDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportWindParamsDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportWindParamsDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_wind_params_desc", __argsBuffer, this.setCallReducerFlags.importWindParamsDescFlags);
   }
@@ -9776,8 +9780,8 @@ export class RemoteReducers {
 
   importWorldRegionNameState(records: WorldRegionNameState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportWorldRegionNameState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportWorldRegionNameState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_world_region_name_state", __argsBuffer, this.setCallReducerFlags.importWorldRegionNameStateFlags);
   }
@@ -9792,8 +9796,8 @@ export class RemoteReducers {
 
   importWorldRegionState(records: WorldRegionState[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    ImportWorldRegionState.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ImportWorldRegionState.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("import_world_region_state", __argsBuffer, this.setCallReducerFlags.importWorldRegionStateFlags);
   }
@@ -9808,8 +9812,8 @@ export class RemoteReducers {
 
   insertDeveloperIdentity(identity: string, developerName: string, serviceName: string, email: string, isExternal: boolean) {
     const __args = { identity, developerName, serviceName, email, isExternal };
-    let __writer = new __BinaryWriter(1024);
-    InsertDeveloperIdentity.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    InsertDeveloperIdentity.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("insert_developer_identity", __argsBuffer, this.setCallReducerFlags.insertDeveloperIdentityFlags);
   }
@@ -9824,8 +9828,8 @@ export class RemoteReducers {
 
   loadConfig(environmentNames: string[], contents: string[]) {
     const __args = { environmentNames, contents };
-    let __writer = new __BinaryWriter(1024);
-    LoadConfig.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    LoadConfig.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("load_config", __argsBuffer, this.setCallReducerFlags.loadConfigFlags);
   }
@@ -9864,8 +9868,8 @@ export class RemoteReducers {
 
   onInterModuleMessageProcessed(id: bigint, error: string | undefined) {
     const __args = { id, error };
-    let __writer = new __BinaryWriter(1024);
-    OnInterModuleMessageProcessed.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    OnInterModuleMessageProcessed.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("on_inter_module_message_processed", __argsBuffer, this.setCallReducerFlags.onInterModuleMessageProcessedFlags);
   }
@@ -9916,8 +9920,8 @@ export class RemoteReducers {
 
   playerNotificationEventReducer(timer: PlayerNotificationEvent) {
     const __args = { timer };
-    let __writer = new __BinaryWriter(1024);
-    PlayerNotificationEventReducer.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    PlayerNotificationEventReducer.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("player_notification_event_reducer", __argsBuffer, this.setCallReducerFlags.playerNotificationEventReducerFlags);
   }
@@ -9932,8 +9936,8 @@ export class RemoteReducers {
 
   playerSetName(request: PlayerSetNameRequest) {
     const __args = { request };
-    let __writer = new __BinaryWriter(1024);
-    PlayerSetName.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    PlayerSetName.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("player_set_name", __argsBuffer, this.setCallReducerFlags.playerSetNameFlags);
   }
@@ -9948,8 +9952,8 @@ export class RemoteReducers {
 
   playerVoteAnswer(request: PlayerVoteAnswerRequest) {
     const __args = { request };
-    let __writer = new __BinaryWriter(1024);
-    PlayerVoteAnswer.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    PlayerVoteAnswer.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("player_vote_answer", __argsBuffer, this.setCallReducerFlags.playerVoteAnswerFlags);
   }
@@ -9964,8 +9968,8 @@ export class RemoteReducers {
 
   playerVoteConclude(timer: PlayerVoteConcludeTimer) {
     const __args = { timer };
-    let __writer = new __BinaryWriter(1024);
-    PlayerVoteConclude.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    PlayerVoteConclude.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("player_vote_conclude", __argsBuffer, this.setCallReducerFlags.playerVoteConcludeFlags);
   }
@@ -9980,8 +9984,8 @@ export class RemoteReducers {
 
   processInterModuleMessage(sender: number, message: InterModuleMessageV2) {
     const __args = { sender, message };
-    let __writer = new __BinaryWriter(1024);
-    ProcessInterModuleMessage.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ProcessInterModuleMessage.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("process_inter_module_message", __argsBuffer, this.setCallReducerFlags.processInterModuleMessageFlags);
   }
@@ -9996,8 +10000,8 @@ export class RemoteReducers {
 
   removeFavoriteFriend(playerEntityId: bigint) {
     const __args = { playerEntityId };
-    let __writer = new __BinaryWriter(1024);
-    RemoveFavoriteFriend.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    RemoveFavoriteFriend.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("remove_favorite_friend", __argsBuffer, this.setCallReducerFlags.removeFavoriteFriendFlags);
   }
@@ -10012,8 +10016,8 @@ export class RemoteReducers {
 
   removeFriend(playerEntityId: bigint) {
     const __args = { playerEntityId };
-    let __writer = new __BinaryWriter(1024);
-    RemoveFriend.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    RemoveFriend.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("remove_friend", __argsBuffer, this.setCallReducerFlags.removeFriendFlags);
   }
@@ -10028,8 +10032,8 @@ export class RemoteReducers {
 
   reportDirectMessage(request: ReportPlayerDirectChatMessage) {
     const __args = { request };
-    let __writer = new __BinaryWriter(1024);
-    ReportDirectMessage.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    ReportDirectMessage.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("report_direct_message", __argsBuffer, this.setCallReducerFlags.reportDirectMessageFlags);
   }
@@ -10044,8 +10048,8 @@ export class RemoteReducers {
 
   setRoleForIdentity(identity: string, role: Role) {
     const __args = { identity, role };
-    let __writer = new __BinaryWriter(1024);
-    SetRoleForIdentity.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    SetRoleForIdentity.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("set_role_for_identity", __argsBuffer, this.setCallReducerFlags.setRoleForIdentityFlags);
   }
@@ -10060,8 +10064,8 @@ export class RemoteReducers {
 
   setVisibility(visibility: VisibilityType) {
     const __args = { visibility };
-    let __writer = new __BinaryWriter(1024);
-    SetVisibility.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    SetVisibility.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("set_visibility", __argsBuffer, this.setCallReducerFlags.setVisibilityFlags);
   }
@@ -10076,8 +10080,8 @@ export class RemoteReducers {
 
   signIn(request: PlayerSignInRequest) {
     const __args = { request };
-    let __writer = new __BinaryWriter(1024);
-    SignIn.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    SignIn.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("sign_in", __argsBuffer, this.setCallReducerFlags.signInFlags);
   }
@@ -10092,8 +10096,8 @@ export class RemoteReducers {
 
   stageAchievementDesc(records: AchievementDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageAchievementDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageAchievementDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_achievement_desc", __argsBuffer, this.setCallReducerFlags.stageAchievementDescFlags);
   }
@@ -10108,8 +10112,8 @@ export class RemoteReducers {
 
   stageAlertDesc(records: AlertDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageAlertDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageAlertDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_alert_desc", __argsBuffer, this.setCallReducerFlags.stageAlertDescFlags);
   }
@@ -10124,8 +10128,8 @@ export class RemoteReducers {
 
   stageBiomeDesc(records: BiomeDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageBiomeDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageBiomeDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_biome_desc", __argsBuffer, this.setCallReducerFlags.stageBiomeDescFlags);
   }
@@ -10140,8 +10144,8 @@ export class RemoteReducers {
 
   stageBuffDesc(records: BuffDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageBuffDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageBuffDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_buff_desc", __argsBuffer, this.setCallReducerFlags.stageBuffDescFlags);
   }
@@ -10156,8 +10160,8 @@ export class RemoteReducers {
 
   stageBuffTypeDesc(records: BuffTypeDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageBuffTypeDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageBuffTypeDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_buff_type_desc", __argsBuffer, this.setCallReducerFlags.stageBuffTypeDescFlags);
   }
@@ -10172,8 +10176,8 @@ export class RemoteReducers {
 
   stageBuildingClaimDesc(records: BuildingClaimDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageBuildingClaimDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageBuildingClaimDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_building_claim_desc", __argsBuffer, this.setCallReducerFlags.stageBuildingClaimDescFlags);
   }
@@ -10188,8 +10192,8 @@ export class RemoteReducers {
 
   stageBuildingDesc(records: BuildingDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageBuildingDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageBuildingDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_building_desc", __argsBuffer, this.setCallReducerFlags.stageBuildingDescFlags);
   }
@@ -10204,8 +10208,8 @@ export class RemoteReducers {
 
   stageBuildingPortalDescV2(records: BuildingPortalDescV2[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageBuildingPortalDescV2.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageBuildingPortalDescV2.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_building_portal_desc_v2", __argsBuffer, this.setCallReducerFlags.stageBuildingPortalDescV2Flags);
   }
@@ -10220,8 +10224,8 @@ export class RemoteReducers {
 
   stageBuildingRepairsDesc(records: BuildingRepairsDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageBuildingRepairsDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageBuildingRepairsDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_building_repairs_desc", __argsBuffer, this.setCallReducerFlags.stageBuildingRepairsDescFlags);
   }
@@ -10236,8 +10240,8 @@ export class RemoteReducers {
 
   stageBuildingSpawnDesc(records: BuildingSpawnDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageBuildingSpawnDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageBuildingSpawnDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_building_spawn_desc", __argsBuffer, this.setCallReducerFlags.stageBuildingSpawnDescFlags);
   }
@@ -10252,8 +10256,8 @@ export class RemoteReducers {
 
   stageBuildingTypeDesc(records: BuildingTypeDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageBuildingTypeDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageBuildingTypeDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_building_type_desc", __argsBuffer, this.setCallReducerFlags.stageBuildingTypeDescFlags);
   }
@@ -10268,8 +10272,8 @@ export class RemoteReducers {
 
   stageCargoDesc(records: CargoDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageCargoDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageCargoDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_cargo_desc", __argsBuffer, this.setCallReducerFlags.stageCargoDescFlags);
   }
@@ -10284,8 +10288,8 @@ export class RemoteReducers {
 
   stageCharacterStatDesc(records: CharacterStatDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageCharacterStatDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageCharacterStatDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_character_stat_desc", __argsBuffer, this.setCallReducerFlags.stageCharacterStatDescFlags);
   }
@@ -10300,8 +10304,8 @@ export class RemoteReducers {
 
   stageChestRarityDesc(records: ChestRarityDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageChestRarityDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageChestRarityDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_chest_rarity_desc", __argsBuffer, this.setCallReducerFlags.stageChestRarityDescFlags);
   }
@@ -10316,8 +10320,8 @@ export class RemoteReducers {
 
   stageClaimTechDesc(records: ClaimTechDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageClaimTechDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageClaimTechDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_claim_tech_desc", __argsBuffer, this.setCallReducerFlags.stageClaimTechDescFlags);
   }
@@ -10332,8 +10336,8 @@ export class RemoteReducers {
 
   stageClaimTileCost(records: ClaimTileCost[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageClaimTileCost.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageClaimTileCost.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_claim_tile_cost", __argsBuffer, this.setCallReducerFlags.stageClaimTileCostFlags);
   }
@@ -10348,8 +10352,8 @@ export class RemoteReducers {
 
   stageClimbRequirementDesc(records: ClimbRequirementDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageClimbRequirementDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageClimbRequirementDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_climb_requirement_desc", __argsBuffer, this.setCallReducerFlags.stageClimbRequirementDescFlags);
   }
@@ -10364,8 +10368,8 @@ export class RemoteReducers {
 
   stageClothingDesc(records: ClothingDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageClothingDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageClothingDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_clothing_desc", __argsBuffer, this.setCallReducerFlags.stageClothingDescFlags);
   }
@@ -10380,8 +10384,8 @@ export class RemoteReducers {
 
   stageCollectibleDesc(records: CollectibleDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageCollectibleDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageCollectibleDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_collectible_desc", __argsBuffer, this.setCallReducerFlags.stageCollectibleDescFlags);
   }
@@ -10396,8 +10400,8 @@ export class RemoteReducers {
 
   stageCombatActionDescV3(records: CombatActionDescV3[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageCombatActionDescV3.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageCombatActionDescV3.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_combat_action_desc_v3", __argsBuffer, this.setCallReducerFlags.stageCombatActionDescV3Flags);
   }
@@ -10412,8 +10416,8 @@ export class RemoteReducers {
 
   stageCombatActionMultiHitDesc(records: CombatActionMultiHitDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageCombatActionMultiHitDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageCombatActionMultiHitDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_combat_action_multi_hit_desc", __argsBuffer, this.setCallReducerFlags.stageCombatActionMultiHitDescFlags);
   }
@@ -10428,8 +10432,8 @@ export class RemoteReducers {
 
   stageConstructionRecipeDesc(records: ConstructionRecipeDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageConstructionRecipeDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageConstructionRecipeDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_construction_recipe_desc", __argsBuffer, this.setCallReducerFlags.stageConstructionRecipeDescFlags);
   }
@@ -10444,8 +10448,8 @@ export class RemoteReducers {
 
   stageContributionLootDesc(records: ContributionLootDescV2[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageContributionLootDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageContributionLootDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_contribution_loot_desc", __argsBuffer, this.setCallReducerFlags.stageContributionLootDescFlags);
   }
@@ -10460,8 +10464,8 @@ export class RemoteReducers {
 
   stageCraftingRecipeDesc(records: CraftingRecipeDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageCraftingRecipeDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageCraftingRecipeDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_crafting_recipe_desc", __argsBuffer, this.setCallReducerFlags.stageCraftingRecipeDescFlags);
   }
@@ -10476,8 +10480,8 @@ export class RemoteReducers {
 
   stageDeconstructionRecipeDesc(records: DeconstructionRecipeDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageDeconstructionRecipeDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageDeconstructionRecipeDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_deconstruction_recipe_desc", __argsBuffer, this.setCallReducerFlags.stageDeconstructionRecipeDescFlags);
   }
@@ -10492,8 +10496,8 @@ export class RemoteReducers {
 
   stageDeployableDesc(records: DeployableDescV2[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageDeployableDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageDeployableDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_deployable_desc", __argsBuffer, this.setCallReducerFlags.stageDeployableDescFlags);
   }
@@ -10508,8 +10512,8 @@ export class RemoteReducers {
 
   stageDistantVisibleEntityDesc(records: DistantVisibleEntityDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageDistantVisibleEntityDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageDistantVisibleEntityDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_distant_visible_entity_desc", __argsBuffer, this.setCallReducerFlags.stageDistantVisibleEntityDescFlags);
   }
@@ -10524,8 +10528,8 @@ export class RemoteReducers {
 
   stageElevatorDesc(records: ElevatorDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageElevatorDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageElevatorDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_elevator_desc", __argsBuffer, this.setCallReducerFlags.stageElevatorDescFlags);
   }
@@ -10540,8 +10544,8 @@ export class RemoteReducers {
 
   stageEmoteDesc(records: EmoteDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageEmoteDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageEmoteDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_emote_desc", __argsBuffer, this.setCallReducerFlags.stageEmoteDescFlags);
   }
@@ -10556,8 +10560,8 @@ export class RemoteReducers {
 
   stageEmpireColorsDesc(records: EmpireColorDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageEmpireColorsDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageEmpireColorsDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_empire_colors_desc", __argsBuffer, this.setCallReducerFlags.stageEmpireColorsDescFlags);
   }
@@ -10572,8 +10576,8 @@ export class RemoteReducers {
 
   stageEmpireIconDesc(records: EmpireIconDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageEmpireIconDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageEmpireIconDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_empire_icon_desc", __argsBuffer, this.setCallReducerFlags.stageEmpireIconDescFlags);
   }
@@ -10588,8 +10592,8 @@ export class RemoteReducers {
 
   stageEmpireNotificationDesc(records: EmpireNotificationDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageEmpireNotificationDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageEmpireNotificationDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_empire_notification_desc", __argsBuffer, this.setCallReducerFlags.stageEmpireNotificationDescFlags);
   }
@@ -10604,8 +10608,8 @@ export class RemoteReducers {
 
   stageEmpireRankDesc(records: EmpireRankDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageEmpireRankDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageEmpireRankDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_empire_rank_desc", __argsBuffer, this.setCallReducerFlags.stageEmpireRankDescFlags);
   }
@@ -10620,8 +10624,8 @@ export class RemoteReducers {
 
   stageEmpireSuppliesDesc(records: EmpireSuppliesDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageEmpireSuppliesDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageEmpireSuppliesDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_empire_supplies_desc", __argsBuffer, this.setCallReducerFlags.stageEmpireSuppliesDescFlags);
   }
@@ -10636,8 +10640,8 @@ export class RemoteReducers {
 
   stageEmpireTerritoryDesc(records: EmpireTerritoryDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageEmpireTerritoryDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageEmpireTerritoryDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_empire_territory_desc", __argsBuffer, this.setCallReducerFlags.stageEmpireTerritoryDescFlags);
   }
@@ -10652,8 +10656,8 @@ export class RemoteReducers {
 
   stageEnemyAiParamsDesc(records: EnemyAiParamsDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageEnemyAiParamsDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageEnemyAiParamsDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_enemy_ai_params_desc", __argsBuffer, this.setCallReducerFlags.stageEnemyAiParamsDescFlags);
   }
@@ -10668,8 +10672,8 @@ export class RemoteReducers {
 
   stageEnemyDesc(records: EnemyDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageEnemyDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageEnemyDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_enemy_desc", __argsBuffer, this.setCallReducerFlags.stageEnemyDescFlags);
   }
@@ -10684,8 +10688,8 @@ export class RemoteReducers {
 
   stageEnemyScalingDesc(records: EnemyScalingDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageEnemyScalingDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageEnemyScalingDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_enemy_scaling_desc", __argsBuffer, this.setCallReducerFlags.stageEnemyScalingDescFlags);
   }
@@ -10700,8 +10704,8 @@ export class RemoteReducers {
 
   stageEnvironmentDebuffDesc(records: EnvironmentDebuffDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageEnvironmentDebuffDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageEnvironmentDebuffDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_environment_debuff_desc", __argsBuffer, this.setCallReducerFlags.stageEnvironmentDebuffDescFlags);
   }
@@ -10716,8 +10720,8 @@ export class RemoteReducers {
 
   stageEquipmentDesc(records: EquipmentDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageEquipmentDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageEquipmentDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_equipment_desc", __argsBuffer, this.setCallReducerFlags.stageEquipmentDescFlags);
   }
@@ -10732,8 +10736,8 @@ export class RemoteReducers {
 
   stageExtractionRecipeDesc(records: ExtractionRecipeDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageExtractionRecipeDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageExtractionRecipeDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_extraction_recipe_desc", __argsBuffer, this.setCallReducerFlags.stageExtractionRecipeDescFlags);
   }
@@ -10748,8 +10752,8 @@ export class RemoteReducers {
 
   stageFoodDesc(records: FoodDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageFoodDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageFoodDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_food_desc", __argsBuffer, this.setCallReducerFlags.stageFoodDescFlags);
   }
@@ -10764,8 +10768,8 @@ export class RemoteReducers {
 
   stageGateDesc(records: GateDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageGateDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageGateDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_gate_desc", __argsBuffer, this.setCallReducerFlags.stageGateDescFlags);
   }
@@ -10780,8 +10784,8 @@ export class RemoteReducers {
 
   stageHexiteExchangeEntryDesc(records: HexiteExchangeEntryDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageHexiteExchangeEntryDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageHexiteExchangeEntryDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_hexite_exchange_entry_desc", __argsBuffer, this.setCallReducerFlags.stageHexiteExchangeEntryDescFlags);
   }
@@ -10796,8 +10800,8 @@ export class RemoteReducers {
 
   stageInteriorEnvironmentDesc(records: InteriorEnvironmentDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageInteriorEnvironmentDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageInteriorEnvironmentDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_interior_environment_desc", __argsBuffer, this.setCallReducerFlags.stageInteriorEnvironmentDescFlags);
   }
@@ -10812,8 +10816,8 @@ export class RemoteReducers {
 
   stageInteriorInstanceDesc(records: InteriorInstanceDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageInteriorInstanceDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageInteriorInstanceDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_interior_instance_desc", __argsBuffer, this.setCallReducerFlags.stageInteriorInstanceDescFlags);
   }
@@ -10828,8 +10832,8 @@ export class RemoteReducers {
 
   stageInteriorNetworkDesc(records: InteriorNetworkDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageInteriorNetworkDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageInteriorNetworkDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_interior_network_desc", __argsBuffer, this.setCallReducerFlags.stageInteriorNetworkDescFlags);
   }
@@ -10844,8 +10848,8 @@ export class RemoteReducers {
 
   stageInteriorPortalConnectionsDesc(records: InteriorPortalConnectionsDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageInteriorPortalConnectionsDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageInteriorPortalConnectionsDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_interior_portal_connections_desc", __argsBuffer, this.setCallReducerFlags.stageInteriorPortalConnectionsDescFlags);
   }
@@ -10860,8 +10864,8 @@ export class RemoteReducers {
 
   stageInteriorShapeDesc(records: InteriorShapeDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageInteriorShapeDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageInteriorShapeDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_interior_shape_desc", __argsBuffer, this.setCallReducerFlags.stageInteriorShapeDescFlags);
   }
@@ -10876,8 +10880,8 @@ export class RemoteReducers {
 
   stageInteriorSpawnDesc(records: InteriorSpawnDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageInteriorSpawnDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageInteriorSpawnDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_interior_spawn_desc", __argsBuffer, this.setCallReducerFlags.stageInteriorSpawnDescFlags);
   }
@@ -10892,8 +10896,8 @@ export class RemoteReducers {
 
   stageItemConversionRecipeDesc(records: ItemConversionRecipeDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageItemConversionRecipeDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageItemConversionRecipeDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_item_conversion_recipe_desc", __argsBuffer, this.setCallReducerFlags.stageItemConversionRecipeDescFlags);
   }
@@ -10908,8 +10912,8 @@ export class RemoteReducers {
 
   stageItemDesc(records: ItemDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageItemDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageItemDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_item_desc", __argsBuffer, this.setCallReducerFlags.stageItemDescFlags);
   }
@@ -10924,8 +10928,8 @@ export class RemoteReducers {
 
   stageItemListDesc(records: ItemListDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageItemListDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageItemListDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_item_list_desc", __argsBuffer, this.setCallReducerFlags.stageItemListDescFlags);
   }
@@ -10940,8 +10944,8 @@ export class RemoteReducers {
 
   stageKnowledgeScrollDesc(records: KnowledgeScrollDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageKnowledgeScrollDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageKnowledgeScrollDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_knowledge_scroll_desc", __argsBuffer, this.setCallReducerFlags.stageKnowledgeScrollDescFlags);
   }
@@ -10956,8 +10960,8 @@ export class RemoteReducers {
 
   stageKnowledgeScrollTypeDesc(records: KnowledgeScrollTypeDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageKnowledgeScrollTypeDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageKnowledgeScrollTypeDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_knowledge_scroll_type_desc", __argsBuffer, this.setCallReducerFlags.stageKnowledgeScrollTypeDescFlags);
   }
@@ -10972,8 +10976,8 @@ export class RemoteReducers {
 
   stageKnowledgeStatModifierDesc(records: KnowledgeStatModifierDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageKnowledgeStatModifierDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageKnowledgeStatModifierDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_knowledge_stat_modifier_desc", __argsBuffer, this.setCallReducerFlags.stageKnowledgeStatModifierDescFlags);
   }
@@ -10988,8 +10992,8 @@ export class RemoteReducers {
 
   stageLootChestDesc(records: LootChestDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageLootChestDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageLootChestDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_loot_chest_desc", __argsBuffer, this.setCallReducerFlags.stageLootChestDescFlags);
   }
@@ -11004,8 +11008,8 @@ export class RemoteReducers {
 
   stageLootRarityDesc(records: LootRarityDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageLootRarityDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageLootRarityDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_loot_rarity_desc", __argsBuffer, this.setCallReducerFlags.stageLootRarityDescFlags);
   }
@@ -11020,8 +11024,8 @@ export class RemoteReducers {
 
   stageLootTableDesc(records: LootTableDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageLootTableDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageLootTableDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_loot_table_desc", __argsBuffer, this.setCallReducerFlags.stageLootTableDescFlags);
   }
@@ -11036,8 +11040,8 @@ export class RemoteReducers {
 
   stageNpcDesc(records: NpcDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageNpcDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageNpcDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_npc_desc", __argsBuffer, this.setCallReducerFlags.stageNpcDescFlags);
   }
@@ -11052,8 +11056,8 @@ export class RemoteReducers {
 
   stageOnboardingRewardDesc(records: OnboardingRewardDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageOnboardingRewardDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageOnboardingRewardDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_onboarding_reward_desc", __argsBuffer, this.setCallReducerFlags.stageOnboardingRewardDescFlags);
   }
@@ -11068,8 +11072,8 @@ export class RemoteReducers {
 
   stageParametersDesc(records: ParametersDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageParametersDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageParametersDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_parameters_desc", __argsBuffer, this.setCallReducerFlags.stageParametersDescFlags);
   }
@@ -11084,8 +11088,8 @@ export class RemoteReducers {
 
   stagePathfindingDesc(records: PathfindingDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StagePathfindingDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StagePathfindingDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_pathfinding_desc", __argsBuffer, this.setCallReducerFlags.stagePathfindingDescFlags);
   }
@@ -11100,8 +11104,8 @@ export class RemoteReducers {
 
   stagePavingTileDesc(records: PavingTileDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StagePavingTileDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StagePavingTileDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_paving_tile_desc", __argsBuffer, this.setCallReducerFlags.stagePavingTileDescFlags);
   }
@@ -11116,8 +11120,8 @@ export class RemoteReducers {
 
   stagePillarShapingDesc(records: PillarShapingDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StagePillarShapingDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StagePillarShapingDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_pillar_shaping_desc", __argsBuffer, this.setCallReducerFlags.stagePillarShapingDescFlags);
   }
@@ -11132,8 +11136,8 @@ export class RemoteReducers {
 
   stagePlayerActionDesc(records: PlayerActionDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StagePlayerActionDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StagePlayerActionDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_player_action_desc", __argsBuffer, this.setCallReducerFlags.stagePlayerActionDescFlags);
   }
@@ -11148,8 +11152,8 @@ export class RemoteReducers {
 
   stagePlayerHousingDesc(records: PlayerHousingDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StagePlayerHousingDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StagePlayerHousingDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_player_housing_desc", __argsBuffer, this.setCallReducerFlags.stagePlayerHousingDescFlags);
   }
@@ -11164,8 +11168,8 @@ export class RemoteReducers {
 
   stagePrivateParametersDesc(records: PrivateParametersDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StagePrivateParametersDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StagePrivateParametersDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_private_parameters_desc", __argsBuffer, this.setCallReducerFlags.stagePrivateParametersDescFlags);
   }
@@ -11180,8 +11184,8 @@ export class RemoteReducers {
 
   stageReservedNameDesc(records: ReservedNameDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageReservedNameDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageReservedNameDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_reserved_name_desc", __argsBuffer, this.setCallReducerFlags.stageReservedNameDescFlags);
   }
@@ -11196,8 +11200,8 @@ export class RemoteReducers {
 
   stageResourceClumpDesc(records: ResourceClumpDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageResourceClumpDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageResourceClumpDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_resource_clump_desc", __argsBuffer, this.setCallReducerFlags.stageResourceClumpDescFlags);
   }
@@ -11212,8 +11216,8 @@ export class RemoteReducers {
 
   stageResourceDesc(records: ResourceDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageResourceDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageResourceDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_resource_desc", __argsBuffer, this.setCallReducerFlags.stageResourceDescFlags);
   }
@@ -11228,8 +11232,8 @@ export class RemoteReducers {
 
   stageResourceGrowthRecipeDesc(records: ResourceGrowthRecipeDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageResourceGrowthRecipeDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageResourceGrowthRecipeDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_resource_growth_recipe_desc", __argsBuffer, this.setCallReducerFlags.stageResourceGrowthRecipeDescFlags);
   }
@@ -11244,8 +11248,8 @@ export class RemoteReducers {
 
   stageResourcePlacementRecipeDesc(records: ResourcePlacementRecipeDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageResourcePlacementRecipeDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageResourcePlacementRecipeDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_resource_placement_recipe_desc", __argsBuffer, this.setCallReducerFlags.stageResourcePlacementRecipeDescFlags);
   }
@@ -11260,8 +11264,8 @@ export class RemoteReducers {
 
   stageSecondaryKnowledgeDesc(records: SecondaryKnowledgeDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageSecondaryKnowledgeDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageSecondaryKnowledgeDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_secondary_knowledge_desc", __argsBuffer, this.setCallReducerFlags.stageSecondaryKnowledgeDescFlags);
   }
@@ -11276,8 +11280,8 @@ export class RemoteReducers {
 
   stageSkillDesc(records: SkillDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageSkillDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageSkillDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_skill_desc", __argsBuffer, this.setCallReducerFlags.stageSkillDescFlags);
   }
@@ -11292,8 +11296,8 @@ export class RemoteReducers {
 
   stageTargetingMatrixDesc(records: TargetingMatrixDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageTargetingMatrixDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageTargetingMatrixDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_targeting_matrix_desc", __argsBuffer, this.setCallReducerFlags.stageTargetingMatrixDescFlags);
   }
@@ -11308,8 +11312,8 @@ export class RemoteReducers {
 
   stageTeleportItemDesc(records: TeleportItemDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageTeleportItemDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageTeleportItemDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_teleport_item_desc", __argsBuffer, this.setCallReducerFlags.stageTeleportItemDescFlags);
   }
@@ -11324,8 +11328,8 @@ export class RemoteReducers {
 
   stageTerraformRecipeDesc(records: TerraformRecipeDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageTerraformRecipeDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageTerraformRecipeDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_terraform_recipe_desc", __argsBuffer, this.setCallReducerFlags.stageTerraformRecipeDescFlags);
   }
@@ -11340,8 +11344,8 @@ export class RemoteReducers {
 
   stageToolDesc(records: ToolDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageToolDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageToolDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_tool_desc", __argsBuffer, this.setCallReducerFlags.stageToolDescFlags);
   }
@@ -11356,8 +11360,8 @@ export class RemoteReducers {
 
   stageToolTypeDesc(records: ToolTypeDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageToolTypeDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageToolTypeDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_tool_type_desc", __argsBuffer, this.setCallReducerFlags.stageToolTypeDescFlags);
   }
@@ -11372,8 +11376,8 @@ export class RemoteReducers {
 
   stageTravelerTaskDesc(records: TravelerTaskDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageTravelerTaskDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageTravelerTaskDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_traveler_task_desc", __argsBuffer, this.setCallReducerFlags.stageTravelerTaskDescFlags);
   }
@@ -11388,8 +11392,8 @@ export class RemoteReducers {
 
   stageTravelerTradeOrderDesc(records: TravelerTradeOrderDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageTravelerTradeOrderDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageTravelerTradeOrderDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_traveler_trade_order_desc", __argsBuffer, this.setCallReducerFlags.stageTravelerTradeOrderDescFlags);
   }
@@ -11404,8 +11408,8 @@ export class RemoteReducers {
 
   stageWallDesc(records: WallDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageWallDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageWallDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_wall_desc", __argsBuffer, this.setCallReducerFlags.stageWallDescFlags);
   }
@@ -11420,8 +11424,8 @@ export class RemoteReducers {
 
   stageWeaponDesc(records: WeaponDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageWeaponDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageWeaponDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_weapon_desc", __argsBuffer, this.setCallReducerFlags.stageWeaponDescFlags);
   }
@@ -11436,8 +11440,8 @@ export class RemoteReducers {
 
   stageWeaponTypeDesc(records: WeaponTypeDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageWeaponTypeDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageWeaponTypeDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_weapon_type_desc", __argsBuffer, this.setCallReducerFlags.stageWeaponTypeDescFlags);
   }
@@ -11452,8 +11456,8 @@ export class RemoteReducers {
 
   stageWindParamsDesc(records: WindParamsDesc[]) {
     const __args = { records };
-    let __writer = new __BinaryWriter(1024);
-    StageWindParamsDesc.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    StageWindParamsDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("stage_wind_params_desc", __argsBuffer, this.setCallReducerFlags.stageWindParamsDescFlags);
   }
@@ -11468,8 +11472,8 @@ export class RemoteReducers {
 
   unblockPlayer(playerEntityId: bigint) {
     const __args = { playerEntityId };
-    let __writer = new __BinaryWriter(1024);
-    UnblockPlayer.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    UnblockPlayer.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("unblock_player", __argsBuffer, this.setCallReducerFlags.unblockPlayerFlags);
   }
@@ -11484,8 +11488,8 @@ export class RemoteReducers {
 
   updateRoleForPlayer(playerEntityId: bigint, role: Role) {
     const __args = { playerEntityId, role };
-    let __writer = new __BinaryWriter(1024);
-    UpdateRoleForPlayer.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    UpdateRoleForPlayer.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("update_role_for_player", __argsBuffer, this.setCallReducerFlags.updateRoleForPlayerFlags);
   }
@@ -11512,8 +11516,8 @@ export class RemoteReducers {
 
   userModerationClearAll(request: UserModerationCreateUserPolicyRequest) {
     const __args = { request };
-    let __writer = new __BinaryWriter(1024);
-    UserModerationClearAll.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    UserModerationClearAll.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("user_moderation_clear_all", __argsBuffer, this.setCallReducerFlags.userModerationClearAllFlags);
   }
@@ -11528,8 +11532,8 @@ export class RemoteReducers {
 
   userModerationCreate(request: UserModerationCreateUserPolicyRequest) {
     const __args = { request };
-    let __writer = new __BinaryWriter(1024);
-    UserModerationCreate.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    UserModerationCreate.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("user_moderation_create", __argsBuffer, this.setCallReducerFlags.userModerationCreateFlags);
   }
@@ -11544,8 +11548,8 @@ export class RemoteReducers {
 
   userModerationDelete(policyEntityId: bigint) {
     const __args = { policyEntityId };
-    let __writer = new __BinaryWriter(1024);
-    UserModerationDelete.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    UserModerationDelete.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("user_moderation_delete", __argsBuffer, this.setCallReducerFlags.userModerationDeleteFlags);
   }
@@ -11560,8 +11564,8 @@ export class RemoteReducers {
 
   userModerationListAll(request: UserModerationCreateUserPolicyRequest) {
     const __args = { request };
-    let __writer = new __BinaryWriter(1024);
-    UserModerationListAll.serialize(__writer, __args);
+    let __writer = new BinaryWriter(1024);
+    UserModerationListAll.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("user_moderation_list_all", __argsBuffer, this.setCallReducerFlags.userModerationListAllFlags);
   }
@@ -11577,3059 +11581,2781 @@ export class RemoteReducers {
 }
 
 export class SetReducerFlags {
-  addFavoriteFriendFlags: __CallReducerFlags = 'FullUpdate';
-  addFavoriteFriend(flags: __CallReducerFlags) {
+  addFavoriteFriendFlags: CallReducerFlags = 'FullUpdate';
+  addFavoriteFriend(flags: CallReducerFlags) {
     this.addFavoriteFriendFlags = flags;
   }
 
-  addFriendFlags: __CallReducerFlags = 'FullUpdate';
-  addFriend(flags: __CallReducerFlags) {
+  addFriendFlags: CallReducerFlags = 'FullUpdate';
+  addFriend(flags: CallReducerFlags) {
     this.addFriendFlags = flags;
   }
 
-  adminBroadcastMsgFlags: __CallReducerFlags = 'FullUpdate';
-  adminBroadcastMsg(flags: __CallReducerFlags) {
+  adminBroadcastMsgFlags: CallReducerFlags = 'FullUpdate';
+  adminBroadcastMsg(flags: CallReducerFlags) {
     this.adminBroadcastMsgFlags = flags;
   }
 
-  adminCreateDirectChatMessageFlags: __CallReducerFlags = 'FullUpdate';
-  adminCreateDirectChatMessage(flags: __CallReducerFlags) {
+  adminCreateDirectChatMessageFlags: CallReducerFlags = 'FullUpdate';
+  adminCreateDirectChatMessage(flags: CallReducerFlags) {
     this.adminCreateDirectChatMessageFlags = flags;
   }
 
-  adminDeleteModerationActionLogEntryFlags: __CallReducerFlags = 'FullUpdate';
-  adminDeleteModerationActionLogEntry(flags: __CallReducerFlags) {
+  adminDeleteModerationActionLogEntryFlags: CallReducerFlags = 'FullUpdate';
+  adminDeleteModerationActionLogEntry(flags: CallReducerFlags) {
     this.adminDeleteModerationActionLogEntryFlags = flags;
   }
 
-  adminGrantShardsFlags: __CallReducerFlags = 'FullUpdate';
-  adminGrantShards(flags: __CallReducerFlags) {
+  adminGrantShardsFlags: CallReducerFlags = 'FullUpdate';
+  adminGrantShards(flags: CallReducerFlags) {
     this.adminGrantShardsFlags = flags;
   }
 
-  adminLogModerationActionFlags: __CallReducerFlags = 'FullUpdate';
-  adminLogModerationAction(flags: __CallReducerFlags) {
+  adminLogModerationActionFlags: CallReducerFlags = 'FullUpdate';
+  adminLogModerationAction(flags: CallReducerFlags) {
     this.adminLogModerationActionFlags = flags;
   }
 
-  adminMarkUserReportAsActionedFlags: __CallReducerFlags = 'FullUpdate';
-  adminMarkUserReportAsActioned(flags: __CallReducerFlags) {
+  adminMarkUserReportAsActionedFlags: CallReducerFlags = 'FullUpdate';
+  adminMarkUserReportAsActioned(flags: CallReducerFlags) {
     this.adminMarkUserReportAsActionedFlags = flags;
   }
 
-  adminNotifyPlayerFlags: __CallReducerFlags = 'FullUpdate';
-  adminNotifyPlayer(flags: __CallReducerFlags) {
+  adminNotifyPlayerFlags: CallReducerFlags = 'FullUpdate';
+  adminNotifyPlayer(flags: CallReducerFlags) {
     this.adminNotifyPlayerFlags = flags;
   }
 
-  adminNotifyPlayerByIdentityFlags: __CallReducerFlags = 'FullUpdate';
-  adminNotifyPlayerByIdentity(flags: __CallReducerFlags) {
+  adminNotifyPlayerByIdentityFlags: CallReducerFlags = 'FullUpdate';
+  adminNotifyPlayerByIdentity(flags: CallReducerFlags) {
     this.adminNotifyPlayerByIdentityFlags = flags;
   }
 
-  adminRecalculateEmpireUpkeepsFlags: __CallReducerFlags = 'FullUpdate';
-  adminRecalculateEmpireUpkeeps(flags: __CallReducerFlags) {
+  adminRecalculateEmpireUpkeepsFlags: CallReducerFlags = 'FullUpdate';
+  adminRecalculateEmpireUpkeeps(flags: CallReducerFlags) {
     this.adminRecalculateEmpireUpkeepsFlags = flags;
   }
 
-  adminRenameEmpireFlags: __CallReducerFlags = 'FullUpdate';
-  adminRenameEmpire(flags: __CallReducerFlags) {
+  adminRenameEmpireFlags: CallReducerFlags = 'FullUpdate';
+  adminRenameEmpire(flags: CallReducerFlags) {
     this.adminRenameEmpireFlags = flags;
   }
 
-  adminRenameEmpireEntityFlags: __CallReducerFlags = 'FullUpdate';
-  adminRenameEmpireEntity(flags: __CallReducerFlags) {
+  adminRenameEmpireEntityFlags: CallReducerFlags = 'FullUpdate';
+  adminRenameEmpireEntity(flags: CallReducerFlags) {
     this.adminRenameEmpireEntityFlags = flags;
   }
 
-  adminRenameEmpireRankFlags: __CallReducerFlags = 'FullUpdate';
-  adminRenameEmpireRank(flags: __CallReducerFlags) {
+  adminRenameEmpireRankFlags: CallReducerFlags = 'FullUpdate';
+  adminRenameEmpireRank(flags: CallReducerFlags) {
     this.adminRenameEmpireRankFlags = flags;
   }
 
-  adminRenameEmpireRankEntityFlags: __CallReducerFlags = 'FullUpdate';
-  adminRenameEmpireRankEntity(flags: __CallReducerFlags) {
+  adminRenameEmpireRankEntityFlags: CallReducerFlags = 'FullUpdate';
+  adminRenameEmpireRankEntity(flags: CallReducerFlags) {
     this.adminRenameEmpireRankEntityFlags = flags;
   }
 
-  adminRenamePlayerFlags: __CallReducerFlags = 'FullUpdate';
-  adminRenamePlayer(flags: __CallReducerFlags) {
+  adminRenamePlayerFlags: CallReducerFlags = 'FullUpdate';
+  adminRenamePlayer(flags: CallReducerFlags) {
     this.adminRenamePlayerFlags = flags;
   }
 
-  adminRenamePlayerEntityFlags: __CallReducerFlags = 'FullUpdate';
-  adminRenamePlayerEntity(flags: __CallReducerFlags) {
+  adminRenamePlayerEntityFlags: CallReducerFlags = 'FullUpdate';
+  adminRenamePlayerEntity(flags: CallReducerFlags) {
     this.adminRenamePlayerEntityFlags = flags;
   }
 
-  adminSignOutAllFlags: __CallReducerFlags = 'FullUpdate';
-  adminSignOutAll(flags: __CallReducerFlags) {
+  adminSignOutAllFlags: CallReducerFlags = 'FullUpdate';
+  adminSignOutAll(flags: CallReducerFlags) {
     this.adminSignOutAllFlags = flags;
   }
 
-  adminSkipQueueEntityFlags: __CallReducerFlags = 'FullUpdate';
-  adminSkipQueueEntity(flags: __CallReducerFlags) {
+  adminSkipQueueEntityFlags: CallReducerFlags = 'FullUpdate';
+  adminSkipQueueEntity(flags: CallReducerFlags) {
     this.adminSkipQueueEntityFlags = flags;
   }
 
-  adminSkipQueueIdentityFlags: __CallReducerFlags = 'FullUpdate';
-  adminSkipQueueIdentity(flags: __CallReducerFlags) {
+  adminSkipQueueIdentityFlags: CallReducerFlags = 'FullUpdate';
+  adminSkipQueueIdentity(flags: CallReducerFlags) {
     this.adminSkipQueueIdentityFlags = flags;
   }
 
-  adminSkipQueueNameFlags: __CallReducerFlags = 'FullUpdate';
-  adminSkipQueueName(flags: __CallReducerFlags) {
+  adminSkipQueueNameFlags: CallReducerFlags = 'FullUpdate';
+  adminSkipQueueName(flags: CallReducerFlags) {
     this.adminSkipQueueNameFlags = flags;
   }
 
-  adminUpdateGrantedHubItemStateFlags: __CallReducerFlags = 'FullUpdate';
-  adminUpdateGrantedHubItemState(flags: __CallReducerFlags) {
+  adminUpdateGrantedHubItemStateFlags: CallReducerFlags = 'FullUpdate';
+  adminUpdateGrantedHubItemState(flags: CallReducerFlags) {
     this.adminUpdateGrantedHubItemStateFlags = flags;
   }
 
-  adminUpdateSignInParametersFlags: __CallReducerFlags = 'FullUpdate';
-  adminUpdateSignInParameters(flags: __CallReducerFlags) {
+  adminUpdateSignInParametersFlags: CallReducerFlags = 'FullUpdate';
+  adminUpdateSignInParameters(flags: CallReducerFlags) {
     this.adminUpdateSignInParametersFlags = flags;
   }
 
-  authenticateFlags: __CallReducerFlags = 'FullUpdate';
-  authenticate(flags: __CallReducerFlags) {
+  authenticateFlags: CallReducerFlags = 'FullUpdate';
+  authenticate(flags: CallReducerFlags) {
     this.authenticateFlags = flags;
   }
 
-  blockIdentityFlags: __CallReducerFlags = 'FullUpdate';
-  blockIdentity(flags: __CallReducerFlags) {
+  blockIdentityFlags: CallReducerFlags = 'FullUpdate';
+  blockIdentity(flags: CallReducerFlags) {
     this.blockIdentityFlags = flags;
   }
 
-  blockPlayerFlags: __CallReducerFlags = 'FullUpdate';
-  blockPlayer(flags: __CallReducerFlags) {
+  blockPlayerFlags: CallReducerFlags = 'FullUpdate';
+  blockPlayer(flags: CallReducerFlags) {
     this.blockPlayerFlags = flags;
   }
 
-  cheatEmpireSiegeAddSuppliesFlags: __CallReducerFlags = 'FullUpdate';
-  cheatEmpireSiegeAddSupplies(flags: __CallReducerFlags) {
+  cheatEmpireSiegeAddSuppliesFlags: CallReducerFlags = 'FullUpdate';
+  cheatEmpireSiegeAddSupplies(flags: CallReducerFlags) {
     this.cheatEmpireSiegeAddSuppliesFlags = flags;
   }
 
-  cheatEmpireSiegeCancelFlags: __CallReducerFlags = 'FullUpdate';
-  cheatEmpireSiegeCancel(flags: __CallReducerFlags) {
+  cheatEmpireSiegeCancelFlags: CallReducerFlags = 'FullUpdate';
+  cheatEmpireSiegeCancel(flags: CallReducerFlags) {
     this.cheatEmpireSiegeCancelFlags = flags;
   }
 
-  cheatPlayerSetNameFlags: __CallReducerFlags = 'FullUpdate';
-  cheatPlayerSetName(flags: __CallReducerFlags) {
+  cheatPlayerSetNameFlags: CallReducerFlags = 'FullUpdate';
+  cheatPlayerSetName(flags: CallReducerFlags) {
     this.cheatPlayerSetNameFlags = flags;
   }
 
-  cheatShardsGrantFlags: __CallReducerFlags = 'FullUpdate';
-  cheatShardsGrant(flags: __CallReducerFlags) {
+  cheatShardsGrantFlags: CallReducerFlags = 'FullUpdate';
+  cheatShardsGrant(flags: CallReducerFlags) {
     this.cheatShardsGrantFlags = flags;
   }
 
-  clearStagedStaticDataFlags: __CallReducerFlags = 'FullUpdate';
-  clearStagedStaticData(flags: __CallReducerFlags) {
+  clearStagedStaticDataFlags: CallReducerFlags = 'FullUpdate';
+  clearStagedStaticData(flags: CallReducerFlags) {
     this.clearStagedStaticDataFlags = flags;
   }
 
-  commitStagedStaticDataFlags: __CallReducerFlags = 'FullUpdate';
-  commitStagedStaticData(flags: __CallReducerFlags) {
+  commitStagedStaticDataFlags: CallReducerFlags = 'FullUpdate';
+  commitStagedStaticData(flags: CallReducerFlags) {
     this.commitStagedStaticDataFlags = flags;
   }
 
-  currentVersionFlags: __CallReducerFlags = 'FullUpdate';
-  currentVersion(flags: __CallReducerFlags) {
+  currentVersionFlags: CallReducerFlags = 'FullUpdate';
+  currentVersion(flags: CallReducerFlags) {
     this.currentVersionFlags = flags;
   }
 
-  deleteDeveloperIdentityFlags: __CallReducerFlags = 'FullUpdate';
-  deleteDeveloperIdentity(flags: __CallReducerFlags) {
+  deleteDeveloperIdentityFlags: CallReducerFlags = 'FullUpdate';
+  deleteDeveloperIdentity(flags: CallReducerFlags) {
     this.deleteDeveloperIdentityFlags = flags;
   }
 
-  directMessagePostMessageFlags: __CallReducerFlags = 'FullUpdate';
-  directMessagePostMessage(flags: __CallReducerFlags) {
+  directMessagePostMessageFlags: CallReducerFlags = 'FullUpdate';
+  directMessagePostMessage(flags: CallReducerFlags) {
     this.directMessagePostMessageFlags = flags;
   }
 
-  empireChangeEmblemFlags: __CallReducerFlags = 'FullUpdate';
-  empireChangeEmblem(flags: __CallReducerFlags) {
+  empireChangeEmblemFlags: CallReducerFlags = 'FullUpdate';
+  empireChangeEmblem(flags: CallReducerFlags) {
     this.empireChangeEmblemFlags = flags;
   }
 
-  empireCraftSuppliesFlags: __CallReducerFlags = 'FullUpdate';
-  empireCraftSupplies(flags: __CallReducerFlags) {
+  empireCraftSuppliesFlags: CallReducerFlags = 'FullUpdate';
+  empireCraftSupplies(flags: CallReducerFlags) {
     this.empireCraftSuppliesFlags = flags;
   }
 
-  empireCraftSuppliesScheduledFlags: __CallReducerFlags = 'FullUpdate';
-  empireCraftSuppliesScheduled(flags: __CallReducerFlags) {
+  empireCraftSuppliesScheduledFlags: CallReducerFlags = 'FullUpdate';
+  empireCraftSuppliesScheduled(flags: CallReducerFlags) {
     this.empireCraftSuppliesScheduledFlags = flags;
   }
 
-  empireDecayAgentLoopFlags: __CallReducerFlags = 'FullUpdate';
-  empireDecayAgentLoop(flags: __CallReducerFlags) {
+  empireDecayAgentLoopFlags: CallReducerFlags = 'FullUpdate';
+  empireDecayAgentLoop(flags: CallReducerFlags) {
     this.empireDecayAgentLoopFlags = flags;
   }
 
-  empireDismantleFlags: __CallReducerFlags = 'FullUpdate';
-  empireDismantle(flags: __CallReducerFlags) {
+  empireDismantleFlags: CallReducerFlags = 'FullUpdate';
+  empireDismantle(flags: CallReducerFlags) {
     this.empireDismantleFlags = flags;
   }
 
-  empireDonateShardsFlags: __CallReducerFlags = 'FullUpdate';
-  empireDonateShards(flags: __CallReducerFlags) {
+  empireDonateShardsFlags: CallReducerFlags = 'FullUpdate';
+  empireDonateShards(flags: CallReducerFlags) {
     this.empireDonateShardsFlags = flags;
   }
 
-  empireFormFlags: __CallReducerFlags = 'FullUpdate';
-  empireForm(flags: __CallReducerFlags) {
+  empireFormFlags: CallReducerFlags = 'FullUpdate';
+  empireForm(flags: CallReducerFlags) {
     this.empireFormFlags = flags;
   }
 
-  empireLeaveFlags: __CallReducerFlags = 'FullUpdate';
-  empireLeave(flags: __CallReducerFlags) {
+  empireLeaveFlags: CallReducerFlags = 'FullUpdate';
+  empireLeave(flags: CallReducerFlags) {
     this.empireLeaveFlags = flags;
   }
 
-  empireMarkForExpansionFlags: __CallReducerFlags = 'FullUpdate';
-  empireMarkForExpansion(flags: __CallReducerFlags) {
+  empireMarkForExpansionFlags: CallReducerFlags = 'FullUpdate';
+  empireMarkForExpansion(flags: CallReducerFlags) {
     this.empireMarkForExpansionFlags = flags;
   }
 
-  empireMarkForSiegeFlags: __CallReducerFlags = 'FullUpdate';
-  empireMarkForSiege(flags: __CallReducerFlags) {
+  empireMarkForSiegeFlags: CallReducerFlags = 'FullUpdate';
+  empireMarkForSiege(flags: CallReducerFlags) {
     this.empireMarkForSiegeFlags = flags;
   }
 
-  empireMoveCapitalFlags: __CallReducerFlags = 'FullUpdate';
-  empireMoveCapital(flags: __CallReducerFlags) {
+  empireMoveCapitalFlags: CallReducerFlags = 'FullUpdate';
+  empireMoveCapital(flags: CallReducerFlags) {
     this.empireMoveCapitalFlags = flags;
   }
 
-  empirePlayerJoinFlags: __CallReducerFlags = 'FullUpdate';
-  empirePlayerJoin(flags: __CallReducerFlags) {
+  empirePlayerJoinFlags: CallReducerFlags = 'FullUpdate';
+  empirePlayerJoin(flags: CallReducerFlags) {
     this.empirePlayerJoinFlags = flags;
   }
 
-  empirePlayerLeaveFlags: __CallReducerFlags = 'FullUpdate';
-  empirePlayerLeave(flags: __CallReducerFlags) {
+  empirePlayerLeaveFlags: CallReducerFlags = 'FullUpdate';
+  empirePlayerLeave(flags: CallReducerFlags) {
     this.empirePlayerLeaveFlags = flags;
   }
 
-  empireRenameFlags: __CallReducerFlags = 'FullUpdate';
-  empireRename(flags: __CallReducerFlags) {
+  empireRenameFlags: CallReducerFlags = 'FullUpdate';
+  empireRename(flags: CallReducerFlags) {
     this.empireRenameFlags = flags;
   }
 
-  empireSetDirectiveMessageFlags: __CallReducerFlags = 'FullUpdate';
-  empireSetDirectiveMessage(flags: __CallReducerFlags) {
+  empireSetDirectiveMessageFlags: CallReducerFlags = 'FullUpdate';
+  empireSetDirectiveMessage(flags: CallReducerFlags) {
     this.empireSetDirectiveMessageFlags = flags;
   }
 
-  empireSetNobilityThresholdFlags: __CallReducerFlags = 'FullUpdate';
-  empireSetNobilityThreshold(flags: __CallReducerFlags) {
+  empireSetNobilityThresholdFlags: CallReducerFlags = 'FullUpdate';
+  empireSetNobilityThreshold(flags: CallReducerFlags) {
     this.empireSetNobilityThresholdFlags = flags;
   }
 
-  empireSetPlayerRankFlags: __CallReducerFlags = 'FullUpdate';
-  empireSetPlayerRank(flags: __CallReducerFlags) {
+  empireSetPlayerRankFlags: CallReducerFlags = 'FullUpdate';
+  empireSetPlayerRank(flags: CallReducerFlags) {
     this.empireSetPlayerRankFlags = flags;
   }
 
-  empireSetRankTitleFlags: __CallReducerFlags = 'FullUpdate';
-  empireSetRankTitle(flags: __CallReducerFlags) {
+  empireSetRankTitleFlags: CallReducerFlags = 'FullUpdate';
+  empireSetRankTitle(flags: CallReducerFlags) {
     this.empireSetRankTitleFlags = flags;
   }
 
-  empireSiegeAgentLoopFlags: __CallReducerFlags = 'FullUpdate';
-  empireSiegeAgentLoop(flags: __CallReducerFlags) {
+  empireSiegeAgentLoopFlags: CallReducerFlags = 'FullUpdate';
+  empireSiegeAgentLoop(flags: CallReducerFlags) {
     this.empireSiegeAgentLoopFlags = flags;
   }
 
-  empireSubmitFlags: __CallReducerFlags = 'FullUpdate';
-  empireSubmit(flags: __CallReducerFlags) {
+  empireSubmitFlags: CallReducerFlags = 'FullUpdate';
+  empireSubmit(flags: CallReducerFlags) {
     this.empireSubmitFlags = flags;
   }
 
-  empireTakeEmperorshipFlags: __CallReducerFlags = 'FullUpdate';
-  empireTakeEmperorship(flags: __CallReducerFlags) {
+  empireTakeEmperorshipFlags: CallReducerFlags = 'FullUpdate';
+  empireTakeEmperorship(flags: CallReducerFlags) {
     this.empireTakeEmperorshipFlags = flags;
   }
 
-  empireTransferEmperorshipFlags: __CallReducerFlags = 'FullUpdate';
-  empireTransferEmperorship(flags: __CallReducerFlags) {
+  empireTransferEmperorshipFlags: CallReducerFlags = 'FullUpdate';
+  empireTransferEmperorship(flags: CallReducerFlags) {
     this.empireTransferEmperorshipFlags = flags;
   }
 
-  empireUpdatePermissionsFlags: __CallReducerFlags = 'FullUpdate';
-  empireUpdatePermissions(flags: __CallReducerFlags) {
+  empireUpdatePermissionsFlags: CallReducerFlags = 'FullUpdate';
+  empireUpdatePermissions(flags: CallReducerFlags) {
     this.empireUpdatePermissionsFlags = flags;
   }
 
-  importAchievementDescFlags: __CallReducerFlags = 'FullUpdate';
-  importAchievementDesc(flags: __CallReducerFlags) {
+  importAchievementDescFlags: CallReducerFlags = 'FullUpdate';
+  importAchievementDesc(flags: CallReducerFlags) {
     this.importAchievementDescFlags = flags;
   }
 
-  importActiveBuffStateFlags: __CallReducerFlags = 'FullUpdate';
-  importActiveBuffState(flags: __CallReducerFlags) {
+  importActiveBuffStateFlags: CallReducerFlags = 'FullUpdate';
+  importActiveBuffState(flags: CallReducerFlags) {
     this.importActiveBuffStateFlags = flags;
   }
 
-  importAdminBroadcastFlags: __CallReducerFlags = 'FullUpdate';
-  importAdminBroadcast(flags: __CallReducerFlags) {
+  importAdminBroadcastFlags: CallReducerFlags = 'FullUpdate';
+  importAdminBroadcast(flags: CallReducerFlags) {
     this.importAdminBroadcastFlags = flags;
   }
 
-  importAlertDescFlags: __CallReducerFlags = 'FullUpdate';
-  importAlertDesc(flags: __CallReducerFlags) {
+  importAlertDescFlags: CallReducerFlags = 'FullUpdate';
+  importAlertDesc(flags: CallReducerFlags) {
     this.importAlertDescFlags = flags;
   }
 
-  importAlertStateFlags: __CallReducerFlags = 'FullUpdate';
-  importAlertState(flags: __CallReducerFlags) {
+  importAlertStateFlags: CallReducerFlags = 'FullUpdate';
+  importAlertState(flags: CallReducerFlags) {
     this.importAlertStateFlags = flags;
   }
 
-  importAttackOutcomeStateFlags: __CallReducerFlags = 'FullUpdate';
-  importAttackOutcomeState(flags: __CallReducerFlags) {
+  importAttackOutcomeStateFlags: CallReducerFlags = 'FullUpdate';
+  importAttackOutcomeState(flags: CallReducerFlags) {
     this.importAttackOutcomeStateFlags = flags;
   }
 
-  importBiomeDescFlags: __CallReducerFlags = 'FullUpdate';
-  importBiomeDesc(flags: __CallReducerFlags) {
+  importBiomeDescFlags: CallReducerFlags = 'FullUpdate';
+  importBiomeDesc(flags: CallReducerFlags) {
     this.importBiomeDescFlags = flags;
   }
 
-  importBuffDescFlags: __CallReducerFlags = 'FullUpdate';
-  importBuffDesc(flags: __CallReducerFlags) {
+  importBuffDescFlags: CallReducerFlags = 'FullUpdate';
+  importBuffDesc(flags: CallReducerFlags) {
     this.importBuffDescFlags = flags;
   }
 
-  importBuffTypeDescFlags: __CallReducerFlags = 'FullUpdate';
-  importBuffTypeDesc(flags: __CallReducerFlags) {
+  importBuffTypeDescFlags: CallReducerFlags = 'FullUpdate';
+  importBuffTypeDesc(flags: CallReducerFlags) {
     this.importBuffTypeDescFlags = flags;
   }
 
-  importBuildingClaimDescFlags: __CallReducerFlags = 'FullUpdate';
-  importBuildingClaimDesc(flags: __CallReducerFlags) {
+  importBuildingClaimDescFlags: CallReducerFlags = 'FullUpdate';
+  importBuildingClaimDesc(flags: CallReducerFlags) {
     this.importBuildingClaimDescFlags = flags;
   }
 
-  importBuildingDescFlags: __CallReducerFlags = 'FullUpdate';
-  importBuildingDesc(flags: __CallReducerFlags) {
+  importBuildingDescFlags: CallReducerFlags = 'FullUpdate';
+  importBuildingDesc(flags: CallReducerFlags) {
     this.importBuildingDescFlags = flags;
   }
 
-  importBuildingPortalDescFlags: __CallReducerFlags = 'FullUpdate';
-  importBuildingPortalDesc(flags: __CallReducerFlags) {
+  importBuildingPortalDescFlags: CallReducerFlags = 'FullUpdate';
+  importBuildingPortalDesc(flags: CallReducerFlags) {
     this.importBuildingPortalDescFlags = flags;
   }
 
-  importBuildingRepairsDescFlags: __CallReducerFlags = 'FullUpdate';
-  importBuildingRepairsDesc(flags: __CallReducerFlags) {
+  importBuildingRepairsDescFlags: CallReducerFlags = 'FullUpdate';
+  importBuildingRepairsDesc(flags: CallReducerFlags) {
     this.importBuildingRepairsDescFlags = flags;
   }
 
-  importBuildingSpawnDescFlags: __CallReducerFlags = 'FullUpdate';
-  importBuildingSpawnDesc(flags: __CallReducerFlags) {
+  importBuildingSpawnDescFlags: CallReducerFlags = 'FullUpdate';
+  importBuildingSpawnDesc(flags: CallReducerFlags) {
     this.importBuildingSpawnDescFlags = flags;
   }
 
-  importBuildingStateFlags: __CallReducerFlags = 'FullUpdate';
-  importBuildingState(flags: __CallReducerFlags) {
+  importBuildingStateFlags: CallReducerFlags = 'FullUpdate';
+  importBuildingState(flags: CallReducerFlags) {
     this.importBuildingStateFlags = flags;
   }
 
-  importBuildingTypeDescFlags: __CallReducerFlags = 'FullUpdate';
-  importBuildingTypeDesc(flags: __CallReducerFlags) {
+  importBuildingTypeDescFlags: CallReducerFlags = 'FullUpdate';
+  importBuildingTypeDesc(flags: CallReducerFlags) {
     this.importBuildingTypeDescFlags = flags;
   }
 
-  importCargoDescFlags: __CallReducerFlags = 'FullUpdate';
-  importCargoDesc(flags: __CallReducerFlags) {
+  importCargoDescFlags: CallReducerFlags = 'FullUpdate';
+  importCargoDesc(flags: CallReducerFlags) {
     this.importCargoDescFlags = flags;
   }
 
-  importCharacterStatDescFlags: __CallReducerFlags = 'FullUpdate';
-  importCharacterStatDesc(flags: __CallReducerFlags) {
+  importCharacterStatDescFlags: CallReducerFlags = 'FullUpdate';
+  importCharacterStatDesc(flags: CallReducerFlags) {
     this.importCharacterStatDescFlags = flags;
   }
 
-  importCharacterStatsStateFlags: __CallReducerFlags = 'FullUpdate';
-  importCharacterStatsState(flags: __CallReducerFlags) {
+  importCharacterStatsStateFlags: CallReducerFlags = 'FullUpdate';
+  importCharacterStatsState(flags: CallReducerFlags) {
     this.importCharacterStatsStateFlags = flags;
   }
 
-  importChatMessageStateFlags: __CallReducerFlags = 'FullUpdate';
-  importChatMessageState(flags: __CallReducerFlags) {
+  importChatMessageStateFlags: CallReducerFlags = 'FullUpdate';
+  importChatMessageState(flags: CallReducerFlags) {
     this.importChatMessageStateFlags = flags;
   }
 
-  importChestRarityDescFlags: __CallReducerFlags = 'FullUpdate';
-  importChestRarityDesc(flags: __CallReducerFlags) {
+  importChestRarityDescFlags: CallReducerFlags = 'FullUpdate';
+  importChestRarityDesc(flags: CallReducerFlags) {
     this.importChestRarityDescFlags = flags;
   }
 
-  importClaimLocalStateFlags: __CallReducerFlags = 'FullUpdate';
-  importClaimLocalState(flags: __CallReducerFlags) {
+  importClaimLocalStateFlags: CallReducerFlags = 'FullUpdate';
+  importClaimLocalState(flags: CallReducerFlags) {
     this.importClaimLocalStateFlags = flags;
   }
 
-  importClaimRecruitmentStateFlags: __CallReducerFlags = 'FullUpdate';
-  importClaimRecruitmentState(flags: __CallReducerFlags) {
+  importClaimRecruitmentStateFlags: CallReducerFlags = 'FullUpdate';
+  importClaimRecruitmentState(flags: CallReducerFlags) {
     this.importClaimRecruitmentStateFlags = flags;
   }
 
-  importClaimStateFlags: __CallReducerFlags = 'FullUpdate';
-  importClaimState(flags: __CallReducerFlags) {
+  importClaimStateFlags: CallReducerFlags = 'FullUpdate';
+  importClaimState(flags: CallReducerFlags) {
     this.importClaimStateFlags = flags;
   }
 
-  importClaimTechDescFlags: __CallReducerFlags = 'FullUpdate';
-  importClaimTechDesc(flags: __CallReducerFlags) {
+  importClaimTechDescFlags: CallReducerFlags = 'FullUpdate';
+  importClaimTechDesc(flags: CallReducerFlags) {
     this.importClaimTechDescFlags = flags;
   }
 
-  importClaimTechStateFlags: __CallReducerFlags = 'FullUpdate';
-  importClaimTechState(flags: __CallReducerFlags) {
+  importClaimTechStateFlags: CallReducerFlags = 'FullUpdate';
+  importClaimTechState(flags: CallReducerFlags) {
     this.importClaimTechStateFlags = flags;
   }
 
-  importClaimTileCostFlags: __CallReducerFlags = 'FullUpdate';
-  importClaimTileCost(flags: __CallReducerFlags) {
+  importClaimTileCostFlags: CallReducerFlags = 'FullUpdate';
+  importClaimTileCost(flags: CallReducerFlags) {
     this.importClaimTileCostFlags = flags;
   }
 
-  importClaimTileStateFlags: __CallReducerFlags = 'FullUpdate';
-  importClaimTileState(flags: __CallReducerFlags) {
+  importClaimTileStateFlags: CallReducerFlags = 'FullUpdate';
+  importClaimTileState(flags: CallReducerFlags) {
     this.importClaimTileStateFlags = flags;
   }
 
-  importClimbRequirementDescFlags: __CallReducerFlags = 'FullUpdate';
-  importClimbRequirementDesc(flags: __CallReducerFlags) {
+  importClimbRequirementDescFlags: CallReducerFlags = 'FullUpdate';
+  importClimbRequirementDesc(flags: CallReducerFlags) {
     this.importClimbRequirementDescFlags = flags;
   }
 
-  importClothingDescFlags: __CallReducerFlags = 'FullUpdate';
-  importClothingDesc(flags: __CallReducerFlags) {
+  importClothingDescFlags: CallReducerFlags = 'FullUpdate';
+  importClothingDesc(flags: CallReducerFlags) {
     this.importClothingDescFlags = flags;
   }
 
-  importCollectibleDescFlags: __CallReducerFlags = 'FullUpdate';
-  importCollectibleDesc(flags: __CallReducerFlags) {
+  importCollectibleDescFlags: CallReducerFlags = 'FullUpdate';
+  importCollectibleDesc(flags: CallReducerFlags) {
     this.importCollectibleDescFlags = flags;
   }
 
-  importCombatActionDescV3Flags: __CallReducerFlags = 'FullUpdate';
-  importCombatActionDescV3(flags: __CallReducerFlags) {
+  importCombatActionDescV3Flags: CallReducerFlags = 'FullUpdate';
+  importCombatActionDescV3(flags: CallReducerFlags) {
     this.importCombatActionDescV3Flags = flags;
   }
 
-  importCombatStateFlags: __CallReducerFlags = 'FullUpdate';
-  importCombatState(flags: __CallReducerFlags) {
+  importCombatStateFlags: CallReducerFlags = 'FullUpdate';
+  importCombatState(flags: CallReducerFlags) {
     this.importCombatStateFlags = flags;
   }
 
-  importConfigFlags: __CallReducerFlags = 'FullUpdate';
-  importConfig(flags: __CallReducerFlags) {
+  importConfigFlags: CallReducerFlags = 'FullUpdate';
+  importConfig(flags: CallReducerFlags) {
     this.importConfigFlags = flags;
   }
 
-  importConstructionRecipeDescFlags: __CallReducerFlags = 'FullUpdate';
-  importConstructionRecipeDesc(flags: __CallReducerFlags) {
+  importConstructionRecipeDescFlags: CallReducerFlags = 'FullUpdate';
+  importConstructionRecipeDesc(flags: CallReducerFlags) {
     this.importConstructionRecipeDescFlags = flags;
   }
 
-  importCraftingRecipeDescFlags: __CallReducerFlags = 'FullUpdate';
-  importCraftingRecipeDesc(flags: __CallReducerFlags) {
+  importCraftingRecipeDescFlags: CallReducerFlags = 'FullUpdate';
+  importCraftingRecipeDesc(flags: CallReducerFlags) {
     this.importCraftingRecipeDescFlags = flags;
   }
 
-  importDeconstructionRecipeDescFlags: __CallReducerFlags = 'FullUpdate';
-  importDeconstructionRecipeDesc(flags: __CallReducerFlags) {
+  importDeconstructionRecipeDescFlags: CallReducerFlags = 'FullUpdate';
+  importDeconstructionRecipeDesc(flags: CallReducerFlags) {
     this.importDeconstructionRecipeDescFlags = flags;
   }
 
-  importDeployableDescFlags: __CallReducerFlags = 'FullUpdate';
-  importDeployableDesc(flags: __CallReducerFlags) {
+  importDeployableDescFlags: CallReducerFlags = 'FullUpdate';
+  importDeployableDesc(flags: CallReducerFlags) {
     this.importDeployableDescFlags = flags;
   }
 
-  importDeployableStateFlags: __CallReducerFlags = 'FullUpdate';
-  importDeployableState(flags: __CallReducerFlags) {
+  importDeployableStateFlags: CallReducerFlags = 'FullUpdate';
+  importDeployableState(flags: CallReducerFlags) {
     this.importDeployableStateFlags = flags;
   }
 
-  importDimensionDescriptionStateFlags: __CallReducerFlags = 'FullUpdate';
-  importDimensionDescriptionState(flags: __CallReducerFlags) {
+  importDimensionDescriptionStateFlags: CallReducerFlags = 'FullUpdate';
+  importDimensionDescriptionState(flags: CallReducerFlags) {
     this.importDimensionDescriptionStateFlags = flags;
   }
 
-  importDimensionNetworkDescriptionStateFlags: __CallReducerFlags = 'FullUpdate';
-  importDimensionNetworkDescriptionState(flags: __CallReducerFlags) {
+  importDimensionNetworkDescriptionStateFlags: CallReducerFlags = 'FullUpdate';
+  importDimensionNetworkDescriptionState(flags: CallReducerFlags) {
     this.importDimensionNetworkDescriptionStateFlags = flags;
   }
 
-  importDistantVisibleEntityDescFlags: __CallReducerFlags = 'FullUpdate';
-  importDistantVisibleEntityDesc(flags: __CallReducerFlags) {
+  importDistantVisibleEntityDescFlags: CallReducerFlags = 'FullUpdate';
+  importDistantVisibleEntityDesc(flags: CallReducerFlags) {
     this.importDistantVisibleEntityDescFlags = flags;
   }
 
-  importDroppedInventoryStateFlags: __CallReducerFlags = 'FullUpdate';
-  importDroppedInventoryState(flags: __CallReducerFlags) {
+  importDroppedInventoryStateFlags: CallReducerFlags = 'FullUpdate';
+  importDroppedInventoryState(flags: CallReducerFlags) {
     this.importDroppedInventoryStateFlags = flags;
   }
 
-  importElevatorDescFlags: __CallReducerFlags = 'FullUpdate';
-  importElevatorDesc(flags: __CallReducerFlags) {
+  importElevatorDescFlags: CallReducerFlags = 'FullUpdate';
+  importElevatorDesc(flags: CallReducerFlags) {
     this.importElevatorDescFlags = flags;
   }
 
-  importEmoteDescFlags: __CallReducerFlags = 'FullUpdate';
-  importEmoteDesc(flags: __CallReducerFlags) {
+  importEmoteDescFlags: CallReducerFlags = 'FullUpdate';
+  importEmoteDesc(flags: CallReducerFlags) {
     this.importEmoteDescFlags = flags;
   }
 
-  importEmpireColorsDescFlags: __CallReducerFlags = 'FullUpdate';
-  importEmpireColorsDesc(flags: __CallReducerFlags) {
+  importEmpireColorsDescFlags: CallReducerFlags = 'FullUpdate';
+  importEmpireColorsDesc(flags: CallReducerFlags) {
     this.importEmpireColorsDescFlags = flags;
   }
 
-  importEmpireNotificationDescFlags: __CallReducerFlags = 'FullUpdate';
-  importEmpireNotificationDesc(flags: __CallReducerFlags) {
+  importEmpireNotificationDescFlags: CallReducerFlags = 'FullUpdate';
+  importEmpireNotificationDesc(flags: CallReducerFlags) {
     this.importEmpireNotificationDescFlags = flags;
   }
 
-  importEmpireRankDescFlags: __CallReducerFlags = 'FullUpdate';
-  importEmpireRankDesc(flags: __CallReducerFlags) {
+  importEmpireRankDescFlags: CallReducerFlags = 'FullUpdate';
+  importEmpireRankDesc(flags: CallReducerFlags) {
     this.importEmpireRankDescFlags = flags;
   }
 
-  importEmpireSuppliesDescFlags: __CallReducerFlags = 'FullUpdate';
-  importEmpireSuppliesDesc(flags: __CallReducerFlags) {
+  importEmpireSuppliesDescFlags: CallReducerFlags = 'FullUpdate';
+  importEmpireSuppliesDesc(flags: CallReducerFlags) {
     this.importEmpireSuppliesDescFlags = flags;
   }
 
-  importEmpireTerritoryDescFlags: __CallReducerFlags = 'FullUpdate';
-  importEmpireTerritoryDesc(flags: __CallReducerFlags) {
+  importEmpireTerritoryDescFlags: CallReducerFlags = 'FullUpdate';
+  importEmpireTerritoryDesc(flags: CallReducerFlags) {
     this.importEmpireTerritoryDescFlags = flags;
   }
 
-  importEnemyAiParamsDescFlags: __CallReducerFlags = 'FullUpdate';
-  importEnemyAiParamsDesc(flags: __CallReducerFlags) {
+  importEnemyAiParamsDescFlags: CallReducerFlags = 'FullUpdate';
+  importEnemyAiParamsDesc(flags: CallReducerFlags) {
     this.importEnemyAiParamsDescFlags = flags;
   }
 
-  importEnemyDescFlags: __CallReducerFlags = 'FullUpdate';
-  importEnemyDesc(flags: __CallReducerFlags) {
+  importEnemyDescFlags: CallReducerFlags = 'FullUpdate';
+  importEnemyDesc(flags: CallReducerFlags) {
     this.importEnemyDescFlags = flags;
   }
 
-  importEnemyStateFlags: __CallReducerFlags = 'FullUpdate';
-  importEnemyState(flags: __CallReducerFlags) {
+  importEnemyStateFlags: CallReducerFlags = 'FullUpdate';
+  importEnemyState(flags: CallReducerFlags) {
     this.importEnemyStateFlags = flags;
   }
 
-  importEnvironmentDebuffDescFlags: __CallReducerFlags = 'FullUpdate';
-  importEnvironmentDebuffDesc(flags: __CallReducerFlags) {
+  importEnvironmentDebuffDescFlags: CallReducerFlags = 'FullUpdate';
+  importEnvironmentDebuffDesc(flags: CallReducerFlags) {
     this.importEnvironmentDebuffDescFlags = flags;
   }
 
-  importEquipmentDescFlags: __CallReducerFlags = 'FullUpdate';
-  importEquipmentDesc(flags: __CallReducerFlags) {
+  importEquipmentDescFlags: CallReducerFlags = 'FullUpdate';
+  importEquipmentDesc(flags: CallReducerFlags) {
     this.importEquipmentDescFlags = flags;
   }
 
-  importEquipmentStateFlags: __CallReducerFlags = 'FullUpdate';
-  importEquipmentState(flags: __CallReducerFlags) {
+  importEquipmentStateFlags: CallReducerFlags = 'FullUpdate';
+  importEquipmentState(flags: CallReducerFlags) {
     this.importEquipmentStateFlags = flags;
   }
 
-  importExperienceStateFlags: __CallReducerFlags = 'FullUpdate';
-  importExperienceState(flags: __CallReducerFlags) {
+  importExperienceStateFlags: CallReducerFlags = 'FullUpdate';
+  importExperienceState(flags: CallReducerFlags) {
     this.importExperienceStateFlags = flags;
   }
 
-  importExplorationChunksStateFlags: __CallReducerFlags = 'FullUpdate';
-  importExplorationChunksState(flags: __CallReducerFlags) {
+  importExplorationChunksStateFlags: CallReducerFlags = 'FullUpdate';
+  importExplorationChunksState(flags: CallReducerFlags) {
     this.importExplorationChunksStateFlags = flags;
   }
 
-  importExtractionRecipeDescFlags: __CallReducerFlags = 'FullUpdate';
-  importExtractionRecipeDesc(flags: __CallReducerFlags) {
+  importExtractionRecipeDescFlags: CallReducerFlags = 'FullUpdate';
+  importExtractionRecipeDesc(flags: CallReducerFlags) {
     this.importExtractionRecipeDescFlags = flags;
   }
 
-  importFoodDescFlags: __CallReducerFlags = 'FullUpdate';
-  importFoodDesc(flags: __CallReducerFlags) {
+  importFoodDescFlags: CallReducerFlags = 'FullUpdate';
+  importFoodDesc(flags: CallReducerFlags) {
     this.importFoodDescFlags = flags;
   }
 
-  importFootprintTileStateFlags: __CallReducerFlags = 'FullUpdate';
-  importFootprintTileState(flags: __CallReducerFlags) {
+  importFootprintTileStateFlags: CallReducerFlags = 'FullUpdate';
+  importFootprintTileState(flags: CallReducerFlags) {
     this.importFootprintTileStateFlags = flags;
   }
 
-  importGateDescFlags: __CallReducerFlags = 'FullUpdate';
-  importGateDesc(flags: __CallReducerFlags) {
+  importGateDescFlags: CallReducerFlags = 'FullUpdate';
+  importGateDesc(flags: CallReducerFlags) {
     this.importGateDescFlags = flags;
   }
 
-  importGlobalsFlags: __CallReducerFlags = 'FullUpdate';
-  importGlobals(flags: __CallReducerFlags) {
+  importGlobalsFlags: CallReducerFlags = 'FullUpdate';
+  importGlobals(flags: CallReducerFlags) {
     this.importGlobalsFlags = flags;
   }
 
-  importGrowthStateFlags: __CallReducerFlags = 'FullUpdate';
-  importGrowthState(flags: __CallReducerFlags) {
+  importGrowthStateFlags: CallReducerFlags = 'FullUpdate';
+  importGrowthState(flags: CallReducerFlags) {
     this.importGrowthStateFlags = flags;
   }
 
-  importHealthStateFlags: __CallReducerFlags = 'FullUpdate';
-  importHealthState(flags: __CallReducerFlags) {
+  importHealthStateFlags: CallReducerFlags = 'FullUpdate';
+  importHealthState(flags: CallReducerFlags) {
     this.importHealthStateFlags = flags;
   }
 
-  importHerdCacheFlags: __CallReducerFlags = 'FullUpdate';
-  importHerdCache(flags: __CallReducerFlags) {
+  importHerdCacheFlags: CallReducerFlags = 'FullUpdate';
+  importHerdCache(flags: CallReducerFlags) {
     this.importHerdCacheFlags = flags;
   }
 
-  importHexiteExchangeEntryDescFlags: __CallReducerFlags = 'FullUpdate';
-  importHexiteExchangeEntryDesc(flags: __CallReducerFlags) {
+  importHexiteExchangeEntryDescFlags: CallReducerFlags = 'FullUpdate';
+  importHexiteExchangeEntryDesc(flags: CallReducerFlags) {
     this.importHexiteExchangeEntryDescFlags = flags;
   }
 
-  importIdentityRoleFlags: __CallReducerFlags = 'FullUpdate';
-  importIdentityRole(flags: __CallReducerFlags) {
+  importIdentityRoleFlags: CallReducerFlags = 'FullUpdate';
+  importIdentityRole(flags: CallReducerFlags) {
     this.importIdentityRoleFlags = flags;
   }
 
-  importInteriorCollapseTriggerStateFlags: __CallReducerFlags = 'FullUpdate';
-  importInteriorCollapseTriggerState(flags: __CallReducerFlags) {
+  importInteriorCollapseTriggerStateFlags: CallReducerFlags = 'FullUpdate';
+  importInteriorCollapseTriggerState(flags: CallReducerFlags) {
     this.importInteriorCollapseTriggerStateFlags = flags;
   }
 
-  importInteriorInstanceDescFlags: __CallReducerFlags = 'FullUpdate';
-  importInteriorInstanceDesc(flags: __CallReducerFlags) {
+  importInteriorInstanceDescFlags: CallReducerFlags = 'FullUpdate';
+  importInteriorInstanceDesc(flags: CallReducerFlags) {
     this.importInteriorInstanceDescFlags = flags;
   }
 
-  importInteriorNetworkDescFlags: __CallReducerFlags = 'FullUpdate';
-  importInteriorNetworkDesc(flags: __CallReducerFlags) {
+  importInteriorNetworkDescFlags: CallReducerFlags = 'FullUpdate';
+  importInteriorNetworkDesc(flags: CallReducerFlags) {
     this.importInteriorNetworkDescFlags = flags;
   }
 
-  importInteriorPortalConnectionsDescFlags: __CallReducerFlags = 'FullUpdate';
-  importInteriorPortalConnectionsDesc(flags: __CallReducerFlags) {
+  importInteriorPortalConnectionsDescFlags: CallReducerFlags = 'FullUpdate';
+  importInteriorPortalConnectionsDesc(flags: CallReducerFlags) {
     this.importInteriorPortalConnectionsDescFlags = flags;
   }
 
-  importInteriorShapeDescFlags: __CallReducerFlags = 'FullUpdate';
-  importInteriorShapeDesc(flags: __CallReducerFlags) {
+  importInteriorShapeDescFlags: CallReducerFlags = 'FullUpdate';
+  importInteriorShapeDesc(flags: CallReducerFlags) {
     this.importInteriorShapeDescFlags = flags;
   }
 
-  importInteriorSpawnDescFlags: __CallReducerFlags = 'FullUpdate';
-  importInteriorSpawnDesc(flags: __CallReducerFlags) {
+  importInteriorSpawnDescFlags: CallReducerFlags = 'FullUpdate';
+  importInteriorSpawnDesc(flags: CallReducerFlags) {
     this.importInteriorSpawnDescFlags = flags;
   }
 
-  importInventoryStateFlags: __CallReducerFlags = 'FullUpdate';
-  importInventoryState(flags: __CallReducerFlags) {
+  importInventoryStateFlags: CallReducerFlags = 'FullUpdate';
+  importInventoryState(flags: CallReducerFlags) {
     this.importInventoryStateFlags = flags;
   }
 
-  importItemConversionRecipeDescFlags: __CallReducerFlags = 'FullUpdate';
-  importItemConversionRecipeDesc(flags: __CallReducerFlags) {
+  importItemConversionRecipeDescFlags: CallReducerFlags = 'FullUpdate';
+  importItemConversionRecipeDesc(flags: CallReducerFlags) {
     this.importItemConversionRecipeDescFlags = flags;
   }
 
-  importItemDescFlags: __CallReducerFlags = 'FullUpdate';
-  importItemDesc(flags: __CallReducerFlags) {
+  importItemDescFlags: CallReducerFlags = 'FullUpdate';
+  importItemDesc(flags: CallReducerFlags) {
     this.importItemDescFlags = flags;
   }
 
-  importItemListDescFlags: __CallReducerFlags = 'FullUpdate';
-  importItemListDesc(flags: __CallReducerFlags) {
+  importItemListDescFlags: CallReducerFlags = 'FullUpdate';
+  importItemListDesc(flags: CallReducerFlags) {
     this.importItemListDescFlags = flags;
   }
 
-  importKnowledgeAchievementStateFlags: __CallReducerFlags = 'FullUpdate';
-  importKnowledgeAchievementState(flags: __CallReducerFlags) {
+  importKnowledgeAchievementStateFlags: CallReducerFlags = 'FullUpdate';
+  importKnowledgeAchievementState(flags: CallReducerFlags) {
     this.importKnowledgeAchievementStateFlags = flags;
   }
 
-  importKnowledgeBattleActionStateFlags: __CallReducerFlags = 'FullUpdate';
-  importKnowledgeBattleActionState(flags: __CallReducerFlags) {
+  importKnowledgeBattleActionStateFlags: CallReducerFlags = 'FullUpdate';
+  importKnowledgeBattleActionState(flags: CallReducerFlags) {
     this.importKnowledgeBattleActionStateFlags = flags;
   }
 
-  importKnowledgeBuildingStateFlags: __CallReducerFlags = 'FullUpdate';
-  importKnowledgeBuildingState(flags: __CallReducerFlags) {
+  importKnowledgeBuildingStateFlags: CallReducerFlags = 'FullUpdate';
+  importKnowledgeBuildingState(flags: CallReducerFlags) {
     this.importKnowledgeBuildingStateFlags = flags;
   }
 
-  importKnowledgeCargoStateFlags: __CallReducerFlags = 'FullUpdate';
-  importKnowledgeCargoState(flags: __CallReducerFlags) {
+  importKnowledgeCargoStateFlags: CallReducerFlags = 'FullUpdate';
+  importKnowledgeCargoState(flags: CallReducerFlags) {
     this.importKnowledgeCargoStateFlags = flags;
   }
 
-  importKnowledgeConstructionStateFlags: __CallReducerFlags = 'FullUpdate';
-  importKnowledgeConstructionState(flags: __CallReducerFlags) {
+  importKnowledgeConstructionStateFlags: CallReducerFlags = 'FullUpdate';
+  importKnowledgeConstructionState(flags: CallReducerFlags) {
     this.importKnowledgeConstructionStateFlags = flags;
   }
 
-  importKnowledgeCraftStateFlags: __CallReducerFlags = 'FullUpdate';
-  importKnowledgeCraftState(flags: __CallReducerFlags) {
+  importKnowledgeCraftStateFlags: CallReducerFlags = 'FullUpdate';
+  importKnowledgeCraftState(flags: CallReducerFlags) {
     this.importKnowledgeCraftStateFlags = flags;
   }
 
-  importKnowledgeDeployableStateFlags: __CallReducerFlags = 'FullUpdate';
-  importKnowledgeDeployableState(flags: __CallReducerFlags) {
+  importKnowledgeDeployableStateFlags: CallReducerFlags = 'FullUpdate';
+  importKnowledgeDeployableState(flags: CallReducerFlags) {
     this.importKnowledgeDeployableStateFlags = flags;
   }
 
-  importKnowledgeEnemyStateFlags: __CallReducerFlags = 'FullUpdate';
-  importKnowledgeEnemyState(flags: __CallReducerFlags) {
+  importKnowledgeEnemyStateFlags: CallReducerFlags = 'FullUpdate';
+  importKnowledgeEnemyState(flags: CallReducerFlags) {
     this.importKnowledgeEnemyStateFlags = flags;
   }
 
-  importKnowledgeExtractStateFlags: __CallReducerFlags = 'FullUpdate';
-  importKnowledgeExtractState(flags: __CallReducerFlags) {
+  importKnowledgeExtractStateFlags: CallReducerFlags = 'FullUpdate';
+  importKnowledgeExtractState(flags: CallReducerFlags) {
     this.importKnowledgeExtractStateFlags = flags;
   }
 
-  importKnowledgeItemStateFlags: __CallReducerFlags = 'FullUpdate';
-  importKnowledgeItemState(flags: __CallReducerFlags) {
+  importKnowledgeItemStateFlags: CallReducerFlags = 'FullUpdate';
+  importKnowledgeItemState(flags: CallReducerFlags) {
     this.importKnowledgeItemStateFlags = flags;
   }
 
-  importKnowledgeLoreStateFlags: __CallReducerFlags = 'FullUpdate';
-  importKnowledgeLoreState(flags: __CallReducerFlags) {
+  importKnowledgeLoreStateFlags: CallReducerFlags = 'FullUpdate';
+  importKnowledgeLoreState(flags: CallReducerFlags) {
     this.importKnowledgeLoreStateFlags = flags;
   }
 
-  importKnowledgeNpcStateFlags: __CallReducerFlags = 'FullUpdate';
-  importKnowledgeNpcState(flags: __CallReducerFlags) {
+  importKnowledgeNpcStateFlags: CallReducerFlags = 'FullUpdate';
+  importKnowledgeNpcState(flags: CallReducerFlags) {
     this.importKnowledgeNpcStateFlags = flags;
   }
 
-  importKnowledgePavingStateFlags: __CallReducerFlags = 'FullUpdate';
-  importKnowledgePavingState(flags: __CallReducerFlags) {
+  importKnowledgePavingStateFlags: CallReducerFlags = 'FullUpdate';
+  importKnowledgePavingState(flags: CallReducerFlags) {
     this.importKnowledgePavingStateFlags = flags;
   }
 
-  importKnowledgeResourcePlacementStateFlags: __CallReducerFlags = 'FullUpdate';
-  importKnowledgeResourcePlacementState(flags: __CallReducerFlags) {
+  importKnowledgeResourcePlacementStateFlags: CallReducerFlags = 'FullUpdate';
+  importKnowledgeResourcePlacementState(flags: CallReducerFlags) {
     this.importKnowledgeResourcePlacementStateFlags = flags;
   }
 
-  importKnowledgeResourceStateFlags: __CallReducerFlags = 'FullUpdate';
-  importKnowledgeResourceState(flags: __CallReducerFlags) {
+  importKnowledgeResourceStateFlags: CallReducerFlags = 'FullUpdate';
+  importKnowledgeResourceState(flags: CallReducerFlags) {
     this.importKnowledgeResourceStateFlags = flags;
   }
 
-  importKnowledgeRuinsStateFlags: __CallReducerFlags = 'FullUpdate';
-  importKnowledgeRuinsState(flags: __CallReducerFlags) {
+  importKnowledgeRuinsStateFlags: CallReducerFlags = 'FullUpdate';
+  importKnowledgeRuinsState(flags: CallReducerFlags) {
     this.importKnowledgeRuinsStateFlags = flags;
   }
 
-  importKnowledgeScrollDescFlags: __CallReducerFlags = 'FullUpdate';
-  importKnowledgeScrollDesc(flags: __CallReducerFlags) {
+  importKnowledgeScrollDescFlags: CallReducerFlags = 'FullUpdate';
+  importKnowledgeScrollDesc(flags: CallReducerFlags) {
     this.importKnowledgeScrollDescFlags = flags;
   }
 
-  importKnowledgeScrollTypeDescFlags: __CallReducerFlags = 'FullUpdate';
-  importKnowledgeScrollTypeDesc(flags: __CallReducerFlags) {
+  importKnowledgeScrollTypeDescFlags: CallReducerFlags = 'FullUpdate';
+  importKnowledgeScrollTypeDesc(flags: CallReducerFlags) {
     this.importKnowledgeScrollTypeDescFlags = flags;
   }
 
-  importKnowledgeSecondaryStateFlags: __CallReducerFlags = 'FullUpdate';
-  importKnowledgeSecondaryState(flags: __CallReducerFlags) {
+  importKnowledgeSecondaryStateFlags: CallReducerFlags = 'FullUpdate';
+  importKnowledgeSecondaryState(flags: CallReducerFlags) {
     this.importKnowledgeSecondaryStateFlags = flags;
   }
 
-  importKnowledgeStatModifierDescFlags: __CallReducerFlags = 'FullUpdate';
-  importKnowledgeStatModifierDesc(flags: __CallReducerFlags) {
+  importKnowledgeStatModifierDescFlags: CallReducerFlags = 'FullUpdate';
+  importKnowledgeStatModifierDesc(flags: CallReducerFlags) {
     this.importKnowledgeStatModifierDescFlags = flags;
   }
 
-  importKnowledgeVaultStateFlags: __CallReducerFlags = 'FullUpdate';
-  importKnowledgeVaultState(flags: __CallReducerFlags) {
+  importKnowledgeVaultStateFlags: CallReducerFlags = 'FullUpdate';
+  importKnowledgeVaultState(flags: CallReducerFlags) {
     this.importKnowledgeVaultStateFlags = flags;
   }
 
-  importLocationStateFlags: __CallReducerFlags = 'FullUpdate';
-  importLocationState(flags: __CallReducerFlags) {
+  importLocationStateFlags: CallReducerFlags = 'FullUpdate';
+  importLocationState(flags: CallReducerFlags) {
     this.importLocationStateFlags = flags;
   }
 
-  importLootChestDescFlags: __CallReducerFlags = 'FullUpdate';
-  importLootChestDesc(flags: __CallReducerFlags) {
+  importLootChestDescFlags: CallReducerFlags = 'FullUpdate';
+  importLootChestDesc(flags: CallReducerFlags) {
     this.importLootChestDescFlags = flags;
   }
 
-  importLootChestStateFlags: __CallReducerFlags = 'FullUpdate';
-  importLootChestState(flags: __CallReducerFlags) {
+  importLootChestStateFlags: CallReducerFlags = 'FullUpdate';
+  importLootChestState(flags: CallReducerFlags) {
     this.importLootChestStateFlags = flags;
   }
 
-  importLootRarityDescFlags: __CallReducerFlags = 'FullUpdate';
-  importLootRarityDesc(flags: __CallReducerFlags) {
+  importLootRarityDescFlags: CallReducerFlags = 'FullUpdate';
+  importLootRarityDesc(flags: CallReducerFlags) {
     this.importLootRarityDescFlags = flags;
   }
 
-  importLootTableDescFlags: __CallReducerFlags = 'FullUpdate';
-  importLootTableDesc(flags: __CallReducerFlags) {
+  importLootTableDescFlags: CallReducerFlags = 'FullUpdate';
+  importLootTableDesc(flags: CallReducerFlags) {
     this.importLootTableDescFlags = flags;
   }
 
-  importMobileEntityStateFlags: __CallReducerFlags = 'FullUpdate';
-  importMobileEntityState(flags: __CallReducerFlags) {
+  importMobileEntityStateFlags: CallReducerFlags = 'FullUpdate';
+  importMobileEntityState(flags: CallReducerFlags) {
     this.importMobileEntityStateFlags = flags;
   }
 
-  importMountingStateFlags: __CallReducerFlags = 'FullUpdate';
-  importMountingState(flags: __CallReducerFlags) {
+  importMountingStateFlags: CallReducerFlags = 'FullUpdate';
+  importMountingState(flags: CallReducerFlags) {
     this.importMountingStateFlags = flags;
   }
 
-  importNpcDescFlags: __CallReducerFlags = 'FullUpdate';
-  importNpcDesc(flags: __CallReducerFlags) {
+  importNpcDescFlags: CallReducerFlags = 'FullUpdate';
+  importNpcDesc(flags: CallReducerFlags) {
     this.importNpcDescFlags = flags;
   }
 
-  importNpcStateFlags: __CallReducerFlags = 'FullUpdate';
-  importNpcState(flags: __CallReducerFlags) {
+  importNpcStateFlags: CallReducerFlags = 'FullUpdate';
+  importNpcState(flags: CallReducerFlags) {
     this.importNpcStateFlags = flags;
   }
 
-  importOnboardingRewardDescFlags: __CallReducerFlags = 'FullUpdate';
-  importOnboardingRewardDesc(flags: __CallReducerFlags) {
+  importOnboardingRewardDescFlags: CallReducerFlags = 'FullUpdate';
+  importOnboardingRewardDesc(flags: CallReducerFlags) {
     this.importOnboardingRewardDescFlags = flags;
   }
 
-  importOnboardingStateFlags: __CallReducerFlags = 'FullUpdate';
-  importOnboardingState(flags: __CallReducerFlags) {
+  importOnboardingStateFlags: CallReducerFlags = 'FullUpdate';
+  importOnboardingState(flags: CallReducerFlags) {
     this.importOnboardingStateFlags = flags;
   }
 
-  importParametersDescFlags: __CallReducerFlags = 'FullUpdate';
-  importParametersDesc(flags: __CallReducerFlags) {
+  importParametersDescFlags: CallReducerFlags = 'FullUpdate';
+  importParametersDesc(flags: CallReducerFlags) {
     this.importParametersDescFlags = flags;
   }
 
-  importPathfindingDescFlags: __CallReducerFlags = 'FullUpdate';
-  importPathfindingDesc(flags: __CallReducerFlags) {
+  importPathfindingDescFlags: CallReducerFlags = 'FullUpdate';
+  importPathfindingDesc(flags: CallReducerFlags) {
     this.importPathfindingDescFlags = flags;
   }
 
-  importPavedTileStateFlags: __CallReducerFlags = 'FullUpdate';
-  importPavedTileState(flags: __CallReducerFlags) {
+  importPavedTileStateFlags: CallReducerFlags = 'FullUpdate';
+  importPavedTileState(flags: CallReducerFlags) {
     this.importPavedTileStateFlags = flags;
   }
 
-  importPavingTileDescFlags: __CallReducerFlags = 'FullUpdate';
-  importPavingTileDesc(flags: __CallReducerFlags) {
+  importPavingTileDescFlags: CallReducerFlags = 'FullUpdate';
+  importPavingTileDesc(flags: CallReducerFlags) {
     this.importPavingTileDescFlags = flags;
   }
 
-  importPlayerActionDescFlags: __CallReducerFlags = 'FullUpdate';
-  importPlayerActionDesc(flags: __CallReducerFlags) {
+  importPlayerActionDescFlags: CallReducerFlags = 'FullUpdate';
+  importPlayerActionDesc(flags: CallReducerFlags) {
     this.importPlayerActionDescFlags = flags;
   }
 
-  importPlayerActionStateFlags: __CallReducerFlags = 'FullUpdate';
-  importPlayerActionState(flags: __CallReducerFlags) {
+  importPlayerActionStateFlags: CallReducerFlags = 'FullUpdate';
+  importPlayerActionState(flags: CallReducerFlags) {
     this.importPlayerActionStateFlags = flags;
   }
 
-  importPlayerPrefsStateFlags: __CallReducerFlags = 'FullUpdate';
-  importPlayerPrefsState(flags: __CallReducerFlags) {
+  importPlayerPrefsStateFlags: CallReducerFlags = 'FullUpdate';
+  importPlayerPrefsState(flags: CallReducerFlags) {
     this.importPlayerPrefsStateFlags = flags;
   }
 
-  importPlayerStateFlags: __CallReducerFlags = 'FullUpdate';
-  importPlayerState(flags: __CallReducerFlags) {
+  importPlayerStateFlags: CallReducerFlags = 'FullUpdate';
+  importPlayerState(flags: CallReducerFlags) {
     this.importPlayerStateFlags = flags;
   }
 
-  importPlayerVoteStateFlags: __CallReducerFlags = 'FullUpdate';
-  importPlayerVoteState(flags: __CallReducerFlags) {
+  importPlayerVoteStateFlags: CallReducerFlags = 'FullUpdate';
+  importPlayerVoteState(flags: CallReducerFlags) {
     this.importPlayerVoteStateFlags = flags;
   }
 
-  importPortalStateFlags: __CallReducerFlags = 'FullUpdate';
-  importPortalState(flags: __CallReducerFlags) {
+  importPortalStateFlags: CallReducerFlags = 'FullUpdate';
+  importPortalState(flags: CallReducerFlags) {
     this.importPortalStateFlags = flags;
   }
 
-  importPrivateParametersDescFlags: __CallReducerFlags = 'FullUpdate';
-  importPrivateParametersDesc(flags: __CallReducerFlags) {
+  importPrivateParametersDescFlags: CallReducerFlags = 'FullUpdate';
+  importPrivateParametersDesc(flags: CallReducerFlags) {
     this.importPrivateParametersDescFlags = flags;
   }
 
-  importProgressiveActionStateFlags: __CallReducerFlags = 'FullUpdate';
-  importProgressiveActionState(flags: __CallReducerFlags) {
+  importProgressiveActionStateFlags: CallReducerFlags = 'FullUpdate';
+  importProgressiveActionState(flags: CallReducerFlags) {
     this.importProgressiveActionStateFlags = flags;
   }
 
-  importProjectSiteStateFlags: __CallReducerFlags = 'FullUpdate';
-  importProjectSiteState(flags: __CallReducerFlags) {
+  importProjectSiteStateFlags: CallReducerFlags = 'FullUpdate';
+  importProjectSiteState(flags: CallReducerFlags) {
     this.importProjectSiteStateFlags = flags;
   }
 
-  importRegionConnectionInfoFlags: __CallReducerFlags = 'FullUpdate';
-  importRegionConnectionInfo(flags: __CallReducerFlags) {
+  importRegionConnectionInfoFlags: CallReducerFlags = 'FullUpdate';
+  importRegionConnectionInfo(flags: CallReducerFlags) {
     this.importRegionConnectionInfoFlags = flags;
   }
 
-  importRegionSignInParametersFlags: __CallReducerFlags = 'FullUpdate';
-  importRegionSignInParameters(flags: __CallReducerFlags) {
+  importRegionSignInParametersFlags: CallReducerFlags = 'FullUpdate';
+  importRegionSignInParameters(flags: CallReducerFlags) {
     this.importRegionSignInParametersFlags = flags;
   }
 
-  importRentStateFlags: __CallReducerFlags = 'FullUpdate';
-  importRentState(flags: __CallReducerFlags) {
+  importRentStateFlags: CallReducerFlags = 'FullUpdate';
+  importRentState(flags: CallReducerFlags) {
     this.importRentStateFlags = flags;
   }
 
-  importResourceClumpDescFlags: __CallReducerFlags = 'FullUpdate';
-  importResourceClumpDesc(flags: __CallReducerFlags) {
+  importResourceClumpDescFlags: CallReducerFlags = 'FullUpdate';
+  importResourceClumpDesc(flags: CallReducerFlags) {
     this.importResourceClumpDescFlags = flags;
   }
 
-  importResourceCountFlags: __CallReducerFlags = 'FullUpdate';
-  importResourceCount(flags: __CallReducerFlags) {
+  importResourceCountFlags: CallReducerFlags = 'FullUpdate';
+  importResourceCount(flags: CallReducerFlags) {
     this.importResourceCountFlags = flags;
   }
 
-  importResourceDescFlags: __CallReducerFlags = 'FullUpdate';
-  importResourceDesc(flags: __CallReducerFlags) {
+  importResourceDescFlags: CallReducerFlags = 'FullUpdate';
+  importResourceDesc(flags: CallReducerFlags) {
     this.importResourceDescFlags = flags;
   }
 
-  importResourceGrowthRecipeDescFlags: __CallReducerFlags = 'FullUpdate';
-  importResourceGrowthRecipeDesc(flags: __CallReducerFlags) {
+  importResourceGrowthRecipeDescFlags: CallReducerFlags = 'FullUpdate';
+  importResourceGrowthRecipeDesc(flags: CallReducerFlags) {
     this.importResourceGrowthRecipeDescFlags = flags;
   }
 
-  importResourcePlacementRecipeDescFlags: __CallReducerFlags = 'FullUpdate';
-  importResourcePlacementRecipeDesc(flags: __CallReducerFlags) {
+  importResourcePlacementRecipeDescFlags: CallReducerFlags = 'FullUpdate';
+  importResourcePlacementRecipeDesc(flags: CallReducerFlags) {
     this.importResourcePlacementRecipeDescFlags = flags;
   }
 
-  importResourceStateFlags: __CallReducerFlags = 'FullUpdate';
-  importResourceState(flags: __CallReducerFlags) {
+  importResourceStateFlags: CallReducerFlags = 'FullUpdate';
+  importResourceState(flags: CallReducerFlags) {
     this.importResourceStateFlags = flags;
   }
 
-  importSatiationStateFlags: __CallReducerFlags = 'FullUpdate';
-  importSatiationState(flags: __CallReducerFlags) {
+  importSatiationStateFlags: CallReducerFlags = 'FullUpdate';
+  importSatiationState(flags: CallReducerFlags) {
     this.importSatiationStateFlags = flags;
   }
 
-  importSecondaryKnowledgeDescFlags: __CallReducerFlags = 'FullUpdate';
-  importSecondaryKnowledgeDesc(flags: __CallReducerFlags) {
+  importSecondaryKnowledgeDescFlags: CallReducerFlags = 'FullUpdate';
+  importSecondaryKnowledgeDesc(flags: CallReducerFlags) {
     this.importSecondaryKnowledgeDescFlags = flags;
   }
 
-  importServerIdentityFlags: __CallReducerFlags = 'FullUpdate';
-  importServerIdentity(flags: __CallReducerFlags) {
+  importServerIdentityFlags: CallReducerFlags = 'FullUpdate';
+  importServerIdentity(flags: CallReducerFlags) {
     this.importServerIdentityFlags = flags;
   }
 
-  importSignedInPlayerStateFlags: __CallReducerFlags = 'FullUpdate';
-  importSignedInPlayerState(flags: __CallReducerFlags) {
+  importSignedInPlayerStateFlags: CallReducerFlags = 'FullUpdate';
+  importSignedInPlayerState(flags: CallReducerFlags) {
     this.importSignedInPlayerStateFlags = flags;
   }
 
-  importSkillDescFlags: __CallReducerFlags = 'FullUpdate';
-  importSkillDesc(flags: __CallReducerFlags) {
+  importSkillDescFlags: CallReducerFlags = 'FullUpdate';
+  importSkillDesc(flags: CallReducerFlags) {
     this.importSkillDescFlags = flags;
   }
 
-  importStaminaStateFlags: __CallReducerFlags = 'FullUpdate';
-  importStaminaState(flags: __CallReducerFlags) {
+  importStaminaStateFlags: CallReducerFlags = 'FullUpdate';
+  importStaminaState(flags: CallReducerFlags) {
     this.importStaminaStateFlags = flags;
   }
 
-  importTargetStateFlags: __CallReducerFlags = 'FullUpdate';
-  importTargetState(flags: __CallReducerFlags) {
+  importTargetStateFlags: CallReducerFlags = 'FullUpdate';
+  importTargetState(flags: CallReducerFlags) {
     this.importTargetStateFlags = flags;
   }
 
-  importTargetableStateFlags: __CallReducerFlags = 'FullUpdate';
-  importTargetableState(flags: __CallReducerFlags) {
+  importTargetableStateFlags: CallReducerFlags = 'FullUpdate';
+  importTargetableState(flags: CallReducerFlags) {
     this.importTargetableStateFlags = flags;
   }
 
-  importTargetingMatrixDescFlags: __CallReducerFlags = 'FullUpdate';
-  importTargetingMatrixDesc(flags: __CallReducerFlags) {
+  importTargetingMatrixDescFlags: CallReducerFlags = 'FullUpdate';
+  importTargetingMatrixDesc(flags: CallReducerFlags) {
     this.importTargetingMatrixDescFlags = flags;
   }
 
-  importTeleportItemDescFlags: __CallReducerFlags = 'FullUpdate';
-  importTeleportItemDesc(flags: __CallReducerFlags) {
+  importTeleportItemDescFlags: CallReducerFlags = 'FullUpdate';
+  importTeleportItemDesc(flags: CallReducerFlags) {
     this.importTeleportItemDescFlags = flags;
   }
 
-  importTerraformRecipeDescFlags: __CallReducerFlags = 'FullUpdate';
-  importTerraformRecipeDesc(flags: __CallReducerFlags) {
+  importTerraformRecipeDescFlags: CallReducerFlags = 'FullUpdate';
+  importTerraformRecipeDesc(flags: CallReducerFlags) {
     this.importTerraformRecipeDescFlags = flags;
   }
 
-  importTerrainChunkStateFlags: __CallReducerFlags = 'FullUpdate';
-  importTerrainChunkState(flags: __CallReducerFlags) {
+  importTerrainChunkStateFlags: CallReducerFlags = 'FullUpdate';
+  importTerrainChunkState(flags: CallReducerFlags) {
     this.importTerrainChunkStateFlags = flags;
   }
 
-  importToolDescFlags: __CallReducerFlags = 'FullUpdate';
-  importToolDesc(flags: __CallReducerFlags) {
+  importToolDescFlags: CallReducerFlags = 'FullUpdate';
+  importToolDesc(flags: CallReducerFlags) {
     this.importToolDescFlags = flags;
   }
 
-  importToolTypeDescFlags: __CallReducerFlags = 'FullUpdate';
-  importToolTypeDesc(flags: __CallReducerFlags) {
+  importToolTypeDescFlags: CallReducerFlags = 'FullUpdate';
+  importToolTypeDesc(flags: CallReducerFlags) {
     this.importToolTypeDescFlags = flags;
   }
 
-  importTradeOrderStateFlags: __CallReducerFlags = 'FullUpdate';
-  importTradeOrderState(flags: __CallReducerFlags) {
+  importTradeOrderStateFlags: CallReducerFlags = 'FullUpdate';
+  importTradeOrderState(flags: CallReducerFlags) {
     this.importTradeOrderStateFlags = flags;
   }
 
-  importTradeSessionStateFlags: __CallReducerFlags = 'FullUpdate';
-  importTradeSessionState(flags: __CallReducerFlags) {
+  importTradeSessionStateFlags: CallReducerFlags = 'FullUpdate';
+  importTradeSessionState(flags: CallReducerFlags) {
     this.importTradeSessionStateFlags = flags;
   }
 
-  importTravelerTaskDescFlags: __CallReducerFlags = 'FullUpdate';
-  importTravelerTaskDesc(flags: __CallReducerFlags) {
+  importTravelerTaskDescFlags: CallReducerFlags = 'FullUpdate';
+  importTravelerTaskDesc(flags: CallReducerFlags) {
     this.importTravelerTaskDescFlags = flags;
   }
 
-  importTravelerTradeOrderDescFlags: __CallReducerFlags = 'FullUpdate';
-  importTravelerTradeOrderDesc(flags: __CallReducerFlags) {
+  importTravelerTradeOrderDescFlags: CallReducerFlags = 'FullUpdate';
+  importTravelerTradeOrderDesc(flags: CallReducerFlags) {
     this.importTravelerTradeOrderDescFlags = flags;
   }
 
-  importUserModerationStateFlags: __CallReducerFlags = 'FullUpdate';
-  importUserModerationState(flags: __CallReducerFlags) {
+  importUserModerationStateFlags: CallReducerFlags = 'FullUpdate';
+  importUserModerationState(flags: CallReducerFlags) {
     this.importUserModerationStateFlags = flags;
   }
 
-  importUserStateFlags: __CallReducerFlags = 'FullUpdate';
-  importUserState(flags: __CallReducerFlags) {
+  importUserStateFlags: CallReducerFlags = 'FullUpdate';
+  importUserState(flags: CallReducerFlags) {
     this.importUserStateFlags = flags;
   }
 
-  importVaultStateFlags: __CallReducerFlags = 'FullUpdate';
-  importVaultState(flags: __CallReducerFlags) {
+  importVaultStateFlags: CallReducerFlags = 'FullUpdate';
+  importVaultState(flags: CallReducerFlags) {
     this.importVaultStateFlags = flags;
   }
 
-  importWallDescFlags: __CallReducerFlags = 'FullUpdate';
-  importWallDesc(flags: __CallReducerFlags) {
+  importWallDescFlags: CallReducerFlags = 'FullUpdate';
+  importWallDesc(flags: CallReducerFlags) {
     this.importWallDescFlags = flags;
   }
 
-  importWeaponDescFlags: __CallReducerFlags = 'FullUpdate';
-  importWeaponDesc(flags: __CallReducerFlags) {
+  importWeaponDescFlags: CallReducerFlags = 'FullUpdate';
+  importWeaponDesc(flags: CallReducerFlags) {
     this.importWeaponDescFlags = flags;
   }
 
-  importWeaponTypeDescFlags: __CallReducerFlags = 'FullUpdate';
-  importWeaponTypeDesc(flags: __CallReducerFlags) {
+  importWeaponTypeDescFlags: CallReducerFlags = 'FullUpdate';
+  importWeaponTypeDesc(flags: CallReducerFlags) {
     this.importWeaponTypeDescFlags = flags;
   }
 
-  importWindParamsDescFlags: __CallReducerFlags = 'FullUpdate';
-  importWindParamsDesc(flags: __CallReducerFlags) {
+  importWindParamsDescFlags: CallReducerFlags = 'FullUpdate';
+  importWindParamsDesc(flags: CallReducerFlags) {
     this.importWindParamsDescFlags = flags;
   }
 
-  importWorldRegionNameStateFlags: __CallReducerFlags = 'FullUpdate';
-  importWorldRegionNameState(flags: __CallReducerFlags) {
+  importWorldRegionNameStateFlags: CallReducerFlags = 'FullUpdate';
+  importWorldRegionNameState(flags: CallReducerFlags) {
     this.importWorldRegionNameStateFlags = flags;
   }
 
-  importWorldRegionStateFlags: __CallReducerFlags = 'FullUpdate';
-  importWorldRegionState(flags: __CallReducerFlags) {
+  importWorldRegionStateFlags: CallReducerFlags = 'FullUpdate';
+  importWorldRegionState(flags: CallReducerFlags) {
     this.importWorldRegionStateFlags = flags;
   }
 
-  insertDeveloperIdentityFlags: __CallReducerFlags = 'FullUpdate';
-  insertDeveloperIdentity(flags: __CallReducerFlags) {
+  insertDeveloperIdentityFlags: CallReducerFlags = 'FullUpdate';
+  insertDeveloperIdentity(flags: CallReducerFlags) {
     this.insertDeveloperIdentityFlags = flags;
   }
 
-  loadConfigFlags: __CallReducerFlags = 'FullUpdate';
-  loadConfig(flags: __CallReducerFlags) {
+  loadConfigFlags: CallReducerFlags = 'FullUpdate';
+  loadConfig(flags: CallReducerFlags) {
     this.loadConfigFlags = flags;
   }
 
-  logEmpireLeaderboardFlags: __CallReducerFlags = 'FullUpdate';
-  logEmpireLeaderboard(flags: __CallReducerFlags) {
+  logEmpireLeaderboardFlags: CallReducerFlags = 'FullUpdate';
+  logEmpireLeaderboard(flags: CallReducerFlags) {
     this.logEmpireLeaderboardFlags = flags;
   }
 
-  logPlayerWithFlags: __CallReducerFlags = 'FullUpdate';
-  logPlayerWith(flags: __CallReducerFlags) {
+  logPlayerWithFlags: CallReducerFlags = 'FullUpdate';
+  logPlayerWith(flags: CallReducerFlags) {
     this.logPlayerWithFlags = flags;
   }
 
-  onInterModuleMessageProcessedFlags: __CallReducerFlags = 'FullUpdate';
-  onInterModuleMessageProcessed(flags: __CallReducerFlags) {
+  onInterModuleMessageProcessedFlags: CallReducerFlags = 'FullUpdate';
+  onInterModuleMessageProcessed(flags: CallReducerFlags) {
     this.onInterModuleMessageProcessedFlags = flags;
   }
 
-  playerClaimDailyShardsFlags: __CallReducerFlags = 'FullUpdate';
-  playerClaimDailyShards(flags: __CallReducerFlags) {
+  playerClaimDailyShardsFlags: CallReducerFlags = 'FullUpdate';
+  playerClaimDailyShards(flags: CallReducerFlags) {
     this.playerClaimDailyShardsFlags = flags;
   }
 
-  playerCreateFlags: __CallReducerFlags = 'FullUpdate';
-  playerCreate(flags: __CallReducerFlags) {
+  playerCreateFlags: CallReducerFlags = 'FullUpdate';
+  playerCreate(flags: CallReducerFlags) {
     this.playerCreateFlags = flags;
   }
 
-  playerDismissNotificationFlags: __CallReducerFlags = 'FullUpdate';
-  playerDismissNotification(flags: __CallReducerFlags) {
+  playerDismissNotificationFlags: CallReducerFlags = 'FullUpdate';
+  playerDismissNotification(flags: CallReducerFlags) {
     this.playerDismissNotificationFlags = flags;
   }
 
-  playerNotificationEventReducerFlags: __CallReducerFlags = 'FullUpdate';
-  playerNotificationEventReducer(flags: __CallReducerFlags) {
+  playerNotificationEventReducerFlags: CallReducerFlags = 'FullUpdate';
+  playerNotificationEventReducer(flags: CallReducerFlags) {
     this.playerNotificationEventReducerFlags = flags;
   }
 
-  playerSetNameFlags: __CallReducerFlags = 'FullUpdate';
-  playerSetName(flags: __CallReducerFlags) {
+  playerSetNameFlags: CallReducerFlags = 'FullUpdate';
+  playerSetName(flags: CallReducerFlags) {
     this.playerSetNameFlags = flags;
   }
 
-  playerVoteAnswerFlags: __CallReducerFlags = 'FullUpdate';
-  playerVoteAnswer(flags: __CallReducerFlags) {
+  playerVoteAnswerFlags: CallReducerFlags = 'FullUpdate';
+  playerVoteAnswer(flags: CallReducerFlags) {
     this.playerVoteAnswerFlags = flags;
   }
 
-  playerVoteConcludeFlags: __CallReducerFlags = 'FullUpdate';
-  playerVoteConclude(flags: __CallReducerFlags) {
+  playerVoteConcludeFlags: CallReducerFlags = 'FullUpdate';
+  playerVoteConclude(flags: CallReducerFlags) {
     this.playerVoteConcludeFlags = flags;
   }
 
-  processInterModuleMessageFlags: __CallReducerFlags = 'FullUpdate';
-  processInterModuleMessage(flags: __CallReducerFlags) {
+  processInterModuleMessageFlags: CallReducerFlags = 'FullUpdate';
+  processInterModuleMessage(flags: CallReducerFlags) {
     this.processInterModuleMessageFlags = flags;
   }
 
-  removeFavoriteFriendFlags: __CallReducerFlags = 'FullUpdate';
-  removeFavoriteFriend(flags: __CallReducerFlags) {
+  removeFavoriteFriendFlags: CallReducerFlags = 'FullUpdate';
+  removeFavoriteFriend(flags: CallReducerFlags) {
     this.removeFavoriteFriendFlags = flags;
   }
 
-  removeFriendFlags: __CallReducerFlags = 'FullUpdate';
-  removeFriend(flags: __CallReducerFlags) {
+  removeFriendFlags: CallReducerFlags = 'FullUpdate';
+  removeFriend(flags: CallReducerFlags) {
     this.removeFriendFlags = flags;
   }
 
-  reportDirectMessageFlags: __CallReducerFlags = 'FullUpdate';
-  reportDirectMessage(flags: __CallReducerFlags) {
+  reportDirectMessageFlags: CallReducerFlags = 'FullUpdate';
+  reportDirectMessage(flags: CallReducerFlags) {
     this.reportDirectMessageFlags = flags;
   }
 
-  setRoleForIdentityFlags: __CallReducerFlags = 'FullUpdate';
-  setRoleForIdentity(flags: __CallReducerFlags) {
+  setRoleForIdentityFlags: CallReducerFlags = 'FullUpdate';
+  setRoleForIdentity(flags: CallReducerFlags) {
     this.setRoleForIdentityFlags = flags;
   }
 
-  setVisibilityFlags: __CallReducerFlags = 'FullUpdate';
-  setVisibility(flags: __CallReducerFlags) {
+  setVisibilityFlags: CallReducerFlags = 'FullUpdate';
+  setVisibility(flags: CallReducerFlags) {
     this.setVisibilityFlags = flags;
   }
 
-  signInFlags: __CallReducerFlags = 'FullUpdate';
-  signIn(flags: __CallReducerFlags) {
+  signInFlags: CallReducerFlags = 'FullUpdate';
+  signIn(flags: CallReducerFlags) {
     this.signInFlags = flags;
   }
 
-  stageAchievementDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageAchievementDesc(flags: __CallReducerFlags) {
+  stageAchievementDescFlags: CallReducerFlags = 'FullUpdate';
+  stageAchievementDesc(flags: CallReducerFlags) {
     this.stageAchievementDescFlags = flags;
   }
 
-  stageAlertDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageAlertDesc(flags: __CallReducerFlags) {
+  stageAlertDescFlags: CallReducerFlags = 'FullUpdate';
+  stageAlertDesc(flags: CallReducerFlags) {
     this.stageAlertDescFlags = flags;
   }
 
-  stageBiomeDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageBiomeDesc(flags: __CallReducerFlags) {
+  stageBiomeDescFlags: CallReducerFlags = 'FullUpdate';
+  stageBiomeDesc(flags: CallReducerFlags) {
     this.stageBiomeDescFlags = flags;
   }
 
-  stageBuffDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageBuffDesc(flags: __CallReducerFlags) {
+  stageBuffDescFlags: CallReducerFlags = 'FullUpdate';
+  stageBuffDesc(flags: CallReducerFlags) {
     this.stageBuffDescFlags = flags;
   }
 
-  stageBuffTypeDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageBuffTypeDesc(flags: __CallReducerFlags) {
+  stageBuffTypeDescFlags: CallReducerFlags = 'FullUpdate';
+  stageBuffTypeDesc(flags: CallReducerFlags) {
     this.stageBuffTypeDescFlags = flags;
   }
 
-  stageBuildingClaimDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageBuildingClaimDesc(flags: __CallReducerFlags) {
+  stageBuildingClaimDescFlags: CallReducerFlags = 'FullUpdate';
+  stageBuildingClaimDesc(flags: CallReducerFlags) {
     this.stageBuildingClaimDescFlags = flags;
   }
 
-  stageBuildingDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageBuildingDesc(flags: __CallReducerFlags) {
+  stageBuildingDescFlags: CallReducerFlags = 'FullUpdate';
+  stageBuildingDesc(flags: CallReducerFlags) {
     this.stageBuildingDescFlags = flags;
   }
 
-  stageBuildingPortalDescV2Flags: __CallReducerFlags = 'FullUpdate';
-  stageBuildingPortalDescV2(flags: __CallReducerFlags) {
+  stageBuildingPortalDescV2Flags: CallReducerFlags = 'FullUpdate';
+  stageBuildingPortalDescV2(flags: CallReducerFlags) {
     this.stageBuildingPortalDescV2Flags = flags;
   }
 
-  stageBuildingRepairsDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageBuildingRepairsDesc(flags: __CallReducerFlags) {
+  stageBuildingRepairsDescFlags: CallReducerFlags = 'FullUpdate';
+  stageBuildingRepairsDesc(flags: CallReducerFlags) {
     this.stageBuildingRepairsDescFlags = flags;
   }
 
-  stageBuildingSpawnDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageBuildingSpawnDesc(flags: __CallReducerFlags) {
+  stageBuildingSpawnDescFlags: CallReducerFlags = 'FullUpdate';
+  stageBuildingSpawnDesc(flags: CallReducerFlags) {
     this.stageBuildingSpawnDescFlags = flags;
   }
 
-  stageBuildingTypeDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageBuildingTypeDesc(flags: __CallReducerFlags) {
+  stageBuildingTypeDescFlags: CallReducerFlags = 'FullUpdate';
+  stageBuildingTypeDesc(flags: CallReducerFlags) {
     this.stageBuildingTypeDescFlags = flags;
   }
 
-  stageCargoDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageCargoDesc(flags: __CallReducerFlags) {
+  stageCargoDescFlags: CallReducerFlags = 'FullUpdate';
+  stageCargoDesc(flags: CallReducerFlags) {
     this.stageCargoDescFlags = flags;
   }
 
-  stageCharacterStatDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageCharacterStatDesc(flags: __CallReducerFlags) {
+  stageCharacterStatDescFlags: CallReducerFlags = 'FullUpdate';
+  stageCharacterStatDesc(flags: CallReducerFlags) {
     this.stageCharacterStatDescFlags = flags;
   }
 
-  stageChestRarityDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageChestRarityDesc(flags: __CallReducerFlags) {
+  stageChestRarityDescFlags: CallReducerFlags = 'FullUpdate';
+  stageChestRarityDesc(flags: CallReducerFlags) {
     this.stageChestRarityDescFlags = flags;
   }
 
-  stageClaimTechDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageClaimTechDesc(flags: __CallReducerFlags) {
+  stageClaimTechDescFlags: CallReducerFlags = 'FullUpdate';
+  stageClaimTechDesc(flags: CallReducerFlags) {
     this.stageClaimTechDescFlags = flags;
   }
 
-  stageClaimTileCostFlags: __CallReducerFlags = 'FullUpdate';
-  stageClaimTileCost(flags: __CallReducerFlags) {
+  stageClaimTileCostFlags: CallReducerFlags = 'FullUpdate';
+  stageClaimTileCost(flags: CallReducerFlags) {
     this.stageClaimTileCostFlags = flags;
   }
 
-  stageClimbRequirementDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageClimbRequirementDesc(flags: __CallReducerFlags) {
+  stageClimbRequirementDescFlags: CallReducerFlags = 'FullUpdate';
+  stageClimbRequirementDesc(flags: CallReducerFlags) {
     this.stageClimbRequirementDescFlags = flags;
   }
 
-  stageClothingDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageClothingDesc(flags: __CallReducerFlags) {
+  stageClothingDescFlags: CallReducerFlags = 'FullUpdate';
+  stageClothingDesc(flags: CallReducerFlags) {
     this.stageClothingDescFlags = flags;
   }
 
-  stageCollectibleDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageCollectibleDesc(flags: __CallReducerFlags) {
+  stageCollectibleDescFlags: CallReducerFlags = 'FullUpdate';
+  stageCollectibleDesc(flags: CallReducerFlags) {
     this.stageCollectibleDescFlags = flags;
   }
 
-  stageCombatActionDescV3Flags: __CallReducerFlags = 'FullUpdate';
-  stageCombatActionDescV3(flags: __CallReducerFlags) {
+  stageCombatActionDescV3Flags: CallReducerFlags = 'FullUpdate';
+  stageCombatActionDescV3(flags: CallReducerFlags) {
     this.stageCombatActionDescV3Flags = flags;
   }
 
-  stageCombatActionMultiHitDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageCombatActionMultiHitDesc(flags: __CallReducerFlags) {
+  stageCombatActionMultiHitDescFlags: CallReducerFlags = 'FullUpdate';
+  stageCombatActionMultiHitDesc(flags: CallReducerFlags) {
     this.stageCombatActionMultiHitDescFlags = flags;
   }
 
-  stageConstructionRecipeDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageConstructionRecipeDesc(flags: __CallReducerFlags) {
+  stageConstructionRecipeDescFlags: CallReducerFlags = 'FullUpdate';
+  stageConstructionRecipeDesc(flags: CallReducerFlags) {
     this.stageConstructionRecipeDescFlags = flags;
   }
 
-  stageContributionLootDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageContributionLootDesc(flags: __CallReducerFlags) {
+  stageContributionLootDescFlags: CallReducerFlags = 'FullUpdate';
+  stageContributionLootDesc(flags: CallReducerFlags) {
     this.stageContributionLootDescFlags = flags;
   }
 
-  stageCraftingRecipeDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageCraftingRecipeDesc(flags: __CallReducerFlags) {
+  stageCraftingRecipeDescFlags: CallReducerFlags = 'FullUpdate';
+  stageCraftingRecipeDesc(flags: CallReducerFlags) {
     this.stageCraftingRecipeDescFlags = flags;
   }
 
-  stageDeconstructionRecipeDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageDeconstructionRecipeDesc(flags: __CallReducerFlags) {
+  stageDeconstructionRecipeDescFlags: CallReducerFlags = 'FullUpdate';
+  stageDeconstructionRecipeDesc(flags: CallReducerFlags) {
     this.stageDeconstructionRecipeDescFlags = flags;
   }
 
-  stageDeployableDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageDeployableDesc(flags: __CallReducerFlags) {
+  stageDeployableDescFlags: CallReducerFlags = 'FullUpdate';
+  stageDeployableDesc(flags: CallReducerFlags) {
     this.stageDeployableDescFlags = flags;
   }
 
-  stageDistantVisibleEntityDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageDistantVisibleEntityDesc(flags: __CallReducerFlags) {
+  stageDistantVisibleEntityDescFlags: CallReducerFlags = 'FullUpdate';
+  stageDistantVisibleEntityDesc(flags: CallReducerFlags) {
     this.stageDistantVisibleEntityDescFlags = flags;
   }
 
-  stageElevatorDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageElevatorDesc(flags: __CallReducerFlags) {
+  stageElevatorDescFlags: CallReducerFlags = 'FullUpdate';
+  stageElevatorDesc(flags: CallReducerFlags) {
     this.stageElevatorDescFlags = flags;
   }
 
-  stageEmoteDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageEmoteDesc(flags: __CallReducerFlags) {
+  stageEmoteDescFlags: CallReducerFlags = 'FullUpdate';
+  stageEmoteDesc(flags: CallReducerFlags) {
     this.stageEmoteDescFlags = flags;
   }
 
-  stageEmpireColorsDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageEmpireColorsDesc(flags: __CallReducerFlags) {
+  stageEmpireColorsDescFlags: CallReducerFlags = 'FullUpdate';
+  stageEmpireColorsDesc(flags: CallReducerFlags) {
     this.stageEmpireColorsDescFlags = flags;
   }
 
-  stageEmpireIconDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageEmpireIconDesc(flags: __CallReducerFlags) {
+  stageEmpireIconDescFlags: CallReducerFlags = 'FullUpdate';
+  stageEmpireIconDesc(flags: CallReducerFlags) {
     this.stageEmpireIconDescFlags = flags;
   }
 
-  stageEmpireNotificationDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageEmpireNotificationDesc(flags: __CallReducerFlags) {
+  stageEmpireNotificationDescFlags: CallReducerFlags = 'FullUpdate';
+  stageEmpireNotificationDesc(flags: CallReducerFlags) {
     this.stageEmpireNotificationDescFlags = flags;
   }
 
-  stageEmpireRankDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageEmpireRankDesc(flags: __CallReducerFlags) {
+  stageEmpireRankDescFlags: CallReducerFlags = 'FullUpdate';
+  stageEmpireRankDesc(flags: CallReducerFlags) {
     this.stageEmpireRankDescFlags = flags;
   }
 
-  stageEmpireSuppliesDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageEmpireSuppliesDesc(flags: __CallReducerFlags) {
+  stageEmpireSuppliesDescFlags: CallReducerFlags = 'FullUpdate';
+  stageEmpireSuppliesDesc(flags: CallReducerFlags) {
     this.stageEmpireSuppliesDescFlags = flags;
   }
 
-  stageEmpireTerritoryDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageEmpireTerritoryDesc(flags: __CallReducerFlags) {
+  stageEmpireTerritoryDescFlags: CallReducerFlags = 'FullUpdate';
+  stageEmpireTerritoryDesc(flags: CallReducerFlags) {
     this.stageEmpireTerritoryDescFlags = flags;
   }
 
-  stageEnemyAiParamsDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageEnemyAiParamsDesc(flags: __CallReducerFlags) {
+  stageEnemyAiParamsDescFlags: CallReducerFlags = 'FullUpdate';
+  stageEnemyAiParamsDesc(flags: CallReducerFlags) {
     this.stageEnemyAiParamsDescFlags = flags;
   }
 
-  stageEnemyDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageEnemyDesc(flags: __CallReducerFlags) {
+  stageEnemyDescFlags: CallReducerFlags = 'FullUpdate';
+  stageEnemyDesc(flags: CallReducerFlags) {
     this.stageEnemyDescFlags = flags;
   }
 
-  stageEnemyScalingDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageEnemyScalingDesc(flags: __CallReducerFlags) {
+  stageEnemyScalingDescFlags: CallReducerFlags = 'FullUpdate';
+  stageEnemyScalingDesc(flags: CallReducerFlags) {
     this.stageEnemyScalingDescFlags = flags;
   }
 
-  stageEnvironmentDebuffDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageEnvironmentDebuffDesc(flags: __CallReducerFlags) {
+  stageEnvironmentDebuffDescFlags: CallReducerFlags = 'FullUpdate';
+  stageEnvironmentDebuffDesc(flags: CallReducerFlags) {
     this.stageEnvironmentDebuffDescFlags = flags;
   }
 
-  stageEquipmentDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageEquipmentDesc(flags: __CallReducerFlags) {
+  stageEquipmentDescFlags: CallReducerFlags = 'FullUpdate';
+  stageEquipmentDesc(flags: CallReducerFlags) {
     this.stageEquipmentDescFlags = flags;
   }
 
-  stageExtractionRecipeDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageExtractionRecipeDesc(flags: __CallReducerFlags) {
+  stageExtractionRecipeDescFlags: CallReducerFlags = 'FullUpdate';
+  stageExtractionRecipeDesc(flags: CallReducerFlags) {
     this.stageExtractionRecipeDescFlags = flags;
   }
 
-  stageFoodDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageFoodDesc(flags: __CallReducerFlags) {
+  stageFoodDescFlags: CallReducerFlags = 'FullUpdate';
+  stageFoodDesc(flags: CallReducerFlags) {
     this.stageFoodDescFlags = flags;
   }
 
-  stageGateDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageGateDesc(flags: __CallReducerFlags) {
+  stageGateDescFlags: CallReducerFlags = 'FullUpdate';
+  stageGateDesc(flags: CallReducerFlags) {
     this.stageGateDescFlags = flags;
   }
 
-  stageHexiteExchangeEntryDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageHexiteExchangeEntryDesc(flags: __CallReducerFlags) {
+  stageHexiteExchangeEntryDescFlags: CallReducerFlags = 'FullUpdate';
+  stageHexiteExchangeEntryDesc(flags: CallReducerFlags) {
     this.stageHexiteExchangeEntryDescFlags = flags;
   }
 
-  stageInteriorEnvironmentDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageInteriorEnvironmentDesc(flags: __CallReducerFlags) {
+  stageInteriorEnvironmentDescFlags: CallReducerFlags = 'FullUpdate';
+  stageInteriorEnvironmentDesc(flags: CallReducerFlags) {
     this.stageInteriorEnvironmentDescFlags = flags;
   }
 
-  stageInteriorInstanceDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageInteriorInstanceDesc(flags: __CallReducerFlags) {
+  stageInteriorInstanceDescFlags: CallReducerFlags = 'FullUpdate';
+  stageInteriorInstanceDesc(flags: CallReducerFlags) {
     this.stageInteriorInstanceDescFlags = flags;
   }
 
-  stageInteriorNetworkDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageInteriorNetworkDesc(flags: __CallReducerFlags) {
+  stageInteriorNetworkDescFlags: CallReducerFlags = 'FullUpdate';
+  stageInteriorNetworkDesc(flags: CallReducerFlags) {
     this.stageInteriorNetworkDescFlags = flags;
   }
 
-  stageInteriorPortalConnectionsDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageInteriorPortalConnectionsDesc(flags: __CallReducerFlags) {
+  stageInteriorPortalConnectionsDescFlags: CallReducerFlags = 'FullUpdate';
+  stageInteriorPortalConnectionsDesc(flags: CallReducerFlags) {
     this.stageInteriorPortalConnectionsDescFlags = flags;
   }
 
-  stageInteriorShapeDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageInteriorShapeDesc(flags: __CallReducerFlags) {
+  stageInteriorShapeDescFlags: CallReducerFlags = 'FullUpdate';
+  stageInteriorShapeDesc(flags: CallReducerFlags) {
     this.stageInteriorShapeDescFlags = flags;
   }
 
-  stageInteriorSpawnDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageInteriorSpawnDesc(flags: __CallReducerFlags) {
+  stageInteriorSpawnDescFlags: CallReducerFlags = 'FullUpdate';
+  stageInteriorSpawnDesc(flags: CallReducerFlags) {
     this.stageInteriorSpawnDescFlags = flags;
   }
 
-  stageItemConversionRecipeDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageItemConversionRecipeDesc(flags: __CallReducerFlags) {
+  stageItemConversionRecipeDescFlags: CallReducerFlags = 'FullUpdate';
+  stageItemConversionRecipeDesc(flags: CallReducerFlags) {
     this.stageItemConversionRecipeDescFlags = flags;
   }
 
-  stageItemDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageItemDesc(flags: __CallReducerFlags) {
+  stageItemDescFlags: CallReducerFlags = 'FullUpdate';
+  stageItemDesc(flags: CallReducerFlags) {
     this.stageItemDescFlags = flags;
   }
 
-  stageItemListDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageItemListDesc(flags: __CallReducerFlags) {
+  stageItemListDescFlags: CallReducerFlags = 'FullUpdate';
+  stageItemListDesc(flags: CallReducerFlags) {
     this.stageItemListDescFlags = flags;
   }
 
-  stageKnowledgeScrollDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageKnowledgeScrollDesc(flags: __CallReducerFlags) {
+  stageKnowledgeScrollDescFlags: CallReducerFlags = 'FullUpdate';
+  stageKnowledgeScrollDesc(flags: CallReducerFlags) {
     this.stageKnowledgeScrollDescFlags = flags;
   }
 
-  stageKnowledgeScrollTypeDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageKnowledgeScrollTypeDesc(flags: __CallReducerFlags) {
+  stageKnowledgeScrollTypeDescFlags: CallReducerFlags = 'FullUpdate';
+  stageKnowledgeScrollTypeDesc(flags: CallReducerFlags) {
     this.stageKnowledgeScrollTypeDescFlags = flags;
   }
 
-  stageKnowledgeStatModifierDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageKnowledgeStatModifierDesc(flags: __CallReducerFlags) {
+  stageKnowledgeStatModifierDescFlags: CallReducerFlags = 'FullUpdate';
+  stageKnowledgeStatModifierDesc(flags: CallReducerFlags) {
     this.stageKnowledgeStatModifierDescFlags = flags;
   }
 
-  stageLootChestDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageLootChestDesc(flags: __CallReducerFlags) {
+  stageLootChestDescFlags: CallReducerFlags = 'FullUpdate';
+  stageLootChestDesc(flags: CallReducerFlags) {
     this.stageLootChestDescFlags = flags;
   }
 
-  stageLootRarityDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageLootRarityDesc(flags: __CallReducerFlags) {
+  stageLootRarityDescFlags: CallReducerFlags = 'FullUpdate';
+  stageLootRarityDesc(flags: CallReducerFlags) {
     this.stageLootRarityDescFlags = flags;
   }
 
-  stageLootTableDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageLootTableDesc(flags: __CallReducerFlags) {
+  stageLootTableDescFlags: CallReducerFlags = 'FullUpdate';
+  stageLootTableDesc(flags: CallReducerFlags) {
     this.stageLootTableDescFlags = flags;
   }
 
-  stageNpcDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageNpcDesc(flags: __CallReducerFlags) {
+  stageNpcDescFlags: CallReducerFlags = 'FullUpdate';
+  stageNpcDesc(flags: CallReducerFlags) {
     this.stageNpcDescFlags = flags;
   }
 
-  stageOnboardingRewardDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageOnboardingRewardDesc(flags: __CallReducerFlags) {
+  stageOnboardingRewardDescFlags: CallReducerFlags = 'FullUpdate';
+  stageOnboardingRewardDesc(flags: CallReducerFlags) {
     this.stageOnboardingRewardDescFlags = flags;
   }
 
-  stageParametersDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageParametersDesc(flags: __CallReducerFlags) {
+  stageParametersDescFlags: CallReducerFlags = 'FullUpdate';
+  stageParametersDesc(flags: CallReducerFlags) {
     this.stageParametersDescFlags = flags;
   }
 
-  stagePathfindingDescFlags: __CallReducerFlags = 'FullUpdate';
-  stagePathfindingDesc(flags: __CallReducerFlags) {
+  stagePathfindingDescFlags: CallReducerFlags = 'FullUpdate';
+  stagePathfindingDesc(flags: CallReducerFlags) {
     this.stagePathfindingDescFlags = flags;
   }
 
-  stagePavingTileDescFlags: __CallReducerFlags = 'FullUpdate';
-  stagePavingTileDesc(flags: __CallReducerFlags) {
+  stagePavingTileDescFlags: CallReducerFlags = 'FullUpdate';
+  stagePavingTileDesc(flags: CallReducerFlags) {
     this.stagePavingTileDescFlags = flags;
   }
 
-  stagePillarShapingDescFlags: __CallReducerFlags = 'FullUpdate';
-  stagePillarShapingDesc(flags: __CallReducerFlags) {
+  stagePillarShapingDescFlags: CallReducerFlags = 'FullUpdate';
+  stagePillarShapingDesc(flags: CallReducerFlags) {
     this.stagePillarShapingDescFlags = flags;
   }
 
-  stagePlayerActionDescFlags: __CallReducerFlags = 'FullUpdate';
-  stagePlayerActionDesc(flags: __CallReducerFlags) {
+  stagePlayerActionDescFlags: CallReducerFlags = 'FullUpdate';
+  stagePlayerActionDesc(flags: CallReducerFlags) {
     this.stagePlayerActionDescFlags = flags;
   }
 
-  stagePlayerHousingDescFlags: __CallReducerFlags = 'FullUpdate';
-  stagePlayerHousingDesc(flags: __CallReducerFlags) {
+  stagePlayerHousingDescFlags: CallReducerFlags = 'FullUpdate';
+  stagePlayerHousingDesc(flags: CallReducerFlags) {
     this.stagePlayerHousingDescFlags = flags;
   }
 
-  stagePrivateParametersDescFlags: __CallReducerFlags = 'FullUpdate';
-  stagePrivateParametersDesc(flags: __CallReducerFlags) {
+  stagePrivateParametersDescFlags: CallReducerFlags = 'FullUpdate';
+  stagePrivateParametersDesc(flags: CallReducerFlags) {
     this.stagePrivateParametersDescFlags = flags;
   }
 
-  stageReservedNameDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageReservedNameDesc(flags: __CallReducerFlags) {
+  stageReservedNameDescFlags: CallReducerFlags = 'FullUpdate';
+  stageReservedNameDesc(flags: CallReducerFlags) {
     this.stageReservedNameDescFlags = flags;
   }
 
-  stageResourceClumpDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageResourceClumpDesc(flags: __CallReducerFlags) {
+  stageResourceClumpDescFlags: CallReducerFlags = 'FullUpdate';
+  stageResourceClumpDesc(flags: CallReducerFlags) {
     this.stageResourceClumpDescFlags = flags;
   }
 
-  stageResourceDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageResourceDesc(flags: __CallReducerFlags) {
+  stageResourceDescFlags: CallReducerFlags = 'FullUpdate';
+  stageResourceDesc(flags: CallReducerFlags) {
     this.stageResourceDescFlags = flags;
   }
 
-  stageResourceGrowthRecipeDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageResourceGrowthRecipeDesc(flags: __CallReducerFlags) {
+  stageResourceGrowthRecipeDescFlags: CallReducerFlags = 'FullUpdate';
+  stageResourceGrowthRecipeDesc(flags: CallReducerFlags) {
     this.stageResourceGrowthRecipeDescFlags = flags;
   }
 
-  stageResourcePlacementRecipeDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageResourcePlacementRecipeDesc(flags: __CallReducerFlags) {
+  stageResourcePlacementRecipeDescFlags: CallReducerFlags = 'FullUpdate';
+  stageResourcePlacementRecipeDesc(flags: CallReducerFlags) {
     this.stageResourcePlacementRecipeDescFlags = flags;
   }
 
-  stageSecondaryKnowledgeDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageSecondaryKnowledgeDesc(flags: __CallReducerFlags) {
+  stageSecondaryKnowledgeDescFlags: CallReducerFlags = 'FullUpdate';
+  stageSecondaryKnowledgeDesc(flags: CallReducerFlags) {
     this.stageSecondaryKnowledgeDescFlags = flags;
   }
 
-  stageSkillDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageSkillDesc(flags: __CallReducerFlags) {
+  stageSkillDescFlags: CallReducerFlags = 'FullUpdate';
+  stageSkillDesc(flags: CallReducerFlags) {
     this.stageSkillDescFlags = flags;
   }
 
-  stageTargetingMatrixDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageTargetingMatrixDesc(flags: __CallReducerFlags) {
+  stageTargetingMatrixDescFlags: CallReducerFlags = 'FullUpdate';
+  stageTargetingMatrixDesc(flags: CallReducerFlags) {
     this.stageTargetingMatrixDescFlags = flags;
   }
 
-  stageTeleportItemDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageTeleportItemDesc(flags: __CallReducerFlags) {
+  stageTeleportItemDescFlags: CallReducerFlags = 'FullUpdate';
+  stageTeleportItemDesc(flags: CallReducerFlags) {
     this.stageTeleportItemDescFlags = flags;
   }
 
-  stageTerraformRecipeDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageTerraformRecipeDesc(flags: __CallReducerFlags) {
+  stageTerraformRecipeDescFlags: CallReducerFlags = 'FullUpdate';
+  stageTerraformRecipeDesc(flags: CallReducerFlags) {
     this.stageTerraformRecipeDescFlags = flags;
   }
 
-  stageToolDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageToolDesc(flags: __CallReducerFlags) {
+  stageToolDescFlags: CallReducerFlags = 'FullUpdate';
+  stageToolDesc(flags: CallReducerFlags) {
     this.stageToolDescFlags = flags;
   }
 
-  stageToolTypeDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageToolTypeDesc(flags: __CallReducerFlags) {
+  stageToolTypeDescFlags: CallReducerFlags = 'FullUpdate';
+  stageToolTypeDesc(flags: CallReducerFlags) {
     this.stageToolTypeDescFlags = flags;
   }
 
-  stageTravelerTaskDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageTravelerTaskDesc(flags: __CallReducerFlags) {
+  stageTravelerTaskDescFlags: CallReducerFlags = 'FullUpdate';
+  stageTravelerTaskDesc(flags: CallReducerFlags) {
     this.stageTravelerTaskDescFlags = flags;
   }
 
-  stageTravelerTradeOrderDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageTravelerTradeOrderDesc(flags: __CallReducerFlags) {
+  stageTravelerTradeOrderDescFlags: CallReducerFlags = 'FullUpdate';
+  stageTravelerTradeOrderDesc(flags: CallReducerFlags) {
     this.stageTravelerTradeOrderDescFlags = flags;
   }
 
-  stageWallDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageWallDesc(flags: __CallReducerFlags) {
+  stageWallDescFlags: CallReducerFlags = 'FullUpdate';
+  stageWallDesc(flags: CallReducerFlags) {
     this.stageWallDescFlags = flags;
   }
 
-  stageWeaponDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageWeaponDesc(flags: __CallReducerFlags) {
+  stageWeaponDescFlags: CallReducerFlags = 'FullUpdate';
+  stageWeaponDesc(flags: CallReducerFlags) {
     this.stageWeaponDescFlags = flags;
   }
 
-  stageWeaponTypeDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageWeaponTypeDesc(flags: __CallReducerFlags) {
+  stageWeaponTypeDescFlags: CallReducerFlags = 'FullUpdate';
+  stageWeaponTypeDesc(flags: CallReducerFlags) {
     this.stageWeaponTypeDescFlags = flags;
   }
 
-  stageWindParamsDescFlags: __CallReducerFlags = 'FullUpdate';
-  stageWindParamsDesc(flags: __CallReducerFlags) {
+  stageWindParamsDescFlags: CallReducerFlags = 'FullUpdate';
+  stageWindParamsDesc(flags: CallReducerFlags) {
     this.stageWindParamsDescFlags = flags;
   }
 
-  unblockPlayerFlags: __CallReducerFlags = 'FullUpdate';
-  unblockPlayer(flags: __CallReducerFlags) {
+  unblockPlayerFlags: CallReducerFlags = 'FullUpdate';
+  unblockPlayer(flags: CallReducerFlags) {
     this.unblockPlayerFlags = flags;
   }
 
-  updateRoleForPlayerFlags: __CallReducerFlags = 'FullUpdate';
-  updateRoleForPlayer(flags: __CallReducerFlags) {
+  updateRoleForPlayerFlags: CallReducerFlags = 'FullUpdate';
+  updateRoleForPlayer(flags: CallReducerFlags) {
     this.updateRoleForPlayerFlags = flags;
   }
 
-  updateScheduledTimersFromStaticDataFlags: __CallReducerFlags = 'FullUpdate';
-  updateScheduledTimersFromStaticData(flags: __CallReducerFlags) {
+  updateScheduledTimersFromStaticDataFlags: CallReducerFlags = 'FullUpdate';
+  updateScheduledTimersFromStaticData(flags: CallReducerFlags) {
     this.updateScheduledTimersFromStaticDataFlags = flags;
   }
 
-  userModerationClearAllFlags: __CallReducerFlags = 'FullUpdate';
-  userModerationClearAll(flags: __CallReducerFlags) {
+  userModerationClearAllFlags: CallReducerFlags = 'FullUpdate';
+  userModerationClearAll(flags: CallReducerFlags) {
     this.userModerationClearAllFlags = flags;
   }
 
-  userModerationCreateFlags: __CallReducerFlags = 'FullUpdate';
-  userModerationCreate(flags: __CallReducerFlags) {
+  userModerationCreateFlags: CallReducerFlags = 'FullUpdate';
+  userModerationCreate(flags: CallReducerFlags) {
     this.userModerationCreateFlags = flags;
   }
 
-  userModerationDeleteFlags: __CallReducerFlags = 'FullUpdate';
-  userModerationDelete(flags: __CallReducerFlags) {
+  userModerationDeleteFlags: CallReducerFlags = 'FullUpdate';
+  userModerationDelete(flags: CallReducerFlags) {
     this.userModerationDeleteFlags = flags;
   }
 
-  userModerationListAllFlags: __CallReducerFlags = 'FullUpdate';
-  userModerationListAll(flags: __CallReducerFlags) {
+  userModerationListAllFlags: CallReducerFlags = 'FullUpdate';
+  userModerationListAll(flags: CallReducerFlags) {
     this.userModerationListAllFlags = flags;
   }
 
 }
 
 export class RemoteTables {
-  constructor(private connection: __DbConnectionImpl) {}
+  constructor(private connection: DbConnectionImpl) {}
 
   get aIDebugState(): AIDebugStateTableHandle {
-    // clientCache is a private property
-    return new AIDebugStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<AiDebugState>(REMOTE_MODULE.tables.a_i_debug_state));
+    return new AIDebugStateTableHandle(this.connection.clientCache.getOrCreateTable<AiDebugState>(REMOTE_MODULE.tables.a_i_debug_state));
   }
 
   get achievementDesc(): AchievementDescTableHandle {
-    // clientCache is a private property
-    return new AchievementDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<AchievementDesc>(REMOTE_MODULE.tables.achievement_desc));
+    return new AchievementDescTableHandle(this.connection.clientCache.getOrCreateTable<AchievementDesc>(REMOTE_MODULE.tables.achievement_desc));
   }
 
   get actionState(): ActionStateTableHandle {
-    // clientCache is a private property
-    return new ActionStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<ActionState>(REMOTE_MODULE.tables.action_state));
+    return new ActionStateTableHandle(this.connection.clientCache.getOrCreateTable<ActionState>(REMOTE_MODULE.tables.action_state));
   }
 
   get activeBuffState(): ActiveBuffStateTableHandle {
-    // clientCache is a private property
-    return new ActiveBuffStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<ActiveBuffState>(REMOTE_MODULE.tables.active_buff_state));
+    return new ActiveBuffStateTableHandle(this.connection.clientCache.getOrCreateTable<ActiveBuffState>(REMOTE_MODULE.tables.active_buff_state));
   }
 
   get adminBroadcast(): AdminBroadcastTableHandle {
-    // clientCache is a private property
-    return new AdminBroadcastTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<AdminBroadcast>(REMOTE_MODULE.tables.admin_broadcast));
+    return new AdminBroadcastTableHandle(this.connection.clientCache.getOrCreateTable<AdminBroadcast>(REMOTE_MODULE.tables.admin_broadcast));
   }
 
   get alertDesc(): AlertDescTableHandle {
-    // clientCache is a private property
-    return new AlertDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<AlertDesc>(REMOTE_MODULE.tables.alert_desc));
+    return new AlertDescTableHandle(this.connection.clientCache.getOrCreateTable<AlertDesc>(REMOTE_MODULE.tables.alert_desc));
   }
 
   get alertState(): AlertStateTableHandle {
-    // clientCache is a private property
-    return new AlertStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<AlertState>(REMOTE_MODULE.tables.alert_state));
+    return new AlertStateTableHandle(this.connection.clientCache.getOrCreateTable<AlertState>(REMOTE_MODULE.tables.alert_state));
   }
 
   get attachedHerdsState(): AttachedHerdsStateTableHandle {
-    // clientCache is a private property
-    return new AttachedHerdsStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<AttachedHerdsState>(REMOTE_MODULE.tables.attached_herds_state));
+    return new AttachedHerdsStateTableHandle(this.connection.clientCache.getOrCreateTable<AttachedHerdsState>(REMOTE_MODULE.tables.attached_herds_state));
   }
 
   get attackOutcomeState(): AttackOutcomeStateTableHandle {
-    // clientCache is a private property
-    return new AttackOutcomeStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<AttackOutcomeState>(REMOTE_MODULE.tables.attack_outcome_state));
+    return new AttackOutcomeStateTableHandle(this.connection.clientCache.getOrCreateTable<AttackOutcomeState>(REMOTE_MODULE.tables.attack_outcome_state));
   }
 
   get autoClaimState(): AutoClaimStateTableHandle {
-    // clientCache is a private property
-    return new AutoClaimStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<AutoClaimState>(REMOTE_MODULE.tables.auto_claim_state));
+    return new AutoClaimStateTableHandle(this.connection.clientCache.getOrCreateTable<AutoClaimState>(REMOTE_MODULE.tables.auto_claim_state));
   }
 
   get bankState(): BankStateTableHandle {
-    // clientCache is a private property
-    return new BankStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<BankState>(REMOTE_MODULE.tables.bank_state));
+    return new BankStateTableHandle(this.connection.clientCache.getOrCreateTable<BankState>(REMOTE_MODULE.tables.bank_state));
   }
 
   get barterStallState(): BarterStallStateTableHandle {
-    // clientCache is a private property
-    return new BarterStallStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<BarterStallState>(REMOTE_MODULE.tables.barter_stall_state));
+    return new BarterStallStateTableHandle(this.connection.clientCache.getOrCreateTable<BarterStallState>(REMOTE_MODULE.tables.barter_stall_state));
   }
 
   get biomeDesc(): BiomeDescTableHandle {
-    // clientCache is a private property
-    return new BiomeDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<BiomeDesc>(REMOTE_MODULE.tables.biome_desc));
+    return new BiomeDescTableHandle(this.connection.clientCache.getOrCreateTable<BiomeDesc>(REMOTE_MODULE.tables.biome_desc));
   }
 
   get blockedIdentity(): BlockedIdentityTableHandle {
-    // clientCache is a private property
-    return new BlockedIdentityTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<BlockedIdentity>(REMOTE_MODULE.tables.blocked_identity));
+    return new BlockedIdentityTableHandle(this.connection.clientCache.getOrCreateTable<BlockedIdentity>(REMOTE_MODULE.tables.blocked_identity));
   }
 
   get blockedPlayerState(): BlockedPlayerStateTableHandle {
-    // clientCache is a private property
-    return new BlockedPlayerStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<BlockedPlayerState>(REMOTE_MODULE.tables.blocked_player_state));
+    return new BlockedPlayerStateTableHandle(this.connection.clientCache.getOrCreateTable<BlockedPlayerState>(REMOTE_MODULE.tables.blocked_player_state));
   }
 
   get buffDesc(): BuffDescTableHandle {
-    // clientCache is a private property
-    return new BuffDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<BuffDesc>(REMOTE_MODULE.tables.buff_desc));
+    return new BuffDescTableHandle(this.connection.clientCache.getOrCreateTable<BuffDesc>(REMOTE_MODULE.tables.buff_desc));
   }
 
   get buffTypeDesc(): BuffTypeDescTableHandle {
-    // clientCache is a private property
-    return new BuffTypeDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<BuffTypeDesc>(REMOTE_MODULE.tables.buff_type_desc));
+    return new BuffTypeDescTableHandle(this.connection.clientCache.getOrCreateTable<BuffTypeDesc>(REMOTE_MODULE.tables.buff_type_desc));
   }
 
   get buildingClaimDesc(): BuildingClaimDescTableHandle {
-    // clientCache is a private property
-    return new BuildingClaimDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<BuildingClaimDesc>(REMOTE_MODULE.tables.building_claim_desc));
+    return new BuildingClaimDescTableHandle(this.connection.clientCache.getOrCreateTable<BuildingClaimDesc>(REMOTE_MODULE.tables.building_claim_desc));
   }
 
   get buildingDesc(): BuildingDescTableHandle {
-    // clientCache is a private property
-    return new BuildingDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<BuildingDesc>(REMOTE_MODULE.tables.building_desc));
+    return new BuildingDescTableHandle(this.connection.clientCache.getOrCreateTable<BuildingDesc>(REMOTE_MODULE.tables.building_desc));
   }
 
   get buildingFunctionTypeMappingDesc(): BuildingFunctionTypeMappingDescTableHandle {
-    // clientCache is a private property
-    return new BuildingFunctionTypeMappingDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<BuildingFunctionTypeMappingDesc>(REMOTE_MODULE.tables.building_function_type_mapping_desc));
+    return new BuildingFunctionTypeMappingDescTableHandle(this.connection.clientCache.getOrCreateTable<BuildingFunctionTypeMappingDesc>(REMOTE_MODULE.tables.building_function_type_mapping_desc));
   }
 
   get buildingNicknameState(): BuildingNicknameStateTableHandle {
-    // clientCache is a private property
-    return new BuildingNicknameStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<BuildingNicknameState>(REMOTE_MODULE.tables.building_nickname_state));
+    return new BuildingNicknameStateTableHandle(this.connection.clientCache.getOrCreateTable<BuildingNicknameState>(REMOTE_MODULE.tables.building_nickname_state));
   }
 
   get buildingPortalDesc(): BuildingPortalDescTableHandle {
-    // clientCache is a private property
-    return new BuildingPortalDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<BuildingPortalDesc>(REMOTE_MODULE.tables.building_portal_desc));
+    return new BuildingPortalDescTableHandle(this.connection.clientCache.getOrCreateTable<BuildingPortalDesc>(REMOTE_MODULE.tables.building_portal_desc));
   }
 
   get buildingPortalDescV2(): BuildingPortalDescV2TableHandle {
-    // clientCache is a private property
-    return new BuildingPortalDescV2TableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<BuildingPortalDescV2>(REMOTE_MODULE.tables.building_portal_desc_v2));
+    return new BuildingPortalDescV2TableHandle(this.connection.clientCache.getOrCreateTable<BuildingPortalDescV2>(REMOTE_MODULE.tables.building_portal_desc_v2));
   }
 
   get buildingRepairsDesc(): BuildingRepairsDescTableHandle {
-    // clientCache is a private property
-    return new BuildingRepairsDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<BuildingRepairsDesc>(REMOTE_MODULE.tables.building_repairs_desc));
+    return new BuildingRepairsDescTableHandle(this.connection.clientCache.getOrCreateTable<BuildingRepairsDesc>(REMOTE_MODULE.tables.building_repairs_desc));
   }
 
   get buildingSpawnDesc(): BuildingSpawnDescTableHandle {
-    // clientCache is a private property
-    return new BuildingSpawnDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<BuildingSpawnDesc>(REMOTE_MODULE.tables.building_spawn_desc));
+    return new BuildingSpawnDescTableHandle(this.connection.clientCache.getOrCreateTable<BuildingSpawnDesc>(REMOTE_MODULE.tables.building_spawn_desc));
   }
 
   get buildingState(): BuildingStateTableHandle {
-    // clientCache is a private property
-    return new BuildingStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<BuildingState>(REMOTE_MODULE.tables.building_state));
+    return new BuildingStateTableHandle(this.connection.clientCache.getOrCreateTable<BuildingState>(REMOTE_MODULE.tables.building_state));
   }
 
   get buildingTypeDesc(): BuildingTypeDescTableHandle {
-    // clientCache is a private property
-    return new BuildingTypeDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<BuildingTypeDesc>(REMOTE_MODULE.tables.building_type_desc));
+    return new BuildingTypeDescTableHandle(this.connection.clientCache.getOrCreateTable<BuildingTypeDesc>(REMOTE_MODULE.tables.building_type_desc));
   }
 
   get buyOrderState(): BuyOrderStateTableHandle {
-    // clientCache is a private property
-    return new BuyOrderStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<AuctionListingState>(REMOTE_MODULE.tables.buy_order_state));
+    return new BuyOrderStateTableHandle(this.connection.clientCache.getOrCreateTable<AuctionListingState>(REMOTE_MODULE.tables.buy_order_state));
   }
 
   get cargoDesc(): CargoDescTableHandle {
-    // clientCache is a private property
-    return new CargoDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<CargoDesc>(REMOTE_MODULE.tables.cargo_desc));
+    return new CargoDescTableHandle(this.connection.clientCache.getOrCreateTable<CargoDesc>(REMOTE_MODULE.tables.cargo_desc));
   }
 
   get characterStatDesc(): CharacterStatDescTableHandle {
-    // clientCache is a private property
-    return new CharacterStatDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<CharacterStatDesc>(REMOTE_MODULE.tables.character_stat_desc));
+    return new CharacterStatDescTableHandle(this.connection.clientCache.getOrCreateTable<CharacterStatDesc>(REMOTE_MODULE.tables.character_stat_desc));
   }
 
   get characterStatsState(): CharacterStatsStateTableHandle {
-    // clientCache is a private property
-    return new CharacterStatsStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<CharacterStatsState>(REMOTE_MODULE.tables.character_stats_state));
+    return new CharacterStatsStateTableHandle(this.connection.clientCache.getOrCreateTable<CharacterStatsState>(REMOTE_MODULE.tables.character_stats_state));
   }
 
   get chatMessageState(): ChatMessageStateTableHandle {
-    // clientCache is a private property
-    return new ChatMessageStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<ChatMessageState>(REMOTE_MODULE.tables.chat_message_state));
+    return new ChatMessageStateTableHandle(this.connection.clientCache.getOrCreateTable<ChatMessageState>(REMOTE_MODULE.tables.chat_message_state));
   }
 
   get chestRarityDesc(): ChestRarityDescTableHandle {
-    // clientCache is a private property
-    return new ChestRarityDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<ChestRarityDesc>(REMOTE_MODULE.tables.chest_rarity_desc));
+    return new ChestRarityDescTableHandle(this.connection.clientCache.getOrCreateTable<ChestRarityDesc>(REMOTE_MODULE.tables.chest_rarity_desc));
   }
 
   get claimLocalState(): ClaimLocalStateTableHandle {
-    // clientCache is a private property
-    return new ClaimLocalStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<ClaimLocalState>(REMOTE_MODULE.tables.claim_local_state));
+    return new ClaimLocalStateTableHandle(this.connection.clientCache.getOrCreateTable<ClaimLocalState>(REMOTE_MODULE.tables.claim_local_state));
   }
 
   get claimMemberState(): ClaimMemberStateTableHandle {
-    // clientCache is a private property
-    return new ClaimMemberStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<ClaimMemberState>(REMOTE_MODULE.tables.claim_member_state));
+    return new ClaimMemberStateTableHandle(this.connection.clientCache.getOrCreateTable<ClaimMemberState>(REMOTE_MODULE.tables.claim_member_state));
   }
 
   get claimRecruitmentState(): ClaimRecruitmentStateTableHandle {
-    // clientCache is a private property
-    return new ClaimRecruitmentStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<ClaimRecruitmentState>(REMOTE_MODULE.tables.claim_recruitment_state));
+    return new ClaimRecruitmentStateTableHandle(this.connection.clientCache.getOrCreateTable<ClaimRecruitmentState>(REMOTE_MODULE.tables.claim_recruitment_state));
   }
 
   get claimState(): ClaimStateTableHandle {
-    // clientCache is a private property
-    return new ClaimStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<ClaimState>(REMOTE_MODULE.tables.claim_state));
+    return new ClaimStateTableHandle(this.connection.clientCache.getOrCreateTable<ClaimState>(REMOTE_MODULE.tables.claim_state));
   }
 
   get claimTechDesc(): ClaimTechDescTableHandle {
-    // clientCache is a private property
-    return new ClaimTechDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<ClaimTechDesc>(REMOTE_MODULE.tables.claim_tech_desc));
+    return new ClaimTechDescTableHandle(this.connection.clientCache.getOrCreateTable<ClaimTechDesc>(REMOTE_MODULE.tables.claim_tech_desc));
   }
 
   get claimTechState(): ClaimTechStateTableHandle {
-    // clientCache is a private property
-    return new ClaimTechStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<ClaimTechState>(REMOTE_MODULE.tables.claim_tech_state));
+    return new ClaimTechStateTableHandle(this.connection.clientCache.getOrCreateTable<ClaimTechState>(REMOTE_MODULE.tables.claim_tech_state));
   }
 
   get claimTileCost(): ClaimTileCostTableHandle {
-    // clientCache is a private property
-    return new ClaimTileCostTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<ClaimTileCost>(REMOTE_MODULE.tables.claim_tile_cost));
+    return new ClaimTileCostTableHandle(this.connection.clientCache.getOrCreateTable<ClaimTileCost>(REMOTE_MODULE.tables.claim_tile_cost));
   }
 
   get claimTileState(): ClaimTileStateTableHandle {
-    // clientCache is a private property
-    return new ClaimTileStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<ClaimTileState>(REMOTE_MODULE.tables.claim_tile_state));
+    return new ClaimTileStateTableHandle(this.connection.clientCache.getOrCreateTable<ClaimTileState>(REMOTE_MODULE.tables.claim_tile_state));
   }
 
   get climbRequirementDesc(): ClimbRequirementDescTableHandle {
-    // clientCache is a private property
-    return new ClimbRequirementDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<ClimbRequirementDesc>(REMOTE_MODULE.tables.climb_requirement_desc));
+    return new ClimbRequirementDescTableHandle(this.connection.clientCache.getOrCreateTable<ClimbRequirementDesc>(REMOTE_MODULE.tables.climb_requirement_desc));
   }
 
   get closedListingState(): ClosedListingStateTableHandle {
-    // clientCache is a private property
-    return new ClosedListingStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<ClosedListingState>(REMOTE_MODULE.tables.closed_listing_state));
+    return new ClosedListingStateTableHandle(this.connection.clientCache.getOrCreateTable<ClosedListingState>(REMOTE_MODULE.tables.closed_listing_state));
   }
 
   get clothingDesc(): ClothingDescTableHandle {
-    // clientCache is a private property
-    return new ClothingDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<ClothingDesc>(REMOTE_MODULE.tables.clothing_desc));
+    return new ClothingDescTableHandle(this.connection.clientCache.getOrCreateTable<ClothingDesc>(REMOTE_MODULE.tables.clothing_desc));
   }
 
   get collectibleDesc(): CollectibleDescTableHandle {
-    // clientCache is a private property
-    return new CollectibleDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<CollectibleDesc>(REMOTE_MODULE.tables.collectible_desc));
+    return new CollectibleDescTableHandle(this.connection.clientCache.getOrCreateTable<CollectibleDesc>(REMOTE_MODULE.tables.collectible_desc));
   }
 
   get combatActionDesc(): CombatActionDescTableHandle {
-    // clientCache is a private property
-    return new CombatActionDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<CombatActionDesc>(REMOTE_MODULE.tables.combat_action_desc));
+    return new CombatActionDescTableHandle(this.connection.clientCache.getOrCreateTable<CombatActionDesc>(REMOTE_MODULE.tables.combat_action_desc));
   }
 
   get combatActionDescV2(): CombatActionDescV2TableHandle {
-    // clientCache is a private property
-    return new CombatActionDescV2TableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<CombatActionDescV2>(REMOTE_MODULE.tables.combat_action_desc_v2));
+    return new CombatActionDescV2TableHandle(this.connection.clientCache.getOrCreateTable<CombatActionDescV2>(REMOTE_MODULE.tables.combat_action_desc_v2));
   }
 
   get combatActionDescV3(): CombatActionDescV3TableHandle {
-    // clientCache is a private property
-    return new CombatActionDescV3TableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<CombatActionDescV3>(REMOTE_MODULE.tables.combat_action_desc_v3));
+    return new CombatActionDescV3TableHandle(this.connection.clientCache.getOrCreateTable<CombatActionDescV3>(REMOTE_MODULE.tables.combat_action_desc_v3));
   }
 
   get combatActionMultiHitDesc(): CombatActionMultiHitDescTableHandle {
-    // clientCache is a private property
-    return new CombatActionMultiHitDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<CombatActionMultiHitDesc>(REMOTE_MODULE.tables.combat_action_multi_hit_desc));
+    return new CombatActionMultiHitDescTableHandle(this.connection.clientCache.getOrCreateTable<CombatActionMultiHitDesc>(REMOTE_MODULE.tables.combat_action_multi_hit_desc));
   }
 
   get combatDimensionState(): CombatDimensionStateTableHandle {
-    // clientCache is a private property
-    return new CombatDimensionStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<CombatDimensionState>(REMOTE_MODULE.tables.combat_dimension_state));
+    return new CombatDimensionStateTableHandle(this.connection.clientCache.getOrCreateTable<CombatDimensionState>(REMOTE_MODULE.tables.combat_dimension_state));
   }
 
   get combatState(): CombatStateTableHandle {
-    // clientCache is a private property
-    return new CombatStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<CombatState>(REMOTE_MODULE.tables.combat_state));
+    return new CombatStateTableHandle(this.connection.clientCache.getOrCreateTable<CombatState>(REMOTE_MODULE.tables.combat_state));
   }
 
   get config(): ConfigTableHandle {
-    // clientCache is a private property
-    return new ConfigTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<Config>(REMOTE_MODULE.tables.config));
+    return new ConfigTableHandle(this.connection.clientCache.getOrCreateTable<Config>(REMOTE_MODULE.tables.config));
   }
 
   get constructionRecipeDesc(): ConstructionRecipeDescTableHandle {
-    // clientCache is a private property
-    return new ConstructionRecipeDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<ConstructionRecipeDesc>(REMOTE_MODULE.tables.construction_recipe_desc));
+    return new ConstructionRecipeDescTableHandle(this.connection.clientCache.getOrCreateTable<ConstructionRecipeDesc>(REMOTE_MODULE.tables.construction_recipe_desc));
   }
 
   get contributionLootDesc(): ContributionLootDescTableHandle {
-    // clientCache is a private property
-    return new ContributionLootDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<ContributionLootDesc>(REMOTE_MODULE.tables.contribution_loot_desc));
+    return new ContributionLootDescTableHandle(this.connection.clientCache.getOrCreateTable<ContributionLootDesc>(REMOTE_MODULE.tables.contribution_loot_desc));
   }
 
   get contributionLootDescV2(): ContributionLootDescV2TableHandle {
-    // clientCache is a private property
-    return new ContributionLootDescV2TableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<ContributionLootDescV2>(REMOTE_MODULE.tables.contribution_loot_desc_v2));
+    return new ContributionLootDescV2TableHandle(this.connection.clientCache.getOrCreateTable<ContributionLootDescV2>(REMOTE_MODULE.tables.contribution_loot_desc_v2));
   }
 
   get contributionState(): ContributionStateTableHandle {
-    // clientCache is a private property
-    return new ContributionStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<ContributionState>(REMOTE_MODULE.tables.contribution_state));
+    return new ContributionStateTableHandle(this.connection.clientCache.getOrCreateTable<ContributionState>(REMOTE_MODULE.tables.contribution_state));
   }
 
   get craftingRecipeDesc(): CraftingRecipeDescTableHandle {
-    // clientCache is a private property
-    return new CraftingRecipeDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<CraftingRecipeDesc>(REMOTE_MODULE.tables.crafting_recipe_desc));
+    return new CraftingRecipeDescTableHandle(this.connection.clientCache.getOrCreateTable<CraftingRecipeDesc>(REMOTE_MODULE.tables.crafting_recipe_desc));
   }
 
   get deconstructionRecipeDesc(): DeconstructionRecipeDescTableHandle {
-    // clientCache is a private property
-    return new DeconstructionRecipeDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<DeconstructionRecipeDesc>(REMOTE_MODULE.tables.deconstruction_recipe_desc));
+    return new DeconstructionRecipeDescTableHandle(this.connection.clientCache.getOrCreateTable<DeconstructionRecipeDesc>(REMOTE_MODULE.tables.deconstruction_recipe_desc));
   }
 
   get deployableCollectibleState(): DeployableCollectibleStateTableHandle {
-    // clientCache is a private property
-    return new DeployableCollectibleStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<DeployableCollectibleState>(REMOTE_MODULE.tables.deployable_collectible_state));
+    return new DeployableCollectibleStateTableHandle(this.connection.clientCache.getOrCreateTable<DeployableCollectibleState>(REMOTE_MODULE.tables.deployable_collectible_state));
   }
 
   get deployableCollectibleStateV2(): DeployableCollectibleStateV2TableHandle {
-    // clientCache is a private property
-    return new DeployableCollectibleStateV2TableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<DeployableCollectibleStateV2>(REMOTE_MODULE.tables.deployable_collectible_state_v2));
+    return new DeployableCollectibleStateV2TableHandle(this.connection.clientCache.getOrCreateTable<DeployableCollectibleStateV2>(REMOTE_MODULE.tables.deployable_collectible_state_v2));
   }
 
   get deployableDesc(): DeployableDescTableHandle {
-    // clientCache is a private property
-    return new DeployableDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<DeployableDesc>(REMOTE_MODULE.tables.deployable_desc));
+    return new DeployableDescTableHandle(this.connection.clientCache.getOrCreateTable<DeployableDesc>(REMOTE_MODULE.tables.deployable_desc));
   }
 
   get deployableDescV2(): DeployableDescV2TableHandle {
-    // clientCache is a private property
-    return new DeployableDescV2TableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<DeployableDescV2>(REMOTE_MODULE.tables.deployable_desc_v2));
+    return new DeployableDescV2TableHandle(this.connection.clientCache.getOrCreateTable<DeployableDescV2>(REMOTE_MODULE.tables.deployable_desc_v2));
   }
 
   get deployableState(): DeployableStateTableHandle {
-    // clientCache is a private property
-    return new DeployableStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<DeployableState>(REMOTE_MODULE.tables.deployable_state));
+    return new DeployableStateTableHandle(this.connection.clientCache.getOrCreateTable<DeployableState>(REMOTE_MODULE.tables.deployable_state));
   }
 
   get developer(): DeveloperTableHandle {
-    // clientCache is a private property
-    return new DeveloperTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<Developer>(REMOTE_MODULE.tables.developer));
+    return new DeveloperTableHandle(this.connection.clientCache.getOrCreateTable<Developer>(REMOTE_MODULE.tables.developer));
   }
 
   get dimensionDescriptionState(): DimensionDescriptionStateTableHandle {
-    // clientCache is a private property
-    return new DimensionDescriptionStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<DimensionDescriptionState>(REMOTE_MODULE.tables.dimension_description_state));
+    return new DimensionDescriptionStateTableHandle(this.connection.clientCache.getOrCreateTable<DimensionDescriptionState>(REMOTE_MODULE.tables.dimension_description_state));
   }
 
   get dimensionNetworkState(): DimensionNetworkStateTableHandle {
-    // clientCache is a private property
-    return new DimensionNetworkStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<DimensionNetworkState>(REMOTE_MODULE.tables.dimension_network_state));
+    return new DimensionNetworkStateTableHandle(this.connection.clientCache.getOrCreateTable<DimensionNetworkState>(REMOTE_MODULE.tables.dimension_network_state));
   }
 
   get directMessageState(): DirectMessageStateTableHandle {
-    // clientCache is a private property
-    return new DirectMessageStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<DirectMessageState>(REMOTE_MODULE.tables.direct_message_state));
+    return new DirectMessageStateTableHandle(this.connection.clientCache.getOrCreateTable<DirectMessageState>(REMOTE_MODULE.tables.direct_message_state));
   }
 
   get distantVisibleEntity(): DistantVisibleEntityTableHandle {
-    // clientCache is a private property
-    return new DistantVisibleEntityTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<DistantVisibleEntity>(REMOTE_MODULE.tables.distant_visible_entity));
+    return new DistantVisibleEntityTableHandle(this.connection.clientCache.getOrCreateTable<DistantVisibleEntity>(REMOTE_MODULE.tables.distant_visible_entity));
   }
 
   get distantVisibleEntityDesc(): DistantVisibleEntityDescTableHandle {
-    // clientCache is a private property
-    return new DistantVisibleEntityDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<DistantVisibleEntityDesc>(REMOTE_MODULE.tables.distant_visible_entity_desc));
+    return new DistantVisibleEntityDescTableHandle(this.connection.clientCache.getOrCreateTable<DistantVisibleEntityDesc>(REMOTE_MODULE.tables.distant_visible_entity_desc));
   }
 
   get droppedInventoryState(): DroppedInventoryStateTableHandle {
-    // clientCache is a private property
-    return new DroppedInventoryStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<DroppedInventoryState>(REMOTE_MODULE.tables.dropped_inventory_state));
+    return new DroppedInventoryStateTableHandle(this.connection.clientCache.getOrCreateTable<DroppedInventoryState>(REMOTE_MODULE.tables.dropped_inventory_state));
   }
 
   get duelState(): DuelStateTableHandle {
-    // clientCache is a private property
-    return new DuelStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<DuelState>(REMOTE_MODULE.tables.duel_state));
+    return new DuelStateTableHandle(this.connection.clientCache.getOrCreateTable<DuelState>(REMOTE_MODULE.tables.duel_state));
   }
 
   get dungeonState(): DungeonStateTableHandle {
-    // clientCache is a private property
-    return new DungeonStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<DungeonState>(REMOTE_MODULE.tables.dungeon_state));
+    return new DungeonStateTableHandle(this.connection.clientCache.getOrCreateTable<DungeonState>(REMOTE_MODULE.tables.dungeon_state));
   }
 
   get elevatorDesc(): ElevatorDescTableHandle {
-    // clientCache is a private property
-    return new ElevatorDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<ElevatorDesc>(REMOTE_MODULE.tables.elevator_desc));
+    return new ElevatorDescTableHandle(this.connection.clientCache.getOrCreateTable<ElevatorDesc>(REMOTE_MODULE.tables.elevator_desc));
   }
 
   get emoteDesc(): EmoteDescTableHandle {
-    // clientCache is a private property
-    return new EmoteDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<EmoteDesc>(REMOTE_MODULE.tables.emote_desc));
+    return new EmoteDescTableHandle(this.connection.clientCache.getOrCreateTable<EmoteDesc>(REMOTE_MODULE.tables.emote_desc));
   }
 
   get empireChunkState(): EmpireChunkStateTableHandle {
-    // clientCache is a private property
-    return new EmpireChunkStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<EmpireChunkState>(REMOTE_MODULE.tables.empire_chunk_state));
+    return new EmpireChunkStateTableHandle(this.connection.clientCache.getOrCreateTable<EmpireChunkState>(REMOTE_MODULE.tables.empire_chunk_state));
   }
 
   get empireColorDesc(): EmpireColorDescTableHandle {
-    // clientCache is a private property
-    return new EmpireColorDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<EmpireColorDesc>(REMOTE_MODULE.tables.empire_color_desc));
+    return new EmpireColorDescTableHandle(this.connection.clientCache.getOrCreateTable<EmpireColorDesc>(REMOTE_MODULE.tables.empire_color_desc));
   }
 
   get empireCraftSuppliesTimer(): EmpireCraftSuppliesTimerTableHandle {
-    // clientCache is a private property
-    return new EmpireCraftSuppliesTimerTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<EmpireCraftSuppliesTimer>(REMOTE_MODULE.tables.empire_craft_supplies_timer));
+    return new EmpireCraftSuppliesTimerTableHandle(this.connection.clientCache.getOrCreateTable<EmpireCraftSuppliesTimer>(REMOTE_MODULE.tables.empire_craft_supplies_timer));
   }
 
   get empireDecayLoopTimer(): EmpireDecayLoopTimerTableHandle {
-    // clientCache is a private property
-    return new EmpireDecayLoopTimerTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<EmpireDecayLoopTimer>(REMOTE_MODULE.tables.empire_decay_loop_timer));
+    return new EmpireDecayLoopTimerTableHandle(this.connection.clientCache.getOrCreateTable<EmpireDecayLoopTimer>(REMOTE_MODULE.tables.empire_decay_loop_timer));
   }
 
   get empireDirectiveState(): EmpireDirectiveStateTableHandle {
-    // clientCache is a private property
-    return new EmpireDirectiveStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<EmpireDirectiveState>(REMOTE_MODULE.tables.empire_directive_state));
+    return new EmpireDirectiveStateTableHandle(this.connection.clientCache.getOrCreateTable<EmpireDirectiveState>(REMOTE_MODULE.tables.empire_directive_state));
   }
 
   get empireEmblemState(): EmpireEmblemStateTableHandle {
-    // clientCache is a private property
-    return new EmpireEmblemStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<EmpireEmblemState>(REMOTE_MODULE.tables.empire_emblem_state));
+    return new EmpireEmblemStateTableHandle(this.connection.clientCache.getOrCreateTable<EmpireEmblemState>(REMOTE_MODULE.tables.empire_emblem_state));
   }
 
   get empireExpansionState(): EmpireExpansionStateTableHandle {
-    // clientCache is a private property
-    return new EmpireExpansionStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<EmpireExpansionState>(REMOTE_MODULE.tables.empire_expansion_state));
+    return new EmpireExpansionStateTableHandle(this.connection.clientCache.getOrCreateTable<EmpireExpansionState>(REMOTE_MODULE.tables.empire_expansion_state));
   }
 
   get empireFoundryState(): EmpireFoundryStateTableHandle {
-    // clientCache is a private property
-    return new EmpireFoundryStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<EmpireFoundryState>(REMOTE_MODULE.tables.empire_foundry_state));
+    return new EmpireFoundryStateTableHandle(this.connection.clientCache.getOrCreateTable<EmpireFoundryState>(REMOTE_MODULE.tables.empire_foundry_state));
   }
 
   get empireIconDesc(): EmpireIconDescTableHandle {
-    // clientCache is a private property
-    return new EmpireIconDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<EmpireIconDesc>(REMOTE_MODULE.tables.empire_icon_desc));
+    return new EmpireIconDescTableHandle(this.connection.clientCache.getOrCreateTable<EmpireIconDesc>(REMOTE_MODULE.tables.empire_icon_desc));
   }
 
   get empireLogState(): EmpireLogStateTableHandle {
-    // clientCache is a private property
-    return new EmpireLogStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<EmpireLogState>(REMOTE_MODULE.tables.empire_log_state));
+    return new EmpireLogStateTableHandle(this.connection.clientCache.getOrCreateTable<EmpireLogState>(REMOTE_MODULE.tables.empire_log_state));
   }
 
   get empireNodeSiegeState(): EmpireNodeSiegeStateTableHandle {
-    // clientCache is a private property
-    return new EmpireNodeSiegeStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<EmpireNodeSiegeState>(REMOTE_MODULE.tables.empire_node_siege_state));
+    return new EmpireNodeSiegeStateTableHandle(this.connection.clientCache.getOrCreateTable<EmpireNodeSiegeState>(REMOTE_MODULE.tables.empire_node_siege_state));
   }
 
   get empireNodeState(): EmpireNodeStateTableHandle {
-    // clientCache is a private property
-    return new EmpireNodeStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<EmpireNodeState>(REMOTE_MODULE.tables.empire_node_state));
+    return new EmpireNodeStateTableHandle(this.connection.clientCache.getOrCreateTable<EmpireNodeState>(REMOTE_MODULE.tables.empire_node_state));
   }
 
   get empireNotificationDesc(): EmpireNotificationDescTableHandle {
-    // clientCache is a private property
-    return new EmpireNotificationDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<EmpireNotificationDesc>(REMOTE_MODULE.tables.empire_notification_desc));
+    return new EmpireNotificationDescTableHandle(this.connection.clientCache.getOrCreateTable<EmpireNotificationDesc>(REMOTE_MODULE.tables.empire_notification_desc));
   }
 
   get empireNotificationState(): EmpireNotificationStateTableHandle {
-    // clientCache is a private property
-    return new EmpireNotificationStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<EmpireNotificationState>(REMOTE_MODULE.tables.empire_notification_state));
+    return new EmpireNotificationStateTableHandle(this.connection.clientCache.getOrCreateTable<EmpireNotificationState>(REMOTE_MODULE.tables.empire_notification_state));
   }
 
   get empirePlayerDataState(): EmpirePlayerDataStateTableHandle {
-    // clientCache is a private property
-    return new EmpirePlayerDataStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<EmpirePlayerDataState>(REMOTE_MODULE.tables.empire_player_data_state));
+    return new EmpirePlayerDataStateTableHandle(this.connection.clientCache.getOrCreateTable<EmpirePlayerDataState>(REMOTE_MODULE.tables.empire_player_data_state));
   }
 
   get empirePlayerLogState(): EmpirePlayerLogStateTableHandle {
-    // clientCache is a private property
-    return new EmpirePlayerLogStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<EmpirePlayerLogState>(REMOTE_MODULE.tables.empire_player_log_state));
+    return new EmpirePlayerLogStateTableHandle(this.connection.clientCache.getOrCreateTable<EmpirePlayerLogState>(REMOTE_MODULE.tables.empire_player_log_state));
   }
 
   get empireRankDesc(): EmpireRankDescTableHandle {
-    // clientCache is a private property
-    return new EmpireRankDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<EmpireRankDesc>(REMOTE_MODULE.tables.empire_rank_desc));
+    return new EmpireRankDescTableHandle(this.connection.clientCache.getOrCreateTable<EmpireRankDesc>(REMOTE_MODULE.tables.empire_rank_desc));
   }
 
   get empireRankState(): EmpireRankStateTableHandle {
-    // clientCache is a private property
-    return new EmpireRankStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<EmpireRankState>(REMOTE_MODULE.tables.empire_rank_state));
+    return new EmpireRankStateTableHandle(this.connection.clientCache.getOrCreateTable<EmpireRankState>(REMOTE_MODULE.tables.empire_rank_state));
   }
 
   get empireSettlementState(): EmpireSettlementStateTableHandle {
-    // clientCache is a private property
-    return new EmpireSettlementStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<EmpireSettlementState>(REMOTE_MODULE.tables.empire_settlement_state));
+    return new EmpireSettlementStateTableHandle(this.connection.clientCache.getOrCreateTable<EmpireSettlementState>(REMOTE_MODULE.tables.empire_settlement_state));
   }
 
   get empireSiegeEngineState(): EmpireSiegeEngineStateTableHandle {
-    // clientCache is a private property
-    return new EmpireSiegeEngineStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<EmpireSiegeEngineState>(REMOTE_MODULE.tables.empire_siege_engine_state));
+    return new EmpireSiegeEngineStateTableHandle(this.connection.clientCache.getOrCreateTable<EmpireSiegeEngineState>(REMOTE_MODULE.tables.empire_siege_engine_state));
   }
 
   get empireSiegeLoopTimer(): EmpireSiegeLoopTimerTableHandle {
-    // clientCache is a private property
-    return new EmpireSiegeLoopTimerTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<EmpireSiegeLoopTimer>(REMOTE_MODULE.tables.empire_siege_loop_timer));
+    return new EmpireSiegeLoopTimerTableHandle(this.connection.clientCache.getOrCreateTable<EmpireSiegeLoopTimer>(REMOTE_MODULE.tables.empire_siege_loop_timer));
   }
 
   get empireState(): EmpireStateTableHandle {
-    // clientCache is a private property
-    return new EmpireStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<EmpireState>(REMOTE_MODULE.tables.empire_state));
+    return new EmpireStateTableHandle(this.connection.clientCache.getOrCreateTable<EmpireState>(REMOTE_MODULE.tables.empire_state));
   }
 
   get empireSuppliesDesc(): EmpireSuppliesDescTableHandle {
-    // clientCache is a private property
-    return new EmpireSuppliesDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<EmpireSuppliesDesc>(REMOTE_MODULE.tables.empire_supplies_desc));
+    return new EmpireSuppliesDescTableHandle(this.connection.clientCache.getOrCreateTable<EmpireSuppliesDesc>(REMOTE_MODULE.tables.empire_supplies_desc));
   }
 
   get empireTerritoryDesc(): EmpireTerritoryDescTableHandle {
-    // clientCache is a private property
-    return new EmpireTerritoryDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<EmpireTerritoryDesc>(REMOTE_MODULE.tables.empire_territory_desc));
+    return new EmpireTerritoryDescTableHandle(this.connection.clientCache.getOrCreateTable<EmpireTerritoryDesc>(REMOTE_MODULE.tables.empire_territory_desc));
   }
 
   get enemyAiParamsDesc(): EnemyAiParamsDescTableHandle {
-    // clientCache is a private property
-    return new EnemyAiParamsDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<EnemyAiParamsDesc>(REMOTE_MODULE.tables.enemy_ai_params_desc));
+    return new EnemyAiParamsDescTableHandle(this.connection.clientCache.getOrCreateTable<EnemyAiParamsDesc>(REMOTE_MODULE.tables.enemy_ai_params_desc));
   }
 
   get enemyDesc(): EnemyDescTableHandle {
-    // clientCache is a private property
-    return new EnemyDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<EnemyDesc>(REMOTE_MODULE.tables.enemy_desc));
+    return new EnemyDescTableHandle(this.connection.clientCache.getOrCreateTable<EnemyDesc>(REMOTE_MODULE.tables.enemy_desc));
   }
 
   get enemyMobMonitorState(): EnemyMobMonitorStateTableHandle {
-    // clientCache is a private property
-    return new EnemyMobMonitorStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<EnemyMobMonitorState>(REMOTE_MODULE.tables.enemy_mob_monitor_state));
+    return new EnemyMobMonitorStateTableHandle(this.connection.clientCache.getOrCreateTable<EnemyMobMonitorState>(REMOTE_MODULE.tables.enemy_mob_monitor_state));
   }
 
   get enemyScalingDesc(): EnemyScalingDescTableHandle {
-    // clientCache is a private property
-    return new EnemyScalingDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<EnemyScalingDesc>(REMOTE_MODULE.tables.enemy_scaling_desc));
+    return new EnemyScalingDescTableHandle(this.connection.clientCache.getOrCreateTable<EnemyScalingDesc>(REMOTE_MODULE.tables.enemy_scaling_desc));
   }
 
   get enemyScalingState(): EnemyScalingStateTableHandle {
-    // clientCache is a private property
-    return new EnemyScalingStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<EnemyScalingState>(REMOTE_MODULE.tables.enemy_scaling_state));
+    return new EnemyScalingStateTableHandle(this.connection.clientCache.getOrCreateTable<EnemyScalingState>(REMOTE_MODULE.tables.enemy_scaling_state));
   }
 
   get enemyState(): EnemyStateTableHandle {
-    // clientCache is a private property
-    return new EnemyStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<EnemyState>(REMOTE_MODULE.tables.enemy_state));
+    return new EnemyStateTableHandle(this.connection.clientCache.getOrCreateTable<EnemyState>(REMOTE_MODULE.tables.enemy_state));
   }
 
   get environmentDebuffDesc(): EnvironmentDebuffDescTableHandle {
-    // clientCache is a private property
-    return new EnvironmentDebuffDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<EnvironmentDebuffDesc>(REMOTE_MODULE.tables.environment_debuff_desc));
+    return new EnvironmentDebuffDescTableHandle(this.connection.clientCache.getOrCreateTable<EnvironmentDebuffDesc>(REMOTE_MODULE.tables.environment_debuff_desc));
   }
 
   get equipmentDesc(): EquipmentDescTableHandle {
-    // clientCache is a private property
-    return new EquipmentDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<EquipmentDesc>(REMOTE_MODULE.tables.equipment_desc));
+    return new EquipmentDescTableHandle(this.connection.clientCache.getOrCreateTable<EquipmentDesc>(REMOTE_MODULE.tables.equipment_desc));
   }
 
   get equipmentState(): EquipmentStateTableHandle {
-    // clientCache is a private property
-    return new EquipmentStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<EquipmentState>(REMOTE_MODULE.tables.equipment_state));
+    return new EquipmentStateTableHandle(this.connection.clientCache.getOrCreateTable<EquipmentState>(REMOTE_MODULE.tables.equipment_state));
   }
 
   get experienceState(): ExperienceStateTableHandle {
-    // clientCache is a private property
-    return new ExperienceStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<ExperienceState>(REMOTE_MODULE.tables.experience_state));
+    return new ExperienceStateTableHandle(this.connection.clientCache.getOrCreateTable<ExperienceState>(REMOTE_MODULE.tables.experience_state));
   }
 
   get explorationChunksState(): ExplorationChunksStateTableHandle {
-    // clientCache is a private property
-    return new ExplorationChunksStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<ExplorationChunksState>(REMOTE_MODULE.tables.exploration_chunks_state));
+    return new ExplorationChunksStateTableHandle(this.connection.clientCache.getOrCreateTable<ExplorationChunksState>(REMOTE_MODULE.tables.exploration_chunks_state));
   }
 
   get extractOutcomeState(): ExtractOutcomeStateTableHandle {
-    // clientCache is a private property
-    return new ExtractOutcomeStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<ExtractOutcomeState>(REMOTE_MODULE.tables.extract_outcome_state));
+    return new ExtractOutcomeStateTableHandle(this.connection.clientCache.getOrCreateTable<ExtractOutcomeState>(REMOTE_MODULE.tables.extract_outcome_state));
   }
 
   get extractionRecipeDesc(): ExtractionRecipeDescTableHandle {
-    // clientCache is a private property
-    return new ExtractionRecipeDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<ExtractionRecipeDesc>(REMOTE_MODULE.tables.extraction_recipe_desc));
+    return new ExtractionRecipeDescTableHandle(this.connection.clientCache.getOrCreateTable<ExtractionRecipeDesc>(REMOTE_MODULE.tables.extraction_recipe_desc));
   }
 
   get foodDesc(): FoodDescTableHandle {
-    // clientCache is a private property
-    return new FoodDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<FoodDesc>(REMOTE_MODULE.tables.food_desc));
+    return new FoodDescTableHandle(this.connection.clientCache.getOrCreateTable<FoodDesc>(REMOTE_MODULE.tables.food_desc));
   }
 
   get footprintTileState(): FootprintTileStateTableHandle {
-    // clientCache is a private property
-    return new FootprintTileStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<FootprintTileState>(REMOTE_MODULE.tables.footprint_tile_state));
+    return new FootprintTileStateTableHandle(this.connection.clientCache.getOrCreateTable<FootprintTileState>(REMOTE_MODULE.tables.footprint_tile_state));
   }
 
   get forceGenerateTypes(): ForceGenerateTypesTableHandle {
-    // clientCache is a private property
-    return new ForceGenerateTypesTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<ForceGenerateTypes>(REMOTE_MODULE.tables.force_generate_types));
+    return new ForceGenerateTypesTableHandle(this.connection.clientCache.getOrCreateTable<ForceGenerateTypes>(REMOTE_MODULE.tables.force_generate_types));
   }
 
   get friendsState(): FriendsStateTableHandle {
-    // clientCache is a private property
-    return new FriendsStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<FriendsState>(REMOTE_MODULE.tables.friends_state));
+    return new FriendsStateTableHandle(this.connection.clientCache.getOrCreateTable<FriendsState>(REMOTE_MODULE.tables.friends_state));
   }
 
   get gateDesc(): GateDescTableHandle {
-    // clientCache is a private property
-    return new GateDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<GateDesc>(REMOTE_MODULE.tables.gate_desc));
+    return new GateDescTableHandle(this.connection.clientCache.getOrCreateTable<GateDesc>(REMOTE_MODULE.tables.gate_desc));
   }
 
   get globalSearchState(): GlobalSearchStateTableHandle {
-    // clientCache is a private property
-    return new GlobalSearchStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<GlobalSearchState>(REMOTE_MODULE.tables.global_search_state));
+    return new GlobalSearchStateTableHandle(this.connection.clientCache.getOrCreateTable<GlobalSearchState>(REMOTE_MODULE.tables.global_search_state));
   }
 
   get globals(): GlobalsTableHandle {
-    // clientCache is a private property
-    return new GlobalsTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<Globals>(REMOTE_MODULE.tables.globals));
+    return new GlobalsTableHandle(this.connection.clientCache.getOrCreateTable<Globals>(REMOTE_MODULE.tables.globals));
   }
 
   get grantedHubItemState(): GrantedHubItemStateTableHandle {
-    // clientCache is a private property
-    return new GrantedHubItemStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<GrantedHubItemState>(REMOTE_MODULE.tables.granted_hub_item_state));
+    return new GrantedHubItemStateTableHandle(this.connection.clientCache.getOrCreateTable<GrantedHubItemState>(REMOTE_MODULE.tables.granted_hub_item_state));
   }
 
   get growthState(): GrowthStateTableHandle {
-    // clientCache is a private property
-    return new GrowthStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<GrowthState>(REMOTE_MODULE.tables.growth_state));
+    return new GrowthStateTableHandle(this.connection.clientCache.getOrCreateTable<GrowthState>(REMOTE_MODULE.tables.growth_state));
   }
 
   get healthState(): HealthStateTableHandle {
-    // clientCache is a private property
-    return new HealthStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<HealthState>(REMOTE_MODULE.tables.health_state));
+    return new HealthStateTableHandle(this.connection.clientCache.getOrCreateTable<HealthState>(REMOTE_MODULE.tables.health_state));
   }
 
   get herdState(): HerdStateTableHandle {
-    // clientCache is a private property
-    return new HerdStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<HerdState>(REMOTE_MODULE.tables.herd_state));
+    return new HerdStateTableHandle(this.connection.clientCache.getOrCreateTable<HerdState>(REMOTE_MODULE.tables.herd_state));
   }
 
   get hexiteExchangeEntryDesc(): HexiteExchangeEntryDescTableHandle {
-    // clientCache is a private property
-    return new HexiteExchangeEntryDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<HexiteExchangeEntryDesc>(REMOTE_MODULE.tables.hexite_exchange_entry_desc));
+    return new HexiteExchangeEntryDescTableHandle(this.connection.clientCache.getOrCreateTable<HexiteExchangeEntryDesc>(REMOTE_MODULE.tables.hexite_exchange_entry_desc));
   }
 
   get identityRole(): IdentityRoleTableHandle {
-    // clientCache is a private property
-    return new IdentityRoleTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<IdentityRole>(REMOTE_MODULE.tables.identity_role));
+    return new IdentityRoleTableHandle(this.connection.clientCache.getOrCreateTable<IdentityRole>(REMOTE_MODULE.tables.identity_role));
   }
 
   get interModuleMessage(): InterModuleMessageTableHandle {
-    // clientCache is a private property
-    return new InterModuleMessageTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<InterModuleMessage>(REMOTE_MODULE.tables.inter_module_message));
+    return new InterModuleMessageTableHandle(this.connection.clientCache.getOrCreateTable<InterModuleMessage>(REMOTE_MODULE.tables.inter_module_message));
   }
 
   get interModuleMessageCounter(): InterModuleMessageCounterTableHandle {
-    // clientCache is a private property
-    return new InterModuleMessageCounterTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<InterModuleMessageCounter>(REMOTE_MODULE.tables.inter_module_message_counter));
+    return new InterModuleMessageCounterTableHandle(this.connection.clientCache.getOrCreateTable<InterModuleMessageCounter>(REMOTE_MODULE.tables.inter_module_message_counter));
   }
 
   get interModuleMessageV2(): InterModuleMessageV2TableHandle {
-    // clientCache is a private property
-    return new InterModuleMessageV2TableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<InterModuleMessageV2>(REMOTE_MODULE.tables.inter_module_message_v2));
+    return new InterModuleMessageV2TableHandle(this.connection.clientCache.getOrCreateTable<InterModuleMessageV2>(REMOTE_MODULE.tables.inter_module_message_v2));
   }
 
   get interModuleResponseMessageCounter(): InterModuleResponseMessageCounterTableHandle {
-    // clientCache is a private property
-    return new InterModuleResponseMessageCounterTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<InterModuleResponseMessageCounter>(REMOTE_MODULE.tables.inter_module_response_message_counter));
+    return new InterModuleResponseMessageCounterTableHandle(this.connection.clientCache.getOrCreateTable<InterModuleResponseMessageCounter>(REMOTE_MODULE.tables.inter_module_response_message_counter));
   }
 
   get interiorCollapseTriggerState(): InteriorCollapseTriggerStateTableHandle {
-    // clientCache is a private property
-    return new InteriorCollapseTriggerStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<InteriorCollapseTriggerState>(REMOTE_MODULE.tables.interior_collapse_trigger_state));
+    return new InteriorCollapseTriggerStateTableHandle(this.connection.clientCache.getOrCreateTable<InteriorCollapseTriggerState>(REMOTE_MODULE.tables.interior_collapse_trigger_state));
   }
 
   get interiorEnvironmentDesc(): InteriorEnvironmentDescTableHandle {
-    // clientCache is a private property
-    return new InteriorEnvironmentDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<InteriorEnvironmentDesc>(REMOTE_MODULE.tables.interior_environment_desc));
+    return new InteriorEnvironmentDescTableHandle(this.connection.clientCache.getOrCreateTable<InteriorEnvironmentDesc>(REMOTE_MODULE.tables.interior_environment_desc));
   }
 
   get interiorInstanceDesc(): InteriorInstanceDescTableHandle {
-    // clientCache is a private property
-    return new InteriorInstanceDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<InteriorInstanceDesc>(REMOTE_MODULE.tables.interior_instance_desc));
+    return new InteriorInstanceDescTableHandle(this.connection.clientCache.getOrCreateTable<InteriorInstanceDesc>(REMOTE_MODULE.tables.interior_instance_desc));
   }
 
   get interiorNetworkDesc(): InteriorNetworkDescTableHandle {
-    // clientCache is a private property
-    return new InteriorNetworkDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<InteriorNetworkDesc>(REMOTE_MODULE.tables.interior_network_desc));
+    return new InteriorNetworkDescTableHandle(this.connection.clientCache.getOrCreateTable<InteriorNetworkDesc>(REMOTE_MODULE.tables.interior_network_desc));
   }
 
   get interiorPlayerCountState(): InteriorPlayerCountStateTableHandle {
-    // clientCache is a private property
-    return new InteriorPlayerCountStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<InteriorPlayerCountState>(REMOTE_MODULE.tables.interior_player_count_state));
+    return new InteriorPlayerCountStateTableHandle(this.connection.clientCache.getOrCreateTable<InteriorPlayerCountState>(REMOTE_MODULE.tables.interior_player_count_state));
   }
 
   get interiorPortalConnectionsDesc(): InteriorPortalConnectionsDescTableHandle {
-    // clientCache is a private property
-    return new InteriorPortalConnectionsDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<InteriorPortalConnectionsDesc>(REMOTE_MODULE.tables.interior_portal_connections_desc));
+    return new InteriorPortalConnectionsDescTableHandle(this.connection.clientCache.getOrCreateTable<InteriorPortalConnectionsDesc>(REMOTE_MODULE.tables.interior_portal_connections_desc));
   }
 
   get interiorShapeDesc(): InteriorShapeDescTableHandle {
-    // clientCache is a private property
-    return new InteriorShapeDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<InteriorShapeDesc>(REMOTE_MODULE.tables.interior_shape_desc));
+    return new InteriorShapeDescTableHandle(this.connection.clientCache.getOrCreateTable<InteriorShapeDesc>(REMOTE_MODULE.tables.interior_shape_desc));
   }
 
   get interiorSpawnDesc(): InteriorSpawnDescTableHandle {
-    // clientCache is a private property
-    return new InteriorSpawnDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<InteriorSpawnDesc>(REMOTE_MODULE.tables.interior_spawn_desc));
+    return new InteriorSpawnDescTableHandle(this.connection.clientCache.getOrCreateTable<InteriorSpawnDesc>(REMOTE_MODULE.tables.interior_spawn_desc));
   }
 
   get inventoryState(): InventoryStateTableHandle {
-    // clientCache is a private property
-    return new InventoryStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<InventoryState>(REMOTE_MODULE.tables.inventory_state));
+    return new InventoryStateTableHandle(this.connection.clientCache.getOrCreateTable<InventoryState>(REMOTE_MODULE.tables.inventory_state));
   }
 
   get itemConversionRecipeDesc(): ItemConversionRecipeDescTableHandle {
-    // clientCache is a private property
-    return new ItemConversionRecipeDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<ItemConversionRecipeDesc>(REMOTE_MODULE.tables.item_conversion_recipe_desc));
+    return new ItemConversionRecipeDescTableHandle(this.connection.clientCache.getOrCreateTable<ItemConversionRecipeDesc>(REMOTE_MODULE.tables.item_conversion_recipe_desc));
   }
 
   get itemDesc(): ItemDescTableHandle {
-    // clientCache is a private property
-    return new ItemDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<ItemDesc>(REMOTE_MODULE.tables.item_desc));
+    return new ItemDescTableHandle(this.connection.clientCache.getOrCreateTable<ItemDesc>(REMOTE_MODULE.tables.item_desc));
   }
 
   get itemListDesc(): ItemListDescTableHandle {
-    // clientCache is a private property
-    return new ItemListDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<ItemListDesc>(REMOTE_MODULE.tables.item_list_desc));
+    return new ItemListDescTableHandle(this.connection.clientCache.getOrCreateTable<ItemListDesc>(REMOTE_MODULE.tables.item_list_desc));
   }
 
   get knowledgeAchievementState(): KnowledgeAchievementStateTableHandle {
-    // clientCache is a private property
-    return new KnowledgeAchievementStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<KnowledgeAchievementState>(REMOTE_MODULE.tables.knowledge_achievement_state));
+    return new KnowledgeAchievementStateTableHandle(this.connection.clientCache.getOrCreateTable<KnowledgeAchievementState>(REMOTE_MODULE.tables.knowledge_achievement_state));
   }
 
   get knowledgeBattleActionState(): KnowledgeBattleActionStateTableHandle {
-    // clientCache is a private property
-    return new KnowledgeBattleActionStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<KnowledgeBattleActionState>(REMOTE_MODULE.tables.knowledge_battle_action_state));
+    return new KnowledgeBattleActionStateTableHandle(this.connection.clientCache.getOrCreateTable<KnowledgeBattleActionState>(REMOTE_MODULE.tables.knowledge_battle_action_state));
   }
 
   get knowledgeBuildingState(): KnowledgeBuildingStateTableHandle {
-    // clientCache is a private property
-    return new KnowledgeBuildingStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<KnowledgeBuildingState>(REMOTE_MODULE.tables.knowledge_building_state));
+    return new KnowledgeBuildingStateTableHandle(this.connection.clientCache.getOrCreateTable<KnowledgeBuildingState>(REMOTE_MODULE.tables.knowledge_building_state));
   }
 
   get knowledgeCargoState(): KnowledgeCargoStateTableHandle {
-    // clientCache is a private property
-    return new KnowledgeCargoStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<KnowledgeCargoState>(REMOTE_MODULE.tables.knowledge_cargo_state));
+    return new KnowledgeCargoStateTableHandle(this.connection.clientCache.getOrCreateTable<KnowledgeCargoState>(REMOTE_MODULE.tables.knowledge_cargo_state));
   }
 
   get knowledgeClaimState(): KnowledgeClaimStateTableHandle {
-    // clientCache is a private property
-    return new KnowledgeClaimStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<KnowledgeClaimState>(REMOTE_MODULE.tables.knowledge_claim_state));
+    return new KnowledgeClaimStateTableHandle(this.connection.clientCache.getOrCreateTable<KnowledgeClaimState>(REMOTE_MODULE.tables.knowledge_claim_state));
   }
 
   get knowledgeConstructionState(): KnowledgeConstructionStateTableHandle {
-    // clientCache is a private property
-    return new KnowledgeConstructionStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<KnowledgeConstructionState>(REMOTE_MODULE.tables.knowledge_construction_state));
+    return new KnowledgeConstructionStateTableHandle(this.connection.clientCache.getOrCreateTable<KnowledgeConstructionState>(REMOTE_MODULE.tables.knowledge_construction_state));
   }
 
   get knowledgeCraftState(): KnowledgeCraftStateTableHandle {
-    // clientCache is a private property
-    return new KnowledgeCraftStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<KnowledgeCraftState>(REMOTE_MODULE.tables.knowledge_craft_state));
+    return new KnowledgeCraftStateTableHandle(this.connection.clientCache.getOrCreateTable<KnowledgeCraftState>(REMOTE_MODULE.tables.knowledge_craft_state));
   }
 
   get knowledgeDeployableState(): KnowledgeDeployableStateTableHandle {
-    // clientCache is a private property
-    return new KnowledgeDeployableStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<KnowledgeDeployableState>(REMOTE_MODULE.tables.knowledge_deployable_state));
+    return new KnowledgeDeployableStateTableHandle(this.connection.clientCache.getOrCreateTable<KnowledgeDeployableState>(REMOTE_MODULE.tables.knowledge_deployable_state));
   }
 
   get knowledgeEnemyState(): KnowledgeEnemyStateTableHandle {
-    // clientCache is a private property
-    return new KnowledgeEnemyStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<KnowledgeEnemyState>(REMOTE_MODULE.tables.knowledge_enemy_state));
+    return new KnowledgeEnemyStateTableHandle(this.connection.clientCache.getOrCreateTable<KnowledgeEnemyState>(REMOTE_MODULE.tables.knowledge_enemy_state));
   }
 
   get knowledgeExtractState(): KnowledgeExtractStateTableHandle {
-    // clientCache is a private property
-    return new KnowledgeExtractStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<KnowledgeExtractState>(REMOTE_MODULE.tables.knowledge_extract_state));
+    return new KnowledgeExtractStateTableHandle(this.connection.clientCache.getOrCreateTable<KnowledgeExtractState>(REMOTE_MODULE.tables.knowledge_extract_state));
   }
 
   get knowledgeItemState(): KnowledgeItemStateTableHandle {
-    // clientCache is a private property
-    return new KnowledgeItemStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<KnowledgeItemState>(REMOTE_MODULE.tables.knowledge_item_state));
+    return new KnowledgeItemStateTableHandle(this.connection.clientCache.getOrCreateTable<KnowledgeItemState>(REMOTE_MODULE.tables.knowledge_item_state));
   }
 
   get knowledgeLoreState(): KnowledgeLoreStateTableHandle {
-    // clientCache is a private property
-    return new KnowledgeLoreStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<KnowledgeLoreState>(REMOTE_MODULE.tables.knowledge_lore_state));
+    return new KnowledgeLoreStateTableHandle(this.connection.clientCache.getOrCreateTable<KnowledgeLoreState>(REMOTE_MODULE.tables.knowledge_lore_state));
   }
 
   get knowledgeNpcState(): KnowledgeNpcStateTableHandle {
-    // clientCache is a private property
-    return new KnowledgeNpcStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<KnowledgeNpcState>(REMOTE_MODULE.tables.knowledge_npc_state));
+    return new KnowledgeNpcStateTableHandle(this.connection.clientCache.getOrCreateTable<KnowledgeNpcState>(REMOTE_MODULE.tables.knowledge_npc_state));
   }
 
   get knowledgePavingState(): KnowledgePavingStateTableHandle {
-    // clientCache is a private property
-    return new KnowledgePavingStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<KnowledgePavingState>(REMOTE_MODULE.tables.knowledge_paving_state));
+    return new KnowledgePavingStateTableHandle(this.connection.clientCache.getOrCreateTable<KnowledgePavingState>(REMOTE_MODULE.tables.knowledge_paving_state));
   }
 
   get knowledgePillarShapingState(): KnowledgePillarShapingStateTableHandle {
-    // clientCache is a private property
-    return new KnowledgePillarShapingStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<KnowledgePillarShapingState>(REMOTE_MODULE.tables.knowledge_pillar_shaping_state));
+    return new KnowledgePillarShapingStateTableHandle(this.connection.clientCache.getOrCreateTable<KnowledgePillarShapingState>(REMOTE_MODULE.tables.knowledge_pillar_shaping_state));
   }
 
   get knowledgeResourcePlacementState(): KnowledgeResourcePlacementStateTableHandle {
-    // clientCache is a private property
-    return new KnowledgeResourcePlacementStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<KnowledgeResourcePlacementState>(REMOTE_MODULE.tables.knowledge_resource_placement_state));
+    return new KnowledgeResourcePlacementStateTableHandle(this.connection.clientCache.getOrCreateTable<KnowledgeResourcePlacementState>(REMOTE_MODULE.tables.knowledge_resource_placement_state));
   }
 
   get knowledgeResourceState(): KnowledgeResourceStateTableHandle {
-    // clientCache is a private property
-    return new KnowledgeResourceStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<KnowledgeResourceState>(REMOTE_MODULE.tables.knowledge_resource_state));
+    return new KnowledgeResourceStateTableHandle(this.connection.clientCache.getOrCreateTable<KnowledgeResourceState>(REMOTE_MODULE.tables.knowledge_resource_state));
   }
 
   get knowledgeRuinsState(): KnowledgeRuinsStateTableHandle {
-    // clientCache is a private property
-    return new KnowledgeRuinsStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<KnowledgeRuinsState>(REMOTE_MODULE.tables.knowledge_ruins_state));
+    return new KnowledgeRuinsStateTableHandle(this.connection.clientCache.getOrCreateTable<KnowledgeRuinsState>(REMOTE_MODULE.tables.knowledge_ruins_state));
   }
 
   get knowledgeScrollDesc(): KnowledgeScrollDescTableHandle {
-    // clientCache is a private property
-    return new KnowledgeScrollDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<KnowledgeScrollDesc>(REMOTE_MODULE.tables.knowledge_scroll_desc));
+    return new KnowledgeScrollDescTableHandle(this.connection.clientCache.getOrCreateTable<KnowledgeScrollDesc>(REMOTE_MODULE.tables.knowledge_scroll_desc));
   }
 
   get knowledgeScrollTypeDesc(): KnowledgeScrollTypeDescTableHandle {
-    // clientCache is a private property
-    return new KnowledgeScrollTypeDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<KnowledgeScrollTypeDesc>(REMOTE_MODULE.tables.knowledge_scroll_type_desc));
+    return new KnowledgeScrollTypeDescTableHandle(this.connection.clientCache.getOrCreateTable<KnowledgeScrollTypeDesc>(REMOTE_MODULE.tables.knowledge_scroll_type_desc));
   }
 
   get knowledgeSecondaryState(): KnowledgeSecondaryStateTableHandle {
-    // clientCache is a private property
-    return new KnowledgeSecondaryStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<KnowledgeSecondaryState>(REMOTE_MODULE.tables.knowledge_secondary_state));
+    return new KnowledgeSecondaryStateTableHandle(this.connection.clientCache.getOrCreateTable<KnowledgeSecondaryState>(REMOTE_MODULE.tables.knowledge_secondary_state));
   }
 
   get knowledgeStatModifierDesc(): KnowledgeStatModifierDescTableHandle {
-    // clientCache is a private property
-    return new KnowledgeStatModifierDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<KnowledgeStatModifierDesc>(REMOTE_MODULE.tables.knowledge_stat_modifier_desc));
+    return new KnowledgeStatModifierDescTableHandle(this.connection.clientCache.getOrCreateTable<KnowledgeStatModifierDesc>(REMOTE_MODULE.tables.knowledge_stat_modifier_desc));
   }
 
   get knowledgeVaultState(): KnowledgeVaultStateTableHandle {
-    // clientCache is a private property
-    return new KnowledgeVaultStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<KnowledgeVaultState>(REMOTE_MODULE.tables.knowledge_vault_state));
+    return new KnowledgeVaultStateTableHandle(this.connection.clientCache.getOrCreateTable<KnowledgeVaultState>(REMOTE_MODULE.tables.knowledge_vault_state));
   }
 
   get lightSourceState(): LightSourceStateTableHandle {
-    // clientCache is a private property
-    return new LightSourceStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<LightSourceState>(REMOTE_MODULE.tables.light_source_state));
+    return new LightSourceStateTableHandle(this.connection.clientCache.getOrCreateTable<LightSourceState>(REMOTE_MODULE.tables.light_source_state));
   }
 
   get locationState(): LocationStateTableHandle {
-    // clientCache is a private property
-    return new LocationStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<LocationState>(REMOTE_MODULE.tables.location_state));
+    return new LocationStateTableHandle(this.connection.clientCache.getOrCreateTable<LocationState>(REMOTE_MODULE.tables.location_state));
   }
 
   get lootChestDesc(): LootChestDescTableHandle {
-    // clientCache is a private property
-    return new LootChestDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<LootChestDesc>(REMOTE_MODULE.tables.loot_chest_desc));
+    return new LootChestDescTableHandle(this.connection.clientCache.getOrCreateTable<LootChestDesc>(REMOTE_MODULE.tables.loot_chest_desc));
   }
 
   get lootChestState(): LootChestStateTableHandle {
-    // clientCache is a private property
-    return new LootChestStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<LootChestState>(REMOTE_MODULE.tables.loot_chest_state));
+    return new LootChestStateTableHandle(this.connection.clientCache.getOrCreateTable<LootChestState>(REMOTE_MODULE.tables.loot_chest_state));
   }
 
   get lootRarityDesc(): LootRarityDescTableHandle {
-    // clientCache is a private property
-    return new LootRarityDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<LootRarityDesc>(REMOTE_MODULE.tables.loot_rarity_desc));
+    return new LootRarityDescTableHandle(this.connection.clientCache.getOrCreateTable<LootRarityDesc>(REMOTE_MODULE.tables.loot_rarity_desc));
   }
 
   get lootTableDesc(): LootTableDescTableHandle {
-    // clientCache is a private property
-    return new LootTableDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<LootTableDesc>(REMOTE_MODULE.tables.loot_table_desc));
+    return new LootTableDescTableHandle(this.connection.clientCache.getOrCreateTable<LootTableDesc>(REMOTE_MODULE.tables.loot_table_desc));
   }
 
   get lostItemsState(): LostItemsStateTableHandle {
-    // clientCache is a private property
-    return new LostItemsStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<LostItemsState>(REMOTE_MODULE.tables.lost_items_state));
+    return new LostItemsStateTableHandle(this.connection.clientCache.getOrCreateTable<LostItemsState>(REMOTE_MODULE.tables.lost_items_state));
   }
 
   get marketplaceState(): MarketplaceStateTableHandle {
-    // clientCache is a private property
-    return new MarketplaceStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<MarketplaceState>(REMOTE_MODULE.tables.marketplace_state));
+    return new MarketplaceStateTableHandle(this.connection.clientCache.getOrCreateTable<MarketplaceState>(REMOTE_MODULE.tables.marketplace_state));
   }
 
   get mobileEntityState(): MobileEntityStateTableHandle {
-    // clientCache is a private property
-    return new MobileEntityStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<MobileEntityState>(REMOTE_MODULE.tables.mobile_entity_state));
+    return new MobileEntityStateTableHandle(this.connection.clientCache.getOrCreateTable<MobileEntityState>(REMOTE_MODULE.tables.mobile_entity_state));
   }
 
   get moderationActionLogEntry(): ModerationActionLogEntryTableHandle {
-    // clientCache is a private property
-    return new ModerationActionLogEntryTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<ModerationActionLogEntry>(REMOTE_MODULE.tables.moderation_action_log_entry));
+    return new ModerationActionLogEntryTableHandle(this.connection.clientCache.getOrCreateTable<ModerationActionLogEntry>(REMOTE_MODULE.tables.moderation_action_log_entry));
   }
 
   get mountingState(): MountingStateTableHandle {
-    // clientCache is a private property
-    return new MountingStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<MountingState>(REMOTE_MODULE.tables.mounting_state));
+    return new MountingStateTableHandle(this.connection.clientCache.getOrCreateTable<MountingState>(REMOTE_MODULE.tables.mounting_state));
   }
 
   get moveValidationStrikeCounterState(): MoveValidationStrikeCounterStateTableHandle {
-    // clientCache is a private property
-    return new MoveValidationStrikeCounterStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<MoveValidationStrikeCounterState>(REMOTE_MODULE.tables.move_validation_strike_counter_state));
+    return new MoveValidationStrikeCounterStateTableHandle(this.connection.clientCache.getOrCreateTable<MoveValidationStrikeCounterState>(REMOTE_MODULE.tables.move_validation_strike_counter_state));
   }
 
   get npcDesc(): NpcDescTableHandle {
-    // clientCache is a private property
-    return new NpcDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<NpcDesc>(REMOTE_MODULE.tables.npc_desc));
+    return new NpcDescTableHandle(this.connection.clientCache.getOrCreateTable<NpcDesc>(REMOTE_MODULE.tables.npc_desc));
   }
 
   get npcState(): NpcStateTableHandle {
-    // clientCache is a private property
-    return new NpcStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<NpcState>(REMOTE_MODULE.tables.npc_state));
+    return new NpcStateTableHandle(this.connection.clientCache.getOrCreateTable<NpcState>(REMOTE_MODULE.tables.npc_state));
   }
 
   get onboardingRewardDesc(): OnboardingRewardDescTableHandle {
-    // clientCache is a private property
-    return new OnboardingRewardDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<OnboardingRewardDesc>(REMOTE_MODULE.tables.onboarding_reward_desc));
+    return new OnboardingRewardDescTableHandle(this.connection.clientCache.getOrCreateTable<OnboardingRewardDesc>(REMOTE_MODULE.tables.onboarding_reward_desc));
   }
 
   get onboardingState(): OnboardingStateTableHandle {
-    // clientCache is a private property
-    return new OnboardingStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<OnboardingState>(REMOTE_MODULE.tables.onboarding_state));
+    return new OnboardingStateTableHandle(this.connection.clientCache.getOrCreateTable<OnboardingState>(REMOTE_MODULE.tables.onboarding_state));
   }
 
   get parametersDesc(): ParametersDescTableHandle {
-    // clientCache is a private property
-    return new ParametersDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<ParametersDesc>(REMOTE_MODULE.tables.parameters_desc));
+    return new ParametersDescTableHandle(this.connection.clientCache.getOrCreateTable<ParametersDesc>(REMOTE_MODULE.tables.parameters_desc));
   }
 
   get parametersPlayerMoveDesc(): ParametersPlayerMoveDescTableHandle {
-    // clientCache is a private property
-    return new ParametersPlayerMoveDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<ParametersPlayerMoveDesc>(REMOTE_MODULE.tables.parameters_player_move_desc));
+    return new ParametersPlayerMoveDescTableHandle(this.connection.clientCache.getOrCreateTable<ParametersPlayerMoveDesc>(REMOTE_MODULE.tables.parameters_player_move_desc));
   }
 
   get partialExperienceState(): PartialExperienceStateTableHandle {
-    // clientCache is a private property
-    return new PartialExperienceStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<PartialExperienceState>(REMOTE_MODULE.tables.partial_experience_state));
+    return new PartialExperienceStateTableHandle(this.connection.clientCache.getOrCreateTable<PartialExperienceState>(REMOTE_MODULE.tables.partial_experience_state));
   }
 
   get passiveCraftState(): PassiveCraftStateTableHandle {
-    // clientCache is a private property
-    return new PassiveCraftStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<PassiveCraftState>(REMOTE_MODULE.tables.passive_craft_state));
+    return new PassiveCraftStateTableHandle(this.connection.clientCache.getOrCreateTable<PassiveCraftState>(REMOTE_MODULE.tables.passive_craft_state));
   }
 
   get pathfindingDesc(): PathfindingDescTableHandle {
-    // clientCache is a private property
-    return new PathfindingDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<PathfindingDesc>(REMOTE_MODULE.tables.pathfinding_desc));
+    return new PathfindingDescTableHandle(this.connection.clientCache.getOrCreateTable<PathfindingDesc>(REMOTE_MODULE.tables.pathfinding_desc));
   }
 
   get pavedTileState(): PavedTileStateTableHandle {
-    // clientCache is a private property
-    return new PavedTileStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<PavedTileState>(REMOTE_MODULE.tables.paved_tile_state));
+    return new PavedTileStateTableHandle(this.connection.clientCache.getOrCreateTable<PavedTileState>(REMOTE_MODULE.tables.paved_tile_state));
   }
 
   get pavingTileDesc(): PavingTileDescTableHandle {
-    // clientCache is a private property
-    return new PavingTileDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<PavingTileDesc>(REMOTE_MODULE.tables.paving_tile_desc));
+    return new PavingTileDescTableHandle(this.connection.clientCache.getOrCreateTable<PavingTileDesc>(REMOTE_MODULE.tables.paving_tile_desc));
   }
 
   get permissionState(): PermissionStateTableHandle {
-    // clientCache is a private property
-    return new PermissionStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<PermissionState>(REMOTE_MODULE.tables.permission_state));
+    return new PermissionStateTableHandle(this.connection.clientCache.getOrCreateTable<PermissionState>(REMOTE_MODULE.tables.permission_state));
   }
 
   get pillarShapingDesc(): PillarShapingDescTableHandle {
-    // clientCache is a private property
-    return new PillarShapingDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<PillarShapingDesc>(REMOTE_MODULE.tables.pillar_shaping_desc));
+    return new PillarShapingDescTableHandle(this.connection.clientCache.getOrCreateTable<PillarShapingDesc>(REMOTE_MODULE.tables.pillar_shaping_desc));
   }
 
   get pillarShapingState(): PillarShapingStateTableHandle {
-    // clientCache is a private property
-    return new PillarShapingStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<PillarShapingState>(REMOTE_MODULE.tables.pillar_shaping_state));
+    return new PillarShapingStateTableHandle(this.connection.clientCache.getOrCreateTable<PillarShapingState>(REMOTE_MODULE.tables.pillar_shaping_state));
   }
 
   get playerActionDesc(): PlayerActionDescTableHandle {
-    // clientCache is a private property
-    return new PlayerActionDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<PlayerActionDesc>(REMOTE_MODULE.tables.player_action_desc));
+    return new PlayerActionDescTableHandle(this.connection.clientCache.getOrCreateTable<PlayerActionDesc>(REMOTE_MODULE.tables.player_action_desc));
   }
 
   get playerActionState(): PlayerActionStateTableHandle {
-    // clientCache is a private property
-    return new PlayerActionStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<PlayerActionState>(REMOTE_MODULE.tables.player_action_state));
+    return new PlayerActionStateTableHandle(this.connection.clientCache.getOrCreateTable<PlayerActionState>(REMOTE_MODULE.tables.player_action_state));
   }
 
   get playerDeveloperNotificationState(): PlayerDeveloperNotificationStateTableHandle {
-    // clientCache is a private property
-    return new PlayerDeveloperNotificationStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<PlayerDeveloperNotificationState>(REMOTE_MODULE.tables.player_developer_notification_state));
+    return new PlayerDeveloperNotificationStateTableHandle(this.connection.clientCache.getOrCreateTable<PlayerDeveloperNotificationState>(REMOTE_MODULE.tables.player_developer_notification_state));
   }
 
   get playerHousingDesc(): PlayerHousingDescTableHandle {
-    // clientCache is a private property
-    return new PlayerHousingDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<PlayerHousingDesc>(REMOTE_MODULE.tables.player_housing_desc));
+    return new PlayerHousingDescTableHandle(this.connection.clientCache.getOrCreateTable<PlayerHousingDesc>(REMOTE_MODULE.tables.player_housing_desc));
   }
 
   get playerHousingMovingCostState(): PlayerHousingMovingCostStateTableHandle {
-    // clientCache is a private property
-    return new PlayerHousingMovingCostStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<PlayerHousingMovingCostState>(REMOTE_MODULE.tables.player_housing_moving_cost_state));
+    return new PlayerHousingMovingCostStateTableHandle(this.connection.clientCache.getOrCreateTable<PlayerHousingMovingCostState>(REMOTE_MODULE.tables.player_housing_moving_cost_state));
   }
 
   get playerHousingState(): PlayerHousingStateTableHandle {
-    // clientCache is a private property
-    return new PlayerHousingStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<PlayerHousingState>(REMOTE_MODULE.tables.player_housing_state));
+    return new PlayerHousingStateTableHandle(this.connection.clientCache.getOrCreateTable<PlayerHousingState>(REMOTE_MODULE.tables.player_housing_state));
   }
 
   get playerLowercaseUsernameState(): PlayerLowercaseUsernameStateTableHandle {
-    // clientCache is a private property
-    return new PlayerLowercaseUsernameStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<PlayerLowercaseUsernameState>(REMOTE_MODULE.tables.player_lowercase_username_state));
+    return new PlayerLowercaseUsernameStateTableHandle(this.connection.clientCache.getOrCreateTable<PlayerLowercaseUsernameState>(REMOTE_MODULE.tables.player_lowercase_username_state));
   }
 
   get playerNoteState(): PlayerNoteStateTableHandle {
-    // clientCache is a private property
-    return new PlayerNoteStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<PlayerNoteState>(REMOTE_MODULE.tables.player_note_state));
+    return new PlayerNoteStateTableHandle(this.connection.clientCache.getOrCreateTable<PlayerNoteState>(REMOTE_MODULE.tables.player_note_state));
   }
 
   get playerNotificationEvent(): PlayerNotificationEventTableHandle {
-    // clientCache is a private property
-    return new PlayerNotificationEventTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<PlayerNotificationEvent>(REMOTE_MODULE.tables.player_notification_event));
+    return new PlayerNotificationEventTableHandle(this.connection.clientCache.getOrCreateTable<PlayerNotificationEvent>(REMOTE_MODULE.tables.player_notification_event));
   }
 
   get playerPrefsState(): PlayerPrefsStateTableHandle {
-    // clientCache is a private property
-    return new PlayerPrefsStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<PlayerPrefsState>(REMOTE_MODULE.tables.player_prefs_state));
+    return new PlayerPrefsStateTableHandle(this.connection.clientCache.getOrCreateTable<PlayerPrefsState>(REMOTE_MODULE.tables.player_prefs_state));
   }
 
   get playerQueueState(): PlayerQueueStateTableHandle {
-    // clientCache is a private property
-    return new PlayerQueueStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<PlayerQueueState>(REMOTE_MODULE.tables.player_queue_state));
+    return new PlayerQueueStateTableHandle(this.connection.clientCache.getOrCreateTable<PlayerQueueState>(REMOTE_MODULE.tables.player_queue_state));
   }
 
   get playerReportState(): PlayerReportStateTableHandle {
-    // clientCache is a private property
-    return new PlayerReportStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<PlayerReportState>(REMOTE_MODULE.tables.player_report_state));
+    return new PlayerReportStateTableHandle(this.connection.clientCache.getOrCreateTable<PlayerReportState>(REMOTE_MODULE.tables.player_report_state));
   }
 
   get playerReportStateTimestamp(): PlayerReportStateTimestampTableHandle {
-    // clientCache is a private property
-    return new PlayerReportStateTimestampTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<PlayerReportStateTimestamp>(REMOTE_MODULE.tables.player_report_state_timestamp));
+    return new PlayerReportStateTimestampTableHandle(this.connection.clientCache.getOrCreateTable<PlayerReportStateTimestamp>(REMOTE_MODULE.tables.player_report_state_timestamp));
   }
 
   get playerSettingsState(): PlayerSettingsStateTableHandle {
-    // clientCache is a private property
-    return new PlayerSettingsStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<PlayerSettingsState>(REMOTE_MODULE.tables.player_settings_state));
+    return new PlayerSettingsStateTableHandle(this.connection.clientCache.getOrCreateTable<PlayerSettingsState>(REMOTE_MODULE.tables.player_settings_state));
   }
 
   get playerShardState(): PlayerShardStateTableHandle {
-    // clientCache is a private property
-    return new PlayerShardStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<PlayerShardState>(REMOTE_MODULE.tables.player_shard_state));
+    return new PlayerShardStateTableHandle(this.connection.clientCache.getOrCreateTable<PlayerShardState>(REMOTE_MODULE.tables.player_shard_state));
   }
 
   get playerState(): PlayerStateTableHandle {
-    // clientCache is a private property
-    return new PlayerStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<PlayerState>(REMOTE_MODULE.tables.player_state));
+    return new PlayerStateTableHandle(this.connection.clientCache.getOrCreateTable<PlayerState>(REMOTE_MODULE.tables.player_state));
   }
 
   get playerTimestampState(): PlayerTimestampStateTableHandle {
-    // clientCache is a private property
-    return new PlayerTimestampStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<PlayerTimestampState>(REMOTE_MODULE.tables.player_timestamp_state));
+    return new PlayerTimestampStateTableHandle(this.connection.clientCache.getOrCreateTable<PlayerTimestampState>(REMOTE_MODULE.tables.player_timestamp_state));
   }
 
   get playerUsernameState(): PlayerUsernameStateTableHandle {
-    // clientCache is a private property
-    return new PlayerUsernameStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<PlayerUsernameState>(REMOTE_MODULE.tables.player_username_state));
+    return new PlayerUsernameStateTableHandle(this.connection.clientCache.getOrCreateTable<PlayerUsernameState>(REMOTE_MODULE.tables.player_username_state));
   }
 
   get playerVoteConcludeTimer(): PlayerVoteConcludeTimerTableHandle {
-    // clientCache is a private property
-    return new PlayerVoteConcludeTimerTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<PlayerVoteConcludeTimer>(REMOTE_MODULE.tables.player_vote_conclude_timer));
+    return new PlayerVoteConcludeTimerTableHandle(this.connection.clientCache.getOrCreateTable<PlayerVoteConcludeTimer>(REMOTE_MODULE.tables.player_vote_conclude_timer));
   }
 
   get playerVoteState(): PlayerVoteStateTableHandle {
-    // clientCache is a private property
-    return new PlayerVoteStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<PlayerVoteState>(REMOTE_MODULE.tables.player_vote_state));
+    return new PlayerVoteStateTableHandle(this.connection.clientCache.getOrCreateTable<PlayerVoteState>(REMOTE_MODULE.tables.player_vote_state));
   }
 
   get portalState(): PortalStateTableHandle {
-    // clientCache is a private property
-    return new PortalStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<PortalState>(REMOTE_MODULE.tables.portal_state));
+    return new PortalStateTableHandle(this.connection.clientCache.getOrCreateTable<PortalState>(REMOTE_MODULE.tables.portal_state));
   }
 
   get privateParametersDesc(): PrivateParametersDescTableHandle {
-    // clientCache is a private property
-    return new PrivateParametersDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<PrivateParametersDesc>(REMOTE_MODULE.tables.private_parameters_desc));
+    return new PrivateParametersDescTableHandle(this.connection.clientCache.getOrCreateTable<PrivateParametersDesc>(REMOTE_MODULE.tables.private_parameters_desc));
   }
 
   get progressiveActionState(): ProgressiveActionStateTableHandle {
-    // clientCache is a private property
-    return new ProgressiveActionStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<ProgressiveActionState>(REMOTE_MODULE.tables.progressive_action_state));
+    return new ProgressiveActionStateTableHandle(this.connection.clientCache.getOrCreateTable<ProgressiveActionState>(REMOTE_MODULE.tables.progressive_action_state));
   }
 
   get projectSiteState(): ProjectSiteStateTableHandle {
-    // clientCache is a private property
-    return new ProjectSiteStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<ProjectSiteState>(REMOTE_MODULE.tables.project_site_state));
+    return new ProjectSiteStateTableHandle(this.connection.clientCache.getOrCreateTable<ProjectSiteState>(REMOTE_MODULE.tables.project_site_state));
   }
 
   get publicProgressiveActionState(): PublicProgressiveActionStateTableHandle {
-    // clientCache is a private property
-    return new PublicProgressiveActionStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<PublicProgressiveActionState>(REMOTE_MODULE.tables.public_progressive_action_state));
+    return new PublicProgressiveActionStateTableHandle(this.connection.clientCache.getOrCreateTable<PublicProgressiveActionState>(REMOTE_MODULE.tables.public_progressive_action_state));
   }
 
   get regionConnectionInfo(): RegionConnectionInfoTableHandle {
-    // clientCache is a private property
-    return new RegionConnectionInfoTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<RegionConnectionInfo>(REMOTE_MODULE.tables.region_connection_info));
+    return new RegionConnectionInfoTableHandle(this.connection.clientCache.getOrCreateTable<RegionConnectionInfo>(REMOTE_MODULE.tables.region_connection_info));
   }
 
   get regionPopulationInfo(): RegionPopulationInfoTableHandle {
-    // clientCache is a private property
-    return new RegionPopulationInfoTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<RegionPopulationInfo>(REMOTE_MODULE.tables.region_population_info));
+    return new RegionPopulationInfoTableHandle(this.connection.clientCache.getOrCreateTable<RegionPopulationInfo>(REMOTE_MODULE.tables.region_population_info));
   }
 
   get regionSignInParameters(): RegionSignInParametersTableHandle {
-    // clientCache is a private property
-    return new RegionSignInParametersTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<RegionSignInParameters>(REMOTE_MODULE.tables.region_sign_in_parameters));
+    return new RegionSignInParametersTableHandle(this.connection.clientCache.getOrCreateTable<RegionSignInParameters>(REMOTE_MODULE.tables.region_sign_in_parameters));
   }
 
   get rentState(): RentStateTableHandle {
-    // clientCache is a private property
-    return new RentStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<RentState>(REMOTE_MODULE.tables.rent_state));
+    return new RentStateTableHandle(this.connection.clientCache.getOrCreateTable<RentState>(REMOTE_MODULE.tables.rent_state));
   }
 
   get reservedNameDesc(): ReservedNameDescTableHandle {
-    // clientCache is a private property
-    return new ReservedNameDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<ReservedNameDesc>(REMOTE_MODULE.tables.reserved_name_desc));
+    return new ReservedNameDescTableHandle(this.connection.clientCache.getOrCreateTable<ReservedNameDesc>(REMOTE_MODULE.tables.reserved_name_desc));
   }
 
   get resourceClumpDesc(): ResourceClumpDescTableHandle {
-    // clientCache is a private property
-    return new ResourceClumpDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<ResourceClumpDesc>(REMOTE_MODULE.tables.resource_clump_desc));
+    return new ResourceClumpDescTableHandle(this.connection.clientCache.getOrCreateTable<ResourceClumpDesc>(REMOTE_MODULE.tables.resource_clump_desc));
   }
 
   get resourceCount(): ResourceCountTableHandle {
-    // clientCache is a private property
-    return new ResourceCountTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<ResourceCount>(REMOTE_MODULE.tables.resource_count));
+    return new ResourceCountTableHandle(this.connection.clientCache.getOrCreateTable<ResourceCount>(REMOTE_MODULE.tables.resource_count));
   }
 
   get resourceDesc(): ResourceDescTableHandle {
-    // clientCache is a private property
-    return new ResourceDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<ResourceDesc>(REMOTE_MODULE.tables.resource_desc));
+    return new ResourceDescTableHandle(this.connection.clientCache.getOrCreateTable<ResourceDesc>(REMOTE_MODULE.tables.resource_desc));
   }
 
   get resourceGrowthRecipeDesc(): ResourceGrowthRecipeDescTableHandle {
-    // clientCache is a private property
-    return new ResourceGrowthRecipeDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<ResourceGrowthRecipeDesc>(REMOTE_MODULE.tables.resource_growth_recipe_desc));
+    return new ResourceGrowthRecipeDescTableHandle(this.connection.clientCache.getOrCreateTable<ResourceGrowthRecipeDesc>(REMOTE_MODULE.tables.resource_growth_recipe_desc));
   }
 
   get resourceHealthState(): ResourceHealthStateTableHandle {
-    // clientCache is a private property
-    return new ResourceHealthStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<ResourceHealthState>(REMOTE_MODULE.tables.resource_health_state));
+    return new ResourceHealthStateTableHandle(this.connection.clientCache.getOrCreateTable<ResourceHealthState>(REMOTE_MODULE.tables.resource_health_state));
   }
 
   get resourcePlacementRecipeDesc(): ResourcePlacementRecipeDescTableHandle {
-    // clientCache is a private property
-    return new ResourcePlacementRecipeDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<ResourcePlacementRecipeDesc>(REMOTE_MODULE.tables.resource_placement_recipe_desc));
+    return new ResourcePlacementRecipeDescTableHandle(this.connection.clientCache.getOrCreateTable<ResourcePlacementRecipeDesc>(REMOTE_MODULE.tables.resource_placement_recipe_desc));
   }
 
   get resourceState(): ResourceStateTableHandle {
-    // clientCache is a private property
-    return new ResourceStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<ResourceState>(REMOTE_MODULE.tables.resource_state));
+    return new ResourceStateTableHandle(this.connection.clientCache.getOrCreateTable<ResourceState>(REMOTE_MODULE.tables.resource_state));
   }
 
   get rezSickLongTermState(): RezSickLongTermStateTableHandle {
-    // clientCache is a private property
-    return new RezSickLongTermStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<RezSickLongTermState>(REMOTE_MODULE.tables.rez_sick_long_term_state));
+    return new RezSickLongTermStateTableHandle(this.connection.clientCache.getOrCreateTable<RezSickLongTermState>(REMOTE_MODULE.tables.rez_sick_long_term_state));
   }
 
   get satiationState(): SatiationStateTableHandle {
-    // clientCache is a private property
-    return new SatiationStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<SatiationState>(REMOTE_MODULE.tables.satiation_state));
+    return new SatiationStateTableHandle(this.connection.clientCache.getOrCreateTable<SatiationState>(REMOTE_MODULE.tables.satiation_state));
   }
 
   get secondaryKnowledgeDesc(): SecondaryKnowledgeDescTableHandle {
-    // clientCache is a private property
-    return new SecondaryKnowledgeDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<SecondaryKnowledgeDesc>(REMOTE_MODULE.tables.secondary_knowledge_desc));
+    return new SecondaryKnowledgeDescTableHandle(this.connection.clientCache.getOrCreateTable<SecondaryKnowledgeDesc>(REMOTE_MODULE.tables.secondary_knowledge_desc));
   }
 
   get sellOrderState(): SellOrderStateTableHandle {
-    // clientCache is a private property
-    return new SellOrderStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<AuctionListingState>(REMOTE_MODULE.tables.sell_order_state));
+    return new SellOrderStateTableHandle(this.connection.clientCache.getOrCreateTable<AuctionListingState>(REMOTE_MODULE.tables.sell_order_state));
   }
 
   get serverIdentity(): ServerIdentityTableHandle {
-    // clientCache is a private property
-    return new ServerIdentityTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<ServerIdentity>(REMOTE_MODULE.tables.server_identity));
+    return new ServerIdentityTableHandle(this.connection.clientCache.getOrCreateTable<ServerIdentity>(REMOTE_MODULE.tables.server_identity));
   }
 
   get signedInPlayerState(): SignedInPlayerStateTableHandle {
-    // clientCache is a private property
-    return new SignedInPlayerStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<SignedInPlayerState>(REMOTE_MODULE.tables.signed_in_player_state));
+    return new SignedInPlayerStateTableHandle(this.connection.clientCache.getOrCreateTable<SignedInPlayerState>(REMOTE_MODULE.tables.signed_in_player_state));
   }
 
   get singleResourceToClumpDesc(): SingleResourceToClumpDescTableHandle {
-    // clientCache is a private property
-    return new SingleResourceToClumpDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<SingleResourceToClumpDesc>(REMOTE_MODULE.tables.single_resource_to_clump_desc));
+    return new SingleResourceToClumpDescTableHandle(this.connection.clientCache.getOrCreateTable<SingleResourceToClumpDesc>(REMOTE_MODULE.tables.single_resource_to_clump_desc));
   }
 
   get skillDesc(): SkillDescTableHandle {
-    // clientCache is a private property
-    return new SkillDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<SkillDesc>(REMOTE_MODULE.tables.skill_desc));
+    return new SkillDescTableHandle(this.connection.clientCache.getOrCreateTable<SkillDesc>(REMOTE_MODULE.tables.skill_desc));
   }
 
   get stagedStaticData(): StagedStaticDataTableHandle {
-    // clientCache is a private property
-    return new StagedStaticDataTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<StagedStaticData>(REMOTE_MODULE.tables.staged_static_data));
+    return new StagedStaticDataTableHandle(this.connection.clientCache.getOrCreateTable<StagedStaticData>(REMOTE_MODULE.tables.staged_static_data));
   }
 
   get stagedStaticDataV2(): StagedStaticDataV2TableHandle {
-    // clientCache is a private property
-    return new StagedStaticDataV2TableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<StagedStaticDataV2>(REMOTE_MODULE.tables.staged_static_data_v2));
+    return new StagedStaticDataV2TableHandle(this.connection.clientCache.getOrCreateTable<StagedStaticDataV2>(REMOTE_MODULE.tables.staged_static_data_v2));
   }
 
   get stagedStaticDataV3(): StagedStaticDataV3TableHandle {
-    // clientCache is a private property
-    return new StagedStaticDataV3TableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<StagedStaticDataV3>(REMOTE_MODULE.tables.staged_static_data_v3));
+    return new StagedStaticDataV3TableHandle(this.connection.clientCache.getOrCreateTable<StagedStaticDataV3>(REMOTE_MODULE.tables.staged_static_data_v3));
   }
 
   get stagedStaticDataV4(): StagedStaticDataV4TableHandle {
-    // clientCache is a private property
-    return new StagedStaticDataV4TableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<StagedStaticDataV4>(REMOTE_MODULE.tables.staged_static_data_v4));
+    return new StagedStaticDataV4TableHandle(this.connection.clientCache.getOrCreateTable<StagedStaticDataV4>(REMOTE_MODULE.tables.staged_static_data_v4));
   }
 
   get stagedStaticDataV5(): StagedStaticDataV5TableHandle {
-    // clientCache is a private property
-    return new StagedStaticDataV5TableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<StagedStaticDataV5>(REMOTE_MODULE.tables.staged_static_data_v5));
+    return new StagedStaticDataV5TableHandle(this.connection.clientCache.getOrCreateTable<StagedStaticDataV5>(REMOTE_MODULE.tables.staged_static_data_v5));
   }
 
   get staminaState(): StaminaStateTableHandle {
-    // clientCache is a private property
-    return new StaminaStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<StaminaState>(REMOTE_MODULE.tables.stamina_state));
+    return new StaminaStateTableHandle(this.connection.clientCache.getOrCreateTable<StaminaState>(REMOTE_MODULE.tables.stamina_state));
   }
 
   get starvingPlayerState(): StarvingPlayerStateTableHandle {
-    // clientCache is a private property
-    return new StarvingPlayerStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<StarvingPlayerState>(REMOTE_MODULE.tables.starving_player_state));
+    return new StarvingPlayerStateTableHandle(this.connection.clientCache.getOrCreateTable<StarvingPlayerState>(REMOTE_MODULE.tables.starving_player_state));
   }
 
   get storageLogState(): StorageLogStateTableHandle {
-    // clientCache is a private property
-    return new StorageLogStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<ActionLogState>(REMOTE_MODULE.tables.storage_log_state));
+    return new StorageLogStateTableHandle(this.connection.clientCache.getOrCreateTable<ActionLogState>(REMOTE_MODULE.tables.storage_log_state));
   }
 
   get targetState(): TargetStateTableHandle {
-    // clientCache is a private property
-    return new TargetStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<TargetState>(REMOTE_MODULE.tables.target_state));
+    return new TargetStateTableHandle(this.connection.clientCache.getOrCreateTable<TargetState>(REMOTE_MODULE.tables.target_state));
   }
 
   get targetableState(): TargetableStateTableHandle {
-    // clientCache is a private property
-    return new TargetableStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<TargetableState>(REMOTE_MODULE.tables.targetable_state));
+    return new TargetableStateTableHandle(this.connection.clientCache.getOrCreateTable<TargetableState>(REMOTE_MODULE.tables.targetable_state));
   }
 
   get targetingMatrixDesc(): TargetingMatrixDescTableHandle {
-    // clientCache is a private property
-    return new TargetingMatrixDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<TargetingMatrixDesc>(REMOTE_MODULE.tables.targeting_matrix_desc));
+    return new TargetingMatrixDescTableHandle(this.connection.clientCache.getOrCreateTable<TargetingMatrixDesc>(REMOTE_MODULE.tables.targeting_matrix_desc));
   }
 
   get teleportItemDesc(): TeleportItemDescTableHandle {
-    // clientCache is a private property
-    return new TeleportItemDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<TeleportItemDesc>(REMOTE_MODULE.tables.teleport_item_desc));
+    return new TeleportItemDescTableHandle(this.connection.clientCache.getOrCreateTable<TeleportItemDesc>(REMOTE_MODULE.tables.teleport_item_desc));
   }
 
   get teleportationEnergyState(): TeleportationEnergyStateTableHandle {
-    // clientCache is a private property
-    return new TeleportationEnergyStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<TeleportationEnergyState>(REMOTE_MODULE.tables.teleportation_energy_state));
+    return new TeleportationEnergyStateTableHandle(this.connection.clientCache.getOrCreateTable<TeleportationEnergyState>(REMOTE_MODULE.tables.teleportation_energy_state));
   }
 
   get terraformProgressState(): TerraformProgressStateTableHandle {
-    // clientCache is a private property
-    return new TerraformProgressStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<TerraformProgressState>(REMOTE_MODULE.tables.terraform_progress_state));
+    return new TerraformProgressStateTableHandle(this.connection.clientCache.getOrCreateTable<TerraformProgressState>(REMOTE_MODULE.tables.terraform_progress_state));
   }
 
   get terraformRecipeDesc(): TerraformRecipeDescTableHandle {
-    // clientCache is a private property
-    return new TerraformRecipeDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<TerraformRecipeDesc>(REMOTE_MODULE.tables.terraform_recipe_desc));
+    return new TerraformRecipeDescTableHandle(this.connection.clientCache.getOrCreateTable<TerraformRecipeDesc>(REMOTE_MODULE.tables.terraform_recipe_desc));
   }
 
   get terrainChunkState(): TerrainChunkStateTableHandle {
-    // clientCache is a private property
-    return new TerrainChunkStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<TerrainChunkState>(REMOTE_MODULE.tables.terrain_chunk_state));
+    return new TerrainChunkStateTableHandle(this.connection.clientCache.getOrCreateTable<TerrainChunkState>(REMOTE_MODULE.tables.terrain_chunk_state));
   }
 
   get theGreatPlaceholderTable(): TheGreatPlaceholderTableTableHandle {
-    // clientCache is a private property
-    return new TheGreatPlaceholderTableTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<TheGreatPlaceHolderTable>(REMOTE_MODULE.tables.the_great_placeholder_table));
+    return new TheGreatPlaceholderTableTableHandle(this.connection.clientCache.getOrCreateTable<TheGreatPlaceHolderTable>(REMOTE_MODULE.tables.the_great_placeholder_table));
   }
 
   get threatState(): ThreatStateTableHandle {
-    // clientCache is a private property
-    return new ThreatStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<ThreatState>(REMOTE_MODULE.tables.threat_state));
+    return new ThreatStateTableHandle(this.connection.clientCache.getOrCreateTable<ThreatState>(REMOTE_MODULE.tables.threat_state));
   }
 
   get toolDesc(): ToolDescTableHandle {
-    // clientCache is a private property
-    return new ToolDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<ToolDesc>(REMOTE_MODULE.tables.tool_desc));
+    return new ToolDescTableHandle(this.connection.clientCache.getOrCreateTable<ToolDesc>(REMOTE_MODULE.tables.tool_desc));
   }
 
   get toolTypeDesc(): ToolTypeDescTableHandle {
-    // clientCache is a private property
-    return new ToolTypeDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<ToolTypeDesc>(REMOTE_MODULE.tables.tool_type_desc));
+    return new ToolTypeDescTableHandle(this.connection.clientCache.getOrCreateTable<ToolTypeDesc>(REMOTE_MODULE.tables.tool_type_desc));
   }
 
   get toolbarState(): ToolbarStateTableHandle {
-    // clientCache is a private property
-    return new ToolbarStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<ToolbarState>(REMOTE_MODULE.tables.toolbar_state));
+    return new ToolbarStateTableHandle(this.connection.clientCache.getOrCreateTable<ToolbarState>(REMOTE_MODULE.tables.toolbar_state));
   }
 
   get tradeOrderState(): TradeOrderStateTableHandle {
-    // clientCache is a private property
-    return new TradeOrderStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<TradeOrderState>(REMOTE_MODULE.tables.trade_order_state));
+    return new TradeOrderStateTableHandle(this.connection.clientCache.getOrCreateTable<TradeOrderState>(REMOTE_MODULE.tables.trade_order_state));
   }
 
   get tradeSessionState(): TradeSessionStateTableHandle {
-    // clientCache is a private property
-    return new TradeSessionStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<TradeSessionState>(REMOTE_MODULE.tables.trade_session_state));
+    return new TradeSessionStateTableHandle(this.connection.clientCache.getOrCreateTable<TradeSessionState>(REMOTE_MODULE.tables.trade_session_state));
   }
 
   get travelerTaskDesc(): TravelerTaskDescTableHandle {
-    // clientCache is a private property
-    return new TravelerTaskDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<TravelerTaskDesc>(REMOTE_MODULE.tables.traveler_task_desc));
+    return new TravelerTaskDescTableHandle(this.connection.clientCache.getOrCreateTable<TravelerTaskDesc>(REMOTE_MODULE.tables.traveler_task_desc));
   }
 
   get travelerTaskState(): TravelerTaskStateTableHandle {
-    // clientCache is a private property
-    return new TravelerTaskStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<TravelerTaskState>(REMOTE_MODULE.tables.traveler_task_state));
+    return new TravelerTaskStateTableHandle(this.connection.clientCache.getOrCreateTable<TravelerTaskState>(REMOTE_MODULE.tables.traveler_task_state));
   }
 
   get travelerTradeOrderDesc(): TravelerTradeOrderDescTableHandle {
-    // clientCache is a private property
-    return new TravelerTradeOrderDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<TravelerTradeOrderDesc>(REMOTE_MODULE.tables.traveler_trade_order_desc));
+    return new TravelerTradeOrderDescTableHandle(this.connection.clientCache.getOrCreateTable<TravelerTradeOrderDesc>(REMOTE_MODULE.tables.traveler_trade_order_desc));
   }
 
   get unclaimedCollectiblesState(): UnclaimedCollectiblesStateTableHandle {
-    // clientCache is a private property
-    return new UnclaimedCollectiblesStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<UnclaimedCollectiblesState>(REMOTE_MODULE.tables.unclaimed_collectibles_state));
+    return new UnclaimedCollectiblesStateTableHandle(this.connection.clientCache.getOrCreateTable<UnclaimedCollectiblesState>(REMOTE_MODULE.tables.unclaimed_collectibles_state));
   }
 
   get unclaimedShardsState(): UnclaimedShardsStateTableHandle {
-    // clientCache is a private property
-    return new UnclaimedShardsStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<UnclaimedShardsState>(REMOTE_MODULE.tables.unclaimed_shards_state));
+    return new UnclaimedShardsStateTableHandle(this.connection.clientCache.getOrCreateTable<UnclaimedShardsState>(REMOTE_MODULE.tables.unclaimed_shards_state));
   }
 
   get userAuthenticationState(): UserAuthenticationStateTableHandle {
-    // clientCache is a private property
-    return new UserAuthenticationStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<UserAuthenticationState>(REMOTE_MODULE.tables.user_authentication_state));
+    return new UserAuthenticationStateTableHandle(this.connection.clientCache.getOrCreateTable<UserAuthenticationState>(REMOTE_MODULE.tables.user_authentication_state));
   }
 
   get userCreationTimestampState(): UserCreationTimestampStateTableHandle {
-    // clientCache is a private property
-    return new UserCreationTimestampStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<UserCreationTimestampState>(REMOTE_MODULE.tables.user_creation_timestamp_state));
+    return new UserCreationTimestampStateTableHandle(this.connection.clientCache.getOrCreateTable<UserCreationTimestampState>(REMOTE_MODULE.tables.user_creation_timestamp_state));
   }
 
   get userModerationState(): UserModerationStateTableHandle {
-    // clientCache is a private property
-    return new UserModerationStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<UserModerationState>(REMOTE_MODULE.tables.user_moderation_state));
+    return new UserModerationStateTableHandle(this.connection.clientCache.getOrCreateTable<UserModerationState>(REMOTE_MODULE.tables.user_moderation_state));
   }
 
   get userPreviousRegionState(): UserPreviousRegionStateTableHandle {
-    // clientCache is a private property
-    return new UserPreviousRegionStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<UserPreviousRegionState>(REMOTE_MODULE.tables.user_previous_region_state));
+    return new UserPreviousRegionStateTableHandle(this.connection.clientCache.getOrCreateTable<UserPreviousRegionState>(REMOTE_MODULE.tables.user_previous_region_state));
   }
 
   get userRegionState(): UserRegionStateTableHandle {
-    // clientCache is a private property
-    return new UserRegionStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<UserRegionState>(REMOTE_MODULE.tables.user_region_state));
+    return new UserRegionStateTableHandle(this.connection.clientCache.getOrCreateTable<UserRegionState>(REMOTE_MODULE.tables.user_region_state));
   }
 
   get userState(): UserStateTableHandle {
-    // clientCache is a private property
-    return new UserStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<UserState>(REMOTE_MODULE.tables.user_state));
+    return new UserStateTableHandle(this.connection.clientCache.getOrCreateTable<UserState>(REMOTE_MODULE.tables.user_state));
   }
 
   get vaultState(): VaultStateTableHandle {
-    // clientCache is a private property
-    return new VaultStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<VaultState>(REMOTE_MODULE.tables.vault_state));
+    return new VaultStateTableHandle(this.connection.clientCache.getOrCreateTable<VaultState>(REMOTE_MODULE.tables.vault_state));
   }
 
   get visibilityState(): VisibilityStateTableHandle {
-    // clientCache is a private property
-    return new VisibilityStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<VisibilityState>(REMOTE_MODULE.tables.visibility_state));
+    return new VisibilityStateTableHandle(this.connection.clientCache.getOrCreateTable<VisibilityState>(REMOTE_MODULE.tables.visibility_state));
   }
 
   get wallDesc(): WallDescTableHandle {
-    // clientCache is a private property
-    return new WallDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<WallDesc>(REMOTE_MODULE.tables.wall_desc));
+    return new WallDescTableHandle(this.connection.clientCache.getOrCreateTable<WallDesc>(REMOTE_MODULE.tables.wall_desc));
   }
 
   get waystoneState(): WaystoneStateTableHandle {
-    // clientCache is a private property
-    return new WaystoneStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<WaystoneState>(REMOTE_MODULE.tables.waystone_state));
+    return new WaystoneStateTableHandle(this.connection.clientCache.getOrCreateTable<WaystoneState>(REMOTE_MODULE.tables.waystone_state));
   }
 
   get weaponDesc(): WeaponDescTableHandle {
-    // clientCache is a private property
-    return new WeaponDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<WeaponDesc>(REMOTE_MODULE.tables.weapon_desc));
+    return new WeaponDescTableHandle(this.connection.clientCache.getOrCreateTable<WeaponDesc>(REMOTE_MODULE.tables.weapon_desc));
   }
 
   get weaponTypeDesc(): WeaponTypeDescTableHandle {
-    // clientCache is a private property
-    return new WeaponTypeDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<WeaponTypeDesc>(REMOTE_MODULE.tables.weapon_type_desc));
+    return new WeaponTypeDescTableHandle(this.connection.clientCache.getOrCreateTable<WeaponTypeDesc>(REMOTE_MODULE.tables.weapon_type_desc));
   }
 
   get windDbgDesc(): WindDbgDescTableHandle {
-    // clientCache is a private property
-    return new WindDbgDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<WindDbgDesc>(REMOTE_MODULE.tables.wind_dbg_desc));
+    return new WindDbgDescTableHandle(this.connection.clientCache.getOrCreateTable<WindDbgDesc>(REMOTE_MODULE.tables.wind_dbg_desc));
   }
 
   get windParamsDesc(): WindParamsDescTableHandle {
-    // clientCache is a private property
-    return new WindParamsDescTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<WindParamsDesc>(REMOTE_MODULE.tables.wind_params_desc));
+    return new WindParamsDescTableHandle(this.connection.clientCache.getOrCreateTable<WindParamsDesc>(REMOTE_MODULE.tables.wind_params_desc));
   }
 
   get worldRegionNameState(): WorldRegionNameStateTableHandle {
-    // clientCache is a private property
-    return new WorldRegionNameStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<WorldRegionNameState>(REMOTE_MODULE.tables.world_region_name_state));
+    return new WorldRegionNameStateTableHandle(this.connection.clientCache.getOrCreateTable<WorldRegionNameState>(REMOTE_MODULE.tables.world_region_name_state));
   }
 
   get worldRegionState(): WorldRegionStateTableHandle {
-    // clientCache is a private property
-    return new WorldRegionStateTableHandle((this.connection as unknown as { clientCache: __ClientCache }).clientCache.getOrCreateTable<WorldRegionState>(REMOTE_MODULE.tables.world_region_state));
+    return new WorldRegionStateTableHandle(this.connection.clientCache.getOrCreateTable<WorldRegionState>(REMOTE_MODULE.tables.world_region_state));
   }
 }
 
-export class SubscriptionBuilder extends __SubscriptionBuilderImpl<RemoteTables, RemoteReducers, SetReducerFlags> { }
+export class SubscriptionBuilder extends SubscriptionBuilderImpl<RemoteTables, RemoteReducers, SetReducerFlags> { }
 
-export class DbConnection extends __DbConnectionImpl<RemoteTables, RemoteReducers, SetReducerFlags> {
-  static builder = (): __DbConnectionBuilder<DbConnection, ErrorContext, SubscriptionEventContext> => {
-    return new __DbConnectionBuilder<DbConnection, ErrorContext, SubscriptionEventContext>(REMOTE_MODULE, (imp: __DbConnectionImpl) => imp as DbConnection);
+export class DbConnection extends DbConnectionImpl<RemoteTables, RemoteReducers, SetReducerFlags> {
+  static builder = (): DbConnectionBuilder<DbConnection, ErrorContext, SubscriptionEventContext> => {
+    return new DbConnectionBuilder<DbConnection, ErrorContext, SubscriptionEventContext>(REMOTE_MODULE, (imp: DbConnectionImpl) => imp as DbConnection);
   }
   subscriptionBuilder = (): SubscriptionBuilder => {
     return new SubscriptionBuilder(this);
   }
 }
 
-export type EventContext = __EventContextInterface<RemoteTables, RemoteReducers, SetReducerFlags, Reducer>;
-export type ReducerEventContext = __ReducerEventContextInterface<RemoteTables, RemoteReducers, SetReducerFlags, Reducer>;
-export type SubscriptionEventContext = __SubscriptionEventContextInterface<RemoteTables, RemoteReducers, SetReducerFlags>;
-export type ErrorContext = __ErrorContextInterface<RemoteTables, RemoteReducers, SetReducerFlags>;
+export type EventContext = EventContextInterface<RemoteTables, RemoteReducers, SetReducerFlags, Reducer>;
+export type ReducerEventContext = ReducerEventContextInterface<RemoteTables, RemoteReducers, SetReducerFlags, Reducer>;
+export type SubscriptionEventContext = SubscriptionEventContextInterface<RemoteTables, RemoteReducers, SetReducerFlags>;
+export type ErrorContext = ErrorContextInterface<RemoteTables, RemoteReducers, SetReducerFlags>;
