@@ -93,7 +93,9 @@ namespace BitCraftRegion.Types
             AddTable(DayNightLoopTimer = new(conn));
             AddTable(DeconstructionRecipeDesc = new(conn));
             AddTable(DeployableCollectibleState = new(conn));
+            AddTable(DeployableCollectibleStateV2 = new(conn));
             AddTable(DeployableDesc = new(conn));
+            AddTable(DeployableDescV2 = new(conn));
             AddTable(DeployableDismountTimer = new(conn));
             AddTable(DeployableState = new(conn));
             AddTable(DestroyDimensionNetworkTimer = new(conn));
@@ -157,6 +159,7 @@ namespace BitCraftRegion.Types
             AddTable(IdentityRole = new(conn));
             AddTable(InterModuleMessage = new(conn));
             AddTable(InterModuleMessageCounter = new(conn));
+            AddTable(InterModuleMessageV2 = new(conn));
             AddTable(InterModuleResponseMessageCounter = new(conn));
             AddTable(InteriorCollapseTriggerState = new(conn));
             AddTable(InteriorEnvironmentDesc = new(conn));
@@ -244,6 +247,7 @@ namespace BitCraftRegion.Types
             AddTable(PlayerReportState = new(conn));
             AddTable(PlayerReportStateTimestamp = new(conn));
             AddTable(PlayerSetNameOutcomeEvent = new(conn));
+            AddTable(PlayerSettingsState = new(conn));
             AddTable(PlayerState = new(conn));
             AddTable(PlayerTimestampState = new(conn));
             AddTable(PlayerUseElevatorTimer = new(conn));
@@ -289,6 +293,7 @@ namespace BitCraftRegion.Types
             AddTable(StagedStaticDataV2 = new(conn));
             AddTable(StagedStaticDataV3 = new(conn));
             AddTable(StagedStaticDataV4 = new(conn));
+            AddTable(StagedStaticDataV5 = new(conn));
             AddTable(StaminaState = new(conn));
             AddTable(StarvingLoopTimer = new(conn));
             AddTable(StarvingPlayerState = new(conn));
@@ -328,6 +333,9 @@ namespace BitCraftRegion.Types
             AddTable(WaystoneState = new(conn));
             AddTable(WeaponDesc = new(conn));
             AddTable(WeaponTypeDesc = new(conn));
+            AddTable(WindDbgDesc = new(conn));
+            AddTable(WindParamsDesc = new(conn));
+            AddTable(WorldEntityPlacementResults = new(conn));
             AddTable(WorldRegionNameState = new(conn));
             AddTable(WorldRegionState = new(conn));
         }
@@ -807,6 +815,7 @@ namespace BitCraftRegion.Types
                 "admin_find_items_in_inventories" => BSATNHelpers.Decode<Reducer.AdminFindItemsInInventories>(encodedArgs),
                 "admin_find_items_in_trades" => BSATNHelpers.Decode<Reducer.AdminFindItemsInTrades>(encodedArgs),
                 "admin_grant_collectibles" => BSATNHelpers.Decode<Reducer.AdminGrantCollectibles>(encodedArgs),
+                "admin_migrate_deployable_collectible_state" => BSATNHelpers.Decode<Reducer.AdminMigrateDeployableCollectibleState>(encodedArgs),
                 "admin_modify_chat_message" => BSATNHelpers.Decode<Reducer.AdminModifyChatMessage>(encodedArgs),
                 "admin_patch_housing_costs" => BSATNHelpers.Decode<Reducer.AdminPatchHousingCosts>(encodedArgs),
                 "admin_rename_building" => BSATNHelpers.Decode<Reducer.AdminRenameBuilding>(encodedArgs),
@@ -944,12 +953,14 @@ namespace BitCraftRegion.Types
                 "deployable_deploy_start" => BSATNHelpers.Decode<Reducer.DeployableDeployStart>(encodedArgs),
                 "deployable_dismount" => BSATNHelpers.Decode<Reducer.DeployableDismount>(encodedArgs),
                 "deployable_dismount_scheduled" => BSATNHelpers.Decode<Reducer.DeployableDismountScheduled>(encodedArgs),
+                "deployable_follow" => BSATNHelpers.Decode<Reducer.DeployableFollow>(encodedArgs),
                 "deployable_mount" => BSATNHelpers.Decode<Reducer.DeployableMount>(encodedArgs),
                 "deployable_move" => BSATNHelpers.Decode<Reducer.DeployableMove>(encodedArgs),
                 "deployable_move_off_bounds" => BSATNHelpers.Decode<Reducer.DeployableMoveOffBounds>(encodedArgs),
                 "deployable_move_off_claim" => BSATNHelpers.Decode<Reducer.DeployableMoveOffClaim>(encodedArgs),
                 "deployable_store" => BSATNHelpers.Decode<Reducer.DeployableStore>(encodedArgs),
                 "deployable_store_start" => BSATNHelpers.Decode<Reducer.DeployableStoreStart>(encodedArgs),
+                "deployable_toggle_auto_follow" => BSATNHelpers.Decode<Reducer.DeployableToggleAutoFollow>(encodedArgs),
                 "destroy_dimension_network" => BSATNHelpers.Decode<Reducer.DestroyDimensionNetwork>(encodedArgs),
                 "dev_delete_world" => BSATNHelpers.Decode<Reducer.DevDeleteWorld>(encodedArgs),
                 "discover_entities" => BSATNHelpers.Decode<Reducer.DiscoverEntities>(encodedArgs),
@@ -1161,6 +1172,7 @@ namespace BitCraftRegion.Types
                 "import_wall_desc" => BSATNHelpers.Decode<Reducer.ImportWallDesc>(encodedArgs),
                 "import_weapon_desc" => BSATNHelpers.Decode<Reducer.ImportWeaponDesc>(encodedArgs),
                 "import_weapon_type_desc" => BSATNHelpers.Decode<Reducer.ImportWeaponTypeDesc>(encodedArgs),
+                "import_wind_params_desc" => BSATNHelpers.Decode<Reducer.ImportWindParamsDesc>(encodedArgs),
                 "import_world_region_name_state" => BSATNHelpers.Decode<Reducer.ImportWorldRegionNameState>(encodedArgs),
                 "import_world_region_state" => BSATNHelpers.Decode<Reducer.ImportWorldRegionState>(encodedArgs),
                 "insert_developer_identity" => BSATNHelpers.Decode<Reducer.InsertDeveloperIdentity>(encodedArgs),
@@ -1236,6 +1248,7 @@ namespace BitCraftRegion.Types
                 "player_respawn" => BSATNHelpers.Decode<Reducer.PlayerRespawn>(encodedArgs),
                 "player_set_default_deployable" => BSATNHelpers.Decode<Reducer.PlayerSetDefaultDeployable>(encodedArgs),
                 "player_set_name_outcome_event_reducer" => BSATNHelpers.Decode<Reducer.PlayerSetNameOutcomeEventReducer>(encodedArgs),
+                "player_settings_state_update" => BSATNHelpers.Decode<Reducer.PlayerSettingsStateUpdate>(encodedArgs),
                 "player_teleport_home" => BSATNHelpers.Decode<Reducer.PlayerTeleportHome>(encodedArgs),
                 "player_teleport_home_start" => BSATNHelpers.Decode<Reducer.PlayerTeleportHomeStart>(encodedArgs),
                 "player_teleport_waystone" => BSATNHelpers.Decode<Reducer.PlayerTeleportWaystone>(encodedArgs),
@@ -1369,6 +1382,7 @@ namespace BitCraftRegion.Types
                 "stage_wall_desc" => BSATNHelpers.Decode<Reducer.StageWallDesc>(encodedArgs),
                 "stage_weapon_desc" => BSATNHelpers.Decode<Reducer.StageWeaponDesc>(encodedArgs),
                 "stage_weapon_type_desc" => BSATNHelpers.Decode<Reducer.StageWeaponTypeDesc>(encodedArgs),
+                "stage_wind_params_desc" => BSATNHelpers.Decode<Reducer.StageWindParamsDesc>(encodedArgs),
                 "start_agents" => BSATNHelpers.Decode<Reducer.StartAgents>(encodedArgs),
                 "start_generating_world" => BSATNHelpers.Decode<Reducer.StartGeneratingWorld>(encodedArgs),
                 "start_onboarding_quest" => BSATNHelpers.Decode<Reducer.StartOnboardingQuest>(encodedArgs),
@@ -1396,6 +1410,7 @@ namespace BitCraftRegion.Types
                 "traveler_task_agent_loop" => BSATNHelpers.Decode<Reducer.TravelerTaskAgentLoop>(encodedArgs),
                 "update_moving_cost" => BSATNHelpers.Decode<Reducer.UpdateMovingCost>(encodedArgs),
                 "update_scheduled_timers_from_static_data" => BSATNHelpers.Decode<Reducer.UpdateScheduledTimersFromStaticData>(encodedArgs),
+                "world_place_resource" => BSATNHelpers.Decode<Reducer.WorldPlaceResource>(encodedArgs),
                 var reducer => throw new ArgumentOutOfRangeException("Reducer", $"Unknown reducer {reducer}")
             };
         }
@@ -1451,6 +1466,7 @@ namespace BitCraftRegion.Types
                 Reducer.AdminFindItemsInInventories args => Reducers.InvokeAdminFindItemsInInventories(eventContext, args),
                 Reducer.AdminFindItemsInTrades args => Reducers.InvokeAdminFindItemsInTrades(eventContext, args),
                 Reducer.AdminGrantCollectibles args => Reducers.InvokeAdminGrantCollectibles(eventContext, args),
+                Reducer.AdminMigrateDeployableCollectibleState args => Reducers.InvokeAdminMigrateDeployableCollectibleState(eventContext, args),
                 Reducer.AdminModifyChatMessage args => Reducers.InvokeAdminModifyChatMessage(eventContext, args),
                 Reducer.AdminPatchHousingCosts args => Reducers.InvokeAdminPatchHousingCosts(eventContext, args),
                 Reducer.AdminRenameBuilding args => Reducers.InvokeAdminRenameBuilding(eventContext, args),
@@ -1588,12 +1604,14 @@ namespace BitCraftRegion.Types
                 Reducer.DeployableDeployStart args => Reducers.InvokeDeployableDeployStart(eventContext, args),
                 Reducer.DeployableDismount args => Reducers.InvokeDeployableDismount(eventContext, args),
                 Reducer.DeployableDismountScheduled args => Reducers.InvokeDeployableDismountScheduled(eventContext, args),
+                Reducer.DeployableFollow args => Reducers.InvokeDeployableFollow(eventContext, args),
                 Reducer.DeployableMount args => Reducers.InvokeDeployableMount(eventContext, args),
                 Reducer.DeployableMove args => Reducers.InvokeDeployableMove(eventContext, args),
                 Reducer.DeployableMoveOffBounds args => Reducers.InvokeDeployableMoveOffBounds(eventContext, args),
                 Reducer.DeployableMoveOffClaim args => Reducers.InvokeDeployableMoveOffClaim(eventContext, args),
                 Reducer.DeployableStore args => Reducers.InvokeDeployableStore(eventContext, args),
                 Reducer.DeployableStoreStart args => Reducers.InvokeDeployableStoreStart(eventContext, args),
+                Reducer.DeployableToggleAutoFollow args => Reducers.InvokeDeployableToggleAutoFollow(eventContext, args),
                 Reducer.DestroyDimensionNetwork args => Reducers.InvokeDestroyDimensionNetwork(eventContext, args),
                 Reducer.DevDeleteWorld args => Reducers.InvokeDevDeleteWorld(eventContext, args),
                 Reducer.DiscoverEntities args => Reducers.InvokeDiscoverEntities(eventContext, args),
@@ -1805,6 +1823,7 @@ namespace BitCraftRegion.Types
                 Reducer.ImportWallDesc args => Reducers.InvokeImportWallDesc(eventContext, args),
                 Reducer.ImportWeaponDesc args => Reducers.InvokeImportWeaponDesc(eventContext, args),
                 Reducer.ImportWeaponTypeDesc args => Reducers.InvokeImportWeaponTypeDesc(eventContext, args),
+                Reducer.ImportWindParamsDesc args => Reducers.InvokeImportWindParamsDesc(eventContext, args),
                 Reducer.ImportWorldRegionNameState args => Reducers.InvokeImportWorldRegionNameState(eventContext, args),
                 Reducer.ImportWorldRegionState args => Reducers.InvokeImportWorldRegionState(eventContext, args),
                 Reducer.InsertDeveloperIdentity args => Reducers.InvokeInsertDeveloperIdentity(eventContext, args),
@@ -1880,6 +1899,7 @@ namespace BitCraftRegion.Types
                 Reducer.PlayerRespawn args => Reducers.InvokePlayerRespawn(eventContext, args),
                 Reducer.PlayerSetDefaultDeployable args => Reducers.InvokePlayerSetDefaultDeployable(eventContext, args),
                 Reducer.PlayerSetNameOutcomeEventReducer args => Reducers.InvokePlayerSetNameOutcomeEventReducer(eventContext, args),
+                Reducer.PlayerSettingsStateUpdate args => Reducers.InvokePlayerSettingsStateUpdate(eventContext, args),
                 Reducer.PlayerTeleportHome args => Reducers.InvokePlayerTeleportHome(eventContext, args),
                 Reducer.PlayerTeleportHomeStart args => Reducers.InvokePlayerTeleportHomeStart(eventContext, args),
                 Reducer.PlayerTeleportWaystone args => Reducers.InvokePlayerTeleportWaystone(eventContext, args),
@@ -2013,6 +2033,7 @@ namespace BitCraftRegion.Types
                 Reducer.StageWallDesc args => Reducers.InvokeStageWallDesc(eventContext, args),
                 Reducer.StageWeaponDesc args => Reducers.InvokeStageWeaponDesc(eventContext, args),
                 Reducer.StageWeaponTypeDesc args => Reducers.InvokeStageWeaponTypeDesc(eventContext, args),
+                Reducer.StageWindParamsDesc args => Reducers.InvokeStageWindParamsDesc(eventContext, args),
                 Reducer.StartAgents args => Reducers.InvokeStartAgents(eventContext, args),
                 Reducer.StartGeneratingWorld args => Reducers.InvokeStartGeneratingWorld(eventContext, args),
                 Reducer.StartOnboardingQuest args => Reducers.InvokeStartOnboardingQuest(eventContext, args),
@@ -2040,6 +2061,7 @@ namespace BitCraftRegion.Types
                 Reducer.TravelerTaskAgentLoop args => Reducers.InvokeTravelerTaskAgentLoop(eventContext, args),
                 Reducer.UpdateMovingCost args => Reducers.InvokeUpdateMovingCost(eventContext, args),
                 Reducer.UpdateScheduledTimersFromStaticData args => Reducers.InvokeUpdateScheduledTimersFromStaticData(eventContext, args),
+                Reducer.WorldPlaceResource args => Reducers.InvokeWorldPlaceResource(eventContext, args),
                 _ => throw new ArgumentOutOfRangeException("Reducer", $"Unknown reducer {reducer}")
             };
         }
