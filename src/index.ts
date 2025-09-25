@@ -99,6 +99,8 @@ import { AdminFindItemsInInventories } from "./admin_find_items_in_inventories_r
 export { AdminFindItemsInInventories };
 import { AdminFindItemsInTrades } from "./admin_find_items_in_trades_reducer.ts";
 export { AdminFindItemsInTrades };
+import { AdminFixDeployedCollectibles } from "./admin_fix_deployed_collectibles_reducer.ts";
+export { AdminFixDeployedCollectibles };
 import { AdminGrantCollectibles } from "./admin_grant_collectibles_reducer.ts";
 export { AdminGrantCollectibles };
 import { AdminMigrateDeployableCollectibleState } from "./admin_migrate_deployable_collectible_state_reducer.ts";
@@ -6180,6 +6182,10 @@ export const REMOTE_MODULE = {
       reducerName: "admin_find_items_in_trades",
       argsType: AdminFindItemsInTrades.getTypeScriptAlgebraicType(),
     },
+    admin_fix_deployed_collectibles: {
+      reducerName: "admin_fix_deployed_collectibles",
+      argsType: AdminFixDeployedCollectibles.getTypeScriptAlgebraicType(),
+    },
     admin_grant_collectibles: {
       reducerName: "admin_grant_collectibles",
       argsType: AdminGrantCollectibles.getTypeScriptAlgebraicType(),
@@ -8631,6 +8637,7 @@ export type Reducer = never
 | { name: "AdminFindAllPlayersWithItemAboveQuantity", args: AdminFindAllPlayersWithItemAboveQuantity }
 | { name: "AdminFindItemsInInventories", args: AdminFindItemsInInventories }
 | { name: "AdminFindItemsInTrades", args: AdminFindItemsInTrades }
+| { name: "AdminFixDeployedCollectibles", args: AdminFixDeployedCollectibles }
 | { name: "AdminGrantCollectibles", args: AdminGrantCollectibles }
 | { name: "AdminMigrateDeployableCollectibleState", args: AdminMigrateDeployableCollectibleState }
 | { name: "AdminModifyChatMessage", args: AdminModifyChatMessage }
@@ -9731,6 +9738,18 @@ export class RemoteReducers {
 
   removeOnAdminFindItemsInTrades(callback: (ctx: ReducerEventContext, itemId: number, isCargo: boolean, minThreshold: bigint) => void) {
     this.connection.offReducer("admin_find_items_in_trades", callback);
+  }
+
+  adminFixDeployedCollectibles() {
+    this.connection.callReducer("admin_fix_deployed_collectibles", new Uint8Array(0), this.setCallReducerFlags.adminFixDeployedCollectiblesFlags);
+  }
+
+  onAdminFixDeployedCollectibles(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.onReducer("admin_fix_deployed_collectibles", callback);
+  }
+
+  removeOnAdminFixDeployedCollectibles(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.offReducer("admin_fix_deployed_collectibles", callback);
   }
 
   adminGrantCollectibles(identity: string, collectibles: number[]) {
@@ -19311,6 +19330,11 @@ export class SetReducerFlags {
   adminFindItemsInTradesFlags: CallReducerFlags = 'FullUpdate';
   adminFindItemsInTrades(flags: CallReducerFlags) {
     this.adminFindItemsInTradesFlags = flags;
+  }
+
+  adminFixDeployedCollectiblesFlags: CallReducerFlags = 'FullUpdate';
+  adminFixDeployedCollectibles(flags: CallReducerFlags) {
+    this.adminFixDeployedCollectiblesFlags = flags;
   }
 
   adminGrantCollectiblesFlags: CallReducerFlags = 'FullUpdate';
