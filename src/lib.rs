@@ -56,6 +56,7 @@ pub mod admin_find_all_players_with_item_above_quantity_reducer;
 pub mod admin_find_all_players_with_item_reducer;
 pub mod admin_find_items_in_inventories_reducer;
 pub mod admin_find_items_in_trades_reducer;
+pub mod admin_fix_deployed_collectibles_reducer;
 pub mod admin_grant_collectibles_reducer;
 pub mod admin_migrate_deployable_collectible_state_reducer;
 pub mod admin_modify_chat_message_reducer;
@@ -1749,6 +1750,10 @@ pub use admin_find_items_in_inventories_reducer::{
 pub use admin_find_items_in_trades_reducer::{
     admin_find_items_in_trades, set_flags_for_admin_find_items_in_trades,
     AdminFindItemsInTradesCallbackId,
+};
+pub use admin_fix_deployed_collectibles_reducer::{
+    admin_fix_deployed_collectibles, set_flags_for_admin_fix_deployed_collectibles,
+    AdminFixDeployedCollectiblesCallbackId,
 };
 pub use admin_grant_collectibles_reducer::{
     admin_grant_collectibles, set_flags_for_admin_grant_collectibles,
@@ -4800,6 +4805,7 @@ pub enum Reducer {
         is_cargo: bool,
         min_threshold: u64,
     },
+    AdminFixDeployedCollectibles,
     AdminGrantCollectibles {
         identity: String,
         collectibles: Vec<i32>,
@@ -6660,6 +6666,7 @@ impl __sdk::Reducer for Reducer {
             }
             Reducer::AdminFindItemsInInventories { .. } => "admin_find_items_in_inventories",
             Reducer::AdminFindItemsInTrades { .. } => "admin_find_items_in_trades",
+            Reducer::AdminFixDeployedCollectibles => "admin_fix_deployed_collectibles",
             Reducer::AdminGrantCollectibles { .. } => "admin_grant_collectibles",
             Reducer::AdminMigrateDeployableCollectibleState => {
                 "admin_migrate_deployable_collectible_state"
@@ -7345,6 +7352,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "admin_find_all_players_with_item_above_quantity" => Ok(__sdk::parse_reducer_args::<admin_find_all_players_with_item_above_quantity_reducer::AdminFindAllPlayersWithItemAboveQuantityArgs>("admin_find_all_players_with_item_above_quantity", &value.args)?.into()),
             "admin_find_items_in_inventories" => Ok(__sdk::parse_reducer_args::<admin_find_items_in_inventories_reducer::AdminFindItemsInInventoriesArgs>("admin_find_items_in_inventories", &value.args)?.into()),
             "admin_find_items_in_trades" => Ok(__sdk::parse_reducer_args::<admin_find_items_in_trades_reducer::AdminFindItemsInTradesArgs>("admin_find_items_in_trades", &value.args)?.into()),
+            "admin_fix_deployed_collectibles" => Ok(__sdk::parse_reducer_args::<admin_fix_deployed_collectibles_reducer::AdminFixDeployedCollectiblesArgs>("admin_fix_deployed_collectibles", &value.args)?.into()),
             "admin_grant_collectibles" => Ok(__sdk::parse_reducer_args::<admin_grant_collectibles_reducer::AdminGrantCollectiblesArgs>("admin_grant_collectibles", &value.args)?.into()),
             "admin_migrate_deployable_collectible_state" => Ok(__sdk::parse_reducer_args::<admin_migrate_deployable_collectible_state_reducer::AdminMigrateDeployableCollectibleStateArgs>("admin_migrate_deployable_collectible_state", &value.args)?.into()),
             "admin_modify_chat_message" => Ok(__sdk::parse_reducer_args::<admin_modify_chat_message_reducer::AdminModifyChatMessageArgs>("admin_modify_chat_message", &value.args)?.into()),
