@@ -955,6 +955,8 @@ pub mod staged_static_data_v_4_table;
 pub mod staged_static_data_v_4_type;
 pub mod staged_static_data_v_5_table;
 pub mod staged_static_data_v_5_type;
+pub mod staged_static_data_v_6_table;
+pub mod staged_static_data_v_6_type;
 pub mod stamina_state_table;
 pub mod stamina_state_type;
 pub mod starving_player_state_table;
@@ -964,6 +966,7 @@ pub mod static_data_upload_v_2_type;
 pub mod static_data_upload_v_3_type;
 pub mod static_data_upload_v_4_type;
 pub mod static_data_upload_v_5_type;
+pub mod static_data_upload_v_6_type;
 pub mod storage_log_state_table;
 pub mod surface_type_type;
 pub mod target_state_table;
@@ -2818,6 +2821,8 @@ pub use staged_static_data_v_4_table::*;
 pub use staged_static_data_v_4_type::StagedStaticDataV4;
 pub use staged_static_data_v_5_table::*;
 pub use staged_static_data_v_5_type::StagedStaticDataV5;
+pub use staged_static_data_v_6_table::*;
+pub use staged_static_data_v_6_type::StagedStaticDataV6;
 pub use stamina_state_table::*;
 pub use stamina_state_type::StaminaState;
 pub use starving_player_state_table::*;
@@ -2827,6 +2832,7 @@ pub use static_data_upload_v_2_type::StaticDataUploadV2;
 pub use static_data_upload_v_3_type::StaticDataUploadV3;
 pub use static_data_upload_v_4_type::StaticDataUploadV4;
 pub use static_data_upload_v_5_type::StaticDataUploadV5;
+pub use static_data_upload_v_6_type::StaticDataUploadV6;
 pub use storage_log_state_table::*;
 pub use surface_type_type::SurfaceType;
 pub use target_state_table::*;
@@ -4911,6 +4917,7 @@ pub struct DbUpdate {
     staged_static_data_v_3: __sdk::TableUpdate<StagedStaticDataV3>,
     staged_static_data_v_4: __sdk::TableUpdate<StagedStaticDataV4>,
     staged_static_data_v_5: __sdk::TableUpdate<StagedStaticDataV5>,
+    staged_static_data_v_6: __sdk::TableUpdate<StagedStaticDataV6>,
     stamina_state: __sdk::TableUpdate<StaminaState>,
     starving_player_state: __sdk::TableUpdate<StarvingPlayerState>,
     storage_log_state: __sdk::TableUpdate<ActionLogState>,
@@ -5708,6 +5715,9 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
                 ),
                 "staged_static_data_v5" => db_update.staged_static_data_v_5.append(
                     staged_static_data_v_5_table::parse_table_update(table_update)?,
+                ),
+                "staged_static_data_v6" => db_update.staged_static_data_v_6.append(
+                    staged_static_data_v_6_table::parse_table_update(table_update)?,
                 ),
                 "stamina_state" => db_update
                     .stamina_state
@@ -6979,6 +6989,12 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.staged_static_data_v_5,
             )
             .with_updates_by_pk(|row| &row.version);
+        diff.staged_static_data_v_6 = cache
+            .apply_diff_to_table::<StagedStaticDataV6>(
+                "staged_static_data_v6",
+                &self.staged_static_data_v_6,
+            )
+            .with_updates_by_pk(|row| &row.version);
         diff.stamina_state = cache
             .apply_diff_to_table::<StaminaState>("stamina_state", &self.stamina_state)
             .with_updates_by_pk(|row| &row.entity_id);
@@ -7400,6 +7416,7 @@ pub struct AppliedDiff<'r> {
     staged_static_data_v_3: __sdk::TableAppliedDiff<'r, StagedStaticDataV3>,
     staged_static_data_v_4: __sdk::TableAppliedDiff<'r, StagedStaticDataV4>,
     staged_static_data_v_5: __sdk::TableAppliedDiff<'r, StagedStaticDataV5>,
+    staged_static_data_v_6: __sdk::TableAppliedDiff<'r, StagedStaticDataV6>,
     stamina_state: __sdk::TableAppliedDiff<'r, StaminaState>,
     starving_player_state: __sdk::TableAppliedDiff<'r, StarvingPlayerState>,
     storage_log_state: __sdk::TableAppliedDiff<'r, ActionLogState>,
@@ -8558,6 +8575,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             &self.staged_static_data_v_5,
             event,
         );
+        callbacks.invoke_table_row_callbacks::<StagedStaticDataV6>(
+            "staged_static_data_v6",
+            &self.staged_static_data_v_6,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<StaminaState>(
             "stamina_state",
             &self.stamina_state,
@@ -9547,6 +9569,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         staged_static_data_v_3_table::register_table(client_cache);
         staged_static_data_v_4_table::register_table(client_cache);
         staged_static_data_v_5_table::register_table(client_cache);
+        staged_static_data_v_6_table::register_table(client_cache);
         stamina_state_table::register_table(client_cache);
         starving_player_state_table::register_table(client_cache);
         storage_log_state_table::register_table(client_cache);
