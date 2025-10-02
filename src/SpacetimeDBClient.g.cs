@@ -294,6 +294,7 @@ namespace BitCraftRegion.Types
             AddTable(StagedStaticDataV3 = new(conn));
             AddTable(StagedStaticDataV4 = new(conn));
             AddTable(StagedStaticDataV5 = new(conn));
+            AddTable(StagedStaticDataV6 = new(conn));
             AddTable(StaminaState = new(conn));
             AddTable(StarvingLoopTimer = new(conn));
             AddTable(StarvingPlayerState = new(conn));
@@ -814,9 +815,7 @@ namespace BitCraftRegion.Types
                 "admin_find_all_players_with_item_above_quantity" => BSATNHelpers.Decode<Reducer.AdminFindAllPlayersWithItemAboveQuantity>(encodedArgs),
                 "admin_find_items_in_inventories" => BSATNHelpers.Decode<Reducer.AdminFindItemsInInventories>(encodedArgs),
                 "admin_find_items_in_trades" => BSATNHelpers.Decode<Reducer.AdminFindItemsInTrades>(encodedArgs),
-                "admin_fix_deployed_collectibles" => BSATNHelpers.Decode<Reducer.AdminFixDeployedCollectibles>(encodedArgs),
                 "admin_grant_collectibles" => BSATNHelpers.Decode<Reducer.AdminGrantCollectibles>(encodedArgs),
-                "admin_migrate_deployable_collectible_state" => BSATNHelpers.Decode<Reducer.AdminMigrateDeployableCollectibleState>(encodedArgs),
                 "admin_modify_chat_message" => BSATNHelpers.Decode<Reducer.AdminModifyChatMessage>(encodedArgs),
                 "admin_patch_housing_costs" => BSATNHelpers.Decode<Reducer.AdminPatchHousingCosts>(encodedArgs),
                 "admin_rename_building" => BSATNHelpers.Decode<Reducer.AdminRenameBuilding>(encodedArgs),
@@ -1466,9 +1465,7 @@ namespace BitCraftRegion.Types
                 Reducer.AdminFindAllPlayersWithItemAboveQuantity args => Reducers.InvokeAdminFindAllPlayersWithItemAboveQuantity(eventContext, args),
                 Reducer.AdminFindItemsInInventories args => Reducers.InvokeAdminFindItemsInInventories(eventContext, args),
                 Reducer.AdminFindItemsInTrades args => Reducers.InvokeAdminFindItemsInTrades(eventContext, args),
-                Reducer.AdminFixDeployedCollectibles args => Reducers.InvokeAdminFixDeployedCollectibles(eventContext, args),
                 Reducer.AdminGrantCollectibles args => Reducers.InvokeAdminGrantCollectibles(eventContext, args),
-                Reducer.AdminMigrateDeployableCollectibleState args => Reducers.InvokeAdminMigrateDeployableCollectibleState(eventContext, args),
                 Reducer.AdminModifyChatMessage args => Reducers.InvokeAdminModifyChatMessage(eventContext, args),
                 Reducer.AdminPatchHousingCosts args => Reducers.InvokeAdminPatchHousingCosts(eventContext, args),
                 Reducer.AdminRenameBuilding args => Reducers.InvokeAdminRenameBuilding(eventContext, args),
