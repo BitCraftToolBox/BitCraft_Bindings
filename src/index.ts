@@ -1175,6 +1175,8 @@ import { StagedStaticDataV4TableHandle } from "./staged_static_data_v_4_table.ts
 export { StagedStaticDataV4TableHandle };
 import { StagedStaticDataV5TableHandle } from "./staged_static_data_v_5_table.ts";
 export { StagedStaticDataV5TableHandle };
+import { StagedStaticDataV6TableHandle } from "./staged_static_data_v_6_table.ts";
+export { StagedStaticDataV6TableHandle };
 import { StaminaStateTableHandle } from "./stamina_state_table.ts";
 export { StaminaStateTableHandle };
 import { StarvingPlayerStateTableHandle } from "./starving_player_state_table.ts";
@@ -2029,6 +2031,8 @@ import { StagedStaticDataV4 } from "./staged_static_data_v_4_type.ts";
 export { StagedStaticDataV4 };
 import { StagedStaticDataV5 } from "./staged_static_data_v_5_type.ts";
 export { StagedStaticDataV5 };
+import { StagedStaticDataV6 } from "./staged_static_data_v_6_type.ts";
+export { StagedStaticDataV6 };
 import { StaminaState } from "./stamina_state_type.ts";
 export { StaminaState };
 import { StarvingPlayerState } from "./starving_player_state_type.ts";
@@ -2043,6 +2047,8 @@ import { StaticDataUploadV4 } from "./static_data_upload_v_4_type.ts";
 export { StaticDataUploadV4 };
 import { StaticDataUploadV5 } from "./static_data_upload_v_5_type.ts";
 export { StaticDataUploadV5 };
+import { StaticDataUploadV6 } from "./static_data_upload_v_6_type.ts";
+export { StaticDataUploadV6 };
 import { SurfaceType } from "./surface_type_type.ts";
 export { SurfaceType };
 import { TargetState } from "./target_state_type.ts";
@@ -4297,6 +4303,15 @@ const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "version",
         colType: StagedStaticDataV5.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_static_data_v6: {
+      tableName: "staged_static_data_v6",
+      rowType: StagedStaticDataV6.getTypeScriptAlgebraicType(),
+      primaryKey: "version",
+      primaryKeyInfo: {
+        colName: "version",
+        colType: StagedStaticDataV6.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     stamina_state: {
@@ -14185,6 +14200,10 @@ export class RemoteTables {
 
   get stagedStaticDataV5(): StagedStaticDataV5TableHandle {
     return new StagedStaticDataV5TableHandle(this.connection.clientCache.getOrCreateTable<StagedStaticDataV5>(REMOTE_MODULE.tables.staged_static_data_v5));
+  }
+
+  get stagedStaticDataV6(): StagedStaticDataV6TableHandle {
+    return new StagedStaticDataV6TableHandle(this.connection.clientCache.getOrCreateTable<StagedStaticDataV6>(REMOTE_MODULE.tables.staged_static_data_v6));
   }
 
   get staminaState(): StaminaStateTableHandle {
