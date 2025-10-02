@@ -99,12 +99,8 @@ import { AdminFindItemsInInventories } from "./admin_find_items_in_inventories_r
 export { AdminFindItemsInInventories };
 import { AdminFindItemsInTrades } from "./admin_find_items_in_trades_reducer.ts";
 export { AdminFindItemsInTrades };
-import { AdminFixDeployedCollectibles } from "./admin_fix_deployed_collectibles_reducer.ts";
-export { AdminFixDeployedCollectibles };
 import { AdminGrantCollectibles } from "./admin_grant_collectibles_reducer.ts";
 export { AdminGrantCollectibles };
-import { AdminMigrateDeployableCollectibleState } from "./admin_migrate_deployable_collectible_state_reducer.ts";
-export { AdminMigrateDeployableCollectibleState };
 import { AdminModifyChatMessage } from "./admin_modify_chat_message_reducer.ts";
 export { AdminModifyChatMessage };
 import { AdminPatchHousingCosts } from "./admin_patch_housing_costs_reducer.ts";
@@ -1839,6 +1835,8 @@ import { StagedStaticDataV4TableHandle } from "./staged_static_data_v_4_table.ts
 export { StagedStaticDataV4TableHandle };
 import { StagedStaticDataV5TableHandle } from "./staged_static_data_v_5_table.ts";
 export { StagedStaticDataV5TableHandle };
+import { StagedStaticDataV6TableHandle } from "./staged_static_data_v_6_table.ts";
+export { StagedStaticDataV6TableHandle };
 import { StaminaStateTableHandle } from "./stamina_state_table.ts";
 export { StaminaStateTableHandle };
 import { StarvingLoopTimerTableHandle } from "./starving_loop_timer_table.ts";
@@ -3025,6 +3023,8 @@ import { StagedStaticDataV4 } from "./staged_static_data_v_4_type.ts";
 export { StagedStaticDataV4 };
 import { StagedStaticDataV5 } from "./staged_static_data_v_5_type.ts";
 export { StagedStaticDataV5 };
+import { StagedStaticDataV6 } from "./staged_static_data_v_6_type.ts";
+export { StagedStaticDataV6 };
 import { StaminaState } from "./stamina_state_type.ts";
 export { StaminaState };
 import { StarvingLoopTimer } from "./starving_loop_timer_type.ts";
@@ -3041,6 +3041,8 @@ import { StaticDataUploadV4 } from "./static_data_upload_v_4_type.ts";
 export { StaticDataUploadV4 };
 import { StaticDataUploadV5 } from "./static_data_upload_v_5_type.ts";
 export { StaticDataUploadV5 };
+import { StaticDataUploadV6 } from "./static_data_upload_v_6_type.ts";
+export { StaticDataUploadV6 };
 import { StorageLogCleanupLoopTimer } from "./storage_log_cleanup_loop_timer_type.ts";
 export { StorageLogCleanupLoopTimer };
 import { SurfaceType } from "./surface_type_type.ts";
@@ -5652,6 +5654,15 @@ export const REMOTE_MODULE = {
         colType: StagedStaticDataV5.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    staged_static_data_v6: {
+      tableName: "staged_static_data_v6",
+      rowType: StagedStaticDataV6.getTypeScriptAlgebraicType(),
+      primaryKey: "version",
+      primaryKeyInfo: {
+        colName: "version",
+        colType: StagedStaticDataV6.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     stamina_state: {
       tableName: "stamina_state",
       rowType: StaminaState.getTypeScriptAlgebraicType(),
@@ -6182,17 +6193,9 @@ export const REMOTE_MODULE = {
       reducerName: "admin_find_items_in_trades",
       argsType: AdminFindItemsInTrades.getTypeScriptAlgebraicType(),
     },
-    admin_fix_deployed_collectibles: {
-      reducerName: "admin_fix_deployed_collectibles",
-      argsType: AdminFixDeployedCollectibles.getTypeScriptAlgebraicType(),
-    },
     admin_grant_collectibles: {
       reducerName: "admin_grant_collectibles",
       argsType: AdminGrantCollectibles.getTypeScriptAlgebraicType(),
-    },
-    admin_migrate_deployable_collectible_state: {
-      reducerName: "admin_migrate_deployable_collectible_state",
-      argsType: AdminMigrateDeployableCollectibleState.getTypeScriptAlgebraicType(),
     },
     admin_modify_chat_message: {
       reducerName: "admin_modify_chat_message",
@@ -8637,9 +8640,7 @@ export type Reducer = never
 | { name: "AdminFindAllPlayersWithItemAboveQuantity", args: AdminFindAllPlayersWithItemAboveQuantity }
 | { name: "AdminFindItemsInInventories", args: AdminFindItemsInInventories }
 | { name: "AdminFindItemsInTrades", args: AdminFindItemsInTrades }
-| { name: "AdminFixDeployedCollectibles", args: AdminFixDeployedCollectibles }
 | { name: "AdminGrantCollectibles", args: AdminGrantCollectibles }
-| { name: "AdminMigrateDeployableCollectibleState", args: AdminMigrateDeployableCollectibleState }
 | { name: "AdminModifyChatMessage", args: AdminModifyChatMessage }
 | { name: "AdminPatchHousingCosts", args: AdminPatchHousingCosts }
 | { name: "AdminRenameBuilding", args: AdminRenameBuilding }
@@ -9740,18 +9741,6 @@ export class RemoteReducers {
     this.connection.offReducer("admin_find_items_in_trades", callback);
   }
 
-  adminFixDeployedCollectibles() {
-    this.connection.callReducer("admin_fix_deployed_collectibles", new Uint8Array(0), this.setCallReducerFlags.adminFixDeployedCollectiblesFlags);
-  }
-
-  onAdminFixDeployedCollectibles(callback: (ctx: ReducerEventContext) => void) {
-    this.connection.onReducer("admin_fix_deployed_collectibles", callback);
-  }
-
-  removeOnAdminFixDeployedCollectibles(callback: (ctx: ReducerEventContext) => void) {
-    this.connection.offReducer("admin_fix_deployed_collectibles", callback);
-  }
-
   adminGrantCollectibles(identity: string, collectibles: number[]) {
     const __args = { identity, collectibles };
     let __writer = new BinaryWriter(1024);
@@ -9766,18 +9755,6 @@ export class RemoteReducers {
 
   removeOnAdminGrantCollectibles(callback: (ctx: ReducerEventContext, identity: string, collectibles: number[]) => void) {
     this.connection.offReducer("admin_grant_collectibles", callback);
-  }
-
-  adminMigrateDeployableCollectibleState() {
-    this.connection.callReducer("admin_migrate_deployable_collectible_state", new Uint8Array(0), this.setCallReducerFlags.adminMigrateDeployableCollectibleStateFlags);
-  }
-
-  onAdminMigrateDeployableCollectibleState(callback: (ctx: ReducerEventContext) => void) {
-    this.connection.onReducer("admin_migrate_deployable_collectible_state", callback);
-  }
-
-  removeOnAdminMigrateDeployableCollectibleState(callback: (ctx: ReducerEventContext) => void) {
-    this.connection.offReducer("admin_migrate_deployable_collectible_state", callback);
   }
 
   adminModifyChatMessage(entityId: bigint, newMessageText: string) {
@@ -19332,19 +19309,9 @@ export class SetReducerFlags {
     this.adminFindItemsInTradesFlags = flags;
   }
 
-  adminFixDeployedCollectiblesFlags: CallReducerFlags = 'FullUpdate';
-  adminFixDeployedCollectibles(flags: CallReducerFlags) {
-    this.adminFixDeployedCollectiblesFlags = flags;
-  }
-
   adminGrantCollectiblesFlags: CallReducerFlags = 'FullUpdate';
   adminGrantCollectibles(flags: CallReducerFlags) {
     this.adminGrantCollectiblesFlags = flags;
-  }
-
-  adminMigrateDeployableCollectibleStateFlags: CallReducerFlags = 'FullUpdate';
-  adminMigrateDeployableCollectibleState(flags: CallReducerFlags) {
-    this.adminMigrateDeployableCollectibleStateFlags = flags;
   }
 
   adminModifyChatMessageFlags: CallReducerFlags = 'FullUpdate';
@@ -23399,6 +23366,10 @@ export class RemoteTables {
 
   get stagedStaticDataV5(): StagedStaticDataV5TableHandle {
     return new StagedStaticDataV5TableHandle(this.connection.clientCache.getOrCreateTable<StagedStaticDataV5>(REMOTE_MODULE.tables.staged_static_data_v5));
+  }
+
+  get stagedStaticDataV6(): StagedStaticDataV6TableHandle {
+    return new StagedStaticDataV6TableHandle(this.connection.clientCache.getOrCreateTable<StagedStaticDataV6>(REMOTE_MODULE.tables.staged_static_data_v6));
   }
 
   get staminaState(): StaminaStateTableHandle {
