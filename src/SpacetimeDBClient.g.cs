@@ -262,6 +262,7 @@ namespace BitCraftGlobal.Types
             AddTable(StagedStaticDataV3 = new(conn));
             AddTable(StagedStaticDataV4 = new(conn));
             AddTable(StagedStaticDataV5 = new(conn));
+            AddTable(StagedStaticDataV6 = new(conn));
             AddTable(StaminaState = new(conn));
             AddTable(StarvingPlayerState = new(conn));
             AddTable(StorageLogState = new(conn));
