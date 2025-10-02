@@ -56,9 +56,7 @@ pub mod admin_find_all_players_with_item_above_quantity_reducer;
 pub mod admin_find_all_players_with_item_reducer;
 pub mod admin_find_items_in_inventories_reducer;
 pub mod admin_find_items_in_trades_reducer;
-pub mod admin_fix_deployed_collectibles_reducer;
 pub mod admin_grant_collectibles_reducer;
-pub mod admin_migrate_deployable_collectible_state_reducer;
 pub mod admin_modify_chat_message_reducer;
 pub mod admin_patch_housing_costs_reducer;
 pub mod admin_rename_building_coord_reducer;
@@ -1427,6 +1425,8 @@ pub mod staged_static_data_v_4_table;
 pub mod staged_static_data_v_4_type;
 pub mod staged_static_data_v_5_table;
 pub mod staged_static_data_v_5_type;
+pub mod staged_static_data_v_6_table;
+pub mod staged_static_data_v_6_type;
 pub mod stamina_state_table;
 pub mod stamina_state_type;
 pub mod start_agents_reducer;
@@ -1442,6 +1442,7 @@ pub mod static_data_upload_v_2_type;
 pub mod static_data_upload_v_3_type;
 pub mod static_data_upload_v_4_type;
 pub mod static_data_upload_v_5_type;
+pub mod static_data_upload_v_6_type;
 pub mod stop_agents_reducer;
 pub mod storage_log_cleanup_loop_reducer;
 pub mod storage_log_cleanup_loop_timer_table;
@@ -1751,18 +1752,9 @@ pub use admin_find_items_in_trades_reducer::{
     admin_find_items_in_trades, set_flags_for_admin_find_items_in_trades,
     AdminFindItemsInTradesCallbackId,
 };
-pub use admin_fix_deployed_collectibles_reducer::{
-    admin_fix_deployed_collectibles, set_flags_for_admin_fix_deployed_collectibles,
-    AdminFixDeployedCollectiblesCallbackId,
-};
 pub use admin_grant_collectibles_reducer::{
     admin_grant_collectibles, set_flags_for_admin_grant_collectibles,
     AdminGrantCollectiblesCallbackId,
-};
-pub use admin_migrate_deployable_collectible_state_reducer::{
-    admin_migrate_deployable_collectible_state,
-    set_flags_for_admin_migrate_deployable_collectible_state,
-    AdminMigrateDeployableCollectibleStateCallbackId,
 };
 pub use admin_modify_chat_message_reducer::{
     admin_modify_chat_message, set_flags_for_admin_modify_chat_message,
@@ -4470,6 +4462,8 @@ pub use staged_static_data_v_4_table::*;
 pub use staged_static_data_v_4_type::StagedStaticDataV4;
 pub use staged_static_data_v_5_table::*;
 pub use staged_static_data_v_5_type::StagedStaticDataV5;
+pub use staged_static_data_v_6_table::*;
+pub use staged_static_data_v_6_type::StagedStaticDataV6;
 pub use stamina_state_table::*;
 pub use stamina_state_type::StaminaState;
 pub use start_agents_reducer::{set_flags_for_start_agents, start_agents, StartAgentsCallbackId};
@@ -4491,6 +4485,7 @@ pub use static_data_upload_v_2_type::StaticDataUploadV2;
 pub use static_data_upload_v_3_type::StaticDataUploadV3;
 pub use static_data_upload_v_4_type::StaticDataUploadV4;
 pub use static_data_upload_v_5_type::StaticDataUploadV5;
+pub use static_data_upload_v_6_type::StaticDataUploadV6;
 pub use stop_agents_reducer::{set_flags_for_stop_agents, stop_agents, StopAgentsCallbackId};
 pub use storage_log_cleanup_loop_reducer::{
     set_flags_for_storage_log_cleanup_loop, storage_log_cleanup_loop,
@@ -4805,12 +4800,10 @@ pub enum Reducer {
         is_cargo: bool,
         min_threshold: u64,
     },
-    AdminFixDeployedCollectibles,
     AdminGrantCollectibles {
         identity: String,
         collectibles: Vec<i32>,
     },
-    AdminMigrateDeployableCollectibleState,
     AdminModifyChatMessage {
         entity_id: u64,
         new_message_text: String,
@@ -6666,11 +6659,7 @@ impl __sdk::Reducer for Reducer {
             }
             Reducer::AdminFindItemsInInventories { .. } => "admin_find_items_in_inventories",
             Reducer::AdminFindItemsInTrades { .. } => "admin_find_items_in_trades",
-            Reducer::AdminFixDeployedCollectibles => "admin_fix_deployed_collectibles",
             Reducer::AdminGrantCollectibles { .. } => "admin_grant_collectibles",
-            Reducer::AdminMigrateDeployableCollectibleState => {
-                "admin_migrate_deployable_collectible_state"
-            }
             Reducer::AdminModifyChatMessage { .. } => "admin_modify_chat_message",
             Reducer::AdminPatchHousingCosts => "admin_patch_housing_costs",
             Reducer::AdminRenameBuilding { .. } => "admin_rename_building",
@@ -7352,9 +7341,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "admin_find_all_players_with_item_above_quantity" => Ok(__sdk::parse_reducer_args::<admin_find_all_players_with_item_above_quantity_reducer::AdminFindAllPlayersWithItemAboveQuantityArgs>("admin_find_all_players_with_item_above_quantity", &value.args)?.into()),
             "admin_find_items_in_inventories" => Ok(__sdk::parse_reducer_args::<admin_find_items_in_inventories_reducer::AdminFindItemsInInventoriesArgs>("admin_find_items_in_inventories", &value.args)?.into()),
             "admin_find_items_in_trades" => Ok(__sdk::parse_reducer_args::<admin_find_items_in_trades_reducer::AdminFindItemsInTradesArgs>("admin_find_items_in_trades", &value.args)?.into()),
-            "admin_fix_deployed_collectibles" => Ok(__sdk::parse_reducer_args::<admin_fix_deployed_collectibles_reducer::AdminFixDeployedCollectiblesArgs>("admin_fix_deployed_collectibles", &value.args)?.into()),
             "admin_grant_collectibles" => Ok(__sdk::parse_reducer_args::<admin_grant_collectibles_reducer::AdminGrantCollectiblesArgs>("admin_grant_collectibles", &value.args)?.into()),
-            "admin_migrate_deployable_collectible_state" => Ok(__sdk::parse_reducer_args::<admin_migrate_deployable_collectible_state_reducer::AdminMigrateDeployableCollectibleStateArgs>("admin_migrate_deployable_collectible_state", &value.args)?.into()),
             "admin_modify_chat_message" => Ok(__sdk::parse_reducer_args::<admin_modify_chat_message_reducer::AdminModifyChatMessageArgs>("admin_modify_chat_message", &value.args)?.into()),
             "admin_patch_housing_costs" => Ok(__sdk::parse_reducer_args::<admin_patch_housing_costs_reducer::AdminPatchHousingCostsArgs>("admin_patch_housing_costs", &value.args)?.into()),
             "admin_rename_building" => Ok(__sdk::parse_reducer_args::<admin_rename_building_reducer::AdminRenameBuildingArgs>("admin_rename_building", &value.args)?.into()),
@@ -8230,6 +8217,7 @@ pub struct DbUpdate {
     staged_static_data_v_3: __sdk::TableUpdate<StagedStaticDataV3>,
     staged_static_data_v_4: __sdk::TableUpdate<StagedStaticDataV4>,
     staged_static_data_v_5: __sdk::TableUpdate<StagedStaticDataV5>,
+    staged_static_data_v_6: __sdk::TableUpdate<StagedStaticDataV6>,
     stamina_state: __sdk::TableUpdate<StaminaState>,
     starving_loop_timer: __sdk::TableUpdate<StarvingLoopTimer>,
     starving_player_state: __sdk::TableUpdate<StarvingPlayerState>,
@@ -9138,6 +9126,9 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
                 ),
                 "staged_static_data_v5" => db_update.staged_static_data_v_5.append(
                     staged_static_data_v_5_table::parse_table_update(table_update)?,
+                ),
+                "staged_static_data_v6" => db_update.staged_static_data_v_6.append(
+                    staged_static_data_v_6_table::parse_table_update(table_update)?,
                 ),
                 "stamina_state" => db_update
                     .stamina_state
@@ -10605,6 +10596,12 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.staged_static_data_v_5,
             )
             .with_updates_by_pk(|row| &row.version);
+        diff.staged_static_data_v_6 = cache
+            .apply_diff_to_table::<StagedStaticDataV6>(
+                "staged_static_data_v6",
+                &self.staged_static_data_v_6,
+            )
+            .with_updates_by_pk(|row| &row.version);
         diff.stamina_state = cache
             .apply_diff_to_table::<StaminaState>("stamina_state", &self.stamina_state)
             .with_updates_by_pk(|row| &row.entity_id);
@@ -11093,6 +11090,7 @@ pub struct AppliedDiff<'r> {
     staged_static_data_v_3: __sdk::TableAppliedDiff<'r, StagedStaticDataV3>,
     staged_static_data_v_4: __sdk::TableAppliedDiff<'r, StagedStaticDataV4>,
     staged_static_data_v_5: __sdk::TableAppliedDiff<'r, StagedStaticDataV5>,
+    staged_static_data_v_6: __sdk::TableAppliedDiff<'r, StagedStaticDataV6>,
     stamina_state: __sdk::TableAppliedDiff<'r, StaminaState>,
     starving_loop_timer: __sdk::TableAppliedDiff<'r, StarvingLoopTimer>,
     starving_player_state: __sdk::TableAppliedDiff<'r, StarvingPlayerState>,
@@ -12417,6 +12415,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             &self.staged_static_data_v_5,
             event,
         );
+        callbacks.invoke_table_row_callbacks::<StagedStaticDataV6>(
+            "staged_static_data_v6",
+            &self.staged_static_data_v_6,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<StaminaState>(
             "stamina_state",
             &self.stamina_state,
@@ -13463,6 +13466,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         staged_static_data_v_3_table::register_table(client_cache);
         staged_static_data_v_4_table::register_table(client_cache);
         staged_static_data_v_5_table::register_table(client_cache);
+        staged_static_data_v_6_table::register_table(client_cache);
         stamina_state_table::register_table(client_cache);
         starving_loop_timer_table::register_table(client_cache);
         starving_player_state_table::register_table(client_cache);
