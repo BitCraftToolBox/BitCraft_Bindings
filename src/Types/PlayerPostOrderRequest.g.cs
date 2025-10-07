@@ -21,28 +21,32 @@ namespace BitCraftRegion.Types
         public int ItemId;
         [DataMember(Name = "item_type")]
         public ItemType ItemType;
-        [DataMember(Name = "coins")]
-        public int Coins;
+        [DataMember(Name = "max_unit_price")]
+        public int MaxUnitPrice;
         [DataMember(Name = "quantity")]
         public int Quantity;
         [DataMember(Name = "persist_order")]
         public bool PersistOrder;
+        [DataMember(Name = "coins_spent")]
+        public int CoinsSpent;
 
         public PlayerPostOrderRequest(
             ulong BuildingEntityId,
             int ItemId,
             ItemType ItemType,
-            int Coins,
+            int MaxUnitPrice,
             int Quantity,
-            bool PersistOrder
+            bool PersistOrder,
+            int CoinsSpent
         )
         {
             this.BuildingEntityId = BuildingEntityId;
             this.ItemId = ItemId;
             this.ItemType = ItemType;
-            this.Coins = Coins;
+            this.MaxUnitPrice = MaxUnitPrice;
             this.Quantity = Quantity;
             this.PersistOrder = PersistOrder;
+            this.CoinsSpent = CoinsSpent;
         }
 
         public PlayerPostOrderRequest()
