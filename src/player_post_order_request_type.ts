@@ -37,9 +37,10 @@ export type PlayerPostOrderRequest = {
   buildingEntityId: bigint,
   itemId: number,
   itemType: __ItemType,
-  coins: number,
+  maxUnitPrice: number,
   quantity: number,
   persistOrder: boolean,
+  coinsSpent: number,
 };
 
 /**
@@ -55,9 +56,10 @@ export namespace PlayerPostOrderRequest {
       new ProductTypeElement("buildingEntityId", AlgebraicType.createU64Type()),
       new ProductTypeElement("itemId", AlgebraicType.createI32Type()),
       new ProductTypeElement("itemType", __ItemType.getTypeScriptAlgebraicType()),
-      new ProductTypeElement("coins", AlgebraicType.createI32Type()),
+      new ProductTypeElement("maxUnitPrice", AlgebraicType.createI32Type()),
       new ProductTypeElement("quantity", AlgebraicType.createI32Type()),
       new ProductTypeElement("persistOrder", AlgebraicType.createBoolType()),
+      new ProductTypeElement("coinsSpent", AlgebraicType.createI32Type()),
     ]);
   }
 
