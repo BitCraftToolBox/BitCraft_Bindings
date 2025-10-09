@@ -765,6 +765,8 @@ import { ChestRarityDescTableHandle } from "./chest_rarity_desc_table.ts";
 export { ChestRarityDescTableHandle };
 import { ClaimLocalStateTableHandle } from "./claim_local_state_table.ts";
 export { ClaimLocalStateTableHandle };
+import { ClaimLocalSupplySecurityThresholdStateTableHandle } from "./claim_local_supply_security_threshold_state_table.ts";
+export { ClaimLocalSupplySecurityThresholdStateTableHandle };
 import { ClaimMemberStateTableHandle } from "./claim_member_state_table.ts";
 export { ClaimMemberStateTableHandle };
 import { ClaimRecruitmentStateTableHandle } from "./claim_recruitment_state_table.ts";
@@ -1057,6 +1059,8 @@ import { OnboardingStateTableHandle } from "./onboarding_state_table.ts";
 export { OnboardingStateTableHandle };
 import { ParametersDescTableHandle } from "./parameters_desc_table.ts";
 export { ParametersDescTableHandle };
+import { ParametersDescV2TableHandle } from "./parameters_desc_v_2_table.ts";
+export { ParametersDescV2TableHandle };
 import { ParametersPlayerMoveDescTableHandle } from "./parameters_player_move_desc_table.ts";
 export { ParametersPlayerMoveDescTableHandle };
 import { PartialExperienceStateTableHandle } from "./partial_experience_state_table.ts";
@@ -1177,6 +1181,8 @@ import { StagedStaticDataV5TableHandle } from "./staged_static_data_v_5_table.ts
 export { StagedStaticDataV5TableHandle };
 import { StagedStaticDataV6TableHandle } from "./staged_static_data_v_6_table.ts";
 export { StagedStaticDataV6TableHandle };
+import { StagedStaticDataV7TableHandle } from "./staged_static_data_v_7_table.ts";
+export { StagedStaticDataV7TableHandle };
 import { StaminaStateTableHandle } from "./stamina_state_table.ts";
 export { StaminaStateTableHandle };
 import { StarvingPlayerStateTableHandle } from "./starving_player_state_table.ts";
@@ -1377,6 +1383,8 @@ import { ClaimCreateEmpireSettlementMsg } from "./claim_create_empire_settlement
 export { ClaimCreateEmpireSettlementMsg };
 import { ClaimLocalState } from "./claim_local_state_type.ts";
 export { ClaimLocalState };
+import { ClaimLocalSupplySecurityThresholdState } from "./claim_local_supply_security_threshold_state_type.ts";
+export { ClaimLocalSupplySecurityThresholdState };
 import { ClaimMemberState } from "./claim_member_state_type.ts";
 export { ClaimMemberState };
 import { ClaimMemberStateOp } from "./claim_member_state_op_type.ts";
@@ -1853,6 +1861,8 @@ import { OnlineTimestamp } from "./online_timestamp_type.ts";
 export { OnlineTimestamp };
 import { ParametersDesc } from "./parameters_desc_type.ts";
 export { ParametersDesc };
+import { ParametersDescV2 } from "./parameters_desc_v_2_type.ts";
+export { ParametersDescV2 };
 import { ParametersPlayerMoveDesc } from "./parameters_player_move_desc_type.ts";
 export { ParametersPlayerMoveDesc };
 import { PartialExperienceState } from "./partial_experience_state_type.ts";
@@ -2033,6 +2043,8 @@ import { StagedStaticDataV5 } from "./staged_static_data_v_5_type.ts";
 export { StagedStaticDataV5 };
 import { StagedStaticDataV6 } from "./staged_static_data_v_6_type.ts";
 export { StagedStaticDataV6 };
+import { StagedStaticDataV7 } from "./staged_static_data_v_7_type.ts";
+export { StagedStaticDataV7 };
 import { StaminaState } from "./stamina_state_type.ts";
 export { StaminaState };
 import { StarvingPlayerState } from "./starving_player_state_type.ts";
@@ -2049,6 +2061,8 @@ import { StaticDataUploadV5 } from "./static_data_upload_v_5_type.ts";
 export { StaticDataUploadV5 };
 import { StaticDataUploadV6 } from "./static_data_upload_v_6_type.ts";
 export { StaticDataUploadV6 };
+import { StaticDataUploadV7 } from "./static_data_upload_v_7_type.ts";
+export { StaticDataUploadV7 };
 import { SurfaceType } from "./surface_type_type.ts";
 export { SurfaceType };
 import { TargetState } from "./target_state_type.ts";
@@ -2463,6 +2477,15 @@ const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "entityId",
         colType: ClaimLocalState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    claim_local_supply_security_threshold_state: {
+      tableName: "claim_local_supply_security_threshold_state",
+      rowType: ClaimLocalSupplySecurityThresholdState.getTypeScriptAlgebraicType(),
+      primaryKey: "entityId",
+      primaryKeyInfo: {
+        colName: "entityId",
+        colType: ClaimLocalSupplySecurityThresholdState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     claim_member_state: {
@@ -3774,6 +3797,15 @@ const REMOTE_MODULE = {
         colType: ParametersDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    parameters_desc_v2: {
+      tableName: "parameters_desc_v2",
+      rowType: ParametersDescV2.getTypeScriptAlgebraicType(),
+      primaryKey: "version",
+      primaryKeyInfo: {
+        colName: "version",
+        colType: ParametersDescV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     parameters_player_move_desc: {
       tableName: "parameters_player_move_desc",
       rowType: ParametersPlayerMoveDesc.getTypeScriptAlgebraicType(),
@@ -4312,6 +4344,15 @@ const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "version",
         colType: StagedStaticDataV6.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_static_data_v7: {
+      tableName: "staged_static_data_v7",
+      rowType: StagedStaticDataV7.getTypeScriptAlgebraicType(),
+      primaryKey: "version",
+      primaryKeyInfo: {
+        colName: "version",
+        colType: StagedStaticDataV7.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     stamina_state: {
@@ -9041,7 +9082,7 @@ export class RemoteReducers {
     this.connection.offReducer("import_onboarding_state", callback);
   }
 
-  importParametersDesc(records: ParametersDesc[]) {
+  importParametersDesc(records: ParametersDescV2[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
     ImportParametersDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
@@ -9049,11 +9090,11 @@ export class RemoteReducers {
     this.connection.callReducer("import_parameters_desc", __argsBuffer, this.setCallReducerFlags.importParametersDescFlags);
   }
 
-  onImportParametersDesc(callback: (ctx: ReducerEventContext, records: ParametersDesc[]) => void) {
+  onImportParametersDesc(callback: (ctx: ReducerEventContext, records: ParametersDescV2[]) => void) {
     this.connection.onReducer("import_parameters_desc", callback);
   }
 
-  removeOnImportParametersDesc(callback: (ctx: ReducerEventContext, records: ParametersDesc[]) => void) {
+  removeOnImportParametersDesc(callback: (ctx: ReducerEventContext, records: ParametersDescV2[]) => void) {
     this.connection.offReducer("import_parameters_desc", callback);
   }
 
@@ -11085,7 +11126,7 @@ export class RemoteReducers {
     this.connection.offReducer("stage_onboarding_reward_desc", callback);
   }
 
-  stageParametersDesc(records: ParametersDesc[]) {
+  stageParametersDesc(records: ParametersDescV2[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
     StageParametersDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
@@ -11093,11 +11134,11 @@ export class RemoteReducers {
     this.connection.callReducer("stage_parameters_desc", __argsBuffer, this.setCallReducerFlags.stageParametersDescFlags);
   }
 
-  onStageParametersDesc(callback: (ctx: ReducerEventContext, records: ParametersDesc[]) => void) {
+  onStageParametersDesc(callback: (ctx: ReducerEventContext, records: ParametersDescV2[]) => void) {
     this.connection.onReducer("stage_parameters_desc", callback);
   }
 
-  removeOnStageParametersDesc(callback: (ctx: ReducerEventContext, records: ParametersDesc[]) => void) {
+  removeOnStageParametersDesc(callback: (ctx: ReducerEventContext, records: ParametersDescV2[]) => void) {
     this.connection.offReducer("stage_parameters_desc", callback);
   }
 
@@ -13382,6 +13423,10 @@ export class RemoteTables {
     return new ClaimLocalStateTableHandle(this.connection.clientCache.getOrCreateTable<ClaimLocalState>(REMOTE_MODULE.tables.claim_local_state));
   }
 
+  get claimLocalSupplySecurityThresholdState(): ClaimLocalSupplySecurityThresholdStateTableHandle {
+    return new ClaimLocalSupplySecurityThresholdStateTableHandle(this.connection.clientCache.getOrCreateTable<ClaimLocalSupplySecurityThresholdState>(REMOTE_MODULE.tables.claim_local_supply_security_threshold_state));
+  }
+
   get claimMemberState(): ClaimMemberStateTableHandle {
     return new ClaimMemberStateTableHandle(this.connection.clientCache.getOrCreateTable<ClaimMemberState>(REMOTE_MODULE.tables.claim_member_state));
   }
@@ -13966,6 +14011,10 @@ export class RemoteTables {
     return new ParametersDescTableHandle(this.connection.clientCache.getOrCreateTable<ParametersDesc>(REMOTE_MODULE.tables.parameters_desc));
   }
 
+  get parametersDescV2(): ParametersDescV2TableHandle {
+    return new ParametersDescV2TableHandle(this.connection.clientCache.getOrCreateTable<ParametersDescV2>(REMOTE_MODULE.tables.parameters_desc_v2));
+  }
+
   get parametersPlayerMoveDesc(): ParametersPlayerMoveDescTableHandle {
     return new ParametersPlayerMoveDescTableHandle(this.connection.clientCache.getOrCreateTable<ParametersPlayerMoveDesc>(REMOTE_MODULE.tables.parameters_player_move_desc));
   }
@@ -14204,6 +14253,10 @@ export class RemoteTables {
 
   get stagedStaticDataV6(): StagedStaticDataV6TableHandle {
     return new StagedStaticDataV6TableHandle(this.connection.clientCache.getOrCreateTable<StagedStaticDataV6>(REMOTE_MODULE.tables.staged_static_data_v6));
+  }
+
+  get stagedStaticDataV7(): StagedStaticDataV7TableHandle {
+    return new StagedStaticDataV7TableHandle(this.connection.clientCache.getOrCreateTable<StagedStaticDataV7>(REMOTE_MODULE.tables.staged_static_data_v7));
   }
 
   get staminaState(): StaminaStateTableHandle {

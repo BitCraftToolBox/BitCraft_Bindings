@@ -31,34 +31,34 @@ import {
   type ReducerEventContextInterface,
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
-
-import { ParametersDescV2 as __ParametersDescV2 } from "./parameters_desc_v_2_type";
-
-export type StageParametersDesc = {
-  records: __ParametersDescV2[],
+export type ClaimLocalSupplySecurityThresholdState = {
+  entityId: bigint,
+  supplySecurityThresholdHours: number,
 };
 
 /**
  * A namespace for generated helper functions.
  */
-export namespace StageParametersDesc {
+export namespace ClaimLocalSupplySecurityThresholdState {
   /**
   * A function which returns this type represented as an AlgebraicType.
   * This function is derived from the AlgebraicType used to generate this type.
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("records", AlgebraicType.createArrayType(__ParametersDescV2.getTypeScriptAlgebraicType())),
+      new ProductTypeElement("entityId", AlgebraicType.createU64Type()),
+      new ProductTypeElement("supplySecurityThresholdHours", AlgebraicType.createI32Type()),
     ]);
   }
 
-  export function serialize(writer: BinaryWriter, value: StageParametersDesc): void {
-    StageParametersDesc.getTypeScriptAlgebraicType().serialize(writer, value);
+  export function serialize(writer: BinaryWriter, value: ClaimLocalSupplySecurityThresholdState): void {
+    ClaimLocalSupplySecurityThresholdState.getTypeScriptAlgebraicType().serialize(writer, value);
   }
 
-  export function deserialize(reader: BinaryReader): StageParametersDesc {
-    return StageParametersDesc.getTypeScriptAlgebraicType().deserialize(reader);
+  export function deserialize(reader: BinaryReader): ClaimLocalSupplySecurityThresholdState {
+    return ClaimLocalSupplySecurityThresholdState.getTypeScriptAlgebraicType().deserialize(reader);
   }
 
 }
+
 

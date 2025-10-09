@@ -91,6 +91,7 @@ import { LootRarityDesc as __LootRarityDesc } from "./loot_rarity_desc_type";
 import { LootTableDesc as __LootTableDesc } from "./loot_table_desc_type";
 import { NpcDesc as __NpcDesc } from "./npc_desc_type";
 import { OnboardingRewardDesc as __OnboardingRewardDesc } from "./onboarding_reward_desc_type";
+import { ParametersDescV2 as __ParametersDescV2 } from "./parameters_desc_v_2_type";
 import { PathfindingDesc as __PathfindingDesc } from "./pathfinding_desc_type";
 import { PavingTileDesc as __PavingTileDesc } from "./paving_tile_desc_type";
 import { PlayerActionDesc as __PlayerActionDesc } from "./player_action_desc_type";
@@ -113,13 +114,12 @@ import { WeaponDesc as __WeaponDesc } from "./weapon_desc_type";
 import { WeaponTypeDesc as __WeaponTypeDesc } from "./weapon_type_desc_type";
 import { WindParamsDesc as __WindParamsDesc } from "./wind_params_desc_type";
 import { InteriorEnvironmentDesc as __InteriorEnvironmentDesc } from "./interior_environment_desc_type";
-import { ParametersDesc as __ParametersDesc } from "./parameters_desc_type";
 import { PillarShapingDesc as __PillarShapingDesc } from "./pillar_shaping_desc_type";
 import { PlayerHousingDesc as __PlayerHousingDesc } from "./player_housing_desc_type";
 import { ReservedNameDesc as __ReservedNameDesc } from "./reserved_name_desc_type";
 
-export type StaticDataUploadV6 = {
-  parameters: __ParametersDesc[],
+export type StaticDataUploadV7 = {
+  parameters: __ParametersDescV2[],
   privateParameters: __PrivateParametersDesc[],
   secondaryKnowledges: __SecondaryKnowledgeDesc[],
   weaponTypes: __WeaponTypeDesc[],
@@ -210,14 +210,14 @@ export type StaticDataUploadV6 = {
 /**
  * A namespace for generated helper functions.
  */
-export namespace StaticDataUploadV6 {
+export namespace StaticDataUploadV7 {
   /**
   * A function which returns this type represented as an AlgebraicType.
   * This function is derived from the AlgebraicType used to generate this type.
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("parameters", AlgebraicType.createArrayType(__ParametersDesc.getTypeScriptAlgebraicType())),
+      new ProductTypeElement("parameters", AlgebraicType.createArrayType(__ParametersDescV2.getTypeScriptAlgebraicType())),
       new ProductTypeElement("privateParameters", AlgebraicType.createArrayType(__PrivateParametersDesc.getTypeScriptAlgebraicType())),
       new ProductTypeElement("secondaryKnowledges", AlgebraicType.createArrayType(__SecondaryKnowledgeDesc.getTypeScriptAlgebraicType())),
       new ProductTypeElement("weaponTypes", AlgebraicType.createArrayType(__WeaponTypeDesc.getTypeScriptAlgebraicType())),
@@ -306,12 +306,12 @@ export namespace StaticDataUploadV6 {
     ]);
   }
 
-  export function serialize(writer: BinaryWriter, value: StaticDataUploadV6): void {
-    StaticDataUploadV6.getTypeScriptAlgebraicType().serialize(writer, value);
+  export function serialize(writer: BinaryWriter, value: StaticDataUploadV7): void {
+    StaticDataUploadV7.getTypeScriptAlgebraicType().serialize(writer, value);
   }
 
-  export function deserialize(reader: BinaryReader): StaticDataUploadV6 {
-    return StaticDataUploadV6.getTypeScriptAlgebraicType().deserialize(reader);
+  export function deserialize(reader: BinaryReader): StaticDataUploadV7 {
+    return StaticDataUploadV7.getTypeScriptAlgebraicType().deserialize(reader);
   }
 
 }
