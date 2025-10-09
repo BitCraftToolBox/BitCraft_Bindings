@@ -56,6 +56,7 @@ pub mod admin_find_all_players_with_item_above_quantity_reducer;
 pub mod admin_find_all_players_with_item_reducer;
 pub mod admin_find_items_in_inventories_reducer;
 pub mod admin_find_items_in_trades_reducer;
+pub mod admin_grant_all_claim_supplies_reducer;
 pub mod admin_grant_collectibles_reducer;
 pub mod admin_modify_chat_message_reducer;
 pub mod admin_patch_housing_costs_reducer;
@@ -256,6 +257,8 @@ pub mod claim_create_empire_settlement_msg_type;
 pub mod claim_leave_reducer;
 pub mod claim_local_state_table;
 pub mod claim_local_state_type;
+pub mod claim_local_supply_security_threshold_state_table;
+pub mod claim_local_supply_security_threshold_state_type;
 pub mod claim_member_state_op_type;
 pub mod claim_member_state_table;
 pub mod claim_member_state_type;
@@ -272,6 +275,7 @@ pub mod claim_resupply_reducer;
 pub mod claim_resupply_request_type;
 pub mod claim_resupply_start_reducer;
 pub mod claim_set_member_permissions_reducer;
+pub mod claim_set_protection_threshold_reducer;
 pub mod claim_set_purchase_supply_price_reducer;
 pub mod claim_set_purchase_supply_price_request_type;
 pub mod claim_set_purchase_supply_threshold_reducer;
@@ -958,6 +962,8 @@ pub mod order_post_buy_order_reducer;
 pub mod order_post_sell_order_reducer;
 pub mod parameters_desc_table;
 pub mod parameters_desc_type;
+pub mod parameters_desc_v_2_table;
+pub mod parameters_desc_v_2_type;
 pub mod parameters_player_move_desc_table;
 pub mod parameters_player_move_desc_type;
 pub mod partial_experience_state_table;
@@ -1427,6 +1433,8 @@ pub mod staged_static_data_v_5_table;
 pub mod staged_static_data_v_5_type;
 pub mod staged_static_data_v_6_table;
 pub mod staged_static_data_v_6_type;
+pub mod staged_static_data_v_7_table;
+pub mod staged_static_data_v_7_type;
 pub mod stamina_state_table;
 pub mod stamina_state_type;
 pub mod start_agents_reducer;
@@ -1443,6 +1451,7 @@ pub mod static_data_upload_v_3_type;
 pub mod static_data_upload_v_4_type;
 pub mod static_data_upload_v_5_type;
 pub mod static_data_upload_v_6_type;
+pub mod static_data_upload_v_7_type;
 pub mod stop_agents_reducer;
 pub mod storage_log_cleanup_loop_reducer;
 pub mod storage_log_cleanup_loop_timer_table;
@@ -1751,6 +1760,10 @@ pub use admin_find_items_in_inventories_reducer::{
 pub use admin_find_items_in_trades_reducer::{
     admin_find_items_in_trades, set_flags_for_admin_find_items_in_trades,
     AdminFindItemsInTradesCallbackId,
+};
+pub use admin_grant_all_claim_supplies_reducer::{
+    admin_grant_all_claim_supplies, set_flags_for_admin_grant_all_claim_supplies,
+    AdminGrantAllClaimSuppliesCallbackId,
 };
 pub use admin_grant_collectibles_reducer::{
     admin_grant_collectibles, set_flags_for_admin_grant_collectibles,
@@ -2186,6 +2199,8 @@ pub use claim_create_empire_settlement_msg_type::ClaimCreateEmpireSettlementMsg;
 pub use claim_leave_reducer::{claim_leave, set_flags_for_claim_leave, ClaimLeaveCallbackId};
 pub use claim_local_state_table::*;
 pub use claim_local_state_type::ClaimLocalState;
+pub use claim_local_supply_security_threshold_state_table::*;
+pub use claim_local_supply_security_threshold_state_type::ClaimLocalSupplySecurityThresholdState;
 pub use claim_member_state_op_type::ClaimMemberStateOp;
 pub use claim_member_state_table::*;
 pub use claim_member_state_type::ClaimMemberState;
@@ -2218,6 +2233,10 @@ pub use claim_resupply_start_reducer::{
 pub use claim_set_member_permissions_reducer::{
     claim_set_member_permissions, set_flags_for_claim_set_member_permissions,
     ClaimSetMemberPermissionsCallbackId,
+};
+pub use claim_set_protection_threshold_reducer::{
+    claim_set_protection_threshold, set_flags_for_claim_set_protection_threshold,
+    ClaimSetProtectionThresholdCallbackId,
 };
 pub use claim_set_purchase_supply_price_reducer::{
     claim_set_purchase_supply_price, set_flags_for_claim_set_purchase_supply_price,
@@ -3580,6 +3599,8 @@ pub use order_post_sell_order_reducer::{
 };
 pub use parameters_desc_table::*;
 pub use parameters_desc_type::ParametersDesc;
+pub use parameters_desc_v_2_table::*;
+pub use parameters_desc_v_2_type::ParametersDescV2;
 pub use parameters_player_move_desc_table::*;
 pub use parameters_player_move_desc_type::ParametersPlayerMoveDesc;
 pub use partial_experience_state_table::*;
@@ -4464,6 +4485,8 @@ pub use staged_static_data_v_5_table::*;
 pub use staged_static_data_v_5_type::StagedStaticDataV5;
 pub use staged_static_data_v_6_table::*;
 pub use staged_static_data_v_6_type::StagedStaticDataV6;
+pub use staged_static_data_v_7_table::*;
+pub use staged_static_data_v_7_type::StagedStaticDataV7;
 pub use stamina_state_table::*;
 pub use stamina_state_type::StaminaState;
 pub use start_agents_reducer::{set_flags_for_start_agents, start_agents, StartAgentsCallbackId};
@@ -4486,6 +4509,7 @@ pub use static_data_upload_v_3_type::StaticDataUploadV3;
 pub use static_data_upload_v_4_type::StaticDataUploadV4;
 pub use static_data_upload_v_5_type::StaticDataUploadV5;
 pub use static_data_upload_v_6_type::StaticDataUploadV6;
+pub use static_data_upload_v_7_type::StaticDataUploadV7;
 pub use stop_agents_reducer::{set_flags_for_stop_agents, stop_agents, StopAgentsCallbackId};
 pub use storage_log_cleanup_loop_reducer::{
     set_flags_for_storage_log_cleanup_loop, storage_log_cleanup_loop,
@@ -4799,6 +4823,10 @@ pub enum Reducer {
         item_id: i32,
         is_cargo: bool,
         min_threshold: u64,
+    },
+    AdminGrantAllClaimSupplies {
+        days_of_supplies: i32,
+        dry_run: bool,
     },
     AdminGrantCollectibles {
         identity: String,
@@ -5145,6 +5173,10 @@ pub enum Reducer {
     },
     ClaimSetMemberPermissions {
         request: PlayerClaimSetMemberPermissionsRequest,
+    },
+    ClaimSetProtectionThreshold {
+        building_entity_id: u64,
+        hours: u32,
     },
     ClaimSetPurchaseSupplyPrice {
         request: ClaimSetPurchaseSupplyPriceRequest,
@@ -5747,7 +5779,7 @@ pub enum Reducer {
         records: Vec<OnboardingState>,
     },
     ImportParametersDesc {
-        records: Vec<ParametersDesc>,
+        records: Vec<ParametersDescV2>,
     },
     ImportPathfindingDesc {
         records: Vec<PathfindingDesc>,
@@ -6438,7 +6470,7 @@ pub enum Reducer {
         records: Vec<OnboardingRewardDesc>,
     },
     StageParametersDesc {
-        records: Vec<ParametersDesc>,
+        records: Vec<ParametersDescV2>,
     },
     StagePathfindingDesc {
         records: Vec<PathfindingDesc>,
@@ -6659,6 +6691,7 @@ impl __sdk::Reducer for Reducer {
             }
             Reducer::AdminFindItemsInInventories { .. } => "admin_find_items_in_inventories",
             Reducer::AdminFindItemsInTrades { .. } => "admin_find_items_in_trades",
+            Reducer::AdminGrantAllClaimSupplies { .. } => "admin_grant_all_claim_supplies",
             Reducer::AdminGrantCollectibles { .. } => "admin_grant_collectibles",
             Reducer::AdminModifyChatMessage { .. } => "admin_modify_chat_message",
             Reducer::AdminPatchHousingCosts => "admin_patch_housing_costs",
@@ -6773,6 +6806,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::ClaimResupply { .. } => "claim_resupply",
             Reducer::ClaimResupplyStart { .. } => "claim_resupply_start",
             Reducer::ClaimSetMemberPermissions { .. } => "claim_set_member_permissions",
+            Reducer::ClaimSetProtectionThreshold { .. } => "claim_set_protection_threshold",
             Reducer::ClaimSetPurchaseSupplyPrice { .. } => "claim_set_purchase_supply_price",
             Reducer::ClaimSetPurchaseSupplyThreshold { .. } => {
                 "claim_set_purchase_supply_threshold"
@@ -7341,6 +7375,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "admin_find_all_players_with_item_above_quantity" => Ok(__sdk::parse_reducer_args::<admin_find_all_players_with_item_above_quantity_reducer::AdminFindAllPlayersWithItemAboveQuantityArgs>("admin_find_all_players_with_item_above_quantity", &value.args)?.into()),
             "admin_find_items_in_inventories" => Ok(__sdk::parse_reducer_args::<admin_find_items_in_inventories_reducer::AdminFindItemsInInventoriesArgs>("admin_find_items_in_inventories", &value.args)?.into()),
             "admin_find_items_in_trades" => Ok(__sdk::parse_reducer_args::<admin_find_items_in_trades_reducer::AdminFindItemsInTradesArgs>("admin_find_items_in_trades", &value.args)?.into()),
+            "admin_grant_all_claim_supplies" => Ok(__sdk::parse_reducer_args::<admin_grant_all_claim_supplies_reducer::AdminGrantAllClaimSuppliesArgs>("admin_grant_all_claim_supplies", &value.args)?.into()),
             "admin_grant_collectibles" => Ok(__sdk::parse_reducer_args::<admin_grant_collectibles_reducer::AdminGrantCollectiblesArgs>("admin_grant_collectibles", &value.args)?.into()),
             "admin_modify_chat_message" => Ok(__sdk::parse_reducer_args::<admin_modify_chat_message_reducer::AdminModifyChatMessageArgs>("admin_modify_chat_message", &value.args)?.into()),
             "admin_patch_housing_costs" => Ok(__sdk::parse_reducer_args::<admin_patch_housing_costs_reducer::AdminPatchHousingCostsArgs>("admin_patch_housing_costs", &value.args)?.into()),
@@ -7445,6 +7480,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "claim_resupply" => Ok(__sdk::parse_reducer_args::<claim_resupply_reducer::ClaimResupplyArgs>("claim_resupply", &value.args)?.into()),
             "claim_resupply_start" => Ok(__sdk::parse_reducer_args::<claim_resupply_start_reducer::ClaimResupplyStartArgs>("claim_resupply_start", &value.args)?.into()),
             "claim_set_member_permissions" => Ok(__sdk::parse_reducer_args::<claim_set_member_permissions_reducer::ClaimSetMemberPermissionsArgs>("claim_set_member_permissions", &value.args)?.into()),
+            "claim_set_protection_threshold" => Ok(__sdk::parse_reducer_args::<claim_set_protection_threshold_reducer::ClaimSetProtectionThresholdArgs>("claim_set_protection_threshold", &value.args)?.into()),
             "claim_set_purchase_supply_price" => Ok(__sdk::parse_reducer_args::<claim_set_purchase_supply_price_reducer::ClaimSetPurchaseSupplyPriceArgs>("claim_set_purchase_supply_price", &value.args)?.into()),
             "claim_set_purchase_supply_threshold" => Ok(__sdk::parse_reducer_args::<claim_set_purchase_supply_threshold_reducer::ClaimSetPurchaseSupplyThresholdArgs>("claim_set_purchase_supply_threshold", &value.args)?.into()),
             "claim_take_ownership" => Ok(__sdk::parse_reducer_args::<claim_take_ownership_reducer::ClaimTakeOwnershipArgs>("claim_take_ownership", &value.args)?.into()),
@@ -7988,6 +8024,8 @@ pub struct DbUpdate {
     chat_message_state: __sdk::TableUpdate<ChatMessageState>,
     chest_rarity_desc: __sdk::TableUpdate<ChestRarityDesc>,
     claim_local_state: __sdk::TableUpdate<ClaimLocalState>,
+    claim_local_supply_security_threshold_state:
+        __sdk::TableUpdate<ClaimLocalSupplySecurityThresholdState>,
     claim_member_state: __sdk::TableUpdate<ClaimMemberState>,
     claim_recruitment_state: __sdk::TableUpdate<ClaimRecruitmentState>,
     claim_state: __sdk::TableUpdate<ClaimState>,
@@ -8142,6 +8180,7 @@ pub struct DbUpdate {
     onboarding_reward_desc: __sdk::TableUpdate<OnboardingRewardDesc>,
     onboarding_state: __sdk::TableUpdate<OnboardingState>,
     parameters_desc: __sdk::TableUpdate<ParametersDesc>,
+    parameters_desc_v_2: __sdk::TableUpdate<ParametersDescV2>,
     parameters_player_move_desc: __sdk::TableUpdate<ParametersPlayerMoveDesc>,
     partial_experience_state: __sdk::TableUpdate<PartialExperienceState>,
     passive_craft_state: __sdk::TableUpdate<PassiveCraftState>,
@@ -8218,6 +8257,7 @@ pub struct DbUpdate {
     staged_static_data_v_4: __sdk::TableUpdate<StagedStaticDataV4>,
     staged_static_data_v_5: __sdk::TableUpdate<StagedStaticDataV5>,
     staged_static_data_v_6: __sdk::TableUpdate<StagedStaticDataV6>,
+    staged_static_data_v_7: __sdk::TableUpdate<StagedStaticDataV7>,
     stamina_state: __sdk::TableUpdate<StaminaState>,
     starving_loop_timer: __sdk::TableUpdate<StarvingLoopTimer>,
     starving_player_state: __sdk::TableUpdate<StarvingPlayerState>,
@@ -8402,6 +8442,13 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
                 "claim_local_state" => db_update
                     .claim_local_state
                     .append(claim_local_state_table::parse_table_update(table_update)?),
+                "claim_local_supply_security_threshold_state" => db_update
+                    .claim_local_supply_security_threshold_state
+                    .append(
+                        claim_local_supply_security_threshold_state_table::parse_table_update(
+                            table_update,
+                        )?,
+                    ),
                 "claim_member_state" => db_update
                     .claim_member_state
                     .append(claim_member_state_table::parse_table_update(table_update)?),
@@ -8888,6 +8935,9 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
                 "parameters_desc" => db_update
                     .parameters_desc
                     .append(parameters_desc_table::parse_table_update(table_update)?),
+                "parameters_desc_v2" => db_update
+                    .parameters_desc_v_2
+                    .append(parameters_desc_v_2_table::parse_table_update(table_update)?),
                 "parameters_player_move_desc" => db_update.parameters_player_move_desc.append(
                     parameters_player_move_desc_table::parse_table_update(table_update)?,
                 ),
@@ -9129,6 +9179,9 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
                 ),
                 "staged_static_data_v6" => db_update.staged_static_data_v_6.append(
                     staged_static_data_v_6_table::parse_table_update(table_update)?,
+                ),
+                "staged_static_data_v7" => db_update.staged_static_data_v_7.append(
+                    staged_static_data_v_7_table::parse_table_update(table_update)?,
                 ),
                 "stamina_state" => db_update
                     .stamina_state
@@ -9475,6 +9528,12 @@ impl __sdk::DbUpdate for DbUpdate {
             .with_updates_by_pk(|row| &row.id);
         diff.claim_local_state = cache
             .apply_diff_to_table::<ClaimLocalState>("claim_local_state", &self.claim_local_state)
+            .with_updates_by_pk(|row| &row.entity_id);
+        diff.claim_local_supply_security_threshold_state = cache
+            .apply_diff_to_table::<ClaimLocalSupplySecurityThresholdState>(
+                "claim_local_supply_security_threshold_state",
+                &self.claim_local_supply_security_threshold_state,
+            )
             .with_updates_by_pk(|row| &row.entity_id);
         diff.claim_member_state = cache
             .apply_diff_to_table::<ClaimMemberState>("claim_member_state", &self.claim_member_state)
@@ -10221,6 +10280,12 @@ impl __sdk::DbUpdate for DbUpdate {
         diff.parameters_desc = cache
             .apply_diff_to_table::<ParametersDesc>("parameters_desc", &self.parameters_desc)
             .with_updates_by_pk(|row| &row.version);
+        diff.parameters_desc_v_2 = cache
+            .apply_diff_to_table::<ParametersDescV2>(
+                "parameters_desc_v2",
+                &self.parameters_desc_v_2,
+            )
+            .with_updates_by_pk(|row| &row.version);
         diff.parameters_player_move_desc = cache
             .apply_diff_to_table::<ParametersPlayerMoveDesc>(
                 "parameters_player_move_desc",
@@ -10602,6 +10667,12 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.staged_static_data_v_6,
             )
             .with_updates_by_pk(|row| &row.version);
+        diff.staged_static_data_v_7 = cache
+            .apply_diff_to_table::<StagedStaticDataV7>(
+                "staged_static_data_v7",
+                &self.staged_static_data_v_7,
+            )
+            .with_updates_by_pk(|row| &row.version);
         diff.stamina_state = cache
             .apply_diff_to_table::<StaminaState>("stamina_state", &self.stamina_state)
             .with_updates_by_pk(|row| &row.entity_id);
@@ -10858,6 +10929,8 @@ pub struct AppliedDiff<'r> {
     chat_message_state: __sdk::TableAppliedDiff<'r, ChatMessageState>,
     chest_rarity_desc: __sdk::TableAppliedDiff<'r, ChestRarityDesc>,
     claim_local_state: __sdk::TableAppliedDiff<'r, ClaimLocalState>,
+    claim_local_supply_security_threshold_state:
+        __sdk::TableAppliedDiff<'r, ClaimLocalSupplySecurityThresholdState>,
     claim_member_state: __sdk::TableAppliedDiff<'r, ClaimMemberState>,
     claim_recruitment_state: __sdk::TableAppliedDiff<'r, ClaimRecruitmentState>,
     claim_state: __sdk::TableAppliedDiff<'r, ClaimState>,
@@ -11015,6 +11088,7 @@ pub struct AppliedDiff<'r> {
     onboarding_reward_desc: __sdk::TableAppliedDiff<'r, OnboardingRewardDesc>,
     onboarding_state: __sdk::TableAppliedDiff<'r, OnboardingState>,
     parameters_desc: __sdk::TableAppliedDiff<'r, ParametersDesc>,
+    parameters_desc_v_2: __sdk::TableAppliedDiff<'r, ParametersDescV2>,
     parameters_player_move_desc: __sdk::TableAppliedDiff<'r, ParametersPlayerMoveDesc>,
     partial_experience_state: __sdk::TableAppliedDiff<'r, PartialExperienceState>,
     passive_craft_state: __sdk::TableAppliedDiff<'r, PassiveCraftState>,
@@ -11091,6 +11165,7 @@ pub struct AppliedDiff<'r> {
     staged_static_data_v_4: __sdk::TableAppliedDiff<'r, StagedStaticDataV4>,
     staged_static_data_v_5: __sdk::TableAppliedDiff<'r, StagedStaticDataV5>,
     staged_static_data_v_6: __sdk::TableAppliedDiff<'r, StagedStaticDataV6>,
+    staged_static_data_v_7: __sdk::TableAppliedDiff<'r, StagedStaticDataV7>,
     stamina_state: __sdk::TableAppliedDiff<'r, StaminaState>,
     starving_loop_timer: __sdk::TableAppliedDiff<'r, StarvingLoopTimer>,
     starving_player_state: __sdk::TableAppliedDiff<'r, StarvingPlayerState>,
@@ -11332,6 +11407,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<ClaimLocalState>(
             "claim_local_state",
             &self.claim_local_state,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<ClaimLocalSupplySecurityThresholdState>(
+            "claim_local_supply_security_threshold_state",
+            &self.claim_local_supply_security_threshold_state,
             event,
         );
         callbacks.invoke_table_row_callbacks::<ClaimMemberState>(
@@ -12048,6 +12128,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             &self.parameters_desc,
             event,
         );
+        callbacks.invoke_table_row_callbacks::<ParametersDescV2>(
+            "parameters_desc_v2",
+            &self.parameters_desc_v_2,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<ParametersPlayerMoveDesc>(
             "parameters_player_move_desc",
             &self.parameters_player_move_desc,
@@ -12418,6 +12503,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<StagedStaticDataV6>(
             "staged_static_data_v6",
             &self.staged_static_data_v_6,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<StagedStaticDataV7>(
+            "staged_static_data_v7",
+            &self.staged_static_data_v_7,
             event,
         );
         callbacks.invoke_table_row_callbacks::<StaminaState>(
@@ -13237,6 +13327,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         chat_message_state_table::register_table(client_cache);
         chest_rarity_desc_table::register_table(client_cache);
         claim_local_state_table::register_table(client_cache);
+        claim_local_supply_security_threshold_state_table::register_table(client_cache);
         claim_member_state_table::register_table(client_cache);
         claim_recruitment_state_table::register_table(client_cache);
         claim_state_table::register_table(client_cache);
@@ -13391,6 +13482,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         onboarding_reward_desc_table::register_table(client_cache);
         onboarding_state_table::register_table(client_cache);
         parameters_desc_table::register_table(client_cache);
+        parameters_desc_v_2_table::register_table(client_cache);
         parameters_player_move_desc_table::register_table(client_cache);
         partial_experience_state_table::register_table(client_cache);
         passive_craft_state_table::register_table(client_cache);
@@ -13467,6 +13559,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         staged_static_data_v_4_table::register_table(client_cache);
         staged_static_data_v_5_table::register_table(client_cache);
         staged_static_data_v_6_table::register_table(client_cache);
+        staged_static_data_v_7_table::register_table(client_cache);
         stamina_state_table::register_table(client_cache);
         starving_loop_timer_table::register_table(client_cache);
         starving_player_state_table::register_table(client_cache);

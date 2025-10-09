@@ -7,13 +7,11 @@ use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
-pub struct PlayerExtractRequest {
-    pub recipe_id: i32,
-    pub target_entity_id: u64,
-    pub timestamp: u64,
-    pub clear_from_claim: bool,
+pub struct ClaimLocalSupplySecurityThresholdState {
+    pub entity_id: u64,
+    pub supply_security_threshold_hours: i32,
 }
 
-impl __sdk::InModule for PlayerExtractRequest {
+impl __sdk::InModule for ClaimLocalSupplySecurityThresholdState {
     type Module = super::RemoteModule;
 }

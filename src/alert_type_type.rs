@@ -24,6 +24,14 @@ pub enum AlertType {
     OutOfSuppliesInTwelveTicks,
 
     NewLostItems,
+
+    CoOwnerClaimOwnershipTransferIn24H,
+
+    CoOwnerClaimOwnershipTransfer,
+
+    OfficerClaimOwnershipTransfer,
+
+    MemberClaimOwnershipTransfer,
 }
 
 impl __sdk::InModule for AlertType {

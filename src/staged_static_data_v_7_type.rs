@@ -5,15 +5,15 @@
 #![allow(unused, clippy::all)]
 use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
+use super::static_data_upload_v_7_type::StaticDataUploadV7;
+
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
-pub struct PlayerExtractRequest {
-    pub recipe_id: i32,
-    pub target_entity_id: u64,
-    pub timestamp: u64,
-    pub clear_from_claim: bool,
+pub struct StagedStaticDataV7 {
+    pub version: u32,
+    pub static_data: StaticDataUploadV7,
 }
 
-impl __sdk::InModule for PlayerExtractRequest {
+impl __sdk::InModule for StagedStaticDataV7 {
     type Module = super::RemoteModule;
 }
