@@ -14,10 +14,10 @@ namespace BitCraftRegion.Types
 {
     public sealed partial class RemoteReducers : RemoteBase
     {
-        public delegate void ImportParametersDescHandler(ReducerEventContext ctx, System.Collections.Generic.List<ParametersDesc> records);
+        public delegate void ImportParametersDescHandler(ReducerEventContext ctx, System.Collections.Generic.List<ParametersDescV2> records);
         public event ImportParametersDescHandler? OnImportParametersDesc;
 
-        public void ImportParametersDesc(System.Collections.Generic.List<ParametersDesc> records)
+        public void ImportParametersDesc(System.Collections.Generic.List<ParametersDescV2> records)
         {
             conn.InternalCallReducer(new Reducer.ImportParametersDesc(records), this.SetCallReducerFlags.ImportParametersDescFlags);
         }
@@ -51,9 +51,9 @@ namespace BitCraftRegion.Types
         public sealed partial class ImportParametersDesc : Reducer, IReducerArgs
         {
             [DataMember(Name = "records")]
-            public System.Collections.Generic.List<ParametersDesc> Records;
+            public System.Collections.Generic.List<ParametersDescV2> Records;
 
-            public ImportParametersDesc(System.Collections.Generic.List<ParametersDesc> Records)
+            public ImportParametersDesc(System.Collections.Generic.List<ParametersDescV2> Records)
             {
                 this.Records = Records;
             }

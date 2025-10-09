@@ -21,16 +21,20 @@ namespace BitCraftRegion.Types
         public ulong TargetEntityId;
         [DataMember(Name = "timestamp")]
         public ulong Timestamp;
+        [DataMember(Name = "clear_from_claim")]
+        public bool ClearFromClaim;
 
         public PlayerExtractRequest(
             int RecipeId,
             ulong TargetEntityId,
-            ulong Timestamp
+            ulong Timestamp,
+            bool ClearFromClaim
         )
         {
             this.RecipeId = RecipeId;
             this.TargetEntityId = TargetEntityId;
             this.Timestamp = Timestamp;
+            this.ClearFromClaim = ClearFromClaim;
         }
 
         public PlayerExtractRequest()

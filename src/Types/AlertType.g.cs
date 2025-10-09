@@ -20,5 +20,9 @@ namespace BitCraftRegion.Types
         OutOfSuppliesInOneTick,
         OutOfSuppliesInTwelveTicks,
         NewLostItems,
+        CoOwnerClaimOwnershipTransferIn24h,
+        CoOwnerClaimOwnershipTransfer,
+        OfficerClaimOwnershipTransfer,
+        MemberClaimOwnershipTransfer,
     }
 }
