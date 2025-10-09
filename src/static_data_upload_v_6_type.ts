@@ -92,7 +92,6 @@ import { LootRarityDesc as __LootRarityDesc } from "./loot_rarity_desc_type";
 import { LootTableDesc as __LootTableDesc } from "./loot_table_desc_type";
 import { NpcDesc as __NpcDesc } from "./npc_desc_type";
 import { OnboardingRewardDesc as __OnboardingRewardDesc } from "./onboarding_reward_desc_type";
-import { ParametersDesc as __ParametersDesc } from "./parameters_desc_type";
 import { PathfindingDesc as __PathfindingDesc } from "./pathfinding_desc_type";
 import { PavingTileDesc as __PavingTileDesc } from "./paving_tile_desc_type";
 import { PillarShapingDesc as __PillarShapingDesc } from "./pillar_shaping_desc_type";
@@ -117,6 +116,7 @@ import { WallDesc as __WallDesc } from "./wall_desc_type";
 import { WeaponDesc as __WeaponDesc } from "./weapon_desc_type";
 import { WeaponTypeDesc as __WeaponTypeDesc } from "./weapon_type_desc_type";
 import { WindParamsDesc as __WindParamsDesc } from "./wind_params_desc_type";
+import { ParametersDesc as __ParametersDesc } from "./parameters_desc_type";
 
 export type StaticDataUploadV6 = {
   parameters: __ParametersDesc[],

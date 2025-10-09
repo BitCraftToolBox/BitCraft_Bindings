@@ -56,7 +56,7 @@ import { ConstructionRecipeDesc as __ConstructionRecipeDesc } from "./constructi
 import { ContributionLootDescV2 as __ContributionLootDescV2 } from "./contribution_loot_desc_v_2_type";
 import { CraftingRecipeDesc as __CraftingRecipeDesc } from "./crafting_recipe_desc_type";
 import { DeconstructionRecipeDesc as __DeconstructionRecipeDesc } from "./deconstruction_recipe_desc_type";
-import { DeployableDesc as __DeployableDesc } from "./deployable_desc_type";
+import { DeployableDescV2 as __DeployableDescV2 } from "./deployable_desc_v_2_type";
 import { DistantVisibleEntityDesc as __DistantVisibleEntityDesc } from "./distant_visible_entity_desc_type";
 import { ElevatorDesc as __ElevatorDesc } from "./elevator_desc_type";
 import { EmoteDesc as __EmoteDesc } from "./emote_desc_type";
@@ -92,6 +92,7 @@ import { LootRarityDesc as __LootRarityDesc } from "./loot_rarity_desc_type";
 import { LootTableDesc as __LootTableDesc } from "./loot_table_desc_type";
 import { NpcDesc as __NpcDesc } from "./npc_desc_type";
 import { OnboardingRewardDesc as __OnboardingRewardDesc } from "./onboarding_reward_desc_type";
+import { ParametersDescV2 as __ParametersDescV2 } from "./parameters_desc_v_2_type";
 import { PathfindingDesc as __PathfindingDesc } from "./pathfinding_desc_type";
 import { PavingTileDesc as __PavingTileDesc } from "./paving_tile_desc_type";
 import { PillarShapingDesc as __PillarShapingDesc } from "./pillar_shaping_desc_type";
@@ -115,10 +116,10 @@ import { TravelerTradeOrderDesc as __TravelerTradeOrderDesc } from "./traveler_t
 import { WallDesc as __WallDesc } from "./wall_desc_type";
 import { WeaponDesc as __WeaponDesc } from "./weapon_desc_type";
 import { WeaponTypeDesc as __WeaponTypeDesc } from "./weapon_type_desc_type";
-import { ParametersDesc as __ParametersDesc } from "./parameters_desc_type";
+import { WindParamsDesc as __WindParamsDesc } from "./wind_params_desc_type";
 
-export type StaticDataUploadV4 = {
-  parameters: __ParametersDesc[],
+export type StaticDataUploadV7 = {
+  parameters: __ParametersDescV2[],
   privateParameters: __PrivateParametersDesc[],
   secondaryKnowledges: __SecondaryKnowledgeDesc[],
   weaponTypes: __WeaponTypeDesc[],
@@ -185,7 +186,7 @@ export type StaticDataUploadV4 = {
   tools: __ToolDesc[],
   travelerTasks: __TravelerTaskDesc[],
   travelerTradeOrders: __TravelerTradeOrderDesc[],
-  deployables: __DeployableDesc[],
+  deployables: __DeployableDescV2[],
   weapons: __WeaponDesc[],
   onboardingRewards: __OnboardingRewardDesc[],
   terraformRecipes: __TerraformRecipeDesc[],
@@ -202,20 +203,21 @@ export type StaticDataUploadV4 = {
   hexiteExchangeEntries: __HexiteExchangeEntryDesc[],
   reservedName: __ReservedNameDesc[],
   contributionLoot: __ContributionLootDescV2[],
+  windParams: __WindParamsDesc[],
   enemyScaling: __EnemyScalingDesc[],
 };
 
 /**
  * A namespace for generated helper functions.
  */
-export namespace StaticDataUploadV4 {
+export namespace StaticDataUploadV7 {
   /**
   * A function which returns this type represented as an AlgebraicType.
   * This function is derived from the AlgebraicType used to generate this type.
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("parameters", AlgebraicType.createArrayType(__ParametersDesc.getTypeScriptAlgebraicType())),
+      new ProductTypeElement("parameters", AlgebraicType.createArrayType(__ParametersDescV2.getTypeScriptAlgebraicType())),
       new ProductTypeElement("privateParameters", AlgebraicType.createArrayType(__PrivateParametersDesc.getTypeScriptAlgebraicType())),
       new ProductTypeElement("secondaryKnowledges", AlgebraicType.createArrayType(__SecondaryKnowledgeDesc.getTypeScriptAlgebraicType())),
       new ProductTypeElement("weaponTypes", AlgebraicType.createArrayType(__WeaponTypeDesc.getTypeScriptAlgebraicType())),
@@ -282,7 +284,7 @@ export namespace StaticDataUploadV4 {
       new ProductTypeElement("tools", AlgebraicType.createArrayType(__ToolDesc.getTypeScriptAlgebraicType())),
       new ProductTypeElement("travelerTasks", AlgebraicType.createArrayType(__TravelerTaskDesc.getTypeScriptAlgebraicType())),
       new ProductTypeElement("travelerTradeOrders", AlgebraicType.createArrayType(__TravelerTradeOrderDesc.getTypeScriptAlgebraicType())),
-      new ProductTypeElement("deployables", AlgebraicType.createArrayType(__DeployableDesc.getTypeScriptAlgebraicType())),
+      new ProductTypeElement("deployables", AlgebraicType.createArrayType(__DeployableDescV2.getTypeScriptAlgebraicType())),
       new ProductTypeElement("weapons", AlgebraicType.createArrayType(__WeaponDesc.getTypeScriptAlgebraicType())),
       new ProductTypeElement("onboardingRewards", AlgebraicType.createArrayType(__OnboardingRewardDesc.getTypeScriptAlgebraicType())),
       new ProductTypeElement("terraformRecipes", AlgebraicType.createArrayType(__TerraformRecipeDesc.getTypeScriptAlgebraicType())),
@@ -299,16 +301,17 @@ export namespace StaticDataUploadV4 {
       new ProductTypeElement("hexiteExchangeEntries", AlgebraicType.createArrayType(__HexiteExchangeEntryDesc.getTypeScriptAlgebraicType())),
       new ProductTypeElement("reservedName", AlgebraicType.createArrayType(__ReservedNameDesc.getTypeScriptAlgebraicType())),
       new ProductTypeElement("contributionLoot", AlgebraicType.createArrayType(__ContributionLootDescV2.getTypeScriptAlgebraicType())),
+      new ProductTypeElement("windParams", AlgebraicType.createArrayType(__WindParamsDesc.getTypeScriptAlgebraicType())),
       new ProductTypeElement("enemyScaling", AlgebraicType.createArrayType(__EnemyScalingDesc.getTypeScriptAlgebraicType())),
     ]);
   }
 
-  export function serialize(writer: BinaryWriter, value: StaticDataUploadV4): void {
-    StaticDataUploadV4.getTypeScriptAlgebraicType().serialize(writer, value);
+  export function serialize(writer: BinaryWriter, value: StaticDataUploadV7): void {
+    StaticDataUploadV7.getTypeScriptAlgebraicType().serialize(writer, value);
   }
 
-  export function deserialize(reader: BinaryReader): StaticDataUploadV4 {
-    return StaticDataUploadV4.getTypeScriptAlgebraicType().deserialize(reader);
+  export function deserialize(reader: BinaryReader): StaticDataUploadV7 {
+    return StaticDataUploadV7.getTypeScriptAlgebraicType().deserialize(reader);
   }
 
 }

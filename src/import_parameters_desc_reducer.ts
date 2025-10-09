@@ -32,10 +32,10 @@ import {
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
 
-import { ParametersDesc as __ParametersDesc } from "./parameters_desc_type";
+import { ParametersDescV2 as __ParametersDescV2 } from "./parameters_desc_v_2_type";
 
 export type ImportParametersDesc = {
-  records: __ParametersDesc[],
+  records: __ParametersDescV2[],
 };
 
 /**
@@ -48,7 +48,7 @@ export namespace ImportParametersDesc {
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("records", AlgebraicType.createArrayType(__ParametersDesc.getTypeScriptAlgebraicType())),
+      new ProductTypeElement("records", AlgebraicType.createArrayType(__ParametersDescV2.getTypeScriptAlgebraicType())),
     ]);
   }
 

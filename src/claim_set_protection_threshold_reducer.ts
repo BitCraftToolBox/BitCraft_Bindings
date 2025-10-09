@@ -32,32 +32,32 @@ import {
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
 
-import { ParametersDescV2 as __ParametersDescV2 } from "./parameters_desc_v_2_type";
-
-export type StageParametersDesc = {
-  records: __ParametersDescV2[],
+export type ClaimSetProtectionThreshold = {
+  buildingEntityId: bigint,
+  hours: number,
 };
 
 /**
  * A namespace for generated helper functions.
  */
-export namespace StageParametersDesc {
+export namespace ClaimSetProtectionThreshold {
   /**
   * A function which returns this type represented as an AlgebraicType.
   * This function is derived from the AlgebraicType used to generate this type.
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("records", AlgebraicType.createArrayType(__ParametersDescV2.getTypeScriptAlgebraicType())),
+      new ProductTypeElement("buildingEntityId", AlgebraicType.createU64Type()),
+      new ProductTypeElement("hours", AlgebraicType.createU32Type()),
     ]);
   }
 
-  export function serialize(writer: BinaryWriter, value: StageParametersDesc): void {
-    StageParametersDesc.getTypeScriptAlgebraicType().serialize(writer, value);
+  export function serialize(writer: BinaryWriter, value: ClaimSetProtectionThreshold): void {
+    ClaimSetProtectionThreshold.getTypeScriptAlgebraicType().serialize(writer, value);
   }
 
-  export function deserialize(reader: BinaryReader): StageParametersDesc {
-    return StageParametersDesc.getTypeScriptAlgebraicType().deserialize(reader);
+  export function deserialize(reader: BinaryReader): ClaimSetProtectionThreshold {
+    return ClaimSetProtectionThreshold.getTypeScriptAlgebraicType().deserialize(reader);
   }
 
 }

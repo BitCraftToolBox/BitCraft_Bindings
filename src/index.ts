@@ -99,6 +99,8 @@ import { AdminFindItemsInInventories } from "./admin_find_items_in_inventories_r
 export { AdminFindItemsInInventories };
 import { AdminFindItemsInTrades } from "./admin_find_items_in_trades_reducer.ts";
 export { AdminFindItemsInTrades };
+import { AdminGrantAllClaimSupplies } from "./admin_grant_all_claim_supplies_reducer.ts";
+export { AdminGrantAllClaimSupplies };
 import { AdminGrantCollectibles } from "./admin_grant_collectibles_reducer.ts";
 export { AdminGrantCollectibles };
 import { AdminModifyChatMessage } from "./admin_modify_chat_message_reducer.ts";
@@ -307,6 +309,8 @@ import { ClaimResupplyStart } from "./claim_resupply_start_reducer.ts";
 export { ClaimResupplyStart };
 import { ClaimSetMemberPermissions } from "./claim_set_member_permissions_reducer.ts";
 export { ClaimSetMemberPermissions };
+import { ClaimSetProtectionThreshold } from "./claim_set_protection_threshold_reducer.ts";
+export { ClaimSetProtectionThreshold };
 import { ClaimSetPurchaseSupplyPrice } from "./claim_set_purchase_supply_price_reducer.ts";
 export { ClaimSetPurchaseSupplyPrice };
 import { ClaimSetPurchaseSupplyThreshold } from "./claim_set_purchase_supply_threshold_reducer.ts";
@@ -1377,6 +1381,8 @@ import { ChestRarityDescTableHandle } from "./chest_rarity_desc_table.ts";
 export { ChestRarityDescTableHandle };
 import { ClaimLocalStateTableHandle } from "./claim_local_state_table.ts";
 export { ClaimLocalStateTableHandle };
+import { ClaimLocalSupplySecurityThresholdStateTableHandle } from "./claim_local_supply_security_threshold_state_table.ts";
+export { ClaimLocalSupplySecurityThresholdStateTableHandle };
 import { ClaimMemberStateTableHandle } from "./claim_member_state_table.ts";
 export { ClaimMemberStateTableHandle };
 import { ClaimRecruitmentStateTableHandle } from "./claim_recruitment_state_table.ts";
@@ -1685,6 +1691,8 @@ import { OnboardingStateTableHandle } from "./onboarding_state_table.ts";
 export { OnboardingStateTableHandle };
 import { ParametersDescTableHandle } from "./parameters_desc_table.ts";
 export { ParametersDescTableHandle };
+import { ParametersDescV2TableHandle } from "./parameters_desc_v_2_table.ts";
+export { ParametersDescV2TableHandle };
 import { ParametersPlayerMoveDescTableHandle } from "./parameters_player_move_desc_table.ts";
 export { ParametersPlayerMoveDescTableHandle };
 import { PartialExperienceStateTableHandle } from "./partial_experience_state_table.ts";
@@ -1837,6 +1845,8 @@ import { StagedStaticDataV5TableHandle } from "./staged_static_data_v_5_table.ts
 export { StagedStaticDataV5TableHandle };
 import { StagedStaticDataV6TableHandle } from "./staged_static_data_v_6_table.ts";
 export { StagedStaticDataV6TableHandle };
+import { StagedStaticDataV7TableHandle } from "./staged_static_data_v_7_table.ts";
+export { StagedStaticDataV7TableHandle };
 import { StaminaStateTableHandle } from "./stamina_state_table.ts";
 export { StaminaStateTableHandle };
 import { StarvingLoopTimerTableHandle } from "./starving_loop_timer_table.ts";
@@ -2087,6 +2097,8 @@ import { ClaimCreateEmpireSettlementMsg } from "./claim_create_empire_settlement
 export { ClaimCreateEmpireSettlementMsg };
 import { ClaimLocalState } from "./claim_local_state_type.ts";
 export { ClaimLocalState };
+import { ClaimLocalSupplySecurityThresholdState } from "./claim_local_supply_security_threshold_state_type.ts";
+export { ClaimLocalSupplySecurityThresholdState };
 import { ClaimMemberState } from "./claim_member_state_type.ts";
 export { ClaimMemberState };
 import { ClaimMemberStateOp } from "./claim_member_state_op_type.ts";
@@ -2593,6 +2605,8 @@ import { OnlineTimestamp } from "./online_timestamp_type.ts";
 export { OnlineTimestamp };
 import { ParametersDesc } from "./parameters_desc_type.ts";
 export { ParametersDesc };
+import { ParametersDescV2 } from "./parameters_desc_v_2_type.ts";
+export { ParametersDescV2 };
 import { ParametersPlayerMoveDesc } from "./parameters_player_move_desc_type.ts";
 export { ParametersPlayerMoveDesc };
 import { PartialExperienceState } from "./partial_experience_state_type.ts";
@@ -3025,6 +3039,8 @@ import { StagedStaticDataV5 } from "./staged_static_data_v_5_type.ts";
 export { StagedStaticDataV5 };
 import { StagedStaticDataV6 } from "./staged_static_data_v_6_type.ts";
 export { StagedStaticDataV6 };
+import { StagedStaticDataV7 } from "./staged_static_data_v_7_type.ts";
+export { StagedStaticDataV7 };
 import { StaminaState } from "./stamina_state_type.ts";
 export { StaminaState };
 import { StarvingLoopTimer } from "./starving_loop_timer_type.ts";
@@ -3043,6 +3059,8 @@ import { StaticDataUploadV5 } from "./static_data_upload_v_5_type.ts";
 export { StaticDataUploadV5 };
 import { StaticDataUploadV6 } from "./static_data_upload_v_6_type.ts";
 export { StaticDataUploadV6 };
+import { StaticDataUploadV7 } from "./static_data_upload_v_7_type.ts";
+export { StaticDataUploadV7 };
 import { StorageLogCleanupLoopTimer } from "./storage_log_cleanup_loop_timer_type.ts";
 export { StorageLogCleanupLoopTimer };
 import { SurfaceType } from "./surface_type_type.ts";
@@ -3596,6 +3614,15 @@ export const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "entityId",
         colType: ClaimLocalState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    claim_local_supply_security_threshold_state: {
+      tableName: "claim_local_supply_security_threshold_state",
+      rowType: ClaimLocalSupplySecurityThresholdState.getTypeScriptAlgebraicType(),
+      primaryKey: "entityId",
+      primaryKeyInfo: {
+        colName: "entityId",
+        colType: ClaimLocalSupplySecurityThresholdState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     claim_member_state: {
@@ -4979,6 +5006,15 @@ export const REMOTE_MODULE = {
         colType: ParametersDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    parameters_desc_v2: {
+      tableName: "parameters_desc_v2",
+      rowType: ParametersDescV2.getTypeScriptAlgebraicType(),
+      primaryKey: "version",
+      primaryKeyInfo: {
+        colName: "version",
+        colType: ParametersDescV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     parameters_player_move_desc: {
       tableName: "parameters_player_move_desc",
       rowType: ParametersPlayerMoveDesc.getTypeScriptAlgebraicType(),
@@ -5663,6 +5699,15 @@ export const REMOTE_MODULE = {
         colType: StagedStaticDataV6.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    staged_static_data_v7: {
+      tableName: "staged_static_data_v7",
+      rowType: StagedStaticDataV7.getTypeScriptAlgebraicType(),
+      primaryKey: "version",
+      primaryKeyInfo: {
+        colName: "version",
+        colType: StagedStaticDataV7.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     stamina_state: {
       tableName: "stamina_state",
       rowType: StaminaState.getTypeScriptAlgebraicType(),
@@ -6193,6 +6238,10 @@ export const REMOTE_MODULE = {
       reducerName: "admin_find_items_in_trades",
       argsType: AdminFindItemsInTrades.getTypeScriptAlgebraicType(),
     },
+    admin_grant_all_claim_supplies: {
+      reducerName: "admin_grant_all_claim_supplies",
+      argsType: AdminGrantAllClaimSupplies.getTypeScriptAlgebraicType(),
+    },
     admin_grant_collectibles: {
       reducerName: "admin_grant_collectibles",
       argsType: AdminGrantCollectibles.getTypeScriptAlgebraicType(),
@@ -6608,6 +6657,10 @@ export const REMOTE_MODULE = {
     claim_set_member_permissions: {
       reducerName: "claim_set_member_permissions",
       argsType: ClaimSetMemberPermissions.getTypeScriptAlgebraicType(),
+    },
+    claim_set_protection_threshold: {
+      reducerName: "claim_set_protection_threshold",
+      argsType: ClaimSetProtectionThreshold.getTypeScriptAlgebraicType(),
     },
     claim_set_purchase_supply_price: {
       reducerName: "claim_set_purchase_supply_price",
@@ -8640,6 +8693,7 @@ export type Reducer = never
 | { name: "AdminFindAllPlayersWithItemAboveQuantity", args: AdminFindAllPlayersWithItemAboveQuantity }
 | { name: "AdminFindItemsInInventories", args: AdminFindItemsInInventories }
 | { name: "AdminFindItemsInTrades", args: AdminFindItemsInTrades }
+| { name: "AdminGrantAllClaimSupplies", args: AdminGrantAllClaimSupplies }
 | { name: "AdminGrantCollectibles", args: AdminGrantCollectibles }
 | { name: "AdminModifyChatMessage", args: AdminModifyChatMessage }
 | { name: "AdminPatchHousingCosts", args: AdminPatchHousingCosts }
@@ -8744,6 +8798,7 @@ export type Reducer = never
 | { name: "ClaimResupply", args: ClaimResupply }
 | { name: "ClaimResupplyStart", args: ClaimResupplyStart }
 | { name: "ClaimSetMemberPermissions", args: ClaimSetMemberPermissions }
+| { name: "ClaimSetProtectionThreshold", args: ClaimSetProtectionThreshold }
 | { name: "ClaimSetPurchaseSupplyPrice", args: ClaimSetPurchaseSupplyPrice }
 | { name: "ClaimSetPurchaseSupplyThreshold", args: ClaimSetPurchaseSupplyThreshold }
 | { name: "ClaimTakeOwnership", args: ClaimTakeOwnership }
@@ -9739,6 +9794,22 @@ export class RemoteReducers {
 
   removeOnAdminFindItemsInTrades(callback: (ctx: ReducerEventContext, itemId: number, isCargo: boolean, minThreshold: bigint) => void) {
     this.connection.offReducer("admin_find_items_in_trades", callback);
+  }
+
+  adminGrantAllClaimSupplies(daysOfSupplies: number, dryRun: boolean) {
+    const __args = { daysOfSupplies, dryRun };
+    let __writer = new BinaryWriter(1024);
+    AdminGrantAllClaimSupplies.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("admin_grant_all_claim_supplies", __argsBuffer, this.setCallReducerFlags.adminGrantAllClaimSuppliesFlags);
+  }
+
+  onAdminGrantAllClaimSupplies(callback: (ctx: ReducerEventContext, daysOfSupplies: number, dryRun: boolean) => void) {
+    this.connection.onReducer("admin_grant_all_claim_supplies", callback);
+  }
+
+  removeOnAdminGrantAllClaimSupplies(callback: (ctx: ReducerEventContext, daysOfSupplies: number, dryRun: boolean) => void) {
+    this.connection.offReducer("admin_grant_all_claim_supplies", callback);
   }
 
   adminGrantCollectibles(identity: string, collectibles: number[]) {
@@ -11371,6 +11442,22 @@ export class RemoteReducers {
 
   removeOnClaimSetMemberPermissions(callback: (ctx: ReducerEventContext, request: PlayerClaimSetMemberPermissionsRequest) => void) {
     this.connection.offReducer("claim_set_member_permissions", callback);
+  }
+
+  claimSetProtectionThreshold(buildingEntityId: bigint, hours: number) {
+    const __args = { buildingEntityId, hours };
+    let __writer = new BinaryWriter(1024);
+    ClaimSetProtectionThreshold.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("claim_set_protection_threshold", __argsBuffer, this.setCallReducerFlags.claimSetProtectionThresholdFlags);
+  }
+
+  onClaimSetProtectionThreshold(callback: (ctx: ReducerEventContext, buildingEntityId: bigint, hours: number) => void) {
+    this.connection.onReducer("claim_set_protection_threshold", callback);
+  }
+
+  removeOnClaimSetProtectionThreshold(callback: (ctx: ReducerEventContext, buildingEntityId: bigint, hours: number) => void) {
+    this.connection.offReducer("claim_set_protection_threshold", callback);
   }
 
   claimSetPurchaseSupplyPrice(request: ClaimSetPurchaseSupplyPriceRequest) {
@@ -14621,7 +14708,7 @@ export class RemoteReducers {
     this.connection.offReducer("import_onboarding_state", callback);
   }
 
-  importParametersDesc(records: ParametersDesc[]) {
+  importParametersDesc(records: ParametersDescV2[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
     ImportParametersDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
@@ -14629,11 +14716,11 @@ export class RemoteReducers {
     this.connection.callReducer("import_parameters_desc", __argsBuffer, this.setCallReducerFlags.importParametersDescFlags);
   }
 
-  onImportParametersDesc(callback: (ctx: ReducerEventContext, records: ParametersDesc[]) => void) {
+  onImportParametersDesc(callback: (ctx: ReducerEventContext, records: ParametersDescV2[]) => void) {
     this.connection.onReducer("import_parameters_desc", callback);
   }
 
-  removeOnImportParametersDesc(callback: (ctx: ReducerEventContext, records: ParametersDesc[]) => void) {
+  removeOnImportParametersDesc(callback: (ctx: ReducerEventContext, records: ParametersDescV2[]) => void) {
     this.connection.offReducer("import_parameters_desc", callback);
   }
 
@@ -18305,7 +18392,7 @@ export class RemoteReducers {
     this.connection.offReducer("stage_onboarding_reward_desc", callback);
   }
 
-  stageParametersDesc(records: ParametersDesc[]) {
+  stageParametersDesc(records: ParametersDescV2[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
     StageParametersDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
@@ -18313,11 +18400,11 @@ export class RemoteReducers {
     this.connection.callReducer("stage_parameters_desc", __argsBuffer, this.setCallReducerFlags.stageParametersDescFlags);
   }
 
-  onStageParametersDesc(callback: (ctx: ReducerEventContext, records: ParametersDesc[]) => void) {
+  onStageParametersDesc(callback: (ctx: ReducerEventContext, records: ParametersDescV2[]) => void) {
     this.connection.onReducer("stage_parameters_desc", callback);
   }
 
-  removeOnStageParametersDesc(callback: (ctx: ReducerEventContext, records: ParametersDesc[]) => void) {
+  removeOnStageParametersDesc(callback: (ctx: ReducerEventContext, records: ParametersDescV2[]) => void) {
     this.connection.offReducer("stage_parameters_desc", callback);
   }
 
@@ -19309,6 +19396,11 @@ export class SetReducerFlags {
     this.adminFindItemsInTradesFlags = flags;
   }
 
+  adminGrantAllClaimSuppliesFlags: CallReducerFlags = 'FullUpdate';
+  adminGrantAllClaimSupplies(flags: CallReducerFlags) {
+    this.adminGrantAllClaimSuppliesFlags = flags;
+  }
+
   adminGrantCollectiblesFlags: CallReducerFlags = 'FullUpdate';
   adminGrantCollectibles(flags: CallReducerFlags) {
     this.adminGrantCollectiblesFlags = flags;
@@ -19827,6 +19919,11 @@ export class SetReducerFlags {
   claimSetMemberPermissionsFlags: CallReducerFlags = 'FullUpdate';
   claimSetMemberPermissions(flags: CallReducerFlags) {
     this.claimSetMemberPermissionsFlags = flags;
+  }
+
+  claimSetProtectionThresholdFlags: CallReducerFlags = 'FullUpdate';
+  claimSetProtectionThreshold(flags: CallReducerFlags) {
+    this.claimSetProtectionThresholdFlags = flags;
   }
 
   claimSetPurchaseSupplyPriceFlags: CallReducerFlags = 'FullUpdate';
@@ -22452,6 +22549,10 @@ export class RemoteTables {
     return new ClaimLocalStateTableHandle(this.connection.clientCache.getOrCreateTable<ClaimLocalState>(REMOTE_MODULE.tables.claim_local_state));
   }
 
+  get claimLocalSupplySecurityThresholdState(): ClaimLocalSupplySecurityThresholdStateTableHandle {
+    return new ClaimLocalSupplySecurityThresholdStateTableHandle(this.connection.clientCache.getOrCreateTable<ClaimLocalSupplySecurityThresholdState>(REMOTE_MODULE.tables.claim_local_supply_security_threshold_state));
+  }
+
   get claimMemberState(): ClaimMemberStateTableHandle {
     return new ClaimMemberStateTableHandle(this.connection.clientCache.getOrCreateTable<ClaimMemberState>(REMOTE_MODULE.tables.claim_member_state));
   }
@@ -23068,6 +23169,10 @@ export class RemoteTables {
     return new ParametersDescTableHandle(this.connection.clientCache.getOrCreateTable<ParametersDesc>(REMOTE_MODULE.tables.parameters_desc));
   }
 
+  get parametersDescV2(): ParametersDescV2TableHandle {
+    return new ParametersDescV2TableHandle(this.connection.clientCache.getOrCreateTable<ParametersDescV2>(REMOTE_MODULE.tables.parameters_desc_v2));
+  }
+
   get parametersPlayerMoveDesc(): ParametersPlayerMoveDescTableHandle {
     return new ParametersPlayerMoveDescTableHandle(this.connection.clientCache.getOrCreateTable<ParametersPlayerMoveDesc>(REMOTE_MODULE.tables.parameters_player_move_desc));
   }
@@ -23370,6 +23475,10 @@ export class RemoteTables {
 
   get stagedStaticDataV6(): StagedStaticDataV6TableHandle {
     return new StagedStaticDataV6TableHandle(this.connection.clientCache.getOrCreateTable<StagedStaticDataV6>(REMOTE_MODULE.tables.staged_static_data_v6));
+  }
+
+  get stagedStaticDataV7(): StagedStaticDataV7TableHandle {
+    return new StagedStaticDataV7TableHandle(this.connection.clientCache.getOrCreateTable<StagedStaticDataV7>(REMOTE_MODULE.tables.staged_static_data_v7));
   }
 
   get staminaState(): StaminaStateTableHandle {

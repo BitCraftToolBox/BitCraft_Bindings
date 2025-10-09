@@ -44,6 +44,10 @@ export namespace AlertType {
   export type OutOfSuppliesInOneTick = { tag: "OutOfSuppliesInOneTick" };
   export type OutOfSuppliesInTwelveTicks = { tag: "OutOfSuppliesInTwelveTicks" };
   export type NewLostItems = { tag: "NewLostItems" };
+  export type CoOwnerClaimOwnershipTransferIn24H = { tag: "CoOwnerClaimOwnershipTransferIn24H" };
+  export type CoOwnerClaimOwnershipTransfer = { tag: "CoOwnerClaimOwnershipTransfer" };
+  export type OfficerClaimOwnershipTransfer = { tag: "OfficerClaimOwnershipTransfer" };
+  export type MemberClaimOwnershipTransfer = { tag: "MemberClaimOwnershipTransfer" };
 
   // Helper functions for constructing each variant of the tagged union.
   // ```
@@ -59,6 +63,10 @@ export namespace AlertType {
   export const OutOfSuppliesInOneTick = { tag: "OutOfSuppliesInOneTick" };
   export const OutOfSuppliesInTwelveTicks = { tag: "OutOfSuppliesInTwelveTicks" };
   export const NewLostItems = { tag: "NewLostItems" };
+  export const CoOwnerClaimOwnershipTransferIn24h = { tag: "CoOwnerClaimOwnershipTransferIn24h" };
+  export const CoOwnerClaimOwnershipTransfer = { tag: "CoOwnerClaimOwnershipTransfer" };
+  export const OfficerClaimOwnershipTransfer = { tag: "OfficerClaimOwnershipTransfer" };
+  export const MemberClaimOwnershipTransfer = { tag: "MemberClaimOwnershipTransfer" };
 
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createSumType([
@@ -70,6 +78,10 @@ export namespace AlertType {
       new SumTypeVariant("OutOfSuppliesInOneTick", AlgebraicType.createProductType([])),
       new SumTypeVariant("OutOfSuppliesInTwelveTicks", AlgebraicType.createProductType([])),
       new SumTypeVariant("NewLostItems", AlgebraicType.createProductType([])),
+      new SumTypeVariant("CoOwnerClaimOwnershipTransferIn24h", AlgebraicType.createProductType([])),
+      new SumTypeVariant("CoOwnerClaimOwnershipTransfer", AlgebraicType.createProductType([])),
+      new SumTypeVariant("OfficerClaimOwnershipTransfer", AlgebraicType.createProductType([])),
+      new SumTypeVariant("MemberClaimOwnershipTransfer", AlgebraicType.createProductType([])),
     ]);
   }
 
@@ -84,7 +96,7 @@ export namespace AlertType {
 }
 
 // The tagged union or sum type for the algebraic type `AlertType`.
-export type AlertType = AlertType.None | AlertType.EvictionWarning | AlertType.EvictionStatement | AlertType.DismissableTest | AlertType.OutOfSupplies | AlertType.OutOfSuppliesInOneTick | AlertType.OutOfSuppliesInTwelveTicks | AlertType.NewLostItems;
+export type AlertType = AlertType.None | AlertType.EvictionWarning | AlertType.EvictionStatement | AlertType.DismissableTest | AlertType.OutOfSupplies | AlertType.OutOfSuppliesInOneTick | AlertType.OutOfSuppliesInTwelveTicks | AlertType.NewLostItems | AlertType.CoOwnerClaimOwnershipTransferIn24H | AlertType.CoOwnerClaimOwnershipTransfer | AlertType.OfficerClaimOwnershipTransfer | AlertType.MemberClaimOwnershipTransfer;
 
 export default AlertType;
 

@@ -35,6 +35,7 @@ export type PlayerExtractRequest = {
   recipeId: number,
   targetEntityId: bigint,
   timestamp: bigint,
+  clearFromClaim: boolean,
 };
 
 /**
@@ -50,6 +51,7 @@ export namespace PlayerExtractRequest {
       new ProductTypeElement("recipeId", AlgebraicType.createI32Type()),
       new ProductTypeElement("targetEntityId", AlgebraicType.createU64Type()),
       new ProductTypeElement("timestamp", AlgebraicType.createU64Type()),
+      new ProductTypeElement("clearFromClaim", AlgebraicType.createBoolType()),
     ]);
   }
 
