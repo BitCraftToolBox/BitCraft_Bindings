@@ -14,10 +14,10 @@ namespace BitCraftGlobal.Types
 {
     public sealed partial class RemoteReducers : RemoteBase
     {
-        public delegate void StageParametersDescHandler(ReducerEventContext ctx, System.Collections.Generic.List<ParametersDesc> records);
+        public delegate void StageParametersDescHandler(ReducerEventContext ctx, System.Collections.Generic.List<ParametersDescV2> records);
         public event StageParametersDescHandler? OnStageParametersDesc;
 
-        public void StageParametersDesc(System.Collections.Generic.List<ParametersDesc> records)
+        public void StageParametersDesc(System.Collections.Generic.List<ParametersDescV2> records)
         {
             conn.InternalCallReducer(new Reducer.StageParametersDesc(records), this.SetCallReducerFlags.StageParametersDescFlags);
         }
@@ -28,7 +28,7 @@ namespace BitCraftGlobal.Types
             {
                 if (InternalOnUnhandledReducerError != null)
                 {
-                    switch(ctx.Event.Status)
+                    switch (ctx.Event.Status)
                     {
                         case Status.Failed(var reason): InternalOnUnhandledReducerError(ctx, new Exception(reason)); break;
                         case Status.OutOfEnergy(var _): InternalOnUnhandledReducerError(ctx, new Exception("out of energy")); break;
@@ -51,9 +51,9 @@ namespace BitCraftGlobal.Types
         public sealed partial class StageParametersDesc : Reducer, IReducerArgs
         {
             [DataMember(Name = "records")]
-            public System.Collections.Generic.List<ParametersDesc> Records;
+            public System.Collections.Generic.List<ParametersDescV2> Records;
 
-            public StageParametersDesc(System.Collections.Generic.List<ParametersDesc> Records)
+            public StageParametersDesc(System.Collections.Generic.List<ParametersDescV2> Records)
             {
                 this.Records = Records;
             }
