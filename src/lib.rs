@@ -129,6 +129,8 @@ pub mod chunk_coordinates_message_type;
 pub mod claim_create_empire_settlement_msg_type;
 pub mod claim_local_state_table;
 pub mod claim_local_state_type;
+pub mod claim_local_supply_security_threshold_state_table;
+pub mod claim_local_supply_security_threshold_state_type;
 pub mod claim_member_state_op_type;
 pub mod claim_member_state_table;
 pub mod claim_member_state_type;
@@ -707,6 +709,8 @@ pub mod onboarding_state_type;
 pub mod online_timestamp_type;
 pub mod parameters_desc_table;
 pub mod parameters_desc_type;
+pub mod parameters_desc_v_2_table;
+pub mod parameters_desc_v_2_type;
 pub mod parameters_player_move_desc_table;
 pub mod parameters_player_move_desc_type;
 pub mod partial_experience_state_table;
@@ -957,6 +961,8 @@ pub mod staged_static_data_v_5_table;
 pub mod staged_static_data_v_5_type;
 pub mod staged_static_data_v_6_table;
 pub mod staged_static_data_v_6_type;
+pub mod staged_static_data_v_7_table;
+pub mod staged_static_data_v_7_type;
 pub mod stamina_state_table;
 pub mod stamina_state_type;
 pub mod starving_player_state_table;
@@ -967,6 +973,7 @@ pub mod static_data_upload_v_3_type;
 pub mod static_data_upload_v_4_type;
 pub mod static_data_upload_v_5_type;
 pub mod static_data_upload_v_6_type;
+pub mod static_data_upload_v_7_type;
 pub mod storage_log_state_table;
 pub mod surface_type_type;
 pub mod target_state_table;
@@ -1262,6 +1269,8 @@ pub use chunk_coordinates_message_type::ChunkCoordinatesMessage;
 pub use claim_create_empire_settlement_msg_type::ClaimCreateEmpireSettlementMsg;
 pub use claim_local_state_table::*;
 pub use claim_local_state_type::ClaimLocalState;
+pub use claim_local_supply_security_threshold_state_table::*;
+pub use claim_local_supply_security_threshold_state_type::ClaimLocalSupplySecurityThresholdState;
 pub use claim_member_state_op_type::ClaimMemberStateOp;
 pub use claim_member_state_table::*;
 pub use claim_member_state_type::ClaimMemberState;
@@ -2323,6 +2332,8 @@ pub use onboarding_state_type::OnboardingState;
 pub use online_timestamp_type::OnlineTimestamp;
 pub use parameters_desc_table::*;
 pub use parameters_desc_type::ParametersDesc;
+pub use parameters_desc_v_2_table::*;
+pub use parameters_desc_v_2_type::ParametersDescV2;
 pub use parameters_player_move_desc_table::*;
 pub use parameters_player_move_desc_type::ParametersPlayerMoveDesc;
 pub use partial_experience_state_table::*;
@@ -2823,6 +2834,8 @@ pub use staged_static_data_v_5_table::*;
 pub use staged_static_data_v_5_type::StagedStaticDataV5;
 pub use staged_static_data_v_6_table::*;
 pub use staged_static_data_v_6_type::StagedStaticDataV6;
+pub use staged_static_data_v_7_table::*;
+pub use staged_static_data_v_7_type::StagedStaticDataV7;
 pub use stamina_state_table::*;
 pub use stamina_state_type::StaminaState;
 pub use starving_player_state_table::*;
@@ -2833,6 +2846,7 @@ pub use static_data_upload_v_3_type::StaticDataUploadV3;
 pub use static_data_upload_v_4_type::StaticDataUploadV4;
 pub use static_data_upload_v_5_type::StaticDataUploadV5;
 pub use static_data_upload_v_6_type::StaticDataUploadV6;
+pub use static_data_upload_v_7_type::StaticDataUploadV7;
 pub use storage_log_state_table::*;
 pub use surface_type_type::SurfaceType;
 pub use target_state_table::*;
@@ -3488,7 +3502,7 @@ pub enum Reducer {
         records: Vec<OnboardingState>,
     },
     ImportParametersDesc {
-        records: Vec<ParametersDesc>,
+        records: Vec<ParametersDescV2>,
     },
     ImportPathfindingDesc {
         records: Vec<PathfindingDesc>,
@@ -3873,7 +3887,7 @@ pub enum Reducer {
         records: Vec<OnboardingRewardDesc>,
     },
     StageParametersDesc {
-        records: Vec<ParametersDesc>,
+        records: Vec<ParametersDescV2>,
     },
     StagePathfindingDesc {
         records: Vec<PathfindingDesc>,
@@ -4712,6 +4726,8 @@ pub struct DbUpdate {
     chat_message_state: __sdk::TableUpdate<ChatMessageState>,
     chest_rarity_desc: __sdk::TableUpdate<ChestRarityDesc>,
     claim_local_state: __sdk::TableUpdate<ClaimLocalState>,
+    claim_local_supply_security_threshold_state:
+        __sdk::TableUpdate<ClaimLocalSupplySecurityThresholdState>,
     claim_member_state: __sdk::TableUpdate<ClaimMemberState>,
     claim_recruitment_state: __sdk::TableUpdate<ClaimRecruitmentState>,
     claim_state: __sdk::TableUpdate<ClaimState>,
@@ -4858,6 +4874,7 @@ pub struct DbUpdate {
     onboarding_reward_desc: __sdk::TableUpdate<OnboardingRewardDesc>,
     onboarding_state: __sdk::TableUpdate<OnboardingState>,
     parameters_desc: __sdk::TableUpdate<ParametersDesc>,
+    parameters_desc_v_2: __sdk::TableUpdate<ParametersDescV2>,
     parameters_player_move_desc: __sdk::TableUpdate<ParametersPlayerMoveDesc>,
     partial_experience_state: __sdk::TableUpdate<PartialExperienceState>,
     passive_craft_state: __sdk::TableUpdate<PassiveCraftState>,
@@ -4918,6 +4935,7 @@ pub struct DbUpdate {
     staged_static_data_v_4: __sdk::TableUpdate<StagedStaticDataV4>,
     staged_static_data_v_5: __sdk::TableUpdate<StagedStaticDataV5>,
     staged_static_data_v_6: __sdk::TableUpdate<StagedStaticDataV6>,
+    staged_static_data_v_7: __sdk::TableUpdate<StagedStaticDataV7>,
     stamina_state: __sdk::TableUpdate<StaminaState>,
     starving_player_state: __sdk::TableUpdate<StarvingPlayerState>,
     storage_log_state: __sdk::TableUpdate<ActionLogState>,
@@ -5071,6 +5089,13 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
                 "claim_local_state" => db_update
                     .claim_local_state
                     .append(claim_local_state_table::parse_table_update(table_update)?),
+                "claim_local_supply_security_threshold_state" => db_update
+                    .claim_local_supply_security_threshold_state
+                    .append(
+                        claim_local_supply_security_threshold_state_table::parse_table_update(
+                            table_update,
+                        )?,
+                    ),
                 "claim_member_state" => db_update
                     .claim_member_state
                     .append(claim_member_state_table::parse_table_update(table_update)?),
@@ -5527,6 +5552,9 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
                 "parameters_desc" => db_update
                     .parameters_desc
                     .append(parameters_desc_table::parse_table_update(table_update)?),
+                "parameters_desc_v2" => db_update
+                    .parameters_desc_v_2
+                    .append(parameters_desc_v_2_table::parse_table_update(table_update)?),
                 "parameters_player_move_desc" => db_update.parameters_player_move_desc.append(
                     parameters_player_move_desc_table::parse_table_update(table_update)?,
                 ),
@@ -5718,6 +5746,9 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
                 ),
                 "staged_static_data_v6" => db_update.staged_static_data_v_6.append(
                     staged_static_data_v_6_table::parse_table_update(table_update)?,
+                ),
+                "staged_static_data_v7" => db_update.staged_static_data_v_7.append(
+                    staged_static_data_v_7_table::parse_table_update(table_update)?,
                 ),
                 "stamina_state" => db_update
                     .stamina_state
@@ -5997,6 +6028,12 @@ impl __sdk::DbUpdate for DbUpdate {
             .with_updates_by_pk(|row| &row.id);
         diff.claim_local_state = cache
             .apply_diff_to_table::<ClaimLocalState>("claim_local_state", &self.claim_local_state)
+            .with_updates_by_pk(|row| &row.entity_id);
+        diff.claim_local_supply_security_threshold_state = cache
+            .apply_diff_to_table::<ClaimLocalSupplySecurityThresholdState>(
+                "claim_local_supply_security_threshold_state",
+                &self.claim_local_supply_security_threshold_state,
+            )
             .with_updates_by_pk(|row| &row.entity_id);
         diff.claim_member_state = cache
             .apply_diff_to_table::<ClaimMemberState>("claim_member_state", &self.claim_member_state)
@@ -6704,6 +6741,12 @@ impl __sdk::DbUpdate for DbUpdate {
         diff.parameters_desc = cache
             .apply_diff_to_table::<ParametersDesc>("parameters_desc", &self.parameters_desc)
             .with_updates_by_pk(|row| &row.version);
+        diff.parameters_desc_v_2 = cache
+            .apply_diff_to_table::<ParametersDescV2>(
+                "parameters_desc_v2",
+                &self.parameters_desc_v_2,
+            )
+            .with_updates_by_pk(|row| &row.version);
         diff.parameters_player_move_desc = cache
             .apply_diff_to_table::<ParametersPlayerMoveDesc>(
                 "parameters_player_move_desc",
@@ -6995,6 +7038,12 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.staged_static_data_v_6,
             )
             .with_updates_by_pk(|row| &row.version);
+        diff.staged_static_data_v_7 = cache
+            .apply_diff_to_table::<StagedStaticDataV7>(
+                "staged_static_data_v7",
+                &self.staged_static_data_v_7,
+            )
+            .with_updates_by_pk(|row| &row.version);
         diff.stamina_state = cache
             .apply_diff_to_table::<StaminaState>("stamina_state", &self.stamina_state)
             .with_updates_by_pk(|row| &row.entity_id);
@@ -7207,6 +7256,8 @@ pub struct AppliedDiff<'r> {
     chat_message_state: __sdk::TableAppliedDiff<'r, ChatMessageState>,
     chest_rarity_desc: __sdk::TableAppliedDiff<'r, ChestRarityDesc>,
     claim_local_state: __sdk::TableAppliedDiff<'r, ClaimLocalState>,
+    claim_local_supply_security_threshold_state:
+        __sdk::TableAppliedDiff<'r, ClaimLocalSupplySecurityThresholdState>,
     claim_member_state: __sdk::TableAppliedDiff<'r, ClaimMemberState>,
     claim_recruitment_state: __sdk::TableAppliedDiff<'r, ClaimRecruitmentState>,
     claim_state: __sdk::TableAppliedDiff<'r, ClaimState>,
@@ -7356,6 +7407,7 @@ pub struct AppliedDiff<'r> {
     onboarding_reward_desc: __sdk::TableAppliedDiff<'r, OnboardingRewardDesc>,
     onboarding_state: __sdk::TableAppliedDiff<'r, OnboardingState>,
     parameters_desc: __sdk::TableAppliedDiff<'r, ParametersDesc>,
+    parameters_desc_v_2: __sdk::TableAppliedDiff<'r, ParametersDescV2>,
     parameters_player_move_desc: __sdk::TableAppliedDiff<'r, ParametersPlayerMoveDesc>,
     partial_experience_state: __sdk::TableAppliedDiff<'r, PartialExperienceState>,
     passive_craft_state: __sdk::TableAppliedDiff<'r, PassiveCraftState>,
@@ -7417,6 +7469,7 @@ pub struct AppliedDiff<'r> {
     staged_static_data_v_4: __sdk::TableAppliedDiff<'r, StagedStaticDataV4>,
     staged_static_data_v_5: __sdk::TableAppliedDiff<'r, StagedStaticDataV5>,
     staged_static_data_v_6: __sdk::TableAppliedDiff<'r, StagedStaticDataV6>,
+    staged_static_data_v_7: __sdk::TableAppliedDiff<'r, StagedStaticDataV7>,
     stamina_state: __sdk::TableAppliedDiff<'r, StaminaState>,
     starving_player_state: __sdk::TableAppliedDiff<'r, StarvingPlayerState>,
     storage_log_state: __sdk::TableAppliedDiff<'r, ActionLogState>,
@@ -7612,6 +7665,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<ClaimLocalState>(
             "claim_local_state",
             &self.claim_local_state,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<ClaimLocalSupplySecurityThresholdState>(
+            "claim_local_supply_security_threshold_state",
+            &self.claim_local_supply_security_threshold_state,
             event,
         );
         callbacks.invoke_table_row_callbacks::<ClaimMemberState>(
@@ -8288,6 +8346,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             &self.parameters_desc,
             event,
         );
+        callbacks.invoke_table_row_callbacks::<ParametersDescV2>(
+            "parameters_desc_v2",
+            &self.parameters_desc_v_2,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<ParametersPlayerMoveDesc>(
             "parameters_player_move_desc",
             &self.parameters_player_move_desc,
@@ -8578,6 +8641,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<StagedStaticDataV6>(
             "staged_static_data_v6",
             &self.staged_static_data_v_6,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<StagedStaticDataV7>(
+            "staged_static_data_v7",
+            &self.staged_static_data_v_7,
             event,
         );
         callbacks.invoke_table_row_callbacks::<StaminaState>(
@@ -9364,6 +9432,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         chat_message_state_table::register_table(client_cache);
         chest_rarity_desc_table::register_table(client_cache);
         claim_local_state_table::register_table(client_cache);
+        claim_local_supply_security_threshold_state_table::register_table(client_cache);
         claim_member_state_table::register_table(client_cache);
         claim_recruitment_state_table::register_table(client_cache);
         claim_state_table::register_table(client_cache);
@@ -9510,6 +9579,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         onboarding_reward_desc_table::register_table(client_cache);
         onboarding_state_table::register_table(client_cache);
         parameters_desc_table::register_table(client_cache);
+        parameters_desc_v_2_table::register_table(client_cache);
         parameters_player_move_desc_table::register_table(client_cache);
         partial_experience_state_table::register_table(client_cache);
         passive_craft_state_table::register_table(client_cache);
@@ -9570,6 +9640,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         staged_static_data_v_4_table::register_table(client_cache);
         staged_static_data_v_5_table::register_table(client_cache);
         staged_static_data_v_6_table::register_table(client_cache);
+        staged_static_data_v_7_table::register_table(client_cache);
         stamina_state_table::register_table(client_cache);
         starving_player_state_table::register_table(client_cache);
         storage_log_state_table::register_table(client_cache);
