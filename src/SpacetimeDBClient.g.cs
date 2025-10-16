@@ -97,6 +97,7 @@ namespace BitCraftRegion.Types
             AddTable(DeployableCollectibleStateV2 = new(conn));
             AddTable(DeployableDesc = new(conn));
             AddTable(DeployableDescV2 = new(conn));
+            AddTable(DeployableDescV3 = new(conn));
             AddTable(DeployableDismountTimer = new(conn));
             AddTable(DeployableState = new(conn));
             AddTable(DestroyDimensionNetworkTimer = new(conn));
@@ -298,6 +299,7 @@ namespace BitCraftRegion.Types
             AddTable(StagedStaticDataV5 = new(conn));
             AddTable(StagedStaticDataV6 = new(conn));
             AddTable(StagedStaticDataV7 = new(conn));
+            AddTable(StagedStaticDataV8 = new(conn));
             AddTable(StaminaState = new(conn));
             AddTable(StarvingLoopTimer = new(conn));
             AddTable(StarvingPlayerState = new(conn));
@@ -1415,6 +1417,7 @@ namespace BitCraftRegion.Types
                 "traveler_task_agent_loop" => BSATNHelpers.Decode<Reducer.TravelerTaskAgentLoop>(encodedArgs),
                 "update_moving_cost" => BSATNHelpers.Decode<Reducer.UpdateMovingCost>(encodedArgs),
                 "update_scheduled_timers_from_static_data" => BSATNHelpers.Decode<Reducer.UpdateScheduledTimersFromStaticData>(encodedArgs),
+                "world_place_building" => BSATNHelpers.Decode<Reducer.WorldPlaceBuilding>(encodedArgs),
                 "world_place_resource" => BSATNHelpers.Decode<Reducer.WorldPlaceResource>(encodedArgs),
                 var reducer => throw new ArgumentOutOfRangeException("Reducer", $"Unknown reducer {reducer}")
             };
@@ -2067,6 +2070,7 @@ namespace BitCraftRegion.Types
                 Reducer.TravelerTaskAgentLoop args => Reducers.InvokeTravelerTaskAgentLoop(eventContext, args),
                 Reducer.UpdateMovingCost args => Reducers.InvokeUpdateMovingCost(eventContext, args),
                 Reducer.UpdateScheduledTimersFromStaticData args => Reducers.InvokeUpdateScheduledTimersFromStaticData(eventContext, args),
+                Reducer.WorldPlaceBuilding args => Reducers.InvokeWorldPlaceBuilding(eventContext, args),
                 Reducer.WorldPlaceResource args => Reducers.InvokeWorldPlaceResource(eventContext, args),
                 _ => throw new ArgumentOutOfRangeException("Reducer", $"Unknown reducer {reducer}")
             };
