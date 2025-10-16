@@ -823,6 +823,8 @@ import { DeployableDescTableHandle } from "./deployable_desc_table.ts";
 export { DeployableDescTableHandle };
 import { DeployableDescV2TableHandle } from "./deployable_desc_v_2_table.ts";
 export { DeployableDescV2TableHandle };
+import { DeployableDescV3TableHandle } from "./deployable_desc_v_3_table.ts";
+export { DeployableDescV3TableHandle };
 import { DeployableStateTableHandle } from "./deployable_state_table.ts";
 export { DeployableStateTableHandle };
 import { DeveloperTableHandle } from "./developer_table.ts";
@@ -1183,6 +1185,8 @@ import { StagedStaticDataV6TableHandle } from "./staged_static_data_v_6_table.ts
 export { StagedStaticDataV6TableHandle };
 import { StagedStaticDataV7TableHandle } from "./staged_static_data_v_7_table.ts";
 export { StagedStaticDataV7TableHandle };
+import { StagedStaticDataV8TableHandle } from "./staged_static_data_v_8_table.ts";
+export { StagedStaticDataV8TableHandle };
 import { StaminaStateTableHandle } from "./stamina_state_table.ts";
 export { StaminaStateTableHandle };
 import { StarvingPlayerStateTableHandle } from "./starving_player_state_table.ts";
@@ -1459,6 +1463,8 @@ import { DeployableDesc } from "./deployable_desc_type.ts";
 export { DeployableDesc };
 import { DeployableDescV2 } from "./deployable_desc_v_2_type.ts";
 export { DeployableDescV2 };
+import { DeployableDescV3 } from "./deployable_desc_v_3_type.ts";
+export { DeployableDescV3 };
 import { DeployableState } from "./deployable_state_type.ts";
 export { DeployableState };
 import { DeployableType } from "./deployable_type_type.ts";
@@ -2045,6 +2051,8 @@ import { StagedStaticDataV6 } from "./staged_static_data_v_6_type.ts";
 export { StagedStaticDataV6 };
 import { StagedStaticDataV7 } from "./staged_static_data_v_7_type.ts";
 export { StagedStaticDataV7 };
+import { StagedStaticDataV8 } from "./staged_static_data_v_8_type.ts";
+export { StagedStaticDataV8 };
 import { StaminaState } from "./stamina_state_type.ts";
 export { StaminaState };
 import { StarvingPlayerState } from "./starving_player_state_type.ts";
@@ -2063,6 +2071,8 @@ import { StaticDataUploadV6 } from "./static_data_upload_v_6_type.ts";
 export { StaticDataUploadV6 };
 import { StaticDataUploadV7 } from "./static_data_upload_v_7_type.ts";
 export { StaticDataUploadV7 };
+import { StaticDataUploadV8 } from "./static_data_upload_v_8_type.ts";
+export { StaticDataUploadV8 };
 import { SurfaceType } from "./surface_type_type.ts";
 export { SurfaceType };
 import { TargetState } from "./target_state_type.ts";
@@ -2738,6 +2748,15 @@ const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "id",
         colType: DeployableDescV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    deployable_desc_v3: {
+      tableName: "deployable_desc_v3",
+      rowType: DeployableDescV3.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: DeployableDescV3.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     deployable_state: {
@@ -4353,6 +4372,15 @@ const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "version",
         colType: StagedStaticDataV7.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_static_data_v8: {
+      tableName: "staged_static_data_v8",
+      rowType: StagedStaticDataV8.getTypeScriptAlgebraicType(),
+      primaryKey: "version",
+      primaryKeyInfo: {
+        colName: "version",
+        colType: StagedStaticDataV8.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     stamina_state: {
@@ -7914,7 +7942,7 @@ export class RemoteReducers {
     this.connection.offReducer("import_deconstruction_recipe_desc", callback);
   }
 
-  importDeployableDesc(records: DeployableDescV2[]) {
+  importDeployableDesc(records: DeployableDescV3[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
     ImportDeployableDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
@@ -7922,11 +7950,11 @@ export class RemoteReducers {
     this.connection.callReducer("import_deployable_desc", __argsBuffer, this.setCallReducerFlags.importDeployableDescFlags);
   }
 
-  onImportDeployableDesc(callback: (ctx: ReducerEventContext, records: DeployableDescV2[]) => void) {
+  onImportDeployableDesc(callback: (ctx: ReducerEventContext, records: DeployableDescV3[]) => void) {
     this.connection.onReducer("import_deployable_desc", callback);
   }
 
-  removeOnImportDeployableDesc(callback: (ctx: ReducerEventContext, records: DeployableDescV2[]) => void) {
+  removeOnImportDeployableDesc(callback: (ctx: ReducerEventContext, records: DeployableDescV3[]) => void) {
     this.connection.offReducer("import_deployable_desc", callback);
   }
 
@@ -10550,7 +10578,7 @@ export class RemoteReducers {
     this.connection.offReducer("stage_deconstruction_recipe_desc", callback);
   }
 
-  stageDeployableDesc(records: DeployableDescV2[]) {
+  stageDeployableDesc(records: DeployableDescV3[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
     StageDeployableDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
@@ -10558,11 +10586,11 @@ export class RemoteReducers {
     this.connection.callReducer("stage_deployable_desc", __argsBuffer, this.setCallReducerFlags.stageDeployableDescFlags);
   }
 
-  onStageDeployableDesc(callback: (ctx: ReducerEventContext, records: DeployableDescV2[]) => void) {
+  onStageDeployableDesc(callback: (ctx: ReducerEventContext, records: DeployableDescV3[]) => void) {
     this.connection.onReducer("stage_deployable_desc", callback);
   }
 
-  removeOnStageDeployableDesc(callback: (ctx: ReducerEventContext, records: DeployableDescV2[]) => void) {
+  removeOnStageDeployableDesc(callback: (ctx: ReducerEventContext, records: DeployableDescV3[]) => void) {
     this.connection.offReducer("stage_deployable_desc", callback);
   }
 
@@ -13539,6 +13567,10 @@ export class RemoteTables {
     return new DeployableDescV2TableHandle(this.connection.clientCache.getOrCreateTable<DeployableDescV2>(REMOTE_MODULE.tables.deployable_desc_v2));
   }
 
+  get deployableDescV3(): DeployableDescV3TableHandle {
+    return new DeployableDescV3TableHandle(this.connection.clientCache.getOrCreateTable<DeployableDescV3>(REMOTE_MODULE.tables.deployable_desc_v3));
+  }
+
   get deployableState(): DeployableStateTableHandle {
     return new DeployableStateTableHandle(this.connection.clientCache.getOrCreateTable<DeployableState>(REMOTE_MODULE.tables.deployable_state));
   }
@@ -14257,6 +14289,10 @@ export class RemoteTables {
 
   get stagedStaticDataV7(): StagedStaticDataV7TableHandle {
     return new StagedStaticDataV7TableHandle(this.connection.clientCache.getOrCreateTable<StagedStaticDataV7>(REMOTE_MODULE.tables.staged_static_data_v7));
+  }
+
+  get stagedStaticDataV8(): StagedStaticDataV8TableHandle {
+    return new StagedStaticDataV8TableHandle(this.connection.clientCache.getOrCreateTable<StagedStaticDataV8>(REMOTE_MODULE.tables.staged_static_data_v8));
   }
 
   get staminaState(): StaminaStateTableHandle {

@@ -31,34 +31,36 @@ import {
   type ReducerEventContextInterface,
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
+import { StaticDataUploadV8 as __StaticDataUploadV8 } from "./static_data_upload_v_8_type";
 
-import { DeployableDescV3 as __DeployableDescV3 } from "./deployable_desc_v_3_type";
-
-export type ImportDeployableDesc = {
-  records: __DeployableDescV3[],
+export type StagedStaticDataV8 = {
+  version: number,
+  staticData: __StaticDataUploadV8,
 };
 
 /**
  * A namespace for generated helper functions.
  */
-export namespace ImportDeployableDesc {
+export namespace StagedStaticDataV8 {
   /**
   * A function which returns this type represented as an AlgebraicType.
   * This function is derived from the AlgebraicType used to generate this type.
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("records", AlgebraicType.createArrayType(__DeployableDescV3.getTypeScriptAlgebraicType())),
+      new ProductTypeElement("version", AlgebraicType.createU32Type()),
+      new ProductTypeElement("staticData", __StaticDataUploadV8.getTypeScriptAlgebraicType()),
     ]);
   }
 
-  export function serialize(writer: BinaryWriter, value: ImportDeployableDesc): void {
-    ImportDeployableDesc.getTypeScriptAlgebraicType().serialize(writer, value);
+  export function serialize(writer: BinaryWriter, value: StagedStaticDataV8): void {
+    StagedStaticDataV8.getTypeScriptAlgebraicType().serialize(writer, value);
   }
 
-  export function deserialize(reader: BinaryReader): ImportDeployableDesc {
-    return ImportDeployableDesc.getTypeScriptAlgebraicType().deserialize(reader);
+  export function deserialize(reader: BinaryReader): StagedStaticDataV8 {
+    return StagedStaticDataV8.getTypeScriptAlgebraicType().deserialize(reader);
   }
 
 }
+
 
