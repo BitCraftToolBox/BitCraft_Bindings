@@ -14,10 +14,10 @@ namespace BitCraftGlobal.Types
 {
     public sealed partial class RemoteReducers : RemoteBase
     {
-        public delegate void StageDeployableDescHandler(ReducerEventContext ctx, System.Collections.Generic.List<DeployableDescV2> records);
+        public delegate void StageDeployableDescHandler(ReducerEventContext ctx, System.Collections.Generic.List<DeployableDescV3> records);
         public event StageDeployableDescHandler? OnStageDeployableDesc;
 
-        public void StageDeployableDesc(System.Collections.Generic.List<DeployableDescV2> records)
+        public void StageDeployableDesc(System.Collections.Generic.List<DeployableDescV3> records)
         {
             conn.InternalCallReducer(new Reducer.StageDeployableDesc(records), this.SetCallReducerFlags.StageDeployableDescFlags);
         }
@@ -51,9 +51,9 @@ namespace BitCraftGlobal.Types
         public sealed partial class StageDeployableDesc : Reducer, IReducerArgs
         {
             [DataMember(Name = "records")]
-            public System.Collections.Generic.List<DeployableDescV2> Records;
+            public System.Collections.Generic.List<DeployableDescV3> Records;
 
-            public StageDeployableDesc(System.Collections.Generic.List<DeployableDescV2> Records)
+            public StageDeployableDesc(System.Collections.Generic.List<DeployableDescV3> Records)
             {
                 this.Records = Records;
             }

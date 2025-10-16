@@ -86,6 +86,7 @@ namespace BitCraftGlobal.Types
             AddTable(DeployableCollectibleStateV2 = new(conn));
             AddTable(DeployableDesc = new(conn));
             AddTable(DeployableDescV2 = new(conn));
+            AddTable(DeployableDescV3 = new(conn));
             AddTable(DeployableState = new(conn));
             AddTable(Developer = new(conn));
             AddTable(DimensionDescriptionState = new(conn));
@@ -266,6 +267,7 @@ namespace BitCraftGlobal.Types
             AddTable(StagedStaticDataV5 = new(conn));
             AddTable(StagedStaticDataV6 = new(conn));
             AddTable(StagedStaticDataV7 = new(conn));
+            AddTable(StagedStaticDataV8 = new(conn));
             AddTable(StaminaState = new(conn));
             AddTable(StarvingPlayerState = new(conn));
             AddTable(StorageLogState = new(conn));
