@@ -1293,6 +1293,8 @@ import { UpdateMovingCost } from "./update_moving_cost_reducer.ts";
 export { UpdateMovingCost };
 import { UpdateScheduledTimersFromStaticData } from "./update_scheduled_timers_from_static_data_reducer.ts";
 export { UpdateScheduledTimersFromStaticData };
+import { WorldPlaceBuilding } from "./world_place_building_reducer.ts";
+export { WorldPlaceBuilding };
 import { WorldPlaceResource } from "./world_place_resource_reducer.ts";
 export { WorldPlaceResource };
 
@@ -1445,6 +1447,8 @@ import { DeployableDescTableHandle } from "./deployable_desc_table.ts";
 export { DeployableDescTableHandle };
 import { DeployableDescV2TableHandle } from "./deployable_desc_v_2_table.ts";
 export { DeployableDescV2TableHandle };
+import { DeployableDescV3TableHandle } from "./deployable_desc_v_3_table.ts";
+export { DeployableDescV3TableHandle };
 import { DeployableDismountTimerTableHandle } from "./deployable_dismount_timer_table.ts";
 export { DeployableDismountTimerTableHandle };
 import { DeployableStateTableHandle } from "./deployable_state_table.ts";
@@ -1847,6 +1851,8 @@ import { StagedStaticDataV6TableHandle } from "./staged_static_data_v_6_table.ts
 export { StagedStaticDataV6TableHandle };
 import { StagedStaticDataV7TableHandle } from "./staged_static_data_v_7_table.ts";
 export { StagedStaticDataV7TableHandle };
+import { StagedStaticDataV8TableHandle } from "./staged_static_data_v_8_table.ts";
+export { StagedStaticDataV8TableHandle };
 import { StaminaStateTableHandle } from "./stamina_state_table.ts";
 export { StaminaStateTableHandle };
 import { StarvingLoopTimerTableHandle } from "./starving_loop_timer_table.ts";
@@ -2029,6 +2035,8 @@ import { BuildingNicknameState } from "./building_nickname_state_type.ts";
 export { BuildingNicknameState };
 import { BuildingNicknameStateOp } from "./building_nickname_state_op_type.ts";
 export { BuildingNicknameStateOp };
+import { BuildingPlacement } from "./building_placement_type.ts";
+export { BuildingPlacement };
 import { BuildingPortalDesc } from "./building_portal_desc_type.ts";
 export { BuildingPortalDesc };
 import { BuildingPortalDescV2 } from "./building_portal_desc_v_2_type.ts";
@@ -2193,6 +2201,8 @@ import { DeployableDesc } from "./deployable_desc_type.ts";
 export { DeployableDesc };
 import { DeployableDescV2 } from "./deployable_desc_v_2_type.ts";
 export { DeployableDescV2 };
+import { DeployableDescV3 } from "./deployable_desc_v_3_type.ts";
+export { DeployableDescV3 };
 import { DeployableDismountTimer } from "./deployable_dismount_timer_type.ts";
 export { DeployableDismountTimer };
 import { DeployableState } from "./deployable_state_type.ts";
@@ -3041,6 +3051,8 @@ import { StagedStaticDataV6 } from "./staged_static_data_v_6_type.ts";
 export { StagedStaticDataV6 };
 import { StagedStaticDataV7 } from "./staged_static_data_v_7_type.ts";
 export { StagedStaticDataV7 };
+import { StagedStaticDataV8 } from "./staged_static_data_v_8_type.ts";
+export { StagedStaticDataV8 };
 import { StaminaState } from "./stamina_state_type.ts";
 export { StaminaState };
 import { StarvingLoopTimer } from "./starving_loop_timer_type.ts";
@@ -3061,6 +3073,8 @@ import { StaticDataUploadV6 } from "./static_data_upload_v_6_type.ts";
 export { StaticDataUploadV6 };
 import { StaticDataUploadV7 } from "./static_data_upload_v_7_type.ts";
 export { StaticDataUploadV7 };
+import { StaticDataUploadV8 } from "./static_data_upload_v_8_type.ts";
+export { StaticDataUploadV8 };
 import { StorageLogCleanupLoopTimer } from "./storage_log_cleanup_loop_timer_type.ts";
 export { StorageLogCleanupLoopTimer };
 import { SurfaceType } from "./surface_type_type.ts";
@@ -3227,6 +3241,8 @@ import { WorldGenWorldDefinition } from "./world_gen_world_definition_type.ts";
 export { WorldGenWorldDefinition };
 import { WorldGenWorldMapDefinition } from "./world_gen_world_map_definition_type.ts";
 export { WorldGenWorldMapDefinition };
+import { WorldPlaceBuildingRequest } from "./world_place_building_request_type.ts";
+export { WorldPlaceBuildingRequest };
 import { WorldPlaceResourceRequest } from "./world_place_resource_request_type.ts";
 export { WorldPlaceResourceRequest };
 import { WorldPlacementType } from "./world_placement_type_type.ts";
@@ -3902,6 +3918,15 @@ export const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "id",
         colType: DeployableDescV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    deployable_desc_v3: {
+      tableName: "deployable_desc_v3",
+      rowType: DeployableDescV3.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: DeployableDescV3.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     deployable_dismount_timer: {
@@ -5706,6 +5731,15 @@ export const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "version",
         colType: StagedStaticDataV7.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_static_data_v8: {
+      tableName: "staged_static_data_v8",
+      rowType: StagedStaticDataV8.getTypeScriptAlgebraicType(),
+      primaryKey: "version",
+      primaryKeyInfo: {
+        colName: "version",
+        colType: StagedStaticDataV8.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     stamina_state: {
@@ -8626,6 +8660,10 @@ export const REMOTE_MODULE = {
       reducerName: "update_scheduled_timers_from_static_data",
       argsType: UpdateScheduledTimersFromStaticData.getTypeScriptAlgebraicType(),
     },
+    world_place_building: {
+      reducerName: "world_place_building",
+      argsType: WorldPlaceBuilding.getTypeScriptAlgebraicType(),
+    },
     world_place_resource: {
       reducerName: "world_place_resource",
       argsType: WorldPlaceResource.getTypeScriptAlgebraicType(),
@@ -9290,6 +9328,7 @@ export type Reducer = never
 | { name: "TravelerTaskAgentLoop", args: TravelerTaskAgentLoop }
 | { name: "UpdateMovingCost", args: UpdateMovingCost }
 | { name: "UpdateScheduledTimersFromStaticData", args: UpdateScheduledTimersFromStaticData }
+| { name: "WorldPlaceBuilding", args: WorldPlaceBuilding }
 | { name: "WorldPlaceResource", args: WorldPlaceResource }
 ;
 
@@ -13460,7 +13499,7 @@ export class RemoteReducers {
     this.connection.offReducer("import_deconstruction_recipe_desc", callback);
   }
 
-  importDeployableDesc(records: DeployableDescV2[]) {
+  importDeployableDesc(records: DeployableDescV3[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
     ImportDeployableDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
@@ -13468,11 +13507,11 @@ export class RemoteReducers {
     this.connection.callReducer("import_deployable_desc", __argsBuffer, this.setCallReducerFlags.importDeployableDescFlags);
   }
 
-  onImportDeployableDesc(callback: (ctx: ReducerEventContext, records: DeployableDescV2[]) => void) {
+  onImportDeployableDesc(callback: (ctx: ReducerEventContext, records: DeployableDescV3[]) => void) {
     this.connection.onReducer("import_deployable_desc", callback);
   }
 
-  removeOnImportDeployableDesc(callback: (ctx: ReducerEventContext, records: DeployableDescV2[]) => void) {
+  removeOnImportDeployableDesc(callback: (ctx: ReducerEventContext, records: DeployableDescV3[]) => void) {
     this.connection.offReducer("import_deployable_desc", callback);
   }
 
@@ -17816,7 +17855,7 @@ export class RemoteReducers {
     this.connection.offReducer("stage_deconstruction_recipe_desc", callback);
   }
 
-  stageDeployableDesc(records: DeployableDescV2[]) {
+  stageDeployableDesc(records: DeployableDescV3[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
     StageDeployableDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
@@ -17824,11 +17863,11 @@ export class RemoteReducers {
     this.connection.callReducer("stage_deployable_desc", __argsBuffer, this.setCallReducerFlags.stageDeployableDescFlags);
   }
 
-  onStageDeployableDesc(callback: (ctx: ReducerEventContext, records: DeployableDescV2[]) => void) {
+  onStageDeployableDesc(callback: (ctx: ReducerEventContext, records: DeployableDescV3[]) => void) {
     this.connection.onReducer("stage_deployable_desc", callback);
   }
 
-  removeOnStageDeployableDesc(callback: (ctx: ReducerEventContext, records: DeployableDescV2[]) => void) {
+  removeOnStageDeployableDesc(callback: (ctx: ReducerEventContext, records: DeployableDescV3[]) => void) {
     this.connection.offReducer("stage_deployable_desc", callback);
   }
 
@@ -19210,6 +19249,22 @@ export class RemoteReducers {
 
   removeOnUpdateScheduledTimersFromStaticData(callback: (ctx: ReducerEventContext) => void) {
     this.connection.offReducer("update_scheduled_timers_from_static_data", callback);
+  }
+
+  worldPlaceBuilding(request: WorldPlaceBuildingRequest) {
+    const __args = { request };
+    let __writer = new BinaryWriter(1024);
+    WorldPlaceBuilding.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("world_place_building", __argsBuffer, this.setCallReducerFlags.worldPlaceBuildingFlags);
+  }
+
+  onWorldPlaceBuilding(callback: (ctx: ReducerEventContext, request: WorldPlaceBuildingRequest) => void) {
+    this.connection.onReducer("world_place_building", callback);
+  }
+
+  removeOnWorldPlaceBuilding(callback: (ctx: ReducerEventContext, request: WorldPlaceBuildingRequest) => void) {
+    this.connection.offReducer("world_place_building", callback);
   }
 
   worldPlaceResource(request: WorldPlaceResourceRequest) {
@@ -22371,6 +22426,11 @@ export class SetReducerFlags {
     this.updateScheduledTimersFromStaticDataFlags = flags;
   }
 
+  worldPlaceBuildingFlags: CallReducerFlags = 'FullUpdate';
+  worldPlaceBuilding(flags: CallReducerFlags) {
+    this.worldPlaceBuildingFlags = flags;
+  }
+
   worldPlaceResourceFlags: CallReducerFlags = 'FullUpdate';
   worldPlaceResource(flags: CallReducerFlags) {
     this.worldPlaceResourceFlags = flags;
@@ -22675,6 +22735,10 @@ export class RemoteTables {
 
   get deployableDescV2(): DeployableDescV2TableHandle {
     return new DeployableDescV2TableHandle(this.connection.clientCache.getOrCreateTable<DeployableDescV2>(REMOTE_MODULE.tables.deployable_desc_v2));
+  }
+
+  get deployableDescV3(): DeployableDescV3TableHandle {
+    return new DeployableDescV3TableHandle(this.connection.clientCache.getOrCreateTable<DeployableDescV3>(REMOTE_MODULE.tables.deployable_desc_v3));
   }
 
   get deployableDismountTimer(): DeployableDismountTimerTableHandle {
@@ -23479,6 +23543,10 @@ export class RemoteTables {
 
   get stagedStaticDataV7(): StagedStaticDataV7TableHandle {
     return new StagedStaticDataV7TableHandle(this.connection.clientCache.getOrCreateTable<StagedStaticDataV7>(REMOTE_MODULE.tables.staged_static_data_v7));
+  }
+
+  get stagedStaticDataV8(): StagedStaticDataV8TableHandle {
+    return new StagedStaticDataV8TableHandle(this.connection.clientCache.getOrCreateTable<StagedStaticDataV8>(REMOTE_MODULE.tables.staged_static_data_v8));
   }
 
   get staminaState(): StaminaStateTableHandle {

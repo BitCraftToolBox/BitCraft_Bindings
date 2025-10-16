@@ -32,32 +32,32 @@ import {
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
 
-import { DeployableDescV3 as __DeployableDescV3 } from "./deployable_desc_v_3_type";
+import { WorldPlaceBuildingRequest as __WorldPlaceBuildingRequest } from "./world_place_building_request_type";
 
-export type ImportDeployableDesc = {
-  records: __DeployableDescV3[],
+export type WorldPlaceBuilding = {
+  request: __WorldPlaceBuildingRequest,
 };
 
 /**
  * A namespace for generated helper functions.
  */
-export namespace ImportDeployableDesc {
+export namespace WorldPlaceBuilding {
   /**
   * A function which returns this type represented as an AlgebraicType.
   * This function is derived from the AlgebraicType used to generate this type.
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("records", AlgebraicType.createArrayType(__DeployableDescV3.getTypeScriptAlgebraicType())),
+      new ProductTypeElement("request", __WorldPlaceBuildingRequest.getTypeScriptAlgebraicType()),
     ]);
   }
 
-  export function serialize(writer: BinaryWriter, value: ImportDeployableDesc): void {
-    ImportDeployableDesc.getTypeScriptAlgebraicType().serialize(writer, value);
+  export function serialize(writer: BinaryWriter, value: WorldPlaceBuilding): void {
+    WorldPlaceBuilding.getTypeScriptAlgebraicType().serialize(writer, value);
   }
 
-  export function deserialize(reader: BinaryReader): ImportDeployableDesc {
-    return ImportDeployableDesc.getTypeScriptAlgebraicType().deserialize(reader);
+  export function deserialize(reader: BinaryReader): WorldPlaceBuilding {
+    return WorldPlaceBuilding.getTypeScriptAlgebraicType().deserialize(reader);
   }
 
 }

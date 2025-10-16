@@ -31,34 +31,36 @@ import {
   type ReducerEventContextInterface,
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
+import { OffsetCoordinatesSmallMessage as __OffsetCoordinatesSmallMessage } from "./offset_coordinates_small_message_type";
 
-import { DeployableDescV3 as __DeployableDescV3 } from "./deployable_desc_v_3_type";
-
-export type ImportDeployableDesc = {
-  records: __DeployableDescV3[],
+export type BuildingPlacement = {
+  coordinates: __OffsetCoordinatesSmallMessage,
+  facingDirection: number,
 };
 
 /**
  * A namespace for generated helper functions.
  */
-export namespace ImportDeployableDesc {
+export namespace BuildingPlacement {
   /**
   * A function which returns this type represented as an AlgebraicType.
   * This function is derived from the AlgebraicType used to generate this type.
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("records", AlgebraicType.createArrayType(__DeployableDescV3.getTypeScriptAlgebraicType())),
+      new ProductTypeElement("coordinates", __OffsetCoordinatesSmallMessage.getTypeScriptAlgebraicType()),
+      new ProductTypeElement("facingDirection", AlgebraicType.createI32Type()),
     ]);
   }
 
-  export function serialize(writer: BinaryWriter, value: ImportDeployableDesc): void {
-    ImportDeployableDesc.getTypeScriptAlgebraicType().serialize(writer, value);
+  export function serialize(writer: BinaryWriter, value: BuildingPlacement): void {
+    BuildingPlacement.getTypeScriptAlgebraicType().serialize(writer, value);
   }
 
-  export function deserialize(reader: BinaryReader): ImportDeployableDesc {
-    return ImportDeployableDesc.getTypeScriptAlgebraicType().deserialize(reader);
+  export function deserialize(reader: BinaryReader): BuildingPlacement {
+    return BuildingPlacement.getTypeScriptAlgebraicType().deserialize(reader);
   }
 
 }
+
 
