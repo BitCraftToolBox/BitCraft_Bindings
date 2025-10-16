@@ -200,6 +200,8 @@ pub mod deployable_desc_table;
 pub mod deployable_desc_type;
 pub mod deployable_desc_v_2_table;
 pub mod deployable_desc_v_2_type;
+pub mod deployable_desc_v_3_table;
+pub mod deployable_desc_v_3_type;
 pub mod deployable_state_table;
 pub mod deployable_state_type;
 pub mod deployable_type_type;
@@ -963,6 +965,8 @@ pub mod staged_static_data_v_6_table;
 pub mod staged_static_data_v_6_type;
 pub mod staged_static_data_v_7_table;
 pub mod staged_static_data_v_7_type;
+pub mod staged_static_data_v_8_table;
+pub mod staged_static_data_v_8_type;
 pub mod stamina_state_table;
 pub mod stamina_state_type;
 pub mod starving_player_state_table;
@@ -974,6 +978,7 @@ pub mod static_data_upload_v_4_type;
 pub mod static_data_upload_v_5_type;
 pub mod static_data_upload_v_6_type;
 pub mod static_data_upload_v_7_type;
+pub mod static_data_upload_v_8_type;
 pub mod storage_log_state_table;
 pub mod surface_type_type;
 pub mod target_state_table;
@@ -1351,6 +1356,8 @@ pub use deployable_desc_table::*;
 pub use deployable_desc_type::DeployableDesc;
 pub use deployable_desc_v_2_table::*;
 pub use deployable_desc_v_2_type::DeployableDescV2;
+pub use deployable_desc_v_3_table::*;
+pub use deployable_desc_v_3_type::DeployableDescV3;
 pub use deployable_state_table::*;
 pub use deployable_state_type::DeployableState;
 pub use deployable_type_type::DeployableType;
@@ -2836,6 +2843,8 @@ pub use staged_static_data_v_6_table::*;
 pub use staged_static_data_v_6_type::StagedStaticDataV6;
 pub use staged_static_data_v_7_table::*;
 pub use staged_static_data_v_7_type::StagedStaticDataV7;
+pub use staged_static_data_v_8_table::*;
+pub use staged_static_data_v_8_type::StagedStaticDataV8;
 pub use stamina_state_table::*;
 pub use stamina_state_type::StaminaState;
 pub use starving_player_state_table::*;
@@ -2847,6 +2856,7 @@ pub use static_data_upload_v_4_type::StaticDataUploadV4;
 pub use static_data_upload_v_5_type::StaticDataUploadV5;
 pub use static_data_upload_v_6_type::StaticDataUploadV6;
 pub use static_data_upload_v_7_type::StaticDataUploadV7;
+pub use static_data_upload_v_8_type::StaticDataUploadV8;
 pub use storage_log_state_table::*;
 pub use surface_type_type::SurfaceType;
 pub use target_state_table::*;
@@ -3283,7 +3293,7 @@ pub enum Reducer {
         records: Vec<DeconstructionRecipeDesc>,
     },
     ImportDeployableDesc {
-        records: Vec<DeployableDescV2>,
+        records: Vec<DeployableDescV3>,
     },
     ImportDeployableState {
         records: Vec<DeployableState>,
@@ -3779,7 +3789,7 @@ pub enum Reducer {
         records: Vec<DeconstructionRecipeDesc>,
     },
     StageDeployableDesc {
-        records: Vec<DeployableDescV2>,
+        records: Vec<DeployableDescV3>,
     },
     StageDistantVisibleEntityDesc {
         records: Vec<DistantVisibleEntityDesc>,
@@ -4756,6 +4766,7 @@ pub struct DbUpdate {
     deployable_collectible_state_v_2: __sdk::TableUpdate<DeployableCollectibleStateV2>,
     deployable_desc: __sdk::TableUpdate<DeployableDesc>,
     deployable_desc_v_2: __sdk::TableUpdate<DeployableDescV2>,
+    deployable_desc_v_3: __sdk::TableUpdate<DeployableDescV3>,
     deployable_state: __sdk::TableUpdate<DeployableState>,
     developer: __sdk::TableUpdate<Developer>,
     dimension_description_state: __sdk::TableUpdate<DimensionDescriptionState>,
@@ -4936,6 +4947,7 @@ pub struct DbUpdate {
     staged_static_data_v_5: __sdk::TableUpdate<StagedStaticDataV5>,
     staged_static_data_v_6: __sdk::TableUpdate<StagedStaticDataV6>,
     staged_static_data_v_7: __sdk::TableUpdate<StagedStaticDataV7>,
+    staged_static_data_v_8: __sdk::TableUpdate<StagedStaticDataV8>,
     stamina_state: __sdk::TableUpdate<StaminaState>,
     starving_player_state: __sdk::TableUpdate<StarvingPlayerState>,
     storage_log_state: __sdk::TableUpdate<ActionLogState>,
@@ -5182,6 +5194,9 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
                 "deployable_desc_v2" => db_update
                     .deployable_desc_v_2
                     .append(deployable_desc_v_2_table::parse_table_update(table_update)?),
+                "deployable_desc_v3" => db_update
+                    .deployable_desc_v_3
+                    .append(deployable_desc_v_3_table::parse_table_update(table_update)?),
                 "deployable_state" => db_update
                     .deployable_state
                     .append(deployable_state_table::parse_table_update(table_update)?),
@@ -5750,6 +5765,9 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
                 "staged_static_data_v7" => db_update.staged_static_data_v_7.append(
                     staged_static_data_v_7_table::parse_table_update(table_update)?,
                 ),
+                "staged_static_data_v8" => db_update.staged_static_data_v_8.append(
+                    staged_static_data_v_8_table::parse_table_update(table_update)?,
+                ),
                 "stamina_state" => db_update
                     .stamina_state
                     .append(stamina_state_table::parse_table_update(table_update)?),
@@ -6165,6 +6183,12 @@ impl __sdk::DbUpdate for DbUpdate {
             .apply_diff_to_table::<DeployableDescV2>(
                 "deployable_desc_v2",
                 &self.deployable_desc_v_2,
+            )
+            .with_updates_by_pk(|row| &row.id);
+        diff.deployable_desc_v_3 = cache
+            .apply_diff_to_table::<DeployableDescV3>(
+                "deployable_desc_v3",
+                &self.deployable_desc_v_3,
             )
             .with_updates_by_pk(|row| &row.id);
         diff.deployable_state = cache
@@ -7044,6 +7068,12 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.staged_static_data_v_7,
             )
             .with_updates_by_pk(|row| &row.version);
+        diff.staged_static_data_v_8 = cache
+            .apply_diff_to_table::<StagedStaticDataV8>(
+                "staged_static_data_v8",
+                &self.staged_static_data_v_8,
+            )
+            .with_updates_by_pk(|row| &row.version);
         diff.stamina_state = cache
             .apply_diff_to_table::<StaminaState>("stamina_state", &self.stamina_state)
             .with_updates_by_pk(|row| &row.entity_id);
@@ -7286,6 +7316,7 @@ pub struct AppliedDiff<'r> {
     deployable_collectible_state_v_2: __sdk::TableAppliedDiff<'r, DeployableCollectibleStateV2>,
     deployable_desc: __sdk::TableAppliedDiff<'r, DeployableDesc>,
     deployable_desc_v_2: __sdk::TableAppliedDiff<'r, DeployableDescV2>,
+    deployable_desc_v_3: __sdk::TableAppliedDiff<'r, DeployableDescV3>,
     deployable_state: __sdk::TableAppliedDiff<'r, DeployableState>,
     developer: __sdk::TableAppliedDiff<'r, Developer>,
     dimension_description_state: __sdk::TableAppliedDiff<'r, DimensionDescriptionState>,
@@ -7470,6 +7501,7 @@ pub struct AppliedDiff<'r> {
     staged_static_data_v_5: __sdk::TableAppliedDiff<'r, StagedStaticDataV5>,
     staged_static_data_v_6: __sdk::TableAppliedDiff<'r, StagedStaticDataV6>,
     staged_static_data_v_7: __sdk::TableAppliedDiff<'r, StagedStaticDataV7>,
+    staged_static_data_v_8: __sdk::TableAppliedDiff<'r, StagedStaticDataV8>,
     stamina_state: __sdk::TableAppliedDiff<'r, StaminaState>,
     starving_player_state: __sdk::TableAppliedDiff<'r, StarvingPlayerState>,
     storage_log_state: __sdk::TableAppliedDiff<'r, ActionLogState>,
@@ -7802,6 +7834,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<DeployableDescV2>(
             "deployable_desc_v2",
             &self.deployable_desc_v_2,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<DeployableDescV3>(
+            "deployable_desc_v3",
+            &self.deployable_desc_v_3,
             event,
         );
         callbacks.invoke_table_row_callbacks::<DeployableState>(
@@ -8648,6 +8685,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             &self.staged_static_data_v_7,
             event,
         );
+        callbacks.invoke_table_row_callbacks::<StagedStaticDataV8>(
+            "staged_static_data_v8",
+            &self.staged_static_data_v_8,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<StaminaState>(
             "stamina_state",
             &self.stamina_state,
@@ -9461,6 +9503,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         deployable_collectible_state_v_2_table::register_table(client_cache);
         deployable_desc_table::register_table(client_cache);
         deployable_desc_v_2_table::register_table(client_cache);
+        deployable_desc_v_3_table::register_table(client_cache);
         deployable_state_table::register_table(client_cache);
         developer_table::register_table(client_cache);
         dimension_description_state_table::register_table(client_cache);
@@ -9641,6 +9684,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         staged_static_data_v_5_table::register_table(client_cache);
         staged_static_data_v_6_table::register_table(client_cache);
         staged_static_data_v_7_table::register_table(client_cache);
+        staged_static_data_v_8_table::register_table(client_cache);
         stamina_state_table::register_table(client_cache);
         starving_player_state_table::register_table(client_cache);
         storage_log_state_table::register_table(client_cache);
