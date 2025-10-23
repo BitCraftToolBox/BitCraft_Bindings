@@ -1051,6 +1051,8 @@ import { RespawnResourceInChunk } from "./respawn_resource_in_chunk_reducer.ts";
 export { RespawnResourceInChunk };
 import { RetrieveLostItem } from "./retrieve_lost_item_reducer.ts";
 export { RetrieveLostItem };
+import { SaveInterModuleMessageError } from "./save_inter_module_message_error_reducer.ts";
+export { SaveInterModuleMessageError };
 import { ScrollRead } from "./scroll_read_reducer.ts";
 export { ScrollRead };
 import { SearchForClosestBuilding } from "./search_for_closest_building_reducer.ts";
@@ -1575,6 +1577,8 @@ import { InterModuleMessageTableHandle } from "./inter_module_message_table.ts";
 export { InterModuleMessageTableHandle };
 import { InterModuleMessageCounterTableHandle } from "./inter_module_message_counter_table.ts";
 export { InterModuleMessageCounterTableHandle };
+import { InterModuleMessageErrorsTableHandle } from "./inter_module_message_errors_table.ts";
+export { InterModuleMessageErrorsTableHandle };
 import { InterModuleMessageV2TableHandle } from "./inter_module_message_v_2_table.ts";
 export { InterModuleMessageV2TableHandle };
 import { InterModuleResponseMessageCounterTableHandle } from "./inter_module_response_message_counter_table.ts";
@@ -2433,6 +2437,8 @@ import { InterModuleMessage } from "./inter_module_message_type.ts";
 export { InterModuleMessage };
 import { InterModuleMessageCounter } from "./inter_module_message_counter_type.ts";
 export { InterModuleMessageCounter };
+import { InterModuleMessageErrors } from "./inter_module_message_errors_type.ts";
+export { InterModuleMessageErrors };
 import { InterModuleMessageV2 } from "./inter_module_message_v_2_type.ts";
 export { InterModuleMessageV2 };
 import { InterModuleResponseMessageCounter } from "./inter_module_response_message_counter_type.ts";
@@ -4489,6 +4495,15 @@ export const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "moduleId",
         colType: InterModuleMessageCounter.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    inter_module_message_errors: {
+      tableName: "inter_module_message_errors",
+      rowType: InterModuleMessageErrors.getTypeScriptAlgebraicType(),
+      primaryKey: "senderModuleId",
+      primaryKeyInfo: {
+        colName: "senderModuleId",
+        colType: InterModuleMessageErrors.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     inter_module_message_v2: {
@@ -8176,6 +8191,10 @@ export const REMOTE_MODULE = {
       reducerName: "retrieve_lost_item",
       argsType: RetrieveLostItem.getTypeScriptAlgebraicType(),
     },
+    save_inter_module_message_error: {
+      reducerName: "save_inter_module_message_error",
+      argsType: SaveInterModuleMessageError.getTypeScriptAlgebraicType(),
+    },
     scroll_read: {
       reducerName: "scroll_read",
       argsType: ScrollRead.getTypeScriptAlgebraicType(),
@@ -9207,6 +9226,7 @@ export type Reducer = never
 | { name: "RespawnInteriorNpcs", args: RespawnInteriorNpcs }
 | { name: "RespawnResourceInChunk", args: RespawnResourceInChunk }
 | { name: "RetrieveLostItem", args: RetrieveLostItem }
+| { name: "SaveInterModuleMessageError", args: SaveInterModuleMessageError }
 | { name: "ScrollRead", args: ScrollRead }
 | { name: "SearchForClosestBuilding", args: SearchForClosestBuilding }
 | { name: "SearchForClosestBuildingType", args: SearchForClosestBuildingType }
@@ -17331,6 +17351,22 @@ export class RemoteReducers {
     this.connection.offReducer("retrieve_lost_item", callback);
   }
 
+  saveInterModuleMessageError(sender: number, messageId: bigint, error: string) {
+    const __args = { sender, messageId, error };
+    let __writer = new BinaryWriter(1024);
+    SaveInterModuleMessageError.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("save_inter_module_message_error", __argsBuffer, this.setCallReducerFlags.saveInterModuleMessageErrorFlags);
+  }
+
+  onSaveInterModuleMessageError(callback: (ctx: ReducerEventContext, sender: number, messageId: bigint, error: string) => void) {
+    this.connection.onReducer("save_inter_module_message_error", callback);
+  }
+
+  removeOnSaveInterModuleMessageError(callback: (ctx: ReducerEventContext, sender: number, messageId: bigint, error: string) => void) {
+    this.connection.offReducer("save_inter_module_message_error", callback);
+  }
+
   scrollRead(request: PlayerScrollReadRequest) {
     const __args = { request };
     let __writer = new BinaryWriter(1024);
@@ -21821,6 +21857,11 @@ export class SetReducerFlags {
     this.retrieveLostItemFlags = flags;
   }
 
+  saveInterModuleMessageErrorFlags: CallReducerFlags = 'FullUpdate';
+  saveInterModuleMessageError(flags: CallReducerFlags) {
+    this.saveInterModuleMessageErrorFlags = flags;
+  }
+
   scrollReadFlags: CallReducerFlags = 'FullUpdate';
   scrollRead(flags: CallReducerFlags) {
     this.scrollReadFlags = flags;
@@ -22991,6 +23032,10 @@ export class RemoteTables {
 
   get interModuleMessageCounter(): InterModuleMessageCounterTableHandle {
     return new InterModuleMessageCounterTableHandle(this.connection.clientCache.getOrCreateTable<InterModuleMessageCounter>(REMOTE_MODULE.tables.inter_module_message_counter));
+  }
+
+  get interModuleMessageErrors(): InterModuleMessageErrorsTableHandle {
+    return new InterModuleMessageErrorsTableHandle(this.connection.clientCache.getOrCreateTable<InterModuleMessageErrors>(REMOTE_MODULE.tables.inter_module_message_errors));
   }
 
   get interModuleMessageV2(): InterModuleMessageV2TableHandle {
