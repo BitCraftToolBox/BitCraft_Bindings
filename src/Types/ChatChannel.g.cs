@@ -19,5 +19,7 @@ namespace BitCraftRegion.Types
         Claim,
         EmpirePublic,
         EmpireInternal,
+        LookingForGroup,
+        Trade,
     }
 }

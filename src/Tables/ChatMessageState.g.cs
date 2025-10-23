@@ -55,12 +55,32 @@ namespace BitCraftRegion.Types
 
             public readonly OwnerEntityIdIndex OwnerEntityId;
 
+            public sealed class JustTargetIdIndex : BTreeIndexBase<ulong>
+            {
+                protected override ulong GetKey(ChatMessageState row) => row.TargetId;
+
+                public JustTargetIdIndex(ChatMessageStateHandle table) : base(table) { }
+            }
+
+            public readonly JustTargetIdIndex JustTargetId;
+
+            public sealed class TargetIdIndex : BTreeIndexBase<(ulong TargetId, int Timestamp)>
+            {
+                protected override (ulong TargetId, int Timestamp) GetKey(ChatMessageState row) => (row.TargetId, row.Timestamp);
+
+                public TargetIdIndex(ChatMessageStateHandle table) : base(table) { }
+            }
+
+            public readonly TargetIdIndex TargetId;
+
             internal ChatMessageStateHandle(DbConnection conn) : base(conn)
             {
                 ChannelAndTargetId = new(this);
                 ChannelId = new(this);
                 EntityId = new(this);
                 OwnerEntityId = new(this);
+                JustTargetId = new(this);
+                TargetId = new(this);
             }
 
             protected override object GetPrimaryKey(ChatMessageState row) => row.EntityId;

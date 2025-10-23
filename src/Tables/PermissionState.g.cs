@@ -19,6 +19,15 @@ namespace BitCraftRegion.Types
         {
             protected override string RemoteTableName => "permission_state";
 
+            public sealed class AllowedEntityIdIndex : BTreeIndexBase<ulong>
+            {
+                protected override ulong GetKey(PermissionState row) => row.AllowedEntityId;
+
+                public AllowedEntityIdIndex(PermissionStateHandle table) : base(table) { }
+            }
+
+            public readonly AllowedEntityIdIndex AllowedEntityId;
+
             public sealed class EntityIdUniqueIndex : UniqueIndexBase<ulong>
             {
                 protected override ulong GetKey(PermissionState row) => row.EntityId;
@@ -48,6 +57,7 @@ namespace BitCraftRegion.Types
 
             internal PermissionStateHandle(DbConnection conn) : base(conn)
             {
+                AllowedEntityId = new(this);
                 EntityId = new(this);
                 OrdainedAndAllowedEntityId = new(this);
                 OrdainedEntityId = new(this);

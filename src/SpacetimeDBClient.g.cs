@@ -161,6 +161,7 @@ namespace BitCraftRegion.Types
             AddTable(IdentityRole = new(conn));
             AddTable(InterModuleMessage = new(conn));
             AddTable(InterModuleMessageCounter = new(conn));
+            AddTable(InterModuleMessageErrors = new(conn));
             AddTable(InterModuleMessageV2 = new(conn));
             AddTable(InterModuleResponseMessageCounter = new(conn));
             AddTable(InteriorCollapseTriggerState = new(conn));
@@ -1296,6 +1297,7 @@ namespace BitCraftRegion.Types
                 "respawn_interior_npcs" => BSATNHelpers.Decode<Reducer.RespawnInteriorNpcs>(encodedArgs),
                 "respawn_resource_in_chunk" => BSATNHelpers.Decode<Reducer.RespawnResourceInChunk>(encodedArgs),
                 "retrieve_lost_item" => BSATNHelpers.Decode<Reducer.RetrieveLostItem>(encodedArgs),
+                "save_inter_module_message_error" => BSATNHelpers.Decode<Reducer.SaveInterModuleMessageError>(encodedArgs),
                 "scroll_read" => BSATNHelpers.Decode<Reducer.ScrollRead>(encodedArgs),
                 "search_for_closest_building" => BSATNHelpers.Decode<Reducer.SearchForClosestBuilding>(encodedArgs),
                 "search_for_closest_building_type" => BSATNHelpers.Decode<Reducer.SearchForClosestBuildingType>(encodedArgs),
@@ -1949,6 +1951,7 @@ namespace BitCraftRegion.Types
                 Reducer.RespawnInteriorNpcs args => Reducers.InvokeRespawnInteriorNpcs(eventContext, args),
                 Reducer.RespawnResourceInChunk args => Reducers.InvokeRespawnResourceInChunk(eventContext, args),
                 Reducer.RetrieveLostItem args => Reducers.InvokeRetrieveLostItem(eventContext, args),
+                Reducer.SaveInterModuleMessageError args => Reducers.InvokeSaveInterModuleMessageError(eventContext, args),
                 Reducer.ScrollRead args => Reducers.InvokeScrollRead(eventContext, args),
                 Reducer.SearchForClosestBuilding args => Reducers.InvokeSearchForClosestBuilding(eventContext, args),
                 Reducer.SearchForClosestBuildingType args => Reducers.InvokeSearchForClosestBuildingType(eventContext, args),
