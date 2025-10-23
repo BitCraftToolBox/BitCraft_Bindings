@@ -10,16 +10,10 @@ using SpacetimeDB;
 namespace BitCraftGlobal.Types
 {
     [SpacetimeDB.Type]
-    public enum ChatChannel
+    public enum ChatChannelVisibility
     {
-        System,
-        Global,
-        Local,
-        Region,
-        Claim,
-        EmpirePublic,
-        EmpireInternal,
-        LookingForGroup,
-        Trade,
+        Unlisted,
+        Controlled,
+        Public,
     }
 }

@@ -14,17 +14,17 @@ namespace BitCraftGlobal.Types
 {
     public sealed partial class RemoteReducers : RemoteBase
     {
-        public delegate void ReportDirectMessageHandler(ReducerEventContext ctx, ReportPlayerDirectChatMessage request);
-        public event ReportDirectMessageHandler? OnReportDirectMessage;
+        public delegate void ChatPostTargetedMessageHandler(ReducerEventContext ctx, PlayerChatPostMessageRequest request);
+        public event ChatPostTargetedMessageHandler? OnChatPostTargetedMessage;
 
-        public void ReportDirectMessage(ReportPlayerDirectChatMessage request)
+        public void ChatPostTargetedMessage(PlayerChatPostMessageRequest request)
         {
-            conn.InternalCallReducer(new Reducer.ReportDirectMessage(request), this.SetCallReducerFlags.ReportDirectMessageFlags);
+            conn.InternalCallReducer(new Reducer.ChatPostTargetedMessage(request), this.SetCallReducerFlags.ChatPostTargetedMessageFlags);
         }
 
-        public bool InvokeReportDirectMessage(ReducerEventContext ctx, Reducer.ReportDirectMessage args)
+        public bool InvokeChatPostTargetedMessage(ReducerEventContext ctx, Reducer.ChatPostTargetedMessage args)
         {
-            if (OnReportDirectMessage == null)
+            if (OnChatPostTargetedMessage == null)
             {
                 if (InternalOnUnhandledReducerError != null)
                 {
@@ -36,7 +36,7 @@ namespace BitCraftGlobal.Types
                 }
                 return false;
             }
-            OnReportDirectMessage(
+            OnChatPostTargetedMessage(
                 ctx,
                 args.Request
             );
@@ -48,28 +48,28 @@ namespace BitCraftGlobal.Types
     {
         [SpacetimeDB.Type]
         [DataContract]
-        public sealed partial class ReportDirectMessage : Reducer, IReducerArgs
+        public sealed partial class ChatPostTargetedMessage : Reducer, IReducerArgs
         {
             [DataMember(Name = "request")]
-            public ReportPlayerDirectChatMessage Request;
+            public PlayerChatPostMessageRequest Request;
 
-            public ReportDirectMessage(ReportPlayerDirectChatMessage Request)
+            public ChatPostTargetedMessage(PlayerChatPostMessageRequest Request)
             {
                 this.Request = Request;
             }
 
-            public ReportDirectMessage()
+            public ChatPostTargetedMessage()
             {
                 this.Request = new();
             }
 
-            string IReducerArgs.ReducerName => "report_direct_message";
+            string IReducerArgs.ReducerName => "chat_post_targeted_message";
         }
     }
 
     public sealed partial class SetReducerFlags
     {
-        internal CallReducerFlags ReportDirectMessageFlags;
-        public void ReportDirectMessage(CallReducerFlags flags) => ReportDirectMessageFlags = flags;
+        internal CallReducerFlags ChatPostTargetedMessageFlags;
+        public void ChatPostTargetedMessage(CallReducerFlags flags) => ChatPostTargetedMessageFlags = flags;
     }
 }
