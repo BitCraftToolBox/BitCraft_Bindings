@@ -81,10 +81,14 @@ import { AdminUpdateSignInParameters } from "./admin_update_sign_in_parameters_r
 export { AdminUpdateSignInParameters };
 import { Authenticate } from "./authenticate_reducer.ts";
 export { Authenticate };
+import { BanPlayerFromChatChannel } from "./ban_player_from_chat_channel_reducer.ts";
+export { BanPlayerFromChatChannel };
 import { BlockIdentity } from "./block_identity_reducer.ts";
 export { BlockIdentity };
 import { BlockPlayer } from "./block_player_reducer.ts";
 export { BlockPlayer };
+import { ChatPostTargetedMessage } from "./chat_post_targeted_message_reducer.ts";
+export { ChatPostTargetedMessage };
 import { CheatEmpireSiegeAddSupplies } from "./cheat_empire_siege_add_supplies_reducer.ts";
 export { CheatEmpireSiegeAddSupplies };
 import { CheatEmpireSiegeCancel } from "./cheat_empire_siege_cancel_reducer.ts";
@@ -97,12 +101,16 @@ import { ClearStagedStaticData } from "./clear_staged_static_data_reducer.ts";
 export { ClearStagedStaticData };
 import { CommitStagedStaticData } from "./commit_staged_static_data_reducer.ts";
 export { CommitStagedStaticData };
+import { CreateChatChannel } from "./create_chat_channel_reducer.ts";
+export { CreateChatChannel };
 import { CurrentVersion } from "./current_version_reducer.ts";
 export { CurrentVersion };
 import { DeleteDeveloperIdentity } from "./delete_developer_identity_reducer.ts";
 export { DeleteDeveloperIdentity };
-import { DirectMessagePostMessage } from "./direct_message_post_message_reducer.ts";
-export { DirectMessagePostMessage };
+import { EditChatChannel } from "./edit_chat_channel_reducer.ts";
+export { EditChatChannel };
+import { EditChatChannelMemberPermission } from "./edit_chat_channel_member_permission_reducer.ts";
+export { EditChatChannelMemberPermission };
 import { EmpireChangeEmblem } from "./empire_change_emblem_reducer.ts";
 export { EmpireChangeEmblem };
 import { EmpireCraftSupplies } from "./empire_craft_supplies_reducer.ts";
@@ -473,6 +481,12 @@ import { ImportWorldRegionState } from "./import_world_region_state_reducer.ts";
 export { ImportWorldRegionState };
 import { InsertDeveloperIdentity } from "./insert_developer_identity_reducer.ts";
 export { InsertDeveloperIdentity };
+import { InviteToChatChannel } from "./invite_to_chat_channel_reducer.ts";
+export { InviteToChatChannel };
+import { JoinChatChannel } from "./join_chat_channel_reducer.ts";
+export { JoinChatChannel };
+import { LeaveChatChannel } from "./leave_chat_channel_reducer.ts";
+export { LeaveChatChannel };
 import { LoadConfig } from "./load_config_reducer.ts";
 export { LoadConfig };
 import { LogEmpireLeaderboard } from "./log_empire_leaderboard_reducer.ts";
@@ -497,12 +511,18 @@ import { PlayerVoteConclude } from "./player_vote_conclude_reducer.ts";
 export { PlayerVoteConclude };
 import { ProcessInterModuleMessage } from "./process_inter_module_message_reducer.ts";
 export { ProcessInterModuleMessage };
+import { RemoveChatChannel } from "./remove_chat_channel_reducer.ts";
+export { RemoveChatChannel };
+import { RemoveChatChannelMember } from "./remove_chat_channel_member_reducer.ts";
+export { RemoveChatChannelMember };
 import { RemoveFavoriteFriend } from "./remove_favorite_friend_reducer.ts";
 export { RemoveFavoriteFriend };
 import { RemoveFriend } from "./remove_friend_reducer.ts";
 export { RemoveFriend };
-import { ReportDirectMessage } from "./report_direct_message_reducer.ts";
-export { ReportDirectMessage };
+import { ReportTargetedChatMessage } from "./report_targeted_chat_message_reducer.ts";
+export { ReportTargetedChatMessage };
+import { SaveInterModuleMessageError } from "./save_inter_module_message_error_reducer.ts";
+export { SaveInterModuleMessageError };
 import { SetRoleForIdentity } from "./set_role_for_identity_reducer.ts";
 export { SetRoleForIdentity };
 import { SetVisibility } from "./set_visibility_reducer.ts";
@@ -681,6 +701,8 @@ import { StageWeaponTypeDesc } from "./stage_weapon_type_desc_reducer.ts";
 export { StageWeaponTypeDesc };
 import { StageWindParamsDesc } from "./stage_wind_params_desc_reducer.ts";
 export { StageWindParamsDesc };
+import { UnbanPlayerFromChatChannel } from "./unban_player_from_chat_channel_reducer.ts";
+export { UnbanPlayerFromChatChannel };
 import { UnblockPlayer } from "./unblock_player_reducer.ts";
 export { UnblockPlayer };
 import { UpdateRoleForPlayer } from "./update_role_for_player_reducer.ts";
@@ -759,6 +781,10 @@ import { CharacterStatDescTableHandle } from "./character_stat_desc_table.ts";
 export { CharacterStatDescTableHandle };
 import { CharacterStatsStateTableHandle } from "./character_stats_state_table.ts";
 export { CharacterStatsStateTableHandle };
+import { ChatChannelPermissionStateTableHandle } from "./chat_channel_permission_state_table.ts";
+export { ChatChannelPermissionStateTableHandle };
+import { ChatChannelStateTableHandle } from "./chat_channel_state_table.ts";
+export { ChatChannelStateTableHandle };
 import { ChatMessageStateTableHandle } from "./chat_message_state_table.ts";
 export { ChatMessageStateTableHandle };
 import { ChestRarityDescTableHandle } from "./chest_rarity_desc_table.ts";
@@ -953,6 +979,8 @@ import { InterModuleMessageTableHandle } from "./inter_module_message_table.ts";
 export { InterModuleMessageTableHandle };
 import { InterModuleMessageCounterTableHandle } from "./inter_module_message_counter_table.ts";
 export { InterModuleMessageCounterTableHandle };
+import { InterModuleMessageErrorsTableHandle } from "./inter_module_message_errors_table.ts";
+export { InterModuleMessageErrorsTableHandle };
 import { InterModuleMessageV2TableHandle } from "./inter_module_message_v_2_table.ts";
 export { InterModuleMessageV2TableHandle };
 import { InterModuleResponseMessageCounterTableHandle } from "./inter_module_response_message_counter_table.ts";
@@ -1373,6 +1401,14 @@ import { CharacterStatsState } from "./character_stats_state_type.ts";
 export { CharacterStatsState };
 import { ChatChannel } from "./chat_channel_type.ts";
 export { ChatChannel };
+import { ChatChannelPermission } from "./chat_channel_permission_type.ts";
+export { ChatChannelPermission };
+import { ChatChannelPermissionState } from "./chat_channel_permission_state_type.ts";
+export { ChatChannelPermissionState };
+import { ChatChannelState } from "./chat_channel_state_type.ts";
+export { ChatChannelState };
+import { ChatChannelVisibility } from "./chat_channel_visibility_type.ts";
+export { ChatChannelVisibility };
 import { ChatMessageState } from "./chat_message_state_type.ts";
 export { ChatMessageState };
 import { CheatShardsGrantRequest } from "./cheat_shards_grant_request_type.ts";
@@ -1699,6 +1735,8 @@ import { InterModuleMessage } from "./inter_module_message_type.ts";
 export { InterModuleMessage };
 import { InterModuleMessageCounter } from "./inter_module_message_counter_type.ts";
 export { InterModuleMessageCounter };
+import { InterModuleMessageErrors } from "./inter_module_message_errors_type.ts";
+export { InterModuleMessageErrors };
 import { InterModuleMessageV2 } from "./inter_module_message_v_2_type.ts";
 export { InterModuleMessageV2 };
 import { InterModuleResponseMessageCounter } from "./inter_module_response_message_counter_type.ts";
@@ -1905,6 +1943,8 @@ import { PlayerActionState } from "./player_action_state_type.ts";
 export { PlayerActionState };
 import { PlayerActionType } from "./player_action_type_type.ts";
 export { PlayerActionType };
+import { PlayerChatPostMessageRequest } from "./player_chat_post_message_request_type.ts";
+export { PlayerChatPostMessageRequest };
 import { PlayerCreateMsg } from "./player_create_msg_type.ts";
 export { PlayerCreateMsg };
 import { PlayerDeveloperNotificationState } from "./player_developer_notification_state_type.ts";
@@ -1995,8 +2035,6 @@ import { RegionSignInParametersOp } from "./region_sign_in_parameters_op_type.ts
 export { RegionSignInParametersOp };
 import { RentState } from "./rent_state_type.ts";
 export { RentState };
-import { ReportPlayerDirectChatMessage } from "./report_player_direct_chat_message_type.ts";
-export { ReportPlayerDirectChatMessage };
 import { ReservedNameDesc } from "./reserved_name_desc_type.ts";
 export { ReservedNameDesc };
 import { ResourceClumpDesc } from "./resource_clump_desc_type.ts";
@@ -2460,6 +2498,24 @@ const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "entityId",
         colType: CharacterStatsState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    chat_channel_permission_state: {
+      tableName: "chat_channel_permission_state",
+      rowType: ChatChannelPermissionState.getTypeScriptAlgebraicType(),
+      primaryKey: "entityId",
+      primaryKeyInfo: {
+        colName: "entityId",
+        colType: ChatChannelPermissionState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    chat_channel_state: {
+      tableName: "chat_channel_state",
+      rowType: ChatChannelState.getTypeScriptAlgebraicType(),
+      primaryKey: "entityId",
+      primaryKeyInfo: {
+        colName: "entityId",
+        colType: ChatChannelState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     chat_message_state: {
@@ -3328,6 +3384,15 @@ const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "moduleId",
         colType: InterModuleMessageCounter.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    inter_module_message_errors: {
+      tableName: "inter_module_message_errors",
+      rowType: InterModuleMessageErrors.getTypeScriptAlgebraicType(),
+      primaryKey: "senderModuleId",
+      primaryKeyInfo: {
+        colName: "senderModuleId",
+        colType: InterModuleMessageErrors.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     inter_module_message_v2: {
@@ -4832,6 +4897,10 @@ const REMOTE_MODULE = {
       reducerName: "authenticate",
       argsType: Authenticate.getTypeScriptAlgebraicType(),
     },
+    ban_player_from_chat_channel: {
+      reducerName: "ban_player_from_chat_channel",
+      argsType: BanPlayerFromChatChannel.getTypeScriptAlgebraicType(),
+    },
     block_identity: {
       reducerName: "block_identity",
       argsType: BlockIdentity.getTypeScriptAlgebraicType(),
@@ -4839,6 +4908,10 @@ const REMOTE_MODULE = {
     block_player: {
       reducerName: "block_player",
       argsType: BlockPlayer.getTypeScriptAlgebraicType(),
+    },
+    chat_post_targeted_message: {
+      reducerName: "chat_post_targeted_message",
+      argsType: ChatPostTargetedMessage.getTypeScriptAlgebraicType(),
     },
     cheat_empire_siege_add_supplies: {
       reducerName: "cheat_empire_siege_add_supplies",
@@ -4864,6 +4937,10 @@ const REMOTE_MODULE = {
       reducerName: "commit_staged_static_data",
       argsType: CommitStagedStaticData.getTypeScriptAlgebraicType(),
     },
+    create_chat_channel: {
+      reducerName: "create_chat_channel",
+      argsType: CreateChatChannel.getTypeScriptAlgebraicType(),
+    },
     current_version: {
       reducerName: "current_version",
       argsType: CurrentVersion.getTypeScriptAlgebraicType(),
@@ -4872,9 +4949,13 @@ const REMOTE_MODULE = {
       reducerName: "delete_developer_identity",
       argsType: DeleteDeveloperIdentity.getTypeScriptAlgebraicType(),
     },
-    direct_message_post_message: {
-      reducerName: "direct_message_post_message",
-      argsType: DirectMessagePostMessage.getTypeScriptAlgebraicType(),
+    edit_chat_channel: {
+      reducerName: "edit_chat_channel",
+      argsType: EditChatChannel.getTypeScriptAlgebraicType(),
+    },
+    edit_chat_channel_member_permission: {
+      reducerName: "edit_chat_channel_member_permission",
+      argsType: EditChatChannelMemberPermission.getTypeScriptAlgebraicType(),
     },
     empire_change_emblem: {
       reducerName: "empire_change_emblem",
@@ -5616,6 +5697,18 @@ const REMOTE_MODULE = {
       reducerName: "insert_developer_identity",
       argsType: InsertDeveloperIdentity.getTypeScriptAlgebraicType(),
     },
+    invite_to_chat_channel: {
+      reducerName: "invite_to_chat_channel",
+      argsType: InviteToChatChannel.getTypeScriptAlgebraicType(),
+    },
+    join_chat_channel: {
+      reducerName: "join_chat_channel",
+      argsType: JoinChatChannel.getTypeScriptAlgebraicType(),
+    },
+    leave_chat_channel: {
+      reducerName: "leave_chat_channel",
+      argsType: LeaveChatChannel.getTypeScriptAlgebraicType(),
+    },
     load_config: {
       reducerName: "load_config",
       argsType: LoadConfig.getTypeScriptAlgebraicType(),
@@ -5664,6 +5757,14 @@ const REMOTE_MODULE = {
       reducerName: "process_inter_module_message",
       argsType: ProcessInterModuleMessage.getTypeScriptAlgebraicType(),
     },
+    remove_chat_channel: {
+      reducerName: "remove_chat_channel",
+      argsType: RemoveChatChannel.getTypeScriptAlgebraicType(),
+    },
+    remove_chat_channel_member: {
+      reducerName: "remove_chat_channel_member",
+      argsType: RemoveChatChannelMember.getTypeScriptAlgebraicType(),
+    },
     remove_favorite_friend: {
       reducerName: "remove_favorite_friend",
       argsType: RemoveFavoriteFriend.getTypeScriptAlgebraicType(),
@@ -5672,9 +5773,13 @@ const REMOTE_MODULE = {
       reducerName: "remove_friend",
       argsType: RemoveFriend.getTypeScriptAlgebraicType(),
     },
-    report_direct_message: {
-      reducerName: "report_direct_message",
-      argsType: ReportDirectMessage.getTypeScriptAlgebraicType(),
+    report_targeted_chat_message: {
+      reducerName: "report_targeted_chat_message",
+      argsType: ReportTargetedChatMessage.getTypeScriptAlgebraicType(),
+    },
+    save_inter_module_message_error: {
+      reducerName: "save_inter_module_message_error",
+      argsType: SaveInterModuleMessageError.getTypeScriptAlgebraicType(),
     },
     set_role_for_identity: {
       reducerName: "set_role_for_identity",
@@ -6032,6 +6137,10 @@ const REMOTE_MODULE = {
       reducerName: "stage_wind_params_desc",
       argsType: StageWindParamsDesc.getTypeScriptAlgebraicType(),
     },
+    unban_player_from_chat_channel: {
+      reducerName: "unban_player_from_chat_channel",
+      argsType: UnbanPlayerFromChatChannel.getTypeScriptAlgebraicType(),
+    },
     unblock_player: {
       reducerName: "unblock_player",
       argsType: UnblockPlayer.getTypeScriptAlgebraicType(),
@@ -6114,17 +6223,21 @@ export type Reducer = never
 | { name: "AdminUpdateGrantedHubItemState", args: AdminUpdateGrantedHubItemState }
 | { name: "AdminUpdateSignInParameters", args: AdminUpdateSignInParameters }
 | { name: "Authenticate", args: Authenticate }
+| { name: "BanPlayerFromChatChannel", args: BanPlayerFromChatChannel }
 | { name: "BlockIdentity", args: BlockIdentity }
 | { name: "BlockPlayer", args: BlockPlayer }
+| { name: "ChatPostTargetedMessage", args: ChatPostTargetedMessage }
 | { name: "CheatEmpireSiegeAddSupplies", args: CheatEmpireSiegeAddSupplies }
 | { name: "CheatEmpireSiegeCancel", args: CheatEmpireSiegeCancel }
 | { name: "CheatPlayerSetName", args: CheatPlayerSetName }
 | { name: "CheatShardsGrant", args: CheatShardsGrant }
 | { name: "ClearStagedStaticData", args: ClearStagedStaticData }
 | { name: "CommitStagedStaticData", args: CommitStagedStaticData }
+| { name: "CreateChatChannel", args: CreateChatChannel }
 | { name: "CurrentVersion", args: CurrentVersion }
 | { name: "DeleteDeveloperIdentity", args: DeleteDeveloperIdentity }
-| { name: "DirectMessagePostMessage", args: DirectMessagePostMessage }
+| { name: "EditChatChannel", args: EditChatChannel }
+| { name: "EditChatChannelMemberPermission", args: EditChatChannelMemberPermission }
 | { name: "EmpireChangeEmblem", args: EmpireChangeEmblem }
 | { name: "EmpireCraftSupplies", args: EmpireCraftSupplies }
 | { name: "EmpireCraftSuppliesScheduled", args: EmpireCraftSuppliesScheduled }
@@ -6310,6 +6423,9 @@ export type Reducer = never
 | { name: "ImportWorldRegionNameState", args: ImportWorldRegionNameState }
 | { name: "ImportWorldRegionState", args: ImportWorldRegionState }
 | { name: "InsertDeveloperIdentity", args: InsertDeveloperIdentity }
+| { name: "InviteToChatChannel", args: InviteToChatChannel }
+| { name: "JoinChatChannel", args: JoinChatChannel }
+| { name: "LeaveChatChannel", args: LeaveChatChannel }
 | { name: "LoadConfig", args: LoadConfig }
 | { name: "LogEmpireLeaderboard", args: LogEmpireLeaderboard }
 | { name: "LogPlayerWith", args: LogPlayerWith }
@@ -6322,9 +6438,12 @@ export type Reducer = never
 | { name: "PlayerVoteAnswer", args: PlayerVoteAnswer }
 | { name: "PlayerVoteConclude", args: PlayerVoteConclude }
 | { name: "ProcessInterModuleMessage", args: ProcessInterModuleMessage }
+| { name: "RemoveChatChannel", args: RemoveChatChannel }
+| { name: "RemoveChatChannelMember", args: RemoveChatChannelMember }
 | { name: "RemoveFavoriteFriend", args: RemoveFavoriteFriend }
 | { name: "RemoveFriend", args: RemoveFriend }
-| { name: "ReportDirectMessage", args: ReportDirectMessage }
+| { name: "ReportTargetedChatMessage", args: ReportTargetedChatMessage }
+| { name: "SaveInterModuleMessageError", args: SaveInterModuleMessageError }
 | { name: "SetRoleForIdentity", args: SetRoleForIdentity }
 | { name: "SetVisibility", args: SetVisibility }
 | { name: "SignIn", args: SignIn }
@@ -6414,6 +6533,7 @@ export type Reducer = never
 | { name: "StageWeaponDesc", args: StageWeaponDesc }
 | { name: "StageWeaponTypeDesc", args: StageWeaponTypeDesc }
 | { name: "StageWindParamsDesc", args: StageWindParamsDesc }
+| { name: "UnbanPlayerFromChatChannel", args: UnbanPlayerFromChatChannel }
 | { name: "UnblockPlayer", args: UnblockPlayer }
 | { name: "UpdateRoleForPlayer", args: UpdateRoleForPlayer }
 | { name: "UpdateScheduledTimersFromStaticData", args: UpdateScheduledTimersFromStaticData }
@@ -6806,6 +6926,22 @@ export class RemoteReducers {
     this.connection.offReducer("authenticate", callback);
   }
 
+  banPlayerFromChatChannel(channelEntityId: bigint, playerEntityId: bigint) {
+    const __args = { channelEntityId, playerEntityId };
+    let __writer = new BinaryWriter(1024);
+    BanPlayerFromChatChannel.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("ban_player_from_chat_channel", __argsBuffer, this.setCallReducerFlags.banPlayerFromChatChannelFlags);
+  }
+
+  onBanPlayerFromChatChannel(callback: (ctx: ReducerEventContext, channelEntityId: bigint, playerEntityId: bigint) => void) {
+    this.connection.onReducer("ban_player_from_chat_channel", callback);
+  }
+
+  removeOnBanPlayerFromChatChannel(callback: (ctx: ReducerEventContext, channelEntityId: bigint, playerEntityId: bigint) => void) {
+    this.connection.offReducer("ban_player_from_chat_channel", callback);
+  }
+
   blockIdentity(identity: string) {
     const __args = { identity };
     let __writer = new BinaryWriter(1024);
@@ -6836,6 +6972,22 @@ export class RemoteReducers {
 
   removeOnBlockPlayer(callback: (ctx: ReducerEventContext, playerEntityId: bigint) => void) {
     this.connection.offReducer("block_player", callback);
+  }
+
+  chatPostTargetedMessage(request: PlayerChatPostMessageRequest) {
+    const __args = { request };
+    let __writer = new BinaryWriter(1024);
+    ChatPostTargetedMessage.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("chat_post_targeted_message", __argsBuffer, this.setCallReducerFlags.chatPostTargetedMessageFlags);
+  }
+
+  onChatPostTargetedMessage(callback: (ctx: ReducerEventContext, request: PlayerChatPostMessageRequest) => void) {
+    this.connection.onReducer("chat_post_targeted_message", callback);
+  }
+
+  removeOnChatPostTargetedMessage(callback: (ctx: ReducerEventContext, request: PlayerChatPostMessageRequest) => void) {
+    this.connection.offReducer("chat_post_targeted_message", callback);
   }
 
   cheatEmpireSiegeAddSupplies(siegeNodeEntityId: bigint, supplies: number) {
@@ -6926,6 +7078,22 @@ export class RemoteReducers {
     this.connection.offReducer("commit_staged_static_data", callback);
   }
 
+  createChatChannel(name: string, description: string, visibility: ChatChannelVisibility) {
+    const __args = { name, description, visibility };
+    let __writer = new BinaryWriter(1024);
+    CreateChatChannel.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("create_chat_channel", __argsBuffer, this.setCallReducerFlags.createChatChannelFlags);
+  }
+
+  onCreateChatChannel(callback: (ctx: ReducerEventContext, name: string, description: string, visibility: ChatChannelVisibility) => void) {
+    this.connection.onReducer("create_chat_channel", callback);
+  }
+
+  removeOnCreateChatChannel(callback: (ctx: ReducerEventContext, name: string, description: string, visibility: ChatChannelVisibility) => void) {
+    this.connection.offReducer("create_chat_channel", callback);
+  }
+
   currentVersion() {
     this.connection.callReducer("current_version", new Uint8Array(0), this.setCallReducerFlags.currentVersionFlags);
   }
@@ -6954,20 +7122,36 @@ export class RemoteReducers {
     this.connection.offReducer("delete_developer_identity", callback);
   }
 
-  directMessagePostMessage(receiver: string, text: string) {
-    const __args = { receiver, text };
+  editChatChannel(entityId: bigint, name: string, description: string, visibility: ChatChannelVisibility) {
+    const __args = { entityId, name, description, visibility };
     let __writer = new BinaryWriter(1024);
-    DirectMessagePostMessage.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    EditChatChannel.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
-    this.connection.callReducer("direct_message_post_message", __argsBuffer, this.setCallReducerFlags.directMessagePostMessageFlags);
+    this.connection.callReducer("edit_chat_channel", __argsBuffer, this.setCallReducerFlags.editChatChannelFlags);
   }
 
-  onDirectMessagePostMessage(callback: (ctx: ReducerEventContext, receiver: string, text: string) => void) {
-    this.connection.onReducer("direct_message_post_message", callback);
+  onEditChatChannel(callback: (ctx: ReducerEventContext, entityId: bigint, name: string, description: string, visibility: ChatChannelVisibility) => void) {
+    this.connection.onReducer("edit_chat_channel", callback);
   }
 
-  removeOnDirectMessagePostMessage(callback: (ctx: ReducerEventContext, receiver: string, text: string) => void) {
-    this.connection.offReducer("direct_message_post_message", callback);
+  removeOnEditChatChannel(callback: (ctx: ReducerEventContext, entityId: bigint, name: string, description: string, visibility: ChatChannelVisibility) => void) {
+    this.connection.offReducer("edit_chat_channel", callback);
+  }
+
+  editChatChannelMemberPermission(channelEntityId: bigint, playerEntityId: bigint, rank: ChatChannelPermission) {
+    const __args = { channelEntityId, playerEntityId, rank };
+    let __writer = new BinaryWriter(1024);
+    EditChatChannelMemberPermission.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("edit_chat_channel_member_permission", __argsBuffer, this.setCallReducerFlags.editChatChannelMemberPermissionFlags);
+  }
+
+  onEditChatChannelMemberPermission(callback: (ctx: ReducerEventContext, channelEntityId: bigint, playerEntityId: bigint, rank: ChatChannelPermission) => void) {
+    this.connection.onReducer("edit_chat_channel_member_permission", callback);
+  }
+
+  removeOnEditChatChannelMemberPermission(callback: (ctx: ReducerEventContext, channelEntityId: bigint, playerEntityId: bigint, rank: ChatChannelPermission) => void) {
+    this.connection.offReducer("edit_chat_channel_member_permission", callback);
   }
 
   empireChangeEmblem(request: EmpireChangeEmblemRequest) {
@@ -9910,6 +10094,54 @@ export class RemoteReducers {
     this.connection.offReducer("insert_developer_identity", callback);
   }
 
+  inviteToChatChannel(channelEntityId: bigint, playerEntityId: bigint) {
+    const __args = { channelEntityId, playerEntityId };
+    let __writer = new BinaryWriter(1024);
+    InviteToChatChannel.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("invite_to_chat_channel", __argsBuffer, this.setCallReducerFlags.inviteToChatChannelFlags);
+  }
+
+  onInviteToChatChannel(callback: (ctx: ReducerEventContext, channelEntityId: bigint, playerEntityId: bigint) => void) {
+    this.connection.onReducer("invite_to_chat_channel", callback);
+  }
+
+  removeOnInviteToChatChannel(callback: (ctx: ReducerEventContext, channelEntityId: bigint, playerEntityId: bigint) => void) {
+    this.connection.offReducer("invite_to_chat_channel", callback);
+  }
+
+  joinChatChannel(entityId: bigint) {
+    const __args = { entityId };
+    let __writer = new BinaryWriter(1024);
+    JoinChatChannel.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("join_chat_channel", __argsBuffer, this.setCallReducerFlags.joinChatChannelFlags);
+  }
+
+  onJoinChatChannel(callback: (ctx: ReducerEventContext, entityId: bigint) => void) {
+    this.connection.onReducer("join_chat_channel", callback);
+  }
+
+  removeOnJoinChatChannel(callback: (ctx: ReducerEventContext, entityId: bigint) => void) {
+    this.connection.offReducer("join_chat_channel", callback);
+  }
+
+  leaveChatChannel(entityId: bigint) {
+    const __args = { entityId };
+    let __writer = new BinaryWriter(1024);
+    LeaveChatChannel.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("leave_chat_channel", __argsBuffer, this.setCallReducerFlags.leaveChatChannelFlags);
+  }
+
+  onLeaveChatChannel(callback: (ctx: ReducerEventContext, entityId: bigint) => void) {
+    this.connection.onReducer("leave_chat_channel", callback);
+  }
+
+  removeOnLeaveChatChannel(callback: (ctx: ReducerEventContext, entityId: bigint) => void) {
+    this.connection.offReducer("leave_chat_channel", callback);
+  }
+
   loadConfig(environmentNames: string[], contents: string[]) {
     const __args = { environmentNames, contents };
     let __writer = new BinaryWriter(1024);
@@ -10082,6 +10314,38 @@ export class RemoteReducers {
     this.connection.offReducer("process_inter_module_message", callback);
   }
 
+  removeChatChannel(entityId: bigint) {
+    const __args = { entityId };
+    let __writer = new BinaryWriter(1024);
+    RemoveChatChannel.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("remove_chat_channel", __argsBuffer, this.setCallReducerFlags.removeChatChannelFlags);
+  }
+
+  onRemoveChatChannel(callback: (ctx: ReducerEventContext, entityId: bigint) => void) {
+    this.connection.onReducer("remove_chat_channel", callback);
+  }
+
+  removeOnRemoveChatChannel(callback: (ctx: ReducerEventContext, entityId: bigint) => void) {
+    this.connection.offReducer("remove_chat_channel", callback);
+  }
+
+  removeChatChannelMember(channelEntityId: bigint, playerEntityId: bigint) {
+    const __args = { channelEntityId, playerEntityId };
+    let __writer = new BinaryWriter(1024);
+    RemoveChatChannelMember.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("remove_chat_channel_member", __argsBuffer, this.setCallReducerFlags.removeChatChannelMemberFlags);
+  }
+
+  onRemoveChatChannelMember(callback: (ctx: ReducerEventContext, channelEntityId: bigint, playerEntityId: bigint) => void) {
+    this.connection.onReducer("remove_chat_channel_member", callback);
+  }
+
+  removeOnRemoveChatChannelMember(callback: (ctx: ReducerEventContext, channelEntityId: bigint, playerEntityId: bigint) => void) {
+    this.connection.offReducer("remove_chat_channel_member", callback);
+  }
+
   removeFavoriteFriend(playerEntityId: bigint) {
     const __args = { playerEntityId };
     let __writer = new BinaryWriter(1024);
@@ -10114,20 +10378,36 @@ export class RemoteReducers {
     this.connection.offReducer("remove_friend", callback);
   }
 
-  reportDirectMessage(request: ReportPlayerDirectChatMessage) {
-    const __args = { request };
+  reportTargetedChatMessage(chatMessageId: bigint, reportType: string, message: string) {
+    const __args = { chatMessageId, reportType, message };
     let __writer = new BinaryWriter(1024);
-    ReportDirectMessage.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    ReportTargetedChatMessage.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
-    this.connection.callReducer("report_direct_message", __argsBuffer, this.setCallReducerFlags.reportDirectMessageFlags);
+    this.connection.callReducer("report_targeted_chat_message", __argsBuffer, this.setCallReducerFlags.reportTargetedChatMessageFlags);
   }
 
-  onReportDirectMessage(callback: (ctx: ReducerEventContext, request: ReportPlayerDirectChatMessage) => void) {
-    this.connection.onReducer("report_direct_message", callback);
+  onReportTargetedChatMessage(callback: (ctx: ReducerEventContext, chatMessageId: bigint, reportType: string, message: string) => void) {
+    this.connection.onReducer("report_targeted_chat_message", callback);
   }
 
-  removeOnReportDirectMessage(callback: (ctx: ReducerEventContext, request: ReportPlayerDirectChatMessage) => void) {
-    this.connection.offReducer("report_direct_message", callback);
+  removeOnReportTargetedChatMessage(callback: (ctx: ReducerEventContext, chatMessageId: bigint, reportType: string, message: string) => void) {
+    this.connection.offReducer("report_targeted_chat_message", callback);
+  }
+
+  saveInterModuleMessageError(sender: number, messageId: bigint, error: string) {
+    const __args = { sender, messageId, error };
+    let __writer = new BinaryWriter(1024);
+    SaveInterModuleMessageError.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("save_inter_module_message_error", __argsBuffer, this.setCallReducerFlags.saveInterModuleMessageErrorFlags);
+  }
+
+  onSaveInterModuleMessageError(callback: (ctx: ReducerEventContext, sender: number, messageId: bigint, error: string) => void) {
+    this.connection.onReducer("save_inter_module_message_error", callback);
+  }
+
+  removeOnSaveInterModuleMessageError(callback: (ctx: ReducerEventContext, sender: number, messageId: bigint, error: string) => void) {
+    this.connection.offReducer("save_inter_module_message_error", callback);
   }
 
   setRoleForIdentity(identity: string, role: Role) {
@@ -11554,6 +11834,22 @@ export class RemoteReducers {
     this.connection.offReducer("stage_wind_params_desc", callback);
   }
 
+  unbanPlayerFromChatChannel(channelEntityId: bigint, playerEntityId: bigint) {
+    const __args = { channelEntityId, playerEntityId };
+    let __writer = new BinaryWriter(1024);
+    UnbanPlayerFromChatChannel.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("unban_player_from_chat_channel", __argsBuffer, this.setCallReducerFlags.unbanPlayerFromChatChannelFlags);
+  }
+
+  onUnbanPlayerFromChatChannel(callback: (ctx: ReducerEventContext, channelEntityId: bigint, playerEntityId: bigint) => void) {
+    this.connection.onReducer("unban_player_from_chat_channel", callback);
+  }
+
+  removeOnUnbanPlayerFromChatChannel(callback: (ctx: ReducerEventContext, channelEntityId: bigint, playerEntityId: bigint) => void) {
+    this.connection.offReducer("unban_player_from_chat_channel", callback);
+  }
+
   unblockPlayer(playerEntityId: bigint) {
     const __args = { playerEntityId };
     let __writer = new BinaryWriter(1024);
@@ -11785,6 +12081,11 @@ export class SetReducerFlags {
     this.authenticateFlags = flags;
   }
 
+  banPlayerFromChatChannelFlags: CallReducerFlags = 'FullUpdate';
+  banPlayerFromChatChannel(flags: CallReducerFlags) {
+    this.banPlayerFromChatChannelFlags = flags;
+  }
+
   blockIdentityFlags: CallReducerFlags = 'FullUpdate';
   blockIdentity(flags: CallReducerFlags) {
     this.blockIdentityFlags = flags;
@@ -11793,6 +12094,11 @@ export class SetReducerFlags {
   blockPlayerFlags: CallReducerFlags = 'FullUpdate';
   blockPlayer(flags: CallReducerFlags) {
     this.blockPlayerFlags = flags;
+  }
+
+  chatPostTargetedMessageFlags: CallReducerFlags = 'FullUpdate';
+  chatPostTargetedMessage(flags: CallReducerFlags) {
+    this.chatPostTargetedMessageFlags = flags;
   }
 
   cheatEmpireSiegeAddSuppliesFlags: CallReducerFlags = 'FullUpdate';
@@ -11825,6 +12131,11 @@ export class SetReducerFlags {
     this.commitStagedStaticDataFlags = flags;
   }
 
+  createChatChannelFlags: CallReducerFlags = 'FullUpdate';
+  createChatChannel(flags: CallReducerFlags) {
+    this.createChatChannelFlags = flags;
+  }
+
   currentVersionFlags: CallReducerFlags = 'FullUpdate';
   currentVersion(flags: CallReducerFlags) {
     this.currentVersionFlags = flags;
@@ -11835,9 +12146,14 @@ export class SetReducerFlags {
     this.deleteDeveloperIdentityFlags = flags;
   }
 
-  directMessagePostMessageFlags: CallReducerFlags = 'FullUpdate';
-  directMessagePostMessage(flags: CallReducerFlags) {
-    this.directMessagePostMessageFlags = flags;
+  editChatChannelFlags: CallReducerFlags = 'FullUpdate';
+  editChatChannel(flags: CallReducerFlags) {
+    this.editChatChannelFlags = flags;
+  }
+
+  editChatChannelMemberPermissionFlags: CallReducerFlags = 'FullUpdate';
+  editChatChannelMemberPermission(flags: CallReducerFlags) {
+    this.editChatChannelMemberPermissionFlags = flags;
   }
 
   empireChangeEmblemFlags: CallReducerFlags = 'FullUpdate';
@@ -12755,6 +13071,21 @@ export class SetReducerFlags {
     this.insertDeveloperIdentityFlags = flags;
   }
 
+  inviteToChatChannelFlags: CallReducerFlags = 'FullUpdate';
+  inviteToChatChannel(flags: CallReducerFlags) {
+    this.inviteToChatChannelFlags = flags;
+  }
+
+  joinChatChannelFlags: CallReducerFlags = 'FullUpdate';
+  joinChatChannel(flags: CallReducerFlags) {
+    this.joinChatChannelFlags = flags;
+  }
+
+  leaveChatChannelFlags: CallReducerFlags = 'FullUpdate';
+  leaveChatChannel(flags: CallReducerFlags) {
+    this.leaveChatChannelFlags = flags;
+  }
+
   loadConfigFlags: CallReducerFlags = 'FullUpdate';
   loadConfig(flags: CallReducerFlags) {
     this.loadConfigFlags = flags;
@@ -12815,6 +13146,16 @@ export class SetReducerFlags {
     this.processInterModuleMessageFlags = flags;
   }
 
+  removeChatChannelFlags: CallReducerFlags = 'FullUpdate';
+  removeChatChannel(flags: CallReducerFlags) {
+    this.removeChatChannelFlags = flags;
+  }
+
+  removeChatChannelMemberFlags: CallReducerFlags = 'FullUpdate';
+  removeChatChannelMember(flags: CallReducerFlags) {
+    this.removeChatChannelMemberFlags = flags;
+  }
+
   removeFavoriteFriendFlags: CallReducerFlags = 'FullUpdate';
   removeFavoriteFriend(flags: CallReducerFlags) {
     this.removeFavoriteFriendFlags = flags;
@@ -12825,9 +13166,14 @@ export class SetReducerFlags {
     this.removeFriendFlags = flags;
   }
 
-  reportDirectMessageFlags: CallReducerFlags = 'FullUpdate';
-  reportDirectMessage(flags: CallReducerFlags) {
-    this.reportDirectMessageFlags = flags;
+  reportTargetedChatMessageFlags: CallReducerFlags = 'FullUpdate';
+  reportTargetedChatMessage(flags: CallReducerFlags) {
+    this.reportTargetedChatMessageFlags = flags;
+  }
+
+  saveInterModuleMessageErrorFlags: CallReducerFlags = 'FullUpdate';
+  saveInterModuleMessageError(flags: CallReducerFlags) {
+    this.saveInterModuleMessageErrorFlags = flags;
   }
 
   setRoleForIdentityFlags: CallReducerFlags = 'FullUpdate';
@@ -13275,6 +13621,11 @@ export class SetReducerFlags {
     this.stageWindParamsDescFlags = flags;
   }
 
+  unbanPlayerFromChatChannelFlags: CallReducerFlags = 'FullUpdate';
+  unbanPlayerFromChatChannel(flags: CallReducerFlags) {
+    this.unbanPlayerFromChatChannelFlags = flags;
+  }
+
   unblockPlayerFlags: CallReducerFlags = 'FullUpdate';
   unblockPlayer(flags: CallReducerFlags) {
     this.unblockPlayerFlags = flags;
@@ -13437,6 +13788,14 @@ export class RemoteTables {
 
   get characterStatsState(): CharacterStatsStateTableHandle {
     return new CharacterStatsStateTableHandle(this.connection.clientCache.getOrCreateTable<CharacterStatsState>(REMOTE_MODULE.tables.character_stats_state));
+  }
+
+  get chatChannelPermissionState(): ChatChannelPermissionStateTableHandle {
+    return new ChatChannelPermissionStateTableHandle(this.connection.clientCache.getOrCreateTable<ChatChannelPermissionState>(REMOTE_MODULE.tables.chat_channel_permission_state));
+  }
+
+  get chatChannelState(): ChatChannelStateTableHandle {
+    return new ChatChannelStateTableHandle(this.connection.clientCache.getOrCreateTable<ChatChannelState>(REMOTE_MODULE.tables.chat_channel_state));
   }
 
   get chatMessageState(): ChatMessageStateTableHandle {
@@ -13825,6 +14184,10 @@ export class RemoteTables {
 
   get interModuleMessageCounter(): InterModuleMessageCounterTableHandle {
     return new InterModuleMessageCounterTableHandle(this.connection.clientCache.getOrCreateTable<InterModuleMessageCounter>(REMOTE_MODULE.tables.inter_module_message_counter));
+  }
+
+  get interModuleMessageErrors(): InterModuleMessageErrorsTableHandle {
+    return new InterModuleMessageErrorsTableHandle(this.connection.clientCache.getOrCreateTable<InterModuleMessageErrors>(REMOTE_MODULE.tables.inter_module_message_errors));
   }
 
   get interModuleMessageV2(): InterModuleMessageV2TableHandle {

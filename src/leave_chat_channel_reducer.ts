@@ -32,32 +32,30 @@ import {
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
 
-import { ReportPlayerDirectChatMessage as __ReportPlayerDirectChatMessage } from "./report_player_direct_chat_message_type";
-
-export type ReportDirectMessage = {
-  request: __ReportPlayerDirectChatMessage,
+export type LeaveChatChannel = {
+  entityId: bigint,
 };
 
 /**
  * A namespace for generated helper functions.
  */
-export namespace ReportDirectMessage {
+export namespace LeaveChatChannel {
   /**
   * A function which returns this type represented as an AlgebraicType.
   * This function is derived from the AlgebraicType used to generate this type.
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("request", __ReportPlayerDirectChatMessage.getTypeScriptAlgebraicType()),
+      new ProductTypeElement("entityId", AlgebraicType.createU64Type()),
     ]);
   }
 
-  export function serialize(writer: BinaryWriter, value: ReportDirectMessage): void {
-    ReportDirectMessage.getTypeScriptAlgebraicType().serialize(writer, value);
+  export function serialize(writer: BinaryWriter, value: LeaveChatChannel): void {
+    LeaveChatChannel.getTypeScriptAlgebraicType().serialize(writer, value);
   }
 
-  export function deserialize(reader: BinaryReader): ReportDirectMessage {
-    return ReportDirectMessage.getTypeScriptAlgebraicType().deserialize(reader);
+  export function deserialize(reader: BinaryReader): LeaveChatChannel {
+    return LeaveChatChannel.getTypeScriptAlgebraicType().deserialize(reader);
   }
 
 }

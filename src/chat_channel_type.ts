@@ -43,6 +43,8 @@ export namespace ChatChannel {
   export type Claim = { tag: "Claim" };
   export type EmpirePublic = { tag: "EmpirePublic" };
   export type EmpireInternal = { tag: "EmpireInternal" };
+  export type LookingForGroup = { tag: "LookingForGroup" };
+  export type Trade = { tag: "Trade" };
 
   // Helper functions for constructing each variant of the tagged union.
   // ```
@@ -57,6 +59,8 @@ export namespace ChatChannel {
   export const Claim = { tag: "Claim" };
   export const EmpirePublic = { tag: "EmpirePublic" };
   export const EmpireInternal = { tag: "EmpireInternal" };
+  export const LookingForGroup = { tag: "LookingForGroup" };
+  export const Trade = { tag: "Trade" };
 
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createSumType([
@@ -67,6 +71,8 @@ export namespace ChatChannel {
       new SumTypeVariant("Claim", AlgebraicType.createProductType([])),
       new SumTypeVariant("EmpirePublic", AlgebraicType.createProductType([])),
       new SumTypeVariant("EmpireInternal", AlgebraicType.createProductType([])),
+      new SumTypeVariant("LookingForGroup", AlgebraicType.createProductType([])),
+      new SumTypeVariant("Trade", AlgebraicType.createProductType([])),
     ]);
   }
 
@@ -81,7 +87,7 @@ export namespace ChatChannel {
 }
 
 // The tagged union or sum type for the algebraic type `ChatChannel`.
-export type ChatChannel = ChatChannel.System | ChatChannel.Global | ChatChannel.Local | ChatChannel.Region | ChatChannel.Claim | ChatChannel.EmpirePublic | ChatChannel.EmpireInternal;
+export type ChatChannel = ChatChannel.System | ChatChannel.Global | ChatChannel.Local | ChatChannel.Region | ChatChannel.Claim | ChatChannel.EmpirePublic | ChatChannel.EmpireInternal | ChatChannel.LookingForGroup | ChatChannel.Trade;
 
 export default ChatChannel;
 

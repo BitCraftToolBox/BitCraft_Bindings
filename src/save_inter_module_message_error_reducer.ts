@@ -31,36 +31,36 @@ import {
   type ReducerEventContextInterface,
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
-export type ReportPlayerDirectChatMessage = {
-  chatMessageId: bigint,
-  reportType: string,
-  message: string,
+
+export type SaveInterModuleMessageError = {
+  sender: number,
+  messageId: bigint,
+  error: string,
 };
 
 /**
  * A namespace for generated helper functions.
  */
-export namespace ReportPlayerDirectChatMessage {
+export namespace SaveInterModuleMessageError {
   /**
   * A function which returns this type represented as an AlgebraicType.
   * This function is derived from the AlgebraicType used to generate this type.
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("chatMessageId", AlgebraicType.createU64Type()),
-      new ProductTypeElement("reportType", AlgebraicType.createStringType()),
-      new ProductTypeElement("message", AlgebraicType.createStringType()),
+      new ProductTypeElement("sender", AlgebraicType.createU8Type()),
+      new ProductTypeElement("messageId", AlgebraicType.createU64Type()),
+      new ProductTypeElement("error", AlgebraicType.createStringType()),
     ]);
   }
 
-  export function serialize(writer: BinaryWriter, value: ReportPlayerDirectChatMessage): void {
-    ReportPlayerDirectChatMessage.getTypeScriptAlgebraicType().serialize(writer, value);
+  export function serialize(writer: BinaryWriter, value: SaveInterModuleMessageError): void {
+    SaveInterModuleMessageError.getTypeScriptAlgebraicType().serialize(writer, value);
   }
 
-  export function deserialize(reader: BinaryReader): ReportPlayerDirectChatMessage {
-    return ReportPlayerDirectChatMessage.getTypeScriptAlgebraicType().deserialize(reader);
+  export function deserialize(reader: BinaryReader): SaveInterModuleMessageError {
+    return SaveInterModuleMessageError.getTypeScriptAlgebraicType().deserialize(reader);
   }
 
 }
-
 

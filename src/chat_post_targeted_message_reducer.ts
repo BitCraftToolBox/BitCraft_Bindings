@@ -32,32 +32,32 @@ import {
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
 
-export type DirectMessagePostMessage = {
-  receiver: string,
-  text: string,
+import { PlayerChatPostMessageRequest as __PlayerChatPostMessageRequest } from "./player_chat_post_message_request_type";
+
+export type ChatPostTargetedMessage = {
+  request: __PlayerChatPostMessageRequest,
 };
 
 /**
  * A namespace for generated helper functions.
  */
-export namespace DirectMessagePostMessage {
+export namespace ChatPostTargetedMessage {
   /**
   * A function which returns this type represented as an AlgebraicType.
   * This function is derived from the AlgebraicType used to generate this type.
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("receiver", AlgebraicType.createStringType()),
-      new ProductTypeElement("text", AlgebraicType.createStringType()),
+      new ProductTypeElement("request", __PlayerChatPostMessageRequest.getTypeScriptAlgebraicType()),
     ]);
   }
 
-  export function serialize(writer: BinaryWriter, value: DirectMessagePostMessage): void {
-    DirectMessagePostMessage.getTypeScriptAlgebraicType().serialize(writer, value);
+  export function serialize(writer: BinaryWriter, value: ChatPostTargetedMessage): void {
+    ChatPostTargetedMessage.getTypeScriptAlgebraicType().serialize(writer, value);
   }
 
-  export function deserialize(reader: BinaryReader): DirectMessagePostMessage {
-    return DirectMessagePostMessage.getTypeScriptAlgebraicType().deserialize(reader);
+  export function deserialize(reader: BinaryReader): ChatPostTargetedMessage {
+    return ChatPostTargetedMessage.getTypeScriptAlgebraicType().deserialize(reader);
   }
 
 }
