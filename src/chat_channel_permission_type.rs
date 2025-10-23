@@ -8,26 +8,20 @@ use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 #[derive(Copy, Eq, Hash)]
-pub enum ChatChannel {
-    System,
+pub enum ChatChannelPermission {
+    PendingInvitation,
 
-    Global,
+    AccessRequested,
 
-    Local,
+    Member,
 
-    Region,
+    Officer,
 
-    Claim,
+    Banned,
 
-    EmpirePublic,
-
-    EmpireInternal,
-
-    LookingForGroup,
-
-    Trade,
+    Owner,
 }
 
-impl __sdk::InModule for ChatChannel {
+impl __sdk::InModule for ChatChannelPermission {
     type Module = super::RemoteModule;
 }

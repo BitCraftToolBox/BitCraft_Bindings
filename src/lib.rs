@@ -58,6 +58,7 @@ pub mod auction_listing_state_type;
 pub mod authenticate_reducer;
 pub mod auto_claim_state_table;
 pub mod auto_claim_state_type;
+pub mod ban_player_from_chat_channel_reducer;
 pub mod bank_state_table;
 pub mod bank_state_type;
 pub mod barter_stall_state_table;
@@ -114,9 +115,16 @@ pub mod character_stat_desc_type;
 pub mod character_stat_type_type;
 pub mod character_stats_state_table;
 pub mod character_stats_state_type;
+pub mod chat_channel_permission_state_table;
+pub mod chat_channel_permission_state_type;
+pub mod chat_channel_permission_type;
+pub mod chat_channel_state_table;
+pub mod chat_channel_state_type;
 pub mod chat_channel_type;
+pub mod chat_channel_visibility_type;
 pub mod chat_message_state_table;
 pub mod chat_message_state_type;
+pub mod chat_post_targeted_message_reducer;
 pub mod cheat_empire_siege_add_supplies_reducer;
 pub mod cheat_empire_siege_cancel_reducer;
 pub mod cheat_player_set_name_reducer;
@@ -186,6 +194,7 @@ pub mod contribution_state_table;
 pub mod contribution_state_type;
 pub mod crafting_recipe_desc_table;
 pub mod crafting_recipe_desc_type;
+pub mod create_chat_channel_reducer;
 pub mod csv_stat_entry_type;
 pub mod current_version_reducer;
 pub mod deconstruction_recipe_desc_table;
@@ -212,7 +221,6 @@ pub mod dimension_description_state_type;
 pub mod dimension_network_state_table;
 pub mod dimension_network_state_type;
 pub mod dimension_type_type;
-pub mod direct_message_post_message_reducer;
 pub mod direct_message_state_table;
 pub mod direct_message_state_type;
 pub mod distant_visible_entity_desc_table;
@@ -225,6 +233,8 @@ pub mod duel_state_table;
 pub mod duel_state_type;
 pub mod dungeon_state_table;
 pub mod dungeon_state_type;
+pub mod edit_chat_channel_member_permission_reducer;
+pub mod edit_chat_channel_reducer;
 pub mod elevator_desc_table;
 pub mod elevator_desc_type;
 pub mod emote_desc_table;
@@ -567,6 +577,8 @@ pub mod input_item_stack_type;
 pub mod insert_developer_identity_reducer;
 pub mod inter_module_message_counter_table;
 pub mod inter_module_message_counter_type;
+pub mod inter_module_message_errors_table;
+pub mod inter_module_message_errors_type;
 pub mod inter_module_message_table;
 pub mod inter_module_message_type;
 pub mod inter_module_message_v_2_table;
@@ -593,6 +605,7 @@ pub mod interior_spawn_desc_type;
 pub mod interior_spawn_type_type;
 pub mod inventory_state_table;
 pub mod inventory_state_type;
+pub mod invite_to_chat_channel_reducer;
 pub mod item_conversion_location_context_type;
 pub mod item_conversion_recipe_desc_table;
 pub mod item_conversion_recipe_desc_type;
@@ -603,6 +616,7 @@ pub mod item_list_desc_type;
 pub mod item_list_possibility_type;
 pub mod item_stack_type;
 pub mod item_type_type;
+pub mod join_chat_channel_reducer;
 pub mod knowledge_achievement_state_table;
 pub mod knowledge_achievement_state_type;
 pub mod knowledge_battle_action_state_table;
@@ -654,6 +668,7 @@ pub mod knowledge_state_type;
 pub mod knowledge_vault_state_table;
 pub mod knowledge_vault_state_type;
 pub mod large_hex_tile_message_type;
+pub mod leave_chat_channel_reducer;
 pub mod level_requirement_type;
 pub mod light_source_state_table;
 pub mod light_source_state_type;
@@ -742,6 +757,7 @@ pub mod player_action_result_type;
 pub mod player_action_state_table;
 pub mod player_action_state_type;
 pub mod player_action_type_type;
+pub mod player_chat_post_message_request_type;
 pub mod player_claim_daily_shards_reducer;
 pub mod player_create_msg_type;
 pub mod player_create_reducer;
@@ -820,12 +836,13 @@ pub mod region_population_info_type;
 pub mod region_sign_in_parameters_op_type;
 pub mod region_sign_in_parameters_table;
 pub mod region_sign_in_parameters_type;
+pub mod remove_chat_channel_member_reducer;
+pub mod remove_chat_channel_reducer;
 pub mod remove_favorite_friend_reducer;
 pub mod remove_friend_reducer;
 pub mod rent_state_table;
 pub mod rent_state_type;
-pub mod report_direct_message_reducer;
-pub mod report_player_direct_chat_message_type;
+pub mod report_targeted_chat_message_reducer;
 pub mod reserved_name_desc_table;
 pub mod reserved_name_desc_type;
 pub mod resource_clump_desc_table;
@@ -847,6 +864,7 @@ pub mod rez_sick_long_term_state_type;
 pub mod role_type;
 pub mod satiation_state_table;
 pub mod satiation_state_type;
+pub mod save_inter_module_message_error_reducer;
 pub mod secondary_knowledge_desc_table;
 pub mod secondary_knowledge_desc_type;
 pub mod sell_order_state_table;
@@ -1027,6 +1045,7 @@ pub mod traveler_task_state_type;
 pub mod traveler_trade_order_desc_table;
 pub mod traveler_trade_order_desc_type;
 pub mod traversal_settings_type;
+pub mod unban_player_from_chat_channel_reducer;
 pub mod unblock_player_reducer;
 pub mod unclaimed_collectibles_state_table;
 pub mod unclaimed_collectibles_state_type;
@@ -1191,6 +1210,10 @@ pub use auction_listing_state_type::AuctionListingState;
 pub use authenticate_reducer::{authenticate, set_flags_for_authenticate, AuthenticateCallbackId};
 pub use auto_claim_state_table::*;
 pub use auto_claim_state_type::AutoClaimState;
+pub use ban_player_from_chat_channel_reducer::{
+    ban_player_from_chat_channel, set_flags_for_ban_player_from_chat_channel,
+    BanPlayerFromChatChannelCallbackId,
+};
 pub use bank_state_table::*;
 pub use bank_state_type::BankState;
 pub use barter_stall_state_table::*;
@@ -1249,9 +1272,19 @@ pub use character_stat_desc_type::CharacterStatDesc;
 pub use character_stat_type_type::CharacterStatType;
 pub use character_stats_state_table::*;
 pub use character_stats_state_type::CharacterStatsState;
+pub use chat_channel_permission_state_table::*;
+pub use chat_channel_permission_state_type::ChatChannelPermissionState;
+pub use chat_channel_permission_type::ChatChannelPermission;
+pub use chat_channel_state_table::*;
+pub use chat_channel_state_type::ChatChannelState;
 pub use chat_channel_type::ChatChannel;
+pub use chat_channel_visibility_type::ChatChannelVisibility;
 pub use chat_message_state_table::*;
 pub use chat_message_state_type::ChatMessageState;
+pub use chat_post_targeted_message_reducer::{
+    chat_post_targeted_message, set_flags_for_chat_post_targeted_message,
+    ChatPostTargetedMessageCallbackId,
+};
 pub use cheat_empire_siege_add_supplies_reducer::{
     cheat_empire_siege_add_supplies, set_flags_for_cheat_empire_siege_add_supplies,
     CheatEmpireSiegeAddSuppliesCallbackId,
@@ -1337,6 +1370,9 @@ pub use contribution_state_table::*;
 pub use contribution_state_type::ContributionState;
 pub use crafting_recipe_desc_table::*;
 pub use crafting_recipe_desc_type::CraftingRecipeDesc;
+pub use create_chat_channel_reducer::{
+    create_chat_channel, set_flags_for_create_chat_channel, CreateChatChannelCallbackId,
+};
 pub use csv_stat_entry_type::CsvStatEntry;
 pub use current_version_reducer::{
     current_version, set_flags_for_current_version, CurrentVersionCallbackId,
@@ -1368,10 +1404,6 @@ pub use dimension_description_state_type::DimensionDescriptionState;
 pub use dimension_network_state_table::*;
 pub use dimension_network_state_type::DimensionNetworkState;
 pub use dimension_type_type::DimensionType;
-pub use direct_message_post_message_reducer::{
-    direct_message_post_message, set_flags_for_direct_message_post_message,
-    DirectMessagePostMessageCallbackId,
-};
 pub use direct_message_state_table::*;
 pub use direct_message_state_type::DirectMessageState;
 pub use distant_visible_entity_desc_table::*;
@@ -1384,6 +1416,13 @@ pub use duel_state_table::*;
 pub use duel_state_type::DuelState;
 pub use dungeon_state_table::*;
 pub use dungeon_state_type::DungeonState;
+pub use edit_chat_channel_member_permission_reducer::{
+    edit_chat_channel_member_permission, set_flags_for_edit_chat_channel_member_permission,
+    EditChatChannelMemberPermissionCallbackId,
+};
+pub use edit_chat_channel_reducer::{
+    edit_chat_channel, set_flags_for_edit_chat_channel, EditChatChannelCallbackId,
+};
 pub use elevator_desc_table::*;
 pub use elevator_desc_type::ElevatorDesc;
 pub use emote_desc_table::*;
@@ -2188,6 +2227,8 @@ pub use insert_developer_identity_reducer::{
 };
 pub use inter_module_message_counter_table::*;
 pub use inter_module_message_counter_type::InterModuleMessageCounter;
+pub use inter_module_message_errors_table::*;
+pub use inter_module_message_errors_type::InterModuleMessageErrors;
 pub use inter_module_message_table::*;
 pub use inter_module_message_type::InterModuleMessage;
 pub use inter_module_message_v_2_table::*;
@@ -2214,6 +2255,9 @@ pub use interior_spawn_desc_type::InteriorSpawnDesc;
 pub use interior_spawn_type_type::InteriorSpawnType;
 pub use inventory_state_table::*;
 pub use inventory_state_type::InventoryState;
+pub use invite_to_chat_channel_reducer::{
+    invite_to_chat_channel, set_flags_for_invite_to_chat_channel, InviteToChatChannelCallbackId,
+};
 pub use item_conversion_location_context_type::ItemConversionLocationContext;
 pub use item_conversion_recipe_desc_table::*;
 pub use item_conversion_recipe_desc_type::ItemConversionRecipeDesc;
@@ -2224,6 +2268,9 @@ pub use item_list_desc_type::ItemListDesc;
 pub use item_list_possibility_type::ItemListPossibility;
 pub use item_stack_type::ItemStack;
 pub use item_type_type::ItemType;
+pub use join_chat_channel_reducer::{
+    join_chat_channel, set_flags_for_join_chat_channel, JoinChatChannelCallbackId,
+};
 pub use knowledge_achievement_state_table::*;
 pub use knowledge_achievement_state_type::KnowledgeAchievementState;
 pub use knowledge_battle_action_state_table::*;
@@ -2275,6 +2322,9 @@ pub use knowledge_state_type::KnowledgeState;
 pub use knowledge_vault_state_table::*;
 pub use knowledge_vault_state_type::KnowledgeVaultState;
 pub use large_hex_tile_message_type::LargeHexTileMessage;
+pub use leave_chat_channel_reducer::{
+    leave_chat_channel, set_flags_for_leave_chat_channel, LeaveChatChannelCallbackId,
+};
 pub use level_requirement_type::LevelRequirement;
 pub use light_source_state_table::*;
 pub use light_source_state_type::LightSourceState;
@@ -2370,6 +2420,7 @@ pub use player_action_result_type::PlayerActionResult;
 pub use player_action_state_table::*;
 pub use player_action_state_type::PlayerActionState;
 pub use player_action_type_type::PlayerActionType;
+pub use player_chat_post_message_request_type::PlayerChatPostMessageRequest;
 pub use player_claim_daily_shards_reducer::{
     player_claim_daily_shards, set_flags_for_player_claim_daily_shards,
     PlayerClaimDailyShardsCallbackId,
@@ -2468,6 +2519,13 @@ pub use region_population_info_type::RegionPopulationInfo;
 pub use region_sign_in_parameters_op_type::RegionSignInParametersOp;
 pub use region_sign_in_parameters_table::*;
 pub use region_sign_in_parameters_type::RegionSignInParameters;
+pub use remove_chat_channel_member_reducer::{
+    remove_chat_channel_member, set_flags_for_remove_chat_channel_member,
+    RemoveChatChannelMemberCallbackId,
+};
+pub use remove_chat_channel_reducer::{
+    remove_chat_channel, set_flags_for_remove_chat_channel, RemoveChatChannelCallbackId,
+};
 pub use remove_favorite_friend_reducer::{
     remove_favorite_friend, set_flags_for_remove_favorite_friend, RemoveFavoriteFriendCallbackId,
 };
@@ -2476,10 +2534,10 @@ pub use remove_friend_reducer::{
 };
 pub use rent_state_table::*;
 pub use rent_state_type::RentState;
-pub use report_direct_message_reducer::{
-    report_direct_message, set_flags_for_report_direct_message, ReportDirectMessageCallbackId,
+pub use report_targeted_chat_message_reducer::{
+    report_targeted_chat_message, set_flags_for_report_targeted_chat_message,
+    ReportTargetedChatMessageCallbackId,
 };
-pub use report_player_direct_chat_message_type::ReportPlayerDirectChatMessage;
 pub use reserved_name_desc_table::*;
 pub use reserved_name_desc_type::ReservedNameDesc;
 pub use resource_clump_desc_table::*;
@@ -2501,6 +2559,10 @@ pub use rez_sick_long_term_state_type::RezSickLongTermState;
 pub use role_type::Role;
 pub use satiation_state_table::*;
 pub use satiation_state_type::SatiationState;
+pub use save_inter_module_message_error_reducer::{
+    save_inter_module_message_error, set_flags_for_save_inter_module_message_error,
+    SaveInterModuleMessageErrorCallbackId,
+};
 pub use secondary_knowledge_desc_table::*;
 pub use secondary_knowledge_desc_type::SecondaryKnowledgeDesc;
 pub use sell_order_state_table::*;
@@ -2905,6 +2967,10 @@ pub use traveler_task_state_type::TravelerTaskState;
 pub use traveler_trade_order_desc_table::*;
 pub use traveler_trade_order_desc_type::TravelerTradeOrderDesc;
 pub use traversal_settings_type::TraversalSettings;
+pub use unban_player_from_chat_channel_reducer::{
+    set_flags_for_unban_player_from_chat_channel, unban_player_from_chat_channel,
+    UnbanPlayerFromChatChannelCallbackId,
+};
 pub use unblock_player_reducer::{
     set_flags_for_unblock_player, unblock_player, UnblockPlayerCallbackId,
 };
@@ -3082,11 +3148,18 @@ pub enum Reducer {
     Authenticate {
         identity: String,
     },
+    BanPlayerFromChatChannel {
+        channel_entity_id: u64,
+        player_entity_id: u64,
+    },
     BlockIdentity {
         identity: String,
     },
     BlockPlayer {
         player_entity_id: u64,
+    },
+    ChatPostTargetedMessage {
+        request: PlayerChatPostMessageRequest,
     },
     CheatEmpireSiegeAddSupplies {
         siege_node_entity_id: u64,
@@ -3104,13 +3177,25 @@ pub enum Reducer {
     },
     ClearStagedStaticData,
     CommitStagedStaticData,
+    CreateChatChannel {
+        name: String,
+        description: String,
+        visibility: ChatChannelVisibility,
+    },
     CurrentVersion,
     DeleteDeveloperIdentity {
         identity: String,
     },
-    DirectMessagePostMessage {
-        receiver: String,
-        text: String,
+    EditChatChannel {
+        entity_id: u64,
+        name: String,
+        description: String,
+        visibility: ChatChannelVisibility,
+    },
+    EditChatChannelMemberPermission {
+        channel_entity_id: u64,
+        player_entity_id: u64,
+        rank: ChatChannelPermission,
     },
     EmpireChangeEmblem {
         request: EmpireChangeEmblemRequest,
@@ -3665,6 +3750,16 @@ pub enum Reducer {
         email: String,
         is_external: bool,
     },
+    InviteToChatChannel {
+        channel_entity_id: u64,
+        player_entity_id: u64,
+    },
+    JoinChatChannel {
+        entity_id: u64,
+    },
+    LeaveChatChannel {
+        entity_id: u64,
+    },
     LoadConfig {
         environment_names: Vec<String>,
         contents: Vec<String>,
@@ -3694,14 +3789,28 @@ pub enum Reducer {
         sender: u8,
         message: InterModuleMessageV2,
     },
+    RemoveChatChannel {
+        entity_id: u64,
+    },
+    RemoveChatChannelMember {
+        channel_entity_id: u64,
+        player_entity_id: u64,
+    },
     RemoveFavoriteFriend {
         player_entity_id: u64,
     },
     RemoveFriend {
         player_entity_id: u64,
     },
-    ReportDirectMessage {
-        request: ReportPlayerDirectChatMessage,
+    ReportTargetedChatMessage {
+        chat_message_id: u64,
+        report_type: String,
+        message: String,
+    },
+    SaveInterModuleMessageError {
+        sender: u8,
+        message_id: u64,
+        error: String,
     },
     SetRoleForIdentity {
         identity: String,
@@ -3971,6 +4080,10 @@ pub enum Reducer {
     StageWindParamsDesc {
         records: Vec<WindParamsDesc>,
     },
+    UnbanPlayerFromChatChannel {
+        channel_entity_id: u64,
+        player_entity_id: u64,
+    },
     UnblockPlayer {
         player_entity_id: u64,
     },
@@ -4026,17 +4139,23 @@ impl __sdk::Reducer for Reducer {
             Reducer::AdminUpdateGrantedHubItemState { .. } => "admin_update_granted_hub_item_state",
             Reducer::AdminUpdateSignInParameters { .. } => "admin_update_sign_in_parameters",
             Reducer::Authenticate { .. } => "authenticate",
+            Reducer::BanPlayerFromChatChannel { .. } => "ban_player_from_chat_channel",
             Reducer::BlockIdentity { .. } => "block_identity",
             Reducer::BlockPlayer { .. } => "block_player",
+            Reducer::ChatPostTargetedMessage { .. } => "chat_post_targeted_message",
             Reducer::CheatEmpireSiegeAddSupplies { .. } => "cheat_empire_siege_add_supplies",
             Reducer::CheatEmpireSiegeCancel { .. } => "cheat_empire_siege_cancel",
             Reducer::CheatPlayerSetName { .. } => "cheat_player_set_name",
             Reducer::CheatShardsGrant { .. } => "cheat_shards_grant",
             Reducer::ClearStagedStaticData => "clear_staged_static_data",
             Reducer::CommitStagedStaticData => "commit_staged_static_data",
+            Reducer::CreateChatChannel { .. } => "create_chat_channel",
             Reducer::CurrentVersion => "current_version",
             Reducer::DeleteDeveloperIdentity { .. } => "delete_developer_identity",
-            Reducer::DirectMessagePostMessage { .. } => "direct_message_post_message",
+            Reducer::EditChatChannel { .. } => "edit_chat_channel",
+            Reducer::EditChatChannelMemberPermission { .. } => {
+                "edit_chat_channel_member_permission"
+            }
             Reducer::EmpireChangeEmblem { .. } => "empire_change_emblem",
             Reducer::EmpireCraftSupplies { .. } => "empire_craft_supplies",
             Reducer::EmpireCraftSuppliesScheduled { .. } => "empire_craft_supplies_scheduled",
@@ -4238,6 +4357,9 @@ impl __sdk::Reducer for Reducer {
             Reducer::ImportWorldRegionNameState { .. } => "import_world_region_name_state",
             Reducer::ImportWorldRegionState { .. } => "import_world_region_state",
             Reducer::InsertDeveloperIdentity { .. } => "insert_developer_identity",
+            Reducer::InviteToChatChannel { .. } => "invite_to_chat_channel",
+            Reducer::JoinChatChannel { .. } => "join_chat_channel",
+            Reducer::LeaveChatChannel { .. } => "leave_chat_channel",
             Reducer::LoadConfig { .. } => "load_config",
             Reducer::LogEmpireLeaderboard => "log_empire_leaderboard",
             Reducer::LogPlayerWith => "log_player_with_",
@@ -4250,9 +4372,12 @@ impl __sdk::Reducer for Reducer {
             Reducer::PlayerVoteAnswer { .. } => "player_vote_answer",
             Reducer::PlayerVoteConclude { .. } => "player_vote_conclude",
             Reducer::ProcessInterModuleMessage { .. } => "process_inter_module_message",
+            Reducer::RemoveChatChannel { .. } => "remove_chat_channel",
+            Reducer::RemoveChatChannelMember { .. } => "remove_chat_channel_member",
             Reducer::RemoveFavoriteFriend { .. } => "remove_favorite_friend",
             Reducer::RemoveFriend { .. } => "remove_friend",
-            Reducer::ReportDirectMessage { .. } => "report_direct_message",
+            Reducer::ReportTargetedChatMessage { .. } => "report_targeted_chat_message",
+            Reducer::SaveInterModuleMessageError { .. } => "save_inter_module_message_error",
             Reducer::SetRoleForIdentity { .. } => "set_role_for_identity",
             Reducer::SetVisibility { .. } => "set_visibility",
             Reducer::SignIn { .. } => "sign_in",
@@ -4346,6 +4471,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::StageWeaponDesc { .. } => "stage_weapon_desc",
             Reducer::StageWeaponTypeDesc { .. } => "stage_weapon_type_desc",
             Reducer::StageWindParamsDesc { .. } => "stage_wind_params_desc",
+            Reducer::UnbanPlayerFromChatChannel { .. } => "unban_player_from_chat_channel",
             Reducer::UnblockPlayer { .. } => "unblock_player",
             Reducer::UpdateRoleForPlayer { .. } => "update_role_for_player",
             Reducer::UpdateScheduledTimersFromStaticData => {
@@ -4386,17 +4512,21 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "admin_update_granted_hub_item_state" => Ok(__sdk::parse_reducer_args::<admin_update_granted_hub_item_state_reducer::AdminUpdateGrantedHubItemStateArgs>("admin_update_granted_hub_item_state", &value.args)?.into()),
             "admin_update_sign_in_parameters" => Ok(__sdk::parse_reducer_args::<admin_update_sign_in_parameters_reducer::AdminUpdateSignInParametersArgs>("admin_update_sign_in_parameters", &value.args)?.into()),
             "authenticate" => Ok(__sdk::parse_reducer_args::<authenticate_reducer::AuthenticateArgs>("authenticate", &value.args)?.into()),
+            "ban_player_from_chat_channel" => Ok(__sdk::parse_reducer_args::<ban_player_from_chat_channel_reducer::BanPlayerFromChatChannelArgs>("ban_player_from_chat_channel", &value.args)?.into()),
             "block_identity" => Ok(__sdk::parse_reducer_args::<block_identity_reducer::BlockIdentityArgs>("block_identity", &value.args)?.into()),
             "block_player" => Ok(__sdk::parse_reducer_args::<block_player_reducer::BlockPlayerArgs>("block_player", &value.args)?.into()),
+            "chat_post_targeted_message" => Ok(__sdk::parse_reducer_args::<chat_post_targeted_message_reducer::ChatPostTargetedMessageArgs>("chat_post_targeted_message", &value.args)?.into()),
             "cheat_empire_siege_add_supplies" => Ok(__sdk::parse_reducer_args::<cheat_empire_siege_add_supplies_reducer::CheatEmpireSiegeAddSuppliesArgs>("cheat_empire_siege_add_supplies", &value.args)?.into()),
             "cheat_empire_siege_cancel" => Ok(__sdk::parse_reducer_args::<cheat_empire_siege_cancel_reducer::CheatEmpireSiegeCancelArgs>("cheat_empire_siege_cancel", &value.args)?.into()),
             "cheat_player_set_name" => Ok(__sdk::parse_reducer_args::<cheat_player_set_name_reducer::CheatPlayerSetNameArgs>("cheat_player_set_name", &value.args)?.into()),
             "cheat_shards_grant" => Ok(__sdk::parse_reducer_args::<cheat_shards_grant_reducer::CheatShardsGrantArgs>("cheat_shards_grant", &value.args)?.into()),
             "clear_staged_static_data" => Ok(__sdk::parse_reducer_args::<clear_staged_static_data_reducer::ClearStagedStaticDataArgs>("clear_staged_static_data", &value.args)?.into()),
             "commit_staged_static_data" => Ok(__sdk::parse_reducer_args::<commit_staged_static_data_reducer::CommitStagedStaticDataArgs>("commit_staged_static_data", &value.args)?.into()),
+            "create_chat_channel" => Ok(__sdk::parse_reducer_args::<create_chat_channel_reducer::CreateChatChannelArgs>("create_chat_channel", &value.args)?.into()),
             "current_version" => Ok(__sdk::parse_reducer_args::<current_version_reducer::CurrentVersionArgs>("current_version", &value.args)?.into()),
             "delete_developer_identity" => Ok(__sdk::parse_reducer_args::<delete_developer_identity_reducer::DeleteDeveloperIdentityArgs>("delete_developer_identity", &value.args)?.into()),
-            "direct_message_post_message" => Ok(__sdk::parse_reducer_args::<direct_message_post_message_reducer::DirectMessagePostMessageArgs>("direct_message_post_message", &value.args)?.into()),
+            "edit_chat_channel" => Ok(__sdk::parse_reducer_args::<edit_chat_channel_reducer::EditChatChannelArgs>("edit_chat_channel", &value.args)?.into()),
+            "edit_chat_channel_member_permission" => Ok(__sdk::parse_reducer_args::<edit_chat_channel_member_permission_reducer::EditChatChannelMemberPermissionArgs>("edit_chat_channel_member_permission", &value.args)?.into()),
             "empire_change_emblem" => Ok(__sdk::parse_reducer_args::<empire_change_emblem_reducer::EmpireChangeEmblemArgs>("empire_change_emblem", &value.args)?.into()),
             "empire_craft_supplies" => Ok(__sdk::parse_reducer_args::<empire_craft_supplies_reducer::EmpireCraftSuppliesArgs>("empire_craft_supplies", &value.args)?.into()),
             "empire_craft_supplies_scheduled" => Ok(__sdk::parse_reducer_args::<empire_craft_supplies_scheduled_reducer::EmpireCraftSuppliesScheduledArgs>("empire_craft_supplies_scheduled", &value.args)?.into()),
@@ -4582,6 +4712,9 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "import_world_region_name_state" => Ok(__sdk::parse_reducer_args::<import_world_region_name_state_reducer::ImportWorldRegionNameStateArgs>("import_world_region_name_state", &value.args)?.into()),
             "import_world_region_state" => Ok(__sdk::parse_reducer_args::<import_world_region_state_reducer::ImportWorldRegionStateArgs>("import_world_region_state", &value.args)?.into()),
             "insert_developer_identity" => Ok(__sdk::parse_reducer_args::<insert_developer_identity_reducer::InsertDeveloperIdentityArgs>("insert_developer_identity", &value.args)?.into()),
+            "invite_to_chat_channel" => Ok(__sdk::parse_reducer_args::<invite_to_chat_channel_reducer::InviteToChatChannelArgs>("invite_to_chat_channel", &value.args)?.into()),
+            "join_chat_channel" => Ok(__sdk::parse_reducer_args::<join_chat_channel_reducer::JoinChatChannelArgs>("join_chat_channel", &value.args)?.into()),
+            "leave_chat_channel" => Ok(__sdk::parse_reducer_args::<leave_chat_channel_reducer::LeaveChatChannelArgs>("leave_chat_channel", &value.args)?.into()),
             "load_config" => Ok(__sdk::parse_reducer_args::<load_config_reducer::LoadConfigArgs>("load_config", &value.args)?.into()),
             "log_empire_leaderboard" => Ok(__sdk::parse_reducer_args::<log_empire_leaderboard_reducer::LogEmpireLeaderboardArgs>("log_empire_leaderboard", &value.args)?.into()),
             "log_player_with_" => Ok(__sdk::parse_reducer_args::<log_player_with_reducer::LogPlayerWithArgs>("log_player_with_", &value.args)?.into()),
@@ -4594,9 +4727,12 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "player_vote_answer" => Ok(__sdk::parse_reducer_args::<player_vote_answer_reducer::PlayerVoteAnswerArgs>("player_vote_answer", &value.args)?.into()),
             "player_vote_conclude" => Ok(__sdk::parse_reducer_args::<player_vote_conclude_reducer::PlayerVoteConcludeArgs>("player_vote_conclude", &value.args)?.into()),
             "process_inter_module_message" => Ok(__sdk::parse_reducer_args::<process_inter_module_message_reducer::ProcessInterModuleMessageArgs>("process_inter_module_message", &value.args)?.into()),
+            "remove_chat_channel" => Ok(__sdk::parse_reducer_args::<remove_chat_channel_reducer::RemoveChatChannelArgs>("remove_chat_channel", &value.args)?.into()),
+            "remove_chat_channel_member" => Ok(__sdk::parse_reducer_args::<remove_chat_channel_member_reducer::RemoveChatChannelMemberArgs>("remove_chat_channel_member", &value.args)?.into()),
             "remove_favorite_friend" => Ok(__sdk::parse_reducer_args::<remove_favorite_friend_reducer::RemoveFavoriteFriendArgs>("remove_favorite_friend", &value.args)?.into()),
             "remove_friend" => Ok(__sdk::parse_reducer_args::<remove_friend_reducer::RemoveFriendArgs>("remove_friend", &value.args)?.into()),
-            "report_direct_message" => Ok(__sdk::parse_reducer_args::<report_direct_message_reducer::ReportDirectMessageArgs>("report_direct_message", &value.args)?.into()),
+            "report_targeted_chat_message" => Ok(__sdk::parse_reducer_args::<report_targeted_chat_message_reducer::ReportTargetedChatMessageArgs>("report_targeted_chat_message", &value.args)?.into()),
+            "save_inter_module_message_error" => Ok(__sdk::parse_reducer_args::<save_inter_module_message_error_reducer::SaveInterModuleMessageErrorArgs>("save_inter_module_message_error", &value.args)?.into()),
             "set_role_for_identity" => Ok(__sdk::parse_reducer_args::<set_role_for_identity_reducer::SetRoleForIdentityArgs>("set_role_for_identity", &value.args)?.into()),
             "set_visibility" => Ok(__sdk::parse_reducer_args::<set_visibility_reducer::SetVisibilityArgs>("set_visibility", &value.args)?.into()),
             "sign_in" => Ok(__sdk::parse_reducer_args::<sign_in_reducer::SignInArgs>("sign_in", &value.args)?.into()),
@@ -4686,6 +4822,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "stage_weapon_desc" => Ok(__sdk::parse_reducer_args::<stage_weapon_desc_reducer::StageWeaponDescArgs>("stage_weapon_desc", &value.args)?.into()),
             "stage_weapon_type_desc" => Ok(__sdk::parse_reducer_args::<stage_weapon_type_desc_reducer::StageWeaponTypeDescArgs>("stage_weapon_type_desc", &value.args)?.into()),
             "stage_wind_params_desc" => Ok(__sdk::parse_reducer_args::<stage_wind_params_desc_reducer::StageWindParamsDescArgs>("stage_wind_params_desc", &value.args)?.into()),
+            "unban_player_from_chat_channel" => Ok(__sdk::parse_reducer_args::<unban_player_from_chat_channel_reducer::UnbanPlayerFromChatChannelArgs>("unban_player_from_chat_channel", &value.args)?.into()),
             "unblock_player" => Ok(__sdk::parse_reducer_args::<unblock_player_reducer::UnblockPlayerArgs>("unblock_player", &value.args)?.into()),
             "update_role_for_player" => Ok(__sdk::parse_reducer_args::<update_role_for_player_reducer::UpdateRoleForPlayerArgs>("update_role_for_player", &value.args)?.into()),
             "update_scheduled_timers_from_static_data" => Ok(__sdk::parse_reducer_args::<update_scheduled_timers_from_static_data_reducer::UpdateScheduledTimersFromStaticDataArgs>("update_scheduled_timers_from_static_data", &value.args)?.into()),
@@ -4733,6 +4870,8 @@ pub struct DbUpdate {
     cargo_desc: __sdk::TableUpdate<CargoDesc>,
     character_stat_desc: __sdk::TableUpdate<CharacterStatDesc>,
     character_stats_state: __sdk::TableUpdate<CharacterStatsState>,
+    chat_channel_permission_state: __sdk::TableUpdate<ChatChannelPermissionState>,
+    chat_channel_state: __sdk::TableUpdate<ChatChannelState>,
     chat_message_state: __sdk::TableUpdate<ChatMessageState>,
     chest_rarity_desc: __sdk::TableUpdate<ChestRarityDesc>,
     claim_local_state: __sdk::TableUpdate<ClaimLocalState>,
@@ -4831,6 +4970,7 @@ pub struct DbUpdate {
     identity_role: __sdk::TableUpdate<IdentityRole>,
     inter_module_message: __sdk::TableUpdate<InterModuleMessage>,
     inter_module_message_counter: __sdk::TableUpdate<InterModuleMessageCounter>,
+    inter_module_message_errors: __sdk::TableUpdate<InterModuleMessageErrors>,
     inter_module_message_v_2: __sdk::TableUpdate<InterModuleMessageV2>,
     inter_module_response_message_counter: __sdk::TableUpdate<InterModuleResponseMessageCounter>,
     interior_collapse_trigger_state: __sdk::TableUpdate<InteriorCollapseTriggerState>,
@@ -5092,6 +5232,12 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
                 "character_stats_state" => db_update.character_stats_state.append(
                     character_stats_state_table::parse_table_update(table_update)?,
                 ),
+                "chat_channel_permission_state" => db_update.chat_channel_permission_state.append(
+                    chat_channel_permission_state_table::parse_table_update(table_update)?,
+                ),
+                "chat_channel_state" => db_update
+                    .chat_channel_state
+                    .append(chat_channel_state_table::parse_table_update(table_update)?),
                 "chat_message_state" => db_update
                     .chat_message_state
                     .append(chat_message_state_table::parse_table_update(table_update)?),
@@ -5388,6 +5534,9 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
                 ),
                 "inter_module_message_counter" => db_update.inter_module_message_counter.append(
                     inter_module_message_counter_table::parse_table_update(table_update)?,
+                ),
+                "inter_module_message_errors" => db_update.inter_module_message_errors.append(
+                    inter_module_message_errors_table::parse_table_update(table_update)?,
                 ),
                 "inter_module_message_v2" => db_update.inter_module_message_v_2.append(
                     inter_module_message_v_2_table::parse_table_update(table_update)?,
@@ -6038,6 +6187,15 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.character_stats_state,
             )
             .with_updates_by_pk(|row| &row.entity_id);
+        diff.chat_channel_permission_state = cache
+            .apply_diff_to_table::<ChatChannelPermissionState>(
+                "chat_channel_permission_state",
+                &self.chat_channel_permission_state,
+            )
+            .with_updates_by_pk(|row| &row.entity_id);
+        diff.chat_channel_state = cache
+            .apply_diff_to_table::<ChatChannelState>("chat_channel_state", &self.chat_channel_state)
+            .with_updates_by_pk(|row| &row.entity_id);
         diff.chat_message_state = cache
             .apply_diff_to_table::<ChatMessageState>("chat_message_state", &self.chat_message_state)
             .with_updates_by_pk(|row| &row.entity_id);
@@ -6489,6 +6647,12 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.inter_module_message_counter,
             )
             .with_updates_by_pk(|row| &row.module_id);
+        diff.inter_module_message_errors = cache
+            .apply_diff_to_table::<InterModuleMessageErrors>(
+                "inter_module_message_errors",
+                &self.inter_module_message_errors,
+            )
+            .with_updates_by_pk(|row| &row.sender_module_id);
         diff.inter_module_message_v_2 = cache
             .apply_diff_to_table::<InterModuleMessageV2>(
                 "inter_module_message_v2",
@@ -7283,6 +7447,8 @@ pub struct AppliedDiff<'r> {
     cargo_desc: __sdk::TableAppliedDiff<'r, CargoDesc>,
     character_stat_desc: __sdk::TableAppliedDiff<'r, CharacterStatDesc>,
     character_stats_state: __sdk::TableAppliedDiff<'r, CharacterStatsState>,
+    chat_channel_permission_state: __sdk::TableAppliedDiff<'r, ChatChannelPermissionState>,
+    chat_channel_state: __sdk::TableAppliedDiff<'r, ChatChannelState>,
     chat_message_state: __sdk::TableAppliedDiff<'r, ChatMessageState>,
     chest_rarity_desc: __sdk::TableAppliedDiff<'r, ChestRarityDesc>,
     claim_local_state: __sdk::TableAppliedDiff<'r, ClaimLocalState>,
@@ -7381,6 +7547,7 @@ pub struct AppliedDiff<'r> {
     identity_role: __sdk::TableAppliedDiff<'r, IdentityRole>,
     inter_module_message: __sdk::TableAppliedDiff<'r, InterModuleMessage>,
     inter_module_message_counter: __sdk::TableAppliedDiff<'r, InterModuleMessageCounter>,
+    inter_module_message_errors: __sdk::TableAppliedDiff<'r, InterModuleMessageErrors>,
     inter_module_message_v_2: __sdk::TableAppliedDiff<'r, InterModuleMessageV2>,
     inter_module_response_message_counter:
         __sdk::TableAppliedDiff<'r, InterModuleResponseMessageCounter>,
@@ -7682,6 +7849,16 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<CharacterStatsState>(
             "character_stats_state",
             &self.character_stats_state,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<ChatChannelPermissionState>(
+            "chat_channel_permission_state",
+            &self.chat_channel_permission_state,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<ChatChannelState>(
+            "chat_channel_state",
+            &self.chat_channel_state,
             event,
         );
         callbacks.invoke_table_row_callbacks::<ChatMessageState>(
@@ -8123,6 +8300,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<InterModuleMessageCounter>(
             "inter_module_message_counter",
             &self.inter_module_message_counter,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<InterModuleMessageErrors>(
+            "inter_module_message_errors",
+            &self.inter_module_message_errors,
             event,
         );
         callbacks.invoke_table_row_callbacks::<InterModuleMessageV2>(
@@ -9471,6 +9653,8 @@ impl __sdk::SpacetimeModule for RemoteModule {
         cargo_desc_table::register_table(client_cache);
         character_stat_desc_table::register_table(client_cache);
         character_stats_state_table::register_table(client_cache);
+        chat_channel_permission_state_table::register_table(client_cache);
+        chat_channel_state_table::register_table(client_cache);
         chat_message_state_table::register_table(client_cache);
         chest_rarity_desc_table::register_table(client_cache);
         claim_local_state_table::register_table(client_cache);
@@ -9568,6 +9752,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         identity_role_table::register_table(client_cache);
         inter_module_message_table::register_table(client_cache);
         inter_module_message_counter_table::register_table(client_cache);
+        inter_module_message_errors_table::register_table(client_cache);
         inter_module_message_v_2_table::register_table(client_cache);
         inter_module_response_message_counter_table::register_table(client_cache);
         interior_collapse_trigger_state_table::register_table(client_cache);
