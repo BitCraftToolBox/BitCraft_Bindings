@@ -784,6 +784,8 @@ pub mod insert_resources_log_reducer;
 pub mod insert_terrain_chunk_reducer;
 pub mod inter_module_message_counter_table;
 pub mod inter_module_message_counter_type;
+pub mod inter_module_message_errors_table;
+pub mod inter_module_message_errors_type;
 pub mod inter_module_message_table;
 pub mod inter_module_message_type;
 pub mod inter_module_message_v_2_table;
@@ -1311,6 +1313,7 @@ pub mod role_type;
 pub mod ruins_entity_value_pair_type;
 pub mod satiation_state_table;
 pub mod satiation_state_type;
+pub mod save_inter_module_message_error_reducer;
 pub mod scroll_read_reducer;
 pub mod search_for_closest_building_reducer;
 pub mod search_for_closest_building_type_reducer;
@@ -3380,6 +3383,8 @@ pub use insert_terrain_chunk_reducer::{
 };
 pub use inter_module_message_counter_table::*;
 pub use inter_module_message_counter_type::InterModuleMessageCounter;
+pub use inter_module_message_errors_table::*;
+pub use inter_module_message_errors_type::InterModuleMessageErrors;
 pub use inter_module_message_table::*;
 pub use inter_module_message_type::InterModuleMessage;
 pub use inter_module_message_v_2_table::*;
@@ -4143,6 +4148,10 @@ pub use role_type::Role;
 pub use ruins_entity_value_pair_type::RuinsEntityValuePair;
 pub use satiation_state_table::*;
 pub use satiation_state_type::SatiationState;
+pub use save_inter_module_message_error_reducer::{
+    save_inter_module_message_error, set_flags_for_save_inter_module_message_error,
+    SaveInterModuleMessageErrorCallbackId,
+};
 pub use scroll_read_reducer::{scroll_read, set_flags_for_scroll_read, ScrollReadCallbackId};
 pub use search_for_closest_building_reducer::{
     search_for_closest_building, set_flags_for_search_for_closest_building,
@@ -6282,6 +6291,11 @@ pub enum Reducer {
     RetrieveLostItem {
         request: PlayerRetrieveLostItemRequest,
     },
+    SaveInterModuleMessageError {
+        sender: u8,
+        message_id: u64,
+        error: String,
+    },
     ScrollRead {
         request: PlayerScrollReadRequest,
     },
@@ -7226,6 +7240,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::RespawnInteriorNpcs => "respawn_interior_npcs",
             Reducer::RespawnResourceInChunk { .. } => "respawn_resource_in_chunk",
             Reducer::RetrieveLostItem { .. } => "retrieve_lost_item",
+            Reducer::SaveInterModuleMessageError { .. } => "save_inter_module_message_error",
             Reducer::ScrollRead { .. } => "scroll_read",
             Reducer::SearchForClosestBuilding { .. } => "search_for_closest_building",
             Reducer::SearchForClosestBuildingType { .. } => "search_for_closest_building_type",
@@ -7873,6 +7888,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "respawn_interior_npcs" => Ok(__sdk::parse_reducer_args::<respawn_interior_npcs_reducer::RespawnInteriorNpcsArgs>("respawn_interior_npcs", &value.args)?.into()),
             "respawn_resource_in_chunk" => Ok(__sdk::parse_reducer_args::<respawn_resource_in_chunk_reducer::RespawnResourceInChunkArgs>("respawn_resource_in_chunk", &value.args)?.into()),
             "retrieve_lost_item" => Ok(__sdk::parse_reducer_args::<retrieve_lost_item_reducer::RetrieveLostItemArgs>("retrieve_lost_item", &value.args)?.into()),
+            "save_inter_module_message_error" => Ok(__sdk::parse_reducer_args::<save_inter_module_message_error_reducer::SaveInterModuleMessageErrorArgs>("save_inter_module_message_error", &value.args)?.into()),
             "scroll_read" => Ok(__sdk::parse_reducer_args::<scroll_read_reducer::ScrollReadArgs>("scroll_read", &value.args)?.into()),
             "search_for_closest_building" => Ok(__sdk::parse_reducer_args::<search_for_closest_building_reducer::SearchForClosestBuildingArgs>("search_for_closest_building", &value.args)?.into()),
             "search_for_closest_building_type" => Ok(__sdk::parse_reducer_args::<search_for_closest_building_type_reducer::SearchForClosestBuildingTypeArgs>("search_for_closest_building_type", &value.args)?.into()),
@@ -8144,6 +8160,7 @@ pub struct DbUpdate {
     identity_role: __sdk::TableUpdate<IdentityRole>,
     inter_module_message: __sdk::TableUpdate<InterModuleMessage>,
     inter_module_message_counter: __sdk::TableUpdate<InterModuleMessageCounter>,
+    inter_module_message_errors: __sdk::TableUpdate<InterModuleMessageErrors>,
     inter_module_message_v_2: __sdk::TableUpdate<InterModuleMessageV2>,
     inter_module_response_message_counter: __sdk::TableUpdate<InterModuleResponseMessageCounter>,
     interior_collapse_trigger_state: __sdk::TableUpdate<InteriorCollapseTriggerState>,
@@ -8766,6 +8783,9 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
                 ),
                 "inter_module_message_counter" => db_update.inter_module_message_counter.append(
                     inter_module_message_counter_table::parse_table_update(table_update)?,
+                ),
+                "inter_module_message_errors" => db_update.inter_module_message_errors.append(
+                    inter_module_message_errors_table::parse_table_update(table_update)?,
                 ),
                 "inter_module_message_v2" => db_update.inter_module_message_v_2.append(
                     inter_module_message_v_2_table::parse_table_update(table_update)?,
@@ -10011,6 +10031,12 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.inter_module_message_counter,
             )
             .with_updates_by_pk(|row| &row.module_id);
+        diff.inter_module_message_errors = cache
+            .apply_diff_to_table::<InterModuleMessageErrors>(
+                "inter_module_message_errors",
+                &self.inter_module_message_errors,
+            )
+            .with_updates_by_pk(|row| &row.sender_module_id);
         diff.inter_module_message_v_2 = cache
             .apply_diff_to_table::<InterModuleMessageV2>(
                 "inter_module_message_v2",
@@ -11069,6 +11095,7 @@ pub struct AppliedDiff<'r> {
     identity_role: __sdk::TableAppliedDiff<'r, IdentityRole>,
     inter_module_message: __sdk::TableAppliedDiff<'r, InterModuleMessage>,
     inter_module_message_counter: __sdk::TableAppliedDiff<'r, InterModuleMessageCounter>,
+    inter_module_message_errors: __sdk::TableAppliedDiff<'r, InterModuleMessageErrors>,
     inter_module_message_v_2: __sdk::TableAppliedDiff<'r, InterModuleMessageV2>,
     inter_module_response_message_counter:
         __sdk::TableAppliedDiff<'r, InterModuleResponseMessageCounter>,
@@ -11888,6 +11915,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<InterModuleMessageCounter>(
             "inter_module_message_counter",
             &self.inter_module_message_counter,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<InterModuleMessageErrors>(
+            "inter_module_message_errors",
+            &self.inter_module_message_errors,
             event,
         );
         callbacks.invoke_table_row_callbacks::<InterModuleMessageV2>(
@@ -13478,6 +13510,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         identity_role_table::register_table(client_cache);
         inter_module_message_table::register_table(client_cache);
         inter_module_message_counter_table::register_table(client_cache);
+        inter_module_message_errors_table::register_table(client_cache);
         inter_module_message_v_2_table::register_table(client_cache);
         inter_module_response_message_counter_table::register_table(client_cache);
         interior_collapse_trigger_state_table::register_table(client_cache);
