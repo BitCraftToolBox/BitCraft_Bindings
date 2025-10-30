@@ -14,17 +14,17 @@ namespace BitCraftRegion.Types
 {
     public sealed partial class RemoteReducers : RemoteBase
     {
-        public delegate void ImportConstructionRecipeDescHandler(ReducerEventContext ctx, System.Collections.Generic.List<ConstructionRecipeDescV2> records);
-        public event ImportConstructionRecipeDescHandler? OnImportConstructionRecipeDesc;
+        public delegate void StageConstructionRecipeDescV2Handler(ReducerEventContext ctx, System.Collections.Generic.List<ConstructionRecipeDescV2> records);
+        public event StageConstructionRecipeDescV2Handler? OnStageConstructionRecipeDescV2;
 
-        public void ImportConstructionRecipeDesc(System.Collections.Generic.List<ConstructionRecipeDescV2> records)
+        public void StageConstructionRecipeDescV2(System.Collections.Generic.List<ConstructionRecipeDescV2> records)
         {
-            conn.InternalCallReducer(new Reducer.ImportConstructionRecipeDesc(records), this.SetCallReducerFlags.ImportConstructionRecipeDescFlags);
+            conn.InternalCallReducer(new Reducer.StageConstructionRecipeDescV2(records), this.SetCallReducerFlags.StageConstructionRecipeDescV2Flags);
         }
 
-        public bool InvokeImportConstructionRecipeDesc(ReducerEventContext ctx, Reducer.ImportConstructionRecipeDesc args)
+        public bool InvokeStageConstructionRecipeDescV2(ReducerEventContext ctx, Reducer.StageConstructionRecipeDescV2 args)
         {
-            if (OnImportConstructionRecipeDesc == null)
+            if (OnStageConstructionRecipeDescV2 == null)
             {
                 if (InternalOnUnhandledReducerError != null)
                 {
@@ -36,7 +36,7 @@ namespace BitCraftRegion.Types
                 }
                 return false;
             }
-            OnImportConstructionRecipeDesc(
+            OnStageConstructionRecipeDescV2(
                 ctx,
                 args.Records
             );
@@ -48,28 +48,28 @@ namespace BitCraftRegion.Types
     {
         [SpacetimeDB.Type]
         [DataContract]
-        public sealed partial class ImportConstructionRecipeDesc : Reducer, IReducerArgs
+        public sealed partial class StageConstructionRecipeDescV2 : Reducer, IReducerArgs
         {
             [DataMember(Name = "records")]
             public System.Collections.Generic.List<ConstructionRecipeDescV2> Records;
 
-            public ImportConstructionRecipeDesc(System.Collections.Generic.List<ConstructionRecipeDescV2> Records)
+            public StageConstructionRecipeDescV2(System.Collections.Generic.List<ConstructionRecipeDescV2> Records)
             {
                 this.Records = Records;
             }
 
-            public ImportConstructionRecipeDesc()
+            public StageConstructionRecipeDescV2()
             {
                 this.Records = new();
             }
 
-            string IReducerArgs.ReducerName => "import_construction_recipe_desc";
+            string IReducerArgs.ReducerName => "stage_construction_recipe_desc_v2";
         }
     }
 
     public sealed partial class SetReducerFlags
     {
-        internal CallReducerFlags ImportConstructionRecipeDescFlags;
-        public void ImportConstructionRecipeDesc(CallReducerFlags flags) => ImportConstructionRecipeDescFlags = flags;
+        internal CallReducerFlags StageConstructionRecipeDescV2Flags;
+        public void StageConstructionRecipeDescV2(CallReducerFlags flags) => StageConstructionRecipeDescV2Flags = flags;
     }
 }

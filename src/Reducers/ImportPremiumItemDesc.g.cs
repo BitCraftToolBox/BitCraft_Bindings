@@ -14,17 +14,17 @@ namespace BitCraftRegion.Types
 {
     public sealed partial class RemoteReducers : RemoteBase
     {
-        public delegate void ImportConstructionRecipeDescHandler(ReducerEventContext ctx, System.Collections.Generic.List<ConstructionRecipeDescV2> records);
-        public event ImportConstructionRecipeDescHandler? OnImportConstructionRecipeDesc;
+        public delegate void ImportPremiumItemDescHandler(ReducerEventContext ctx, System.Collections.Generic.List<PremiumItemDesc> records);
+        public event ImportPremiumItemDescHandler? OnImportPremiumItemDesc;
 
-        public void ImportConstructionRecipeDesc(System.Collections.Generic.List<ConstructionRecipeDescV2> records)
+        public void ImportPremiumItemDesc(System.Collections.Generic.List<PremiumItemDesc> records)
         {
-            conn.InternalCallReducer(new Reducer.ImportConstructionRecipeDesc(records), this.SetCallReducerFlags.ImportConstructionRecipeDescFlags);
+            conn.InternalCallReducer(new Reducer.ImportPremiumItemDesc(records), this.SetCallReducerFlags.ImportPremiumItemDescFlags);
         }
 
-        public bool InvokeImportConstructionRecipeDesc(ReducerEventContext ctx, Reducer.ImportConstructionRecipeDesc args)
+        public bool InvokeImportPremiumItemDesc(ReducerEventContext ctx, Reducer.ImportPremiumItemDesc args)
         {
-            if (OnImportConstructionRecipeDesc == null)
+            if (OnImportPremiumItemDesc == null)
             {
                 if (InternalOnUnhandledReducerError != null)
                 {
@@ -36,7 +36,7 @@ namespace BitCraftRegion.Types
                 }
                 return false;
             }
-            OnImportConstructionRecipeDesc(
+            OnImportPremiumItemDesc(
                 ctx,
                 args.Records
             );
@@ -48,28 +48,28 @@ namespace BitCraftRegion.Types
     {
         [SpacetimeDB.Type]
         [DataContract]
-        public sealed partial class ImportConstructionRecipeDesc : Reducer, IReducerArgs
+        public sealed partial class ImportPremiumItemDesc : Reducer, IReducerArgs
         {
             [DataMember(Name = "records")]
-            public System.Collections.Generic.List<ConstructionRecipeDescV2> Records;
+            public System.Collections.Generic.List<PremiumItemDesc> Records;
 
-            public ImportConstructionRecipeDesc(System.Collections.Generic.List<ConstructionRecipeDescV2> Records)
+            public ImportPremiumItemDesc(System.Collections.Generic.List<PremiumItemDesc> Records)
             {
                 this.Records = Records;
             }
 
-            public ImportConstructionRecipeDesc()
+            public ImportPremiumItemDesc()
             {
                 this.Records = new();
             }
 
-            string IReducerArgs.ReducerName => "import_construction_recipe_desc";
+            string IReducerArgs.ReducerName => "import_premium_item_desc";
         }
     }
 
     public sealed partial class SetReducerFlags
     {
-        internal CallReducerFlags ImportConstructionRecipeDescFlags;
-        public void ImportConstructionRecipeDesc(CallReducerFlags flags) => ImportConstructionRecipeDescFlags = flags;
+        internal CallReducerFlags ImportPremiumItemDescFlags;
+        public void ImportPremiumItemDesc(CallReducerFlags flags) => ImportPremiumItemDescFlags = flags;
     }
 }

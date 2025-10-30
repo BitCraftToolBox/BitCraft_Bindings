@@ -14,17 +14,17 @@ namespace BitCraftRegion.Types
 {
     public sealed partial class RemoteReducers : RemoteBase
     {
-        public delegate void StageConstructionRecipeDescHandler(ReducerEventContext ctx, System.Collections.Generic.List<ConstructionRecipeDesc> records);
-        public event StageConstructionRecipeDescHandler? OnStageConstructionRecipeDesc;
+        public delegate void StagePremiumServiceDescHandler(ReducerEventContext ctx, System.Collections.Generic.List<PremiumServiceDesc> records);
+        public event StagePremiumServiceDescHandler? OnStagePremiumServiceDesc;
 
-        public void StageConstructionRecipeDesc(System.Collections.Generic.List<ConstructionRecipeDesc> records)
+        public void StagePremiumServiceDesc(System.Collections.Generic.List<PremiumServiceDesc> records)
         {
-            conn.InternalCallReducer(new Reducer.StageConstructionRecipeDesc(records), this.SetCallReducerFlags.StageConstructionRecipeDescFlags);
+            conn.InternalCallReducer(new Reducer.StagePremiumServiceDesc(records), this.SetCallReducerFlags.StagePremiumServiceDescFlags);
         }
 
-        public bool InvokeStageConstructionRecipeDesc(ReducerEventContext ctx, Reducer.StageConstructionRecipeDesc args)
+        public bool InvokeStagePremiumServiceDesc(ReducerEventContext ctx, Reducer.StagePremiumServiceDesc args)
         {
-            if (OnStageConstructionRecipeDesc == null)
+            if (OnStagePremiumServiceDesc == null)
             {
                 if (InternalOnUnhandledReducerError != null)
                 {
@@ -36,7 +36,7 @@ namespace BitCraftRegion.Types
                 }
                 return false;
             }
-            OnStageConstructionRecipeDesc(
+            OnStagePremiumServiceDesc(
                 ctx,
                 args.Records
             );
@@ -48,28 +48,28 @@ namespace BitCraftRegion.Types
     {
         [SpacetimeDB.Type]
         [DataContract]
-        public sealed partial class StageConstructionRecipeDesc : Reducer, IReducerArgs
+        public sealed partial class StagePremiumServiceDesc : Reducer, IReducerArgs
         {
             [DataMember(Name = "records")]
-            public System.Collections.Generic.List<ConstructionRecipeDesc> Records;
+            public System.Collections.Generic.List<PremiumServiceDesc> Records;
 
-            public StageConstructionRecipeDesc(System.Collections.Generic.List<ConstructionRecipeDesc> Records)
+            public StagePremiumServiceDesc(System.Collections.Generic.List<PremiumServiceDesc> Records)
             {
                 this.Records = Records;
             }
 
-            public StageConstructionRecipeDesc()
+            public StagePremiumServiceDesc()
             {
                 this.Records = new();
             }
 
-            string IReducerArgs.ReducerName => "stage_construction_recipe_desc";
+            string IReducerArgs.ReducerName => "stage_premium_service_desc";
         }
     }
 
     public sealed partial class SetReducerFlags
     {
-        internal CallReducerFlags StageConstructionRecipeDescFlags;
-        public void StageConstructionRecipeDesc(CallReducerFlags flags) => StageConstructionRecipeDescFlags = flags;
+        internal CallReducerFlags StagePremiumServiceDescFlags;
+        public void StagePremiumServiceDesc(CallReducerFlags flags) => StagePremiumServiceDescFlags = flags;
     }
 }

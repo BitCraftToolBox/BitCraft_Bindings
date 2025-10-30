@@ -14,10 +14,10 @@ namespace BitCraftRegion.Types
 {
     public sealed partial class RemoteReducers : RemoteBase
     {
-        public delegate void ImportClaimTechDescHandler(ReducerEventContext ctx, System.Collections.Generic.List<ClaimTechDesc> records);
+        public delegate void ImportClaimTechDescHandler(ReducerEventContext ctx, System.Collections.Generic.List<ClaimTechDescV2> records);
         public event ImportClaimTechDescHandler? OnImportClaimTechDesc;
 
-        public void ImportClaimTechDesc(System.Collections.Generic.List<ClaimTechDesc> records)
+        public void ImportClaimTechDesc(System.Collections.Generic.List<ClaimTechDescV2> records)
         {
             conn.InternalCallReducer(new Reducer.ImportClaimTechDesc(records), this.SetCallReducerFlags.ImportClaimTechDescFlags);
         }
@@ -51,9 +51,9 @@ namespace BitCraftRegion.Types
         public sealed partial class ImportClaimTechDesc : Reducer, IReducerArgs
         {
             [DataMember(Name = "records")]
-            public System.Collections.Generic.List<ClaimTechDesc> Records;
+            public System.Collections.Generic.List<ClaimTechDescV2> Records;
 
-            public ImportClaimTechDesc(System.Collections.Generic.List<ClaimTechDesc> Records)
+            public ImportClaimTechDesc(System.Collections.Generic.List<ClaimTechDescV2> Records)
             {
                 this.Records = Records;
             }

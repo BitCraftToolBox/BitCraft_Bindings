@@ -14,17 +14,17 @@ namespace BitCraftRegion.Types
 {
     public sealed partial class RemoteReducers : RemoteBase
     {
-        public delegate void StageClaimTechDescHandler(ReducerEventContext ctx, System.Collections.Generic.List<ClaimTechDesc> records);
-        public event StageClaimTechDescHandler? OnStageClaimTechDesc;
+        public delegate void ImportPremiumServiceDescHandler(ReducerEventContext ctx, System.Collections.Generic.List<PremiumServiceDesc> records);
+        public event ImportPremiumServiceDescHandler? OnImportPremiumServiceDesc;
 
-        public void StageClaimTechDesc(System.Collections.Generic.List<ClaimTechDesc> records)
+        public void ImportPremiumServiceDesc(System.Collections.Generic.List<PremiumServiceDesc> records)
         {
-            conn.InternalCallReducer(new Reducer.StageClaimTechDesc(records), this.SetCallReducerFlags.StageClaimTechDescFlags);
+            conn.InternalCallReducer(new Reducer.ImportPremiumServiceDesc(records), this.SetCallReducerFlags.ImportPremiumServiceDescFlags);
         }
 
-        public bool InvokeStageClaimTechDesc(ReducerEventContext ctx, Reducer.StageClaimTechDesc args)
+        public bool InvokeImportPremiumServiceDesc(ReducerEventContext ctx, Reducer.ImportPremiumServiceDesc args)
         {
-            if (OnStageClaimTechDesc == null)
+            if (OnImportPremiumServiceDesc == null)
             {
                 if (InternalOnUnhandledReducerError != null)
                 {
@@ -36,7 +36,7 @@ namespace BitCraftRegion.Types
                 }
                 return false;
             }
-            OnStageClaimTechDesc(
+            OnImportPremiumServiceDesc(
                 ctx,
                 args.Records
             );
@@ -48,28 +48,28 @@ namespace BitCraftRegion.Types
     {
         [SpacetimeDB.Type]
         [DataContract]
-        public sealed partial class StageClaimTechDesc : Reducer, IReducerArgs
+        public sealed partial class ImportPremiumServiceDesc : Reducer, IReducerArgs
         {
             [DataMember(Name = "records")]
-            public System.Collections.Generic.List<ClaimTechDesc> Records;
+            public System.Collections.Generic.List<PremiumServiceDesc> Records;
 
-            public StageClaimTechDesc(System.Collections.Generic.List<ClaimTechDesc> Records)
+            public ImportPremiumServiceDesc(System.Collections.Generic.List<PremiumServiceDesc> Records)
             {
                 this.Records = Records;
             }
 
-            public StageClaimTechDesc()
+            public ImportPremiumServiceDesc()
             {
                 this.Records = new();
             }
 
-            string IReducerArgs.ReducerName => "stage_claim_tech_desc";
+            string IReducerArgs.ReducerName => "import_premium_service_desc";
         }
     }
 
     public sealed partial class SetReducerFlags
     {
-        internal CallReducerFlags StageClaimTechDescFlags;
-        public void StageClaimTechDesc(CallReducerFlags flags) => StageClaimTechDescFlags = flags;
+        internal CallReducerFlags ImportPremiumServiceDescFlags;
+        public void ImportPremiumServiceDesc(CallReducerFlags flags) => ImportPremiumServiceDescFlags = flags;
     }
 }

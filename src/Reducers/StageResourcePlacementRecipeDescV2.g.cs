@@ -14,17 +14,17 @@ namespace BitCraftRegion.Types
 {
     public sealed partial class RemoteReducers : RemoteBase
     {
-        public delegate void ImportResourcePlacementRecipeDescHandler(ReducerEventContext ctx, System.Collections.Generic.List<ResourcePlacementRecipeDescV2> records);
-        public event ImportResourcePlacementRecipeDescHandler? OnImportResourcePlacementRecipeDesc;
+        public delegate void StageResourcePlacementRecipeDescV2Handler(ReducerEventContext ctx, System.Collections.Generic.List<ResourcePlacementRecipeDescV2> records);
+        public event StageResourcePlacementRecipeDescV2Handler? OnStageResourcePlacementRecipeDescV2;
 
-        public void ImportResourcePlacementRecipeDesc(System.Collections.Generic.List<ResourcePlacementRecipeDescV2> records)
+        public void StageResourcePlacementRecipeDescV2(System.Collections.Generic.List<ResourcePlacementRecipeDescV2> records)
         {
-            conn.InternalCallReducer(new Reducer.ImportResourcePlacementRecipeDesc(records), this.SetCallReducerFlags.ImportResourcePlacementRecipeDescFlags);
+            conn.InternalCallReducer(new Reducer.StageResourcePlacementRecipeDescV2(records), this.SetCallReducerFlags.StageResourcePlacementRecipeDescV2Flags);
         }
 
-        public bool InvokeImportResourcePlacementRecipeDesc(ReducerEventContext ctx, Reducer.ImportResourcePlacementRecipeDesc args)
+        public bool InvokeStageResourcePlacementRecipeDescV2(ReducerEventContext ctx, Reducer.StageResourcePlacementRecipeDescV2 args)
         {
-            if (OnImportResourcePlacementRecipeDesc == null)
+            if (OnStageResourcePlacementRecipeDescV2 == null)
             {
                 if (InternalOnUnhandledReducerError != null)
                 {
@@ -36,7 +36,7 @@ namespace BitCraftRegion.Types
                 }
                 return false;
             }
-            OnImportResourcePlacementRecipeDesc(
+            OnStageResourcePlacementRecipeDescV2(
                 ctx,
                 args.Records
             );
@@ -48,28 +48,28 @@ namespace BitCraftRegion.Types
     {
         [SpacetimeDB.Type]
         [DataContract]
-        public sealed partial class ImportResourcePlacementRecipeDesc : Reducer, IReducerArgs
+        public sealed partial class StageResourcePlacementRecipeDescV2 : Reducer, IReducerArgs
         {
             [DataMember(Name = "records")]
             public System.Collections.Generic.List<ResourcePlacementRecipeDescV2> Records;
 
-            public ImportResourcePlacementRecipeDesc(System.Collections.Generic.List<ResourcePlacementRecipeDescV2> Records)
+            public StageResourcePlacementRecipeDescV2(System.Collections.Generic.List<ResourcePlacementRecipeDescV2> Records)
             {
                 this.Records = Records;
             }
 
-            public ImportResourcePlacementRecipeDesc()
+            public StageResourcePlacementRecipeDescV2()
             {
                 this.Records = new();
             }
 
-            string IReducerArgs.ReducerName => "import_resource_placement_recipe_desc";
+            string IReducerArgs.ReducerName => "stage_resource_placement_recipe_desc_v2";
         }
     }
 
     public sealed partial class SetReducerFlags
     {
-        internal CallReducerFlags ImportResourcePlacementRecipeDescFlags;
-        public void ImportResourcePlacementRecipeDesc(CallReducerFlags flags) => ImportResourcePlacementRecipeDescFlags = flags;
+        internal CallReducerFlags StageResourcePlacementRecipeDescV2Flags;
+        public void StageResourcePlacementRecipeDescV2(CallReducerFlags flags) => StageResourcePlacementRecipeDescV2Flags = flags;
     }
 }
