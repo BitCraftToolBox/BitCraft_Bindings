@@ -32,32 +32,32 @@ import {
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
 
-import { ResourcePlacementRecipeDesc as __ResourcePlacementRecipeDesc } from "./resource_placement_recipe_desc_type";
+import { ResourcePlacementRecipeDescV2 as __ResourcePlacementRecipeDescV2 } from "./resource_placement_recipe_desc_v_2_type";
 
-export type StageResourcePlacementRecipeDesc = {
-  records: __ResourcePlacementRecipeDesc[],
+export type StageResourcePlacementRecipeDescV2 = {
+  records: __ResourcePlacementRecipeDescV2[],
 };
 
 /**
  * A namespace for generated helper functions.
  */
-export namespace StageResourcePlacementRecipeDesc {
+export namespace StageResourcePlacementRecipeDescV2 {
   /**
   * A function which returns this type represented as an AlgebraicType.
   * This function is derived from the AlgebraicType used to generate this type.
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("records", AlgebraicType.createArrayType(__ResourcePlacementRecipeDesc.getTypeScriptAlgebraicType())),
+      new ProductTypeElement("records", AlgebraicType.createArrayType(__ResourcePlacementRecipeDescV2.getTypeScriptAlgebraicType())),
     ]);
   }
 
-  export function serialize(writer: BinaryWriter, value: StageResourcePlacementRecipeDesc): void {
-    StageResourcePlacementRecipeDesc.getTypeScriptAlgebraicType().serialize(writer, value);
+  export function serialize(writer: BinaryWriter, value: StageResourcePlacementRecipeDescV2): void {
+    StageResourcePlacementRecipeDescV2.getTypeScriptAlgebraicType().serialize(writer, value);
   }
 
-  export function deserialize(reader: BinaryReader): StageResourcePlacementRecipeDesc {
-    return StageResourcePlacementRecipeDesc.getTypeScriptAlgebraicType().deserialize(reader);
+  export function deserialize(reader: BinaryReader): StageResourcePlacementRecipeDescV2 {
+    return StageResourcePlacementRecipeDescV2.getTypeScriptAlgebraicType().deserialize(reader);
   }
 
 }

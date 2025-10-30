@@ -102,7 +102,6 @@ import { ReservedNameDesc as __ReservedNameDesc } from "./reserved_name_desc_typ
 import { ResourceClumpDesc as __ResourceClumpDesc } from "./resource_clump_desc_type";
 import { ResourceDesc as __ResourceDesc } from "./resource_desc_type";
 import { ResourceGrowthRecipeDesc as __ResourceGrowthRecipeDesc } from "./resource_growth_recipe_desc_type";
-import { ResourcePlacementRecipeDesc as __ResourcePlacementRecipeDesc } from "./resource_placement_recipe_desc_type";
 import { SecondaryKnowledgeDesc as __SecondaryKnowledgeDesc } from "./secondary_knowledge_desc_type";
 import { SkillDesc as __SkillDesc } from "./skill_desc_type";
 import { TargetingMatrixDesc as __TargetingMatrixDesc } from "./targeting_matrix_desc_type";
@@ -117,6 +116,7 @@ import { WeaponDesc as __WeaponDesc } from "./weapon_desc_type";
 import { WeaponTypeDesc as __WeaponTypeDesc } from "./weapon_type_desc_type";
 import { WindParamsDesc as __WindParamsDesc } from "./wind_params_desc_type";
 import { ParametersDesc as __ParametersDesc } from "./parameters_desc_type";
+import { ResourcePlacementRecipeDesc as __ResourcePlacementRecipeDesc } from "./resource_placement_recipe_desc_type";
 
 export type StaticDataUploadV5 = {
   parameters: __ParametersDesc[],

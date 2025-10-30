@@ -32,32 +32,32 @@ import {
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
 
-import { ConstructionRecipeDesc as __ConstructionRecipeDesc } from "./construction_recipe_desc_type";
+import { PremiumServiceDesc as __PremiumServiceDesc } from "./premium_service_desc_type";
 
-export type StageConstructionRecipeDesc = {
-  records: __ConstructionRecipeDesc[],
+export type StagePremiumServiceDesc = {
+  records: __PremiumServiceDesc[],
 };
 
 /**
  * A namespace for generated helper functions.
  */
-export namespace StageConstructionRecipeDesc {
+export namespace StagePremiumServiceDesc {
   /**
   * A function which returns this type represented as an AlgebraicType.
   * This function is derived from the AlgebraicType used to generate this type.
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("records", AlgebraicType.createArrayType(__ConstructionRecipeDesc.getTypeScriptAlgebraicType())),
+      new ProductTypeElement("records", AlgebraicType.createArrayType(__PremiumServiceDesc.getTypeScriptAlgebraicType())),
     ]);
   }
 
-  export function serialize(writer: BinaryWriter, value: StageConstructionRecipeDesc): void {
-    StageConstructionRecipeDesc.getTypeScriptAlgebraicType().serialize(writer, value);
+  export function serialize(writer: BinaryWriter, value: StagePremiumServiceDesc): void {
+    StagePremiumServiceDesc.getTypeScriptAlgebraicType().serialize(writer, value);
   }
 
-  export function deserialize(reader: BinaryReader): StageConstructionRecipeDesc {
-    return StageConstructionRecipeDesc.getTypeScriptAlgebraicType().deserialize(reader);
+  export function deserialize(reader: BinaryReader): StagePremiumServiceDesc {
+    return StagePremiumServiceDesc.getTypeScriptAlgebraicType().deserialize(reader);
   }
 
 }
