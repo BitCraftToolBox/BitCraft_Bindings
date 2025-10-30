@@ -31,34 +31,44 @@ import {
   type ReducerEventContextInterface,
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
-
-import { ClaimTechDesc as __ClaimTechDesc } from "./claim_tech_desc_type";
-
-export type StageClaimTechDesc = {
-  records: __ClaimTechDesc[],
+export type PremiumItemDesc = {
+  id: number,
+  name: string,
+  description: string,
+  imageAddress: string,
+  collectibleDescId: number,
+  price: number,
+  basePrice: number,
 };
 
 /**
  * A namespace for generated helper functions.
  */
-export namespace StageClaimTechDesc {
+export namespace PremiumItemDesc {
   /**
   * A function which returns this type represented as an AlgebraicType.
   * This function is derived from the AlgebraicType used to generate this type.
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("records", AlgebraicType.createArrayType(__ClaimTechDesc.getTypeScriptAlgebraicType())),
+      new ProductTypeElement("id", AlgebraicType.createI32Type()),
+      new ProductTypeElement("name", AlgebraicType.createStringType()),
+      new ProductTypeElement("description", AlgebraicType.createStringType()),
+      new ProductTypeElement("imageAddress", AlgebraicType.createStringType()),
+      new ProductTypeElement("collectibleDescId", AlgebraicType.createI32Type()),
+      new ProductTypeElement("price", AlgebraicType.createU32Type()),
+      new ProductTypeElement("basePrice", AlgebraicType.createU32Type()),
     ]);
   }
 
-  export function serialize(writer: BinaryWriter, value: StageClaimTechDesc): void {
-    StageClaimTechDesc.getTypeScriptAlgebraicType().serialize(writer, value);
+  export function serialize(writer: BinaryWriter, value: PremiumItemDesc): void {
+    PremiumItemDesc.getTypeScriptAlgebraicType().serialize(writer, value);
   }
 
-  export function deserialize(reader: BinaryReader): StageClaimTechDesc {
-    return StageClaimTechDesc.getTypeScriptAlgebraicType().deserialize(reader);
+  export function deserialize(reader: BinaryReader): PremiumItemDesc {
+    return PremiumItemDesc.getTypeScriptAlgebraicType().deserialize(reader);
   }
 
 }
+
 

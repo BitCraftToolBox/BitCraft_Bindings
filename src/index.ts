@@ -47,6 +47,8 @@ import { AdminGrantShards } from "./admin_grant_shards_reducer.ts";
 export { AdminGrantShards };
 import { AdminLogModerationAction } from "./admin_log_moderation_action_reducer.ts";
 export { AdminLogModerationAction };
+import { AdminMarkPremiumPurchaseProcessed } from "./admin_mark_premium_purchase_processed_reducer.ts";
+export { AdminMarkPremiumPurchaseProcessed };
 import { AdminMarkUserReportAsActioned } from "./admin_mark_user_report_as_actioned_reducer.ts";
 export { AdminMarkUserReportAsActioned };
 import { AdminNotifyPlayer } from "./admin_notify_player_reducer.ts";
@@ -401,6 +403,10 @@ import { ImportPlayerVoteState } from "./import_player_vote_state_reducer.ts";
 export { ImportPlayerVoteState };
 import { ImportPortalState } from "./import_portal_state_reducer.ts";
 export { ImportPortalState };
+import { ImportPremiumItemDesc } from "./import_premium_item_desc_reducer.ts";
+export { ImportPremiumItemDesc };
+import { ImportPremiumServiceDesc } from "./import_premium_service_desc_reducer.ts";
+export { ImportPremiumServiceDesc };
 import { ImportPrivateParametersDesc } from "./import_private_parameters_desc_reducer.ts";
 export { ImportPrivateParametersDesc };
 import { ImportProgressiveActionState } from "./import_progressive_action_state_reducer.ts";
@@ -511,6 +517,10 @@ import { PlayerVoteConclude } from "./player_vote_conclude_reducer.ts";
 export { PlayerVoteConclude };
 import { ProcessInterModuleMessage } from "./process_inter_module_message_reducer.ts";
 export { ProcessInterModuleMessage };
+import { PurchaseCharacterRename } from "./purchase_character_rename_reducer.ts";
+export { PurchaseCharacterRename };
+import { PurchasePremiumItem } from "./purchase_premium_item_reducer.ts";
+export { PurchasePremiumItem };
 import { RemoveChatChannel } from "./remove_chat_channel_reducer.ts";
 export { RemoveChatChannel };
 import { RemoveChatChannelMember } from "./remove_chat_channel_member_reducer.ts";
@@ -557,8 +567,8 @@ import { StageCharacterStatDesc } from "./stage_character_stat_desc_reducer.ts";
 export { StageCharacterStatDesc };
 import { StageChestRarityDesc } from "./stage_chest_rarity_desc_reducer.ts";
 export { StageChestRarityDesc };
-import { StageClaimTechDesc } from "./stage_claim_tech_desc_reducer.ts";
-export { StageClaimTechDesc };
+import { StageClaimTechDescV2 } from "./stage_claim_tech_desc_v_2_reducer.ts";
+export { StageClaimTechDescV2 };
 import { StageClaimTileCost } from "./stage_claim_tile_cost_reducer.ts";
 export { StageClaimTileCost };
 import { StageClimbRequirementDesc } from "./stage_climb_requirement_desc_reducer.ts";
@@ -571,8 +581,8 @@ import { StageCombatActionDescV3 } from "./stage_combat_action_desc_v_3_reducer.
 export { StageCombatActionDescV3 };
 import { StageCombatActionMultiHitDesc } from "./stage_combat_action_multi_hit_desc_reducer.ts";
 export { StageCombatActionMultiHitDesc };
-import { StageConstructionRecipeDesc } from "./stage_construction_recipe_desc_reducer.ts";
-export { StageConstructionRecipeDesc };
+import { StageConstructionRecipeDescV2 } from "./stage_construction_recipe_desc_v_2_reducer.ts";
+export { StageConstructionRecipeDescV2 };
 import { StageContributionLootDesc } from "./stage_contribution_loot_desc_reducer.ts";
 export { StageContributionLootDesc };
 import { StageCraftingRecipeDesc } from "./stage_crafting_recipe_desc_reducer.ts";
@@ -663,6 +673,10 @@ import { StagePlayerActionDesc } from "./stage_player_action_desc_reducer.ts";
 export { StagePlayerActionDesc };
 import { StagePlayerHousingDesc } from "./stage_player_housing_desc_reducer.ts";
 export { StagePlayerHousingDesc };
+import { StagePremiumItemDesc } from "./stage_premium_item_desc_reducer.ts";
+export { StagePremiumItemDesc };
+import { StagePremiumServiceDesc } from "./stage_premium_service_desc_reducer.ts";
+export { StagePremiumServiceDesc };
 import { StagePrivateParametersDesc } from "./stage_private_parameters_desc_reducer.ts";
 export { StagePrivateParametersDesc };
 import { StageReservedNameDesc } from "./stage_reserved_name_desc_reducer.ts";
@@ -673,8 +687,8 @@ import { StageResourceDesc } from "./stage_resource_desc_reducer.ts";
 export { StageResourceDesc };
 import { StageResourceGrowthRecipeDesc } from "./stage_resource_growth_recipe_desc_reducer.ts";
 export { StageResourceGrowthRecipeDesc };
-import { StageResourcePlacementRecipeDesc } from "./stage_resource_placement_recipe_desc_reducer.ts";
-export { StageResourcePlacementRecipeDesc };
+import { StageResourcePlacementRecipeDescV2 } from "./stage_resource_placement_recipe_desc_v_2_reducer.ts";
+export { StageResourcePlacementRecipeDescV2 };
 import { StageSecondaryKnowledgeDesc } from "./stage_secondary_knowledge_desc_reducer.ts";
 export { StageSecondaryKnowledgeDesc };
 import { StageSkillDesc } from "./stage_skill_desc_reducer.ts";
@@ -801,6 +815,8 @@ import { ClaimStateTableHandle } from "./claim_state_table.ts";
 export { ClaimStateTableHandle };
 import { ClaimTechDescTableHandle } from "./claim_tech_desc_table.ts";
 export { ClaimTechDescTableHandle };
+import { ClaimTechDescV2TableHandle } from "./claim_tech_desc_v_2_table.ts";
+export { ClaimTechDescV2TableHandle };
 import { ClaimTechStateTableHandle } from "./claim_tech_state_table.ts";
 export { ClaimTechStateTableHandle };
 import { ClaimTileCostTableHandle } from "./claim_tile_cost_table.ts";
@@ -831,6 +847,8 @@ import { ConfigTableHandle } from "./config_table.ts";
 export { ConfigTableHandle };
 import { ConstructionRecipeDescTableHandle } from "./construction_recipe_desc_table.ts";
 export { ConstructionRecipeDescTableHandle };
+import { ConstructionRecipeDescV2TableHandle } from "./construction_recipe_desc_v_2_table.ts";
+export { ConstructionRecipeDescV2TableHandle };
 import { ContributionLootDescTableHandle } from "./contribution_loot_desc_table.ts";
 export { ContributionLootDescTableHandle };
 import { ContributionLootDescV2TableHandle } from "./contribution_loot_desc_v_2_table.ts";
@@ -1151,6 +1169,12 @@ import { PlayerVoteStateTableHandle } from "./player_vote_state_table.ts";
 export { PlayerVoteStateTableHandle };
 import { PortalStateTableHandle } from "./portal_state_table.ts";
 export { PortalStateTableHandle };
+import { PremiumItemDescTableHandle } from "./premium_item_desc_table.ts";
+export { PremiumItemDescTableHandle };
+import { PremiumPurchaseStateTableHandle } from "./premium_purchase_state_table.ts";
+export { PremiumPurchaseStateTableHandle };
+import { PremiumServiceDescTableHandle } from "./premium_service_desc_table.ts";
+export { PremiumServiceDescTableHandle };
 import { PrivateParametersDescTableHandle } from "./private_parameters_desc_table.ts";
 export { PrivateParametersDescTableHandle };
 import { ProgressiveActionStateTableHandle } from "./progressive_action_state_table.ts";
@@ -1181,6 +1205,8 @@ import { ResourceHealthStateTableHandle } from "./resource_health_state_table.ts
 export { ResourceHealthStateTableHandle };
 import { ResourcePlacementRecipeDescTableHandle } from "./resource_placement_recipe_desc_table.ts";
 export { ResourcePlacementRecipeDescTableHandle };
+import { ResourcePlacementRecipeDescV2TableHandle } from "./resource_placement_recipe_desc_v_2_table.ts";
+export { ResourcePlacementRecipeDescV2TableHandle };
 import { ResourceStateTableHandle } from "./resource_state_table.ts";
 export { ResourceStateTableHandle };
 import { RezSickLongTermStateTableHandle } from "./rez_sick_long_term_state_table.ts";
@@ -1199,6 +1225,166 @@ import { SingleResourceToClumpDescTableHandle } from "./single_resource_to_clump
 export { SingleResourceToClumpDescTableHandle };
 import { SkillDescTableHandle } from "./skill_desc_table.ts";
 export { SkillDescTableHandle };
+import { StagedAchievementDescTableHandle } from "./staged_achievement_desc_table.ts";
+export { StagedAchievementDescTableHandle };
+import { StagedAlertDescTableHandle } from "./staged_alert_desc_table.ts";
+export { StagedAlertDescTableHandle };
+import { StagedBiomeDescTableHandle } from "./staged_biome_desc_table.ts";
+export { StagedBiomeDescTableHandle };
+import { StagedBuffDescTableHandle } from "./staged_buff_desc_table.ts";
+export { StagedBuffDescTableHandle };
+import { StagedBuffTypeDescTableHandle } from "./staged_buff_type_desc_table.ts";
+export { StagedBuffTypeDescTableHandle };
+import { StagedBuildingClaimDescTableHandle } from "./staged_building_claim_desc_table.ts";
+export { StagedBuildingClaimDescTableHandle };
+import { StagedBuildingDescTableHandle } from "./staged_building_desc_table.ts";
+export { StagedBuildingDescTableHandle };
+import { StagedBuildingPortalDescV2TableHandle } from "./staged_building_portal_desc_v_2_table.ts";
+export { StagedBuildingPortalDescV2TableHandle };
+import { StagedBuildingRepairsDescTableHandle } from "./staged_building_repairs_desc_table.ts";
+export { StagedBuildingRepairsDescTableHandle };
+import { StagedBuildingSpawnDescTableHandle } from "./staged_building_spawn_desc_table.ts";
+export { StagedBuildingSpawnDescTableHandle };
+import { StagedBuildingTypeDescTableHandle } from "./staged_building_type_desc_table.ts";
+export { StagedBuildingTypeDescTableHandle };
+import { StagedCargoDescTableHandle } from "./staged_cargo_desc_table.ts";
+export { StagedCargoDescTableHandle };
+import { StagedCharacterStatDescTableHandle } from "./staged_character_stat_desc_table.ts";
+export { StagedCharacterStatDescTableHandle };
+import { StagedChestRarityDescTableHandle } from "./staged_chest_rarity_desc_table.ts";
+export { StagedChestRarityDescTableHandle };
+import { StagedClaimTechDescTableHandle } from "./staged_claim_tech_desc_table.ts";
+export { StagedClaimTechDescTableHandle };
+import { StagedClaimTechDescV2TableHandle } from "./staged_claim_tech_desc_v_2_table.ts";
+export { StagedClaimTechDescV2TableHandle };
+import { StagedClaimTileCostTableHandle } from "./staged_claim_tile_cost_table.ts";
+export { StagedClaimTileCostTableHandle };
+import { StagedClimbRequirementDescTableHandle } from "./staged_climb_requirement_desc_table.ts";
+export { StagedClimbRequirementDescTableHandle };
+import { StagedClothingDescTableHandle } from "./staged_clothing_desc_table.ts";
+export { StagedClothingDescTableHandle };
+import { StagedCollectibleDescTableHandle } from "./staged_collectible_desc_table.ts";
+export { StagedCollectibleDescTableHandle };
+import { StagedCombatActionDescV3TableHandle } from "./staged_combat_action_desc_v_3_table.ts";
+export { StagedCombatActionDescV3TableHandle };
+import { StagedCombatActionMultiHitDescTableHandle } from "./staged_combat_action_multi_hit_desc_table.ts";
+export { StagedCombatActionMultiHitDescTableHandle };
+import { StagedConstructionRecipeDescTableHandle } from "./staged_construction_recipe_desc_table.ts";
+export { StagedConstructionRecipeDescTableHandle };
+import { StagedConstructionRecipeDescV2TableHandle } from "./staged_construction_recipe_desc_v_2_table.ts";
+export { StagedConstructionRecipeDescV2TableHandle };
+import { StagedContributionLootDescTableHandle } from "./staged_contribution_loot_desc_table.ts";
+export { StagedContributionLootDescTableHandle };
+import { StagedCraftingRecipeDescTableHandle } from "./staged_crafting_recipe_desc_table.ts";
+export { StagedCraftingRecipeDescTableHandle };
+import { StagedDeconstructionRecipeDescTableHandle } from "./staged_deconstruction_recipe_desc_table.ts";
+export { StagedDeconstructionRecipeDescTableHandle };
+import { StagedDeployableDescTableHandle } from "./staged_deployable_desc_table.ts";
+export { StagedDeployableDescTableHandle };
+import { StagedDistantVisibleEntityDescTableHandle } from "./staged_distant_visible_entity_desc_table.ts";
+export { StagedDistantVisibleEntityDescTableHandle };
+import { StagedElevatorDescTableHandle } from "./staged_elevator_desc_table.ts";
+export { StagedElevatorDescTableHandle };
+import { StagedEmoteDescTableHandle } from "./staged_emote_desc_table.ts";
+export { StagedEmoteDescTableHandle };
+import { StagedEmpireColorsDescTableHandle } from "./staged_empire_colors_desc_table.ts";
+export { StagedEmpireColorsDescTableHandle };
+import { StagedEmpireIconDescTableHandle } from "./staged_empire_icon_desc_table.ts";
+export { StagedEmpireIconDescTableHandle };
+import { StagedEmpireNotificationDescTableHandle } from "./staged_empire_notification_desc_table.ts";
+export { StagedEmpireNotificationDescTableHandle };
+import { StagedEmpireRankDescTableHandle } from "./staged_empire_rank_desc_table.ts";
+export { StagedEmpireRankDescTableHandle };
+import { StagedEmpireSuppliesDescTableHandle } from "./staged_empire_supplies_desc_table.ts";
+export { StagedEmpireSuppliesDescTableHandle };
+import { StagedEmpireTerritoryDescTableHandle } from "./staged_empire_territory_desc_table.ts";
+export { StagedEmpireTerritoryDescTableHandle };
+import { StagedEnemyAiParamsDescTableHandle } from "./staged_enemy_ai_params_desc_table.ts";
+export { StagedEnemyAiParamsDescTableHandle };
+import { StagedEnemyDescTableHandle } from "./staged_enemy_desc_table.ts";
+export { StagedEnemyDescTableHandle };
+import { StagedEnemyScalingDescTableHandle } from "./staged_enemy_scaling_desc_table.ts";
+export { StagedEnemyScalingDescTableHandle };
+import { StagedEnvironmentDebuffDescTableHandle } from "./staged_environment_debuff_desc_table.ts";
+export { StagedEnvironmentDebuffDescTableHandle };
+import { StagedEquipmentDescTableHandle } from "./staged_equipment_desc_table.ts";
+export { StagedEquipmentDescTableHandle };
+import { StagedExtractionRecipeDescTableHandle } from "./staged_extraction_recipe_desc_table.ts";
+export { StagedExtractionRecipeDescTableHandle };
+import { StagedFoodDescTableHandle } from "./staged_food_desc_table.ts";
+export { StagedFoodDescTableHandle };
+import { StagedGateDescTableHandle } from "./staged_gate_desc_table.ts";
+export { StagedGateDescTableHandle };
+import { StagedHexiteExchangeEntryDescTableHandle } from "./staged_hexite_exchange_entry_desc_table.ts";
+export { StagedHexiteExchangeEntryDescTableHandle };
+import { StagedInteriorEnvironmentDescTableHandle } from "./staged_interior_environment_desc_table.ts";
+export { StagedInteriorEnvironmentDescTableHandle };
+import { StagedInteriorInstanceDescTableHandle } from "./staged_interior_instance_desc_table.ts";
+export { StagedInteriorInstanceDescTableHandle };
+import { StagedInteriorNetworkDescTableHandle } from "./staged_interior_network_desc_table.ts";
+export { StagedInteriorNetworkDescTableHandle };
+import { StagedInteriorPortalConnectionsDescTableHandle } from "./staged_interior_portal_connections_desc_table.ts";
+export { StagedInteriorPortalConnectionsDescTableHandle };
+import { StagedInteriorShapeDescTableHandle } from "./staged_interior_shape_desc_table.ts";
+export { StagedInteriorShapeDescTableHandle };
+import { StagedInteriorSpawnDescTableHandle } from "./staged_interior_spawn_desc_table.ts";
+export { StagedInteriorSpawnDescTableHandle };
+import { StagedItemConversionRecipeDescTableHandle } from "./staged_item_conversion_recipe_desc_table.ts";
+export { StagedItemConversionRecipeDescTableHandle };
+import { StagedItemDescTableHandle } from "./staged_item_desc_table.ts";
+export { StagedItemDescTableHandle };
+import { StagedItemListDescTableHandle } from "./staged_item_list_desc_table.ts";
+export { StagedItemListDescTableHandle };
+import { StagedKnowledgeScrollDescTableHandle } from "./staged_knowledge_scroll_desc_table.ts";
+export { StagedKnowledgeScrollDescTableHandle };
+import { StagedKnowledgeScrollTypeDescTableHandle } from "./staged_knowledge_scroll_type_desc_table.ts";
+export { StagedKnowledgeScrollTypeDescTableHandle };
+import { StagedKnowledgeStatModifierDescTableHandle } from "./staged_knowledge_stat_modifier_desc_table.ts";
+export { StagedKnowledgeStatModifierDescTableHandle };
+import { StagedLootChestDescTableHandle } from "./staged_loot_chest_desc_table.ts";
+export { StagedLootChestDescTableHandle };
+import { StagedLootRarityDescTableHandle } from "./staged_loot_rarity_desc_table.ts";
+export { StagedLootRarityDescTableHandle };
+import { StagedLootTableDescTableHandle } from "./staged_loot_table_desc_table.ts";
+export { StagedLootTableDescTableHandle };
+import { StagedNpcDescTableHandle } from "./staged_npc_desc_table.ts";
+export { StagedNpcDescTableHandle };
+import { StagedOnboardingRewardDescTableHandle } from "./staged_onboarding_reward_desc_table.ts";
+export { StagedOnboardingRewardDescTableHandle };
+import { StagedParametersDescTableHandle } from "./staged_parameters_desc_table.ts";
+export { StagedParametersDescTableHandle };
+import { StagedPathfindingDescTableHandle } from "./staged_pathfinding_desc_table.ts";
+export { StagedPathfindingDescTableHandle };
+import { StagedPavingTileDescTableHandle } from "./staged_paving_tile_desc_table.ts";
+export { StagedPavingTileDescTableHandle };
+import { StagedPillarShapingDescTableHandle } from "./staged_pillar_shaping_desc_table.ts";
+export { StagedPillarShapingDescTableHandle };
+import { StagedPlayerActionDescTableHandle } from "./staged_player_action_desc_table.ts";
+export { StagedPlayerActionDescTableHandle };
+import { StagedPlayerHousingDescTableHandle } from "./staged_player_housing_desc_table.ts";
+export { StagedPlayerHousingDescTableHandle };
+import { StagedPremiumItemDescTableHandle } from "./staged_premium_item_desc_table.ts";
+export { StagedPremiumItemDescTableHandle };
+import { StagedPremiumServiceDescTableHandle } from "./staged_premium_service_desc_table.ts";
+export { StagedPremiumServiceDescTableHandle };
+import { StagedPrivateParametersDescTableHandle } from "./staged_private_parameters_desc_table.ts";
+export { StagedPrivateParametersDescTableHandle };
+import { StagedReservedNameDescTableHandle } from "./staged_reserved_name_desc_table.ts";
+export { StagedReservedNameDescTableHandle };
+import { StagedResourceClumpDescTableHandle } from "./staged_resource_clump_desc_table.ts";
+export { StagedResourceClumpDescTableHandle };
+import { StagedResourceDescTableHandle } from "./staged_resource_desc_table.ts";
+export { StagedResourceDescTableHandle };
+import { StagedResourceGrowthRecipeDescTableHandle } from "./staged_resource_growth_recipe_desc_table.ts";
+export { StagedResourceGrowthRecipeDescTableHandle };
+import { StagedResourcePlacementRecipeDescTableHandle } from "./staged_resource_placement_recipe_desc_table.ts";
+export { StagedResourcePlacementRecipeDescTableHandle };
+import { StagedResourcePlacementRecipeDescV2TableHandle } from "./staged_resource_placement_recipe_desc_v_2_table.ts";
+export { StagedResourcePlacementRecipeDescV2TableHandle };
+import { StagedSecondaryKnowledgeDescTableHandle } from "./staged_secondary_knowledge_desc_table.ts";
+export { StagedSecondaryKnowledgeDescTableHandle };
+import { StagedSkillDescTableHandle } from "./staged_skill_desc_table.ts";
+export { StagedSkillDescTableHandle };
 import { StagedStaticDataTableHandle } from "./staged_static_data_table.ts";
 export { StagedStaticDataTableHandle };
 import { StagedStaticDataV2TableHandle } from "./staged_static_data_v_2_table.ts";
@@ -1215,6 +1401,28 @@ import { StagedStaticDataV7TableHandle } from "./staged_static_data_v_7_table.ts
 export { StagedStaticDataV7TableHandle };
 import { StagedStaticDataV8TableHandle } from "./staged_static_data_v_8_table.ts";
 export { StagedStaticDataV8TableHandle };
+import { StagedTargetingMatrixDescTableHandle } from "./staged_targeting_matrix_desc_table.ts";
+export { StagedTargetingMatrixDescTableHandle };
+import { StagedTeleportItemDescTableHandle } from "./staged_teleport_item_desc_table.ts";
+export { StagedTeleportItemDescTableHandle };
+import { StagedTerraformRecipeDescTableHandle } from "./staged_terraform_recipe_desc_table.ts";
+export { StagedTerraformRecipeDescTableHandle };
+import { StagedToolDescTableHandle } from "./staged_tool_desc_table.ts";
+export { StagedToolDescTableHandle };
+import { StagedToolTypeDescTableHandle } from "./staged_tool_type_desc_table.ts";
+export { StagedToolTypeDescTableHandle };
+import { StagedTravelerTaskDescTableHandle } from "./staged_traveler_task_desc_table.ts";
+export { StagedTravelerTaskDescTableHandle };
+import { StagedTravelerTradeOrderDescTableHandle } from "./staged_traveler_trade_order_desc_table.ts";
+export { StagedTravelerTradeOrderDescTableHandle };
+import { StagedWallDescTableHandle } from "./staged_wall_desc_table.ts";
+export { StagedWallDescTableHandle };
+import { StagedWeaponDescTableHandle } from "./staged_weapon_desc_table.ts";
+export { StagedWeaponDescTableHandle };
+import { StagedWeaponTypeDescTableHandle } from "./staged_weapon_type_desc_table.ts";
+export { StagedWeaponTypeDescTableHandle };
+import { StagedWindParamsDescTableHandle } from "./staged_wind_params_desc_table.ts";
+export { StagedWindParamsDescTableHandle };
 import { StaminaStateTableHandle } from "./stamina_state_table.ts";
 export { StaminaStateTableHandle };
 import { StarvingPlayerStateTableHandle } from "./starving_player_state_table.ts";
@@ -1439,8 +1647,12 @@ import { ClaimStateOp } from "./claim_state_op_type.ts";
 export { ClaimStateOp };
 import { ClaimTechDesc } from "./claim_tech_desc_type.ts";
 export { ClaimTechDesc };
+import { ClaimTechDescV2 } from "./claim_tech_desc_v_2_type.ts";
+export { ClaimTechDescV2 };
 import { ClaimTechState } from "./claim_tech_state_type.ts";
 export { ClaimTechState };
+import { ClaimTechType } from "./claim_tech_type_type.ts";
+export { ClaimTechType };
 import { ClaimTileCost } from "./claim_tile_cost_type.ts";
 export { ClaimTileCost };
 import { ClaimTileState } from "./claim_tile_state_type.ts";
@@ -1477,6 +1689,8 @@ import { Config } from "./config_type.ts";
 export { Config };
 import { ConstructionRecipeDesc } from "./construction_recipe_desc_type.ts";
 export { ConstructionRecipeDesc };
+import { ConstructionRecipeDescV2 } from "./construction_recipe_desc_v_2_type.ts";
+export { ConstructionRecipeDescV2 };
 import { ContributionLootDesc } from "./contribution_loot_desc_type.ts";
 export { ContributionLootDesc };
 import { ContributionLootDescV2 } from "./contribution_loot_desc_v_2_type.ts";
@@ -2003,6 +2217,14 @@ import { Pocket } from "./pocket_type.ts";
 export { Pocket };
 import { PortalState } from "./portal_state_type.ts";
 export { PortalState };
+import { PremiumItemDesc } from "./premium_item_desc_type.ts";
+export { PremiumItemDesc };
+import { PremiumPurchaseState } from "./premium_purchase_state_type.ts";
+export { PremiumPurchaseState };
+import { PremiumServiceDesc } from "./premium_service_desc_type.ts";
+export { PremiumServiceDesc };
+import { PremiumServiceType } from "./premium_service_type_type.ts";
+export { PremiumServiceType };
 import { PrivateParametersDesc } from "./private_parameters_desc_type.ts";
 export { PrivateParametersDesc };
 import { ProbabilisticItemStack } from "./probabilistic_item_stack_type.ts";
@@ -2049,6 +2271,8 @@ import { ResourceHealthState } from "./resource_health_state_type.ts";
 export { ResourceHealthState };
 import { ResourcePlacementRecipeDesc } from "./resource_placement_recipe_desc_type.ts";
 export { ResourcePlacementRecipeDesc };
+import { ResourcePlacementRecipeDescV2 } from "./resource_placement_recipe_desc_v_2_type.ts";
+export { ResourcePlacementRecipeDescV2 };
 import { ResourceState } from "./resource_state_type.ts";
 export { ResourceState };
 import { RezSickLongTermState } from "./rez_sick_long_term_state_type.ts";
@@ -2590,6 +2814,15 @@ const REMOTE_MODULE = {
         colType: ClaimTechDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    claim_tech_desc_v2: {
+      tableName: "claim_tech_desc_v2",
+      rowType: ClaimTechDescV2.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: ClaimTechDescV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     claim_tech_state: {
       tableName: "claim_tech_state",
       rowType: ClaimTechState.getTypeScriptAlgebraicType(),
@@ -2723,6 +2956,15 @@ const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "id",
         colType: ConstructionRecipeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    construction_recipe_desc_v2: {
+      tableName: "construction_recipe_desc_v2",
+      rowType: ConstructionRecipeDescV2.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: ConstructionRecipeDescV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     contribution_loot_desc: {
@@ -4160,6 +4402,33 @@ const REMOTE_MODULE = {
         colType: PortalState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    premium_item_desc: {
+      tableName: "premium_item_desc",
+      rowType: PremiumItemDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: PremiumItemDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    premium_purchase_state: {
+      tableName: "premium_purchase_state",
+      rowType: PremiumPurchaseState.getTypeScriptAlgebraicType(),
+      primaryKey: "entityId",
+      primaryKeyInfo: {
+        colName: "entityId",
+        colType: PremiumPurchaseState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    premium_service_desc: {
+      tableName: "premium_service_desc",
+      rowType: PremiumServiceDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: PremiumServiceDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     private_parameters_desc: {
       tableName: "private_parameters_desc",
       rowType: PrivateParametersDesc.getTypeScriptAlgebraicType(),
@@ -4295,6 +4564,15 @@ const REMOTE_MODULE = {
         colType: ResourcePlacementRecipeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    resource_placement_recipe_desc_v2: {
+      tableName: "resource_placement_recipe_desc_v2",
+      rowType: ResourcePlacementRecipeDescV2.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: ResourcePlacementRecipeDescV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     resource_state: {
       tableName: "resource_state",
       rowType: ResourceState.getTypeScriptAlgebraicType(),
@@ -4376,6 +4654,726 @@ const REMOTE_MODULE = {
         colType: SkillDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    staged_achievement_desc: {
+      tableName: "staged_achievement_desc",
+      rowType: AchievementDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: AchievementDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_alert_desc: {
+      tableName: "staged_alert_desc",
+      rowType: AlertDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "alertType",
+      primaryKeyInfo: {
+        colName: "alertType",
+        colType: AlertDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_biome_desc: {
+      tableName: "staged_biome_desc",
+      rowType: BiomeDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "biomeType",
+      primaryKeyInfo: {
+        colName: "biomeType",
+        colType: BiomeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_buff_desc: {
+      tableName: "staged_buff_desc",
+      rowType: BuffDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: BuffDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_buff_type_desc: {
+      tableName: "staged_buff_type_desc",
+      rowType: BuffTypeDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: BuffTypeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_building_claim_desc: {
+      tableName: "staged_building_claim_desc",
+      rowType: BuildingClaimDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "buildingId",
+      primaryKeyInfo: {
+        colName: "buildingId",
+        colType: BuildingClaimDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_building_desc: {
+      tableName: "staged_building_desc",
+      rowType: BuildingDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: BuildingDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_building_portal_desc_v2: {
+      tableName: "staged_building_portal_desc_v2",
+      rowType: BuildingPortalDescV2.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: BuildingPortalDescV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_building_repairs_desc: {
+      tableName: "staged_building_repairs_desc",
+      rowType: BuildingRepairsDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "cargoId",
+      primaryKeyInfo: {
+        colName: "cargoId",
+        colType: BuildingRepairsDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_building_spawn_desc: {
+      tableName: "staged_building_spawn_desc",
+      rowType: BuildingSpawnDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: BuildingSpawnDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_building_type_desc: {
+      tableName: "staged_building_type_desc",
+      rowType: BuildingTypeDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: BuildingTypeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_cargo_desc: {
+      tableName: "staged_cargo_desc",
+      rowType: CargoDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: CargoDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_character_stat_desc: {
+      tableName: "staged_character_stat_desc",
+      rowType: CharacterStatDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "statType",
+      primaryKeyInfo: {
+        colName: "statType",
+        colType: CharacterStatDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_chest_rarity_desc: {
+      tableName: "staged_chest_rarity_desc",
+      rowType: ChestRarityDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: ChestRarityDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_claim_tech_desc: {
+      tableName: "staged_claim_tech_desc",
+      rowType: ClaimTechDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: ClaimTechDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_claim_tech_desc_v2: {
+      tableName: "staged_claim_tech_desc_v2",
+      rowType: ClaimTechDescV2.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: ClaimTechDescV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_claim_tile_cost: {
+      tableName: "staged_claim_tile_cost",
+      rowType: ClaimTileCost.getTypeScriptAlgebraicType(),
+      primaryKey: "tileCount",
+      primaryKeyInfo: {
+        colName: "tileCount",
+        colType: ClaimTileCost.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_climb_requirement_desc: {
+      tableName: "staged_climb_requirement_desc",
+      rowType: ClimbRequirementDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: ClimbRequirementDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_clothing_desc: {
+      tableName: "staged_clothing_desc",
+      rowType: ClothingDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "itemId",
+      primaryKeyInfo: {
+        colName: "itemId",
+        colType: ClothingDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_collectible_desc: {
+      tableName: "staged_collectible_desc",
+      rowType: CollectibleDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: CollectibleDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_combat_action_desc_v3: {
+      tableName: "staged_combat_action_desc_v3",
+      rowType: CombatActionDescV3.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: CombatActionDescV3.getTypeScriptAlgebraicType().product.elements[1].algebraicType,
+      },
+    },
+    staged_combat_action_multi_hit_desc: {
+      tableName: "staged_combat_action_multi_hit_desc",
+      rowType: CombatActionMultiHitDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: CombatActionMultiHitDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_construction_recipe_desc: {
+      tableName: "staged_construction_recipe_desc",
+      rowType: ConstructionRecipeDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: ConstructionRecipeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_construction_recipe_desc_v2: {
+      tableName: "staged_construction_recipe_desc_v2",
+      rowType: ConstructionRecipeDescV2.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: ConstructionRecipeDescV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_contribution_loot_desc: {
+      tableName: "staged_contribution_loot_desc",
+      rowType: ContributionLootDescV2.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: ContributionLootDescV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_crafting_recipe_desc: {
+      tableName: "staged_crafting_recipe_desc",
+      rowType: CraftingRecipeDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: CraftingRecipeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_deconstruction_recipe_desc: {
+      tableName: "staged_deconstruction_recipe_desc",
+      rowType: DeconstructionRecipeDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: DeconstructionRecipeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_deployable_desc: {
+      tableName: "staged_deployable_desc",
+      rowType: DeployableDescV3.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: DeployableDescV3.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_distant_visible_entity_desc: {
+      tableName: "staged_distant_visible_entity_desc",
+      rowType: DistantVisibleEntityDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: DistantVisibleEntityDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_elevator_desc: {
+      tableName: "staged_elevator_desc",
+      rowType: ElevatorDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "buildingId",
+      primaryKeyInfo: {
+        colName: "buildingId",
+        colType: ElevatorDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_emote_desc: {
+      tableName: "staged_emote_desc",
+      rowType: EmoteDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: EmoteDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_empire_colors_desc: {
+      tableName: "staged_empire_colors_desc",
+      rowType: EmpireColorDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: EmpireColorDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_empire_icon_desc: {
+      tableName: "staged_empire_icon_desc",
+      rowType: EmpireIconDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: EmpireIconDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_empire_notification_desc: {
+      tableName: "staged_empire_notification_desc",
+      rowType: EmpireNotificationDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: EmpireNotificationDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_empire_rank_desc: {
+      tableName: "staged_empire_rank_desc",
+      rowType: EmpireRankDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "rank",
+      primaryKeyInfo: {
+        colName: "rank",
+        colType: EmpireRankDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_empire_supplies_desc: {
+      tableName: "staged_empire_supplies_desc",
+      rowType: EmpireSuppliesDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "cargoId",
+      primaryKeyInfo: {
+        colName: "cargoId",
+        colType: EmpireSuppliesDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_empire_territory_desc: {
+      tableName: "staged_empire_territory_desc",
+      rowType: EmpireTerritoryDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: EmpireTerritoryDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_enemy_ai_params_desc: {
+      tableName: "staged_enemy_ai_params_desc",
+      rowType: EnemyAiParamsDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: EnemyAiParamsDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_enemy_desc: {
+      tableName: "staged_enemy_desc",
+      rowType: EnemyDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "enemyType",
+      primaryKeyInfo: {
+        colName: "enemyType",
+        colType: EnemyDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_enemy_scaling_desc: {
+      tableName: "staged_enemy_scaling_desc",
+      rowType: EnemyScalingDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: EnemyScalingDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_environment_debuff_desc: {
+      tableName: "staged_environment_debuff_desc",
+      rowType: EnvironmentDebuffDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "buffId",
+      primaryKeyInfo: {
+        colName: "buffId",
+        colType: EnvironmentDebuffDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_equipment_desc: {
+      tableName: "staged_equipment_desc",
+      rowType: EquipmentDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "itemId",
+      primaryKeyInfo: {
+        colName: "itemId",
+        colType: EquipmentDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_extraction_recipe_desc: {
+      tableName: "staged_extraction_recipe_desc",
+      rowType: ExtractionRecipeDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: ExtractionRecipeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_food_desc: {
+      tableName: "staged_food_desc",
+      rowType: FoodDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "itemId",
+      primaryKeyInfo: {
+        colName: "itemId",
+        colType: FoodDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_gate_desc: {
+      tableName: "staged_gate_desc",
+      rowType: GateDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "buildingId",
+      primaryKeyInfo: {
+        colName: "buildingId",
+        colType: GateDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_hexite_exchange_entry_desc: {
+      tableName: "staged_hexite_exchange_entry_desc",
+      rowType: HexiteExchangeEntryDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: HexiteExchangeEntryDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_interior_environment_desc: {
+      tableName: "staged_interior_environment_desc",
+      rowType: InteriorEnvironmentDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: InteriorEnvironmentDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_interior_instance_desc: {
+      tableName: "staged_interior_instance_desc",
+      rowType: InteriorInstanceDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: InteriorInstanceDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_interior_network_desc: {
+      tableName: "staged_interior_network_desc",
+      rowType: InteriorNetworkDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "buildingId",
+      primaryKeyInfo: {
+        colName: "buildingId",
+        colType: InteriorNetworkDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_interior_portal_connections_desc: {
+      tableName: "staged_interior_portal_connections_desc",
+      rowType: InteriorPortalConnectionsDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: InteriorPortalConnectionsDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_interior_shape_desc: {
+      tableName: "staged_interior_shape_desc",
+      rowType: InteriorShapeDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: InteriorShapeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_interior_spawn_desc: {
+      tableName: "staged_interior_spawn_desc",
+      rowType: InteriorSpawnDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: InteriorSpawnDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_item_conversion_recipe_desc: {
+      tableName: "staged_item_conversion_recipe_desc",
+      rowType: ItemConversionRecipeDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: ItemConversionRecipeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_item_desc: {
+      tableName: "staged_item_desc",
+      rowType: ItemDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: ItemDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_item_list_desc: {
+      tableName: "staged_item_list_desc",
+      rowType: ItemListDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: ItemListDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_knowledge_scroll_desc: {
+      tableName: "staged_knowledge_scroll_desc",
+      rowType: KnowledgeScrollDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "itemId",
+      primaryKeyInfo: {
+        colName: "itemId",
+        colType: KnowledgeScrollDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_knowledge_scroll_type_desc: {
+      tableName: "staged_knowledge_scroll_type_desc",
+      rowType: KnowledgeScrollTypeDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: KnowledgeScrollTypeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_knowledge_stat_modifier_desc: {
+      tableName: "staged_knowledge_stat_modifier_desc",
+      rowType: KnowledgeStatModifierDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "secondaryKnowledgeId",
+      primaryKeyInfo: {
+        colName: "secondaryKnowledgeId",
+        colType: KnowledgeStatModifierDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_loot_chest_desc: {
+      tableName: "staged_loot_chest_desc",
+      rowType: LootChestDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: LootChestDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_loot_rarity_desc: {
+      tableName: "staged_loot_rarity_desc",
+      rowType: LootRarityDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: LootRarityDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_loot_table_desc: {
+      tableName: "staged_loot_table_desc",
+      rowType: LootTableDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: LootTableDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_npc_desc: {
+      tableName: "staged_npc_desc",
+      rowType: NpcDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "npcType",
+      primaryKeyInfo: {
+        colName: "npcType",
+        colType: NpcDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_onboarding_reward_desc: {
+      tableName: "staged_onboarding_reward_desc",
+      rowType: OnboardingRewardDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "stateId",
+      primaryKeyInfo: {
+        colName: "stateId",
+        colType: OnboardingRewardDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_parameters_desc: {
+      tableName: "staged_parameters_desc",
+      rowType: ParametersDescV2.getTypeScriptAlgebraicType(),
+      primaryKey: "version",
+      primaryKeyInfo: {
+        colName: "version",
+        colType: ParametersDescV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_pathfinding_desc: {
+      tableName: "staged_pathfinding_desc",
+      rowType: PathfindingDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: PathfindingDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_paving_tile_desc: {
+      tableName: "staged_paving_tile_desc",
+      rowType: PavingTileDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: PavingTileDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_pillar_shaping_desc: {
+      tableName: "staged_pillar_shaping_desc",
+      rowType: PillarShapingDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: PillarShapingDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_player_action_desc: {
+      tableName: "staged_player_action_desc",
+      rowType: PlayerActionDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "actionTypeId",
+      primaryKeyInfo: {
+        colName: "actionTypeId",
+        colType: PlayerActionDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_player_housing_desc: {
+      tableName: "staged_player_housing_desc",
+      rowType: PlayerHousingDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "secondaryKnowledgeId",
+      primaryKeyInfo: {
+        colName: "secondaryKnowledgeId",
+        colType: PlayerHousingDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_premium_item_desc: {
+      tableName: "staged_premium_item_desc",
+      rowType: PremiumItemDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: PremiumItemDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_premium_service_desc: {
+      tableName: "staged_premium_service_desc",
+      rowType: PremiumServiceDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: PremiumServiceDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_private_parameters_desc: {
+      tableName: "staged_private_parameters_desc",
+      rowType: PrivateParametersDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "version",
+      primaryKeyInfo: {
+        colName: "version",
+        colType: PrivateParametersDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_reserved_name_desc: {
+      tableName: "staged_reserved_name_desc",
+      rowType: ReservedNameDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "name",
+      primaryKeyInfo: {
+        colName: "name",
+        colType: ReservedNameDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_resource_clump_desc: {
+      tableName: "staged_resource_clump_desc",
+      rowType: ResourceClumpDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: ResourceClumpDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_resource_desc: {
+      tableName: "staged_resource_desc",
+      rowType: ResourceDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: ResourceDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_resource_growth_recipe_desc: {
+      tableName: "staged_resource_growth_recipe_desc",
+      rowType: ResourceGrowthRecipeDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: ResourceGrowthRecipeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_resource_placement_recipe_desc: {
+      tableName: "staged_resource_placement_recipe_desc",
+      rowType: ResourcePlacementRecipeDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: ResourcePlacementRecipeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_resource_placement_recipe_desc_v2: {
+      tableName: "staged_resource_placement_recipe_desc_v2",
+      rowType: ResourcePlacementRecipeDescV2.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: ResourcePlacementRecipeDescV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_secondary_knowledge_desc: {
+      tableName: "staged_secondary_knowledge_desc",
+      rowType: SecondaryKnowledgeDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: SecondaryKnowledgeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_skill_desc: {
+      tableName: "staged_skill_desc",
+      rowType: SkillDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: SkillDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     staged_static_data: {
       tableName: "staged_static_data",
       rowType: StagedStaticData.getTypeScriptAlgebraicType(),
@@ -4446,6 +5444,105 @@ const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "version",
         colType: StagedStaticDataV8.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_targeting_matrix_desc: {
+      tableName: "staged_targeting_matrix_desc",
+      rowType: TargetingMatrixDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: TargetingMatrixDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_teleport_item_desc: {
+      tableName: "staged_teleport_item_desc",
+      rowType: TeleportItemDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: TeleportItemDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_terraform_recipe_desc: {
+      tableName: "staged_terraform_recipe_desc",
+      rowType: TerraformRecipeDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "difference",
+      primaryKeyInfo: {
+        colName: "difference",
+        colType: TerraformRecipeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_tool_desc: {
+      tableName: "staged_tool_desc",
+      rowType: ToolDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: ToolDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_tool_type_desc: {
+      tableName: "staged_tool_type_desc",
+      rowType: ToolTypeDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: ToolTypeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_traveler_task_desc: {
+      tableName: "staged_traveler_task_desc",
+      rowType: TravelerTaskDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: TravelerTaskDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_traveler_trade_order_desc: {
+      tableName: "staged_traveler_trade_order_desc",
+      rowType: TravelerTradeOrderDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: TravelerTradeOrderDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_wall_desc: {
+      tableName: "staged_wall_desc",
+      rowType: WallDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "buildingId",
+      primaryKeyInfo: {
+        colName: "buildingId",
+        colType: WallDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_weapon_desc: {
+      tableName: "staged_weapon_desc",
+      rowType: WeaponDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "itemId",
+      primaryKeyInfo: {
+        colName: "itemId",
+        colType: WeaponDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_weapon_type_desc: {
+      tableName: "staged_weapon_type_desc",
+      rowType: WeaponTypeDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: WeaponTypeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_wind_params_desc: {
+      tableName: "staged_wind_params_desc",
+      rowType: WindParamsDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: WindParamsDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     stamina_state: {
@@ -4828,6 +5925,10 @@ const REMOTE_MODULE = {
     admin_log_moderation_action: {
       reducerName: "admin_log_moderation_action",
       argsType: AdminLogModerationAction.getTypeScriptAlgebraicType(),
+    },
+    admin_mark_premium_purchase_processed: {
+      reducerName: "admin_mark_premium_purchase_processed",
+      argsType: AdminMarkPremiumPurchaseProcessed.getTypeScriptAlgebraicType(),
     },
     admin_mark_user_report_as_actioned: {
       reducerName: "admin_mark_user_report_as_actioned",
@@ -5537,6 +6638,14 @@ const REMOTE_MODULE = {
       reducerName: "import_portal_state",
       argsType: ImportPortalState.getTypeScriptAlgebraicType(),
     },
+    import_premium_item_desc: {
+      reducerName: "import_premium_item_desc",
+      argsType: ImportPremiumItemDesc.getTypeScriptAlgebraicType(),
+    },
+    import_premium_service_desc: {
+      reducerName: "import_premium_service_desc",
+      argsType: ImportPremiumServiceDesc.getTypeScriptAlgebraicType(),
+    },
     import_private_parameters_desc: {
       reducerName: "import_private_parameters_desc",
       argsType: ImportPrivateParametersDesc.getTypeScriptAlgebraicType(),
@@ -5757,6 +6866,14 @@ const REMOTE_MODULE = {
       reducerName: "process_inter_module_message",
       argsType: ProcessInterModuleMessage.getTypeScriptAlgebraicType(),
     },
+    purchase_character_rename: {
+      reducerName: "purchase_character_rename",
+      argsType: PurchaseCharacterRename.getTypeScriptAlgebraicType(),
+    },
+    purchase_premium_item: {
+      reducerName: "purchase_premium_item",
+      argsType: PurchasePremiumItem.getTypeScriptAlgebraicType(),
+    },
     remove_chat_channel: {
       reducerName: "remove_chat_channel",
       argsType: RemoveChatChannel.getTypeScriptAlgebraicType(),
@@ -5849,9 +6966,9 @@ const REMOTE_MODULE = {
       reducerName: "stage_chest_rarity_desc",
       argsType: StageChestRarityDesc.getTypeScriptAlgebraicType(),
     },
-    stage_claim_tech_desc: {
-      reducerName: "stage_claim_tech_desc",
-      argsType: StageClaimTechDesc.getTypeScriptAlgebraicType(),
+    stage_claim_tech_desc_v2: {
+      reducerName: "stage_claim_tech_desc_v2",
+      argsType: StageClaimTechDescV2.getTypeScriptAlgebraicType(),
     },
     stage_claim_tile_cost: {
       reducerName: "stage_claim_tile_cost",
@@ -5877,9 +6994,9 @@ const REMOTE_MODULE = {
       reducerName: "stage_combat_action_multi_hit_desc",
       argsType: StageCombatActionMultiHitDesc.getTypeScriptAlgebraicType(),
     },
-    stage_construction_recipe_desc: {
-      reducerName: "stage_construction_recipe_desc",
-      argsType: StageConstructionRecipeDesc.getTypeScriptAlgebraicType(),
+    stage_construction_recipe_desc_v2: {
+      reducerName: "stage_construction_recipe_desc_v2",
+      argsType: StageConstructionRecipeDescV2.getTypeScriptAlgebraicType(),
     },
     stage_contribution_loot_desc: {
       reducerName: "stage_contribution_loot_desc",
@@ -6061,6 +7178,14 @@ const REMOTE_MODULE = {
       reducerName: "stage_player_housing_desc",
       argsType: StagePlayerHousingDesc.getTypeScriptAlgebraicType(),
     },
+    stage_premium_item_desc: {
+      reducerName: "stage_premium_item_desc",
+      argsType: StagePremiumItemDesc.getTypeScriptAlgebraicType(),
+    },
+    stage_premium_service_desc: {
+      reducerName: "stage_premium_service_desc",
+      argsType: StagePremiumServiceDesc.getTypeScriptAlgebraicType(),
+    },
     stage_private_parameters_desc: {
       reducerName: "stage_private_parameters_desc",
       argsType: StagePrivateParametersDesc.getTypeScriptAlgebraicType(),
@@ -6081,9 +7206,9 @@ const REMOTE_MODULE = {
       reducerName: "stage_resource_growth_recipe_desc",
       argsType: StageResourceGrowthRecipeDesc.getTypeScriptAlgebraicType(),
     },
-    stage_resource_placement_recipe_desc: {
-      reducerName: "stage_resource_placement_recipe_desc",
-      argsType: StageResourcePlacementRecipeDesc.getTypeScriptAlgebraicType(),
+    stage_resource_placement_recipe_desc_v2: {
+      reducerName: "stage_resource_placement_recipe_desc_v2",
+      argsType: StageResourcePlacementRecipeDescV2.getTypeScriptAlgebraicType(),
     },
     stage_secondary_knowledge_desc: {
       reducerName: "stage_secondary_knowledge_desc",
@@ -6206,6 +7331,7 @@ export type Reducer = never
 | { name: "AdminDeleteModerationActionLogEntry", args: AdminDeleteModerationActionLogEntry }
 | { name: "AdminGrantShards", args: AdminGrantShards }
 | { name: "AdminLogModerationAction", args: AdminLogModerationAction }
+| { name: "AdminMarkPremiumPurchaseProcessed", args: AdminMarkPremiumPurchaseProcessed }
 | { name: "AdminMarkUserReportAsActioned", args: AdminMarkUserReportAsActioned }
 | { name: "AdminNotifyPlayer", args: AdminNotifyPlayer }
 | { name: "AdminNotifyPlayerByIdentity", args: AdminNotifyPlayerByIdentity }
@@ -6383,6 +7509,8 @@ export type Reducer = never
 | { name: "ImportPlayerState", args: ImportPlayerState }
 | { name: "ImportPlayerVoteState", args: ImportPlayerVoteState }
 | { name: "ImportPortalState", args: ImportPortalState }
+| { name: "ImportPremiumItemDesc", args: ImportPremiumItemDesc }
+| { name: "ImportPremiumServiceDesc", args: ImportPremiumServiceDesc }
 | { name: "ImportPrivateParametersDesc", args: ImportPrivateParametersDesc }
 | { name: "ImportProgressiveActionState", args: ImportProgressiveActionState }
 | { name: "ImportProjectSiteState", args: ImportProjectSiteState }
@@ -6438,6 +7566,8 @@ export type Reducer = never
 | { name: "PlayerVoteAnswer", args: PlayerVoteAnswer }
 | { name: "PlayerVoteConclude", args: PlayerVoteConclude }
 | { name: "ProcessInterModuleMessage", args: ProcessInterModuleMessage }
+| { name: "PurchaseCharacterRename", args: PurchaseCharacterRename }
+| { name: "PurchasePremiumItem", args: PurchasePremiumItem }
 | { name: "RemoveChatChannel", args: RemoveChatChannel }
 | { name: "RemoveChatChannelMember", args: RemoveChatChannelMember }
 | { name: "RemoveFavoriteFriend", args: RemoveFavoriteFriend }
@@ -6461,14 +7591,14 @@ export type Reducer = never
 | { name: "StageCargoDesc", args: StageCargoDesc }
 | { name: "StageCharacterStatDesc", args: StageCharacterStatDesc }
 | { name: "StageChestRarityDesc", args: StageChestRarityDesc }
-| { name: "StageClaimTechDesc", args: StageClaimTechDesc }
+| { name: "StageClaimTechDescV2", args: StageClaimTechDescV2 }
 | { name: "StageClaimTileCost", args: StageClaimTileCost }
 | { name: "StageClimbRequirementDesc", args: StageClimbRequirementDesc }
 | { name: "StageClothingDesc", args: StageClothingDesc }
 | { name: "StageCollectibleDesc", args: StageCollectibleDesc }
 | { name: "StageCombatActionDescV3", args: StageCombatActionDescV3 }
 | { name: "StageCombatActionMultiHitDesc", args: StageCombatActionMultiHitDesc }
-| { name: "StageConstructionRecipeDesc", args: StageConstructionRecipeDesc }
+| { name: "StageConstructionRecipeDescV2", args: StageConstructionRecipeDescV2 }
 | { name: "StageContributionLootDesc", args: StageContributionLootDesc }
 | { name: "StageCraftingRecipeDesc", args: StageCraftingRecipeDesc }
 | { name: "StageDeconstructionRecipeDesc", args: StageDeconstructionRecipeDesc }
@@ -6514,12 +7644,14 @@ export type Reducer = never
 | { name: "StagePillarShapingDesc", args: StagePillarShapingDesc }
 | { name: "StagePlayerActionDesc", args: StagePlayerActionDesc }
 | { name: "StagePlayerHousingDesc", args: StagePlayerHousingDesc }
+| { name: "StagePremiumItemDesc", args: StagePremiumItemDesc }
+| { name: "StagePremiumServiceDesc", args: StagePremiumServiceDesc }
 | { name: "StagePrivateParametersDesc", args: StagePrivateParametersDesc }
 | { name: "StageReservedNameDesc", args: StageReservedNameDesc }
 | { name: "StageResourceClumpDesc", args: StageResourceClumpDesc }
 | { name: "StageResourceDesc", args: StageResourceDesc }
 | { name: "StageResourceGrowthRecipeDesc", args: StageResourceGrowthRecipeDesc }
-| { name: "StageResourcePlacementRecipeDesc", args: StageResourcePlacementRecipeDesc }
+| { name: "StageResourcePlacementRecipeDescV2", args: StageResourcePlacementRecipeDescV2 }
 | { name: "StageSecondaryKnowledgeDesc", args: StageSecondaryKnowledgeDesc }
 | { name: "StageSkillDesc", args: StageSkillDesc }
 | { name: "StageTargetingMatrixDesc", args: StageTargetingMatrixDesc }
@@ -6656,6 +7788,22 @@ export class RemoteReducers {
 
   removeOnAdminLogModerationAction(callback: (ctx: ReducerEventContext, reportEntityId: bigint, reportedPlayerEntityId: bigint, adminName: string, reportedPlayerUsername: string, actionType: string, moderationNotice: string, details: string) => void) {
     this.connection.offReducer("admin_log_moderation_action", callback);
+  }
+
+  adminMarkPremiumPurchaseProcessed(entityId: bigint) {
+    const __args = { entityId };
+    let __writer = new BinaryWriter(1024);
+    AdminMarkPremiumPurchaseProcessed.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("admin_mark_premium_purchase_processed", __argsBuffer, this.setCallReducerFlags.adminMarkPremiumPurchaseProcessedFlags);
+  }
+
+  onAdminMarkPremiumPurchaseProcessed(callback: (ctx: ReducerEventContext, entityId: bigint) => void) {
+    this.connection.onReducer("admin_mark_premium_purchase_processed", callback);
+  }
+
+  removeOnAdminMarkPremiumPurchaseProcessed(callback: (ctx: ReducerEventContext, entityId: bigint) => void) {
+    this.connection.offReducer("admin_mark_premium_purchase_processed", callback);
   }
 
   adminMarkUserReportAsActioned(entityId: bigint, actioned: boolean) {
@@ -7918,7 +9066,7 @@ export class RemoteReducers {
     this.connection.offReducer("import_claim_state", callback);
   }
 
-  importClaimTechDesc(records: ClaimTechDesc[]) {
+  importClaimTechDesc(records: ClaimTechDescV2[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
     ImportClaimTechDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
@@ -7926,11 +9074,11 @@ export class RemoteReducers {
     this.connection.callReducer("import_claim_tech_desc", __argsBuffer, this.setCallReducerFlags.importClaimTechDescFlags);
   }
 
-  onImportClaimTechDesc(callback: (ctx: ReducerEventContext, records: ClaimTechDesc[]) => void) {
+  onImportClaimTechDesc(callback: (ctx: ReducerEventContext, records: ClaimTechDescV2[]) => void) {
     this.connection.onReducer("import_claim_tech_desc", callback);
   }
 
-  removeOnImportClaimTechDesc(callback: (ctx: ReducerEventContext, records: ClaimTechDesc[]) => void) {
+  removeOnImportClaimTechDesc(callback: (ctx: ReducerEventContext, records: ClaimTechDescV2[]) => void) {
     this.connection.offReducer("import_claim_tech_desc", callback);
   }
 
@@ -8078,7 +9226,7 @@ export class RemoteReducers {
     this.connection.offReducer("import_config", callback);
   }
 
-  importConstructionRecipeDesc(records: ConstructionRecipeDesc[]) {
+  importConstructionRecipeDesc(records: ConstructionRecipeDescV2[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
     ImportConstructionRecipeDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
@@ -8086,11 +9234,11 @@ export class RemoteReducers {
     this.connection.callReducer("import_construction_recipe_desc", __argsBuffer, this.setCallReducerFlags.importConstructionRecipeDescFlags);
   }
 
-  onImportConstructionRecipeDesc(callback: (ctx: ReducerEventContext, records: ConstructionRecipeDesc[]) => void) {
+  onImportConstructionRecipeDesc(callback: (ctx: ReducerEventContext, records: ConstructionRecipeDescV2[]) => void) {
     this.connection.onReducer("import_construction_recipe_desc", callback);
   }
 
-  removeOnImportConstructionRecipeDesc(callback: (ctx: ReducerEventContext, records: ConstructionRecipeDesc[]) => void) {
+  removeOnImportConstructionRecipeDesc(callback: (ctx: ReducerEventContext, records: ConstructionRecipeDescV2[]) => void) {
     this.connection.offReducer("import_construction_recipe_desc", callback);
   }
 
@@ -9454,6 +10602,38 @@ export class RemoteReducers {
     this.connection.offReducer("import_portal_state", callback);
   }
 
+  importPremiumItemDesc(records: PremiumItemDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    ImportPremiumItemDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("import_premium_item_desc", __argsBuffer, this.setCallReducerFlags.importPremiumItemDescFlags);
+  }
+
+  onImportPremiumItemDesc(callback: (ctx: ReducerEventContext, records: PremiumItemDesc[]) => void) {
+    this.connection.onReducer("import_premium_item_desc", callback);
+  }
+
+  removeOnImportPremiumItemDesc(callback: (ctx: ReducerEventContext, records: PremiumItemDesc[]) => void) {
+    this.connection.offReducer("import_premium_item_desc", callback);
+  }
+
+  importPremiumServiceDesc(records: PremiumServiceDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    ImportPremiumServiceDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("import_premium_service_desc", __argsBuffer, this.setCallReducerFlags.importPremiumServiceDescFlags);
+  }
+
+  onImportPremiumServiceDesc(callback: (ctx: ReducerEventContext, records: PremiumServiceDesc[]) => void) {
+    this.connection.onReducer("import_premium_service_desc", callback);
+  }
+
+  removeOnImportPremiumServiceDesc(callback: (ctx: ReducerEventContext, records: PremiumServiceDesc[]) => void) {
+    this.connection.offReducer("import_premium_service_desc", callback);
+  }
+
   importPrivateParametersDesc(records: PrivateParametersDesc[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
@@ -9614,7 +10794,7 @@ export class RemoteReducers {
     this.connection.offReducer("import_resource_growth_recipe_desc", callback);
   }
 
-  importResourcePlacementRecipeDesc(records: ResourcePlacementRecipeDesc[]) {
+  importResourcePlacementRecipeDesc(records: ResourcePlacementRecipeDescV2[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
     ImportResourcePlacementRecipeDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
@@ -9622,11 +10802,11 @@ export class RemoteReducers {
     this.connection.callReducer("import_resource_placement_recipe_desc", __argsBuffer, this.setCallReducerFlags.importResourcePlacementRecipeDescFlags);
   }
 
-  onImportResourcePlacementRecipeDesc(callback: (ctx: ReducerEventContext, records: ResourcePlacementRecipeDesc[]) => void) {
+  onImportResourcePlacementRecipeDesc(callback: (ctx: ReducerEventContext, records: ResourcePlacementRecipeDescV2[]) => void) {
     this.connection.onReducer("import_resource_placement_recipe_desc", callback);
   }
 
-  removeOnImportResourcePlacementRecipeDesc(callback: (ctx: ReducerEventContext, records: ResourcePlacementRecipeDesc[]) => void) {
+  removeOnImportResourcePlacementRecipeDesc(callback: (ctx: ReducerEventContext, records: ResourcePlacementRecipeDescV2[]) => void) {
     this.connection.offReducer("import_resource_placement_recipe_desc", callback);
   }
 
@@ -10314,6 +11494,38 @@ export class RemoteReducers {
     this.connection.offReducer("process_inter_module_message", callback);
   }
 
+  purchaseCharacterRename(premiumServiceDescId: number, newCharacterName: string) {
+    const __args = { premiumServiceDescId, newCharacterName };
+    let __writer = new BinaryWriter(1024);
+    PurchaseCharacterRename.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("purchase_character_rename", __argsBuffer, this.setCallReducerFlags.purchaseCharacterRenameFlags);
+  }
+
+  onPurchaseCharacterRename(callback: (ctx: ReducerEventContext, premiumServiceDescId: number, newCharacterName: string) => void) {
+    this.connection.onReducer("purchase_character_rename", callback);
+  }
+
+  removeOnPurchaseCharacterRename(callback: (ctx: ReducerEventContext, premiumServiceDescId: number, newCharacterName: string) => void) {
+    this.connection.offReducer("purchase_character_rename", callback);
+  }
+
+  purchasePremiumItem(premiumItemDescId: number) {
+    const __args = { premiumItemDescId };
+    let __writer = new BinaryWriter(1024);
+    PurchasePremiumItem.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("purchase_premium_item", __argsBuffer, this.setCallReducerFlags.purchasePremiumItemFlags);
+  }
+
+  onPurchasePremiumItem(callback: (ctx: ReducerEventContext, premiumItemDescId: number) => void) {
+    this.connection.onReducer("purchase_premium_item", callback);
+  }
+
+  removeOnPurchasePremiumItem(callback: (ctx: ReducerEventContext, premiumItemDescId: number) => void) {
+    this.connection.offReducer("purchase_premium_item", callback);
+  }
+
   removeChatChannel(entityId: bigint) {
     const __args = { entityId };
     let __writer = new BinaryWriter(1024);
@@ -10682,20 +11894,20 @@ export class RemoteReducers {
     this.connection.offReducer("stage_chest_rarity_desc", callback);
   }
 
-  stageClaimTechDesc(records: ClaimTechDesc[]) {
+  stageClaimTechDescV2(records: ClaimTechDescV2[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
-    StageClaimTechDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    StageClaimTechDescV2.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
-    this.connection.callReducer("stage_claim_tech_desc", __argsBuffer, this.setCallReducerFlags.stageClaimTechDescFlags);
+    this.connection.callReducer("stage_claim_tech_desc_v2", __argsBuffer, this.setCallReducerFlags.stageClaimTechDescV2Flags);
   }
 
-  onStageClaimTechDesc(callback: (ctx: ReducerEventContext, records: ClaimTechDesc[]) => void) {
-    this.connection.onReducer("stage_claim_tech_desc", callback);
+  onStageClaimTechDescV2(callback: (ctx: ReducerEventContext, records: ClaimTechDescV2[]) => void) {
+    this.connection.onReducer("stage_claim_tech_desc_v2", callback);
   }
 
-  removeOnStageClaimTechDesc(callback: (ctx: ReducerEventContext, records: ClaimTechDesc[]) => void) {
-    this.connection.offReducer("stage_claim_tech_desc", callback);
+  removeOnStageClaimTechDescV2(callback: (ctx: ReducerEventContext, records: ClaimTechDescV2[]) => void) {
+    this.connection.offReducer("stage_claim_tech_desc_v2", callback);
   }
 
   stageClaimTileCost(records: ClaimTileCost[]) {
@@ -10794,20 +12006,20 @@ export class RemoteReducers {
     this.connection.offReducer("stage_combat_action_multi_hit_desc", callback);
   }
 
-  stageConstructionRecipeDesc(records: ConstructionRecipeDesc[]) {
+  stageConstructionRecipeDescV2(records: ConstructionRecipeDescV2[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
-    StageConstructionRecipeDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    StageConstructionRecipeDescV2.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
-    this.connection.callReducer("stage_construction_recipe_desc", __argsBuffer, this.setCallReducerFlags.stageConstructionRecipeDescFlags);
+    this.connection.callReducer("stage_construction_recipe_desc_v2", __argsBuffer, this.setCallReducerFlags.stageConstructionRecipeDescV2Flags);
   }
 
-  onStageConstructionRecipeDesc(callback: (ctx: ReducerEventContext, records: ConstructionRecipeDesc[]) => void) {
-    this.connection.onReducer("stage_construction_recipe_desc", callback);
+  onStageConstructionRecipeDescV2(callback: (ctx: ReducerEventContext, records: ConstructionRecipeDescV2[]) => void) {
+    this.connection.onReducer("stage_construction_recipe_desc_v2", callback);
   }
 
-  removeOnStageConstructionRecipeDesc(callback: (ctx: ReducerEventContext, records: ConstructionRecipeDesc[]) => void) {
-    this.connection.offReducer("stage_construction_recipe_desc", callback);
+  removeOnStageConstructionRecipeDescV2(callback: (ctx: ReducerEventContext, records: ConstructionRecipeDescV2[]) => void) {
+    this.connection.offReducer("stage_construction_recipe_desc_v2", callback);
   }
 
   stageContributionLootDesc(records: ContributionLootDescV2[]) {
@@ -11530,6 +12742,38 @@ export class RemoteReducers {
     this.connection.offReducer("stage_player_housing_desc", callback);
   }
 
+  stagePremiumItemDesc(records: PremiumItemDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    StagePremiumItemDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("stage_premium_item_desc", __argsBuffer, this.setCallReducerFlags.stagePremiumItemDescFlags);
+  }
+
+  onStagePremiumItemDesc(callback: (ctx: ReducerEventContext, records: PremiumItemDesc[]) => void) {
+    this.connection.onReducer("stage_premium_item_desc", callback);
+  }
+
+  removeOnStagePremiumItemDesc(callback: (ctx: ReducerEventContext, records: PremiumItemDesc[]) => void) {
+    this.connection.offReducer("stage_premium_item_desc", callback);
+  }
+
+  stagePremiumServiceDesc(records: PremiumServiceDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    StagePremiumServiceDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("stage_premium_service_desc", __argsBuffer, this.setCallReducerFlags.stagePremiumServiceDescFlags);
+  }
+
+  onStagePremiumServiceDesc(callback: (ctx: ReducerEventContext, records: PremiumServiceDesc[]) => void) {
+    this.connection.onReducer("stage_premium_service_desc", callback);
+  }
+
+  removeOnStagePremiumServiceDesc(callback: (ctx: ReducerEventContext, records: PremiumServiceDesc[]) => void) {
+    this.connection.offReducer("stage_premium_service_desc", callback);
+  }
+
   stagePrivateParametersDesc(records: PrivateParametersDesc[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
@@ -11610,20 +12854,20 @@ export class RemoteReducers {
     this.connection.offReducer("stage_resource_growth_recipe_desc", callback);
   }
 
-  stageResourcePlacementRecipeDesc(records: ResourcePlacementRecipeDesc[]) {
+  stageResourcePlacementRecipeDescV2(records: ResourcePlacementRecipeDescV2[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
-    StageResourcePlacementRecipeDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    StageResourcePlacementRecipeDescV2.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
-    this.connection.callReducer("stage_resource_placement_recipe_desc", __argsBuffer, this.setCallReducerFlags.stageResourcePlacementRecipeDescFlags);
+    this.connection.callReducer("stage_resource_placement_recipe_desc_v2", __argsBuffer, this.setCallReducerFlags.stageResourcePlacementRecipeDescV2Flags);
   }
 
-  onStageResourcePlacementRecipeDesc(callback: (ctx: ReducerEventContext, records: ResourcePlacementRecipeDesc[]) => void) {
-    this.connection.onReducer("stage_resource_placement_recipe_desc", callback);
+  onStageResourcePlacementRecipeDescV2(callback: (ctx: ReducerEventContext, records: ResourcePlacementRecipeDescV2[]) => void) {
+    this.connection.onReducer("stage_resource_placement_recipe_desc_v2", callback);
   }
 
-  removeOnStageResourcePlacementRecipeDesc(callback: (ctx: ReducerEventContext, records: ResourcePlacementRecipeDesc[]) => void) {
-    this.connection.offReducer("stage_resource_placement_recipe_desc", callback);
+  removeOnStageResourcePlacementRecipeDescV2(callback: (ctx: ReducerEventContext, records: ResourcePlacementRecipeDescV2[]) => void) {
+    this.connection.offReducer("stage_resource_placement_recipe_desc_v2", callback);
   }
 
   stageSecondaryKnowledgeDesc(records: SecondaryKnowledgeDesc[]) {
@@ -11994,6 +13238,11 @@ export class SetReducerFlags {
   adminLogModerationActionFlags: CallReducerFlags = 'FullUpdate';
   adminLogModerationAction(flags: CallReducerFlags) {
     this.adminLogModerationActionFlags = flags;
+  }
+
+  adminMarkPremiumPurchaseProcessedFlags: CallReducerFlags = 'FullUpdate';
+  adminMarkPremiumPurchaseProcessed(flags: CallReducerFlags) {
+    this.adminMarkPremiumPurchaseProcessedFlags = flags;
   }
 
   adminMarkUserReportAsActionedFlags: CallReducerFlags = 'FullUpdate';
@@ -12871,6 +14120,16 @@ export class SetReducerFlags {
     this.importPortalStateFlags = flags;
   }
 
+  importPremiumItemDescFlags: CallReducerFlags = 'FullUpdate';
+  importPremiumItemDesc(flags: CallReducerFlags) {
+    this.importPremiumItemDescFlags = flags;
+  }
+
+  importPremiumServiceDescFlags: CallReducerFlags = 'FullUpdate';
+  importPremiumServiceDesc(flags: CallReducerFlags) {
+    this.importPremiumServiceDescFlags = flags;
+  }
+
   importPrivateParametersDescFlags: CallReducerFlags = 'FullUpdate';
   importPrivateParametersDesc(flags: CallReducerFlags) {
     this.importPrivateParametersDescFlags = flags;
@@ -13146,6 +14405,16 @@ export class SetReducerFlags {
     this.processInterModuleMessageFlags = flags;
   }
 
+  purchaseCharacterRenameFlags: CallReducerFlags = 'FullUpdate';
+  purchaseCharacterRename(flags: CallReducerFlags) {
+    this.purchaseCharacterRenameFlags = flags;
+  }
+
+  purchasePremiumItemFlags: CallReducerFlags = 'FullUpdate';
+  purchasePremiumItem(flags: CallReducerFlags) {
+    this.purchasePremiumItemFlags = flags;
+  }
+
   removeChatChannelFlags: CallReducerFlags = 'FullUpdate';
   removeChatChannel(flags: CallReducerFlags) {
     this.removeChatChannelFlags = flags;
@@ -13261,9 +14530,9 @@ export class SetReducerFlags {
     this.stageChestRarityDescFlags = flags;
   }
 
-  stageClaimTechDescFlags: CallReducerFlags = 'FullUpdate';
-  stageClaimTechDesc(flags: CallReducerFlags) {
-    this.stageClaimTechDescFlags = flags;
+  stageClaimTechDescV2Flags: CallReducerFlags = 'FullUpdate';
+  stageClaimTechDescV2(flags: CallReducerFlags) {
+    this.stageClaimTechDescV2Flags = flags;
   }
 
   stageClaimTileCostFlags: CallReducerFlags = 'FullUpdate';
@@ -13296,9 +14565,9 @@ export class SetReducerFlags {
     this.stageCombatActionMultiHitDescFlags = flags;
   }
 
-  stageConstructionRecipeDescFlags: CallReducerFlags = 'FullUpdate';
-  stageConstructionRecipeDesc(flags: CallReducerFlags) {
-    this.stageConstructionRecipeDescFlags = flags;
+  stageConstructionRecipeDescV2Flags: CallReducerFlags = 'FullUpdate';
+  stageConstructionRecipeDescV2(flags: CallReducerFlags) {
+    this.stageConstructionRecipeDescV2Flags = flags;
   }
 
   stageContributionLootDescFlags: CallReducerFlags = 'FullUpdate';
@@ -13526,6 +14795,16 @@ export class SetReducerFlags {
     this.stagePlayerHousingDescFlags = flags;
   }
 
+  stagePremiumItemDescFlags: CallReducerFlags = 'FullUpdate';
+  stagePremiumItemDesc(flags: CallReducerFlags) {
+    this.stagePremiumItemDescFlags = flags;
+  }
+
+  stagePremiumServiceDescFlags: CallReducerFlags = 'FullUpdate';
+  stagePremiumServiceDesc(flags: CallReducerFlags) {
+    this.stagePremiumServiceDescFlags = flags;
+  }
+
   stagePrivateParametersDescFlags: CallReducerFlags = 'FullUpdate';
   stagePrivateParametersDesc(flags: CallReducerFlags) {
     this.stagePrivateParametersDescFlags = flags;
@@ -13551,9 +14830,9 @@ export class SetReducerFlags {
     this.stageResourceGrowthRecipeDescFlags = flags;
   }
 
-  stageResourcePlacementRecipeDescFlags: CallReducerFlags = 'FullUpdate';
-  stageResourcePlacementRecipeDesc(flags: CallReducerFlags) {
-    this.stageResourcePlacementRecipeDescFlags = flags;
+  stageResourcePlacementRecipeDescV2Flags: CallReducerFlags = 'FullUpdate';
+  stageResourcePlacementRecipeDescV2(flags: CallReducerFlags) {
+    this.stageResourcePlacementRecipeDescV2Flags = flags;
   }
 
   stageSecondaryKnowledgeDescFlags: CallReducerFlags = 'FullUpdate';
@@ -13830,6 +15109,10 @@ export class RemoteTables {
     return new ClaimTechDescTableHandle(this.connection.clientCache.getOrCreateTable<ClaimTechDesc>(REMOTE_MODULE.tables.claim_tech_desc));
   }
 
+  get claimTechDescV2(): ClaimTechDescV2TableHandle {
+    return new ClaimTechDescV2TableHandle(this.connection.clientCache.getOrCreateTable<ClaimTechDescV2>(REMOTE_MODULE.tables.claim_tech_desc_v2));
+  }
+
   get claimTechState(): ClaimTechStateTableHandle {
     return new ClaimTechStateTableHandle(this.connection.clientCache.getOrCreateTable<ClaimTechState>(REMOTE_MODULE.tables.claim_tech_state));
   }
@@ -13888,6 +15171,10 @@ export class RemoteTables {
 
   get constructionRecipeDesc(): ConstructionRecipeDescTableHandle {
     return new ConstructionRecipeDescTableHandle(this.connection.clientCache.getOrCreateTable<ConstructionRecipeDesc>(REMOTE_MODULE.tables.construction_recipe_desc));
+  }
+
+  get constructionRecipeDescV2(): ConstructionRecipeDescV2TableHandle {
+    return new ConstructionRecipeDescV2TableHandle(this.connection.clientCache.getOrCreateTable<ConstructionRecipeDescV2>(REMOTE_MODULE.tables.construction_recipe_desc_v2));
   }
 
   get contributionLootDesc(): ContributionLootDescTableHandle {
@@ -14530,6 +15817,18 @@ export class RemoteTables {
     return new PortalStateTableHandle(this.connection.clientCache.getOrCreateTable<PortalState>(REMOTE_MODULE.tables.portal_state));
   }
 
+  get premiumItemDesc(): PremiumItemDescTableHandle {
+    return new PremiumItemDescTableHandle(this.connection.clientCache.getOrCreateTable<PremiumItemDesc>(REMOTE_MODULE.tables.premium_item_desc));
+  }
+
+  get premiumPurchaseState(): PremiumPurchaseStateTableHandle {
+    return new PremiumPurchaseStateTableHandle(this.connection.clientCache.getOrCreateTable<PremiumPurchaseState>(REMOTE_MODULE.tables.premium_purchase_state));
+  }
+
+  get premiumServiceDesc(): PremiumServiceDescTableHandle {
+    return new PremiumServiceDescTableHandle(this.connection.clientCache.getOrCreateTable<PremiumServiceDesc>(REMOTE_MODULE.tables.premium_service_desc));
+  }
+
   get privateParametersDesc(): PrivateParametersDescTableHandle {
     return new PrivateParametersDescTableHandle(this.connection.clientCache.getOrCreateTable<PrivateParametersDesc>(REMOTE_MODULE.tables.private_parameters_desc));
   }
@@ -14590,6 +15889,10 @@ export class RemoteTables {
     return new ResourcePlacementRecipeDescTableHandle(this.connection.clientCache.getOrCreateTable<ResourcePlacementRecipeDesc>(REMOTE_MODULE.tables.resource_placement_recipe_desc));
   }
 
+  get resourcePlacementRecipeDescV2(): ResourcePlacementRecipeDescV2TableHandle {
+    return new ResourcePlacementRecipeDescV2TableHandle(this.connection.clientCache.getOrCreateTable<ResourcePlacementRecipeDescV2>(REMOTE_MODULE.tables.resource_placement_recipe_desc_v2));
+  }
+
   get resourceState(): ResourceStateTableHandle {
     return new ResourceStateTableHandle(this.connection.clientCache.getOrCreateTable<ResourceState>(REMOTE_MODULE.tables.resource_state));
   }
@@ -14626,6 +15929,326 @@ export class RemoteTables {
     return new SkillDescTableHandle(this.connection.clientCache.getOrCreateTable<SkillDesc>(REMOTE_MODULE.tables.skill_desc));
   }
 
+  get stagedAchievementDesc(): StagedAchievementDescTableHandle {
+    return new StagedAchievementDescTableHandle(this.connection.clientCache.getOrCreateTable<AchievementDesc>(REMOTE_MODULE.tables.staged_achievement_desc));
+  }
+
+  get stagedAlertDesc(): StagedAlertDescTableHandle {
+    return new StagedAlertDescTableHandle(this.connection.clientCache.getOrCreateTable<AlertDesc>(REMOTE_MODULE.tables.staged_alert_desc));
+  }
+
+  get stagedBiomeDesc(): StagedBiomeDescTableHandle {
+    return new StagedBiomeDescTableHandle(this.connection.clientCache.getOrCreateTable<BiomeDesc>(REMOTE_MODULE.tables.staged_biome_desc));
+  }
+
+  get stagedBuffDesc(): StagedBuffDescTableHandle {
+    return new StagedBuffDescTableHandle(this.connection.clientCache.getOrCreateTable<BuffDesc>(REMOTE_MODULE.tables.staged_buff_desc));
+  }
+
+  get stagedBuffTypeDesc(): StagedBuffTypeDescTableHandle {
+    return new StagedBuffTypeDescTableHandle(this.connection.clientCache.getOrCreateTable<BuffTypeDesc>(REMOTE_MODULE.tables.staged_buff_type_desc));
+  }
+
+  get stagedBuildingClaimDesc(): StagedBuildingClaimDescTableHandle {
+    return new StagedBuildingClaimDescTableHandle(this.connection.clientCache.getOrCreateTable<BuildingClaimDesc>(REMOTE_MODULE.tables.staged_building_claim_desc));
+  }
+
+  get stagedBuildingDesc(): StagedBuildingDescTableHandle {
+    return new StagedBuildingDescTableHandle(this.connection.clientCache.getOrCreateTable<BuildingDesc>(REMOTE_MODULE.tables.staged_building_desc));
+  }
+
+  get stagedBuildingPortalDescV2(): StagedBuildingPortalDescV2TableHandle {
+    return new StagedBuildingPortalDescV2TableHandle(this.connection.clientCache.getOrCreateTable<BuildingPortalDescV2>(REMOTE_MODULE.tables.staged_building_portal_desc_v2));
+  }
+
+  get stagedBuildingRepairsDesc(): StagedBuildingRepairsDescTableHandle {
+    return new StagedBuildingRepairsDescTableHandle(this.connection.clientCache.getOrCreateTable<BuildingRepairsDesc>(REMOTE_MODULE.tables.staged_building_repairs_desc));
+  }
+
+  get stagedBuildingSpawnDesc(): StagedBuildingSpawnDescTableHandle {
+    return new StagedBuildingSpawnDescTableHandle(this.connection.clientCache.getOrCreateTable<BuildingSpawnDesc>(REMOTE_MODULE.tables.staged_building_spawn_desc));
+  }
+
+  get stagedBuildingTypeDesc(): StagedBuildingTypeDescTableHandle {
+    return new StagedBuildingTypeDescTableHandle(this.connection.clientCache.getOrCreateTable<BuildingTypeDesc>(REMOTE_MODULE.tables.staged_building_type_desc));
+  }
+
+  get stagedCargoDesc(): StagedCargoDescTableHandle {
+    return new StagedCargoDescTableHandle(this.connection.clientCache.getOrCreateTable<CargoDesc>(REMOTE_MODULE.tables.staged_cargo_desc));
+  }
+
+  get stagedCharacterStatDesc(): StagedCharacterStatDescTableHandle {
+    return new StagedCharacterStatDescTableHandle(this.connection.clientCache.getOrCreateTable<CharacterStatDesc>(REMOTE_MODULE.tables.staged_character_stat_desc));
+  }
+
+  get stagedChestRarityDesc(): StagedChestRarityDescTableHandle {
+    return new StagedChestRarityDescTableHandle(this.connection.clientCache.getOrCreateTable<ChestRarityDesc>(REMOTE_MODULE.tables.staged_chest_rarity_desc));
+  }
+
+  get stagedClaimTechDesc(): StagedClaimTechDescTableHandle {
+    return new StagedClaimTechDescTableHandle(this.connection.clientCache.getOrCreateTable<ClaimTechDesc>(REMOTE_MODULE.tables.staged_claim_tech_desc));
+  }
+
+  get stagedClaimTechDescV2(): StagedClaimTechDescV2TableHandle {
+    return new StagedClaimTechDescV2TableHandle(this.connection.clientCache.getOrCreateTable<ClaimTechDescV2>(REMOTE_MODULE.tables.staged_claim_tech_desc_v2));
+  }
+
+  get stagedClaimTileCost(): StagedClaimTileCostTableHandle {
+    return new StagedClaimTileCostTableHandle(this.connection.clientCache.getOrCreateTable<ClaimTileCost>(REMOTE_MODULE.tables.staged_claim_tile_cost));
+  }
+
+  get stagedClimbRequirementDesc(): StagedClimbRequirementDescTableHandle {
+    return new StagedClimbRequirementDescTableHandle(this.connection.clientCache.getOrCreateTable<ClimbRequirementDesc>(REMOTE_MODULE.tables.staged_climb_requirement_desc));
+  }
+
+  get stagedClothingDesc(): StagedClothingDescTableHandle {
+    return new StagedClothingDescTableHandle(this.connection.clientCache.getOrCreateTable<ClothingDesc>(REMOTE_MODULE.tables.staged_clothing_desc));
+  }
+
+  get stagedCollectibleDesc(): StagedCollectibleDescTableHandle {
+    return new StagedCollectibleDescTableHandle(this.connection.clientCache.getOrCreateTable<CollectibleDesc>(REMOTE_MODULE.tables.staged_collectible_desc));
+  }
+
+  get stagedCombatActionDescV3(): StagedCombatActionDescV3TableHandle {
+    return new StagedCombatActionDescV3TableHandle(this.connection.clientCache.getOrCreateTable<CombatActionDescV3>(REMOTE_MODULE.tables.staged_combat_action_desc_v3));
+  }
+
+  get stagedCombatActionMultiHitDesc(): StagedCombatActionMultiHitDescTableHandle {
+    return new StagedCombatActionMultiHitDescTableHandle(this.connection.clientCache.getOrCreateTable<CombatActionMultiHitDesc>(REMOTE_MODULE.tables.staged_combat_action_multi_hit_desc));
+  }
+
+  get stagedConstructionRecipeDesc(): StagedConstructionRecipeDescTableHandle {
+    return new StagedConstructionRecipeDescTableHandle(this.connection.clientCache.getOrCreateTable<ConstructionRecipeDesc>(REMOTE_MODULE.tables.staged_construction_recipe_desc));
+  }
+
+  get stagedConstructionRecipeDescV2(): StagedConstructionRecipeDescV2TableHandle {
+    return new StagedConstructionRecipeDescV2TableHandle(this.connection.clientCache.getOrCreateTable<ConstructionRecipeDescV2>(REMOTE_MODULE.tables.staged_construction_recipe_desc_v2));
+  }
+
+  get stagedContributionLootDesc(): StagedContributionLootDescTableHandle {
+    return new StagedContributionLootDescTableHandle(this.connection.clientCache.getOrCreateTable<ContributionLootDescV2>(REMOTE_MODULE.tables.staged_contribution_loot_desc));
+  }
+
+  get stagedCraftingRecipeDesc(): StagedCraftingRecipeDescTableHandle {
+    return new StagedCraftingRecipeDescTableHandle(this.connection.clientCache.getOrCreateTable<CraftingRecipeDesc>(REMOTE_MODULE.tables.staged_crafting_recipe_desc));
+  }
+
+  get stagedDeconstructionRecipeDesc(): StagedDeconstructionRecipeDescTableHandle {
+    return new StagedDeconstructionRecipeDescTableHandle(this.connection.clientCache.getOrCreateTable<DeconstructionRecipeDesc>(REMOTE_MODULE.tables.staged_deconstruction_recipe_desc));
+  }
+
+  get stagedDeployableDesc(): StagedDeployableDescTableHandle {
+    return new StagedDeployableDescTableHandle(this.connection.clientCache.getOrCreateTable<DeployableDescV3>(REMOTE_MODULE.tables.staged_deployable_desc));
+  }
+
+  get stagedDistantVisibleEntityDesc(): StagedDistantVisibleEntityDescTableHandle {
+    return new StagedDistantVisibleEntityDescTableHandle(this.connection.clientCache.getOrCreateTable<DistantVisibleEntityDesc>(REMOTE_MODULE.tables.staged_distant_visible_entity_desc));
+  }
+
+  get stagedElevatorDesc(): StagedElevatorDescTableHandle {
+    return new StagedElevatorDescTableHandle(this.connection.clientCache.getOrCreateTable<ElevatorDesc>(REMOTE_MODULE.tables.staged_elevator_desc));
+  }
+
+  get stagedEmoteDesc(): StagedEmoteDescTableHandle {
+    return new StagedEmoteDescTableHandle(this.connection.clientCache.getOrCreateTable<EmoteDesc>(REMOTE_MODULE.tables.staged_emote_desc));
+  }
+
+  get stagedEmpireColorsDesc(): StagedEmpireColorsDescTableHandle {
+    return new StagedEmpireColorsDescTableHandle(this.connection.clientCache.getOrCreateTable<EmpireColorDesc>(REMOTE_MODULE.tables.staged_empire_colors_desc));
+  }
+
+  get stagedEmpireIconDesc(): StagedEmpireIconDescTableHandle {
+    return new StagedEmpireIconDescTableHandle(this.connection.clientCache.getOrCreateTable<EmpireIconDesc>(REMOTE_MODULE.tables.staged_empire_icon_desc));
+  }
+
+  get stagedEmpireNotificationDesc(): StagedEmpireNotificationDescTableHandle {
+    return new StagedEmpireNotificationDescTableHandle(this.connection.clientCache.getOrCreateTable<EmpireNotificationDesc>(REMOTE_MODULE.tables.staged_empire_notification_desc));
+  }
+
+  get stagedEmpireRankDesc(): StagedEmpireRankDescTableHandle {
+    return new StagedEmpireRankDescTableHandle(this.connection.clientCache.getOrCreateTable<EmpireRankDesc>(REMOTE_MODULE.tables.staged_empire_rank_desc));
+  }
+
+  get stagedEmpireSuppliesDesc(): StagedEmpireSuppliesDescTableHandle {
+    return new StagedEmpireSuppliesDescTableHandle(this.connection.clientCache.getOrCreateTable<EmpireSuppliesDesc>(REMOTE_MODULE.tables.staged_empire_supplies_desc));
+  }
+
+  get stagedEmpireTerritoryDesc(): StagedEmpireTerritoryDescTableHandle {
+    return new StagedEmpireTerritoryDescTableHandle(this.connection.clientCache.getOrCreateTable<EmpireTerritoryDesc>(REMOTE_MODULE.tables.staged_empire_territory_desc));
+  }
+
+  get stagedEnemyAiParamsDesc(): StagedEnemyAiParamsDescTableHandle {
+    return new StagedEnemyAiParamsDescTableHandle(this.connection.clientCache.getOrCreateTable<EnemyAiParamsDesc>(REMOTE_MODULE.tables.staged_enemy_ai_params_desc));
+  }
+
+  get stagedEnemyDesc(): StagedEnemyDescTableHandle {
+    return new StagedEnemyDescTableHandle(this.connection.clientCache.getOrCreateTable<EnemyDesc>(REMOTE_MODULE.tables.staged_enemy_desc));
+  }
+
+  get stagedEnemyScalingDesc(): StagedEnemyScalingDescTableHandle {
+    return new StagedEnemyScalingDescTableHandle(this.connection.clientCache.getOrCreateTable<EnemyScalingDesc>(REMOTE_MODULE.tables.staged_enemy_scaling_desc));
+  }
+
+  get stagedEnvironmentDebuffDesc(): StagedEnvironmentDebuffDescTableHandle {
+    return new StagedEnvironmentDebuffDescTableHandle(this.connection.clientCache.getOrCreateTable<EnvironmentDebuffDesc>(REMOTE_MODULE.tables.staged_environment_debuff_desc));
+  }
+
+  get stagedEquipmentDesc(): StagedEquipmentDescTableHandle {
+    return new StagedEquipmentDescTableHandle(this.connection.clientCache.getOrCreateTable<EquipmentDesc>(REMOTE_MODULE.tables.staged_equipment_desc));
+  }
+
+  get stagedExtractionRecipeDesc(): StagedExtractionRecipeDescTableHandle {
+    return new StagedExtractionRecipeDescTableHandle(this.connection.clientCache.getOrCreateTable<ExtractionRecipeDesc>(REMOTE_MODULE.tables.staged_extraction_recipe_desc));
+  }
+
+  get stagedFoodDesc(): StagedFoodDescTableHandle {
+    return new StagedFoodDescTableHandle(this.connection.clientCache.getOrCreateTable<FoodDesc>(REMOTE_MODULE.tables.staged_food_desc));
+  }
+
+  get stagedGateDesc(): StagedGateDescTableHandle {
+    return new StagedGateDescTableHandle(this.connection.clientCache.getOrCreateTable<GateDesc>(REMOTE_MODULE.tables.staged_gate_desc));
+  }
+
+  get stagedHexiteExchangeEntryDesc(): StagedHexiteExchangeEntryDescTableHandle {
+    return new StagedHexiteExchangeEntryDescTableHandle(this.connection.clientCache.getOrCreateTable<HexiteExchangeEntryDesc>(REMOTE_MODULE.tables.staged_hexite_exchange_entry_desc));
+  }
+
+  get stagedInteriorEnvironmentDesc(): StagedInteriorEnvironmentDescTableHandle {
+    return new StagedInteriorEnvironmentDescTableHandle(this.connection.clientCache.getOrCreateTable<InteriorEnvironmentDesc>(REMOTE_MODULE.tables.staged_interior_environment_desc));
+  }
+
+  get stagedInteriorInstanceDesc(): StagedInteriorInstanceDescTableHandle {
+    return new StagedInteriorInstanceDescTableHandle(this.connection.clientCache.getOrCreateTable<InteriorInstanceDesc>(REMOTE_MODULE.tables.staged_interior_instance_desc));
+  }
+
+  get stagedInteriorNetworkDesc(): StagedInteriorNetworkDescTableHandle {
+    return new StagedInteriorNetworkDescTableHandle(this.connection.clientCache.getOrCreateTable<InteriorNetworkDesc>(REMOTE_MODULE.tables.staged_interior_network_desc));
+  }
+
+  get stagedInteriorPortalConnectionsDesc(): StagedInteriorPortalConnectionsDescTableHandle {
+    return new StagedInteriorPortalConnectionsDescTableHandle(this.connection.clientCache.getOrCreateTable<InteriorPortalConnectionsDesc>(REMOTE_MODULE.tables.staged_interior_portal_connections_desc));
+  }
+
+  get stagedInteriorShapeDesc(): StagedInteriorShapeDescTableHandle {
+    return new StagedInteriorShapeDescTableHandle(this.connection.clientCache.getOrCreateTable<InteriorShapeDesc>(REMOTE_MODULE.tables.staged_interior_shape_desc));
+  }
+
+  get stagedInteriorSpawnDesc(): StagedInteriorSpawnDescTableHandle {
+    return new StagedInteriorSpawnDescTableHandle(this.connection.clientCache.getOrCreateTable<InteriorSpawnDesc>(REMOTE_MODULE.tables.staged_interior_spawn_desc));
+  }
+
+  get stagedItemConversionRecipeDesc(): StagedItemConversionRecipeDescTableHandle {
+    return new StagedItemConversionRecipeDescTableHandle(this.connection.clientCache.getOrCreateTable<ItemConversionRecipeDesc>(REMOTE_MODULE.tables.staged_item_conversion_recipe_desc));
+  }
+
+  get stagedItemDesc(): StagedItemDescTableHandle {
+    return new StagedItemDescTableHandle(this.connection.clientCache.getOrCreateTable<ItemDesc>(REMOTE_MODULE.tables.staged_item_desc));
+  }
+
+  get stagedItemListDesc(): StagedItemListDescTableHandle {
+    return new StagedItemListDescTableHandle(this.connection.clientCache.getOrCreateTable<ItemListDesc>(REMOTE_MODULE.tables.staged_item_list_desc));
+  }
+
+  get stagedKnowledgeScrollDesc(): StagedKnowledgeScrollDescTableHandle {
+    return new StagedKnowledgeScrollDescTableHandle(this.connection.clientCache.getOrCreateTable<KnowledgeScrollDesc>(REMOTE_MODULE.tables.staged_knowledge_scroll_desc));
+  }
+
+  get stagedKnowledgeScrollTypeDesc(): StagedKnowledgeScrollTypeDescTableHandle {
+    return new StagedKnowledgeScrollTypeDescTableHandle(this.connection.clientCache.getOrCreateTable<KnowledgeScrollTypeDesc>(REMOTE_MODULE.tables.staged_knowledge_scroll_type_desc));
+  }
+
+  get stagedKnowledgeStatModifierDesc(): StagedKnowledgeStatModifierDescTableHandle {
+    return new StagedKnowledgeStatModifierDescTableHandle(this.connection.clientCache.getOrCreateTable<KnowledgeStatModifierDesc>(REMOTE_MODULE.tables.staged_knowledge_stat_modifier_desc));
+  }
+
+  get stagedLootChestDesc(): StagedLootChestDescTableHandle {
+    return new StagedLootChestDescTableHandle(this.connection.clientCache.getOrCreateTable<LootChestDesc>(REMOTE_MODULE.tables.staged_loot_chest_desc));
+  }
+
+  get stagedLootRarityDesc(): StagedLootRarityDescTableHandle {
+    return new StagedLootRarityDescTableHandle(this.connection.clientCache.getOrCreateTable<LootRarityDesc>(REMOTE_MODULE.tables.staged_loot_rarity_desc));
+  }
+
+  get stagedLootTableDesc(): StagedLootTableDescTableHandle {
+    return new StagedLootTableDescTableHandle(this.connection.clientCache.getOrCreateTable<LootTableDesc>(REMOTE_MODULE.tables.staged_loot_table_desc));
+  }
+
+  get stagedNpcDesc(): StagedNpcDescTableHandle {
+    return new StagedNpcDescTableHandle(this.connection.clientCache.getOrCreateTable<NpcDesc>(REMOTE_MODULE.tables.staged_npc_desc));
+  }
+
+  get stagedOnboardingRewardDesc(): StagedOnboardingRewardDescTableHandle {
+    return new StagedOnboardingRewardDescTableHandle(this.connection.clientCache.getOrCreateTable<OnboardingRewardDesc>(REMOTE_MODULE.tables.staged_onboarding_reward_desc));
+  }
+
+  get stagedParametersDesc(): StagedParametersDescTableHandle {
+    return new StagedParametersDescTableHandle(this.connection.clientCache.getOrCreateTable<ParametersDescV2>(REMOTE_MODULE.tables.staged_parameters_desc));
+  }
+
+  get stagedPathfindingDesc(): StagedPathfindingDescTableHandle {
+    return new StagedPathfindingDescTableHandle(this.connection.clientCache.getOrCreateTable<PathfindingDesc>(REMOTE_MODULE.tables.staged_pathfinding_desc));
+  }
+
+  get stagedPavingTileDesc(): StagedPavingTileDescTableHandle {
+    return new StagedPavingTileDescTableHandle(this.connection.clientCache.getOrCreateTable<PavingTileDesc>(REMOTE_MODULE.tables.staged_paving_tile_desc));
+  }
+
+  get stagedPillarShapingDesc(): StagedPillarShapingDescTableHandle {
+    return new StagedPillarShapingDescTableHandle(this.connection.clientCache.getOrCreateTable<PillarShapingDesc>(REMOTE_MODULE.tables.staged_pillar_shaping_desc));
+  }
+
+  get stagedPlayerActionDesc(): StagedPlayerActionDescTableHandle {
+    return new StagedPlayerActionDescTableHandle(this.connection.clientCache.getOrCreateTable<PlayerActionDesc>(REMOTE_MODULE.tables.staged_player_action_desc));
+  }
+
+  get stagedPlayerHousingDesc(): StagedPlayerHousingDescTableHandle {
+    return new StagedPlayerHousingDescTableHandle(this.connection.clientCache.getOrCreateTable<PlayerHousingDesc>(REMOTE_MODULE.tables.staged_player_housing_desc));
+  }
+
+  get stagedPremiumItemDesc(): StagedPremiumItemDescTableHandle {
+    return new StagedPremiumItemDescTableHandle(this.connection.clientCache.getOrCreateTable<PremiumItemDesc>(REMOTE_MODULE.tables.staged_premium_item_desc));
+  }
+
+  get stagedPremiumServiceDesc(): StagedPremiumServiceDescTableHandle {
+    return new StagedPremiumServiceDescTableHandle(this.connection.clientCache.getOrCreateTable<PremiumServiceDesc>(REMOTE_MODULE.tables.staged_premium_service_desc));
+  }
+
+  get stagedPrivateParametersDesc(): StagedPrivateParametersDescTableHandle {
+    return new StagedPrivateParametersDescTableHandle(this.connection.clientCache.getOrCreateTable<PrivateParametersDesc>(REMOTE_MODULE.tables.staged_private_parameters_desc));
+  }
+
+  get stagedReservedNameDesc(): StagedReservedNameDescTableHandle {
+    return new StagedReservedNameDescTableHandle(this.connection.clientCache.getOrCreateTable<ReservedNameDesc>(REMOTE_MODULE.tables.staged_reserved_name_desc));
+  }
+
+  get stagedResourceClumpDesc(): StagedResourceClumpDescTableHandle {
+    return new StagedResourceClumpDescTableHandle(this.connection.clientCache.getOrCreateTable<ResourceClumpDesc>(REMOTE_MODULE.tables.staged_resource_clump_desc));
+  }
+
+  get stagedResourceDesc(): StagedResourceDescTableHandle {
+    return new StagedResourceDescTableHandle(this.connection.clientCache.getOrCreateTable<ResourceDesc>(REMOTE_MODULE.tables.staged_resource_desc));
+  }
+
+  get stagedResourceGrowthRecipeDesc(): StagedResourceGrowthRecipeDescTableHandle {
+    return new StagedResourceGrowthRecipeDescTableHandle(this.connection.clientCache.getOrCreateTable<ResourceGrowthRecipeDesc>(REMOTE_MODULE.tables.staged_resource_growth_recipe_desc));
+  }
+
+  get stagedResourcePlacementRecipeDesc(): StagedResourcePlacementRecipeDescTableHandle {
+    return new StagedResourcePlacementRecipeDescTableHandle(this.connection.clientCache.getOrCreateTable<ResourcePlacementRecipeDesc>(REMOTE_MODULE.tables.staged_resource_placement_recipe_desc));
+  }
+
+  get stagedResourcePlacementRecipeDescV2(): StagedResourcePlacementRecipeDescV2TableHandle {
+    return new StagedResourcePlacementRecipeDescV2TableHandle(this.connection.clientCache.getOrCreateTable<ResourcePlacementRecipeDescV2>(REMOTE_MODULE.tables.staged_resource_placement_recipe_desc_v2));
+  }
+
+  get stagedSecondaryKnowledgeDesc(): StagedSecondaryKnowledgeDescTableHandle {
+    return new StagedSecondaryKnowledgeDescTableHandle(this.connection.clientCache.getOrCreateTable<SecondaryKnowledgeDesc>(REMOTE_MODULE.tables.staged_secondary_knowledge_desc));
+  }
+
+  get stagedSkillDesc(): StagedSkillDescTableHandle {
+    return new StagedSkillDescTableHandle(this.connection.clientCache.getOrCreateTable<SkillDesc>(REMOTE_MODULE.tables.staged_skill_desc));
+  }
+
   get stagedStaticData(): StagedStaticDataTableHandle {
     return new StagedStaticDataTableHandle(this.connection.clientCache.getOrCreateTable<StagedStaticData>(REMOTE_MODULE.tables.staged_static_data));
   }
@@ -14656,6 +16279,50 @@ export class RemoteTables {
 
   get stagedStaticDataV8(): StagedStaticDataV8TableHandle {
     return new StagedStaticDataV8TableHandle(this.connection.clientCache.getOrCreateTable<StagedStaticDataV8>(REMOTE_MODULE.tables.staged_static_data_v8));
+  }
+
+  get stagedTargetingMatrixDesc(): StagedTargetingMatrixDescTableHandle {
+    return new StagedTargetingMatrixDescTableHandle(this.connection.clientCache.getOrCreateTable<TargetingMatrixDesc>(REMOTE_MODULE.tables.staged_targeting_matrix_desc));
+  }
+
+  get stagedTeleportItemDesc(): StagedTeleportItemDescTableHandle {
+    return new StagedTeleportItemDescTableHandle(this.connection.clientCache.getOrCreateTable<TeleportItemDesc>(REMOTE_MODULE.tables.staged_teleport_item_desc));
+  }
+
+  get stagedTerraformRecipeDesc(): StagedTerraformRecipeDescTableHandle {
+    return new StagedTerraformRecipeDescTableHandle(this.connection.clientCache.getOrCreateTable<TerraformRecipeDesc>(REMOTE_MODULE.tables.staged_terraform_recipe_desc));
+  }
+
+  get stagedToolDesc(): StagedToolDescTableHandle {
+    return new StagedToolDescTableHandle(this.connection.clientCache.getOrCreateTable<ToolDesc>(REMOTE_MODULE.tables.staged_tool_desc));
+  }
+
+  get stagedToolTypeDesc(): StagedToolTypeDescTableHandle {
+    return new StagedToolTypeDescTableHandle(this.connection.clientCache.getOrCreateTable<ToolTypeDesc>(REMOTE_MODULE.tables.staged_tool_type_desc));
+  }
+
+  get stagedTravelerTaskDesc(): StagedTravelerTaskDescTableHandle {
+    return new StagedTravelerTaskDescTableHandle(this.connection.clientCache.getOrCreateTable<TravelerTaskDesc>(REMOTE_MODULE.tables.staged_traveler_task_desc));
+  }
+
+  get stagedTravelerTradeOrderDesc(): StagedTravelerTradeOrderDescTableHandle {
+    return new StagedTravelerTradeOrderDescTableHandle(this.connection.clientCache.getOrCreateTable<TravelerTradeOrderDesc>(REMOTE_MODULE.tables.staged_traveler_trade_order_desc));
+  }
+
+  get stagedWallDesc(): StagedWallDescTableHandle {
+    return new StagedWallDescTableHandle(this.connection.clientCache.getOrCreateTable<WallDesc>(REMOTE_MODULE.tables.staged_wall_desc));
+  }
+
+  get stagedWeaponDesc(): StagedWeaponDescTableHandle {
+    return new StagedWeaponDescTableHandle(this.connection.clientCache.getOrCreateTable<WeaponDesc>(REMOTE_MODULE.tables.staged_weapon_desc));
+  }
+
+  get stagedWeaponTypeDesc(): StagedWeaponTypeDescTableHandle {
+    return new StagedWeaponTypeDescTableHandle(this.connection.clientCache.getOrCreateTable<WeaponTypeDesc>(REMOTE_MODULE.tables.staged_weapon_type_desc));
+  }
+
+  get stagedWindParamsDesc(): StagedWindParamsDescTableHandle {
+    return new StagedWindParamsDescTableHandle(this.connection.clientCache.getOrCreateTable<WindParamsDesc>(REMOTE_MODULE.tables.staged_wind_params_desc));
   }
 
   get staminaState(): StaminaStateTableHandle {

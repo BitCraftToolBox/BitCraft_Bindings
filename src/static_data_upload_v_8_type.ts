@@ -99,7 +99,6 @@ import { PrivateParametersDesc as __PrivateParametersDesc } from "./private_para
 import { ResourceClumpDesc as __ResourceClumpDesc } from "./resource_clump_desc_type";
 import { ResourceDesc as __ResourceDesc } from "./resource_desc_type";
 import { ResourceGrowthRecipeDesc as __ResourceGrowthRecipeDesc } from "./resource_growth_recipe_desc_type";
-import { ResourcePlacementRecipeDesc as __ResourcePlacementRecipeDesc } from "./resource_placement_recipe_desc_type";
 import { SecondaryKnowledgeDesc as __SecondaryKnowledgeDesc } from "./secondary_knowledge_desc_type";
 import { SkillDesc as __SkillDesc } from "./skill_desc_type";
 import { TargetingMatrixDesc as __TargetingMatrixDesc } from "./targeting_matrix_desc_type";
@@ -117,6 +116,7 @@ import { InteriorEnvironmentDesc as __InteriorEnvironmentDesc } from "./interior
 import { PillarShapingDesc as __PillarShapingDesc } from "./pillar_shaping_desc_type";
 import { PlayerHousingDesc as __PlayerHousingDesc } from "./player_housing_desc_type";
 import { ReservedNameDesc as __ReservedNameDesc } from "./reserved_name_desc_type";
+import { ResourcePlacementRecipeDesc as __ResourcePlacementRecipeDesc } from "./resource_placement_recipe_desc_type";
 
 export type StaticDataUploadV8 = {
   parameters: __ParametersDescV2[],
