@@ -39,6 +39,7 @@ pub mod admin_rename_empire_rank_reducer;
 pub mod admin_rename_empire_reducer;
 pub mod admin_rename_player_entity_reducer;
 pub mod admin_rename_player_reducer;
+pub mod admin_set_shards_reducer;
 pub mod admin_sign_out_all_reducer;
 pub mod admin_skip_queue_entity_reducer;
 pub mod admin_skip_queue_identity_reducer;
@@ -1290,6 +1291,9 @@ pub use admin_rename_player_entity_reducer::{
 };
 pub use admin_rename_player_reducer::{
     admin_rename_player, set_flags_for_admin_rename_player, AdminRenamePlayerCallbackId,
+};
+pub use admin_set_shards_reducer::{
+    admin_set_shards, set_flags_for_admin_set_shards, AdminSetShardsCallbackId,
 };
 pub use admin_sign_out_all_reducer::{
     admin_sign_out_all, set_flags_for_admin_sign_out_all, AdminSignOutAllCallbackId,
@@ -3370,6 +3374,10 @@ pub enum Reducer {
         entity_id: u64,
         new_name: String,
     },
+    AdminSetShards {
+        identity: String,
+        amount: i32,
+    },
     AdminSignOutAll {
         region: u8,
     },
@@ -4401,6 +4409,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::AdminRenameEmpireRankEntity { .. } => "admin_rename_empire_rank_entity",
             Reducer::AdminRenamePlayer { .. } => "admin_rename_player",
             Reducer::AdminRenamePlayerEntity { .. } => "admin_rename_player_entity",
+            Reducer::AdminSetShards { .. } => "admin_set_shards",
             Reducer::AdminSignOutAll { .. } => "admin_sign_out_all",
             Reducer::AdminSkipQueueEntity { .. } => "admin_skip_queue_entity",
             Reducer::AdminSkipQueueIdentity { .. } => "admin_skip_queue_identity",
@@ -4781,6 +4790,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "admin_rename_empire_rank_entity" => Ok(__sdk::parse_reducer_args::<admin_rename_empire_rank_entity_reducer::AdminRenameEmpireRankEntityArgs>("admin_rename_empire_rank_entity", &value.args)?.into()),
             "admin_rename_player" => Ok(__sdk::parse_reducer_args::<admin_rename_player_reducer::AdminRenamePlayerArgs>("admin_rename_player", &value.args)?.into()),
             "admin_rename_player_entity" => Ok(__sdk::parse_reducer_args::<admin_rename_player_entity_reducer::AdminRenamePlayerEntityArgs>("admin_rename_player_entity", &value.args)?.into()),
+            "admin_set_shards" => Ok(__sdk::parse_reducer_args::<admin_set_shards_reducer::AdminSetShardsArgs>("admin_set_shards", &value.args)?.into()),
             "admin_sign_out_all" => Ok(__sdk::parse_reducer_args::<admin_sign_out_all_reducer::AdminSignOutAllArgs>("admin_sign_out_all", &value.args)?.into()),
             "admin_skip_queue_entity" => Ok(__sdk::parse_reducer_args::<admin_skip_queue_entity_reducer::AdminSkipQueueEntityArgs>("admin_skip_queue_entity", &value.args)?.into()),
             "admin_skip_queue_identity" => Ok(__sdk::parse_reducer_args::<admin_skip_queue_identity_reducer::AdminSkipQueueIdentityArgs>("admin_skip_queue_identity", &value.args)?.into()),
