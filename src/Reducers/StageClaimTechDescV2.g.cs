@@ -14,17 +14,17 @@ namespace BitCraftGlobal.Types
 {
     public sealed partial class RemoteReducers : RemoteBase
     {
-        public delegate void ImportConstructionRecipeDescHandler(ReducerEventContext ctx, System.Collections.Generic.List<ConstructionRecipeDescV2> records);
-        public event ImportConstructionRecipeDescHandler? OnImportConstructionRecipeDesc;
+        public delegate void StageClaimTechDescV2Handler(ReducerEventContext ctx, System.Collections.Generic.List<ClaimTechDescV2> records);
+        public event StageClaimTechDescV2Handler? OnStageClaimTechDescV2;
 
-        public void ImportConstructionRecipeDesc(System.Collections.Generic.List<ConstructionRecipeDescV2> records)
+        public void StageClaimTechDescV2(System.Collections.Generic.List<ClaimTechDescV2> records)
         {
-            conn.InternalCallReducer(new Reducer.ImportConstructionRecipeDesc(records), this.SetCallReducerFlags.ImportConstructionRecipeDescFlags);
+            conn.InternalCallReducer(new Reducer.StageClaimTechDescV2(records), this.SetCallReducerFlags.StageClaimTechDescV2Flags);
         }
 
-        public bool InvokeImportConstructionRecipeDesc(ReducerEventContext ctx, Reducer.ImportConstructionRecipeDesc args)
+        public bool InvokeStageClaimTechDescV2(ReducerEventContext ctx, Reducer.StageClaimTechDescV2 args)
         {
-            if (OnImportConstructionRecipeDesc == null)
+            if (OnStageClaimTechDescV2 == null)
             {
                 if (InternalOnUnhandledReducerError != null)
                 {
@@ -36,7 +36,7 @@ namespace BitCraftGlobal.Types
                 }
                 return false;
             }
-            OnImportConstructionRecipeDesc(
+            OnStageClaimTechDescV2(
                 ctx,
                 args.Records
             );
@@ -48,28 +48,28 @@ namespace BitCraftGlobal.Types
     {
         [SpacetimeDB.Type]
         [DataContract]
-        public sealed partial class ImportConstructionRecipeDesc : Reducer, IReducerArgs
+        public sealed partial class StageClaimTechDescV2 : Reducer, IReducerArgs
         {
             [DataMember(Name = "records")]
-            public System.Collections.Generic.List<ConstructionRecipeDescV2> Records;
+            public System.Collections.Generic.List<ClaimTechDescV2> Records;
 
-            public ImportConstructionRecipeDesc(System.Collections.Generic.List<ConstructionRecipeDescV2> Records)
+            public StageClaimTechDescV2(System.Collections.Generic.List<ClaimTechDescV2> Records)
             {
                 this.Records = Records;
             }
 
-            public ImportConstructionRecipeDesc()
+            public StageClaimTechDescV2()
             {
                 this.Records = new();
             }
 
-            string IReducerArgs.ReducerName => "import_construction_recipe_desc";
+            string IReducerArgs.ReducerName => "stage_claim_tech_desc_v2";
         }
     }
 
     public sealed partial class SetReducerFlags
     {
-        internal CallReducerFlags ImportConstructionRecipeDescFlags;
-        public void ImportConstructionRecipeDesc(CallReducerFlags flags) => ImportConstructionRecipeDescFlags = flags;
+        internal CallReducerFlags StageClaimTechDescV2Flags;
+        public void StageClaimTechDescV2(CallReducerFlags flags) => StageClaimTechDescV2Flags = flags;
     }
 }
