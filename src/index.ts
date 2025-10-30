@@ -69,6 +69,8 @@ import { AdminRenamePlayer } from "./admin_rename_player_reducer.ts";
 export { AdminRenamePlayer };
 import { AdminRenamePlayerEntity } from "./admin_rename_player_entity_reducer.ts";
 export { AdminRenamePlayerEntity };
+import { AdminSetShards } from "./admin_set_shards_reducer.ts";
+export { AdminSetShards };
 import { AdminSignOutAll } from "./admin_sign_out_all_reducer.ts";
 export { AdminSignOutAll };
 import { AdminSkipQueueEntity } from "./admin_skip_queue_entity_reducer.ts";
@@ -5970,6 +5972,10 @@ const REMOTE_MODULE = {
       reducerName: "admin_rename_player_entity",
       argsType: AdminRenamePlayerEntity.getTypeScriptAlgebraicType(),
     },
+    admin_set_shards: {
+      reducerName: "admin_set_shards",
+      argsType: AdminSetShards.getTypeScriptAlgebraicType(),
+    },
     admin_sign_out_all: {
       reducerName: "admin_sign_out_all",
       argsType: AdminSignOutAll.getTypeScriptAlgebraicType(),
@@ -7342,6 +7348,7 @@ export type Reducer = never
 | { name: "AdminRenameEmpireRankEntity", args: AdminRenameEmpireRankEntity }
 | { name: "AdminRenamePlayer", args: AdminRenamePlayer }
 | { name: "AdminRenamePlayerEntity", args: AdminRenamePlayerEntity }
+| { name: "AdminSetShards", args: AdminSetShards }
 | { name: "AdminSignOutAll", args: AdminSignOutAll }
 | { name: "AdminSkipQueueEntity", args: AdminSkipQueueEntity }
 | { name: "AdminSkipQueueIdentity", args: AdminSkipQueueIdentity }
@@ -7960,6 +7967,22 @@ export class RemoteReducers {
 
   removeOnAdminRenamePlayerEntity(callback: (ctx: ReducerEventContext, entityId: bigint, newName: string) => void) {
     this.connection.offReducer("admin_rename_player_entity", callback);
+  }
+
+  adminSetShards(identity: string, amount: number) {
+    const __args = { identity, amount };
+    let __writer = new BinaryWriter(1024);
+    AdminSetShards.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("admin_set_shards", __argsBuffer, this.setCallReducerFlags.adminSetShardsFlags);
+  }
+
+  onAdminSetShards(callback: (ctx: ReducerEventContext, identity: string, amount: number) => void) {
+    this.connection.onReducer("admin_set_shards", callback);
+  }
+
+  removeOnAdminSetShards(callback: (ctx: ReducerEventContext, identity: string, amount: number) => void) {
+    this.connection.offReducer("admin_set_shards", callback);
   }
 
   adminSignOutAll(region: number) {
@@ -13293,6 +13316,11 @@ export class SetReducerFlags {
   adminRenamePlayerEntityFlags: CallReducerFlags = 'FullUpdate';
   adminRenamePlayerEntity(flags: CallReducerFlags) {
     this.adminRenamePlayerEntityFlags = flags;
+  }
+
+  adminSetShardsFlags: CallReducerFlags = 'FullUpdate';
+  adminSetShards(flags: CallReducerFlags) {
+    this.adminSetShardsFlags = flags;
   }
 
   adminSignOutAllFlags: CallReducerFlags = 'FullUpdate';
