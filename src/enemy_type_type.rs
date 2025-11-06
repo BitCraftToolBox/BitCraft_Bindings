@@ -84,6 +84,12 @@ pub enum EnemyType {
     CrabDungeonCrabBoss,
 
     CrabDungeonCrabTrash,
+
+    SpiderDungeonEliteSpider,
+
+    SpiderDungeonSmallSpider,
+
+    SpiderDungeonSpiderNest,
 }
 
 impl __sdk::InModule for EnemyType {

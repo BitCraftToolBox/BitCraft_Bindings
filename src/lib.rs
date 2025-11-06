@@ -388,6 +388,8 @@ pub mod deployable_desc_v_2_table;
 pub mod deployable_desc_v_2_type;
 pub mod deployable_desc_v_3_table;
 pub mod deployable_desc_v_3_type;
+pub mod deployable_desc_v_4_table;
+pub mod deployable_desc_v_4_type;
 pub mod deployable_dismount_reducer;
 pub mod deployable_dismount_scheduled_reducer;
 pub mod deployable_dismount_timer_table;
@@ -2550,6 +2552,8 @@ pub use deployable_desc_v_2_table::*;
 pub use deployable_desc_v_2_type::DeployableDescV2;
 pub use deployable_desc_v_3_table::*;
 pub use deployable_desc_v_3_type::DeployableDescV3;
+pub use deployable_desc_v_4_table::*;
+pub use deployable_desc_v_4_type::DeployableDescV4;
 pub use deployable_dismount_reducer::{
     deployable_dismount, set_flags_for_deployable_dismount, DeployableDismountCallbackId,
 };
@@ -5817,7 +5821,7 @@ pub enum Reducer {
         records: Vec<DeconstructionRecipeDesc>,
     },
     ImportDeployableDesc {
-        records: Vec<DeployableDescV3>,
+        records: Vec<DeployableDescV4>,
     },
     ImportDeployableState {
         records: Vec<DeployableState>,
@@ -6646,7 +6650,7 @@ pub enum Reducer {
         records: Vec<DeconstructionRecipeDesc>,
     },
     StageDeployableDesc {
-        records: Vec<DeployableDescV3>,
+        records: Vec<DeployableDescV4>,
     },
     StageDistantVisibleEntityDesc {
         records: Vec<DistantVisibleEntityDesc>,
@@ -8373,6 +8377,7 @@ pub struct DbUpdate {
     deployable_desc: __sdk::TableUpdate<DeployableDesc>,
     deployable_desc_v_2: __sdk::TableUpdate<DeployableDescV2>,
     deployable_desc_v_3: __sdk::TableUpdate<DeployableDescV3>,
+    deployable_desc_v_4: __sdk::TableUpdate<DeployableDescV4>,
     deployable_dismount_timer: __sdk::TableUpdate<DeployableDismountTimer>,
     deployable_state: __sdk::TableUpdate<DeployableState>,
     destroy_dimension_network_timer: __sdk::TableUpdate<DestroyDimensionNetworkTimer>,
@@ -8598,7 +8603,7 @@ pub struct DbUpdate {
     staged_contribution_loot_desc: __sdk::TableUpdate<ContributionLootDescV2>,
     staged_crafting_recipe_desc: __sdk::TableUpdate<CraftingRecipeDesc>,
     staged_deconstruction_recipe_desc: __sdk::TableUpdate<DeconstructionRecipeDesc>,
-    staged_deployable_desc: __sdk::TableUpdate<DeployableDescV3>,
+    staged_deployable_desc: __sdk::TableUpdate<DeployableDescV4>,
     staged_distant_visible_entity_desc: __sdk::TableUpdate<DistantVisibleEntityDesc>,
     staged_elevator_desc: __sdk::TableUpdate<ElevatorDesc>,
     staged_emote_desc: __sdk::TableUpdate<EmoteDesc>,
@@ -8965,6 +8970,9 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
                 "deployable_desc_v3" => db_update
                     .deployable_desc_v_3
                     .append(deployable_desc_v_3_table::parse_table_update(table_update)?),
+                "deployable_desc_v4" => db_update
+                    .deployable_desc_v_4
+                    .append(deployable_desc_v_4_table::parse_table_update(table_update)?),
                 "deployable_dismount_timer" => db_update.deployable_dismount_timer.append(
                     deployable_dismount_timer_table::parse_table_update(table_update)?,
                 ),
@@ -10463,6 +10471,12 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.deployable_desc_v_3,
             )
             .with_updates_by_pk(|row| &row.id);
+        diff.deployable_desc_v_4 = cache
+            .apply_diff_to_table::<DeployableDescV4>(
+                "deployable_desc_v4",
+                &self.deployable_desc_v_4,
+            )
+            .with_updates_by_pk(|row| &row.id);
         diff.deployable_dismount_timer = cache
             .apply_diff_to_table::<DeployableDismountTimer>(
                 "deployable_dismount_timer",
@@ -11578,7 +11592,7 @@ impl __sdk::DbUpdate for DbUpdate {
             )
             .with_updates_by_pk(|row| &row.id);
         diff.staged_deployable_desc = cache
-            .apply_diff_to_table::<DeployableDescV3>(
+            .apply_diff_to_table::<DeployableDescV4>(
                 "staged_deployable_desc",
                 &self.staged_deployable_desc,
             )
@@ -12262,6 +12276,7 @@ pub struct AppliedDiff<'r> {
     deployable_desc: __sdk::TableAppliedDiff<'r, DeployableDesc>,
     deployable_desc_v_2: __sdk::TableAppliedDiff<'r, DeployableDescV2>,
     deployable_desc_v_3: __sdk::TableAppliedDiff<'r, DeployableDescV3>,
+    deployable_desc_v_4: __sdk::TableAppliedDiff<'r, DeployableDescV4>,
     deployable_dismount_timer: __sdk::TableAppliedDiff<'r, DeployableDismountTimer>,
     deployable_state: __sdk::TableAppliedDiff<'r, DeployableState>,
     destroy_dimension_network_timer: __sdk::TableAppliedDiff<'r, DestroyDimensionNetworkTimer>,
@@ -12490,7 +12505,7 @@ pub struct AppliedDiff<'r> {
     staged_contribution_loot_desc: __sdk::TableAppliedDiff<'r, ContributionLootDescV2>,
     staged_crafting_recipe_desc: __sdk::TableAppliedDiff<'r, CraftingRecipeDesc>,
     staged_deconstruction_recipe_desc: __sdk::TableAppliedDiff<'r, DeconstructionRecipeDesc>,
-    staged_deployable_desc: __sdk::TableAppliedDiff<'r, DeployableDescV3>,
+    staged_deployable_desc: __sdk::TableAppliedDiff<'r, DeployableDescV4>,
     staged_distant_visible_entity_desc: __sdk::TableAppliedDiff<'r, DistantVisibleEntityDesc>,
     staged_elevator_desc: __sdk::TableAppliedDiff<'r, ElevatorDesc>,
     staged_emote_desc: __sdk::TableAppliedDiff<'r, EmoteDesc>,
@@ -12972,6 +12987,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<DeployableDescV3>(
             "deployable_desc_v3",
             &self.deployable_desc_v_3,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<DeployableDescV4>(
+            "deployable_desc_v4",
+            &self.deployable_desc_v_4,
             event,
         );
         callbacks.invoke_table_row_callbacks::<DeployableDismountTimer>(
@@ -14043,7 +14063,7 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             &self.staged_deconstruction_recipe_desc,
             event,
         );
-        callbacks.invoke_table_row_callbacks::<DeployableDescV3>(
+        callbacks.invoke_table_row_callbacks::<DeployableDescV4>(
             "staged_deployable_desc",
             &self.staged_deployable_desc,
             event,
@@ -15255,6 +15275,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         deployable_desc_table::register_table(client_cache);
         deployable_desc_v_2_table::register_table(client_cache);
         deployable_desc_v_3_table::register_table(client_cache);
+        deployable_desc_v_4_table::register_table(client_cache);
         deployable_dismount_timer_table::register_table(client_cache);
         deployable_state_table::register_table(client_cache);
         destroy_dimension_network_timer_table::register_table(client_cache);
