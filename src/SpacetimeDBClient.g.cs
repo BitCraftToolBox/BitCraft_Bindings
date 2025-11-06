@@ -100,6 +100,7 @@ namespace BitCraftRegion.Types
             AddTable(DeployableDesc = new(conn));
             AddTable(DeployableDescV2 = new(conn));
             AddTable(DeployableDescV3 = new(conn));
+            AddTable(DeployableDescV4 = new(conn));
             AddTable(DeployableDismountTimer = new(conn));
             AddTable(DeployableState = new(conn));
             AddTable(DestroyDimensionNetworkTimer = new(conn));

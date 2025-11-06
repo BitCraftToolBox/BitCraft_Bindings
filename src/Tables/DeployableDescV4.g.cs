@@ -15,15 +15,15 @@ namespace BitCraftRegion.Types
 {
     public sealed partial class RemoteTables
     {
-        public sealed class StagedDeployableDescHandle : RemoteTableHandle<EventContext, DeployableDescV4>
+        public sealed class DeployableDescV4Handle : RemoteTableHandle<EventContext, DeployableDescV4>
         {
-            protected override string RemoteTableName => "staged_deployable_desc";
+            protected override string RemoteTableName => "deployable_desc_v4";
 
             public sealed class DeployFromCollectibleIdUniqueIndex : UniqueIndexBase<int>
             {
                 protected override int GetKey(DeployableDescV4 row) => row.DeployFromCollectibleId;
 
-                public DeployFromCollectibleIdUniqueIndex(StagedDeployableDescHandle table) : base(table) { }
+                public DeployFromCollectibleIdUniqueIndex(DeployableDescV4Handle table) : base(table) { }
             }
 
             public readonly DeployFromCollectibleIdUniqueIndex DeployFromCollectibleId;
@@ -32,12 +32,12 @@ namespace BitCraftRegion.Types
             {
                 protected override int GetKey(DeployableDescV4 row) => row.Id;
 
-                public IdUniqueIndex(StagedDeployableDescHandle table) : base(table) { }
+                public IdUniqueIndex(DeployableDescV4Handle table) : base(table) { }
             }
 
             public readonly IdUniqueIndex Id;
 
-            internal StagedDeployableDescHandle(DbConnection conn) : base(conn)
+            internal DeployableDescV4Handle(DbConnection conn) : base(conn)
             {
                 DeployFromCollectibleId = new(this);
                 Id = new(this);
@@ -46,6 +46,6 @@ namespace BitCraftRegion.Types
             protected override object GetPrimaryKey(DeployableDescV4 row) => row.Id;
         }
 
-        public readonly StagedDeployableDescHandle StagedDeployableDesc;
+        public readonly DeployableDescV4Handle DeployableDescV4;
     }
 }
