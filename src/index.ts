@@ -69,8 +69,6 @@ import { AdminRenamePlayer } from "./admin_rename_player_reducer.ts";
 export { AdminRenamePlayer };
 import { AdminRenamePlayerEntity } from "./admin_rename_player_entity_reducer.ts";
 export { AdminRenamePlayerEntity };
-import { AdminSetShards } from "./admin_set_shards_reducer.ts";
-export { AdminSetShards };
 import { AdminSignOutAll } from "./admin_sign_out_all_reducer.ts";
 export { AdminSignOutAll };
 import { AdminSkipQueueEntity } from "./admin_skip_queue_entity_reducer.ts";
@@ -871,6 +869,8 @@ import { DeployableDescV2TableHandle } from "./deployable_desc_v_2_table.ts";
 export { DeployableDescV2TableHandle };
 import { DeployableDescV3TableHandle } from "./deployable_desc_v_3_table.ts";
 export { DeployableDescV3TableHandle };
+import { DeployableDescV4TableHandle } from "./deployable_desc_v_4_table.ts";
+export { DeployableDescV4TableHandle };
 import { DeployableStateTableHandle } from "./deployable_state_table.ts";
 export { DeployableStateTableHandle };
 import { DeveloperTableHandle } from "./developer_table.ts";
@@ -1717,6 +1717,8 @@ import { DeployableDescV2 } from "./deployable_desc_v_2_type.ts";
 export { DeployableDescV2 };
 import { DeployableDescV3 } from "./deployable_desc_v_3_type.ts";
 export { DeployableDescV3 };
+import { DeployableDescV4 } from "./deployable_desc_v_4_type.ts";
+export { DeployableDescV4 };
 import { DeployableState } from "./deployable_state_type.ts";
 export { DeployableState };
 import { DeployableType } from "./deployable_type_type.ts";
@@ -3057,6 +3059,15 @@ const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "id",
         colType: DeployableDescV3.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    deployable_desc_v4: {
+      tableName: "deployable_desc_v4",
+      rowType: DeployableDescV4.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: DeployableDescV4.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     deployable_state: {
@@ -4901,11 +4912,11 @@ const REMOTE_MODULE = {
     },
     staged_deployable_desc: {
       tableName: "staged_deployable_desc",
-      rowType: DeployableDescV3.getTypeScriptAlgebraicType(),
+      rowType: DeployableDescV4.getTypeScriptAlgebraicType(),
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: DeployableDescV3.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+        colType: DeployableDescV4.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     staged_distant_visible_entity_desc: {
@@ -5971,10 +5982,6 @@ const REMOTE_MODULE = {
     admin_rename_player_entity: {
       reducerName: "admin_rename_player_entity",
       argsType: AdminRenamePlayerEntity.getTypeScriptAlgebraicType(),
-    },
-    admin_set_shards: {
-      reducerName: "admin_set_shards",
-      argsType: AdminSetShards.getTypeScriptAlgebraicType(),
     },
     admin_sign_out_all: {
       reducerName: "admin_sign_out_all",
@@ -7348,7 +7355,6 @@ export type Reducer = never
 | { name: "AdminRenameEmpireRankEntity", args: AdminRenameEmpireRankEntity }
 | { name: "AdminRenamePlayer", args: AdminRenamePlayer }
 | { name: "AdminRenamePlayerEntity", args: AdminRenamePlayerEntity }
-| { name: "AdminSetShards", args: AdminSetShards }
 | { name: "AdminSignOutAll", args: AdminSignOutAll }
 | { name: "AdminSkipQueueEntity", args: AdminSkipQueueEntity }
 | { name: "AdminSkipQueueIdentity", args: AdminSkipQueueIdentity }
@@ -7967,22 +7973,6 @@ export class RemoteReducers {
 
   removeOnAdminRenamePlayerEntity(callback: (ctx: ReducerEventContext, entityId: bigint, newName: string) => void) {
     this.connection.offReducer("admin_rename_player_entity", callback);
-  }
-
-  adminSetShards(identity: string, amount: number) {
-    const __args = { identity, amount };
-    let __writer = new BinaryWriter(1024);
-    AdminSetShards.getTypeScriptAlgebraicType().serialize(__writer, __args);
-    let __argsBuffer = __writer.getBuffer();
-    this.connection.callReducer("admin_set_shards", __argsBuffer, this.setCallReducerFlags.adminSetShardsFlags);
-  }
-
-  onAdminSetShards(callback: (ctx: ReducerEventContext, identity: string, amount: number) => void) {
-    this.connection.onReducer("admin_set_shards", callback);
-  }
-
-  removeOnAdminSetShards(callback: (ctx: ReducerEventContext, identity: string, amount: number) => void) {
-    this.connection.offReducer("admin_set_shards", callback);
   }
 
   adminSignOutAll(region: number) {
@@ -9297,7 +9287,7 @@ export class RemoteReducers {
     this.connection.offReducer("import_deconstruction_recipe_desc", callback);
   }
 
-  importDeployableDesc(records: DeployableDescV3[]) {
+  importDeployableDesc(records: DeployableDescV4[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
     ImportDeployableDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
@@ -9305,11 +9295,11 @@ export class RemoteReducers {
     this.connection.callReducer("import_deployable_desc", __argsBuffer, this.setCallReducerFlags.importDeployableDescFlags);
   }
 
-  onImportDeployableDesc(callback: (ctx: ReducerEventContext, records: DeployableDescV3[]) => void) {
+  onImportDeployableDesc(callback: (ctx: ReducerEventContext, records: DeployableDescV4[]) => void) {
     this.connection.onReducer("import_deployable_desc", callback);
   }
 
-  removeOnImportDeployableDesc(callback: (ctx: ReducerEventContext, records: DeployableDescV3[]) => void) {
+  removeOnImportDeployableDesc(callback: (ctx: ReducerEventContext, records: DeployableDescV4[]) => void) {
     this.connection.offReducer("import_deployable_desc", callback);
   }
 
@@ -12093,7 +12083,7 @@ export class RemoteReducers {
     this.connection.offReducer("stage_deconstruction_recipe_desc", callback);
   }
 
-  stageDeployableDesc(records: DeployableDescV3[]) {
+  stageDeployableDesc(records: DeployableDescV4[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
     StageDeployableDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
@@ -12101,11 +12091,11 @@ export class RemoteReducers {
     this.connection.callReducer("stage_deployable_desc", __argsBuffer, this.setCallReducerFlags.stageDeployableDescFlags);
   }
 
-  onStageDeployableDesc(callback: (ctx: ReducerEventContext, records: DeployableDescV3[]) => void) {
+  onStageDeployableDesc(callback: (ctx: ReducerEventContext, records: DeployableDescV4[]) => void) {
     this.connection.onReducer("stage_deployable_desc", callback);
   }
 
-  removeOnStageDeployableDesc(callback: (ctx: ReducerEventContext, records: DeployableDescV3[]) => void) {
+  removeOnStageDeployableDesc(callback: (ctx: ReducerEventContext, records: DeployableDescV4[]) => void) {
     this.connection.offReducer("stage_deployable_desc", callback);
   }
 
@@ -13316,11 +13306,6 @@ export class SetReducerFlags {
   adminRenamePlayerEntityFlags: CallReducerFlags = 'FullUpdate';
   adminRenamePlayerEntity(flags: CallReducerFlags) {
     this.adminRenamePlayerEntityFlags = flags;
-  }
-
-  adminSetShardsFlags: CallReducerFlags = 'FullUpdate';
-  adminSetShards(flags: CallReducerFlags) {
-    this.adminSetShardsFlags = flags;
   }
 
   adminSignOutAllFlags: CallReducerFlags = 'FullUpdate';
@@ -15245,6 +15230,10 @@ export class RemoteTables {
     return new DeployableDescV3TableHandle(this.connection.clientCache.getOrCreateTable<DeployableDescV3>(REMOTE_MODULE.tables.deployable_desc_v3));
   }
 
+  get deployableDescV4(): DeployableDescV4TableHandle {
+    return new DeployableDescV4TableHandle(this.connection.clientCache.getOrCreateTable<DeployableDescV4>(REMOTE_MODULE.tables.deployable_desc_v4));
+  }
+
   get deployableState(): DeployableStateTableHandle {
     return new DeployableStateTableHandle(this.connection.clientCache.getOrCreateTable<DeployableState>(REMOTE_MODULE.tables.deployable_state));
   }
@@ -16066,7 +16055,7 @@ export class RemoteTables {
   }
 
   get stagedDeployableDesc(): StagedDeployableDescTableHandle {
-    return new StagedDeployableDescTableHandle(this.connection.clientCache.getOrCreateTable<DeployableDescV3>(REMOTE_MODULE.tables.staged_deployable_desc));
+    return new StagedDeployableDescTableHandle(this.connection.clientCache.getOrCreateTable<DeployableDescV4>(REMOTE_MODULE.tables.staged_deployable_desc));
   }
 
   get stagedDistantVisibleEntityDesc(): StagedDistantVisibleEntityDescTableHandle {

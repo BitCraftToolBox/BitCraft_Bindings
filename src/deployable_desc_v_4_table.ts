@@ -41,16 +41,16 @@ import { MovementSpeed as __MovementSpeed } from "./movement_speed_type";
 import { type EventContext, type Reducer, RemoteReducers, RemoteTables } from ".";
 
 /**
- * Table handle for the table `staged_deployable_desc`.
+ * Table handle for the table `deployable_desc_v4`.
  *
- * Obtain a handle from the [`stagedDeployableDesc`] property on [`RemoteTables`],
- * like `ctx.db.stagedDeployableDesc`.
+ * Obtain a handle from the [`deployableDescV4`] property on [`RemoteTables`],
+ * like `ctx.db.deployableDescV4`.
  *
  * Users are encouraged not to explicitly reference this type,
  * but to directly chain method calls,
- * like `ctx.db.stagedDeployableDesc.on_insert(...)`.
+ * like `ctx.db.deployableDescV4.on_insert(...)`.
  */
-export class StagedDeployableDescTableHandle {
+export class DeployableDescV4TableHandle {
   tableCache: TableCache<DeployableDescV4>;
 
   constructor(tableCache: TableCache<DeployableDescV4>) {
@@ -65,15 +65,15 @@ export class StagedDeployableDescTableHandle {
     return this.tableCache.iter();
   }
   /**
-   * Access to the `id` unique index on the table `staged_deployable_desc`,
+   * Access to the `id` unique index on the table `deployable_desc_v4`,
    * which allows point queries on the field of the same name
-   * via the [`StagedDeployableDescIdUnique.find`] method.
+   * via the [`DeployableDescV4IdUnique.find`] method.
    *
    * Users are encouraged not to explicitly reference this type,
    * but to directly chain method calls,
-   * like `ctx.db.stagedDeployableDesc.id().find(...)`.
+   * like `ctx.db.deployableDescV4.id().find(...)`.
    *
-   * Get a handle on the `id` unique index on the table `staged_deployable_desc`.
+   * Get a handle on the `id` unique index on the table `deployable_desc_v4`.
    */
   id = {
     // Find the subscribed row whose `id` column value is equal to `col_val`,
@@ -87,15 +87,15 @@ export class StagedDeployableDescTableHandle {
     },
   };
   /**
-   * Access to the `deployFromCollectibleId` unique index on the table `staged_deployable_desc`,
+   * Access to the `deployFromCollectibleId` unique index on the table `deployable_desc_v4`,
    * which allows point queries on the field of the same name
-   * via the [`StagedDeployableDescDeployFromCollectibleIdUnique.find`] method.
+   * via the [`DeployableDescV4DeployFromCollectibleIdUnique.find`] method.
    *
    * Users are encouraged not to explicitly reference this type,
    * but to directly chain method calls,
-   * like `ctx.db.stagedDeployableDesc.deployFromCollectibleId().find(...)`.
+   * like `ctx.db.deployableDescV4.deployFromCollectibleId().find(...)`.
    *
-   * Get a handle on the `deployFromCollectibleId` unique index on the table `staged_deployable_desc`.
+   * Get a handle on the `deployFromCollectibleId` unique index on the table `deployable_desc_v4`.
    */
   deployFromCollectibleId = {
     // Find the subscribed row whose `deployFromCollectibleId` column value is equal to `col_val`,
