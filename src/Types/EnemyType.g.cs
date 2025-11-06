@@ -50,5 +50,8 @@ namespace BitCraftGlobal.Types
         SentinelDungeonLargeJakyl,
         CrabDungeonCrabBoss,
         CrabDungeonCrabTrash,
+        SpiderDungeonEliteSpider,
+        SpiderDungeonSmallSpider,
+        SpiderDungeonSpiderNest,
     }
 }

@@ -91,6 +91,7 @@ namespace BitCraftGlobal.Types
             AddTable(DeployableDesc = new(conn));
             AddTable(DeployableDescV2 = new(conn));
             AddTable(DeployableDescV3 = new(conn));
+            AddTable(DeployableDescV4 = new(conn));
             AddTable(DeployableState = new(conn));
             AddTable(Developer = new(conn));
             AddTable(DimensionDescriptionState = new(conn));
@@ -868,7 +869,6 @@ namespace BitCraftGlobal.Types
                 "admin_rename_empire_rank_entity" => BSATNHelpers.Decode<Reducer.AdminRenameEmpireRankEntity>(encodedArgs),
                 "admin_rename_player" => BSATNHelpers.Decode<Reducer.AdminRenamePlayer>(encodedArgs),
                 "admin_rename_player_entity" => BSATNHelpers.Decode<Reducer.AdminRenamePlayerEntity>(encodedArgs),
-                "admin_set_shards" => BSATNHelpers.Decode<Reducer.AdminSetShards>(encodedArgs),
                 "admin_sign_out_all" => BSATNHelpers.Decode<Reducer.AdminSignOutAll>(encodedArgs),
                 "admin_skip_queue_entity" => BSATNHelpers.Decode<Reducer.AdminSkipQueueEntity>(encodedArgs),
                 "admin_skip_queue_identity" => BSATNHelpers.Decode<Reducer.AdminSkipQueueIdentity>(encodedArgs),
@@ -1239,7 +1239,6 @@ namespace BitCraftGlobal.Types
                 Reducer.AdminRenameEmpireRankEntity args => Reducers.InvokeAdminRenameEmpireRankEntity(eventContext, args),
                 Reducer.AdminRenamePlayer args => Reducers.InvokeAdminRenamePlayer(eventContext, args),
                 Reducer.AdminRenamePlayerEntity args => Reducers.InvokeAdminRenamePlayerEntity(eventContext, args),
-                Reducer.AdminSetShards args => Reducers.InvokeAdminSetShards(eventContext, args),
                 Reducer.AdminSignOutAll args => Reducers.InvokeAdminSignOutAll(eventContext, args),
                 Reducer.AdminSkipQueueEntity args => Reducers.InvokeAdminSkipQueueEntity(eventContext, args),
                 Reducer.AdminSkipQueueIdentity args => Reducers.InvokeAdminSkipQueueIdentity(eventContext, args),
