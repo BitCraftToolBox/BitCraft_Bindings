@@ -39,7 +39,6 @@ pub mod admin_rename_empire_rank_reducer;
 pub mod admin_rename_empire_reducer;
 pub mod admin_rename_player_entity_reducer;
 pub mod admin_rename_player_reducer;
-pub mod admin_set_shards_reducer;
 pub mod admin_sign_out_all_reducer;
 pub mod admin_skip_queue_entity_reducer;
 pub mod admin_skip_queue_identity_reducer;
@@ -218,6 +217,8 @@ pub mod deployable_desc_v_2_table;
 pub mod deployable_desc_v_2_type;
 pub mod deployable_desc_v_3_table;
 pub mod deployable_desc_v_3_type;
+pub mod deployable_desc_v_4_table;
+pub mod deployable_desc_v_4_type;
 pub mod deployable_state_table;
 pub mod deployable_state_type;
 pub mod deployable_type_type;
@@ -1292,9 +1293,6 @@ pub use admin_rename_player_entity_reducer::{
 pub use admin_rename_player_reducer::{
     admin_rename_player, set_flags_for_admin_rename_player, AdminRenamePlayerCallbackId,
 };
-pub use admin_set_shards_reducer::{
-    admin_set_shards, set_flags_for_admin_set_shards, AdminSetShardsCallbackId,
-};
 pub use admin_sign_out_all_reducer::{
     admin_sign_out_all, set_flags_for_admin_sign_out_all, AdminSignOutAllCallbackId,
 };
@@ -1519,6 +1517,8 @@ pub use deployable_desc_v_2_table::*;
 pub use deployable_desc_v_2_type::DeployableDescV2;
 pub use deployable_desc_v_3_table::*;
 pub use deployable_desc_v_3_type::DeployableDescV3;
+pub use deployable_desc_v_4_table::*;
+pub use deployable_desc_v_4_type::DeployableDescV4;
 pub use deployable_state_table::*;
 pub use deployable_state_type::DeployableState;
 pub use deployable_type_type::DeployableType;
@@ -3374,10 +3374,6 @@ pub enum Reducer {
         entity_id: u64,
         new_name: String,
     },
-    AdminSetShards {
-        identity: String,
-        amount: i32,
-    },
     AdminSignOutAll {
         region: u8,
     },
@@ -3633,7 +3629,7 @@ pub enum Reducer {
         records: Vec<DeconstructionRecipeDesc>,
     },
     ImportDeployableDesc {
-        records: Vec<DeployableDescV3>,
+        records: Vec<DeployableDescV4>,
     },
     ImportDeployableState {
         records: Vec<DeployableState>,
@@ -4166,7 +4162,7 @@ pub enum Reducer {
         records: Vec<DeconstructionRecipeDesc>,
     },
     StageDeployableDesc {
-        records: Vec<DeployableDescV3>,
+        records: Vec<DeployableDescV4>,
     },
     StageDistantVisibleEntityDesc {
         records: Vec<DistantVisibleEntityDesc>,
@@ -4409,7 +4405,6 @@ impl __sdk::Reducer for Reducer {
             Reducer::AdminRenameEmpireRankEntity { .. } => "admin_rename_empire_rank_entity",
             Reducer::AdminRenamePlayer { .. } => "admin_rename_player",
             Reducer::AdminRenamePlayerEntity { .. } => "admin_rename_player_entity",
-            Reducer::AdminSetShards { .. } => "admin_set_shards",
             Reducer::AdminSignOutAll { .. } => "admin_sign_out_all",
             Reducer::AdminSkipQueueEntity { .. } => "admin_skip_queue_entity",
             Reducer::AdminSkipQueueIdentity { .. } => "admin_skip_queue_identity",
@@ -4790,7 +4785,6 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "admin_rename_empire_rank_entity" => Ok(__sdk::parse_reducer_args::<admin_rename_empire_rank_entity_reducer::AdminRenameEmpireRankEntityArgs>("admin_rename_empire_rank_entity", &value.args)?.into()),
             "admin_rename_player" => Ok(__sdk::parse_reducer_args::<admin_rename_player_reducer::AdminRenamePlayerArgs>("admin_rename_player", &value.args)?.into()),
             "admin_rename_player_entity" => Ok(__sdk::parse_reducer_args::<admin_rename_player_entity_reducer::AdminRenamePlayerEntityArgs>("admin_rename_player_entity", &value.args)?.into()),
-            "admin_set_shards" => Ok(__sdk::parse_reducer_args::<admin_set_shards_reducer::AdminSetShardsArgs>("admin_set_shards", &value.args)?.into()),
             "admin_sign_out_all" => Ok(__sdk::parse_reducer_args::<admin_sign_out_all_reducer::AdminSignOutAllArgs>("admin_sign_out_all", &value.args)?.into()),
             "admin_skip_queue_entity" => Ok(__sdk::parse_reducer_args::<admin_skip_queue_entity_reducer::AdminSkipQueueEntityArgs>("admin_skip_queue_entity", &value.args)?.into()),
             "admin_skip_queue_identity" => Ok(__sdk::parse_reducer_args::<admin_skip_queue_identity_reducer::AdminSkipQueueIdentityArgs>("admin_skip_queue_identity", &value.args)?.into()),
@@ -5200,6 +5194,7 @@ pub struct DbUpdate {
     deployable_desc: __sdk::TableUpdate<DeployableDesc>,
     deployable_desc_v_2: __sdk::TableUpdate<DeployableDescV2>,
     deployable_desc_v_3: __sdk::TableUpdate<DeployableDescV3>,
+    deployable_desc_v_4: __sdk::TableUpdate<DeployableDescV4>,
     deployable_state: __sdk::TableUpdate<DeployableState>,
     developer: __sdk::TableUpdate<Developer>,
     dimension_description_state: __sdk::TableUpdate<DimensionDescriptionState>,
@@ -5405,7 +5400,7 @@ pub struct DbUpdate {
     staged_contribution_loot_desc: __sdk::TableUpdate<ContributionLootDescV2>,
     staged_crafting_recipe_desc: __sdk::TableUpdate<CraftingRecipeDesc>,
     staged_deconstruction_recipe_desc: __sdk::TableUpdate<DeconstructionRecipeDesc>,
-    staged_deployable_desc: __sdk::TableUpdate<DeployableDescV3>,
+    staged_deployable_desc: __sdk::TableUpdate<DeployableDescV4>,
     staged_distant_visible_entity_desc: __sdk::TableUpdate<DistantVisibleEntityDesc>,
     staged_elevator_desc: __sdk::TableUpdate<ElevatorDesc>,
     staged_emote_desc: __sdk::TableUpdate<EmoteDesc>,
@@ -5738,6 +5733,9 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
                 "deployable_desc_v3" => db_update
                     .deployable_desc_v_3
                     .append(deployable_desc_v_3_table::parse_table_update(table_update)?),
+                "deployable_desc_v4" => db_update
+                    .deployable_desc_v_4
+                    .append(deployable_desc_v_4_table::parse_table_update(table_update)?),
                 "deployable_state" => db_update
                     .deployable_state
                     .append(deployable_state_table::parse_table_update(table_update)?),
@@ -7092,6 +7090,12 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.deployable_desc_v_3,
             )
             .with_updates_by_pk(|row| &row.id);
+        diff.deployable_desc_v_4 = cache
+            .apply_diff_to_table::<DeployableDescV4>(
+                "deployable_desc_v4",
+                &self.deployable_desc_v_4,
+            )
+            .with_updates_by_pk(|row| &row.id);
         diff.deployable_state = cache
             .apply_diff_to_table::<DeployableState>("deployable_state", &self.deployable_state)
             .with_updates_by_pk(|row| &row.entity_id);
@@ -8102,7 +8106,7 @@ impl __sdk::DbUpdate for DbUpdate {
             )
             .with_updates_by_pk(|row| &row.id);
         diff.staged_deployable_desc = cache
-            .apply_diff_to_table::<DeployableDescV3>(
+            .apply_diff_to_table::<DeployableDescV4>(
                 "staged_deployable_desc",
                 &self.staged_deployable_desc,
             )
@@ -8741,6 +8745,7 @@ pub struct AppliedDiff<'r> {
     deployable_desc: __sdk::TableAppliedDiff<'r, DeployableDesc>,
     deployable_desc_v_2: __sdk::TableAppliedDiff<'r, DeployableDescV2>,
     deployable_desc_v_3: __sdk::TableAppliedDiff<'r, DeployableDescV3>,
+    deployable_desc_v_4: __sdk::TableAppliedDiff<'r, DeployableDescV4>,
     deployable_state: __sdk::TableAppliedDiff<'r, DeployableState>,
     developer: __sdk::TableAppliedDiff<'r, Developer>,
     dimension_description_state: __sdk::TableAppliedDiff<'r, DimensionDescriptionState>,
@@ -8950,7 +8955,7 @@ pub struct AppliedDiff<'r> {
     staged_contribution_loot_desc: __sdk::TableAppliedDiff<'r, ContributionLootDescV2>,
     staged_crafting_recipe_desc: __sdk::TableAppliedDiff<'r, CraftingRecipeDesc>,
     staged_deconstruction_recipe_desc: __sdk::TableAppliedDiff<'r, DeconstructionRecipeDesc>,
-    staged_deployable_desc: __sdk::TableAppliedDiff<'r, DeployableDescV3>,
+    staged_deployable_desc: __sdk::TableAppliedDiff<'r, DeployableDescV4>,
     staged_distant_visible_entity_desc: __sdk::TableAppliedDiff<'r, DistantVisibleEntityDesc>,
     staged_elevator_desc: __sdk::TableAppliedDiff<'r, ElevatorDesc>,
     staged_emote_desc: __sdk::TableAppliedDiff<'r, EmoteDesc>,
@@ -9381,6 +9386,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<DeployableDescV3>(
             "deployable_desc_v3",
             &self.deployable_desc_v_3,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<DeployableDescV4>(
+            "deployable_desc_v4",
+            &self.deployable_desc_v_4,
             event,
         );
         callbacks.invoke_table_row_callbacks::<DeployableState>(
@@ -10352,7 +10362,7 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             &self.staged_deconstruction_recipe_desc,
             event,
         );
-        callbacks.invoke_table_row_callbacks::<DeployableDescV3>(
+        callbacks.invoke_table_row_callbacks::<DeployableDescV4>(
             "staged_deployable_desc",
             &self.staged_deployable_desc,
             event,
@@ -11530,6 +11540,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         deployable_desc_table::register_table(client_cache);
         deployable_desc_v_2_table::register_table(client_cache);
         deployable_desc_v_3_table::register_table(client_cache);
+        deployable_desc_v_4_table::register_table(client_cache);
         deployable_state_table::register_table(client_cache);
         developer_table::register_table(client_cache);
         dimension_description_state_table::register_table(client_cache);

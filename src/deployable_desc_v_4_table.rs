@@ -11,44 +11,42 @@ use super::movement_speed_type::MovementSpeed;
 use super::movement_type_type::MovementType;
 use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
-/// Table handle for the table `staged_deployable_desc`.
+/// Table handle for the table `deployable_desc_v4`.
 ///
-/// Obtain a handle from the [`StagedDeployableDescTableAccess::staged_deployable_desc`] method on [`super::RemoteTables`],
-/// like `ctx.db.staged_deployable_desc()`.
+/// Obtain a handle from the [`DeployableDescV4TableAccess::deployable_desc_v_4`] method on [`super::RemoteTables`],
+/// like `ctx.db.deployable_desc_v_4()`.
 ///
 /// Users are encouraged not to explicitly reference this type,
 /// but to directly chain method calls,
-/// like `ctx.db.staged_deployable_desc().on_insert(...)`.
-pub struct StagedDeployableDescTableHandle<'ctx> {
+/// like `ctx.db.deployable_desc_v_4().on_insert(...)`.
+pub struct DeployableDescV4TableHandle<'ctx> {
     imp: __sdk::TableHandle<DeployableDescV4>,
     ctx: std::marker::PhantomData<&'ctx super::RemoteTables>,
 }
 
 #[allow(non_camel_case_types)]
-/// Extension trait for access to the table `staged_deployable_desc`.
+/// Extension trait for access to the table `deployable_desc_v4`.
 ///
 /// Implemented for [`super::RemoteTables`].
-pub trait StagedDeployableDescTableAccess {
+pub trait DeployableDescV4TableAccess {
     #[allow(non_snake_case)]
-    /// Obtain a [`StagedDeployableDescTableHandle`], which mediates access to the table `staged_deployable_desc`.
-    fn staged_deployable_desc(&self) -> StagedDeployableDescTableHandle<'_>;
+    /// Obtain a [`DeployableDescV4TableHandle`], which mediates access to the table `deployable_desc_v4`.
+    fn deployable_desc_v_4(&self) -> DeployableDescV4TableHandle<'_>;
 }
 
-impl StagedDeployableDescTableAccess for super::RemoteTables {
-    fn staged_deployable_desc(&self) -> StagedDeployableDescTableHandle<'_> {
-        StagedDeployableDescTableHandle {
-            imp: self
-                .imp
-                .get_table::<DeployableDescV4>("staged_deployable_desc"),
+impl DeployableDescV4TableAccess for super::RemoteTables {
+    fn deployable_desc_v_4(&self) -> DeployableDescV4TableHandle<'_> {
+        DeployableDescV4TableHandle {
+            imp: self.imp.get_table::<DeployableDescV4>("deployable_desc_v4"),
             ctx: std::marker::PhantomData,
         }
     }
 }
 
-pub struct StagedDeployableDescInsertCallbackId(__sdk::CallbackId);
-pub struct StagedDeployableDescDeleteCallbackId(__sdk::CallbackId);
+pub struct DeployableDescV4InsertCallbackId(__sdk::CallbackId);
+pub struct DeployableDescV4DeleteCallbackId(__sdk::CallbackId);
 
-impl<'ctx> __sdk::Table for StagedDeployableDescTableHandle<'ctx> {
+impl<'ctx> __sdk::Table for DeployableDescV4TableHandle<'ctx> {
     type Row = DeployableDescV4;
     type EventContext = super::EventContext;
 
@@ -59,54 +57,54 @@ impl<'ctx> __sdk::Table for StagedDeployableDescTableHandle<'ctx> {
         self.imp.iter()
     }
 
-    type InsertCallbackId = StagedDeployableDescInsertCallbackId;
+    type InsertCallbackId = DeployableDescV4InsertCallbackId;
 
     fn on_insert(
         &self,
         callback: impl FnMut(&Self::EventContext, &Self::Row) + Send + 'static,
-    ) -> StagedDeployableDescInsertCallbackId {
-        StagedDeployableDescInsertCallbackId(self.imp.on_insert(Box::new(callback)))
+    ) -> DeployableDescV4InsertCallbackId {
+        DeployableDescV4InsertCallbackId(self.imp.on_insert(Box::new(callback)))
     }
 
-    fn remove_on_insert(&self, callback: StagedDeployableDescInsertCallbackId) {
+    fn remove_on_insert(&self, callback: DeployableDescV4InsertCallbackId) {
         self.imp.remove_on_insert(callback.0)
     }
 
-    type DeleteCallbackId = StagedDeployableDescDeleteCallbackId;
+    type DeleteCallbackId = DeployableDescV4DeleteCallbackId;
 
     fn on_delete(
         &self,
         callback: impl FnMut(&Self::EventContext, &Self::Row) + Send + 'static,
-    ) -> StagedDeployableDescDeleteCallbackId {
-        StagedDeployableDescDeleteCallbackId(self.imp.on_delete(Box::new(callback)))
+    ) -> DeployableDescV4DeleteCallbackId {
+        DeployableDescV4DeleteCallbackId(self.imp.on_delete(Box::new(callback)))
     }
 
-    fn remove_on_delete(&self, callback: StagedDeployableDescDeleteCallbackId) {
+    fn remove_on_delete(&self, callback: DeployableDescV4DeleteCallbackId) {
         self.imp.remove_on_delete(callback.0)
     }
 }
 
 #[doc(hidden)]
 pub(super) fn register_table(client_cache: &mut __sdk::ClientCache<super::RemoteModule>) {
-    let _table = client_cache.get_or_make_table::<DeployableDescV4>("staged_deployable_desc");
+    let _table = client_cache.get_or_make_table::<DeployableDescV4>("deployable_desc_v4");
     _table.add_unique_constraint::<i32>("id", |row| &row.id);
     _table.add_unique_constraint::<i32>("deploy_from_collectible_id", |row| {
         &row.deploy_from_collectible_id
     });
 }
-pub struct StagedDeployableDescUpdateCallbackId(__sdk::CallbackId);
+pub struct DeployableDescV4UpdateCallbackId(__sdk::CallbackId);
 
-impl<'ctx> __sdk::TableWithPrimaryKey for StagedDeployableDescTableHandle<'ctx> {
-    type UpdateCallbackId = StagedDeployableDescUpdateCallbackId;
+impl<'ctx> __sdk::TableWithPrimaryKey for DeployableDescV4TableHandle<'ctx> {
+    type UpdateCallbackId = DeployableDescV4UpdateCallbackId;
 
     fn on_update(
         &self,
         callback: impl FnMut(&Self::EventContext, &Self::Row, &Self::Row) + Send + 'static,
-    ) -> StagedDeployableDescUpdateCallbackId {
-        StagedDeployableDescUpdateCallbackId(self.imp.on_update(Box::new(callback)))
+    ) -> DeployableDescV4UpdateCallbackId {
+        DeployableDescV4UpdateCallbackId(self.imp.on_update(Box::new(callback)))
     }
 
-    fn remove_on_update(&self, callback: StagedDeployableDescUpdateCallbackId) {
+    fn remove_on_update(&self, callback: DeployableDescV4UpdateCallbackId) {
         self.imp.remove_on_update(callback.0)
     }
 }
@@ -122,29 +120,29 @@ pub(super) fn parse_table_update(
     })
 }
 
-/// Access to the `id` unique index on the table `staged_deployable_desc`,
+/// Access to the `id` unique index on the table `deployable_desc_v4`,
 /// which allows point queries on the field of the same name
-/// via the [`StagedDeployableDescIdUnique::find`] method.
+/// via the [`DeployableDescV4IdUnique::find`] method.
 ///
 /// Users are encouraged not to explicitly reference this type,
 /// but to directly chain method calls,
-/// like `ctx.db.staged_deployable_desc().id().find(...)`.
-pub struct StagedDeployableDescIdUnique<'ctx> {
+/// like `ctx.db.deployable_desc_v_4().id().find(...)`.
+pub struct DeployableDescV4IdUnique<'ctx> {
     imp: __sdk::UniqueConstraintHandle<DeployableDescV4, i32>,
     phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
 }
 
-impl<'ctx> StagedDeployableDescTableHandle<'ctx> {
-    /// Get a handle on the `id` unique index on the table `staged_deployable_desc`.
-    pub fn id(&self) -> StagedDeployableDescIdUnique<'ctx> {
-        StagedDeployableDescIdUnique {
+impl<'ctx> DeployableDescV4TableHandle<'ctx> {
+    /// Get a handle on the `id` unique index on the table `deployable_desc_v4`.
+    pub fn id(&self) -> DeployableDescV4IdUnique<'ctx> {
+        DeployableDescV4IdUnique {
             imp: self.imp.get_unique_constraint::<i32>("id"),
             phantom: std::marker::PhantomData,
         }
     }
 }
 
-impl<'ctx> StagedDeployableDescIdUnique<'ctx> {
+impl<'ctx> DeployableDescV4IdUnique<'ctx> {
     /// Find the subscribed row whose `id` column value is equal to `col_val`,
     /// if such a row is present in the client cache.
     pub fn find(&self, col_val: &i32) -> Option<DeployableDescV4> {
@@ -152,24 +150,24 @@ impl<'ctx> StagedDeployableDescIdUnique<'ctx> {
     }
 }
 
-/// Access to the `deploy_from_collectible_id` unique index on the table `staged_deployable_desc`,
+/// Access to the `deploy_from_collectible_id` unique index on the table `deployable_desc_v4`,
 /// which allows point queries on the field of the same name
-/// via the [`StagedDeployableDescDeployFromCollectibleIdUnique::find`] method.
+/// via the [`DeployableDescV4DeployFromCollectibleIdUnique::find`] method.
 ///
 /// Users are encouraged not to explicitly reference this type,
 /// but to directly chain method calls,
-/// like `ctx.db.staged_deployable_desc().deploy_from_collectible_id().find(...)`.
-pub struct StagedDeployableDescDeployFromCollectibleIdUnique<'ctx> {
+/// like `ctx.db.deployable_desc_v_4().deploy_from_collectible_id().find(...)`.
+pub struct DeployableDescV4DeployFromCollectibleIdUnique<'ctx> {
     imp: __sdk::UniqueConstraintHandle<DeployableDescV4, i32>,
     phantom: std::marker::PhantomData<&'ctx super::RemoteTables>,
 }
 
-impl<'ctx> StagedDeployableDescTableHandle<'ctx> {
-    /// Get a handle on the `deploy_from_collectible_id` unique index on the table `staged_deployable_desc`.
+impl<'ctx> DeployableDescV4TableHandle<'ctx> {
+    /// Get a handle on the `deploy_from_collectible_id` unique index on the table `deployable_desc_v4`.
     pub fn deploy_from_collectible_id(
         &self,
-    ) -> StagedDeployableDescDeployFromCollectibleIdUnique<'ctx> {
-        StagedDeployableDescDeployFromCollectibleIdUnique {
+    ) -> DeployableDescV4DeployFromCollectibleIdUnique<'ctx> {
+        DeployableDescV4DeployFromCollectibleIdUnique {
             imp: self
                 .imp
                 .get_unique_constraint::<i32>("deploy_from_collectible_id"),
@@ -178,7 +176,7 @@ impl<'ctx> StagedDeployableDescTableHandle<'ctx> {
     }
 }
 
-impl<'ctx> StagedDeployableDescDeployFromCollectibleIdUnique<'ctx> {
+impl<'ctx> DeployableDescV4DeployFromCollectibleIdUnique<'ctx> {
     /// Find the subscribed row whose `deploy_from_collectible_id` column value is equal to `col_val`,
     /// if such a row is present in the client cache.
     pub fn find(&self, col_val: &i32) -> Option<DeployableDescV4> {
