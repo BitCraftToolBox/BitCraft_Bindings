@@ -29,6 +29,8 @@ namespace BitCraftGlobal.Types
         public uint Price;
         [DataMember(Name = "base_price")]
         public uint BasePrice;
+        [DataMember(Name = "is_enabled")]
+        public bool IsEnabled;
 
         public PremiumServiceDesc(
             int Id,
@@ -37,7 +39,8 @@ namespace BitCraftGlobal.Types
             string ImageAddress,
             PremiumServiceType ServiceType,
             uint Price,
-            uint BasePrice
+            uint BasePrice,
+            bool IsEnabled
         )
         {
             this.Id = Id;
@@ -47,6 +50,7 @@ namespace BitCraftGlobal.Types
             this.ServiceType = ServiceType;
             this.Price = Price;
             this.BasePrice = BasePrice;
+            this.IsEnabled = IsEnabled;
         }
 
         public PremiumServiceDesc()
