@@ -17,6 +17,7 @@ pub struct PremiumServiceDesc {
     pub service_type: PremiumServiceType,
     pub price: u32,
     pub base_price: u32,
+    pub is_enabled: bool,
 }
 
 impl __sdk::InModule for PremiumServiceDesc {
