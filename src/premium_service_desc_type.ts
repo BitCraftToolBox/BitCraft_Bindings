@@ -41,6 +41,7 @@ export type PremiumServiceDesc = {
   serviceType: __PremiumServiceType,
   price: number,
   basePrice: number,
+  isEnabled: boolean,
 };
 
 /**
@@ -60,6 +61,7 @@ export namespace PremiumServiceDesc {
       new ProductTypeElement("serviceType", __PremiumServiceType.getTypeScriptAlgebraicType()),
       new ProductTypeElement("price", AlgebraicType.createU32Type()),
       new ProductTypeElement("basePrice", AlgebraicType.createU32Type()),
+      new ProductTypeElement("isEnabled", AlgebraicType.createBoolType()),
     ]);
   }
 
