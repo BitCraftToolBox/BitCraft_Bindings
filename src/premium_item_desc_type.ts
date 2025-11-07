@@ -39,6 +39,7 @@ export type PremiumItemDesc = {
   collectibleDescId: number,
   price: number,
   basePrice: number,
+  isEnabled: boolean,
 };
 
 /**
@@ -58,6 +59,7 @@ export namespace PremiumItemDesc {
       new ProductTypeElement("collectibleDescId", AlgebraicType.createI32Type()),
       new ProductTypeElement("price", AlgebraicType.createU32Type()),
       new ProductTypeElement("basePrice", AlgebraicType.createU32Type()),
+      new ProductTypeElement("isEnabled", AlgebraicType.createBoolType()),
     ]);
   }
 
