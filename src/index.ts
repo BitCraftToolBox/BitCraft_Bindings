@@ -39,8 +39,14 @@ import { AddFriend } from "./add_friend_reducer.ts";
 export { AddFriend };
 import { AdminBroadcastMsg } from "./admin_broadcast_msg_reducer.ts";
 export { AdminBroadcastMsg };
+import { AdminCreateChatMessage } from "./admin_create_chat_message_reducer.ts";
+export { AdminCreateChatMessage };
 import { AdminCreateDirectChatMessage } from "./admin_create_direct_chat_message_reducer.ts";
 export { AdminCreateDirectChatMessage };
+import { AdminCreatePlayerReport } from "./admin_create_player_report_reducer.ts";
+export { AdminCreatePlayerReport };
+import { AdminDeleteChatMessage } from "./admin_delete_chat_message_reducer.ts";
+export { AdminDeleteChatMessage };
 import { AdminDeleteModerationActionLogEntry } from "./admin_delete_moderation_action_log_entry_reducer.ts";
 export { AdminDeleteModerationActionLogEntry };
 import { AdminGrantShards } from "./admin_grant_shards_reducer.ts";
@@ -51,6 +57,8 @@ import { AdminMarkPremiumPurchaseProcessed } from "./admin_mark_premium_purchase
 export { AdminMarkPremiumPurchaseProcessed };
 import { AdminMarkUserReportAsActioned } from "./admin_mark_user_report_as_actioned_reducer.ts";
 export { AdminMarkUserReportAsActioned };
+import { AdminModifyChatMessage } from "./admin_modify_chat_message_reducer.ts";
+export { AdminModifyChatMessage };
 import { AdminNotifyPlayer } from "./admin_notify_player_reducer.ts";
 export { AdminNotifyPlayer };
 import { AdminNotifyPlayerByIdentity } from "./admin_notify_player_by_identity_reducer.ts";
@@ -1701,6 +1709,8 @@ import { ContributionState } from "./contribution_state_type.ts";
 export { ContributionState };
 import { CraftingRecipeDesc } from "./crafting_recipe_desc_type.ts";
 export { CraftingRecipeDesc };
+import { CreatePlayerReportRequest } from "./create_player_report_request_type.ts";
+export { CreatePlayerReportRequest };
 import { CsvStatEntry } from "./csv_stat_entry_type.ts";
 export { CsvStatEntry };
 import { DeconstructionRecipeDesc } from "./deconstruction_recipe_desc_type.ts";
@@ -5923,9 +5933,21 @@ const REMOTE_MODULE = {
       reducerName: "admin_broadcast_msg",
       argsType: AdminBroadcastMsg.getTypeScriptAlgebraicType(),
     },
+    admin_create_chat_message: {
+      reducerName: "admin_create_chat_message",
+      argsType: AdminCreateChatMessage.getTypeScriptAlgebraicType(),
+    },
     admin_create_direct_chat_message: {
       reducerName: "admin_create_direct_chat_message",
       argsType: AdminCreateDirectChatMessage.getTypeScriptAlgebraicType(),
+    },
+    admin_create_player_report: {
+      reducerName: "admin_create_player_report",
+      argsType: AdminCreatePlayerReport.getTypeScriptAlgebraicType(),
+    },
+    admin_delete_chat_message: {
+      reducerName: "admin_delete_chat_message",
+      argsType: AdminDeleteChatMessage.getTypeScriptAlgebraicType(),
     },
     admin_delete_moderation_action_log_entry: {
       reducerName: "admin_delete_moderation_action_log_entry",
@@ -5946,6 +5968,10 @@ const REMOTE_MODULE = {
     admin_mark_user_report_as_actioned: {
       reducerName: "admin_mark_user_report_as_actioned",
       argsType: AdminMarkUserReportAsActioned.getTypeScriptAlgebraicType(),
+    },
+    admin_modify_chat_message: {
+      reducerName: "admin_modify_chat_message",
+      argsType: AdminModifyChatMessage.getTypeScriptAlgebraicType(),
     },
     admin_notify_player: {
       reducerName: "admin_notify_player",
@@ -7340,12 +7366,16 @@ export type Reducer = never
 | { name: "AddFavoriteFriend", args: AddFavoriteFriend }
 | { name: "AddFriend", args: AddFriend }
 | { name: "AdminBroadcastMsg", args: AdminBroadcastMsg }
+| { name: "AdminCreateChatMessage", args: AdminCreateChatMessage }
 | { name: "AdminCreateDirectChatMessage", args: AdminCreateDirectChatMessage }
+| { name: "AdminCreatePlayerReport", args: AdminCreatePlayerReport }
+| { name: "AdminDeleteChatMessage", args: AdminDeleteChatMessage }
 | { name: "AdminDeleteModerationActionLogEntry", args: AdminDeleteModerationActionLogEntry }
 | { name: "AdminGrantShards", args: AdminGrantShards }
 | { name: "AdminLogModerationAction", args: AdminLogModerationAction }
 | { name: "AdminMarkPremiumPurchaseProcessed", args: AdminMarkPremiumPurchaseProcessed }
 | { name: "AdminMarkUserReportAsActioned", args: AdminMarkUserReportAsActioned }
+| { name: "AdminModifyChatMessage", args: AdminModifyChatMessage }
 | { name: "AdminNotifyPlayer", args: AdminNotifyPlayer }
 | { name: "AdminNotifyPlayerByIdentity", args: AdminNotifyPlayerByIdentity }
 | { name: "AdminRecalculateEmpireUpkeeps", args: AdminRecalculateEmpireUpkeeps }
@@ -7739,6 +7769,22 @@ export class RemoteReducers {
     this.connection.offReducer("admin_broadcast_msg", callback);
   }
 
+  adminCreateChatMessage(channelId: ChatChannel, username: string, titleId: number, targetId: bigint, newMessageText: string) {
+    const __args = { channelId, username, titleId, targetId, newMessageText };
+    let __writer = new BinaryWriter(1024);
+    AdminCreateChatMessage.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("admin_create_chat_message", __argsBuffer, this.setCallReducerFlags.adminCreateChatMessageFlags);
+  }
+
+  onAdminCreateChatMessage(callback: (ctx: ReducerEventContext, channelId: ChatChannel, username: string, titleId: number, targetId: bigint, newMessageText: string) => void) {
+    this.connection.onReducer("admin_create_chat_message", callback);
+  }
+
+  removeOnAdminCreateChatMessage(callback: (ctx: ReducerEventContext, channelId: ChatChannel, username: string, titleId: number, targetId: bigint, newMessageText: string) => void) {
+    this.connection.offReducer("admin_create_chat_message", callback);
+  }
+
   adminCreateDirectChatMessage(username: string, titleId: number, receiverId: bigint, newMessageText: string) {
     const __args = { username, titleId, receiverId, newMessageText };
     let __writer = new BinaryWriter(1024);
@@ -7753,6 +7799,38 @@ export class RemoteReducers {
 
   removeOnAdminCreateDirectChatMessage(callback: (ctx: ReducerEventContext, username: string, titleId: number, receiverId: bigint, newMessageText: string) => void) {
     this.connection.offReducer("admin_create_direct_chat_message", callback);
+  }
+
+  adminCreatePlayerReport(request: CreatePlayerReportRequest) {
+    const __args = { request };
+    let __writer = new BinaryWriter(1024);
+    AdminCreatePlayerReport.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("admin_create_player_report", __argsBuffer, this.setCallReducerFlags.adminCreatePlayerReportFlags);
+  }
+
+  onAdminCreatePlayerReport(callback: (ctx: ReducerEventContext, request: CreatePlayerReportRequest) => void) {
+    this.connection.onReducer("admin_create_player_report", callback);
+  }
+
+  removeOnAdminCreatePlayerReport(callback: (ctx: ReducerEventContext, request: CreatePlayerReportRequest) => void) {
+    this.connection.offReducer("admin_create_player_report", callback);
+  }
+
+  adminDeleteChatMessage(entityId: bigint) {
+    const __args = { entityId };
+    let __writer = new BinaryWriter(1024);
+    AdminDeleteChatMessage.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("admin_delete_chat_message", __argsBuffer, this.setCallReducerFlags.adminDeleteChatMessageFlags);
+  }
+
+  onAdminDeleteChatMessage(callback: (ctx: ReducerEventContext, entityId: bigint) => void) {
+    this.connection.onReducer("admin_delete_chat_message", callback);
+  }
+
+  removeOnAdminDeleteChatMessage(callback: (ctx: ReducerEventContext, entityId: bigint) => void) {
+    this.connection.offReducer("admin_delete_chat_message", callback);
   }
 
   adminDeleteModerationActionLogEntry(entityId: bigint) {
@@ -7833,6 +7911,22 @@ export class RemoteReducers {
 
   removeOnAdminMarkUserReportAsActioned(callback: (ctx: ReducerEventContext, entityId: bigint, actioned: boolean) => void) {
     this.connection.offReducer("admin_mark_user_report_as_actioned", callback);
+  }
+
+  adminModifyChatMessage(entityId: bigint, newMessageText: string) {
+    const __args = { entityId, newMessageText };
+    let __writer = new BinaryWriter(1024);
+    AdminModifyChatMessage.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("admin_modify_chat_message", __argsBuffer, this.setCallReducerFlags.adminModifyChatMessageFlags);
+  }
+
+  onAdminModifyChatMessage(callback: (ctx: ReducerEventContext, entityId: bigint, newMessageText: string) => void) {
+    this.connection.onReducer("admin_modify_chat_message", callback);
+  }
+
+  removeOnAdminModifyChatMessage(callback: (ctx: ReducerEventContext, entityId: bigint, newMessageText: string) => void) {
+    this.connection.offReducer("admin_modify_chat_message", callback);
   }
 
   adminNotifyPlayer(username: string, title: string, message: string) {
@@ -13233,9 +13327,24 @@ export class SetReducerFlags {
     this.adminBroadcastMsgFlags = flags;
   }
 
+  adminCreateChatMessageFlags: CallReducerFlags = 'FullUpdate';
+  adminCreateChatMessage(flags: CallReducerFlags) {
+    this.adminCreateChatMessageFlags = flags;
+  }
+
   adminCreateDirectChatMessageFlags: CallReducerFlags = 'FullUpdate';
   adminCreateDirectChatMessage(flags: CallReducerFlags) {
     this.adminCreateDirectChatMessageFlags = flags;
+  }
+
+  adminCreatePlayerReportFlags: CallReducerFlags = 'FullUpdate';
+  adminCreatePlayerReport(flags: CallReducerFlags) {
+    this.adminCreatePlayerReportFlags = flags;
+  }
+
+  adminDeleteChatMessageFlags: CallReducerFlags = 'FullUpdate';
+  adminDeleteChatMessage(flags: CallReducerFlags) {
+    this.adminDeleteChatMessageFlags = flags;
   }
 
   adminDeleteModerationActionLogEntryFlags: CallReducerFlags = 'FullUpdate';
@@ -13261,6 +13370,11 @@ export class SetReducerFlags {
   adminMarkUserReportAsActionedFlags: CallReducerFlags = 'FullUpdate';
   adminMarkUserReportAsActioned(flags: CallReducerFlags) {
     this.adminMarkUserReportAsActionedFlags = flags;
+  }
+
+  adminModifyChatMessageFlags: CallReducerFlags = 'FullUpdate';
+  adminModifyChatMessage(flags: CallReducerFlags) {
+    this.adminModifyChatMessageFlags = flags;
   }
 
   adminNotifyPlayerFlags: CallReducerFlags = 'FullUpdate';
