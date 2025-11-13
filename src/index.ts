@@ -877,6 +877,8 @@ import { MigrateCharacterStats } from "./migrate_character_stats_reducer.ts";
 export { MigrateCharacterStats };
 import { MigrateClaimTech } from "./migrate_claim_tech_reducer.ts";
 export { MigrateClaimTech };
+import { MigrationSetAchievementParams } from "./migration_set_achievement_params_reducer.ts";
+export { MigrationSetAchievementParams };
 import { NpcAiAgentLoop } from "./npc_ai_agent_loop_reducer.ts";
 export { NpcAiAgentLoop };
 import { OnDurabilityZero } from "./on_durability_zero_reducer.ts";
@@ -1697,6 +1699,8 @@ import { LostItemsStateTableHandle } from "./lost_items_state_table.ts";
 export { LostItemsStateTableHandle };
 import { MarketplaceStateTableHandle } from "./marketplace_state_table.ts";
 export { MarketplaceStateTableHandle };
+import { MigrationAchievementsParamsTableHandle } from "./migration_achievements_params_table.ts";
+export { MigrationAchievementsParamsTableHandle };
 import { MobileEntityStateTableHandle } from "./mobile_entity_state_table.ts";
 export { MobileEntityStateTableHandle };
 import { ModerationActionLogEntryTableHandle } from "./moderation_action_log_entry_table.ts";
@@ -2783,6 +2787,8 @@ import { MessageContents } from "./message_contents_type.ts";
 export { MessageContents };
 import { MessageContentsV2 } from "./message_contents_v_2_type.ts";
 export { MessageContentsV2 };
+import { MigrationAchievementsParams } from "./migration_achievements_params_type.ts";
+export { MigrationAchievementsParams };
 import { MobileEntityState } from "./mobile_entity_state_type.ts";
 export { MobileEntityState };
 import { ModerationActionLogEntry } from "./moderation_action_log_entry_type.ts";
@@ -5196,6 +5202,15 @@ export const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "buildingEntityId",
         colType: MarketplaceState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    migration_achievements_params: {
+      tableName: "migration_achievements_params",
+      rowType: MigrationAchievementsParams.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: MigrationAchievementsParams.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     mobile_entity_state: {
@@ -8940,6 +8955,10 @@ export const REMOTE_MODULE = {
       reducerName: "migrate_claim_tech",
       argsType: MigrateClaimTech.getTypeScriptAlgebraicType(),
     },
+    migration_set_achievement_params: {
+      reducerName: "migration_set_achievement_params",
+      argsType: MigrationSetAchievementParams.getTypeScriptAlgebraicType(),
+    },
     npc_ai_agent_loop: {
       reducerName: "npc_ai_agent_loop",
       argsType: NpcAiAgentLoop.getTypeScriptAlgebraicType(),
@@ -10264,6 +10283,7 @@ export type Reducer = never
 | { name: "LootChestSpawn", args: LootChestSpawn }
 | { name: "MigrateCharacterStats", args: MigrateCharacterStats }
 | { name: "MigrateClaimTech", args: MigrateClaimTech }
+| { name: "MigrationSetAchievementParams", args: MigrationSetAchievementParams }
 | { name: "NpcAiAgentLoop", args: NpcAiAgentLoop }
 | { name: "OnDurabilityZero", args: OnDurabilityZero }
 | { name: "OnInterModuleMessageProcessed", args: OnInterModuleMessageProcessed }
@@ -17111,6 +17131,22 @@ export class RemoteReducers {
     this.connection.offReducer("migrate_claim_tech", callback);
   }
 
+  migrationSetAchievementParams(allowDestructive: boolean, grantIfAlreadyOwned: boolean) {
+    const __args = { allowDestructive, grantIfAlreadyOwned };
+    let __writer = new BinaryWriter(1024);
+    MigrationSetAchievementParams.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("migration_set_achievement_params", __argsBuffer, this.setCallReducerFlags.migrationSetAchievementParamsFlags);
+  }
+
+  onMigrationSetAchievementParams(callback: (ctx: ReducerEventContext, allowDestructive: boolean, grantIfAlreadyOwned: boolean) => void) {
+    this.connection.onReducer("migration_set_achievement_params", callback);
+  }
+
+  removeOnMigrationSetAchievementParams(callback: (ctx: ReducerEventContext, allowDestructive: boolean, grantIfAlreadyOwned: boolean) => void) {
+    this.connection.offReducer("migration_set_achievement_params", callback);
+  }
+
   npcAiAgentLoop(timer: NpcAiLoopTimer) {
     const __args = { timer };
     let __writer = new BinaryWriter(1024);
@@ -22658,6 +22694,11 @@ export class SetReducerFlags {
     this.migrateClaimTechFlags = flags;
   }
 
+  migrationSetAchievementParamsFlags: CallReducerFlags = 'FullUpdate';
+  migrationSetAchievementParams(flags: CallReducerFlags) {
+    this.migrationSetAchievementParamsFlags = flags;
+  }
+
   npcAiAgentLoopFlags: CallReducerFlags = 'FullUpdate';
   npcAiAgentLoop(flags: CallReducerFlags) {
     this.npcAiAgentLoopFlags = flags;
@@ -24515,6 +24556,10 @@ export class RemoteTables {
 
   get marketplaceState(): MarketplaceStateTableHandle {
     return new MarketplaceStateTableHandle(this.connection.clientCache.getOrCreateTable<MarketplaceState>(REMOTE_MODULE.tables.marketplace_state));
+  }
+
+  get migrationAchievementsParams(): MigrationAchievementsParamsTableHandle {
+    return new MigrationAchievementsParamsTableHandle(this.connection.clientCache.getOrCreateTable<MigrationAchievementsParams>(REMOTE_MODULE.tables.migration_achievements_params));
   }
 
   get mobileEntityState(): MobileEntityStateTableHandle {
