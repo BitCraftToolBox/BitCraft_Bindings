@@ -31,5 +31,6 @@ namespace BitCraftRegion.Types
         Crown,
         Pet,
         ClothesCape,
+        PremiumItem,
     }
 }
