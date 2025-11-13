@@ -31,5 +31,6 @@ namespace BitCraftGlobal.Types
         Crown,
         Pet,
         ClothesCape,
+        PremiumItem,
     }
 }
