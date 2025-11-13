@@ -24,12 +24,16 @@ pub mod admin_broadcast_message_msg_type;
 pub mod admin_broadcast_msg_reducer;
 pub mod admin_broadcast_table;
 pub mod admin_broadcast_type;
+pub mod admin_create_chat_message_reducer;
 pub mod admin_create_direct_chat_message_reducer;
+pub mod admin_create_player_report_reducer;
+pub mod admin_delete_chat_message_reducer;
 pub mod admin_delete_moderation_action_log_entry_reducer;
 pub mod admin_grant_shards_reducer;
 pub mod admin_log_moderation_action_reducer;
 pub mod admin_mark_premium_purchase_processed_reducer;
 pub mod admin_mark_user_report_as_actioned_reducer;
+pub mod admin_modify_chat_message_reducer;
 pub mod admin_notify_player_by_identity_reducer;
 pub mod admin_notify_player_reducer;
 pub mod admin_recalculate_empire_upkeeps_reducer;
@@ -201,6 +205,7 @@ pub mod contribution_state_type;
 pub mod crafting_recipe_desc_table;
 pub mod crafting_recipe_desc_type;
 pub mod create_chat_channel_reducer;
+pub mod create_player_report_request_type;
 pub mod csv_stat_entry_type;
 pub mod current_version_reducer;
 pub mod deconstruction_recipe_desc_table;
@@ -1236,9 +1241,21 @@ pub use admin_broadcast_msg_reducer::{
 };
 pub use admin_broadcast_table::*;
 pub use admin_broadcast_type::AdminBroadcast;
+pub use admin_create_chat_message_reducer::{
+    admin_create_chat_message, set_flags_for_admin_create_chat_message,
+    AdminCreateChatMessageCallbackId,
+};
 pub use admin_create_direct_chat_message_reducer::{
     admin_create_direct_chat_message, set_flags_for_admin_create_direct_chat_message,
     AdminCreateDirectChatMessageCallbackId,
+};
+pub use admin_create_player_report_reducer::{
+    admin_create_player_report, set_flags_for_admin_create_player_report,
+    AdminCreatePlayerReportCallbackId,
+};
+pub use admin_delete_chat_message_reducer::{
+    admin_delete_chat_message, set_flags_for_admin_delete_chat_message,
+    AdminDeleteChatMessageCallbackId,
 };
 pub use admin_delete_moderation_action_log_entry_reducer::{
     admin_delete_moderation_action_log_entry,
@@ -1259,6 +1276,10 @@ pub use admin_mark_premium_purchase_processed_reducer::{
 pub use admin_mark_user_report_as_actioned_reducer::{
     admin_mark_user_report_as_actioned, set_flags_for_admin_mark_user_report_as_actioned,
     AdminMarkUserReportAsActionedCallbackId,
+};
+pub use admin_modify_chat_message_reducer::{
+    admin_modify_chat_message, set_flags_for_admin_modify_chat_message,
+    AdminModifyChatMessageCallbackId,
 };
 pub use admin_notify_player_by_identity_reducer::{
     admin_notify_player_by_identity, set_flags_for_admin_notify_player_by_identity,
@@ -1496,6 +1517,7 @@ pub use crafting_recipe_desc_type::CraftingRecipeDesc;
 pub use create_chat_channel_reducer::{
     create_chat_channel, set_flags_for_create_chat_channel, CreateChatChannelCallbackId,
 };
+pub use create_player_report_request_type::CreatePlayerReportRequest;
 pub use csv_stat_entry_type::CsvStatEntry;
 pub use current_version_reducer::{
     current_version, set_flags_for_current_version, CurrentVersionCallbackId,
@@ -3308,11 +3330,24 @@ pub enum Reducer {
         title: String,
         message: String,
     },
+    AdminCreateChatMessage {
+        channel_id: ChatChannel,
+        username: String,
+        title_id: i32,
+        target_id: u64,
+        new_message_text: String,
+    },
     AdminCreateDirectChatMessage {
         username: String,
         title_id: i32,
         receiver_id: u64,
         new_message_text: String,
+    },
+    AdminCreatePlayerReport {
+        request: CreatePlayerReportRequest,
+    },
+    AdminDeleteChatMessage {
+        entity_id: u64,
     },
     AdminDeleteModerationActionLogEntry {
         entity_id: u64,
@@ -3336,6 +3371,10 @@ pub enum Reducer {
     AdminMarkUserReportAsActioned {
         entity_id: u64,
         actioned: bool,
+    },
+    AdminModifyChatMessage {
+        entity_id: u64,
+        new_message_text: String,
     },
     AdminNotifyPlayer {
         username: String,
@@ -4386,7 +4425,10 @@ impl __sdk::Reducer for Reducer {
             Reducer::AddFavoriteFriend { .. } => "add_favorite_friend",
             Reducer::AddFriend { .. } => "add_friend",
             Reducer::AdminBroadcastMsg { .. } => "admin_broadcast_msg",
+            Reducer::AdminCreateChatMessage { .. } => "admin_create_chat_message",
             Reducer::AdminCreateDirectChatMessage { .. } => "admin_create_direct_chat_message",
+            Reducer::AdminCreatePlayerReport { .. } => "admin_create_player_report",
+            Reducer::AdminDeleteChatMessage { .. } => "admin_delete_chat_message",
             Reducer::AdminDeleteModerationActionLogEntry { .. } => {
                 "admin_delete_moderation_action_log_entry"
             }
@@ -4396,6 +4438,7 @@ impl __sdk::Reducer for Reducer {
                 "admin_mark_premium_purchase_processed"
             }
             Reducer::AdminMarkUserReportAsActioned { .. } => "admin_mark_user_report_as_actioned",
+            Reducer::AdminModifyChatMessage { .. } => "admin_modify_chat_message",
             Reducer::AdminNotifyPlayer { .. } => "admin_notify_player",
             Reducer::AdminNotifyPlayerByIdentity { .. } => "admin_notify_player_by_identity",
             Reducer::AdminRecalculateEmpireUpkeeps => "admin_recalculate_empire_upkeeps",
@@ -4770,12 +4813,16 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
                         "add_favorite_friend" => Ok(__sdk::parse_reducer_args::<add_favorite_friend_reducer::AddFavoriteFriendArgs>("add_favorite_friend", &value.args)?.into()),
             "add_friend" => Ok(__sdk::parse_reducer_args::<add_friend_reducer::AddFriendArgs>("add_friend", &value.args)?.into()),
             "admin_broadcast_msg" => Ok(__sdk::parse_reducer_args::<admin_broadcast_msg_reducer::AdminBroadcastMsgArgs>("admin_broadcast_msg", &value.args)?.into()),
+            "admin_create_chat_message" => Ok(__sdk::parse_reducer_args::<admin_create_chat_message_reducer::AdminCreateChatMessageArgs>("admin_create_chat_message", &value.args)?.into()),
             "admin_create_direct_chat_message" => Ok(__sdk::parse_reducer_args::<admin_create_direct_chat_message_reducer::AdminCreateDirectChatMessageArgs>("admin_create_direct_chat_message", &value.args)?.into()),
+            "admin_create_player_report" => Ok(__sdk::parse_reducer_args::<admin_create_player_report_reducer::AdminCreatePlayerReportArgs>("admin_create_player_report", &value.args)?.into()),
+            "admin_delete_chat_message" => Ok(__sdk::parse_reducer_args::<admin_delete_chat_message_reducer::AdminDeleteChatMessageArgs>("admin_delete_chat_message", &value.args)?.into()),
             "admin_delete_moderation_action_log_entry" => Ok(__sdk::parse_reducer_args::<admin_delete_moderation_action_log_entry_reducer::AdminDeleteModerationActionLogEntryArgs>("admin_delete_moderation_action_log_entry", &value.args)?.into()),
             "admin_grant_shards" => Ok(__sdk::parse_reducer_args::<admin_grant_shards_reducer::AdminGrantShardsArgs>("admin_grant_shards", &value.args)?.into()),
             "admin_log_moderation_action" => Ok(__sdk::parse_reducer_args::<admin_log_moderation_action_reducer::AdminLogModerationActionArgs>("admin_log_moderation_action", &value.args)?.into()),
             "admin_mark_premium_purchase_processed" => Ok(__sdk::parse_reducer_args::<admin_mark_premium_purchase_processed_reducer::AdminMarkPremiumPurchaseProcessedArgs>("admin_mark_premium_purchase_processed", &value.args)?.into()),
             "admin_mark_user_report_as_actioned" => Ok(__sdk::parse_reducer_args::<admin_mark_user_report_as_actioned_reducer::AdminMarkUserReportAsActionedArgs>("admin_mark_user_report_as_actioned", &value.args)?.into()),
+            "admin_modify_chat_message" => Ok(__sdk::parse_reducer_args::<admin_modify_chat_message_reducer::AdminModifyChatMessageArgs>("admin_modify_chat_message", &value.args)?.into()),
             "admin_notify_player" => Ok(__sdk::parse_reducer_args::<admin_notify_player_reducer::AdminNotifyPlayerArgs>("admin_notify_player", &value.args)?.into()),
             "admin_notify_player_by_identity" => Ok(__sdk::parse_reducer_args::<admin_notify_player_by_identity_reducer::AdminNotifyPlayerByIdentityArgs>("admin_notify_player_by_identity", &value.args)?.into()),
             "admin_recalculate_empire_upkeeps" => Ok(__sdk::parse_reducer_args::<admin_recalculate_empire_upkeeps_reducer::AdminRecalculateEmpireUpkeepsArgs>("admin_recalculate_empire_upkeeps", &value.args)?.into()),
