@@ -73,6 +73,7 @@ pub mod admin_reset_onboarding_completely_reducer;
 pub mod admin_resource_force_regen_reducer;
 pub mod admin_resources_delete_very_slow_reducer;
 pub mod admin_resources_log_count_reducer;
+pub mod admin_restore_all_buildings_health_reducer;
 pub mod admin_restore_all_collapsed_ruins_reducer;
 pub mod admin_restore_player_state_reducer;
 pub mod admin_restore_player_state_scheduled_reducer;
@@ -1951,6 +1952,10 @@ pub use admin_resources_delete_very_slow_reducer::{
 pub use admin_resources_log_count_reducer::{
     admin_resources_log_count, set_flags_for_admin_resources_log_count,
     AdminResourcesLogCountCallbackId,
+};
+pub use admin_restore_all_buildings_health_reducer::{
+    admin_restore_all_buildings_health, set_flags_for_admin_restore_all_buildings_health,
+    AdminRestoreAllBuildingsHealthCallbackId,
 };
 pub use admin_restore_all_collapsed_ruins_reducer::{
     admin_restore_all_collapsed_ruins, set_flags_for_admin_restore_all_collapsed_ruins,
@@ -5163,6 +5168,7 @@ pub enum Reducer {
     AdminResourcesLogCount {
         threshold: f32,
     },
+    AdminRestoreAllBuildingsHealth,
     AdminRestoreAllCollapsedRuins,
     AdminRestorePlayerState {
         username: String,
@@ -7018,6 +7024,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::AdminResourceForceRegen { .. } => "admin_resource_force_regen",
             Reducer::AdminResourcesDeleteVerySlow { .. } => "admin_resources_delete_very_slow",
             Reducer::AdminResourcesLogCount { .. } => "admin_resources_log_count",
+            Reducer::AdminRestoreAllBuildingsHealth => "admin_restore_all_buildings_health",
             Reducer::AdminRestoreAllCollapsedRuins => "admin_restore_all_collapsed_ruins",
             Reducer::AdminRestorePlayerState { .. } => "admin_restore_player_state",
             Reducer::AdminRestorePlayerStateScheduled { .. } => {
@@ -7714,6 +7721,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "admin_resource_force_regen" => Ok(__sdk::parse_reducer_args::<admin_resource_force_regen_reducer::AdminResourceForceRegenArgs>("admin_resource_force_regen", &value.args)?.into()),
             "admin_resources_delete_very_slow" => Ok(__sdk::parse_reducer_args::<admin_resources_delete_very_slow_reducer::AdminResourcesDeleteVerySlowArgs>("admin_resources_delete_very_slow", &value.args)?.into()),
             "admin_resources_log_count" => Ok(__sdk::parse_reducer_args::<admin_resources_log_count_reducer::AdminResourcesLogCountArgs>("admin_resources_log_count", &value.args)?.into()),
+            "admin_restore_all_buildings_health" => Ok(__sdk::parse_reducer_args::<admin_restore_all_buildings_health_reducer::AdminRestoreAllBuildingsHealthArgs>("admin_restore_all_buildings_health", &value.args)?.into()),
             "admin_restore_all_collapsed_ruins" => Ok(__sdk::parse_reducer_args::<admin_restore_all_collapsed_ruins_reducer::AdminRestoreAllCollapsedRuinsArgs>("admin_restore_all_collapsed_ruins", &value.args)?.into()),
             "admin_restore_player_state" => Ok(__sdk::parse_reducer_args::<admin_restore_player_state_reducer::AdminRestorePlayerStateArgs>("admin_restore_player_state", &value.args)?.into()),
             "admin_restore_player_state_scheduled" => Ok(__sdk::parse_reducer_args::<admin_restore_player_state_scheduled_reducer::AdminRestorePlayerStateScheduledArgs>("admin_restore_player_state_scheduled", &value.args)?.into()),
