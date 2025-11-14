@@ -133,6 +133,8 @@ import { AdminResourcesDeleteVerySlow } from "./admin_resources_delete_very_slow
 export { AdminResourcesDeleteVerySlow };
 import { AdminResourcesLogCount } from "./admin_resources_log_count_reducer.ts";
 export { AdminResourcesLogCount };
+import { AdminRestoreAllBuildingsHealth } from "./admin_restore_all_buildings_health_reducer.ts";
+export { AdminRestoreAllBuildingsHealth };
 import { AdminRestoreAllCollapsedRuins } from "./admin_restore_all_collapsed_ruins_reducer.ts";
 export { AdminRestoreAllCollapsedRuins };
 import { AdminRestorePlayerState } from "./admin_restore_player_state_reducer.ts";
@@ -7467,6 +7469,10 @@ export const REMOTE_MODULE = {
       reducerName: "admin_resources_log_count",
       argsType: AdminResourcesLogCount.getTypeScriptAlgebraicType(),
     },
+    admin_restore_all_buildings_health: {
+      reducerName: "admin_restore_all_buildings_health",
+      argsType: AdminRestoreAllBuildingsHealth.getTypeScriptAlgebraicType(),
+    },
     admin_restore_all_collapsed_ruins: {
       reducerName: "admin_restore_all_collapsed_ruins",
       argsType: AdminRestoreAllCollapsedRuins.getTypeScriptAlgebraicType(),
@@ -9911,6 +9917,7 @@ export type Reducer = never
 | { name: "AdminResourceForceRegen", args: AdminResourceForceRegen }
 | { name: "AdminResourcesDeleteVerySlow", args: AdminResourcesDeleteVerySlow }
 | { name: "AdminResourcesLogCount", args: AdminResourcesLogCount }
+| { name: "AdminRestoreAllBuildingsHealth", args: AdminRestoreAllBuildingsHealth }
 | { name: "AdminRestoreAllCollapsedRuins", args: AdminRestoreAllCollapsedRuins }
 | { name: "AdminRestorePlayerState", args: AdminRestorePlayerState }
 | { name: "AdminRestorePlayerStateScheduled", args: AdminRestorePlayerStateScheduled }
@@ -11269,6 +11276,18 @@ export class RemoteReducers {
 
   removeOnAdminResourcesLogCount(callback: (ctx: ReducerEventContext, threshold: number) => void) {
     this.connection.offReducer("admin_resources_log_count", callback);
+  }
+
+  adminRestoreAllBuildingsHealth() {
+    this.connection.callReducer("admin_restore_all_buildings_health", new Uint8Array(0), this.setCallReducerFlags.adminRestoreAllBuildingsHealthFlags);
+  }
+
+  onAdminRestoreAllBuildingsHealth(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.onReducer("admin_restore_all_buildings_health", callback);
+  }
+
+  removeOnAdminRestoreAllBuildingsHealth(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.offReducer("admin_restore_all_buildings_health", callback);
   }
 
   adminRestoreAllCollapsedRuins() {
@@ -20842,6 +20861,11 @@ export class SetReducerFlags {
   adminResourcesLogCountFlags: CallReducerFlags = 'FullUpdate';
   adminResourcesLogCount(flags: CallReducerFlags) {
     this.adminResourcesLogCountFlags = flags;
+  }
+
+  adminRestoreAllBuildingsHealthFlags: CallReducerFlags = 'FullUpdate';
+  adminRestoreAllBuildingsHealth(flags: CallReducerFlags) {
+    this.adminRestoreAllBuildingsHealthFlags = flags;
   }
 
   adminRestoreAllCollapsedRuinsFlags: CallReducerFlags = 'FullUpdate';
