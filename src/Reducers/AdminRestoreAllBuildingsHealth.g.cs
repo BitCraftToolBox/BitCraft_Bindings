@@ -14,17 +14,17 @@ namespace BitCraftRegion.Types
 {
     public sealed partial class RemoteReducers : RemoteBase
     {
-        public delegate void ClearStagedStaticDataHandler(ReducerEventContext ctx);
-        public event ClearStagedStaticDataHandler? OnClearStagedStaticData;
+        public delegate void AdminRestoreAllBuildingsHealthHandler(ReducerEventContext ctx);
+        public event AdminRestoreAllBuildingsHealthHandler? OnAdminRestoreAllBuildingsHealth;
 
-        public void ClearStagedStaticData()
+        public void AdminRestoreAllBuildingsHealth()
         {
-            conn.InternalCallReducer(new Reducer.ClearStagedStaticData(), this.SetCallReducerFlags.ClearStagedStaticDataFlags);
+            conn.InternalCallReducer(new Reducer.AdminRestoreAllBuildingsHealth(), this.SetCallReducerFlags.AdminRestoreAllBuildingsHealthFlags);
         }
 
-        public bool InvokeClearStagedStaticData(ReducerEventContext ctx, Reducer.ClearStagedStaticData args)
+        public bool InvokeAdminRestoreAllBuildingsHealth(ReducerEventContext ctx, Reducer.AdminRestoreAllBuildingsHealth args)
         {
-            if (OnClearStagedStaticData == null)
+            if (OnAdminRestoreAllBuildingsHealth == null)
             {
                 if (InternalOnUnhandledReducerError != null)
                 {
@@ -36,7 +36,7 @@ namespace BitCraftRegion.Types
                 }
                 return false;
             }
-            OnClearStagedStaticData(
+            OnAdminRestoreAllBuildingsHealth(
                 ctx
             );
             return true;
@@ -47,15 +47,15 @@ namespace BitCraftRegion.Types
     {
         [SpacetimeDB.Type]
         [DataContract]
-        public sealed partial class ClearStagedStaticData : Reducer, IReducerArgs
+        public sealed partial class AdminRestoreAllBuildingsHealth : Reducer, IReducerArgs
         {
-            string IReducerArgs.ReducerName => "clear_staged_static_data";
+            string IReducerArgs.ReducerName => "admin_restore_all_buildings_health";
         }
     }
 
     public sealed partial class SetReducerFlags
     {
-        internal CallReducerFlags ClearStagedStaticDataFlags;
-        public void ClearStagedStaticData(CallReducerFlags flags) => ClearStagedStaticDataFlags = flags;
+        internal CallReducerFlags AdminRestoreAllBuildingsHealthFlags;
+        public void AdminRestoreAllBuildingsHealth(CallReducerFlags flags) => AdminRestoreAllBuildingsHealthFlags = flags;
     }
 }
