@@ -6,10 +6,17 @@
 use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 pub mod a_i_debug_state_table;
+pub mod ability_remove_reducer;
+pub mod ability_set_reducer;
+pub mod ability_state_table;
+pub mod ability_state_type;
+pub mod ability_type_type;
 pub mod achievement_claim_reducer;
 pub mod achievement_desc_table;
 pub mod achievement_desc_type;
 pub mod acquire_knowledge_from_entities_reducer;
+pub mod action_bar_state_table;
+pub mod action_bar_state_type;
 pub mod action_cooldown_type;
 pub mod action_log_data_space_allocator_type;
 pub mod action_log_data_type;
@@ -58,6 +65,7 @@ pub mod admin_find_items_in_inventories_reducer;
 pub mod admin_find_items_in_trades_reducer;
 pub mod admin_grant_all_claim_supplies_reducer;
 pub mod admin_grant_collectibles_reducer;
+pub mod admin_migrate_action_state_reducer;
 pub mod admin_modify_chat_message_reducer;
 pub mod admin_patch_housing_costs_reducer;
 pub mod admin_rename_building_coord_reducer;
@@ -402,6 +410,7 @@ pub mod deployable_move_off_claim_reducer;
 pub mod deployable_move_reducer;
 pub mod deployable_state_table;
 pub mod deployable_state_type;
+pub mod deployable_store_from_collectible_id_reducer;
 pub mod deployable_store_reducer;
 pub mod deployable_store_request_type;
 pub mod deployable_store_start_reducer;
@@ -802,6 +811,8 @@ pub mod inter_module_message_table;
 pub mod inter_module_message_type;
 pub mod inter_module_message_v_2_table;
 pub mod inter_module_message_v_2_type;
+pub mod inter_module_message_v_3_table;
+pub mod inter_module_message_v_3_type;
 pub mod inter_module_response_message_counter_table;
 pub mod inter_module_response_message_counter_type;
 pub mod inter_module_table_updates_type;
@@ -931,8 +942,10 @@ pub mod marketplace_state_table;
 pub mod marketplace_state_type;
 pub mod message_contents_type;
 pub mod message_contents_v_2_type;
+pub mod message_contents_v_3_type;
 pub mod migrate_character_stats_reducer;
 pub mod migrate_claim_tech_reducer;
+pub mod migrate_player_settings_reducer;
 pub mod migration_achievements_params_table;
 pub mod migration_achievements_params_type;
 pub mod migration_set_achievement_params_reducer;
@@ -1175,6 +1188,8 @@ pub mod player_set_name_outcome_event_type;
 pub mod player_settings_state_table;
 pub mod player_settings_state_type;
 pub mod player_settings_state_update_reducer;
+pub mod player_settings_state_v_2_table;
+pub mod player_settings_state_v_2_type;
 pub mod player_sign_in_request_type;
 pub mod player_skip_queue_msg_type;
 pub mod player_sleep_request_type;
@@ -1282,6 +1297,7 @@ pub mod rent_terminate_reducer;
 pub mod rent_terminate_request_type;
 pub mod rent_unlist_reducer;
 pub mod rent_unlist_request_type;
+pub mod replace_identity_msg_type;
 pub mod report_chat_message_reducer;
 pub mod report_entity_message_type;
 pub mod report_entity_reducer;
@@ -1647,6 +1663,7 @@ pub mod transfer_player_delayed_reducer;
 pub mod transfer_player_housing_msg_type;
 pub mod transfer_player_msg_type;
 pub mod transfer_player_msg_v_2_type;
+pub mod transfer_player_msg_v_3_type;
 pub mod transfer_player_timer_table;
 pub mod transfer_player_timer_type;
 pub mod traveler_task_agent_loop_reducer;
@@ -1733,6 +1750,13 @@ pub mod world_region_state_table;
 pub mod world_region_state_type;
 
 pub use a_i_debug_state_table::*;
+pub use ability_remove_reducer::{
+    ability_remove, set_flags_for_ability_remove, AbilityRemoveCallbackId,
+};
+pub use ability_set_reducer::{ability_set, set_flags_for_ability_set, AbilitySetCallbackId};
+pub use ability_state_table::*;
+pub use ability_state_type::AbilityState;
+pub use ability_type_type::AbilityType;
 pub use achievement_claim_reducer::{
     achievement_claim, set_flags_for_achievement_claim, AchievementClaimCallbackId,
 };
@@ -1742,6 +1766,8 @@ pub use acquire_knowledge_from_entities_reducer::{
     acquire_knowledge_from_entities, set_flags_for_acquire_knowledge_from_entities,
     AcquireKnowledgeFromEntitiesCallbackId,
 };
+pub use action_bar_state_table::*;
+pub use action_bar_state_type::ActionBarState;
 pub use action_cooldown_type::ActionCooldown;
 pub use action_log_data_space_allocator_type::ActionLogDataSpaceAllocator;
 pub use action_log_data_type::ActionLogData;
@@ -1895,6 +1921,10 @@ pub use admin_grant_all_claim_supplies_reducer::{
 pub use admin_grant_collectibles_reducer::{
     admin_grant_collectibles, set_flags_for_admin_grant_collectibles,
     AdminGrantCollectiblesCallbackId,
+};
+pub use admin_migrate_action_state_reducer::{
+    admin_migrate_action_state, set_flags_for_admin_migrate_action_state,
+    AdminMigrateActionStateCallbackId,
 };
 pub use admin_modify_chat_message_reducer::{
     admin_modify_chat_message, set_flags_for_admin_modify_chat_message,
@@ -2590,6 +2620,10 @@ pub use deployable_move_reducer::{
 };
 pub use deployable_state_table::*;
 pub use deployable_state_type::DeployableState;
+pub use deployable_store_from_collectible_id_reducer::{
+    deployable_store_from_collectible_id, set_flags_for_deployable_store_from_collectible_id,
+    DeployableStoreFromCollectibleIdCallbackId,
+};
 pub use deployable_store_reducer::{
     deployable_store, set_flags_for_deployable_store, DeployableStoreCallbackId,
 };
@@ -3532,6 +3566,8 @@ pub use inter_module_message_table::*;
 pub use inter_module_message_type::InterModuleMessage;
 pub use inter_module_message_v_2_table::*;
 pub use inter_module_message_v_2_type::InterModuleMessageV2;
+pub use inter_module_message_v_3_table::*;
+pub use inter_module_message_v_3_type::InterModuleMessageV3;
 pub use inter_module_response_message_counter_table::*;
 pub use inter_module_response_message_counter_type::InterModuleResponseMessageCounter;
 pub use inter_module_table_updates_type::InterModuleTableUpdates;
@@ -3691,11 +3727,15 @@ pub use marketplace_state_table::*;
 pub use marketplace_state_type::MarketplaceState;
 pub use message_contents_type::MessageContents;
 pub use message_contents_v_2_type::MessageContentsV2;
+pub use message_contents_v_3_type::MessageContentsV3;
 pub use migrate_character_stats_reducer::{
     migrate_character_stats, set_flags_for_migrate_character_stats, MigrateCharacterStatsCallbackId,
 };
 pub use migrate_claim_tech_reducer::{
     migrate_claim_tech, set_flags_for_migrate_claim_tech, MigrateClaimTechCallbackId,
+};
+pub use migrate_player_settings_reducer::{
+    migrate_player_settings, set_flags_for_migrate_player_settings, MigratePlayerSettingsCallbackId,
 };
 pub use migration_achievements_params_table::*;
 pub use migration_achievements_params_type::MigrationAchievementsParams;
@@ -4058,6 +4098,8 @@ pub use player_settings_state_update_reducer::{
     player_settings_state_update, set_flags_for_player_settings_state_update,
     PlayerSettingsStateUpdateCallbackId,
 };
+pub use player_settings_state_v_2_table::*;
+pub use player_settings_state_v_2_type::PlayerSettingsStateV2;
 pub use player_sign_in_request_type::PlayerSignInRequest;
 pub use player_skip_queue_msg_type::PlayerSkipQueueMsg;
 pub use player_sleep_request_type::PlayerSleepRequest;
@@ -4225,6 +4267,7 @@ pub use rent_terminate_reducer::{
 pub use rent_terminate_request_type::RentTerminateRequest;
 pub use rent_unlist_reducer::{rent_unlist, set_flags_for_rent_unlist, RentUnlistCallbackId};
 pub use rent_unlist_request_type::RentUnlistRequest;
+pub use replace_identity_msg_type::ReplaceIdentityMsg;
 pub use report_chat_message_reducer::{
     report_chat_message, set_flags_for_report_chat_message, ReportChatMessageCallbackId,
 };
@@ -4899,6 +4942,7 @@ pub use transfer_player_delayed_reducer::{
 pub use transfer_player_housing_msg_type::TransferPlayerHousingMsg;
 pub use transfer_player_msg_type::TransferPlayerMsg;
 pub use transfer_player_msg_v_2_type::TransferPlayerMsgV2;
+pub use transfer_player_msg_v_3_type::TransferPlayerMsgV3;
 pub use transfer_player_timer_table::*;
 pub use transfer_player_timer_type::TransferPlayerTimer;
 pub use traveler_task_agent_loop_reducer::{
@@ -5004,6 +5048,15 @@ pub use world_region_state_type::WorldRegionState;
 /// to indicate which reducer caused the event.
 
 pub enum Reducer {
+    AbilityRemove {
+        action_bar_index: u8,
+        local_ability_index: u8,
+    },
+    AbilitySet {
+        action_bar_index: u8,
+        local_ability_index: u8,
+        ability: AbilityType,
+    },
     AchievementClaim {
         request: PlayerAchievementClaimRequest,
     },
@@ -5117,6 +5170,7 @@ pub enum Reducer {
         identity: String,
         collectibles: Vec<i32>,
     },
+    AdminMigrateActionState,
     AdminModifyChatMessage {
         entity_id: u64,
         new_message_text: String,
@@ -5581,6 +5635,9 @@ pub enum Reducer {
     },
     DeployableStore {
         request: DeployableStoreRequest,
+    },
+    DeployableStoreFromCollectibleId {
+        collectible_id: i32,
     },
     DeployableStoreStart {
         request: DeployableStoreRequest,
@@ -6294,6 +6351,7 @@ pub enum Reducer {
     },
     MigrateCharacterStats,
     MigrateClaimTech,
+    MigratePlayerSettings,
     MigrationSetAchievementParams {
         allow_destructive: bool,
         grant_if_already_owned: bool,
@@ -6449,7 +6507,7 @@ pub enum Reducer {
         timer: PlayerSetNameOutcomeEvent,
     },
     PlayerSettingsStateUpdate {
-        player_settings_state: PlayerSettingsState,
+        player_settings_state: PlayerSettingsStateV2,
     },
     PlayerTeleportHome {
         request: PlayerTeleportHomeRequest,
@@ -6480,7 +6538,7 @@ pub enum Reducer {
     },
     ProcessInterModuleMessage {
         sender: u8,
-        message: InterModuleMessageV2,
+        message: InterModuleMessageV3,
     },
     ProjectSiteAddMaterials {
         request: PlayerProjectSiteAddMaterialsRequest,
@@ -6952,6 +7010,8 @@ impl __sdk::InModule for Reducer {
 impl __sdk::Reducer for Reducer {
     fn reducer_name(&self) -> &'static str {
         match self {
+            Reducer::AbilityRemove { .. } => "ability_remove",
+            Reducer::AbilitySet { .. } => "ability_set",
             Reducer::AchievementClaim { .. } => "achievement_claim",
             Reducer::AcquireKnowledgeFromEntities { .. } => "acquire_knowledge_from_entities",
             Reducer::AdminAddSpecificBuildingTypeStates => {
@@ -7009,6 +7069,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::AdminFindItemsInTrades { .. } => "admin_find_items_in_trades",
             Reducer::AdminGrantAllClaimSupplies { .. } => "admin_grant_all_claim_supplies",
             Reducer::AdminGrantCollectibles { .. } => "admin_grant_collectibles",
+            Reducer::AdminMigrateActionState => "admin_migrate_action_state",
             Reducer::AdminModifyChatMessage { .. } => "admin_modify_chat_message",
             Reducer::AdminPatchHousingCosts => "admin_patch_housing_costs",
             Reducer::AdminRenameBuilding { .. } => "admin_rename_building",
@@ -7170,6 +7231,9 @@ impl __sdk::Reducer for Reducer {
             Reducer::DeployableMoveOffBounds { .. } => "deployable_move_off_bounds",
             Reducer::DeployableMoveOffClaim { .. } => "deployable_move_off_claim",
             Reducer::DeployableStore { .. } => "deployable_store",
+            Reducer::DeployableStoreFromCollectibleId { .. } => {
+                "deployable_store_from_collectible_id"
+            }
             Reducer::DeployableStoreStart { .. } => "deployable_store_start",
             Reducer::DeployableToggleAutoFollow { .. } => "deployable_toggle_auto_follow",
             Reducer::DestroyDimensionNetwork { .. } => "destroy_dimension_network",
@@ -7431,6 +7495,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::LootChestSpawn { .. } => "loot_chest_spawn",
             Reducer::MigrateCharacterStats => "migrate_character_stats",
             Reducer::MigrateClaimTech => "migrate_claim_tech",
+            Reducer::MigratePlayerSettings => "migrate_player_settings",
             Reducer::MigrationSetAchievementParams { .. } => "migration_set_achievement_params",
             Reducer::NpcAiAgentLoop { .. } => "npc_ai_agent_loop",
             Reducer::OnDurabilityZero { .. } => "on_durability_zero",
@@ -7671,7 +7736,9 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
     type Error = __sdk::Error;
     fn try_from(value: __ws::ReducerCallInfo<__ws::BsatnFormat>) -> __sdk::Result<Self> {
         match &value.reducer_name[..] {
-                        "achievement_claim" => Ok(__sdk::parse_reducer_args::<achievement_claim_reducer::AchievementClaimArgs>("achievement_claim", &value.args)?.into()),
+                        "ability_remove" => Ok(__sdk::parse_reducer_args::<ability_remove_reducer::AbilityRemoveArgs>("ability_remove", &value.args)?.into()),
+            "ability_set" => Ok(__sdk::parse_reducer_args::<ability_set_reducer::AbilitySetArgs>("ability_set", &value.args)?.into()),
+            "achievement_claim" => Ok(__sdk::parse_reducer_args::<achievement_claim_reducer::AchievementClaimArgs>("achievement_claim", &value.args)?.into()),
             "acquire_knowledge_from_entities" => Ok(__sdk::parse_reducer_args::<acquire_knowledge_from_entities_reducer::AcquireKnowledgeFromEntitiesArgs>("acquire_knowledge_from_entities", &value.args)?.into()),
             "admin_add_specific_building_type_states" => Ok(__sdk::parse_reducer_args::<admin_add_specific_building_type_states_reducer::AdminAddSpecificBuildingTypeStatesArgs>("admin_add_specific_building_type_states", &value.args)?.into()),
             "admin_alpha3_complete_onboarding" => Ok(__sdk::parse_reducer_args::<admin_alpha_3_complete_onboarding_reducer::AdminAlpha3CompleteOnboardingArgs>("admin_alpha3_complete_onboarding", &value.args)?.into()),
@@ -7706,6 +7773,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "admin_find_items_in_trades" => Ok(__sdk::parse_reducer_args::<admin_find_items_in_trades_reducer::AdminFindItemsInTradesArgs>("admin_find_items_in_trades", &value.args)?.into()),
             "admin_grant_all_claim_supplies" => Ok(__sdk::parse_reducer_args::<admin_grant_all_claim_supplies_reducer::AdminGrantAllClaimSuppliesArgs>("admin_grant_all_claim_supplies", &value.args)?.into()),
             "admin_grant_collectibles" => Ok(__sdk::parse_reducer_args::<admin_grant_collectibles_reducer::AdminGrantCollectiblesArgs>("admin_grant_collectibles", &value.args)?.into()),
+            "admin_migrate_action_state" => Ok(__sdk::parse_reducer_args::<admin_migrate_action_state_reducer::AdminMigrateActionStateArgs>("admin_migrate_action_state", &value.args)?.into()),
             "admin_modify_chat_message" => Ok(__sdk::parse_reducer_args::<admin_modify_chat_message_reducer::AdminModifyChatMessageArgs>("admin_modify_chat_message", &value.args)?.into()),
             "admin_patch_housing_costs" => Ok(__sdk::parse_reducer_args::<admin_patch_housing_costs_reducer::AdminPatchHousingCostsArgs>("admin_patch_housing_costs", &value.args)?.into()),
             "admin_rename_building" => Ok(__sdk::parse_reducer_args::<admin_rename_building_reducer::AdminRenameBuildingArgs>("admin_rename_building", &value.args)?.into()),
@@ -7853,6 +7921,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "deployable_move_off_bounds" => Ok(__sdk::parse_reducer_args::<deployable_move_off_bounds_reducer::DeployableMoveOffBoundsArgs>("deployable_move_off_bounds", &value.args)?.into()),
             "deployable_move_off_claim" => Ok(__sdk::parse_reducer_args::<deployable_move_off_claim_reducer::DeployableMoveOffClaimArgs>("deployable_move_off_claim", &value.args)?.into()),
             "deployable_store" => Ok(__sdk::parse_reducer_args::<deployable_store_reducer::DeployableStoreArgs>("deployable_store", &value.args)?.into()),
+            "deployable_store_from_collectible_id" => Ok(__sdk::parse_reducer_args::<deployable_store_from_collectible_id_reducer::DeployableStoreFromCollectibleIdArgs>("deployable_store_from_collectible_id", &value.args)?.into()),
             "deployable_store_start" => Ok(__sdk::parse_reducer_args::<deployable_store_start_reducer::DeployableStoreStartArgs>("deployable_store_start", &value.args)?.into()),
             "deployable_toggle_auto_follow" => Ok(__sdk::parse_reducer_args::<deployable_toggle_auto_follow_reducer::DeployableToggleAutoFollowArgs>("deployable_toggle_auto_follow", &value.args)?.into()),
             "destroy_dimension_network" => Ok(__sdk::parse_reducer_args::<destroy_dimension_network_reducer::DestroyDimensionNetworkArgs>("destroy_dimension_network", &value.args)?.into()),
@@ -8094,6 +8163,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "loot_chest_spawn" => Ok(__sdk::parse_reducer_args::<loot_chest_spawn_reducer::LootChestSpawnArgs>("loot_chest_spawn", &value.args)?.into()),
             "migrate_character_stats" => Ok(__sdk::parse_reducer_args::<migrate_character_stats_reducer::MigrateCharacterStatsArgs>("migrate_character_stats", &value.args)?.into()),
             "migrate_claim_tech" => Ok(__sdk::parse_reducer_args::<migrate_claim_tech_reducer::MigrateClaimTechArgs>("migrate_claim_tech", &value.args)?.into()),
+            "migrate_player_settings" => Ok(__sdk::parse_reducer_args::<migrate_player_settings_reducer::MigratePlayerSettingsArgs>("migrate_player_settings", &value.args)?.into()),
             "migration_set_achievement_params" => Ok(__sdk::parse_reducer_args::<migration_set_achievement_params_reducer::MigrationSetAchievementParamsArgs>("migration_set_achievement_params", &value.args)?.into()),
             "npc_ai_agent_loop" => Ok(__sdk::parse_reducer_args::<npc_ai_agent_loop_reducer::NpcAiAgentLoopArgs>("npc_ai_agent_loop", &value.args)?.into()),
             "on_durability_zero" => Ok(__sdk::parse_reducer_args::<on_durability_zero_reducer::OnDurabilityZeroArgs>("on_durability_zero", &value.args)?.into()),
@@ -8323,7 +8393,9 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
 #[doc(hidden)]
 pub struct DbUpdate {
     a_i_debug_state: __sdk::TableUpdate<AiDebugState>,
+    ability_state: __sdk::TableUpdate<AbilityState>,
     achievement_desc: __sdk::TableUpdate<AchievementDesc>,
+    action_bar_state: __sdk::TableUpdate<ActionBarState>,
     action_state: __sdk::TableUpdate<ActionState>,
     active_buff_state: __sdk::TableUpdate<ActiveBuffState>,
     admin_broadcast: __sdk::TableUpdate<AdminBroadcast>,
@@ -8466,6 +8538,7 @@ pub struct DbUpdate {
     inter_module_message_counter: __sdk::TableUpdate<InterModuleMessageCounter>,
     inter_module_message_errors: __sdk::TableUpdate<InterModuleMessageErrors>,
     inter_module_message_v_2: __sdk::TableUpdate<InterModuleMessageV2>,
+    inter_module_message_v_3: __sdk::TableUpdate<InterModuleMessageV3>,
     inter_module_response_message_counter: __sdk::TableUpdate<InterModuleResponseMessageCounter>,
     interior_collapse_trigger_state: __sdk::TableUpdate<InteriorCollapseTriggerState>,
     interior_environment_desc: __sdk::TableUpdate<InteriorEnvironmentDesc>,
@@ -8556,6 +8629,7 @@ pub struct DbUpdate {
     player_report_state_timestamp: __sdk::TableUpdate<PlayerReportStateTimestamp>,
     player_set_name_outcome_event: __sdk::TableUpdate<PlayerSetNameOutcomeEvent>,
     player_settings_state: __sdk::TableUpdate<PlayerSettingsState>,
+    player_settings_state_v_2: __sdk::TableUpdate<PlayerSettingsStateV2>,
     player_state: __sdk::TableUpdate<PlayerState>,
     player_timestamp_state: __sdk::TableUpdate<PlayerTimestampState>,
     player_use_elevator_timer: __sdk::TableUpdate<PlayerUseElevatorTimer>,
@@ -8754,9 +8828,15 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
                 "a_i_debug_state" => db_update
                     .a_i_debug_state
                     .append(a_i_debug_state_table::parse_table_update(table_update)?),
+                "ability_state" => db_update
+                    .ability_state
+                    .append(ability_state_table::parse_table_update(table_update)?),
                 "achievement_desc" => db_update
                     .achievement_desc
                     .append(achievement_desc_table::parse_table_update(table_update)?),
+                "action_bar_state" => db_update
+                    .action_bar_state
+                    .append(action_bar_state_table::parse_table_update(table_update)?),
                 "action_state" => db_update
                     .action_state
                     .append(action_state_table::parse_table_update(table_update)?),
@@ -9198,6 +9278,9 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
                 "inter_module_message_v2" => db_update.inter_module_message_v_2.append(
                     inter_module_message_v_2_table::parse_table_update(table_update)?,
                 ),
+                "inter_module_message_v3" => db_update.inter_module_message_v_3.append(
+                    inter_module_message_v_3_table::parse_table_update(table_update)?,
+                ),
                 "inter_module_response_message_counter" => {
                     db_update.inter_module_response_message_counter.append(
                         inter_module_response_message_counter_table::parse_table_update(
@@ -9491,6 +9574,9 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
                 ),
                 "player_settings_state" => db_update.player_settings_state.append(
                     player_settings_state_table::parse_table_update(table_update)?,
+                ),
+                "player_settings_state_v2" => db_update.player_settings_state_v_2.append(
+                    player_settings_state_v_2_table::parse_table_update(table_update)?,
                 ),
                 "player_state" => db_update
                     .player_state
@@ -10150,9 +10236,15 @@ impl __sdk::DbUpdate for DbUpdate {
         diff.a_i_debug_state = cache
             .apply_diff_to_table::<AiDebugState>("a_i_debug_state", &self.a_i_debug_state)
             .with_updates_by_pk(|row| &row.entity_id);
+        diff.ability_state = cache
+            .apply_diff_to_table::<AbilityState>("ability_state", &self.ability_state)
+            .with_updates_by_pk(|row| &row.entity_id);
         diff.achievement_desc = cache
             .apply_diff_to_table::<AchievementDesc>("achievement_desc", &self.achievement_desc)
             .with_updates_by_pk(|row| &row.id);
+        diff.action_bar_state = cache
+            .apply_diff_to_table::<ActionBarState>("action_bar_state", &self.action_bar_state)
+            .with_updates_by_pk(|row| &row.entity_id);
         diff.action_state = cache
             .apply_diff_to_table::<ActionState>("action_state", &self.action_state)
             .with_updates_by_pk(|row| &row.entity_id);
@@ -10805,6 +10897,12 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.inter_module_message_v_2,
             )
             .with_updates_by_pk(|row| &row.id);
+        diff.inter_module_message_v_3 = cache
+            .apply_diff_to_table::<InterModuleMessageV3>(
+                "inter_module_message_v3",
+                &self.inter_module_message_v_3,
+            )
+            .with_updates_by_pk(|row| &row.id);
         diff.inter_module_response_message_counter = cache
             .apply_diff_to_table::<InterModuleResponseMessageCounter>(
                 "inter_module_response_message_counter",
@@ -11262,6 +11360,12 @@ impl __sdk::DbUpdate for DbUpdate {
             .apply_diff_to_table::<PlayerSettingsState>(
                 "player_settings_state",
                 &self.player_settings_state,
+            )
+            .with_updates_by_pk(|row| &row.entity_id);
+        diff.player_settings_state_v_2 = cache
+            .apply_diff_to_table::<PlayerSettingsStateV2>(
+                "player_settings_state_v2",
+                &self.player_settings_state_v_2,
             )
             .with_updates_by_pk(|row| &row.entity_id);
         diff.player_state = cache
@@ -12231,7 +12335,9 @@ impl __sdk::DbUpdate for DbUpdate {
 #[doc(hidden)]
 pub struct AppliedDiff<'r> {
     a_i_debug_state: __sdk::TableAppliedDiff<'r, AiDebugState>,
+    ability_state: __sdk::TableAppliedDiff<'r, AbilityState>,
     achievement_desc: __sdk::TableAppliedDiff<'r, AchievementDesc>,
+    action_bar_state: __sdk::TableAppliedDiff<'r, ActionBarState>,
     action_state: __sdk::TableAppliedDiff<'r, ActionState>,
     active_buff_state: __sdk::TableAppliedDiff<'r, ActiveBuffState>,
     admin_broadcast: __sdk::TableAppliedDiff<'r, AdminBroadcast>,
@@ -12375,6 +12481,7 @@ pub struct AppliedDiff<'r> {
     inter_module_message_counter: __sdk::TableAppliedDiff<'r, InterModuleMessageCounter>,
     inter_module_message_errors: __sdk::TableAppliedDiff<'r, InterModuleMessageErrors>,
     inter_module_message_v_2: __sdk::TableAppliedDiff<'r, InterModuleMessageV2>,
+    inter_module_message_v_3: __sdk::TableAppliedDiff<'r, InterModuleMessageV3>,
     inter_module_response_message_counter:
         __sdk::TableAppliedDiff<'r, InterModuleResponseMessageCounter>,
     interior_collapse_trigger_state: __sdk::TableAppliedDiff<'r, InteriorCollapseTriggerState>,
@@ -12468,6 +12575,7 @@ pub struct AppliedDiff<'r> {
     player_report_state_timestamp: __sdk::TableAppliedDiff<'r, PlayerReportStateTimestamp>,
     player_set_name_outcome_event: __sdk::TableAppliedDiff<'r, PlayerSetNameOutcomeEvent>,
     player_settings_state: __sdk::TableAppliedDiff<'r, PlayerSettingsState>,
+    player_settings_state_v_2: __sdk::TableAppliedDiff<'r, PlayerSettingsStateV2>,
     player_state: __sdk::TableAppliedDiff<'r, PlayerState>,
     player_timestamp_state: __sdk::TableAppliedDiff<'r, PlayerTimestampState>,
     player_use_elevator_timer: __sdk::TableAppliedDiff<'r, PlayerUseElevatorTimer>,
@@ -12675,9 +12783,19 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             &self.a_i_debug_state,
             event,
         );
+        callbacks.invoke_table_row_callbacks::<AbilityState>(
+            "ability_state",
+            &self.ability_state,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<AchievementDesc>(
             "achievement_desc",
             &self.achievement_desc,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<ActionBarState>(
+            "action_bar_state",
+            &self.action_bar_state,
             event,
         );
         callbacks.invoke_table_row_callbacks::<ActionState>(
@@ -13317,6 +13435,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             &self.inter_module_message_v_2,
             event,
         );
+        callbacks.invoke_table_row_callbacks::<InterModuleMessageV3>(
+            "inter_module_message_v3",
+            &self.inter_module_message_v_3,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<InterModuleResponseMessageCounter>(
             "inter_module_response_message_counter",
             &self.inter_module_response_message_counter,
@@ -13753,6 +13876,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<PlayerSettingsState>(
             "player_settings_state",
             &self.player_settings_state,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<PlayerSettingsStateV2>(
+            "player_settings_state_v2",
+            &self.player_settings_state_v_2,
             event,
         );
         callbacks.invoke_table_row_callbacks::<PlayerState>(
@@ -15238,7 +15366,9 @@ impl __sdk::SpacetimeModule for RemoteModule {
 
     fn register_tables(client_cache: &mut __sdk::ClientCache<Self>) {
         a_i_debug_state_table::register_table(client_cache);
+        ability_state_table::register_table(client_cache);
         achievement_desc_table::register_table(client_cache);
+        action_bar_state_table::register_table(client_cache);
         action_state_table::register_table(client_cache);
         active_buff_state_table::register_table(client_cache);
         admin_broadcast_table::register_table(client_cache);
@@ -15380,6 +15510,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         inter_module_message_counter_table::register_table(client_cache);
         inter_module_message_errors_table::register_table(client_cache);
         inter_module_message_v_2_table::register_table(client_cache);
+        inter_module_message_v_3_table::register_table(client_cache);
         inter_module_response_message_counter_table::register_table(client_cache);
         interior_collapse_trigger_state_table::register_table(client_cache);
         interior_environment_desc_table::register_table(client_cache);
@@ -15470,6 +15601,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         player_report_state_timestamp_table::register_table(client_cache);
         player_set_name_outcome_event_table::register_table(client_cache);
         player_settings_state_table::register_table(client_cache);
+        player_settings_state_v_2_table::register_table(client_cache);
         player_state_table::register_table(client_cache);
         player_timestamp_state_table::register_table(client_cache);
         player_use_elevator_timer_table::register_table(client_cache);

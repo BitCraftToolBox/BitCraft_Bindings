@@ -5,12 +5,12 @@
 #![allow(unused, clippy::all)]
 use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
-use super::player_settings_state_type::PlayerSettingsState;
+use super::player_settings_state_v_2_type::PlayerSettingsStateV2;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub(super) struct PlayerSettingsStateUpdateArgs {
-    pub player_settings_state: PlayerSettingsState,
+    pub player_settings_state: PlayerSettingsStateV2,
 }
 
 impl From<PlayerSettingsStateUpdateArgs> for super::Reducer {
@@ -39,7 +39,7 @@ pub trait player_settings_state_update {
     ///  and its status can be observed by listening for [`Self::on_player_settings_state_update`] callbacks.
     fn player_settings_state_update(
         &self,
-        player_settings_state: PlayerSettingsState,
+        player_settings_state: PlayerSettingsStateV2,
     ) -> __sdk::Result<()>;
     /// Register a callback to run whenever we are notified of an invocation of the reducer `player_settings_state_update`.
     ///
@@ -50,7 +50,7 @@ pub trait player_settings_state_update {
     /// to cancel the callback.
     fn on_player_settings_state_update(
         &self,
-        callback: impl FnMut(&super::ReducerEventContext, &PlayerSettingsState) + Send + 'static,
+        callback: impl FnMut(&super::ReducerEventContext, &PlayerSettingsStateV2) + Send + 'static,
     ) -> PlayerSettingsStateUpdateCallbackId;
     /// Cancel a callback previously registered by [`Self::on_player_settings_state_update`],
     /// causing it not to run in the future.
@@ -60,7 +60,7 @@ pub trait player_settings_state_update {
 impl player_settings_state_update for super::RemoteReducers {
     fn player_settings_state_update(
         &self,
-        player_settings_state: PlayerSettingsState,
+        player_settings_state: PlayerSettingsStateV2,
     ) -> __sdk::Result<()> {
         self.imp.call_reducer(
             "player_settings_state_update",
@@ -71,7 +71,7 @@ impl player_settings_state_update for super::RemoteReducers {
     }
     fn on_player_settings_state_update(
         &self,
-        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerSettingsState) + Send + 'static,
+        mut callback: impl FnMut(&super::ReducerEventContext, &PlayerSettingsStateV2) + Send + 'static,
     ) -> PlayerSettingsStateUpdateCallbackId {
         PlayerSettingsStateUpdateCallbackId(self.imp.on_reducer(
             "player_settings_state_update",
