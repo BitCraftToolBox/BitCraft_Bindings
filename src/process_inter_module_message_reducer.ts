@@ -32,11 +32,11 @@ import {
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
 
-import { InterModuleMessageV2 as __InterModuleMessageV2 } from "./inter_module_message_v_2_type";
+import { InterModuleMessageV3 as __InterModuleMessageV3 } from "./inter_module_message_v_3_type";
 
 export type ProcessInterModuleMessage = {
   sender: number,
-  message: __InterModuleMessageV2,
+  message: __InterModuleMessageV3,
 };
 
 /**
@@ -50,7 +50,7 @@ export namespace ProcessInterModuleMessage {
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
       new ProductTypeElement("sender", AlgebraicType.createU8Type()),
-      new ProductTypeElement("message", __InterModuleMessageV2.getTypeScriptAlgebraicType()),
+      new ProductTypeElement("message", __InterModuleMessageV3.getTypeScriptAlgebraicType()),
     ]);
   }
 

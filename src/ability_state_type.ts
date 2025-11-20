@@ -31,34 +31,41 @@ import {
   type ReducerEventContextInterface,
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
+import { AbilityType as __AbilityType } from "./ability_type_type";
+import { ActionCooldown as __ActionCooldown } from "./action_cooldown_type";
 
-import { PlayerSettingsStateV2 as __PlayerSettingsStateV2 } from "./player_settings_state_v_2_type";
-
-export type PlayerSettingsStateUpdate = {
-  playerSettingsState: __PlayerSettingsStateV2,
+export type AbilityState = {
+  entityId: bigint,
+  ownerEntityId: bigint,
+  ability: __AbilityType,
+  cooldown: __ActionCooldown,
 };
 
 /**
  * A namespace for generated helper functions.
  */
-export namespace PlayerSettingsStateUpdate {
+export namespace AbilityState {
   /**
   * A function which returns this type represented as an AlgebraicType.
   * This function is derived from the AlgebraicType used to generate this type.
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("playerSettingsState", __PlayerSettingsStateV2.getTypeScriptAlgebraicType()),
+      new ProductTypeElement("entityId", AlgebraicType.createU64Type()),
+      new ProductTypeElement("ownerEntityId", AlgebraicType.createU64Type()),
+      new ProductTypeElement("ability", __AbilityType.getTypeScriptAlgebraicType()),
+      new ProductTypeElement("cooldown", __ActionCooldown.getTypeScriptAlgebraicType()),
     ]);
   }
 
-  export function serialize(writer: BinaryWriter, value: PlayerSettingsStateUpdate): void {
-    PlayerSettingsStateUpdate.getTypeScriptAlgebraicType().serialize(writer, value);
+  export function serialize(writer: BinaryWriter, value: AbilityState): void {
+    AbilityState.getTypeScriptAlgebraicType().serialize(writer, value);
   }
 
-  export function deserialize(reader: BinaryReader): PlayerSettingsStateUpdate {
-    return PlayerSettingsStateUpdate.getTypeScriptAlgebraicType().deserialize(reader);
+  export function deserialize(reader: BinaryReader): AbilityState {
+    return AbilityState.getTypeScriptAlgebraicType().deserialize(reader);
   }
 
 }
+
 

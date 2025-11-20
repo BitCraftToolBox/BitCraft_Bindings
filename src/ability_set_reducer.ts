@@ -32,32 +32,36 @@ import {
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
 
-import { PlayerSettingsStateV2 as __PlayerSettingsStateV2 } from "./player_settings_state_v_2_type";
+import { AbilityType as __AbilityType } from "./ability_type_type";
 
-export type PlayerSettingsStateUpdate = {
-  playerSettingsState: __PlayerSettingsStateV2,
+export type AbilitySet = {
+  actionBarIndex: number,
+  localAbilityIndex: number,
+  ability: __AbilityType,
 };
 
 /**
  * A namespace for generated helper functions.
  */
-export namespace PlayerSettingsStateUpdate {
+export namespace AbilitySet {
   /**
   * A function which returns this type represented as an AlgebraicType.
   * This function is derived from the AlgebraicType used to generate this type.
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("playerSettingsState", __PlayerSettingsStateV2.getTypeScriptAlgebraicType()),
+      new ProductTypeElement("actionBarIndex", AlgebraicType.createU8Type()),
+      new ProductTypeElement("localAbilityIndex", AlgebraicType.createU8Type()),
+      new ProductTypeElement("ability", __AbilityType.getTypeScriptAlgebraicType()),
     ]);
   }
 
-  export function serialize(writer: BinaryWriter, value: PlayerSettingsStateUpdate): void {
-    PlayerSettingsStateUpdate.getTypeScriptAlgebraicType().serialize(writer, value);
+  export function serialize(writer: BinaryWriter, value: AbilitySet): void {
+    AbilitySet.getTypeScriptAlgebraicType().serialize(writer, value);
   }
 
-  export function deserialize(reader: BinaryReader): PlayerSettingsStateUpdate {
-    return PlayerSettingsStateUpdate.getTypeScriptAlgebraicType().deserialize(reader);
+  export function deserialize(reader: BinaryReader): AbilitySet {
+    return AbilitySet.getTypeScriptAlgebraicType().deserialize(reader);
   }
 
 }

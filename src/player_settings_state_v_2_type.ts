@@ -31,34 +31,36 @@ import {
   type ReducerEventContextInterface,
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
-
-import { PlayerSettingsStateV2 as __PlayerSettingsStateV2 } from "./player_settings_state_v_2_type";
-
-export type PlayerSettingsStateUpdate = {
-  playerSettingsState: __PlayerSettingsStateV2,
+export type PlayerSettingsStateV2 = {
+  entityId: bigint,
+  fillPlayerInventory: boolean,
+  fillDeployableInventoryFirst: boolean,
 };
 
 /**
  * A namespace for generated helper functions.
  */
-export namespace PlayerSettingsStateUpdate {
+export namespace PlayerSettingsStateV2 {
   /**
   * A function which returns this type represented as an AlgebraicType.
   * This function is derived from the AlgebraicType used to generate this type.
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("playerSettingsState", __PlayerSettingsStateV2.getTypeScriptAlgebraicType()),
+      new ProductTypeElement("entityId", AlgebraicType.createU64Type()),
+      new ProductTypeElement("fillPlayerInventory", AlgebraicType.createBoolType()),
+      new ProductTypeElement("fillDeployableInventoryFirst", AlgebraicType.createBoolType()),
     ]);
   }
 
-  export function serialize(writer: BinaryWriter, value: PlayerSettingsStateUpdate): void {
-    PlayerSettingsStateUpdate.getTypeScriptAlgebraicType().serialize(writer, value);
+  export function serialize(writer: BinaryWriter, value: PlayerSettingsStateV2): void {
+    PlayerSettingsStateV2.getTypeScriptAlgebraicType().serialize(writer, value);
   }
 
-  export function deserialize(reader: BinaryReader): PlayerSettingsStateUpdate {
-    return PlayerSettingsStateUpdate.getTypeScriptAlgebraicType().deserialize(reader);
+  export function deserialize(reader: BinaryReader): PlayerSettingsStateV2 {
+    return PlayerSettingsStateV2.getTypeScriptAlgebraicType().deserialize(reader);
   }
 
 }
+
 

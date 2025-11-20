@@ -33,6 +33,10 @@ import {
 } from "@clockworklabs/spacetimedb-sdk";
 
 // Import and reexport all reducer arg types
+import { AbilityRemove } from "./ability_remove_reducer.ts";
+export { AbilityRemove };
+import { AbilitySet } from "./ability_set_reducer.ts";
+export { AbilitySet };
 import { AchievementClaim } from "./achievement_claim_reducer.ts";
 export { AchievementClaim };
 import { AcquireKnowledgeFromEntities } from "./acquire_knowledge_from_entities_reducer.ts";
@@ -103,6 +107,8 @@ import { AdminGrantAllClaimSupplies } from "./admin_grant_all_claim_supplies_red
 export { AdminGrantAllClaimSupplies };
 import { AdminGrantCollectibles } from "./admin_grant_collectibles_reducer.ts";
 export { AdminGrantCollectibles };
+import { AdminMigrateActionState } from "./admin_migrate_action_state_reducer.ts";
+export { AdminMigrateActionState };
 import { AdminModifyChatMessage } from "./admin_modify_chat_message_reducer.ts";
 export { AdminModifyChatMessage };
 import { AdminPatchHousingCosts } from "./admin_patch_housing_costs_reducer.ts";
@@ -397,6 +403,8 @@ import { DeployableMoveOffClaim } from "./deployable_move_off_claim_reducer.ts";
 export { DeployableMoveOffClaim };
 import { DeployableStore } from "./deployable_store_reducer.ts";
 export { DeployableStore };
+import { DeployableStoreFromCollectibleId } from "./deployable_store_from_collectible_id_reducer.ts";
+export { DeployableStoreFromCollectibleId };
 import { DeployableStoreStart } from "./deployable_store_start_reducer.ts";
 export { DeployableStoreStart };
 import { DeployableToggleAutoFollow } from "./deployable_toggle_auto_follow_reducer.ts";
@@ -879,6 +887,8 @@ import { MigrateCharacterStats } from "./migrate_character_stats_reducer.ts";
 export { MigrateCharacterStats };
 import { MigrateClaimTech } from "./migrate_claim_tech_reducer.ts";
 export { MigrateClaimTech };
+import { MigratePlayerSettings } from "./migrate_player_settings_reducer.ts";
+export { MigratePlayerSettings };
 import { MigrationSetAchievementParams } from "./migration_set_achievement_params_reducer.ts";
 export { MigrationSetAchievementParams };
 import { NpcAiAgentLoop } from "./npc_ai_agent_loop_reducer.ts";
@@ -1321,8 +1331,12 @@ export { WorldPlaceResource };
 // Import and reexport all table handle types
 import { AIDebugStateTableHandle } from "./a_i_debug_state_table.ts";
 export { AIDebugStateTableHandle };
+import { AbilityStateTableHandle } from "./ability_state_table.ts";
+export { AbilityStateTableHandle };
 import { AchievementDescTableHandle } from "./achievement_desc_table.ts";
 export { AchievementDescTableHandle };
+import { ActionBarStateTableHandle } from "./action_bar_state_table.ts";
+export { ActionBarStateTableHandle };
 import { ActionStateTableHandle } from "./action_state_table.ts";
 export { ActionStateTableHandle };
 import { ActiveBuffStateTableHandle } from "./active_buff_state_table.ts";
@@ -1605,6 +1619,8 @@ import { InterModuleMessageErrorsTableHandle } from "./inter_module_message_erro
 export { InterModuleMessageErrorsTableHandle };
 import { InterModuleMessageV2TableHandle } from "./inter_module_message_v_2_table.ts";
 export { InterModuleMessageV2TableHandle };
+import { InterModuleMessageV3TableHandle } from "./inter_module_message_v_3_table.ts";
+export { InterModuleMessageV3TableHandle };
 import { InterModuleResponseMessageCounterTableHandle } from "./inter_module_response_message_counter_table.ts";
 export { InterModuleResponseMessageCounterTableHandle };
 import { InteriorCollapseTriggerStateTableHandle } from "./interior_collapse_trigger_state_table.ts";
@@ -1785,6 +1801,8 @@ import { PlayerSetNameOutcomeEventTableHandle } from "./player_set_name_outcome_
 export { PlayerSetNameOutcomeEventTableHandle };
 import { PlayerSettingsStateTableHandle } from "./player_settings_state_table.ts";
 export { PlayerSettingsStateTableHandle };
+import { PlayerSettingsStateV2TableHandle } from "./player_settings_state_v_2_table.ts";
+export { PlayerSettingsStateV2TableHandle };
 import { PlayerStateTableHandle } from "./player_state_table.ts";
 export { PlayerStateTableHandle };
 import { PlayerTimestampStateTableHandle } from "./player_timestamp_state_table.ts";
@@ -2163,8 +2181,14 @@ export { WorldRegionStateTableHandle };
 // Import and reexport all types
 import { AiDebugState } from "./ai_debug_state_type.ts";
 export { AiDebugState };
+import { AbilityState } from "./ability_state_type.ts";
+export { AbilityState };
+import { AbilityType } from "./ability_type_type.ts";
+export { AbilityType };
 import { AchievementDesc } from "./achievement_desc_type.ts";
 export { AchievementDesc };
+import { ActionBarState } from "./action_bar_state_type.ts";
+export { ActionBarState };
 import { ActionCooldown } from "./action_cooldown_type.ts";
 export { ActionCooldown };
 import { ActionLogData } from "./action_log_data_type.ts";
@@ -2663,6 +2687,8 @@ import { InterModuleMessageErrors } from "./inter_module_message_errors_type.ts"
 export { InterModuleMessageErrors };
 import { InterModuleMessageV2 } from "./inter_module_message_v_2_type.ts";
 export { InterModuleMessageV2 };
+import { InterModuleMessageV3 } from "./inter_module_message_v_3_type.ts";
+export { InterModuleMessageV3 };
 import { InterModuleResponseMessageCounter } from "./inter_module_response_message_counter_type.ts";
 export { InterModuleResponseMessageCounter };
 import { InterModuleTableUpdates } from "./inter_module_table_updates_type.ts";
@@ -2789,6 +2815,8 @@ import { MessageContents } from "./message_contents_type.ts";
 export { MessageContents };
 import { MessageContentsV2 } from "./message_contents_v_2_type.ts";
 export { MessageContentsV2 };
+import { MessageContentsV3 } from "./message_contents_v_3_type.ts";
+export { MessageContentsV3 };
 import { MigrationAchievementsParams } from "./migration_achievements_params_type.ts";
 export { MigrationAchievementsParams };
 import { MobileEntityState } from "./mobile_entity_state_type.ts";
@@ -3083,6 +3111,8 @@ import { PlayerSetNameOutcomeEvent } from "./player_set_name_outcome_event_type.
 export { PlayerSetNameOutcomeEvent };
 import { PlayerSettingsState } from "./player_settings_state_type.ts";
 export { PlayerSettingsState };
+import { PlayerSettingsStateV2 } from "./player_settings_state_v_2_type.ts";
+export { PlayerSettingsStateV2 };
 import { PlayerSignInRequest } from "./player_sign_in_request_type.ts";
 export { PlayerSignInRequest };
 import { PlayerSkipQueueMsg } from "./player_skip_queue_msg_type.ts";
@@ -3201,6 +3231,8 @@ import { RentTerminateRequest } from "./rent_terminate_request_type.ts";
 export { RentTerminateRequest };
 import { RentUnlistRequest } from "./rent_unlist_request_type.ts";
 export { RentUnlistRequest };
+import { ReplaceIdentityMsg } from "./replace_identity_msg_type.ts";
+export { ReplaceIdentityMsg };
 import { ReportEntityMessage } from "./report_entity_message_type.ts";
 export { ReportEntityMessage };
 import { ReportPlayerChatMessage } from "./report_player_chat_message_type.ts";
@@ -3373,6 +3405,8 @@ import { TransferPlayerMsg } from "./transfer_player_msg_type.ts";
 export { TransferPlayerMsg };
 import { TransferPlayerMsgV2 } from "./transfer_player_msg_v_2_type.ts";
 export { TransferPlayerMsgV2 };
+import { TransferPlayerMsgV3 } from "./transfer_player_msg_v_3_type.ts";
+export { TransferPlayerMsgV3 };
 import { TransferPlayerTimer } from "./transfer_player_timer_type.ts";
 export { TransferPlayerTimer };
 import { TravelerTaskDesc } from "./traveler_task_desc_type.ts";
@@ -3501,6 +3535,15 @@ export const REMOTE_MODULE = {
         colType: AiDebugState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    ability_state: {
+      tableName: "ability_state",
+      rowType: AbilityState.getTypeScriptAlgebraicType(),
+      primaryKey: "entityId",
+      primaryKeyInfo: {
+        colName: "entityId",
+        colType: AbilityState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     achievement_desc: {
       tableName: "achievement_desc",
       rowType: AchievementDesc.getTypeScriptAlgebraicType(),
@@ -3508,6 +3551,15 @@ export const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "id",
         colType: AchievementDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    action_bar_state: {
+      tableName: "action_bar_state",
+      rowType: ActionBarState.getTypeScriptAlgebraicType(),
+      primaryKey: "entityId",
+      primaryKeyInfo: {
+        colName: "entityId",
+        colType: ActionBarState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     action_state: {
@@ -4774,6 +4826,15 @@ export const REMOTE_MODULE = {
         colType: InterModuleMessageV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    inter_module_message_v3: {
+      tableName: "inter_module_message_v3",
+      rowType: InterModuleMessageV3.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: InterModuleMessageV3.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     inter_module_response_message_counter: {
       tableName: "inter_module_response_message_counter",
       rowType: InterModuleResponseMessageCounter.getTypeScriptAlgebraicType(),
@@ -5582,6 +5643,15 @@ export const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "entityId",
         colType: PlayerSettingsState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    player_settings_state_v2: {
+      tableName: "player_settings_state_v2",
+      rowType: PlayerSettingsStateV2.getTypeScriptAlgebraicType(),
+      primaryKey: "entityId",
+      primaryKeyInfo: {
+        colName: "entityId",
+        colType: PlayerSettingsStateV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     player_state: {
@@ -7269,6 +7339,14 @@ export const REMOTE_MODULE = {
     },
   },
   reducers: {
+    ability_remove: {
+      reducerName: "ability_remove",
+      argsType: AbilityRemove.getTypeScriptAlgebraicType(),
+    },
+    ability_set: {
+      reducerName: "ability_set",
+      argsType: AbilitySet.getTypeScriptAlgebraicType(),
+    },
     achievement_claim: {
       reducerName: "achievement_claim",
       argsType: AchievementClaim.getTypeScriptAlgebraicType(),
@@ -7408,6 +7486,10 @@ export const REMOTE_MODULE = {
     admin_grant_collectibles: {
       reducerName: "admin_grant_collectibles",
       argsType: AdminGrantCollectibles.getTypeScriptAlgebraicType(),
+    },
+    admin_migrate_action_state: {
+      reducerName: "admin_migrate_action_state",
+      argsType: AdminMigrateActionState.getTypeScriptAlgebraicType(),
     },
     admin_modify_chat_message: {
       reducerName: "admin_modify_chat_message",
@@ -7996,6 +8078,10 @@ export const REMOTE_MODULE = {
     deployable_store: {
       reducerName: "deployable_store",
       argsType: DeployableStore.getTypeScriptAlgebraicType(),
+    },
+    deployable_store_from_collectible_id: {
+      reducerName: "deployable_store_from_collectible_id",
+      argsType: DeployableStoreFromCollectibleId.getTypeScriptAlgebraicType(),
     },
     deployable_store_start: {
       reducerName: "deployable_store_start",
@@ -8961,6 +9047,10 @@ export const REMOTE_MODULE = {
       reducerName: "migrate_claim_tech",
       argsType: MigrateClaimTech.getTypeScriptAlgebraicType(),
     },
+    migrate_player_settings: {
+      reducerName: "migrate_player_settings",
+      argsType: MigratePlayerSettings.getTypeScriptAlgebraicType(),
+    },
     migration_set_achievement_params: {
       reducerName: "migration_set_achievement_params",
       argsType: MigrationSetAchievementParams.getTypeScriptAlgebraicType(),
@@ -9867,6 +9957,8 @@ export const REMOTE_MODULE = {
 
 // A type representing all the possible variants of a reducer.
 export type Reducer = never
+| { name: "AbilityRemove", args: AbilityRemove }
+| { name: "AbilitySet", args: AbilitySet }
 | { name: "AchievementClaim", args: AchievementClaim }
 | { name: "AcquireKnowledgeFromEntities", args: AcquireKnowledgeFromEntities }
 | { name: "AdminAddSpecificBuildingTypeStates", args: AdminAddSpecificBuildingTypeStates }
@@ -9902,6 +9994,7 @@ export type Reducer = never
 | { name: "AdminFindItemsInTrades", args: AdminFindItemsInTrades }
 | { name: "AdminGrantAllClaimSupplies", args: AdminGrantAllClaimSupplies }
 | { name: "AdminGrantCollectibles", args: AdminGrantCollectibles }
+| { name: "AdminMigrateActionState", args: AdminMigrateActionState }
 | { name: "AdminModifyChatMessage", args: AdminModifyChatMessage }
 | { name: "AdminPatchHousingCosts", args: AdminPatchHousingCosts }
 | { name: "AdminRenameBuilding", args: AdminRenameBuilding }
@@ -10049,6 +10142,7 @@ export type Reducer = never
 | { name: "DeployableMoveOffBounds", args: DeployableMoveOffBounds }
 | { name: "DeployableMoveOffClaim", args: DeployableMoveOffClaim }
 | { name: "DeployableStore", args: DeployableStore }
+| { name: "DeployableStoreFromCollectibleId", args: DeployableStoreFromCollectibleId }
 | { name: "DeployableStoreStart", args: DeployableStoreStart }
 | { name: "DeployableToggleAutoFollow", args: DeployableToggleAutoFollow }
 | { name: "DestroyDimensionNetwork", args: DestroyDimensionNetwork }
@@ -10290,6 +10384,7 @@ export type Reducer = never
 | { name: "LootChestSpawn", args: LootChestSpawn }
 | { name: "MigrateCharacterStats", args: MigrateCharacterStats }
 | { name: "MigrateClaimTech", args: MigrateClaimTech }
+| { name: "MigratePlayerSettings", args: MigratePlayerSettings }
 | { name: "MigrationSetAchievementParams", args: MigrationSetAchievementParams }
 | { name: "NpcAiAgentLoop", args: NpcAiAgentLoop }
 | { name: "OnDurabilityZero", args: OnDurabilityZero }
@@ -10513,6 +10608,38 @@ export type Reducer = never
 
 export class RemoteReducers {
   constructor(private connection: DbConnectionImpl, private setCallReducerFlags: SetReducerFlags) {}
+
+  abilityRemove(actionBarIndex: number, localAbilityIndex: number) {
+    const __args = { actionBarIndex, localAbilityIndex };
+    let __writer = new BinaryWriter(1024);
+    AbilityRemove.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("ability_remove", __argsBuffer, this.setCallReducerFlags.abilityRemoveFlags);
+  }
+
+  onAbilityRemove(callback: (ctx: ReducerEventContext, actionBarIndex: number, localAbilityIndex: number) => void) {
+    this.connection.onReducer("ability_remove", callback);
+  }
+
+  removeOnAbilityRemove(callback: (ctx: ReducerEventContext, actionBarIndex: number, localAbilityIndex: number) => void) {
+    this.connection.offReducer("ability_remove", callback);
+  }
+
+  abilitySet(actionBarIndex: number, localAbilityIndex: number, ability: AbilityType) {
+    const __args = { actionBarIndex, localAbilityIndex, ability };
+    let __writer = new BinaryWriter(1024);
+    AbilitySet.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("ability_set", __argsBuffer, this.setCallReducerFlags.abilitySetFlags);
+  }
+
+  onAbilitySet(callback: (ctx: ReducerEventContext, actionBarIndex: number, localAbilityIndex: number, ability: AbilityType) => void) {
+    this.connection.onReducer("ability_set", callback);
+  }
+
+  removeOnAbilitySet(callback: (ctx: ReducerEventContext, actionBarIndex: number, localAbilityIndex: number, ability: AbilityType) => void) {
+    this.connection.offReducer("ability_set", callback);
+  }
 
   achievementClaim(request: PlayerAchievementClaimRequest) {
     const __args = { request };
@@ -11044,6 +11171,18 @@ export class RemoteReducers {
 
   removeOnAdminGrantCollectibles(callback: (ctx: ReducerEventContext, identity: string, collectibles: number[]) => void) {
     this.connection.offReducer("admin_grant_collectibles", callback);
+  }
+
+  adminMigrateActionState() {
+    this.connection.callReducer("admin_migrate_action_state", new Uint8Array(0), this.setCallReducerFlags.adminMigrateActionStateFlags);
+  }
+
+  onAdminMigrateActionState(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.onReducer("admin_migrate_action_state", callback);
+  }
+
+  removeOnAdminMigrateActionState(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.offReducer("admin_migrate_action_state", callback);
   }
 
   adminModifyChatMessage(entityId: bigint, newMessageText: string) {
@@ -13340,6 +13479,22 @@ export class RemoteReducers {
 
   removeOnDeployableStore(callback: (ctx: ReducerEventContext, request: DeployableStoreRequest) => void) {
     this.connection.offReducer("deployable_store", callback);
+  }
+
+  deployableStoreFromCollectibleId(collectibleId: number) {
+    const __args = { collectibleId };
+    let __writer = new BinaryWriter(1024);
+    DeployableStoreFromCollectibleId.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("deployable_store_from_collectible_id", __argsBuffer, this.setCallReducerFlags.deployableStoreFromCollectibleIdFlags);
+  }
+
+  onDeployableStoreFromCollectibleId(callback: (ctx: ReducerEventContext, collectibleId: number) => void) {
+    this.connection.onReducer("deployable_store_from_collectible_id", callback);
+  }
+
+  removeOnDeployableStoreFromCollectibleId(callback: (ctx: ReducerEventContext, collectibleId: number) => void) {
+    this.connection.offReducer("deployable_store_from_collectible_id", callback);
   }
 
   deployableStoreStart(request: DeployableStoreRequest) {
@@ -17150,6 +17305,18 @@ export class RemoteReducers {
     this.connection.offReducer("migrate_claim_tech", callback);
   }
 
+  migratePlayerSettings() {
+    this.connection.callReducer("migrate_player_settings", new Uint8Array(0), this.setCallReducerFlags.migratePlayerSettingsFlags);
+  }
+
+  onMigratePlayerSettings(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.onReducer("migrate_player_settings", callback);
+  }
+
+  removeOnMigratePlayerSettings(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.offReducer("migrate_player_settings", callback);
+  }
+
   migrationSetAchievementParams(allowDestructive: boolean, grantIfAlreadyOwned: boolean) {
     const __args = { allowDestructive, grantIfAlreadyOwned };
     let __writer = new BinaryWriter(1024);
@@ -17966,7 +18133,7 @@ export class RemoteReducers {
     this.connection.offReducer("player_set_name_outcome_event_reducer", callback);
   }
 
-  playerSettingsStateUpdate(playerSettingsState: PlayerSettingsState) {
+  playerSettingsStateUpdate(playerSettingsState: PlayerSettingsStateV2) {
     const __args = { playerSettingsState };
     let __writer = new BinaryWriter(1024);
     PlayerSettingsStateUpdate.getTypeScriptAlgebraicType().serialize(__writer, __args);
@@ -17974,11 +18141,11 @@ export class RemoteReducers {
     this.connection.callReducer("player_settings_state_update", __argsBuffer, this.setCallReducerFlags.playerSettingsStateUpdateFlags);
   }
 
-  onPlayerSettingsStateUpdate(callback: (ctx: ReducerEventContext, playerSettingsState: PlayerSettingsState) => void) {
+  onPlayerSettingsStateUpdate(callback: (ctx: ReducerEventContext, playerSettingsState: PlayerSettingsStateV2) => void) {
     this.connection.onReducer("player_settings_state_update", callback);
   }
 
-  removeOnPlayerSettingsStateUpdate(callback: (ctx: ReducerEventContext, playerSettingsState: PlayerSettingsState) => void) {
+  removeOnPlayerSettingsStateUpdate(callback: (ctx: ReducerEventContext, playerSettingsState: PlayerSettingsStateV2) => void) {
     this.connection.offReducer("player_settings_state_update", callback);
   }
 
@@ -18126,7 +18293,7 @@ export class RemoteReducers {
     this.connection.offReducer("portal_enter", callback);
   }
 
-  processInterModuleMessage(sender: number, message: InterModuleMessageV2) {
+  processInterModuleMessage(sender: number, message: InterModuleMessageV3) {
     const __args = { sender, message };
     let __writer = new BinaryWriter(1024);
     ProcessInterModuleMessage.getTypeScriptAlgebraicType().serialize(__writer, __args);
@@ -18134,11 +18301,11 @@ export class RemoteReducers {
     this.connection.callReducer("process_inter_module_message", __argsBuffer, this.setCallReducerFlags.processInterModuleMessageFlags);
   }
 
-  onProcessInterModuleMessage(callback: (ctx: ReducerEventContext, sender: number, message: InterModuleMessageV2) => void) {
+  onProcessInterModuleMessage(callback: (ctx: ReducerEventContext, sender: number, message: InterModuleMessageV3) => void) {
     this.connection.onReducer("process_inter_module_message", callback);
   }
 
-  removeOnProcessInterModuleMessage(callback: (ctx: ReducerEventContext, sender: number, message: InterModuleMessageV2) => void) {
+  removeOnProcessInterModuleMessage(callback: (ctx: ReducerEventContext, sender: number, message: InterModuleMessageV3) => void) {
     this.connection.offReducer("process_inter_module_message", callback);
   }
 
@@ -20613,6 +20780,16 @@ export class RemoteReducers {
 }
 
 export class SetReducerFlags {
+  abilityRemoveFlags: CallReducerFlags = 'FullUpdate';
+  abilityRemove(flags: CallReducerFlags) {
+    this.abilityRemoveFlags = flags;
+  }
+
+  abilitySetFlags: CallReducerFlags = 'FullUpdate';
+  abilitySet(flags: CallReducerFlags) {
+    this.abilitySetFlags = flags;
+  }
+
   achievementClaimFlags: CallReducerFlags = 'FullUpdate';
   achievementClaim(flags: CallReducerFlags) {
     this.achievementClaimFlags = flags;
@@ -20786,6 +20963,11 @@ export class SetReducerFlags {
   adminGrantCollectiblesFlags: CallReducerFlags = 'FullUpdate';
   adminGrantCollectibles(flags: CallReducerFlags) {
     this.adminGrantCollectiblesFlags = flags;
+  }
+
+  adminMigrateActionStateFlags: CallReducerFlags = 'FullUpdate';
+  adminMigrateActionState(flags: CallReducerFlags) {
+    this.adminMigrateActionStateFlags = flags;
   }
 
   adminModifyChatMessageFlags: CallReducerFlags = 'FullUpdate';
@@ -21521,6 +21703,11 @@ export class SetReducerFlags {
   deployableStoreFlags: CallReducerFlags = 'FullUpdate';
   deployableStore(flags: CallReducerFlags) {
     this.deployableStoreFlags = flags;
+  }
+
+  deployableStoreFromCollectibleIdFlags: CallReducerFlags = 'FullUpdate';
+  deployableStoreFromCollectibleId(flags: CallReducerFlags) {
+    this.deployableStoreFromCollectibleIdFlags = flags;
   }
 
   deployableStoreStartFlags: CallReducerFlags = 'FullUpdate';
@@ -22718,6 +22905,11 @@ export class SetReducerFlags {
     this.migrateClaimTechFlags = flags;
   }
 
+  migratePlayerSettingsFlags: CallReducerFlags = 'FullUpdate';
+  migratePlayerSettings(flags: CallReducerFlags) {
+    this.migratePlayerSettingsFlags = flags;
+  }
+
   migrationSetAchievementParamsFlags: CallReducerFlags = 'FullUpdate';
   migrationSetAchievementParams(flags: CallReducerFlags) {
     this.migrationSetAchievementParamsFlags = flags;
@@ -23822,8 +24014,16 @@ export class RemoteTables {
     return new AIDebugStateTableHandle(this.connection.clientCache.getOrCreateTable<AiDebugState>(REMOTE_MODULE.tables.a_i_debug_state));
   }
 
+  get abilityState(): AbilityStateTableHandle {
+    return new AbilityStateTableHandle(this.connection.clientCache.getOrCreateTable<AbilityState>(REMOTE_MODULE.tables.ability_state));
+  }
+
   get achievementDesc(): AchievementDescTableHandle {
     return new AchievementDescTableHandle(this.connection.clientCache.getOrCreateTable<AchievementDesc>(REMOTE_MODULE.tables.achievement_desc));
+  }
+
+  get actionBarState(): ActionBarStateTableHandle {
+    return new ActionBarStateTableHandle(this.connection.clientCache.getOrCreateTable<ActionBarState>(REMOTE_MODULE.tables.action_bar_state));
   }
 
   get actionState(): ActionStateTableHandle {
@@ -24390,6 +24590,10 @@ export class RemoteTables {
     return new InterModuleMessageV2TableHandle(this.connection.clientCache.getOrCreateTable<InterModuleMessageV2>(REMOTE_MODULE.tables.inter_module_message_v2));
   }
 
+  get interModuleMessageV3(): InterModuleMessageV3TableHandle {
+    return new InterModuleMessageV3TableHandle(this.connection.clientCache.getOrCreateTable<InterModuleMessageV3>(REMOTE_MODULE.tables.inter_module_message_v3));
+  }
+
   get interModuleResponseMessageCounter(): InterModuleResponseMessageCounterTableHandle {
     return new InterModuleResponseMessageCounterTableHandle(this.connection.clientCache.getOrCreateTable<InterModuleResponseMessageCounter>(REMOTE_MODULE.tables.inter_module_response_message_counter));
   }
@@ -24748,6 +24952,10 @@ export class RemoteTables {
 
   get playerSettingsState(): PlayerSettingsStateTableHandle {
     return new PlayerSettingsStateTableHandle(this.connection.clientCache.getOrCreateTable<PlayerSettingsState>(REMOTE_MODULE.tables.player_settings_state));
+  }
+
+  get playerSettingsStateV2(): PlayerSettingsStateV2TableHandle {
+    return new PlayerSettingsStateV2TableHandle(this.connection.clientCache.getOrCreateTable<PlayerSettingsStateV2>(REMOTE_MODULE.tables.player_settings_state_v2));
   }
 
   get playerState(): PlayerStateTableHandle {
