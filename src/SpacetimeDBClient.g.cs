@@ -24,7 +24,9 @@ namespace BitCraftGlobal.Types
         public RemoteTables(DbConnection conn)
         {
             AddTable(AIDebugState = new(conn));
+            AddTable(AbilityState = new(conn));
             AddTable(AchievementDesc = new(conn));
+            AddTable(ActionBarState = new(conn));
             AddTable(ActionState = new(conn));
             AddTable(ActiveBuffState = new(conn));
             AddTable(AdminBroadcast = new(conn));
@@ -158,6 +160,7 @@ namespace BitCraftGlobal.Types
             AddTable(InterModuleMessageCounter = new(conn));
             AddTable(InterModuleMessageErrors = new(conn));
             AddTable(InterModuleMessageV2 = new(conn));
+            AddTable(InterModuleMessageV3 = new(conn));
             AddTable(InterModuleResponseMessageCounter = new(conn));
             AddTable(InteriorCollapseTriggerState = new(conn));
             AddTable(InteriorEnvironmentDesc = new(conn));
@@ -235,6 +238,7 @@ namespace BitCraftGlobal.Types
             AddTable(PlayerReportState = new(conn));
             AddTable(PlayerReportStateTimestamp = new(conn));
             AddTable(PlayerSettingsState = new(conn));
+            AddTable(PlayerSettingsStateV2 = new(conn));
             AddTable(PlayerShardState = new(conn));
             AddTable(PlayerState = new(conn));
             AddTable(PlayerTimestampState = new(conn));
@@ -873,6 +877,7 @@ namespace BitCraftGlobal.Types
                 "admin_rename_empire_rank_entity" => BSATNHelpers.Decode<Reducer.AdminRenameEmpireRankEntity>(encodedArgs),
                 "admin_rename_player" => BSATNHelpers.Decode<Reducer.AdminRenamePlayer>(encodedArgs),
                 "admin_rename_player_entity" => BSATNHelpers.Decode<Reducer.AdminRenamePlayerEntity>(encodedArgs),
+                "admin_replace_identity" => BSATNHelpers.Decode<Reducer.AdminReplaceIdentity>(encodedArgs),
                 "admin_sign_out_all" => BSATNHelpers.Decode<Reducer.AdminSignOutAll>(encodedArgs),
                 "admin_skip_queue_entity" => BSATNHelpers.Decode<Reducer.AdminSkipQueueEntity>(encodedArgs),
                 "admin_skip_queue_identity" => BSATNHelpers.Decode<Reducer.AdminSkipQueueIdentity>(encodedArgs),
@@ -1247,6 +1252,7 @@ namespace BitCraftGlobal.Types
                 Reducer.AdminRenameEmpireRankEntity args => Reducers.InvokeAdminRenameEmpireRankEntity(eventContext, args),
                 Reducer.AdminRenamePlayer args => Reducers.InvokeAdminRenamePlayer(eventContext, args),
                 Reducer.AdminRenamePlayerEntity args => Reducers.InvokeAdminRenamePlayerEntity(eventContext, args),
+                Reducer.AdminReplaceIdentity args => Reducers.InvokeAdminReplaceIdentity(eventContext, args),
                 Reducer.AdminSignOutAll args => Reducers.InvokeAdminSignOutAll(eventContext, args),
                 Reducer.AdminSkipQueueEntity args => Reducers.InvokeAdminSkipQueueEntity(eventContext, args),
                 Reducer.AdminSkipQueueIdentity args => Reducers.InvokeAdminSkipQueueIdentity(eventContext, args),
