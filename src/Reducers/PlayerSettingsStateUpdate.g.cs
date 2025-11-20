@@ -14,10 +14,10 @@ namespace BitCraftRegion.Types
 {
     public sealed partial class RemoteReducers : RemoteBase
     {
-        public delegate void PlayerSettingsStateUpdateHandler(ReducerEventContext ctx, PlayerSettingsState playerSettingsState);
+        public delegate void PlayerSettingsStateUpdateHandler(ReducerEventContext ctx, PlayerSettingsStateV2 playerSettingsState);
         public event PlayerSettingsStateUpdateHandler? OnPlayerSettingsStateUpdate;
 
-        public void PlayerSettingsStateUpdate(PlayerSettingsState playerSettingsState)
+        public void PlayerSettingsStateUpdate(PlayerSettingsStateV2 playerSettingsState)
         {
             conn.InternalCallReducer(new Reducer.PlayerSettingsStateUpdate(playerSettingsState), this.SetCallReducerFlags.PlayerSettingsStateUpdateFlags);
         }
@@ -51,9 +51,9 @@ namespace BitCraftRegion.Types
         public sealed partial class PlayerSettingsStateUpdate : Reducer, IReducerArgs
         {
             [DataMember(Name = "player_settings_state")]
-            public PlayerSettingsState PlayerSettingsState;
+            public PlayerSettingsStateV2 PlayerSettingsState;
 
-            public PlayerSettingsStateUpdate(PlayerSettingsState PlayerSettingsState)
+            public PlayerSettingsStateUpdate(PlayerSettingsStateV2 PlayerSettingsState)
             {
                 this.PlayerSettingsState = PlayerSettingsState;
             }

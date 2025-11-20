@@ -24,7 +24,9 @@ namespace BitCraftRegion.Types
         public RemoteTables(DbConnection conn)
         {
             AddTable(AIDebugState = new(conn));
+            AddTable(AbilityState = new(conn));
             AddTable(AchievementDesc = new(conn));
+            AddTable(ActionBarState = new(conn));
             AddTable(ActionState = new(conn));
             AddTable(ActiveBuffState = new(conn));
             AddTable(AdminBroadcast = new(conn));
@@ -166,6 +168,7 @@ namespace BitCraftRegion.Types
             AddTable(InterModuleMessageCounter = new(conn));
             AddTable(InterModuleMessageErrors = new(conn));
             AddTable(InterModuleMessageV2 = new(conn));
+            AddTable(InterModuleMessageV3 = new(conn));
             AddTable(InterModuleResponseMessageCounter = new(conn));
             AddTable(InteriorCollapseTriggerState = new(conn));
             AddTable(InteriorEnvironmentDesc = new(conn));
@@ -256,6 +259,7 @@ namespace BitCraftRegion.Types
             AddTable(PlayerReportStateTimestamp = new(conn));
             AddTable(PlayerSetNameOutcomeEvent = new(conn));
             AddTable(PlayerSettingsState = new(conn));
+            AddTable(PlayerSettingsStateV2 = new(conn));
             AddTable(PlayerState = new(conn));
             AddTable(PlayerTimestampState = new(conn));
             AddTable(PlayerUseElevatorTimer = new(conn));
@@ -886,6 +890,8 @@ namespace BitCraftRegion.Types
             var encodedArgs = update.ReducerCall.Args;
             return update.ReducerCall.ReducerName switch
             {
+                "ability_remove" => BSATNHelpers.Decode<Reducer.AbilityRemove>(encodedArgs),
+                "ability_set" => BSATNHelpers.Decode<Reducer.AbilitySet>(encodedArgs),
                 "achievement_claim" => BSATNHelpers.Decode<Reducer.AchievementClaim>(encodedArgs),
                 "acquire_knowledge_from_entities" => BSATNHelpers.Decode<Reducer.AcquireKnowledgeFromEntities>(encodedArgs),
                 "admin_add_specific_building_type_states" => BSATNHelpers.Decode<Reducer.AdminAddSpecificBuildingTypeStates>(encodedArgs),
@@ -921,6 +927,7 @@ namespace BitCraftRegion.Types
                 "admin_find_items_in_trades" => BSATNHelpers.Decode<Reducer.AdminFindItemsInTrades>(encodedArgs),
                 "admin_grant_all_claim_supplies" => BSATNHelpers.Decode<Reducer.AdminGrantAllClaimSupplies>(encodedArgs),
                 "admin_grant_collectibles" => BSATNHelpers.Decode<Reducer.AdminGrantCollectibles>(encodedArgs),
+                "admin_migrate_action_state" => BSATNHelpers.Decode<Reducer.AdminMigrateActionState>(encodedArgs),
                 "admin_modify_chat_message" => BSATNHelpers.Decode<Reducer.AdminModifyChatMessage>(encodedArgs),
                 "admin_patch_housing_costs" => BSATNHelpers.Decode<Reducer.AdminPatchHousingCosts>(encodedArgs),
                 "admin_rename_building" => BSATNHelpers.Decode<Reducer.AdminRenameBuilding>(encodedArgs),
@@ -1068,6 +1075,7 @@ namespace BitCraftRegion.Types
                 "deployable_move_off_bounds" => BSATNHelpers.Decode<Reducer.DeployableMoveOffBounds>(encodedArgs),
                 "deployable_move_off_claim" => BSATNHelpers.Decode<Reducer.DeployableMoveOffClaim>(encodedArgs),
                 "deployable_store" => BSATNHelpers.Decode<Reducer.DeployableStore>(encodedArgs),
+                "deployable_store_from_collectible_id" => BSATNHelpers.Decode<Reducer.DeployableStoreFromCollectibleId>(encodedArgs),
                 "deployable_store_start" => BSATNHelpers.Decode<Reducer.DeployableStoreStart>(encodedArgs),
                 "deployable_toggle_auto_follow" => BSATNHelpers.Decode<Reducer.DeployableToggleAutoFollow>(encodedArgs),
                 "destroy_dimension_network" => BSATNHelpers.Decode<Reducer.DestroyDimensionNetwork>(encodedArgs),
@@ -1309,6 +1317,7 @@ namespace BitCraftRegion.Types
                 "loot_chest_spawn" => BSATNHelpers.Decode<Reducer.LootChestSpawn>(encodedArgs),
                 "migrate_character_stats" => BSATNHelpers.Decode<Reducer.MigrateCharacterStats>(encodedArgs),
                 "migrate_claim_tech" => BSATNHelpers.Decode<Reducer.MigrateClaimTech>(encodedArgs),
+                "migrate_player_settings" => BSATNHelpers.Decode<Reducer.MigratePlayerSettings>(encodedArgs),
                 "migration_set_achievement_params" => BSATNHelpers.Decode<Reducer.MigrationSetAchievementParams>(encodedArgs),
                 "npc_ai_agent_loop" => BSATNHelpers.Decode<Reducer.NpcAiAgentLoop>(encodedArgs),
                 "on_durability_zero" => BSATNHelpers.Decode<Reducer.OnDurabilityZero>(encodedArgs),
@@ -1549,6 +1558,8 @@ namespace BitCraftRegion.Types
             var eventContext = (ReducerEventContext)context;
             return reducer switch
             {
+                Reducer.AbilityRemove args => Reducers.InvokeAbilityRemove(eventContext, args),
+                Reducer.AbilitySet args => Reducers.InvokeAbilitySet(eventContext, args),
                 Reducer.AchievementClaim args => Reducers.InvokeAchievementClaim(eventContext, args),
                 Reducer.AcquireKnowledgeFromEntities args => Reducers.InvokeAcquireKnowledgeFromEntities(eventContext, args),
                 Reducer.AdminAddSpecificBuildingTypeStates args => Reducers.InvokeAdminAddSpecificBuildingTypeStates(eventContext, args),
@@ -1584,6 +1595,7 @@ namespace BitCraftRegion.Types
                 Reducer.AdminFindItemsInTrades args => Reducers.InvokeAdminFindItemsInTrades(eventContext, args),
                 Reducer.AdminGrantAllClaimSupplies args => Reducers.InvokeAdminGrantAllClaimSupplies(eventContext, args),
                 Reducer.AdminGrantCollectibles args => Reducers.InvokeAdminGrantCollectibles(eventContext, args),
+                Reducer.AdminMigrateActionState args => Reducers.InvokeAdminMigrateActionState(eventContext, args),
                 Reducer.AdminModifyChatMessage args => Reducers.InvokeAdminModifyChatMessage(eventContext, args),
                 Reducer.AdminPatchHousingCosts args => Reducers.InvokeAdminPatchHousingCosts(eventContext, args),
                 Reducer.AdminRenameBuilding args => Reducers.InvokeAdminRenameBuilding(eventContext, args),
@@ -1731,6 +1743,7 @@ namespace BitCraftRegion.Types
                 Reducer.DeployableMoveOffBounds args => Reducers.InvokeDeployableMoveOffBounds(eventContext, args),
                 Reducer.DeployableMoveOffClaim args => Reducers.InvokeDeployableMoveOffClaim(eventContext, args),
                 Reducer.DeployableStore args => Reducers.InvokeDeployableStore(eventContext, args),
+                Reducer.DeployableStoreFromCollectibleId args => Reducers.InvokeDeployableStoreFromCollectibleId(eventContext, args),
                 Reducer.DeployableStoreStart args => Reducers.InvokeDeployableStoreStart(eventContext, args),
                 Reducer.DeployableToggleAutoFollow args => Reducers.InvokeDeployableToggleAutoFollow(eventContext, args),
                 Reducer.DestroyDimensionNetwork args => Reducers.InvokeDestroyDimensionNetwork(eventContext, args),
@@ -1972,6 +1985,7 @@ namespace BitCraftRegion.Types
                 Reducer.LootChestSpawn args => Reducers.InvokeLootChestSpawn(eventContext, args),
                 Reducer.MigrateCharacterStats args => Reducers.InvokeMigrateCharacterStats(eventContext, args),
                 Reducer.MigrateClaimTech args => Reducers.InvokeMigrateClaimTech(eventContext, args),
+                Reducer.MigratePlayerSettings args => Reducers.InvokeMigratePlayerSettings(eventContext, args),
                 Reducer.MigrationSetAchievementParams args => Reducers.InvokeMigrationSetAchievementParams(eventContext, args),
                 Reducer.NpcAiAgentLoop args => Reducers.InvokeNpcAiAgentLoop(eventContext, args),
                 Reducer.OnDurabilityZero args => Reducers.InvokeOnDurabilityZero(eventContext, args),
