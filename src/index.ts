@@ -77,6 +77,8 @@ import { AdminRenamePlayer } from "./admin_rename_player_reducer.ts";
 export { AdminRenamePlayer };
 import { AdminRenamePlayerEntity } from "./admin_rename_player_entity_reducer.ts";
 export { AdminRenamePlayerEntity };
+import { AdminReplaceIdentity } from "./admin_replace_identity_reducer.ts";
+export { AdminReplaceIdentity };
 import { AdminSignOutAll } from "./admin_sign_out_all_reducer.ts";
 export { AdminSignOutAll };
 import { AdminSkipQueueEntity } from "./admin_skip_queue_entity_reducer.ts";
@@ -743,8 +745,12 @@ export { UserModerationListAll };
 // Import and reexport all table handle types
 import { AIDebugStateTableHandle } from "./a_i_debug_state_table.ts";
 export { AIDebugStateTableHandle };
+import { AbilityStateTableHandle } from "./ability_state_table.ts";
+export { AbilityStateTableHandle };
 import { AchievementDescTableHandle } from "./achievement_desc_table.ts";
 export { AchievementDescTableHandle };
+import { ActionBarStateTableHandle } from "./action_bar_state_table.ts";
+export { ActionBarStateTableHandle };
 import { ActionStateTableHandle } from "./action_state_table.ts";
 export { ActionStateTableHandle };
 import { ActiveBuffStateTableHandle } from "./active_buff_state_table.ts";
@@ -1011,6 +1017,8 @@ import { InterModuleMessageErrorsTableHandle } from "./inter_module_message_erro
 export { InterModuleMessageErrorsTableHandle };
 import { InterModuleMessageV2TableHandle } from "./inter_module_message_v_2_table.ts";
 export { InterModuleMessageV2TableHandle };
+import { InterModuleMessageV3TableHandle } from "./inter_module_message_v_3_table.ts";
+export { InterModuleMessageV3TableHandle };
 import { InterModuleResponseMessageCounterTableHandle } from "./inter_module_response_message_counter_table.ts";
 export { InterModuleResponseMessageCounterTableHandle };
 import { InteriorCollapseTriggerStateTableHandle } from "./interior_collapse_trigger_state_table.ts";
@@ -1165,6 +1173,8 @@ import { PlayerReportStateTimestampTableHandle } from "./player_report_state_tim
 export { PlayerReportStateTimestampTableHandle };
 import { PlayerSettingsStateTableHandle } from "./player_settings_state_table.ts";
 export { PlayerSettingsStateTableHandle };
+import { PlayerSettingsStateV2TableHandle } from "./player_settings_state_v_2_table.ts";
+export { PlayerSettingsStateV2TableHandle };
 import { PlayerShardStateTableHandle } from "./player_shard_state_table.ts";
 export { PlayerShardStateTableHandle };
 import { PlayerStateTableHandle } from "./player_state_table.ts";
@@ -1515,8 +1525,14 @@ export { WorldRegionStateTableHandle };
 // Import and reexport all types
 import { AiDebugState } from "./ai_debug_state_type.ts";
 export { AiDebugState };
+import { AbilityState } from "./ability_state_type.ts";
+export { AbilityState };
+import { AbilityType } from "./ability_type_type.ts";
+export { AbilityType };
 import { AchievementDesc } from "./achievement_desc_type.ts";
 export { AchievementDesc };
+import { ActionBarState } from "./action_bar_state_type.ts";
+export { ActionBarState };
 import { ActionCooldown } from "./action_cooldown_type.ts";
 export { ActionCooldown };
 import { ActionLogData } from "./action_log_data_type.ts";
@@ -1967,6 +1983,8 @@ import { InterModuleMessageErrors } from "./inter_module_message_errors_type.ts"
 export { InterModuleMessageErrors };
 import { InterModuleMessageV2 } from "./inter_module_message_v_2_type.ts";
 export { InterModuleMessageV2 };
+import { InterModuleMessageV3 } from "./inter_module_message_v_3_type.ts";
+export { InterModuleMessageV3 };
 import { InterModuleResponseMessageCounter } from "./inter_module_response_message_counter_type.ts";
 export { InterModuleResponseMessageCounter };
 import { InterModuleTableUpdates } from "./inter_module_table_updates_type.ts";
@@ -2085,6 +2103,8 @@ import { MessageContents } from "./message_contents_type.ts";
 export { MessageContents };
 import { MessageContentsV2 } from "./message_contents_v_2_type.ts";
 export { MessageContentsV2 };
+import { MessageContentsV3 } from "./message_contents_v_3_type.ts";
+export { MessageContentsV3 };
 import { MobileEntityState } from "./mobile_entity_state_type.ts";
 export { MobileEntityState };
 import { ModerationActionLogEntry } from "./moderation_action_log_entry_type.ts";
@@ -2205,6 +2225,8 @@ import { PlayerSetNameRequest } from "./player_set_name_request_type.ts";
 export { PlayerSetNameRequest };
 import { PlayerSettingsState } from "./player_settings_state_type.ts";
 export { PlayerSettingsState };
+import { PlayerSettingsStateV2 } from "./player_settings_state_v_2_type.ts";
+export { PlayerSettingsStateV2 };
 import { PlayerShardState } from "./player_shard_state_type.ts";
 export { PlayerShardState };
 import { PlayerSignInRequest } from "./player_sign_in_request_type.ts";
@@ -2271,6 +2293,8 @@ import { RegionSignInParametersOp } from "./region_sign_in_parameters_op_type.ts
 export { RegionSignInParametersOp };
 import { RentState } from "./rent_state_type.ts";
 export { RentState };
+import { ReplaceIdentityMsg } from "./replace_identity_msg_type.ts";
+export { ReplaceIdentityMsg };
 import { ReservedNameDesc } from "./reserved_name_desc_type.ts";
 export { ReservedNameDesc };
 import { ResourceClumpDesc } from "./resource_clump_desc_type.ts";
@@ -2399,6 +2423,8 @@ import { TransferPlayerMsg } from "./transfer_player_msg_type.ts";
 export { TransferPlayerMsg };
 import { TransferPlayerMsgV2 } from "./transfer_player_msg_v_2_type.ts";
 export { TransferPlayerMsgV2 };
+import { TransferPlayerMsgV3 } from "./transfer_player_msg_v_3_type.ts";
+export { TransferPlayerMsgV3 };
 import { TravelerTaskDesc } from "./traveler_task_desc_type.ts";
 export { TravelerTaskDesc };
 import { TravelerTaskState } from "./traveler_task_state_type.ts";
@@ -2473,6 +2499,15 @@ const REMOTE_MODULE = {
         colType: AiDebugState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    ability_state: {
+      tableName: "ability_state",
+      rowType: AbilityState.getTypeScriptAlgebraicType(),
+      primaryKey: "entityId",
+      primaryKeyInfo: {
+        colName: "entityId",
+        colType: AbilityState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     achievement_desc: {
       tableName: "achievement_desc",
       rowType: AchievementDesc.getTypeScriptAlgebraicType(),
@@ -2480,6 +2515,15 @@ const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "id",
         colType: AchievementDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    action_bar_state: {
+      tableName: "action_bar_state",
+      rowType: ActionBarState.getTypeScriptAlgebraicType(),
+      primaryKey: "entityId",
+      primaryKeyInfo: {
+        colName: "entityId",
+        colType: ActionBarState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     action_state: {
@@ -3669,6 +3713,15 @@ const REMOTE_MODULE = {
         colType: InterModuleMessageV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    inter_module_message_v3: {
+      tableName: "inter_module_message_v3",
+      rowType: InterModuleMessageV3.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: InterModuleMessageV3.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     inter_module_response_message_counter: {
       tableName: "inter_module_response_message_counter",
       rowType: InterModuleResponseMessageCounter.getTypeScriptAlgebraicType(),
@@ -4360,6 +4413,15 @@ const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "entityId",
         colType: PlayerSettingsState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    player_settings_state_v2: {
+      tableName: "player_settings_state_v2",
+      rowType: PlayerSettingsStateV2.getTypeScriptAlgebraicType(),
+      primaryKey: "entityId",
+      primaryKeyInfo: {
+        colName: "entityId",
+        colType: PlayerSettingsStateV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     player_shard_state: {
@@ -6009,6 +6071,10 @@ const REMOTE_MODULE = {
       reducerName: "admin_rename_player_entity",
       argsType: AdminRenamePlayerEntity.getTypeScriptAlgebraicType(),
     },
+    admin_replace_identity: {
+      reducerName: "admin_replace_identity",
+      argsType: AdminReplaceIdentity.getTypeScriptAlgebraicType(),
+    },
     admin_sign_out_all: {
       reducerName: "admin_sign_out_all",
       argsType: AdminSignOutAll.getTypeScriptAlgebraicType(),
@@ -7385,6 +7451,7 @@ export type Reducer = never
 | { name: "AdminRenameEmpireRankEntity", args: AdminRenameEmpireRankEntity }
 | { name: "AdminRenamePlayer", args: AdminRenamePlayer }
 | { name: "AdminRenamePlayerEntity", args: AdminRenamePlayerEntity }
+| { name: "AdminReplaceIdentity", args: AdminReplaceIdentity }
 | { name: "AdminSignOutAll", args: AdminSignOutAll }
 | { name: "AdminSkipQueueEntity", args: AdminSkipQueueEntity }
 | { name: "AdminSkipQueueIdentity", args: AdminSkipQueueIdentity }
@@ -8067,6 +8134,22 @@ export class RemoteReducers {
 
   removeOnAdminRenamePlayerEntity(callback: (ctx: ReducerEventContext, entityId: bigint, newName: string) => void) {
     this.connection.offReducer("admin_rename_player_entity", callback);
+  }
+
+  adminReplaceIdentity(oldIdentity: string, newIdentity: string) {
+    const __args = { oldIdentity, newIdentity };
+    let __writer = new BinaryWriter(1024);
+    AdminReplaceIdentity.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("admin_replace_identity", __argsBuffer, this.setCallReducerFlags.adminReplaceIdentityFlags);
+  }
+
+  onAdminReplaceIdentity(callback: (ctx: ReducerEventContext, oldIdentity: string, newIdentity: string) => void) {
+    this.connection.onReducer("admin_replace_identity", callback);
+  }
+
+  removeOnAdminReplaceIdentity(callback: (ctx: ReducerEventContext, oldIdentity: string, newIdentity: string) => void) {
+    this.connection.offReducer("admin_replace_identity", callback);
   }
 
   adminSignOutAll(region: number) {
@@ -11585,7 +11668,7 @@ export class RemoteReducers {
     this.connection.offReducer("player_vote_conclude", callback);
   }
 
-  processInterModuleMessage(sender: number, message: InterModuleMessageV2) {
+  processInterModuleMessage(sender: number, message: InterModuleMessageV3) {
     const __args = { sender, message };
     let __writer = new BinaryWriter(1024);
     ProcessInterModuleMessage.getTypeScriptAlgebraicType().serialize(__writer, __args);
@@ -11593,11 +11676,11 @@ export class RemoteReducers {
     this.connection.callReducer("process_inter_module_message", __argsBuffer, this.setCallReducerFlags.processInterModuleMessageFlags);
   }
 
-  onProcessInterModuleMessage(callback: (ctx: ReducerEventContext, sender: number, message: InterModuleMessageV2) => void) {
+  onProcessInterModuleMessage(callback: (ctx: ReducerEventContext, sender: number, message: InterModuleMessageV3) => void) {
     this.connection.onReducer("process_inter_module_message", callback);
   }
 
-  removeOnProcessInterModuleMessage(callback: (ctx: ReducerEventContext, sender: number, message: InterModuleMessageV2) => void) {
+  removeOnProcessInterModuleMessage(callback: (ctx: ReducerEventContext, sender: number, message: InterModuleMessageV3) => void) {
     this.connection.offReducer("process_inter_module_message", callback);
   }
 
@@ -13422,6 +13505,11 @@ export class SetReducerFlags {
     this.adminRenamePlayerEntityFlags = flags;
   }
 
+  adminReplaceIdentityFlags: CallReducerFlags = 'FullUpdate';
+  adminReplaceIdentity(flags: CallReducerFlags) {
+    this.adminReplaceIdentityFlags = flags;
+  }
+
   adminSignOutAllFlags: CallReducerFlags = 'FullUpdate';
   adminSignOutAll(flags: CallReducerFlags) {
     this.adminSignOutAllFlags = flags;
@@ -15076,8 +15164,16 @@ export class RemoteTables {
     return new AIDebugStateTableHandle(this.connection.clientCache.getOrCreateTable<AiDebugState>(REMOTE_MODULE.tables.a_i_debug_state));
   }
 
+  get abilityState(): AbilityStateTableHandle {
+    return new AbilityStateTableHandle(this.connection.clientCache.getOrCreateTable<AbilityState>(REMOTE_MODULE.tables.ability_state));
+  }
+
   get achievementDesc(): AchievementDescTableHandle {
     return new AchievementDescTableHandle(this.connection.clientCache.getOrCreateTable<AchievementDesc>(REMOTE_MODULE.tables.achievement_desc));
+  }
+
+  get actionBarState(): ActionBarStateTableHandle {
+    return new ActionBarStateTableHandle(this.connection.clientCache.getOrCreateTable<ActionBarState>(REMOTE_MODULE.tables.action_bar_state));
   }
 
   get actionState(): ActionStateTableHandle {
@@ -15612,6 +15708,10 @@ export class RemoteTables {
     return new InterModuleMessageV2TableHandle(this.connection.clientCache.getOrCreateTable<InterModuleMessageV2>(REMOTE_MODULE.tables.inter_module_message_v2));
   }
 
+  get interModuleMessageV3(): InterModuleMessageV3TableHandle {
+    return new InterModuleMessageV3TableHandle(this.connection.clientCache.getOrCreateTable<InterModuleMessageV3>(REMOTE_MODULE.tables.inter_module_message_v3));
+  }
+
   get interModuleResponseMessageCounter(): InterModuleResponseMessageCounterTableHandle {
     return new InterModuleResponseMessageCounterTableHandle(this.connection.clientCache.getOrCreateTable<InterModuleResponseMessageCounter>(REMOTE_MODULE.tables.inter_module_response_message_counter));
   }
@@ -15918,6 +16018,10 @@ export class RemoteTables {
 
   get playerSettingsState(): PlayerSettingsStateTableHandle {
     return new PlayerSettingsStateTableHandle(this.connection.clientCache.getOrCreateTable<PlayerSettingsState>(REMOTE_MODULE.tables.player_settings_state));
+  }
+
+  get playerSettingsStateV2(): PlayerSettingsStateV2TableHandle {
+    return new PlayerSettingsStateV2TableHandle(this.connection.clientCache.getOrCreateTable<PlayerSettingsStateV2>(REMOTE_MODULE.tables.player_settings_state_v2));
   }
 
   get playerShardState(): PlayerShardStateTableHandle {
