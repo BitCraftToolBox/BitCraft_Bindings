@@ -31,6 +31,8 @@ namespace BitCraftGlobal.Types
         public Permission Permission;
         [DataMember(Name = "permission_group")]
         public PermissionGroup PermissionGroup;
+        [DataMember(Name = "ability_type")]
+        public AbilityTypeEnum AbilityType;
 
         public TheGreatPlaceHolderTable(
             ulong PlaceholderId,
@@ -40,7 +42,8 @@ namespace BitCraftGlobal.Types
             SurfaceType PlaceholderWaterBodyType,
             ChatChannel ChatChannel,
             Permission Permission,
-            PermissionGroup PermissionGroup
+            PermissionGroup PermissionGroup,
+            AbilityTypeEnum AbilityType
         )
         {
             this.PlaceholderId = PlaceholderId;
@@ -51,6 +54,7 @@ namespace BitCraftGlobal.Types
             this.ChatChannel = ChatChannel;
             this.Permission = Permission;
             this.PermissionGroup = PermissionGroup;
+            this.AbilityType = AbilityType;
         }
 
         public TheGreatPlaceHolderTable()

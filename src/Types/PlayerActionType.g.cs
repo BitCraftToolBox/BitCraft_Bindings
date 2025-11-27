@@ -42,5 +42,6 @@ namespace BitCraftGlobal.Types
         MobileEmote,
         PlacePillarShaping,
         DestroyPillarShaping,
+        AbilityCustom,
     }
 }

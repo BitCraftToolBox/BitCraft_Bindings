@@ -24,7 +24,9 @@ namespace BitCraftGlobal.Types
         public RemoteTables(DbConnection conn)
         {
             AddTable(AIDebugState = new(conn));
+            AddTable(AbilityCustomDesc = new(conn));
             AddTable(AbilityState = new(conn));
+            AddTable(AbilityUnlockDesc = new(conn));
             AddTable(AchievementDesc = new(conn));
             AddTable(ActionBarState = new(conn));
             AddTable(ActionState = new(conn));
@@ -274,6 +276,8 @@ namespace BitCraftGlobal.Types
             AddTable(SignedInPlayerState = new(conn));
             AddTable(SingleResourceToClumpDesc = new(conn));
             AddTable(SkillDesc = new(conn));
+            AddTable(StagedAbilityCustomDesc = new(conn));
+            AddTable(StagedAbilityUnlockDesc = new(conn));
             AddTable(StagedAchievementDesc = new(conn));
             AddTable(StagedAlertDesc = new(conn));
             AddTable(StagedBiomeDesc = new(conn));
@@ -1113,6 +1117,8 @@ namespace BitCraftGlobal.Types
                 "set_role_for_identity" => BSATNHelpers.Decode<Reducer.SetRoleForIdentity>(encodedArgs),
                 "set_visibility" => BSATNHelpers.Decode<Reducer.SetVisibility>(encodedArgs),
                 "sign_in" => BSATNHelpers.Decode<Reducer.SignIn>(encodedArgs),
+                "stage_ability_custom_desc" => BSATNHelpers.Decode<Reducer.StageAbilityCustomDesc>(encodedArgs),
+                "stage_ability_unlock_desc" => BSATNHelpers.Decode<Reducer.StageAbilityUnlockDesc>(encodedArgs),
                 "stage_achievement_desc" => BSATNHelpers.Decode<Reducer.StageAchievementDesc>(encodedArgs),
                 "stage_alert_desc" => BSATNHelpers.Decode<Reducer.StageAlertDesc>(encodedArgs),
                 "stage_biome_desc" => BSATNHelpers.Decode<Reducer.StageBiomeDesc>(encodedArgs),
@@ -1488,6 +1494,8 @@ namespace BitCraftGlobal.Types
                 Reducer.SetRoleForIdentity args => Reducers.InvokeSetRoleForIdentity(eventContext, args),
                 Reducer.SetVisibility args => Reducers.InvokeSetVisibility(eventContext, args),
                 Reducer.SignIn args => Reducers.InvokeSignIn(eventContext, args),
+                Reducer.StageAbilityCustomDesc args => Reducers.InvokeStageAbilityCustomDesc(eventContext, args),
+                Reducer.StageAbilityUnlockDesc args => Reducers.InvokeStageAbilityUnlockDesc(eventContext, args),
                 Reducer.StageAchievementDesc args => Reducers.InvokeStageAchievementDesc(eventContext, args),
                 Reducer.StageAlertDesc args => Reducers.InvokeStageAlertDesc(eventContext, args),
                 Reducer.StageBiomeDesc args => Reducers.InvokeStageBiomeDesc(eventContext, args),

@@ -31,6 +31,8 @@ namespace BitCraftGlobal.Types
         public uint BasePrice;
         [DataMember(Name = "is_enabled")]
         public bool IsEnabled;
+        [DataMember(Name = "quantity")]
+        public uint Quantity;
 
         public PremiumItemDesc(
             int Id,
@@ -40,7 +42,8 @@ namespace BitCraftGlobal.Types
             int CollectibleDescId,
             uint Price,
             uint BasePrice,
-            bool IsEnabled
+            bool IsEnabled,
+            uint Quantity
         )
         {
             this.Id = Id;
@@ -51,6 +54,7 @@ namespace BitCraftGlobal.Types
             this.Price = Price;
             this.BasePrice = BasePrice;
             this.IsEnabled = IsEnabled;
+            this.Quantity = Quantity;
         }
 
         public PremiumItemDesc()

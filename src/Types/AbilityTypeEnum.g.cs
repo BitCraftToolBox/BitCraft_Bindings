@@ -10,11 +10,13 @@ using SpacetimeDB;
 namespace BitCraftGlobal.Types
 {
     [SpacetimeDB.Type]
-    public partial record AbilityType : SpacetimeDB.TaggedEnum<(
-        U128 _Unsupported,
-        int Eat,
-        int CombatAction,
-        SpacetimeDB.Unit AutoAttack,
-        int Custom
-    )>;
+    public enum AbilityTypeEnum
+    {
+        _Unsupported,
+        Eat,
+        CombatAction,
+        AutoAttack,
+        SelfBuff,
+        Custom,
+    }
 }

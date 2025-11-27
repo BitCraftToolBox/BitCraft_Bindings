@@ -27,6 +27,8 @@ namespace BitCraftGlobal.Types
         public SpacetimeDB.Timestamp Timestamp;
         [DataMember(Name = "processed")]
         public bool Processed;
+        [DataMember(Name = "quantity")]
+        public uint Quantity;
 
         public PremiumPurchaseState(
             ulong EntityId,
@@ -34,7 +36,8 @@ namespace BitCraftGlobal.Types
             int? CollectibleDescId,
             uint Price,
             SpacetimeDB.Timestamp Timestamp,
-            bool Processed
+            bool Processed,
+            uint Quantity
         )
         {
             this.EntityId = EntityId;
@@ -43,6 +46,7 @@ namespace BitCraftGlobal.Types
             this.Price = Price;
             this.Timestamp = Timestamp;
             this.Processed = Processed;
+            this.Quantity = Quantity;
         }
 
         public PremiumPurchaseState()

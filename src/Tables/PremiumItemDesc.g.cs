@@ -19,6 +19,15 @@ namespace BitCraftGlobal.Types
         {
             protected override string RemoteTableName => "premium_item_desc";
 
+            public sealed class CollectibleDescIdIndex : BTreeIndexBase<int>
+            {
+                protected override int GetKey(PremiumItemDesc row) => row.CollectibleDescId;
+
+                public CollectibleDescIdIndex(PremiumItemDescHandle table) : base(table) { }
+            }
+
+            public readonly CollectibleDescIdIndex CollectibleDescId;
+
             public sealed class IdUniqueIndex : UniqueIndexBase<int>
             {
                 protected override int GetKey(PremiumItemDesc row) => row.Id;
@@ -30,6 +39,7 @@ namespace BitCraftGlobal.Types
 
             internal PremiumItemDescHandle(DbConnection conn) : base(conn)
             {
+                CollectibleDescId = new(this);
                 Id = new(this);
             }
 

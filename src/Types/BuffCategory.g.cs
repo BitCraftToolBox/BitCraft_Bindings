@@ -26,5 +26,6 @@ namespace BitCraftGlobal.Types
         Starving,
         ElevatorSickness,
         NearbyFlame,
+        Sprint,
     }
 }
