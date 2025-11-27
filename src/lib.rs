@@ -6,11 +6,18 @@
 use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 pub mod a_i_debug_state_table;
+pub mod ability_custom_activate_reducer;
+pub mod ability_custom_activate_start_reducer;
+pub mod ability_custom_desc_table;
+pub mod ability_custom_desc_type;
 pub mod ability_remove_reducer;
 pub mod ability_set_reducer;
 pub mod ability_state_table;
 pub mod ability_state_type;
+pub mod ability_type_enum_type;
 pub mod ability_type_type;
+pub mod ability_unlock_desc_table;
+pub mod ability_unlock_desc_type;
 pub mod achievement_claim_reducer;
 pub mod achievement_desc_table;
 pub mod achievement_desc_type;
@@ -66,6 +73,7 @@ pub mod admin_find_items_in_trades_reducer;
 pub mod admin_grant_all_claim_supplies_reducer;
 pub mod admin_grant_collectibles_reducer;
 pub mod admin_migrate_action_state_reducer;
+pub mod admin_migrate_trade_orders_reducer;
 pub mod admin_modify_chat_message_reducer;
 pub mod admin_patch_housing_costs_reducer;
 pub mod admin_rename_building_coord_reducer;
@@ -630,6 +638,8 @@ pub mod identity_disconnected_reducer;
 pub mod identity_role_op_type;
 pub mod identity_role_table;
 pub mod identity_role_type;
+pub mod import_ability_custom_desc_reducer;
+pub mod import_ability_unlock_desc_reducer;
 pub mod import_achievement_desc_reducer;
 pub mod import_active_buff_state_reducer;
 pub mod import_admin_broadcast_reducer;
@@ -943,6 +953,7 @@ pub mod marketplace_state_type;
 pub mod message_contents_type;
 pub mod message_contents_v_2_type;
 pub mod message_contents_v_3_type;
+pub mod migrate_auto_attacks_reducer;
 pub mod migrate_character_stats_reducer;
 pub mod migrate_claim_tech_reducer;
 pub mod migrate_player_settings_reducer;
@@ -1380,6 +1391,8 @@ pub mod skill_type_type;
 pub mod sleep_reducer;
 pub mod small_hex_tile_message_type;
 pub mod spawn_info_type;
+pub mod stage_ability_custom_desc_reducer;
+pub mod stage_ability_unlock_desc_reducer;
 pub mod stage_achievement_desc_reducer;
 pub mod stage_alert_desc_reducer;
 pub mod stage_biome_desc_reducer;
@@ -1468,6 +1481,8 @@ pub mod stage_wall_desc_reducer;
 pub mod stage_weapon_desc_reducer;
 pub mod stage_weapon_type_desc_reducer;
 pub mod stage_wind_params_desc_reducer;
+pub mod staged_ability_custom_desc_table;
+pub mod staged_ability_unlock_desc_table;
 pub mod staged_achievement_desc_table;
 pub mod staged_alert_desc_table;
 pub mod staged_biome_desc_table;
@@ -1750,13 +1765,25 @@ pub mod world_region_state_table;
 pub mod world_region_state_type;
 
 pub use a_i_debug_state_table::*;
+pub use ability_custom_activate_reducer::{
+    ability_custom_activate, set_flags_for_ability_custom_activate, AbilityCustomActivateCallbackId,
+};
+pub use ability_custom_activate_start_reducer::{
+    ability_custom_activate_start, set_flags_for_ability_custom_activate_start,
+    AbilityCustomActivateStartCallbackId,
+};
+pub use ability_custom_desc_table::*;
+pub use ability_custom_desc_type::AbilityCustomDesc;
 pub use ability_remove_reducer::{
     ability_remove, set_flags_for_ability_remove, AbilityRemoveCallbackId,
 };
 pub use ability_set_reducer::{ability_set, set_flags_for_ability_set, AbilitySetCallbackId};
 pub use ability_state_table::*;
 pub use ability_state_type::AbilityState;
+pub use ability_type_enum_type::AbilityTypeEnum;
 pub use ability_type_type::AbilityType;
+pub use ability_unlock_desc_table::*;
+pub use ability_unlock_desc_type::AbilityUnlockDesc;
 pub use achievement_claim_reducer::{
     achievement_claim, set_flags_for_achievement_claim, AchievementClaimCallbackId,
 };
@@ -1925,6 +1952,10 @@ pub use admin_grant_collectibles_reducer::{
 pub use admin_migrate_action_state_reducer::{
     admin_migrate_action_state, set_flags_for_admin_migrate_action_state,
     AdminMigrateActionStateCallbackId,
+};
+pub use admin_migrate_trade_orders_reducer::{
+    admin_migrate_trade_orders, set_flags_for_admin_migrate_trade_orders,
+    AdminMigrateTradeOrdersCallbackId,
 };
 pub use admin_modify_chat_message_reducer::{
     admin_modify_chat_message, set_flags_for_admin_modify_chat_message,
@@ -2944,6 +2975,14 @@ pub use identity_disconnected_reducer::{
 pub use identity_role_op_type::IdentityRoleOp;
 pub use identity_role_table::*;
 pub use identity_role_type::IdentityRole;
+pub use import_ability_custom_desc_reducer::{
+    import_ability_custom_desc, set_flags_for_import_ability_custom_desc,
+    ImportAbilityCustomDescCallbackId,
+};
+pub use import_ability_unlock_desc_reducer::{
+    import_ability_unlock_desc, set_flags_for_import_ability_unlock_desc,
+    ImportAbilityUnlockDescCallbackId,
+};
 pub use import_achievement_desc_reducer::{
     import_achievement_desc, set_flags_for_import_achievement_desc, ImportAchievementDescCallbackId,
 };
@@ -3728,6 +3767,9 @@ pub use marketplace_state_type::MarketplaceState;
 pub use message_contents_type::MessageContents;
 pub use message_contents_v_2_type::MessageContentsV2;
 pub use message_contents_v_3_type::MessageContentsV3;
+pub use migrate_auto_attacks_reducer::{
+    migrate_auto_attacks, set_flags_for_migrate_auto_attacks, MigrateAutoAttacksCallbackId,
+};
 pub use migrate_character_stats_reducer::{
     migrate_character_stats, set_flags_for_migrate_character_stats, MigrateCharacterStatsCallbackId,
 };
@@ -4389,6 +4431,14 @@ pub use skill_type_type::SkillType;
 pub use sleep_reducer::{set_flags_for_sleep, sleep, SleepCallbackId};
 pub use small_hex_tile_message_type::SmallHexTileMessage;
 pub use spawn_info_type::SpawnInfo;
+pub use stage_ability_custom_desc_reducer::{
+    set_flags_for_stage_ability_custom_desc, stage_ability_custom_desc,
+    StageAbilityCustomDescCallbackId,
+};
+pub use stage_ability_unlock_desc_reducer::{
+    set_flags_for_stage_ability_unlock_desc, stage_ability_unlock_desc,
+    StageAbilityUnlockDescCallbackId,
+};
 pub use stage_achievement_desc_reducer::{
     set_flags_for_stage_achievement_desc, stage_achievement_desc, StageAchievementDescCallbackId,
 };
@@ -4703,6 +4753,8 @@ pub use stage_weapon_type_desc_reducer::{
 pub use stage_wind_params_desc_reducer::{
     set_flags_for_stage_wind_params_desc, stage_wind_params_desc, StageWindParamsDescCallbackId,
 };
+pub use staged_ability_custom_desc_table::*;
+pub use staged_ability_unlock_desc_table::*;
 pub use staged_achievement_desc_table::*;
 pub use staged_alert_desc_table::*;
 pub use staged_biome_desc_table::*;
@@ -5048,6 +5100,16 @@ pub use world_region_state_type::WorldRegionState;
 /// to indicate which reducer caused the event.
 
 pub enum Reducer {
+    AbilityCustomActivate {
+        ability_custom_id: i32,
+        target_entity_id: u64,
+        timestamp: u64,
+    },
+    AbilityCustomActivateStart {
+        ability_custom_id: i32,
+        target_entity_id: u64,
+        timestamp: u64,
+    },
     AbilityRemove {
         action_bar_index: u8,
         local_ability_index: u8,
@@ -5171,6 +5233,7 @@ pub enum Reducer {
         collectibles: Vec<i32>,
     },
     AdminMigrateActionState,
+    AdminMigrateTradeOrders,
     AdminModifyChatMessage {
         entity_id: u64,
         new_message_text: String,
@@ -5775,6 +5838,12 @@ pub enum Reducer {
     },
     IdentityConnected,
     IdentityDisconnected,
+    ImportAbilityCustomDesc {
+        records: Vec<AbilityCustomDesc>,
+    },
+    ImportAbilityUnlockDesc {
+        records: Vec<AbilityUnlockDesc>,
+    },
     ImportAchievementDesc {
         records: Vec<AchievementDesc>,
     },
@@ -6349,6 +6418,7 @@ pub enum Reducer {
     LootChestSpawn {
         timer: LootChestSpawnTimer,
     },
+    MigrateAutoAttacks,
     MigrateCharacterStats,
     MigrateClaimTech,
     MigratePlayerSettings,
@@ -6650,6 +6720,12 @@ pub enum Reducer {
     SignOut,
     Sleep {
         request: PlayerSleepRequest,
+    },
+    StageAbilityCustomDesc {
+        records: Vec<AbilityCustomDesc>,
+    },
+    StageAbilityUnlockDesc {
+        records: Vec<AbilityUnlockDesc>,
     },
     StageAchievementDesc {
         records: Vec<AchievementDesc>,
@@ -7010,6 +7086,8 @@ impl __sdk::InModule for Reducer {
 impl __sdk::Reducer for Reducer {
     fn reducer_name(&self) -> &'static str {
         match self {
+            Reducer::AbilityCustomActivate { .. } => "ability_custom_activate",
+            Reducer::AbilityCustomActivateStart { .. } => "ability_custom_activate_start",
             Reducer::AbilityRemove { .. } => "ability_remove",
             Reducer::AbilitySet { .. } => "ability_set",
             Reducer::AchievementClaim { .. } => "achievement_claim",
@@ -7070,6 +7148,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::AdminGrantAllClaimSupplies { .. } => "admin_grant_all_claim_supplies",
             Reducer::AdminGrantCollectibles { .. } => "admin_grant_collectibles",
             Reducer::AdminMigrateActionState => "admin_migrate_action_state",
+            Reducer::AdminMigrateTradeOrders => "admin_migrate_trade_orders",
             Reducer::AdminModifyChatMessage { .. } => "admin_modify_chat_message",
             Reducer::AdminPatchHousingCosts => "admin_patch_housing_costs",
             Reducer::AdminRenameBuilding { .. } => "admin_rename_building",
@@ -7285,6 +7364,8 @@ impl __sdk::Reducer for Reducer {
             Reducer::HideDeployable { .. } => "hide_deployable",
             Reducer::IdentityConnected => "identity_connected",
             Reducer::IdentityDisconnected => "identity_disconnected",
+            Reducer::ImportAbilityCustomDesc { .. } => "import_ability_custom_desc",
+            Reducer::ImportAbilityUnlockDesc { .. } => "import_ability_unlock_desc",
             Reducer::ImportAchievementDesc { .. } => "import_achievement_desc",
             Reducer::ImportActiveBuffState { .. } => "import_active_buff_state",
             Reducer::ImportAdminBroadcast { .. } => "import_admin_broadcast",
@@ -7493,6 +7574,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::LogClaimTierLeaderboard => "log_claim_tier_leaderboard",
             Reducer::LootChestDespawn { .. } => "loot_chest_despawn",
             Reducer::LootChestSpawn { .. } => "loot_chest_spawn",
+            Reducer::MigrateAutoAttacks => "migrate_auto_attacks",
             Reducer::MigrateCharacterStats => "migrate_character_stats",
             Reducer::MigrateClaimTech => "migrate_claim_tech",
             Reducer::MigratePlayerSettings => "migrate_player_settings",
@@ -7604,6 +7686,8 @@ impl __sdk::Reducer for Reducer {
             Reducer::SignIn { .. } => "sign_in",
             Reducer::SignOut => "sign_out",
             Reducer::Sleep { .. } => "sleep",
+            Reducer::StageAbilityCustomDesc { .. } => "stage_ability_custom_desc",
+            Reducer::StageAbilityUnlockDesc { .. } => "stage_ability_unlock_desc",
             Reducer::StageAchievementDesc { .. } => "stage_achievement_desc",
             Reducer::StageAlertDesc { .. } => "stage_alert_desc",
             Reducer::StageBiomeDesc { .. } => "stage_biome_desc",
@@ -7736,7 +7820,9 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
     type Error = __sdk::Error;
     fn try_from(value: __ws::ReducerCallInfo<__ws::BsatnFormat>) -> __sdk::Result<Self> {
         match &value.reducer_name[..] {
-                        "ability_remove" => Ok(__sdk::parse_reducer_args::<ability_remove_reducer::AbilityRemoveArgs>("ability_remove", &value.args)?.into()),
+                        "ability_custom_activate" => Ok(__sdk::parse_reducer_args::<ability_custom_activate_reducer::AbilityCustomActivateArgs>("ability_custom_activate", &value.args)?.into()),
+            "ability_custom_activate_start" => Ok(__sdk::parse_reducer_args::<ability_custom_activate_start_reducer::AbilityCustomActivateStartArgs>("ability_custom_activate_start", &value.args)?.into()),
+            "ability_remove" => Ok(__sdk::parse_reducer_args::<ability_remove_reducer::AbilityRemoveArgs>("ability_remove", &value.args)?.into()),
             "ability_set" => Ok(__sdk::parse_reducer_args::<ability_set_reducer::AbilitySetArgs>("ability_set", &value.args)?.into()),
             "achievement_claim" => Ok(__sdk::parse_reducer_args::<achievement_claim_reducer::AchievementClaimArgs>("achievement_claim", &value.args)?.into()),
             "acquire_knowledge_from_entities" => Ok(__sdk::parse_reducer_args::<acquire_knowledge_from_entities_reducer::AcquireKnowledgeFromEntitiesArgs>("acquire_knowledge_from_entities", &value.args)?.into()),
@@ -7774,6 +7860,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "admin_grant_all_claim_supplies" => Ok(__sdk::parse_reducer_args::<admin_grant_all_claim_supplies_reducer::AdminGrantAllClaimSuppliesArgs>("admin_grant_all_claim_supplies", &value.args)?.into()),
             "admin_grant_collectibles" => Ok(__sdk::parse_reducer_args::<admin_grant_collectibles_reducer::AdminGrantCollectiblesArgs>("admin_grant_collectibles", &value.args)?.into()),
             "admin_migrate_action_state" => Ok(__sdk::parse_reducer_args::<admin_migrate_action_state_reducer::AdminMigrateActionStateArgs>("admin_migrate_action_state", &value.args)?.into()),
+            "admin_migrate_trade_orders" => Ok(__sdk::parse_reducer_args::<admin_migrate_trade_orders_reducer::AdminMigrateTradeOrdersArgs>("admin_migrate_trade_orders", &value.args)?.into()),
             "admin_modify_chat_message" => Ok(__sdk::parse_reducer_args::<admin_modify_chat_message_reducer::AdminModifyChatMessageArgs>("admin_modify_chat_message", &value.args)?.into()),
             "admin_patch_housing_costs" => Ok(__sdk::parse_reducer_args::<admin_patch_housing_costs_reducer::AdminPatchHousingCostsArgs>("admin_patch_housing_costs", &value.args)?.into()),
             "admin_rename_building" => Ok(__sdk::parse_reducer_args::<admin_rename_building_reducer::AdminRenameBuildingArgs>("admin_rename_building", &value.args)?.into()),
@@ -7971,6 +8058,8 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "hide_deployable" => Ok(__sdk::parse_reducer_args::<hide_deployable_reducer::HideDeployableArgs>("hide_deployable", &value.args)?.into()),
             "identity_connected" => Ok(__sdk::parse_reducer_args::<identity_connected_reducer::IdentityConnectedArgs>("identity_connected", &value.args)?.into()),
             "identity_disconnected" => Ok(__sdk::parse_reducer_args::<identity_disconnected_reducer::IdentityDisconnectedArgs>("identity_disconnected", &value.args)?.into()),
+            "import_ability_custom_desc" => Ok(__sdk::parse_reducer_args::<import_ability_custom_desc_reducer::ImportAbilityCustomDescArgs>("import_ability_custom_desc", &value.args)?.into()),
+            "import_ability_unlock_desc" => Ok(__sdk::parse_reducer_args::<import_ability_unlock_desc_reducer::ImportAbilityUnlockDescArgs>("import_ability_unlock_desc", &value.args)?.into()),
             "import_achievement_desc" => Ok(__sdk::parse_reducer_args::<import_achievement_desc_reducer::ImportAchievementDescArgs>("import_achievement_desc", &value.args)?.into()),
             "import_active_buff_state" => Ok(__sdk::parse_reducer_args::<import_active_buff_state_reducer::ImportActiveBuffStateArgs>("import_active_buff_state", &value.args)?.into()),
             "import_admin_broadcast" => Ok(__sdk::parse_reducer_args::<import_admin_broadcast_reducer::ImportAdminBroadcastArgs>("import_admin_broadcast", &value.args)?.into()),
@@ -8161,6 +8250,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "log_claim_tier_leaderboard" => Ok(__sdk::parse_reducer_args::<log_claim_tier_leaderboard_reducer::LogClaimTierLeaderboardArgs>("log_claim_tier_leaderboard", &value.args)?.into()),
             "loot_chest_despawn" => Ok(__sdk::parse_reducer_args::<loot_chest_despawn_reducer::LootChestDespawnArgs>("loot_chest_despawn", &value.args)?.into()),
             "loot_chest_spawn" => Ok(__sdk::parse_reducer_args::<loot_chest_spawn_reducer::LootChestSpawnArgs>("loot_chest_spawn", &value.args)?.into()),
+            "migrate_auto_attacks" => Ok(__sdk::parse_reducer_args::<migrate_auto_attacks_reducer::MigrateAutoAttacksArgs>("migrate_auto_attacks", &value.args)?.into()),
             "migrate_character_stats" => Ok(__sdk::parse_reducer_args::<migrate_character_stats_reducer::MigrateCharacterStatsArgs>("migrate_character_stats", &value.args)?.into()),
             "migrate_claim_tech" => Ok(__sdk::parse_reducer_args::<migrate_claim_tech_reducer::MigrateClaimTechArgs>("migrate_claim_tech", &value.args)?.into()),
             "migrate_player_settings" => Ok(__sdk::parse_reducer_args::<migrate_player_settings_reducer::MigratePlayerSettingsArgs>("migrate_player_settings", &value.args)?.into()),
@@ -8266,6 +8356,8 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "sign_in" => Ok(__sdk::parse_reducer_args::<sign_in_reducer::SignInArgs>("sign_in", &value.args)?.into()),
             "sign_out" => Ok(__sdk::parse_reducer_args::<sign_out_reducer::SignOutArgs>("sign_out", &value.args)?.into()),
             "sleep" => Ok(__sdk::parse_reducer_args::<sleep_reducer::SleepArgs>("sleep", &value.args)?.into()),
+            "stage_ability_custom_desc" => Ok(__sdk::parse_reducer_args::<stage_ability_custom_desc_reducer::StageAbilityCustomDescArgs>("stage_ability_custom_desc", &value.args)?.into()),
+            "stage_ability_unlock_desc" => Ok(__sdk::parse_reducer_args::<stage_ability_unlock_desc_reducer::StageAbilityUnlockDescArgs>("stage_ability_unlock_desc", &value.args)?.into()),
             "stage_achievement_desc" => Ok(__sdk::parse_reducer_args::<stage_achievement_desc_reducer::StageAchievementDescArgs>("stage_achievement_desc", &value.args)?.into()),
             "stage_alert_desc" => Ok(__sdk::parse_reducer_args::<stage_alert_desc_reducer::StageAlertDescArgs>("stage_alert_desc", &value.args)?.into()),
             "stage_biome_desc" => Ok(__sdk::parse_reducer_args::<stage_biome_desc_reducer::StageBiomeDescArgs>("stage_biome_desc", &value.args)?.into()),
@@ -8393,7 +8485,9 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
 #[doc(hidden)]
 pub struct DbUpdate {
     a_i_debug_state: __sdk::TableUpdate<AiDebugState>,
+    ability_custom_desc: __sdk::TableUpdate<AbilityCustomDesc>,
     ability_state: __sdk::TableUpdate<AbilityState>,
+    ability_unlock_desc: __sdk::TableUpdate<AbilityUnlockDesc>,
     achievement_desc: __sdk::TableUpdate<AchievementDesc>,
     action_bar_state: __sdk::TableUpdate<ActionBarState>,
     action_state: __sdk::TableUpdate<ActionState>,
@@ -8674,6 +8768,8 @@ pub struct DbUpdate {
     single_resource_clump_info: __sdk::TableUpdate<SingleResourceClumpInfo>,
     single_resource_to_clump_desc: __sdk::TableUpdate<SingleResourceToClumpDesc>,
     skill_desc: __sdk::TableUpdate<SkillDesc>,
+    staged_ability_custom_desc: __sdk::TableUpdate<AbilityCustomDesc>,
+    staged_ability_unlock_desc: __sdk::TableUpdate<AbilityUnlockDesc>,
     staged_achievement_desc: __sdk::TableUpdate<AchievementDesc>,
     staged_alert_desc: __sdk::TableUpdate<AlertDesc>,
     staged_biome_desc: __sdk::TableUpdate<BiomeDesc>,
@@ -8828,9 +8924,15 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
                 "a_i_debug_state" => db_update
                     .a_i_debug_state
                     .append(a_i_debug_state_table::parse_table_update(table_update)?),
+                "ability_custom_desc" => db_update
+                    .ability_custom_desc
+                    .append(ability_custom_desc_table::parse_table_update(table_update)?),
                 "ability_state" => db_update
                     .ability_state
                     .append(ability_state_table::parse_table_update(table_update)?),
+                "ability_unlock_desc" => db_update
+                    .ability_unlock_desc
+                    .append(ability_unlock_desc_table::parse_table_update(table_update)?),
                 "achievement_desc" => db_update
                     .achievement_desc
                     .append(achievement_desc_table::parse_table_update(table_update)?),
@@ -9718,6 +9820,12 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
                 "skill_desc" => db_update
                     .skill_desc
                     .append(skill_desc_table::parse_table_update(table_update)?),
+                "staged_ability_custom_desc" => db_update.staged_ability_custom_desc.append(
+                    staged_ability_custom_desc_table::parse_table_update(table_update)?,
+                ),
+                "staged_ability_unlock_desc" => db_update.staged_ability_unlock_desc.append(
+                    staged_ability_unlock_desc_table::parse_table_update(table_update)?,
+                ),
                 "staged_achievement_desc" => db_update.staged_achievement_desc.append(
                     staged_achievement_desc_table::parse_table_update(table_update)?,
                 ),
@@ -10236,9 +10344,21 @@ impl __sdk::DbUpdate for DbUpdate {
         diff.a_i_debug_state = cache
             .apply_diff_to_table::<AiDebugState>("a_i_debug_state", &self.a_i_debug_state)
             .with_updates_by_pk(|row| &row.entity_id);
+        diff.ability_custom_desc = cache
+            .apply_diff_to_table::<AbilityCustomDesc>(
+                "ability_custom_desc",
+                &self.ability_custom_desc,
+            )
+            .with_updates_by_pk(|row| &row.id);
         diff.ability_state = cache
             .apply_diff_to_table::<AbilityState>("ability_state", &self.ability_state)
             .with_updates_by_pk(|row| &row.entity_id);
+        diff.ability_unlock_desc = cache
+            .apply_diff_to_table::<AbilityUnlockDesc>(
+                "ability_unlock_desc",
+                &self.ability_unlock_desc,
+            )
+            .with_updates_by_pk(|row| &row.id);
         diff.achievement_desc = cache
             .apply_diff_to_table::<AchievementDesc>("achievement_desc", &self.achievement_desc)
             .with_updates_by_pk(|row| &row.id);
@@ -11584,6 +11704,18 @@ impl __sdk::DbUpdate for DbUpdate {
         diff.skill_desc = cache
             .apply_diff_to_table::<SkillDesc>("skill_desc", &self.skill_desc)
             .with_updates_by_pk(|row| &row.id);
+        diff.staged_ability_custom_desc = cache
+            .apply_diff_to_table::<AbilityCustomDesc>(
+                "staged_ability_custom_desc",
+                &self.staged_ability_custom_desc,
+            )
+            .with_updates_by_pk(|row| &row.id);
+        diff.staged_ability_unlock_desc = cache
+            .apply_diff_to_table::<AbilityUnlockDesc>(
+                "staged_ability_unlock_desc",
+                &self.staged_ability_unlock_desc,
+            )
+            .with_updates_by_pk(|row| &row.id);
         diff.staged_achievement_desc = cache
             .apply_diff_to_table::<AchievementDesc>(
                 "staged_achievement_desc",
@@ -12335,7 +12467,9 @@ impl __sdk::DbUpdate for DbUpdate {
 #[doc(hidden)]
 pub struct AppliedDiff<'r> {
     a_i_debug_state: __sdk::TableAppliedDiff<'r, AiDebugState>,
+    ability_custom_desc: __sdk::TableAppliedDiff<'r, AbilityCustomDesc>,
     ability_state: __sdk::TableAppliedDiff<'r, AbilityState>,
+    ability_unlock_desc: __sdk::TableAppliedDiff<'r, AbilityUnlockDesc>,
     achievement_desc: __sdk::TableAppliedDiff<'r, AchievementDesc>,
     action_bar_state: __sdk::TableAppliedDiff<'r, ActionBarState>,
     action_state: __sdk::TableAppliedDiff<'r, ActionState>,
@@ -12620,6 +12754,8 @@ pub struct AppliedDiff<'r> {
     single_resource_clump_info: __sdk::TableAppliedDiff<'r, SingleResourceClumpInfo>,
     single_resource_to_clump_desc: __sdk::TableAppliedDiff<'r, SingleResourceToClumpDesc>,
     skill_desc: __sdk::TableAppliedDiff<'r, SkillDesc>,
+    staged_ability_custom_desc: __sdk::TableAppliedDiff<'r, AbilityCustomDesc>,
+    staged_ability_unlock_desc: __sdk::TableAppliedDiff<'r, AbilityUnlockDesc>,
     staged_achievement_desc: __sdk::TableAppliedDiff<'r, AchievementDesc>,
     staged_alert_desc: __sdk::TableAppliedDiff<'r, AlertDesc>,
     staged_biome_desc: __sdk::TableAppliedDiff<'r, BiomeDesc>,
@@ -12783,9 +12919,19 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             &self.a_i_debug_state,
             event,
         );
+        callbacks.invoke_table_row_callbacks::<AbilityCustomDesc>(
+            "ability_custom_desc",
+            &self.ability_custom_desc,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<AbilityState>(
             "ability_state",
             &self.ability_state,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<AbilityUnlockDesc>(
+            "ability_unlock_desc",
+            &self.ability_unlock_desc,
             event,
         );
         callbacks.invoke_table_row_callbacks::<AchievementDesc>(
@@ -14095,6 +14241,16 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             event,
         );
         callbacks.invoke_table_row_callbacks::<SkillDesc>("skill_desc", &self.skill_desc, event);
+        callbacks.invoke_table_row_callbacks::<AbilityCustomDesc>(
+            "staged_ability_custom_desc",
+            &self.staged_ability_custom_desc,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<AbilityUnlockDesc>(
+            "staged_ability_unlock_desc",
+            &self.staged_ability_unlock_desc,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<AchievementDesc>(
             "staged_achievement_desc",
             &self.staged_achievement_desc,
@@ -15366,7 +15522,9 @@ impl __sdk::SpacetimeModule for RemoteModule {
 
     fn register_tables(client_cache: &mut __sdk::ClientCache<Self>) {
         a_i_debug_state_table::register_table(client_cache);
+        ability_custom_desc_table::register_table(client_cache);
         ability_state_table::register_table(client_cache);
+        ability_unlock_desc_table::register_table(client_cache);
         achievement_desc_table::register_table(client_cache);
         action_bar_state_table::register_table(client_cache);
         action_state_table::register_table(client_cache);
@@ -15646,6 +15804,8 @@ impl __sdk::SpacetimeModule for RemoteModule {
         single_resource_clump_info_table::register_table(client_cache);
         single_resource_to_clump_desc_table::register_table(client_cache);
         skill_desc_table::register_table(client_cache);
+        staged_ability_custom_desc_table::register_table(client_cache);
+        staged_ability_unlock_desc_table::register_table(client_cache);
         staged_achievement_desc_table::register_table(client_cache);
         staged_alert_desc_table::register_table(client_cache);
         staged_biome_desc_table::register_table(client_cache);

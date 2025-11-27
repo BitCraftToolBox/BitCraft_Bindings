@@ -3,6 +3,7 @@
 
 
 #![allow(unused, clippy::all)]
+use super::ability_type_enum_type::AbilityTypeEnum;
 use super::buff_category_type::BuffCategory;
 use super::chat_channel_type::ChatChannel;
 use super::permission_group_type::PermissionGroup;

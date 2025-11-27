@@ -7,18 +7,21 @@ use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
-pub struct PremiumItemDesc {
-    pub id: i32,
-    pub name: String,
-    pub description: String,
-    pub image_address: String,
-    pub collectible_desc_id: i32,
-    pub price: u32,
-    pub base_price: u32,
-    pub is_enabled: bool,
-    pub quantity: u32,
+#[derive(Copy, Eq, Hash)]
+pub enum AbilityTypeEnum {
+    Unsupported,
+
+    Eat,
+
+    CombatAction,
+
+    AutoAttack,
+
+    SelfBuff,
+
+    Custom,
 }
 
-impl __sdk::InModule for PremiumItemDesc {
+impl __sdk::InModule for AbilityTypeEnum {
     type Module = super::RemoteModule;
 }
