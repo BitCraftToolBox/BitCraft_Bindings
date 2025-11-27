@@ -14,6 +14,7 @@ pub struct PremiumPurchaseState {
     pub price: u32,
     pub timestamp: __sdk::Timestamp,
     pub processed: bool,
+    pub quantity: u32,
 }
 
 impl __sdk::InModule for PremiumPurchaseState {

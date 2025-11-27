@@ -6,9 +6,14 @@
 use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 pub mod a_i_debug_state_table;
+pub mod ability_custom_desc_table;
+pub mod ability_custom_desc_type;
 pub mod ability_state_table;
 pub mod ability_state_type;
+pub mod ability_type_enum_type;
 pub mod ability_type_type;
+pub mod ability_unlock_desc_table;
+pub mod ability_unlock_desc_type;
 pub mod achievement_desc_table;
 pub mod achievement_desc_type;
 pub mod action_bar_state_table;
@@ -921,6 +926,8 @@ pub mod skill_desc_table;
 pub mod skill_desc_type;
 pub mod skill_type_type;
 pub mod small_hex_tile_message_type;
+pub mod stage_ability_custom_desc_reducer;
+pub mod stage_ability_unlock_desc_reducer;
 pub mod stage_achievement_desc_reducer;
 pub mod stage_alert_desc_reducer;
 pub mod stage_biome_desc_reducer;
@@ -1009,6 +1016,8 @@ pub mod stage_wall_desc_reducer;
 pub mod stage_weapon_desc_reducer;
 pub mod stage_weapon_type_desc_reducer;
 pub mod stage_wind_params_desc_reducer;
+pub mod staged_ability_custom_desc_table;
+pub mod staged_ability_unlock_desc_table;
 pub mod staged_achievement_desc_table;
 pub mod staged_alert_desc_table;
 pub mod staged_biome_desc_table;
@@ -1232,9 +1241,14 @@ pub mod world_region_state_table;
 pub mod world_region_state_type;
 
 pub use a_i_debug_state_table::*;
+pub use ability_custom_desc_table::*;
+pub use ability_custom_desc_type::AbilityCustomDesc;
 pub use ability_state_table::*;
 pub use ability_state_type::AbilityState;
+pub use ability_type_enum_type::AbilityTypeEnum;
 pub use ability_type_type::AbilityType;
+pub use ability_unlock_desc_table::*;
+pub use ability_unlock_desc_type::AbilityUnlockDesc;
 pub use achievement_desc_table::*;
 pub use achievement_desc_type::AchievementDesc;
 pub use action_bar_state_table::*;
@@ -2783,6 +2797,14 @@ pub use skill_desc_table::*;
 pub use skill_desc_type::SkillDesc;
 pub use skill_type_type::SkillType;
 pub use small_hex_tile_message_type::SmallHexTileMessage;
+pub use stage_ability_custom_desc_reducer::{
+    set_flags_for_stage_ability_custom_desc, stage_ability_custom_desc,
+    StageAbilityCustomDescCallbackId,
+};
+pub use stage_ability_unlock_desc_reducer::{
+    set_flags_for_stage_ability_unlock_desc, stage_ability_unlock_desc,
+    StageAbilityUnlockDescCallbackId,
+};
 pub use stage_achievement_desc_reducer::{
     set_flags_for_stage_achievement_desc, stage_achievement_desc, StageAchievementDescCallbackId,
 };
@@ -3097,6 +3119,8 @@ pub use stage_weapon_type_desc_reducer::{
 pub use stage_wind_params_desc_reducer::{
     set_flags_for_stage_wind_params_desc, stage_wind_params_desc, StageWindParamsDescCallbackId,
 };
+pub use staged_ability_custom_desc_table::*;
+pub use staged_ability_unlock_desc_table::*;
 pub use staged_achievement_desc_table::*;
 pub use staged_alert_desc_table::*;
 pub use staged_biome_desc_table::*;
@@ -4157,6 +4181,12 @@ pub enum Reducer {
     SignIn {
         request: PlayerSignInRequest,
     },
+    StageAbilityCustomDesc {
+        records: Vec<AbilityCustomDesc>,
+    },
+    StageAbilityUnlockDesc {
+        records: Vec<AbilityUnlockDesc>,
+    },
     StageAchievementDesc {
         records: Vec<AchievementDesc>,
     },
@@ -4734,6 +4764,8 @@ impl __sdk::Reducer for Reducer {
             Reducer::SetRoleForIdentity { .. } => "set_role_for_identity",
             Reducer::SetVisibility { .. } => "set_visibility",
             Reducer::SignIn { .. } => "sign_in",
+            Reducer::StageAbilityCustomDesc { .. } => "stage_ability_custom_desc",
+            Reducer::StageAbilityUnlockDesc { .. } => "stage_ability_unlock_desc",
             Reducer::StageAchievementDesc { .. } => "stage_achievement_desc",
             Reducer::StageAlertDesc { .. } => "stage_alert_desc",
             Reducer::StageBiomeDesc { .. } => "stage_biome_desc",
@@ -5101,6 +5133,8 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "set_role_for_identity" => Ok(__sdk::parse_reducer_args::<set_role_for_identity_reducer::SetRoleForIdentityArgs>("set_role_for_identity", &value.args)?.into()),
             "set_visibility" => Ok(__sdk::parse_reducer_args::<set_visibility_reducer::SetVisibilityArgs>("set_visibility", &value.args)?.into()),
             "sign_in" => Ok(__sdk::parse_reducer_args::<sign_in_reducer::SignInArgs>("sign_in", &value.args)?.into()),
+            "stage_ability_custom_desc" => Ok(__sdk::parse_reducer_args::<stage_ability_custom_desc_reducer::StageAbilityCustomDescArgs>("stage_ability_custom_desc", &value.args)?.into()),
+            "stage_ability_unlock_desc" => Ok(__sdk::parse_reducer_args::<stage_ability_unlock_desc_reducer::StageAbilityUnlockDescArgs>("stage_ability_unlock_desc", &value.args)?.into()),
             "stage_achievement_desc" => Ok(__sdk::parse_reducer_args::<stage_achievement_desc_reducer::StageAchievementDescArgs>("stage_achievement_desc", &value.args)?.into()),
             "stage_alert_desc" => Ok(__sdk::parse_reducer_args::<stage_alert_desc_reducer::StageAlertDescArgs>("stage_alert_desc", &value.args)?.into()),
             "stage_biome_desc" => Ok(__sdk::parse_reducer_args::<stage_biome_desc_reducer::StageBiomeDescArgs>("stage_biome_desc", &value.args)?.into()),
@@ -5207,7 +5241,9 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
 #[doc(hidden)]
 pub struct DbUpdate {
     a_i_debug_state: __sdk::TableUpdate<AiDebugState>,
+    ability_custom_desc: __sdk::TableUpdate<AbilityCustomDesc>,
     ability_state: __sdk::TableUpdate<AbilityState>,
+    ability_unlock_desc: __sdk::TableUpdate<AbilityUnlockDesc>,
     achievement_desc: __sdk::TableUpdate<AchievementDesc>,
     action_bar_state: __sdk::TableUpdate<ActionBarState>,
     action_state: __sdk::TableUpdate<ActionState>,
@@ -5458,6 +5494,8 @@ pub struct DbUpdate {
     signed_in_player_state: __sdk::TableUpdate<SignedInPlayerState>,
     single_resource_to_clump_desc: __sdk::TableUpdate<SingleResourceToClumpDesc>,
     skill_desc: __sdk::TableUpdate<SkillDesc>,
+    staged_ability_custom_desc: __sdk::TableUpdate<AbilityCustomDesc>,
+    staged_ability_unlock_desc: __sdk::TableUpdate<AbilityUnlockDesc>,
     staged_achievement_desc: __sdk::TableUpdate<AchievementDesc>,
     staged_alert_desc: __sdk::TableUpdate<AlertDesc>,
     staged_biome_desc: __sdk::TableUpdate<BiomeDesc>,
@@ -5607,9 +5645,15 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
                 "a_i_debug_state" => db_update
                     .a_i_debug_state
                     .append(a_i_debug_state_table::parse_table_update(table_update)?),
+                "ability_custom_desc" => db_update
+                    .ability_custom_desc
+                    .append(ability_custom_desc_table::parse_table_update(table_update)?),
                 "ability_state" => db_update
                     .ability_state
                     .append(ability_state_table::parse_table_update(table_update)?),
+                "ability_unlock_desc" => db_update
+                    .ability_unlock_desc
+                    .append(ability_unlock_desc_table::parse_table_update(table_update)?),
                 "achievement_desc" => db_update
                     .achievement_desc
                     .append(achievement_desc_table::parse_table_update(table_update)?),
@@ -6397,6 +6441,12 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
                 "skill_desc" => db_update
                     .skill_desc
                     .append(skill_desc_table::parse_table_update(table_update)?),
+                "staged_ability_custom_desc" => db_update.staged_ability_custom_desc.append(
+                    staged_ability_custom_desc_table::parse_table_update(table_update)?,
+                ),
+                "staged_ability_unlock_desc" => db_update.staged_ability_unlock_desc.append(
+                    staged_ability_unlock_desc_table::parse_table_update(table_update)?,
+                ),
                 "staged_achievement_desc" => db_update.staged_achievement_desc.append(
                     staged_achievement_desc_table::parse_table_update(table_update)?,
                 ),
@@ -6892,9 +6942,21 @@ impl __sdk::DbUpdate for DbUpdate {
         diff.a_i_debug_state = cache
             .apply_diff_to_table::<AiDebugState>("a_i_debug_state", &self.a_i_debug_state)
             .with_updates_by_pk(|row| &row.entity_id);
+        diff.ability_custom_desc = cache
+            .apply_diff_to_table::<AbilityCustomDesc>(
+                "ability_custom_desc",
+                &self.ability_custom_desc,
+            )
+            .with_updates_by_pk(|row| &row.id);
         diff.ability_state = cache
             .apply_diff_to_table::<AbilityState>("ability_state", &self.ability_state)
             .with_updates_by_pk(|row| &row.entity_id);
+        diff.ability_unlock_desc = cache
+            .apply_diff_to_table::<AbilityUnlockDesc>(
+                "ability_unlock_desc",
+                &self.ability_unlock_desc,
+            )
+            .with_updates_by_pk(|row| &row.id);
         diff.achievement_desc = cache
             .apply_diff_to_table::<AchievementDesc>("achievement_desc", &self.achievement_desc)
             .with_updates_by_pk(|row| &row.id);
@@ -8076,6 +8138,18 @@ impl __sdk::DbUpdate for DbUpdate {
         diff.skill_desc = cache
             .apply_diff_to_table::<SkillDesc>("skill_desc", &self.skill_desc)
             .with_updates_by_pk(|row| &row.id);
+        diff.staged_ability_custom_desc = cache
+            .apply_diff_to_table::<AbilityCustomDesc>(
+                "staged_ability_custom_desc",
+                &self.staged_ability_custom_desc,
+            )
+            .with_updates_by_pk(|row| &row.id);
+        diff.staged_ability_unlock_desc = cache
+            .apply_diff_to_table::<AbilityUnlockDesc>(
+                "staged_ability_unlock_desc",
+                &self.staged_ability_unlock_desc,
+            )
+            .with_updates_by_pk(|row| &row.id);
         diff.staged_achievement_desc = cache
             .apply_diff_to_table::<AchievementDesc>(
                 "staged_achievement_desc",
@@ -8791,7 +8865,9 @@ impl __sdk::DbUpdate for DbUpdate {
 #[doc(hidden)]
 pub struct AppliedDiff<'r> {
     a_i_debug_state: __sdk::TableAppliedDiff<'r, AiDebugState>,
+    ability_custom_desc: __sdk::TableAppliedDiff<'r, AbilityCustomDesc>,
     ability_state: __sdk::TableAppliedDiff<'r, AbilityState>,
+    ability_unlock_desc: __sdk::TableAppliedDiff<'r, AbilityUnlockDesc>,
     achievement_desc: __sdk::TableAppliedDiff<'r, AchievementDesc>,
     action_bar_state: __sdk::TableAppliedDiff<'r, ActionBarState>,
     action_state: __sdk::TableAppliedDiff<'r, ActionState>,
@@ -9047,6 +9123,8 @@ pub struct AppliedDiff<'r> {
     signed_in_player_state: __sdk::TableAppliedDiff<'r, SignedInPlayerState>,
     single_resource_to_clump_desc: __sdk::TableAppliedDiff<'r, SingleResourceToClumpDesc>,
     skill_desc: __sdk::TableAppliedDiff<'r, SkillDesc>,
+    staged_ability_custom_desc: __sdk::TableAppliedDiff<'r, AbilityCustomDesc>,
+    staged_ability_unlock_desc: __sdk::TableAppliedDiff<'r, AbilityUnlockDesc>,
     staged_achievement_desc: __sdk::TableAppliedDiff<'r, AchievementDesc>,
     staged_alert_desc: __sdk::TableAppliedDiff<'r, AlertDesc>,
     staged_biome_desc: __sdk::TableAppliedDiff<'r, BiomeDesc>,
@@ -9204,9 +9282,19 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             &self.a_i_debug_state,
             event,
         );
+        callbacks.invoke_table_row_callbacks::<AbilityCustomDesc>(
+            "ability_custom_desc",
+            &self.ability_custom_desc,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<AbilityState>(
             "ability_state",
             &self.ability_state,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<AbilityUnlockDesc>(
+            "ability_unlock_desc",
+            &self.ability_unlock_desc,
             event,
         );
         callbacks.invoke_table_row_callbacks::<AchievementDesc>(
@@ -10366,6 +10454,16 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             event,
         );
         callbacks.invoke_table_row_callbacks::<SkillDesc>("skill_desc", &self.skill_desc, event);
+        callbacks.invoke_table_row_callbacks::<AbilityCustomDesc>(
+            "staged_ability_custom_desc",
+            &self.staged_ability_custom_desc,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<AbilityUnlockDesc>(
+            "staged_ability_unlock_desc",
+            &self.staged_ability_unlock_desc,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<AchievementDesc>(
             "staged_achievement_desc",
             &self.staged_achievement_desc,
@@ -11612,7 +11710,9 @@ impl __sdk::SpacetimeModule for RemoteModule {
 
     fn register_tables(client_cache: &mut __sdk::ClientCache<Self>) {
         a_i_debug_state_table::register_table(client_cache);
+        ability_custom_desc_table::register_table(client_cache);
         ability_state_table::register_table(client_cache);
+        ability_unlock_desc_table::register_table(client_cache);
         achievement_desc_table::register_table(client_cache);
         action_bar_state_table::register_table(client_cache);
         action_state_table::register_table(client_cache);
@@ -11862,6 +11962,8 @@ impl __sdk::SpacetimeModule for RemoteModule {
         signed_in_player_state_table::register_table(client_cache);
         single_resource_to_clump_desc_table::register_table(client_cache);
         skill_desc_table::register_table(client_cache);
+        staged_ability_custom_desc_table::register_table(client_cache);
+        staged_ability_unlock_desc_table::register_table(client_cache);
         staged_achievement_desc_table::register_table(client_cache);
         staged_alert_desc_table::register_table(client_cache);
         staged_biome_desc_table::register_table(client_cache);

@@ -5,20 +5,21 @@
 #![allow(unused, clippy::all)]
 use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
+use super::ability_type_type::AbilityType;
+use super::level_requirement_type::LevelRequirement;
+
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
-pub struct PremiumItemDesc {
+pub struct AbilityUnlockDesc {
     pub id: i32,
-    pub name: String,
-    pub description: String,
-    pub image_address: String,
-    pub collectible_desc_id: i32,
-    pub price: u32,
-    pub base_price: u32,
-    pub is_enabled: bool,
-    pub quantity: u32,
+    pub ability_type_enum_id: i32,
+    pub ability_data: Option<AbilityType>,
+    pub level_requirements: Vec<LevelRequirement>,
+    pub required_claim_tech_id: i32,
+    pub required_knowledges: Vec<i32>,
+    pub blocking_knowledges: Vec<i32>,
 }
 
-impl __sdk::InModule for PremiumItemDesc {
+impl __sdk::InModule for AbilityUnlockDesc {
     type Module = super::RemoteModule;
 }
