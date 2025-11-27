@@ -20,35 +20,27 @@ namespace BitCraftRegion.Types
         [DataMember(Name = "remaining_stock")]
         public int RemainingStock;
         [DataMember(Name = "offer_items")]
-        public ItemStack? OfferItems;
-        [DataMember(Name = "offer_cargo_id")]
-        public int OfferCargoId;
+        public System.Collections.Generic.List<ItemStack> OfferItems;
         [DataMember(Name = "required_items")]
         public System.Collections.Generic.List<ItemStack> RequiredItems;
-        [DataMember(Name = "required_cargos")]
-        public System.Collections.Generic.List<int> RequiredCargos;
 
         public PlayerBarterStallOrderCreateRequest(
             ulong ShopEntityId,
             int RemainingStock,
-            ItemStack? OfferItems,
-            int OfferCargoId,
-            System.Collections.Generic.List<ItemStack> RequiredItems,
-            System.Collections.Generic.List<int> RequiredCargos
+            System.Collections.Generic.List<ItemStack> OfferItems,
+            System.Collections.Generic.List<ItemStack> RequiredItems
         )
         {
             this.ShopEntityId = ShopEntityId;
             this.RemainingStock = RemainingStock;
             this.OfferItems = OfferItems;
-            this.OfferCargoId = OfferCargoId;
             this.RequiredItems = RequiredItems;
-            this.RequiredCargos = RequiredCargos;
         }
 
         public PlayerBarterStallOrderCreateRequest()
         {
+            this.OfferItems = new();
             this.RequiredItems = new();
-            this.RequiredCargos = new();
         }
     }
 }
