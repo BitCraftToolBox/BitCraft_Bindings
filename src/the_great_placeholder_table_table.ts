@@ -39,6 +39,7 @@ import { BuffCategory as __BuffCategory } from "./buff_category_type";
 import { ProgressiveActionStatus as __ProgressiveActionStatus } from "./progressive_action_status_type";
 import { Permission as __Permission } from "./permission_type";
 import { PermissionGroup as __PermissionGroup } from "./permission_group_type";
+import { AbilityTypeEnum as __AbilityTypeEnum } from "./ability_type_enum_type";
 
 import { type EventContext, type Reducer, RemoteReducers, RemoteTables } from ".";
 

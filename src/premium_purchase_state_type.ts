@@ -38,6 +38,7 @@ export type PremiumPurchaseState = {
   price: number,
   timestamp: Timestamp,
   processed: boolean,
+  quantity: number,
 };
 
 /**
@@ -56,6 +57,7 @@ export namespace PremiumPurchaseState {
       new ProductTypeElement("price", AlgebraicType.createU32Type()),
       new ProductTypeElement("timestamp", AlgebraicType.createTimestampType()),
       new ProductTypeElement("processed", AlgebraicType.createBoolType()),
+      new ProductTypeElement("quantity", AlgebraicType.createU32Type()),
     ]);
   }
 

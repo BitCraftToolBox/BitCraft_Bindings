@@ -31,30 +31,25 @@ import {
   type ReducerEventContextInterface,
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
-import { CraftingRecipeDesc } from "./crafting_recipe_desc_type";
-import { LevelRequirement as __LevelRequirement } from "./level_requirement_type";
-import { ItemStack as __ItemStack } from "./item_stack_type";
-import { ToolRequirement as __ToolRequirement } from "./tool_requirement_type";
-import { InputItemStack as __InputItemStack } from "./input_item_stack_type";
-import { ExperienceStackF32 as __ExperienceStackF32 } from "./experience_stack_f_32_type";
-import { BuildingRequirement as __BuildingRequirement } from "./building_requirement_type";
+import { AbilityCustomDesc } from "./ability_custom_desc_type";
+import { BuffEffect as __BuffEffect } from "./buff_effect_type";
 
 import { type EventContext, type Reducer, RemoteReducers, RemoteTables } from ".";
 
 /**
- * Table handle for the table `staged_crafting_recipe_desc`.
+ * Table handle for the table `ability_custom_desc`.
  *
- * Obtain a handle from the [`stagedCraftingRecipeDesc`] property on [`RemoteTables`],
- * like `ctx.db.stagedCraftingRecipeDesc`.
+ * Obtain a handle from the [`abilityCustomDesc`] property on [`RemoteTables`],
+ * like `ctx.db.abilityCustomDesc`.
  *
  * Users are encouraged not to explicitly reference this type,
  * but to directly chain method calls,
- * like `ctx.db.stagedCraftingRecipeDesc.on_insert(...)`.
+ * like `ctx.db.abilityCustomDesc.on_insert(...)`.
  */
-export class StagedCraftingRecipeDescTableHandle {
-  tableCache: TableCache<CraftingRecipeDesc>;
+export class AbilityCustomDescTableHandle {
+  tableCache: TableCache<AbilityCustomDesc>;
 
-  constructor(tableCache: TableCache<CraftingRecipeDesc>) {
+  constructor(tableCache: TableCache<AbilityCustomDesc>) {
     this.tableCache = tableCache;
   }
 
@@ -62,24 +57,24 @@ export class StagedCraftingRecipeDescTableHandle {
     return this.tableCache.count();
   }
 
-  iter(): Iterable<CraftingRecipeDesc> {
+  iter(): Iterable<AbilityCustomDesc> {
     return this.tableCache.iter();
   }
   /**
-   * Access to the `id` unique index on the table `staged_crafting_recipe_desc`,
+   * Access to the `id` unique index on the table `ability_custom_desc`,
    * which allows point queries on the field of the same name
-   * via the [`StagedCraftingRecipeDescIdUnique.find`] method.
+   * via the [`AbilityCustomDescIdUnique.find`] method.
    *
    * Users are encouraged not to explicitly reference this type,
    * but to directly chain method calls,
-   * like `ctx.db.stagedCraftingRecipeDesc.id().find(...)`.
+   * like `ctx.db.abilityCustomDesc.id().find(...)`.
    *
-   * Get a handle on the `id` unique index on the table `staged_crafting_recipe_desc`.
+   * Get a handle on the `id` unique index on the table `ability_custom_desc`.
    */
   id = {
     // Find the subscribed row whose `id` column value is equal to `col_val`,
     // if such a row is present in the client cache.
-    find: (col_val: number): CraftingRecipeDesc | undefined => {
+    find: (col_val: number): AbilityCustomDesc | undefined => {
       for (let row of this.tableCache.iter()) {
         if (deepEqual(row.id, col_val)) {
           return row;
@@ -88,27 +83,27 @@ export class StagedCraftingRecipeDescTableHandle {
     },
   };
 
-  onInsert = (cb: (ctx: EventContext, row: CraftingRecipeDesc) => void) => {
+  onInsert = (cb: (ctx: EventContext, row: AbilityCustomDesc) => void) => {
     return this.tableCache.onInsert(cb);
   }
 
-  removeOnInsert = (cb: (ctx: EventContext, row: CraftingRecipeDesc) => void) => {
+  removeOnInsert = (cb: (ctx: EventContext, row: AbilityCustomDesc) => void) => {
     return this.tableCache.removeOnInsert(cb);
   }
 
-  onDelete = (cb: (ctx: EventContext, row: CraftingRecipeDesc) => void) => {
+  onDelete = (cb: (ctx: EventContext, row: AbilityCustomDesc) => void) => {
     return this.tableCache.onDelete(cb);
   }
 
-  removeOnDelete = (cb: (ctx: EventContext, row: CraftingRecipeDesc) => void) => {
+  removeOnDelete = (cb: (ctx: EventContext, row: AbilityCustomDesc) => void) => {
     return this.tableCache.removeOnDelete(cb);
   }
 
   // Updates are only defined for tables with primary keys.
-  onUpdate = (cb: (ctx: EventContext, oldRow: CraftingRecipeDesc, newRow: CraftingRecipeDesc) => void) => {
+  onUpdate = (cb: (ctx: EventContext, oldRow: AbilityCustomDesc, newRow: AbilityCustomDesc) => void) => {
     return this.tableCache.onUpdate(cb);
   }
 
-  removeOnUpdate = (cb: (ctx: EventContext, onRow: CraftingRecipeDesc, newRow: CraftingRecipeDesc) => void) => {
+  removeOnUpdate = (cb: (ctx: EventContext, onRow: AbilityCustomDesc, newRow: AbilityCustomDesc) => void) => {
     return this.tableCache.removeOnUpdate(cb);
   }}

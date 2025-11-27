@@ -549,6 +549,10 @@ import { SetVisibility } from "./set_visibility_reducer.ts";
 export { SetVisibility };
 import { SignIn } from "./sign_in_reducer.ts";
 export { SignIn };
+import { StageAbilityCustomDesc } from "./stage_ability_custom_desc_reducer.ts";
+export { StageAbilityCustomDesc };
+import { StageAbilityUnlockDesc } from "./stage_ability_unlock_desc_reducer.ts";
+export { StageAbilityUnlockDesc };
 import { StageAchievementDesc } from "./stage_achievement_desc_reducer.ts";
 export { StageAchievementDesc };
 import { StageAlertDesc } from "./stage_alert_desc_reducer.ts";
@@ -745,8 +749,12 @@ export { UserModerationListAll };
 // Import and reexport all table handle types
 import { AIDebugStateTableHandle } from "./a_i_debug_state_table.ts";
 export { AIDebugStateTableHandle };
+import { AbilityCustomDescTableHandle } from "./ability_custom_desc_table.ts";
+export { AbilityCustomDescTableHandle };
 import { AbilityStateTableHandle } from "./ability_state_table.ts";
 export { AbilityStateTableHandle };
+import { AbilityUnlockDescTableHandle } from "./ability_unlock_desc_table.ts";
+export { AbilityUnlockDescTableHandle };
 import { AchievementDescTableHandle } from "./achievement_desc_table.ts";
 export { AchievementDescTableHandle };
 import { ActionBarStateTableHandle } from "./action_bar_state_table.ts";
@@ -1245,6 +1253,10 @@ import { SingleResourceToClumpDescTableHandle } from "./single_resource_to_clump
 export { SingleResourceToClumpDescTableHandle };
 import { SkillDescTableHandle } from "./skill_desc_table.ts";
 export { SkillDescTableHandle };
+import { StagedAbilityCustomDescTableHandle } from "./staged_ability_custom_desc_table.ts";
+export { StagedAbilityCustomDescTableHandle };
+import { StagedAbilityUnlockDescTableHandle } from "./staged_ability_unlock_desc_table.ts";
+export { StagedAbilityUnlockDescTableHandle };
 import { StagedAchievementDescTableHandle } from "./staged_achievement_desc_table.ts";
 export { StagedAchievementDescTableHandle };
 import { StagedAlertDescTableHandle } from "./staged_alert_desc_table.ts";
@@ -1525,10 +1537,16 @@ export { WorldRegionStateTableHandle };
 // Import and reexport all types
 import { AiDebugState } from "./ai_debug_state_type.ts";
 export { AiDebugState };
+import { AbilityCustomDesc } from "./ability_custom_desc_type.ts";
+export { AbilityCustomDesc };
 import { AbilityState } from "./ability_state_type.ts";
 export { AbilityState };
 import { AbilityType } from "./ability_type_type.ts";
 export { AbilityType };
+import { AbilityTypeEnum } from "./ability_type_enum_type.ts";
+export { AbilityTypeEnum };
+import { AbilityUnlockDesc } from "./ability_unlock_desc_type.ts";
+export { AbilityUnlockDesc };
 import { AchievementDesc } from "./achievement_desc_type.ts";
 export { AchievementDesc };
 import { ActionBarState } from "./action_bar_state_type.ts";
@@ -2499,6 +2517,15 @@ const REMOTE_MODULE = {
         colType: AiDebugState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    ability_custom_desc: {
+      tableName: "ability_custom_desc",
+      rowType: AbilityCustomDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: AbilityCustomDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     ability_state: {
       tableName: "ability_state",
       rowType: AbilityState.getTypeScriptAlgebraicType(),
@@ -2506,6 +2533,15 @@ const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "entityId",
         colType: AbilityState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    ability_unlock_desc: {
+      tableName: "ability_unlock_desc",
+      rowType: AbilityUnlockDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: AbilityUnlockDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     achievement_desc: {
@@ -4737,6 +4773,24 @@ const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "id",
         colType: SkillDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_ability_custom_desc: {
+      tableName: "staged_ability_custom_desc",
+      rowType: AbilityCustomDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: AbilityCustomDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_ability_unlock_desc: {
+      tableName: "staged_ability_unlock_desc",
+      rowType: AbilityUnlockDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: AbilityUnlockDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     staged_achievement_desc: {
@@ -7015,6 +7069,14 @@ const REMOTE_MODULE = {
       reducerName: "sign_in",
       argsType: SignIn.getTypeScriptAlgebraicType(),
     },
+    stage_ability_custom_desc: {
+      reducerName: "stage_ability_custom_desc",
+      argsType: StageAbilityCustomDesc.getTypeScriptAlgebraicType(),
+    },
+    stage_ability_unlock_desc: {
+      reducerName: "stage_ability_unlock_desc",
+      argsType: StageAbilityUnlockDesc.getTypeScriptAlgebraicType(),
+    },
     stage_achievement_desc: {
       reducerName: "stage_achievement_desc",
       argsType: StageAchievementDesc.getTypeScriptAlgebraicType(),
@@ -7687,6 +7749,8 @@ export type Reducer = never
 | { name: "SetRoleForIdentity", args: SetRoleForIdentity }
 | { name: "SetVisibility", args: SetVisibility }
 | { name: "SignIn", args: SignIn }
+| { name: "StageAbilityCustomDesc", args: StageAbilityCustomDesc }
+| { name: "StageAbilityUnlockDesc", args: StageAbilityUnlockDesc }
 | { name: "StageAchievementDesc", args: StageAchievementDesc }
 | { name: "StageAlertDesc", args: StageAlertDesc }
 | { name: "StageBiomeDesc", args: StageBiomeDesc }
@@ -11860,6 +11924,38 @@ export class RemoteReducers {
     this.connection.offReducer("sign_in", callback);
   }
 
+  stageAbilityCustomDesc(records: AbilityCustomDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    StageAbilityCustomDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("stage_ability_custom_desc", __argsBuffer, this.setCallReducerFlags.stageAbilityCustomDescFlags);
+  }
+
+  onStageAbilityCustomDesc(callback: (ctx: ReducerEventContext, records: AbilityCustomDesc[]) => void) {
+    this.connection.onReducer("stage_ability_custom_desc", callback);
+  }
+
+  removeOnStageAbilityCustomDesc(callback: (ctx: ReducerEventContext, records: AbilityCustomDesc[]) => void) {
+    this.connection.offReducer("stage_ability_custom_desc", callback);
+  }
+
+  stageAbilityUnlockDesc(records: AbilityUnlockDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    StageAbilityUnlockDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("stage_ability_unlock_desc", __argsBuffer, this.setCallReducerFlags.stageAbilityUnlockDescFlags);
+  }
+
+  onStageAbilityUnlockDesc(callback: (ctx: ReducerEventContext, records: AbilityUnlockDesc[]) => void) {
+    this.connection.onReducer("stage_ability_unlock_desc", callback);
+  }
+
+  removeOnStageAbilityUnlockDesc(callback: (ctx: ReducerEventContext, records: AbilityUnlockDesc[]) => void) {
+    this.connection.offReducer("stage_ability_unlock_desc", callback);
+  }
+
   stageAchievementDesc(records: AchievementDesc[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
@@ -14675,6 +14771,16 @@ export class SetReducerFlags {
     this.signInFlags = flags;
   }
 
+  stageAbilityCustomDescFlags: CallReducerFlags = 'FullUpdate';
+  stageAbilityCustomDesc(flags: CallReducerFlags) {
+    this.stageAbilityCustomDescFlags = flags;
+  }
+
+  stageAbilityUnlockDescFlags: CallReducerFlags = 'FullUpdate';
+  stageAbilityUnlockDesc(flags: CallReducerFlags) {
+    this.stageAbilityUnlockDescFlags = flags;
+  }
+
   stageAchievementDescFlags: CallReducerFlags = 'FullUpdate';
   stageAchievementDesc(flags: CallReducerFlags) {
     this.stageAchievementDescFlags = flags;
@@ -15164,8 +15270,16 @@ export class RemoteTables {
     return new AIDebugStateTableHandle(this.connection.clientCache.getOrCreateTable<AiDebugState>(REMOTE_MODULE.tables.a_i_debug_state));
   }
 
+  get abilityCustomDesc(): AbilityCustomDescTableHandle {
+    return new AbilityCustomDescTableHandle(this.connection.clientCache.getOrCreateTable<AbilityCustomDesc>(REMOTE_MODULE.tables.ability_custom_desc));
+  }
+
   get abilityState(): AbilityStateTableHandle {
     return new AbilityStateTableHandle(this.connection.clientCache.getOrCreateTable<AbilityState>(REMOTE_MODULE.tables.ability_state));
+  }
+
+  get abilityUnlockDesc(): AbilityUnlockDescTableHandle {
+    return new AbilityUnlockDescTableHandle(this.connection.clientCache.getOrCreateTable<AbilityUnlockDesc>(REMOTE_MODULE.tables.ability_unlock_desc));
   }
 
   get achievementDesc(): AchievementDescTableHandle {
@@ -16162,6 +16276,14 @@ export class RemoteTables {
 
   get skillDesc(): SkillDescTableHandle {
     return new SkillDescTableHandle(this.connection.clientCache.getOrCreateTable<SkillDesc>(REMOTE_MODULE.tables.skill_desc));
+  }
+
+  get stagedAbilityCustomDesc(): StagedAbilityCustomDescTableHandle {
+    return new StagedAbilityCustomDescTableHandle(this.connection.clientCache.getOrCreateTable<AbilityCustomDesc>(REMOTE_MODULE.tables.staged_ability_custom_desc));
+  }
+
+  get stagedAbilityUnlockDesc(): StagedAbilityUnlockDescTableHandle {
+    return new StagedAbilityUnlockDescTableHandle(this.connection.clientCache.getOrCreateTable<AbilityUnlockDesc>(REMOTE_MODULE.tables.staged_ability_unlock_desc));
   }
 
   get stagedAchievementDesc(): StagedAchievementDescTableHandle {
