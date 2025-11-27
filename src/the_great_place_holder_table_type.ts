@@ -38,6 +38,7 @@ import { PermissionGroup as __PermissionGroup } from "./permission_group_type";
 import { SkillType as __SkillType } from "./skill_type_type";
 import { BuffCategory as __BuffCategory } from "./buff_category_type";
 import { ProgressiveActionStatus as __ProgressiveActionStatus } from "./progressive_action_status_type";
+import { AbilityTypeEnum as __AbilityTypeEnum } from "./ability_type_enum_type";
 
 export type TheGreatPlaceHolderTable = {
   placeholderId: bigint,
@@ -48,6 +49,7 @@ export type TheGreatPlaceHolderTable = {
   chatChannel: __ChatChannel,
   permission: __Permission,
   permissionGroup: __PermissionGroup,
+  abilityType: __AbilityTypeEnum,
 };
 
 /**
@@ -68,6 +70,7 @@ export namespace TheGreatPlaceHolderTable {
       new ProductTypeElement("chatChannel", __ChatChannel.getTypeScriptAlgebraicType()),
       new ProductTypeElement("permission", __Permission.getTypeScriptAlgebraicType()),
       new ProductTypeElement("permissionGroup", __PermissionGroup.getTypeScriptAlgebraicType()),
+      new ProductTypeElement("abilityType", __AbilityTypeEnum.getTypeScriptAlgebraicType()),
     ]);
   }
 

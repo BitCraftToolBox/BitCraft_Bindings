@@ -40,6 +40,7 @@ export namespace AbilityType {
   export type Eat = { tag: "Eat", value: number };
   export type CombatAction = { tag: "CombatAction", value: number };
   export type AutoAttack = { tag: "AutoAttack" };
+  export type Custom = { tag: "Custom", value: number };
 
   // Helper functions for constructing each variant of the tagged union.
   // ```
@@ -51,6 +52,7 @@ export namespace AbilityType {
   export const Eat = (value: number): AbilityType => ({ tag: "Eat", value });
   export const CombatAction = (value: number): AbilityType => ({ tag: "CombatAction", value });
   export const AutoAttack = { tag: "AutoAttack" };
+  export const Custom = (value: number): AbilityType => ({ tag: "Custom", value });
 
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createSumType([
@@ -58,6 +60,7 @@ export namespace AbilityType {
       new SumTypeVariant("Eat", AlgebraicType.createI32Type()),
       new SumTypeVariant("CombatAction", AlgebraicType.createI32Type()),
       new SumTypeVariant("AutoAttack", AlgebraicType.createProductType([])),
+      new SumTypeVariant("Custom", AlgebraicType.createI32Type()),
     ]);
   }
 
@@ -72,7 +75,7 @@ export namespace AbilityType {
 }
 
 // The tagged union or sum type for the algebraic type `AbilityType`.
-export type AbilityType = AbilityType.Unsupported | AbilityType.Eat | AbilityType.CombatAction | AbilityType.AutoAttack;
+export type AbilityType = AbilityType.Unsupported | AbilityType.Eat | AbilityType.CombatAction | AbilityType.AutoAttack | AbilityType.Custom;
 
 export default AbilityType;
 

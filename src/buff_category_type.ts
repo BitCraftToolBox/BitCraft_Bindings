@@ -50,6 +50,7 @@ export namespace BuffCategory {
   export type Starving = { tag: "Starving" };
   export type ElevatorSickness = { tag: "ElevatorSickness" };
   export type NearbyFlame = { tag: "NearbyFlame" };
+  export type Sprint = { tag: "Sprint" };
 
   // Helper functions for constructing each variant of the tagged union.
   // ```
@@ -71,6 +72,7 @@ export namespace BuffCategory {
   export const Starving = { tag: "Starving" };
   export const ElevatorSickness = { tag: "ElevatorSickness" };
   export const NearbyFlame = { tag: "NearbyFlame" };
+  export const Sprint = { tag: "Sprint" };
 
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createSumType([
@@ -88,6 +90,7 @@ export namespace BuffCategory {
       new SumTypeVariant("Starving", AlgebraicType.createProductType([])),
       new SumTypeVariant("ElevatorSickness", AlgebraicType.createProductType([])),
       new SumTypeVariant("NearbyFlame", AlgebraicType.createProductType([])),
+      new SumTypeVariant("Sprint", AlgebraicType.createProductType([])),
     ]);
   }
 
@@ -102,7 +105,7 @@ export namespace BuffCategory {
 }
 
 // The tagged union or sum type for the algebraic type `BuffCategory`.
-export type BuffCategory = BuffCategory.None | BuffCategory.Generic | BuffCategory.Rested | BuffCategory.RezSicknessShortTerm | BuffCategory.RezSicknessLongTerm | BuffCategory.InnerLight | BuffCategory.Darkness | BuffCategory.CarryCargo | BuffCategory.Freezing | BuffCategory.Overheating | BuffCategory.FriendWarpDebuff | BuffCategory.Starving | BuffCategory.ElevatorSickness | BuffCategory.NearbyFlame;
+export type BuffCategory = BuffCategory.None | BuffCategory.Generic | BuffCategory.Rested | BuffCategory.RezSicknessShortTerm | BuffCategory.RezSicknessLongTerm | BuffCategory.InnerLight | BuffCategory.Darkness | BuffCategory.CarryCargo | BuffCategory.Freezing | BuffCategory.Overheating | BuffCategory.FriendWarpDebuff | BuffCategory.Starving | BuffCategory.ElevatorSickness | BuffCategory.NearbyFlame | BuffCategory.Sprint;
 
 export default BuffCategory;
 

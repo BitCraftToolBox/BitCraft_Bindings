@@ -31,8 +31,8 @@ import {
   type ReducerEventContextInterface,
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
-import { CsvStatEntry as __CsvStatEntry } from "./csv_stat_entry_type";
 import { LevelRequirement as __LevelRequirement } from "./level_requirement_type";
+import { CsvStatEntry as __CsvStatEntry } from "./csv_stat_entry_type";
 import { EquipmentSlotType as __EquipmentSlotType } from "./equipment_slot_type_type";
 import { EquipmentVisualType as __EquipmentVisualType } from "./equipment_visual_type_type";
 import { ClothingVisual as __ClothingVisual } from "./clothing_visual_type";

@@ -32,8 +32,8 @@ import {
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
 import { DeconstructionRecipeDesc } from "./deconstruction_recipe_desc_type";
-import { ItemStack as __ItemStack } from "./item_stack_type";
 import { LevelRequirement as __LevelRequirement } from "./level_requirement_type";
+import { ItemStack as __ItemStack } from "./item_stack_type";
 import { ToolRequirement as __ToolRequirement } from "./tool_requirement_type";
 import { ExperienceStackF32 as __ExperienceStackF32 } from "./experience_stack_f_32_type";
 

@@ -33,6 +33,10 @@ import {
 } from "@clockworklabs/spacetimedb-sdk";
 
 // Import and reexport all reducer arg types
+import { AbilityCustomActivate } from "./ability_custom_activate_reducer.ts";
+export { AbilityCustomActivate };
+import { AbilityCustomActivateStart } from "./ability_custom_activate_start_reducer.ts";
+export { AbilityCustomActivateStart };
 import { AbilityRemove } from "./ability_remove_reducer.ts";
 export { AbilityRemove };
 import { AbilitySet } from "./ability_set_reducer.ts";
@@ -109,6 +113,8 @@ import { AdminGrantCollectibles } from "./admin_grant_collectibles_reducer.ts";
 export { AdminGrantCollectibles };
 import { AdminMigrateActionState } from "./admin_migrate_action_state_reducer.ts";
 export { AdminMigrateActionState };
+import { AdminMigrateTradeOrders } from "./admin_migrate_trade_orders_reducer.ts";
+export { AdminMigrateTradeOrders };
 import { AdminModifyChatMessage } from "./admin_modify_chat_message_reducer.ts";
 export { AdminModifyChatMessage };
 import { AdminPatchHousingCosts } from "./admin_patch_housing_costs_reducer.ts";
@@ -503,6 +509,10 @@ import { IdentityConnected } from "./identity_connected_reducer.ts";
 export { IdentityConnected };
 import { IdentityDisconnected } from "./identity_disconnected_reducer.ts";
 export { IdentityDisconnected };
+import { ImportAbilityCustomDesc } from "./import_ability_custom_desc_reducer.ts";
+export { ImportAbilityCustomDesc };
+import { ImportAbilityUnlockDesc } from "./import_ability_unlock_desc_reducer.ts";
+export { ImportAbilityUnlockDesc };
 import { ImportAchievementDesc } from "./import_achievement_desc_reducer.ts";
 export { ImportAchievementDesc };
 import { ImportActiveBuffState } from "./import_active_buff_state_reducer.ts";
@@ -883,6 +893,8 @@ import { LootChestDespawn } from "./loot_chest_despawn_reducer.ts";
 export { LootChestDespawn };
 import { LootChestSpawn } from "./loot_chest_spawn_reducer.ts";
 export { LootChestSpawn };
+import { MigrateAutoAttacks } from "./migrate_auto_attacks_reducer.ts";
+export { MigrateAutoAttacks };
 import { MigrateCharacterStats } from "./migrate_character_stats_reducer.ts";
 export { MigrateCharacterStats };
 import { MigrateClaimTech } from "./migrate_claim_tech_reducer.ts";
@@ -1093,6 +1105,10 @@ import { SignOut } from "./sign_out_reducer.ts";
 export { SignOut };
 import { Sleep } from "./sleep_reducer.ts";
 export { Sleep };
+import { StageAbilityCustomDesc } from "./stage_ability_custom_desc_reducer.ts";
+export { StageAbilityCustomDesc };
+import { StageAbilityUnlockDesc } from "./stage_ability_unlock_desc_reducer.ts";
+export { StageAbilityUnlockDesc };
 import { StageAchievementDesc } from "./stage_achievement_desc_reducer.ts";
 export { StageAchievementDesc };
 import { StageAlertDesc } from "./stage_alert_desc_reducer.ts";
@@ -1331,8 +1347,12 @@ export { WorldPlaceResource };
 // Import and reexport all table handle types
 import { AIDebugStateTableHandle } from "./a_i_debug_state_table.ts";
 export { AIDebugStateTableHandle };
+import { AbilityCustomDescTableHandle } from "./ability_custom_desc_table.ts";
+export { AbilityCustomDescTableHandle };
 import { AbilityStateTableHandle } from "./ability_state_table.ts";
 export { AbilityStateTableHandle };
+import { AbilityUnlockDescTableHandle } from "./ability_unlock_desc_table.ts";
+export { AbilityUnlockDescTableHandle };
 import { AchievementDescTableHandle } from "./achievement_desc_table.ts";
 export { AchievementDescTableHandle };
 import { ActionBarStateTableHandle } from "./action_bar_state_table.ts";
@@ -1891,6 +1911,10 @@ import { SingleResourceToClumpDescTableHandle } from "./single_resource_to_clump
 export { SingleResourceToClumpDescTableHandle };
 import { SkillDescTableHandle } from "./skill_desc_table.ts";
 export { SkillDescTableHandle };
+import { StagedAbilityCustomDescTableHandle } from "./staged_ability_custom_desc_table.ts";
+export { StagedAbilityCustomDescTableHandle };
+import { StagedAbilityUnlockDescTableHandle } from "./staged_ability_unlock_desc_table.ts";
+export { StagedAbilityUnlockDescTableHandle };
 import { StagedAchievementDescTableHandle } from "./staged_achievement_desc_table.ts";
 export { StagedAchievementDescTableHandle };
 import { StagedAlertDescTableHandle } from "./staged_alert_desc_table.ts";
@@ -2181,10 +2205,16 @@ export { WorldRegionStateTableHandle };
 // Import and reexport all types
 import { AiDebugState } from "./ai_debug_state_type.ts";
 export { AiDebugState };
+import { AbilityCustomDesc } from "./ability_custom_desc_type.ts";
+export { AbilityCustomDesc };
 import { AbilityState } from "./ability_state_type.ts";
 export { AbilityState };
 import { AbilityType } from "./ability_type_type.ts";
 export { AbilityType };
+import { AbilityTypeEnum } from "./ability_type_enum_type.ts";
+export { AbilityTypeEnum };
+import { AbilityUnlockDesc } from "./ability_unlock_desc_type.ts";
+export { AbilityUnlockDesc };
 import { AchievementDesc } from "./achievement_desc_type.ts";
 export { AchievementDesc };
 import { ActionBarState } from "./action_bar_state_type.ts";
@@ -3535,6 +3565,15 @@ export const REMOTE_MODULE = {
         colType: AiDebugState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    ability_custom_desc: {
+      tableName: "ability_custom_desc",
+      rowType: AbilityCustomDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: AbilityCustomDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     ability_state: {
       tableName: "ability_state",
       rowType: AbilityState.getTypeScriptAlgebraicType(),
@@ -3542,6 +3581,15 @@ export const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "entityId",
         colType: AbilityState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    ability_unlock_desc: {
+      tableName: "ability_unlock_desc",
+      rowType: AbilityUnlockDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: AbilityUnlockDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     achievement_desc: {
@@ -6050,6 +6098,24 @@ export const REMOTE_MODULE = {
         colType: SkillDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    staged_ability_custom_desc: {
+      tableName: "staged_ability_custom_desc",
+      rowType: AbilityCustomDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: AbilityCustomDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_ability_unlock_desc: {
+      tableName: "staged_ability_unlock_desc",
+      rowType: AbilityUnlockDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: AbilityUnlockDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     staged_achievement_desc: {
       tableName: "staged_achievement_desc",
       rowType: AchievementDesc.getTypeScriptAlgebraicType(),
@@ -7339,6 +7405,14 @@ export const REMOTE_MODULE = {
     },
   },
   reducers: {
+    ability_custom_activate: {
+      reducerName: "ability_custom_activate",
+      argsType: AbilityCustomActivate.getTypeScriptAlgebraicType(),
+    },
+    ability_custom_activate_start: {
+      reducerName: "ability_custom_activate_start",
+      argsType: AbilityCustomActivateStart.getTypeScriptAlgebraicType(),
+    },
     ability_remove: {
       reducerName: "ability_remove",
       argsType: AbilityRemove.getTypeScriptAlgebraicType(),
@@ -7490,6 +7564,10 @@ export const REMOTE_MODULE = {
     admin_migrate_action_state: {
       reducerName: "admin_migrate_action_state",
       argsType: AdminMigrateActionState.getTypeScriptAlgebraicType(),
+    },
+    admin_migrate_trade_orders: {
+      reducerName: "admin_migrate_trade_orders",
+      argsType: AdminMigrateTradeOrders.getTypeScriptAlgebraicType(),
     },
     admin_modify_chat_message: {
       reducerName: "admin_modify_chat_message",
@@ -8279,6 +8357,14 @@ export const REMOTE_MODULE = {
       reducerName: "identity_disconnected",
       argsType: IdentityDisconnected.getTypeScriptAlgebraicType(),
     },
+    import_ability_custom_desc: {
+      reducerName: "import_ability_custom_desc",
+      argsType: ImportAbilityCustomDesc.getTypeScriptAlgebraicType(),
+    },
+    import_ability_unlock_desc: {
+      reducerName: "import_ability_unlock_desc",
+      argsType: ImportAbilityUnlockDesc.getTypeScriptAlgebraicType(),
+    },
     import_achievement_desc: {
       reducerName: "import_achievement_desc",
       argsType: ImportAchievementDesc.getTypeScriptAlgebraicType(),
@@ -9039,6 +9125,10 @@ export const REMOTE_MODULE = {
       reducerName: "loot_chest_spawn",
       argsType: LootChestSpawn.getTypeScriptAlgebraicType(),
     },
+    migrate_auto_attacks: {
+      reducerName: "migrate_auto_attacks",
+      argsType: MigrateAutoAttacks.getTypeScriptAlgebraicType(),
+    },
     migrate_character_stats: {
       reducerName: "migrate_character_stats",
       argsType: MigrateCharacterStats.getTypeScriptAlgebraicType(),
@@ -9458,6 +9548,14 @@ export const REMOTE_MODULE = {
     sleep: {
       reducerName: "sleep",
       argsType: Sleep.getTypeScriptAlgebraicType(),
+    },
+    stage_ability_custom_desc: {
+      reducerName: "stage_ability_custom_desc",
+      argsType: StageAbilityCustomDesc.getTypeScriptAlgebraicType(),
+    },
+    stage_ability_unlock_desc: {
+      reducerName: "stage_ability_unlock_desc",
+      argsType: StageAbilityUnlockDesc.getTypeScriptAlgebraicType(),
     },
     stage_achievement_desc: {
       reducerName: "stage_achievement_desc",
@@ -9957,6 +10055,8 @@ export const REMOTE_MODULE = {
 
 // A type representing all the possible variants of a reducer.
 export type Reducer = never
+| { name: "AbilityCustomActivate", args: AbilityCustomActivate }
+| { name: "AbilityCustomActivateStart", args: AbilityCustomActivateStart }
 | { name: "AbilityRemove", args: AbilityRemove }
 | { name: "AbilitySet", args: AbilitySet }
 | { name: "AchievementClaim", args: AchievementClaim }
@@ -9995,6 +10095,7 @@ export type Reducer = never
 | { name: "AdminGrantAllClaimSupplies", args: AdminGrantAllClaimSupplies }
 | { name: "AdminGrantCollectibles", args: AdminGrantCollectibles }
 | { name: "AdminMigrateActionState", args: AdminMigrateActionState }
+| { name: "AdminMigrateTradeOrders", args: AdminMigrateTradeOrders }
 | { name: "AdminModifyChatMessage", args: AdminModifyChatMessage }
 | { name: "AdminPatchHousingCosts", args: AdminPatchHousingCosts }
 | { name: "AdminRenameBuilding", args: AdminRenameBuilding }
@@ -10192,6 +10293,8 @@ export type Reducer = never
 | { name: "HideDeployable", args: HideDeployable }
 | { name: "IdentityConnected", args: IdentityConnected }
 | { name: "IdentityDisconnected", args: IdentityDisconnected }
+| { name: "ImportAbilityCustomDesc", args: ImportAbilityCustomDesc }
+| { name: "ImportAbilityUnlockDesc", args: ImportAbilityUnlockDesc }
 | { name: "ImportAchievementDesc", args: ImportAchievementDesc }
 | { name: "ImportActiveBuffState", args: ImportActiveBuffState }
 | { name: "ImportAdminBroadcast", args: ImportAdminBroadcast }
@@ -10382,6 +10485,7 @@ export type Reducer = never
 | { name: "LogClaimTierLeaderboard", args: LogClaimTierLeaderboard }
 | { name: "LootChestDespawn", args: LootChestDespawn }
 | { name: "LootChestSpawn", args: LootChestSpawn }
+| { name: "MigrateAutoAttacks", args: MigrateAutoAttacks }
 | { name: "MigrateCharacterStats", args: MigrateCharacterStats }
 | { name: "MigrateClaimTech", args: MigrateClaimTech }
 | { name: "MigratePlayerSettings", args: MigratePlayerSettings }
@@ -10487,6 +10591,8 @@ export type Reducer = never
 | { name: "SignIn", args: SignIn }
 | { name: "SignOut", args: SignOut }
 | { name: "Sleep", args: Sleep }
+| { name: "StageAbilityCustomDesc", args: StageAbilityCustomDesc }
+| { name: "StageAbilityUnlockDesc", args: StageAbilityUnlockDesc }
 | { name: "StageAchievementDesc", args: StageAchievementDesc }
 | { name: "StageAlertDesc", args: StageAlertDesc }
 | { name: "StageBiomeDesc", args: StageBiomeDesc }
@@ -10608,6 +10714,38 @@ export type Reducer = never
 
 export class RemoteReducers {
   constructor(private connection: DbConnectionImpl, private setCallReducerFlags: SetReducerFlags) {}
+
+  abilityCustomActivate(abilityCustomId: number, targetEntityId: bigint, timestamp: bigint) {
+    const __args = { abilityCustomId, targetEntityId, timestamp };
+    let __writer = new BinaryWriter(1024);
+    AbilityCustomActivate.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("ability_custom_activate", __argsBuffer, this.setCallReducerFlags.abilityCustomActivateFlags);
+  }
+
+  onAbilityCustomActivate(callback: (ctx: ReducerEventContext, abilityCustomId: number, targetEntityId: bigint, timestamp: bigint) => void) {
+    this.connection.onReducer("ability_custom_activate", callback);
+  }
+
+  removeOnAbilityCustomActivate(callback: (ctx: ReducerEventContext, abilityCustomId: number, targetEntityId: bigint, timestamp: bigint) => void) {
+    this.connection.offReducer("ability_custom_activate", callback);
+  }
+
+  abilityCustomActivateStart(abilityCustomId: number, targetEntityId: bigint, timestamp: bigint) {
+    const __args = { abilityCustomId, targetEntityId, timestamp };
+    let __writer = new BinaryWriter(1024);
+    AbilityCustomActivateStart.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("ability_custom_activate_start", __argsBuffer, this.setCallReducerFlags.abilityCustomActivateStartFlags);
+  }
+
+  onAbilityCustomActivateStart(callback: (ctx: ReducerEventContext, abilityCustomId: number, targetEntityId: bigint, timestamp: bigint) => void) {
+    this.connection.onReducer("ability_custom_activate_start", callback);
+  }
+
+  removeOnAbilityCustomActivateStart(callback: (ctx: ReducerEventContext, abilityCustomId: number, targetEntityId: bigint, timestamp: bigint) => void) {
+    this.connection.offReducer("ability_custom_activate_start", callback);
+  }
 
   abilityRemove(actionBarIndex: number, localAbilityIndex: number) {
     const __args = { actionBarIndex, localAbilityIndex };
@@ -11183,6 +11321,18 @@ export class RemoteReducers {
 
   removeOnAdminMigrateActionState(callback: (ctx: ReducerEventContext) => void) {
     this.connection.offReducer("admin_migrate_action_state", callback);
+  }
+
+  adminMigrateTradeOrders() {
+    this.connection.callReducer("admin_migrate_trade_orders", new Uint8Array(0), this.setCallReducerFlags.adminMigrateTradeOrdersFlags);
+  }
+
+  onAdminMigrateTradeOrders(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.onReducer("admin_migrate_trade_orders", callback);
+  }
+
+  removeOnAdminMigrateTradeOrders(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.offReducer("admin_migrate_trade_orders", callback);
   }
 
   adminModifyChatMessage(entityId: bigint, newMessageText: string) {
@@ -14249,6 +14399,38 @@ export class RemoteReducers {
     this.connection.offReducer("identity_disconnected", callback);
   }
 
+  importAbilityCustomDesc(records: AbilityCustomDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    ImportAbilityCustomDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("import_ability_custom_desc", __argsBuffer, this.setCallReducerFlags.importAbilityCustomDescFlags);
+  }
+
+  onImportAbilityCustomDesc(callback: (ctx: ReducerEventContext, records: AbilityCustomDesc[]) => void) {
+    this.connection.onReducer("import_ability_custom_desc", callback);
+  }
+
+  removeOnImportAbilityCustomDesc(callback: (ctx: ReducerEventContext, records: AbilityCustomDesc[]) => void) {
+    this.connection.offReducer("import_ability_custom_desc", callback);
+  }
+
+  importAbilityUnlockDesc(records: AbilityUnlockDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    ImportAbilityUnlockDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("import_ability_unlock_desc", __argsBuffer, this.setCallReducerFlags.importAbilityUnlockDescFlags);
+  }
+
+  onImportAbilityUnlockDesc(callback: (ctx: ReducerEventContext, records: AbilityUnlockDesc[]) => void) {
+    this.connection.onReducer("import_ability_unlock_desc", callback);
+  }
+
+  removeOnImportAbilityUnlockDesc(callback: (ctx: ReducerEventContext, records: AbilityUnlockDesc[]) => void) {
+    this.connection.offReducer("import_ability_unlock_desc", callback);
+  }
+
   importAchievementDesc(records: AchievementDesc[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
@@ -17281,6 +17463,18 @@ export class RemoteReducers {
     this.connection.offReducer("loot_chest_spawn", callback);
   }
 
+  migrateAutoAttacks() {
+    this.connection.callReducer("migrate_auto_attacks", new Uint8Array(0), this.setCallReducerFlags.migrateAutoAttacksFlags);
+  }
+
+  onMigrateAutoAttacks(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.onReducer("migrate_auto_attacks", callback);
+  }
+
+  removeOnMigrateAutoAttacks(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.offReducer("migrate_auto_attacks", callback);
+  }
+
   migrateCharacterStats() {
     this.connection.callReducer("migrate_character_stats", new Uint8Array(0), this.setCallReducerFlags.migrateCharacterStatsFlags);
   }
@@ -18915,6 +19109,38 @@ export class RemoteReducers {
 
   removeOnSleep(callback: (ctx: ReducerEventContext, request: PlayerSleepRequest) => void) {
     this.connection.offReducer("sleep", callback);
+  }
+
+  stageAbilityCustomDesc(records: AbilityCustomDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    StageAbilityCustomDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("stage_ability_custom_desc", __argsBuffer, this.setCallReducerFlags.stageAbilityCustomDescFlags);
+  }
+
+  onStageAbilityCustomDesc(callback: (ctx: ReducerEventContext, records: AbilityCustomDesc[]) => void) {
+    this.connection.onReducer("stage_ability_custom_desc", callback);
+  }
+
+  removeOnStageAbilityCustomDesc(callback: (ctx: ReducerEventContext, records: AbilityCustomDesc[]) => void) {
+    this.connection.offReducer("stage_ability_custom_desc", callback);
+  }
+
+  stageAbilityUnlockDesc(records: AbilityUnlockDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    StageAbilityUnlockDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("stage_ability_unlock_desc", __argsBuffer, this.setCallReducerFlags.stageAbilityUnlockDescFlags);
+  }
+
+  onStageAbilityUnlockDesc(callback: (ctx: ReducerEventContext, records: AbilityUnlockDesc[]) => void) {
+    this.connection.onReducer("stage_ability_unlock_desc", callback);
+  }
+
+  removeOnStageAbilityUnlockDesc(callback: (ctx: ReducerEventContext, records: AbilityUnlockDesc[]) => void) {
+    this.connection.offReducer("stage_ability_unlock_desc", callback);
   }
 
   stageAchievementDesc(records: AchievementDesc[]) {
@@ -20780,6 +21006,16 @@ export class RemoteReducers {
 }
 
 export class SetReducerFlags {
+  abilityCustomActivateFlags: CallReducerFlags = 'FullUpdate';
+  abilityCustomActivate(flags: CallReducerFlags) {
+    this.abilityCustomActivateFlags = flags;
+  }
+
+  abilityCustomActivateStartFlags: CallReducerFlags = 'FullUpdate';
+  abilityCustomActivateStart(flags: CallReducerFlags) {
+    this.abilityCustomActivateStartFlags = flags;
+  }
+
   abilityRemoveFlags: CallReducerFlags = 'FullUpdate';
   abilityRemove(flags: CallReducerFlags) {
     this.abilityRemoveFlags = flags;
@@ -20968,6 +21204,11 @@ export class SetReducerFlags {
   adminMigrateActionStateFlags: CallReducerFlags = 'FullUpdate';
   adminMigrateActionState(flags: CallReducerFlags) {
     this.adminMigrateActionStateFlags = flags;
+  }
+
+  adminMigrateTradeOrdersFlags: CallReducerFlags = 'FullUpdate';
+  adminMigrateTradeOrders(flags: CallReducerFlags) {
+    this.adminMigrateTradeOrdersFlags = flags;
   }
 
   adminModifyChatMessageFlags: CallReducerFlags = 'FullUpdate';
@@ -21945,6 +22186,16 @@ export class SetReducerFlags {
     this.hideDeployableFlags = flags;
   }
 
+  importAbilityCustomDescFlags: CallReducerFlags = 'FullUpdate';
+  importAbilityCustomDesc(flags: CallReducerFlags) {
+    this.importAbilityCustomDescFlags = flags;
+  }
+
+  importAbilityUnlockDescFlags: CallReducerFlags = 'FullUpdate';
+  importAbilityUnlockDesc(flags: CallReducerFlags) {
+    this.importAbilityUnlockDescFlags = flags;
+  }
+
   importAchievementDescFlags: CallReducerFlags = 'FullUpdate';
   importAchievementDesc(flags: CallReducerFlags) {
     this.importAchievementDescFlags = flags;
@@ -22895,6 +23146,11 @@ export class SetReducerFlags {
     this.lootChestSpawnFlags = flags;
   }
 
+  migrateAutoAttacksFlags: CallReducerFlags = 'FullUpdate';
+  migrateAutoAttacks(flags: CallReducerFlags) {
+    this.migrateAutoAttacksFlags = flags;
+  }
+
   migrateCharacterStatsFlags: CallReducerFlags = 'FullUpdate';
   migrateCharacterStats(flags: CallReducerFlags) {
     this.migrateCharacterStatsFlags = flags;
@@ -23418,6 +23674,16 @@ export class SetReducerFlags {
   sleepFlags: CallReducerFlags = 'FullUpdate';
   sleep(flags: CallReducerFlags) {
     this.sleepFlags = flags;
+  }
+
+  stageAbilityCustomDescFlags: CallReducerFlags = 'FullUpdate';
+  stageAbilityCustomDesc(flags: CallReducerFlags) {
+    this.stageAbilityCustomDescFlags = flags;
+  }
+
+  stageAbilityUnlockDescFlags: CallReducerFlags = 'FullUpdate';
+  stageAbilityUnlockDesc(flags: CallReducerFlags) {
+    this.stageAbilityUnlockDescFlags = flags;
   }
 
   stageAchievementDescFlags: CallReducerFlags = 'FullUpdate';
@@ -24014,8 +24280,16 @@ export class RemoteTables {
     return new AIDebugStateTableHandle(this.connection.clientCache.getOrCreateTable<AiDebugState>(REMOTE_MODULE.tables.a_i_debug_state));
   }
 
+  get abilityCustomDesc(): AbilityCustomDescTableHandle {
+    return new AbilityCustomDescTableHandle(this.connection.clientCache.getOrCreateTable<AbilityCustomDesc>(REMOTE_MODULE.tables.ability_custom_desc));
+  }
+
   get abilityState(): AbilityStateTableHandle {
     return new AbilityStateTableHandle(this.connection.clientCache.getOrCreateTable<AbilityState>(REMOTE_MODULE.tables.ability_state));
+  }
+
+  get abilityUnlockDesc(): AbilityUnlockDescTableHandle {
+    return new AbilityUnlockDescTableHandle(this.connection.clientCache.getOrCreateTable<AbilityUnlockDesc>(REMOTE_MODULE.tables.ability_unlock_desc));
   }
 
   get achievementDesc(): AchievementDescTableHandle {
@@ -25132,6 +25406,14 @@ export class RemoteTables {
 
   get skillDesc(): SkillDescTableHandle {
     return new SkillDescTableHandle(this.connection.clientCache.getOrCreateTable<SkillDesc>(REMOTE_MODULE.tables.skill_desc));
+  }
+
+  get stagedAbilityCustomDesc(): StagedAbilityCustomDescTableHandle {
+    return new StagedAbilityCustomDescTableHandle(this.connection.clientCache.getOrCreateTable<AbilityCustomDesc>(REMOTE_MODULE.tables.staged_ability_custom_desc));
+  }
+
+  get stagedAbilityUnlockDesc(): StagedAbilityUnlockDescTableHandle {
+    return new StagedAbilityUnlockDescTableHandle(this.connection.clientCache.getOrCreateTable<AbilityUnlockDesc>(REMOTE_MODULE.tables.staged_ability_unlock_desc));
   }
 
   get stagedAchievementDesc(): StagedAchievementDescTableHandle {

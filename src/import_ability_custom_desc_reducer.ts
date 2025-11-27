@@ -31,40 +31,34 @@ import {
   type ReducerEventContextInterface,
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
-import { ItemStack as __ItemStack } from "./item_stack_type";
 
-export type PlayerBarterStallOrderCreateRequest = {
-  shopEntityId: bigint,
-  remainingStock: number,
-  offerItems: __ItemStack[],
-  requiredItems: __ItemStack[],
+import { AbilityCustomDesc as __AbilityCustomDesc } from "./ability_custom_desc_type";
+
+export type ImportAbilityCustomDesc = {
+  records: __AbilityCustomDesc[],
 };
 
 /**
  * A namespace for generated helper functions.
  */
-export namespace PlayerBarterStallOrderCreateRequest {
+export namespace ImportAbilityCustomDesc {
   /**
   * A function which returns this type represented as an AlgebraicType.
   * This function is derived from the AlgebraicType used to generate this type.
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("shopEntityId", AlgebraicType.createU64Type()),
-      new ProductTypeElement("remainingStock", AlgebraicType.createI32Type()),
-      new ProductTypeElement("offerItems", AlgebraicType.createArrayType(__ItemStack.getTypeScriptAlgebraicType())),
-      new ProductTypeElement("requiredItems", AlgebraicType.createArrayType(__ItemStack.getTypeScriptAlgebraicType())),
+      new ProductTypeElement("records", AlgebraicType.createArrayType(__AbilityCustomDesc.getTypeScriptAlgebraicType())),
     ]);
   }
 
-  export function serialize(writer: BinaryWriter, value: PlayerBarterStallOrderCreateRequest): void {
-    PlayerBarterStallOrderCreateRequest.getTypeScriptAlgebraicType().serialize(writer, value);
+  export function serialize(writer: BinaryWriter, value: ImportAbilityCustomDesc): void {
+    ImportAbilityCustomDesc.getTypeScriptAlgebraicType().serialize(writer, value);
   }
 
-  export function deserialize(reader: BinaryReader): PlayerBarterStallOrderCreateRequest {
-    return PlayerBarterStallOrderCreateRequest.getTypeScriptAlgebraicType().deserialize(reader);
+  export function deserialize(reader: BinaryReader): ImportAbilityCustomDesc {
+    return ImportAbilityCustomDesc.getTypeScriptAlgebraicType().deserialize(reader);
   }
 
 }
-
 
