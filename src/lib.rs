@@ -95,6 +95,7 @@ pub mod admin_restore_player_state_reducer;
 pub mod admin_restore_player_state_scheduled_reducer;
 pub mod admin_restore_player_state_timer_table;
 pub mod admin_restore_player_state_timer_type;
+pub mod admin_set_resource_world_target_reducer;
 pub mod admin_set_sign_text_coord_reducer;
 pub mod admin_set_sign_text_entity_reducer;
 pub mod admin_set_sign_text_reducer;
@@ -190,6 +191,7 @@ pub mod building_set_sign_text_reducer;
 pub mod building_set_sign_text_request_type;
 pub mod building_spawn_desc_table;
 pub mod building_spawn_desc_type;
+pub mod building_spawn_info_type;
 pub mod building_spawn_type_type;
 pub mod building_state_op_type;
 pub mod building_state_table;
@@ -959,7 +961,10 @@ pub mod migrate_claim_tech_reducer;
 pub mod migrate_player_settings_reducer;
 pub mod migration_achievements_params_table;
 pub mod migration_achievements_params_type;
+pub mod migration_building_desc_params_table;
+pub mod migration_building_desc_params_type;
 pub mod migration_set_achievement_params_reducer;
+pub mod migration_set_building_desc_params_reducer;
 pub mod mobile_entity_state_table;
 pub mod mobile_entity_state_type;
 pub mod moderation_action_log_entry_table;
@@ -2032,6 +2037,10 @@ pub use admin_restore_player_state_scheduled_reducer::{
 };
 pub use admin_restore_player_state_timer_table::*;
 pub use admin_restore_player_state_timer_type::AdminRestorePlayerStateTimer;
+pub use admin_set_resource_world_target_reducer::{
+    admin_set_resource_world_target, set_flags_for_admin_set_resource_world_target,
+    AdminSetResourceWorldTargetCallbackId,
+};
 pub use admin_set_sign_text_coord_reducer::{
     admin_set_sign_text_coord, set_flags_for_admin_set_sign_text_coord,
     AdminSetSignTextCoordCallbackId,
@@ -2195,6 +2204,7 @@ pub use building_set_sign_text_reducer::{
 pub use building_set_sign_text_request_type::BuildingSetSignTextRequest;
 pub use building_spawn_desc_table::*;
 pub use building_spawn_desc_type::BuildingSpawnDesc;
+pub use building_spawn_info_type::BuildingSpawnInfo;
 pub use building_spawn_type_type::BuildingSpawnType;
 pub use building_state_op_type::BuildingStateOp;
 pub use building_state_table::*;
@@ -3781,9 +3791,15 @@ pub use migrate_player_settings_reducer::{
 };
 pub use migration_achievements_params_table::*;
 pub use migration_achievements_params_type::MigrationAchievementsParams;
+pub use migration_building_desc_params_table::*;
+pub use migration_building_desc_params_type::MigrationBuildingDescParams;
 pub use migration_set_achievement_params_reducer::{
     migration_set_achievement_params, set_flags_for_migration_set_achievement_params,
     MigrationSetAchievementParamsCallbackId,
+};
+pub use migration_set_building_desc_params_reducer::{
+    migration_set_building_desc_params, set_flags_for_migration_set_building_desc_params,
+    MigrationSetBuildingDescParamsCallbackId,
 };
 pub use mobile_entity_state_table::*;
 pub use mobile_entity_state_type::MobileEntityState;
@@ -5300,6 +5316,10 @@ pub enum Reducer {
     AdminRestorePlayerStateScheduled {
         timer: AdminRestorePlayerStateTimer,
     },
+    AdminSetResourceWorldTarget {
+        resource_id: i32,
+        world_target: i32,
+    },
     AdminSetSignText {
         deployable_name: String,
         new_name: String,
@@ -6426,6 +6446,9 @@ pub enum Reducer {
         allow_destructive: bool,
         grant_if_already_owned: bool,
     },
+    MigrationSetBuildingDescParams {
+        allow_building_health_change: bool,
+    },
     NpcAiAgentLoop {
         timer: NpcAiLoopTimer,
     },
@@ -7170,6 +7193,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::AdminRestorePlayerStateScheduled { .. } => {
                 "admin_restore_player_state_scheduled"
             }
+            Reducer::AdminSetResourceWorldTarget { .. } => "admin_set_resource_world_target",
             Reducer::AdminSetSignText { .. } => "admin_set_sign_text",
             Reducer::AdminSetSignTextCoord { .. } => "admin_set_sign_text_coord",
             Reducer::AdminSetSignTextEntity { .. } => "admin_set_sign_text_entity",
@@ -7579,6 +7603,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::MigrateClaimTech => "migrate_claim_tech",
             Reducer::MigratePlayerSettings => "migrate_player_settings",
             Reducer::MigrationSetAchievementParams { .. } => "migration_set_achievement_params",
+            Reducer::MigrationSetBuildingDescParams { .. } => "migration_set_building_desc_params",
             Reducer::NpcAiAgentLoop { .. } => "npc_ai_agent_loop",
             Reducer::OnDurabilityZero { .. } => "on_durability_zero",
             Reducer::OnInterModuleMessageProcessed { .. } => "on_inter_module_message_processed",
@@ -7880,6 +7905,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "admin_restore_all_collapsed_ruins" => Ok(__sdk::parse_reducer_args::<admin_restore_all_collapsed_ruins_reducer::AdminRestoreAllCollapsedRuinsArgs>("admin_restore_all_collapsed_ruins", &value.args)?.into()),
             "admin_restore_player_state" => Ok(__sdk::parse_reducer_args::<admin_restore_player_state_reducer::AdminRestorePlayerStateArgs>("admin_restore_player_state", &value.args)?.into()),
             "admin_restore_player_state_scheduled" => Ok(__sdk::parse_reducer_args::<admin_restore_player_state_scheduled_reducer::AdminRestorePlayerStateScheduledArgs>("admin_restore_player_state_scheduled", &value.args)?.into()),
+            "admin_set_resource_world_target" => Ok(__sdk::parse_reducer_args::<admin_set_resource_world_target_reducer::AdminSetResourceWorldTargetArgs>("admin_set_resource_world_target", &value.args)?.into()),
             "admin_set_sign_text" => Ok(__sdk::parse_reducer_args::<admin_set_sign_text_reducer::AdminSetSignTextArgs>("admin_set_sign_text", &value.args)?.into()),
             "admin_set_sign_text_coord" => Ok(__sdk::parse_reducer_args::<admin_set_sign_text_coord_reducer::AdminSetSignTextCoordArgs>("admin_set_sign_text_coord", &value.args)?.into()),
             "admin_set_sign_text_entity" => Ok(__sdk::parse_reducer_args::<admin_set_sign_text_entity_reducer::AdminSetSignTextEntityArgs>("admin_set_sign_text_entity", &value.args)?.into()),
@@ -8255,6 +8281,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "migrate_claim_tech" => Ok(__sdk::parse_reducer_args::<migrate_claim_tech_reducer::MigrateClaimTechArgs>("migrate_claim_tech", &value.args)?.into()),
             "migrate_player_settings" => Ok(__sdk::parse_reducer_args::<migrate_player_settings_reducer::MigratePlayerSettingsArgs>("migrate_player_settings", &value.args)?.into()),
             "migration_set_achievement_params" => Ok(__sdk::parse_reducer_args::<migration_set_achievement_params_reducer::MigrationSetAchievementParamsArgs>("migration_set_achievement_params", &value.args)?.into()),
+            "migration_set_building_desc_params" => Ok(__sdk::parse_reducer_args::<migration_set_building_desc_params_reducer::MigrationSetBuildingDescParamsArgs>("migration_set_building_desc_params", &value.args)?.into()),
             "npc_ai_agent_loop" => Ok(__sdk::parse_reducer_args::<npc_ai_agent_loop_reducer::NpcAiAgentLoopArgs>("npc_ai_agent_loop", &value.args)?.into()),
             "on_durability_zero" => Ok(__sdk::parse_reducer_args::<on_durability_zero_reducer::OnDurabilityZeroArgs>("on_durability_zero", &value.args)?.into()),
             "on_inter_module_message_processed" => Ok(__sdk::parse_reducer_args::<on_inter_module_message_processed_reducer::OnInterModuleMessageProcessedArgs>("on_inter_module_message_processed", &value.args)?.into()),
@@ -8682,6 +8709,7 @@ pub struct DbUpdate {
     lost_items_state: __sdk::TableUpdate<LostItemsState>,
     marketplace_state: __sdk::TableUpdate<MarketplaceState>,
     migration_achievements_params: __sdk::TableUpdate<MigrationAchievementsParams>,
+    migration_building_desc_params: __sdk::TableUpdate<MigrationBuildingDescParams>,
     mobile_entity_state: __sdk::TableUpdate<MobileEntityState>,
     moderation_action_log_entry: __sdk::TableUpdate<ModerationActionLogEntry>,
     mounting_state: __sdk::TableUpdate<MountingState>,
@@ -9542,6 +9570,11 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
                 "migration_achievements_params" => db_update.migration_achievements_params.append(
                     migration_achievements_params_table::parse_table_update(table_update)?,
                 ),
+                "migration_building_desc_params" => {
+                    db_update.migration_building_desc_params.append(
+                        migration_building_desc_params_table::parse_table_update(table_update)?,
+                    )
+                }
                 "mobile_entity_state" => db_update
                     .mobile_entity_state
                     .append(mobile_entity_state_table::parse_table_update(table_update)?),
@@ -11281,6 +11314,12 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.migration_achievements_params,
             )
             .with_updates_by_pk(|row| &row.id);
+        diff.migration_building_desc_params = cache
+            .apply_diff_to_table::<MigrationBuildingDescParams>(
+                "migration_building_desc_params",
+                &self.migration_building_desc_params,
+            )
+            .with_updates_by_pk(|row| &row.id);
         diff.mobile_entity_state = cache
             .apply_diff_to_table::<MobileEntityState>(
                 "mobile_entity_state",
@@ -12667,6 +12706,7 @@ pub struct AppliedDiff<'r> {
     lost_items_state: __sdk::TableAppliedDiff<'r, LostItemsState>,
     marketplace_state: __sdk::TableAppliedDiff<'r, MarketplaceState>,
     migration_achievements_params: __sdk::TableAppliedDiff<'r, MigrationAchievementsParams>,
+    migration_building_desc_params: __sdk::TableAppliedDiff<'r, MigrationBuildingDescParams>,
     mobile_entity_state: __sdk::TableAppliedDiff<'r, MobileEntityState>,
     moderation_action_log_entry: __sdk::TableAppliedDiff<'r, ModerationActionLogEntry>,
     mounting_state: __sdk::TableAppliedDiff<'r, MountingState>,
@@ -13825,6 +13865,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<MigrationAchievementsParams>(
             "migration_achievements_params",
             &self.migration_achievements_params,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<MigrationBuildingDescParams>(
+            "migration_building_desc_params",
+            &self.migration_building_desc_params,
             event,
         );
         callbacks.invoke_table_row_callbacks::<MobileEntityState>(
@@ -15718,6 +15763,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         lost_items_state_table::register_table(client_cache);
         marketplace_state_table::register_table(client_cache);
         migration_achievements_params_table::register_table(client_cache);
+        migration_building_desc_params_table::register_table(client_cache);
         mobile_entity_state_table::register_table(client_cache);
         moderation_action_log_entry_table::register_table(client_cache);
         mounting_state_table::register_table(client_cache);

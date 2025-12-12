@@ -6,18 +6,20 @@
 use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 use super::building_placement_type::BuildingPlacement;
+use super::building_spawn_info_type::BuildingSpawnInfo;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub struct WorldPlaceBuildingRequest {
     pub buildings: Vec<BuildingPlacement>,
-    pub construction_recipe_id: i32,
+    pub building_spawn_info: BuildingSpawnInfo,
     pub dry_run: bool,
     pub log_results: bool,
     pub ignore_claims: bool,
     pub clear_and_level_ground: bool,
     pub ignore_dimension_rules: bool,
     pub ignore_empire_checks: bool,
+    pub ignore_biomes: bool,
 }
 
 impl __sdk::InModule for WorldPlaceBuildingRequest {
