@@ -958,6 +958,7 @@ pub mod message_contents_v_3_type;
 pub mod migrate_auto_attacks_reducer;
 pub mod migrate_character_stats_reducer;
 pub mod migrate_claim_tech_reducer;
+pub mod migrate_luminate_caves_reducer;
 pub mod migrate_player_settings_reducer;
 pub mod migration_achievements_params_table;
 pub mod migration_achievements_params_type;
@@ -3786,6 +3787,9 @@ pub use migrate_character_stats_reducer::{
 pub use migrate_claim_tech_reducer::{
     migrate_claim_tech, set_flags_for_migrate_claim_tech, MigrateClaimTechCallbackId,
 };
+pub use migrate_luminate_caves_reducer::{
+    migrate_luminate_caves, set_flags_for_migrate_luminate_caves, MigrateLuminateCavesCallbackId,
+};
 pub use migrate_player_settings_reducer::{
     migrate_player_settings, set_flags_for_migrate_player_settings, MigratePlayerSettingsCallbackId,
 };
@@ -6441,6 +6445,9 @@ pub enum Reducer {
     MigrateAutoAttacks,
     MigrateCharacterStats,
     MigrateClaimTech,
+    MigrateLuminateCaves {
+        commit: bool,
+    },
     MigratePlayerSettings,
     MigrationSetAchievementParams {
         allow_destructive: bool,
@@ -7601,6 +7608,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::MigrateAutoAttacks => "migrate_auto_attacks",
             Reducer::MigrateCharacterStats => "migrate_character_stats",
             Reducer::MigrateClaimTech => "migrate_claim_tech",
+            Reducer::MigrateLuminateCaves { .. } => "migrate_luminate_caves",
             Reducer::MigratePlayerSettings => "migrate_player_settings",
             Reducer::MigrationSetAchievementParams { .. } => "migration_set_achievement_params",
             Reducer::MigrationSetBuildingDescParams { .. } => "migration_set_building_desc_params",
@@ -8279,6 +8287,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "migrate_auto_attacks" => Ok(__sdk::parse_reducer_args::<migrate_auto_attacks_reducer::MigrateAutoAttacksArgs>("migrate_auto_attacks", &value.args)?.into()),
             "migrate_character_stats" => Ok(__sdk::parse_reducer_args::<migrate_character_stats_reducer::MigrateCharacterStatsArgs>("migrate_character_stats", &value.args)?.into()),
             "migrate_claim_tech" => Ok(__sdk::parse_reducer_args::<migrate_claim_tech_reducer::MigrateClaimTechArgs>("migrate_claim_tech", &value.args)?.into()),
+            "migrate_luminate_caves" => Ok(__sdk::parse_reducer_args::<migrate_luminate_caves_reducer::MigrateLuminateCavesArgs>("migrate_luminate_caves", &value.args)?.into()),
             "migrate_player_settings" => Ok(__sdk::parse_reducer_args::<migrate_player_settings_reducer::MigratePlayerSettingsArgs>("migrate_player_settings", &value.args)?.into()),
             "migration_set_achievement_params" => Ok(__sdk::parse_reducer_args::<migration_set_achievement_params_reducer::MigrationSetAchievementParamsArgs>("migration_set_achievement_params", &value.args)?.into()),
             "migration_set_building_desc_params" => Ok(__sdk::parse_reducer_args::<migration_set_building_desc_params_reducer::MigrationSetBuildingDescParamsArgs>("migration_set_building_desc_params", &value.args)?.into()),
