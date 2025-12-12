@@ -17,8 +17,8 @@ namespace BitCraftRegion.Types
     {
         [DataMember(Name = "buildings")]
         public System.Collections.Generic.List<BuildingPlacement> Buildings;
-        [DataMember(Name = "construction_recipe_id")]
-        public int ConstructionRecipeId;
+        [DataMember(Name = "building_spawn_info")]
+        public BuildingSpawnInfo BuildingSpawnInfo;
         [DataMember(Name = "dry_run")]
         public bool DryRun;
         [DataMember(Name = "log_results")]
@@ -31,31 +31,36 @@ namespace BitCraftRegion.Types
         public bool IgnoreDimensionRules;
         [DataMember(Name = "ignore_empire_checks")]
         public bool IgnoreEmpireChecks;
+        [DataMember(Name = "ignore_biomes")]
+        public bool IgnoreBiomes;
 
         public WorldPlaceBuildingRequest(
             System.Collections.Generic.List<BuildingPlacement> Buildings,
-            int ConstructionRecipeId,
+            BuildingSpawnInfo BuildingSpawnInfo,
             bool DryRun,
             bool LogResults,
             bool IgnoreClaims,
             bool ClearAndLevelGround,
             bool IgnoreDimensionRules,
-            bool IgnoreEmpireChecks
+            bool IgnoreEmpireChecks,
+            bool IgnoreBiomes
         )
         {
             this.Buildings = Buildings;
-            this.ConstructionRecipeId = ConstructionRecipeId;
+            this.BuildingSpawnInfo = BuildingSpawnInfo;
             this.DryRun = DryRun;
             this.LogResults = LogResults;
             this.IgnoreClaims = IgnoreClaims;
             this.ClearAndLevelGround = ClearAndLevelGround;
             this.IgnoreDimensionRules = IgnoreDimensionRules;
             this.IgnoreEmpireChecks = IgnoreEmpireChecks;
+            this.IgnoreBiomes = IgnoreBiomes;
         }
 
         public WorldPlaceBuildingRequest()
         {
             this.Buildings = new();
+            this.BuildingSpawnInfo = new();
         }
     }
 }

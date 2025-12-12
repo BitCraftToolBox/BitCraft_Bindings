@@ -220,6 +220,7 @@ namespace BitCraftRegion.Types
             AddTable(LostItemsState = new(conn));
             AddTable(MarketplaceState = new(conn));
             AddTable(MigrationAchievementsParams = new(conn));
+            AddTable(MigrationBuildingDescParams = new(conn));
             AddTable(MobileEntityState = new(conn));
             AddTable(ModerationActionLogEntry = new(conn));
             AddTable(MountingState = new(conn));
@@ -954,6 +955,7 @@ namespace BitCraftRegion.Types
                 "admin_restore_all_collapsed_ruins" => BSATNHelpers.Decode<Reducer.AdminRestoreAllCollapsedRuins>(encodedArgs),
                 "admin_restore_player_state" => BSATNHelpers.Decode<Reducer.AdminRestorePlayerState>(encodedArgs),
                 "admin_restore_player_state_scheduled" => BSATNHelpers.Decode<Reducer.AdminRestorePlayerStateScheduled>(encodedArgs),
+                "admin_set_resource_world_target" => BSATNHelpers.Decode<Reducer.AdminSetResourceWorldTarget>(encodedArgs),
                 "admin_set_sign_text" => BSATNHelpers.Decode<Reducer.AdminSetSignText>(encodedArgs),
                 "admin_set_sign_text_coord" => BSATNHelpers.Decode<Reducer.AdminSetSignTextCoord>(encodedArgs),
                 "admin_set_sign_text_entity" => BSATNHelpers.Decode<Reducer.AdminSetSignTextEntity>(encodedArgs),
@@ -1329,6 +1331,7 @@ namespace BitCraftRegion.Types
                 "migrate_claim_tech" => BSATNHelpers.Decode<Reducer.MigrateClaimTech>(encodedArgs),
                 "migrate_player_settings" => BSATNHelpers.Decode<Reducer.MigratePlayerSettings>(encodedArgs),
                 "migration_set_achievement_params" => BSATNHelpers.Decode<Reducer.MigrationSetAchievementParams>(encodedArgs),
+                "migration_set_building_desc_params" => BSATNHelpers.Decode<Reducer.MigrationSetBuildingDescParams>(encodedArgs),
                 "npc_ai_agent_loop" => BSATNHelpers.Decode<Reducer.NpcAiAgentLoop>(encodedArgs),
                 "on_durability_zero" => BSATNHelpers.Decode<Reducer.OnDurabilityZero>(encodedArgs),
                 "on_inter_module_message_processed" => BSATNHelpers.Decode<Reducer.OnInterModuleMessageProcessed>(encodedArgs),
@@ -1630,6 +1633,7 @@ namespace BitCraftRegion.Types
                 Reducer.AdminRestoreAllCollapsedRuins args => Reducers.InvokeAdminRestoreAllCollapsedRuins(eventContext, args),
                 Reducer.AdminRestorePlayerState args => Reducers.InvokeAdminRestorePlayerState(eventContext, args),
                 Reducer.AdminRestorePlayerStateScheduled args => Reducers.InvokeAdminRestorePlayerStateScheduled(eventContext, args),
+                Reducer.AdminSetResourceWorldTarget args => Reducers.InvokeAdminSetResourceWorldTarget(eventContext, args),
                 Reducer.AdminSetSignText args => Reducers.InvokeAdminSetSignText(eventContext, args),
                 Reducer.AdminSetSignTextCoord args => Reducers.InvokeAdminSetSignTextCoord(eventContext, args),
                 Reducer.AdminSetSignTextEntity args => Reducers.InvokeAdminSetSignTextEntity(eventContext, args),
@@ -2005,6 +2009,7 @@ namespace BitCraftRegion.Types
                 Reducer.MigrateClaimTech args => Reducers.InvokeMigrateClaimTech(eventContext, args),
                 Reducer.MigratePlayerSettings args => Reducers.InvokeMigratePlayerSettings(eventContext, args),
                 Reducer.MigrationSetAchievementParams args => Reducers.InvokeMigrationSetAchievementParams(eventContext, args),
+                Reducer.MigrationSetBuildingDescParams args => Reducers.InvokeMigrationSetBuildingDescParams(eventContext, args),
                 Reducer.NpcAiAgentLoop args => Reducers.InvokeNpcAiAgentLoop(eventContext, args),
                 Reducer.OnDurabilityZero args => Reducers.InvokeOnDurabilityZero(eventContext, args),
                 Reducer.OnInterModuleMessageProcessed args => Reducers.InvokeOnInterModuleMessageProcessed(eventContext, args),
