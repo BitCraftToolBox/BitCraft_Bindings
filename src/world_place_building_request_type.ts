@@ -32,16 +32,18 @@ import {
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
 import { BuildingPlacement as __BuildingPlacement } from "./building_placement_type";
+import { BuildingSpawnInfo as __BuildingSpawnInfo } from "./building_spawn_info_type";
 
 export type WorldPlaceBuildingRequest = {
   buildings: __BuildingPlacement[],
-  constructionRecipeId: number,
+  buildingSpawnInfo: __BuildingSpawnInfo,
   dryRun: boolean,
   logResults: boolean,
   ignoreClaims: boolean,
   clearAndLevelGround: boolean,
   ignoreDimensionRules: boolean,
   ignoreEmpireChecks: boolean,
+  ignoreBiomes: boolean,
 };
 
 /**
@@ -55,13 +57,14 @@ export namespace WorldPlaceBuildingRequest {
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
       new ProductTypeElement("buildings", AlgebraicType.createArrayType(__BuildingPlacement.getTypeScriptAlgebraicType())),
-      new ProductTypeElement("constructionRecipeId", AlgebraicType.createI32Type()),
+      new ProductTypeElement("buildingSpawnInfo", __BuildingSpawnInfo.getTypeScriptAlgebraicType()),
       new ProductTypeElement("dryRun", AlgebraicType.createBoolType()),
       new ProductTypeElement("logResults", AlgebraicType.createBoolType()),
       new ProductTypeElement("ignoreClaims", AlgebraicType.createBoolType()),
       new ProductTypeElement("clearAndLevelGround", AlgebraicType.createBoolType()),
       new ProductTypeElement("ignoreDimensionRules", AlgebraicType.createBoolType()),
       new ProductTypeElement("ignoreEmpireChecks", AlgebraicType.createBoolType()),
+      new ProductTypeElement("ignoreBiomes", AlgebraicType.createBoolType()),
     ]);
   }
 

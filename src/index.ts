@@ -153,6 +153,8 @@ import { AdminRestorePlayerState } from "./admin_restore_player_state_reducer.ts
 export { AdminRestorePlayerState };
 import { AdminRestorePlayerStateScheduled } from "./admin_restore_player_state_scheduled_reducer.ts";
 export { AdminRestorePlayerStateScheduled };
+import { AdminSetResourceWorldTarget } from "./admin_set_resource_world_target_reducer.ts";
+export { AdminSetResourceWorldTarget };
 import { AdminSetSignText } from "./admin_set_sign_text_reducer.ts";
 export { AdminSetSignText };
 import { AdminSetSignTextCoord } from "./admin_set_sign_text_coord_reducer.ts";
@@ -903,6 +905,8 @@ import { MigratePlayerSettings } from "./migrate_player_settings_reducer.ts";
 export { MigratePlayerSettings };
 import { MigrationSetAchievementParams } from "./migration_set_achievement_params_reducer.ts";
 export { MigrationSetAchievementParams };
+import { MigrationSetBuildingDescParams } from "./migration_set_building_desc_params_reducer.ts";
+export { MigrationSetBuildingDescParams };
 import { NpcAiAgentLoop } from "./npc_ai_agent_loop_reducer.ts";
 export { NpcAiAgentLoop };
 import { OnDurabilityZero } from "./on_durability_zero_reducer.ts";
@@ -1739,6 +1743,8 @@ import { MarketplaceStateTableHandle } from "./marketplace_state_table.ts";
 export { MarketplaceStateTableHandle };
 import { MigrationAchievementsParamsTableHandle } from "./migration_achievements_params_table.ts";
 export { MigrationAchievementsParamsTableHandle };
+import { MigrationBuildingDescParamsTableHandle } from "./migration_building_desc_params_table.ts";
+export { MigrationBuildingDescParamsTableHandle };
 import { MobileEntityStateTableHandle } from "./mobile_entity_state_table.ts";
 export { MobileEntityStateTableHandle };
 import { ModerationActionLogEntryTableHandle } from "./moderation_action_log_entry_table.ts";
@@ -2321,6 +2327,8 @@ import { BuildingSetSignTextRequest } from "./building_set_sign_text_request_typ
 export { BuildingSetSignTextRequest };
 import { BuildingSpawnDesc } from "./building_spawn_desc_type.ts";
 export { BuildingSpawnDesc };
+import { BuildingSpawnInfo } from "./building_spawn_info_type.ts";
+export { BuildingSpawnInfo };
 import { BuildingSpawnType } from "./building_spawn_type_type.ts";
 export { BuildingSpawnType };
 import { BuildingState } from "./building_state_type.ts";
@@ -2849,6 +2857,8 @@ import { MessageContentsV3 } from "./message_contents_v_3_type.ts";
 export { MessageContentsV3 };
 import { MigrationAchievementsParams } from "./migration_achievements_params_type.ts";
 export { MigrationAchievementsParams };
+import { MigrationBuildingDescParams } from "./migration_building_desc_params_type.ts";
+export { MigrationBuildingDescParams };
 import { MobileEntityState } from "./mobile_entity_state_type.ts";
 export { MobileEntityState };
 import { ModerationActionLogEntry } from "./moderation_action_log_entry_type.ts";
@@ -5324,6 +5334,15 @@ export const REMOTE_MODULE = {
         colType: MigrationAchievementsParams.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    migration_building_desc_params: {
+      tableName: "migration_building_desc_params",
+      rowType: MigrationBuildingDescParams.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: MigrationBuildingDescParams.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     mobile_entity_state: {
       tableName: "mobile_entity_state",
       rowType: MobileEntityState.getTypeScriptAlgebraicType(),
@@ -7645,6 +7664,10 @@ export const REMOTE_MODULE = {
       reducerName: "admin_restore_player_state_scheduled",
       argsType: AdminRestorePlayerStateScheduled.getTypeScriptAlgebraicType(),
     },
+    admin_set_resource_world_target: {
+      reducerName: "admin_set_resource_world_target",
+      argsType: AdminSetResourceWorldTarget.getTypeScriptAlgebraicType(),
+    },
     admin_set_sign_text: {
       reducerName: "admin_set_sign_text",
       argsType: AdminSetSignText.getTypeScriptAlgebraicType(),
@@ -9145,6 +9168,10 @@ export const REMOTE_MODULE = {
       reducerName: "migration_set_achievement_params",
       argsType: MigrationSetAchievementParams.getTypeScriptAlgebraicType(),
     },
+    migration_set_building_desc_params: {
+      reducerName: "migration_set_building_desc_params",
+      argsType: MigrationSetBuildingDescParams.getTypeScriptAlgebraicType(),
+    },
     npc_ai_agent_loop: {
       reducerName: "npc_ai_agent_loop",
       argsType: NpcAiAgentLoop.getTypeScriptAlgebraicType(),
@@ -10115,6 +10142,7 @@ export type Reducer = never
 | { name: "AdminRestoreAllCollapsedRuins", args: AdminRestoreAllCollapsedRuins }
 | { name: "AdminRestorePlayerState", args: AdminRestorePlayerState }
 | { name: "AdminRestorePlayerStateScheduled", args: AdminRestorePlayerStateScheduled }
+| { name: "AdminSetResourceWorldTarget", args: AdminSetResourceWorldTarget }
 | { name: "AdminSetSignText", args: AdminSetSignText }
 | { name: "AdminSetSignTextCoord", args: AdminSetSignTextCoord }
 | { name: "AdminSetSignTextEntity", args: AdminSetSignTextEntity }
@@ -10490,6 +10518,7 @@ export type Reducer = never
 | { name: "MigrateClaimTech", args: MigrateClaimTech }
 | { name: "MigratePlayerSettings", args: MigratePlayerSettings }
 | { name: "MigrationSetAchievementParams", args: MigrationSetAchievementParams }
+| { name: "MigrationSetBuildingDescParams", args: MigrationSetBuildingDescParams }
 | { name: "NpcAiAgentLoop", args: NpcAiAgentLoop }
 | { name: "OnDurabilityZero", args: OnDurabilityZero }
 | { name: "OnInterModuleMessageProcessed", args: OnInterModuleMessageProcessed }
@@ -11621,6 +11650,22 @@ export class RemoteReducers {
 
   removeOnAdminRestorePlayerStateScheduled(callback: (ctx: ReducerEventContext, timer: AdminRestorePlayerStateTimer) => void) {
     this.connection.offReducer("admin_restore_player_state_scheduled", callback);
+  }
+
+  adminSetResourceWorldTarget(resourceId: number, worldTarget: number) {
+    const __args = { resourceId, worldTarget };
+    let __writer = new BinaryWriter(1024);
+    AdminSetResourceWorldTarget.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("admin_set_resource_world_target", __argsBuffer, this.setCallReducerFlags.adminSetResourceWorldTargetFlags);
+  }
+
+  onAdminSetResourceWorldTarget(callback: (ctx: ReducerEventContext, resourceId: number, worldTarget: number) => void) {
+    this.connection.onReducer("admin_set_resource_world_target", callback);
+  }
+
+  removeOnAdminSetResourceWorldTarget(callback: (ctx: ReducerEventContext, resourceId: number, worldTarget: number) => void) {
+    this.connection.offReducer("admin_set_resource_world_target", callback);
   }
 
   adminSetSignText(deployableName: string, newName: string) {
@@ -17527,6 +17572,22 @@ export class RemoteReducers {
     this.connection.offReducer("migration_set_achievement_params", callback);
   }
 
+  migrationSetBuildingDescParams(allowBuildingHealthChange: boolean) {
+    const __args = { allowBuildingHealthChange };
+    let __writer = new BinaryWriter(1024);
+    MigrationSetBuildingDescParams.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("migration_set_building_desc_params", __argsBuffer, this.setCallReducerFlags.migrationSetBuildingDescParamsFlags);
+  }
+
+  onMigrationSetBuildingDescParams(callback: (ctx: ReducerEventContext, allowBuildingHealthChange: boolean) => void) {
+    this.connection.onReducer("migration_set_building_desc_params", callback);
+  }
+
+  removeOnMigrationSetBuildingDescParams(callback: (ctx: ReducerEventContext, allowBuildingHealthChange: boolean) => void) {
+    this.connection.offReducer("migration_set_building_desc_params", callback);
+  }
+
   npcAiAgentLoop(timer: NpcAiLoopTimer) {
     const __args = { timer };
     let __writer = new BinaryWriter(1024);
@@ -21306,6 +21367,11 @@ export class SetReducerFlags {
     this.adminRestorePlayerStateScheduledFlags = flags;
   }
 
+  adminSetResourceWorldTargetFlags: CallReducerFlags = 'FullUpdate';
+  adminSetResourceWorldTarget(flags: CallReducerFlags) {
+    this.adminSetResourceWorldTargetFlags = flags;
+  }
+
   adminSetSignTextFlags: CallReducerFlags = 'FullUpdate';
   adminSetSignText(flags: CallReducerFlags) {
     this.adminSetSignTextFlags = flags;
@@ -23169,6 +23235,11 @@ export class SetReducerFlags {
   migrationSetAchievementParamsFlags: CallReducerFlags = 'FullUpdate';
   migrationSetAchievementParams(flags: CallReducerFlags) {
     this.migrationSetAchievementParamsFlags = flags;
+  }
+
+  migrationSetBuildingDescParamsFlags: CallReducerFlags = 'FullUpdate';
+  migrationSetBuildingDescParams(flags: CallReducerFlags) {
+    this.migrationSetBuildingDescParamsFlags = flags;
   }
 
   npcAiAgentLoopFlags: CallReducerFlags = 'FullUpdate';
@@ -25062,6 +25133,10 @@ export class RemoteTables {
 
   get migrationAchievementsParams(): MigrationAchievementsParamsTableHandle {
     return new MigrationAchievementsParamsTableHandle(this.connection.clientCache.getOrCreateTable<MigrationAchievementsParams>(REMOTE_MODULE.tables.migration_achievements_params));
+  }
+
+  get migrationBuildingDescParams(): MigrationBuildingDescParamsTableHandle {
+    return new MigrationBuildingDescParamsTableHandle(this.connection.clientCache.getOrCreateTable<MigrationBuildingDescParams>(REMOTE_MODULE.tables.migration_building_desc_params));
   }
 
   get mobileEntityState(): MobileEntityStateTableHandle {
