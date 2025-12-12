@@ -901,6 +901,8 @@ import { MigrateCharacterStats } from "./migrate_character_stats_reducer.ts";
 export { MigrateCharacterStats };
 import { MigrateClaimTech } from "./migrate_claim_tech_reducer.ts";
 export { MigrateClaimTech };
+import { MigrateLuminateCaves } from "./migrate_luminate_caves_reducer.ts";
+export { MigrateLuminateCaves };
 import { MigratePlayerSettings } from "./migrate_player_settings_reducer.ts";
 export { MigratePlayerSettings };
 import { MigrationSetAchievementParams } from "./migration_set_achievement_params_reducer.ts";
@@ -9160,6 +9162,10 @@ export const REMOTE_MODULE = {
       reducerName: "migrate_claim_tech",
       argsType: MigrateClaimTech.getTypeScriptAlgebraicType(),
     },
+    migrate_luminate_caves: {
+      reducerName: "migrate_luminate_caves",
+      argsType: MigrateLuminateCaves.getTypeScriptAlgebraicType(),
+    },
     migrate_player_settings: {
       reducerName: "migrate_player_settings",
       argsType: MigratePlayerSettings.getTypeScriptAlgebraicType(),
@@ -10516,6 +10522,7 @@ export type Reducer = never
 | { name: "MigrateAutoAttacks", args: MigrateAutoAttacks }
 | { name: "MigrateCharacterStats", args: MigrateCharacterStats }
 | { name: "MigrateClaimTech", args: MigrateClaimTech }
+| { name: "MigrateLuminateCaves", args: MigrateLuminateCaves }
 | { name: "MigratePlayerSettings", args: MigratePlayerSettings }
 | { name: "MigrationSetAchievementParams", args: MigrationSetAchievementParams }
 | { name: "MigrationSetBuildingDescParams", args: MigrationSetBuildingDescParams }
@@ -17544,6 +17551,22 @@ export class RemoteReducers {
     this.connection.offReducer("migrate_claim_tech", callback);
   }
 
+  migrateLuminateCaves(commit: boolean) {
+    const __args = { commit };
+    let __writer = new BinaryWriter(1024);
+    MigrateLuminateCaves.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("migrate_luminate_caves", __argsBuffer, this.setCallReducerFlags.migrateLuminateCavesFlags);
+  }
+
+  onMigrateLuminateCaves(callback: (ctx: ReducerEventContext, commit: boolean) => void) {
+    this.connection.onReducer("migrate_luminate_caves", callback);
+  }
+
+  removeOnMigrateLuminateCaves(callback: (ctx: ReducerEventContext, commit: boolean) => void) {
+    this.connection.offReducer("migrate_luminate_caves", callback);
+  }
+
   migratePlayerSettings() {
     this.connection.callReducer("migrate_player_settings", new Uint8Array(0), this.setCallReducerFlags.migratePlayerSettingsFlags);
   }
@@ -23225,6 +23248,11 @@ export class SetReducerFlags {
   migrateClaimTechFlags: CallReducerFlags = 'FullUpdate';
   migrateClaimTech(flags: CallReducerFlags) {
     this.migrateClaimTechFlags = flags;
+  }
+
+  migrateLuminateCavesFlags: CallReducerFlags = 'FullUpdate';
+  migrateLuminateCaves(flags: CallReducerFlags) {
+    this.migrateLuminateCavesFlags = flags;
   }
 
   migratePlayerSettingsFlags: CallReducerFlags = 'FullUpdate';
