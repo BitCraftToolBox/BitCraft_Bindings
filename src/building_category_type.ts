@@ -60,6 +60,7 @@ export namespace BuildingCategory {
   export type TownMarket = { tag: "TownMarket" };
   export type RecoveryChest = { tag: "RecoveryChest" };
   export type PlayerHousing = { tag: "PlayerHousing" };
+  export type PremiumBuilding = { tag: "PremiumBuilding" };
 
   // Helper functions for constructing each variant of the tagged union.
   // ```
@@ -91,6 +92,7 @@ export namespace BuildingCategory {
   export const TownMarket = { tag: "TownMarket" };
   export const RecoveryChest = { tag: "RecoveryChest" };
   export const PlayerHousing = { tag: "PlayerHousing" };
+  export const PremiumBuilding = { tag: "PremiumBuilding" };
 
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createSumType([
@@ -118,6 +120,7 @@ export namespace BuildingCategory {
       new SumTypeVariant("TownMarket", AlgebraicType.createProductType([])),
       new SumTypeVariant("RecoveryChest", AlgebraicType.createProductType([])),
       new SumTypeVariant("PlayerHousing", AlgebraicType.createProductType([])),
+      new SumTypeVariant("PremiumBuilding", AlgebraicType.createProductType([])),
     ]);
   }
 
@@ -132,7 +135,7 @@ export namespace BuildingCategory {
 }
 
 // The tagged union or sum type for the algebraic type `BuildingCategory`.
-export type BuildingCategory = BuildingCategory.Storage | BuildingCategory.Crafting | BuildingCategory.Residential | BuildingCategory.TownHall | BuildingCategory.Wall | BuildingCategory.TradingPost | BuildingCategory.Ornamental | BuildingCategory.AncientRuins | BuildingCategory.ClaimTotem | BuildingCategory.TerrraformingBase | BuildingCategory.Barter | BuildingCategory.Portal | BuildingCategory.RentTerminal | BuildingCategory.Watchtower | BuildingCategory.EmpireFoundry | BuildingCategory.Sign | BuildingCategory.Gate | BuildingCategory.Bed | BuildingCategory.Waystone | BuildingCategory.Bank | BuildingCategory.Elevator | BuildingCategory.TownMarket | BuildingCategory.RecoveryChest | BuildingCategory.PlayerHousing;
+export type BuildingCategory = BuildingCategory.Storage | BuildingCategory.Crafting | BuildingCategory.Residential | BuildingCategory.TownHall | BuildingCategory.Wall | BuildingCategory.TradingPost | BuildingCategory.Ornamental | BuildingCategory.AncientRuins | BuildingCategory.ClaimTotem | BuildingCategory.TerrraformingBase | BuildingCategory.Barter | BuildingCategory.Portal | BuildingCategory.RentTerminal | BuildingCategory.Watchtower | BuildingCategory.EmpireFoundry | BuildingCategory.Sign | BuildingCategory.Gate | BuildingCategory.Bed | BuildingCategory.Waystone | BuildingCategory.Bank | BuildingCategory.Elevator | BuildingCategory.TownMarket | BuildingCategory.RecoveryChest | BuildingCategory.PlayerHousing | BuildingCategory.PremiumBuilding;
 
 export default BuildingCategory;
 

@@ -42,6 +42,10 @@ export namespace AbilityTypeEnum {
   export type AutoAttack = { tag: "AutoAttack" };
   export type SelfBuff = { tag: "SelfBuff" };
   export type Custom = { tag: "Custom" };
+  export type Prospecting = { tag: "Prospecting" };
+  export type Equip = { tag: "Equip" };
+  export type DeployableDeploy = { tag: "DeployableDeploy" };
+  export type AddToToolbelt = { tag: "AddToToolbelt" };
 
   // Helper functions for constructing each variant of the tagged union.
   // ```
@@ -55,6 +59,10 @@ export namespace AbilityTypeEnum {
   export const AutoAttack = { tag: "AutoAttack" };
   export const SelfBuff = { tag: "SelfBuff" };
   export const Custom = { tag: "Custom" };
+  export const Prospecting = { tag: "Prospecting" };
+  export const Equip = { tag: "Equip" };
+  export const DeployableDeploy = { tag: "DeployableDeploy" };
+  export const AddToToolbelt = { tag: "AddToToolbelt" };
 
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createSumType([
@@ -64,6 +72,10 @@ export namespace AbilityTypeEnum {
       new SumTypeVariant("AutoAttack", AlgebraicType.createProductType([])),
       new SumTypeVariant("SelfBuff", AlgebraicType.createProductType([])),
       new SumTypeVariant("Custom", AlgebraicType.createProductType([])),
+      new SumTypeVariant("Prospecting", AlgebraicType.createProductType([])),
+      new SumTypeVariant("Equip", AlgebraicType.createProductType([])),
+      new SumTypeVariant("DeployableDeploy", AlgebraicType.createProductType([])),
+      new SumTypeVariant("AddToToolbelt", AlgebraicType.createProductType([])),
     ]);
   }
 
@@ -78,7 +90,7 @@ export namespace AbilityTypeEnum {
 }
 
 // The tagged union or sum type for the algebraic type `AbilityTypeEnum`.
-export type AbilityTypeEnum = AbilityTypeEnum.Unsupported | AbilityTypeEnum.Eat | AbilityTypeEnum.CombatAction | AbilityTypeEnum.AutoAttack | AbilityTypeEnum.SelfBuff | AbilityTypeEnum.Custom;
+export type AbilityTypeEnum = AbilityTypeEnum.Unsupported | AbilityTypeEnum.Eat | AbilityTypeEnum.CombatAction | AbilityTypeEnum.AutoAttack | AbilityTypeEnum.SelfBuff | AbilityTypeEnum.Custom | AbilityTypeEnum.Prospecting | AbilityTypeEnum.Equip | AbilityTypeEnum.DeployableDeploy | AbilityTypeEnum.AddToToolbelt;
 
 export default AbilityTypeEnum;
 

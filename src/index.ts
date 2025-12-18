@@ -693,6 +693,8 @@ import { StagePremiumServiceDesc } from "./stage_premium_service_desc_reducer.ts
 export { StagePremiumServiceDesc };
 import { StagePrivateParametersDesc } from "./stage_private_parameters_desc_reducer.ts";
 export { StagePrivateParametersDesc };
+import { StageProspectingDesc } from "./stage_prospecting_desc_reducer.ts";
+export { StageProspectingDesc };
 import { StageReservedNameDesc } from "./stage_reserved_name_desc_reducer.ts";
 export { StageReservedNameDesc };
 import { StageResourceClumpDesc } from "./stage_resource_clump_desc_reducer.ts";
@@ -879,6 +881,12 @@ import { ContributionStateTableHandle } from "./contribution_state_table.ts";
 export { ContributionStateTableHandle };
 import { CraftingRecipeDescTableHandle } from "./crafting_recipe_desc_table.ts";
 export { CraftingRecipeDescTableHandle };
+import { CrumbTrailContributionLockStateTableHandle } from "./crumb_trail_contribution_lock_state_table.ts";
+export { CrumbTrailContributionLockStateTableHandle };
+import { CrumbTrailContributionSpentStateTableHandle } from "./crumb_trail_contribution_spent_state_table.ts";
+export { CrumbTrailContributionSpentStateTableHandle };
+import { CrumbTrailStateTableHandle } from "./crumb_trail_state_table.ts";
+export { CrumbTrailStateTableHandle };
 import { DeconstructionRecipeDescTableHandle } from "./deconstruction_recipe_desc_table.ts";
 export { DeconstructionRecipeDescTableHandle };
 import { DeployableCollectibleStateTableHandle } from "./deployable_collectible_state_table.ts";
@@ -1209,6 +1217,10 @@ import { ProgressiveActionStateTableHandle } from "./progressive_action_state_ta
 export { ProgressiveActionStateTableHandle };
 import { ProjectSiteStateTableHandle } from "./project_site_state_table.ts";
 export { ProjectSiteStateTableHandle };
+import { ProspectingDescTableHandle } from "./prospecting_desc_table.ts";
+export { ProspectingDescTableHandle };
+import { ProspectingStateTableHandle } from "./prospecting_state_table.ts";
+export { ProspectingStateTableHandle };
 import { PublicProgressiveActionStateTableHandle } from "./public_progressive_action_state_table.ts";
 export { PublicProgressiveActionStateTableHandle };
 import { RegionConnectionInfoTableHandle } from "./region_connection_info_table.ts";
@@ -1401,6 +1413,8 @@ import { StagedPremiumServiceDescTableHandle } from "./staged_premium_service_de
 export { StagedPremiumServiceDescTableHandle };
 import { StagedPrivateParametersDescTableHandle } from "./staged_private_parameters_desc_table.ts";
 export { StagedPrivateParametersDescTableHandle };
+import { StagedProspectingDescTableHandle } from "./staged_prospecting_desc_table.ts";
+export { StagedProspectingDescTableHandle };
 import { StagedReservedNameDescTableHandle } from "./staged_reserved_name_desc_table.ts";
 export { StagedReservedNameDescTableHandle };
 import { StagedResourceClumpDescTableHandle } from "./staged_resource_clump_desc_table.ts";
@@ -1745,6 +1759,12 @@ import { CraftingRecipeDesc } from "./crafting_recipe_desc_type.ts";
 export { CraftingRecipeDesc };
 import { CreatePlayerReportRequest } from "./create_player_report_request_type.ts";
 export { CreatePlayerReportRequest };
+import { CrumbTrailContributionLockState } from "./crumb_trail_contribution_lock_state_type.ts";
+export { CrumbTrailContributionLockState };
+import { CrumbTrailContributionSpentState } from "./crumb_trail_contribution_spent_state_type.ts";
+export { CrumbTrailContributionSpentState };
+import { CrumbTrailState } from "./crumb_trail_state_type.ts";
+export { CrumbTrailState };
 import { CsvStatEntry } from "./csv_stat_entry_type.ts";
 export { CsvStatEntry };
 import { DeconstructionRecipeDesc } from "./deconstruction_recipe_desc_type.ts";
@@ -2289,6 +2309,10 @@ import { ProgressiveActionStatus } from "./progressive_action_status_type.ts";
 export { ProgressiveActionStatus };
 import { ProjectSiteState } from "./project_site_state_type.ts";
 export { ProjectSiteState };
+import { ProspectingDesc } from "./prospecting_desc_type.ts";
+export { ProspectingDesc };
+import { ProspectingState } from "./prospecting_state_type.ts";
+export { ProspectingState };
 import { PublicProgressiveActionState } from "./public_progressive_action_state_type.ts";
 export { PublicProgressiveActionState };
 import { Rarity } from "./rarity_type.ts";
@@ -3095,6 +3119,33 @@ const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "id",
         colType: CraftingRecipeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    crumb_trail_contribution_lock_state: {
+      tableName: "crumb_trail_contribution_lock_state",
+      rowType: CrumbTrailContributionLockState.getTypeScriptAlgebraicType(),
+      primaryKey: "entityId",
+      primaryKeyInfo: {
+        colName: "entityId",
+        colType: CrumbTrailContributionLockState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    crumb_trail_contribution_spent_state: {
+      tableName: "crumb_trail_contribution_spent_state",
+      rowType: CrumbTrailContributionSpentState.getTypeScriptAlgebraicType(),
+      primaryKey: "entityId",
+      primaryKeyInfo: {
+        colName: "entityId",
+        colType: CrumbTrailContributionSpentState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    crumb_trail_state: {
+      tableName: "crumb_trail_state",
+      rowType: CrumbTrailState.getTypeScriptAlgebraicType(),
+      primaryKey: "entityId",
+      primaryKeyInfo: {
+        colName: "entityId",
+        colType: CrumbTrailState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     deconstruction_recipe_desc: {
@@ -4577,6 +4628,24 @@ const REMOTE_MODULE = {
         colType: ProjectSiteState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    prospecting_desc: {
+      tableName: "prospecting_desc",
+      rowType: ProspectingDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: ProspectingDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    prospecting_state: {
+      tableName: "prospecting_state",
+      rowType: ProspectingState.getTypeScriptAlgebraicType(),
+      primaryKey: "entityId",
+      primaryKeyInfo: {
+        colName: "entityId",
+        colType: ProspectingState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     public_progressive_action_state: {
       tableName: "public_progressive_action_state",
       rowType: PublicProgressiveActionState.getTypeScriptAlgebraicType(),
@@ -5439,6 +5508,15 @@ const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "version",
         colType: PrivateParametersDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_prospecting_desc: {
+      tableName: "staged_prospecting_desc",
+      rowType: ProspectingDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: ProspectingDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     staged_reserved_name_desc: {
@@ -7357,6 +7435,10 @@ const REMOTE_MODULE = {
       reducerName: "stage_private_parameters_desc",
       argsType: StagePrivateParametersDesc.getTypeScriptAlgebraicType(),
     },
+    stage_prospecting_desc: {
+      reducerName: "stage_prospecting_desc",
+      argsType: StageProspectingDesc.getTypeScriptAlgebraicType(),
+    },
     stage_reserved_name_desc: {
       reducerName: "stage_reserved_name_desc",
       argsType: StageReservedNameDesc.getTypeScriptAlgebraicType(),
@@ -7821,6 +7903,7 @@ export type Reducer = never
 | { name: "StagePremiumItemDesc", args: StagePremiumItemDesc }
 | { name: "StagePremiumServiceDesc", args: StagePremiumServiceDesc }
 | { name: "StagePrivateParametersDesc", args: StagePrivateParametersDesc }
+| { name: "StageProspectingDesc", args: StageProspectingDesc }
 | { name: "StageReservedNameDesc", args: StageReservedNameDesc }
 | { name: "StageResourceClumpDesc", args: StageResourceClumpDesc }
 | { name: "StageResourceDesc", args: StageResourceDesc }
@@ -13076,6 +13159,22 @@ export class RemoteReducers {
     this.connection.offReducer("stage_private_parameters_desc", callback);
   }
 
+  stageProspectingDesc(records: ProspectingDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    StageProspectingDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("stage_prospecting_desc", __argsBuffer, this.setCallReducerFlags.stageProspectingDescFlags);
+  }
+
+  onStageProspectingDesc(callback: (ctx: ReducerEventContext, records: ProspectingDesc[]) => void) {
+    this.connection.onReducer("stage_prospecting_desc", callback);
+  }
+
+  removeOnStageProspectingDesc(callback: (ctx: ReducerEventContext, records: ProspectingDesc[]) => void) {
+    this.connection.offReducer("stage_prospecting_desc", callback);
+  }
+
   stageReservedNameDesc(records: ReservedNameDesc[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
@@ -15131,6 +15230,11 @@ export class SetReducerFlags {
     this.stagePrivateParametersDescFlags = flags;
   }
 
+  stageProspectingDescFlags: CallReducerFlags = 'FullUpdate';
+  stageProspectingDesc(flags: CallReducerFlags) {
+    this.stageProspectingDescFlags = flags;
+  }
+
   stageReservedNameDescFlags: CallReducerFlags = 'FullUpdate';
   stageReservedNameDesc(flags: CallReducerFlags) {
     this.stageReservedNameDescFlags = flags;
@@ -15528,6 +15632,18 @@ export class RemoteTables {
 
   get craftingRecipeDesc(): CraftingRecipeDescTableHandle {
     return new CraftingRecipeDescTableHandle(this.connection.clientCache.getOrCreateTable<CraftingRecipeDesc>(REMOTE_MODULE.tables.crafting_recipe_desc));
+  }
+
+  get crumbTrailContributionLockState(): CrumbTrailContributionLockStateTableHandle {
+    return new CrumbTrailContributionLockStateTableHandle(this.connection.clientCache.getOrCreateTable<CrumbTrailContributionLockState>(REMOTE_MODULE.tables.crumb_trail_contribution_lock_state));
+  }
+
+  get crumbTrailContributionSpentState(): CrumbTrailContributionSpentStateTableHandle {
+    return new CrumbTrailContributionSpentStateTableHandle(this.connection.clientCache.getOrCreateTable<CrumbTrailContributionSpentState>(REMOTE_MODULE.tables.crumb_trail_contribution_spent_state));
+  }
+
+  get crumbTrailState(): CrumbTrailStateTableHandle {
+    return new CrumbTrailStateTableHandle(this.connection.clientCache.getOrCreateTable<CrumbTrailState>(REMOTE_MODULE.tables.crumb_trail_state));
   }
 
   get deconstructionRecipeDesc(): DeconstructionRecipeDescTableHandle {
@@ -16190,6 +16306,14 @@ export class RemoteTables {
     return new ProjectSiteStateTableHandle(this.connection.clientCache.getOrCreateTable<ProjectSiteState>(REMOTE_MODULE.tables.project_site_state));
   }
 
+  get prospectingDesc(): ProspectingDescTableHandle {
+    return new ProspectingDescTableHandle(this.connection.clientCache.getOrCreateTable<ProspectingDesc>(REMOTE_MODULE.tables.prospecting_desc));
+  }
+
+  get prospectingState(): ProspectingStateTableHandle {
+    return new ProspectingStateTableHandle(this.connection.clientCache.getOrCreateTable<ProspectingState>(REMOTE_MODULE.tables.prospecting_state));
+  }
+
   get publicProgressiveActionState(): PublicProgressiveActionStateTableHandle {
     return new PublicProgressiveActionStateTableHandle(this.connection.clientCache.getOrCreateTable<PublicProgressiveActionState>(REMOTE_MODULE.tables.public_progressive_action_state));
   }
@@ -16572,6 +16696,10 @@ export class RemoteTables {
 
   get stagedPrivateParametersDesc(): StagedPrivateParametersDescTableHandle {
     return new StagedPrivateParametersDescTableHandle(this.connection.clientCache.getOrCreateTable<PrivateParametersDesc>(REMOTE_MODULE.tables.staged_private_parameters_desc));
+  }
+
+  get stagedProspectingDesc(): StagedProspectingDescTableHandle {
+    return new StagedProspectingDescTableHandle(this.connection.clientCache.getOrCreateTable<ProspectingDesc>(REMOTE_MODULE.tables.staged_prospecting_desc));
   }
 
   get stagedReservedNameDesc(): StagedReservedNameDescTableHandle {
