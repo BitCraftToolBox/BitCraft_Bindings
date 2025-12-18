@@ -20,6 +20,14 @@ pub enum AbilityTypeEnum {
     SelfBuff,
 
     Custom,
+
+    Prospecting,
+
+    Equip,
+
+    DeployableDeploy,
+
+    AddToToolbelt,
 }
 
 impl __sdk::InModule for AbilityTypeEnum {

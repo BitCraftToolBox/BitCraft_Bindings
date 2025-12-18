@@ -17,6 +17,14 @@ pub enum AbilityType {
     AutoAttack,
 
     Custom(i32),
+
+    Prospecting(i32),
+
+    Equip(i32),
+
+    DeployableDeploy(i32),
+
+    AddToToolbelt(i32),
 }
 
 impl __sdk::InModule for AbilityType {

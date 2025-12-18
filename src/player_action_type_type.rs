@@ -70,6 +70,8 @@ pub enum PlayerActionType {
     DestroyPillarShaping,
 
     AbilityCustom,
+
+    Prospect,
 }
 
 impl __sdk::InModule for PlayerActionType {

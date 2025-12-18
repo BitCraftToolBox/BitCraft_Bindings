@@ -60,6 +60,7 @@ pub mod admin_collapse_ruin_reducer;
 pub mod admin_collapse_ruins_reducer;
 pub mod admin_complete_all_passive_crafts_reducer;
 pub mod admin_count_inventory_items_reducer;
+pub mod admin_create_building_spawns_reducer;
 pub mod admin_create_chat_message_reducer;
 pub mod admin_create_player_report_reducer;
 pub mod admin_delete_all_items_of_type_reducer;
@@ -384,6 +385,16 @@ pub mod craft_set_public_reducer;
 pub mod crafting_recipe_desc_table;
 pub mod crafting_recipe_desc_type;
 pub mod create_player_report_request_type;
+pub mod crumb_tail_cleanup_agent_insert_reducer;
+pub mod crumb_tail_cleanup_agent_loop_reducer;
+pub mod crumb_tail_cleanup_timer_table;
+pub mod crumb_trail_cleanup_timer_type;
+pub mod crumb_trail_contribution_lock_state_table;
+pub mod crumb_trail_contribution_lock_state_type;
+pub mod crumb_trail_contribution_spent_state_table;
+pub mod crumb_trail_contribution_spent_state_type;
+pub mod crumb_trail_state_table;
+pub mod crumb_trail_state_type;
 pub mod csv_stat_entry_type;
 pub mod current_version_reducer;
 pub mod day_night_agent_loop_reducer;
@@ -775,6 +786,7 @@ pub mod import_premium_service_desc_reducer;
 pub mod import_private_parameters_desc_reducer;
 pub mod import_progressive_action_state_reducer;
 pub mod import_project_site_state_reducer;
+pub mod import_prospecting_desc_reducer;
 pub mod import_rent_state_reducer;
 pub mod import_reserved_name_desc_reducer;
 pub mod import_resource_clump_desc_reducer;
@@ -958,7 +970,6 @@ pub mod message_contents_v_3_type;
 pub mod migrate_auto_attacks_reducer;
 pub mod migrate_character_stats_reducer;
 pub mod migrate_claim_tech_reducer;
-pub mod migrate_luminate_caves_reducer;
 pub mod migrate_player_settings_reducer;
 pub mod migration_achievements_params_table;
 pub mod migration_achievements_params_type;
@@ -1270,6 +1281,12 @@ pub mod project_site_cancel_reducer;
 pub mod project_site_place_reducer;
 pub mod project_site_state_table;
 pub mod project_site_state_type;
+pub mod prospect_reducer;
+pub mod prospect_start_reducer;
+pub mod prospecting_desc_table;
+pub mod prospecting_desc_type;
+pub mod prospecting_state_table;
+pub mod prospecting_state_type;
 pub mod public_progressive_action_state_table;
 pub mod public_progressive_action_state_type;
 pub mod rarity_type;
@@ -1469,6 +1486,7 @@ pub mod stage_player_housing_desc_reducer;
 pub mod stage_premium_item_desc_reducer;
 pub mod stage_premium_service_desc_reducer;
 pub mod stage_private_parameters_desc_reducer;
+pub mod stage_prospecting_desc_reducer;
 pub mod stage_reserved_name_desc_reducer;
 pub mod stage_resource_clump_desc_reducer;
 pub mod stage_resource_desc_reducer;
@@ -1561,6 +1579,7 @@ pub mod staged_player_housing_desc_table;
 pub mod staged_premium_item_desc_table;
 pub mod staged_premium_service_desc_table;
 pub mod staged_private_parameters_desc_table;
+pub mod staged_prospecting_desc_table;
 pub mod staged_reserved_name_desc_table;
 pub mod staged_resource_clump_desc_table;
 pub mod staged_resource_desc_table;
@@ -1905,6 +1924,10 @@ pub use admin_complete_all_passive_crafts_reducer::{
 pub use admin_count_inventory_items_reducer::{
     admin_count_inventory_items, set_flags_for_admin_count_inventory_items,
     AdminCountInventoryItemsCallbackId,
+};
+pub use admin_create_building_spawns_reducer::{
+    admin_create_building_spawns, set_flags_for_admin_create_building_spawns,
+    AdminCreateBuildingSpawnsCallbackId,
 };
 pub use admin_create_chat_message_reducer::{
     admin_create_chat_message, set_flags_for_admin_create_chat_message,
@@ -2596,6 +2619,22 @@ pub use craft_set_public_reducer::{
 pub use crafting_recipe_desc_table::*;
 pub use crafting_recipe_desc_type::CraftingRecipeDesc;
 pub use create_player_report_request_type::CreatePlayerReportRequest;
+pub use crumb_tail_cleanup_agent_insert_reducer::{
+    crumb_tail_cleanup_agent_insert, set_flags_for_crumb_tail_cleanup_agent_insert,
+    CrumbTailCleanupAgentInsertCallbackId,
+};
+pub use crumb_tail_cleanup_agent_loop_reducer::{
+    crumb_tail_cleanup_agent_loop, set_flags_for_crumb_tail_cleanup_agent_loop,
+    CrumbTailCleanupAgentLoopCallbackId,
+};
+pub use crumb_tail_cleanup_timer_table::*;
+pub use crumb_trail_cleanup_timer_type::CrumbTrailCleanupTimer;
+pub use crumb_trail_contribution_lock_state_table::*;
+pub use crumb_trail_contribution_lock_state_type::CrumbTrailContributionLockState;
+pub use crumb_trail_contribution_spent_state_table::*;
+pub use crumb_trail_contribution_spent_state_type::CrumbTrailContributionSpentState;
+pub use crumb_trail_state_table::*;
+pub use crumb_trail_state_type::CrumbTrailState;
 pub use csv_stat_entry_type::CsvStatEntry;
 pub use current_version_reducer::{
     current_version, set_flags_for_current_version, CurrentVersionCallbackId,
@@ -3472,6 +3511,9 @@ pub use import_project_site_state_reducer::{
     import_project_site_state, set_flags_for_import_project_site_state,
     ImportProjectSiteStateCallbackId,
 };
+pub use import_prospecting_desc_reducer::{
+    import_prospecting_desc, set_flags_for_import_prospecting_desc, ImportProspectingDescCallbackId,
+};
 pub use import_rent_state_reducer::{
     import_rent_state, set_flags_for_import_rent_state, ImportRentStateCallbackId,
 };
@@ -3786,9 +3828,6 @@ pub use migrate_character_stats_reducer::{
 };
 pub use migrate_claim_tech_reducer::{
     migrate_claim_tech, set_flags_for_migrate_claim_tech, MigrateClaimTechCallbackId,
-};
-pub use migrate_luminate_caves_reducer::{
-    migrate_luminate_caves, set_flags_for_migrate_luminate_caves, MigrateLuminateCavesCallbackId,
 };
 pub use migrate_player_settings_reducer::{
     migrate_player_settings, set_flags_for_migrate_player_settings, MigratePlayerSettingsCallbackId,
@@ -4260,6 +4299,14 @@ pub use project_site_place_reducer::{
 };
 pub use project_site_state_table::*;
 pub use project_site_state_type::ProjectSiteState;
+pub use prospect_reducer::{prospect, set_flags_for_prospect, ProspectCallbackId};
+pub use prospect_start_reducer::{
+    prospect_start, set_flags_for_prospect_start, ProspectStartCallbackId,
+};
+pub use prospecting_desc_table::*;
+pub use prospecting_desc_type::ProspectingDesc;
+pub use prospecting_state_table::*;
+pub use prospecting_state_type::ProspectingState;
 pub use public_progressive_action_state_table::*;
 pub use public_progressive_action_state_type::PublicProgressiveActionState;
 pub use rarity_type::Rarity;
@@ -4709,6 +4756,9 @@ pub use stage_private_parameters_desc_reducer::{
     set_flags_for_stage_private_parameters_desc, stage_private_parameters_desc,
     StagePrivateParametersDescCallbackId,
 };
+pub use stage_prospecting_desc_reducer::{
+    set_flags_for_stage_prospecting_desc, stage_prospecting_desc, StageProspectingDescCallbackId,
+};
 pub use stage_reserved_name_desc_reducer::{
     set_flags_for_stage_reserved_name_desc, stage_reserved_name_desc,
     StageReservedNameDescCallbackId,
@@ -4847,6 +4897,7 @@ pub use staged_player_housing_desc_table::*;
 pub use staged_premium_item_desc_table::*;
 pub use staged_premium_service_desc_table::*;
 pub use staged_private_parameters_desc_table::*;
+pub use staged_prospecting_desc_table::*;
 pub use staged_reserved_name_desc_table::*;
 pub use staged_resource_clump_desc_table::*;
 pub use staged_resource_desc_table::*;
@@ -5202,6 +5253,10 @@ pub enum Reducer {
     AdminCountInventoryItems {
         item_id: i32,
         limit: u32,
+    },
+    AdminCreateBuildingSpawns {
+        building_description_id: i32,
+        commit: bool,
     },
     AdminCreateChatMessage {
         channel_id: ChatChannel,
@@ -5684,6 +5739,10 @@ pub enum Reducer {
     CraftSetPublic {
         progressive_action_entity_id: u64,
         is_public: bool,
+    },
+    CrumbTailCleanupAgentInsert,
+    CrumbTailCleanupAgentLoop {
+        timer: CrumbTrailCleanupTimer,
     },
     CurrentVersion,
     DayNightAgentLoop {
@@ -6267,6 +6326,9 @@ pub enum Reducer {
     ImportProjectSiteState {
         records: Vec<ProjectSiteState>,
     },
+    ImportProspectingDesc {
+        records: Vec<ProspectingDesc>,
+    },
     ImportRentState {
         records: Vec<RentState>,
     },
@@ -6445,9 +6507,6 @@ pub enum Reducer {
     MigrateAutoAttacks,
     MigrateCharacterStats,
     MigrateClaimTech,
-    MigrateLuminateCaves {
-        commit: bool,
-    },
     MigratePlayerSettings,
     MigrationSetAchievementParams {
         allow_destructive: bool,
@@ -6654,6 +6713,14 @@ pub enum Reducer {
     },
     ProjectSitePlace {
         request: PlayerProjectSitePlaceRequest,
+    },
+    Prospect {
+        prospecting_id: i32,
+        timestamp: u64,
+    },
+    ProspectStart {
+        prospecting_id: i32,
+        timestamp: u64,
     },
     RegionPopuplationAgentLoop {
         timer: RegionPopulationLoopTimer,
@@ -6967,6 +7034,9 @@ pub enum Reducer {
     StagePrivateParametersDesc {
         records: Vec<PrivateParametersDesc>,
     },
+    StageProspectingDesc {
+        records: Vec<ProspectingDesc>,
+    },
     StageReservedNameDesc {
         records: Vec<ReservedNameDesc>,
     },
@@ -7163,6 +7233,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::AdminCollapseRuins => "admin_collapse_ruins",
             Reducer::AdminCompleteAllPassiveCrafts => "admin_complete_all_passive_crafts",
             Reducer::AdminCountInventoryItems { .. } => "admin_count_inventory_items",
+            Reducer::AdminCreateBuildingSpawns { .. } => "admin_create_building_spawns",
             Reducer::AdminCreateChatMessage { .. } => "admin_create_chat_message",
             Reducer::AdminCreatePlayerReport { .. } => "admin_create_player_report",
             Reducer::AdminDeleteAllItemsOfType { .. } => "admin_delete_all_items_of_type",
@@ -7327,6 +7398,8 @@ impl __sdk::Reducer for Reducer {
             Reducer::CraftInitiate { .. } => "craft_initiate",
             Reducer::CraftInitiateStart { .. } => "craft_initiate_start",
             Reducer::CraftSetPublic { .. } => "craft_set_public",
+            Reducer::CrumbTailCleanupAgentInsert => "crumb_tail_cleanup_agent_insert",
+            Reducer::CrumbTailCleanupAgentLoop { .. } => "crumb_tail_cleanup_agent_loop",
             Reducer::CurrentVersion => "current_version",
             Reducer::DayNightAgentLoop { .. } => "day_night_agent_loop",
             Reducer::DeleteAllNpcs => "delete_all_npcs",
@@ -7546,6 +7619,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::ImportPrivateParametersDesc { .. } => "import_private_parameters_desc",
             Reducer::ImportProgressiveActionState { .. } => "import_progressive_action_state",
             Reducer::ImportProjectSiteState { .. } => "import_project_site_state",
+            Reducer::ImportProspectingDesc { .. } => "import_prospecting_desc",
             Reducer::ImportRentState { .. } => "import_rent_state",
             Reducer::ImportReservedNameDesc { .. } => "import_reserved_name_desc",
             Reducer::ImportResourceClumpDesc { .. } => "import_resource_clump_desc",
@@ -7608,7 +7682,6 @@ impl __sdk::Reducer for Reducer {
             Reducer::MigrateAutoAttacks => "migrate_auto_attacks",
             Reducer::MigrateCharacterStats => "migrate_character_stats",
             Reducer::MigrateClaimTech => "migrate_claim_tech",
-            Reducer::MigrateLuminateCaves { .. } => "migrate_luminate_caves",
             Reducer::MigratePlayerSettings => "migrate_player_settings",
             Reducer::MigrationSetAchievementParams { .. } => "migration_set_achievement_params",
             Reducer::MigrationSetBuildingDescParams { .. } => "migration_set_building_desc_params",
@@ -7685,6 +7758,8 @@ impl __sdk::Reducer for Reducer {
             Reducer::ProjectSiteAdvanceProjectStart { .. } => "project_site_advance_project_start",
             Reducer::ProjectSiteCancel { .. } => "project_site_cancel",
             Reducer::ProjectSitePlace { .. } => "project_site_place",
+            Reducer::Prospect { .. } => "prospect",
+            Reducer::ProspectStart { .. } => "prospect_start",
             Reducer::RegionPopuplationAgentLoop { .. } => "region_popuplation_agent_loop",
             Reducer::RentAddListing { .. } => "rent_add_listing",
             Reducer::RentAddTenant { .. } => "rent_add_tenant",
@@ -7793,6 +7868,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::StagePremiumItemDesc { .. } => "stage_premium_item_desc",
             Reducer::StagePremiumServiceDesc { .. } => "stage_premium_service_desc",
             Reducer::StagePrivateParametersDesc { .. } => "stage_private_parameters_desc",
+            Reducer::StageProspectingDesc { .. } => "stage_prospecting_desc",
             Reducer::StageReservedNameDesc { .. } => "stage_reserved_name_desc",
             Reducer::StageResourceClumpDesc { .. } => "stage_resource_clump_desc",
             Reducer::StageResourceDesc { .. } => "stage_resource_desc",
@@ -7880,6 +7956,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "admin_collapse_ruins" => Ok(__sdk::parse_reducer_args::<admin_collapse_ruins_reducer::AdminCollapseRuinsArgs>("admin_collapse_ruins", &value.args)?.into()),
             "admin_complete_all_passive_crafts" => Ok(__sdk::parse_reducer_args::<admin_complete_all_passive_crafts_reducer::AdminCompleteAllPassiveCraftsArgs>("admin_complete_all_passive_crafts", &value.args)?.into()),
             "admin_count_inventory_items" => Ok(__sdk::parse_reducer_args::<admin_count_inventory_items_reducer::AdminCountInventoryItemsArgs>("admin_count_inventory_items", &value.args)?.into()),
+            "admin_create_building_spawns" => Ok(__sdk::parse_reducer_args::<admin_create_building_spawns_reducer::AdminCreateBuildingSpawnsArgs>("admin_create_building_spawns", &value.args)?.into()),
             "admin_create_chat_message" => Ok(__sdk::parse_reducer_args::<admin_create_chat_message_reducer::AdminCreateChatMessageArgs>("admin_create_chat_message", &value.args)?.into()),
             "admin_create_player_report" => Ok(__sdk::parse_reducer_args::<admin_create_player_report_reducer::AdminCreatePlayerReportArgs>("admin_create_player_report", &value.args)?.into()),
             "admin_delete_all_items_of_type" => Ok(__sdk::parse_reducer_args::<admin_delete_all_items_of_type_reducer::AdminDeleteAllItemsOfTypeArgs>("admin_delete_all_items_of_type", &value.args)?.into()),
@@ -8028,6 +8105,8 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "craft_initiate" => Ok(__sdk::parse_reducer_args::<craft_initiate_reducer::CraftInitiateArgs>("craft_initiate", &value.args)?.into()),
             "craft_initiate_start" => Ok(__sdk::parse_reducer_args::<craft_initiate_start_reducer::CraftInitiateStartArgs>("craft_initiate_start", &value.args)?.into()),
             "craft_set_public" => Ok(__sdk::parse_reducer_args::<craft_set_public_reducer::CraftSetPublicArgs>("craft_set_public", &value.args)?.into()),
+            "crumb_tail_cleanup_agent_insert" => Ok(__sdk::parse_reducer_args::<crumb_tail_cleanup_agent_insert_reducer::CrumbTailCleanupAgentInsertArgs>("crumb_tail_cleanup_agent_insert", &value.args)?.into()),
+            "crumb_tail_cleanup_agent_loop" => Ok(__sdk::parse_reducer_args::<crumb_tail_cleanup_agent_loop_reducer::CrumbTailCleanupAgentLoopArgs>("crumb_tail_cleanup_agent_loop", &value.args)?.into()),
             "current_version" => Ok(__sdk::parse_reducer_args::<current_version_reducer::CurrentVersionArgs>("current_version", &value.args)?.into()),
             "day_night_agent_loop" => Ok(__sdk::parse_reducer_args::<day_night_agent_loop_reducer::DayNightAgentLoopArgs>("day_night_agent_loop", &value.args)?.into()),
             "delete_all_npcs" => Ok(__sdk::parse_reducer_args::<delete_all_npcs_reducer::DeleteAllNpcsArgs>("delete_all_npcs", &value.args)?.into()),
@@ -8227,6 +8306,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "import_private_parameters_desc" => Ok(__sdk::parse_reducer_args::<import_private_parameters_desc_reducer::ImportPrivateParametersDescArgs>("import_private_parameters_desc", &value.args)?.into()),
             "import_progressive_action_state" => Ok(__sdk::parse_reducer_args::<import_progressive_action_state_reducer::ImportProgressiveActionStateArgs>("import_progressive_action_state", &value.args)?.into()),
             "import_project_site_state" => Ok(__sdk::parse_reducer_args::<import_project_site_state_reducer::ImportProjectSiteStateArgs>("import_project_site_state", &value.args)?.into()),
+            "import_prospecting_desc" => Ok(__sdk::parse_reducer_args::<import_prospecting_desc_reducer::ImportProspectingDescArgs>("import_prospecting_desc", &value.args)?.into()),
             "import_rent_state" => Ok(__sdk::parse_reducer_args::<import_rent_state_reducer::ImportRentStateArgs>("import_rent_state", &value.args)?.into()),
             "import_reserved_name_desc" => Ok(__sdk::parse_reducer_args::<import_reserved_name_desc_reducer::ImportReservedNameDescArgs>("import_reserved_name_desc", &value.args)?.into()),
             "import_resource_clump_desc" => Ok(__sdk::parse_reducer_args::<import_resource_clump_desc_reducer::ImportResourceClumpDescArgs>("import_resource_clump_desc", &value.args)?.into()),
@@ -8287,7 +8367,6 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "migrate_auto_attacks" => Ok(__sdk::parse_reducer_args::<migrate_auto_attacks_reducer::MigrateAutoAttacksArgs>("migrate_auto_attacks", &value.args)?.into()),
             "migrate_character_stats" => Ok(__sdk::parse_reducer_args::<migrate_character_stats_reducer::MigrateCharacterStatsArgs>("migrate_character_stats", &value.args)?.into()),
             "migrate_claim_tech" => Ok(__sdk::parse_reducer_args::<migrate_claim_tech_reducer::MigrateClaimTechArgs>("migrate_claim_tech", &value.args)?.into()),
-            "migrate_luminate_caves" => Ok(__sdk::parse_reducer_args::<migrate_luminate_caves_reducer::MigrateLuminateCavesArgs>("migrate_luminate_caves", &value.args)?.into()),
             "migrate_player_settings" => Ok(__sdk::parse_reducer_args::<migrate_player_settings_reducer::MigratePlayerSettingsArgs>("migrate_player_settings", &value.args)?.into()),
             "migration_set_achievement_params" => Ok(__sdk::parse_reducer_args::<migration_set_achievement_params_reducer::MigrationSetAchievementParamsArgs>("migration_set_achievement_params", &value.args)?.into()),
             "migration_set_building_desc_params" => Ok(__sdk::parse_reducer_args::<migration_set_building_desc_params_reducer::MigrationSetBuildingDescParamsArgs>("migration_set_building_desc_params", &value.args)?.into()),
@@ -8358,6 +8437,8 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "project_site_advance_project_start" => Ok(__sdk::parse_reducer_args::<project_site_advance_project_start_reducer::ProjectSiteAdvanceProjectStartArgs>("project_site_advance_project_start", &value.args)?.into()),
             "project_site_cancel" => Ok(__sdk::parse_reducer_args::<project_site_cancel_reducer::ProjectSiteCancelArgs>("project_site_cancel", &value.args)?.into()),
             "project_site_place" => Ok(__sdk::parse_reducer_args::<project_site_place_reducer::ProjectSitePlaceArgs>("project_site_place", &value.args)?.into()),
+            "prospect" => Ok(__sdk::parse_reducer_args::<prospect_reducer::ProspectArgs>("prospect", &value.args)?.into()),
+            "prospect_start" => Ok(__sdk::parse_reducer_args::<prospect_start_reducer::ProspectStartArgs>("prospect_start", &value.args)?.into()),
             "region_popuplation_agent_loop" => Ok(__sdk::parse_reducer_args::<region_popuplation_agent_loop_reducer::RegionPopuplationAgentLoopArgs>("region_popuplation_agent_loop", &value.args)?.into()),
             "rent_add_listing" => Ok(__sdk::parse_reducer_args::<rent_add_listing_reducer::RentAddListingArgs>("rent_add_listing", &value.args)?.into()),
             "rent_add_tenant" => Ok(__sdk::parse_reducer_args::<rent_add_tenant_reducer::RentAddTenantArgs>("rent_add_tenant", &value.args)?.into()),
@@ -8464,6 +8545,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "stage_premium_item_desc" => Ok(__sdk::parse_reducer_args::<stage_premium_item_desc_reducer::StagePremiumItemDescArgs>("stage_premium_item_desc", &value.args)?.into()),
             "stage_premium_service_desc" => Ok(__sdk::parse_reducer_args::<stage_premium_service_desc_reducer::StagePremiumServiceDescArgs>("stage_premium_service_desc", &value.args)?.into()),
             "stage_private_parameters_desc" => Ok(__sdk::parse_reducer_args::<stage_private_parameters_desc_reducer::StagePrivateParametersDescArgs>("stage_private_parameters_desc", &value.args)?.into()),
+            "stage_prospecting_desc" => Ok(__sdk::parse_reducer_args::<stage_prospecting_desc_reducer::StageProspectingDescArgs>("stage_prospecting_desc", &value.args)?.into()),
             "stage_reserved_name_desc" => Ok(__sdk::parse_reducer_args::<stage_reserved_name_desc_reducer::StageReservedNameDescArgs>("stage_reserved_name_desc", &value.args)?.into()),
             "stage_resource_clump_desc" => Ok(__sdk::parse_reducer_args::<stage_resource_clump_desc_reducer::StageResourceClumpDescArgs>("stage_resource_clump_desc", &value.args)?.into()),
             "stage_resource_desc" => Ok(__sdk::parse_reducer_args::<stage_resource_desc_reducer::StageResourceDescArgs>("stage_resource_desc", &value.args)?.into()),
@@ -8595,6 +8677,10 @@ pub struct DbUpdate {
     contribution_loot_desc_v_2: __sdk::TableUpdate<ContributionLootDescV2>,
     contribution_state: __sdk::TableUpdate<ContributionState>,
     crafting_recipe_desc: __sdk::TableUpdate<CraftingRecipeDesc>,
+    crumb_tail_cleanup_timer: __sdk::TableUpdate<CrumbTrailCleanupTimer>,
+    crumb_trail_contribution_lock_state: __sdk::TableUpdate<CrumbTrailContributionLockState>,
+    crumb_trail_contribution_spent_state: __sdk::TableUpdate<CrumbTrailContributionSpentState>,
+    crumb_trail_state: __sdk::TableUpdate<CrumbTrailState>,
     day_night_loop_timer: __sdk::TableUpdate<DayNightLoopTimer>,
     deconstruction_recipe_desc: __sdk::TableUpdate<DeconstructionRecipeDesc>,
     deployable_collectible_state: __sdk::TableUpdate<DeployableCollectibleState>,
@@ -8773,6 +8859,8 @@ pub struct DbUpdate {
     private_parameters_desc: __sdk::TableUpdate<PrivateParametersDesc>,
     progressive_action_state: __sdk::TableUpdate<ProgressiveActionState>,
     project_site_state: __sdk::TableUpdate<ProjectSiteState>,
+    prospecting_desc: __sdk::TableUpdate<ProspectingDesc>,
+    prospecting_state: __sdk::TableUpdate<ProspectingState>,
     public_progressive_action_state: __sdk::TableUpdate<PublicProgressiveActionState>,
     region_connection_info: __sdk::TableUpdate<RegionConnectionInfo>,
     region_population_info: __sdk::TableUpdate<RegionPopulationInfo>,
@@ -8879,6 +8967,7 @@ pub struct DbUpdate {
     staged_premium_item_desc: __sdk::TableUpdate<PremiumItemDesc>,
     staged_premium_service_desc: __sdk::TableUpdate<PremiumServiceDesc>,
     staged_private_parameters_desc: __sdk::TableUpdate<PrivateParametersDesc>,
+    staged_prospecting_desc: __sdk::TableUpdate<ProspectingDesc>,
     staged_reserved_name_desc: __sdk::TableUpdate<ReservedNameDesc>,
     staged_resource_clump_desc: __sdk::TableUpdate<ResourceClumpDesc>,
     staged_resource_desc: __sdk::TableUpdate<ResourceDesc>,
@@ -9190,6 +9279,26 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
                 "crafting_recipe_desc" => db_update.crafting_recipe_desc.append(
                     crafting_recipe_desc_table::parse_table_update(table_update)?,
                 ),
+                "crumb_tail_cleanup_timer" => db_update.crumb_tail_cleanup_timer.append(
+                    crumb_tail_cleanup_timer_table::parse_table_update(table_update)?,
+                ),
+                "crumb_trail_contribution_lock_state" => {
+                    db_update.crumb_trail_contribution_lock_state.append(
+                        crumb_trail_contribution_lock_state_table::parse_table_update(
+                            table_update,
+                        )?,
+                    )
+                }
+                "crumb_trail_contribution_spent_state" => {
+                    db_update.crumb_trail_contribution_spent_state.append(
+                        crumb_trail_contribution_spent_state_table::parse_table_update(
+                            table_update,
+                        )?,
+                    )
+                }
+                "crumb_trail_state" => db_update
+                    .crumb_trail_state
+                    .append(crumb_trail_state_table::parse_table_update(table_update)?),
                 "day_night_loop_timer" => db_update.day_night_loop_timer.append(
                     day_night_loop_timer_table::parse_table_update(table_update)?,
                 ),
@@ -9758,6 +9867,12 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
                 "project_site_state" => db_update
                     .project_site_state
                     .append(project_site_state_table::parse_table_update(table_update)?),
+                "prospecting_desc" => db_update
+                    .prospecting_desc
+                    .append(prospecting_desc_table::parse_table_update(table_update)?),
+                "prospecting_state" => db_update
+                    .prospecting_state
+                    .append(prospecting_state_table::parse_table_update(table_update)?),
                 "public_progressive_action_state" => {
                     db_update.public_progressive_action_state.append(
                         public_progressive_action_state_table::parse_table_update(table_update)?,
@@ -10122,6 +10237,9 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
                         staged_private_parameters_desc_table::parse_table_update(table_update)?,
                     )
                 }
+                "staged_prospecting_desc" => db_update.staged_prospecting_desc.append(
+                    staged_prospecting_desc_table::parse_table_update(table_update)?,
+                ),
                 "staged_reserved_name_desc" => db_update.staged_reserved_name_desc.append(
                     staged_reserved_name_desc_table::parse_table_update(table_update)?,
                 ),
@@ -10713,6 +10831,27 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.crafting_recipe_desc,
             )
             .with_updates_by_pk(|row| &row.id);
+        diff.crumb_tail_cleanup_timer = cache
+            .apply_diff_to_table::<CrumbTrailCleanupTimer>(
+                "crumb_tail_cleanup_timer",
+                &self.crumb_tail_cleanup_timer,
+            )
+            .with_updates_by_pk(|row| &row.scheduled_id);
+        diff.crumb_trail_contribution_lock_state = cache
+            .apply_diff_to_table::<CrumbTrailContributionLockState>(
+                "crumb_trail_contribution_lock_state",
+                &self.crumb_trail_contribution_lock_state,
+            )
+            .with_updates_by_pk(|row| &row.entity_id);
+        diff.crumb_trail_contribution_spent_state = cache
+            .apply_diff_to_table::<CrumbTrailContributionSpentState>(
+                "crumb_trail_contribution_spent_state",
+                &self.crumb_trail_contribution_spent_state,
+            )
+            .with_updates_by_pk(|row| &row.entity_id);
+        diff.crumb_trail_state = cache
+            .apply_diff_to_table::<CrumbTrailState>("crumb_trail_state", &self.crumb_trail_state)
+            .with_updates_by_pk(|row| &row.entity_id);
         diff.day_night_loop_timer = cache
             .apply_diff_to_table::<DayNightLoopTimer>(
                 "day_night_loop_timer",
@@ -11593,6 +11732,12 @@ impl __sdk::DbUpdate for DbUpdate {
         diff.project_site_state = cache
             .apply_diff_to_table::<ProjectSiteState>("project_site_state", &self.project_site_state)
             .with_updates_by_pk(|row| &row.entity_id);
+        diff.prospecting_desc = cache
+            .apply_diff_to_table::<ProspectingDesc>("prospecting_desc", &self.prospecting_desc)
+            .with_updates_by_pk(|row| &row.id);
+        diff.prospecting_state = cache
+            .apply_diff_to_table::<ProspectingState>("prospecting_state", &self.prospecting_state)
+            .with_updates_by_pk(|row| &row.entity_id);
         diff.public_progressive_action_state = cache
             .apply_diff_to_table::<PublicProgressiveActionState>(
                 "public_progressive_action_state",
@@ -12157,6 +12302,12 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.staged_private_parameters_desc,
             )
             .with_updates_by_pk(|row| &row.version);
+        diff.staged_prospecting_desc = cache
+            .apply_diff_to_table::<ProspectingDesc>(
+                "staged_prospecting_desc",
+                &self.staged_prospecting_desc,
+            )
+            .with_updates_by_pk(|row| &row.id);
         diff.staged_reserved_name_desc = cache
             .apply_diff_to_table::<ReservedNameDesc>(
                 "staged_reserved_name_desc",
@@ -12590,6 +12741,12 @@ pub struct AppliedDiff<'r> {
     contribution_loot_desc_v_2: __sdk::TableAppliedDiff<'r, ContributionLootDescV2>,
     contribution_state: __sdk::TableAppliedDiff<'r, ContributionState>,
     crafting_recipe_desc: __sdk::TableAppliedDiff<'r, CraftingRecipeDesc>,
+    crumb_tail_cleanup_timer: __sdk::TableAppliedDiff<'r, CrumbTrailCleanupTimer>,
+    crumb_trail_contribution_lock_state:
+        __sdk::TableAppliedDiff<'r, CrumbTrailContributionLockState>,
+    crumb_trail_contribution_spent_state:
+        __sdk::TableAppliedDiff<'r, CrumbTrailContributionSpentState>,
+    crumb_trail_state: __sdk::TableAppliedDiff<'r, CrumbTrailState>,
     day_night_loop_timer: __sdk::TableAppliedDiff<'r, DayNightLoopTimer>,
     deconstruction_recipe_desc: __sdk::TableAppliedDiff<'r, DeconstructionRecipeDesc>,
     deployable_collectible_state: __sdk::TableAppliedDiff<'r, DeployableCollectibleState>,
@@ -12771,6 +12928,8 @@ pub struct AppliedDiff<'r> {
     private_parameters_desc: __sdk::TableAppliedDiff<'r, PrivateParametersDesc>,
     progressive_action_state: __sdk::TableAppliedDiff<'r, ProgressiveActionState>,
     project_site_state: __sdk::TableAppliedDiff<'r, ProjectSiteState>,
+    prospecting_desc: __sdk::TableAppliedDiff<'r, ProspectingDesc>,
+    prospecting_state: __sdk::TableAppliedDiff<'r, ProspectingState>,
     public_progressive_action_state: __sdk::TableAppliedDiff<'r, PublicProgressiveActionState>,
     region_connection_info: __sdk::TableAppliedDiff<'r, RegionConnectionInfo>,
     region_population_info: __sdk::TableAppliedDiff<'r, RegionPopulationInfo>,
@@ -12878,6 +13037,7 @@ pub struct AppliedDiff<'r> {
     staged_premium_item_desc: __sdk::TableAppliedDiff<'r, PremiumItemDesc>,
     staged_premium_service_desc: __sdk::TableAppliedDiff<'r, PremiumServiceDesc>,
     staged_private_parameters_desc: __sdk::TableAppliedDiff<'r, PrivateParametersDesc>,
+    staged_prospecting_desc: __sdk::TableAppliedDiff<'r, ProspectingDesc>,
     staged_reserved_name_desc: __sdk::TableAppliedDiff<'r, ReservedNameDesc>,
     staged_resource_clump_desc: __sdk::TableAppliedDiff<'r, ResourceClumpDesc>,
     staged_resource_desc: __sdk::TableAppliedDiff<'r, ResourceDesc>,
@@ -13299,6 +13459,26 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<CraftingRecipeDesc>(
             "crafting_recipe_desc",
             &self.crafting_recipe_desc,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<CrumbTrailCleanupTimer>(
+            "crumb_tail_cleanup_timer",
+            &self.crumb_tail_cleanup_timer,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<CrumbTrailContributionLockState>(
+            "crumb_trail_contribution_lock_state",
+            &self.crumb_trail_contribution_lock_state,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<CrumbTrailContributionSpentState>(
+            "crumb_trail_contribution_spent_state",
+            &self.crumb_trail_contribution_spent_state,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<CrumbTrailState>(
+            "crumb_trail_state",
+            &self.crumb_trail_state,
             event,
         );
         callbacks.invoke_table_row_callbacks::<DayNightLoopTimer>(
@@ -14143,6 +14323,16 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             &self.project_site_state,
             event,
         );
+        callbacks.invoke_table_row_callbacks::<ProspectingDesc>(
+            "prospecting_desc",
+            &self.prospecting_desc,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<ProspectingState>(
+            "prospecting_state",
+            &self.prospecting_state,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<PublicProgressiveActionState>(
             "public_progressive_action_state",
             &self.public_progressive_action_state,
@@ -14663,6 +14853,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<PrivateParametersDesc>(
             "staged_private_parameters_desc",
             &self.staged_private_parameters_desc,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<ProspectingDesc>(
+            "staged_prospecting_desc",
+            &self.staged_prospecting_desc,
             event,
         );
         callbacks.invoke_table_row_callbacks::<ReservedNameDesc>(
@@ -15649,6 +15844,10 @@ impl __sdk::SpacetimeModule for RemoteModule {
         contribution_loot_desc_v_2_table::register_table(client_cache);
         contribution_state_table::register_table(client_cache);
         crafting_recipe_desc_table::register_table(client_cache);
+        crumb_tail_cleanup_timer_table::register_table(client_cache);
+        crumb_trail_contribution_lock_state_table::register_table(client_cache);
+        crumb_trail_contribution_spent_state_table::register_table(client_cache);
+        crumb_trail_state_table::register_table(client_cache);
         day_night_loop_timer_table::register_table(client_cache);
         deconstruction_recipe_desc_table::register_table(client_cache);
         deployable_collectible_state_table::register_table(client_cache);
@@ -15827,6 +16026,8 @@ impl __sdk::SpacetimeModule for RemoteModule {
         private_parameters_desc_table::register_table(client_cache);
         progressive_action_state_table::register_table(client_cache);
         project_site_state_table::register_table(client_cache);
+        prospecting_desc_table::register_table(client_cache);
+        prospecting_state_table::register_table(client_cache);
         public_progressive_action_state_table::register_table(client_cache);
         region_connection_info_table::register_table(client_cache);
         region_population_info_table::register_table(client_cache);
@@ -15933,6 +16134,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         staged_premium_item_desc_table::register_table(client_cache);
         staged_premium_service_desc_table::register_table(client_cache);
         staged_private_parameters_desc_table::register_table(client_cache);
+        staged_prospecting_desc_table::register_table(client_cache);
         staged_reserved_name_desc_table::register_table(client_cache);
         staged_resource_clump_desc_table::register_table(client_cache);
         staged_resource_desc_table::register_table(client_cache);

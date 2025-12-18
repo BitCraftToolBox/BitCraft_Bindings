@@ -7,19 +7,18 @@ use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
-pub struct PremiumItemDesc {
-    pub id: i32,
-    pub name: String,
-    pub description: String,
-    pub image_address: String,
-    pub collectible_desc_id: i32,
-    pub price: u32,
-    pub base_price: u32,
-    pub is_enabled: bool,
-    pub quantity: u32,
-    pub sorting_priority: u16,
+pub struct ProspectingState {
+    pub entity_id: u64,
+    pub prospecting_id: i32,
+    pub crumb_trail_entity_id: u64,
+    pub completed_steps: i32,
+    pub ongoing_step: i32,
+    pub total_steps: i32,
+    pub next_crumb_angle: Vec<f32>,
+    pub last_prospection_timestamp: __sdk::Timestamp,
+    pub contribution: i32,
 }
 
-impl __sdk::InModule for PremiumItemDesc {
+impl __sdk::InModule for ProspectingState {
     type Module = super::RemoteModule;
 }
