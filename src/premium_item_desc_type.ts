@@ -41,6 +41,7 @@ export type PremiumItemDesc = {
   basePrice: number,
   isEnabled: boolean,
   quantity: number,
+  sortingPriority: number,
 };
 
 /**
@@ -62,6 +63,7 @@ export namespace PremiumItemDesc {
       new ProductTypeElement("basePrice", AlgebraicType.createU32Type()),
       new ProductTypeElement("isEnabled", AlgebraicType.createBoolType()),
       new ProductTypeElement("quantity", AlgebraicType.createU32Type()),
+      new ProductTypeElement("sortingPriority", AlgebraicType.createU16Type()),
     ]);
   }
 

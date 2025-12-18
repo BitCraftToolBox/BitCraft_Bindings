@@ -87,6 +87,8 @@ import { AdminCompleteAllPassiveCrafts } from "./admin_complete_all_passive_craf
 export { AdminCompleteAllPassiveCrafts };
 import { AdminCountInventoryItems } from "./admin_count_inventory_items_reducer.ts";
 export { AdminCountInventoryItems };
+import { AdminCreateBuildingSpawns } from "./admin_create_building_spawns_reducer.ts";
+export { AdminCreateBuildingSpawns };
 import { AdminCreateChatMessage } from "./admin_create_chat_message_reducer.ts";
 export { AdminCreateChatMessage };
 import { AdminCreatePlayerReport } from "./admin_create_player_report_reducer.ts";
@@ -383,6 +385,10 @@ import { CraftInitiateStart } from "./craft_initiate_start_reducer.ts";
 export { CraftInitiateStart };
 import { CraftSetPublic } from "./craft_set_public_reducer.ts";
 export { CraftSetPublic };
+import { CrumbTailCleanupAgentInsert } from "./crumb_tail_cleanup_agent_insert_reducer.ts";
+export { CrumbTailCleanupAgentInsert };
+import { CrumbTailCleanupAgentLoop } from "./crumb_tail_cleanup_agent_loop_reducer.ts";
+export { CrumbTailCleanupAgentLoop };
 import { CurrentVersion } from "./current_version_reducer.ts";
 export { CurrentVersion };
 import { DayNightAgentLoop } from "./day_night_agent_loop_reducer.ts";
@@ -781,6 +787,8 @@ import { ImportProgressiveActionState } from "./import_progressive_action_state_
 export { ImportProgressiveActionState };
 import { ImportProjectSiteState } from "./import_project_site_state_reducer.ts";
 export { ImportProjectSiteState };
+import { ImportProspectingDesc } from "./import_prospecting_desc_reducer.ts";
+export { ImportProspectingDesc };
 import { ImportRentState } from "./import_rent_state_reducer.ts";
 export { ImportRentState };
 import { ImportReservedNameDesc } from "./import_reserved_name_desc_reducer.ts";
@@ -901,8 +909,6 @@ import { MigrateCharacterStats } from "./migrate_character_stats_reducer.ts";
 export { MigrateCharacterStats };
 import { MigrateClaimTech } from "./migrate_claim_tech_reducer.ts";
 export { MigrateClaimTech };
-import { MigrateLuminateCaves } from "./migrate_luminate_caves_reducer.ts";
-export { MigrateLuminateCaves };
 import { MigratePlayerSettings } from "./migrate_player_settings_reducer.ts";
 export { MigratePlayerSettings };
 import { MigrationSetAchievementParams } from "./migration_set_achievement_params_reducer.ts";
@@ -1043,6 +1049,10 @@ import { ProjectSiteCancel } from "./project_site_cancel_reducer.ts";
 export { ProjectSiteCancel };
 import { ProjectSitePlace } from "./project_site_place_reducer.ts";
 export { ProjectSitePlace };
+import { Prospect } from "./prospect_reducer.ts";
+export { Prospect };
+import { ProspectStart } from "./prospect_start_reducer.ts";
+export { ProspectStart };
 import { RegionPopuplationAgentLoop } from "./region_popuplation_agent_loop_reducer.ts";
 export { RegionPopuplationAgentLoop };
 import { RentAddListing } from "./rent_add_listing_reducer.ts";
@@ -1255,6 +1265,8 @@ import { StagePremiumServiceDesc } from "./stage_premium_service_desc_reducer.ts
 export { StagePremiumServiceDesc };
 import { StagePrivateParametersDesc } from "./stage_private_parameters_desc_reducer.ts";
 export { StagePrivateParametersDesc };
+import { StageProspectingDesc } from "./stage_prospecting_desc_reducer.ts";
+export { StageProspectingDesc };
 import { StageReservedNameDesc } from "./stage_reserved_name_desc_reducer.ts";
 export { StageReservedNameDesc };
 import { StageResourceClumpDesc } from "./stage_resource_clump_desc_reducer.ts";
@@ -1499,6 +1511,14 @@ import { ContributionStateTableHandle } from "./contribution_state_table.ts";
 export { ContributionStateTableHandle };
 import { CraftingRecipeDescTableHandle } from "./crafting_recipe_desc_table.ts";
 export { CraftingRecipeDescTableHandle };
+import { CrumbTailCleanupTimerTableHandle } from "./crumb_tail_cleanup_timer_table.ts";
+export { CrumbTailCleanupTimerTableHandle };
+import { CrumbTrailContributionLockStateTableHandle } from "./crumb_trail_contribution_lock_state_table.ts";
+export { CrumbTrailContributionLockStateTableHandle };
+import { CrumbTrailContributionSpentStateTableHandle } from "./crumb_trail_contribution_spent_state_table.ts";
+export { CrumbTrailContributionSpentStateTableHandle };
+import { CrumbTrailStateTableHandle } from "./crumb_trail_state_table.ts";
+export { CrumbTrailStateTableHandle };
 import { DayNightLoopTimerTableHandle } from "./day_night_loop_timer_table.ts";
 export { DayNightLoopTimerTableHandle };
 import { DeconstructionRecipeDescTableHandle } from "./deconstruction_recipe_desc_table.ts";
@@ -1855,6 +1875,10 @@ import { ProgressiveActionStateTableHandle } from "./progressive_action_state_ta
 export { ProgressiveActionStateTableHandle };
 import { ProjectSiteStateTableHandle } from "./project_site_state_table.ts";
 export { ProjectSiteStateTableHandle };
+import { ProspectingDescTableHandle } from "./prospecting_desc_table.ts";
+export { ProspectingDescTableHandle };
+import { ProspectingStateTableHandle } from "./prospecting_state_table.ts";
+export { ProspectingStateTableHandle };
 import { PublicProgressiveActionStateTableHandle } from "./public_progressive_action_state_table.ts";
 export { PublicProgressiveActionStateTableHandle };
 import { RegionConnectionInfoTableHandle } from "./region_connection_info_table.ts";
@@ -2067,6 +2091,8 @@ import { StagedPremiumServiceDescTableHandle } from "./staged_premium_service_de
 export { StagedPremiumServiceDescTableHandle };
 import { StagedPrivateParametersDescTableHandle } from "./staged_private_parameters_desc_table.ts";
 export { StagedPrivateParametersDescTableHandle };
+import { StagedProspectingDescTableHandle } from "./staged_prospecting_desc_table.ts";
+export { StagedProspectingDescTableHandle };
 import { StagedReservedNameDescTableHandle } from "./staged_reserved_name_desc_table.ts";
 export { StagedReservedNameDescTableHandle };
 import { StagedResourceClumpDescTableHandle } from "./staged_resource_clump_desc_table.ts";
@@ -2471,6 +2497,14 @@ import { CraftingRecipeDesc } from "./crafting_recipe_desc_type.ts";
 export { CraftingRecipeDesc };
 import { CreatePlayerReportRequest } from "./create_player_report_request_type.ts";
 export { CreatePlayerReportRequest };
+import { CrumbTrailCleanupTimer } from "./crumb_trail_cleanup_timer_type.ts";
+export { CrumbTrailCleanupTimer };
+import { CrumbTrailContributionLockState } from "./crumb_trail_contribution_lock_state_type.ts";
+export { CrumbTrailContributionLockState };
+import { CrumbTrailContributionSpentState } from "./crumb_trail_contribution_spent_state_type.ts";
+export { CrumbTrailContributionSpentState };
+import { CrumbTrailState } from "./crumb_trail_state_type.ts";
+export { CrumbTrailState };
 import { CsvStatEntry } from "./csv_stat_entry_type.ts";
 export { CsvStatEntry };
 import { DayNightLoopTimer } from "./day_night_loop_timer_type.ts";
@@ -3227,6 +3261,10 @@ import { ProgressiveActionStatus } from "./progressive_action_status_type.ts";
 export { ProgressiveActionStatus };
 import { ProjectSiteState } from "./project_site_state_type.ts";
 export { ProjectSiteState };
+import { ProspectingDesc } from "./prospecting_desc_type.ts";
+export { ProspectingDesc };
+import { ProspectingState } from "./prospecting_state_type.ts";
+export { ProspectingState };
 import { PublicProgressiveActionState } from "./public_progressive_action_state_type.ts";
 export { PublicProgressiveActionState };
 import { Rarity } from "./rarity_type.ts";
@@ -4232,6 +4270,42 @@ export const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "id",
         colType: CraftingRecipeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    crumb_tail_cleanup_timer: {
+      tableName: "crumb_tail_cleanup_timer",
+      rowType: CrumbTrailCleanupTimer.getTypeScriptAlgebraicType(),
+      primaryKey: "scheduledId",
+      primaryKeyInfo: {
+        colName: "scheduledId",
+        colType: CrumbTrailCleanupTimer.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    crumb_trail_contribution_lock_state: {
+      tableName: "crumb_trail_contribution_lock_state",
+      rowType: CrumbTrailContributionLockState.getTypeScriptAlgebraicType(),
+      primaryKey: "entityId",
+      primaryKeyInfo: {
+        colName: "entityId",
+        colType: CrumbTrailContributionLockState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    crumb_trail_contribution_spent_state: {
+      tableName: "crumb_trail_contribution_spent_state",
+      rowType: CrumbTrailContributionSpentState.getTypeScriptAlgebraicType(),
+      primaryKey: "entityId",
+      primaryKeyInfo: {
+        colName: "entityId",
+        colType: CrumbTrailContributionSpentState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    crumb_trail_state: {
+      tableName: "crumb_trail_state",
+      rowType: CrumbTrailState.getTypeScriptAlgebraicType(),
+      primaryKey: "entityId",
+      primaryKeyInfo: {
+        colName: "entityId",
+        colType: CrumbTrailState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     day_night_loop_timer: {
@@ -5831,6 +5905,24 @@ export const REMOTE_MODULE = {
         colType: ProjectSiteState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    prospecting_desc: {
+      tableName: "prospecting_desc",
+      rowType: ProspectingDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: ProspectingDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    prospecting_state: {
+      tableName: "prospecting_state",
+      rowType: ProspectingState.getTypeScriptAlgebraicType(),
+      primaryKey: "entityId",
+      primaryKeyInfo: {
+        colName: "entityId",
+        colType: ProspectingState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     public_progressive_action_state: {
       tableName: "public_progressive_action_state",
       rowType: PublicProgressiveActionState.getTypeScriptAlgebraicType(),
@@ -6785,6 +6877,15 @@ export const REMOTE_MODULE = {
         colType: PrivateParametersDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    staged_prospecting_desc: {
+      tableName: "staged_prospecting_desc",
+      rowType: ProspectingDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: ProspectingDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     staged_reserved_name_desc: {
       tableName: "staged_reserved_name_desc",
       rowType: ReservedNameDesc.getTypeScriptAlgebraicType(),
@@ -7534,6 +7635,10 @@ export const REMOTE_MODULE = {
       reducerName: "admin_count_inventory_items",
       argsType: AdminCountInventoryItems.getTypeScriptAlgebraicType(),
     },
+    admin_create_building_spawns: {
+      reducerName: "admin_create_building_spawns",
+      argsType: AdminCreateBuildingSpawns.getTypeScriptAlgebraicType(),
+    },
     admin_create_chat_message: {
       reducerName: "admin_create_chat_message",
       argsType: AdminCreateChatMessage.getTypeScriptAlgebraicType(),
@@ -8125,6 +8230,14 @@ export const REMOTE_MODULE = {
     craft_set_public: {
       reducerName: "craft_set_public",
       argsType: CraftSetPublic.getTypeScriptAlgebraicType(),
+    },
+    crumb_tail_cleanup_agent_insert: {
+      reducerName: "crumb_tail_cleanup_agent_insert",
+      argsType: CrumbTailCleanupAgentInsert.getTypeScriptAlgebraicType(),
+    },
+    crumb_tail_cleanup_agent_loop: {
+      reducerName: "crumb_tail_cleanup_agent_loop",
+      argsType: CrumbTailCleanupAgentLoop.getTypeScriptAlgebraicType(),
     },
     current_version: {
       reducerName: "current_version",
@@ -8922,6 +9035,10 @@ export const REMOTE_MODULE = {
       reducerName: "import_project_site_state",
       argsType: ImportProjectSiteState.getTypeScriptAlgebraicType(),
     },
+    import_prospecting_desc: {
+      reducerName: "import_prospecting_desc",
+      argsType: ImportProspectingDesc.getTypeScriptAlgebraicType(),
+    },
     import_rent_state: {
       reducerName: "import_rent_state",
       argsType: ImportRentState.getTypeScriptAlgebraicType(),
@@ -9161,10 +9278,6 @@ export const REMOTE_MODULE = {
     migrate_claim_tech: {
       reducerName: "migrate_claim_tech",
       argsType: MigrateClaimTech.getTypeScriptAlgebraicType(),
-    },
-    migrate_luminate_caves: {
-      reducerName: "migrate_luminate_caves",
-      argsType: MigrateLuminateCaves.getTypeScriptAlgebraicType(),
     },
     migrate_player_settings: {
       reducerName: "migrate_player_settings",
@@ -9445,6 +9558,14 @@ export const REMOTE_MODULE = {
     project_site_place: {
       reducerName: "project_site_place",
       argsType: ProjectSitePlace.getTypeScriptAlgebraicType(),
+    },
+    prospect: {
+      reducerName: "prospect",
+      argsType: Prospect.getTypeScriptAlgebraicType(),
+    },
+    prospect_start: {
+      reducerName: "prospect_start",
+      argsType: ProspectStart.getTypeScriptAlgebraicType(),
     },
     region_popuplation_agent_loop: {
       reducerName: "region_popuplation_agent_loop",
@@ -9870,6 +9991,10 @@ export const REMOTE_MODULE = {
       reducerName: "stage_private_parameters_desc",
       argsType: StagePrivateParametersDesc.getTypeScriptAlgebraicType(),
     },
+    stage_prospecting_desc: {
+      reducerName: "stage_prospecting_desc",
+      argsType: StageProspectingDesc.getTypeScriptAlgebraicType(),
+    },
     stage_reserved_name_desc: {
       reducerName: "stage_reserved_name_desc",
       argsType: StageReservedNameDesc.getTypeScriptAlgebraicType(),
@@ -10115,6 +10240,7 @@ export type Reducer = never
 | { name: "AdminCollapseRuins", args: AdminCollapseRuins }
 | { name: "AdminCompleteAllPassiveCrafts", args: AdminCompleteAllPassiveCrafts }
 | { name: "AdminCountInventoryItems", args: AdminCountInventoryItems }
+| { name: "AdminCreateBuildingSpawns", args: AdminCreateBuildingSpawns }
 | { name: "AdminCreateChatMessage", args: AdminCreateChatMessage }
 | { name: "AdminCreatePlayerReport", args: AdminCreatePlayerReport }
 | { name: "AdminDeleteAllItemsOfType", args: AdminDeleteAllItemsOfType }
@@ -10263,6 +10389,8 @@ export type Reducer = never
 | { name: "CraftInitiate", args: CraftInitiate }
 | { name: "CraftInitiateStart", args: CraftInitiateStart }
 | { name: "CraftSetPublic", args: CraftSetPublic }
+| { name: "CrumbTailCleanupAgentInsert", args: CrumbTailCleanupAgentInsert }
+| { name: "CrumbTailCleanupAgentLoop", args: CrumbTailCleanupAgentLoop }
 | { name: "CurrentVersion", args: CurrentVersion }
 | { name: "DayNightAgentLoop", args: DayNightAgentLoop }
 | { name: "DeleteAllNpcs", args: DeleteAllNpcs }
@@ -10462,6 +10590,7 @@ export type Reducer = never
 | { name: "ImportPrivateParametersDesc", args: ImportPrivateParametersDesc }
 | { name: "ImportProgressiveActionState", args: ImportProgressiveActionState }
 | { name: "ImportProjectSiteState", args: ImportProjectSiteState }
+| { name: "ImportProspectingDesc", args: ImportProspectingDesc }
 | { name: "ImportRentState", args: ImportRentState }
 | { name: "ImportReservedNameDesc", args: ImportReservedNameDesc }
 | { name: "ImportResourceClumpDesc", args: ImportResourceClumpDesc }
@@ -10522,7 +10651,6 @@ export type Reducer = never
 | { name: "MigrateAutoAttacks", args: MigrateAutoAttacks }
 | { name: "MigrateCharacterStats", args: MigrateCharacterStats }
 | { name: "MigrateClaimTech", args: MigrateClaimTech }
-| { name: "MigrateLuminateCaves", args: MigrateLuminateCaves }
 | { name: "MigratePlayerSettings", args: MigratePlayerSettings }
 | { name: "MigrationSetAchievementParams", args: MigrationSetAchievementParams }
 | { name: "MigrationSetBuildingDescParams", args: MigrationSetBuildingDescParams }
@@ -10593,6 +10721,8 @@ export type Reducer = never
 | { name: "ProjectSiteAdvanceProjectStart", args: ProjectSiteAdvanceProjectStart }
 | { name: "ProjectSiteCancel", args: ProjectSiteCancel }
 | { name: "ProjectSitePlace", args: ProjectSitePlace }
+| { name: "Prospect", args: Prospect }
+| { name: "ProspectStart", args: ProspectStart }
 | { name: "RegionPopuplationAgentLoop", args: RegionPopuplationAgentLoop }
 | { name: "RentAddListing", args: RentAddListing }
 | { name: "RentAddTenant", args: RentAddTenant }
@@ -10699,6 +10829,7 @@ export type Reducer = never
 | { name: "StagePremiumItemDesc", args: StagePremiumItemDesc }
 | { name: "StagePremiumServiceDesc", args: StagePremiumServiceDesc }
 | { name: "StagePrivateParametersDesc", args: StagePrivateParametersDesc }
+| { name: "StageProspectingDesc", args: StageProspectingDesc }
 | { name: "StageReservedNameDesc", args: StageReservedNameDesc }
 | { name: "StageResourceClumpDesc", args: StageResourceClumpDesc }
 | { name: "StageResourceDesc", args: StageResourceDesc }
@@ -11161,6 +11292,22 @@ export class RemoteReducers {
 
   removeOnAdminCountInventoryItems(callback: (ctx: ReducerEventContext, itemId: number, limit: number) => void) {
     this.connection.offReducer("admin_count_inventory_items", callback);
+  }
+
+  adminCreateBuildingSpawns(buildingDescriptionId: number, commit: boolean) {
+    const __args = { buildingDescriptionId, commit };
+    let __writer = new BinaryWriter(1024);
+    AdminCreateBuildingSpawns.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("admin_create_building_spawns", __argsBuffer, this.setCallReducerFlags.adminCreateBuildingSpawnsFlags);
+  }
+
+  onAdminCreateBuildingSpawns(callback: (ctx: ReducerEventContext, buildingDescriptionId: number, commit: boolean) => void) {
+    this.connection.onReducer("admin_create_building_spawns", callback);
+  }
+
+  removeOnAdminCreateBuildingSpawns(callback: (ctx: ReducerEventContext, buildingDescriptionId: number, commit: boolean) => void) {
+    this.connection.offReducer("admin_create_building_spawns", callback);
   }
 
   adminCreateChatMessage(channelId: ChatChannel, username: string, titleId: number, targetId: bigint, newMessageText: string) {
@@ -13465,6 +13612,34 @@ export class RemoteReducers {
 
   removeOnCraftSetPublic(callback: (ctx: ReducerEventContext, progressiveActionEntityId: bigint, isPublic: boolean) => void) {
     this.connection.offReducer("craft_set_public", callback);
+  }
+
+  crumbTailCleanupAgentInsert() {
+    this.connection.callReducer("crumb_tail_cleanup_agent_insert", new Uint8Array(0), this.setCallReducerFlags.crumbTailCleanupAgentInsertFlags);
+  }
+
+  onCrumbTailCleanupAgentInsert(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.onReducer("crumb_tail_cleanup_agent_insert", callback);
+  }
+
+  removeOnCrumbTailCleanupAgentInsert(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.offReducer("crumb_tail_cleanup_agent_insert", callback);
+  }
+
+  crumbTailCleanupAgentLoop(timer: CrumbTrailCleanupTimer) {
+    const __args = { timer };
+    let __writer = new BinaryWriter(1024);
+    CrumbTailCleanupAgentLoop.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("crumb_tail_cleanup_agent_loop", __argsBuffer, this.setCallReducerFlags.crumbTailCleanupAgentLoopFlags);
+  }
+
+  onCrumbTailCleanupAgentLoop(callback: (ctx: ReducerEventContext, timer: CrumbTrailCleanupTimer) => void) {
+    this.connection.onReducer("crumb_tail_cleanup_agent_loop", callback);
+  }
+
+  removeOnCrumbTailCleanupAgentLoop(callback: (ctx: ReducerEventContext, timer: CrumbTrailCleanupTimer) => void) {
+    this.connection.offReducer("crumb_tail_cleanup_agent_loop", callback);
   }
 
   currentVersion() {
@@ -16611,6 +16786,22 @@ export class RemoteReducers {
     this.connection.offReducer("import_project_site_state", callback);
   }
 
+  importProspectingDesc(records: ProspectingDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    ImportProspectingDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("import_prospecting_desc", __argsBuffer, this.setCallReducerFlags.importProspectingDescFlags);
+  }
+
+  onImportProspectingDesc(callback: (ctx: ReducerEventContext, records: ProspectingDesc[]) => void) {
+    this.connection.onReducer("import_prospecting_desc", callback);
+  }
+
+  removeOnImportProspectingDesc(callback: (ctx: ReducerEventContext, records: ProspectingDesc[]) => void) {
+    this.connection.offReducer("import_prospecting_desc", callback);
+  }
+
   importRentState(records: RentState[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
@@ -17549,22 +17740,6 @@ export class RemoteReducers {
 
   removeOnMigrateClaimTech(callback: (ctx: ReducerEventContext) => void) {
     this.connection.offReducer("migrate_claim_tech", callback);
-  }
-
-  migrateLuminateCaves(commit: boolean) {
-    const __args = { commit };
-    let __writer = new BinaryWriter(1024);
-    MigrateLuminateCaves.getTypeScriptAlgebraicType().serialize(__writer, __args);
-    let __argsBuffer = __writer.getBuffer();
-    this.connection.callReducer("migrate_luminate_caves", __argsBuffer, this.setCallReducerFlags.migrateLuminateCavesFlags);
-  }
-
-  onMigrateLuminateCaves(callback: (ctx: ReducerEventContext, commit: boolean) => void) {
-    this.connection.onReducer("migrate_luminate_caves", callback);
-  }
-
-  removeOnMigrateLuminateCaves(callback: (ctx: ReducerEventContext, commit: boolean) => void) {
-    this.connection.offReducer("migrate_luminate_caves", callback);
   }
 
   migratePlayerSettings() {
@@ -18665,6 +18840,38 @@ export class RemoteReducers {
 
   removeOnProjectSitePlace(callback: (ctx: ReducerEventContext, request: PlayerProjectSitePlaceRequest) => void) {
     this.connection.offReducer("project_site_place", callback);
+  }
+
+  prospect(prospectingId: number, timestamp: bigint) {
+    const __args = { prospectingId, timestamp };
+    let __writer = new BinaryWriter(1024);
+    Prospect.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("prospect", __argsBuffer, this.setCallReducerFlags.prospectFlags);
+  }
+
+  onProspect(callback: (ctx: ReducerEventContext, prospectingId: number, timestamp: bigint) => void) {
+    this.connection.onReducer("prospect", callback);
+  }
+
+  removeOnProspect(callback: (ctx: ReducerEventContext, prospectingId: number, timestamp: bigint) => void) {
+    this.connection.offReducer("prospect", callback);
+  }
+
+  prospectStart(prospectingId: number, timestamp: bigint) {
+    const __args = { prospectingId, timestamp };
+    let __writer = new BinaryWriter(1024);
+    ProspectStart.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("prospect_start", __argsBuffer, this.setCallReducerFlags.prospectStartFlags);
+  }
+
+  onProspectStart(callback: (ctx: ReducerEventContext, prospectingId: number, timestamp: bigint) => void) {
+    this.connection.onReducer("prospect_start", callback);
+  }
+
+  removeOnProspectStart(callback: (ctx: ReducerEventContext, prospectingId: number, timestamp: bigint) => void) {
+    this.connection.offReducer("prospect_start", callback);
   }
 
   regionPopuplationAgentLoop(timer: RegionPopulationLoopTimer) {
@@ -20347,6 +20554,22 @@ export class RemoteReducers {
     this.connection.offReducer("stage_private_parameters_desc", callback);
   }
 
+  stageProspectingDesc(records: ProspectingDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    StageProspectingDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("stage_prospecting_desc", __argsBuffer, this.setCallReducerFlags.stageProspectingDescFlags);
+  }
+
+  onStageProspectingDesc(callback: (ctx: ReducerEventContext, records: ProspectingDesc[]) => void) {
+    this.connection.onReducer("stage_prospecting_desc", callback);
+  }
+
+  removeOnStageProspectingDesc(callback: (ctx: ReducerEventContext, records: ProspectingDesc[]) => void) {
+    this.connection.offReducer("stage_prospecting_desc", callback);
+  }
+
   stageReservedNameDesc(records: ReservedNameDesc[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
@@ -21225,6 +21448,11 @@ export class SetReducerFlags {
     this.adminCountInventoryItemsFlags = flags;
   }
 
+  adminCreateBuildingSpawnsFlags: CallReducerFlags = 'FullUpdate';
+  adminCreateBuildingSpawns(flags: CallReducerFlags) {
+    this.adminCreateBuildingSpawnsFlags = flags;
+  }
+
   adminCreateChatMessageFlags: CallReducerFlags = 'FullUpdate';
   adminCreateChatMessage(flags: CallReducerFlags) {
     this.adminCreateChatMessageFlags = flags;
@@ -21963,6 +22191,16 @@ export class SetReducerFlags {
   craftSetPublicFlags: CallReducerFlags = 'FullUpdate';
   craftSetPublic(flags: CallReducerFlags) {
     this.craftSetPublicFlags = flags;
+  }
+
+  crumbTailCleanupAgentInsertFlags: CallReducerFlags = 'FullUpdate';
+  crumbTailCleanupAgentInsert(flags: CallReducerFlags) {
+    this.crumbTailCleanupAgentInsertFlags = flags;
+  }
+
+  crumbTailCleanupAgentLoopFlags: CallReducerFlags = 'FullUpdate';
+  crumbTailCleanupAgentLoop(flags: CallReducerFlags) {
+    this.crumbTailCleanupAgentLoopFlags = flags;
   }
 
   currentVersionFlags: CallReducerFlags = 'FullUpdate';
@@ -22950,6 +23188,11 @@ export class SetReducerFlags {
     this.importProjectSiteStateFlags = flags;
   }
 
+  importProspectingDescFlags: CallReducerFlags = 'FullUpdate';
+  importProspectingDesc(flags: CallReducerFlags) {
+    this.importProspectingDescFlags = flags;
+  }
+
   importRentStateFlags: CallReducerFlags = 'FullUpdate';
   importRentState(flags: CallReducerFlags) {
     this.importRentStateFlags = flags;
@@ -23248,11 +23491,6 @@ export class SetReducerFlags {
   migrateClaimTechFlags: CallReducerFlags = 'FullUpdate';
   migrateClaimTech(flags: CallReducerFlags) {
     this.migrateClaimTechFlags = flags;
-  }
-
-  migrateLuminateCavesFlags: CallReducerFlags = 'FullUpdate';
-  migrateLuminateCaves(flags: CallReducerFlags) {
-    this.migrateLuminateCavesFlags = flags;
   }
 
   migratePlayerSettingsFlags: CallReducerFlags = 'FullUpdate';
@@ -23603,6 +23841,16 @@ export class SetReducerFlags {
   projectSitePlaceFlags: CallReducerFlags = 'FullUpdate';
   projectSitePlace(flags: CallReducerFlags) {
     this.projectSitePlaceFlags = flags;
+  }
+
+  prospectFlags: CallReducerFlags = 'FullUpdate';
+  prospect(flags: CallReducerFlags) {
+    this.prospectFlags = flags;
+  }
+
+  prospectStartFlags: CallReducerFlags = 'FullUpdate';
+  prospectStart(flags: CallReducerFlags) {
+    this.prospectStartFlags = flags;
   }
 
   regionPopuplationAgentLoopFlags: CallReducerFlags = 'FullUpdate';
@@ -24133,6 +24381,11 @@ export class SetReducerFlags {
   stagePrivateParametersDescFlags: CallReducerFlags = 'FullUpdate';
   stagePrivateParametersDesc(flags: CallReducerFlags) {
     this.stagePrivateParametersDescFlags = flags;
+  }
+
+  stageProspectingDescFlags: CallReducerFlags = 'FullUpdate';
+  stageProspectingDesc(flags: CallReducerFlags) {
+    this.stageProspectingDescFlags = flags;
   }
 
   stageReservedNameDescFlags: CallReducerFlags = 'FullUpdate';
@@ -24669,6 +24922,22 @@ export class RemoteTables {
 
   get craftingRecipeDesc(): CraftingRecipeDescTableHandle {
     return new CraftingRecipeDescTableHandle(this.connection.clientCache.getOrCreateTable<CraftingRecipeDesc>(REMOTE_MODULE.tables.crafting_recipe_desc));
+  }
+
+  get crumbTailCleanupTimer(): CrumbTailCleanupTimerTableHandle {
+    return new CrumbTailCleanupTimerTableHandle(this.connection.clientCache.getOrCreateTable<CrumbTrailCleanupTimer>(REMOTE_MODULE.tables.crumb_tail_cleanup_timer));
+  }
+
+  get crumbTrailContributionLockState(): CrumbTrailContributionLockStateTableHandle {
+    return new CrumbTrailContributionLockStateTableHandle(this.connection.clientCache.getOrCreateTable<CrumbTrailContributionLockState>(REMOTE_MODULE.tables.crumb_trail_contribution_lock_state));
+  }
+
+  get crumbTrailContributionSpentState(): CrumbTrailContributionSpentStateTableHandle {
+    return new CrumbTrailContributionSpentStateTableHandle(this.connection.clientCache.getOrCreateTable<CrumbTrailContributionSpentState>(REMOTE_MODULE.tables.crumb_trail_contribution_spent_state));
+  }
+
+  get crumbTrailState(): CrumbTrailStateTableHandle {
+    return new CrumbTrailStateTableHandle(this.connection.clientCache.getOrCreateTable<CrumbTrailState>(REMOTE_MODULE.tables.crumb_trail_state));
   }
 
   get dayNightLoopTimer(): DayNightLoopTimerTableHandle {
@@ -25383,6 +25652,14 @@ export class RemoteTables {
     return new ProjectSiteStateTableHandle(this.connection.clientCache.getOrCreateTable<ProjectSiteState>(REMOTE_MODULE.tables.project_site_state));
   }
 
+  get prospectingDesc(): ProspectingDescTableHandle {
+    return new ProspectingDescTableHandle(this.connection.clientCache.getOrCreateTable<ProspectingDesc>(REMOTE_MODULE.tables.prospecting_desc));
+  }
+
+  get prospectingState(): ProspectingStateTableHandle {
+    return new ProspectingStateTableHandle(this.connection.clientCache.getOrCreateTable<ProspectingState>(REMOTE_MODULE.tables.prospecting_state));
+  }
+
   get publicProgressiveActionState(): PublicProgressiveActionStateTableHandle {
     return new PublicProgressiveActionStateTableHandle(this.connection.clientCache.getOrCreateTable<PublicProgressiveActionState>(REMOTE_MODULE.tables.public_progressive_action_state));
   }
@@ -25805,6 +26082,10 @@ export class RemoteTables {
 
   get stagedPrivateParametersDesc(): StagedPrivateParametersDescTableHandle {
     return new StagedPrivateParametersDescTableHandle(this.connection.clientCache.getOrCreateTable<PrivateParametersDesc>(REMOTE_MODULE.tables.staged_private_parameters_desc));
+  }
+
+  get stagedProspectingDesc(): StagedProspectingDescTableHandle {
+    return new StagedProspectingDescTableHandle(this.connection.clientCache.getOrCreateTable<ProspectingDesc>(REMOTE_MODULE.tables.staged_prospecting_desc));
   }
 
   get stagedReservedNameDesc(): StagedReservedNameDescTableHandle {

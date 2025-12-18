@@ -31,32 +31,34 @@ import {
   type ReducerEventContextInterface,
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
-
-export type MigrateLuminateCaves = {
-  commit: boolean,
+export type CrumbTrailCleanupTimer = {
+  scheduledId: bigint,
+  scheduledAt: { tag: "Interval", value: TimeDuration } | { tag: "Time", value: Timestamp },
 };
 
 /**
  * A namespace for generated helper functions.
  */
-export namespace MigrateLuminateCaves {
+export namespace CrumbTrailCleanupTimer {
   /**
   * A function which returns this type represented as an AlgebraicType.
   * This function is derived from the AlgebraicType used to generate this type.
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("commit", AlgebraicType.createBoolType()),
+      new ProductTypeElement("scheduledId", AlgebraicType.createU64Type()),
+      new ProductTypeElement("scheduledAt", AlgebraicType.createScheduleAtType()),
     ]);
   }
 
-  export function serialize(writer: BinaryWriter, value: MigrateLuminateCaves): void {
-    MigrateLuminateCaves.getTypeScriptAlgebraicType().serialize(writer, value);
+  export function serialize(writer: BinaryWriter, value: CrumbTrailCleanupTimer): void {
+    CrumbTrailCleanupTimer.getTypeScriptAlgebraicType().serialize(writer, value);
   }
 
-  export function deserialize(reader: BinaryReader): MigrateLuminateCaves {
-    return MigrateLuminateCaves.getTypeScriptAlgebraicType().deserialize(reader);
+  export function deserialize(reader: BinaryReader): CrumbTrailCleanupTimer {
+    return CrumbTrailCleanupTimer.getTypeScriptAlgebraicType().deserialize(reader);
   }
 
 }
+
 

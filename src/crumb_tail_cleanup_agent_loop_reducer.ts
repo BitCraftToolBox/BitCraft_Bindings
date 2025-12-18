@@ -31,42 +31,34 @@ import {
   type ReducerEventContextInterface,
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
-export type HerdState = {
-  entityId: bigint,
-  enemyAiParamsDescId: number,
-  currentPopulation: number,
-  ignoreEagerness: boolean,
-  populationVariance: number[],
-  crumbTrailEntityId: bigint,
+
+import { CrumbTrailCleanupTimer as __CrumbTrailCleanupTimer } from "./crumb_trail_cleanup_timer_type";
+
+export type CrumbTailCleanupAgentLoop = {
+  timer: __CrumbTrailCleanupTimer,
 };
 
 /**
  * A namespace for generated helper functions.
  */
-export namespace HerdState {
+export namespace CrumbTailCleanupAgentLoop {
   /**
   * A function which returns this type represented as an AlgebraicType.
   * This function is derived from the AlgebraicType used to generate this type.
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("entityId", AlgebraicType.createU64Type()),
-      new ProductTypeElement("enemyAiParamsDescId", AlgebraicType.createI32Type()),
-      new ProductTypeElement("currentPopulation", AlgebraicType.createI32Type()),
-      new ProductTypeElement("ignoreEagerness", AlgebraicType.createBoolType()),
-      new ProductTypeElement("populationVariance", AlgebraicType.createArrayType(AlgebraicType.createF32Type())),
-      new ProductTypeElement("crumbTrailEntityId", AlgebraicType.createU64Type()),
+      new ProductTypeElement("timer", __CrumbTrailCleanupTimer.getTypeScriptAlgebraicType()),
     ]);
   }
 
-  export function serialize(writer: BinaryWriter, value: HerdState): void {
-    HerdState.getTypeScriptAlgebraicType().serialize(writer, value);
+  export function serialize(writer: BinaryWriter, value: CrumbTailCleanupAgentLoop): void {
+    CrumbTailCleanupAgentLoop.getTypeScriptAlgebraicType().serialize(writer, value);
   }
 
-  export function deserialize(reader: BinaryReader): HerdState {
-    return HerdState.getTypeScriptAlgebraicType().deserialize(reader);
+  export function deserialize(reader: BinaryReader): CrumbTailCleanupAgentLoop {
+    return CrumbTailCleanupAgentLoop.getTypeScriptAlgebraicType().deserialize(reader);
   }
 
 }
-
 

@@ -41,6 +41,10 @@ export namespace AbilityType {
   export type CombatAction = { tag: "CombatAction", value: number };
   export type AutoAttack = { tag: "AutoAttack" };
   export type Custom = { tag: "Custom", value: number };
+  export type Prospecting = { tag: "Prospecting", value: number };
+  export type Equip = { tag: "Equip", value: number };
+  export type DeployableDeploy = { tag: "DeployableDeploy", value: number };
+  export type AddToToolbelt = { tag: "AddToToolbelt", value: number };
 
   // Helper functions for constructing each variant of the tagged union.
   // ```
@@ -53,6 +57,10 @@ export namespace AbilityType {
   export const CombatAction = (value: number): AbilityType => ({ tag: "CombatAction", value });
   export const AutoAttack = { tag: "AutoAttack" };
   export const Custom = (value: number): AbilityType => ({ tag: "Custom", value });
+  export const Prospecting = (value: number): AbilityType => ({ tag: "Prospecting", value });
+  export const Equip = (value: number): AbilityType => ({ tag: "Equip", value });
+  export const DeployableDeploy = (value: number): AbilityType => ({ tag: "DeployableDeploy", value });
+  export const AddToToolbelt = (value: number): AbilityType => ({ tag: "AddToToolbelt", value });
 
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createSumType([
@@ -61,6 +69,10 @@ export namespace AbilityType {
       new SumTypeVariant("CombatAction", AlgebraicType.createI32Type()),
       new SumTypeVariant("AutoAttack", AlgebraicType.createProductType([])),
       new SumTypeVariant("Custom", AlgebraicType.createI32Type()),
+      new SumTypeVariant("Prospecting", AlgebraicType.createI32Type()),
+      new SumTypeVariant("Equip", AlgebraicType.createI32Type()),
+      new SumTypeVariant("DeployableDeploy", AlgebraicType.createI32Type()),
+      new SumTypeVariant("AddToToolbelt", AlgebraicType.createI32Type()),
     ]);
   }
 
@@ -75,7 +87,7 @@ export namespace AbilityType {
 }
 
 // The tagged union or sum type for the algebraic type `AbilityType`.
-export type AbilityType = AbilityType.Unsupported | AbilityType.Eat | AbilityType.CombatAction | AbilityType.AutoAttack | AbilityType.Custom;
+export type AbilityType = AbilityType.Unsupported | AbilityType.Eat | AbilityType.CombatAction | AbilityType.AutoAttack | AbilityType.Custom | AbilityType.Prospecting | AbilityType.Equip | AbilityType.DeployableDeploy | AbilityType.AddToToolbelt;
 
 export default AbilityType;
 

@@ -31,42 +31,34 @@ import {
   type ReducerEventContextInterface,
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
-export type HerdState = {
-  entityId: bigint,
-  enemyAiParamsDescId: number,
-  currentPopulation: number,
-  ignoreEagerness: boolean,
-  populationVariance: number[],
-  crumbTrailEntityId: bigint,
+
+export type Prospect = {
+  prospectingId: number,
+  timestamp: bigint,
 };
 
 /**
  * A namespace for generated helper functions.
  */
-export namespace HerdState {
+export namespace Prospect {
   /**
   * A function which returns this type represented as an AlgebraicType.
   * This function is derived from the AlgebraicType used to generate this type.
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("entityId", AlgebraicType.createU64Type()),
-      new ProductTypeElement("enemyAiParamsDescId", AlgebraicType.createI32Type()),
-      new ProductTypeElement("currentPopulation", AlgebraicType.createI32Type()),
-      new ProductTypeElement("ignoreEagerness", AlgebraicType.createBoolType()),
-      new ProductTypeElement("populationVariance", AlgebraicType.createArrayType(AlgebraicType.createF32Type())),
-      new ProductTypeElement("crumbTrailEntityId", AlgebraicType.createU64Type()),
+      new ProductTypeElement("prospectingId", AlgebraicType.createI32Type()),
+      new ProductTypeElement("timestamp", AlgebraicType.createU64Type()),
     ]);
   }
 
-  export function serialize(writer: BinaryWriter, value: HerdState): void {
-    HerdState.getTypeScriptAlgebraicType().serialize(writer, value);
+  export function serialize(writer: BinaryWriter, value: Prospect): void {
+    Prospect.getTypeScriptAlgebraicType().serialize(writer, value);
   }
 
-  export function deserialize(reader: BinaryReader): HerdState {
-    return HerdState.getTypeScriptAlgebraicType().deserialize(reader);
+  export function deserialize(reader: BinaryReader): Prospect {
+    return Prospect.getTypeScriptAlgebraicType().deserialize(reader);
   }
 
 }
-
 

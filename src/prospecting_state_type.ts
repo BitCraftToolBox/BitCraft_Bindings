@@ -31,19 +31,22 @@ import {
   type ReducerEventContextInterface,
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
-export type HerdState = {
+export type ProspectingState = {
   entityId: bigint,
-  enemyAiParamsDescId: number,
-  currentPopulation: number,
-  ignoreEagerness: boolean,
-  populationVariance: number[],
+  prospectingId: number,
   crumbTrailEntityId: bigint,
+  completedSteps: number,
+  ongoingStep: number,
+  totalSteps: number,
+  nextCrumbAngle: number[],
+  lastProspectionTimestamp: Timestamp,
+  contribution: number,
 };
 
 /**
  * A namespace for generated helper functions.
  */
-export namespace HerdState {
+export namespace ProspectingState {
   /**
   * A function which returns this type represented as an AlgebraicType.
   * This function is derived from the AlgebraicType used to generate this type.
@@ -51,20 +54,23 @@ export namespace HerdState {
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
       new ProductTypeElement("entityId", AlgebraicType.createU64Type()),
-      new ProductTypeElement("enemyAiParamsDescId", AlgebraicType.createI32Type()),
-      new ProductTypeElement("currentPopulation", AlgebraicType.createI32Type()),
-      new ProductTypeElement("ignoreEagerness", AlgebraicType.createBoolType()),
-      new ProductTypeElement("populationVariance", AlgebraicType.createArrayType(AlgebraicType.createF32Type())),
+      new ProductTypeElement("prospectingId", AlgebraicType.createI32Type()),
       new ProductTypeElement("crumbTrailEntityId", AlgebraicType.createU64Type()),
+      new ProductTypeElement("completedSteps", AlgebraicType.createI32Type()),
+      new ProductTypeElement("ongoingStep", AlgebraicType.createI32Type()),
+      new ProductTypeElement("totalSteps", AlgebraicType.createI32Type()),
+      new ProductTypeElement("nextCrumbAngle", AlgebraicType.createArrayType(AlgebraicType.createF32Type())),
+      new ProductTypeElement("lastProspectionTimestamp", AlgebraicType.createTimestampType()),
+      new ProductTypeElement("contribution", AlgebraicType.createI32Type()),
     ]);
   }
 
-  export function serialize(writer: BinaryWriter, value: HerdState): void {
-    HerdState.getTypeScriptAlgebraicType().serialize(writer, value);
+  export function serialize(writer: BinaryWriter, value: ProspectingState): void {
+    ProspectingState.getTypeScriptAlgebraicType().serialize(writer, value);
   }
 
-  export function deserialize(reader: BinaryReader): HerdState {
-    return HerdState.getTypeScriptAlgebraicType().deserialize(reader);
+  export function deserialize(reader: BinaryReader): ProspectingState {
+    return ProspectingState.getTypeScriptAlgebraicType().deserialize(reader);
   }
 
 }
