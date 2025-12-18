@@ -18,5 +18,9 @@ namespace BitCraftRegion.Types
         AutoAttack,
         SelfBuff,
         Custom,
+        Prospecting,
+        Equip,
+        DeployableDeploy,
+        AddToToolbelt,
     }
 }

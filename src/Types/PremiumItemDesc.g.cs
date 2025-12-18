@@ -33,6 +33,8 @@ namespace BitCraftRegion.Types
         public bool IsEnabled;
         [DataMember(Name = "quantity")]
         public uint Quantity;
+        [DataMember(Name = "sorting_priority")]
+        public ushort SortingPriority;
 
         public PremiumItemDesc(
             int Id,
@@ -43,7 +45,8 @@ namespace BitCraftRegion.Types
             uint Price,
             uint BasePrice,
             bool IsEnabled,
-            uint Quantity
+            uint Quantity,
+            ushort SortingPriority
         )
         {
             this.Id = Id;
@@ -55,6 +58,7 @@ namespace BitCraftRegion.Types
             this.BasePrice = BasePrice;
             this.IsEnabled = IsEnabled;
             this.Quantity = Quantity;
+            this.SortingPriority = SortingPriority;
         }
 
         public PremiumItemDesc()

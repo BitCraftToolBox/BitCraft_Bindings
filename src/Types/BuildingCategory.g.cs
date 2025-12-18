@@ -36,5 +36,6 @@ namespace BitCraftRegion.Types
         TownMarket,
         RecoveryChest,
         PlayerHousing,
+        PremiumBuilding,
     }
 }
