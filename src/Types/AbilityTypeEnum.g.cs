@@ -18,5 +18,9 @@ namespace BitCraftGlobal.Types
         AutoAttack,
         SelfBuff,
         Custom,
+        Prospecting,
+        Equip,
+        DeployableDeploy,
+        AddToToolbelt,
     }
 }

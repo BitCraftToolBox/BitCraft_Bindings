@@ -25,13 +25,16 @@ namespace BitCraftGlobal.Types
         public bool IgnoreEagerness;
         [DataMember(Name = "population_variance")]
         public System.Collections.Generic.List<float> PopulationVariance;
+        [DataMember(Name = "crumb_trail_entity_id")]
+        public ulong CrumbTrailEntityId;
 
         public HerdState(
             ulong EntityId,
             int EnemyAiParamsDescId,
             int CurrentPopulation,
             bool IgnoreEagerness,
-            System.Collections.Generic.List<float> PopulationVariance
+            System.Collections.Generic.List<float> PopulationVariance,
+            ulong CrumbTrailEntityId
         )
         {
             this.EntityId = EntityId;
@@ -39,6 +42,7 @@ namespace BitCraftGlobal.Types
             this.CurrentPopulation = CurrentPopulation;
             this.IgnoreEagerness = IgnoreEagerness;
             this.PopulationVariance = PopulationVariance;
+            this.CrumbTrailEntityId = CrumbTrailEntityId;
         }
 
         public HerdState()

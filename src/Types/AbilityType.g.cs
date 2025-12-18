@@ -15,6 +15,10 @@ namespace BitCraftGlobal.Types
         int Eat,
         int CombatAction,
         SpacetimeDB.Unit AutoAttack,
-        int Custom
+        int Custom,
+        int Prospecting,
+        int Equip,
+        int DeployableDeploy,
+        int AddToToolbelt
     )>;
 }
