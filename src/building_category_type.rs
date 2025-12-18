@@ -56,6 +56,8 @@ pub enum BuildingCategory {
     RecoveryChest,
 
     PlayerHousing,
+
+    PremiumBuilding,
 }
 
 impl __sdk::InModule for BuildingCategory {
