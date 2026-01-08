@@ -15,13 +15,13 @@ namespace BitCraftGlobal.Types
 {
     public sealed partial class RemoteTables
     {
-        public sealed class StagedEmoteDescHandle : RemoteTableHandle<EventContext, EmoteDesc>
+        public sealed class StagedEmoteDescHandle : RemoteTableHandle<EventContext, EmoteDescV2>
         {
             protected override string RemoteTableName => "staged_emote_desc";
 
             public sealed class IdUniqueIndex : UniqueIndexBase<int>
             {
-                protected override int GetKey(EmoteDesc row) => row.Id;
+                protected override int GetKey(EmoteDescV2 row) => row.Id;
 
                 public IdUniqueIndex(StagedEmoteDescHandle table) : base(table) { }
             }
@@ -33,7 +33,7 @@ namespace BitCraftGlobal.Types
                 Id = new(this);
             }
 
-            protected override object GetPrimaryKey(EmoteDesc row) => row.Id;
+            protected override object GetPrimaryKey(EmoteDescV2 row) => row.Id;
         }
 
         public readonly StagedEmoteDescHandle StagedEmoteDesc;

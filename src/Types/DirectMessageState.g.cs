@@ -29,6 +29,8 @@ namespace BitCraftGlobal.Types
         public string Text;
         [DataMember(Name = "timestamp")]
         public int Timestamp;
+        [DataMember(Name = "language_code")]
+        public string? LanguageCode;
 
         public DirectMessageState(
             ulong EntityId,
@@ -37,7 +39,8 @@ namespace BitCraftGlobal.Types
             ulong SenderEntityId,
             ulong ReceiverEntityId,
             string Text,
-            int Timestamp
+            int Timestamp,
+            string? LanguageCode
         )
         {
             this.EntityId = EntityId;
@@ -47,6 +50,7 @@ namespace BitCraftGlobal.Types
             this.ReceiverEntityId = ReceiverEntityId;
             this.Text = Text;
             this.Timestamp = Timestamp;
+            this.LanguageCode = LanguageCode;
         }
 
         public DirectMessageState()

@@ -32,5 +32,6 @@ namespace BitCraftGlobal.Types
         Pet,
         ClothesCape,
         PremiumItem,
+        Emote,
     }
 }
