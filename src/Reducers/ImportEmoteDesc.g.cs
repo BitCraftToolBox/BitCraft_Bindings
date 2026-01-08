@@ -14,10 +14,10 @@ namespace BitCraftRegion.Types
 {
     public sealed partial class RemoteReducers : RemoteBase
     {
-        public delegate void ImportEmoteDescHandler(ReducerEventContext ctx, System.Collections.Generic.List<EmoteDesc> records);
+        public delegate void ImportEmoteDescHandler(ReducerEventContext ctx, System.Collections.Generic.List<EmoteDescV2> records);
         public event ImportEmoteDescHandler? OnImportEmoteDesc;
 
-        public void ImportEmoteDesc(System.Collections.Generic.List<EmoteDesc> records)
+        public void ImportEmoteDesc(System.Collections.Generic.List<EmoteDescV2> records)
         {
             conn.InternalCallReducer(new Reducer.ImportEmoteDesc(records), this.SetCallReducerFlags.ImportEmoteDescFlags);
         }
@@ -51,9 +51,9 @@ namespace BitCraftRegion.Types
         public sealed partial class ImportEmoteDesc : Reducer, IReducerArgs
         {
             [DataMember(Name = "records")]
-            public System.Collections.Generic.List<EmoteDesc> Records;
+            public System.Collections.Generic.List<EmoteDescV2> Records;
 
-            public ImportEmoteDesc(System.Collections.Generic.List<EmoteDesc> Records)
+            public ImportEmoteDesc(System.Collections.Generic.List<EmoteDescV2> Records)
             {
                 this.Records = Records;
             }

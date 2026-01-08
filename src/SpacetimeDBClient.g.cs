@@ -126,6 +126,7 @@ namespace BitCraftRegion.Types
             AddTable(DungeonState = new(conn));
             AddTable(ElevatorDesc = new(conn));
             AddTable(EmoteDesc = new(conn));
+            AddTable(EmoteDescV2 = new(conn));
             AddTable(EmpireChunkState = new(conn));
             AddTable(EmpireColorDesc = new(conn));
             AddTable(EmpireExpansionState = new(conn));
@@ -1340,6 +1341,7 @@ namespace BitCraftRegion.Types
                 "migrate_auto_attacks" => BSATNHelpers.Decode<Reducer.MigrateAutoAttacks>(encodedArgs),
                 "migrate_character_stats" => BSATNHelpers.Decode<Reducer.MigrateCharacterStats>(encodedArgs),
                 "migrate_claim_tech" => BSATNHelpers.Decode<Reducer.MigrateClaimTech>(encodedArgs),
+                "migrate_grant_default_collectibles" => BSATNHelpers.Decode<Reducer.MigrateGrantDefaultCollectibles>(encodedArgs),
                 "migrate_player_settings" => BSATNHelpers.Decode<Reducer.MigratePlayerSettings>(encodedArgs),
                 "migration_set_achievement_params" => BSATNHelpers.Decode<Reducer.MigrationSetAchievementParams>(encodedArgs),
                 "migration_set_building_desc_params" => BSATNHelpers.Decode<Reducer.MigrationSetBuildingDescParams>(encodedArgs),
@@ -2025,6 +2027,7 @@ namespace BitCraftRegion.Types
                 Reducer.MigrateAutoAttacks args => Reducers.InvokeMigrateAutoAttacks(eventContext, args),
                 Reducer.MigrateCharacterStats args => Reducers.InvokeMigrateCharacterStats(eventContext, args),
                 Reducer.MigrateClaimTech args => Reducers.InvokeMigrateClaimTech(eventContext, args),
+                Reducer.MigrateGrantDefaultCollectibles args => Reducers.InvokeMigrateGrantDefaultCollectibles(eventContext, args),
                 Reducer.MigratePlayerSettings args => Reducers.InvokeMigratePlayerSettings(eventContext, args),
                 Reducer.MigrationSetAchievementParams args => Reducers.InvokeMigrationSetAchievementParams(eventContext, args),
                 Reducer.MigrationSetBuildingDescParams args => Reducers.InvokeMigrationSetBuildingDescParams(eventContext, args),

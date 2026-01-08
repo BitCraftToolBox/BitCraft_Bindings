@@ -14,10 +14,10 @@ namespace BitCraftRegion.Types
 {
     public sealed partial class RemoteReducers : RemoteBase
     {
-        public delegate void StageEmoteDescHandler(ReducerEventContext ctx, System.Collections.Generic.List<EmoteDesc> records);
+        public delegate void StageEmoteDescHandler(ReducerEventContext ctx, System.Collections.Generic.List<EmoteDescV2> records);
         public event StageEmoteDescHandler? OnStageEmoteDesc;
 
-        public void StageEmoteDesc(System.Collections.Generic.List<EmoteDesc> records)
+        public void StageEmoteDesc(System.Collections.Generic.List<EmoteDescV2> records)
         {
             conn.InternalCallReducer(new Reducer.StageEmoteDesc(records), this.SetCallReducerFlags.StageEmoteDescFlags);
         }
@@ -51,9 +51,9 @@ namespace BitCraftRegion.Types
         public sealed partial class StageEmoteDesc : Reducer, IReducerArgs
         {
             [DataMember(Name = "records")]
-            public System.Collections.Generic.List<EmoteDesc> Records;
+            public System.Collections.Generic.List<EmoteDescV2> Records;
 
-            public StageEmoteDesc(System.Collections.Generic.List<EmoteDesc> Records)
+            public StageEmoteDesc(System.Collections.Generic.List<EmoteDescV2> Records)
             {
                 this.Records = Records;
             }

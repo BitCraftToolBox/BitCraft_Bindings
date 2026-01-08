@@ -32,5 +32,6 @@ namespace BitCraftRegion.Types
         Pet,
         ClothesCape,
         PremiumItem,
+        Emote,
     }
 }

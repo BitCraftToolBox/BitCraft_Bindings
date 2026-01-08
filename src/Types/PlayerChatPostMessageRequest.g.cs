@@ -21,21 +21,26 @@ namespace BitCraftRegion.Types
         public ChatChannel ChannelId;
         [DataMember(Name = "target_id")]
         public ulong TargetId;
+        [DataMember(Name = "language_code")]
+        public string LanguageCode;
 
         public PlayerChatPostMessageRequest(
             string Text,
             ChatChannel ChannelId,
-            ulong TargetId
+            ulong TargetId,
+            string LanguageCode
         )
         {
             this.Text = Text;
             this.ChannelId = ChannelId;
             this.TargetId = TargetId;
+            this.LanguageCode = LanguageCode;
         }
 
         public PlayerChatPostMessageRequest()
         {
             this.Text = "";
+            this.LanguageCode = "";
         }
     }
 }
