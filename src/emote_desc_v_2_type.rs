@@ -7,17 +7,18 @@ use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
-pub struct DirectMessageState {
-    pub entity_id: u64,
-    pub username: String,
-    pub title_id: i32,
-    pub sender_entity_id: u64,
-    pub receiver_entity_id: u64,
-    pub text: String,
-    pub timestamp: i32,
-    pub language_code: Option<String>,
+pub struct EmoteDescV2 {
+    pub id: i32,
+    pub name: String,
+    pub animation: String,
+    pub duration: f32,
+    pub key_code: String,
+    pub command_line: String,
+    pub allow_while_mounted: bool,
+    pub allow_while_moving: bool,
+    pub enabled_by_collectible_id: i32,
 }
 
-impl __sdk::InModule for DirectMessageState {
+impl __sdk::InModule for EmoteDescV2 {
     type Module = super::RemoteModule;
 }

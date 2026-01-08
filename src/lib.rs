@@ -269,6 +269,8 @@ pub mod elevator_desc_table;
 pub mod elevator_desc_type;
 pub mod emote_desc_table;
 pub mod emote_desc_type;
+pub mod emote_desc_v_2_table;
+pub mod emote_desc_v_2_type;
 pub mod empire_change_emblem_reducer;
 pub mod empire_change_emblem_request_type;
 pub mod empire_chunk_state_op_type;
@@ -1627,6 +1629,8 @@ pub use elevator_desc_table::*;
 pub use elevator_desc_type::ElevatorDesc;
 pub use emote_desc_table::*;
 pub use emote_desc_type::EmoteDesc;
+pub use emote_desc_v_2_table::*;
+pub use emote_desc_v_2_type::EmoteDescV2;
 pub use empire_change_emblem_reducer::{
     empire_change_emblem, set_flags_for_empire_change_emblem, EmpireChangeEmblemCallbackId,
 };
@@ -3771,7 +3775,7 @@ pub enum Reducer {
         records: Vec<ElevatorDesc>,
     },
     ImportEmoteDesc {
-        records: Vec<EmoteDesc>,
+        records: Vec<EmoteDescV2>,
     },
     ImportEmpireColorsDesc {
         records: Vec<EmpireColorDesc>,
@@ -4298,7 +4302,7 @@ pub enum Reducer {
         records: Vec<ElevatorDesc>,
     },
     StageEmoteDesc {
-        records: Vec<EmoteDesc>,
+        records: Vec<EmoteDescV2>,
     },
     StageEmpireColorsDesc {
         records: Vec<EmpireColorDesc>,
@@ -5360,6 +5364,7 @@ pub struct DbUpdate {
     dungeon_state: __sdk::TableUpdate<DungeonState>,
     elevator_desc: __sdk::TableUpdate<ElevatorDesc>,
     emote_desc: __sdk::TableUpdate<EmoteDesc>,
+    emote_desc_v_2: __sdk::TableUpdate<EmoteDescV2>,
     empire_chunk_state: __sdk::TableUpdate<EmpireChunkState>,
     empire_color_desc: __sdk::TableUpdate<EmpireColorDesc>,
     empire_craft_supplies_timer: __sdk::TableUpdate<EmpireCraftSuppliesTimer>,
@@ -5562,7 +5567,7 @@ pub struct DbUpdate {
     staged_deployable_desc: __sdk::TableUpdate<DeployableDescV4>,
     staged_distant_visible_entity_desc: __sdk::TableUpdate<DistantVisibleEntityDesc>,
     staged_elevator_desc: __sdk::TableUpdate<ElevatorDesc>,
-    staged_emote_desc: __sdk::TableUpdate<EmoteDesc>,
+    staged_emote_desc: __sdk::TableUpdate<EmoteDescV2>,
     staged_empire_colors_desc: __sdk::TableUpdate<EmpireColorDesc>,
     staged_empire_icon_desc: __sdk::TableUpdate<EmpireIconDesc>,
     staged_empire_notification_desc: __sdk::TableUpdate<EmpireNotificationDesc>,
@@ -5961,6 +5966,9 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
                 "emote_desc" => db_update
                     .emote_desc
                     .append(emote_desc_table::parse_table_update(table_update)?),
+                "emote_desc_v2" => db_update
+                    .emote_desc_v_2
+                    .append(emote_desc_v_2_table::parse_table_update(table_update)?),
                 "empire_chunk_state" => db_update
                     .empire_chunk_state
                     .append(empire_chunk_state_table::parse_table_update(table_update)?),
@@ -7393,6 +7401,9 @@ impl __sdk::DbUpdate for DbUpdate {
         diff.emote_desc = cache
             .apply_diff_to_table::<EmoteDesc>("emote_desc", &self.emote_desc)
             .with_updates_by_pk(|row| &row.id);
+        diff.emote_desc_v_2 = cache
+            .apply_diff_to_table::<EmoteDescV2>("emote_desc_v2", &self.emote_desc_v_2)
+            .with_updates_by_pk(|row| &row.id);
         diff.empire_chunk_state = cache
             .apply_diff_to_table::<EmpireChunkState>("empire_chunk_state", &self.empire_chunk_state)
             .with_updates_by_pk(|row| &row.chunk_index);
@@ -8394,7 +8405,7 @@ impl __sdk::DbUpdate for DbUpdate {
             .apply_diff_to_table::<ElevatorDesc>("staged_elevator_desc", &self.staged_elevator_desc)
             .with_updates_by_pk(|row| &row.building_id);
         diff.staged_emote_desc = cache
-            .apply_diff_to_table::<EmoteDesc>("staged_emote_desc", &self.staged_emote_desc)
+            .apply_diff_to_table::<EmoteDescV2>("staged_emote_desc", &self.staged_emote_desc)
             .with_updates_by_pk(|row| &row.id);
         diff.staged_empire_colors_desc = cache
             .apply_diff_to_table::<EmpireColorDesc>(
@@ -9046,6 +9057,7 @@ pub struct AppliedDiff<'r> {
     dungeon_state: __sdk::TableAppliedDiff<'r, DungeonState>,
     elevator_desc: __sdk::TableAppliedDiff<'r, ElevatorDesc>,
     emote_desc: __sdk::TableAppliedDiff<'r, EmoteDesc>,
+    emote_desc_v_2: __sdk::TableAppliedDiff<'r, EmoteDescV2>,
     empire_chunk_state: __sdk::TableAppliedDiff<'r, EmpireChunkState>,
     empire_color_desc: __sdk::TableAppliedDiff<'r, EmpireColorDesc>,
     empire_craft_supplies_timer: __sdk::TableAppliedDiff<'r, EmpireCraftSuppliesTimer>,
@@ -9252,7 +9264,7 @@ pub struct AppliedDiff<'r> {
     staged_deployable_desc: __sdk::TableAppliedDiff<'r, DeployableDescV4>,
     staged_distant_visible_entity_desc: __sdk::TableAppliedDiff<'r, DistantVisibleEntityDesc>,
     staged_elevator_desc: __sdk::TableAppliedDiff<'r, ElevatorDesc>,
-    staged_emote_desc: __sdk::TableAppliedDiff<'r, EmoteDesc>,
+    staged_emote_desc: __sdk::TableAppliedDiff<'r, EmoteDescV2>,
     staged_empire_colors_desc: __sdk::TableAppliedDiff<'r, EmpireColorDesc>,
     staged_empire_icon_desc: __sdk::TableAppliedDiff<'r, EmpireIconDesc>,
     staged_empire_notification_desc: __sdk::TableAppliedDiff<'r, EmpireNotificationDesc>,
@@ -9771,6 +9783,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             event,
         );
         callbacks.invoke_table_row_callbacks::<EmoteDesc>("emote_desc", &self.emote_desc, event);
+        callbacks.invoke_table_row_callbacks::<EmoteDescV2>(
+            "emote_desc_v2",
+            &self.emote_desc_v_2,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<EmpireChunkState>(
             "empire_chunk_state",
             &self.empire_chunk_state,
@@ -10737,7 +10754,7 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             &self.staged_elevator_desc,
             event,
         );
-        callbacks.invoke_table_row_callbacks::<EmoteDesc>(
+        callbacks.invoke_table_row_callbacks::<EmoteDescV2>(
             "staged_emote_desc",
             &self.staged_emote_desc,
             event,
@@ -11925,6 +11942,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         dungeon_state_table::register_table(client_cache);
         elevator_desc_table::register_table(client_cache);
         emote_desc_table::register_table(client_cache);
+        emote_desc_v_2_table::register_table(client_cache);
         empire_chunk_state_table::register_table(client_cache);
         empire_color_desc_table::register_table(client_cache);
         empire_craft_supplies_timer_table::register_table(client_cache);

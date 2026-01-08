@@ -13,6 +13,7 @@ pub struct PlayerChatPostMessageRequest {
     pub text: String,
     pub channel_id: ChatChannel,
     pub target_id: u64,
+    pub language_code: String,
 }
 
 impl __sdk::InModule for PlayerChatPostMessageRequest {
