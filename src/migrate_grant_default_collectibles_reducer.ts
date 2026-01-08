@@ -32,32 +32,27 @@ import {
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
 
-import { EmoteDescV2 as __EmoteDescV2 } from "./emote_desc_v_2_type";
-
-export type ImportEmoteDesc = {
-  records: __EmoteDescV2[],
-};
+export type MigrateGrantDefaultCollectibles = {};
 
 /**
  * A namespace for generated helper functions.
  */
-export namespace ImportEmoteDesc {
+export namespace MigrateGrantDefaultCollectibles {
   /**
   * A function which returns this type represented as an AlgebraicType.
   * This function is derived from the AlgebraicType used to generate this type.
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("records", AlgebraicType.createArrayType(__EmoteDescV2.getTypeScriptAlgebraicType())),
     ]);
   }
 
-  export function serialize(writer: BinaryWriter, value: ImportEmoteDesc): void {
-    ImportEmoteDesc.getTypeScriptAlgebraicType().serialize(writer, value);
+  export function serialize(writer: BinaryWriter, value: MigrateGrantDefaultCollectibles): void {
+    MigrateGrantDefaultCollectibles.getTypeScriptAlgebraicType().serialize(writer, value);
   }
 
-  export function deserialize(reader: BinaryReader): ImportEmoteDesc {
-    return ImportEmoteDesc.getTypeScriptAlgebraicType().deserialize(reader);
+  export function deserialize(reader: BinaryReader): MigrateGrantDefaultCollectibles {
+    return MigrateGrantDefaultCollectibles.getTypeScriptAlgebraicType().deserialize(reader);
   }
 
 }

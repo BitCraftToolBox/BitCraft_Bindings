@@ -35,16 +35,16 @@ import { EmoteDescV2 } from "./emote_desc_v_2_type";
 import { type EventContext, type Reducer, RemoteReducers, RemoteTables } from ".";
 
 /**
- * Table handle for the table `staged_emote_desc`.
+ * Table handle for the table `emote_desc_v2`.
  *
- * Obtain a handle from the [`stagedEmoteDesc`] property on [`RemoteTables`],
- * like `ctx.db.stagedEmoteDesc`.
+ * Obtain a handle from the [`emoteDescV2`] property on [`RemoteTables`],
+ * like `ctx.db.emoteDescV2`.
  *
  * Users are encouraged not to explicitly reference this type,
  * but to directly chain method calls,
- * like `ctx.db.stagedEmoteDesc.on_insert(...)`.
+ * like `ctx.db.emoteDescV2.on_insert(...)`.
  */
-export class StagedEmoteDescTableHandle {
+export class EmoteDescV2TableHandle {
   tableCache: TableCache<EmoteDescV2>;
 
   constructor(tableCache: TableCache<EmoteDescV2>) {
@@ -59,15 +59,15 @@ export class StagedEmoteDescTableHandle {
     return this.tableCache.iter();
   }
   /**
-   * Access to the `id` unique index on the table `staged_emote_desc`,
+   * Access to the `id` unique index on the table `emote_desc_v2`,
    * which allows point queries on the field of the same name
-   * via the [`StagedEmoteDescIdUnique.find`] method.
+   * via the [`EmoteDescV2IdUnique.find`] method.
    *
    * Users are encouraged not to explicitly reference this type,
    * but to directly chain method calls,
-   * like `ctx.db.stagedEmoteDesc.id().find(...)`.
+   * like `ctx.db.emoteDescV2.id().find(...)`.
    *
-   * Get a handle on the `id` unique index on the table `staged_emote_desc`.
+   * Get a handle on the `id` unique index on the table `emote_desc_v2`.
    */
   id = {
     // Find the subscribed row whose `id` column value is equal to `col_val`,
