@@ -39,6 +39,7 @@ export type DirectMessageState = {
   receiverEntityId: bigint,
   text: string,
   timestamp: number,
+  languageCode: string | undefined,
 };
 
 /**
@@ -58,6 +59,7 @@ export namespace DirectMessageState {
       new ProductTypeElement("receiverEntityId", AlgebraicType.createU64Type()),
       new ProductTypeElement("text", AlgebraicType.createStringType()),
       new ProductTypeElement("timestamp", AlgebraicType.createI32Type()),
+      new ProductTypeElement("languageCode", AlgebraicType.createOptionType(AlgebraicType.createStringType())),
     ]);
   }
 

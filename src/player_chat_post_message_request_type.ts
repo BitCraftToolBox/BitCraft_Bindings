@@ -37,6 +37,7 @@ export type PlayerChatPostMessageRequest = {
   text: string,
   channelId: __ChatChannel,
   targetId: bigint,
+  languageCode: string,
 };
 
 /**
@@ -52,6 +53,7 @@ export namespace PlayerChatPostMessageRequest {
       new ProductTypeElement("text", AlgebraicType.createStringType()),
       new ProductTypeElement("channelId", __ChatChannel.getTypeScriptAlgebraicType()),
       new ProductTypeElement("targetId", AlgebraicType.createU64Type()),
+      new ProductTypeElement("languageCode", AlgebraicType.createStringType()),
     ]);
   }
 

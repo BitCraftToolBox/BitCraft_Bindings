@@ -925,6 +925,8 @@ import { ElevatorDescTableHandle } from "./elevator_desc_table.ts";
 export { ElevatorDescTableHandle };
 import { EmoteDescTableHandle } from "./emote_desc_table.ts";
 export { EmoteDescTableHandle };
+import { EmoteDescV2TableHandle } from "./emote_desc_v_2_table.ts";
+export { EmoteDescV2TableHandle };
 import { EmpireChunkStateTableHandle } from "./empire_chunk_state_table.ts";
 export { EmpireChunkStateTableHandle };
 import { EmpireColorDescTableHandle } from "./empire_color_desc_table.ts";
@@ -1811,6 +1813,8 @@ import { ElevatorDesc } from "./elevator_desc_type.ts";
 export { ElevatorDesc };
 import { EmoteDesc } from "./emote_desc_type.ts";
 export { EmoteDesc };
+import { EmoteDescV2 } from "./emote_desc_v_2_type.ts";
+export { EmoteDescV2 };
 import { EmpireChangeEmblemRequest } from "./empire_change_emblem_request_type.ts";
 export { EmpireChangeEmblemRequest };
 import { EmpireChunkState } from "./empire_chunk_state_type.ts";
@@ -3317,6 +3321,15 @@ const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "id",
         colType: EmoteDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    emote_desc_v2: {
+      tableName: "emote_desc_v2",
+      rowType: EmoteDescV2.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: EmoteDescV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     empire_chunk_state: {
@@ -5134,11 +5147,11 @@ const REMOTE_MODULE = {
     },
     staged_emote_desc: {
       tableName: "staged_emote_desc",
-      rowType: EmoteDesc.getTypeScriptAlgebraicType(),
+      rowType: EmoteDescV2.getTypeScriptAlgebraicType(),
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: EmoteDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+        colType: EmoteDescV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     staged_empire_colors_desc: {
@@ -9723,7 +9736,7 @@ export class RemoteReducers {
     this.connection.offReducer("import_elevator_desc", callback);
   }
 
-  importEmoteDesc(records: EmoteDesc[]) {
+  importEmoteDesc(records: EmoteDescV2[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
     ImportEmoteDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
@@ -9731,11 +9744,11 @@ export class RemoteReducers {
     this.connection.callReducer("import_emote_desc", __argsBuffer, this.setCallReducerFlags.importEmoteDescFlags);
   }
 
-  onImportEmoteDesc(callback: (ctx: ReducerEventContext, records: EmoteDesc[]) => void) {
+  onImportEmoteDesc(callback: (ctx: ReducerEventContext, records: EmoteDescV2[]) => void) {
     this.connection.onReducer("import_emote_desc", callback);
   }
 
-  removeOnImportEmoteDesc(callback: (ctx: ReducerEventContext, records: EmoteDesc[]) => void) {
+  removeOnImportEmoteDesc(callback: (ctx: ReducerEventContext, records: EmoteDescV2[]) => void) {
     this.connection.offReducer("import_emote_desc", callback);
   }
 
@@ -12487,7 +12500,7 @@ export class RemoteReducers {
     this.connection.offReducer("stage_elevator_desc", callback);
   }
 
-  stageEmoteDesc(records: EmoteDesc[]) {
+  stageEmoteDesc(records: EmoteDescV2[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
     StageEmoteDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
@@ -12495,11 +12508,11 @@ export class RemoteReducers {
     this.connection.callReducer("stage_emote_desc", __argsBuffer, this.setCallReducerFlags.stageEmoteDescFlags);
   }
 
-  onStageEmoteDesc(callback: (ctx: ReducerEventContext, records: EmoteDesc[]) => void) {
+  onStageEmoteDesc(callback: (ctx: ReducerEventContext, records: EmoteDescV2[]) => void) {
     this.connection.onReducer("stage_emote_desc", callback);
   }
 
-  removeOnStageEmoteDesc(callback: (ctx: ReducerEventContext, records: EmoteDesc[]) => void) {
+  removeOnStageEmoteDesc(callback: (ctx: ReducerEventContext, records: EmoteDescV2[]) => void) {
     this.connection.offReducer("stage_emote_desc", callback);
   }
 
@@ -15722,6 +15735,10 @@ export class RemoteTables {
     return new EmoteDescTableHandle(this.connection.clientCache.getOrCreateTable<EmoteDesc>(REMOTE_MODULE.tables.emote_desc));
   }
 
+  get emoteDescV2(): EmoteDescV2TableHandle {
+    return new EmoteDescV2TableHandle(this.connection.clientCache.getOrCreateTable<EmoteDescV2>(REMOTE_MODULE.tables.emote_desc_v2));
+  }
+
   get empireChunkState(): EmpireChunkStateTableHandle {
     return new EmpireChunkStateTableHandle(this.connection.clientCache.getOrCreateTable<EmpireChunkState>(REMOTE_MODULE.tables.empire_chunk_state));
   }
@@ -16531,7 +16548,7 @@ export class RemoteTables {
   }
 
   get stagedEmoteDesc(): StagedEmoteDescTableHandle {
-    return new StagedEmoteDescTableHandle(this.connection.clientCache.getOrCreateTable<EmoteDesc>(REMOTE_MODULE.tables.staged_emote_desc));
+    return new StagedEmoteDescTableHandle(this.connection.clientCache.getOrCreateTable<EmoteDescV2>(REMOTE_MODULE.tables.staged_emote_desc));
   }
 
   get stagedEmpireColorsDesc(): StagedEmpireColorsDescTableHandle {

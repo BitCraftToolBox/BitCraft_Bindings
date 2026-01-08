@@ -32,10 +32,10 @@ import {
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
 
-import { EmoteDesc as __EmoteDesc } from "./emote_desc_type";
+import { EmoteDescV2 as __EmoteDescV2 } from "./emote_desc_v_2_type";
 
 export type ImportEmoteDesc = {
-  records: __EmoteDesc[],
+  records: __EmoteDescV2[],
 };
 
 /**
@@ -48,7 +48,7 @@ export namespace ImportEmoteDesc {
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("records", AlgebraicType.createArrayType(__EmoteDesc.getTypeScriptAlgebraicType())),
+      new ProductTypeElement("records", AlgebraicType.createArrayType(__EmoteDescV2.getTypeScriptAlgebraicType())),
     ]);
   }
 
