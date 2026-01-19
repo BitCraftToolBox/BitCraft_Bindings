@@ -117,8 +117,6 @@ import { CreateChatChannel } from "./create_chat_channel_reducer.ts";
 export { CreateChatChannel };
 import { CurrentVersion } from "./current_version_reducer.ts";
 export { CurrentVersion };
-import { DeleteDeveloperIdentity } from "./delete_developer_identity_reducer.ts";
-export { DeleteDeveloperIdentity };
 import { EditChatChannel } from "./edit_chat_channel_reducer.ts";
 export { EditChatChannel };
 import { EditChatChannelMemberPermission } from "./edit_chat_channel_member_permission_reducer.ts";
@@ -495,8 +493,6 @@ import { ImportWorldRegionNameState } from "./import_world_region_name_state_red
 export { ImportWorldRegionNameState };
 import { ImportWorldRegionState } from "./import_world_region_state_reducer.ts";
 export { ImportWorldRegionState };
-import { InsertDeveloperIdentity } from "./insert_developer_identity_reducer.ts";
-export { InsertDeveloperIdentity };
 import { InviteToChatChannel } from "./invite_to_chat_channel_reducer.ts";
 export { InviteToChatChannel };
 import { JoinChatChannel } from "./join_chat_channel_reducer.ts";
@@ -6296,10 +6292,6 @@ const REMOTE_MODULE = {
       reducerName: "current_version",
       argsType: CurrentVersion.getTypeScriptAlgebraicType(),
     },
-    delete_developer_identity: {
-      reducerName: "delete_developer_identity",
-      argsType: DeleteDeveloperIdentity.getTypeScriptAlgebraicType(),
-    },
     edit_chat_channel: {
       reducerName: "edit_chat_channel",
       argsType: EditChatChannel.getTypeScriptAlgebraicType(),
@@ -7052,10 +7044,6 @@ const REMOTE_MODULE = {
       reducerName: "import_world_region_state",
       argsType: ImportWorldRegionState.getTypeScriptAlgebraicType(),
     },
-    insert_developer_identity: {
-      reducerName: "insert_developer_identity",
-      argsType: InsertDeveloperIdentity.getTypeScriptAlgebraicType(),
-    },
     invite_to_chat_channel: {
       reducerName: "invite_to_chat_channel",
       argsType: InviteToChatChannel.getTypeScriptAlgebraicType(),
@@ -7628,7 +7616,6 @@ export type Reducer = never
 | { name: "CommitStagedStaticData", args: CommitStagedStaticData }
 | { name: "CreateChatChannel", args: CreateChatChannel }
 | { name: "CurrentVersion", args: CurrentVersion }
-| { name: "DeleteDeveloperIdentity", args: DeleteDeveloperIdentity }
 | { name: "EditChatChannel", args: EditChatChannel }
 | { name: "EditChatChannelMemberPermission", args: EditChatChannelMemberPermission }
 | { name: "EmpireChangeEmblem", args: EmpireChangeEmblem }
@@ -7817,7 +7804,6 @@ export type Reducer = never
 | { name: "ImportWindParamsDesc", args: ImportWindParamsDesc }
 | { name: "ImportWorldRegionNameState", args: ImportWorldRegionNameState }
 | { name: "ImportWorldRegionState", args: ImportWorldRegionState }
-| { name: "InsertDeveloperIdentity", args: InsertDeveloperIdentity }
 | { name: "InviteToChatChannel", args: InviteToChatChannel }
 | { name: "JoinChatChannel", args: JoinChatChannel }
 | { name: "LeaveChatChannel", args: LeaveChatChannel }
@@ -8602,22 +8588,6 @@ export class RemoteReducers {
 
   removeOnCurrentVersion(callback: (ctx: ReducerEventContext) => void) {
     this.connection.offReducer("current_version", callback);
-  }
-
-  deleteDeveloperIdentity(identity: string) {
-    const __args = { identity };
-    let __writer = new BinaryWriter(1024);
-    DeleteDeveloperIdentity.getTypeScriptAlgebraicType().serialize(__writer, __args);
-    let __argsBuffer = __writer.getBuffer();
-    this.connection.callReducer("delete_developer_identity", __argsBuffer, this.setCallReducerFlags.deleteDeveloperIdentityFlags);
-  }
-
-  onDeleteDeveloperIdentity(callback: (ctx: ReducerEventContext, identity: string) => void) {
-    this.connection.onReducer("delete_developer_identity", callback);
-  }
-
-  removeOnDeleteDeveloperIdentity(callback: (ctx: ReducerEventContext, identity: string) => void) {
-    this.connection.offReducer("delete_developer_identity", callback);
   }
 
   editChatChannel(entityId: bigint, name: string, description: string, visibility: ChatChannelVisibility) {
@@ -11608,22 +11578,6 @@ export class RemoteReducers {
     this.connection.offReducer("import_world_region_state", callback);
   }
 
-  insertDeveloperIdentity(identity: string, developerName: string, serviceName: string, email: string, isExternal: boolean) {
-    const __args = { identity, developerName, serviceName, email, isExternal };
-    let __writer = new BinaryWriter(1024);
-    InsertDeveloperIdentity.getTypeScriptAlgebraicType().serialize(__writer, __args);
-    let __argsBuffer = __writer.getBuffer();
-    this.connection.callReducer("insert_developer_identity", __argsBuffer, this.setCallReducerFlags.insertDeveloperIdentityFlags);
-  }
-
-  onInsertDeveloperIdentity(callback: (ctx: ReducerEventContext, identity: string, developerName: string, serviceName: string, email: string, isExternal: boolean) => void) {
-    this.connection.onReducer("insert_developer_identity", callback);
-  }
-
-  removeOnInsertDeveloperIdentity(callback: (ctx: ReducerEventContext, identity: string, developerName: string, serviceName: string, email: string, isExternal: boolean) => void) {
-    this.connection.offReducer("insert_developer_identity", callback);
-  }
-
   inviteToChatChannel(channelEntityId: bigint, playerEntityId: bigint) {
     const __args = { channelEntityId, playerEntityId };
     let __writer = new BinaryWriter(1024);
@@ -13813,11 +13767,6 @@ export class SetReducerFlags {
     this.currentVersionFlags = flags;
   }
 
-  deleteDeveloperIdentityFlags: CallReducerFlags = 'FullUpdate';
-  deleteDeveloperIdentity(flags: CallReducerFlags) {
-    this.deleteDeveloperIdentityFlags = flags;
-  }
-
   editChatChannelFlags: CallReducerFlags = 'FullUpdate';
   editChatChannel(flags: CallReducerFlags) {
     this.editChatChannelFlags = flags;
@@ -14746,11 +14695,6 @@ export class SetReducerFlags {
   importWorldRegionStateFlags: CallReducerFlags = 'FullUpdate';
   importWorldRegionState(flags: CallReducerFlags) {
     this.importWorldRegionStateFlags = flags;
-  }
-
-  insertDeveloperIdentityFlags: CallReducerFlags = 'FullUpdate';
-  insertDeveloperIdentity(flags: CallReducerFlags) {
-    this.insertDeveloperIdentityFlags = flags;
   }
 
   inviteToChatChannelFlags: CallReducerFlags = 'FullUpdate';
