@@ -227,7 +227,6 @@ pub mod csv_stat_entry_type;
 pub mod current_version_reducer;
 pub mod deconstruction_recipe_desc_table;
 pub mod deconstruction_recipe_desc_type;
-pub mod delete_developer_identity_reducer;
 pub mod delete_empire_msg_type;
 pub mod deployable_collectible_state_table;
 pub mod deployable_collectible_state_type;
@@ -608,7 +607,6 @@ pub mod import_wind_params_desc_reducer;
 pub mod import_world_region_name_state_reducer;
 pub mod import_world_region_state_reducer;
 pub mod input_item_stack_type;
-pub mod insert_developer_identity_reducer;
 pub mod inter_module_message_counter_table;
 pub mod inter_module_message_counter_type;
 pub mod inter_module_message_errors_table;
@@ -1579,10 +1577,6 @@ pub use current_version_reducer::{
 };
 pub use deconstruction_recipe_desc_table::*;
 pub use deconstruction_recipe_desc_type::DeconstructionRecipeDesc;
-pub use delete_developer_identity_reducer::{
-    delete_developer_identity, set_flags_for_delete_developer_identity,
-    DeleteDeveloperIdentityCallbackId,
-};
 pub use delete_empire_msg_type::DeleteEmpireMsg;
 pub use deployable_collectible_state_table::*;
 pub use deployable_collectible_state_type::DeployableCollectibleState;
@@ -2433,10 +2427,6 @@ pub use import_world_region_state_reducer::{
     ImportWorldRegionStateCallbackId,
 };
 pub use input_item_stack_type::InputItemStack;
-pub use insert_developer_identity_reducer::{
-    insert_developer_identity, set_flags_for_insert_developer_identity,
-    InsertDeveloperIdentityCallbackId,
-};
 pub use inter_module_message_counter_table::*;
 pub use inter_module_message_counter_type::InterModuleMessageCounter;
 pub use inter_module_message_errors_table::*;
@@ -3559,9 +3549,6 @@ pub enum Reducer {
         visibility: ChatChannelVisibility,
     },
     CurrentVersion,
-    DeleteDeveloperIdentity {
-        identity: String,
-    },
     EditChatChannel {
         entity_id: u64,
         name: String,
@@ -4125,13 +4112,6 @@ pub enum Reducer {
     ImportWorldRegionState {
         records: Vec<WorldRegionState>,
     },
-    InsertDeveloperIdentity {
-        identity: String,
-        developer_name: String,
-        service_name: String,
-        email: String,
-        is_external: bool,
-    },
     InviteToChatChannel {
         channel_entity_id: u64,
         player_entity_id: u64,
@@ -4563,7 +4543,6 @@ impl __sdk::Reducer for Reducer {
             Reducer::CommitStagedStaticData => "commit_staged_static_data",
             Reducer::CreateChatChannel { .. } => "create_chat_channel",
             Reducer::CurrentVersion => "current_version",
-            Reducer::DeleteDeveloperIdentity { .. } => "delete_developer_identity",
             Reducer::EditChatChannel { .. } => "edit_chat_channel",
             Reducer::EditChatChannelMemberPermission { .. } => {
                 "edit_chat_channel_member_permission"
@@ -4770,7 +4749,6 @@ impl __sdk::Reducer for Reducer {
             Reducer::ImportWindParamsDesc { .. } => "import_wind_params_desc",
             Reducer::ImportWorldRegionNameState { .. } => "import_world_region_name_state",
             Reducer::ImportWorldRegionState { .. } => "import_world_region_state",
-            Reducer::InsertDeveloperIdentity { .. } => "insert_developer_identity",
             Reducer::InviteToChatChannel { .. } => "invite_to_chat_channel",
             Reducer::JoinChatChannel { .. } => "join_chat_channel",
             Reducer::LeaveChatChannel { .. } => "leave_chat_channel",
@@ -4951,7 +4929,6 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "commit_staged_static_data" => Ok(__sdk::parse_reducer_args::<commit_staged_static_data_reducer::CommitStagedStaticDataArgs>("commit_staged_static_data", &value.args)?.into()),
             "create_chat_channel" => Ok(__sdk::parse_reducer_args::<create_chat_channel_reducer::CreateChatChannelArgs>("create_chat_channel", &value.args)?.into()),
             "current_version" => Ok(__sdk::parse_reducer_args::<current_version_reducer::CurrentVersionArgs>("current_version", &value.args)?.into()),
-            "delete_developer_identity" => Ok(__sdk::parse_reducer_args::<delete_developer_identity_reducer::DeleteDeveloperIdentityArgs>("delete_developer_identity", &value.args)?.into()),
             "edit_chat_channel" => Ok(__sdk::parse_reducer_args::<edit_chat_channel_reducer::EditChatChannelArgs>("edit_chat_channel", &value.args)?.into()),
             "edit_chat_channel_member_permission" => Ok(__sdk::parse_reducer_args::<edit_chat_channel_member_permission_reducer::EditChatChannelMemberPermissionArgs>("edit_chat_channel_member_permission", &value.args)?.into()),
             "empire_change_emblem" => Ok(__sdk::parse_reducer_args::<empire_change_emblem_reducer::EmpireChangeEmblemArgs>("empire_change_emblem", &value.args)?.into()),
@@ -5140,7 +5117,6 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "import_wind_params_desc" => Ok(__sdk::parse_reducer_args::<import_wind_params_desc_reducer::ImportWindParamsDescArgs>("import_wind_params_desc", &value.args)?.into()),
             "import_world_region_name_state" => Ok(__sdk::parse_reducer_args::<import_world_region_name_state_reducer::ImportWorldRegionNameStateArgs>("import_world_region_name_state", &value.args)?.into()),
             "import_world_region_state" => Ok(__sdk::parse_reducer_args::<import_world_region_state_reducer::ImportWorldRegionStateArgs>("import_world_region_state", &value.args)?.into()),
-            "insert_developer_identity" => Ok(__sdk::parse_reducer_args::<insert_developer_identity_reducer::InsertDeveloperIdentityArgs>("insert_developer_identity", &value.args)?.into()),
             "invite_to_chat_channel" => Ok(__sdk::parse_reducer_args::<invite_to_chat_channel_reducer::InviteToChatChannelArgs>("invite_to_chat_channel", &value.args)?.into()),
             "join_chat_channel" => Ok(__sdk::parse_reducer_args::<join_chat_channel_reducer::JoinChatChannelArgs>("join_chat_channel", &value.args)?.into()),
             "leave_chat_channel" => Ok(__sdk::parse_reducer_args::<leave_chat_channel_reducer::LeaveChatChannelArgs>("leave_chat_channel", &value.args)?.into()),
