@@ -32,34 +32,32 @@ import {
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
 
-import { InterModuleMessageV4 as __InterModuleMessageV4 } from "./inter_module_message_v_4_type";
+import { StageRewardsDesc as __StageRewardsDesc } from "./stage_rewards_desc_type";
 
-export type ProcessInterModuleMessage = {
-  sender: number,
-  message: __InterModuleMessageV4,
+export type StageStageRewardsDesc = {
+  records: __StageRewardsDesc[],
 };
 
 /**
  * A namespace for generated helper functions.
  */
-export namespace ProcessInterModuleMessage {
+export namespace StageStageRewardsDesc {
   /**
   * A function which returns this type represented as an AlgebraicType.
   * This function is derived from the AlgebraicType used to generate this type.
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("sender", AlgebraicType.createU8Type()),
-      new ProductTypeElement("message", __InterModuleMessageV4.getTypeScriptAlgebraicType()),
+      new ProductTypeElement("records", AlgebraicType.createArrayType(__StageRewardsDesc.getTypeScriptAlgebraicType())),
     ]);
   }
 
-  export function serialize(writer: BinaryWriter, value: ProcessInterModuleMessage): void {
-    ProcessInterModuleMessage.getTypeScriptAlgebraicType().serialize(writer, value);
+  export function serialize(writer: BinaryWriter, value: StageStageRewardsDesc): void {
+    StageStageRewardsDesc.getTypeScriptAlgebraicType().serialize(writer, value);
   }
 
-  export function deserialize(reader: BinaryReader): ProcessInterModuleMessage {
-    return ProcessInterModuleMessage.getTypeScriptAlgebraicType().deserialize(reader);
+  export function deserialize(reader: BinaryReader): StageStageRewardsDesc {
+    return StageStageRewardsDesc.getTypeScriptAlgebraicType().deserialize(reader);
   }
 
 }

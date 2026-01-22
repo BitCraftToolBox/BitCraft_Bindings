@@ -691,6 +691,10 @@ import { StagePrivateParametersDesc } from "./stage_private_parameters_desc_redu
 export { StagePrivateParametersDesc };
 import { StageProspectingDesc } from "./stage_prospecting_desc_reducer.ts";
 export { StageProspectingDesc };
+import { StageQuestChainDesc } from "./stage_quest_chain_desc_reducer.ts";
+export { StageQuestChainDesc };
+import { StageQuestStageDesc } from "./stage_quest_stage_desc_reducer.ts";
+export { StageQuestStageDesc };
 import { StageReservedNameDesc } from "./stage_reserved_name_desc_reducer.ts";
 export { StageReservedNameDesc };
 import { StageResourceClumpDesc } from "./stage_resource_clump_desc_reducer.ts";
@@ -705,6 +709,8 @@ import { StageSecondaryKnowledgeDesc } from "./stage_secondary_knowledge_desc_re
 export { StageSecondaryKnowledgeDesc };
 import { StageSkillDesc } from "./stage_skill_desc_reducer.ts";
 export { StageSkillDesc };
+import { StageStageRewardsDesc } from "./stage_stage_rewards_desc_reducer.ts";
+export { StageStageRewardsDesc };
 import { StageTargetingMatrixDesc } from "./stage_targeting_matrix_desc_reducer.ts";
 export { StageTargetingMatrixDesc };
 import { StageTeleportItemDesc } from "./stage_teleport_item_desc_reducer.ts";
@@ -1033,6 +1039,8 @@ import { InterModuleMessageV2TableHandle } from "./inter_module_message_v_2_tabl
 export { InterModuleMessageV2TableHandle };
 import { InterModuleMessageV3TableHandle } from "./inter_module_message_v_3_table.ts";
 export { InterModuleMessageV3TableHandle };
+import { InterModuleMessageV4TableHandle } from "./inter_module_message_v_4_table.ts";
+export { InterModuleMessageV4TableHandle };
 import { InterModuleResponseMessageCounterTableHandle } from "./inter_module_response_message_counter_table.ts";
 export { InterModuleResponseMessageCounterTableHandle };
 import { InteriorCollapseTriggerStateTableHandle } from "./interior_collapse_trigger_state_table.ts";
@@ -1221,6 +1229,12 @@ import { ProspectingStateTableHandle } from "./prospecting_state_table.ts";
 export { ProspectingStateTableHandle };
 import { PublicProgressiveActionStateTableHandle } from "./public_progressive_action_state_table.ts";
 export { PublicProgressiveActionStateTableHandle };
+import { QuestChainDescTableHandle } from "./quest_chain_desc_table.ts";
+export { QuestChainDescTableHandle };
+import { QuestChainStateTableHandle } from "./quest_chain_state_table.ts";
+export { QuestChainStateTableHandle };
+import { QuestStageDescTableHandle } from "./quest_stage_desc_table.ts";
+export { QuestStageDescTableHandle };
 import { RegionConnectionInfoTableHandle } from "./region_connection_info_table.ts";
 export { RegionConnectionInfoTableHandle };
 import { RegionPopulationInfoTableHandle } from "./region_population_info_table.ts";
@@ -1263,6 +1277,8 @@ import { SingleResourceToClumpDescTableHandle } from "./single_resource_to_clump
 export { SingleResourceToClumpDescTableHandle };
 import { SkillDescTableHandle } from "./skill_desc_table.ts";
 export { SkillDescTableHandle };
+import { StageRewardsDescTableHandle } from "./stage_rewards_desc_table.ts";
+export { StageRewardsDescTableHandle };
 import { StagedAbilityCustomDescTableHandle } from "./staged_ability_custom_desc_table.ts";
 export { StagedAbilityCustomDescTableHandle };
 import { StagedAbilityUnlockDescTableHandle } from "./staged_ability_unlock_desc_table.ts";
@@ -1413,6 +1429,10 @@ import { StagedPrivateParametersDescTableHandle } from "./staged_private_paramet
 export { StagedPrivateParametersDescTableHandle };
 import { StagedProspectingDescTableHandle } from "./staged_prospecting_desc_table.ts";
 export { StagedProspectingDescTableHandle };
+import { StagedQuestChainDescTableHandle } from "./staged_quest_chain_desc_table.ts";
+export { StagedQuestChainDescTableHandle };
+import { StagedQuestStageDescTableHandle } from "./staged_quest_stage_desc_table.ts";
+export { StagedQuestStageDescTableHandle };
 import { StagedReservedNameDescTableHandle } from "./staged_reserved_name_desc_table.ts";
 export { StagedReservedNameDescTableHandle };
 import { StagedResourceClumpDescTableHandle } from "./staged_resource_clump_desc_table.ts";
@@ -1429,6 +1449,8 @@ import { StagedSecondaryKnowledgeDescTableHandle } from "./staged_secondary_know
 export { StagedSecondaryKnowledgeDescTableHandle };
 import { StagedSkillDescTableHandle } from "./staged_skill_desc_table.ts";
 export { StagedSkillDescTableHandle };
+import { StagedStageRewardsDescTableHandle } from "./staged_stage_rewards_desc_table.ts";
+export { StagedStageRewardsDescTableHandle };
 import { StagedStaticDataTableHandle } from "./staged_static_data_table.ts";
 export { StagedStaticDataTableHandle };
 import { StagedStaticDataV2TableHandle } from "./staged_static_data_v_2_table.ts";
@@ -1729,6 +1751,8 @@ import { CollectibleDesc } from "./collectible_desc_type.ts";
 export { CollectibleDesc };
 import { CollectibleType } from "./collectible_type_type.ts";
 export { CollectibleType };
+import { ColumnPad4U64 } from "./column_pad_4_u_64_type.ts";
+export { ColumnPad4U64 };
 import { CombatActionDesc } from "./combat_action_desc_type.ts";
 export { CombatActionDesc };
 import { CombatActionDescV2 } from "./combat_action_desc_v_2_type.ts";
@@ -1741,6 +1765,8 @@ import { CombatDimensionState } from "./combat_dimension_state_type.ts";
 export { CombatDimensionState };
 import { CombatState } from "./combat_state_type.ts";
 export { CombatState };
+import { CompletionCondition } from "./completion_condition_type.ts";
+export { CompletionCondition };
 import { Config } from "./config_type.ts";
 export { Config };
 import { ConstructionRecipeDesc } from "./construction_recipe_desc_type.ts";
@@ -2023,6 +2049,8 @@ import { InterModuleMessageV2 } from "./inter_module_message_v_2_type.ts";
 export { InterModuleMessageV2 };
 import { InterModuleMessageV3 } from "./inter_module_message_v_3_type.ts";
 export { InterModuleMessageV3 };
+import { InterModuleMessageV4 } from "./inter_module_message_v_4_type.ts";
+export { InterModuleMessageV4 };
 import { InterModuleResponseMessageCounter } from "./inter_module_response_message_counter_type.ts";
 export { InterModuleResponseMessageCounter };
 import { InterModuleTableUpdates } from "./inter_module_table_updates_type.ts";
@@ -2059,6 +2087,8 @@ import { ItemListPossibility } from "./item_list_possibility_type.ts";
 export { ItemListPossibility };
 import { ItemStack } from "./item_stack_type.ts";
 export { ItemStack };
+import { ItemStackCompletionCondition } from "./item_stack_completion_condition_type.ts";
+export { ItemStackCompletionCondition };
 import { ItemType } from "./item_type_type.ts";
 export { ItemType };
 import { KnowledgeAchievementState } from "./knowledge_achievement_state_type.ts";
@@ -2143,6 +2173,8 @@ import { MessageContentsV2 } from "./message_contents_v_2_type.ts";
 export { MessageContentsV2 };
 import { MessageContentsV3 } from "./message_contents_v_3_type.ts";
 export { MessageContentsV3 };
+import { MessageContentsV4 } from "./message_contents_v_4_type.ts";
+export { MessageContentsV4 };
 import { MobileEntityState } from "./mobile_entity_state_type.ts";
 export { MobileEntityState };
 import { ModerationActionLogEntry } from "./moderation_action_log_entry_type.ts";
@@ -2315,6 +2347,16 @@ import { ProspectingState } from "./prospecting_state_type.ts";
 export { ProspectingState };
 import { PublicProgressiveActionState } from "./public_progressive_action_state_type.ts";
 export { PublicProgressiveActionState };
+import { QuestChainDesc } from "./quest_chain_desc_type.ts";
+export { QuestChainDesc };
+import { QuestChainState } from "./quest_chain_state_type.ts";
+export { QuestChainState };
+import { QuestRequirement } from "./quest_requirement_type.ts";
+export { QuestRequirement };
+import { QuestReward } from "./quest_reward_type.ts";
+export { QuestReward };
+import { QuestStageDesc } from "./quest_stage_desc_type.ts";
+export { QuestStageDesc };
 import { Rarity } from "./rarity_type.ts";
 export { Rarity };
 import { RecoverDeployableMsg } from "./recover_deployable_msg_type.ts";
@@ -2379,6 +2421,8 @@ import { SkillType } from "./skill_type_type.ts";
 export { SkillType };
 import { SmallHexTileMessage } from "./small_hex_tile_message_type.ts";
 export { SmallHexTileMessage };
+import { StageRewardsDesc } from "./stage_rewards_desc_type.ts";
+export { StageRewardsDesc };
 import { StagedStaticData } from "./staged_static_data_type.ts";
 export { StagedStaticData };
 import { StagedStaticDataV2 } from "./staged_static_data_v_2_type.ts";
@@ -2467,6 +2511,8 @@ import { TransferPlayerMsgV2 } from "./transfer_player_msg_v_2_type.ts";
 export { TransferPlayerMsgV2 };
 import { TransferPlayerMsgV3 } from "./transfer_player_msg_v_3_type.ts";
 export { TransferPlayerMsgV3 };
+import { TransferPlayerMsgV4 } from "./transfer_player_msg_v_4_type.ts";
+export { TransferPlayerMsgV4 };
 import { TravelerTaskDesc } from "./traveler_task_desc_type.ts";
 export { TravelerTaskDesc };
 import { TravelerTaskState } from "./traveler_task_state_type.ts";
@@ -3818,6 +3864,15 @@ const REMOTE_MODULE = {
         colType: InterModuleMessageV3.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    inter_module_message_v4: {
+      tableName: "inter_module_message_v4",
+      rowType: InterModuleMessageV4.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: InterModuleMessageV4.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     inter_module_response_message_counter: {
       tableName: "inter_module_response_message_counter",
       rowType: InterModuleResponseMessageCounter.getTypeScriptAlgebraicType(),
@@ -4664,6 +4719,33 @@ const REMOTE_MODULE = {
         colType: PublicProgressiveActionState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    quest_chain_desc: {
+      tableName: "quest_chain_desc",
+      rowType: QuestChainDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: QuestChainDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    quest_chain_state: {
+      tableName: "quest_chain_state",
+      rowType: QuestChainState.getTypeScriptAlgebraicType(),
+      primaryKey: "entityId",
+      primaryKeyInfo: {
+        colName: "entityId",
+        colType: QuestChainState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    quest_stage_desc: {
+      tableName: "quest_stage_desc",
+      rowType: QuestStageDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: QuestStageDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     region_connection_info: {
       tableName: "region_connection_info",
       rowType: RegionConnectionInfo.getTypeScriptAlgebraicType(),
@@ -4851,6 +4933,15 @@ const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "id",
         colType: SkillDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    stage_rewards_desc: {
+      tableName: "stage_rewards_desc",
+      rowType: StageRewardsDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: StageRewardsDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     staged_ability_custom_desc: {
@@ -5528,6 +5619,24 @@ const REMOTE_MODULE = {
         colType: ProspectingDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    staged_quest_chain_desc: {
+      tableName: "staged_quest_chain_desc",
+      rowType: QuestChainDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: QuestChainDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_quest_stage_desc: {
+      tableName: "staged_quest_stage_desc",
+      rowType: QuestStageDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: QuestStageDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     staged_reserved_name_desc: {
       tableName: "staged_reserved_name_desc",
       rowType: ReservedNameDesc.getTypeScriptAlgebraicType(),
@@ -5598,6 +5707,15 @@ const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "id",
         colType: SkillDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_stage_rewards_desc: {
+      tableName: "staged_stage_rewards_desc",
+      rowType: StageRewardsDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: StageRewardsDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     staged_static_data: {
@@ -7440,6 +7558,14 @@ const REMOTE_MODULE = {
       reducerName: "stage_prospecting_desc",
       argsType: StageProspectingDesc.getTypeScriptAlgebraicType(),
     },
+    stage_quest_chain_desc: {
+      reducerName: "stage_quest_chain_desc",
+      argsType: StageQuestChainDesc.getTypeScriptAlgebraicType(),
+    },
+    stage_quest_stage_desc: {
+      reducerName: "stage_quest_stage_desc",
+      argsType: StageQuestStageDesc.getTypeScriptAlgebraicType(),
+    },
     stage_reserved_name_desc: {
       reducerName: "stage_reserved_name_desc",
       argsType: StageReservedNameDesc.getTypeScriptAlgebraicType(),
@@ -7467,6 +7593,10 @@ const REMOTE_MODULE = {
     stage_skill_desc: {
       reducerName: "stage_skill_desc",
       argsType: StageSkillDesc.getTypeScriptAlgebraicType(),
+    },
+    stage_stage_rewards_desc: {
+      reducerName: "stage_stage_rewards_desc",
+      argsType: StageStageRewardsDesc.getTypeScriptAlgebraicType(),
     },
     stage_targeting_matrix_desc: {
       reducerName: "stage_targeting_matrix_desc",
@@ -7903,6 +8033,8 @@ export type Reducer = never
 | { name: "StagePremiumServiceDesc", args: StagePremiumServiceDesc }
 | { name: "StagePrivateParametersDesc", args: StagePrivateParametersDesc }
 | { name: "StageProspectingDesc", args: StageProspectingDesc }
+| { name: "StageQuestChainDesc", args: StageQuestChainDesc }
+| { name: "StageQuestStageDesc", args: StageQuestStageDesc }
 | { name: "StageReservedNameDesc", args: StageReservedNameDesc }
 | { name: "StageResourceClumpDesc", args: StageResourceClumpDesc }
 | { name: "StageResourceDesc", args: StageResourceDesc }
@@ -7910,6 +8042,7 @@ export type Reducer = never
 | { name: "StageResourcePlacementRecipeDescV2", args: StageResourcePlacementRecipeDescV2 }
 | { name: "StageSecondaryKnowledgeDesc", args: StageSecondaryKnowledgeDesc }
 | { name: "StageSkillDesc", args: StageSkillDesc }
+| { name: "StageStageRewardsDesc", args: StageStageRewardsDesc }
 | { name: "StageTargetingMatrixDesc", args: StageTargetingMatrixDesc }
 | { name: "StageTeleportItemDesc", args: StageTeleportItemDesc }
 | { name: "StageTerraformRecipeDesc", args: StageTerraformRecipeDesc }
@@ -11782,7 +11915,7 @@ export class RemoteReducers {
     this.connection.offReducer("player_vote_conclude", callback);
   }
 
-  processInterModuleMessage(sender: number, message: InterModuleMessageV3) {
+  processInterModuleMessage(sender: number, message: InterModuleMessageV4) {
     const __args = { sender, message };
     let __writer = new BinaryWriter(1024);
     ProcessInterModuleMessage.getTypeScriptAlgebraicType().serialize(__writer, __args);
@@ -11790,11 +11923,11 @@ export class RemoteReducers {
     this.connection.callReducer("process_inter_module_message", __argsBuffer, this.setCallReducerFlags.processInterModuleMessageFlags);
   }
 
-  onProcessInterModuleMessage(callback: (ctx: ReducerEventContext, sender: number, message: InterModuleMessageV3) => void) {
+  onProcessInterModuleMessage(callback: (ctx: ReducerEventContext, sender: number, message: InterModuleMessageV4) => void) {
     this.connection.onReducer("process_inter_module_message", callback);
   }
 
-  removeOnProcessInterModuleMessage(callback: (ctx: ReducerEventContext, sender: number, message: InterModuleMessageV3) => void) {
+  removeOnProcessInterModuleMessage(callback: (ctx: ReducerEventContext, sender: number, message: InterModuleMessageV4) => void) {
     this.connection.offReducer("process_inter_module_message", callback);
   }
 
@@ -13142,6 +13275,38 @@ export class RemoteReducers {
     this.connection.offReducer("stage_prospecting_desc", callback);
   }
 
+  stageQuestChainDesc(records: QuestChainDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    StageQuestChainDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("stage_quest_chain_desc", __argsBuffer, this.setCallReducerFlags.stageQuestChainDescFlags);
+  }
+
+  onStageQuestChainDesc(callback: (ctx: ReducerEventContext, records: QuestChainDesc[]) => void) {
+    this.connection.onReducer("stage_quest_chain_desc", callback);
+  }
+
+  removeOnStageQuestChainDesc(callback: (ctx: ReducerEventContext, records: QuestChainDesc[]) => void) {
+    this.connection.offReducer("stage_quest_chain_desc", callback);
+  }
+
+  stageQuestStageDesc(records: QuestStageDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    StageQuestStageDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("stage_quest_stage_desc", __argsBuffer, this.setCallReducerFlags.stageQuestStageDescFlags);
+  }
+
+  onStageQuestStageDesc(callback: (ctx: ReducerEventContext, records: QuestStageDesc[]) => void) {
+    this.connection.onReducer("stage_quest_stage_desc", callback);
+  }
+
+  removeOnStageQuestStageDesc(callback: (ctx: ReducerEventContext, records: QuestStageDesc[]) => void) {
+    this.connection.offReducer("stage_quest_stage_desc", callback);
+  }
+
   stageReservedNameDesc(records: ReservedNameDesc[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
@@ -13252,6 +13417,22 @@ export class RemoteReducers {
 
   removeOnStageSkillDesc(callback: (ctx: ReducerEventContext, records: SkillDesc[]) => void) {
     this.connection.offReducer("stage_skill_desc", callback);
+  }
+
+  stageStageRewardsDesc(records: StageRewardsDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    StageStageRewardsDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("stage_stage_rewards_desc", __argsBuffer, this.setCallReducerFlags.stageStageRewardsDescFlags);
+  }
+
+  onStageStageRewardsDesc(callback: (ctx: ReducerEventContext, records: StageRewardsDesc[]) => void) {
+    this.connection.onReducer("stage_stage_rewards_desc", callback);
+  }
+
+  removeOnStageStageRewardsDesc(callback: (ctx: ReducerEventContext, records: StageRewardsDesc[]) => void) {
+    this.connection.offReducer("stage_stage_rewards_desc", callback);
   }
 
   stageTargetingMatrixDesc(records: TargetingMatrixDesc[]) {
@@ -15192,6 +15373,16 @@ export class SetReducerFlags {
     this.stageProspectingDescFlags = flags;
   }
 
+  stageQuestChainDescFlags: CallReducerFlags = 'FullUpdate';
+  stageQuestChainDesc(flags: CallReducerFlags) {
+    this.stageQuestChainDescFlags = flags;
+  }
+
+  stageQuestStageDescFlags: CallReducerFlags = 'FullUpdate';
+  stageQuestStageDesc(flags: CallReducerFlags) {
+    this.stageQuestStageDescFlags = flags;
+  }
+
   stageReservedNameDescFlags: CallReducerFlags = 'FullUpdate';
   stageReservedNameDesc(flags: CallReducerFlags) {
     this.stageReservedNameDescFlags = flags;
@@ -15225,6 +15416,11 @@ export class SetReducerFlags {
   stageSkillDescFlags: CallReducerFlags = 'FullUpdate';
   stageSkillDesc(flags: CallReducerFlags) {
     this.stageSkillDescFlags = flags;
+  }
+
+  stageStageRewardsDescFlags: CallReducerFlags = 'FullUpdate';
+  stageStageRewardsDesc(flags: CallReducerFlags) {
+    this.stageStageRewardsDescFlags = flags;
   }
 
   stageTargetingMatrixDescFlags: CallReducerFlags = 'FullUpdate';
@@ -15903,6 +16099,10 @@ export class RemoteTables {
     return new InterModuleMessageV3TableHandle(this.connection.clientCache.getOrCreateTable<InterModuleMessageV3>(REMOTE_MODULE.tables.inter_module_message_v3));
   }
 
+  get interModuleMessageV4(): InterModuleMessageV4TableHandle {
+    return new InterModuleMessageV4TableHandle(this.connection.clientCache.getOrCreateTable<InterModuleMessageV4>(REMOTE_MODULE.tables.inter_module_message_v4));
+  }
+
   get interModuleResponseMessageCounter(): InterModuleResponseMessageCounterTableHandle {
     return new InterModuleResponseMessageCounterTableHandle(this.connection.clientCache.getOrCreateTable<InterModuleResponseMessageCounter>(REMOTE_MODULE.tables.inter_module_response_message_counter));
   }
@@ -16279,6 +16479,18 @@ export class RemoteTables {
     return new PublicProgressiveActionStateTableHandle(this.connection.clientCache.getOrCreateTable<PublicProgressiveActionState>(REMOTE_MODULE.tables.public_progressive_action_state));
   }
 
+  get questChainDesc(): QuestChainDescTableHandle {
+    return new QuestChainDescTableHandle(this.connection.clientCache.getOrCreateTable<QuestChainDesc>(REMOTE_MODULE.tables.quest_chain_desc));
+  }
+
+  get questChainState(): QuestChainStateTableHandle {
+    return new QuestChainStateTableHandle(this.connection.clientCache.getOrCreateTable<QuestChainState>(REMOTE_MODULE.tables.quest_chain_state));
+  }
+
+  get questStageDesc(): QuestStageDescTableHandle {
+    return new QuestStageDescTableHandle(this.connection.clientCache.getOrCreateTable<QuestStageDesc>(REMOTE_MODULE.tables.quest_stage_desc));
+  }
+
   get regionConnectionInfo(): RegionConnectionInfoTableHandle {
     return new RegionConnectionInfoTableHandle(this.connection.clientCache.getOrCreateTable<RegionConnectionInfo>(REMOTE_MODULE.tables.region_connection_info));
   }
@@ -16361,6 +16573,10 @@ export class RemoteTables {
 
   get skillDesc(): SkillDescTableHandle {
     return new SkillDescTableHandle(this.connection.clientCache.getOrCreateTable<SkillDesc>(REMOTE_MODULE.tables.skill_desc));
+  }
+
+  get stageRewardsDesc(): StageRewardsDescTableHandle {
+    return new StageRewardsDescTableHandle(this.connection.clientCache.getOrCreateTable<StageRewardsDesc>(REMOTE_MODULE.tables.stage_rewards_desc));
   }
 
   get stagedAbilityCustomDesc(): StagedAbilityCustomDescTableHandle {
@@ -16663,6 +16879,14 @@ export class RemoteTables {
     return new StagedProspectingDescTableHandle(this.connection.clientCache.getOrCreateTable<ProspectingDesc>(REMOTE_MODULE.tables.staged_prospecting_desc));
   }
 
+  get stagedQuestChainDesc(): StagedQuestChainDescTableHandle {
+    return new StagedQuestChainDescTableHandle(this.connection.clientCache.getOrCreateTable<QuestChainDesc>(REMOTE_MODULE.tables.staged_quest_chain_desc));
+  }
+
+  get stagedQuestStageDesc(): StagedQuestStageDescTableHandle {
+    return new StagedQuestStageDescTableHandle(this.connection.clientCache.getOrCreateTable<QuestStageDesc>(REMOTE_MODULE.tables.staged_quest_stage_desc));
+  }
+
   get stagedReservedNameDesc(): StagedReservedNameDescTableHandle {
     return new StagedReservedNameDescTableHandle(this.connection.clientCache.getOrCreateTable<ReservedNameDesc>(REMOTE_MODULE.tables.staged_reserved_name_desc));
   }
@@ -16693,6 +16917,10 @@ export class RemoteTables {
 
   get stagedSkillDesc(): StagedSkillDescTableHandle {
     return new StagedSkillDescTableHandle(this.connection.clientCache.getOrCreateTable<SkillDesc>(REMOTE_MODULE.tables.staged_skill_desc));
+  }
+
+  get stagedStageRewardsDesc(): StagedStageRewardsDescTableHandle {
+    return new StagedStageRewardsDescTableHandle(this.connection.clientCache.getOrCreateTable<StageRewardsDesc>(REMOTE_MODULE.tables.staged_stage_rewards_desc));
   }
 
   get stagedStaticData(): StagedStaticDataTableHandle {

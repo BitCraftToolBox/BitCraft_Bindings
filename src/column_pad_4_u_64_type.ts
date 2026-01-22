@@ -31,36 +31,38 @@ import {
   type ReducerEventContextInterface,
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
-
-import { InterModuleMessageV4 as __InterModuleMessageV4 } from "./inter_module_message_v_4_type";
-
-export type ProcessInterModuleMessage = {
-  sender: number,
-  message: __InterModuleMessageV4,
+export type ColumnPad4U64 = {
+  pad0: bigint,
+  pad1: bigint,
+  pad2: bigint,
+  pad3: bigint,
 };
 
 /**
  * A namespace for generated helper functions.
  */
-export namespace ProcessInterModuleMessage {
+export namespace ColumnPad4U64 {
   /**
   * A function which returns this type represented as an AlgebraicType.
   * This function is derived from the AlgebraicType used to generate this type.
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("sender", AlgebraicType.createU8Type()),
-      new ProductTypeElement("message", __InterModuleMessageV4.getTypeScriptAlgebraicType()),
+      new ProductTypeElement("pad0", AlgebraicType.createU64Type()),
+      new ProductTypeElement("pad1", AlgebraicType.createU64Type()),
+      new ProductTypeElement("pad2", AlgebraicType.createU64Type()),
+      new ProductTypeElement("pad3", AlgebraicType.createU64Type()),
     ]);
   }
 
-  export function serialize(writer: BinaryWriter, value: ProcessInterModuleMessage): void {
-    ProcessInterModuleMessage.getTypeScriptAlgebraicType().serialize(writer, value);
+  export function serialize(writer: BinaryWriter, value: ColumnPad4U64): void {
+    ColumnPad4U64.getTypeScriptAlgebraicType().serialize(writer, value);
   }
 
-  export function deserialize(reader: BinaryReader): ProcessInterModuleMessage {
-    return ProcessInterModuleMessage.getTypeScriptAlgebraicType().deserialize(reader);
+  export function deserialize(reader: BinaryReader): ColumnPad4U64 {
+    return ColumnPad4U64.getTypeScriptAlgebraicType().deserialize(reader);
   }
 
 }
+
 

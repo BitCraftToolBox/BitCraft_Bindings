@@ -45,6 +45,7 @@ export namespace AbilityType {
   export type Equip = { tag: "Equip", value: number };
   export type DeployableDeploy = { tag: "DeployableDeploy", value: number };
   export type AddToToolbelt = { tag: "AddToToolbelt", value: number };
+  export type DeployableToggle = { tag: "DeployableToggle", value: number };
 
   // Helper functions for constructing each variant of the tagged union.
   // ```
@@ -61,6 +62,7 @@ export namespace AbilityType {
   export const Equip = (value: number): AbilityType => ({ tag: "Equip", value });
   export const DeployableDeploy = (value: number): AbilityType => ({ tag: "DeployableDeploy", value });
   export const AddToToolbelt = (value: number): AbilityType => ({ tag: "AddToToolbelt", value });
+  export const DeployableToggle = (value: number): AbilityType => ({ tag: "DeployableToggle", value });
 
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createSumType([
@@ -73,6 +75,7 @@ export namespace AbilityType {
       new SumTypeVariant("Equip", AlgebraicType.createI32Type()),
       new SumTypeVariant("DeployableDeploy", AlgebraicType.createI32Type()),
       new SumTypeVariant("AddToToolbelt", AlgebraicType.createI32Type()),
+      new SumTypeVariant("DeployableToggle", AlgebraicType.createI32Type()),
     ]);
   }
 
@@ -87,7 +90,7 @@ export namespace AbilityType {
 }
 
 // The tagged union or sum type for the algebraic type `AbilityType`.
-export type AbilityType = AbilityType.Unsupported | AbilityType.Eat | AbilityType.CombatAction | AbilityType.AutoAttack | AbilityType.Custom | AbilityType.Prospecting | AbilityType.Equip | AbilityType.DeployableDeploy | AbilityType.AddToToolbelt;
+export type AbilityType = AbilityType.Unsupported | AbilityType.Eat | AbilityType.CombatAction | AbilityType.AutoAttack | AbilityType.Custom | AbilityType.Prospecting | AbilityType.Equip | AbilityType.DeployableDeploy | AbilityType.AddToToolbelt | AbilityType.DeployableToggle;
 
 export default AbilityType;
 
