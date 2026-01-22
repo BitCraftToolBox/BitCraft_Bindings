@@ -46,6 +46,7 @@ export namespace AbilityTypeEnum {
   export type Equip = { tag: "Equip" };
   export type DeployableDeploy = { tag: "DeployableDeploy" };
   export type AddToToolbelt = { tag: "AddToToolbelt" };
+  export type DeployableToggle = { tag: "DeployableToggle" };
 
   // Helper functions for constructing each variant of the tagged union.
   // ```
@@ -63,6 +64,7 @@ export namespace AbilityTypeEnum {
   export const Equip = { tag: "Equip" };
   export const DeployableDeploy = { tag: "DeployableDeploy" };
   export const AddToToolbelt = { tag: "AddToToolbelt" };
+  export const DeployableToggle = { tag: "DeployableToggle" };
 
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createSumType([
@@ -76,6 +78,7 @@ export namespace AbilityTypeEnum {
       new SumTypeVariant("Equip", AlgebraicType.createProductType([])),
       new SumTypeVariant("DeployableDeploy", AlgebraicType.createProductType([])),
       new SumTypeVariant("AddToToolbelt", AlgebraicType.createProductType([])),
+      new SumTypeVariant("DeployableToggle", AlgebraicType.createProductType([])),
     ]);
   }
 
@@ -90,7 +93,7 @@ export namespace AbilityTypeEnum {
 }
 
 // The tagged union or sum type for the algebraic type `AbilityTypeEnum`.
-export type AbilityTypeEnum = AbilityTypeEnum.Unsupported | AbilityTypeEnum.Eat | AbilityTypeEnum.CombatAction | AbilityTypeEnum.AutoAttack | AbilityTypeEnum.SelfBuff | AbilityTypeEnum.Custom | AbilityTypeEnum.Prospecting | AbilityTypeEnum.Equip | AbilityTypeEnum.DeployableDeploy | AbilityTypeEnum.AddToToolbelt;
+export type AbilityTypeEnum = AbilityTypeEnum.Unsupported | AbilityTypeEnum.Eat | AbilityTypeEnum.CombatAction | AbilityTypeEnum.AutoAttack | AbilityTypeEnum.SelfBuff | AbilityTypeEnum.Custom | AbilityTypeEnum.Prospecting | AbilityTypeEnum.Equip | AbilityTypeEnum.DeployableDeploy | AbilityTypeEnum.AddToToolbelt | AbilityTypeEnum.DeployableToggle;
 
 export default AbilityTypeEnum;
 

@@ -32,34 +32,27 @@ import {
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
 
-import { InterModuleMessageV4 as __InterModuleMessageV4 } from "./inter_module_message_v_4_type";
-
-export type ProcessInterModuleMessage = {
-  sender: number,
-  message: __InterModuleMessageV4,
-};
+export type SkipOnboarding = {};
 
 /**
  * A namespace for generated helper functions.
  */
-export namespace ProcessInterModuleMessage {
+export namespace SkipOnboarding {
   /**
   * A function which returns this type represented as an AlgebraicType.
   * This function is derived from the AlgebraicType used to generate this type.
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("sender", AlgebraicType.createU8Type()),
-      new ProductTypeElement("message", __InterModuleMessageV4.getTypeScriptAlgebraicType()),
     ]);
   }
 
-  export function serialize(writer: BinaryWriter, value: ProcessInterModuleMessage): void {
-    ProcessInterModuleMessage.getTypeScriptAlgebraicType().serialize(writer, value);
+  export function serialize(writer: BinaryWriter, value: SkipOnboarding): void {
+    SkipOnboarding.getTypeScriptAlgebraicType().serialize(writer, value);
   }
 
-  export function deserialize(reader: BinaryReader): ProcessInterModuleMessage {
-    return ProcessInterModuleMessage.getTypeScriptAlgebraicType().deserialize(reader);
+  export function deserialize(reader: BinaryReader): SkipOnboarding {
+    return SkipOnboarding.getTypeScriptAlgebraicType().deserialize(reader);
   }
 
 }

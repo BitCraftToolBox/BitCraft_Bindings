@@ -31,36 +31,38 @@ import {
   type ReducerEventContextInterface,
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
+import { MessageContentsV4 as __MessageContentsV4 } from "./message_contents_v_4_type";
 
-import { InterModuleMessageV4 as __InterModuleMessageV4 } from "./inter_module_message_v_4_type";
-
-export type ProcessInterModuleMessage = {
-  sender: number,
-  message: __InterModuleMessageV4,
+export type InterModuleMessageV4 = {
+  id: bigint,
+  to: number,
+  contents: __MessageContentsV4,
 };
 
 /**
  * A namespace for generated helper functions.
  */
-export namespace ProcessInterModuleMessage {
+export namespace InterModuleMessageV4 {
   /**
   * A function which returns this type represented as an AlgebraicType.
   * This function is derived from the AlgebraicType used to generate this type.
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("sender", AlgebraicType.createU8Type()),
-      new ProductTypeElement("message", __InterModuleMessageV4.getTypeScriptAlgebraicType()),
+      new ProductTypeElement("id", AlgebraicType.createU64Type()),
+      new ProductTypeElement("to", AlgebraicType.createU8Type()),
+      new ProductTypeElement("contents", __MessageContentsV4.getTypeScriptAlgebraicType()),
     ]);
   }
 
-  export function serialize(writer: BinaryWriter, value: ProcessInterModuleMessage): void {
-    ProcessInterModuleMessage.getTypeScriptAlgebraicType().serialize(writer, value);
+  export function serialize(writer: BinaryWriter, value: InterModuleMessageV4): void {
+    InterModuleMessageV4.getTypeScriptAlgebraicType().serialize(writer, value);
   }
 
-  export function deserialize(reader: BinaryReader): ProcessInterModuleMessage {
-    return ProcessInterModuleMessage.getTypeScriptAlgebraicType().deserialize(reader);
+  export function deserialize(reader: BinaryReader): InterModuleMessageV4 {
+    return InterModuleMessageV4.getTypeScriptAlgebraicType().deserialize(reader);
   }
 
 }
+
 

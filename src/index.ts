@@ -177,6 +177,8 @@ import { AdminUpdateLightSourceStates } from "./admin_update_light_source_states
 export { AdminUpdateLightSourceStates };
 import { AdminUpdateLoreKnowledge } from "./admin_update_lore_knowledge_reducer.ts";
 export { AdminUpdateLoreKnowledge };
+import { AdvanceQuestStage } from "./advance_quest_stage_reducer.ts";
+export { AdvanceQuestStage };
 import { Attack } from "./attack_reducer.ts";
 export { Attack };
 import { AttackImpact } from "./attack_impact_reducer.ts";
@@ -281,6 +283,14 @@ import { CheatPillarShapingDestroy } from "./cheat_pillar_shaping_destroy_reduce
 export { CheatPillarShapingDestroy };
 import { CheatProjectSiteAddAllMaterials } from "./cheat_project_site_add_all_materials_reducer.ts";
 export { CheatProjectSiteAddAllMaterials };
+import { CheatQuestAdvanceToHandin } from "./cheat_quest_advance_to_handin_reducer.ts";
+export { CheatQuestAdvanceToHandin };
+import { CheatQuestRestart } from "./cheat_quest_restart_reducer.ts";
+export { CheatQuestRestart };
+import { CheatQuestSkip } from "./cheat_quest_skip_reducer.ts";
+export { CheatQuestSkip };
+import { CheatQuestSkipStage } from "./cheat_quest_skip_stage_reducer.ts";
+export { CheatQuestSkipStage };
 import { CheatRemoveEntityBuilding } from "./cheat_remove_entity_building_reducer.ts";
 export { CheatRemoveEntityBuilding };
 import { CheatRemoveEntityEnemy } from "./cheat_remove_entity_enemy_reducer.ts";
@@ -365,6 +375,8 @@ import { CompleteOnboardingQuest } from "./complete_onboarding_quest_reducer.ts"
 export { CompleteOnboardingQuest };
 import { CompleteOnboardingState } from "./complete_onboarding_state_reducer.ts";
 export { CompleteOnboardingState };
+import { CompleteQuestChain } from "./complete_quest_chain_reducer.ts";
+export { CompleteQuestChain };
 import { ConvertCollectibleToDeed } from "./convert_collectible_to_deed_reducer.ts";
 export { ConvertCollectibleToDeed };
 import { ConvertDeedToCollectible } from "./convert_deed_to_collectible_reducer.ts";
@@ -789,6 +801,10 @@ import { ImportProjectSiteState } from "./import_project_site_state_reducer.ts";
 export { ImportProjectSiteState };
 import { ImportProspectingDesc } from "./import_prospecting_desc_reducer.ts";
 export { ImportProspectingDesc };
+import { ImportQuestChainDesc } from "./import_quest_chain_desc_reducer.ts";
+export { ImportQuestChainDesc };
+import { ImportQuestStageDesc } from "./import_quest_stage_desc_reducer.ts";
+export { ImportQuestStageDesc };
 import { ImportRentState } from "./import_rent_state_reducer.ts";
 export { ImportRentState };
 import { ImportReservedNameDesc } from "./import_reserved_name_desc_reducer.ts";
@@ -817,6 +833,8 @@ import { ImportSignedInPlayerState } from "./import_signed_in_player_state_reduc
 export { ImportSignedInPlayerState };
 import { ImportSkillDesc } from "./import_skill_desc_reducer.ts";
 export { ImportSkillDesc };
+import { ImportStageRewardsDesc } from "./import_stage_rewards_desc_reducer.ts";
+export { ImportStageRewardsDesc };
 import { ImportStaminaState } from "./import_stamina_state_reducer.ts";
 export { ImportStaminaState };
 import { ImportTargetState } from "./import_target_state_reducer.ts";
@@ -911,6 +929,8 @@ import { MigrateClaimTech } from "./migrate_claim_tech_reducer.ts";
 export { MigrateClaimTech };
 import { MigrateGrantDefaultCollectibles } from "./migrate_grant_default_collectibles_reducer.ts";
 export { MigrateGrantDefaultCollectibles };
+import { MigrateOnboarding } from "./migrate_onboarding_reducer.ts";
+export { MigrateOnboarding };
 import { MigratePlayerSettings } from "./migrate_player_settings_reducer.ts";
 export { MigratePlayerSettings };
 import { MigrationSetAchievementParams } from "./migration_set_achievement_params_reducer.ts";
@@ -1087,6 +1107,8 @@ import { ReportEntity } from "./report_entity_reducer.ts";
 export { ReportEntity };
 import { ReportPlayer } from "./report_player_reducer.ts";
 export { ReportPlayer };
+import { RequestStageReward } from "./request_stage_reward_reducer.ts";
+export { RequestStageReward };
 import { ResetChunkIndex } from "./reset_chunk_index_reducer.ts";
 export { ResetChunkIndex };
 import { ResetChunkIndexWithDimension } from "./reset_chunk_index_with_dimension_reducer.ts";
@@ -1117,10 +1139,14 @@ import { ServerTeleportPlayer } from "./server_teleport_player_reducer.ts";
 export { ServerTeleportPlayer };
 import { SetHome } from "./set_home_reducer.ts";
 export { SetHome };
+import { SetQuestChainActive } from "./set_quest_chain_active_reducer.ts";
+export { SetQuestChainActive };
 import { SignIn } from "./sign_in_reducer.ts";
 export { SignIn };
 import { SignOut } from "./sign_out_reducer.ts";
 export { SignOut };
+import { SkipOnboarding } from "./skip_onboarding_reducer.ts";
+export { SkipOnboarding };
 import { Sleep } from "./sleep_reducer.ts";
 export { Sleep };
 import { StageAbilityCustomDesc } from "./stage_ability_custom_desc_reducer.ts";
@@ -1269,6 +1295,10 @@ import { StagePrivateParametersDesc } from "./stage_private_parameters_desc_redu
 export { StagePrivateParametersDesc };
 import { StageProspectingDesc } from "./stage_prospecting_desc_reducer.ts";
 export { StageProspectingDesc };
+import { StageQuestChainDesc } from "./stage_quest_chain_desc_reducer.ts";
+export { StageQuestChainDesc };
+import { StageQuestStageDesc } from "./stage_quest_stage_desc_reducer.ts";
+export { StageQuestStageDesc };
 import { StageReservedNameDesc } from "./stage_reserved_name_desc_reducer.ts";
 export { StageReservedNameDesc };
 import { StageResourceClumpDesc } from "./stage_resource_clump_desc_reducer.ts";
@@ -1283,6 +1313,8 @@ import { StageSecondaryKnowledgeDesc } from "./stage_secondary_knowledge_desc_re
 export { StageSecondaryKnowledgeDesc };
 import { StageSkillDesc } from "./stage_skill_desc_reducer.ts";
 export { StageSkillDesc };
+import { StageStageRewardsDesc } from "./stage_stage_rewards_desc_reducer.ts";
+export { StageStageRewardsDesc };
 import { StageTargetingMatrixDesc } from "./stage_targeting_matrix_desc_reducer.ts";
 export { StageTargetingMatrixDesc };
 import { StageTeleportItemDesc } from "./stage_teleport_item_desc_reducer.ts";
@@ -1311,6 +1343,8 @@ import { StartGeneratingWorld } from "./start_generating_world_reducer.ts";
 export { StartGeneratingWorld };
 import { StartOnboardingQuest } from "./start_onboarding_quest_reducer.ts";
 export { StartOnboardingQuest };
+import { StartQuestChain } from "./start_quest_chain_reducer.ts";
+export { StartQuestChain };
 import { StarvingAgentLoop } from "./starving_agent_loop_reducer.ts";
 export { StarvingAgentLoop };
 import { StopAgents } from "./stop_agents_reducer.ts";
@@ -1671,6 +1705,8 @@ import { InterModuleMessageV2TableHandle } from "./inter_module_message_v_2_tabl
 export { InterModuleMessageV2TableHandle };
 import { InterModuleMessageV3TableHandle } from "./inter_module_message_v_3_table.ts";
 export { InterModuleMessageV3TableHandle };
+import { InterModuleMessageV4TableHandle } from "./inter_module_message_v_4_table.ts";
+export { InterModuleMessageV4TableHandle };
 import { InterModuleResponseMessageCounterTableHandle } from "./inter_module_response_message_counter_table.ts";
 export { InterModuleResponseMessageCounterTableHandle };
 import { InteriorCollapseTriggerStateTableHandle } from "./interior_collapse_trigger_state_table.ts";
@@ -1885,6 +1921,12 @@ import { ProspectingStateTableHandle } from "./prospecting_state_table.ts";
 export { ProspectingStateTableHandle };
 import { PublicProgressiveActionStateTableHandle } from "./public_progressive_action_state_table.ts";
 export { PublicProgressiveActionStateTableHandle };
+import { QuestChainDescTableHandle } from "./quest_chain_desc_table.ts";
+export { QuestChainDescTableHandle };
+import { QuestChainStateTableHandle } from "./quest_chain_state_table.ts";
+export { QuestChainStateTableHandle };
+import { QuestStageDescTableHandle } from "./quest_stage_desc_table.ts";
+export { QuestStageDescTableHandle };
 import { RegionConnectionInfoTableHandle } from "./region_connection_info_table.ts";
 export { RegionConnectionInfoTableHandle };
 import { RegionPopulationInfoTableHandle } from "./region_population_info_table.ts";
@@ -1947,6 +1989,8 @@ import { SingleResourceToClumpDescTableHandle } from "./single_resource_to_clump
 export { SingleResourceToClumpDescTableHandle };
 import { SkillDescTableHandle } from "./skill_desc_table.ts";
 export { SkillDescTableHandle };
+import { StageRewardsDescTableHandle } from "./stage_rewards_desc_table.ts";
+export { StageRewardsDescTableHandle };
 import { StagedAbilityCustomDescTableHandle } from "./staged_ability_custom_desc_table.ts";
 export { StagedAbilityCustomDescTableHandle };
 import { StagedAbilityUnlockDescTableHandle } from "./staged_ability_unlock_desc_table.ts";
@@ -2097,6 +2141,10 @@ import { StagedPrivateParametersDescTableHandle } from "./staged_private_paramet
 export { StagedPrivateParametersDescTableHandle };
 import { StagedProspectingDescTableHandle } from "./staged_prospecting_desc_table.ts";
 export { StagedProspectingDescTableHandle };
+import { StagedQuestChainDescTableHandle } from "./staged_quest_chain_desc_table.ts";
+export { StagedQuestChainDescTableHandle };
+import { StagedQuestStageDescTableHandle } from "./staged_quest_stage_desc_table.ts";
+export { StagedQuestStageDescTableHandle };
 import { StagedReservedNameDescTableHandle } from "./staged_reserved_name_desc_table.ts";
 export { StagedReservedNameDescTableHandle };
 import { StagedResourceClumpDescTableHandle } from "./staged_resource_clump_desc_table.ts";
@@ -2113,6 +2161,8 @@ import { StagedSecondaryKnowledgeDescTableHandle } from "./staged_secondary_know
 export { StagedSecondaryKnowledgeDescTableHandle };
 import { StagedSkillDescTableHandle } from "./staged_skill_desc_table.ts";
 export { StagedSkillDescTableHandle };
+import { StagedStageRewardsDescTableHandle } from "./staged_stage_rewards_desc_table.ts";
+export { StagedStageRewardsDescTableHandle };
 import { StagedStaticDataTableHandle } from "./staged_static_data_table.ts";
 export { StagedStaticDataTableHandle };
 import { StagedStaticDataV2TableHandle } from "./staged_static_data_v_2_table.ts";
@@ -2471,6 +2521,8 @@ import { CollectibleDesc } from "./collectible_desc_type.ts";
 export { CollectibleDesc };
 import { CollectibleType } from "./collectible_type_type.ts";
 export { CollectibleType };
+import { ColumnPad4U64 } from "./column_pad_4_u_64_type.ts";
+export { ColumnPad4U64 };
 import { CombatActionDesc } from "./combat_action_desc_type.ts";
 export { CombatActionDesc };
 import { CombatActionDescV2 } from "./combat_action_desc_v_2_type.ts";
@@ -2485,6 +2537,8 @@ import { CombatState } from "./combat_state_type.ts";
 export { CombatState };
 import { CommonRng } from "./common_rng_type.ts";
 export { CommonRng };
+import { CompletionCondition } from "./completion_condition_type.ts";
+export { CompletionCondition };
 import { Config } from "./config_type.ts";
 export { Config };
 import { ConstructionRecipeDesc } from "./construction_recipe_desc_type.ts";
@@ -2769,6 +2823,8 @@ import { InterModuleMessageV2 } from "./inter_module_message_v_2_type.ts";
 export { InterModuleMessageV2 };
 import { InterModuleMessageV3 } from "./inter_module_message_v_3_type.ts";
 export { InterModuleMessageV3 };
+import { InterModuleMessageV4 } from "./inter_module_message_v_4_type.ts";
+export { InterModuleMessageV4 };
 import { InterModuleResponseMessageCounter } from "./inter_module_response_message_counter_type.ts";
 export { InterModuleResponseMessageCounter };
 import { InterModuleTableUpdates } from "./inter_module_table_updates_type.ts";
@@ -2807,6 +2863,8 @@ import { ItemListPossibility } from "./item_list_possibility_type.ts";
 export { ItemListPossibility };
 import { ItemStack } from "./item_stack_type.ts";
 export { ItemStack };
+import { ItemStackCompletionCondition } from "./item_stack_completion_condition_type.ts";
+export { ItemStackCompletionCondition };
 import { ItemType } from "./item_type_type.ts";
 export { ItemType };
 import { KnowledgeAchievementState } from "./knowledge_achievement_state_type.ts";
@@ -2897,6 +2955,8 @@ import { MessageContentsV2 } from "./message_contents_v_2_type.ts";
 export { MessageContentsV2 };
 import { MessageContentsV3 } from "./message_contents_v_3_type.ts";
 export { MessageContentsV3 };
+import { MessageContentsV4 } from "./message_contents_v_4_type.ts";
+export { MessageContentsV4 };
 import { MigrationAchievementsParams } from "./migration_achievements_params_type.ts";
 export { MigrationAchievementsParams };
 import { MigrationBuildingDescParams } from "./migration_building_desc_params_type.ts";
@@ -3273,6 +3333,16 @@ import { ProspectingState } from "./prospecting_state_type.ts";
 export { ProspectingState };
 import { PublicProgressiveActionState } from "./public_progressive_action_state_type.ts";
 export { PublicProgressiveActionState };
+import { QuestChainDesc } from "./quest_chain_desc_type.ts";
+export { QuestChainDesc };
+import { QuestChainState } from "./quest_chain_state_type.ts";
+export { QuestChainState };
+import { QuestRequirement } from "./quest_requirement_type.ts";
+export { QuestRequirement };
+import { QuestReward } from "./quest_reward_type.ts";
+export { QuestReward };
+import { QuestStageDesc } from "./quest_stage_desc_type.ts";
+export { QuestStageDesc };
 import { Rarity } from "./rarity_type.ts";
 export { Rarity };
 import { RecoverDeployableMsg } from "./recover_deployable_msg_type.ts";
@@ -3393,6 +3463,8 @@ import { SmallHexTileMessage } from "./small_hex_tile_message_type.ts";
 export { SmallHexTileMessage };
 import { SpawnInfo } from "./spawn_info_type.ts";
 export { SpawnInfo };
+import { StageRewardsDesc } from "./stage_rewards_desc_type.ts";
+export { StageRewardsDesc };
 import { StagedStaticData } from "./staged_static_data_type.ts";
 export { StagedStaticData };
 import { StagedStaticDataV2 } from "./staged_static_data_v_2_type.ts";
@@ -3493,6 +3565,8 @@ import { TransferPlayerMsgV2 } from "./transfer_player_msg_v_2_type.ts";
 export { TransferPlayerMsgV2 };
 import { TransferPlayerMsgV3 } from "./transfer_player_msg_v_3_type.ts";
 export { TransferPlayerMsgV3 };
+import { TransferPlayerMsgV4 } from "./transfer_player_msg_v_4_type.ts";
+export { TransferPlayerMsgV4 };
 import { TransferPlayerTimer } from "./transfer_player_timer_type.ts";
 export { TransferPlayerTimer };
 import { TravelerTaskDesc } from "./traveler_task_desc_type.ts";
@@ -4984,6 +5058,15 @@ export const REMOTE_MODULE = {
         colType: InterModuleMessageV3.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    inter_module_message_v4: {
+      tableName: "inter_module_message_v4",
+      rowType: InterModuleMessageV4.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: InterModuleMessageV4.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     inter_module_response_message_counter: {
       tableName: "inter_module_response_message_counter",
       rowType: InterModuleResponseMessageCounter.getTypeScriptAlgebraicType(),
@@ -5947,6 +6030,33 @@ export const REMOTE_MODULE = {
         colType: PublicProgressiveActionState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    quest_chain_desc: {
+      tableName: "quest_chain_desc",
+      rowType: QuestChainDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: QuestChainDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    quest_chain_state: {
+      tableName: "quest_chain_state",
+      rowType: QuestChainState.getTypeScriptAlgebraicType(),
+      primaryKey: "entityId",
+      primaryKeyInfo: {
+        colName: "entityId",
+        colType: QuestChainState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    quest_stage_desc: {
+      tableName: "quest_stage_desc",
+      rowType: QuestStageDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: QuestStageDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     region_connection_info: {
       tableName: "region_connection_info",
       rowType: RegionConnectionInfo.getTypeScriptAlgebraicType(),
@@ -6224,6 +6334,15 @@ export const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "id",
         colType: SkillDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    stage_rewards_desc: {
+      tableName: "stage_rewards_desc",
+      rowType: StageRewardsDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: StageRewardsDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     staged_ability_custom_desc: {
@@ -6901,6 +7020,24 @@ export const REMOTE_MODULE = {
         colType: ProspectingDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    staged_quest_chain_desc: {
+      tableName: "staged_quest_chain_desc",
+      rowType: QuestChainDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: QuestChainDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_quest_stage_desc: {
+      tableName: "staged_quest_stage_desc",
+      rowType: QuestStageDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: QuestStageDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     staged_reserved_name_desc: {
       tableName: "staged_reserved_name_desc",
       rowType: ReservedNameDesc.getTypeScriptAlgebraicType(),
@@ -6971,6 +7108,15 @@ export const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "id",
         colType: SkillDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_stage_rewards_desc: {
+      tableName: "staged_stage_rewards_desc",
+      rowType: StageRewardsDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: StageRewardsDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     staged_static_data: {
@@ -7830,6 +7976,10 @@ export const REMOTE_MODULE = {
       reducerName: "admin_update_lore_knowledge",
       argsType: AdminUpdateLoreKnowledge.getTypeScriptAlgebraicType(),
     },
+    advance_quest_stage: {
+      reducerName: "advance_quest_stage",
+      argsType: AdvanceQuestStage.getTypeScriptAlgebraicType(),
+    },
     attack: {
       reducerName: "attack",
       argsType: Attack.getTypeScriptAlgebraicType(),
@@ -8038,6 +8188,22 @@ export const REMOTE_MODULE = {
       reducerName: "cheat_project_site_add_all_materials",
       argsType: CheatProjectSiteAddAllMaterials.getTypeScriptAlgebraicType(),
     },
+    cheat_quest_advance_to_handin: {
+      reducerName: "cheat_quest_advance_to_handin",
+      argsType: CheatQuestAdvanceToHandin.getTypeScriptAlgebraicType(),
+    },
+    cheat_quest_restart: {
+      reducerName: "cheat_quest_restart",
+      argsType: CheatQuestRestart.getTypeScriptAlgebraicType(),
+    },
+    cheat_quest_skip: {
+      reducerName: "cheat_quest_skip",
+      argsType: CheatQuestSkip.getTypeScriptAlgebraicType(),
+    },
+    cheat_quest_skip_stage: {
+      reducerName: "cheat_quest_skip_stage",
+      argsType: CheatQuestSkipStage.getTypeScriptAlgebraicType(),
+    },
     cheat_remove_entity_building: {
       reducerName: "cheat_remove_entity_building",
       argsType: CheatRemoveEntityBuilding.getTypeScriptAlgebraicType(),
@@ -8205,6 +8371,10 @@ export const REMOTE_MODULE = {
     complete_onboarding_state: {
       reducerName: "complete_onboarding_state",
       argsType: CompleteOnboardingState.getTypeScriptAlgebraicType(),
+    },
+    complete_quest_chain: {
+      reducerName: "complete_quest_chain",
+      argsType: CompleteQuestChain.getTypeScriptAlgebraicType(),
     },
     convert_collectible_to_deed: {
       reducerName: "convert_collectible_to_deed",
@@ -9054,6 +9224,14 @@ export const REMOTE_MODULE = {
       reducerName: "import_prospecting_desc",
       argsType: ImportProspectingDesc.getTypeScriptAlgebraicType(),
     },
+    import_quest_chain_desc: {
+      reducerName: "import_quest_chain_desc",
+      argsType: ImportQuestChainDesc.getTypeScriptAlgebraicType(),
+    },
+    import_quest_stage_desc: {
+      reducerName: "import_quest_stage_desc",
+      argsType: ImportQuestStageDesc.getTypeScriptAlgebraicType(),
+    },
     import_rent_state: {
       reducerName: "import_rent_state",
       argsType: ImportRentState.getTypeScriptAlgebraicType(),
@@ -9109,6 +9287,10 @@ export const REMOTE_MODULE = {
     import_skill_desc: {
       reducerName: "import_skill_desc",
       argsType: ImportSkillDesc.getTypeScriptAlgebraicType(),
+    },
+    import_stage_rewards_desc: {
+      reducerName: "import_stage_rewards_desc",
+      argsType: ImportStageRewardsDesc.getTypeScriptAlgebraicType(),
     },
     import_stamina_state: {
       reducerName: "import_stamina_state",
@@ -9297,6 +9479,10 @@ export const REMOTE_MODULE = {
     migrate_grant_default_collectibles: {
       reducerName: "migrate_grant_default_collectibles",
       argsType: MigrateGrantDefaultCollectibles.getTypeScriptAlgebraicType(),
+    },
+    migrate_onboarding: {
+      reducerName: "migrate_onboarding",
+      argsType: MigrateOnboarding.getTypeScriptAlgebraicType(),
     },
     migrate_player_settings: {
       reducerName: "migrate_player_settings",
@@ -9650,6 +9836,10 @@ export const REMOTE_MODULE = {
       reducerName: "report_player",
       argsType: ReportPlayer.getTypeScriptAlgebraicType(),
     },
+    request_stage_reward: {
+      reducerName: "request_stage_reward",
+      argsType: RequestStageReward.getTypeScriptAlgebraicType(),
+    },
     reset_chunk_index: {
       reducerName: "reset_chunk_index",
       argsType: ResetChunkIndex.getTypeScriptAlgebraicType(),
@@ -9710,6 +9900,10 @@ export const REMOTE_MODULE = {
       reducerName: "set_home",
       argsType: SetHome.getTypeScriptAlgebraicType(),
     },
+    set_quest_chain_active: {
+      reducerName: "set_quest_chain_active",
+      argsType: SetQuestChainActive.getTypeScriptAlgebraicType(),
+    },
     sign_in: {
       reducerName: "sign_in",
       argsType: SignIn.getTypeScriptAlgebraicType(),
@@ -9717,6 +9911,10 @@ export const REMOTE_MODULE = {
     sign_out: {
       reducerName: "sign_out",
       argsType: SignOut.getTypeScriptAlgebraicType(),
+    },
+    skip_onboarding: {
+      reducerName: "skip_onboarding",
+      argsType: SkipOnboarding.getTypeScriptAlgebraicType(),
     },
     sleep: {
       reducerName: "sleep",
@@ -10014,6 +10212,14 @@ export const REMOTE_MODULE = {
       reducerName: "stage_prospecting_desc",
       argsType: StageProspectingDesc.getTypeScriptAlgebraicType(),
     },
+    stage_quest_chain_desc: {
+      reducerName: "stage_quest_chain_desc",
+      argsType: StageQuestChainDesc.getTypeScriptAlgebraicType(),
+    },
+    stage_quest_stage_desc: {
+      reducerName: "stage_quest_stage_desc",
+      argsType: StageQuestStageDesc.getTypeScriptAlgebraicType(),
+    },
     stage_reserved_name_desc: {
       reducerName: "stage_reserved_name_desc",
       argsType: StageReservedNameDesc.getTypeScriptAlgebraicType(),
@@ -10041,6 +10247,10 @@ export const REMOTE_MODULE = {
     stage_skill_desc: {
       reducerName: "stage_skill_desc",
       argsType: StageSkillDesc.getTypeScriptAlgebraicType(),
+    },
+    stage_stage_rewards_desc: {
+      reducerName: "stage_stage_rewards_desc",
+      argsType: StageStageRewardsDesc.getTypeScriptAlgebraicType(),
     },
     stage_targeting_matrix_desc: {
       reducerName: "stage_targeting_matrix_desc",
@@ -10097,6 +10307,10 @@ export const REMOTE_MODULE = {
     start_onboarding_quest: {
       reducerName: "start_onboarding_quest",
       argsType: StartOnboardingQuest.getTypeScriptAlgebraicType(),
+    },
+    start_quest_chain: {
+      reducerName: "start_quest_chain",
+      argsType: StartQuestChain.getTypeScriptAlgebraicType(),
     },
     starving_agent_loop: {
       reducerName: "starving_agent_loop",
@@ -10304,6 +10518,7 @@ export type Reducer = never
 | { name: "AdminUpdateHousingPortals", args: AdminUpdateHousingPortals }
 | { name: "AdminUpdateLightSourceStates", args: AdminUpdateLightSourceStates }
 | { name: "AdminUpdateLoreKnowledge", args: AdminUpdateLoreKnowledge }
+| { name: "AdvanceQuestStage", args: AdvanceQuestStage }
 | { name: "Attack", args: Attack }
 | { name: "AttackImpact", args: AttackImpact }
 | { name: "AttackImpactMigrated", args: AttackImpactMigrated }
@@ -10356,6 +10571,10 @@ export type Reducer = never
 | { name: "CheatPillarShapingAddPillar", args: CheatPillarShapingAddPillar }
 | { name: "CheatPillarShapingDestroy", args: CheatPillarShapingDestroy }
 | { name: "CheatProjectSiteAddAllMaterials", args: CheatProjectSiteAddAllMaterials }
+| { name: "CheatQuestAdvanceToHandin", args: CheatQuestAdvanceToHandin }
+| { name: "CheatQuestRestart", args: CheatQuestRestart }
+| { name: "CheatQuestSkip", args: CheatQuestSkip }
+| { name: "CheatQuestSkipStage", args: CheatQuestSkipStage }
 | { name: "CheatRemoveEntityBuilding", args: CheatRemoveEntityBuilding }
 | { name: "CheatRemoveEntityEnemy", args: CheatRemoveEntityEnemy }
 | { name: "CheatRemoveEntityResource", args: CheatRemoveEntityResource }
@@ -10398,6 +10617,7 @@ export type Reducer = never
 | { name: "CommitStagedStaticData", args: CommitStagedStaticData }
 | { name: "CompleteOnboardingQuest", args: CompleteOnboardingQuest }
 | { name: "CompleteOnboardingState", args: CompleteOnboardingState }
+| { name: "CompleteQuestChain", args: CompleteQuestChain }
 | { name: "ConvertCollectibleToDeed", args: ConvertCollectibleToDeed }
 | { name: "ConvertDeedToCollectible", args: ConvertDeedToCollectible }
 | { name: "CraftCancel", args: CraftCancel }
@@ -10610,6 +10830,8 @@ export type Reducer = never
 | { name: "ImportProgressiveActionState", args: ImportProgressiveActionState }
 | { name: "ImportProjectSiteState", args: ImportProjectSiteState }
 | { name: "ImportProspectingDesc", args: ImportProspectingDesc }
+| { name: "ImportQuestChainDesc", args: ImportQuestChainDesc }
+| { name: "ImportQuestStageDesc", args: ImportQuestStageDesc }
 | { name: "ImportRentState", args: ImportRentState }
 | { name: "ImportReservedNameDesc", args: ImportReservedNameDesc }
 | { name: "ImportResourceClumpDesc", args: ImportResourceClumpDesc }
@@ -10624,6 +10846,7 @@ export type Reducer = never
 | { name: "ImportServerIdentity", args: ImportServerIdentity }
 | { name: "ImportSignedInPlayerState", args: ImportSignedInPlayerState }
 | { name: "ImportSkillDesc", args: ImportSkillDesc }
+| { name: "ImportStageRewardsDesc", args: ImportStageRewardsDesc }
 | { name: "ImportStaminaState", args: ImportStaminaState }
 | { name: "ImportTargetState", args: ImportTargetState }
 | { name: "ImportTargetableState", args: ImportTargetableState }
@@ -10671,6 +10894,7 @@ export type Reducer = never
 | { name: "MigrateCharacterStats", args: MigrateCharacterStats }
 | { name: "MigrateClaimTech", args: MigrateClaimTech }
 | { name: "MigrateGrantDefaultCollectibles", args: MigrateGrantDefaultCollectibles }
+| { name: "MigrateOnboarding", args: MigrateOnboarding }
 | { name: "MigratePlayerSettings", args: MigratePlayerSettings }
 | { name: "MigrationSetAchievementParams", args: MigrationSetAchievementParams }
 | { name: "MigrationSetBuildingDescParams", args: MigrationSetBuildingDescParams }
@@ -10759,6 +10983,7 @@ export type Reducer = never
 | { name: "ReportChatMessage", args: ReportChatMessage }
 | { name: "ReportEntity", args: ReportEntity }
 | { name: "ReportPlayer", args: ReportPlayer }
+| { name: "RequestStageReward", args: RequestStageReward }
 | { name: "ResetChunkIndex", args: ResetChunkIndex }
 | { name: "ResetChunkIndexWithDimension", args: ResetChunkIndexWithDimension }
 | { name: "ResetMobileEntityPosition", args: ResetMobileEntityPosition }
@@ -10774,8 +10999,10 @@ export type Reducer = never
 | { name: "SearchForClosestBuildingType", args: SearchForClosestBuildingType }
 | { name: "ServerTeleportPlayer", args: ServerTeleportPlayer }
 | { name: "SetHome", args: SetHome }
+| { name: "SetQuestChainActive", args: SetQuestChainActive }
 | { name: "SignIn", args: SignIn }
 | { name: "SignOut", args: SignOut }
+| { name: "SkipOnboarding", args: SkipOnboarding }
 | { name: "Sleep", args: Sleep }
 | { name: "StageAbilityCustomDesc", args: StageAbilityCustomDesc }
 | { name: "StageAbilityUnlockDesc", args: StageAbilityUnlockDesc }
@@ -10850,6 +11077,8 @@ export type Reducer = never
 | { name: "StagePremiumServiceDesc", args: StagePremiumServiceDesc }
 | { name: "StagePrivateParametersDesc", args: StagePrivateParametersDesc }
 | { name: "StageProspectingDesc", args: StageProspectingDesc }
+| { name: "StageQuestChainDesc", args: StageQuestChainDesc }
+| { name: "StageQuestStageDesc", args: StageQuestStageDesc }
 | { name: "StageReservedNameDesc", args: StageReservedNameDesc }
 | { name: "StageResourceClumpDesc", args: StageResourceClumpDesc }
 | { name: "StageResourceDesc", args: StageResourceDesc }
@@ -10857,6 +11086,7 @@ export type Reducer = never
 | { name: "StageResourcePlacementRecipeDescV2", args: StageResourcePlacementRecipeDescV2 }
 | { name: "StageSecondaryKnowledgeDesc", args: StageSecondaryKnowledgeDesc }
 | { name: "StageSkillDesc", args: StageSkillDesc }
+| { name: "StageStageRewardsDesc", args: StageStageRewardsDesc }
 | { name: "StageTargetingMatrixDesc", args: StageTargetingMatrixDesc }
 | { name: "StageTeleportItemDesc", args: StageTeleportItemDesc }
 | { name: "StageTerraformRecipeDesc", args: StageTerraformRecipeDesc }
@@ -10871,6 +11101,7 @@ export type Reducer = never
 | { name: "StartAgents", args: StartAgents }
 | { name: "StartGeneratingWorld", args: StartGeneratingWorld }
 | { name: "StartOnboardingQuest", args: StartOnboardingQuest }
+| { name: "StartQuestChain", args: StartQuestChain }
 | { name: "StarvingAgentLoop", args: StarvingAgentLoop }
 | { name: "StopAgents", args: StopAgents }
 | { name: "StorageLogCleanupLoop", args: StorageLogCleanupLoop }
@@ -11986,6 +12217,22 @@ export class RemoteReducers {
     this.connection.offReducer("admin_update_lore_knowledge", callback);
   }
 
+  advanceQuestStage(chainId: number) {
+    const __args = { chainId };
+    let __writer = new BinaryWriter(1024);
+    AdvanceQuestStage.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("advance_quest_stage", __argsBuffer, this.setCallReducerFlags.advanceQuestStageFlags);
+  }
+
+  onAdvanceQuestStage(callback: (ctx: ReducerEventContext, chainId: number) => void) {
+    this.connection.onReducer("advance_quest_stage", callback);
+  }
+
+  removeOnAdvanceQuestStage(callback: (ctx: ReducerEventContext, chainId: number) => void) {
+    this.connection.offReducer("advance_quest_stage", callback);
+  }
+
   attack(request: EntityAttackRequest) {
     const __args = { request };
     let __writer = new BinaryWriter(1024);
@@ -12810,6 +13057,70 @@ export class RemoteReducers {
     this.connection.offReducer("cheat_project_site_add_all_materials", callback);
   }
 
+  cheatQuestAdvanceToHandin(playerEntityId: bigint, questDescId: number) {
+    const __args = { playerEntityId, questDescId };
+    let __writer = new BinaryWriter(1024);
+    CheatQuestAdvanceToHandin.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("cheat_quest_advance_to_handin", __argsBuffer, this.setCallReducerFlags.cheatQuestAdvanceToHandinFlags);
+  }
+
+  onCheatQuestAdvanceToHandin(callback: (ctx: ReducerEventContext, playerEntityId: bigint, questDescId: number) => void) {
+    this.connection.onReducer("cheat_quest_advance_to_handin", callback);
+  }
+
+  removeOnCheatQuestAdvanceToHandin(callback: (ctx: ReducerEventContext, playerEntityId: bigint, questDescId: number) => void) {
+    this.connection.offReducer("cheat_quest_advance_to_handin", callback);
+  }
+
+  cheatQuestRestart(playerEntityId: bigint, questDescId: number) {
+    const __args = { playerEntityId, questDescId };
+    let __writer = new BinaryWriter(1024);
+    CheatQuestRestart.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("cheat_quest_restart", __argsBuffer, this.setCallReducerFlags.cheatQuestRestartFlags);
+  }
+
+  onCheatQuestRestart(callback: (ctx: ReducerEventContext, playerEntityId: bigint, questDescId: number) => void) {
+    this.connection.onReducer("cheat_quest_restart", callback);
+  }
+
+  removeOnCheatQuestRestart(callback: (ctx: ReducerEventContext, playerEntityId: bigint, questDescId: number) => void) {
+    this.connection.offReducer("cheat_quest_restart", callback);
+  }
+
+  cheatQuestSkip(playerEntityId: bigint, questDescId: number) {
+    const __args = { playerEntityId, questDescId };
+    let __writer = new BinaryWriter(1024);
+    CheatQuestSkip.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("cheat_quest_skip", __argsBuffer, this.setCallReducerFlags.cheatQuestSkipFlags);
+  }
+
+  onCheatQuestSkip(callback: (ctx: ReducerEventContext, playerEntityId: bigint, questDescId: number) => void) {
+    this.connection.onReducer("cheat_quest_skip", callback);
+  }
+
+  removeOnCheatQuestSkip(callback: (ctx: ReducerEventContext, playerEntityId: bigint, questDescId: number) => void) {
+    this.connection.offReducer("cheat_quest_skip", callback);
+  }
+
+  cheatQuestSkipStage(playerEntityId: bigint, questDescId: number) {
+    const __args = { playerEntityId, questDescId };
+    let __writer = new BinaryWriter(1024);
+    CheatQuestSkipStage.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("cheat_quest_skip_stage", __argsBuffer, this.setCallReducerFlags.cheatQuestSkipStageFlags);
+  }
+
+  onCheatQuestSkipStage(callback: (ctx: ReducerEventContext, playerEntityId: bigint, questDescId: number) => void) {
+    this.connection.onReducer("cheat_quest_skip_stage", callback);
+  }
+
+  removeOnCheatQuestSkipStage(callback: (ctx: ReducerEventContext, playerEntityId: bigint, questDescId: number) => void) {
+    this.connection.offReducer("cheat_quest_skip_stage", callback);
+  }
+
   cheatRemoveEntityBuilding(buildingEntityId: bigint) {
     const __args = { buildingEntityId };
     let __writer = new BinaryWriter(1024);
@@ -13472,6 +13783,22 @@ export class RemoteReducers {
 
   removeOnCompleteOnboardingState(callback: (ctx: ReducerEventContext, id: number) => void) {
     this.connection.offReducer("complete_onboarding_state", callback);
+  }
+
+  completeQuestChain(id: number) {
+    const __args = { id };
+    let __writer = new BinaryWriter(1024);
+    CompleteQuestChain.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("complete_quest_chain", __argsBuffer, this.setCallReducerFlags.completeQuestChainFlags);
+  }
+
+  onCompleteQuestChain(callback: (ctx: ReducerEventContext, id: number) => void) {
+    this.connection.onReducer("complete_quest_chain", callback);
+  }
+
+  removeOnCompleteQuestChain(callback: (ctx: ReducerEventContext, id: number) => void) {
+    this.connection.offReducer("complete_quest_chain", callback);
   }
 
   convertCollectibleToDeed(request: PlayerConvertCollectibleToDeedRequest) {
@@ -16822,6 +17149,38 @@ export class RemoteReducers {
     this.connection.offReducer("import_prospecting_desc", callback);
   }
 
+  importQuestChainDesc(records: QuestChainDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    ImportQuestChainDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("import_quest_chain_desc", __argsBuffer, this.setCallReducerFlags.importQuestChainDescFlags);
+  }
+
+  onImportQuestChainDesc(callback: (ctx: ReducerEventContext, records: QuestChainDesc[]) => void) {
+    this.connection.onReducer("import_quest_chain_desc", callback);
+  }
+
+  removeOnImportQuestChainDesc(callback: (ctx: ReducerEventContext, records: QuestChainDesc[]) => void) {
+    this.connection.offReducer("import_quest_chain_desc", callback);
+  }
+
+  importQuestStageDesc(records: QuestStageDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    ImportQuestStageDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("import_quest_stage_desc", __argsBuffer, this.setCallReducerFlags.importQuestStageDescFlags);
+  }
+
+  onImportQuestStageDesc(callback: (ctx: ReducerEventContext, records: QuestStageDesc[]) => void) {
+    this.connection.onReducer("import_quest_stage_desc", callback);
+  }
+
+  removeOnImportQuestStageDesc(callback: (ctx: ReducerEventContext, records: QuestStageDesc[]) => void) {
+    this.connection.offReducer("import_quest_stage_desc", callback);
+  }
+
   importRentState(records: RentState[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
@@ -17044,6 +17403,22 @@ export class RemoteReducers {
 
   removeOnImportSkillDesc(callback: (ctx: ReducerEventContext, records: SkillDesc[]) => void) {
     this.connection.offReducer("import_skill_desc", callback);
+  }
+
+  importStageRewardsDesc(records: StageRewardsDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    ImportStageRewardsDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("import_stage_rewards_desc", __argsBuffer, this.setCallReducerFlags.importStageRewardsDescFlags);
+  }
+
+  onImportStageRewardsDesc(callback: (ctx: ReducerEventContext, records: StageRewardsDesc[]) => void) {
+    this.connection.onReducer("import_stage_rewards_desc", callback);
+  }
+
+  removeOnImportStageRewardsDesc(callback: (ctx: ReducerEventContext, records: StageRewardsDesc[]) => void) {
+    this.connection.offReducer("import_stage_rewards_desc", callback);
   }
 
   importStaminaState(records: StaminaState[]) {
@@ -17772,6 +18147,18 @@ export class RemoteReducers {
 
   removeOnMigrateGrantDefaultCollectibles(callback: (ctx: ReducerEventContext) => void) {
     this.connection.offReducer("migrate_grant_default_collectibles", callback);
+  }
+
+  migrateOnboarding() {
+    this.connection.callReducer("migrate_onboarding", new Uint8Array(0), this.setCallReducerFlags.migrateOnboardingFlags);
+  }
+
+  onMigrateOnboarding(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.onReducer("migrate_onboarding", callback);
+  }
+
+  removeOnMigrateOnboarding(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.offReducer("migrate_onboarding", callback);
   }
 
   migratePlayerSettings() {
@@ -18778,7 +19165,7 @@ export class RemoteReducers {
     this.connection.offReducer("portal_enter", callback);
   }
 
-  processInterModuleMessage(sender: number, message: InterModuleMessageV3) {
+  processInterModuleMessage(sender: number, message: InterModuleMessageV4) {
     const __args = { sender, message };
     let __writer = new BinaryWriter(1024);
     ProcessInterModuleMessage.getTypeScriptAlgebraicType().serialize(__writer, __args);
@@ -18786,11 +19173,11 @@ export class RemoteReducers {
     this.connection.callReducer("process_inter_module_message", __argsBuffer, this.setCallReducerFlags.processInterModuleMessageFlags);
   }
 
-  onProcessInterModuleMessage(callback: (ctx: ReducerEventContext, sender: number, message: InterModuleMessageV3) => void) {
+  onProcessInterModuleMessage(callback: (ctx: ReducerEventContext, sender: number, message: InterModuleMessageV4) => void) {
     this.connection.onReducer("process_inter_module_message", callback);
   }
 
-  removeOnProcessInterModuleMessage(callback: (ctx: ReducerEventContext, sender: number, message: InterModuleMessageV3) => void) {
+  removeOnProcessInterModuleMessage(callback: (ctx: ReducerEventContext, sender: number, message: InterModuleMessageV4) => void) {
     this.connection.offReducer("process_inter_module_message", callback);
   }
 
@@ -19162,6 +19549,22 @@ export class RemoteReducers {
     this.connection.offReducer("report_player", callback);
   }
 
+  requestStageReward(rewardId: number) {
+    const __args = { rewardId };
+    let __writer = new BinaryWriter(1024);
+    RequestStageReward.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("request_stage_reward", __argsBuffer, this.setCallReducerFlags.requestStageRewardFlags);
+  }
+
+  onRequestStageReward(callback: (ctx: ReducerEventContext, rewardId: number) => void) {
+    this.connection.onReducer("request_stage_reward", callback);
+  }
+
+  removeOnRequestStageReward(callback: (ctx: ReducerEventContext, rewardId: number) => void) {
+    this.connection.offReducer("request_stage_reward", callback);
+  }
+
   resetChunkIndex() {
     this.connection.callReducer("reset_chunk_index", new Uint8Array(0), this.setCallReducerFlags.resetChunkIndexFlags);
   }
@@ -19390,6 +19793,22 @@ export class RemoteReducers {
     this.connection.offReducer("set_home", callback);
   }
 
+  setQuestChainActive(id: number) {
+    const __args = { id };
+    let __writer = new BinaryWriter(1024);
+    SetQuestChainActive.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("set_quest_chain_active", __argsBuffer, this.setCallReducerFlags.setQuestChainActiveFlags);
+  }
+
+  onSetQuestChainActive(callback: (ctx: ReducerEventContext, id: number) => void) {
+    this.connection.onReducer("set_quest_chain_active", callback);
+  }
+
+  removeOnSetQuestChainActive(callback: (ctx: ReducerEventContext, id: number) => void) {
+    this.connection.offReducer("set_quest_chain_active", callback);
+  }
+
   signIn(request: PlayerSignInRequest) {
     const __args = { request };
     let __writer = new BinaryWriter(1024);
@@ -19416,6 +19835,18 @@ export class RemoteReducers {
 
   removeOnSignOut(callback: (ctx: ReducerEventContext) => void) {
     this.connection.offReducer("sign_out", callback);
+  }
+
+  skipOnboarding() {
+    this.connection.callReducer("skip_onboarding", new Uint8Array(0), this.setCallReducerFlags.skipOnboardingFlags);
+  }
+
+  onSkipOnboarding(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.onReducer("skip_onboarding", callback);
+  }
+
+  removeOnSkipOnboarding(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.offReducer("skip_onboarding", callback);
   }
 
   sleep(request: PlayerSleepRequest) {
@@ -20602,6 +21033,38 @@ export class RemoteReducers {
     this.connection.offReducer("stage_prospecting_desc", callback);
   }
 
+  stageQuestChainDesc(records: QuestChainDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    StageQuestChainDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("stage_quest_chain_desc", __argsBuffer, this.setCallReducerFlags.stageQuestChainDescFlags);
+  }
+
+  onStageQuestChainDesc(callback: (ctx: ReducerEventContext, records: QuestChainDesc[]) => void) {
+    this.connection.onReducer("stage_quest_chain_desc", callback);
+  }
+
+  removeOnStageQuestChainDesc(callback: (ctx: ReducerEventContext, records: QuestChainDesc[]) => void) {
+    this.connection.offReducer("stage_quest_chain_desc", callback);
+  }
+
+  stageQuestStageDesc(records: QuestStageDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    StageQuestStageDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("stage_quest_stage_desc", __argsBuffer, this.setCallReducerFlags.stageQuestStageDescFlags);
+  }
+
+  onStageQuestStageDesc(callback: (ctx: ReducerEventContext, records: QuestStageDesc[]) => void) {
+    this.connection.onReducer("stage_quest_stage_desc", callback);
+  }
+
+  removeOnStageQuestStageDesc(callback: (ctx: ReducerEventContext, records: QuestStageDesc[]) => void) {
+    this.connection.offReducer("stage_quest_stage_desc", callback);
+  }
+
   stageReservedNameDesc(records: ReservedNameDesc[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
@@ -20712,6 +21175,22 @@ export class RemoteReducers {
 
   removeOnStageSkillDesc(callback: (ctx: ReducerEventContext, records: SkillDesc[]) => void) {
     this.connection.offReducer("stage_skill_desc", callback);
+  }
+
+  stageStageRewardsDesc(records: StageRewardsDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    StageStageRewardsDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("stage_stage_rewards_desc", __argsBuffer, this.setCallReducerFlags.stageStageRewardsDescFlags);
+  }
+
+  onStageStageRewardsDesc(callback: (ctx: ReducerEventContext, records: StageRewardsDesc[]) => void) {
+    this.connection.onReducer("stage_stage_rewards_desc", callback);
+  }
+
+  removeOnStageStageRewardsDesc(callback: (ctx: ReducerEventContext, records: StageRewardsDesc[]) => void) {
+    this.connection.offReducer("stage_stage_rewards_desc", callback);
   }
 
   stageTargetingMatrixDesc(records: TargetingMatrixDesc[]) {
@@ -20932,6 +21411,22 @@ export class RemoteReducers {
 
   removeOnStartOnboardingQuest(callback: (ctx: ReducerEventContext, id: number) => void) {
     this.connection.offReducer("start_onboarding_quest", callback);
+  }
+
+  startQuestChain(id: number) {
+    const __args = { id };
+    let __writer = new BinaryWriter(1024);
+    StartQuestChain.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("start_quest_chain", __argsBuffer, this.setCallReducerFlags.startQuestChainFlags);
+  }
+
+  onStartQuestChain(callback: (ctx: ReducerEventContext, id: number) => void) {
+    this.connection.onReducer("start_quest_chain", callback);
+  }
+
+  removeOnStartQuestChain(callback: (ctx: ReducerEventContext, id: number) => void) {
+    this.connection.offReducer("start_quest_chain", callback);
   }
 
   starvingAgentLoop(timer: StarvingLoopTimer) {
@@ -21705,6 +22200,11 @@ export class SetReducerFlags {
     this.adminUpdateLoreKnowledgeFlags = flags;
   }
 
+  advanceQuestStageFlags: CallReducerFlags = 'FullUpdate';
+  advanceQuestStage(flags: CallReducerFlags) {
+    this.advanceQuestStageFlags = flags;
+  }
+
   attackFlags: CallReducerFlags = 'FullUpdate';
   attack(flags: CallReducerFlags) {
     this.attackFlags = flags;
@@ -21965,6 +22465,26 @@ export class SetReducerFlags {
     this.cheatProjectSiteAddAllMaterialsFlags = flags;
   }
 
+  cheatQuestAdvanceToHandinFlags: CallReducerFlags = 'FullUpdate';
+  cheatQuestAdvanceToHandin(flags: CallReducerFlags) {
+    this.cheatQuestAdvanceToHandinFlags = flags;
+  }
+
+  cheatQuestRestartFlags: CallReducerFlags = 'FullUpdate';
+  cheatQuestRestart(flags: CallReducerFlags) {
+    this.cheatQuestRestartFlags = flags;
+  }
+
+  cheatQuestSkipFlags: CallReducerFlags = 'FullUpdate';
+  cheatQuestSkip(flags: CallReducerFlags) {
+    this.cheatQuestSkipFlags = flags;
+  }
+
+  cheatQuestSkipStageFlags: CallReducerFlags = 'FullUpdate';
+  cheatQuestSkipStage(flags: CallReducerFlags) {
+    this.cheatQuestSkipStageFlags = flags;
+  }
+
   cheatRemoveEntityBuildingFlags: CallReducerFlags = 'FullUpdate';
   cheatRemoveEntityBuilding(flags: CallReducerFlags) {
     this.cheatRemoveEntityBuildingFlags = flags;
@@ -22173,6 +22693,11 @@ export class SetReducerFlags {
   completeOnboardingStateFlags: CallReducerFlags = 'FullUpdate';
   completeOnboardingState(flags: CallReducerFlags) {
     this.completeOnboardingStateFlags = flags;
+  }
+
+  completeQuestChainFlags: CallReducerFlags = 'FullUpdate';
+  completeQuestChain(flags: CallReducerFlags) {
+    this.completeQuestChainFlags = flags;
   }
 
   convertCollectibleToDeedFlags: CallReducerFlags = 'FullUpdate';
@@ -23225,6 +23750,16 @@ export class SetReducerFlags {
     this.importProspectingDescFlags = flags;
   }
 
+  importQuestChainDescFlags: CallReducerFlags = 'FullUpdate';
+  importQuestChainDesc(flags: CallReducerFlags) {
+    this.importQuestChainDescFlags = flags;
+  }
+
+  importQuestStageDescFlags: CallReducerFlags = 'FullUpdate';
+  importQuestStageDesc(flags: CallReducerFlags) {
+    this.importQuestStageDescFlags = flags;
+  }
+
   importRentStateFlags: CallReducerFlags = 'FullUpdate';
   importRentState(flags: CallReducerFlags) {
     this.importRentStateFlags = flags;
@@ -23293,6 +23828,11 @@ export class SetReducerFlags {
   importSkillDescFlags: CallReducerFlags = 'FullUpdate';
   importSkillDesc(flags: CallReducerFlags) {
     this.importSkillDescFlags = flags;
+  }
+
+  importStageRewardsDescFlags: CallReducerFlags = 'FullUpdate';
+  importStageRewardsDesc(flags: CallReducerFlags) {
+    this.importStageRewardsDescFlags = flags;
   }
 
   importStaminaStateFlags: CallReducerFlags = 'FullUpdate';
@@ -23528,6 +24068,11 @@ export class SetReducerFlags {
   migrateGrantDefaultCollectiblesFlags: CallReducerFlags = 'FullUpdate';
   migrateGrantDefaultCollectibles(flags: CallReducerFlags) {
     this.migrateGrantDefaultCollectiblesFlags = flags;
+  }
+
+  migrateOnboardingFlags: CallReducerFlags = 'FullUpdate';
+  migrateOnboarding(flags: CallReducerFlags) {
+    this.migrateOnboardingFlags = flags;
   }
 
   migratePlayerSettingsFlags: CallReducerFlags = 'FullUpdate';
@@ -23970,6 +24515,11 @@ export class SetReducerFlags {
     this.reportPlayerFlags = flags;
   }
 
+  requestStageRewardFlags: CallReducerFlags = 'FullUpdate';
+  requestStageReward(flags: CallReducerFlags) {
+    this.requestStageRewardFlags = flags;
+  }
+
   resetChunkIndexFlags: CallReducerFlags = 'FullUpdate';
   resetChunkIndex(flags: CallReducerFlags) {
     this.resetChunkIndexFlags = flags;
@@ -24045,6 +24595,11 @@ export class SetReducerFlags {
     this.setHomeFlags = flags;
   }
 
+  setQuestChainActiveFlags: CallReducerFlags = 'FullUpdate';
+  setQuestChainActive(flags: CallReducerFlags) {
+    this.setQuestChainActiveFlags = flags;
+  }
+
   signInFlags: CallReducerFlags = 'FullUpdate';
   signIn(flags: CallReducerFlags) {
     this.signInFlags = flags;
@@ -24053,6 +24608,11 @@ export class SetReducerFlags {
   signOutFlags: CallReducerFlags = 'FullUpdate';
   signOut(flags: CallReducerFlags) {
     this.signOutFlags = flags;
+  }
+
+  skipOnboardingFlags: CallReducerFlags = 'FullUpdate';
+  skipOnboarding(flags: CallReducerFlags) {
+    this.skipOnboardingFlags = flags;
   }
 
   sleepFlags: CallReducerFlags = 'FullUpdate';
@@ -24425,6 +24985,16 @@ export class SetReducerFlags {
     this.stageProspectingDescFlags = flags;
   }
 
+  stageQuestChainDescFlags: CallReducerFlags = 'FullUpdate';
+  stageQuestChainDesc(flags: CallReducerFlags) {
+    this.stageQuestChainDescFlags = flags;
+  }
+
+  stageQuestStageDescFlags: CallReducerFlags = 'FullUpdate';
+  stageQuestStageDesc(flags: CallReducerFlags) {
+    this.stageQuestStageDescFlags = flags;
+  }
+
   stageReservedNameDescFlags: CallReducerFlags = 'FullUpdate';
   stageReservedNameDesc(flags: CallReducerFlags) {
     this.stageReservedNameDescFlags = flags;
@@ -24458,6 +25028,11 @@ export class SetReducerFlags {
   stageSkillDescFlags: CallReducerFlags = 'FullUpdate';
   stageSkillDesc(flags: CallReducerFlags) {
     this.stageSkillDescFlags = flags;
+  }
+
+  stageStageRewardsDescFlags: CallReducerFlags = 'FullUpdate';
+  stageStageRewardsDesc(flags: CallReducerFlags) {
+    this.stageStageRewardsDescFlags = flags;
   }
 
   stageTargetingMatrixDescFlags: CallReducerFlags = 'FullUpdate';
@@ -24528,6 +25103,11 @@ export class SetReducerFlags {
   startOnboardingQuestFlags: CallReducerFlags = 'FullUpdate';
   startOnboardingQuest(flags: CallReducerFlags) {
     this.startOnboardingQuestFlags = flags;
+  }
+
+  startQuestChainFlags: CallReducerFlags = 'FullUpdate';
+  startQuestChain(flags: CallReducerFlags) {
+    this.startQuestChainFlags = flags;
   }
 
   starvingAgentLoopFlags: CallReducerFlags = 'FullUpdate';
@@ -25277,6 +25857,10 @@ export class RemoteTables {
     return new InterModuleMessageV3TableHandle(this.connection.clientCache.getOrCreateTable<InterModuleMessageV3>(REMOTE_MODULE.tables.inter_module_message_v3));
   }
 
+  get interModuleMessageV4(): InterModuleMessageV4TableHandle {
+    return new InterModuleMessageV4TableHandle(this.connection.clientCache.getOrCreateTable<InterModuleMessageV4>(REMOTE_MODULE.tables.inter_module_message_v4));
+  }
+
   get interModuleResponseMessageCounter(): InterModuleResponseMessageCounterTableHandle {
     return new InterModuleResponseMessageCounterTableHandle(this.connection.clientCache.getOrCreateTable<InterModuleResponseMessageCounter>(REMOTE_MODULE.tables.inter_module_response_message_counter));
   }
@@ -25705,6 +26289,18 @@ export class RemoteTables {
     return new PublicProgressiveActionStateTableHandle(this.connection.clientCache.getOrCreateTable<PublicProgressiveActionState>(REMOTE_MODULE.tables.public_progressive_action_state));
   }
 
+  get questChainDesc(): QuestChainDescTableHandle {
+    return new QuestChainDescTableHandle(this.connection.clientCache.getOrCreateTable<QuestChainDesc>(REMOTE_MODULE.tables.quest_chain_desc));
+  }
+
+  get questChainState(): QuestChainStateTableHandle {
+    return new QuestChainStateTableHandle(this.connection.clientCache.getOrCreateTable<QuestChainState>(REMOTE_MODULE.tables.quest_chain_state));
+  }
+
+  get questStageDesc(): QuestStageDescTableHandle {
+    return new QuestStageDescTableHandle(this.connection.clientCache.getOrCreateTable<QuestStageDesc>(REMOTE_MODULE.tables.quest_stage_desc));
+  }
+
   get regionConnectionInfo(): RegionConnectionInfoTableHandle {
     return new RegionConnectionInfoTableHandle(this.connection.clientCache.getOrCreateTable<RegionConnectionInfo>(REMOTE_MODULE.tables.region_connection_info));
   }
@@ -25827,6 +26423,10 @@ export class RemoteTables {
 
   get skillDesc(): SkillDescTableHandle {
     return new SkillDescTableHandle(this.connection.clientCache.getOrCreateTable<SkillDesc>(REMOTE_MODULE.tables.skill_desc));
+  }
+
+  get stageRewardsDesc(): StageRewardsDescTableHandle {
+    return new StageRewardsDescTableHandle(this.connection.clientCache.getOrCreateTable<StageRewardsDesc>(REMOTE_MODULE.tables.stage_rewards_desc));
   }
 
   get stagedAbilityCustomDesc(): StagedAbilityCustomDescTableHandle {
@@ -26129,6 +26729,14 @@ export class RemoteTables {
     return new StagedProspectingDescTableHandle(this.connection.clientCache.getOrCreateTable<ProspectingDesc>(REMOTE_MODULE.tables.staged_prospecting_desc));
   }
 
+  get stagedQuestChainDesc(): StagedQuestChainDescTableHandle {
+    return new StagedQuestChainDescTableHandle(this.connection.clientCache.getOrCreateTable<QuestChainDesc>(REMOTE_MODULE.tables.staged_quest_chain_desc));
+  }
+
+  get stagedQuestStageDesc(): StagedQuestStageDescTableHandle {
+    return new StagedQuestStageDescTableHandle(this.connection.clientCache.getOrCreateTable<QuestStageDesc>(REMOTE_MODULE.tables.staged_quest_stage_desc));
+  }
+
   get stagedReservedNameDesc(): StagedReservedNameDescTableHandle {
     return new StagedReservedNameDescTableHandle(this.connection.clientCache.getOrCreateTable<ReservedNameDesc>(REMOTE_MODULE.tables.staged_reserved_name_desc));
   }
@@ -26159,6 +26767,10 @@ export class RemoteTables {
 
   get stagedSkillDesc(): StagedSkillDescTableHandle {
     return new StagedSkillDescTableHandle(this.connection.clientCache.getOrCreateTable<SkillDesc>(REMOTE_MODULE.tables.staged_skill_desc));
+  }
+
+  get stagedStageRewardsDesc(): StagedStageRewardsDescTableHandle {
+    return new StagedStageRewardsDescTableHandle(this.connection.clientCache.getOrCreateTable<StageRewardsDesc>(REMOTE_MODULE.tables.staged_stage_rewards_desc));
   }
 
   get stagedStaticData(): StagedStaticDataTableHandle {

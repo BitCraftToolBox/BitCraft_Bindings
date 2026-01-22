@@ -41,6 +41,8 @@ export type EmoteDescV2 = {
   allowWhileMounted: boolean,
   allowWhileMoving: boolean,
   enabledByCollectibleId: number,
+  toolType: number,
+  toolMeshIndex: number,
 };
 
 /**
@@ -62,6 +64,8 @@ export namespace EmoteDescV2 {
       new ProductTypeElement("allowWhileMounted", AlgebraicType.createBoolType()),
       new ProductTypeElement("allowWhileMoving", AlgebraicType.createBoolType()),
       new ProductTypeElement("enabledByCollectibleId", AlgebraicType.createI32Type()),
+      new ProductTypeElement("toolType", AlgebraicType.createI32Type()),
+      new ProductTypeElement("toolMeshIndex", AlgebraicType.createI32Type()),
     ]);
   }
 
