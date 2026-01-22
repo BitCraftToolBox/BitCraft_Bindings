@@ -22,5 +22,6 @@ namespace BitCraftRegion.Types
         Equip,
         DeployableDeploy,
         AddToToolbelt,
+        DeployableToggle,
     }
 }

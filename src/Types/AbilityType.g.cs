@@ -19,6 +19,7 @@ namespace BitCraftRegion.Types
         int Prospecting,
         int Equip,
         int DeployableDeploy,
-        int AddToToolbelt
+        int AddToToolbelt,
+        int DeployableToggle
     )>;
 }
