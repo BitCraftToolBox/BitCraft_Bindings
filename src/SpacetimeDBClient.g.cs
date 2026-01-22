@@ -167,6 +167,7 @@ namespace BitCraftGlobal.Types
             AddTable(InterModuleMessageErrors = new(conn));
             AddTable(InterModuleMessageV2 = new(conn));
             AddTable(InterModuleMessageV3 = new(conn));
+            AddTable(InterModuleMessageV4 = new(conn));
             AddTable(InterModuleResponseMessageCounter = new(conn));
             AddTable(InteriorCollapseTriggerState = new(conn));
             AddTable(InteriorEnvironmentDesc = new(conn));
@@ -261,6 +262,9 @@ namespace BitCraftGlobal.Types
             AddTable(ProspectingDesc = new(conn));
             AddTable(ProspectingState = new(conn));
             AddTable(PublicProgressiveActionState = new(conn));
+            AddTable(QuestChainDesc = new(conn));
+            AddTable(QuestChainState = new(conn));
+            AddTable(QuestStageDesc = new(conn));
             AddTable(RegionConnectionInfo = new(conn));
             AddTable(RegionPopulationInfo = new(conn));
             AddTable(RegionSignInParameters = new(conn));
@@ -282,6 +286,7 @@ namespace BitCraftGlobal.Types
             AddTable(SignedInPlayerState = new(conn));
             AddTable(SingleResourceToClumpDesc = new(conn));
             AddTable(SkillDesc = new(conn));
+            AddTable(StageRewardsDesc = new(conn));
             AddTable(StagedAbilityCustomDesc = new(conn));
             AddTable(StagedAbilityUnlockDesc = new(conn));
             AddTable(StagedAchievementDesc = new(conn));
@@ -357,6 +362,8 @@ namespace BitCraftGlobal.Types
             AddTable(StagedPremiumServiceDesc = new(conn));
             AddTable(StagedPrivateParametersDesc = new(conn));
             AddTable(StagedProspectingDesc = new(conn));
+            AddTable(StagedQuestChainDesc = new(conn));
+            AddTable(StagedQuestStageDesc = new(conn));
             AddTable(StagedReservedNameDesc = new(conn));
             AddTable(StagedResourceClumpDesc = new(conn));
             AddTable(StagedResourceDesc = new(conn));
@@ -365,6 +372,7 @@ namespace BitCraftGlobal.Types
             AddTable(StagedResourcePlacementRecipeDescV2 = new(conn));
             AddTable(StagedSecondaryKnowledgeDesc = new(conn));
             AddTable(StagedSkillDesc = new(conn));
+            AddTable(StagedStageRewardsDesc = new(conn));
             AddTable(StagedStaticData = new(conn));
             AddTable(StagedStaticDataV2 = new(conn));
             AddTable(StagedStaticDataV3 = new(conn));
@@ -1195,6 +1203,8 @@ namespace BitCraftGlobal.Types
                 "stage_premium_service_desc" => BSATNHelpers.Decode<Reducer.StagePremiumServiceDesc>(encodedArgs),
                 "stage_private_parameters_desc" => BSATNHelpers.Decode<Reducer.StagePrivateParametersDesc>(encodedArgs),
                 "stage_prospecting_desc" => BSATNHelpers.Decode<Reducer.StageProspectingDesc>(encodedArgs),
+                "stage_quest_chain_desc" => BSATNHelpers.Decode<Reducer.StageQuestChainDesc>(encodedArgs),
+                "stage_quest_stage_desc" => BSATNHelpers.Decode<Reducer.StageQuestStageDesc>(encodedArgs),
                 "stage_reserved_name_desc" => BSATNHelpers.Decode<Reducer.StageReservedNameDesc>(encodedArgs),
                 "stage_resource_clump_desc" => BSATNHelpers.Decode<Reducer.StageResourceClumpDesc>(encodedArgs),
                 "stage_resource_desc" => BSATNHelpers.Decode<Reducer.StageResourceDesc>(encodedArgs),
@@ -1202,6 +1212,7 @@ namespace BitCraftGlobal.Types
                 "stage_resource_placement_recipe_desc_v2" => BSATNHelpers.Decode<Reducer.StageResourcePlacementRecipeDescV2>(encodedArgs),
                 "stage_secondary_knowledge_desc" => BSATNHelpers.Decode<Reducer.StageSecondaryKnowledgeDesc>(encodedArgs),
                 "stage_skill_desc" => BSATNHelpers.Decode<Reducer.StageSkillDesc>(encodedArgs),
+                "stage_stage_rewards_desc" => BSATNHelpers.Decode<Reducer.StageStageRewardsDesc>(encodedArgs),
                 "stage_targeting_matrix_desc" => BSATNHelpers.Decode<Reducer.StageTargetingMatrixDesc>(encodedArgs),
                 "stage_teleport_item_desc" => BSATNHelpers.Decode<Reducer.StageTeleportItemDesc>(encodedArgs),
                 "stage_terraform_recipe_desc" => BSATNHelpers.Decode<Reducer.StageTerraformRecipeDesc>(encodedArgs),
@@ -1571,6 +1582,8 @@ namespace BitCraftGlobal.Types
                 Reducer.StagePremiumServiceDesc args => Reducers.InvokeStagePremiumServiceDesc(eventContext, args),
                 Reducer.StagePrivateParametersDesc args => Reducers.InvokeStagePrivateParametersDesc(eventContext, args),
                 Reducer.StageProspectingDesc args => Reducers.InvokeStageProspectingDesc(eventContext, args),
+                Reducer.StageQuestChainDesc args => Reducers.InvokeStageQuestChainDesc(eventContext, args),
+                Reducer.StageQuestStageDesc args => Reducers.InvokeStageQuestStageDesc(eventContext, args),
                 Reducer.StageReservedNameDesc args => Reducers.InvokeStageReservedNameDesc(eventContext, args),
                 Reducer.StageResourceClumpDesc args => Reducers.InvokeStageResourceClumpDesc(eventContext, args),
                 Reducer.StageResourceDesc args => Reducers.InvokeStageResourceDesc(eventContext, args),
@@ -1578,6 +1591,7 @@ namespace BitCraftGlobal.Types
                 Reducer.StageResourcePlacementRecipeDescV2 args => Reducers.InvokeStageResourcePlacementRecipeDescV2(eventContext, args),
                 Reducer.StageSecondaryKnowledgeDesc args => Reducers.InvokeStageSecondaryKnowledgeDesc(eventContext, args),
                 Reducer.StageSkillDesc args => Reducers.InvokeStageSkillDesc(eventContext, args),
+                Reducer.StageStageRewardsDesc args => Reducers.InvokeStageStageRewardsDesc(eventContext, args),
                 Reducer.StageTargetingMatrixDesc args => Reducers.InvokeStageTargetingMatrixDesc(eventContext, args),
                 Reducer.StageTeleportItemDesc args => Reducers.InvokeStageTeleportItemDesc(eventContext, args),
                 Reducer.StageTerraformRecipeDesc args => Reducers.InvokeStageTerraformRecipeDesc(eventContext, args),
