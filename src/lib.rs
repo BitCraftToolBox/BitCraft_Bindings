@@ -188,6 +188,7 @@ pub mod clothing_visual_type;
 pub mod collectible_desc_table;
 pub mod collectible_desc_type;
 pub mod collectible_type_type;
+pub mod column_pad_4_u_64_type;
 pub mod combat_action_desc_table;
 pub mod combat_action_desc_type;
 pub mod combat_action_desc_v_2_table;
@@ -201,6 +202,7 @@ pub mod combat_dimension_state_type;
 pub mod combat_state_table;
 pub mod combat_state_type;
 pub mod commit_staged_static_data_reducer;
+pub mod completion_condition_type;
 pub mod config_table;
 pub mod config_type;
 pub mod construction_recipe_desc_table;
@@ -617,6 +619,8 @@ pub mod inter_module_message_v_2_table;
 pub mod inter_module_message_v_2_type;
 pub mod inter_module_message_v_3_table;
 pub mod inter_module_message_v_3_type;
+pub mod inter_module_message_v_4_table;
+pub mod inter_module_message_v_4_type;
 pub mod inter_module_response_message_counter_table;
 pub mod inter_module_response_message_counter_type;
 pub mod inter_module_table_updates_type;
@@ -648,6 +652,7 @@ pub mod item_desc_type;
 pub mod item_list_desc_table;
 pub mod item_list_desc_type;
 pub mod item_list_possibility_type;
+pub mod item_stack_completion_condition_type;
 pub mod item_stack_type;
 pub mod item_type_type;
 pub mod join_chat_channel_reducer;
@@ -727,6 +732,7 @@ pub mod marketplace_state_type;
 pub mod message_contents_type;
 pub mod message_contents_v_2_type;
 pub mod message_contents_v_3_type;
+pub mod message_contents_v_4_type;
 pub mod mobile_entity_state_table;
 pub mod mobile_entity_state_type;
 pub mod moderation_action_log_entry_table;
@@ -874,6 +880,14 @@ pub mod public_progressive_action_state_table;
 pub mod public_progressive_action_state_type;
 pub mod purchase_character_rename_reducer;
 pub mod purchase_premium_item_reducer;
+pub mod quest_chain_desc_table;
+pub mod quest_chain_desc_type;
+pub mod quest_chain_state_table;
+pub mod quest_chain_state_type;
+pub mod quest_requirement_type;
+pub mod quest_reward_type;
+pub mod quest_stage_desc_table;
+pub mod quest_stage_desc_type;
 pub mod rarity_type;
 pub mod recover_deployable_msg_type;
 pub mod region_connection_info_op_type;
@@ -1009,13 +1023,18 @@ pub mod stage_premium_item_desc_reducer;
 pub mod stage_premium_service_desc_reducer;
 pub mod stage_private_parameters_desc_reducer;
 pub mod stage_prospecting_desc_reducer;
+pub mod stage_quest_chain_desc_reducer;
+pub mod stage_quest_stage_desc_reducer;
 pub mod stage_reserved_name_desc_reducer;
 pub mod stage_resource_clump_desc_reducer;
 pub mod stage_resource_desc_reducer;
 pub mod stage_resource_growth_recipe_desc_reducer;
 pub mod stage_resource_placement_recipe_desc_v_2_reducer;
+pub mod stage_rewards_desc_table;
+pub mod stage_rewards_desc_type;
 pub mod stage_secondary_knowledge_desc_reducer;
 pub mod stage_skill_desc_reducer;
+pub mod stage_stage_rewards_desc_reducer;
 pub mod stage_targeting_matrix_desc_reducer;
 pub mod stage_teleport_item_desc_reducer;
 pub mod stage_terraform_recipe_desc_reducer;
@@ -1102,6 +1121,8 @@ pub mod staged_premium_item_desc_table;
 pub mod staged_premium_service_desc_table;
 pub mod staged_private_parameters_desc_table;
 pub mod staged_prospecting_desc_table;
+pub mod staged_quest_chain_desc_table;
+pub mod staged_quest_stage_desc_table;
 pub mod staged_reserved_name_desc_table;
 pub mod staged_resource_clump_desc_table;
 pub mod staged_resource_desc_table;
@@ -1110,6 +1131,7 @@ pub mod staged_resource_placement_recipe_desc_table;
 pub mod staged_resource_placement_recipe_desc_v_2_table;
 pub mod staged_secondary_knowledge_desc_table;
 pub mod staged_skill_desc_table;
+pub mod staged_stage_rewards_desc_table;
 pub mod staged_static_data_table;
 pub mod staged_static_data_type;
 pub mod staged_static_data_v_2_table;
@@ -1191,6 +1213,7 @@ pub mod transfer_player_housing_msg_type;
 pub mod transfer_player_msg_type;
 pub mod transfer_player_msg_v_2_type;
 pub mod transfer_player_msg_v_3_type;
+pub mod transfer_player_msg_v_4_type;
 pub mod traveler_task_desc_table;
 pub mod traveler_task_desc_type;
 pub mod traveler_task_state_table;
@@ -1531,6 +1554,7 @@ pub use clothing_visual_type::ClothingVisual;
 pub use collectible_desc_table::*;
 pub use collectible_desc_type::CollectibleDesc;
 pub use collectible_type_type::CollectibleType;
+pub use column_pad_4_u_64_type::ColumnPad4U64;
 pub use combat_action_desc_table::*;
 pub use combat_action_desc_type::CombatActionDesc;
 pub use combat_action_desc_v_2_table::*;
@@ -1547,6 +1571,7 @@ pub use commit_staged_static_data_reducer::{
     commit_staged_static_data, set_flags_for_commit_staged_static_data,
     CommitStagedStaticDataCallbackId,
 };
+pub use completion_condition_type::CompletionCondition;
 pub use config_table::*;
 pub use config_type::Config;
 pub use construction_recipe_desc_table::*;
@@ -2437,6 +2462,8 @@ pub use inter_module_message_v_2_table::*;
 pub use inter_module_message_v_2_type::InterModuleMessageV2;
 pub use inter_module_message_v_3_table::*;
 pub use inter_module_message_v_3_type::InterModuleMessageV3;
+pub use inter_module_message_v_4_table::*;
+pub use inter_module_message_v_4_type::InterModuleMessageV4;
 pub use inter_module_response_message_counter_table::*;
 pub use inter_module_response_message_counter_type::InterModuleResponseMessageCounter;
 pub use inter_module_table_updates_type::InterModuleTableUpdates;
@@ -2470,6 +2497,7 @@ pub use item_desc_type::ItemDesc;
 pub use item_list_desc_table::*;
 pub use item_list_desc_type::ItemListDesc;
 pub use item_list_possibility_type::ItemListPossibility;
+pub use item_stack_completion_condition_type::ItemStackCompletionCondition;
 pub use item_stack_type::ItemStack;
 pub use item_type_type::ItemType;
 pub use join_chat_channel_reducer::{
@@ -2557,6 +2585,7 @@ pub use marketplace_state_type::MarketplaceState;
 pub use message_contents_type::MessageContents;
 pub use message_contents_v_2_type::MessageContentsV2;
 pub use message_contents_v_3_type::MessageContentsV3;
+pub use message_contents_v_4_type::MessageContentsV4;
 pub use mobile_entity_state_table::*;
 pub use mobile_entity_state_type::MobileEntityState;
 pub use moderation_action_log_entry_table::*;
@@ -2732,6 +2761,14 @@ pub use purchase_character_rename_reducer::{
 pub use purchase_premium_item_reducer::{
     purchase_premium_item, set_flags_for_purchase_premium_item, PurchasePremiumItemCallbackId,
 };
+pub use quest_chain_desc_table::*;
+pub use quest_chain_desc_type::QuestChainDesc;
+pub use quest_chain_state_table::*;
+pub use quest_chain_state_type::QuestChainState;
+pub use quest_requirement_type::QuestRequirement;
+pub use quest_reward_type::QuestReward;
+pub use quest_stage_desc_table::*;
+pub use quest_stage_desc_type::QuestStageDesc;
 pub use rarity_type::Rarity;
 pub use recover_deployable_msg_type::RecoverDeployableMsg;
 pub use region_connection_info_op_type::RegionConnectionInfoOp;
@@ -3074,6 +3111,12 @@ pub use stage_private_parameters_desc_reducer::{
 pub use stage_prospecting_desc_reducer::{
     set_flags_for_stage_prospecting_desc, stage_prospecting_desc, StageProspectingDescCallbackId,
 };
+pub use stage_quest_chain_desc_reducer::{
+    set_flags_for_stage_quest_chain_desc, stage_quest_chain_desc, StageQuestChainDescCallbackId,
+};
+pub use stage_quest_stage_desc_reducer::{
+    set_flags_for_stage_quest_stage_desc, stage_quest_stage_desc, StageQuestStageDescCallbackId,
+};
 pub use stage_reserved_name_desc_reducer::{
     set_flags_for_stage_reserved_name_desc, stage_reserved_name_desc,
     StageReservedNameDescCallbackId,
@@ -3093,12 +3136,18 @@ pub use stage_resource_placement_recipe_desc_v_2_reducer::{
     set_flags_for_stage_resource_placement_recipe_desc_v_2,
     stage_resource_placement_recipe_desc_v_2, StageResourcePlacementRecipeDescV2CallbackId,
 };
+pub use stage_rewards_desc_table::*;
+pub use stage_rewards_desc_type::StageRewardsDesc;
 pub use stage_secondary_knowledge_desc_reducer::{
     set_flags_for_stage_secondary_knowledge_desc, stage_secondary_knowledge_desc,
     StageSecondaryKnowledgeDescCallbackId,
 };
 pub use stage_skill_desc_reducer::{
     set_flags_for_stage_skill_desc, stage_skill_desc, StageSkillDescCallbackId,
+};
+pub use stage_stage_rewards_desc_reducer::{
+    set_flags_for_stage_stage_rewards_desc, stage_stage_rewards_desc,
+    StageStageRewardsDescCallbackId,
 };
 pub use stage_targeting_matrix_desc_reducer::{
     set_flags_for_stage_targeting_matrix_desc, stage_targeting_matrix_desc,
@@ -3213,6 +3262,8 @@ pub use staged_premium_item_desc_table::*;
 pub use staged_premium_service_desc_table::*;
 pub use staged_private_parameters_desc_table::*;
 pub use staged_prospecting_desc_table::*;
+pub use staged_quest_chain_desc_table::*;
+pub use staged_quest_stage_desc_table::*;
 pub use staged_reserved_name_desc_table::*;
 pub use staged_resource_clump_desc_table::*;
 pub use staged_resource_desc_table::*;
@@ -3221,6 +3272,7 @@ pub use staged_resource_placement_recipe_desc_table::*;
 pub use staged_resource_placement_recipe_desc_v_2_table::*;
 pub use staged_secondary_knowledge_desc_table::*;
 pub use staged_skill_desc_table::*;
+pub use staged_stage_rewards_desc_table::*;
 pub use staged_static_data_table::*;
 pub use staged_static_data_type::StagedStaticData;
 pub use staged_static_data_v_2_table::*;
@@ -3302,6 +3354,7 @@ pub use transfer_player_housing_msg_type::TransferPlayerHousingMsg;
 pub use transfer_player_msg_type::TransferPlayerMsg;
 pub use transfer_player_msg_v_2_type::TransferPlayerMsgV2;
 pub use transfer_player_msg_v_3_type::TransferPlayerMsgV3;
+pub use transfer_player_msg_v_4_type::TransferPlayerMsgV4;
 pub use traveler_task_desc_table::*;
 pub use traveler_task_desc_type::TravelerTaskDesc;
 pub use traveler_task_state_table::*;
@@ -4149,7 +4202,7 @@ pub enum Reducer {
     },
     ProcessInterModuleMessage {
         sender: u8,
-        message: InterModuleMessageV3,
+        message: InterModuleMessageV4,
     },
     PurchaseCharacterRename {
         premium_service_desc_id: i32,
@@ -4410,6 +4463,12 @@ pub enum Reducer {
     StageProspectingDesc {
         records: Vec<ProspectingDesc>,
     },
+    StageQuestChainDesc {
+        records: Vec<QuestChainDesc>,
+    },
+    StageQuestStageDesc {
+        records: Vec<QuestStageDesc>,
+    },
     StageReservedNameDesc {
         records: Vec<ReservedNameDesc>,
     },
@@ -4430,6 +4489,9 @@ pub enum Reducer {
     },
     StageSkillDesc {
         records: Vec<SkillDesc>,
+    },
+    StageStageRewardsDesc {
+        records: Vec<StageRewardsDesc>,
     },
     StageTargetingMatrixDesc {
         records: Vec<TargetingMatrixDesc>,
@@ -4850,6 +4912,8 @@ impl __sdk::Reducer for Reducer {
             Reducer::StagePremiumServiceDesc { .. } => "stage_premium_service_desc",
             Reducer::StagePrivateParametersDesc { .. } => "stage_private_parameters_desc",
             Reducer::StageProspectingDesc { .. } => "stage_prospecting_desc",
+            Reducer::StageQuestChainDesc { .. } => "stage_quest_chain_desc",
+            Reducer::StageQuestStageDesc { .. } => "stage_quest_stage_desc",
             Reducer::StageReservedNameDesc { .. } => "stage_reserved_name_desc",
             Reducer::StageResourceClumpDesc { .. } => "stage_resource_clump_desc",
             Reducer::StageResourceDesc { .. } => "stage_resource_desc",
@@ -4859,6 +4923,7 @@ impl __sdk::Reducer for Reducer {
             }
             Reducer::StageSecondaryKnowledgeDesc { .. } => "stage_secondary_knowledge_desc",
             Reducer::StageSkillDesc { .. } => "stage_skill_desc",
+            Reducer::StageStageRewardsDesc { .. } => "stage_stage_rewards_desc",
             Reducer::StageTargetingMatrixDesc { .. } => "stage_targeting_matrix_desc",
             Reducer::StageTeleportItemDesc { .. } => "stage_teleport_item_desc",
             Reducer::StageTerraformRecipeDesc { .. } => "stage_terraform_recipe_desc",
@@ -5216,6 +5281,8 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "stage_premium_service_desc" => Ok(__sdk::parse_reducer_args::<stage_premium_service_desc_reducer::StagePremiumServiceDescArgs>("stage_premium_service_desc", &value.args)?.into()),
             "stage_private_parameters_desc" => Ok(__sdk::parse_reducer_args::<stage_private_parameters_desc_reducer::StagePrivateParametersDescArgs>("stage_private_parameters_desc", &value.args)?.into()),
             "stage_prospecting_desc" => Ok(__sdk::parse_reducer_args::<stage_prospecting_desc_reducer::StageProspectingDescArgs>("stage_prospecting_desc", &value.args)?.into()),
+            "stage_quest_chain_desc" => Ok(__sdk::parse_reducer_args::<stage_quest_chain_desc_reducer::StageQuestChainDescArgs>("stage_quest_chain_desc", &value.args)?.into()),
+            "stage_quest_stage_desc" => Ok(__sdk::parse_reducer_args::<stage_quest_stage_desc_reducer::StageQuestStageDescArgs>("stage_quest_stage_desc", &value.args)?.into()),
             "stage_reserved_name_desc" => Ok(__sdk::parse_reducer_args::<stage_reserved_name_desc_reducer::StageReservedNameDescArgs>("stage_reserved_name_desc", &value.args)?.into()),
             "stage_resource_clump_desc" => Ok(__sdk::parse_reducer_args::<stage_resource_clump_desc_reducer::StageResourceClumpDescArgs>("stage_resource_clump_desc", &value.args)?.into()),
             "stage_resource_desc" => Ok(__sdk::parse_reducer_args::<stage_resource_desc_reducer::StageResourceDescArgs>("stage_resource_desc", &value.args)?.into()),
@@ -5223,6 +5290,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "stage_resource_placement_recipe_desc_v2" => Ok(__sdk::parse_reducer_args::<stage_resource_placement_recipe_desc_v_2_reducer::StageResourcePlacementRecipeDescV2Args>("stage_resource_placement_recipe_desc_v2", &value.args)?.into()),
             "stage_secondary_knowledge_desc" => Ok(__sdk::parse_reducer_args::<stage_secondary_knowledge_desc_reducer::StageSecondaryKnowledgeDescArgs>("stage_secondary_knowledge_desc", &value.args)?.into()),
             "stage_skill_desc" => Ok(__sdk::parse_reducer_args::<stage_skill_desc_reducer::StageSkillDescArgs>("stage_skill_desc", &value.args)?.into()),
+            "stage_stage_rewards_desc" => Ok(__sdk::parse_reducer_args::<stage_stage_rewards_desc_reducer::StageStageRewardsDescArgs>("stage_stage_rewards_desc", &value.args)?.into()),
             "stage_targeting_matrix_desc" => Ok(__sdk::parse_reducer_args::<stage_targeting_matrix_desc_reducer::StageTargetingMatrixDescArgs>("stage_targeting_matrix_desc", &value.args)?.into()),
             "stage_teleport_item_desc" => Ok(__sdk::parse_reducer_args::<stage_teleport_item_desc_reducer::StageTeleportItemDescArgs>("stage_teleport_item_desc", &value.args)?.into()),
             "stage_terraform_recipe_desc" => Ok(__sdk::parse_reducer_args::<stage_terraform_recipe_desc_reducer::StageTerraformRecipeDescArgs>("stage_terraform_recipe_desc", &value.args)?.into()),
@@ -5396,6 +5464,7 @@ pub struct DbUpdate {
     inter_module_message_errors: __sdk::TableUpdate<InterModuleMessageErrors>,
     inter_module_message_v_2: __sdk::TableUpdate<InterModuleMessageV2>,
     inter_module_message_v_3: __sdk::TableUpdate<InterModuleMessageV3>,
+    inter_module_message_v_4: __sdk::TableUpdate<InterModuleMessageV4>,
     inter_module_response_message_counter: __sdk::TableUpdate<InterModuleResponseMessageCounter>,
     interior_collapse_trigger_state: __sdk::TableUpdate<InteriorCollapseTriggerState>,
     interior_environment_desc: __sdk::TableUpdate<InteriorEnvironmentDesc>,
@@ -5490,6 +5559,9 @@ pub struct DbUpdate {
     prospecting_desc: __sdk::TableUpdate<ProspectingDesc>,
     prospecting_state: __sdk::TableUpdate<ProspectingState>,
     public_progressive_action_state: __sdk::TableUpdate<PublicProgressiveActionState>,
+    quest_chain_desc: __sdk::TableUpdate<QuestChainDesc>,
+    quest_chain_state: __sdk::TableUpdate<QuestChainState>,
+    quest_stage_desc: __sdk::TableUpdate<QuestStageDesc>,
     region_connection_info: __sdk::TableUpdate<RegionConnectionInfo>,
     region_population_info: __sdk::TableUpdate<RegionPopulationInfo>,
     region_sign_in_parameters: __sdk::TableUpdate<RegionSignInParameters>,
@@ -5511,6 +5583,7 @@ pub struct DbUpdate {
     signed_in_player_state: __sdk::TableUpdate<SignedInPlayerState>,
     single_resource_to_clump_desc: __sdk::TableUpdate<SingleResourceToClumpDesc>,
     skill_desc: __sdk::TableUpdate<SkillDesc>,
+    stage_rewards_desc: __sdk::TableUpdate<StageRewardsDesc>,
     staged_ability_custom_desc: __sdk::TableUpdate<AbilityCustomDesc>,
     staged_ability_unlock_desc: __sdk::TableUpdate<AbilityUnlockDesc>,
     staged_achievement_desc: __sdk::TableUpdate<AchievementDesc>,
@@ -5586,6 +5659,8 @@ pub struct DbUpdate {
     staged_premium_service_desc: __sdk::TableUpdate<PremiumServiceDesc>,
     staged_private_parameters_desc: __sdk::TableUpdate<PrivateParametersDesc>,
     staged_prospecting_desc: __sdk::TableUpdate<ProspectingDesc>,
+    staged_quest_chain_desc: __sdk::TableUpdate<QuestChainDesc>,
+    staged_quest_stage_desc: __sdk::TableUpdate<QuestStageDesc>,
     staged_reserved_name_desc: __sdk::TableUpdate<ReservedNameDesc>,
     staged_resource_clump_desc: __sdk::TableUpdate<ResourceClumpDesc>,
     staged_resource_desc: __sdk::TableUpdate<ResourceDesc>,
@@ -5594,6 +5669,7 @@ pub struct DbUpdate {
     staged_resource_placement_recipe_desc_v_2: __sdk::TableUpdate<ResourcePlacementRecipeDescV2>,
     staged_secondary_knowledge_desc: __sdk::TableUpdate<SecondaryKnowledgeDesc>,
     staged_skill_desc: __sdk::TableUpdate<SkillDesc>,
+    staged_stage_rewards_desc: __sdk::TableUpdate<StageRewardsDesc>,
     staged_static_data: __sdk::TableUpdate<StagedStaticData>,
     staged_static_data_v_2: __sdk::TableUpdate<StagedStaticDataV2>,
     staged_static_data_v_3: __sdk::TableUpdate<StagedStaticDataV3>,
@@ -6110,6 +6186,9 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
                 "inter_module_message_v3" => db_update.inter_module_message_v_3.append(
                     inter_module_message_v_3_table::parse_table_update(table_update)?,
                 ),
+                "inter_module_message_v4" => db_update.inter_module_message_v_4.append(
+                    inter_module_message_v_4_table::parse_table_update(table_update)?,
+                ),
                 "inter_module_response_message_counter" => {
                     db_update.inter_module_response_message_counter.append(
                         inter_module_response_message_counter_table::parse_table_update(
@@ -6418,6 +6497,15 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
                         public_progressive_action_state_table::parse_table_update(table_update)?,
                     )
                 }
+                "quest_chain_desc" => db_update
+                    .quest_chain_desc
+                    .append(quest_chain_desc_table::parse_table_update(table_update)?),
+                "quest_chain_state" => db_update
+                    .quest_chain_state
+                    .append(quest_chain_state_table::parse_table_update(table_update)?),
+                "quest_stage_desc" => db_update
+                    .quest_stage_desc
+                    .append(quest_stage_desc_table::parse_table_update(table_update)?),
                 "region_connection_info" => db_update.region_connection_info.append(
                     region_connection_info_table::parse_table_update(table_update)?,
                 ),
@@ -6485,6 +6573,9 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
                 "skill_desc" => db_update
                     .skill_desc
                     .append(skill_desc_table::parse_table_update(table_update)?),
+                "stage_rewards_desc" => db_update
+                    .stage_rewards_desc
+                    .append(stage_rewards_desc_table::parse_table_update(table_update)?),
                 "staged_ability_custom_desc" => db_update.staged_ability_custom_desc.append(
                     staged_ability_custom_desc_table::parse_table_update(table_update)?,
                 ),
@@ -6748,6 +6839,12 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
                 "staged_prospecting_desc" => db_update.staged_prospecting_desc.append(
                     staged_prospecting_desc_table::parse_table_update(table_update)?,
                 ),
+                "staged_quest_chain_desc" => db_update.staged_quest_chain_desc.append(
+                    staged_quest_chain_desc_table::parse_table_update(table_update)?,
+                ),
+                "staged_quest_stage_desc" => db_update.staged_quest_stage_desc.append(
+                    staged_quest_stage_desc_table::parse_table_update(table_update)?,
+                ),
                 "staged_reserved_name_desc" => db_update.staged_reserved_name_desc.append(
                     staged_reserved_name_desc_table::parse_table_update(table_update)?,
                 ),
@@ -6784,6 +6881,9 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
                 "staged_skill_desc" => db_update
                     .staged_skill_desc
                     .append(staged_skill_desc_table::parse_table_update(table_update)?),
+                "staged_stage_rewards_desc" => db_update.staged_stage_rewards_desc.append(
+                    staged_stage_rewards_desc_table::parse_table_update(table_update)?,
+                ),
                 "staged_static_data" => db_update
                     .staged_static_data
                     .append(staged_static_data_table::parse_table_update(table_update)?),
@@ -7642,6 +7742,12 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.inter_module_message_v_3,
             )
             .with_updates_by_pk(|row| &row.id);
+        diff.inter_module_message_v_4 = cache
+            .apply_diff_to_table::<InterModuleMessageV4>(
+                "inter_module_message_v4",
+                &self.inter_module_message_v_4,
+            )
+            .with_updates_by_pk(|row| &row.id);
         diff.inter_module_response_message_counter = cache
             .apply_diff_to_table::<InterModuleResponseMessageCounter>(
                 "inter_module_response_message_counter",
@@ -8110,6 +8216,15 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.public_progressive_action_state,
             )
             .with_updates_by_pk(|row| &row.entity_id);
+        diff.quest_chain_desc = cache
+            .apply_diff_to_table::<QuestChainDesc>("quest_chain_desc", &self.quest_chain_desc)
+            .with_updates_by_pk(|row| &row.id);
+        diff.quest_chain_state = cache
+            .apply_diff_to_table::<QuestChainState>("quest_chain_state", &self.quest_chain_state)
+            .with_updates_by_pk(|row| &row.entity_id);
+        diff.quest_stage_desc = cache
+            .apply_diff_to_table::<QuestStageDesc>("quest_stage_desc", &self.quest_stage_desc)
+            .with_updates_by_pk(|row| &row.id);
         diff.region_connection_info = cache
             .apply_diff_to_table::<RegionConnectionInfo>(
                 "region_connection_info",
@@ -8208,6 +8323,9 @@ impl __sdk::DbUpdate for DbUpdate {
             .with_updates_by_pk(|row| &row.resource_id);
         diff.skill_desc = cache
             .apply_diff_to_table::<SkillDesc>("skill_desc", &self.skill_desc)
+            .with_updates_by_pk(|row| &row.id);
+        diff.stage_rewards_desc = cache
+            .apply_diff_to_table::<StageRewardsDesc>("stage_rewards_desc", &self.stage_rewards_desc)
             .with_updates_by_pk(|row| &row.id);
         diff.staged_ability_custom_desc = cache
             .apply_diff_to_table::<AbilityCustomDesc>(
@@ -8620,6 +8738,18 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.staged_prospecting_desc,
             )
             .with_updates_by_pk(|row| &row.id);
+        diff.staged_quest_chain_desc = cache
+            .apply_diff_to_table::<QuestChainDesc>(
+                "staged_quest_chain_desc",
+                &self.staged_quest_chain_desc,
+            )
+            .with_updates_by_pk(|row| &row.id);
+        diff.staged_quest_stage_desc = cache
+            .apply_diff_to_table::<QuestStageDesc>(
+                "staged_quest_stage_desc",
+                &self.staged_quest_stage_desc,
+            )
+            .with_updates_by_pk(|row| &row.id);
         diff.staged_reserved_name_desc = cache
             .apply_diff_to_table::<ReservedNameDesc>(
                 "staged_reserved_name_desc",
@@ -8661,6 +8791,12 @@ impl __sdk::DbUpdate for DbUpdate {
             .with_updates_by_pk(|row| &row.id);
         diff.staged_skill_desc = cache
             .apply_diff_to_table::<SkillDesc>("staged_skill_desc", &self.staged_skill_desc)
+            .with_updates_by_pk(|row| &row.id);
+        diff.staged_stage_rewards_desc = cache
+            .apply_diff_to_table::<StageRewardsDesc>(
+                "staged_stage_rewards_desc",
+                &self.staged_stage_rewards_desc,
+            )
             .with_updates_by_pk(|row| &row.id);
         diff.staged_static_data = cache
             .apply_diff_to_table::<StagedStaticData>("staged_static_data", &self.staged_static_data)
@@ -9089,6 +9225,7 @@ pub struct AppliedDiff<'r> {
     inter_module_message_errors: __sdk::TableAppliedDiff<'r, InterModuleMessageErrors>,
     inter_module_message_v_2: __sdk::TableAppliedDiff<'r, InterModuleMessageV2>,
     inter_module_message_v_3: __sdk::TableAppliedDiff<'r, InterModuleMessageV3>,
+    inter_module_message_v_4: __sdk::TableAppliedDiff<'r, InterModuleMessageV4>,
     inter_module_response_message_counter:
         __sdk::TableAppliedDiff<'r, InterModuleResponseMessageCounter>,
     interior_collapse_trigger_state: __sdk::TableAppliedDiff<'r, InteriorCollapseTriggerState>,
@@ -9187,6 +9324,9 @@ pub struct AppliedDiff<'r> {
     prospecting_desc: __sdk::TableAppliedDiff<'r, ProspectingDesc>,
     prospecting_state: __sdk::TableAppliedDiff<'r, ProspectingState>,
     public_progressive_action_state: __sdk::TableAppliedDiff<'r, PublicProgressiveActionState>,
+    quest_chain_desc: __sdk::TableAppliedDiff<'r, QuestChainDesc>,
+    quest_chain_state: __sdk::TableAppliedDiff<'r, QuestChainState>,
+    quest_stage_desc: __sdk::TableAppliedDiff<'r, QuestStageDesc>,
     region_connection_info: __sdk::TableAppliedDiff<'r, RegionConnectionInfo>,
     region_population_info: __sdk::TableAppliedDiff<'r, RegionPopulationInfo>,
     region_sign_in_parameters: __sdk::TableAppliedDiff<'r, RegionSignInParameters>,
@@ -9208,6 +9348,7 @@ pub struct AppliedDiff<'r> {
     signed_in_player_state: __sdk::TableAppliedDiff<'r, SignedInPlayerState>,
     single_resource_to_clump_desc: __sdk::TableAppliedDiff<'r, SingleResourceToClumpDesc>,
     skill_desc: __sdk::TableAppliedDiff<'r, SkillDesc>,
+    stage_rewards_desc: __sdk::TableAppliedDiff<'r, StageRewardsDesc>,
     staged_ability_custom_desc: __sdk::TableAppliedDiff<'r, AbilityCustomDesc>,
     staged_ability_unlock_desc: __sdk::TableAppliedDiff<'r, AbilityUnlockDesc>,
     staged_achievement_desc: __sdk::TableAppliedDiff<'r, AchievementDesc>,
@@ -9284,6 +9425,8 @@ pub struct AppliedDiff<'r> {
     staged_premium_service_desc: __sdk::TableAppliedDiff<'r, PremiumServiceDesc>,
     staged_private_parameters_desc: __sdk::TableAppliedDiff<'r, PrivateParametersDesc>,
     staged_prospecting_desc: __sdk::TableAppliedDiff<'r, ProspectingDesc>,
+    staged_quest_chain_desc: __sdk::TableAppliedDiff<'r, QuestChainDesc>,
+    staged_quest_stage_desc: __sdk::TableAppliedDiff<'r, QuestStageDesc>,
     staged_reserved_name_desc: __sdk::TableAppliedDiff<'r, ReservedNameDesc>,
     staged_resource_clump_desc: __sdk::TableAppliedDiff<'r, ResourceClumpDesc>,
     staged_resource_desc: __sdk::TableAppliedDiff<'r, ResourceDesc>,
@@ -9293,6 +9436,7 @@ pub struct AppliedDiff<'r> {
         __sdk::TableAppliedDiff<'r, ResourcePlacementRecipeDescV2>,
     staged_secondary_knowledge_desc: __sdk::TableAppliedDiff<'r, SecondaryKnowledgeDesc>,
     staged_skill_desc: __sdk::TableAppliedDiff<'r, SkillDesc>,
+    staged_stage_rewards_desc: __sdk::TableAppliedDiff<'r, StageRewardsDesc>,
     staged_static_data: __sdk::TableAppliedDiff<'r, StagedStaticData>,
     staged_static_data_v_2: __sdk::TableAppliedDiff<'r, StagedStaticDataV2>,
     staged_static_data_v_3: __sdk::TableAppliedDiff<'r, StagedStaticDataV3>,
@@ -10015,6 +10159,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             &self.inter_module_message_v_3,
             event,
         );
+        callbacks.invoke_table_row_callbacks::<InterModuleMessageV4>(
+            "inter_module_message_v4",
+            &self.inter_module_message_v_4,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<InterModuleResponseMessageCounter>(
             "inter_module_response_message_counter",
             &self.inter_module_response_message_counter,
@@ -10473,6 +10622,21 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             &self.public_progressive_action_state,
             event,
         );
+        callbacks.invoke_table_row_callbacks::<QuestChainDesc>(
+            "quest_chain_desc",
+            &self.quest_chain_desc,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<QuestChainState>(
+            "quest_chain_state",
+            &self.quest_chain_state,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<QuestStageDesc>(
+            "quest_stage_desc",
+            &self.quest_stage_desc,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<RegionConnectionInfo>(
             "region_connection_info",
             &self.region_connection_info,
@@ -10570,6 +10734,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             event,
         );
         callbacks.invoke_table_row_callbacks::<SkillDesc>("skill_desc", &self.skill_desc, event);
+        callbacks.invoke_table_row_callbacks::<StageRewardsDesc>(
+            "stage_rewards_desc",
+            &self.stage_rewards_desc,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<AbilityCustomDesc>(
             "staged_ability_custom_desc",
             &self.staged_ability_custom_desc,
@@ -10945,6 +11114,16 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             &self.staged_prospecting_desc,
             event,
         );
+        callbacks.invoke_table_row_callbacks::<QuestChainDesc>(
+            "staged_quest_chain_desc",
+            &self.staged_quest_chain_desc,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<QuestStageDesc>(
+            "staged_quest_stage_desc",
+            &self.staged_quest_stage_desc,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<ReservedNameDesc>(
             "staged_reserved_name_desc",
             &self.staged_reserved_name_desc,
@@ -10983,6 +11162,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<SkillDesc>(
             "staged_skill_desc",
             &self.staged_skill_desc,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<StageRewardsDesc>(
+            "staged_stage_rewards_desc",
+            &self.staged_stage_rewards_desc,
             event,
         );
         callbacks.invoke_table_row_callbacks::<StagedStaticData>(
@@ -11974,6 +12158,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         inter_module_message_errors_table::register_table(client_cache);
         inter_module_message_v_2_table::register_table(client_cache);
         inter_module_message_v_3_table::register_table(client_cache);
+        inter_module_message_v_4_table::register_table(client_cache);
         inter_module_response_message_counter_table::register_table(client_cache);
         interior_collapse_trigger_state_table::register_table(client_cache);
         interior_environment_desc_table::register_table(client_cache);
@@ -12068,6 +12253,9 @@ impl __sdk::SpacetimeModule for RemoteModule {
         prospecting_desc_table::register_table(client_cache);
         prospecting_state_table::register_table(client_cache);
         public_progressive_action_state_table::register_table(client_cache);
+        quest_chain_desc_table::register_table(client_cache);
+        quest_chain_state_table::register_table(client_cache);
+        quest_stage_desc_table::register_table(client_cache);
         region_connection_info_table::register_table(client_cache);
         region_population_info_table::register_table(client_cache);
         region_sign_in_parameters_table::register_table(client_cache);
@@ -12089,6 +12277,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         signed_in_player_state_table::register_table(client_cache);
         single_resource_to_clump_desc_table::register_table(client_cache);
         skill_desc_table::register_table(client_cache);
+        stage_rewards_desc_table::register_table(client_cache);
         staged_ability_custom_desc_table::register_table(client_cache);
         staged_ability_unlock_desc_table::register_table(client_cache);
         staged_achievement_desc_table::register_table(client_cache);
@@ -12164,6 +12353,8 @@ impl __sdk::SpacetimeModule for RemoteModule {
         staged_premium_service_desc_table::register_table(client_cache);
         staged_private_parameters_desc_table::register_table(client_cache);
         staged_prospecting_desc_table::register_table(client_cache);
+        staged_quest_chain_desc_table::register_table(client_cache);
+        staged_quest_stage_desc_table::register_table(client_cache);
         staged_reserved_name_desc_table::register_table(client_cache);
         staged_resource_clump_desc_table::register_table(client_cache);
         staged_resource_desc_table::register_table(client_cache);
@@ -12172,6 +12363,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         staged_resource_placement_recipe_desc_v_2_table::register_table(client_cache);
         staged_secondary_knowledge_desc_table::register_table(client_cache);
         staged_skill_desc_table::register_table(client_cache);
+        staged_stage_rewards_desc_table::register_table(client_cache);
         staged_static_data_table::register_table(client_cache);
         staged_static_data_v_2_table::register_table(client_cache);
         staged_static_data_v_3_table::register_table(client_cache);
