@@ -252,6 +252,7 @@ namespace BitCraftRegion.Types
             AddTable(PlayerActionDesc = new(conn));
             AddTable(PlayerActionState = new(conn));
             AddTable(PlayerDeathTimer = new(conn));
+            AddTable(PlayerHousingCustomizationState = new(conn));
             AddTable(PlayerHousingDesc = new(conn));
             AddTable(PlayerHousingEvictPlayerTimer = new(conn));
             AddTable(PlayerHousingIncomeLoopTimer = new(conn));
@@ -940,6 +941,7 @@ namespace BitCraftRegion.Types
                 "admin_count_inventory_items" => BSATNHelpers.Decode<Reducer.AdminCountInventoryItems>(encodedArgs),
                 "admin_create_building_spawns" => BSATNHelpers.Decode<Reducer.AdminCreateBuildingSpawns>(encodedArgs),
                 "admin_create_chat_message" => BSATNHelpers.Decode<Reducer.AdminCreateChatMessage>(encodedArgs),
+                "admin_create_entity_name_report" => BSATNHelpers.Decode<Reducer.AdminCreateEntityNameReport>(encodedArgs),
                 "admin_create_player_report" => BSATNHelpers.Decode<Reducer.AdminCreatePlayerReport>(encodedArgs),
                 "admin_delete_all_items_of_type" => BSATNHelpers.Decode<Reducer.AdminDeleteAllItemsOfType>(encodedArgs),
                 "admin_delete_chat_message" => BSATNHelpers.Decode<Reducer.AdminDeleteChatMessage>(encodedArgs),
@@ -1643,6 +1645,7 @@ namespace BitCraftRegion.Types
                 Reducer.AdminCountInventoryItems args => Reducers.InvokeAdminCountInventoryItems(eventContext, args),
                 Reducer.AdminCreateBuildingSpawns args => Reducers.InvokeAdminCreateBuildingSpawns(eventContext, args),
                 Reducer.AdminCreateChatMessage args => Reducers.InvokeAdminCreateChatMessage(eventContext, args),
+                Reducer.AdminCreateEntityNameReport args => Reducers.InvokeAdminCreateEntityNameReport(eventContext, args),
                 Reducer.AdminCreatePlayerReport args => Reducers.InvokeAdminCreatePlayerReport(eventContext, args),
                 Reducer.AdminDeleteAllItemsOfType args => Reducers.InvokeAdminDeleteAllItemsOfType(eventContext, args),
                 Reducer.AdminDeleteChatMessage args => Reducers.InvokeAdminDeleteChatMessage(eventContext, args),

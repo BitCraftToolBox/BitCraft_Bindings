@@ -33,5 +33,7 @@ namespace BitCraftRegion.Types
         ClothesCape,
         PremiumItem,
         Emote,
+        HousingWalls,
+        HousingFloor,
     }
 }

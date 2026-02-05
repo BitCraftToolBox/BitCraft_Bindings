@@ -23,18 +23,26 @@ namespace BitCraftRegion.Types
         public bool IsCargo;
         [DataMember(Name = "durability")]
         public int Durability;
+        [DataMember(Name = "target_inventory_entity_id")]
+        public ulong TargetInventoryEntityId;
+        [DataMember(Name = "target_inventory_index")]
+        public int? TargetInventoryIndex;
 
         public PlayerRetrieveLostItemRequest(
             ulong BuildingEntityId,
             int ItemId,
             bool IsCargo,
-            int Durability
+            int Durability,
+            ulong TargetInventoryEntityId,
+            int? TargetInventoryIndex
         )
         {
             this.BuildingEntityId = BuildingEntityId;
             this.ItemId = ItemId;
             this.IsCargo = IsCargo;
             this.Durability = Durability;
+            this.TargetInventoryEntityId = TargetInventoryEntityId;
+            this.TargetInventoryIndex = TargetInventoryIndex;
         }
 
         public PlayerRetrieveLostItemRequest()
