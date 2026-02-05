@@ -90,6 +90,8 @@ pub enum EnemyType {
     SpiderDungeonSmallSpider,
 
     SpiderDungeonSpiderNest,
+
+    EnragedAlphaJakyl,
 }
 
 impl __sdk::InModule for EnemyType {
