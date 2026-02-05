@@ -212,12 +212,14 @@ namespace BitCraftGlobal.Types
             AddTable(LootTableDesc = new(conn));
             AddTable(LostItemsState = new(conn));
             AddTable(MarketplaceState = new(conn));
+            AddTable(MinimumClientVersion = new(conn));
             AddTable(MobileEntityState = new(conn));
             AddTable(ModerationActionLogEntry = new(conn));
             AddTable(MountingState = new(conn));
             AddTable(MoveValidationStrikeCounterState = new(conn));
             AddTable(NpcDesc = new(conn));
             AddTable(NpcState = new(conn));
+            AddTable(OfficialTranslators = new(conn));
             AddTable(OnboardingRewardDesc = new(conn));
             AddTable(OnboardingState = new(conn));
             AddTable(ParametersDesc = new(conn));
@@ -234,6 +236,7 @@ namespace BitCraftGlobal.Types
             AddTable(PlayerActionDesc = new(conn));
             AddTable(PlayerActionState = new(conn));
             AddTable(PlayerDeveloperNotificationState = new(conn));
+            AddTable(PlayerHousingCustomizationState = new(conn));
             AddTable(PlayerHousingDesc = new(conn));
             AddTable(PlayerHousingMovingCostState = new(conn));
             AddTable(PlayerHousingState = new(conn));
@@ -410,6 +413,7 @@ namespace BitCraftGlobal.Types
             AddTable(ToolbarState = new(conn));
             AddTable(TradeOrderState = new(conn));
             AddTable(TradeSessionState = new(conn));
+            AddTable(TranslationCorrections = new(conn));
             AddTable(TravelerTaskDesc = new(conn));
             AddTable(TravelerTaskState = new(conn));
             AddTable(TravelerTradeOrderDesc = new(conn));
@@ -876,9 +880,11 @@ namespace BitCraftGlobal.Types
             {
                 "add_favorite_friend" => BSATNHelpers.Decode<Reducer.AddFavoriteFriend>(encodedArgs),
                 "add_friend" => BSATNHelpers.Decode<Reducer.AddFriend>(encodedArgs),
+                "add_official_translator" => BSATNHelpers.Decode<Reducer.AddOfficialTranslator>(encodedArgs),
                 "admin_broadcast_msg" => BSATNHelpers.Decode<Reducer.AdminBroadcastMsg>(encodedArgs),
                 "admin_create_chat_message" => BSATNHelpers.Decode<Reducer.AdminCreateChatMessage>(encodedArgs),
                 "admin_create_direct_chat_message" => BSATNHelpers.Decode<Reducer.AdminCreateDirectChatMessage>(encodedArgs),
+                "admin_create_entity_name_report" => BSATNHelpers.Decode<Reducer.AdminCreateEntityNameReport>(encodedArgs),
                 "admin_create_player_report" => BSATNHelpers.Decode<Reducer.AdminCreatePlayerReport>(encodedArgs),
                 "admin_delete_chat_message" => BSATNHelpers.Decode<Reducer.AdminDeleteChatMessage>(encodedArgs),
                 "admin_delete_moderation_action_log_entry" => BSATNHelpers.Decode<Reducer.AdminDeleteModerationActionLogEntry>(encodedArgs),
@@ -914,6 +920,7 @@ namespace BitCraftGlobal.Types
                 "cheat_shards_grant" => BSATNHelpers.Decode<Reducer.CheatShardsGrant>(encodedArgs),
                 "clear_staged_static_data" => BSATNHelpers.Decode<Reducer.ClearStagedStaticData>(encodedArgs),
                 "commit_staged_static_data" => BSATNHelpers.Decode<Reducer.CommitStagedStaticData>(encodedArgs),
+                "correct_translation" => BSATNHelpers.Decode<Reducer.CorrectTranslation>(encodedArgs),
                 "create_chat_channel" => BSATNHelpers.Decode<Reducer.CreateChatChannel>(encodedArgs),
                 "current_version" => BSATNHelpers.Decode<Reducer.CurrentVersion>(encodedArgs),
                 "edit_chat_channel" => BSATNHelpers.Decode<Reducer.EditChatChannel>(encodedArgs),
@@ -1255,9 +1262,11 @@ namespace BitCraftGlobal.Types
             {
                 Reducer.AddFavoriteFriend args => Reducers.InvokeAddFavoriteFriend(eventContext, args),
                 Reducer.AddFriend args => Reducers.InvokeAddFriend(eventContext, args),
+                Reducer.AddOfficialTranslator args => Reducers.InvokeAddOfficialTranslator(eventContext, args),
                 Reducer.AdminBroadcastMsg args => Reducers.InvokeAdminBroadcastMsg(eventContext, args),
                 Reducer.AdminCreateChatMessage args => Reducers.InvokeAdminCreateChatMessage(eventContext, args),
                 Reducer.AdminCreateDirectChatMessage args => Reducers.InvokeAdminCreateDirectChatMessage(eventContext, args),
+                Reducer.AdminCreateEntityNameReport args => Reducers.InvokeAdminCreateEntityNameReport(eventContext, args),
                 Reducer.AdminCreatePlayerReport args => Reducers.InvokeAdminCreatePlayerReport(eventContext, args),
                 Reducer.AdminDeleteChatMessage args => Reducers.InvokeAdminDeleteChatMessage(eventContext, args),
                 Reducer.AdminDeleteModerationActionLogEntry args => Reducers.InvokeAdminDeleteModerationActionLogEntry(eventContext, args),
@@ -1293,6 +1302,7 @@ namespace BitCraftGlobal.Types
                 Reducer.CheatShardsGrant args => Reducers.InvokeCheatShardsGrant(eventContext, args),
                 Reducer.ClearStagedStaticData args => Reducers.InvokeClearStagedStaticData(eventContext, args),
                 Reducer.CommitStagedStaticData args => Reducers.InvokeCommitStagedStaticData(eventContext, args),
+                Reducer.CorrectTranslation args => Reducers.InvokeCorrectTranslation(eventContext, args),
                 Reducer.CreateChatChannel args => Reducers.InvokeCreateChatChannel(eventContext, args),
                 Reducer.CurrentVersion args => Reducers.InvokeCurrentVersion(eventContext, args),
                 Reducer.EditChatChannel args => Reducers.InvokeEditChatChannel(eventContext, args),
