@@ -91,6 +91,8 @@ import { AdminCreateBuildingSpawns } from "./admin_create_building_spawns_reduce
 export { AdminCreateBuildingSpawns };
 import { AdminCreateChatMessage } from "./admin_create_chat_message_reducer.ts";
 export { AdminCreateChatMessage };
+import { AdminCreateEntityNameReport } from "./admin_create_entity_name_report_reducer.ts";
+export { AdminCreateEntityNameReport };
 import { AdminCreatePlayerReport } from "./admin_create_player_report_reducer.ts";
 export { AdminCreatePlayerReport };
 import { AdminDeleteAllItemsOfType } from "./admin_delete_all_items_of_type_reducer.ts";
@@ -1857,6 +1859,8 @@ import { PlayerActionStateTableHandle } from "./player_action_state_table.ts";
 export { PlayerActionStateTableHandle };
 import { PlayerDeathTimerTableHandle } from "./player_death_timer_table.ts";
 export { PlayerDeathTimerTableHandle };
+import { PlayerHousingCustomizationStateTableHandle } from "./player_housing_customization_state_table.ts";
+export { PlayerHousingCustomizationStateTableHandle };
 import { PlayerHousingDescTableHandle } from "./player_housing_desc_table.ts";
 export { PlayerHousingDescTableHandle };
 import { PlayerHousingEvictPlayerTimerTableHandle } from "./player_housing_evict_player_timer_table.ts";
@@ -3157,6 +3161,8 @@ import { PlayerEquipmentRemoveRequest } from "./player_equipment_remove_request_
 export { PlayerEquipmentRemoveRequest };
 import { PlayerExtractRequest } from "./player_extract_request_type.ts";
 export { PlayerExtractRequest };
+import { PlayerHousingCustomizationState } from "./player_housing_customization_state_type.ts";
+export { PlayerHousingCustomizationState };
 import { PlayerHousingDesc } from "./player_housing_desc_type.ts";
 export { PlayerHousingDesc };
 import { PlayerHousingEnterRequest } from "./player_housing_enter_request_type.ts";
@@ -5742,6 +5748,15 @@ export const REMOTE_MODULE = {
         colType: PlayerDeathTimer.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    player_housing_customization_state: {
+      tableName: "player_housing_customization_state",
+      rowType: PlayerHousingCustomizationState.getTypeScriptAlgebraicType(),
+      primaryKey: "entityId",
+      primaryKeyInfo: {
+        colName: "entityId",
+        colType: PlayerHousingCustomizationState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     player_housing_desc: {
       tableName: "player_housing_desc",
       rowType: PlayerHousingDesc.getTypeScriptAlgebraicType(),
@@ -7803,6 +7818,10 @@ export const REMOTE_MODULE = {
     admin_create_chat_message: {
       reducerName: "admin_create_chat_message",
       argsType: AdminCreateChatMessage.getTypeScriptAlgebraicType(),
+    },
+    admin_create_entity_name_report: {
+      reducerName: "admin_create_entity_name_report",
+      argsType: AdminCreateEntityNameReport.getTypeScriptAlgebraicType(),
     },
     admin_create_player_report: {
       reducerName: "admin_create_player_report",
@@ -10475,6 +10494,7 @@ export type Reducer = never
 | { name: "AdminCountInventoryItems", args: AdminCountInventoryItems }
 | { name: "AdminCreateBuildingSpawns", args: AdminCreateBuildingSpawns }
 | { name: "AdminCreateChatMessage", args: AdminCreateChatMessage }
+| { name: "AdminCreateEntityNameReport", args: AdminCreateEntityNameReport }
 | { name: "AdminCreatePlayerReport", args: AdminCreatePlayerReport }
 | { name: "AdminDeleteAllItemsOfType", args: AdminDeleteAllItemsOfType }
 | { name: "AdminDeleteChatMessage", args: AdminDeleteChatMessage }
@@ -11575,6 +11595,22 @@ export class RemoteReducers {
 
   removeOnAdminCreateChatMessage(callback: (ctx: ReducerEventContext, channelId: ChatChannel, username: string, titleId: number, targetId: bigint, newMessageText: string) => void) {
     this.connection.offReducer("admin_create_chat_message", callback);
+  }
+
+  adminCreateEntityNameReport(reportType: string, entityId: bigint, entityName: string, message: string) {
+    const __args = { reportType, entityId, entityName, message };
+    let __writer = new BinaryWriter(1024);
+    AdminCreateEntityNameReport.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("admin_create_entity_name_report", __argsBuffer, this.setCallReducerFlags.adminCreateEntityNameReportFlags);
+  }
+
+  onAdminCreateEntityNameReport(callback: (ctx: ReducerEventContext, reportType: string, entityId: bigint, entityName: string, message: string) => void) {
+    this.connection.onReducer("admin_create_entity_name_report", callback);
+  }
+
+  removeOnAdminCreateEntityNameReport(callback: (ctx: ReducerEventContext, reportType: string, entityId: bigint, entityName: string, message: string) => void) {
+    this.connection.offReducer("admin_create_entity_name_report", callback);
   }
 
   adminCreatePlayerReport(request: CreatePlayerReportRequest) {
@@ -21985,6 +22021,11 @@ export class SetReducerFlags {
     this.adminCreateChatMessageFlags = flags;
   }
 
+  adminCreateEntityNameReportFlags: CallReducerFlags = 'FullUpdate';
+  adminCreateEntityNameReport(flags: CallReducerFlags) {
+    this.adminCreateEntityNameReportFlags = flags;
+  }
+
   adminCreatePlayerReportFlags: CallReducerFlags = 'FullUpdate';
   adminCreatePlayerReport(flags: CallReducerFlags) {
     this.adminCreatePlayerReportFlags = flags;
@@ -26159,6 +26200,10 @@ export class RemoteTables {
 
   get playerDeathTimer(): PlayerDeathTimerTableHandle {
     return new PlayerDeathTimerTableHandle(this.connection.clientCache.getOrCreateTable<PlayerDeathTimer>(REMOTE_MODULE.tables.player_death_timer));
+  }
+
+  get playerHousingCustomizationState(): PlayerHousingCustomizationStateTableHandle {
+    return new PlayerHousingCustomizationStateTableHandle(this.connection.clientCache.getOrCreateTable<PlayerHousingCustomizationState>(REMOTE_MODULE.tables.player_housing_customization_state));
   }
 
   get playerHousingDesc(): PlayerHousingDescTableHandle {

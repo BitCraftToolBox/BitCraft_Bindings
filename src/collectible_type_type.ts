@@ -57,6 +57,8 @@ export namespace CollectibleType {
   export type ClothesCape = { tag: "ClothesCape" };
   export type PremiumItem = { tag: "PremiumItem" };
   export type Emote = { tag: "Emote" };
+  export type HousingWalls = { tag: "HousingWalls" };
+  export type HousingFloor = { tag: "HousingFloor" };
 
   // Helper functions for constructing each variant of the tagged union.
   // ```
@@ -85,6 +87,8 @@ export namespace CollectibleType {
   export const ClothesCape = { tag: "ClothesCape" };
   export const PremiumItem = { tag: "PremiumItem" };
   export const Emote = { tag: "Emote" };
+  export const HousingWalls = { tag: "HousingWalls" };
+  export const HousingFloor = { tag: "HousingFloor" };
 
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createSumType([
@@ -109,6 +113,8 @@ export namespace CollectibleType {
       new SumTypeVariant("ClothesCape", AlgebraicType.createProductType([])),
       new SumTypeVariant("PremiumItem", AlgebraicType.createProductType([])),
       new SumTypeVariant("Emote", AlgebraicType.createProductType([])),
+      new SumTypeVariant("HousingWalls", AlgebraicType.createProductType([])),
+      new SumTypeVariant("HousingFloor", AlgebraicType.createProductType([])),
     ]);
   }
 
@@ -123,7 +129,7 @@ export namespace CollectibleType {
 }
 
 // The tagged union or sum type for the algebraic type `CollectibleType`.
-export type CollectibleType = CollectibleType.Default | CollectibleType.Hair | CollectibleType.Mask | CollectibleType.MaskPattern | CollectibleType.HairColor | CollectibleType.Nameplate | CollectibleType.BodyColor | CollectibleType.Emblem | CollectibleType.ClothesHead | CollectibleType.ClothesBelt | CollectibleType.ClothesTorso | CollectibleType.ClothesArms | CollectibleType.ClothesLegs | CollectibleType.ClothesFeet | CollectibleType.Deployable | CollectibleType.Title | CollectibleType.Crown | CollectibleType.Pet | CollectibleType.ClothesCape | CollectibleType.PremiumItem | CollectibleType.Emote;
+export type CollectibleType = CollectibleType.Default | CollectibleType.Hair | CollectibleType.Mask | CollectibleType.MaskPattern | CollectibleType.HairColor | CollectibleType.Nameplate | CollectibleType.BodyColor | CollectibleType.Emblem | CollectibleType.ClothesHead | CollectibleType.ClothesBelt | CollectibleType.ClothesTorso | CollectibleType.ClothesArms | CollectibleType.ClothesLegs | CollectibleType.ClothesFeet | CollectibleType.Deployable | CollectibleType.Title | CollectibleType.Crown | CollectibleType.Pet | CollectibleType.ClothesCape | CollectibleType.PremiumItem | CollectibleType.Emote | CollectibleType.HousingWalls | CollectibleType.HousingFloor;
 
 export default CollectibleType;
 

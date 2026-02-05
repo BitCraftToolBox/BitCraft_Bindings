@@ -36,6 +36,8 @@ export type PlayerRetrieveLostItemRequest = {
   itemId: number,
   isCargo: boolean,
   durability: number,
+  targetInventoryEntityId: bigint,
+  targetInventoryIndex: number | undefined,
 };
 
 /**
@@ -52,6 +54,8 @@ export namespace PlayerRetrieveLostItemRequest {
       new ProductTypeElement("itemId", AlgebraicType.createI32Type()),
       new ProductTypeElement("isCargo", AlgebraicType.createBoolType()),
       new ProductTypeElement("durability", AlgebraicType.createI32Type()),
+      new ProductTypeElement("targetInventoryEntityId", AlgebraicType.createU64Type()),
+      new ProductTypeElement("targetInventoryIndex", AlgebraicType.createOptionType(AlgebraicType.createI32Type())),
     ]);
   }
 
