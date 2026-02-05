@@ -37,12 +37,16 @@ import { AddFavoriteFriend } from "./add_favorite_friend_reducer.ts";
 export { AddFavoriteFriend };
 import { AddFriend } from "./add_friend_reducer.ts";
 export { AddFriend };
+import { AddOfficialTranslator } from "./add_official_translator_reducer.ts";
+export { AddOfficialTranslator };
 import { AdminBroadcastMsg } from "./admin_broadcast_msg_reducer.ts";
 export { AdminBroadcastMsg };
 import { AdminCreateChatMessage } from "./admin_create_chat_message_reducer.ts";
 export { AdminCreateChatMessage };
 import { AdminCreateDirectChatMessage } from "./admin_create_direct_chat_message_reducer.ts";
 export { AdminCreateDirectChatMessage };
+import { AdminCreateEntityNameReport } from "./admin_create_entity_name_report_reducer.ts";
+export { AdminCreateEntityNameReport };
 import { AdminCreatePlayerReport } from "./admin_create_player_report_reducer.ts";
 export { AdminCreatePlayerReport };
 import { AdminDeleteChatMessage } from "./admin_delete_chat_message_reducer.ts";
@@ -113,6 +117,8 @@ import { ClearStagedStaticData } from "./clear_staged_static_data_reducer.ts";
 export { ClearStagedStaticData };
 import { CommitStagedStaticData } from "./commit_staged_static_data_reducer.ts";
 export { CommitStagedStaticData };
+import { CorrectTranslation } from "./correct_translation_reducer.ts";
+export { CorrectTranslation };
 import { CreateChatChannel } from "./create_chat_channel_reducer.ts";
 export { CreateChatChannel };
 import { CurrentVersion } from "./current_version_reducer.ts";
@@ -1129,6 +1135,8 @@ import { LostItemsStateTableHandle } from "./lost_items_state_table.ts";
 export { LostItemsStateTableHandle };
 import { MarketplaceStateTableHandle } from "./marketplace_state_table.ts";
 export { MarketplaceStateTableHandle };
+import { MinimumClientVersionTableHandle } from "./minimum_client_version_table.ts";
+export { MinimumClientVersionTableHandle };
 import { MobileEntityStateTableHandle } from "./mobile_entity_state_table.ts";
 export { MobileEntityStateTableHandle };
 import { ModerationActionLogEntryTableHandle } from "./moderation_action_log_entry_table.ts";
@@ -1141,6 +1149,8 @@ import { NpcDescTableHandle } from "./npc_desc_table.ts";
 export { NpcDescTableHandle };
 import { NpcStateTableHandle } from "./npc_state_table.ts";
 export { NpcStateTableHandle };
+import { OfficialTranslatorsTableHandle } from "./official_translators_table.ts";
+export { OfficialTranslatorsTableHandle };
 import { OnboardingRewardDescTableHandle } from "./onboarding_reward_desc_table.ts";
 export { OnboardingRewardDescTableHandle };
 import { OnboardingStateTableHandle } from "./onboarding_state_table.ts";
@@ -1173,6 +1183,8 @@ import { PlayerActionStateTableHandle } from "./player_action_state_table.ts";
 export { PlayerActionStateTableHandle };
 import { PlayerDeveloperNotificationStateTableHandle } from "./player_developer_notification_state_table.ts";
 export { PlayerDeveloperNotificationStateTableHandle };
+import { PlayerHousingCustomizationStateTableHandle } from "./player_housing_customization_state_table.ts";
+export { PlayerHousingCustomizationStateTableHandle };
 import { PlayerHousingDescTableHandle } from "./player_housing_desc_table.ts";
 export { PlayerHousingDescTableHandle };
 import { PlayerHousingMovingCostStateTableHandle } from "./player_housing_moving_cost_state_table.ts";
@@ -1525,6 +1537,8 @@ import { TradeOrderStateTableHandle } from "./trade_order_state_table.ts";
 export { TradeOrderStateTableHandle };
 import { TradeSessionStateTableHandle } from "./trade_session_state_table.ts";
 export { TradeSessionStateTableHandle };
+import { TranslationCorrectionsTableHandle } from "./translation_corrections_table.ts";
+export { TranslationCorrectionsTableHandle };
 import { TravelerTaskDescTableHandle } from "./traveler_task_desc_table.ts";
 export { TravelerTaskDescTableHandle };
 import { TravelerTaskStateTableHandle } from "./traveler_task_state_table.ts";
@@ -2175,6 +2189,8 @@ import { MessageContentsV3 } from "./message_contents_v_3_type.ts";
 export { MessageContentsV3 };
 import { MessageContentsV4 } from "./message_contents_v_4_type.ts";
 export { MessageContentsV4 };
+import { MinimumClientVersion } from "./minimum_client_version_type.ts";
+export { MinimumClientVersion };
 import { MobileEntityState } from "./mobile_entity_state_type.ts";
 export { MobileEntityState };
 import { ModerationActionLogEntry } from "./moderation_action_log_entry_type.ts";
@@ -2197,6 +2213,8 @@ import { NpcState } from "./npc_state_type.ts";
 export { NpcState };
 import { NpcType } from "./npc_type_type.ts";
 export { NpcType };
+import { OfficialTranslators } from "./official_translators_type.ts";
+export { OfficialTranslators };
 import { OffsetCoordinatesFloat } from "./offset_coordinates_float_type.ts";
 export { OffsetCoordinatesFloat };
 import { OffsetCoordinatesSmallMessage } from "./offset_coordinates_small_message_type.ts";
@@ -2267,6 +2285,8 @@ import { PlayerCreateMsg } from "./player_create_msg_type.ts";
 export { PlayerCreateMsg };
 import { PlayerDeveloperNotificationState } from "./player_developer_notification_state_type.ts";
 export { PlayerDeveloperNotificationState };
+import { PlayerHousingCustomizationState } from "./player_housing_customization_state_type.ts";
+export { PlayerHousingCustomizationState };
 import { PlayerHousingDesc } from "./player_housing_desc_type.ts";
 export { PlayerHousingDesc };
 import { PlayerHousingMovingCostState } from "./player_housing_moving_cost_state_type.ts";
@@ -2513,6 +2533,8 @@ import { TransferPlayerMsgV3 } from "./transfer_player_msg_v_3_type.ts";
 export { TransferPlayerMsgV3 };
 import { TransferPlayerMsgV4 } from "./transfer_player_msg_v_4_type.ts";
 export { TransferPlayerMsgV4 };
+import { TranslationCorrections } from "./translation_corrections_type.ts";
+export { TranslationCorrections };
 import { TravelerTaskDesc } from "./traveler_task_desc_type.ts";
 export { TravelerTaskDesc };
 import { TravelerTaskState } from "./traveler_task_state_type.ts";
@@ -4269,6 +4291,15 @@ const REMOTE_MODULE = {
         colType: MarketplaceState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    minimum_client_version: {
+      tableName: "minimum_client_version",
+      rowType: MinimumClientVersion.getTypeScriptAlgebraicType(),
+      primaryKey: "entityId",
+      primaryKeyInfo: {
+        colName: "entityId",
+        colType: MinimumClientVersion.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     mobile_entity_state: {
       tableName: "mobile_entity_state",
       rowType: MobileEntityState.getTypeScriptAlgebraicType(),
@@ -4322,6 +4353,10 @@ const REMOTE_MODULE = {
         colName: "entityId",
         colType: NpcState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
+    },
+    official_translators: {
+      tableName: "official_translators",
+      rowType: OfficialTranslators.getTypeScriptAlgebraicType(),
     },
     onboarding_reward_desc: {
       tableName: "onboarding_reward_desc",
@@ -4465,6 +4500,15 @@ const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "entityId",
         colType: PlayerDeveloperNotificationState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    player_housing_customization_state: {
+      tableName: "player_housing_customization_state",
+      rowType: PlayerHousingCustomizationState.getTypeScriptAlgebraicType(),
+      primaryKey: "entityId",
+      primaryKeyInfo: {
+        colName: "entityId",
+        colType: PlayerHousingCustomizationState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     player_housing_desc: {
@@ -6051,6 +6095,15 @@ const REMOTE_MODULE = {
         colType: TradeSessionState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    translation_corrections: {
+      tableName: "translation_corrections",
+      rowType: TranslationCorrections.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: TranslationCorrections.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     traveler_task_desc: {
       tableName: "traveler_task_desc",
       rowType: TravelerTaskDesc.getTypeScriptAlgebraicType(),
@@ -6250,6 +6303,10 @@ const REMOTE_MODULE = {
       reducerName: "add_friend",
       argsType: AddFriend.getTypeScriptAlgebraicType(),
     },
+    add_official_translator: {
+      reducerName: "add_official_translator",
+      argsType: AddOfficialTranslator.getTypeScriptAlgebraicType(),
+    },
     admin_broadcast_msg: {
       reducerName: "admin_broadcast_msg",
       argsType: AdminBroadcastMsg.getTypeScriptAlgebraicType(),
@@ -6261,6 +6318,10 @@ const REMOTE_MODULE = {
     admin_create_direct_chat_message: {
       reducerName: "admin_create_direct_chat_message",
       argsType: AdminCreateDirectChatMessage.getTypeScriptAlgebraicType(),
+    },
+    admin_create_entity_name_report: {
+      reducerName: "admin_create_entity_name_report",
+      argsType: AdminCreateEntityNameReport.getTypeScriptAlgebraicType(),
     },
     admin_create_player_report: {
       reducerName: "admin_create_player_report",
@@ -6401,6 +6462,10 @@ const REMOTE_MODULE = {
     commit_staged_static_data: {
       reducerName: "commit_staged_static_data",
       argsType: CommitStagedStaticData.getTypeScriptAlgebraicType(),
+    },
+    correct_translation: {
+      reducerName: "correct_translation",
+      argsType: CorrectTranslation.getTypeScriptAlgebraicType(),
     },
     create_chat_channel: {
       reducerName: "create_chat_channel",
@@ -7706,9 +7771,11 @@ const REMOTE_MODULE = {
 export type Reducer = never
 | { name: "AddFavoriteFriend", args: AddFavoriteFriend }
 | { name: "AddFriend", args: AddFriend }
+| { name: "AddOfficialTranslator", args: AddOfficialTranslator }
 | { name: "AdminBroadcastMsg", args: AdminBroadcastMsg }
 | { name: "AdminCreateChatMessage", args: AdminCreateChatMessage }
 | { name: "AdminCreateDirectChatMessage", args: AdminCreateDirectChatMessage }
+| { name: "AdminCreateEntityNameReport", args: AdminCreateEntityNameReport }
 | { name: "AdminCreatePlayerReport", args: AdminCreatePlayerReport }
 | { name: "AdminDeleteChatMessage", args: AdminDeleteChatMessage }
 | { name: "AdminDeleteModerationActionLogEntry", args: AdminDeleteModerationActionLogEntry }
@@ -7744,6 +7811,7 @@ export type Reducer = never
 | { name: "CheatShardsGrant", args: CheatShardsGrant }
 | { name: "ClearStagedStaticData", args: ClearStagedStaticData }
 | { name: "CommitStagedStaticData", args: CommitStagedStaticData }
+| { name: "CorrectTranslation", args: CorrectTranslation }
 | { name: "CreateChatChannel", args: CreateChatChannel }
 | { name: "CurrentVersion", args: CurrentVersion }
 | { name: "EditChatChannel", args: EditChatChannel }
@@ -8099,6 +8167,22 @@ export class RemoteReducers {
     this.connection.offReducer("add_friend", callback);
   }
 
+  addOfficialTranslator(username: string, lang: string) {
+    const __args = { username, lang };
+    let __writer = new BinaryWriter(1024);
+    AddOfficialTranslator.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("add_official_translator", __argsBuffer, this.setCallReducerFlags.addOfficialTranslatorFlags);
+  }
+
+  onAddOfficialTranslator(callback: (ctx: ReducerEventContext, username: string, lang: string) => void) {
+    this.connection.onReducer("add_official_translator", callback);
+  }
+
+  removeOnAddOfficialTranslator(callback: (ctx: ReducerEventContext, username: string, lang: string) => void) {
+    this.connection.offReducer("add_official_translator", callback);
+  }
+
   adminBroadcastMsg(region: number, title: string, message: string) {
     const __args = { region, title, message };
     let __writer = new BinaryWriter(1024);
@@ -8145,6 +8229,22 @@ export class RemoteReducers {
 
   removeOnAdminCreateDirectChatMessage(callback: (ctx: ReducerEventContext, username: string, titleId: number, receiverId: bigint, newMessageText: string) => void) {
     this.connection.offReducer("admin_create_direct_chat_message", callback);
+  }
+
+  adminCreateEntityNameReport(reportType: string, entityId: bigint, entityName: string, message: string) {
+    const __args = { reportType, entityId, entityName, message };
+    let __writer = new BinaryWriter(1024);
+    AdminCreateEntityNameReport.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("admin_create_entity_name_report", __argsBuffer, this.setCallReducerFlags.adminCreateEntityNameReportFlags);
+  }
+
+  onAdminCreateEntityNameReport(callback: (ctx: ReducerEventContext, reportType: string, entityId: bigint, entityName: string, message: string) => void) {
+    this.connection.onReducer("admin_create_entity_name_report", callback);
+  }
+
+  removeOnAdminCreateEntityNameReport(callback: (ctx: ReducerEventContext, reportType: string, entityId: bigint, entityName: string, message: string) => void) {
+    this.connection.offReducer("admin_create_entity_name_report", callback);
   }
 
   adminCreatePlayerReport(request: CreatePlayerReportRequest) {
@@ -8693,6 +8793,22 @@ export class RemoteReducers {
 
   removeOnCommitStagedStaticData(callback: (ctx: ReducerEventContext) => void) {
     this.connection.offReducer("commit_staged_static_data", callback);
+  }
+
+  correctTranslation(stringIndex: number, lang: string, translation: string) {
+    const __args = { stringIndex, lang, translation };
+    let __writer = new BinaryWriter(1024);
+    CorrectTranslation.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("correct_translation", __argsBuffer, this.setCallReducerFlags.correctTranslationFlags);
+  }
+
+  onCorrectTranslation(callback: (ctx: ReducerEventContext, stringIndex: number, lang: string, translation: string) => void) {
+    this.connection.onReducer("correct_translation", callback);
+  }
+
+  removeOnCorrectTranslation(callback: (ctx: ReducerEventContext, stringIndex: number, lang: string, translation: string) => void) {
+    this.connection.offReducer("correct_translation", callback);
   }
 
   createChatChannel(name: string, description: string, visibility: ChatChannelVisibility) {
@@ -13748,6 +13864,11 @@ export class SetReducerFlags {
     this.addFriendFlags = flags;
   }
 
+  addOfficialTranslatorFlags: CallReducerFlags = 'FullUpdate';
+  addOfficialTranslator(flags: CallReducerFlags) {
+    this.addOfficialTranslatorFlags = flags;
+  }
+
   adminBroadcastMsgFlags: CallReducerFlags = 'FullUpdate';
   adminBroadcastMsg(flags: CallReducerFlags) {
     this.adminBroadcastMsgFlags = flags;
@@ -13761,6 +13882,11 @@ export class SetReducerFlags {
   adminCreateDirectChatMessageFlags: CallReducerFlags = 'FullUpdate';
   adminCreateDirectChatMessage(flags: CallReducerFlags) {
     this.adminCreateDirectChatMessageFlags = flags;
+  }
+
+  adminCreateEntityNameReportFlags: CallReducerFlags = 'FullUpdate';
+  adminCreateEntityNameReport(flags: CallReducerFlags) {
+    this.adminCreateEntityNameReportFlags = flags;
   }
 
   adminCreatePlayerReportFlags: CallReducerFlags = 'FullUpdate';
@@ -13936,6 +14062,11 @@ export class SetReducerFlags {
   commitStagedStaticDataFlags: CallReducerFlags = 'FullUpdate';
   commitStagedStaticData(flags: CallReducerFlags) {
     this.commitStagedStaticDataFlags = flags;
+  }
+
+  correctTranslationFlags: CallReducerFlags = 'FullUpdate';
+  correctTranslation(flags: CallReducerFlags) {
+    this.correctTranslationFlags = flags;
   }
 
   createChatChannelFlags: CallReducerFlags = 'FullUpdate';
@@ -16279,6 +16410,10 @@ export class RemoteTables {
     return new MarketplaceStateTableHandle(this.connection.clientCache.getOrCreateTable<MarketplaceState>(REMOTE_MODULE.tables.marketplace_state));
   }
 
+  get minimumClientVersion(): MinimumClientVersionTableHandle {
+    return new MinimumClientVersionTableHandle(this.connection.clientCache.getOrCreateTable<MinimumClientVersion>(REMOTE_MODULE.tables.minimum_client_version));
+  }
+
   get mobileEntityState(): MobileEntityStateTableHandle {
     return new MobileEntityStateTableHandle(this.connection.clientCache.getOrCreateTable<MobileEntityState>(REMOTE_MODULE.tables.mobile_entity_state));
   }
@@ -16301,6 +16436,10 @@ export class RemoteTables {
 
   get npcState(): NpcStateTableHandle {
     return new NpcStateTableHandle(this.connection.clientCache.getOrCreateTable<NpcState>(REMOTE_MODULE.tables.npc_state));
+  }
+
+  get officialTranslators(): OfficialTranslatorsTableHandle {
+    return new OfficialTranslatorsTableHandle(this.connection.clientCache.getOrCreateTable<OfficialTranslators>(REMOTE_MODULE.tables.official_translators));
   }
 
   get onboardingRewardDesc(): OnboardingRewardDescTableHandle {
@@ -16365,6 +16504,10 @@ export class RemoteTables {
 
   get playerDeveloperNotificationState(): PlayerDeveloperNotificationStateTableHandle {
     return new PlayerDeveloperNotificationStateTableHandle(this.connection.clientCache.getOrCreateTable<PlayerDeveloperNotificationState>(REMOTE_MODULE.tables.player_developer_notification_state));
+  }
+
+  get playerHousingCustomizationState(): PlayerHousingCustomizationStateTableHandle {
+    return new PlayerHousingCustomizationStateTableHandle(this.connection.clientCache.getOrCreateTable<PlayerHousingCustomizationState>(REMOTE_MODULE.tables.player_housing_customization_state));
   }
 
   get playerHousingDesc(): PlayerHousingDescTableHandle {
@@ -17069,6 +17212,10 @@ export class RemoteTables {
 
   get tradeSessionState(): TradeSessionStateTableHandle {
     return new TradeSessionStateTableHandle(this.connection.clientCache.getOrCreateTable<TradeSessionState>(REMOTE_MODULE.tables.trade_session_state));
+  }
+
+  get translationCorrections(): TranslationCorrectionsTableHandle {
+    return new TranslationCorrectionsTableHandle(this.connection.clientCache.getOrCreateTable<TranslationCorrections>(REMOTE_MODULE.tables.translation_corrections));
   }
 
   get travelerTaskDesc(): TravelerTaskDescTableHandle {
