@@ -7,15 +7,12 @@ use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
-pub struct PlayerRetrieveLostItemRequest {
-    pub building_entity_id: u64,
-    pub item_id: i32,
-    pub is_cargo: bool,
-    pub durability: i32,
-    pub target_inventory_entity_id: u64,
-    pub target_inventory_index: Option<i32>,
+pub struct PlayerHousingCustomizationState {
+    pub entity_id: u64,
+    pub wall_collectible_id: i32,
+    pub floor_collectible_id: i32,
 }
 
-impl __sdk::InModule for PlayerRetrieveLostItemRequest {
+impl __sdk::InModule for PlayerHousingCustomizationState {
     type Module = super::RemoteModule;
 }

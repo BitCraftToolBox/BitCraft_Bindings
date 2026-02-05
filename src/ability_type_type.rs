@@ -27,6 +27,8 @@ pub enum AbilityType {
     AddToToolbelt(i32),
 
     DeployableToggle(i32),
+
+    Emote(i32),
 }
 
 impl __sdk::InModule for AbilityType {

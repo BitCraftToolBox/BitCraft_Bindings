@@ -62,6 +62,7 @@ pub mod admin_complete_all_passive_crafts_reducer;
 pub mod admin_count_inventory_items_reducer;
 pub mod admin_create_building_spawns_reducer;
 pub mod admin_create_chat_message_reducer;
+pub mod admin_create_entity_name_report_reducer;
 pub mod admin_create_player_report_reducer;
 pub mod admin_delete_all_items_of_type_reducer;
 pub mod admin_delete_chat_message_reducer;
@@ -1154,6 +1155,8 @@ pub mod player_equipment_add_request_type;
 pub mod player_equipment_remove_request_type;
 pub mod player_extract_request_type;
 pub mod player_housing_change_entrance_reducer;
+pub mod player_housing_customization_state_table;
+pub mod player_housing_customization_state_type;
 pub mod player_housing_desc_table;
 pub mod player_housing_desc_type;
 pub mod player_housing_enter_reducer;
@@ -1972,6 +1975,10 @@ pub use admin_create_building_spawns_reducer::{
 pub use admin_create_chat_message_reducer::{
     admin_create_chat_message, set_flags_for_admin_create_chat_message,
     AdminCreateChatMessageCallbackId,
+};
+pub use admin_create_entity_name_report_reducer::{
+    admin_create_entity_name_report, set_flags_for_admin_create_entity_name_report,
+    AdminCreateEntityNameReportCallbackId,
 };
 pub use admin_create_player_report_reducer::{
     admin_create_player_report, set_flags_for_admin_create_player_report,
@@ -4161,6 +4168,8 @@ pub use player_housing_change_entrance_reducer::{
     player_housing_change_entrance, set_flags_for_player_housing_change_entrance,
     PlayerHousingChangeEntranceCallbackId,
 };
+pub use player_housing_customization_state_table::*;
+pub use player_housing_customization_state_type::PlayerHousingCustomizationState;
 pub use player_housing_desc_table::*;
 pub use player_housing_desc_type::PlayerHousingDesc;
 pub use player_housing_enter_reducer::{
@@ -5384,6 +5393,12 @@ pub enum Reducer {
         title_id: i32,
         target_id: u64,
         new_message_text: String,
+    },
+    AdminCreateEntityNameReport {
+        report_type: String,
+        entity_id: u64,
+        entity_name: String,
+        message: String,
     },
     AdminCreatePlayerReport {
         request: CreatePlayerReportRequest,
@@ -7407,6 +7422,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::AdminCountInventoryItems { .. } => "admin_count_inventory_items",
             Reducer::AdminCreateBuildingSpawns { .. } => "admin_create_building_spawns",
             Reducer::AdminCreateChatMessage { .. } => "admin_create_chat_message",
+            Reducer::AdminCreateEntityNameReport { .. } => "admin_create_entity_name_report",
             Reducer::AdminCreatePlayerReport { .. } => "admin_create_player_report",
             Reducer::AdminDeleteAllItemsOfType { .. } => "admin_delete_all_items_of_type",
             Reducer::AdminDeleteChatMessage { .. } => "admin_delete_chat_message",
@@ -8148,6 +8164,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "admin_count_inventory_items" => Ok(__sdk::parse_reducer_args::<admin_count_inventory_items_reducer::AdminCountInventoryItemsArgs>("admin_count_inventory_items", &value.args)?.into()),
             "admin_create_building_spawns" => Ok(__sdk::parse_reducer_args::<admin_create_building_spawns_reducer::AdminCreateBuildingSpawnsArgs>("admin_create_building_spawns", &value.args)?.into()),
             "admin_create_chat_message" => Ok(__sdk::parse_reducer_args::<admin_create_chat_message_reducer::AdminCreateChatMessageArgs>("admin_create_chat_message", &value.args)?.into()),
+            "admin_create_entity_name_report" => Ok(__sdk::parse_reducer_args::<admin_create_entity_name_report_reducer::AdminCreateEntityNameReportArgs>("admin_create_entity_name_report", &value.args)?.into()),
             "admin_create_player_report" => Ok(__sdk::parse_reducer_args::<admin_create_player_report_reducer::AdminCreatePlayerReportArgs>("admin_create_player_report", &value.args)?.into()),
             "admin_delete_all_items_of_type" => Ok(__sdk::parse_reducer_args::<admin_delete_all_items_of_type_reducer::AdminDeleteAllItemsOfTypeArgs>("admin_delete_all_items_of_type", &value.args)?.into()),
             "admin_delete_chat_message" => Ok(__sdk::parse_reducer_args::<admin_delete_chat_message_reducer::AdminDeleteChatMessageArgs>("admin_delete_chat_message", &value.args)?.into()),
@@ -9040,6 +9057,7 @@ pub struct DbUpdate {
     player_action_desc: __sdk::TableUpdate<PlayerActionDesc>,
     player_action_state: __sdk::TableUpdate<PlayerActionState>,
     player_death_timer: __sdk::TableUpdate<PlayerDeathTimer>,
+    player_housing_customization_state: __sdk::TableUpdate<PlayerHousingCustomizationState>,
     player_housing_desc: __sdk::TableUpdate<PlayerHousingDesc>,
     player_housing_evict_player_timer: __sdk::TableUpdate<PlayerHousingEvictPlayerTimer>,
     player_housing_income_loop_timer: __sdk::TableUpdate<PlayerHousingIncomeLoopTimer>,
@@ -9995,6 +10013,11 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
                 "player_death_timer" => db_update
                     .player_death_timer
                     .append(player_death_timer_table::parse_table_update(table_update)?),
+                "player_housing_customization_state" => {
+                    db_update.player_housing_customization_state.append(
+                        player_housing_customization_state_table::parse_table_update(table_update)?,
+                    )
+                }
                 "player_housing_desc" => db_update
                     .player_housing_desc
                     .append(player_housing_desc_table::parse_table_update(table_update)?),
@@ -11835,6 +11858,12 @@ impl __sdk::DbUpdate for DbUpdate {
         diff.player_death_timer = cache
             .apply_diff_to_table::<PlayerDeathTimer>("player_death_timer", &self.player_death_timer)
             .with_updates_by_pk(|row| &row.scheduled_id);
+        diff.player_housing_customization_state = cache
+            .apply_diff_to_table::<PlayerHousingCustomizationState>(
+                "player_housing_customization_state",
+                &self.player_housing_customization_state,
+            )
+            .with_updates_by_pk(|row| &row.entity_id);
         diff.player_housing_desc = cache
             .apply_diff_to_table::<PlayerHousingDesc>(
                 "player_housing_desc",
@@ -13184,6 +13213,8 @@ pub struct AppliedDiff<'r> {
     player_action_desc: __sdk::TableAppliedDiff<'r, PlayerActionDesc>,
     player_action_state: __sdk::TableAppliedDiff<'r, PlayerActionState>,
     player_death_timer: __sdk::TableAppliedDiff<'r, PlayerDeathTimer>,
+    player_housing_customization_state:
+        __sdk::TableAppliedDiff<'r, PlayerHousingCustomizationState>,
     player_housing_desc: __sdk::TableAppliedDiff<'r, PlayerHousingDesc>,
     player_housing_evict_player_timer: __sdk::TableAppliedDiff<'r, PlayerHousingEvictPlayerTimer>,
     player_housing_income_loop_timer: __sdk::TableAppliedDiff<'r, PlayerHousingIncomeLoopTimer>,
@@ -14478,6 +14509,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<PlayerDeathTimer>(
             "player_death_timer",
             &self.player_death_timer,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<PlayerHousingCustomizationState>(
+            "player_housing_customization_state",
+            &self.player_housing_customization_state,
             event,
         );
         callbacks.invoke_table_row_callbacks::<PlayerHousingDesc>(
@@ -16336,6 +16372,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         player_action_desc_table::register_table(client_cache);
         player_action_state_table::register_table(client_cache);
         player_death_timer_table::register_table(client_cache);
+        player_housing_customization_state_table::register_table(client_cache);
         player_housing_desc_table::register_table(client_cache);
         player_housing_evict_player_timer_table::register_table(client_cache);
         player_housing_income_loop_timer_table::register_table(client_cache);
