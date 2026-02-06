@@ -14,17 +14,17 @@ namespace BitCraftRegion.Types
 {
     public sealed partial class RemoteReducers : RemoteBase
     {
-        public delegate void AdminCollapseRuinsHandler(ReducerEventContext ctx);
-        public event AdminCollapseRuinsHandler? OnAdminCollapseRuins;
+        public delegate void AdminMigrateHousingHandler(ReducerEventContext ctx);
+        public event AdminMigrateHousingHandler? OnAdminMigrateHousing;
 
-        public void AdminCollapseRuins()
+        public void AdminMigrateHousing()
         {
-            conn.InternalCallReducer(new Reducer.AdminCollapseRuins(), this.SetCallReducerFlags.AdminCollapseRuinsFlags);
+            conn.InternalCallReducer(new Reducer.AdminMigrateHousing(), this.SetCallReducerFlags.AdminMigrateHousingFlags);
         }
 
-        public bool InvokeAdminCollapseRuins(ReducerEventContext ctx, Reducer.AdminCollapseRuins args)
+        public bool InvokeAdminMigrateHousing(ReducerEventContext ctx, Reducer.AdminMigrateHousing args)
         {
-            if (OnAdminCollapseRuins == null)
+            if (OnAdminMigrateHousing == null)
             {
                 if (InternalOnUnhandledReducerError != null)
                 {
@@ -36,7 +36,7 @@ namespace BitCraftRegion.Types
                 }
                 return false;
             }
-            OnAdminCollapseRuins(
+            OnAdminMigrateHousing(
                 ctx
             );
             return true;
@@ -47,15 +47,15 @@ namespace BitCraftRegion.Types
     {
         [SpacetimeDB.Type]
         [DataContract]
-        public sealed partial class AdminCollapseRuins : Reducer, IReducerArgs
+        public sealed partial class AdminMigrateHousing : Reducer, IReducerArgs
         {
-            string IReducerArgs.ReducerName => "admin_collapse_ruins";
+            string IReducerArgs.ReducerName => "admin_migrate_housing";
         }
     }
 
     public sealed partial class SetReducerFlags
     {
-        internal CallReducerFlags AdminCollapseRuinsFlags;
-        public void AdminCollapseRuins(CallReducerFlags flags) => AdminCollapseRuinsFlags = flags;
+        internal CallReducerFlags AdminMigrateHousingFlags;
+        public void AdminMigrateHousing(CallReducerFlags flags) => AdminMigrateHousingFlags = flags;
     }
 }
