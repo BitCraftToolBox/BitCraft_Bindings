@@ -117,6 +117,8 @@ import { AdminGrantCollectibles } from "./admin_grant_collectibles_reducer.ts";
 export { AdminGrantCollectibles };
 import { AdminMigrateActionState } from "./admin_migrate_action_state_reducer.ts";
 export { AdminMigrateActionState };
+import { AdminMigrateHousing } from "./admin_migrate_housing_reducer.ts";
+export { AdminMigrateHousing };
 import { AdminMigrateTradeOrders } from "./admin_migrate_trade_orders_reducer.ts";
 export { AdminMigrateTradeOrders };
 import { AdminModifyChatMessage } from "./admin_modify_chat_message_reducer.ts";
@@ -7871,6 +7873,10 @@ export const REMOTE_MODULE = {
       reducerName: "admin_migrate_action_state",
       argsType: AdminMigrateActionState.getTypeScriptAlgebraicType(),
     },
+    admin_migrate_housing: {
+      reducerName: "admin_migrate_housing",
+      argsType: AdminMigrateHousing.getTypeScriptAlgebraicType(),
+    },
     admin_migrate_trade_orders: {
       reducerName: "admin_migrate_trade_orders",
       argsType: AdminMigrateTradeOrders.getTypeScriptAlgebraicType(),
@@ -10507,6 +10513,7 @@ export type Reducer = never
 | { name: "AdminGrantAllClaimSupplies", args: AdminGrantAllClaimSupplies }
 | { name: "AdminGrantCollectibles", args: AdminGrantCollectibles }
 | { name: "AdminMigrateActionState", args: AdminMigrateActionState }
+| { name: "AdminMigrateHousing", args: AdminMigrateHousing }
 | { name: "AdminMigrateTradeOrders", args: AdminMigrateTradeOrders }
 | { name: "AdminModifyChatMessage", args: AdminModifyChatMessage }
 | { name: "AdminPatchHousingCosts", args: AdminPatchHousingCosts }
@@ -11791,6 +11798,18 @@ export class RemoteReducers {
 
   removeOnAdminMigrateActionState(callback: (ctx: ReducerEventContext) => void) {
     this.connection.offReducer("admin_migrate_action_state", callback);
+  }
+
+  adminMigrateHousing() {
+    this.connection.callReducer("admin_migrate_housing", new Uint8Array(0), this.setCallReducerFlags.adminMigrateHousingFlags);
+  }
+
+  onAdminMigrateHousing(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.onReducer("admin_migrate_housing", callback);
+  }
+
+  removeOnAdminMigrateHousing(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.offReducer("admin_migrate_housing", callback);
   }
 
   adminMigrateTradeOrders() {
@@ -22084,6 +22103,11 @@ export class SetReducerFlags {
   adminMigrateActionStateFlags: CallReducerFlags = 'FullUpdate';
   adminMigrateActionState(flags: CallReducerFlags) {
     this.adminMigrateActionStateFlags = flags;
+  }
+
+  adminMigrateHousingFlags: CallReducerFlags = 'FullUpdate';
+  adminMigrateHousing(flags: CallReducerFlags) {
+    this.adminMigrateHousingFlags = flags;
   }
 
   adminMigrateTradeOrdersFlags: CallReducerFlags = 'FullUpdate';
