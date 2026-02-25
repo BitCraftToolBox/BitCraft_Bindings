@@ -56,6 +56,7 @@ export type ResourceDesc = {
   enemyParamsId: number[],
   scheduledRespawnTime: number,
   notRespawning: boolean,
+  showTimeLeft: boolean,
 };
 
 /**
@@ -88,6 +89,7 @@ export namespace ResourceDesc {
       new ProductTypeElement("enemyParamsId", AlgebraicType.createArrayType(AlgebraicType.createI32Type())),
       new ProductTypeElement("scheduledRespawnTime", AlgebraicType.createF32Type()),
       new ProductTypeElement("notRespawning", AlgebraicType.createBoolType()),
+      new ProductTypeElement("showTimeLeft", AlgebraicType.createBoolType()),
     ]);
   }
 

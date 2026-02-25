@@ -39,7 +39,7 @@ export type WorldGenResourceDetails = {
   landElevationRange: __WorldGenVector2Int,
   spawnsInWater: boolean,
   waterDepthRange: __WorldGenVector2Int,
-  spawnsOnUnevenTerrain: boolean,
+  maxElevationDelta: number,
 };
 
 /**
@@ -57,7 +57,7 @@ export namespace WorldGenResourceDetails {
       new ProductTypeElement("landElevationRange", __WorldGenVector2Int.getTypeScriptAlgebraicType()),
       new ProductTypeElement("spawnsInWater", AlgebraicType.createBoolType()),
       new ProductTypeElement("waterDepthRange", __WorldGenVector2Int.getTypeScriptAlgebraicType()),
-      new ProductTypeElement("spawnsOnUnevenTerrain", AlgebraicType.createBoolType()),
+      new ProductTypeElement("maxElevationDelta", AlgebraicType.createI32Type()),
     ]);
   }
 

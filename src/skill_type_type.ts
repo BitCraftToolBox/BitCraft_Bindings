@@ -58,6 +58,7 @@ export namespace SkillType {
   export type Trading = { tag: "Trading" };
   export type LoreKeeper = { tag: "LoreKeeper" };
   export type Sailing = { tag: "Sailing" };
+  export type HexiteGathering = { tag: "HexiteGathering" };
 
   // Helper functions for constructing each variant of the tagged union.
   // ```
@@ -87,6 +88,7 @@ export namespace SkillType {
   export const Trading = { tag: "Trading" };
   export const LoreKeeper = { tag: "LoreKeeper" };
   export const Sailing = { tag: "Sailing" };
+  export const HexiteGathering = { tag: "HexiteGathering" };
 
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createSumType([
@@ -112,6 +114,7 @@ export namespace SkillType {
       new SumTypeVariant("Trading", AlgebraicType.createProductType([])),
       new SumTypeVariant("LoreKeeper", AlgebraicType.createProductType([])),
       new SumTypeVariant("Sailing", AlgebraicType.createProductType([])),
+      new SumTypeVariant("HexiteGathering", AlgebraicType.createProductType([])),
     ]);
   }
 
@@ -126,7 +129,7 @@ export namespace SkillType {
 }
 
 // The tagged union or sum type for the algebraic type `SkillType`.
-export type SkillType = SkillType.None | SkillType.Any | SkillType.Forestry | SkillType.Carpentry | SkillType.Masonry | SkillType.Mining | SkillType.Smithing | SkillType.Scholar | SkillType.Leatherworking | SkillType.Hunting | SkillType.Tailoring | SkillType.Farming | SkillType.Fishing | SkillType.Cooking | SkillType.Foraging | SkillType.Construction | SkillType.Exploration | SkillType.Taming | SkillType.Slayer | SkillType.Trading | SkillType.LoreKeeper | SkillType.Sailing;
+export type SkillType = SkillType.None | SkillType.Any | SkillType.Forestry | SkillType.Carpentry | SkillType.Masonry | SkillType.Mining | SkillType.Smithing | SkillType.Scholar | SkillType.Leatherworking | SkillType.Hunting | SkillType.Tailoring | SkillType.Farming | SkillType.Fishing | SkillType.Cooking | SkillType.Foraging | SkillType.Construction | SkillType.Exploration | SkillType.Taming | SkillType.Slayer | SkillType.Trading | SkillType.LoreKeeper | SkillType.Sailing | SkillType.HexiteGathering;
 
 export default SkillType;
 

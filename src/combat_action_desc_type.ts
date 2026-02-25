@@ -43,6 +43,7 @@ export type CombatActionDesc = {
   autoCast: boolean,
   weaponTypeRequirements: number[],
   leadInTime: number,
+  inactionTime: number,
   canMoveDuringLeadIn: boolean,
   cooldown: number,
   globalCooldown: number,
@@ -65,6 +66,8 @@ export type CombatActionDesc = {
   selfThreatAgainstEnemies: number,
   baseThreat: number,
   threatPerDamage: number,
+  isSelfTargeting: boolean,
+  isTauntAction: boolean,
 };
 
 /**
@@ -81,10 +84,11 @@ export namespace CombatActionDesc {
       new ProductTypeElement("id", AlgebraicType.createI32Type()),
       new ProductTypeElement("learnedByPlayer", AlgebraicType.createBoolType()),
       new ProductTypeElement("range", AlgebraicType.createU32Type()),
-      new ProductTypeElement("maxRange", AlgebraicType.createU32Type()),
+      new ProductTypeElement("maxRange", AlgebraicType.createF32Type()),
       new ProductTypeElement("autoCast", AlgebraicType.createBoolType()),
       new ProductTypeElement("weaponTypeRequirements", AlgebraicType.createArrayType(AlgebraicType.createI32Type())),
       new ProductTypeElement("leadInTime", AlgebraicType.createF32Type()),
+      new ProductTypeElement("inactionTime", AlgebraicType.createF32Type()),
       new ProductTypeElement("canMoveDuringLeadIn", AlgebraicType.createBoolType()),
       new ProductTypeElement("cooldown", AlgebraicType.createF32Type()),
       new ProductTypeElement("globalCooldown", AlgebraicType.createF32Type()),
@@ -107,6 +111,8 @@ export namespace CombatActionDesc {
       new ProductTypeElement("selfThreatAgainstEnemies", AlgebraicType.createF32Type()),
       new ProductTypeElement("baseThreat", AlgebraicType.createF32Type()),
       new ProductTypeElement("threatPerDamage", AlgebraicType.createF32Type()),
+      new ProductTypeElement("isSelfTargeting", AlgebraicType.createBoolType()),
+      new ProductTypeElement("isTauntAction", AlgebraicType.createBoolType()),
     ]);
   }
 

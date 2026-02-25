@@ -31,7 +31,7 @@ import {
   type ReducerEventContextInterface,
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
-import { EmoteDescV2 } from "./emote_desc_v_2_type";
+import { EmoteDesc } from "./emote_desc_type";
 import { type EventContext, type Reducer, RemoteReducers, RemoteTables } from ".";
 
 /**
@@ -45,9 +45,9 @@ import { type EventContext, type Reducer, RemoteReducers, RemoteTables } from ".
  * like `ctx.db.stagedEmoteDesc.on_insert(...)`.
  */
 export class StagedEmoteDescTableHandle {
-  tableCache: TableCache<EmoteDescV2>;
+  tableCache: TableCache<EmoteDesc>;
 
-  constructor(tableCache: TableCache<EmoteDescV2>) {
+  constructor(tableCache: TableCache<EmoteDesc>) {
     this.tableCache = tableCache;
   }
 
@@ -55,7 +55,7 @@ export class StagedEmoteDescTableHandle {
     return this.tableCache.count();
   }
 
-  iter(): Iterable<EmoteDescV2> {
+  iter(): Iterable<EmoteDesc> {
     return this.tableCache.iter();
   }
   /**
@@ -72,7 +72,7 @@ export class StagedEmoteDescTableHandle {
   id = {
     // Find the subscribed row whose `id` column value is equal to `col_val`,
     // if such a row is present in the client cache.
-    find: (col_val: number): EmoteDescV2 | undefined => {
+    find: (col_val: number): EmoteDesc | undefined => {
       for (let row of this.tableCache.iter()) {
         if (deepEqual(row.id, col_val)) {
           return row;
@@ -81,27 +81,27 @@ export class StagedEmoteDescTableHandle {
     },
   };
 
-  onInsert = (cb: (ctx: EventContext, row: EmoteDescV2) => void) => {
+  onInsert = (cb: (ctx: EventContext, row: EmoteDesc) => void) => {
     return this.tableCache.onInsert(cb);
   }
 
-  removeOnInsert = (cb: (ctx: EventContext, row: EmoteDescV2) => void) => {
+  removeOnInsert = (cb: (ctx: EventContext, row: EmoteDesc) => void) => {
     return this.tableCache.removeOnInsert(cb);
   }
 
-  onDelete = (cb: (ctx: EventContext, row: EmoteDescV2) => void) => {
+  onDelete = (cb: (ctx: EventContext, row: EmoteDesc) => void) => {
     return this.tableCache.onDelete(cb);
   }
 
-  removeOnDelete = (cb: (ctx: EventContext, row: EmoteDescV2) => void) => {
+  removeOnDelete = (cb: (ctx: EventContext, row: EmoteDesc) => void) => {
     return this.tableCache.removeOnDelete(cb);
   }
 
   // Updates are only defined for tables with primary keys.
-  onUpdate = (cb: (ctx: EventContext, oldRow: EmoteDescV2, newRow: EmoteDescV2) => void) => {
+  onUpdate = (cb: (ctx: EventContext, oldRow: EmoteDesc, newRow: EmoteDesc) => void) => {
     return this.tableCache.onUpdate(cb);
   }
 
-  removeOnUpdate = (cb: (ctx: EventContext, onRow: EmoteDescV2, newRow: EmoteDescV2) => void) => {
+  removeOnUpdate = (cb: (ctx: EventContext, onRow: EmoteDesc, newRow: EmoteDesc) => void) => {
     return this.tableCache.removeOnUpdate(cb);
   }}

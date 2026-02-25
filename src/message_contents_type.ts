@@ -45,6 +45,8 @@ import { GlobalDeleteEmpireBuildingMsg as __GlobalDeleteEmpireBuildingMsg } from
 import { DeleteEmpireMsg as __DeleteEmpireMsg } from "./delete_empire_msg_type";
 import { EmpireClaimJoinMsg as __EmpireClaimJoinMsg } from "./empire_claim_join_msg_type";
 import { EmpireResupplyNodeMsg as __EmpireResupplyNodeMsg } from "./empire_resupply_node_msg_type";
+import { EmpireDonateItemMsg as __EmpireDonateItemMsg } from "./empire_donate_item_msg_type";
+import { EmpireCreateMsg as __EmpireCreateMsg } from "./empire_create_msg_type";
 import { EmpireCollectHexiteCapsuleMsg as __EmpireCollectHexiteCapsuleMsg } from "./empire_collect_hexite_capsule_msg_type";
 import { EmpireStartSiegeMsg as __EmpireStartSiegeMsg } from "./empire_start_siege_msg_type";
 import { EmpireSiegeAddSuppliesMsg as __EmpireSiegeAddSuppliesMsg } from "./empire_siege_add_supplies_msg_type";
@@ -55,12 +57,17 @@ import { OnRegionPlayerCreatedMsg as __OnRegionPlayerCreatedMsg } from "./on_reg
 import { EmpireQueueSuppliesMsg as __EmpireQueueSuppliesMsg } from "./empire_queue_supplies_msg_type";
 import { EmpireUpdateEmperorCrownMsg as __EmpireUpdateEmperorCrownMsg } from "./empire_update_emperor_crown_msg_type";
 import { EmpireRemoveCrownMsg as __EmpireRemoveCrownMsg } from "./empire_remove_crown_msg_type";
+import { EmpireAddCurrencyMsg as __EmpireAddCurrencyMsg } from "./empire_add_currency_msg_type";
 import { SignPlayerOutMsg as __SignPlayerOutMsg } from "./sign_player_out_msg_type";
 import { AdminBroadcastMessageMsg as __AdminBroadcastMessageMsg } from "./admin_broadcast_message_msg_type";
 import { PlayerSkipQueueMsg as __PlayerSkipQueueMsg } from "./player_skip_queue_msg_type";
 import { GrantHubItemMsg as __GrantHubItemMsg } from "./grant_hub_item_msg_type";
 import { RecoverDeployableMsg as __RecoverDeployableMsg } from "./recover_deployable_msg_type";
 import { OnDeployableRecoveredMsg as __OnDeployableRecoveredMsg } from "./on_deployable_recovered_msg_type";
+import { ReplaceIdentityMsg as __ReplaceIdentityMsg } from "./replace_identity_msg_type";
+import { ClaimSetNameMsg as __ClaimSetNameMsg } from "./claim_set_name_msg_type";
+import { RestoreSkillsMsg as __RestoreSkillsMsg } from "./restore_skills_msg_type";
+import { NpcPlaceWatchtowersMsg as __NpcPlaceWatchtowersMsg } from "./npc_place_watchtowers_msg_type";
 
 // A namespace for generated variants and helper functions.
 export namespace MessageContents {
@@ -81,6 +88,8 @@ export namespace MessageContents {
   export type DeleteEmpire = { tag: "DeleteEmpire", value: __DeleteEmpireMsg };
   export type EmpireClaimJoin = { tag: "EmpireClaimJoin", value: __EmpireClaimJoinMsg };
   export type EmpireResupplyNode = { tag: "EmpireResupplyNode", value: __EmpireResupplyNodeMsg };
+  export type EmpireDonateItem = { tag: "EmpireDonateItem", value: __EmpireDonateItemMsg };
+  export type EmpireCreate = { tag: "EmpireCreate", value: __EmpireCreateMsg };
   export type EmpireCollectHexiteCapsule = { tag: "EmpireCollectHexiteCapsule", value: __EmpireCollectHexiteCapsuleMsg };
   export type EmpireStartSiege = { tag: "EmpireStartSiege", value: __EmpireStartSiegeMsg };
   export type EmpireSiegeAddSupplies = { tag: "EmpireSiegeAddSupplies", value: __EmpireSiegeAddSuppliesMsg };
@@ -91,12 +100,17 @@ export namespace MessageContents {
   export type EmpireQueueSupplies = { tag: "EmpireQueueSupplies", value: __EmpireQueueSuppliesMsg };
   export type EmpireUpdateEmperorCrown = { tag: "EmpireUpdateEmperorCrown", value: __EmpireUpdateEmperorCrownMsg };
   export type EmpireRemoveCrown = { tag: "EmpireRemoveCrown", value: __EmpireRemoveCrownMsg };
+  export type EmpireAddCurrency = { tag: "EmpireAddCurrency", value: __EmpireAddCurrencyMsg };
   export type SignPlayerOut = { tag: "SignPlayerOut", value: __SignPlayerOutMsg };
   export type AdminBroadcastMessage = { tag: "AdminBroadcastMessage", value: __AdminBroadcastMessageMsg };
   export type PlayerSkipQueue = { tag: "PlayerSkipQueue", value: __PlayerSkipQueueMsg };
   export type GrantHubItem = { tag: "GrantHubItem", value: __GrantHubItemMsg };
   export type RecoverDeployable = { tag: "RecoverDeployable", value: __RecoverDeployableMsg };
   export type OnDeployableRecovered = { tag: "OnDeployableRecovered", value: __OnDeployableRecoveredMsg };
+  export type ReplaceIdentity = { tag: "ReplaceIdentity", value: __ReplaceIdentityMsg };
+  export type ClaimSetName = { tag: "ClaimSetName", value: __ClaimSetNameMsg };
+  export type RestoreSkills = { tag: "RestoreSkills", value: __RestoreSkillsMsg };
+  export type NpcPlaceWatchtowers = { tag: "NpcPlaceWatchtowers", value: __NpcPlaceWatchtowersMsg };
 
   // Helper functions for constructing each variant of the tagged union.
   // ```
@@ -118,6 +132,8 @@ export namespace MessageContents {
   export const DeleteEmpire = (value: __DeleteEmpireMsg): MessageContents => ({ tag: "DeleteEmpire", value });
   export const EmpireClaimJoin = (value: __EmpireClaimJoinMsg): MessageContents => ({ tag: "EmpireClaimJoin", value });
   export const EmpireResupplyNode = (value: __EmpireResupplyNodeMsg): MessageContents => ({ tag: "EmpireResupplyNode", value });
+  export const EmpireDonateItem = (value: __EmpireDonateItemMsg): MessageContents => ({ tag: "EmpireDonateItem", value });
+  export const EmpireCreate = (value: __EmpireCreateMsg): MessageContents => ({ tag: "EmpireCreate", value });
   export const EmpireCollectHexiteCapsule = (value: __EmpireCollectHexiteCapsuleMsg): MessageContents => ({ tag: "EmpireCollectHexiteCapsule", value });
   export const EmpireStartSiege = (value: __EmpireStartSiegeMsg): MessageContents => ({ tag: "EmpireStartSiege", value });
   export const EmpireSiegeAddSupplies = (value: __EmpireSiegeAddSuppliesMsg): MessageContents => ({ tag: "EmpireSiegeAddSupplies", value });
@@ -128,12 +144,17 @@ export namespace MessageContents {
   export const EmpireQueueSupplies = (value: __EmpireQueueSuppliesMsg): MessageContents => ({ tag: "EmpireQueueSupplies", value });
   export const EmpireUpdateEmperorCrown = (value: __EmpireUpdateEmperorCrownMsg): MessageContents => ({ tag: "EmpireUpdateEmperorCrown", value });
   export const EmpireRemoveCrown = (value: __EmpireRemoveCrownMsg): MessageContents => ({ tag: "EmpireRemoveCrown", value });
+  export const EmpireAddCurrency = (value: __EmpireAddCurrencyMsg): MessageContents => ({ tag: "EmpireAddCurrency", value });
   export const SignPlayerOut = (value: __SignPlayerOutMsg): MessageContents => ({ tag: "SignPlayerOut", value });
   export const AdminBroadcastMessage = (value: __AdminBroadcastMessageMsg): MessageContents => ({ tag: "AdminBroadcastMessage", value });
   export const PlayerSkipQueue = (value: __PlayerSkipQueueMsg): MessageContents => ({ tag: "PlayerSkipQueue", value });
   export const GrantHubItem = (value: __GrantHubItemMsg): MessageContents => ({ tag: "GrantHubItem", value });
   export const RecoverDeployable = (value: __RecoverDeployableMsg): MessageContents => ({ tag: "RecoverDeployable", value });
   export const OnDeployableRecovered = (value: __OnDeployableRecoveredMsg): MessageContents => ({ tag: "OnDeployableRecovered", value });
+  export const ReplaceIdentity = (value: __ReplaceIdentityMsg): MessageContents => ({ tag: "ReplaceIdentity", value });
+  export const ClaimSetName = (value: __ClaimSetNameMsg): MessageContents => ({ tag: "ClaimSetName", value });
+  export const RestoreSkills = (value: __RestoreSkillsMsg): MessageContents => ({ tag: "RestoreSkills", value });
+  export const NpcPlaceWatchtowers = (value: __NpcPlaceWatchtowersMsg): MessageContents => ({ tag: "NpcPlaceWatchtowers", value });
 
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createSumType([
@@ -151,6 +172,8 @@ export namespace MessageContents {
       new SumTypeVariant("DeleteEmpire", __DeleteEmpireMsg.getTypeScriptAlgebraicType()),
       new SumTypeVariant("EmpireClaimJoin", __EmpireClaimJoinMsg.getTypeScriptAlgebraicType()),
       new SumTypeVariant("EmpireResupplyNode", __EmpireResupplyNodeMsg.getTypeScriptAlgebraicType()),
+      new SumTypeVariant("EmpireDonateItem", __EmpireDonateItemMsg.getTypeScriptAlgebraicType()),
+      new SumTypeVariant("EmpireCreate", __EmpireCreateMsg.getTypeScriptAlgebraicType()),
       new SumTypeVariant("EmpireCollectHexiteCapsule", __EmpireCollectHexiteCapsuleMsg.getTypeScriptAlgebraicType()),
       new SumTypeVariant("EmpireStartSiege", __EmpireStartSiegeMsg.getTypeScriptAlgebraicType()),
       new SumTypeVariant("EmpireSiegeAddSupplies", __EmpireSiegeAddSuppliesMsg.getTypeScriptAlgebraicType()),
@@ -161,12 +184,17 @@ export namespace MessageContents {
       new SumTypeVariant("EmpireQueueSupplies", __EmpireQueueSuppliesMsg.getTypeScriptAlgebraicType()),
       new SumTypeVariant("EmpireUpdateEmperorCrown", __EmpireUpdateEmperorCrownMsg.getTypeScriptAlgebraicType()),
       new SumTypeVariant("EmpireRemoveCrown", __EmpireRemoveCrownMsg.getTypeScriptAlgebraicType()),
+      new SumTypeVariant("EmpireAddCurrency", __EmpireAddCurrencyMsg.getTypeScriptAlgebraicType()),
       new SumTypeVariant("SignPlayerOut", __SignPlayerOutMsg.getTypeScriptAlgebraicType()),
       new SumTypeVariant("AdminBroadcastMessage", __AdminBroadcastMessageMsg.getTypeScriptAlgebraicType()),
       new SumTypeVariant("PlayerSkipQueue", __PlayerSkipQueueMsg.getTypeScriptAlgebraicType()),
       new SumTypeVariant("GrantHubItem", __GrantHubItemMsg.getTypeScriptAlgebraicType()),
       new SumTypeVariant("RecoverDeployable", __RecoverDeployableMsg.getTypeScriptAlgebraicType()),
       new SumTypeVariant("OnDeployableRecovered", __OnDeployableRecoveredMsg.getTypeScriptAlgebraicType()),
+      new SumTypeVariant("ReplaceIdentity", __ReplaceIdentityMsg.getTypeScriptAlgebraicType()),
+      new SumTypeVariant("ClaimSetName", __ClaimSetNameMsg.getTypeScriptAlgebraicType()),
+      new SumTypeVariant("RestoreSkills", __RestoreSkillsMsg.getTypeScriptAlgebraicType()),
+      new SumTypeVariant("NpcPlaceWatchtowers", __NpcPlaceWatchtowersMsg.getTypeScriptAlgebraicType()),
     ]);
   }
 
@@ -181,7 +209,7 @@ export namespace MessageContents {
 }
 
 // The tagged union or sum type for the algebraic type `MessageContents`.
-export type MessageContents = MessageContents.TableUpdate | MessageContents.TransferPlayerRequest | MessageContents.TransferPlayerHousingRequest | MessageContents.PlayerCreateRequest | MessageContents.UserUpdateRegionRequest | MessageContents.OnPlayerNameSetRequest | MessageContents.ClaimCreateEmpireSettlementState | MessageContents.OnClaimMembersChanged | MessageContents.EmpireCreateBuilding | MessageContents.OnEmpireBuildingDeleted | MessageContents.GlobalDeleteEmpireBuilding | MessageContents.DeleteEmpire | MessageContents.EmpireClaimJoin | MessageContents.EmpireResupplyNode | MessageContents.EmpireCollectHexiteCapsule | MessageContents.EmpireStartSiege | MessageContents.EmpireSiegeAddSupplies | MessageContents.OnPlayerJoinedEmpire | MessageContents.OnPlayerLeftEmpire | MessageContents.RegionDestroySiegeEngine | MessageContents.OnRegionPlayerCreated | MessageContents.EmpireQueueSupplies | MessageContents.EmpireUpdateEmperorCrown | MessageContents.EmpireRemoveCrown | MessageContents.SignPlayerOut | MessageContents.AdminBroadcastMessage | MessageContents.PlayerSkipQueue | MessageContents.GrantHubItem | MessageContents.RecoverDeployable | MessageContents.OnDeployableRecovered;
+export type MessageContents = MessageContents.TableUpdate | MessageContents.TransferPlayerRequest | MessageContents.TransferPlayerHousingRequest | MessageContents.PlayerCreateRequest | MessageContents.UserUpdateRegionRequest | MessageContents.OnPlayerNameSetRequest | MessageContents.ClaimCreateEmpireSettlementState | MessageContents.OnClaimMembersChanged | MessageContents.EmpireCreateBuilding | MessageContents.OnEmpireBuildingDeleted | MessageContents.GlobalDeleteEmpireBuilding | MessageContents.DeleteEmpire | MessageContents.EmpireClaimJoin | MessageContents.EmpireResupplyNode | MessageContents.EmpireDonateItem | MessageContents.EmpireCreate | MessageContents.EmpireCollectHexiteCapsule | MessageContents.EmpireStartSiege | MessageContents.EmpireSiegeAddSupplies | MessageContents.OnPlayerJoinedEmpire | MessageContents.OnPlayerLeftEmpire | MessageContents.RegionDestroySiegeEngine | MessageContents.OnRegionPlayerCreated | MessageContents.EmpireQueueSupplies | MessageContents.EmpireUpdateEmperorCrown | MessageContents.EmpireRemoveCrown | MessageContents.EmpireAddCurrency | MessageContents.SignPlayerOut | MessageContents.AdminBroadcastMessage | MessageContents.PlayerSkipQueue | MessageContents.GrantHubItem | MessageContents.RecoverDeployable | MessageContents.OnDeployableRecovered | MessageContents.ReplaceIdentity | MessageContents.ClaimSetName | MessageContents.RestoreSkills | MessageContents.NpcPlaceWatchtowers;
 
 export default MessageContents;
 

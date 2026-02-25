@@ -32,10 +32,10 @@ import {
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
 
-import { ContributionLootDescV2 as __ContributionLootDescV2 } from "./contribution_loot_desc_v_2_type";
+import { ContributionLootDesc as __ContributionLootDesc } from "./contribution_loot_desc_type";
 
 export type ImportContributionLootDesc = {
-  records: __ContributionLootDescV2[],
+  records: __ContributionLootDesc[],
 };
 
 /**
@@ -48,7 +48,7 @@ export namespace ImportContributionLootDesc {
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("records", AlgebraicType.createArrayType(__ContributionLootDescV2.getTypeScriptAlgebraicType())),
+      new ProductTypeElement("records", AlgebraicType.createArrayType(__ContributionLootDesc.getTypeScriptAlgebraicType())),
     ]);
   }
 

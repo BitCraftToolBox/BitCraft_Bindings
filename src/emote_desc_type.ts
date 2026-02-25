@@ -40,6 +40,9 @@ export type EmoteDesc = {
   commandLine: string,
   allowWhileMounted: boolean,
   allowWhileMoving: boolean,
+  enabledByCollectibleId: number,
+  toolType: number,
+  toolMeshIndex: number,
 };
 
 /**
@@ -60,6 +63,9 @@ export namespace EmoteDesc {
       new ProductTypeElement("commandLine", AlgebraicType.createStringType()),
       new ProductTypeElement("allowWhileMounted", AlgebraicType.createBoolType()),
       new ProductTypeElement("allowWhileMoving", AlgebraicType.createBoolType()),
+      new ProductTypeElement("enabledByCollectibleId", AlgebraicType.createI32Type()),
+      new ProductTypeElement("toolType", AlgebraicType.createI32Type()),
+      new ProductTypeElement("toolMeshIndex", AlgebraicType.createI32Type()),
     ]);
   }
 

@@ -33,6 +33,7 @@ import {
 } from "@clockworklabs/spacetimedb-sdk";
 export type PlayerSettingsState = {
   entityId: bigint,
+  fillPlayerInventory: boolean,
   fillDeployableInventoryFirst: boolean,
 };
 
@@ -47,6 +48,7 @@ export namespace PlayerSettingsState {
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
       new ProductTypeElement("entityId", AlgebraicType.createU64Type()),
+      new ProductTypeElement("fillPlayerInventory", AlgebraicType.createBoolType()),
       new ProductTypeElement("fillDeployableInventoryFirst", AlgebraicType.createBoolType()),
     ]);
   }

@@ -35,12 +35,11 @@ import { UserModerationPolicy as __UserModerationPolicy } from "./user_moderatio
 
 export type UserModerationState = {
   entityId: bigint,
-  targetEntityId: bigint,
-  createdByEntityId: bigint,
+  targetIdentity: Identity,
+  createdByIdentity: Identity,
   userModerationPolicy: __UserModerationPolicy,
   createdTime: Timestamp,
   expirationTime: Timestamp,
-  durationMs: bigint,
 };
 
 /**
@@ -54,12 +53,11 @@ export namespace UserModerationState {
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
       new ProductTypeElement("entityId", AlgebraicType.createU64Type()),
-      new ProductTypeElement("targetEntityId", AlgebraicType.createU64Type()),
-      new ProductTypeElement("createdByEntityId", AlgebraicType.createU64Type()),
+      new ProductTypeElement("targetIdentity", AlgebraicType.createIdentityType()),
+      new ProductTypeElement("createdByIdentity", AlgebraicType.createIdentityType()),
       new ProductTypeElement("userModerationPolicy", __UserModerationPolicy.getTypeScriptAlgebraicType()),
       new ProductTypeElement("createdTime", AlgebraicType.createTimestampType()),
       new ProductTypeElement("expirationTime", AlgebraicType.createTimestampType()),
-      new ProductTypeElement("durationMs", AlgebraicType.createU64Type()),
     ]);
   }
 

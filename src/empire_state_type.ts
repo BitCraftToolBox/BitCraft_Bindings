@@ -32,6 +32,7 @@ import {
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
 import { OffsetCoordinatesSmallMessage as __OffsetCoordinatesSmallMessage } from "./offset_coordinates_small_message_type";
+import { EmpireOwnerType as __EmpireOwnerType } from "./empire_owner_type_type";
 
 export type EmpireState = {
   entityId: bigint,
@@ -41,6 +42,8 @@ export type EmpireState = {
   nobilityThreshold: number,
   numClaims: number,
   location: __OffsetCoordinatesSmallMessage,
+  empireCurrencyTreasury: number,
+  ownerType: __EmpireOwnerType,
 };
 
 /**
@@ -60,6 +63,8 @@ export namespace EmpireState {
       new ProductTypeElement("nobilityThreshold", AlgebraicType.createI32Type()),
       new ProductTypeElement("numClaims", AlgebraicType.createI32Type()),
       new ProductTypeElement("location", __OffsetCoordinatesSmallMessage.getTypeScriptAlgebraicType()),
+      new ProductTypeElement("empireCurrencyTreasury", AlgebraicType.createU32Type()),
+      new ProductTypeElement("ownerType", __EmpireOwnerType.getTypeScriptAlgebraicType()),
     ]);
   }
 

@@ -39,6 +39,7 @@ export namespace UserModerationPolicy {
   export type PermanentBlockLogin = { tag: "PermanentBlockLogin" };
   export type TemporaryBlockLogin = { tag: "TemporaryBlockLogin" };
   export type BlockChat = { tag: "BlockChat" };
+  export type PermanentBlockChat = { tag: "PermanentBlockChat" };
   export type BlockConstruct = { tag: "BlockConstruct" };
 
   // Helper functions for constructing each variant of the tagged union.
@@ -50,6 +51,7 @@ export namespace UserModerationPolicy {
   export const PermanentBlockLogin = { tag: "PermanentBlockLogin" };
   export const TemporaryBlockLogin = { tag: "TemporaryBlockLogin" };
   export const BlockChat = { tag: "BlockChat" };
+  export const PermanentBlockChat = { tag: "PermanentBlockChat" };
   export const BlockConstruct = { tag: "BlockConstruct" };
 
   export function getTypeScriptAlgebraicType(): AlgebraicType {
@@ -57,6 +59,7 @@ export namespace UserModerationPolicy {
       new SumTypeVariant("PermanentBlockLogin", AlgebraicType.createProductType([])),
       new SumTypeVariant("TemporaryBlockLogin", AlgebraicType.createProductType([])),
       new SumTypeVariant("BlockChat", AlgebraicType.createProductType([])),
+      new SumTypeVariant("PermanentBlockChat", AlgebraicType.createProductType([])),
       new SumTypeVariant("BlockConstruct", AlgebraicType.createProductType([])),
     ]);
   }
@@ -72,7 +75,7 @@ export namespace UserModerationPolicy {
 }
 
 // The tagged union or sum type for the algebraic type `UserModerationPolicy`.
-export type UserModerationPolicy = UserModerationPolicy.PermanentBlockLogin | UserModerationPolicy.TemporaryBlockLogin | UserModerationPolicy.BlockChat | UserModerationPolicy.BlockConstruct;
+export type UserModerationPolicy = UserModerationPolicy.PermanentBlockLogin | UserModerationPolicy.TemporaryBlockLogin | UserModerationPolicy.BlockChat | UserModerationPolicy.PermanentBlockChat | UserModerationPolicy.BlockConstruct;
 
 export default UserModerationPolicy;
 

@@ -46,6 +46,8 @@ export type DeployableDesc = {
   pathfindingId: number,
   movementType: __MovementType,
   canEnterPortals: boolean,
+  canAutoFollow: boolean,
+  affectedByWind: number,
   speed: __MovementSpeed[],
   usePlayerSpeedModifier: boolean,
   placeableOnLand: boolean,
@@ -66,6 +68,8 @@ export type DeployableDesc = {
   allowEmoteWhilePassenger: boolean,
   experiencePerProgress: __ExperienceStackF32[],
   mountingRadius: number,
+  radius: number,
+  allowHunting: boolean,
 };
 
 /**
@@ -86,6 +90,8 @@ export namespace DeployableDesc {
       new ProductTypeElement("pathfindingId", AlgebraicType.createI32Type()),
       new ProductTypeElement("movementType", __MovementType.getTypeScriptAlgebraicType()),
       new ProductTypeElement("canEnterPortals", AlgebraicType.createBoolType()),
+      new ProductTypeElement("canAutoFollow", AlgebraicType.createBoolType()),
+      new ProductTypeElement("affectedByWind", AlgebraicType.createF32Type()),
       new ProductTypeElement("speed", AlgebraicType.createArrayType(__MovementSpeed.getTypeScriptAlgebraicType())),
       new ProductTypeElement("usePlayerSpeedModifier", AlgebraicType.createBoolType()),
       new ProductTypeElement("placeableOnLand", AlgebraicType.createBoolType()),
@@ -106,6 +112,8 @@ export namespace DeployableDesc {
       new ProductTypeElement("allowEmoteWhilePassenger", AlgebraicType.createBoolType()),
       new ProductTypeElement("experiencePerProgress", AlgebraicType.createArrayType(__ExperienceStackF32.getTypeScriptAlgebraicType())),
       new ProductTypeElement("mountingRadius", AlgebraicType.createF32Type()),
+      new ProductTypeElement("radius", AlgebraicType.createF32Type()),
+      new ProductTypeElement("allowHunting", AlgebraicType.createBoolType()),
     ]);
   }
 

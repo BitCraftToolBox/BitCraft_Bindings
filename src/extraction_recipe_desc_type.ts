@@ -43,6 +43,7 @@ export type ExtractionRecipeDesc = {
   cargoId: number,
   discoveryTriggers: number[],
   requiredKnowledges: number[],
+  blockingKnowledges: number[],
   timeRequirement: number,
   staminaRequirement: number,
   toolDurabilityLost: number,
@@ -56,6 +57,8 @@ export type ExtractionRecipeDesc = {
   verbPhrase: string,
   toolMeshIndex: number,
   recipePerformanceId: number,
+  empireRankRequirement: number | undefined,
+  showInProgression: boolean,
 };
 
 /**
@@ -73,6 +76,7 @@ export namespace ExtractionRecipeDesc {
       new ProductTypeElement("cargoId", AlgebraicType.createI32Type()),
       new ProductTypeElement("discoveryTriggers", AlgebraicType.createArrayType(AlgebraicType.createI32Type())),
       new ProductTypeElement("requiredKnowledges", AlgebraicType.createArrayType(AlgebraicType.createI32Type())),
+      new ProductTypeElement("blockingKnowledges", AlgebraicType.createArrayType(AlgebraicType.createI32Type())),
       new ProductTypeElement("timeRequirement", AlgebraicType.createF32Type()),
       new ProductTypeElement("staminaRequirement", AlgebraicType.createF32Type()),
       new ProductTypeElement("toolDurabilityLost", AlgebraicType.createI32Type()),
@@ -86,6 +90,8 @@ export namespace ExtractionRecipeDesc {
       new ProductTypeElement("verbPhrase", AlgebraicType.createStringType()),
       new ProductTypeElement("toolMeshIndex", AlgebraicType.createI32Type()),
       new ProductTypeElement("recipePerformanceId", AlgebraicType.createI32Type()),
+      new ProductTypeElement("empireRankRequirement", AlgebraicType.createOptionType(AlgebraicType.createI32Type())),
+      new ProductTypeElement("showInProgression", AlgebraicType.createBoolType()),
     ]);
   }
 

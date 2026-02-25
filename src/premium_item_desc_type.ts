@@ -36,12 +36,12 @@ export type PremiumItemDesc = {
   name: string,
   description: string,
   imageAddress: string,
-  collectibleDescId: number,
+  collectibleIds: number[],
   price: number,
   basePrice: number,
-  isEnabled: boolean,
   quantity: number,
   sortingPriority: number,
+  isEnabled: boolean,
 };
 
 /**
@@ -58,12 +58,12 @@ export namespace PremiumItemDesc {
       new ProductTypeElement("name", AlgebraicType.createStringType()),
       new ProductTypeElement("description", AlgebraicType.createStringType()),
       new ProductTypeElement("imageAddress", AlgebraicType.createStringType()),
-      new ProductTypeElement("collectibleDescId", AlgebraicType.createI32Type()),
+      new ProductTypeElement("collectibleIds", AlgebraicType.createArrayType(AlgebraicType.createI32Type())),
       new ProductTypeElement("price", AlgebraicType.createU32Type()),
       new ProductTypeElement("basePrice", AlgebraicType.createU32Type()),
-      new ProductTypeElement("isEnabled", AlgebraicType.createBoolType()),
       new ProductTypeElement("quantity", AlgebraicType.createU32Type()),
       new ProductTypeElement("sortingPriority", AlgebraicType.createU16Type()),
+      new ProductTypeElement("isEnabled", AlgebraicType.createBoolType()),
     ]);
   }
 

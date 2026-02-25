@@ -33,7 +33,8 @@ import {
 } from "@clockworklabs/spacetimedb-sdk";
 export type EmpireChunkState = {
   chunkIndex: bigint,
-  empireEntityId: bigint[],
+  empireEntityId: bigint,
+  watchtowerEntityId: bigint,
 };
 
 /**
@@ -47,7 +48,8 @@ export namespace EmpireChunkState {
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
       new ProductTypeElement("chunkIndex", AlgebraicType.createU64Type()),
-      new ProductTypeElement("empireEntityId", AlgebraicType.createArrayType(AlgebraicType.createU64Type())),
+      new ProductTypeElement("empireEntityId", AlgebraicType.createU64Type()),
+      new ProductTypeElement("watchtowerEntityId", AlgebraicType.createU64Type()),
     ]);
   }
 

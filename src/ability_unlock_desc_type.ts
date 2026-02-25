@@ -42,6 +42,7 @@ export type AbilityUnlockDesc = {
   requiredClaimTechId: number,
   requiredKnowledges: number[],
   blockingKnowledges: number[],
+  showInProgression: boolean,
 };
 
 /**
@@ -61,6 +62,7 @@ export namespace AbilityUnlockDesc {
       new ProductTypeElement("requiredClaimTechId", AlgebraicType.createI32Type()),
       new ProductTypeElement("requiredKnowledges", AlgebraicType.createArrayType(AlgebraicType.createI32Type())),
       new ProductTypeElement("blockingKnowledges", AlgebraicType.createArrayType(AlgebraicType.createI32Type())),
+      new ProductTypeElement("showInProgression", AlgebraicType.createBoolType()),
     ]);
   }
 

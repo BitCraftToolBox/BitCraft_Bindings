@@ -32,11 +32,14 @@ import {
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
 import { ItemStack as __ItemStack } from "./item_stack_type";
+import { ClaimTechType as __ClaimTechType } from "./claim_tech_type_type";
 
 export type ClaimTechDesc = {
   id: number,
+  name: string,
   description: string,
   tier: number,
+  techType: __ClaimTechType,
   suppliesCost: number,
   researchTime: number,
   requirements: number[],
@@ -45,6 +48,7 @@ export type ClaimTechDesc = {
   area: number,
   supplies: number,
   xpToMintHexCoin: number,
+  unlocksTechs: number[],
 };
 
 /**
@@ -58,8 +62,10 @@ export namespace ClaimTechDesc {
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
       new ProductTypeElement("id", AlgebraicType.createI32Type()),
+      new ProductTypeElement("name", AlgebraicType.createStringType()),
       new ProductTypeElement("description", AlgebraicType.createStringType()),
       new ProductTypeElement("tier", AlgebraicType.createI32Type()),
+      new ProductTypeElement("techType", __ClaimTechType.getTypeScriptAlgebraicType()),
       new ProductTypeElement("suppliesCost", AlgebraicType.createI32Type()),
       new ProductTypeElement("researchTime", AlgebraicType.createI32Type()),
       new ProductTypeElement("requirements", AlgebraicType.createArrayType(AlgebraicType.createI32Type())),
@@ -68,6 +74,7 @@ export namespace ClaimTechDesc {
       new ProductTypeElement("area", AlgebraicType.createI32Type()),
       new ProductTypeElement("supplies", AlgebraicType.createI32Type()),
       new ProductTypeElement("xpToMintHexCoin", AlgebraicType.createU32Type()),
+      new ProductTypeElement("unlocksTechs", AlgebraicType.createArrayType(AlgebraicType.createI32Type())),
     ]);
   }
 

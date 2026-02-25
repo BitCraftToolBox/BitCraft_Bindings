@@ -33,6 +33,7 @@ import {
 } from "@clockworklabs/spacetimedb-sdk";
 import { EmpireState } from "./empire_state_type";
 import { OffsetCoordinatesSmallMessage as __OffsetCoordinatesSmallMessage } from "./offset_coordinates_small_message_type";
+import { EmpireOwnerType as __EmpireOwnerType } from "./empire_owner_type_type";
 
 import { type EventContext, type Reducer, RemoteReducers, RemoteTables } from ".";
 

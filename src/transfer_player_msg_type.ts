@@ -31,6 +31,8 @@ import {
   type ReducerEventContextInterface,
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
+import { AbilityState as __AbilityState } from "./ability_state_type";
+import { ActionBarState as __ActionBarState } from "./action_bar_state_type";
 import { ActionState as __ActionState } from "./action_state_type";
 import { ActiveBuffState as __ActiveBuffState } from "./active_buff_state_type";
 import { AttackOutcomeState as __AttackOutcomeState } from "./attack_outcome_state_type";
@@ -80,6 +82,8 @@ import { ToolbarState as __ToolbarState } from "./toolbar_state_type";
 import { UnclaimedCollectiblesState as __UnclaimedCollectiblesState } from "./unclaimed_collectibles_state_type";
 import { TeleportationEnergyState as __TeleportationEnergyState } from "./teleportation_energy_state_type";
 import { TravelerTaskState as __TravelerTaskState } from "./traveler_task_state_type";
+import { PlayerSettingsState as __PlayerSettingsState } from "./player_settings_state_type";
+import { QuestChainState as __QuestChainState } from "./quest_chain_state_type";
 
 export type TransferPlayerMsg = {
   originalLocation: __FloatHexTileMessage,
@@ -124,6 +128,8 @@ export type TransferPlayerMsg = {
   combatState: __CombatState,
   actionState: __ActionState[],
   toolbarState: __ToolbarState[],
+  abilityState: __AbilityState[],
+  actionBarState: __ActionBarState[],
   attackOutcomeState: __AttackOutcomeState,
   vaultState: __VaultState,
   explorationChunksState: __ExplorationChunksState,
@@ -136,6 +142,8 @@ export type TransferPlayerMsg = {
   travelerTaskStates: __TravelerTaskState[],
   extractOutcomeState: __ExtractOutcomeState,
   undeployedDeployableStates: __DeployableState[],
+  playerSettingsState: __PlayerSettingsState | undefined,
+  questChainStates: __QuestChainState[],
 };
 
 /**
@@ -190,6 +198,8 @@ export namespace TransferPlayerMsg {
       new ProductTypeElement("combatState", __CombatState.getTypeScriptAlgebraicType()),
       new ProductTypeElement("actionState", AlgebraicType.createArrayType(__ActionState.getTypeScriptAlgebraicType())),
       new ProductTypeElement("toolbarState", AlgebraicType.createArrayType(__ToolbarState.getTypeScriptAlgebraicType())),
+      new ProductTypeElement("abilityState", AlgebraicType.createArrayType(__AbilityState.getTypeScriptAlgebraicType())),
+      new ProductTypeElement("actionBarState", AlgebraicType.createArrayType(__ActionBarState.getTypeScriptAlgebraicType())),
       new ProductTypeElement("attackOutcomeState", __AttackOutcomeState.getTypeScriptAlgebraicType()),
       new ProductTypeElement("vaultState", __VaultState.getTypeScriptAlgebraicType()),
       new ProductTypeElement("explorationChunksState", __ExplorationChunksState.getTypeScriptAlgebraicType()),
@@ -202,6 +212,8 @@ export namespace TransferPlayerMsg {
       new ProductTypeElement("travelerTaskStates", AlgebraicType.createArrayType(__TravelerTaskState.getTypeScriptAlgebraicType())),
       new ProductTypeElement("extractOutcomeState", __ExtractOutcomeState.getTypeScriptAlgebraicType()),
       new ProductTypeElement("undeployedDeployableStates", AlgebraicType.createArrayType(__DeployableState.getTypeScriptAlgebraicType())),
+      new ProductTypeElement("playerSettingsState", AlgebraicType.createOptionType(__PlayerSettingsState.getTypeScriptAlgebraicType())),
+      new ProductTypeElement("questChainStates", AlgebraicType.createArrayType(__QuestChainState.getTypeScriptAlgebraicType())),
     ]);
   }
 

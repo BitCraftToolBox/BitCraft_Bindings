@@ -58,6 +58,7 @@ export type BuildingDesc = {
   showInCompendium: boolean,
   isRuins: boolean,
   notDeconstructible: boolean,
+  destroyOnUnclaim: boolean,
 };
 
 /**
@@ -92,6 +93,7 @@ export namespace BuildingDesc {
       new ProductTypeElement("showInCompendium", AlgebraicType.createBoolType()),
       new ProductTypeElement("isRuins", AlgebraicType.createBoolType()),
       new ProductTypeElement("notDeconstructible", AlgebraicType.createBoolType()),
+      new ProductTypeElement("destroyOnUnclaim", AlgebraicType.createBoolType()),
     ]);
   }
 

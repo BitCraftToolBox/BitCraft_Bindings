@@ -47,7 +47,10 @@ export type PlayerActionState = {
   layer: __PlayerActionLayer,
   lastActionResult: __PlayerActionResult,
   clientCancel: boolean,
-  pad: number,
+  wasConsumed: boolean,
+  pad1: number,
+  pad2: number,
+  pad3: number,
 };
 
 /**
@@ -71,7 +74,10 @@ export namespace PlayerActionState {
       new ProductTypeElement("layer", __PlayerActionLayer.getTypeScriptAlgebraicType()),
       new ProductTypeElement("lastActionResult", __PlayerActionResult.getTypeScriptAlgebraicType()),
       new ProductTypeElement("clientCancel", AlgebraicType.createBoolType()),
-      new ProductTypeElement("pad", AlgebraicType.createU32Type()),
+      new ProductTypeElement("wasConsumed", AlgebraicType.createBoolType()),
+      new ProductTypeElement("pad1", AlgebraicType.createU8Type()),
+      new ProductTypeElement("pad2", AlgebraicType.createU8Type()),
+      new ProductTypeElement("pad3", AlgebraicType.createU8Type()),
     ]);
   }
 

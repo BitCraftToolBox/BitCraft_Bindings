@@ -36,9 +36,9 @@ export type QuestChainState = {
   playerEntityId: bigint,
   questChainDescId: number,
   stageId: number,
-  isActive: boolean,
   completed: boolean,
   stageRewardsAwarded: number[],
+  tracked: boolean,
 };
 
 /**
@@ -55,9 +55,9 @@ export namespace QuestChainState {
       new ProductTypeElement("playerEntityId", AlgebraicType.createU64Type()),
       new ProductTypeElement("questChainDescId", AlgebraicType.createI32Type()),
       new ProductTypeElement("stageId", AlgebraicType.createI32Type()),
-      new ProductTypeElement("isActive", AlgebraicType.createBoolType()),
       new ProductTypeElement("completed", AlgebraicType.createBoolType()),
       new ProductTypeElement("stageRewardsAwarded", AlgebraicType.createArrayType(AlgebraicType.createI32Type())),
+      new ProductTypeElement("tracked", AlgebraicType.createBoolType()),
     ]);
   }
 

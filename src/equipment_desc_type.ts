@@ -48,6 +48,7 @@ export type EquipmentDesc = {
   stats: __CsvStatEntry[],
   requiredAchievements: number[],
   requiredKnowledges: number[],
+  showInProgression: boolean,
 };
 
 /**
@@ -69,6 +70,7 @@ export namespace EquipmentDesc {
       new ProductTypeElement("stats", AlgebraicType.createArrayType(__CsvStatEntry.getTypeScriptAlgebraicType())),
       new ProductTypeElement("requiredAchievements", AlgebraicType.createArrayType(AlgebraicType.createI32Type())),
       new ProductTypeElement("requiredKnowledges", AlgebraicType.createArrayType(AlgebraicType.createI32Type())),
+      new ProductTypeElement("showInProgression", AlgebraicType.createBoolType()),
     ]);
   }
 

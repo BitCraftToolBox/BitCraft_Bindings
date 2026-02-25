@@ -39,6 +39,7 @@ export type DeployableCollectibleState = {
   collectibleId: number,
   deployableDescId: number,
   location: __OffsetCoordinatesSmallMessage | undefined,
+  autoFollow: boolean,
 };
 
 /**
@@ -56,6 +57,7 @@ export namespace DeployableCollectibleState {
       new ProductTypeElement("collectibleId", AlgebraicType.createI32Type()),
       new ProductTypeElement("deployableDescId", AlgebraicType.createI32Type()),
       new ProductTypeElement("location", AlgebraicType.createOptionType(__OffsetCoordinatesSmallMessage.getTypeScriptAlgebraicType())),
+      new ProductTypeElement("autoFollow", AlgebraicType.createBoolType()),
     ]);
   }
 

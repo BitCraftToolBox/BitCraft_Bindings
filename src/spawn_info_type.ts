@@ -48,7 +48,7 @@ export type SpawnInfo = {
   spawnsInWater: boolean,
   waterDepthMin: number,
   waterDepthMax: number,
-  spawnsOnUnevenTerrain: boolean,
+  maxElevationDelta: number,
 };
 
 /**
@@ -77,7 +77,7 @@ export namespace SpawnInfo {
       new ProductTypeElement("spawnsInWater", AlgebraicType.createBoolType()),
       new ProductTypeElement("waterDepthMin", AlgebraicType.createI16Type()),
       new ProductTypeElement("waterDepthMax", AlgebraicType.createI16Type()),
-      new ProductTypeElement("spawnsOnUnevenTerrain", AlgebraicType.createBoolType()),
+      new ProductTypeElement("maxElevationDelta", AlgebraicType.createI32Type()),
     ]);
   }
 

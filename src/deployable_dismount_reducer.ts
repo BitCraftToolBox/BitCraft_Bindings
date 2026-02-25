@@ -32,10 +32,11 @@ import {
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
 
-import { PlayerDeployableDismountRequest as __PlayerDeployableDismountRequest } from "./player_deployable_dismount_request_type";
+import { OffsetCoordinatesFloat as __OffsetCoordinatesFloat } from "./offset_coordinates_float_type";
 
 export type DeployableDismount = {
-  request: __PlayerDeployableDismountRequest,
+  coordinates: __OffsetCoordinatesFloat,
+  deployableCoordinates: __OffsetCoordinatesFloat,
 };
 
 /**
@@ -48,7 +49,8 @@ export namespace DeployableDismount {
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("request", __PlayerDeployableDismountRequest.getTypeScriptAlgebraicType()),
+      new ProductTypeElement("coordinates", __OffsetCoordinatesFloat.getTypeScriptAlgebraicType()),
+      new ProductTypeElement("deployableCoordinates", __OffsetCoordinatesFloat.getTypeScriptAlgebraicType()),
     ]);
   }
 

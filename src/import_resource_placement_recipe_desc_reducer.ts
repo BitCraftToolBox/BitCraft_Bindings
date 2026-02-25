@@ -32,10 +32,10 @@ import {
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
 
-import { ResourcePlacementRecipeDescV2 as __ResourcePlacementRecipeDescV2 } from "./resource_placement_recipe_desc_v_2_type";
+import { ResourcePlacementRecipeDesc as __ResourcePlacementRecipeDesc } from "./resource_placement_recipe_desc_type";
 
 export type ImportResourcePlacementRecipeDesc = {
-  records: __ResourcePlacementRecipeDescV2[],
+  records: __ResourcePlacementRecipeDesc[],
 };
 
 /**
@@ -48,7 +48,7 @@ export namespace ImportResourcePlacementRecipeDesc {
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("records", AlgebraicType.createArrayType(__ResourcePlacementRecipeDescV2.getTypeScriptAlgebraicType())),
+      new ProductTypeElement("records", AlgebraicType.createArrayType(__ResourcePlacementRecipeDesc.getTypeScriptAlgebraicType())),
     ]);
   }
 

@@ -34,10 +34,10 @@ import {
 import { BlockedIdentityOp as __BlockedIdentityOp } from "./blocked_identity_op_type";
 import { BuildingNicknameStateOp as __BuildingNicknameStateOp } from "./building_nickname_state_op_type";
 import { BuildingStateOp as __BuildingStateOp } from "./building_state_op_type";
+import { ClaimLowercaseNameStateOp as __ClaimLowercaseNameStateOp } from "./claim_lowercase_name_state_op_type";
 import { ClaimMemberStateOp as __ClaimMemberStateOp } from "./claim_member_state_op_type";
 import { ClaimStateOp as __ClaimStateOp } from "./claim_state_op_type";
 import { EmpireChunkStateOp as __EmpireChunkStateOp } from "./empire_chunk_state_op_type";
-import { EmpireExpansionStateOp as __EmpireExpansionStateOp } from "./empire_expansion_state_op_type";
 import { EmpireNodeSiegeStateOp as __EmpireNodeSiegeStateOp } from "./empire_node_siege_state_op_type";
 import { EmpireNodeStateOp as __EmpireNodeStateOp } from "./empire_node_state_op_type";
 import { EmpirePlayerDataStateOp as __EmpirePlayerDataStateOp } from "./empire_player_data_state_op_type";
@@ -49,6 +49,7 @@ import { LocationStateOp as __LocationStateOp } from "./location_state_op_type";
 import { PlayerHousingStateOp as __PlayerHousingStateOp } from "./player_housing_state_op_type";
 import { PlayerReportStateOp as __PlayerReportStateOp } from "./player_report_state_op_type";
 import { RegionConnectionInfoOp as __RegionConnectionInfoOp } from "./region_connection_info_op_type";
+import { RegionControlInfoOp as __RegionControlInfoOp } from "./region_control_info_op_type";
 import { RegionPopulationInfoOp as __RegionPopulationInfoOp } from "./region_population_info_op_type";
 import { RegionSignInParametersOp as __RegionSignInParametersOp } from "./region_sign_in_parameters_op_type";
 import { UserAuthenticationStateOp as __UserAuthenticationStateOp } from "./user_authentication_state_op_type";
@@ -59,10 +60,10 @@ export type InterModuleTableUpdates = {
   blockedIdentity: __BlockedIdentityOp[] | undefined,
   buildingNicknameState: __BuildingNicknameStateOp[] | undefined,
   buildingState: __BuildingStateOp[] | undefined,
+  claimLowercaseNameState: __ClaimLowercaseNameStateOp[] | undefined,
   claimMemberState: __ClaimMemberStateOp[] | undefined,
   claimState: __ClaimStateOp[] | undefined,
   empireChunkState: __EmpireChunkStateOp[] | undefined,
-  empireExpansionState: __EmpireExpansionStateOp[] | undefined,
   empireNodeSiegeState: __EmpireNodeSiegeStateOp[] | undefined,
   empireNodeState: __EmpireNodeStateOp[] | undefined,
   empirePlayerDataState: __EmpirePlayerDataStateOp[] | undefined,
@@ -74,6 +75,7 @@ export type InterModuleTableUpdates = {
   playerHousingState: __PlayerHousingStateOp[] | undefined,
   playerReportState: __PlayerReportStateOp[] | undefined,
   regionConnectionInfo: __RegionConnectionInfoOp[] | undefined,
+  regionControlInfo: __RegionControlInfoOp[] | undefined,
   regionPopulationInfo: __RegionPopulationInfoOp[] | undefined,
   regionSignInParameters: __RegionSignInParametersOp[] | undefined,
   userAuthenticationState: __UserAuthenticationStateOp[] | undefined,
@@ -94,10 +96,10 @@ export namespace InterModuleTableUpdates {
       new ProductTypeElement("blockedIdentity", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__BlockedIdentityOp.getTypeScriptAlgebraicType()))),
       new ProductTypeElement("buildingNicknameState", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__BuildingNicknameStateOp.getTypeScriptAlgebraicType()))),
       new ProductTypeElement("buildingState", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__BuildingStateOp.getTypeScriptAlgebraicType()))),
+      new ProductTypeElement("claimLowercaseNameState", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__ClaimLowercaseNameStateOp.getTypeScriptAlgebraicType()))),
       new ProductTypeElement("claimMemberState", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__ClaimMemberStateOp.getTypeScriptAlgebraicType()))),
       new ProductTypeElement("claimState", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__ClaimStateOp.getTypeScriptAlgebraicType()))),
       new ProductTypeElement("empireChunkState", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__EmpireChunkStateOp.getTypeScriptAlgebraicType()))),
-      new ProductTypeElement("empireExpansionState", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__EmpireExpansionStateOp.getTypeScriptAlgebraicType()))),
       new ProductTypeElement("empireNodeSiegeState", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__EmpireNodeSiegeStateOp.getTypeScriptAlgebraicType()))),
       new ProductTypeElement("empireNodeState", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__EmpireNodeStateOp.getTypeScriptAlgebraicType()))),
       new ProductTypeElement("empirePlayerDataState", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__EmpirePlayerDataStateOp.getTypeScriptAlgebraicType()))),
@@ -109,6 +111,7 @@ export namespace InterModuleTableUpdates {
       new ProductTypeElement("playerHousingState", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__PlayerHousingStateOp.getTypeScriptAlgebraicType()))),
       new ProductTypeElement("playerReportState", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__PlayerReportStateOp.getTypeScriptAlgebraicType()))),
       new ProductTypeElement("regionConnectionInfo", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__RegionConnectionInfoOp.getTypeScriptAlgebraicType()))),
+      new ProductTypeElement("regionControlInfo", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__RegionControlInfoOp.getTypeScriptAlgebraicType()))),
       new ProductTypeElement("regionPopulationInfo", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__RegionPopulationInfoOp.getTypeScriptAlgebraicType()))),
       new ProductTypeElement("regionSignInParameters", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__RegionSignInParametersOp.getTypeScriptAlgebraicType()))),
       new ProductTypeElement("userAuthenticationState", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__UserAuthenticationStateOp.getTypeScriptAlgebraicType()))),

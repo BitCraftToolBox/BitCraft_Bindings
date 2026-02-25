@@ -36,6 +36,7 @@ export type ContributionLootDesc = {
   enemyTypeId: number,
   itemListId: number,
   minimumContribution: number,
+  weighted: boolean,
 };
 
 /**
@@ -52,6 +53,7 @@ export namespace ContributionLootDesc {
       new ProductTypeElement("enemyTypeId", AlgebraicType.createI32Type()),
       new ProductTypeElement("itemListId", AlgebraicType.createI32Type()),
       new ProductTypeElement("minimumContribution", AlgebraicType.createI32Type()),
+      new ProductTypeElement("weighted", AlgebraicType.createBoolType()),
     ]);
   }
 

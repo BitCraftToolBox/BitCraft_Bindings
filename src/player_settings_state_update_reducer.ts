@@ -32,10 +32,10 @@ import {
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
 
-import { PlayerSettingsStateV2 as __PlayerSettingsStateV2 } from "./player_settings_state_v_2_type";
+import { PlayerSettingsState as __PlayerSettingsState } from "./player_settings_state_type";
 
 export type PlayerSettingsStateUpdate = {
-  playerSettingsState: __PlayerSettingsStateV2,
+  playerSettingsState: __PlayerSettingsState,
 };
 
 /**
@@ -48,7 +48,7 @@ export namespace PlayerSettingsStateUpdate {
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("playerSettingsState", __PlayerSettingsStateV2.getTypeScriptAlgebraicType()),
+      new ProductTypeElement("playerSettingsState", __PlayerSettingsState.getTypeScriptAlgebraicType()),
     ]);
   }
 

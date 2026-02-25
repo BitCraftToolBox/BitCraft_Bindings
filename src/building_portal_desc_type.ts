@@ -36,6 +36,7 @@ export type BuildingPortalDesc = {
   name: string,
   buildingId: number,
   allowDeployables: boolean,
+  enemyLock: boolean,
   posX: number,
   posZ: number,
 };
@@ -54,6 +55,7 @@ export namespace BuildingPortalDesc {
       new ProductTypeElement("name", AlgebraicType.createStringType()),
       new ProductTypeElement("buildingId", AlgebraicType.createI32Type()),
       new ProductTypeElement("allowDeployables", AlgebraicType.createBoolType()),
+      new ProductTypeElement("enemyLock", AlgebraicType.createBoolType()),
       new ProductTypeElement("posX", AlgebraicType.createI32Type()),
       new ProductTypeElement("posZ", AlgebraicType.createI32Type()),
     ]);

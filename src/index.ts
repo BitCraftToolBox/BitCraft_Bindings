@@ -45,6 +45,8 @@ import { AchievementClaim } from "./achievement_claim_reducer.ts";
 export { AchievementClaim };
 import { AcquireKnowledgeFromEntities } from "./acquire_knowledge_from_entities_reducer.ts";
 export { AcquireKnowledgeFromEntities };
+import { ActivateBuildingBuff } from "./activate_building_buff_reducer.ts";
+export { ActivateBuildingBuff };
 import { AdminAddSpecificBuildingTypeStates } from "./admin_add_specific_building_type_states_reducer.ts";
 export { AdminAddSpecificBuildingTypeStates };
 import { AdminAlpha3CompleteOnboarding } from "./admin_alpha_3_complete_onboarding_reducer.ts";
@@ -103,6 +105,8 @@ import { AdminDespawnOverworldEnemies } from "./admin_despawn_overworld_enemies_
 export { AdminDespawnOverworldEnemies };
 import { AdminDungeonUpdatePortals } from "./admin_dungeon_update_portals_reducer.ts";
 export { AdminDungeonUpdatePortals };
+import { AdminFailQuest } from "./admin_fail_quest_reducer.ts";
+export { AdminFailQuest };
 import { AdminFindAllPlayersWithItem } from "./admin_find_all_players_with_item_reducer.ts";
 export { AdminFindAllPlayersWithItem };
 import { AdminFindAllPlayersWithItemAboveQuantity } from "./admin_find_all_players_with_item_above_quantity_reducer.ts";
@@ -117,8 +121,6 @@ import { AdminGrantCollectibles } from "./admin_grant_collectibles_reducer.ts";
 export { AdminGrantCollectibles };
 import { AdminMigrateActionState } from "./admin_migrate_action_state_reducer.ts";
 export { AdminMigrateActionState };
-import { AdminMigrateHousing } from "./admin_migrate_housing_reducer.ts";
-export { AdminMigrateHousing };
 import { AdminMigrateTradeOrders } from "./admin_migrate_trade_orders_reducer.ts";
 export { AdminMigrateTradeOrders };
 import { AdminModifyChatMessage } from "./admin_modify_chat_message_reducer.ts";
@@ -159,6 +161,8 @@ import { AdminRestorePlayerState } from "./admin_restore_player_state_reducer.ts
 export { AdminRestorePlayerState };
 import { AdminRestorePlayerStateScheduled } from "./admin_restore_player_state_scheduled_reducer.ts";
 export { AdminRestorePlayerStateScheduled };
+import { AdminSetRegionControlState } from "./admin_set_region_control_state_reducer.ts";
+export { AdminSetRegionControlState };
 import { AdminSetResourceWorldTarget } from "./admin_set_resource_world_target_reducer.ts";
 export { AdminSetResourceWorldTarget };
 import { AdminSetSignText } from "./admin_set_sign_text_reducer.ts";
@@ -181,6 +185,8 @@ import { AdminUpdateLightSourceStates } from "./admin_update_light_source_states
 export { AdminUpdateLightSourceStates };
 import { AdminUpdateLoreKnowledge } from "./admin_update_lore_knowledge_reducer.ts";
 export { AdminUpdateLoreKnowledge };
+import { AdminUpdateRegionModerationConfig } from "./admin_update_region_moderation_config_reducer.ts";
+export { AdminUpdateRegionModerationConfig };
 import { AdvanceQuestStage } from "./advance_quest_stage_reducer.ts";
 export { AdvanceQuestStage };
 import { Attack } from "./attack_reducer.ts";
@@ -289,6 +295,8 @@ import { CheatProjectSiteAddAllMaterials } from "./cheat_project_site_add_all_ma
 export { CheatProjectSiteAddAllMaterials };
 import { CheatQuestAdvanceToHandin } from "./cheat_quest_advance_to_handin_reducer.ts";
 export { CheatQuestAdvanceToHandin };
+import { CheatQuestClear } from "./cheat_quest_clear_reducer.ts";
+export { CheatQuestClear };
 import { CheatQuestRestart } from "./cheat_quest_restart_reducer.ts";
 export { CheatQuestRestart };
 import { CheatQuestSkip } from "./cheat_quest_skip_reducer.ts";
@@ -421,6 +429,8 @@ import { DeployableDismount } from "./deployable_dismount_reducer.ts";
 export { DeployableDismount };
 import { DeployableDismountScheduled } from "./deployable_dismount_scheduled_reducer.ts";
 export { DeployableDismountScheduled };
+import { DeployableDismountServer } from "./deployable_dismount_server_reducer.ts";
+export { DeployableDismountServer };
 import { DeployableFollow } from "./deployable_follow_reducer.ts";
 export { DeployableFollow };
 import { DeployableMount } from "./deployable_mount_reducer.ts";
@@ -469,10 +479,14 @@ import { EmpireClaimJoin } from "./empire_claim_join_reducer.ts";
 export { EmpireClaimJoin };
 import { EmpireCollectHexiteCapsule } from "./empire_collect_hexite_capsule_reducer.ts";
 export { EmpireCollectHexiteCapsule };
+import { EmpireCreate } from "./empire_create_reducer.ts";
+export { EmpireCreate };
 import { EmpireDeploySiegeEngine } from "./empire_deploy_siege_engine_reducer.ts";
 export { EmpireDeploySiegeEngine };
 import { EmpireDeploySiegeEngineStart } from "./empire_deploy_siege_engine_start_reducer.ts";
 export { EmpireDeploySiegeEngineStart };
+import { EmpireDonateItem } from "./empire_donate_item_reducer.ts";
+export { EmpireDonateItem };
 import { EmpireQueueSupplies } from "./empire_queue_supplies_reducer.ts";
 export { EmpireQueueSupplies };
 import { EmpireResupplyNode } from "./empire_resupply_node_reducer.ts";
@@ -555,12 +569,14 @@ import { ImportBuffDesc } from "./import_buff_desc_reducer.ts";
 export { ImportBuffDesc };
 import { ImportBuffTypeDesc } from "./import_buff_type_desc_reducer.ts";
 export { ImportBuffTypeDesc };
+import { ImportBuildingBuffDesc } from "./import_building_buff_desc_reducer.ts";
+export { ImportBuildingBuffDesc };
 import { ImportBuildingClaimDesc } from "./import_building_claim_desc_reducer.ts";
 export { ImportBuildingClaimDesc };
 import { ImportBuildingDesc } from "./import_building_desc_reducer.ts";
 export { ImportBuildingDesc };
-import { ImportBuildingPortalDescV2 } from "./import_building_portal_desc_v_2_reducer.ts";
-export { ImportBuildingPortalDescV2 };
+import { ImportBuildingPortalDesc } from "./import_building_portal_desc_reducer.ts";
+export { ImportBuildingPortalDesc };
 import { ImportBuildingRepairsDesc } from "./import_building_repairs_desc_reducer.ts";
 export { ImportBuildingRepairsDesc };
 import { ImportBuildingSpawnDesc } from "./import_building_spawn_desc_reducer.ts";
@@ -599,8 +615,8 @@ import { ImportClothingDesc } from "./import_clothing_desc_reducer.ts";
 export { ImportClothingDesc };
 import { ImportCollectibleDesc } from "./import_collectible_desc_reducer.ts";
 export { ImportCollectibleDesc };
-import { ImportCombatActionDescV3 } from "./import_combat_action_desc_v_3_reducer.ts";
-export { ImportCombatActionDescV3 };
+import { ImportCombatActionDesc } from "./import_combat_action_desc_reducer.ts";
+export { ImportCombatActionDesc };
 import { ImportCombatActionMultiHitDesc } from "./import_combat_action_multi_hit_desc_reducer.ts";
 export { ImportCombatActionMultiHitDesc };
 import { ImportCombatState } from "./import_combat_state_reducer.ts";
@@ -883,6 +899,8 @@ import { ImportWorldRegionNameState } from "./import_world_region_name_state_red
 export { ImportWorldRegionNameState };
 import { ImportWorldRegionState } from "./import_world_region_state_reducer.ts";
 export { ImportWorldRegionState };
+import { InitRegionInfo } from "./init_region_info_reducer.ts";
+export { InitRegionInfo };
 import { InsertDeveloperIdentity } from "./insert_developer_identity_reducer.ts";
 export { InsertDeveloperIdentity };
 import { InsertResourcesLog } from "./insert_resources_log_reducer.ts";
@@ -1143,8 +1161,8 @@ import { ServerTeleportPlayer } from "./server_teleport_player_reducer.ts";
 export { ServerTeleportPlayer };
 import { SetHome } from "./set_home_reducer.ts";
 export { SetHome };
-import { SetQuestChainActive } from "./set_quest_chain_active_reducer.ts";
-export { SetQuestChainActive };
+import { SetQuestTracked } from "./set_quest_tracked_reducer.ts";
+export { SetQuestTracked };
 import { SignIn } from "./sign_in_reducer.ts";
 export { SignIn };
 import { SignOut } from "./sign_out_reducer.ts";
@@ -1167,12 +1185,14 @@ import { StageBuffDesc } from "./stage_buff_desc_reducer.ts";
 export { StageBuffDesc };
 import { StageBuffTypeDesc } from "./stage_buff_type_desc_reducer.ts";
 export { StageBuffTypeDesc };
+import { StageBuildingBuffDesc } from "./stage_building_buff_desc_reducer.ts";
+export { StageBuildingBuffDesc };
 import { StageBuildingClaimDesc } from "./stage_building_claim_desc_reducer.ts";
 export { StageBuildingClaimDesc };
 import { StageBuildingDesc } from "./stage_building_desc_reducer.ts";
 export { StageBuildingDesc };
-import { StageBuildingPortalDescV2 } from "./stage_building_portal_desc_v_2_reducer.ts";
-export { StageBuildingPortalDescV2 };
+import { StageBuildingPortalDesc } from "./stage_building_portal_desc_reducer.ts";
+export { StageBuildingPortalDesc };
 import { StageBuildingRepairsDesc } from "./stage_building_repairs_desc_reducer.ts";
 export { StageBuildingRepairsDesc };
 import { StageBuildingSpawnDesc } from "./stage_building_spawn_desc_reducer.ts";
@@ -1185,8 +1205,8 @@ import { StageCharacterStatDesc } from "./stage_character_stat_desc_reducer.ts";
 export { StageCharacterStatDesc };
 import { StageChestRarityDesc } from "./stage_chest_rarity_desc_reducer.ts";
 export { StageChestRarityDesc };
-import { StageClaimTechDescV2 } from "./stage_claim_tech_desc_v_2_reducer.ts";
-export { StageClaimTechDescV2 };
+import { StageClaimTechDesc } from "./stage_claim_tech_desc_reducer.ts";
+export { StageClaimTechDesc };
 import { StageClaimTileCost } from "./stage_claim_tile_cost_reducer.ts";
 export { StageClaimTileCost };
 import { StageClimbRequirementDesc } from "./stage_climb_requirement_desc_reducer.ts";
@@ -1195,12 +1215,12 @@ import { StageClothingDesc } from "./stage_clothing_desc_reducer.ts";
 export { StageClothingDesc };
 import { StageCollectibleDesc } from "./stage_collectible_desc_reducer.ts";
 export { StageCollectibleDesc };
-import { StageCombatActionDescV3 } from "./stage_combat_action_desc_v_3_reducer.ts";
-export { StageCombatActionDescV3 };
+import { StageCombatActionDesc } from "./stage_combat_action_desc_reducer.ts";
+export { StageCombatActionDesc };
 import { StageCombatActionMultiHitDesc } from "./stage_combat_action_multi_hit_desc_reducer.ts";
 export { StageCombatActionMultiHitDesc };
-import { StageConstructionRecipeDescV2 } from "./stage_construction_recipe_desc_v_2_reducer.ts";
-export { StageConstructionRecipeDescV2 };
+import { StageConstructionRecipeDesc } from "./stage_construction_recipe_desc_reducer.ts";
+export { StageConstructionRecipeDesc };
 import { StageContributionLootDesc } from "./stage_contribution_loot_desc_reducer.ts";
 export { StageContributionLootDesc };
 import { StageCraftingRecipeDesc } from "./stage_crafting_recipe_desc_reducer.ts";
@@ -1311,8 +1331,8 @@ import { StageResourceDesc } from "./stage_resource_desc_reducer.ts";
 export { StageResourceDesc };
 import { StageResourceGrowthRecipeDesc } from "./stage_resource_growth_recipe_desc_reducer.ts";
 export { StageResourceGrowthRecipeDesc };
-import { StageResourcePlacementRecipeDescV2 } from "./stage_resource_placement_recipe_desc_v_2_reducer.ts";
-export { StageResourcePlacementRecipeDescV2 };
+import { StageResourcePlacementRecipeDesc } from "./stage_resource_placement_recipe_desc_reducer.ts";
+export { StageResourcePlacementRecipeDesc };
 import { StageSecondaryKnowledgeDesc } from "./stage_secondary_knowledge_desc_reducer.ts";
 export { StageSecondaryKnowledgeDesc };
 import { StageSkillDesc } from "./stage_skill_desc_reducer.ts";
@@ -1397,8 +1417,12 @@ import { UpdateMovingCost } from "./update_moving_cost_reducer.ts";
 export { UpdateMovingCost };
 import { UpdateScheduledTimersFromStaticData } from "./update_scheduled_timers_from_static_data_reducer.ts";
 export { UpdateScheduledTimersFromStaticData };
+import { WorldClearNpcWatchtowers } from "./world_clear_npc_watchtowers_reducer.ts";
+export { WorldClearNpcWatchtowers };
 import { WorldPlaceBuilding } from "./world_place_building_reducer.ts";
 export { WorldPlaceBuilding };
+import { WorldPlaceNpcWatchtowers } from "./world_place_npc_watchtowers_reducer.ts";
+export { WorldPlaceNpcWatchtowers };
 import { WorldPlaceResource } from "./world_place_resource_reducer.ts";
 export { WorldPlaceResource };
 
@@ -1419,6 +1443,8 @@ import { ActionStateTableHandle } from "./action_state_table.ts";
 export { ActionStateTableHandle };
 import { ActiveBuffStateTableHandle } from "./active_buff_state_table.ts";
 export { ActiveBuffStateTableHandle };
+import { ActiveEnvironmentBuffStateTableHandle } from "./active_environment_buff_state_table.ts";
+export { ActiveEnvironmentBuffStateTableHandle };
 import { AdminBroadcastTableHandle } from "./admin_broadcast_table.ts";
 export { AdminBroadcastTableHandle };
 import { AdminClearResourceTimerTableHandle } from "./admin_clear_resource_timer_table.ts";
@@ -1455,6 +1481,8 @@ import { BuffDescTableHandle } from "./buff_desc_table.ts";
 export { BuffDescTableHandle };
 import { BuffTypeDescTableHandle } from "./buff_type_desc_table.ts";
 export { BuffTypeDescTableHandle };
+import { BuildingBuffDescTableHandle } from "./building_buff_desc_table.ts";
+export { BuildingBuffDescTableHandle };
 import { BuildingClaimDescTableHandle } from "./building_claim_desc_table.ts";
 export { BuildingClaimDescTableHandle };
 import { BuildingDecayLoopTimerTableHandle } from "./building_decay_loop_timer_table.ts";
@@ -1469,8 +1497,6 @@ import { BuildingNicknameStateTableHandle } from "./building_nickname_state_tabl
 export { BuildingNicknameStateTableHandle };
 import { BuildingPortalDescTableHandle } from "./building_portal_desc_table.ts";
 export { BuildingPortalDescTableHandle };
-import { BuildingPortalDescV2TableHandle } from "./building_portal_desc_v_2_table.ts";
-export { BuildingPortalDescV2TableHandle };
 import { BuildingRepairsDescTableHandle } from "./building_repairs_desc_table.ts";
 export { BuildingRepairsDescTableHandle };
 import { BuildingSpawnDescTableHandle } from "./building_spawn_desc_table.ts";
@@ -1497,6 +1523,8 @@ import { ClaimLocalStateTableHandle } from "./claim_local_state_table.ts";
 export { ClaimLocalStateTableHandle };
 import { ClaimLocalSupplySecurityThresholdStateTableHandle } from "./claim_local_supply_security_threshold_state_table.ts";
 export { ClaimLocalSupplySecurityThresholdStateTableHandle };
+import { ClaimLowercaseNameStateTableHandle } from "./claim_lowercase_name_state_table.ts";
+export { ClaimLowercaseNameStateTableHandle };
 import { ClaimMemberStateTableHandle } from "./claim_member_state_table.ts";
 export { ClaimMemberStateTableHandle };
 import { ClaimRecruitmentStateTableHandle } from "./claim_recruitment_state_table.ts";
@@ -1505,8 +1533,6 @@ import { ClaimStateTableHandle } from "./claim_state_table.ts";
 export { ClaimStateTableHandle };
 import { ClaimTechDescTableHandle } from "./claim_tech_desc_table.ts";
 export { ClaimTechDescTableHandle };
-import { ClaimTechDescV2TableHandle } from "./claim_tech_desc_v_2_table.ts";
-export { ClaimTechDescV2TableHandle };
 import { ClaimTechStateTableHandle } from "./claim_tech_state_table.ts";
 export { ClaimTechStateTableHandle };
 import { ClaimTechUnlockTimerTableHandle } from "./claim_tech_unlock_timer_table.ts";
@@ -1527,10 +1553,6 @@ import { CollectibleDescTableHandle } from "./collectible_desc_table.ts";
 export { CollectibleDescTableHandle };
 import { CombatActionDescTableHandle } from "./combat_action_desc_table.ts";
 export { CombatActionDescTableHandle };
-import { CombatActionDescV2TableHandle } from "./combat_action_desc_v_2_table.ts";
-export { CombatActionDescV2TableHandle };
-import { CombatActionDescV3TableHandle } from "./combat_action_desc_v_3_table.ts";
-export { CombatActionDescV3TableHandle };
 import { CombatActionMultiHitDescTableHandle } from "./combat_action_multi_hit_desc_table.ts";
 export { CombatActionMultiHitDescTableHandle };
 import { CombatDimensionStateTableHandle } from "./combat_dimension_state_table.ts";
@@ -1541,16 +1563,24 @@ import { ConfigTableHandle } from "./config_table.ts";
 export { ConfigTableHandle };
 import { ConstructionRecipeDescTableHandle } from "./construction_recipe_desc_table.ts";
 export { ConstructionRecipeDescTableHandle };
-import { ConstructionRecipeDescV2TableHandle } from "./construction_recipe_desc_v_2_table.ts";
-export { ConstructionRecipeDescV2TableHandle };
+import { ConstructionRecipeDiscoveryCargoDescTableHandle } from "./construction_recipe_discovery_cargo_desc_table.ts";
+export { ConstructionRecipeDiscoveryCargoDescTableHandle };
+import { ConstructionRecipeDiscoveryItemDescTableHandle } from "./construction_recipe_discovery_item_desc_table.ts";
+export { ConstructionRecipeDiscoveryItemDescTableHandle };
+import { ConstructionRecipeDiscoveryKnowledgeDescTableHandle } from "./construction_recipe_discovery_knowledge_desc_table.ts";
+export { ConstructionRecipeDiscoveryKnowledgeDescTableHandle };
 import { ContributionLootDescTableHandle } from "./contribution_loot_desc_table.ts";
 export { ContributionLootDescTableHandle };
-import { ContributionLootDescV2TableHandle } from "./contribution_loot_desc_v_2_table.ts";
-export { ContributionLootDescV2TableHandle };
 import { ContributionStateTableHandle } from "./contribution_state_table.ts";
 export { ContributionStateTableHandle };
 import { CraftingRecipeDescTableHandle } from "./crafting_recipe_desc_table.ts";
 export { CraftingRecipeDescTableHandle };
+import { CraftingRecipeDiscoveryCargoDescTableHandle } from "./crafting_recipe_discovery_cargo_desc_table.ts";
+export { CraftingRecipeDiscoveryCargoDescTableHandle };
+import { CraftingRecipeDiscoveryItemDescTableHandle } from "./crafting_recipe_discovery_item_desc_table.ts";
+export { CraftingRecipeDiscoveryItemDescTableHandle };
+import { CraftingRecipeDiscoveryKnowledgeDescTableHandle } from "./crafting_recipe_discovery_knowledge_desc_table.ts";
+export { CraftingRecipeDiscoveryKnowledgeDescTableHandle };
 import { CrumbTailCleanupTimerTableHandle } from "./crumb_tail_cleanup_timer_table.ts";
 export { CrumbTailCleanupTimerTableHandle };
 import { CrumbTrailContributionLockStateTableHandle } from "./crumb_trail_contribution_lock_state_table.ts";
@@ -1565,16 +1595,8 @@ import { DeconstructionRecipeDescTableHandle } from "./deconstruction_recipe_des
 export { DeconstructionRecipeDescTableHandle };
 import { DeployableCollectibleStateTableHandle } from "./deployable_collectible_state_table.ts";
 export { DeployableCollectibleStateTableHandle };
-import { DeployableCollectibleStateV2TableHandle } from "./deployable_collectible_state_v_2_table.ts";
-export { DeployableCollectibleStateV2TableHandle };
 import { DeployableDescTableHandle } from "./deployable_desc_table.ts";
 export { DeployableDescTableHandle };
-import { DeployableDescV2TableHandle } from "./deployable_desc_v_2_table.ts";
-export { DeployableDescV2TableHandle };
-import { DeployableDescV3TableHandle } from "./deployable_desc_v_3_table.ts";
-export { DeployableDescV3TableHandle };
-import { DeployableDescV4TableHandle } from "./deployable_desc_v_4_table.ts";
-export { DeployableDescV4TableHandle };
 import { DeployableDismountTimerTableHandle } from "./deployable_dismount_timer_table.ts";
 export { DeployableDismountTimerTableHandle };
 import { DeployableStateTableHandle } from "./deployable_state_table.ts";
@@ -1609,16 +1631,14 @@ import { ElevatorDescTableHandle } from "./elevator_desc_table.ts";
 export { ElevatorDescTableHandle };
 import { EmoteDescTableHandle } from "./emote_desc_table.ts";
 export { EmoteDescTableHandle };
-import { EmoteDescV2TableHandle } from "./emote_desc_v_2_table.ts";
-export { EmoteDescV2TableHandle };
 import { EmpireChunkStateTableHandle } from "./empire_chunk_state_table.ts";
 export { EmpireChunkStateTableHandle };
 import { EmpireColorDescTableHandle } from "./empire_color_desc_table.ts";
 export { EmpireColorDescTableHandle };
-import { EmpireExpansionStateTableHandle } from "./empire_expansion_state_table.ts";
-export { EmpireExpansionStateTableHandle };
 import { EmpireIconDescTableHandle } from "./empire_icon_desc_table.ts";
 export { EmpireIconDescTableHandle };
+import { EmpireLowercaseNameStateTableHandle } from "./empire_lowercase_name_state_table.ts";
+export { EmpireLowercaseNameStateTableHandle };
 import { EmpireNodeSiegeStateTableHandle } from "./empire_node_siege_state_table.ts";
 export { EmpireNodeSiegeStateTableHandle };
 import { EmpireNodeStateTableHandle } from "./empire_node_state_table.ts";
@@ -1705,12 +1725,6 @@ import { InterModuleMessageCounterTableHandle } from "./inter_module_message_cou
 export { InterModuleMessageCounterTableHandle };
 import { InterModuleMessageErrorsTableHandle } from "./inter_module_message_errors_table.ts";
 export { InterModuleMessageErrorsTableHandle };
-import { InterModuleMessageV2TableHandle } from "./inter_module_message_v_2_table.ts";
-export { InterModuleMessageV2TableHandle };
-import { InterModuleMessageV3TableHandle } from "./inter_module_message_v_3_table.ts";
-export { InterModuleMessageV3TableHandle };
-import { InterModuleMessageV4TableHandle } from "./inter_module_message_v_4_table.ts";
-export { InterModuleMessageV4TableHandle };
 import { InterModuleResponseMessageCounterTableHandle } from "./inter_module_response_message_counter_table.ts";
 export { InterModuleResponseMessageCounterTableHandle };
 import { InteriorCollapseTriggerStateTableHandle } from "./interior_collapse_trigger_state_table.ts";
@@ -1833,8 +1847,6 @@ import { OnboardingStateTableHandle } from "./onboarding_state_table.ts";
 export { OnboardingStateTableHandle };
 import { ParametersDescTableHandle } from "./parameters_desc_table.ts";
 export { ParametersDescTableHandle };
-import { ParametersDescV2TableHandle } from "./parameters_desc_v_2_table.ts";
-export { ParametersDescV2TableHandle };
 import { ParametersPlayerMoveDescTableHandle } from "./parameters_player_move_desc_table.ts";
 export { ParametersPlayerMoveDescTableHandle };
 import { PartialExperienceStateTableHandle } from "./partial_experience_state_table.ts";
@@ -1847,12 +1859,24 @@ import { PathfindingDescTableHandle } from "./pathfinding_desc_table.ts";
 export { PathfindingDescTableHandle };
 import { PavedTileStateTableHandle } from "./paved_tile_state_table.ts";
 export { PavedTileStateTableHandle };
+import { PavingRecipeDiscoveryCargoDescTableHandle } from "./paving_recipe_discovery_cargo_desc_table.ts";
+export { PavingRecipeDiscoveryCargoDescTableHandle };
+import { PavingRecipeDiscoveryItemDescTableHandle } from "./paving_recipe_discovery_item_desc_table.ts";
+export { PavingRecipeDiscoveryItemDescTableHandle };
+import { PavingRecipeDiscoveryKnowledgeDescTableHandle } from "./paving_recipe_discovery_knowledge_desc_table.ts";
+export { PavingRecipeDiscoveryKnowledgeDescTableHandle };
 import { PavingTileDescTableHandle } from "./paving_tile_desc_table.ts";
 export { PavingTileDescTableHandle };
 import { PermissionStateTableHandle } from "./permission_state_table.ts";
 export { PermissionStateTableHandle };
 import { PillarShapingDescTableHandle } from "./pillar_shaping_desc_table.ts";
 export { PillarShapingDescTableHandle };
+import { PillarShapingRecipeDiscoveryCargoDescTableHandle } from "./pillar_shaping_recipe_discovery_cargo_desc_table.ts";
+export { PillarShapingRecipeDiscoveryCargoDescTableHandle };
+import { PillarShapingRecipeDiscoveryItemDescTableHandle } from "./pillar_shaping_recipe_discovery_item_desc_table.ts";
+export { PillarShapingRecipeDiscoveryItemDescTableHandle };
+import { PillarShapingRecipeDiscoveryKnowledgeDescTableHandle } from "./pillar_shaping_recipe_discovery_knowledge_desc_table.ts";
+export { PillarShapingRecipeDiscoveryKnowledgeDescTableHandle };
 import { PillarShapingStateTableHandle } from "./pillar_shaping_state_table.ts";
 export { PillarShapingStateTableHandle };
 import { PlayerActionDescTableHandle } from "./player_action_desc_table.ts";
@@ -1895,8 +1919,6 @@ import { PlayerSetNameOutcomeEventTableHandle } from "./player_set_name_outcome_
 export { PlayerSetNameOutcomeEventTableHandle };
 import { PlayerSettingsStateTableHandle } from "./player_settings_state_table.ts";
 export { PlayerSettingsStateTableHandle };
-import { PlayerSettingsStateV2TableHandle } from "./player_settings_state_v_2_table.ts";
-export { PlayerSettingsStateV2TableHandle };
 import { PlayerStateTableHandle } from "./player_state_table.ts";
 export { PlayerStateTableHandle };
 import { PlayerTimestampStateTableHandle } from "./player_timestamp_state_table.ts";
@@ -1915,6 +1937,12 @@ import { PremiumItemDescTableHandle } from "./premium_item_desc_table.ts";
 export { PremiumItemDescTableHandle };
 import { PremiumServiceDescTableHandle } from "./premium_service_desc_table.ts";
 export { PremiumServiceDescTableHandle };
+import { PreviousEmpireNameStateTableHandle } from "./previous_empire_name_state_table.ts";
+export { PreviousEmpireNameStateTableHandle };
+import { PreviousPlayerSkillsStateTableHandle } from "./previous_player_skills_state_table.ts";
+export { PreviousPlayerSkillsStateTableHandle };
+import { PreviousPlayerUsernameStateTableHandle } from "./previous_player_username_state_table.ts";
+export { PreviousPlayerUsernameStateTableHandle };
 import { PrivateParametersDescTableHandle } from "./private_parameters_desc_table.ts";
 export { PrivateParametersDescTableHandle };
 import { ProgressiveActionStateTableHandle } from "./progressive_action_state_table.ts";
@@ -1935,6 +1963,10 @@ import { QuestStageDescTableHandle } from "./quest_stage_desc_table.ts";
 export { QuestStageDescTableHandle };
 import { RegionConnectionInfoTableHandle } from "./region_connection_info_table.ts";
 export { RegionConnectionInfoTableHandle };
+import { RegionControlInfoTableHandle } from "./region_control_info_table.ts";
+export { RegionControlInfoTableHandle };
+import { RegionModerationConfigStateTableHandle } from "./region_moderation_config_state_table.ts";
+export { RegionModerationConfigStateTableHandle };
 import { RegionPopulationInfoTableHandle } from "./region_population_info_table.ts";
 export { RegionPopulationInfoTableHandle };
 import { RegionPopuplationLoopTimerTableHandle } from "./region_popuplation_loop_timer_table.ts";
@@ -1965,8 +1997,12 @@ import { ResourceHealthStateTableHandle } from "./resource_health_state_table.ts
 export { ResourceHealthStateTableHandle };
 import { ResourcePlacementRecipeDescTableHandle } from "./resource_placement_recipe_desc_table.ts";
 export { ResourcePlacementRecipeDescTableHandle };
-import { ResourcePlacementRecipeDescV2TableHandle } from "./resource_placement_recipe_desc_v_2_table.ts";
-export { ResourcePlacementRecipeDescV2TableHandle };
+import { ResourcePlacementRecipeDiscoveryCargoDescTableHandle } from "./resource_placement_recipe_discovery_cargo_desc_table.ts";
+export { ResourcePlacementRecipeDiscoveryCargoDescTableHandle };
+import { ResourcePlacementRecipeDiscoveryItemDescTableHandle } from "./resource_placement_recipe_discovery_item_desc_table.ts";
+export { ResourcePlacementRecipeDiscoveryItemDescTableHandle };
+import { ResourcePlacementRecipeDiscoveryKnowledgeDescTableHandle } from "./resource_placement_recipe_discovery_knowledge_desc_table.ts";
+export { ResourcePlacementRecipeDiscoveryKnowledgeDescTableHandle };
 import { ResourceSpawnTimerTableHandle } from "./resource_spawn_timer_table.ts";
 export { ResourceSpawnTimerTableHandle };
 import { ResourceStateTableHandle } from "./resource_state_table.ts";
@@ -2011,12 +2047,14 @@ import { StagedBuffDescTableHandle } from "./staged_buff_desc_table.ts";
 export { StagedBuffDescTableHandle };
 import { StagedBuffTypeDescTableHandle } from "./staged_buff_type_desc_table.ts";
 export { StagedBuffTypeDescTableHandle };
+import { StagedBuildingBuffDescTableHandle } from "./staged_building_buff_desc_table.ts";
+export { StagedBuildingBuffDescTableHandle };
 import { StagedBuildingClaimDescTableHandle } from "./staged_building_claim_desc_table.ts";
 export { StagedBuildingClaimDescTableHandle };
 import { StagedBuildingDescTableHandle } from "./staged_building_desc_table.ts";
 export { StagedBuildingDescTableHandle };
-import { StagedBuildingPortalDescV2TableHandle } from "./staged_building_portal_desc_v_2_table.ts";
-export { StagedBuildingPortalDescV2TableHandle };
+import { StagedBuildingPortalDescTableHandle } from "./staged_building_portal_desc_table.ts";
+export { StagedBuildingPortalDescTableHandle };
 import { StagedBuildingRepairsDescTableHandle } from "./staged_building_repairs_desc_table.ts";
 export { StagedBuildingRepairsDescTableHandle };
 import { StagedBuildingSpawnDescTableHandle } from "./staged_building_spawn_desc_table.ts";
@@ -2031,8 +2069,6 @@ import { StagedChestRarityDescTableHandle } from "./staged_chest_rarity_desc_tab
 export { StagedChestRarityDescTableHandle };
 import { StagedClaimTechDescTableHandle } from "./staged_claim_tech_desc_table.ts";
 export { StagedClaimTechDescTableHandle };
-import { StagedClaimTechDescV2TableHandle } from "./staged_claim_tech_desc_v_2_table.ts";
-export { StagedClaimTechDescV2TableHandle };
 import { StagedClaimTileCostTableHandle } from "./staged_claim_tile_cost_table.ts";
 export { StagedClaimTileCostTableHandle };
 import { StagedClimbRequirementDescTableHandle } from "./staged_climb_requirement_desc_table.ts";
@@ -2041,14 +2077,12 @@ import { StagedClothingDescTableHandle } from "./staged_clothing_desc_table.ts";
 export { StagedClothingDescTableHandle };
 import { StagedCollectibleDescTableHandle } from "./staged_collectible_desc_table.ts";
 export { StagedCollectibleDescTableHandle };
-import { StagedCombatActionDescV3TableHandle } from "./staged_combat_action_desc_v_3_table.ts";
-export { StagedCombatActionDescV3TableHandle };
+import { StagedCombatActionDescTableHandle } from "./staged_combat_action_desc_table.ts";
+export { StagedCombatActionDescTableHandle };
 import { StagedCombatActionMultiHitDescTableHandle } from "./staged_combat_action_multi_hit_desc_table.ts";
 export { StagedCombatActionMultiHitDescTableHandle };
 import { StagedConstructionRecipeDescTableHandle } from "./staged_construction_recipe_desc_table.ts";
 export { StagedConstructionRecipeDescTableHandle };
-import { StagedConstructionRecipeDescV2TableHandle } from "./staged_construction_recipe_desc_v_2_table.ts";
-export { StagedConstructionRecipeDescV2TableHandle };
 import { StagedContributionLootDescTableHandle } from "./staged_contribution_loot_desc_table.ts";
 export { StagedContributionLootDescTableHandle };
 import { StagedCraftingRecipeDescTableHandle } from "./staged_crafting_recipe_desc_table.ts";
@@ -2161,30 +2195,12 @@ import { StagedResourceGrowthRecipeDescTableHandle } from "./staged_resource_gro
 export { StagedResourceGrowthRecipeDescTableHandle };
 import { StagedResourcePlacementRecipeDescTableHandle } from "./staged_resource_placement_recipe_desc_table.ts";
 export { StagedResourcePlacementRecipeDescTableHandle };
-import { StagedResourcePlacementRecipeDescV2TableHandle } from "./staged_resource_placement_recipe_desc_v_2_table.ts";
-export { StagedResourcePlacementRecipeDescV2TableHandle };
 import { StagedSecondaryKnowledgeDescTableHandle } from "./staged_secondary_knowledge_desc_table.ts";
 export { StagedSecondaryKnowledgeDescTableHandle };
 import { StagedSkillDescTableHandle } from "./staged_skill_desc_table.ts";
 export { StagedSkillDescTableHandle };
 import { StagedStageRewardsDescTableHandle } from "./staged_stage_rewards_desc_table.ts";
 export { StagedStageRewardsDescTableHandle };
-import { StagedStaticDataTableHandle } from "./staged_static_data_table.ts";
-export { StagedStaticDataTableHandle };
-import { StagedStaticDataV2TableHandle } from "./staged_static_data_v_2_table.ts";
-export { StagedStaticDataV2TableHandle };
-import { StagedStaticDataV3TableHandle } from "./staged_static_data_v_3_table.ts";
-export { StagedStaticDataV3TableHandle };
-import { StagedStaticDataV4TableHandle } from "./staged_static_data_v_4_table.ts";
-export { StagedStaticDataV4TableHandle };
-import { StagedStaticDataV5TableHandle } from "./staged_static_data_v_5_table.ts";
-export { StagedStaticDataV5TableHandle };
-import { StagedStaticDataV6TableHandle } from "./staged_static_data_v_6_table.ts";
-export { StagedStaticDataV6TableHandle };
-import { StagedStaticDataV7TableHandle } from "./staged_static_data_v_7_table.ts";
-export { StagedStaticDataV7TableHandle };
-import { StagedStaticDataV8TableHandle } from "./staged_static_data_v_8_table.ts";
-export { StagedStaticDataV8TableHandle };
 import { StagedTargetingMatrixDescTableHandle } from "./staged_targeting_matrix_desc_table.ts";
 export { StagedTargetingMatrixDescTableHandle };
 import { StagedTeleportItemDescTableHandle } from "./staged_teleport_item_desc_table.ts";
@@ -2329,6 +2345,8 @@ import { ActiveBuff } from "./active_buff_type.ts";
 export { ActiveBuff };
 import { ActiveBuffState } from "./active_buff_state_type.ts";
 export { ActiveBuffState };
+import { ActiveEnvironmentBuffState } from "./active_environment_buff_state_type.ts";
+export { ActiveEnvironmentBuffState };
 import { AdminBroadcast } from "./admin_broadcast_type.ts";
 export { AdminBroadcast };
 import { AdminBroadcastMessageMsg } from "./admin_broadcast_message_msg_type.ts";
@@ -2381,6 +2399,8 @@ import { BuffEffect } from "./buff_effect_type.ts";
 export { BuffEffect };
 import { BuffTypeDesc } from "./buff_type_desc_type.ts";
 export { BuffTypeDesc };
+import { BuildingBuffDesc } from "./building_buff_desc_type.ts";
+export { BuildingBuffDesc };
 import { BuildingCategory } from "./building_category_type.ts";
 export { BuildingCategory };
 import { BuildingClaimDesc } from "./building_claim_desc_type.ts";
@@ -2405,8 +2425,6 @@ import { BuildingPlacement } from "./building_placement_type.ts";
 export { BuildingPlacement };
 import { BuildingPortalDesc } from "./building_portal_desc_type.ts";
 export { BuildingPortalDesc };
-import { BuildingPortalDescV2 } from "./building_portal_desc_v_2_type.ts";
-export { BuildingPortalDescV2 };
 import { BuildingRepairsDesc } from "./building_repairs_desc_type.ts";
 export { BuildingRepairsDesc };
 import { BuildingRequirement } from "./building_requirement_type.ts";
@@ -2475,6 +2493,10 @@ import { ClaimLocalState } from "./claim_local_state_type.ts";
 export { ClaimLocalState };
 import { ClaimLocalSupplySecurityThresholdState } from "./claim_local_supply_security_threshold_state_type.ts";
 export { ClaimLocalSupplySecurityThresholdState };
+import { ClaimLowercaseNameState } from "./claim_lowercase_name_state_type.ts";
+export { ClaimLowercaseNameState };
+import { ClaimLowercaseNameStateOp } from "./claim_lowercase_name_state_op_type.ts";
+export { ClaimLowercaseNameStateOp };
 import { ClaimMemberState } from "./claim_member_state_type.ts";
 export { ClaimMemberState };
 import { ClaimMemberStateOp } from "./claim_member_state_op_type.ts";
@@ -2487,6 +2509,8 @@ import { ClaimRecruitmentState } from "./claim_recruitment_state_type.ts";
 export { ClaimRecruitmentState };
 import { ClaimResupplyRequest } from "./claim_resupply_request_type.ts";
 export { ClaimResupplyRequest };
+import { ClaimSetNameMsg } from "./claim_set_name_msg_type.ts";
+export { ClaimSetNameMsg };
 import { ClaimSetPurchaseSupplyPriceRequest } from "./claim_set_purchase_supply_price_request_type.ts";
 export { ClaimSetPurchaseSupplyPriceRequest };
 import { ClaimSetPurchaseSupplyThresholdRequest } from "./claim_set_purchase_supply_threshold_request_type.ts";
@@ -2497,8 +2521,6 @@ import { ClaimStateOp } from "./claim_state_op_type.ts";
 export { ClaimStateOp };
 import { ClaimTechDesc } from "./claim_tech_desc_type.ts";
 export { ClaimTechDesc };
-import { ClaimTechDescV2 } from "./claim_tech_desc_v_2_type.ts";
-export { ClaimTechDescV2 };
 import { ClaimTechState } from "./claim_tech_state_type.ts";
 export { ClaimTechState };
 import { ClaimTechType } from "./claim_tech_type_type.ts";
@@ -2531,10 +2553,6 @@ import { ColumnPad4U64 } from "./column_pad_4_u_64_type.ts";
 export { ColumnPad4U64 };
 import { CombatActionDesc } from "./combat_action_desc_type.ts";
 export { CombatActionDesc };
-import { CombatActionDescV2 } from "./combat_action_desc_v_2_type.ts";
-export { CombatActionDescV2 };
-import { CombatActionDescV3 } from "./combat_action_desc_v_3_type.ts";
-export { CombatActionDescV3 };
 import { CombatActionMultiHitDesc } from "./combat_action_multi_hit_desc_type.ts";
 export { CombatActionMultiHitDesc };
 import { CombatDimensionState } from "./combat_dimension_state_type.ts";
@@ -2549,12 +2567,8 @@ import { Config } from "./config_type.ts";
 export { Config };
 import { ConstructionRecipeDesc } from "./construction_recipe_desc_type.ts";
 export { ConstructionRecipeDesc };
-import { ConstructionRecipeDescV2 } from "./construction_recipe_desc_v_2_type.ts";
-export { ConstructionRecipeDescV2 };
 import { ContributionLootDesc } from "./contribution_loot_desc_type.ts";
 export { ContributionLootDesc };
-import { ContributionLootDescV2 } from "./contribution_loot_desc_v_2_type.ts";
-export { ContributionLootDescV2 };
 import { ContributionState } from "./contribution_state_type.ts";
 export { ContributionState };
 import { CraftingRecipeDesc } from "./crafting_recipe_desc_type.ts";
@@ -2579,18 +2593,10 @@ import { DeleteEmpireMsg } from "./delete_empire_msg_type.ts";
 export { DeleteEmpireMsg };
 import { DeployableCollectibleState } from "./deployable_collectible_state_type.ts";
 export { DeployableCollectibleState };
-import { DeployableCollectibleStateV2 } from "./deployable_collectible_state_v_2_type.ts";
-export { DeployableCollectibleStateV2 };
 import { DeployableDeployRequest } from "./deployable_deploy_request_type.ts";
 export { DeployableDeployRequest };
 import { DeployableDesc } from "./deployable_desc_type.ts";
 export { DeployableDesc };
-import { DeployableDescV2 } from "./deployable_desc_v_2_type.ts";
-export { DeployableDescV2 };
-import { DeployableDescV3 } from "./deployable_desc_v_3_type.ts";
-export { DeployableDescV3 };
-import { DeployableDescV4 } from "./deployable_desc_v_4_type.ts";
-export { DeployableDescV4 };
 import { DeployableDismountTimer } from "./deployable_dismount_timer_type.ts";
 export { DeployableDismountTimer };
 import { DeployableState } from "./deployable_state_type.ts";
@@ -2609,6 +2615,8 @@ import { DimensionNetworkState } from "./dimension_network_state_type.ts";
 export { DimensionNetworkState };
 import { DimensionType } from "./dimension_type_type.ts";
 export { DimensionType };
+import { DiscoveryTriggerDesc } from "./discovery_trigger_desc_type.ts";
+export { DiscoveryTriggerDesc };
 import { DistantVisibleEntity } from "./distant_visible_entity_type.ts";
 export { DistantVisibleEntity };
 import { DistantVisibleEntityDesc } from "./distant_visible_entity_desc_type.ts";
@@ -2631,8 +2639,8 @@ import { ElevatorDesc } from "./elevator_desc_type.ts";
 export { ElevatorDesc };
 import { EmoteDesc } from "./emote_desc_type.ts";
 export { EmoteDesc };
-import { EmoteDescV2 } from "./emote_desc_v_2_type.ts";
-export { EmoteDescV2 };
+import { EmpireAddCurrencyMsg } from "./empire_add_currency_msg_type.ts";
+export { EmpireAddCurrencyMsg };
 import { EmpireAddSiegeSuppliesRequest } from "./empire_add_siege_supplies_request_type.ts";
 export { EmpireAddSiegeSuppliesRequest };
 import { EmpireChunkState } from "./empire_chunk_state_type.ts";
@@ -2649,12 +2657,18 @@ import { EmpireColorDesc } from "./empire_color_desc_type.ts";
 export { EmpireColorDesc };
 import { EmpireCreateBuildingMsg } from "./empire_create_building_msg_type.ts";
 export { EmpireCreateBuildingMsg };
-import { EmpireExpansionState } from "./empire_expansion_state_type.ts";
-export { EmpireExpansionState };
-import { EmpireExpansionStateOp } from "./empire_expansion_state_op_type.ts";
-export { EmpireExpansionStateOp };
+import { EmpireCreateMsg } from "./empire_create_msg_type.ts";
+export { EmpireCreateMsg };
+import { EmpireCreateRequest } from "./empire_create_request_type.ts";
+export { EmpireCreateRequest };
+import { EmpireDonateItemMsg } from "./empire_donate_item_msg_type.ts";
+export { EmpireDonateItemMsg };
+import { EmpireDonateItemRequest } from "./empire_donate_item_request_type.ts";
+export { EmpireDonateItemRequest };
 import { EmpireIconDesc } from "./empire_icon_desc_type.ts";
 export { EmpireIconDesc };
+import { EmpireLowercaseNameState } from "./empire_lowercase_name_state_type.ts";
+export { EmpireLowercaseNameState };
 import { EmpireNodeSiegeState } from "./empire_node_siege_state_type.ts";
 export { EmpireNodeSiegeState };
 import { EmpireNodeSiegeStateOp } from "./empire_node_siege_state_op_type.ts";
@@ -2667,6 +2681,8 @@ import { EmpireNotificationDesc } from "./empire_notification_desc_type.ts";
 export { EmpireNotificationDesc };
 import { EmpireNotificationType } from "./empire_notification_type_type.ts";
 export { EmpireNotificationType };
+import { EmpireOwnerType } from "./empire_owner_type_type.ts";
+export { EmpireOwnerType };
 import { EmpirePlayerDataState } from "./empire_player_data_state_type.ts";
 export { EmpirePlayerDataState };
 import { EmpirePlayerDataStateOp } from "./empire_player_data_state_op_type.ts";
@@ -2825,12 +2841,6 @@ import { InterModuleMessageCounter } from "./inter_module_message_counter_type.t
 export { InterModuleMessageCounter };
 import { InterModuleMessageErrors } from "./inter_module_message_errors_type.ts";
 export { InterModuleMessageErrors };
-import { InterModuleMessageV2 } from "./inter_module_message_v_2_type.ts";
-export { InterModuleMessageV2 };
-import { InterModuleMessageV3 } from "./inter_module_message_v_3_type.ts";
-export { InterModuleMessageV3 };
-import { InterModuleMessageV4 } from "./inter_module_message_v_4_type.ts";
-export { InterModuleMessageV4 };
 import { InterModuleResponseMessageCounter } from "./inter_module_response_message_counter_type.ts";
 export { InterModuleResponseMessageCounter };
 import { InterModuleTableUpdates } from "./inter_module_table_updates_type.ts";
@@ -2957,12 +2967,6 @@ import { MarketplaceState } from "./marketplace_state_type.ts";
 export { MarketplaceState };
 import { MessageContents } from "./message_contents_type.ts";
 export { MessageContents };
-import { MessageContentsV2 } from "./message_contents_v_2_type.ts";
-export { MessageContentsV2 };
-import { MessageContentsV3 } from "./message_contents_v_3_type.ts";
-export { MessageContentsV3 };
-import { MessageContentsV4 } from "./message_contents_v_4_type.ts";
-export { MessageContentsV4 };
 import { MigrationAchievementsParams } from "./migration_achievements_params_type.ts";
 export { MigrationAchievementsParams };
 import { MigrationBuildingDescParams } from "./migration_building_desc_params_type.ts";
@@ -2987,10 +2991,14 @@ import { NpcAiLoopTimer } from "./npc_ai_loop_timer_type.ts";
 export { NpcAiLoopTimer };
 import { NpcDesc } from "./npc_desc_type.ts";
 export { NpcDesc };
+import { NpcPlaceWatchtowersMsg } from "./npc_place_watchtowers_msg_type.ts";
+export { NpcPlaceWatchtowersMsg };
 import { NpcState } from "./npc_state_type.ts";
 export { NpcState };
 import { NpcType } from "./npc_type_type.ts";
 export { NpcType };
+import { NpcWatchtowerPlacement } from "./npc_watchtower_placement_type.ts";
+export { NpcWatchtowerPlacement };
 import { OffsetCoordinatesFloat } from "./offset_coordinates_float_type.ts";
 export { OffsetCoordinatesFloat };
 import { OffsetCoordinatesLargeMessage } from "./offset_coordinates_large_message_type.ts";
@@ -3021,8 +3029,6 @@ import { OnlineTimestamp } from "./online_timestamp_type.ts";
 export { OnlineTimestamp };
 import { ParametersDesc } from "./parameters_desc_type.ts";
 export { ParametersDesc };
-import { ParametersDescV2 } from "./parameters_desc_v_2_type.ts";
-export { ParametersDescV2 };
 import { ParametersPlayerMoveDesc } from "./parameters_player_move_desc_type.ts";
 export { ParametersPlayerMoveDesc };
 import { PartialExperienceState } from "./partial_experience_state_type.ts";
@@ -3261,8 +3267,6 @@ import { PlayerSetNameOutcomeEvent } from "./player_set_name_outcome_event_type.
 export { PlayerSetNameOutcomeEvent };
 import { PlayerSettingsState } from "./player_settings_state_type.ts";
 export { PlayerSettingsState };
-import { PlayerSettingsStateV2 } from "./player_settings_state_v_2_type.ts";
-export { PlayerSettingsStateV2 };
 import { PlayerSignInRequest } from "./player_sign_in_request_type.ts";
 export { PlayerSignInRequest };
 import { PlayerSkipQueueMsg } from "./player_skip_queue_msg_type.ts";
@@ -3325,6 +3329,12 @@ import { PremiumServiceDesc } from "./premium_service_desc_type.ts";
 export { PremiumServiceDesc };
 import { PremiumServiceType } from "./premium_service_type_type.ts";
 export { PremiumServiceType };
+import { PreviousEmpireNameState } from "./previous_empire_name_state_type.ts";
+export { PreviousEmpireNameState };
+import { PreviousPlayerSkillsState } from "./previous_player_skills_state_type.ts";
+export { PreviousPlayerSkillsState };
+import { PreviousPlayerUsernameState } from "./previous_player_username_state_type.ts";
+export { PreviousPlayerUsernameState };
 import { PrivateParametersDesc } from "./private_parameters_desc_type.ts";
 export { PrivateParametersDesc };
 import { ProbabilisticItemStack } from "./probabilistic_item_stack_type.ts";
@@ -3359,8 +3369,14 @@ import { RegionConnectionInfo } from "./region_connection_info_type.ts";
 export { RegionConnectionInfo };
 import { RegionConnectionInfoOp } from "./region_connection_info_op_type.ts";
 export { RegionConnectionInfoOp };
+import { RegionControlInfo } from "./region_control_info_type.ts";
+export { RegionControlInfo };
+import { RegionControlInfoOp } from "./region_control_info_op_type.ts";
+export { RegionControlInfoOp };
 import { RegionDestroySiegeEngineMsg } from "./region_destroy_siege_engine_msg_type.ts";
 export { RegionDestroySiegeEngineMsg };
+import { RegionModerationConfigState } from "./region_moderation_config_state_type.ts";
+export { RegionModerationConfigState };
 import { RegionPopulationInfo } from "./region_population_info_type.ts";
 export { RegionPopulationInfo };
 import { RegionPopulationInfoOp } from "./region_population_info_op_type.ts";
@@ -3427,8 +3443,6 @@ import { ResourcePlacement } from "./resource_placement_type.ts";
 export { ResourcePlacement };
 import { ResourcePlacementRecipeDesc } from "./resource_placement_recipe_desc_type.ts";
 export { ResourcePlacementRecipeDesc };
-import { ResourcePlacementRecipeDescV2 } from "./resource_placement_recipe_desc_v_2_type.ts";
-export { ResourcePlacementRecipeDescV2 };
 import { ResourceSpawnTimer } from "./resource_spawn_timer_type.ts";
 export { ResourceSpawnTimer };
 import { ResourceState } from "./resource_state_type.ts";
@@ -3439,6 +3453,8 @@ import { ResourcesRegenLoopTimer } from "./resources_regen_loop_timer_type.ts";
 export { ResourcesRegenLoopTimer };
 import { RespawnResourceInChunkTimer } from "./respawn_resource_in_chunk_timer_type.ts";
 export { RespawnResourceInChunkTimer };
+import { RestoreSkillsMsg } from "./restore_skills_msg_type.ts";
+export { RestoreSkillsMsg };
 import { RezSickLongTermState } from "./rez_sick_long_term_state_type.ts";
 export { RezSickLongTermState };
 import { Role } from "./role_type.ts";
@@ -3473,44 +3489,12 @@ import { SpawnInfo } from "./spawn_info_type.ts";
 export { SpawnInfo };
 import { StageRewardsDesc } from "./stage_rewards_desc_type.ts";
 export { StageRewardsDesc };
-import { StagedStaticData } from "./staged_static_data_type.ts";
-export { StagedStaticData };
-import { StagedStaticDataV2 } from "./staged_static_data_v_2_type.ts";
-export { StagedStaticDataV2 };
-import { StagedStaticDataV3 } from "./staged_static_data_v_3_type.ts";
-export { StagedStaticDataV3 };
-import { StagedStaticDataV4 } from "./staged_static_data_v_4_type.ts";
-export { StagedStaticDataV4 };
-import { StagedStaticDataV5 } from "./staged_static_data_v_5_type.ts";
-export { StagedStaticDataV5 };
-import { StagedStaticDataV6 } from "./staged_static_data_v_6_type.ts";
-export { StagedStaticDataV6 };
-import { StagedStaticDataV7 } from "./staged_static_data_v_7_type.ts";
-export { StagedStaticDataV7 };
-import { StagedStaticDataV8 } from "./staged_static_data_v_8_type.ts";
-export { StagedStaticDataV8 };
 import { StaminaState } from "./stamina_state_type.ts";
 export { StaminaState };
 import { StarvingLoopTimer } from "./starving_loop_timer_type.ts";
 export { StarvingLoopTimer };
 import { StarvingPlayerState } from "./starving_player_state_type.ts";
 export { StarvingPlayerState };
-import { StaticDataUpload } from "./static_data_upload_type.ts";
-export { StaticDataUpload };
-import { StaticDataUploadV2 } from "./static_data_upload_v_2_type.ts";
-export { StaticDataUploadV2 };
-import { StaticDataUploadV3 } from "./static_data_upload_v_3_type.ts";
-export { StaticDataUploadV3 };
-import { StaticDataUploadV4 } from "./static_data_upload_v_4_type.ts";
-export { StaticDataUploadV4 };
-import { StaticDataUploadV5 } from "./static_data_upload_v_5_type.ts";
-export { StaticDataUploadV5 };
-import { StaticDataUploadV6 } from "./static_data_upload_v_6_type.ts";
-export { StaticDataUploadV6 };
-import { StaticDataUploadV7 } from "./static_data_upload_v_7_type.ts";
-export { StaticDataUploadV7 };
-import { StaticDataUploadV8 } from "./static_data_upload_v_8_type.ts";
-export { StaticDataUploadV8 };
 import { StorageLogCleanupLoopTimer } from "./storage_log_cleanup_loop_timer_type.ts";
 export { StorageLogCleanupLoopTimer };
 import { SurfaceType } from "./surface_type_type.ts";
@@ -3569,12 +3553,6 @@ import { TransferPlayerHousingMsg } from "./transfer_player_housing_msg_type.ts"
 export { TransferPlayerHousingMsg };
 import { TransferPlayerMsg } from "./transfer_player_msg_type.ts";
 export { TransferPlayerMsg };
-import { TransferPlayerMsgV2 } from "./transfer_player_msg_v_2_type.ts";
-export { TransferPlayerMsgV2 };
-import { TransferPlayerMsgV3 } from "./transfer_player_msg_v_3_type.ts";
-export { TransferPlayerMsgV3 };
-import { TransferPlayerMsgV4 } from "./transfer_player_msg_v_4_type.ts";
-export { TransferPlayerMsgV4 };
 import { TransferPlayerTimer } from "./transfer_player_timer_type.ts";
 export { TransferPlayerTimer };
 import { TravelerTaskDesc } from "./traveler_task_desc_type.ts";
@@ -3766,6 +3744,10 @@ export const REMOTE_MODULE = {
         colType: ActiveBuffState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    active_environment_buff_state: {
+      tableName: "active_environment_buff_state",
+      rowType: ActiveEnvironmentBuffState.getTypeScriptAlgebraicType(),
+    },
     admin_broadcast: {
       tableName: "admin_broadcast",
       rowType: AdminBroadcast.getTypeScriptAlgebraicType(),
@@ -3928,6 +3910,15 @@ export const REMOTE_MODULE = {
         colType: BuffTypeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    building_buff_desc: {
+      tableName: "building_buff_desc",
+      rowType: BuildingBuffDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: BuildingBuffDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     building_claim_desc: {
       tableName: "building_claim_desc",
       rowType: BuildingClaimDesc.getTypeScriptAlgebraicType(),
@@ -3989,15 +3980,6 @@ export const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "id",
         colType: BuildingPortalDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
-      },
-    },
-    building_portal_desc_v2: {
-      tableName: "building_portal_desc_v2",
-      rowType: BuildingPortalDescV2.getTypeScriptAlgebraicType(),
-      primaryKey: "id",
-      primaryKeyInfo: {
-        colName: "id",
-        colType: BuildingPortalDescV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     building_repairs_desc: {
@@ -4117,6 +4099,15 @@ export const REMOTE_MODULE = {
         colType: ClaimLocalSupplySecurityThresholdState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    claim_lowercase_name_state: {
+      tableName: "claim_lowercase_name_state",
+      rowType: ClaimLowercaseNameState.getTypeScriptAlgebraicType(),
+      primaryKey: "entityId",
+      primaryKeyInfo: {
+        colName: "entityId",
+        colType: ClaimLowercaseNameState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     claim_member_state: {
       tableName: "claim_member_state",
       rowType: ClaimMemberState.getTypeScriptAlgebraicType(),
@@ -4151,15 +4142,6 @@ export const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "id",
         colType: ClaimTechDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
-      },
-    },
-    claim_tech_desc_v2: {
-      tableName: "claim_tech_desc_v2",
-      rowType: ClaimTechDescV2.getTypeScriptAlgebraicType(),
-      primaryKey: "id",
-      primaryKeyInfo: {
-        colName: "id",
-        colType: ClaimTechDescV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     claim_tech_state: {
@@ -4252,24 +4234,6 @@ export const REMOTE_MODULE = {
         colType: CombatActionDesc.getTypeScriptAlgebraicType().product.elements[1].algebraicType,
       },
     },
-    combat_action_desc_v2: {
-      tableName: "combat_action_desc_v2",
-      rowType: CombatActionDescV2.getTypeScriptAlgebraicType(),
-      primaryKey: "id",
-      primaryKeyInfo: {
-        colName: "id",
-        colType: CombatActionDescV2.getTypeScriptAlgebraicType().product.elements[1].algebraicType,
-      },
-    },
-    combat_action_desc_v3: {
-      tableName: "combat_action_desc_v3",
-      rowType: CombatActionDescV3.getTypeScriptAlgebraicType(),
-      primaryKey: "id",
-      primaryKeyInfo: {
-        colName: "id",
-        colType: CombatActionDescV3.getTypeScriptAlgebraicType().product.elements[1].algebraicType,
-      },
-    },
     combat_action_multi_hit_desc: {
       tableName: "combat_action_multi_hit_desc",
       rowType: CombatActionMultiHitDesc.getTypeScriptAlgebraicType(),
@@ -4315,14 +4279,17 @@ export const REMOTE_MODULE = {
         colType: ConstructionRecipeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
-    construction_recipe_desc_v2: {
-      tableName: "construction_recipe_desc_v2",
-      rowType: ConstructionRecipeDescV2.getTypeScriptAlgebraicType(),
-      primaryKey: "id",
-      primaryKeyInfo: {
-        colName: "id",
-        colType: ConstructionRecipeDescV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
-      },
+    construction_recipe_discovery_cargo_desc: {
+      tableName: "construction_recipe_discovery_cargo_desc",
+      rowType: DiscoveryTriggerDesc.getTypeScriptAlgebraicType(),
+    },
+    construction_recipe_discovery_item_desc: {
+      tableName: "construction_recipe_discovery_item_desc",
+      rowType: DiscoveryTriggerDesc.getTypeScriptAlgebraicType(),
+    },
+    construction_recipe_discovery_knowledge_desc: {
+      tableName: "construction_recipe_discovery_knowledge_desc",
+      rowType: DiscoveryTriggerDesc.getTypeScriptAlgebraicType(),
     },
     contribution_loot_desc: {
       tableName: "contribution_loot_desc",
@@ -4331,15 +4298,6 @@ export const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "id",
         colType: ContributionLootDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
-      },
-    },
-    contribution_loot_desc_v2: {
-      tableName: "contribution_loot_desc_v2",
-      rowType: ContributionLootDescV2.getTypeScriptAlgebraicType(),
-      primaryKey: "id",
-      primaryKeyInfo: {
-        colName: "id",
-        colType: ContributionLootDescV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     contribution_state: {
@@ -4359,6 +4317,18 @@ export const REMOTE_MODULE = {
         colName: "id",
         colType: CraftingRecipeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
+    },
+    crafting_recipe_discovery_cargo_desc: {
+      tableName: "crafting_recipe_discovery_cargo_desc",
+      rowType: DiscoveryTriggerDesc.getTypeScriptAlgebraicType(),
+    },
+    crafting_recipe_discovery_item_desc: {
+      tableName: "crafting_recipe_discovery_item_desc",
+      rowType: DiscoveryTriggerDesc.getTypeScriptAlgebraicType(),
+    },
+    crafting_recipe_discovery_knowledge_desc: {
+      tableName: "crafting_recipe_discovery_knowledge_desc",
+      rowType: DiscoveryTriggerDesc.getTypeScriptAlgebraicType(),
     },
     crumb_tail_cleanup_timer: {
       tableName: "crumb_tail_cleanup_timer",
@@ -4423,15 +4393,6 @@ export const REMOTE_MODULE = {
         colType: DeployableCollectibleState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
-    deployable_collectible_state_v2: {
-      tableName: "deployable_collectible_state_v2",
-      rowType: DeployableCollectibleStateV2.getTypeScriptAlgebraicType(),
-      primaryKey: "deployableEntityId",
-      primaryKeyInfo: {
-        colName: "deployableEntityId",
-        colType: DeployableCollectibleStateV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
-      },
-    },
     deployable_desc: {
       tableName: "deployable_desc",
       rowType: DeployableDesc.getTypeScriptAlgebraicType(),
@@ -4439,33 +4400,6 @@ export const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "id",
         colType: DeployableDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
-      },
-    },
-    deployable_desc_v2: {
-      tableName: "deployable_desc_v2",
-      rowType: DeployableDescV2.getTypeScriptAlgebraicType(),
-      primaryKey: "id",
-      primaryKeyInfo: {
-        colName: "id",
-        colType: DeployableDescV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
-      },
-    },
-    deployable_desc_v3: {
-      tableName: "deployable_desc_v3",
-      rowType: DeployableDescV3.getTypeScriptAlgebraicType(),
-      primaryKey: "id",
-      primaryKeyInfo: {
-        colName: "id",
-        colType: DeployableDescV3.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
-      },
-    },
-    deployable_desc_v4: {
-      tableName: "deployable_desc_v4",
-      rowType: DeployableDescV4.getTypeScriptAlgebraicType(),
-      primaryKey: "id",
-      primaryKeyInfo: {
-        colName: "id",
-        colType: DeployableDescV4.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     deployable_dismount_timer: {
@@ -4621,15 +4555,6 @@ export const REMOTE_MODULE = {
         colType: EmoteDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
-    emote_desc_v2: {
-      tableName: "emote_desc_v2",
-      rowType: EmoteDescV2.getTypeScriptAlgebraicType(),
-      primaryKey: "id",
-      primaryKeyInfo: {
-        colName: "id",
-        colType: EmoteDescV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
-      },
-    },
     empire_chunk_state: {
       tableName: "empire_chunk_state",
       rowType: EmpireChunkState.getTypeScriptAlgebraicType(),
@@ -4648,15 +4573,6 @@ export const REMOTE_MODULE = {
         colType: EmpireColorDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
-    empire_expansion_state: {
-      tableName: "empire_expansion_state",
-      rowType: EmpireExpansionState.getTypeScriptAlgebraicType(),
-      primaryKey: "chunkIndex",
-      primaryKeyInfo: {
-        colName: "chunkIndex",
-        colType: EmpireExpansionState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
-      },
-    },
     empire_icon_desc: {
       tableName: "empire_icon_desc",
       rowType: EmpireIconDesc.getTypeScriptAlgebraicType(),
@@ -4664,6 +4580,15 @@ export const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "id",
         colType: EmpireIconDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    empire_lowercase_name_state: {
+      tableName: "empire_lowercase_name_state",
+      rowType: EmpireLowercaseNameState.getTypeScriptAlgebraicType(),
+      primaryKey: "entityId",
+      primaryKeyInfo: {
+        colName: "entityId",
+        colType: EmpireLowercaseNameState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     empire_node_siege_state: {
@@ -5046,33 +4971,6 @@ export const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "senderModuleId",
         colType: InterModuleMessageErrors.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
-      },
-    },
-    inter_module_message_v2: {
-      tableName: "inter_module_message_v2",
-      rowType: InterModuleMessageV2.getTypeScriptAlgebraicType(),
-      primaryKey: "id",
-      primaryKeyInfo: {
-        colName: "id",
-        colType: InterModuleMessageV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
-      },
-    },
-    inter_module_message_v3: {
-      tableName: "inter_module_message_v3",
-      rowType: InterModuleMessageV3.getTypeScriptAlgebraicType(),
-      primaryKey: "id",
-      primaryKeyInfo: {
-        colName: "id",
-        colType: InterModuleMessageV3.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
-      },
-    },
-    inter_module_message_v4: {
-      tableName: "inter_module_message_v4",
-      rowType: InterModuleMessageV4.getTypeScriptAlgebraicType(),
-      primaryKey: "id",
-      primaryKeyInfo: {
-        colName: "id",
-        colType: InterModuleMessageV4.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     inter_module_response_message_counter: {
@@ -5624,15 +5522,6 @@ export const REMOTE_MODULE = {
         colType: ParametersDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
-    parameters_desc_v2: {
-      tableName: "parameters_desc_v2",
-      rowType: ParametersDescV2.getTypeScriptAlgebraicType(),
-      primaryKey: "version",
-      primaryKeyInfo: {
-        colName: "version",
-        colType: ParametersDescV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
-      },
-    },
     parameters_player_move_desc: {
       tableName: "parameters_player_move_desc",
       rowType: ParametersPlayerMoveDesc.getTypeScriptAlgebraicType(),
@@ -5687,6 +5576,18 @@ export const REMOTE_MODULE = {
         colType: PavedTileState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    paving_recipe_discovery_cargo_desc: {
+      tableName: "paving_recipe_discovery_cargo_desc",
+      rowType: DiscoveryTriggerDesc.getTypeScriptAlgebraicType(),
+    },
+    paving_recipe_discovery_item_desc: {
+      tableName: "paving_recipe_discovery_item_desc",
+      rowType: DiscoveryTriggerDesc.getTypeScriptAlgebraicType(),
+    },
+    paving_recipe_discovery_knowledge_desc: {
+      tableName: "paving_recipe_discovery_knowledge_desc",
+      rowType: DiscoveryTriggerDesc.getTypeScriptAlgebraicType(),
+    },
     paving_tile_desc: {
       tableName: "paving_tile_desc",
       rowType: PavingTileDesc.getTypeScriptAlgebraicType(),
@@ -5713,6 +5614,18 @@ export const REMOTE_MODULE = {
         colName: "id",
         colType: PillarShapingDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
+    },
+    pillar_shaping_recipe_discovery_cargo_desc: {
+      tableName: "pillar_shaping_recipe_discovery_cargo_desc",
+      rowType: DiscoveryTriggerDesc.getTypeScriptAlgebraicType(),
+    },
+    pillar_shaping_recipe_discovery_item_desc: {
+      tableName: "pillar_shaping_recipe_discovery_item_desc",
+      rowType: DiscoveryTriggerDesc.getTypeScriptAlgebraicType(),
+    },
+    pillar_shaping_recipe_discovery_knowledge_desc: {
+      tableName: "pillar_shaping_recipe_discovery_knowledge_desc",
+      rowType: DiscoveryTriggerDesc.getTypeScriptAlgebraicType(),
     },
     pillar_shaping_state: {
       tableName: "pillar_shaping_state",
@@ -5903,15 +5816,6 @@ export const REMOTE_MODULE = {
         colType: PlayerSettingsState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
-    player_settings_state_v2: {
-      tableName: "player_settings_state_v2",
-      rowType: PlayerSettingsStateV2.getTypeScriptAlgebraicType(),
-      primaryKey: "entityId",
-      primaryKeyInfo: {
-        colName: "entityId",
-        colType: PlayerSettingsStateV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
-      },
-    },
     player_state: {
       tableName: "player_state",
       rowType: PlayerState.getTypeScriptAlgebraicType(),
@@ -5992,6 +5896,28 @@ export const REMOTE_MODULE = {
         colName: "id",
         colType: PremiumServiceDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
+    },
+    previous_empire_name_state: {
+      tableName: "previous_empire_name_state",
+      rowType: PreviousEmpireNameState.getTypeScriptAlgebraicType(),
+      primaryKey: "emperorIdentity",
+      primaryKeyInfo: {
+        colName: "emperorIdentity",
+        colType: PreviousEmpireNameState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    previous_player_skills_state: {
+      tableName: "previous_player_skills_state",
+      rowType: PreviousPlayerSkillsState.getTypeScriptAlgebraicType(),
+      primaryKey: "identity",
+      primaryKeyInfo: {
+        colName: "identity",
+        colType: PreviousPlayerSkillsState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    previous_player_username_state: {
+      tableName: "previous_player_username_state",
+      rowType: PreviousPlayerUsernameState.getTypeScriptAlgebraicType(),
     },
     private_parameters_desc: {
       tableName: "private_parameters_desc",
@@ -6081,6 +6007,24 @@ export const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "id",
         colType: RegionConnectionInfo.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    region_control_info: {
+      tableName: "region_control_info",
+      rowType: RegionControlInfo.getTypeScriptAlgebraicType(),
+      primaryKey: "regionId",
+      primaryKeyInfo: {
+        colName: "regionId",
+        colType: RegionControlInfo.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    region_moderation_config_state: {
+      tableName: "region_moderation_config_state",
+      rowType: RegionModerationConfigState.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: RegionModerationConfigState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     region_population_info: {
@@ -6218,14 +6162,17 @@ export const REMOTE_MODULE = {
         colType: ResourcePlacementRecipeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
-    resource_placement_recipe_desc_v2: {
-      tableName: "resource_placement_recipe_desc_v2",
-      rowType: ResourcePlacementRecipeDescV2.getTypeScriptAlgebraicType(),
-      primaryKey: "id",
-      primaryKeyInfo: {
-        colName: "id",
-        colType: ResourcePlacementRecipeDescV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
-      },
+    resource_placement_recipe_discovery_cargo_desc: {
+      tableName: "resource_placement_recipe_discovery_cargo_desc",
+      rowType: DiscoveryTriggerDesc.getTypeScriptAlgebraicType(),
+    },
+    resource_placement_recipe_discovery_item_desc: {
+      tableName: "resource_placement_recipe_discovery_item_desc",
+      rowType: DiscoveryTriggerDesc.getTypeScriptAlgebraicType(),
+    },
+    resource_placement_recipe_discovery_knowledge_desc: {
+      tableName: "resource_placement_recipe_discovery_knowledge_desc",
+      rowType: DiscoveryTriggerDesc.getTypeScriptAlgebraicType(),
     },
     resource_spawn_timer: {
       tableName: "resource_spawn_timer",
@@ -6425,6 +6372,15 @@ export const REMOTE_MODULE = {
         colType: BuffTypeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    staged_building_buff_desc: {
+      tableName: "staged_building_buff_desc",
+      rowType: BuildingBuffDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: BuildingBuffDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     staged_building_claim_desc: {
       tableName: "staged_building_claim_desc",
       rowType: BuildingClaimDesc.getTypeScriptAlgebraicType(),
@@ -6443,13 +6399,13 @@ export const REMOTE_MODULE = {
         colType: BuildingDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
-    staged_building_portal_desc_v2: {
-      tableName: "staged_building_portal_desc_v2",
-      rowType: BuildingPortalDescV2.getTypeScriptAlgebraicType(),
+    staged_building_portal_desc: {
+      tableName: "staged_building_portal_desc",
+      rowType: BuildingPortalDesc.getTypeScriptAlgebraicType(),
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: BuildingPortalDescV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+        colType: BuildingPortalDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     staged_building_repairs_desc: {
@@ -6515,15 +6471,6 @@ export const REMOTE_MODULE = {
         colType: ClaimTechDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
-    staged_claim_tech_desc_v2: {
-      tableName: "staged_claim_tech_desc_v2",
-      rowType: ClaimTechDescV2.getTypeScriptAlgebraicType(),
-      primaryKey: "id",
-      primaryKeyInfo: {
-        colName: "id",
-        colType: ClaimTechDescV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
-      },
-    },
     staged_claim_tile_cost: {
       tableName: "staged_claim_tile_cost",
       rowType: ClaimTileCost.getTypeScriptAlgebraicType(),
@@ -6560,13 +6507,13 @@ export const REMOTE_MODULE = {
         colType: CollectibleDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
-    staged_combat_action_desc_v3: {
-      tableName: "staged_combat_action_desc_v3",
-      rowType: CombatActionDescV3.getTypeScriptAlgebraicType(),
+    staged_combat_action_desc: {
+      tableName: "staged_combat_action_desc",
+      rowType: CombatActionDesc.getTypeScriptAlgebraicType(),
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: CombatActionDescV3.getTypeScriptAlgebraicType().product.elements[1].algebraicType,
+        colType: CombatActionDesc.getTypeScriptAlgebraicType().product.elements[1].algebraicType,
       },
     },
     staged_combat_action_multi_hit_desc: {
@@ -6587,22 +6534,13 @@ export const REMOTE_MODULE = {
         colType: ConstructionRecipeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
-    staged_construction_recipe_desc_v2: {
-      tableName: "staged_construction_recipe_desc_v2",
-      rowType: ConstructionRecipeDescV2.getTypeScriptAlgebraicType(),
-      primaryKey: "id",
-      primaryKeyInfo: {
-        colName: "id",
-        colType: ConstructionRecipeDescV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
-      },
-    },
     staged_contribution_loot_desc: {
       tableName: "staged_contribution_loot_desc",
-      rowType: ContributionLootDescV2.getTypeScriptAlgebraicType(),
+      rowType: ContributionLootDesc.getTypeScriptAlgebraicType(),
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: ContributionLootDescV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+        colType: ContributionLootDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     staged_crafting_recipe_desc: {
@@ -6625,11 +6563,11 @@ export const REMOTE_MODULE = {
     },
     staged_deployable_desc: {
       tableName: "staged_deployable_desc",
-      rowType: DeployableDescV4.getTypeScriptAlgebraicType(),
+      rowType: DeployableDesc.getTypeScriptAlgebraicType(),
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: DeployableDescV4.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+        colType: DeployableDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     staged_distant_visible_entity_desc: {
@@ -6652,11 +6590,11 @@ export const REMOTE_MODULE = {
     },
     staged_emote_desc: {
       tableName: "staged_emote_desc",
-      rowType: EmoteDescV2.getTypeScriptAlgebraicType(),
+      rowType: EmoteDesc.getTypeScriptAlgebraicType(),
       primaryKey: "id",
       primaryKeyInfo: {
         colName: "id",
-        colType: EmoteDescV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+        colType: EmoteDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     staged_empire_colors_desc: {
@@ -6949,11 +6887,11 @@ export const REMOTE_MODULE = {
     },
     staged_parameters_desc: {
       tableName: "staged_parameters_desc",
-      rowType: ParametersDescV2.getTypeScriptAlgebraicType(),
+      rowType: ParametersDesc.getTypeScriptAlgebraicType(),
       primaryKey: "version",
       primaryKeyInfo: {
         colName: "version",
-        colType: ParametersDescV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+        colType: ParametersDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     staged_pathfinding_desc: {
@@ -7100,15 +7038,6 @@ export const REMOTE_MODULE = {
         colType: ResourcePlacementRecipeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
-    staged_resource_placement_recipe_desc_v2: {
-      tableName: "staged_resource_placement_recipe_desc_v2",
-      rowType: ResourcePlacementRecipeDescV2.getTypeScriptAlgebraicType(),
-      primaryKey: "id",
-      primaryKeyInfo: {
-        colName: "id",
-        colType: ResourcePlacementRecipeDescV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
-      },
-    },
     staged_secondary_knowledge_desc: {
       tableName: "staged_secondary_knowledge_desc",
       rowType: SecondaryKnowledgeDesc.getTypeScriptAlgebraicType(),
@@ -7134,78 +7063,6 @@ export const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "id",
         colType: StageRewardsDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
-      },
-    },
-    staged_static_data: {
-      tableName: "staged_static_data",
-      rowType: StagedStaticData.getTypeScriptAlgebraicType(),
-      primaryKey: "version",
-      primaryKeyInfo: {
-        colName: "version",
-        colType: StagedStaticData.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
-      },
-    },
-    staged_static_data_v2: {
-      tableName: "staged_static_data_v2",
-      rowType: StagedStaticDataV2.getTypeScriptAlgebraicType(),
-      primaryKey: "version",
-      primaryKeyInfo: {
-        colName: "version",
-        colType: StagedStaticDataV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
-      },
-    },
-    staged_static_data_v3: {
-      tableName: "staged_static_data_v3",
-      rowType: StagedStaticDataV3.getTypeScriptAlgebraicType(),
-      primaryKey: "version",
-      primaryKeyInfo: {
-        colName: "version",
-        colType: StagedStaticDataV3.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
-      },
-    },
-    staged_static_data_v4: {
-      tableName: "staged_static_data_v4",
-      rowType: StagedStaticDataV4.getTypeScriptAlgebraicType(),
-      primaryKey: "version",
-      primaryKeyInfo: {
-        colName: "version",
-        colType: StagedStaticDataV4.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
-      },
-    },
-    staged_static_data_v5: {
-      tableName: "staged_static_data_v5",
-      rowType: StagedStaticDataV5.getTypeScriptAlgebraicType(),
-      primaryKey: "version",
-      primaryKeyInfo: {
-        colName: "version",
-        colType: StagedStaticDataV5.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
-      },
-    },
-    staged_static_data_v6: {
-      tableName: "staged_static_data_v6",
-      rowType: StagedStaticDataV6.getTypeScriptAlgebraicType(),
-      primaryKey: "version",
-      primaryKeyInfo: {
-        colName: "version",
-        colType: StagedStaticDataV6.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
-      },
-    },
-    staged_static_data_v7: {
-      tableName: "staged_static_data_v7",
-      rowType: StagedStaticDataV7.getTypeScriptAlgebraicType(),
-      primaryKey: "version",
-      primaryKeyInfo: {
-        colName: "version",
-        colType: StagedStaticDataV7.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
-      },
-    },
-    staged_static_data_v8: {
-      tableName: "staged_static_data_v8",
-      rowType: StagedStaticDataV8.getTypeScriptAlgebraicType(),
-      primaryKey: "version",
-      primaryKeyInfo: {
-        colName: "version",
-        colType: StagedStaticDataV8.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     staged_targeting_matrix_desc: {
@@ -7729,6 +7586,10 @@ export const REMOTE_MODULE = {
       reducerName: "acquire_knowledge_from_entities",
       argsType: AcquireKnowledgeFromEntities.getTypeScriptAlgebraicType(),
     },
+    activate_building_buff: {
+      reducerName: "activate_building_buff",
+      argsType: ActivateBuildingBuff.getTypeScriptAlgebraicType(),
+    },
     admin_add_specific_building_type_states: {
       reducerName: "admin_add_specific_building_type_states",
       argsType: AdminAddSpecificBuildingTypeStates.getTypeScriptAlgebraicType(),
@@ -7845,6 +7706,10 @@ export const REMOTE_MODULE = {
       reducerName: "admin_dungeon_update_portals",
       argsType: AdminDungeonUpdatePortals.getTypeScriptAlgebraicType(),
     },
+    admin_fail_quest: {
+      reducerName: "admin_fail_quest",
+      argsType: AdminFailQuest.getTypeScriptAlgebraicType(),
+    },
     admin_find_all_players_with_item: {
       reducerName: "admin_find_all_players_with_item",
       argsType: AdminFindAllPlayersWithItem.getTypeScriptAlgebraicType(),
@@ -7872,10 +7737,6 @@ export const REMOTE_MODULE = {
     admin_migrate_action_state: {
       reducerName: "admin_migrate_action_state",
       argsType: AdminMigrateActionState.getTypeScriptAlgebraicType(),
-    },
-    admin_migrate_housing: {
-      reducerName: "admin_migrate_housing",
-      argsType: AdminMigrateHousing.getTypeScriptAlgebraicType(),
     },
     admin_migrate_trade_orders: {
       reducerName: "admin_migrate_trade_orders",
@@ -7957,6 +7818,10 @@ export const REMOTE_MODULE = {
       reducerName: "admin_restore_player_state_scheduled",
       argsType: AdminRestorePlayerStateScheduled.getTypeScriptAlgebraicType(),
     },
+    admin_set_region_control_state: {
+      reducerName: "admin_set_region_control_state",
+      argsType: AdminSetRegionControlState.getTypeScriptAlgebraicType(),
+    },
     admin_set_resource_world_target: {
       reducerName: "admin_set_resource_world_target",
       argsType: AdminSetResourceWorldTarget.getTypeScriptAlgebraicType(),
@@ -8000,6 +7865,10 @@ export const REMOTE_MODULE = {
     admin_update_lore_knowledge: {
       reducerName: "admin_update_lore_knowledge",
       argsType: AdminUpdateLoreKnowledge.getTypeScriptAlgebraicType(),
+    },
+    admin_update_region_moderation_config: {
+      reducerName: "admin_update_region_moderation_config",
+      argsType: AdminUpdateRegionModerationConfig.getTypeScriptAlgebraicType(),
     },
     advance_quest_stage: {
       reducerName: "advance_quest_stage",
@@ -8216,6 +8085,10 @@ export const REMOTE_MODULE = {
     cheat_quest_advance_to_handin: {
       reducerName: "cheat_quest_advance_to_handin",
       argsType: CheatQuestAdvanceToHandin.getTypeScriptAlgebraicType(),
+    },
+    cheat_quest_clear: {
+      reducerName: "cheat_quest_clear",
+      argsType: CheatQuestClear.getTypeScriptAlgebraicType(),
     },
     cheat_quest_restart: {
       reducerName: "cheat_quest_restart",
@@ -8481,6 +8354,10 @@ export const REMOTE_MODULE = {
       reducerName: "deployable_dismount_scheduled",
       argsType: DeployableDismountScheduled.getTypeScriptAlgebraicType(),
     },
+    deployable_dismount_server: {
+      reducerName: "deployable_dismount_server",
+      argsType: DeployableDismountServer.getTypeScriptAlgebraicType(),
+    },
     deployable_follow: {
       reducerName: "deployable_follow",
       argsType: DeployableFollow.getTypeScriptAlgebraicType(),
@@ -8577,6 +8454,10 @@ export const REMOTE_MODULE = {
       reducerName: "empire_collect_hexite_capsule",
       argsType: EmpireCollectHexiteCapsule.getTypeScriptAlgebraicType(),
     },
+    empire_create: {
+      reducerName: "empire_create",
+      argsType: EmpireCreate.getTypeScriptAlgebraicType(),
+    },
     empire_deploy_siege_engine: {
       reducerName: "empire_deploy_siege_engine",
       argsType: EmpireDeploySiegeEngine.getTypeScriptAlgebraicType(),
@@ -8584,6 +8465,10 @@ export const REMOTE_MODULE = {
     empire_deploy_siege_engine_start: {
       reducerName: "empire_deploy_siege_engine_start",
       argsType: EmpireDeploySiegeEngineStart.getTypeScriptAlgebraicType(),
+    },
+    empire_donate_item: {
+      reducerName: "empire_donate_item",
+      argsType: EmpireDonateItem.getTypeScriptAlgebraicType(),
     },
     empire_queue_supplies: {
       reducerName: "empire_queue_supplies",
@@ -8749,6 +8634,10 @@ export const REMOTE_MODULE = {
       reducerName: "import_buff_type_desc",
       argsType: ImportBuffTypeDesc.getTypeScriptAlgebraicType(),
     },
+    import_building_buff_desc: {
+      reducerName: "import_building_buff_desc",
+      argsType: ImportBuildingBuffDesc.getTypeScriptAlgebraicType(),
+    },
     import_building_claim_desc: {
       reducerName: "import_building_claim_desc",
       argsType: ImportBuildingClaimDesc.getTypeScriptAlgebraicType(),
@@ -8757,9 +8646,9 @@ export const REMOTE_MODULE = {
       reducerName: "import_building_desc",
       argsType: ImportBuildingDesc.getTypeScriptAlgebraicType(),
     },
-    import_building_portal_desc_v2: {
-      reducerName: "import_building_portal_desc_v2",
-      argsType: ImportBuildingPortalDescV2.getTypeScriptAlgebraicType(),
+    import_building_portal_desc: {
+      reducerName: "import_building_portal_desc",
+      argsType: ImportBuildingPortalDesc.getTypeScriptAlgebraicType(),
     },
     import_building_repairs_desc: {
       reducerName: "import_building_repairs_desc",
@@ -8837,9 +8726,9 @@ export const REMOTE_MODULE = {
       reducerName: "import_collectible_desc",
       argsType: ImportCollectibleDesc.getTypeScriptAlgebraicType(),
     },
-    import_combat_action_desc_v3: {
-      reducerName: "import_combat_action_desc_v3",
-      argsType: ImportCombatActionDescV3.getTypeScriptAlgebraicType(),
+    import_combat_action_desc: {
+      reducerName: "import_combat_action_desc",
+      argsType: ImportCombatActionDesc.getTypeScriptAlgebraicType(),
     },
     import_combat_action_multi_hit_desc: {
       reducerName: "import_combat_action_multi_hit_desc",
@@ -9405,6 +9294,10 @@ export const REMOTE_MODULE = {
       reducerName: "import_world_region_state",
       argsType: ImportWorldRegionState.getTypeScriptAlgebraicType(),
     },
+    init_region_info: {
+      reducerName: "init_region_info",
+      argsType: InitRegionInfo.getTypeScriptAlgebraicType(),
+    },
     insert_developer_identity: {
       reducerName: "insert_developer_identity",
       argsType: InsertDeveloperIdentity.getTypeScriptAlgebraicType(),
@@ -9925,9 +9818,9 @@ export const REMOTE_MODULE = {
       reducerName: "set_home",
       argsType: SetHome.getTypeScriptAlgebraicType(),
     },
-    set_quest_chain_active: {
-      reducerName: "set_quest_chain_active",
-      argsType: SetQuestChainActive.getTypeScriptAlgebraicType(),
+    set_quest_tracked: {
+      reducerName: "set_quest_tracked",
+      argsType: SetQuestTracked.getTypeScriptAlgebraicType(),
     },
     sign_in: {
       reducerName: "sign_in",
@@ -9973,6 +9866,10 @@ export const REMOTE_MODULE = {
       reducerName: "stage_buff_type_desc",
       argsType: StageBuffTypeDesc.getTypeScriptAlgebraicType(),
     },
+    stage_building_buff_desc: {
+      reducerName: "stage_building_buff_desc",
+      argsType: StageBuildingBuffDesc.getTypeScriptAlgebraicType(),
+    },
     stage_building_claim_desc: {
       reducerName: "stage_building_claim_desc",
       argsType: StageBuildingClaimDesc.getTypeScriptAlgebraicType(),
@@ -9981,9 +9878,9 @@ export const REMOTE_MODULE = {
       reducerName: "stage_building_desc",
       argsType: StageBuildingDesc.getTypeScriptAlgebraicType(),
     },
-    stage_building_portal_desc_v2: {
-      reducerName: "stage_building_portal_desc_v2",
-      argsType: StageBuildingPortalDescV2.getTypeScriptAlgebraicType(),
+    stage_building_portal_desc: {
+      reducerName: "stage_building_portal_desc",
+      argsType: StageBuildingPortalDesc.getTypeScriptAlgebraicType(),
     },
     stage_building_repairs_desc: {
       reducerName: "stage_building_repairs_desc",
@@ -10009,9 +9906,9 @@ export const REMOTE_MODULE = {
       reducerName: "stage_chest_rarity_desc",
       argsType: StageChestRarityDesc.getTypeScriptAlgebraicType(),
     },
-    stage_claim_tech_desc_v2: {
-      reducerName: "stage_claim_tech_desc_v2",
-      argsType: StageClaimTechDescV2.getTypeScriptAlgebraicType(),
+    stage_claim_tech_desc: {
+      reducerName: "stage_claim_tech_desc",
+      argsType: StageClaimTechDesc.getTypeScriptAlgebraicType(),
     },
     stage_claim_tile_cost: {
       reducerName: "stage_claim_tile_cost",
@@ -10029,17 +9926,17 @@ export const REMOTE_MODULE = {
       reducerName: "stage_collectible_desc",
       argsType: StageCollectibleDesc.getTypeScriptAlgebraicType(),
     },
-    stage_combat_action_desc_v3: {
-      reducerName: "stage_combat_action_desc_v3",
-      argsType: StageCombatActionDescV3.getTypeScriptAlgebraicType(),
+    stage_combat_action_desc: {
+      reducerName: "stage_combat_action_desc",
+      argsType: StageCombatActionDesc.getTypeScriptAlgebraicType(),
     },
     stage_combat_action_multi_hit_desc: {
       reducerName: "stage_combat_action_multi_hit_desc",
       argsType: StageCombatActionMultiHitDesc.getTypeScriptAlgebraicType(),
     },
-    stage_construction_recipe_desc_v2: {
-      reducerName: "stage_construction_recipe_desc_v2",
-      argsType: StageConstructionRecipeDescV2.getTypeScriptAlgebraicType(),
+    stage_construction_recipe_desc: {
+      reducerName: "stage_construction_recipe_desc",
+      argsType: StageConstructionRecipeDesc.getTypeScriptAlgebraicType(),
     },
     stage_contribution_loot_desc: {
       reducerName: "stage_contribution_loot_desc",
@@ -10261,9 +10158,9 @@ export const REMOTE_MODULE = {
       reducerName: "stage_resource_growth_recipe_desc",
       argsType: StageResourceGrowthRecipeDesc.getTypeScriptAlgebraicType(),
     },
-    stage_resource_placement_recipe_desc_v2: {
-      reducerName: "stage_resource_placement_recipe_desc_v2",
-      argsType: StageResourcePlacementRecipeDescV2.getTypeScriptAlgebraicType(),
+    stage_resource_placement_recipe_desc: {
+      reducerName: "stage_resource_placement_recipe_desc",
+      argsType: StageResourcePlacementRecipeDesc.getTypeScriptAlgebraicType(),
     },
     stage_secondary_knowledge_desc: {
       reducerName: "stage_secondary_knowledge_desc",
@@ -10433,9 +10330,17 @@ export const REMOTE_MODULE = {
       reducerName: "update_scheduled_timers_from_static_data",
       argsType: UpdateScheduledTimersFromStaticData.getTypeScriptAlgebraicType(),
     },
+    world_clear_npc_watchtowers: {
+      reducerName: "world_clear_npc_watchtowers",
+      argsType: WorldClearNpcWatchtowers.getTypeScriptAlgebraicType(),
+    },
     world_place_building: {
       reducerName: "world_place_building",
       argsType: WorldPlaceBuilding.getTypeScriptAlgebraicType(),
+    },
+    world_place_npc_watchtowers: {
+      reducerName: "world_place_npc_watchtowers",
+      argsType: WorldPlaceNpcWatchtowers.getTypeScriptAlgebraicType(),
     },
     world_place_resource: {
       reducerName: "world_place_resource",
@@ -10477,6 +10382,7 @@ export type Reducer = never
 | { name: "AbilitySet", args: AbilitySet }
 | { name: "AchievementClaim", args: AchievementClaim }
 | { name: "AcquireKnowledgeFromEntities", args: AcquireKnowledgeFromEntities }
+| { name: "ActivateBuildingBuff", args: ActivateBuildingBuff }
 | { name: "AdminAddSpecificBuildingTypeStates", args: AdminAddSpecificBuildingTypeStates }
 | { name: "AdminAlpha3CompleteOnboarding", args: AdminAlpha3CompleteOnboarding }
 | { name: "AdminAlpha3ResetOnboardingToFifthTempleQuest", args: AdminAlpha3ResetOnboardingToFifthTempleQuest }
@@ -10506,6 +10412,7 @@ export type Reducer = never
 | { name: "AdminDeleteChatMessage", args: AdminDeleteChatMessage }
 | { name: "AdminDespawnOverworldEnemies", args: AdminDespawnOverworldEnemies }
 | { name: "AdminDungeonUpdatePortals", args: AdminDungeonUpdatePortals }
+| { name: "AdminFailQuest", args: AdminFailQuest }
 | { name: "AdminFindAllPlayersWithItem", args: AdminFindAllPlayersWithItem }
 | { name: "AdminFindAllPlayersWithItemAboveQuantity", args: AdminFindAllPlayersWithItemAboveQuantity }
 | { name: "AdminFindItemsInInventories", args: AdminFindItemsInInventories }
@@ -10513,7 +10420,6 @@ export type Reducer = never
 | { name: "AdminGrantAllClaimSupplies", args: AdminGrantAllClaimSupplies }
 | { name: "AdminGrantCollectibles", args: AdminGrantCollectibles }
 | { name: "AdminMigrateActionState", args: AdminMigrateActionState }
-| { name: "AdminMigrateHousing", args: AdminMigrateHousing }
 | { name: "AdminMigrateTradeOrders", args: AdminMigrateTradeOrders }
 | { name: "AdminModifyChatMessage", args: AdminModifyChatMessage }
 | { name: "AdminPatchHousingCosts", args: AdminPatchHousingCosts }
@@ -10534,6 +10440,7 @@ export type Reducer = never
 | { name: "AdminRestoreAllCollapsedRuins", args: AdminRestoreAllCollapsedRuins }
 | { name: "AdminRestorePlayerState", args: AdminRestorePlayerState }
 | { name: "AdminRestorePlayerStateScheduled", args: AdminRestorePlayerStateScheduled }
+| { name: "AdminSetRegionControlState", args: AdminSetRegionControlState }
 | { name: "AdminSetResourceWorldTarget", args: AdminSetResourceWorldTarget }
 | { name: "AdminSetSignText", args: AdminSetSignText }
 | { name: "AdminSetSignTextCoord", args: AdminSetSignTextCoord }
@@ -10545,6 +10452,7 @@ export type Reducer = never
 | { name: "AdminUpdateHousingPortals", args: AdminUpdateHousingPortals }
 | { name: "AdminUpdateLightSourceStates", args: AdminUpdateLightSourceStates }
 | { name: "AdminUpdateLoreKnowledge", args: AdminUpdateLoreKnowledge }
+| { name: "AdminUpdateRegionModerationConfig", args: AdminUpdateRegionModerationConfig }
 | { name: "AdvanceQuestStage", args: AdvanceQuestStage }
 | { name: "Attack", args: Attack }
 | { name: "AttackImpact", args: AttackImpact }
@@ -10599,6 +10507,7 @@ export type Reducer = never
 | { name: "CheatPillarShapingDestroy", args: CheatPillarShapingDestroy }
 | { name: "CheatProjectSiteAddAllMaterials", args: CheatProjectSiteAddAllMaterials }
 | { name: "CheatQuestAdvanceToHandin", args: CheatQuestAdvanceToHandin }
+| { name: "CheatQuestClear", args: CheatQuestClear }
 | { name: "CheatQuestRestart", args: CheatQuestRestart }
 | { name: "CheatQuestSkip", args: CheatQuestSkip }
 | { name: "CheatQuestSkipStage", args: CheatQuestSkipStage }
@@ -10665,6 +10574,7 @@ export type Reducer = never
 | { name: "DeployableDeployStart", args: DeployableDeployStart }
 | { name: "DeployableDismount", args: DeployableDismount }
 | { name: "DeployableDismountScheduled", args: DeployableDismountScheduled }
+| { name: "DeployableDismountServer", args: DeployableDismountServer }
 | { name: "DeployableFollow", args: DeployableFollow }
 | { name: "DeployableMount", args: DeployableMount }
 | { name: "DeployableMove", args: DeployableMove }
@@ -10689,8 +10599,10 @@ export type Reducer = never
 | { name: "EmpireAddSiegeSupplies", args: EmpireAddSiegeSupplies }
 | { name: "EmpireClaimJoin", args: EmpireClaimJoin }
 | { name: "EmpireCollectHexiteCapsule", args: EmpireCollectHexiteCapsule }
+| { name: "EmpireCreate", args: EmpireCreate }
 | { name: "EmpireDeploySiegeEngine", args: EmpireDeploySiegeEngine }
 | { name: "EmpireDeploySiegeEngineStart", args: EmpireDeploySiegeEngineStart }
+| { name: "EmpireDonateItem", args: EmpireDonateItem }
 | { name: "EmpireQueueSupplies", args: EmpireQueueSupplies }
 | { name: "EmpireResupplyNode", args: EmpireResupplyNode }
 | { name: "EmpireResupplyNodeStart", args: EmpireResupplyNodeStart }
@@ -10732,9 +10644,10 @@ export type Reducer = never
 | { name: "ImportBiomeDesc", args: ImportBiomeDesc }
 | { name: "ImportBuffDesc", args: ImportBuffDesc }
 | { name: "ImportBuffTypeDesc", args: ImportBuffTypeDesc }
+| { name: "ImportBuildingBuffDesc", args: ImportBuildingBuffDesc }
 | { name: "ImportBuildingClaimDesc", args: ImportBuildingClaimDesc }
 | { name: "ImportBuildingDesc", args: ImportBuildingDesc }
-| { name: "ImportBuildingPortalDescV2", args: ImportBuildingPortalDescV2 }
+| { name: "ImportBuildingPortalDesc", args: ImportBuildingPortalDesc }
 | { name: "ImportBuildingRepairsDesc", args: ImportBuildingRepairsDesc }
 | { name: "ImportBuildingSpawnDesc", args: ImportBuildingSpawnDesc }
 | { name: "ImportBuildingState", args: ImportBuildingState }
@@ -10754,7 +10667,7 @@ export type Reducer = never
 | { name: "ImportClimbRequirementDesc", args: ImportClimbRequirementDesc }
 | { name: "ImportClothingDesc", args: ImportClothingDesc }
 | { name: "ImportCollectibleDesc", args: ImportCollectibleDesc }
-| { name: "ImportCombatActionDescV3", args: ImportCombatActionDescV3 }
+| { name: "ImportCombatActionDesc", args: ImportCombatActionDesc }
 | { name: "ImportCombatActionMultiHitDesc", args: ImportCombatActionMultiHitDesc }
 | { name: "ImportCombatState", args: ImportCombatState }
 | { name: "ImportConfig", args: ImportConfig }
@@ -10896,6 +10809,7 @@ export type Reducer = never
 | { name: "ImportWindParamsDesc", args: ImportWindParamsDesc }
 | { name: "ImportWorldRegionNameState", args: ImportWorldRegionNameState }
 | { name: "ImportWorldRegionState", args: ImportWorldRegionState }
+| { name: "InitRegionInfo", args: InitRegionInfo }
 | { name: "InsertDeveloperIdentity", args: InsertDeveloperIdentity }
 | { name: "InsertResourcesLog", args: InsertResourcesLog }
 | { name: "InsertTerrainChunk", args: InsertTerrainChunk }
@@ -11026,7 +10940,7 @@ export type Reducer = never
 | { name: "SearchForClosestBuildingType", args: SearchForClosestBuildingType }
 | { name: "ServerTeleportPlayer", args: ServerTeleportPlayer }
 | { name: "SetHome", args: SetHome }
-| { name: "SetQuestChainActive", args: SetQuestChainActive }
+| { name: "SetQuestTracked", args: SetQuestTracked }
 | { name: "SignIn", args: SignIn }
 | { name: "SignOut", args: SignOut }
 | { name: "SkipOnboarding", args: SkipOnboarding }
@@ -11038,23 +10952,24 @@ export type Reducer = never
 | { name: "StageBiomeDesc", args: StageBiomeDesc }
 | { name: "StageBuffDesc", args: StageBuffDesc }
 | { name: "StageBuffTypeDesc", args: StageBuffTypeDesc }
+| { name: "StageBuildingBuffDesc", args: StageBuildingBuffDesc }
 | { name: "StageBuildingClaimDesc", args: StageBuildingClaimDesc }
 | { name: "StageBuildingDesc", args: StageBuildingDesc }
-| { name: "StageBuildingPortalDescV2", args: StageBuildingPortalDescV2 }
+| { name: "StageBuildingPortalDesc", args: StageBuildingPortalDesc }
 | { name: "StageBuildingRepairsDesc", args: StageBuildingRepairsDesc }
 | { name: "StageBuildingSpawnDesc", args: StageBuildingSpawnDesc }
 | { name: "StageBuildingTypeDesc", args: StageBuildingTypeDesc }
 | { name: "StageCargoDesc", args: StageCargoDesc }
 | { name: "StageCharacterStatDesc", args: StageCharacterStatDesc }
 | { name: "StageChestRarityDesc", args: StageChestRarityDesc }
-| { name: "StageClaimTechDescV2", args: StageClaimTechDescV2 }
+| { name: "StageClaimTechDesc", args: StageClaimTechDesc }
 | { name: "StageClaimTileCost", args: StageClaimTileCost }
 | { name: "StageClimbRequirementDesc", args: StageClimbRequirementDesc }
 | { name: "StageClothingDesc", args: StageClothingDesc }
 | { name: "StageCollectibleDesc", args: StageCollectibleDesc }
-| { name: "StageCombatActionDescV3", args: StageCombatActionDescV3 }
+| { name: "StageCombatActionDesc", args: StageCombatActionDesc }
 | { name: "StageCombatActionMultiHitDesc", args: StageCombatActionMultiHitDesc }
-| { name: "StageConstructionRecipeDescV2", args: StageConstructionRecipeDescV2 }
+| { name: "StageConstructionRecipeDesc", args: StageConstructionRecipeDesc }
 | { name: "StageContributionLootDesc", args: StageContributionLootDesc }
 | { name: "StageCraftingRecipeDesc", args: StageCraftingRecipeDesc }
 | { name: "StageDeconstructionRecipeDesc", args: StageDeconstructionRecipeDesc }
@@ -11110,7 +11025,7 @@ export type Reducer = never
 | { name: "StageResourceClumpDesc", args: StageResourceClumpDesc }
 | { name: "StageResourceDesc", args: StageResourceDesc }
 | { name: "StageResourceGrowthRecipeDesc", args: StageResourceGrowthRecipeDesc }
-| { name: "StageResourcePlacementRecipeDescV2", args: StageResourcePlacementRecipeDescV2 }
+| { name: "StageResourcePlacementRecipeDesc", args: StageResourcePlacementRecipeDesc }
 | { name: "StageSecondaryKnowledgeDesc", args: StageSecondaryKnowledgeDesc }
 | { name: "StageSkillDesc", args: StageSkillDesc }
 | { name: "StageStageRewardsDesc", args: StageStageRewardsDesc }
@@ -11153,7 +11068,9 @@ export type Reducer = never
 | { name: "TravelerTaskAgentLoop", args: TravelerTaskAgentLoop }
 | { name: "UpdateMovingCost", args: UpdateMovingCost }
 | { name: "UpdateScheduledTimersFromStaticData", args: UpdateScheduledTimersFromStaticData }
+| { name: "WorldClearNpcWatchtowers", args: WorldClearNpcWatchtowers }
 | { name: "WorldPlaceBuilding", args: WorldPlaceBuilding }
+| { name: "WorldPlaceNpcWatchtowers", args: WorldPlaceNpcWatchtowers }
 | { name: "WorldPlaceResource", args: WorldPlaceResource }
 ;
 
@@ -11254,6 +11171,22 @@ export class RemoteReducers {
 
   removeOnAcquireKnowledgeFromEntities(callback: (ctx: ReducerEventContext, request: PlayerAcquireKnowledgeFromEntitiesRequest) => void) {
     this.connection.offReducer("acquire_knowledge_from_entities", callback);
+  }
+
+  activateBuildingBuff(buildingEntityId: bigint) {
+    const __args = { buildingEntityId };
+    let __writer = new BinaryWriter(1024);
+    ActivateBuildingBuff.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("activate_building_buff", __argsBuffer, this.setCallReducerFlags.activateBuildingBuffFlags);
+  }
+
+  onActivateBuildingBuff(callback: (ctx: ReducerEventContext, buildingEntityId: bigint) => void) {
+    this.connection.onReducer("activate_building_buff", callback);
+  }
+
+  removeOnActivateBuildingBuff(callback: (ctx: ReducerEventContext, buildingEntityId: bigint) => void) {
+    this.connection.offReducer("activate_building_buff", callback);
   }
 
   adminAddSpecificBuildingTypeStates() {
@@ -11692,6 +11625,22 @@ export class RemoteReducers {
     this.connection.offReducer("admin_dungeon_update_portals", callback);
   }
 
+  adminFailQuest(questDescId: number) {
+    const __args = { questDescId };
+    let __writer = new BinaryWriter(1024);
+    AdminFailQuest.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("admin_fail_quest", __argsBuffer, this.setCallReducerFlags.adminFailQuestFlags);
+  }
+
+  onAdminFailQuest(callback: (ctx: ReducerEventContext, questDescId: number) => void) {
+    this.connection.onReducer("admin_fail_quest", callback);
+  }
+
+  removeOnAdminFailQuest(callback: (ctx: ReducerEventContext, questDescId: number) => void) {
+    this.connection.offReducer("admin_fail_quest", callback);
+  }
+
   adminFindAllPlayersWithItem(itemId: number, isCargo: boolean, claimEntityId: bigint) {
     const __args = { itemId, isCargo, claimEntityId };
     let __writer = new BinaryWriter(1024);
@@ -11798,18 +11747,6 @@ export class RemoteReducers {
 
   removeOnAdminMigrateActionState(callback: (ctx: ReducerEventContext) => void) {
     this.connection.offReducer("admin_migrate_action_state", callback);
-  }
-
-  adminMigrateHousing() {
-    this.connection.callReducer("admin_migrate_housing", new Uint8Array(0), this.setCallReducerFlags.adminMigrateHousingFlags);
-  }
-
-  onAdminMigrateHousing(callback: (ctx: ReducerEventContext) => void) {
-    this.connection.onReducer("admin_migrate_housing", callback);
-  }
-
-  removeOnAdminMigrateHousing(callback: (ctx: ReducerEventContext) => void) {
-    this.connection.offReducer("admin_migrate_housing", callback);
   }
 
   adminMigrateTradeOrders() {
@@ -12112,6 +12049,22 @@ export class RemoteReducers {
     this.connection.offReducer("admin_restore_player_state_scheduled", callback);
   }
 
+  adminSetRegionControlState(allowPlayers: boolean, allowPlayerSpawn: boolean) {
+    const __args = { allowPlayers, allowPlayerSpawn };
+    let __writer = new BinaryWriter(1024);
+    AdminSetRegionControlState.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("admin_set_region_control_state", __argsBuffer, this.setCallReducerFlags.adminSetRegionControlStateFlags);
+  }
+
+  onAdminSetRegionControlState(callback: (ctx: ReducerEventContext, allowPlayers: boolean, allowPlayerSpawn: boolean) => void) {
+    this.connection.onReducer("admin_set_region_control_state", callback);
+  }
+
+  removeOnAdminSetRegionControlState(callback: (ctx: ReducerEventContext, allowPlayers: boolean, allowPlayerSpawn: boolean) => void) {
+    this.connection.offReducer("admin_set_region_control_state", callback);
+  }
+
   adminSetResourceWorldTarget(resourceId: number, worldTarget: number) {
     const __args = { resourceId, worldTarget };
     let __writer = new BinaryWriter(1024);
@@ -12270,6 +12223,22 @@ export class RemoteReducers {
 
   removeOnAdminUpdateLoreKnowledge(callback: (ctx: ReducerEventContext) => void) {
     this.connection.offReducer("admin_update_lore_knowledge", callback);
+  }
+
+  adminUpdateRegionModerationConfig(maxMessagesPerTimePeriod: number, rateLimitWindowSec: number, newAccountMinPlaytimeSec: number) {
+    const __args = { maxMessagesPerTimePeriod, rateLimitWindowSec, newAccountMinPlaytimeSec };
+    let __writer = new BinaryWriter(1024);
+    AdminUpdateRegionModerationConfig.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("admin_update_region_moderation_config", __argsBuffer, this.setCallReducerFlags.adminUpdateRegionModerationConfigFlags);
+  }
+
+  onAdminUpdateRegionModerationConfig(callback: (ctx: ReducerEventContext, maxMessagesPerTimePeriod: number, rateLimitWindowSec: number, newAccountMinPlaytimeSec: number) => void) {
+    this.connection.onReducer("admin_update_region_moderation_config", callback);
+  }
+
+  removeOnAdminUpdateRegionModerationConfig(callback: (ctx: ReducerEventContext, maxMessagesPerTimePeriod: number, rateLimitWindowSec: number, newAccountMinPlaytimeSec: number) => void) {
+    this.connection.offReducer("admin_update_region_moderation_config", callback);
   }
 
   advanceQuestStage(chainId: number) {
@@ -13126,6 +13095,22 @@ export class RemoteReducers {
 
   removeOnCheatQuestAdvanceToHandin(callback: (ctx: ReducerEventContext, playerEntityId: bigint, questDescId: number) => void) {
     this.connection.offReducer("cheat_quest_advance_to_handin", callback);
+  }
+
+  cheatQuestClear(playerEntityId: bigint, questDescId: number) {
+    const __args = { playerEntityId, questDescId };
+    let __writer = new BinaryWriter(1024);
+    CheatQuestClear.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("cheat_quest_clear", __argsBuffer, this.setCallReducerFlags.cheatQuestClearFlags);
+  }
+
+  onCheatQuestClear(callback: (ctx: ReducerEventContext, playerEntityId: bigint, questDescId: number) => void) {
+    this.connection.onReducer("cheat_quest_clear", callback);
+  }
+
+  removeOnCheatQuestClear(callback: (ctx: ReducerEventContext, playerEntityId: bigint, questDescId: number) => void) {
+    this.connection.offReducer("cheat_quest_clear", callback);
   }
 
   cheatQuestRestart(playerEntityId: bigint, questDescId: number) {
@@ -14132,19 +14117,19 @@ export class RemoteReducers {
     this.connection.offReducer("deployable_deploy_start", callback);
   }
 
-  deployableDismount(request: PlayerDeployableDismountRequest) {
-    const __args = { request };
+  deployableDismount(coordinates: OffsetCoordinatesFloat, deployableCoordinates: OffsetCoordinatesFloat) {
+    const __args = { coordinates, deployableCoordinates };
     let __writer = new BinaryWriter(1024);
     DeployableDismount.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
     this.connection.callReducer("deployable_dismount", __argsBuffer, this.setCallReducerFlags.deployableDismountFlags);
   }
 
-  onDeployableDismount(callback: (ctx: ReducerEventContext, request: PlayerDeployableDismountRequest) => void) {
+  onDeployableDismount(callback: (ctx: ReducerEventContext, coordinates: OffsetCoordinatesFloat, deployableCoordinates: OffsetCoordinatesFloat) => void) {
     this.connection.onReducer("deployable_dismount", callback);
   }
 
-  removeOnDeployableDismount(callback: (ctx: ReducerEventContext, request: PlayerDeployableDismountRequest) => void) {
+  removeOnDeployableDismount(callback: (ctx: ReducerEventContext, coordinates: OffsetCoordinatesFloat, deployableCoordinates: OffsetCoordinatesFloat) => void) {
     this.connection.offReducer("deployable_dismount", callback);
   }
 
@@ -14162,6 +14147,22 @@ export class RemoteReducers {
 
   removeOnDeployableDismountScheduled(callback: (ctx: ReducerEventContext, timer: DeployableDismountTimer) => void) {
     this.connection.offReducer("deployable_dismount_scheduled", callback);
+  }
+
+  deployableDismountServer(request: PlayerDeployableDismountRequest) {
+    const __args = { request };
+    let __writer = new BinaryWriter(1024);
+    DeployableDismountServer.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("deployable_dismount_server", __argsBuffer, this.setCallReducerFlags.deployableDismountServerFlags);
+  }
+
+  onDeployableDismountServer(callback: (ctx: ReducerEventContext, request: PlayerDeployableDismountRequest) => void) {
+    this.connection.onReducer("deployable_dismount_server", callback);
+  }
+
+  removeOnDeployableDismountServer(callback: (ctx: ReducerEventContext, request: PlayerDeployableDismountRequest) => void) {
+    this.connection.offReducer("deployable_dismount_server", callback);
   }
 
   deployableFollow(request: PlayerDeployableMoveRequest) {
@@ -14544,6 +14545,22 @@ export class RemoteReducers {
     this.connection.offReducer("empire_collect_hexite_capsule", callback);
   }
 
+  empireCreate(request: EmpireCreateRequest) {
+    const __args = { request };
+    let __writer = new BinaryWriter(1024);
+    EmpireCreate.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("empire_create", __argsBuffer, this.setCallReducerFlags.empireCreateFlags);
+  }
+
+  onEmpireCreate(callback: (ctx: ReducerEventContext, request: EmpireCreateRequest) => void) {
+    this.connection.onReducer("empire_create", callback);
+  }
+
+  removeOnEmpireCreate(callback: (ctx: ReducerEventContext, request: EmpireCreateRequest) => void) {
+    this.connection.offReducer("empire_create", callback);
+  }
+
   empireDeploySiegeEngine(request: EmpireStartSiegeRequest) {
     const __args = { request };
     let __writer = new BinaryWriter(1024);
@@ -14574,6 +14591,22 @@ export class RemoteReducers {
 
   removeOnEmpireDeploySiegeEngineStart(callback: (ctx: ReducerEventContext, request: EmpireStartSiegeRequest) => void) {
     this.connection.offReducer("empire_deploy_siege_engine_start", callback);
+  }
+
+  empireDonateItem(request: EmpireDonateItemRequest) {
+    const __args = { request };
+    let __writer = new BinaryWriter(1024);
+    EmpireDonateItem.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("empire_donate_item", __argsBuffer, this.setCallReducerFlags.empireDonateItemFlags);
+  }
+
+  onEmpireDonateItem(callback: (ctx: ReducerEventContext, request: EmpireDonateItemRequest) => void) {
+    this.connection.onReducer("empire_donate_item", callback);
+  }
+
+  removeOnEmpireDonateItem(callback: (ctx: ReducerEventContext, request: EmpireDonateItemRequest) => void) {
+    this.connection.offReducer("empire_donate_item", callback);
   }
 
   empireQueueSupplies(request: EmpireQueueSuppliesRequest) {
@@ -15204,6 +15237,22 @@ export class RemoteReducers {
     this.connection.offReducer("import_buff_type_desc", callback);
   }
 
+  importBuildingBuffDesc(records: BuildingBuffDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    ImportBuildingBuffDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("import_building_buff_desc", __argsBuffer, this.setCallReducerFlags.importBuildingBuffDescFlags);
+  }
+
+  onImportBuildingBuffDesc(callback: (ctx: ReducerEventContext, records: BuildingBuffDesc[]) => void) {
+    this.connection.onReducer("import_building_buff_desc", callback);
+  }
+
+  removeOnImportBuildingBuffDesc(callback: (ctx: ReducerEventContext, records: BuildingBuffDesc[]) => void) {
+    this.connection.offReducer("import_building_buff_desc", callback);
+  }
+
   importBuildingClaimDesc(records: BuildingClaimDesc[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
@@ -15236,20 +15285,20 @@ export class RemoteReducers {
     this.connection.offReducer("import_building_desc", callback);
   }
 
-  importBuildingPortalDescV2(records: BuildingPortalDescV2[]) {
+  importBuildingPortalDesc(records: BuildingPortalDesc[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
-    ImportBuildingPortalDescV2.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    ImportBuildingPortalDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
-    this.connection.callReducer("import_building_portal_desc_v2", __argsBuffer, this.setCallReducerFlags.importBuildingPortalDescV2Flags);
+    this.connection.callReducer("import_building_portal_desc", __argsBuffer, this.setCallReducerFlags.importBuildingPortalDescFlags);
   }
 
-  onImportBuildingPortalDescV2(callback: (ctx: ReducerEventContext, records: BuildingPortalDescV2[]) => void) {
-    this.connection.onReducer("import_building_portal_desc_v2", callback);
+  onImportBuildingPortalDesc(callback: (ctx: ReducerEventContext, records: BuildingPortalDesc[]) => void) {
+    this.connection.onReducer("import_building_portal_desc", callback);
   }
 
-  removeOnImportBuildingPortalDescV2(callback: (ctx: ReducerEventContext, records: BuildingPortalDescV2[]) => void) {
-    this.connection.offReducer("import_building_portal_desc_v2", callback);
+  removeOnImportBuildingPortalDesc(callback: (ctx: ReducerEventContext, records: BuildingPortalDesc[]) => void) {
+    this.connection.offReducer("import_building_portal_desc", callback);
   }
 
   importBuildingRepairsDesc(records: BuildingRepairsDesc[]) {
@@ -15444,7 +15493,7 @@ export class RemoteReducers {
     this.connection.offReducer("import_claim_state", callback);
   }
 
-  importClaimTechDesc(records: ClaimTechDescV2[]) {
+  importClaimTechDesc(records: ClaimTechDesc[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
     ImportClaimTechDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
@@ -15452,11 +15501,11 @@ export class RemoteReducers {
     this.connection.callReducer("import_claim_tech_desc", __argsBuffer, this.setCallReducerFlags.importClaimTechDescFlags);
   }
 
-  onImportClaimTechDesc(callback: (ctx: ReducerEventContext, records: ClaimTechDescV2[]) => void) {
+  onImportClaimTechDesc(callback: (ctx: ReducerEventContext, records: ClaimTechDesc[]) => void) {
     this.connection.onReducer("import_claim_tech_desc", callback);
   }
 
-  removeOnImportClaimTechDesc(callback: (ctx: ReducerEventContext, records: ClaimTechDescV2[]) => void) {
+  removeOnImportClaimTechDesc(callback: (ctx: ReducerEventContext, records: ClaimTechDesc[]) => void) {
     this.connection.offReducer("import_claim_tech_desc", callback);
   }
 
@@ -15556,20 +15605,20 @@ export class RemoteReducers {
     this.connection.offReducer("import_collectible_desc", callback);
   }
 
-  importCombatActionDescV3(records: CombatActionDescV3[]) {
+  importCombatActionDesc(records: CombatActionDesc[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
-    ImportCombatActionDescV3.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    ImportCombatActionDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
-    this.connection.callReducer("import_combat_action_desc_v3", __argsBuffer, this.setCallReducerFlags.importCombatActionDescV3Flags);
+    this.connection.callReducer("import_combat_action_desc", __argsBuffer, this.setCallReducerFlags.importCombatActionDescFlags);
   }
 
-  onImportCombatActionDescV3(callback: (ctx: ReducerEventContext, records: CombatActionDescV3[]) => void) {
-    this.connection.onReducer("import_combat_action_desc_v3", callback);
+  onImportCombatActionDesc(callback: (ctx: ReducerEventContext, records: CombatActionDesc[]) => void) {
+    this.connection.onReducer("import_combat_action_desc", callback);
   }
 
-  removeOnImportCombatActionDescV3(callback: (ctx: ReducerEventContext, records: CombatActionDescV3[]) => void) {
-    this.connection.offReducer("import_combat_action_desc_v3", callback);
+  removeOnImportCombatActionDesc(callback: (ctx: ReducerEventContext, records: CombatActionDesc[]) => void) {
+    this.connection.offReducer("import_combat_action_desc", callback);
   }
 
   importCombatActionMultiHitDesc(records: CombatActionMultiHitDesc[]) {
@@ -15620,7 +15669,7 @@ export class RemoteReducers {
     this.connection.offReducer("import_config", callback);
   }
 
-  importConstructionRecipeDesc(records: ConstructionRecipeDescV2[]) {
+  importConstructionRecipeDesc(records: ConstructionRecipeDesc[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
     ImportConstructionRecipeDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
@@ -15628,15 +15677,15 @@ export class RemoteReducers {
     this.connection.callReducer("import_construction_recipe_desc", __argsBuffer, this.setCallReducerFlags.importConstructionRecipeDescFlags);
   }
 
-  onImportConstructionRecipeDesc(callback: (ctx: ReducerEventContext, records: ConstructionRecipeDescV2[]) => void) {
+  onImportConstructionRecipeDesc(callback: (ctx: ReducerEventContext, records: ConstructionRecipeDesc[]) => void) {
     this.connection.onReducer("import_construction_recipe_desc", callback);
   }
 
-  removeOnImportConstructionRecipeDesc(callback: (ctx: ReducerEventContext, records: ConstructionRecipeDescV2[]) => void) {
+  removeOnImportConstructionRecipeDesc(callback: (ctx: ReducerEventContext, records: ConstructionRecipeDesc[]) => void) {
     this.connection.offReducer("import_construction_recipe_desc", callback);
   }
 
-  importContributionLootDesc(records: ContributionLootDescV2[]) {
+  importContributionLootDesc(records: ContributionLootDesc[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
     ImportContributionLootDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
@@ -15644,11 +15693,11 @@ export class RemoteReducers {
     this.connection.callReducer("import_contribution_loot_desc", __argsBuffer, this.setCallReducerFlags.importContributionLootDescFlags);
   }
 
-  onImportContributionLootDesc(callback: (ctx: ReducerEventContext, records: ContributionLootDescV2[]) => void) {
+  onImportContributionLootDesc(callback: (ctx: ReducerEventContext, records: ContributionLootDesc[]) => void) {
     this.connection.onReducer("import_contribution_loot_desc", callback);
   }
 
-  removeOnImportContributionLootDesc(callback: (ctx: ReducerEventContext, records: ContributionLootDescV2[]) => void) {
+  removeOnImportContributionLootDesc(callback: (ctx: ReducerEventContext, records: ContributionLootDesc[]) => void) {
     this.connection.offReducer("import_contribution_loot_desc", callback);
   }
 
@@ -15684,7 +15733,7 @@ export class RemoteReducers {
     this.connection.offReducer("import_deconstruction_recipe_desc", callback);
   }
 
-  importDeployableDesc(records: DeployableDescV4[]) {
+  importDeployableDesc(records: DeployableDesc[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
     ImportDeployableDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
@@ -15692,11 +15741,11 @@ export class RemoteReducers {
     this.connection.callReducer("import_deployable_desc", __argsBuffer, this.setCallReducerFlags.importDeployableDescFlags);
   }
 
-  onImportDeployableDesc(callback: (ctx: ReducerEventContext, records: DeployableDescV4[]) => void) {
+  onImportDeployableDesc(callback: (ctx: ReducerEventContext, records: DeployableDesc[]) => void) {
     this.connection.onReducer("import_deployable_desc", callback);
   }
 
-  removeOnImportDeployableDesc(callback: (ctx: ReducerEventContext, records: DeployableDescV4[]) => void) {
+  removeOnImportDeployableDesc(callback: (ctx: ReducerEventContext, records: DeployableDesc[]) => void) {
     this.connection.offReducer("import_deployable_desc", callback);
   }
 
@@ -15796,7 +15845,7 @@ export class RemoteReducers {
     this.connection.offReducer("import_elevator_desc", callback);
   }
 
-  importEmoteDesc(records: EmoteDescV2[]) {
+  importEmoteDesc(records: EmoteDesc[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
     ImportEmoteDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
@@ -15804,11 +15853,11 @@ export class RemoteReducers {
     this.connection.callReducer("import_emote_desc", __argsBuffer, this.setCallReducerFlags.importEmoteDescFlags);
   }
 
-  onImportEmoteDesc(callback: (ctx: ReducerEventContext, records: EmoteDescV2[]) => void) {
+  onImportEmoteDesc(callback: (ctx: ReducerEventContext, records: EmoteDesc[]) => void) {
     this.connection.onReducer("import_emote_desc", callback);
   }
 
-  removeOnImportEmoteDesc(callback: (ctx: ReducerEventContext, records: EmoteDescV2[]) => void) {
+  removeOnImportEmoteDesc(callback: (ctx: ReducerEventContext, records: EmoteDesc[]) => void) {
     this.connection.offReducer("import_emote_desc", callback);
   }
 
@@ -16932,7 +16981,7 @@ export class RemoteReducers {
     this.connection.offReducer("import_onboarding_state", callback);
   }
 
-  importParametersDesc(records: ParametersDescV2[]) {
+  importParametersDesc(records: ParametersDesc[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
     ImportParametersDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
@@ -16940,11 +16989,11 @@ export class RemoteReducers {
     this.connection.callReducer("import_parameters_desc", __argsBuffer, this.setCallReducerFlags.importParametersDescFlags);
   }
 
-  onImportParametersDesc(callback: (ctx: ReducerEventContext, records: ParametersDescV2[]) => void) {
+  onImportParametersDesc(callback: (ctx: ReducerEventContext, records: ParametersDesc[]) => void) {
     this.connection.onReducer("import_parameters_desc", callback);
   }
 
-  removeOnImportParametersDesc(callback: (ctx: ReducerEventContext, records: ParametersDescV2[]) => void) {
+  removeOnImportParametersDesc(callback: (ctx: ReducerEventContext, records: ParametersDesc[]) => void) {
     this.connection.offReducer("import_parameters_desc", callback);
   }
 
@@ -17332,7 +17381,7 @@ export class RemoteReducers {
     this.connection.offReducer("import_resource_growth_recipe_desc", callback);
   }
 
-  importResourcePlacementRecipeDesc(records: ResourcePlacementRecipeDescV2[]) {
+  importResourcePlacementRecipeDesc(records: ResourcePlacementRecipeDesc[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
     ImportResourcePlacementRecipeDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
@@ -17340,11 +17389,11 @@ export class RemoteReducers {
     this.connection.callReducer("import_resource_placement_recipe_desc", __argsBuffer, this.setCallReducerFlags.importResourcePlacementRecipeDescFlags);
   }
 
-  onImportResourcePlacementRecipeDesc(callback: (ctx: ReducerEventContext, records: ResourcePlacementRecipeDescV2[]) => void) {
+  onImportResourcePlacementRecipeDesc(callback: (ctx: ReducerEventContext, records: ResourcePlacementRecipeDesc[]) => void) {
     this.connection.onReducer("import_resource_placement_recipe_desc", callback);
   }
 
-  removeOnImportResourcePlacementRecipeDesc(callback: (ctx: ReducerEventContext, records: ResourcePlacementRecipeDescV2[]) => void) {
+  removeOnImportResourcePlacementRecipeDesc(callback: (ctx: ReducerEventContext, records: ResourcePlacementRecipeDesc[]) => void) {
     this.connection.offReducer("import_resource_placement_recipe_desc", callback);
   }
 
@@ -17826,6 +17875,22 @@ export class RemoteReducers {
 
   removeOnImportWorldRegionState(callback: (ctx: ReducerEventContext, records: WorldRegionState[]) => void) {
     this.connection.offReducer("import_world_region_state", callback);
+  }
+
+  initRegionInfo(worldWidth: number, worldHeight: number, regionIndex: number, regionCount: number) {
+    const __args = { worldWidth, worldHeight, regionIndex, regionCount };
+    let __writer = new BinaryWriter(1024);
+    InitRegionInfo.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("init_region_info", __argsBuffer, this.setCallReducerFlags.initRegionInfoFlags);
+  }
+
+  onInitRegionInfo(callback: (ctx: ReducerEventContext, worldWidth: number, worldHeight: number, regionIndex: number, regionCount: number) => void) {
+    this.connection.onReducer("init_region_info", callback);
+  }
+
+  removeOnInitRegionInfo(callback: (ctx: ReducerEventContext, worldWidth: number, worldHeight: number, regionIndex: number, regionCount: number) => void) {
+    this.connection.offReducer("init_region_info", callback);
   }
 
   insertDeveloperIdentity(identity: string, developerName: string, serviceName: string, email: string, isExternal: boolean) {
@@ -19060,7 +19125,7 @@ export class RemoteReducers {
     this.connection.offReducer("player_set_name_outcome_event_reducer", callback);
   }
 
-  playerSettingsStateUpdate(playerSettingsState: PlayerSettingsStateV2) {
+  playerSettingsStateUpdate(playerSettingsState: PlayerSettingsState) {
     const __args = { playerSettingsState };
     let __writer = new BinaryWriter(1024);
     PlayerSettingsStateUpdate.getTypeScriptAlgebraicType().serialize(__writer, __args);
@@ -19068,11 +19133,11 @@ export class RemoteReducers {
     this.connection.callReducer("player_settings_state_update", __argsBuffer, this.setCallReducerFlags.playerSettingsStateUpdateFlags);
   }
 
-  onPlayerSettingsStateUpdate(callback: (ctx: ReducerEventContext, playerSettingsState: PlayerSettingsStateV2) => void) {
+  onPlayerSettingsStateUpdate(callback: (ctx: ReducerEventContext, playerSettingsState: PlayerSettingsState) => void) {
     this.connection.onReducer("player_settings_state_update", callback);
   }
 
-  removeOnPlayerSettingsStateUpdate(callback: (ctx: ReducerEventContext, playerSettingsState: PlayerSettingsStateV2) => void) {
+  removeOnPlayerSettingsStateUpdate(callback: (ctx: ReducerEventContext, playerSettingsState: PlayerSettingsState) => void) {
     this.connection.offReducer("player_settings_state_update", callback);
   }
 
@@ -19220,7 +19285,7 @@ export class RemoteReducers {
     this.connection.offReducer("portal_enter", callback);
   }
 
-  processInterModuleMessage(sender: number, message: InterModuleMessageV4) {
+  processInterModuleMessage(sender: number, message: InterModuleMessage) {
     const __args = { sender, message };
     let __writer = new BinaryWriter(1024);
     ProcessInterModuleMessage.getTypeScriptAlgebraicType().serialize(__writer, __args);
@@ -19228,11 +19293,11 @@ export class RemoteReducers {
     this.connection.callReducer("process_inter_module_message", __argsBuffer, this.setCallReducerFlags.processInterModuleMessageFlags);
   }
 
-  onProcessInterModuleMessage(callback: (ctx: ReducerEventContext, sender: number, message: InterModuleMessageV4) => void) {
+  onProcessInterModuleMessage(callback: (ctx: ReducerEventContext, sender: number, message: InterModuleMessage) => void) {
     this.connection.onReducer("process_inter_module_message", callback);
   }
 
-  removeOnProcessInterModuleMessage(callback: (ctx: ReducerEventContext, sender: number, message: InterModuleMessageV4) => void) {
+  removeOnProcessInterModuleMessage(callback: (ctx: ReducerEventContext, sender: number, message: InterModuleMessage) => void) {
     this.connection.offReducer("process_inter_module_message", callback);
   }
 
@@ -19848,20 +19913,20 @@ export class RemoteReducers {
     this.connection.offReducer("set_home", callback);
   }
 
-  setQuestChainActive(id: number) {
-    const __args = { id };
+  setQuestTracked(id: number, tracked: boolean) {
+    const __args = { id, tracked };
     let __writer = new BinaryWriter(1024);
-    SetQuestChainActive.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    SetQuestTracked.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
-    this.connection.callReducer("set_quest_chain_active", __argsBuffer, this.setCallReducerFlags.setQuestChainActiveFlags);
+    this.connection.callReducer("set_quest_tracked", __argsBuffer, this.setCallReducerFlags.setQuestTrackedFlags);
   }
 
-  onSetQuestChainActive(callback: (ctx: ReducerEventContext, id: number) => void) {
-    this.connection.onReducer("set_quest_chain_active", callback);
+  onSetQuestTracked(callback: (ctx: ReducerEventContext, id: number, tracked: boolean) => void) {
+    this.connection.onReducer("set_quest_tracked", callback);
   }
 
-  removeOnSetQuestChainActive(callback: (ctx: ReducerEventContext, id: number) => void) {
-    this.connection.offReducer("set_quest_chain_active", callback);
+  removeOnSetQuestTracked(callback: (ctx: ReducerEventContext, id: number, tracked: boolean) => void) {
+    this.connection.offReducer("set_quest_tracked", callback);
   }
 
   signIn(request: PlayerSignInRequest) {
@@ -20032,6 +20097,22 @@ export class RemoteReducers {
     this.connection.offReducer("stage_buff_type_desc", callback);
   }
 
+  stageBuildingBuffDesc(records: BuildingBuffDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    StageBuildingBuffDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("stage_building_buff_desc", __argsBuffer, this.setCallReducerFlags.stageBuildingBuffDescFlags);
+  }
+
+  onStageBuildingBuffDesc(callback: (ctx: ReducerEventContext, records: BuildingBuffDesc[]) => void) {
+    this.connection.onReducer("stage_building_buff_desc", callback);
+  }
+
+  removeOnStageBuildingBuffDesc(callback: (ctx: ReducerEventContext, records: BuildingBuffDesc[]) => void) {
+    this.connection.offReducer("stage_building_buff_desc", callback);
+  }
+
   stageBuildingClaimDesc(records: BuildingClaimDesc[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
@@ -20064,20 +20145,20 @@ export class RemoteReducers {
     this.connection.offReducer("stage_building_desc", callback);
   }
 
-  stageBuildingPortalDescV2(records: BuildingPortalDescV2[]) {
+  stageBuildingPortalDesc(records: BuildingPortalDesc[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
-    StageBuildingPortalDescV2.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    StageBuildingPortalDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
-    this.connection.callReducer("stage_building_portal_desc_v2", __argsBuffer, this.setCallReducerFlags.stageBuildingPortalDescV2Flags);
+    this.connection.callReducer("stage_building_portal_desc", __argsBuffer, this.setCallReducerFlags.stageBuildingPortalDescFlags);
   }
 
-  onStageBuildingPortalDescV2(callback: (ctx: ReducerEventContext, records: BuildingPortalDescV2[]) => void) {
-    this.connection.onReducer("stage_building_portal_desc_v2", callback);
+  onStageBuildingPortalDesc(callback: (ctx: ReducerEventContext, records: BuildingPortalDesc[]) => void) {
+    this.connection.onReducer("stage_building_portal_desc", callback);
   }
 
-  removeOnStageBuildingPortalDescV2(callback: (ctx: ReducerEventContext, records: BuildingPortalDescV2[]) => void) {
-    this.connection.offReducer("stage_building_portal_desc_v2", callback);
+  removeOnStageBuildingPortalDesc(callback: (ctx: ReducerEventContext, records: BuildingPortalDesc[]) => void) {
+    this.connection.offReducer("stage_building_portal_desc", callback);
   }
 
   stageBuildingRepairsDesc(records: BuildingRepairsDesc[]) {
@@ -20176,20 +20257,20 @@ export class RemoteReducers {
     this.connection.offReducer("stage_chest_rarity_desc", callback);
   }
 
-  stageClaimTechDescV2(records: ClaimTechDescV2[]) {
+  stageClaimTechDesc(records: ClaimTechDesc[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
-    StageClaimTechDescV2.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    StageClaimTechDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
-    this.connection.callReducer("stage_claim_tech_desc_v2", __argsBuffer, this.setCallReducerFlags.stageClaimTechDescV2Flags);
+    this.connection.callReducer("stage_claim_tech_desc", __argsBuffer, this.setCallReducerFlags.stageClaimTechDescFlags);
   }
 
-  onStageClaimTechDescV2(callback: (ctx: ReducerEventContext, records: ClaimTechDescV2[]) => void) {
-    this.connection.onReducer("stage_claim_tech_desc_v2", callback);
+  onStageClaimTechDesc(callback: (ctx: ReducerEventContext, records: ClaimTechDesc[]) => void) {
+    this.connection.onReducer("stage_claim_tech_desc", callback);
   }
 
-  removeOnStageClaimTechDescV2(callback: (ctx: ReducerEventContext, records: ClaimTechDescV2[]) => void) {
-    this.connection.offReducer("stage_claim_tech_desc_v2", callback);
+  removeOnStageClaimTechDesc(callback: (ctx: ReducerEventContext, records: ClaimTechDesc[]) => void) {
+    this.connection.offReducer("stage_claim_tech_desc", callback);
   }
 
   stageClaimTileCost(records: ClaimTileCost[]) {
@@ -20256,20 +20337,20 @@ export class RemoteReducers {
     this.connection.offReducer("stage_collectible_desc", callback);
   }
 
-  stageCombatActionDescV3(records: CombatActionDescV3[]) {
+  stageCombatActionDesc(records: CombatActionDesc[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
-    StageCombatActionDescV3.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    StageCombatActionDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
-    this.connection.callReducer("stage_combat_action_desc_v3", __argsBuffer, this.setCallReducerFlags.stageCombatActionDescV3Flags);
+    this.connection.callReducer("stage_combat_action_desc", __argsBuffer, this.setCallReducerFlags.stageCombatActionDescFlags);
   }
 
-  onStageCombatActionDescV3(callback: (ctx: ReducerEventContext, records: CombatActionDescV3[]) => void) {
-    this.connection.onReducer("stage_combat_action_desc_v3", callback);
+  onStageCombatActionDesc(callback: (ctx: ReducerEventContext, records: CombatActionDesc[]) => void) {
+    this.connection.onReducer("stage_combat_action_desc", callback);
   }
 
-  removeOnStageCombatActionDescV3(callback: (ctx: ReducerEventContext, records: CombatActionDescV3[]) => void) {
-    this.connection.offReducer("stage_combat_action_desc_v3", callback);
+  removeOnStageCombatActionDesc(callback: (ctx: ReducerEventContext, records: CombatActionDesc[]) => void) {
+    this.connection.offReducer("stage_combat_action_desc", callback);
   }
 
   stageCombatActionMultiHitDesc(records: CombatActionMultiHitDesc[]) {
@@ -20288,23 +20369,23 @@ export class RemoteReducers {
     this.connection.offReducer("stage_combat_action_multi_hit_desc", callback);
   }
 
-  stageConstructionRecipeDescV2(records: ConstructionRecipeDescV2[]) {
+  stageConstructionRecipeDesc(records: ConstructionRecipeDesc[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
-    StageConstructionRecipeDescV2.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    StageConstructionRecipeDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
-    this.connection.callReducer("stage_construction_recipe_desc_v2", __argsBuffer, this.setCallReducerFlags.stageConstructionRecipeDescV2Flags);
+    this.connection.callReducer("stage_construction_recipe_desc", __argsBuffer, this.setCallReducerFlags.stageConstructionRecipeDescFlags);
   }
 
-  onStageConstructionRecipeDescV2(callback: (ctx: ReducerEventContext, records: ConstructionRecipeDescV2[]) => void) {
-    this.connection.onReducer("stage_construction_recipe_desc_v2", callback);
+  onStageConstructionRecipeDesc(callback: (ctx: ReducerEventContext, records: ConstructionRecipeDesc[]) => void) {
+    this.connection.onReducer("stage_construction_recipe_desc", callback);
   }
 
-  removeOnStageConstructionRecipeDescV2(callback: (ctx: ReducerEventContext, records: ConstructionRecipeDescV2[]) => void) {
-    this.connection.offReducer("stage_construction_recipe_desc_v2", callback);
+  removeOnStageConstructionRecipeDesc(callback: (ctx: ReducerEventContext, records: ConstructionRecipeDesc[]) => void) {
+    this.connection.offReducer("stage_construction_recipe_desc", callback);
   }
 
-  stageContributionLootDesc(records: ContributionLootDescV2[]) {
+  stageContributionLootDesc(records: ContributionLootDesc[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
     StageContributionLootDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
@@ -20312,11 +20393,11 @@ export class RemoteReducers {
     this.connection.callReducer("stage_contribution_loot_desc", __argsBuffer, this.setCallReducerFlags.stageContributionLootDescFlags);
   }
 
-  onStageContributionLootDesc(callback: (ctx: ReducerEventContext, records: ContributionLootDescV2[]) => void) {
+  onStageContributionLootDesc(callback: (ctx: ReducerEventContext, records: ContributionLootDesc[]) => void) {
     this.connection.onReducer("stage_contribution_loot_desc", callback);
   }
 
-  removeOnStageContributionLootDesc(callback: (ctx: ReducerEventContext, records: ContributionLootDescV2[]) => void) {
+  removeOnStageContributionLootDesc(callback: (ctx: ReducerEventContext, records: ContributionLootDesc[]) => void) {
     this.connection.offReducer("stage_contribution_loot_desc", callback);
   }
 
@@ -20352,7 +20433,7 @@ export class RemoteReducers {
     this.connection.offReducer("stage_deconstruction_recipe_desc", callback);
   }
 
-  stageDeployableDesc(records: DeployableDescV4[]) {
+  stageDeployableDesc(records: DeployableDesc[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
     StageDeployableDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
@@ -20360,11 +20441,11 @@ export class RemoteReducers {
     this.connection.callReducer("stage_deployable_desc", __argsBuffer, this.setCallReducerFlags.stageDeployableDescFlags);
   }
 
-  onStageDeployableDesc(callback: (ctx: ReducerEventContext, records: DeployableDescV4[]) => void) {
+  onStageDeployableDesc(callback: (ctx: ReducerEventContext, records: DeployableDesc[]) => void) {
     this.connection.onReducer("stage_deployable_desc", callback);
   }
 
-  removeOnStageDeployableDesc(callback: (ctx: ReducerEventContext, records: DeployableDescV4[]) => void) {
+  removeOnStageDeployableDesc(callback: (ctx: ReducerEventContext, records: DeployableDesc[]) => void) {
     this.connection.offReducer("stage_deployable_desc", callback);
   }
 
@@ -20400,7 +20481,7 @@ export class RemoteReducers {
     this.connection.offReducer("stage_elevator_desc", callback);
   }
 
-  stageEmoteDesc(records: EmoteDescV2[]) {
+  stageEmoteDesc(records: EmoteDesc[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
     StageEmoteDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
@@ -20408,11 +20489,11 @@ export class RemoteReducers {
     this.connection.callReducer("stage_emote_desc", __argsBuffer, this.setCallReducerFlags.stageEmoteDescFlags);
   }
 
-  onStageEmoteDesc(callback: (ctx: ReducerEventContext, records: EmoteDescV2[]) => void) {
+  onStageEmoteDesc(callback: (ctx: ReducerEventContext, records: EmoteDesc[]) => void) {
     this.connection.onReducer("stage_emote_desc", callback);
   }
 
-  removeOnStageEmoteDesc(callback: (ctx: ReducerEventContext, records: EmoteDescV2[]) => void) {
+  removeOnStageEmoteDesc(callback: (ctx: ReducerEventContext, records: EmoteDesc[]) => void) {
     this.connection.offReducer("stage_emote_desc", callback);
   }
 
@@ -20928,7 +21009,7 @@ export class RemoteReducers {
     this.connection.offReducer("stage_onboarding_reward_desc", callback);
   }
 
-  stageParametersDesc(records: ParametersDescV2[]) {
+  stageParametersDesc(records: ParametersDesc[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
     StageParametersDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
@@ -20936,11 +21017,11 @@ export class RemoteReducers {
     this.connection.callReducer("stage_parameters_desc", __argsBuffer, this.setCallReducerFlags.stageParametersDescFlags);
   }
 
-  onStageParametersDesc(callback: (ctx: ReducerEventContext, records: ParametersDescV2[]) => void) {
+  onStageParametersDesc(callback: (ctx: ReducerEventContext, records: ParametersDesc[]) => void) {
     this.connection.onReducer("stage_parameters_desc", callback);
   }
 
-  removeOnStageParametersDesc(callback: (ctx: ReducerEventContext, records: ParametersDescV2[]) => void) {
+  removeOnStageParametersDesc(callback: (ctx: ReducerEventContext, records: ParametersDesc[]) => void) {
     this.connection.offReducer("stage_parameters_desc", callback);
   }
 
@@ -21184,20 +21265,20 @@ export class RemoteReducers {
     this.connection.offReducer("stage_resource_growth_recipe_desc", callback);
   }
 
-  stageResourcePlacementRecipeDescV2(records: ResourcePlacementRecipeDescV2[]) {
+  stageResourcePlacementRecipeDesc(records: ResourcePlacementRecipeDesc[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
-    StageResourcePlacementRecipeDescV2.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    StageResourcePlacementRecipeDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
     let __argsBuffer = __writer.getBuffer();
-    this.connection.callReducer("stage_resource_placement_recipe_desc_v2", __argsBuffer, this.setCallReducerFlags.stageResourcePlacementRecipeDescV2Flags);
+    this.connection.callReducer("stage_resource_placement_recipe_desc", __argsBuffer, this.setCallReducerFlags.stageResourcePlacementRecipeDescFlags);
   }
 
-  onStageResourcePlacementRecipeDescV2(callback: (ctx: ReducerEventContext, records: ResourcePlacementRecipeDescV2[]) => void) {
-    this.connection.onReducer("stage_resource_placement_recipe_desc_v2", callback);
+  onStageResourcePlacementRecipeDesc(callback: (ctx: ReducerEventContext, records: ResourcePlacementRecipeDesc[]) => void) {
+    this.connection.onReducer("stage_resource_placement_recipe_desc", callback);
   }
 
-  removeOnStageResourcePlacementRecipeDescV2(callback: (ctx: ReducerEventContext, records: ResourcePlacementRecipeDescV2[]) => void) {
-    this.connection.offReducer("stage_resource_placement_recipe_desc_v2", callback);
+  removeOnStageResourcePlacementRecipeDesc(callback: (ctx: ReducerEventContext, records: ResourcePlacementRecipeDesc[]) => void) {
+    this.connection.offReducer("stage_resource_placement_recipe_desc", callback);
   }
 
   stageSecondaryKnowledgeDesc(records: SecondaryKnowledgeDesc[]) {
@@ -21860,6 +21941,22 @@ export class RemoteReducers {
     this.connection.offReducer("update_scheduled_timers_from_static_data", callback);
   }
 
+  worldClearNpcWatchtowers(buildingEntityIds: bigint[]) {
+    const __args = { buildingEntityIds };
+    let __writer = new BinaryWriter(1024);
+    WorldClearNpcWatchtowers.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("world_clear_npc_watchtowers", __argsBuffer, this.setCallReducerFlags.worldClearNpcWatchtowersFlags);
+  }
+
+  onWorldClearNpcWatchtowers(callback: (ctx: ReducerEventContext, buildingEntityIds: bigint[]) => void) {
+    this.connection.onReducer("world_clear_npc_watchtowers", callback);
+  }
+
+  removeOnWorldClearNpcWatchtowers(callback: (ctx: ReducerEventContext, buildingEntityIds: bigint[]) => void) {
+    this.connection.offReducer("world_clear_npc_watchtowers", callback);
+  }
+
   worldPlaceBuilding(request: WorldPlaceBuildingRequest) {
     const __args = { request };
     let __writer = new BinaryWriter(1024);
@@ -21874,6 +21971,22 @@ export class RemoteReducers {
 
   removeOnWorldPlaceBuilding(callback: (ctx: ReducerEventContext, request: WorldPlaceBuildingRequest) => void) {
     this.connection.offReducer("world_place_building", callback);
+  }
+
+  worldPlaceNpcWatchtowers(watchtowerPositions: OffsetCoordinatesSmallMessage[], watchtowerChunkIndexes: bigint[][], energy: number, upkeep: number, buildingDescId: number, biomes: number[], dryRun: boolean, logResults: boolean, clearAndLevelGround: boolean, ignoreBiomes: boolean, ignoreClaims: boolean, ignoreDimensionRules: boolean) {
+    const __args = { watchtowerPositions, watchtowerChunkIndexes, energy, upkeep, buildingDescId, biomes, dryRun, logResults, clearAndLevelGround, ignoreBiomes, ignoreClaims, ignoreDimensionRules };
+    let __writer = new BinaryWriter(1024);
+    WorldPlaceNpcWatchtowers.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("world_place_npc_watchtowers", __argsBuffer, this.setCallReducerFlags.worldPlaceNpcWatchtowersFlags);
+  }
+
+  onWorldPlaceNpcWatchtowers(callback: (ctx: ReducerEventContext, watchtowerPositions: OffsetCoordinatesSmallMessage[], watchtowerChunkIndexes: bigint[][], energy: number, upkeep: number, buildingDescId: number, biomes: number[], dryRun: boolean, logResults: boolean, clearAndLevelGround: boolean, ignoreBiomes: boolean, ignoreClaims: boolean, ignoreDimensionRules: boolean) => void) {
+    this.connection.onReducer("world_place_npc_watchtowers", callback);
+  }
+
+  removeOnWorldPlaceNpcWatchtowers(callback: (ctx: ReducerEventContext, watchtowerPositions: OffsetCoordinatesSmallMessage[], watchtowerChunkIndexes: bigint[][], energy: number, upkeep: number, buildingDescId: number, biomes: number[], dryRun: boolean, logResults: boolean, clearAndLevelGround: boolean, ignoreBiomes: boolean, ignoreClaims: boolean, ignoreDimensionRules: boolean) => void) {
+    this.connection.offReducer("world_place_npc_watchtowers", callback);
   }
 
   worldPlaceResource(request: WorldPlaceResourceRequest) {
@@ -21923,6 +22036,11 @@ export class SetReducerFlags {
   acquireKnowledgeFromEntitiesFlags: CallReducerFlags = 'FullUpdate';
   acquireKnowledgeFromEntities(flags: CallReducerFlags) {
     this.acquireKnowledgeFromEntitiesFlags = flags;
+  }
+
+  activateBuildingBuffFlags: CallReducerFlags = 'FullUpdate';
+  activateBuildingBuff(flags: CallReducerFlags) {
+    this.activateBuildingBuffFlags = flags;
   }
 
   adminAddSpecificBuildingTypeStatesFlags: CallReducerFlags = 'FullUpdate';
@@ -22070,6 +22188,11 @@ export class SetReducerFlags {
     this.adminDungeonUpdatePortalsFlags = flags;
   }
 
+  adminFailQuestFlags: CallReducerFlags = 'FullUpdate';
+  adminFailQuest(flags: CallReducerFlags) {
+    this.adminFailQuestFlags = flags;
+  }
+
   adminFindAllPlayersWithItemFlags: CallReducerFlags = 'FullUpdate';
   adminFindAllPlayersWithItem(flags: CallReducerFlags) {
     this.adminFindAllPlayersWithItemFlags = flags;
@@ -22103,11 +22226,6 @@ export class SetReducerFlags {
   adminMigrateActionStateFlags: CallReducerFlags = 'FullUpdate';
   adminMigrateActionState(flags: CallReducerFlags) {
     this.adminMigrateActionStateFlags = flags;
-  }
-
-  adminMigrateHousingFlags: CallReducerFlags = 'FullUpdate';
-  adminMigrateHousing(flags: CallReducerFlags) {
-    this.adminMigrateHousingFlags = flags;
   }
 
   adminMigrateTradeOrdersFlags: CallReducerFlags = 'FullUpdate';
@@ -22210,6 +22328,11 @@ export class SetReducerFlags {
     this.adminRestorePlayerStateScheduledFlags = flags;
   }
 
+  adminSetRegionControlStateFlags: CallReducerFlags = 'FullUpdate';
+  adminSetRegionControlState(flags: CallReducerFlags) {
+    this.adminSetRegionControlStateFlags = flags;
+  }
+
   adminSetResourceWorldTargetFlags: CallReducerFlags = 'FullUpdate';
   adminSetResourceWorldTarget(flags: CallReducerFlags) {
     this.adminSetResourceWorldTargetFlags = flags;
@@ -22263,6 +22386,11 @@ export class SetReducerFlags {
   adminUpdateLoreKnowledgeFlags: CallReducerFlags = 'FullUpdate';
   adminUpdateLoreKnowledge(flags: CallReducerFlags) {
     this.adminUpdateLoreKnowledgeFlags = flags;
+  }
+
+  adminUpdateRegionModerationConfigFlags: CallReducerFlags = 'FullUpdate';
+  adminUpdateRegionModerationConfig(flags: CallReducerFlags) {
+    this.adminUpdateRegionModerationConfigFlags = flags;
   }
 
   advanceQuestStageFlags: CallReducerFlags = 'FullUpdate';
@@ -22533,6 +22661,11 @@ export class SetReducerFlags {
   cheatQuestAdvanceToHandinFlags: CallReducerFlags = 'FullUpdate';
   cheatQuestAdvanceToHandin(flags: CallReducerFlags) {
     this.cheatQuestAdvanceToHandinFlags = flags;
+  }
+
+  cheatQuestClearFlags: CallReducerFlags = 'FullUpdate';
+  cheatQuestClear(flags: CallReducerFlags) {
+    this.cheatQuestClearFlags = flags;
   }
 
   cheatQuestRestartFlags: CallReducerFlags = 'FullUpdate';
@@ -22865,6 +22998,11 @@ export class SetReducerFlags {
     this.deployableDismountScheduledFlags = flags;
   }
 
+  deployableDismountServerFlags: CallReducerFlags = 'FullUpdate';
+  deployableDismountServer(flags: CallReducerFlags) {
+    this.deployableDismountServerFlags = flags;
+  }
+
   deployableFollowFlags: CallReducerFlags = 'FullUpdate';
   deployableFollow(flags: CallReducerFlags) {
     this.deployableFollowFlags = flags;
@@ -22985,6 +23123,11 @@ export class SetReducerFlags {
     this.empireCollectHexiteCapsuleFlags = flags;
   }
 
+  empireCreateFlags: CallReducerFlags = 'FullUpdate';
+  empireCreate(flags: CallReducerFlags) {
+    this.empireCreateFlags = flags;
+  }
+
   empireDeploySiegeEngineFlags: CallReducerFlags = 'FullUpdate';
   empireDeploySiegeEngine(flags: CallReducerFlags) {
     this.empireDeploySiegeEngineFlags = flags;
@@ -22993,6 +23136,11 @@ export class SetReducerFlags {
   empireDeploySiegeEngineStartFlags: CallReducerFlags = 'FullUpdate';
   empireDeploySiegeEngineStart(flags: CallReducerFlags) {
     this.empireDeploySiegeEngineStartFlags = flags;
+  }
+
+  empireDonateItemFlags: CallReducerFlags = 'FullUpdate';
+  empireDonateItem(flags: CallReducerFlags) {
+    this.empireDonateItemFlags = flags;
   }
 
   empireQueueSuppliesFlags: CallReducerFlags = 'FullUpdate';
@@ -23190,6 +23338,11 @@ export class SetReducerFlags {
     this.importBuffTypeDescFlags = flags;
   }
 
+  importBuildingBuffDescFlags: CallReducerFlags = 'FullUpdate';
+  importBuildingBuffDesc(flags: CallReducerFlags) {
+    this.importBuildingBuffDescFlags = flags;
+  }
+
   importBuildingClaimDescFlags: CallReducerFlags = 'FullUpdate';
   importBuildingClaimDesc(flags: CallReducerFlags) {
     this.importBuildingClaimDescFlags = flags;
@@ -23200,9 +23353,9 @@ export class SetReducerFlags {
     this.importBuildingDescFlags = flags;
   }
 
-  importBuildingPortalDescV2Flags: CallReducerFlags = 'FullUpdate';
-  importBuildingPortalDescV2(flags: CallReducerFlags) {
-    this.importBuildingPortalDescV2Flags = flags;
+  importBuildingPortalDescFlags: CallReducerFlags = 'FullUpdate';
+  importBuildingPortalDesc(flags: CallReducerFlags) {
+    this.importBuildingPortalDescFlags = flags;
   }
 
   importBuildingRepairsDescFlags: CallReducerFlags = 'FullUpdate';
@@ -23300,9 +23453,9 @@ export class SetReducerFlags {
     this.importCollectibleDescFlags = flags;
   }
 
-  importCombatActionDescV3Flags: CallReducerFlags = 'FullUpdate';
-  importCombatActionDescV3(flags: CallReducerFlags) {
-    this.importCombatActionDescV3Flags = flags;
+  importCombatActionDescFlags: CallReducerFlags = 'FullUpdate';
+  importCombatActionDesc(flags: CallReducerFlags) {
+    this.importCombatActionDescFlags = flags;
   }
 
   importCombatActionMultiHitDescFlags: CallReducerFlags = 'FullUpdate';
@@ -24010,6 +24163,11 @@ export class SetReducerFlags {
     this.importWorldRegionStateFlags = flags;
   }
 
+  initRegionInfoFlags: CallReducerFlags = 'FullUpdate';
+  initRegionInfo(flags: CallReducerFlags) {
+    this.initRegionInfoFlags = flags;
+  }
+
   insertDeveloperIdentityFlags: CallReducerFlags = 'FullUpdate';
   insertDeveloperIdentity(flags: CallReducerFlags) {
     this.insertDeveloperIdentityFlags = flags;
@@ -24660,9 +24818,9 @@ export class SetReducerFlags {
     this.setHomeFlags = flags;
   }
 
-  setQuestChainActiveFlags: CallReducerFlags = 'FullUpdate';
-  setQuestChainActive(flags: CallReducerFlags) {
-    this.setQuestChainActiveFlags = flags;
+  setQuestTrackedFlags: CallReducerFlags = 'FullUpdate';
+  setQuestTracked(flags: CallReducerFlags) {
+    this.setQuestTrackedFlags = flags;
   }
 
   signInFlags: CallReducerFlags = 'FullUpdate';
@@ -24720,6 +24878,11 @@ export class SetReducerFlags {
     this.stageBuffTypeDescFlags = flags;
   }
 
+  stageBuildingBuffDescFlags: CallReducerFlags = 'FullUpdate';
+  stageBuildingBuffDesc(flags: CallReducerFlags) {
+    this.stageBuildingBuffDescFlags = flags;
+  }
+
   stageBuildingClaimDescFlags: CallReducerFlags = 'FullUpdate';
   stageBuildingClaimDesc(flags: CallReducerFlags) {
     this.stageBuildingClaimDescFlags = flags;
@@ -24730,9 +24893,9 @@ export class SetReducerFlags {
     this.stageBuildingDescFlags = flags;
   }
 
-  stageBuildingPortalDescV2Flags: CallReducerFlags = 'FullUpdate';
-  stageBuildingPortalDescV2(flags: CallReducerFlags) {
-    this.stageBuildingPortalDescV2Flags = flags;
+  stageBuildingPortalDescFlags: CallReducerFlags = 'FullUpdate';
+  stageBuildingPortalDesc(flags: CallReducerFlags) {
+    this.stageBuildingPortalDescFlags = flags;
   }
 
   stageBuildingRepairsDescFlags: CallReducerFlags = 'FullUpdate';
@@ -24765,9 +24928,9 @@ export class SetReducerFlags {
     this.stageChestRarityDescFlags = flags;
   }
 
-  stageClaimTechDescV2Flags: CallReducerFlags = 'FullUpdate';
-  stageClaimTechDescV2(flags: CallReducerFlags) {
-    this.stageClaimTechDescV2Flags = flags;
+  stageClaimTechDescFlags: CallReducerFlags = 'FullUpdate';
+  stageClaimTechDesc(flags: CallReducerFlags) {
+    this.stageClaimTechDescFlags = flags;
   }
 
   stageClaimTileCostFlags: CallReducerFlags = 'FullUpdate';
@@ -24790,9 +24953,9 @@ export class SetReducerFlags {
     this.stageCollectibleDescFlags = flags;
   }
 
-  stageCombatActionDescV3Flags: CallReducerFlags = 'FullUpdate';
-  stageCombatActionDescV3(flags: CallReducerFlags) {
-    this.stageCombatActionDescV3Flags = flags;
+  stageCombatActionDescFlags: CallReducerFlags = 'FullUpdate';
+  stageCombatActionDesc(flags: CallReducerFlags) {
+    this.stageCombatActionDescFlags = flags;
   }
 
   stageCombatActionMultiHitDescFlags: CallReducerFlags = 'FullUpdate';
@@ -24800,9 +24963,9 @@ export class SetReducerFlags {
     this.stageCombatActionMultiHitDescFlags = flags;
   }
 
-  stageConstructionRecipeDescV2Flags: CallReducerFlags = 'FullUpdate';
-  stageConstructionRecipeDescV2(flags: CallReducerFlags) {
-    this.stageConstructionRecipeDescV2Flags = flags;
+  stageConstructionRecipeDescFlags: CallReducerFlags = 'FullUpdate';
+  stageConstructionRecipeDesc(flags: CallReducerFlags) {
+    this.stageConstructionRecipeDescFlags = flags;
   }
 
   stageContributionLootDescFlags: CallReducerFlags = 'FullUpdate';
@@ -25080,9 +25243,9 @@ export class SetReducerFlags {
     this.stageResourceGrowthRecipeDescFlags = flags;
   }
 
-  stageResourcePlacementRecipeDescV2Flags: CallReducerFlags = 'FullUpdate';
-  stageResourcePlacementRecipeDescV2(flags: CallReducerFlags) {
-    this.stageResourcePlacementRecipeDescV2Flags = flags;
+  stageResourcePlacementRecipeDescFlags: CallReducerFlags = 'FullUpdate';
+  stageResourcePlacementRecipeDesc(flags: CallReducerFlags) {
+    this.stageResourcePlacementRecipeDescFlags = flags;
   }
 
   stageSecondaryKnowledgeDescFlags: CallReducerFlags = 'FullUpdate';
@@ -25295,9 +25458,19 @@ export class SetReducerFlags {
     this.updateScheduledTimersFromStaticDataFlags = flags;
   }
 
+  worldClearNpcWatchtowersFlags: CallReducerFlags = 'FullUpdate';
+  worldClearNpcWatchtowers(flags: CallReducerFlags) {
+    this.worldClearNpcWatchtowersFlags = flags;
+  }
+
   worldPlaceBuildingFlags: CallReducerFlags = 'FullUpdate';
   worldPlaceBuilding(flags: CallReducerFlags) {
     this.worldPlaceBuildingFlags = flags;
+  }
+
+  worldPlaceNpcWatchtowersFlags: CallReducerFlags = 'FullUpdate';
+  worldPlaceNpcWatchtowers(flags: CallReducerFlags) {
+    this.worldPlaceNpcWatchtowersFlags = flags;
   }
 
   worldPlaceResourceFlags: CallReducerFlags = 'FullUpdate';
@@ -25340,6 +25513,10 @@ export class RemoteTables {
 
   get activeBuffState(): ActiveBuffStateTableHandle {
     return new ActiveBuffStateTableHandle(this.connection.clientCache.getOrCreateTable<ActiveBuffState>(REMOTE_MODULE.tables.active_buff_state));
+  }
+
+  get activeEnvironmentBuffState(): ActiveEnvironmentBuffStateTableHandle {
+    return new ActiveEnvironmentBuffStateTableHandle(this.connection.clientCache.getOrCreateTable<ActiveEnvironmentBuffState>(REMOTE_MODULE.tables.active_environment_buff_state));
   }
 
   get adminBroadcast(): AdminBroadcastTableHandle {
@@ -25414,6 +25591,10 @@ export class RemoteTables {
     return new BuffTypeDescTableHandle(this.connection.clientCache.getOrCreateTable<BuffTypeDesc>(REMOTE_MODULE.tables.buff_type_desc));
   }
 
+  get buildingBuffDesc(): BuildingBuffDescTableHandle {
+    return new BuildingBuffDescTableHandle(this.connection.clientCache.getOrCreateTable<BuildingBuffDesc>(REMOTE_MODULE.tables.building_buff_desc));
+  }
+
   get buildingClaimDesc(): BuildingClaimDescTableHandle {
     return new BuildingClaimDescTableHandle(this.connection.clientCache.getOrCreateTable<BuildingClaimDesc>(REMOTE_MODULE.tables.building_claim_desc));
   }
@@ -25440,10 +25621,6 @@ export class RemoteTables {
 
   get buildingPortalDesc(): BuildingPortalDescTableHandle {
     return new BuildingPortalDescTableHandle(this.connection.clientCache.getOrCreateTable<BuildingPortalDesc>(REMOTE_MODULE.tables.building_portal_desc));
-  }
-
-  get buildingPortalDescV2(): BuildingPortalDescV2TableHandle {
-    return new BuildingPortalDescV2TableHandle(this.connection.clientCache.getOrCreateTable<BuildingPortalDescV2>(REMOTE_MODULE.tables.building_portal_desc_v2));
   }
 
   get buildingRepairsDesc(): BuildingRepairsDescTableHandle {
@@ -25498,6 +25675,10 @@ export class RemoteTables {
     return new ClaimLocalSupplySecurityThresholdStateTableHandle(this.connection.clientCache.getOrCreateTable<ClaimLocalSupplySecurityThresholdState>(REMOTE_MODULE.tables.claim_local_supply_security_threshold_state));
   }
 
+  get claimLowercaseNameState(): ClaimLowercaseNameStateTableHandle {
+    return new ClaimLowercaseNameStateTableHandle(this.connection.clientCache.getOrCreateTable<ClaimLowercaseNameState>(REMOTE_MODULE.tables.claim_lowercase_name_state));
+  }
+
   get claimMemberState(): ClaimMemberStateTableHandle {
     return new ClaimMemberStateTableHandle(this.connection.clientCache.getOrCreateTable<ClaimMemberState>(REMOTE_MODULE.tables.claim_member_state));
   }
@@ -25512,10 +25693,6 @@ export class RemoteTables {
 
   get claimTechDesc(): ClaimTechDescTableHandle {
     return new ClaimTechDescTableHandle(this.connection.clientCache.getOrCreateTable<ClaimTechDesc>(REMOTE_MODULE.tables.claim_tech_desc));
-  }
-
-  get claimTechDescV2(): ClaimTechDescV2TableHandle {
-    return new ClaimTechDescV2TableHandle(this.connection.clientCache.getOrCreateTable<ClaimTechDescV2>(REMOTE_MODULE.tables.claim_tech_desc_v2));
   }
 
   get claimTechState(): ClaimTechStateTableHandle {
@@ -25558,14 +25735,6 @@ export class RemoteTables {
     return new CombatActionDescTableHandle(this.connection.clientCache.getOrCreateTable<CombatActionDesc>(REMOTE_MODULE.tables.combat_action_desc));
   }
 
-  get combatActionDescV2(): CombatActionDescV2TableHandle {
-    return new CombatActionDescV2TableHandle(this.connection.clientCache.getOrCreateTable<CombatActionDescV2>(REMOTE_MODULE.tables.combat_action_desc_v2));
-  }
-
-  get combatActionDescV3(): CombatActionDescV3TableHandle {
-    return new CombatActionDescV3TableHandle(this.connection.clientCache.getOrCreateTable<CombatActionDescV3>(REMOTE_MODULE.tables.combat_action_desc_v3));
-  }
-
   get combatActionMultiHitDesc(): CombatActionMultiHitDescTableHandle {
     return new CombatActionMultiHitDescTableHandle(this.connection.clientCache.getOrCreateTable<CombatActionMultiHitDesc>(REMOTE_MODULE.tables.combat_action_multi_hit_desc));
   }
@@ -25586,16 +25755,20 @@ export class RemoteTables {
     return new ConstructionRecipeDescTableHandle(this.connection.clientCache.getOrCreateTable<ConstructionRecipeDesc>(REMOTE_MODULE.tables.construction_recipe_desc));
   }
 
-  get constructionRecipeDescV2(): ConstructionRecipeDescV2TableHandle {
-    return new ConstructionRecipeDescV2TableHandle(this.connection.clientCache.getOrCreateTable<ConstructionRecipeDescV2>(REMOTE_MODULE.tables.construction_recipe_desc_v2));
+  get constructionRecipeDiscoveryCargoDesc(): ConstructionRecipeDiscoveryCargoDescTableHandle {
+    return new ConstructionRecipeDiscoveryCargoDescTableHandle(this.connection.clientCache.getOrCreateTable<DiscoveryTriggerDesc>(REMOTE_MODULE.tables.construction_recipe_discovery_cargo_desc));
+  }
+
+  get constructionRecipeDiscoveryItemDesc(): ConstructionRecipeDiscoveryItemDescTableHandle {
+    return new ConstructionRecipeDiscoveryItemDescTableHandle(this.connection.clientCache.getOrCreateTable<DiscoveryTriggerDesc>(REMOTE_MODULE.tables.construction_recipe_discovery_item_desc));
+  }
+
+  get constructionRecipeDiscoveryKnowledgeDesc(): ConstructionRecipeDiscoveryKnowledgeDescTableHandle {
+    return new ConstructionRecipeDiscoveryKnowledgeDescTableHandle(this.connection.clientCache.getOrCreateTable<DiscoveryTriggerDesc>(REMOTE_MODULE.tables.construction_recipe_discovery_knowledge_desc));
   }
 
   get contributionLootDesc(): ContributionLootDescTableHandle {
     return new ContributionLootDescTableHandle(this.connection.clientCache.getOrCreateTable<ContributionLootDesc>(REMOTE_MODULE.tables.contribution_loot_desc));
-  }
-
-  get contributionLootDescV2(): ContributionLootDescV2TableHandle {
-    return new ContributionLootDescV2TableHandle(this.connection.clientCache.getOrCreateTable<ContributionLootDescV2>(REMOTE_MODULE.tables.contribution_loot_desc_v2));
   }
 
   get contributionState(): ContributionStateTableHandle {
@@ -25604,6 +25777,18 @@ export class RemoteTables {
 
   get craftingRecipeDesc(): CraftingRecipeDescTableHandle {
     return new CraftingRecipeDescTableHandle(this.connection.clientCache.getOrCreateTable<CraftingRecipeDesc>(REMOTE_MODULE.tables.crafting_recipe_desc));
+  }
+
+  get craftingRecipeDiscoveryCargoDesc(): CraftingRecipeDiscoveryCargoDescTableHandle {
+    return new CraftingRecipeDiscoveryCargoDescTableHandle(this.connection.clientCache.getOrCreateTable<DiscoveryTriggerDesc>(REMOTE_MODULE.tables.crafting_recipe_discovery_cargo_desc));
+  }
+
+  get craftingRecipeDiscoveryItemDesc(): CraftingRecipeDiscoveryItemDescTableHandle {
+    return new CraftingRecipeDiscoveryItemDescTableHandle(this.connection.clientCache.getOrCreateTable<DiscoveryTriggerDesc>(REMOTE_MODULE.tables.crafting_recipe_discovery_item_desc));
+  }
+
+  get craftingRecipeDiscoveryKnowledgeDesc(): CraftingRecipeDiscoveryKnowledgeDescTableHandle {
+    return new CraftingRecipeDiscoveryKnowledgeDescTableHandle(this.connection.clientCache.getOrCreateTable<DiscoveryTriggerDesc>(REMOTE_MODULE.tables.crafting_recipe_discovery_knowledge_desc));
   }
 
   get crumbTailCleanupTimer(): CrumbTailCleanupTimerTableHandle {
@@ -25634,24 +25819,8 @@ export class RemoteTables {
     return new DeployableCollectibleStateTableHandle(this.connection.clientCache.getOrCreateTable<DeployableCollectibleState>(REMOTE_MODULE.tables.deployable_collectible_state));
   }
 
-  get deployableCollectibleStateV2(): DeployableCollectibleStateV2TableHandle {
-    return new DeployableCollectibleStateV2TableHandle(this.connection.clientCache.getOrCreateTable<DeployableCollectibleStateV2>(REMOTE_MODULE.tables.deployable_collectible_state_v2));
-  }
-
   get deployableDesc(): DeployableDescTableHandle {
     return new DeployableDescTableHandle(this.connection.clientCache.getOrCreateTable<DeployableDesc>(REMOTE_MODULE.tables.deployable_desc));
-  }
-
-  get deployableDescV2(): DeployableDescV2TableHandle {
-    return new DeployableDescV2TableHandle(this.connection.clientCache.getOrCreateTable<DeployableDescV2>(REMOTE_MODULE.tables.deployable_desc_v2));
-  }
-
-  get deployableDescV3(): DeployableDescV3TableHandle {
-    return new DeployableDescV3TableHandle(this.connection.clientCache.getOrCreateTable<DeployableDescV3>(REMOTE_MODULE.tables.deployable_desc_v3));
-  }
-
-  get deployableDescV4(): DeployableDescV4TableHandle {
-    return new DeployableDescV4TableHandle(this.connection.clientCache.getOrCreateTable<DeployableDescV4>(REMOTE_MODULE.tables.deployable_desc_v4));
   }
 
   get deployableDismountTimer(): DeployableDismountTimerTableHandle {
@@ -25722,10 +25891,6 @@ export class RemoteTables {
     return new EmoteDescTableHandle(this.connection.clientCache.getOrCreateTable<EmoteDesc>(REMOTE_MODULE.tables.emote_desc));
   }
 
-  get emoteDescV2(): EmoteDescV2TableHandle {
-    return new EmoteDescV2TableHandle(this.connection.clientCache.getOrCreateTable<EmoteDescV2>(REMOTE_MODULE.tables.emote_desc_v2));
-  }
-
   get empireChunkState(): EmpireChunkStateTableHandle {
     return new EmpireChunkStateTableHandle(this.connection.clientCache.getOrCreateTable<EmpireChunkState>(REMOTE_MODULE.tables.empire_chunk_state));
   }
@@ -25734,12 +25899,12 @@ export class RemoteTables {
     return new EmpireColorDescTableHandle(this.connection.clientCache.getOrCreateTable<EmpireColorDesc>(REMOTE_MODULE.tables.empire_color_desc));
   }
 
-  get empireExpansionState(): EmpireExpansionStateTableHandle {
-    return new EmpireExpansionStateTableHandle(this.connection.clientCache.getOrCreateTable<EmpireExpansionState>(REMOTE_MODULE.tables.empire_expansion_state));
-  }
-
   get empireIconDesc(): EmpireIconDescTableHandle {
     return new EmpireIconDescTableHandle(this.connection.clientCache.getOrCreateTable<EmpireIconDesc>(REMOTE_MODULE.tables.empire_icon_desc));
+  }
+
+  get empireLowercaseNameState(): EmpireLowercaseNameStateTableHandle {
+    return new EmpireLowercaseNameStateTableHandle(this.connection.clientCache.getOrCreateTable<EmpireLowercaseNameState>(REMOTE_MODULE.tables.empire_lowercase_name_state));
   }
 
   get empireNodeSiegeState(): EmpireNodeSiegeStateTableHandle {
@@ -25912,18 +26077,6 @@ export class RemoteTables {
 
   get interModuleMessageErrors(): InterModuleMessageErrorsTableHandle {
     return new InterModuleMessageErrorsTableHandle(this.connection.clientCache.getOrCreateTable<InterModuleMessageErrors>(REMOTE_MODULE.tables.inter_module_message_errors));
-  }
-
-  get interModuleMessageV2(): InterModuleMessageV2TableHandle {
-    return new InterModuleMessageV2TableHandle(this.connection.clientCache.getOrCreateTable<InterModuleMessageV2>(REMOTE_MODULE.tables.inter_module_message_v2));
-  }
-
-  get interModuleMessageV3(): InterModuleMessageV3TableHandle {
-    return new InterModuleMessageV3TableHandle(this.connection.clientCache.getOrCreateTable<InterModuleMessageV3>(REMOTE_MODULE.tables.inter_module_message_v3));
-  }
-
-  get interModuleMessageV4(): InterModuleMessageV4TableHandle {
-    return new InterModuleMessageV4TableHandle(this.connection.clientCache.getOrCreateTable<InterModuleMessageV4>(REMOTE_MODULE.tables.inter_module_message_v4));
   }
 
   get interModuleResponseMessageCounter(): InterModuleResponseMessageCounterTableHandle {
@@ -26170,10 +26323,6 @@ export class RemoteTables {
     return new ParametersDescTableHandle(this.connection.clientCache.getOrCreateTable<ParametersDesc>(REMOTE_MODULE.tables.parameters_desc));
   }
 
-  get parametersDescV2(): ParametersDescV2TableHandle {
-    return new ParametersDescV2TableHandle(this.connection.clientCache.getOrCreateTable<ParametersDescV2>(REMOTE_MODULE.tables.parameters_desc_v2));
-  }
-
   get parametersPlayerMoveDesc(): ParametersPlayerMoveDescTableHandle {
     return new ParametersPlayerMoveDescTableHandle(this.connection.clientCache.getOrCreateTable<ParametersPlayerMoveDesc>(REMOTE_MODULE.tables.parameters_player_move_desc));
   }
@@ -26198,6 +26347,18 @@ export class RemoteTables {
     return new PavedTileStateTableHandle(this.connection.clientCache.getOrCreateTable<PavedTileState>(REMOTE_MODULE.tables.paved_tile_state));
   }
 
+  get pavingRecipeDiscoveryCargoDesc(): PavingRecipeDiscoveryCargoDescTableHandle {
+    return new PavingRecipeDiscoveryCargoDescTableHandle(this.connection.clientCache.getOrCreateTable<DiscoveryTriggerDesc>(REMOTE_MODULE.tables.paving_recipe_discovery_cargo_desc));
+  }
+
+  get pavingRecipeDiscoveryItemDesc(): PavingRecipeDiscoveryItemDescTableHandle {
+    return new PavingRecipeDiscoveryItemDescTableHandle(this.connection.clientCache.getOrCreateTable<DiscoveryTriggerDesc>(REMOTE_MODULE.tables.paving_recipe_discovery_item_desc));
+  }
+
+  get pavingRecipeDiscoveryKnowledgeDesc(): PavingRecipeDiscoveryKnowledgeDescTableHandle {
+    return new PavingRecipeDiscoveryKnowledgeDescTableHandle(this.connection.clientCache.getOrCreateTable<DiscoveryTriggerDesc>(REMOTE_MODULE.tables.paving_recipe_discovery_knowledge_desc));
+  }
+
   get pavingTileDesc(): PavingTileDescTableHandle {
     return new PavingTileDescTableHandle(this.connection.clientCache.getOrCreateTable<PavingTileDesc>(REMOTE_MODULE.tables.paving_tile_desc));
   }
@@ -26208,6 +26369,18 @@ export class RemoteTables {
 
   get pillarShapingDesc(): PillarShapingDescTableHandle {
     return new PillarShapingDescTableHandle(this.connection.clientCache.getOrCreateTable<PillarShapingDesc>(REMOTE_MODULE.tables.pillar_shaping_desc));
+  }
+
+  get pillarShapingRecipeDiscoveryCargoDesc(): PillarShapingRecipeDiscoveryCargoDescTableHandle {
+    return new PillarShapingRecipeDiscoveryCargoDescTableHandle(this.connection.clientCache.getOrCreateTable<DiscoveryTriggerDesc>(REMOTE_MODULE.tables.pillar_shaping_recipe_discovery_cargo_desc));
+  }
+
+  get pillarShapingRecipeDiscoveryItemDesc(): PillarShapingRecipeDiscoveryItemDescTableHandle {
+    return new PillarShapingRecipeDiscoveryItemDescTableHandle(this.connection.clientCache.getOrCreateTable<DiscoveryTriggerDesc>(REMOTE_MODULE.tables.pillar_shaping_recipe_discovery_item_desc));
+  }
+
+  get pillarShapingRecipeDiscoveryKnowledgeDesc(): PillarShapingRecipeDiscoveryKnowledgeDescTableHandle {
+    return new PillarShapingRecipeDiscoveryKnowledgeDescTableHandle(this.connection.clientCache.getOrCreateTable<DiscoveryTriggerDesc>(REMOTE_MODULE.tables.pillar_shaping_recipe_discovery_knowledge_desc));
   }
 
   get pillarShapingState(): PillarShapingStateTableHandle {
@@ -26294,10 +26467,6 @@ export class RemoteTables {
     return new PlayerSettingsStateTableHandle(this.connection.clientCache.getOrCreateTable<PlayerSettingsState>(REMOTE_MODULE.tables.player_settings_state));
   }
 
-  get playerSettingsStateV2(): PlayerSettingsStateV2TableHandle {
-    return new PlayerSettingsStateV2TableHandle(this.connection.clientCache.getOrCreateTable<PlayerSettingsStateV2>(REMOTE_MODULE.tables.player_settings_state_v2));
-  }
-
   get playerState(): PlayerStateTableHandle {
     return new PlayerStateTableHandle(this.connection.clientCache.getOrCreateTable<PlayerState>(REMOTE_MODULE.tables.player_state));
   }
@@ -26332,6 +26501,18 @@ export class RemoteTables {
 
   get premiumServiceDesc(): PremiumServiceDescTableHandle {
     return new PremiumServiceDescTableHandle(this.connection.clientCache.getOrCreateTable<PremiumServiceDesc>(REMOTE_MODULE.tables.premium_service_desc));
+  }
+
+  get previousEmpireNameState(): PreviousEmpireNameStateTableHandle {
+    return new PreviousEmpireNameStateTableHandle(this.connection.clientCache.getOrCreateTable<PreviousEmpireNameState>(REMOTE_MODULE.tables.previous_empire_name_state));
+  }
+
+  get previousPlayerSkillsState(): PreviousPlayerSkillsStateTableHandle {
+    return new PreviousPlayerSkillsStateTableHandle(this.connection.clientCache.getOrCreateTable<PreviousPlayerSkillsState>(REMOTE_MODULE.tables.previous_player_skills_state));
+  }
+
+  get previousPlayerUsernameState(): PreviousPlayerUsernameStateTableHandle {
+    return new PreviousPlayerUsernameStateTableHandle(this.connection.clientCache.getOrCreateTable<PreviousPlayerUsernameState>(REMOTE_MODULE.tables.previous_player_username_state));
   }
 
   get privateParametersDesc(): PrivateParametersDescTableHandle {
@@ -26372,6 +26553,14 @@ export class RemoteTables {
 
   get regionConnectionInfo(): RegionConnectionInfoTableHandle {
     return new RegionConnectionInfoTableHandle(this.connection.clientCache.getOrCreateTable<RegionConnectionInfo>(REMOTE_MODULE.tables.region_connection_info));
+  }
+
+  get regionControlInfo(): RegionControlInfoTableHandle {
+    return new RegionControlInfoTableHandle(this.connection.clientCache.getOrCreateTable<RegionControlInfo>(REMOTE_MODULE.tables.region_control_info));
+  }
+
+  get regionModerationConfigState(): RegionModerationConfigStateTableHandle {
+    return new RegionModerationConfigStateTableHandle(this.connection.clientCache.getOrCreateTable<RegionModerationConfigState>(REMOTE_MODULE.tables.region_moderation_config_state));
   }
 
   get regionPopulationInfo(): RegionPopulationInfoTableHandle {
@@ -26434,8 +26623,16 @@ export class RemoteTables {
     return new ResourcePlacementRecipeDescTableHandle(this.connection.clientCache.getOrCreateTable<ResourcePlacementRecipeDesc>(REMOTE_MODULE.tables.resource_placement_recipe_desc));
   }
 
-  get resourcePlacementRecipeDescV2(): ResourcePlacementRecipeDescV2TableHandle {
-    return new ResourcePlacementRecipeDescV2TableHandle(this.connection.clientCache.getOrCreateTable<ResourcePlacementRecipeDescV2>(REMOTE_MODULE.tables.resource_placement_recipe_desc_v2));
+  get resourcePlacementRecipeDiscoveryCargoDesc(): ResourcePlacementRecipeDiscoveryCargoDescTableHandle {
+    return new ResourcePlacementRecipeDiscoveryCargoDescTableHandle(this.connection.clientCache.getOrCreateTable<DiscoveryTriggerDesc>(REMOTE_MODULE.tables.resource_placement_recipe_discovery_cargo_desc));
+  }
+
+  get resourcePlacementRecipeDiscoveryItemDesc(): ResourcePlacementRecipeDiscoveryItemDescTableHandle {
+    return new ResourcePlacementRecipeDiscoveryItemDescTableHandle(this.connection.clientCache.getOrCreateTable<DiscoveryTriggerDesc>(REMOTE_MODULE.tables.resource_placement_recipe_discovery_item_desc));
+  }
+
+  get resourcePlacementRecipeDiscoveryKnowledgeDesc(): ResourcePlacementRecipeDiscoveryKnowledgeDescTableHandle {
+    return new ResourcePlacementRecipeDiscoveryKnowledgeDescTableHandle(this.connection.clientCache.getOrCreateTable<DiscoveryTriggerDesc>(REMOTE_MODULE.tables.resource_placement_recipe_discovery_knowledge_desc));
   }
 
   get resourceSpawnTimer(): ResourceSpawnTimerTableHandle {
@@ -26526,6 +26723,10 @@ export class RemoteTables {
     return new StagedBuffTypeDescTableHandle(this.connection.clientCache.getOrCreateTable<BuffTypeDesc>(REMOTE_MODULE.tables.staged_buff_type_desc));
   }
 
+  get stagedBuildingBuffDesc(): StagedBuildingBuffDescTableHandle {
+    return new StagedBuildingBuffDescTableHandle(this.connection.clientCache.getOrCreateTable<BuildingBuffDesc>(REMOTE_MODULE.tables.staged_building_buff_desc));
+  }
+
   get stagedBuildingClaimDesc(): StagedBuildingClaimDescTableHandle {
     return new StagedBuildingClaimDescTableHandle(this.connection.clientCache.getOrCreateTable<BuildingClaimDesc>(REMOTE_MODULE.tables.staged_building_claim_desc));
   }
@@ -26534,8 +26735,8 @@ export class RemoteTables {
     return new StagedBuildingDescTableHandle(this.connection.clientCache.getOrCreateTable<BuildingDesc>(REMOTE_MODULE.tables.staged_building_desc));
   }
 
-  get stagedBuildingPortalDescV2(): StagedBuildingPortalDescV2TableHandle {
-    return new StagedBuildingPortalDescV2TableHandle(this.connection.clientCache.getOrCreateTable<BuildingPortalDescV2>(REMOTE_MODULE.tables.staged_building_portal_desc_v2));
+  get stagedBuildingPortalDesc(): StagedBuildingPortalDescTableHandle {
+    return new StagedBuildingPortalDescTableHandle(this.connection.clientCache.getOrCreateTable<BuildingPortalDesc>(REMOTE_MODULE.tables.staged_building_portal_desc));
   }
 
   get stagedBuildingRepairsDesc(): StagedBuildingRepairsDescTableHandle {
@@ -26566,10 +26767,6 @@ export class RemoteTables {
     return new StagedClaimTechDescTableHandle(this.connection.clientCache.getOrCreateTable<ClaimTechDesc>(REMOTE_MODULE.tables.staged_claim_tech_desc));
   }
 
-  get stagedClaimTechDescV2(): StagedClaimTechDescV2TableHandle {
-    return new StagedClaimTechDescV2TableHandle(this.connection.clientCache.getOrCreateTable<ClaimTechDescV2>(REMOTE_MODULE.tables.staged_claim_tech_desc_v2));
-  }
-
   get stagedClaimTileCost(): StagedClaimTileCostTableHandle {
     return new StagedClaimTileCostTableHandle(this.connection.clientCache.getOrCreateTable<ClaimTileCost>(REMOTE_MODULE.tables.staged_claim_tile_cost));
   }
@@ -26586,8 +26783,8 @@ export class RemoteTables {
     return new StagedCollectibleDescTableHandle(this.connection.clientCache.getOrCreateTable<CollectibleDesc>(REMOTE_MODULE.tables.staged_collectible_desc));
   }
 
-  get stagedCombatActionDescV3(): StagedCombatActionDescV3TableHandle {
-    return new StagedCombatActionDescV3TableHandle(this.connection.clientCache.getOrCreateTable<CombatActionDescV3>(REMOTE_MODULE.tables.staged_combat_action_desc_v3));
+  get stagedCombatActionDesc(): StagedCombatActionDescTableHandle {
+    return new StagedCombatActionDescTableHandle(this.connection.clientCache.getOrCreateTable<CombatActionDesc>(REMOTE_MODULE.tables.staged_combat_action_desc));
   }
 
   get stagedCombatActionMultiHitDesc(): StagedCombatActionMultiHitDescTableHandle {
@@ -26598,12 +26795,8 @@ export class RemoteTables {
     return new StagedConstructionRecipeDescTableHandle(this.connection.clientCache.getOrCreateTable<ConstructionRecipeDesc>(REMOTE_MODULE.tables.staged_construction_recipe_desc));
   }
 
-  get stagedConstructionRecipeDescV2(): StagedConstructionRecipeDescV2TableHandle {
-    return new StagedConstructionRecipeDescV2TableHandle(this.connection.clientCache.getOrCreateTable<ConstructionRecipeDescV2>(REMOTE_MODULE.tables.staged_construction_recipe_desc_v2));
-  }
-
   get stagedContributionLootDesc(): StagedContributionLootDescTableHandle {
-    return new StagedContributionLootDescTableHandle(this.connection.clientCache.getOrCreateTable<ContributionLootDescV2>(REMOTE_MODULE.tables.staged_contribution_loot_desc));
+    return new StagedContributionLootDescTableHandle(this.connection.clientCache.getOrCreateTable<ContributionLootDesc>(REMOTE_MODULE.tables.staged_contribution_loot_desc));
   }
 
   get stagedCraftingRecipeDesc(): StagedCraftingRecipeDescTableHandle {
@@ -26615,7 +26808,7 @@ export class RemoteTables {
   }
 
   get stagedDeployableDesc(): StagedDeployableDescTableHandle {
-    return new StagedDeployableDescTableHandle(this.connection.clientCache.getOrCreateTable<DeployableDescV4>(REMOTE_MODULE.tables.staged_deployable_desc));
+    return new StagedDeployableDescTableHandle(this.connection.clientCache.getOrCreateTable<DeployableDesc>(REMOTE_MODULE.tables.staged_deployable_desc));
   }
 
   get stagedDistantVisibleEntityDesc(): StagedDistantVisibleEntityDescTableHandle {
@@ -26627,7 +26820,7 @@ export class RemoteTables {
   }
 
   get stagedEmoteDesc(): StagedEmoteDescTableHandle {
-    return new StagedEmoteDescTableHandle(this.connection.clientCache.getOrCreateTable<EmoteDescV2>(REMOTE_MODULE.tables.staged_emote_desc));
+    return new StagedEmoteDescTableHandle(this.connection.clientCache.getOrCreateTable<EmoteDesc>(REMOTE_MODULE.tables.staged_emote_desc));
   }
 
   get stagedEmpireColorsDesc(): StagedEmpireColorsDescTableHandle {
@@ -26759,7 +26952,7 @@ export class RemoteTables {
   }
 
   get stagedParametersDesc(): StagedParametersDescTableHandle {
-    return new StagedParametersDescTableHandle(this.connection.clientCache.getOrCreateTable<ParametersDescV2>(REMOTE_MODULE.tables.staged_parameters_desc));
+    return new StagedParametersDescTableHandle(this.connection.clientCache.getOrCreateTable<ParametersDesc>(REMOTE_MODULE.tables.staged_parameters_desc));
   }
 
   get stagedPathfindingDesc(): StagedPathfindingDescTableHandle {
@@ -26826,10 +27019,6 @@ export class RemoteTables {
     return new StagedResourcePlacementRecipeDescTableHandle(this.connection.clientCache.getOrCreateTable<ResourcePlacementRecipeDesc>(REMOTE_MODULE.tables.staged_resource_placement_recipe_desc));
   }
 
-  get stagedResourcePlacementRecipeDescV2(): StagedResourcePlacementRecipeDescV2TableHandle {
-    return new StagedResourcePlacementRecipeDescV2TableHandle(this.connection.clientCache.getOrCreateTable<ResourcePlacementRecipeDescV2>(REMOTE_MODULE.tables.staged_resource_placement_recipe_desc_v2));
-  }
-
   get stagedSecondaryKnowledgeDesc(): StagedSecondaryKnowledgeDescTableHandle {
     return new StagedSecondaryKnowledgeDescTableHandle(this.connection.clientCache.getOrCreateTable<SecondaryKnowledgeDesc>(REMOTE_MODULE.tables.staged_secondary_knowledge_desc));
   }
@@ -26840,38 +27029,6 @@ export class RemoteTables {
 
   get stagedStageRewardsDesc(): StagedStageRewardsDescTableHandle {
     return new StagedStageRewardsDescTableHandle(this.connection.clientCache.getOrCreateTable<StageRewardsDesc>(REMOTE_MODULE.tables.staged_stage_rewards_desc));
-  }
-
-  get stagedStaticData(): StagedStaticDataTableHandle {
-    return new StagedStaticDataTableHandle(this.connection.clientCache.getOrCreateTable<StagedStaticData>(REMOTE_MODULE.tables.staged_static_data));
-  }
-
-  get stagedStaticDataV2(): StagedStaticDataV2TableHandle {
-    return new StagedStaticDataV2TableHandle(this.connection.clientCache.getOrCreateTable<StagedStaticDataV2>(REMOTE_MODULE.tables.staged_static_data_v2));
-  }
-
-  get stagedStaticDataV3(): StagedStaticDataV3TableHandle {
-    return new StagedStaticDataV3TableHandle(this.connection.clientCache.getOrCreateTable<StagedStaticDataV3>(REMOTE_MODULE.tables.staged_static_data_v3));
-  }
-
-  get stagedStaticDataV4(): StagedStaticDataV4TableHandle {
-    return new StagedStaticDataV4TableHandle(this.connection.clientCache.getOrCreateTable<StagedStaticDataV4>(REMOTE_MODULE.tables.staged_static_data_v4));
-  }
-
-  get stagedStaticDataV5(): StagedStaticDataV5TableHandle {
-    return new StagedStaticDataV5TableHandle(this.connection.clientCache.getOrCreateTable<StagedStaticDataV5>(REMOTE_MODULE.tables.staged_static_data_v5));
-  }
-
-  get stagedStaticDataV6(): StagedStaticDataV6TableHandle {
-    return new StagedStaticDataV6TableHandle(this.connection.clientCache.getOrCreateTable<StagedStaticDataV6>(REMOTE_MODULE.tables.staged_static_data_v6));
-  }
-
-  get stagedStaticDataV7(): StagedStaticDataV7TableHandle {
-    return new StagedStaticDataV7TableHandle(this.connection.clientCache.getOrCreateTable<StagedStaticDataV7>(REMOTE_MODULE.tables.staged_static_data_v7));
-  }
-
-  get stagedStaticDataV8(): StagedStaticDataV8TableHandle {
-    return new StagedStaticDataV8TableHandle(this.connection.clientCache.getOrCreateTable<StagedStaticDataV8>(REMOTE_MODULE.tables.staged_static_data_v8));
   }
 
   get stagedTargetingMatrixDesc(): StagedTargetingMatrixDescTableHandle {

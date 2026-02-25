@@ -32,10 +32,10 @@ import {
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
 
-import { ClaimTechDescV2 as __ClaimTechDescV2 } from "./claim_tech_desc_v_2_type";
+import { ClaimTechDesc as __ClaimTechDesc } from "./claim_tech_desc_type";
 
 export type ImportClaimTechDesc = {
-  records: __ClaimTechDescV2[],
+  records: __ClaimTechDesc[],
 };
 
 /**
@@ -48,7 +48,7 @@ export namespace ImportClaimTechDesc {
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("records", AlgebraicType.createArrayType(__ClaimTechDescV2.getTypeScriptAlgebraicType())),
+      new ProductTypeElement("records", AlgebraicType.createArrayType(__ClaimTechDesc.getTypeScriptAlgebraicType())),
     ]);
   }
 

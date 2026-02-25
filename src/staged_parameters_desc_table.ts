@@ -31,7 +31,7 @@ import {
   type ReducerEventContextInterface,
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
-import { ParametersDescV2 } from "./parameters_desc_v_2_type";
+import { ParametersDesc } from "./parameters_desc_type";
 import { MovementSpeed as __MovementSpeed } from "./movement_speed_type";
 
 import { type EventContext, type Reducer, RemoteReducers, RemoteTables } from ".";
@@ -47,9 +47,9 @@ import { type EventContext, type Reducer, RemoteReducers, RemoteTables } from ".
  * like `ctx.db.stagedParametersDesc.on_insert(...)`.
  */
 export class StagedParametersDescTableHandle {
-  tableCache: TableCache<ParametersDescV2>;
+  tableCache: TableCache<ParametersDesc>;
 
-  constructor(tableCache: TableCache<ParametersDescV2>) {
+  constructor(tableCache: TableCache<ParametersDesc>) {
     this.tableCache = tableCache;
   }
 
@@ -57,7 +57,7 @@ export class StagedParametersDescTableHandle {
     return this.tableCache.count();
   }
 
-  iter(): Iterable<ParametersDescV2> {
+  iter(): Iterable<ParametersDesc> {
     return this.tableCache.iter();
   }
   /**
@@ -74,7 +74,7 @@ export class StagedParametersDescTableHandle {
   version = {
     // Find the subscribed row whose `version` column value is equal to `col_val`,
     // if such a row is present in the client cache.
-    find: (col_val: number): ParametersDescV2 | undefined => {
+    find: (col_val: number): ParametersDesc | undefined => {
       for (let row of this.tableCache.iter()) {
         if (deepEqual(row.version, col_val)) {
           return row;
@@ -83,27 +83,27 @@ export class StagedParametersDescTableHandle {
     },
   };
 
-  onInsert = (cb: (ctx: EventContext, row: ParametersDescV2) => void) => {
+  onInsert = (cb: (ctx: EventContext, row: ParametersDesc) => void) => {
     return this.tableCache.onInsert(cb);
   }
 
-  removeOnInsert = (cb: (ctx: EventContext, row: ParametersDescV2) => void) => {
+  removeOnInsert = (cb: (ctx: EventContext, row: ParametersDesc) => void) => {
     return this.tableCache.removeOnInsert(cb);
   }
 
-  onDelete = (cb: (ctx: EventContext, row: ParametersDescV2) => void) => {
+  onDelete = (cb: (ctx: EventContext, row: ParametersDesc) => void) => {
     return this.tableCache.onDelete(cb);
   }
 
-  removeOnDelete = (cb: (ctx: EventContext, row: ParametersDescV2) => void) => {
+  removeOnDelete = (cb: (ctx: EventContext, row: ParametersDesc) => void) => {
     return this.tableCache.removeOnDelete(cb);
   }
 
   // Updates are only defined for tables with primary keys.
-  onUpdate = (cb: (ctx: EventContext, oldRow: ParametersDescV2, newRow: ParametersDescV2) => void) => {
+  onUpdate = (cb: (ctx: EventContext, oldRow: ParametersDesc, newRow: ParametersDesc) => void) => {
     return this.tableCache.onUpdate(cb);
   }
 
-  removeOnUpdate = (cb: (ctx: EventContext, onRow: ParametersDescV2, newRow: ParametersDescV2) => void) => {
+  removeOnUpdate = (cb: (ctx: EventContext, onRow: ParametersDesc, newRow: ParametersDesc) => void) => {
     return this.tableCache.removeOnUpdate(cb);
   }}

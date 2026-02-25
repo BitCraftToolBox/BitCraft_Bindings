@@ -32,10 +32,10 @@ import {
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
 
-import { DeployableDescV4 as __DeployableDescV4 } from "./deployable_desc_v_4_type";
+import { DeployableDesc as __DeployableDesc } from "./deployable_desc_type";
 
 export type StageDeployableDesc = {
-  records: __DeployableDescV4[],
+  records: __DeployableDesc[],
 };
 
 /**
@@ -48,7 +48,7 @@ export namespace StageDeployableDesc {
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("records", AlgebraicType.createArrayType(__DeployableDescV4.getTypeScriptAlgebraicType())),
+      new ProductTypeElement("records", AlgebraicType.createArrayType(__DeployableDesc.getTypeScriptAlgebraicType())),
     ]);
   }
 

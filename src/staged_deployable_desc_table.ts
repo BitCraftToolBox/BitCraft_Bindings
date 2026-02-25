@@ -31,7 +31,7 @@ import {
   type ReducerEventContextInterface,
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
-import { DeployableDescV4 } from "./deployable_desc_v_4_type";
+import { DeployableDesc } from "./deployable_desc_type";
 import { CsvStatEntry as __CsvStatEntry } from "./csv_stat_entry_type";
 import { ExperienceStackF32 as __ExperienceStackF32 } from "./experience_stack_f_32_type";
 import { DeployableType as __DeployableType } from "./deployable_type_type";
@@ -51,9 +51,9 @@ import { type EventContext, type Reducer, RemoteReducers, RemoteTables } from ".
  * like `ctx.db.stagedDeployableDesc.on_insert(...)`.
  */
 export class StagedDeployableDescTableHandle {
-  tableCache: TableCache<DeployableDescV4>;
+  tableCache: TableCache<DeployableDesc>;
 
-  constructor(tableCache: TableCache<DeployableDescV4>) {
+  constructor(tableCache: TableCache<DeployableDesc>) {
     this.tableCache = tableCache;
   }
 
@@ -61,7 +61,7 @@ export class StagedDeployableDescTableHandle {
     return this.tableCache.count();
   }
 
-  iter(): Iterable<DeployableDescV4> {
+  iter(): Iterable<DeployableDesc> {
     return this.tableCache.iter();
   }
   /**
@@ -78,7 +78,7 @@ export class StagedDeployableDescTableHandle {
   id = {
     // Find the subscribed row whose `id` column value is equal to `col_val`,
     // if such a row is present in the client cache.
-    find: (col_val: number): DeployableDescV4 | undefined => {
+    find: (col_val: number): DeployableDesc | undefined => {
       for (let row of this.tableCache.iter()) {
         if (deepEqual(row.id, col_val)) {
           return row;
@@ -100,7 +100,7 @@ export class StagedDeployableDescTableHandle {
   deployFromCollectibleId = {
     // Find the subscribed row whose `deployFromCollectibleId` column value is equal to `col_val`,
     // if such a row is present in the client cache.
-    find: (col_val: number): DeployableDescV4 | undefined => {
+    find: (col_val: number): DeployableDesc | undefined => {
       for (let row of this.tableCache.iter()) {
         if (deepEqual(row.deployFromCollectibleId, col_val)) {
           return row;
@@ -109,27 +109,27 @@ export class StagedDeployableDescTableHandle {
     },
   };
 
-  onInsert = (cb: (ctx: EventContext, row: DeployableDescV4) => void) => {
+  onInsert = (cb: (ctx: EventContext, row: DeployableDesc) => void) => {
     return this.tableCache.onInsert(cb);
   }
 
-  removeOnInsert = (cb: (ctx: EventContext, row: DeployableDescV4) => void) => {
+  removeOnInsert = (cb: (ctx: EventContext, row: DeployableDesc) => void) => {
     return this.tableCache.removeOnInsert(cb);
   }
 
-  onDelete = (cb: (ctx: EventContext, row: DeployableDescV4) => void) => {
+  onDelete = (cb: (ctx: EventContext, row: DeployableDesc) => void) => {
     return this.tableCache.onDelete(cb);
   }
 
-  removeOnDelete = (cb: (ctx: EventContext, row: DeployableDescV4) => void) => {
+  removeOnDelete = (cb: (ctx: EventContext, row: DeployableDesc) => void) => {
     return this.tableCache.removeOnDelete(cb);
   }
 
   // Updates are only defined for tables with primary keys.
-  onUpdate = (cb: (ctx: EventContext, oldRow: DeployableDescV4, newRow: DeployableDescV4) => void) => {
+  onUpdate = (cb: (ctx: EventContext, oldRow: DeployableDesc, newRow: DeployableDesc) => void) => {
     return this.tableCache.onUpdate(cb);
   }
 
-  removeOnUpdate = (cb: (ctx: EventContext, onRow: DeployableDescV4, newRow: DeployableDescV4) => void) => {
+  removeOnUpdate = (cb: (ctx: EventContext, onRow: DeployableDesc, newRow: DeployableDesc) => void) => {
     return this.tableCache.removeOnUpdate(cb);
   }}

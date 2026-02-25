@@ -37,6 +37,7 @@ export type EmpirePlayerDataState = {
   rank: number,
   donatedShards: number,
   noble: Timestamp | undefined,
+  donatedEmpireCurrency: number,
 };
 
 /**
@@ -54,6 +55,7 @@ export namespace EmpirePlayerDataState {
       new ProductTypeElement("rank", AlgebraicType.createU8Type()),
       new ProductTypeElement("donatedShards", AlgebraicType.createU32Type()),
       new ProductTypeElement("noble", AlgebraicType.createOptionType(AlgebraicType.createTimestampType())),
+      new ProductTypeElement("donatedEmpireCurrency", AlgebraicType.createU32Type()),
     ]);
   }
 

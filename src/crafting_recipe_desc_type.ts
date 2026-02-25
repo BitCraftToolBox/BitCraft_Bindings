@@ -62,6 +62,7 @@ export type CraftingRecipeDesc = {
   hideWithBlockingKnowledges: boolean,
   allowUseHands: boolean,
   isPassive: boolean,
+  showInProgression: boolean,
 };
 
 /**
@@ -97,6 +98,7 @@ export namespace CraftingRecipeDesc {
       new ProductTypeElement("hideWithBlockingKnowledges", AlgebraicType.createBoolType()),
       new ProductTypeElement("allowUseHands", AlgebraicType.createBoolType()),
       new ProductTypeElement("isPassive", AlgebraicType.createBoolType()),
+      new ProductTypeElement("showInProgression", AlgebraicType.createBoolType()),
     ]);
   }
 

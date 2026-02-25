@@ -42,6 +42,8 @@ export type QuestChainDesc = {
   requirements: __QuestRequirement[],
   rewards: __QuestReward[],
   implicitRewards: __QuestReward[],
+  unstartable: boolean,
+  isSecret: boolean,
 };
 
 /**
@@ -61,6 +63,8 @@ export namespace QuestChainDesc {
       new ProductTypeElement("requirements", AlgebraicType.createArrayType(__QuestRequirement.getTypeScriptAlgebraicType())),
       new ProductTypeElement("rewards", AlgebraicType.createArrayType(__QuestReward.getTypeScriptAlgebraicType())),
       new ProductTypeElement("implicitRewards", AlgebraicType.createArrayType(__QuestReward.getTypeScriptAlgebraicType())),
+      new ProductTypeElement("unstartable", AlgebraicType.createBoolType()),
+      new ProductTypeElement("isSecret", AlgebraicType.createBoolType()),
     ]);
   }
 

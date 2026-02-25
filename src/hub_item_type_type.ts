@@ -38,6 +38,7 @@ export namespace HubItemType {
   // the tagged union.
   export type HexiteShards = { tag: "HexiteShards" };
   export type Collectible = { tag: "Collectible" };
+  export type PremiumItem = { tag: "PremiumItem" };
 
   // Helper functions for constructing each variant of the tagged union.
   // ```
@@ -47,11 +48,13 @@ export namespace HubItemType {
   // ```
   export const HexiteShards = { tag: "HexiteShards" };
   export const Collectible = { tag: "Collectible" };
+  export const PremiumItem = { tag: "PremiumItem" };
 
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createSumType([
       new SumTypeVariant("HexiteShards", AlgebraicType.createProductType([])),
       new SumTypeVariant("Collectible", AlgebraicType.createProductType([])),
+      new SumTypeVariant("PremiumItem", AlgebraicType.createProductType([])),
     ]);
   }
 
@@ -66,7 +69,7 @@ export namespace HubItemType {
 }
 
 // The tagged union or sum type for the algebraic type `HubItemType`.
-export type HubItemType = HubItemType.HexiteShards | HubItemType.Collectible;
+export type HubItemType = HubItemType.HexiteShards | HubItemType.Collectible | HubItemType.PremiumItem;
 
 export default HubItemType;
 
