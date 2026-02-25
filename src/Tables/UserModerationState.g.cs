@@ -28,19 +28,19 @@ namespace BitCraftRegion.Types
 
             public readonly EntityIdUniqueIndex EntityId;
 
-            public sealed class TargetEntityIdIndex : BTreeIndexBase<ulong>
+            public sealed class TargetIdentityIndex : BTreeIndexBase<SpacetimeDB.Identity>
             {
-                protected override ulong GetKey(UserModerationState row) => row.TargetEntityId;
+                protected override SpacetimeDB.Identity GetKey(UserModerationState row) => row.TargetIdentity;
 
-                public TargetEntityIdIndex(UserModerationStateHandle table) : base(table) { }
+                public TargetIdentityIndex(UserModerationStateHandle table) : base(table) { }
             }
 
-            public readonly TargetEntityIdIndex TargetEntityId;
+            public readonly TargetIdentityIndex TargetIdentity;
 
             internal UserModerationStateHandle(DbConnection conn) : base(conn)
             {
                 EntityId = new(this);
-                TargetEntityId = new(this);
+                TargetIdentity = new(this);
             }
 
             protected override object GetPrimaryKey(UserModerationState row) => row.EntityId;

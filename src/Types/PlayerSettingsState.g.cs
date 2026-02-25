@@ -17,15 +17,19 @@ namespace BitCraftRegion.Types
     {
         [DataMember(Name = "entity_id")]
         public ulong EntityId;
+        [DataMember(Name = "fill_player_inventory")]
+        public bool FillPlayerInventory;
         [DataMember(Name = "fill_deployable_inventory_first")]
         public bool FillDeployableInventoryFirst;
 
         public PlayerSettingsState(
             ulong EntityId,
+            bool FillPlayerInventory,
             bool FillDeployableInventoryFirst
         )
         {
             this.EntityId = EntityId;
+            this.FillPlayerInventory = FillPlayerInventory;
             this.FillDeployableInventoryFirst = FillDeployableInventoryFirst;
         }
 

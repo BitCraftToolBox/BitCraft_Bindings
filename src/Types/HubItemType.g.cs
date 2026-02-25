@@ -14,5 +14,6 @@ namespace BitCraftRegion.Types
     {
         HexiteShards,
         Collectible,
+        PremiumItem,
     }
 }

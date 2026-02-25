@@ -15,13 +15,13 @@ namespace BitCraftRegion.Types
 {
     public sealed partial class RemoteTables
     {
-        public sealed class StagedContributionLootDescHandle : RemoteTableHandle<EventContext, ContributionLootDescV2>
+        public sealed class StagedContributionLootDescHandle : RemoteTableHandle<EventContext, ContributionLootDesc>
         {
             protected override string RemoteTableName => "staged_contribution_loot_desc";
 
             public sealed class IdUniqueIndex : UniqueIndexBase<int>
             {
-                protected override int GetKey(ContributionLootDescV2 row) => row.Id;
+                protected override int GetKey(ContributionLootDesc row) => row.Id;
 
                 public IdUniqueIndex(StagedContributionLootDescHandle table) : base(table) { }
             }
@@ -33,7 +33,7 @@ namespace BitCraftRegion.Types
                 Id = new(this);
             }
 
-            protected override object GetPrimaryKey(ContributionLootDescV2 row) => row.Id;
+            protected override object GetPrimaryKey(ContributionLootDesc row) => row.Id;
         }
 
         public readonly StagedContributionLootDescHandle StagedContributionLootDesc;

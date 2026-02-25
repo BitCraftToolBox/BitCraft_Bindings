@@ -61,6 +61,8 @@ namespace BitCraftRegion.Types
         public bool AllowUseHands;
         [DataMember(Name = "is_passive")]
         public bool IsPassive;
+        [DataMember(Name = "show_in_progression")]
+        public bool ShowInProgression;
 
         public CraftingRecipeDesc(
             int Id,
@@ -85,7 +87,8 @@ namespace BitCraftRegion.Types
             bool HideWithoutRequiredKnowledge,
             bool HideWithBlockingKnowledges,
             bool AllowUseHands,
-            bool IsPassive
+            bool IsPassive,
+            bool ShowInProgression
         )
         {
             this.Id = Id;
@@ -111,6 +114,7 @@ namespace BitCraftRegion.Types
             this.HideWithBlockingKnowledges = HideWithBlockingKnowledges;
             this.AllowUseHands = AllowUseHands;
             this.IsPassive = IsPassive;
+            this.ShowInProgression = ShowInProgression;
         }
 
         public CraftingRecipeDesc()

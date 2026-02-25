@@ -14,10 +14,10 @@ namespace BitCraftRegion.Types
 {
     public sealed partial class RemoteReducers : RemoteBase
     {
-        public delegate void ImportClaimTechDescHandler(ReducerEventContext ctx, System.Collections.Generic.List<ClaimTechDescV2> records);
+        public delegate void ImportClaimTechDescHandler(ReducerEventContext ctx, System.Collections.Generic.List<ClaimTechDesc> records);
         public event ImportClaimTechDescHandler? OnImportClaimTechDesc;
 
-        public void ImportClaimTechDesc(System.Collections.Generic.List<ClaimTechDescV2> records)
+        public void ImportClaimTechDesc(System.Collections.Generic.List<ClaimTechDesc> records)
         {
             conn.InternalCallReducer(new Reducer.ImportClaimTechDesc(records), this.SetCallReducerFlags.ImportClaimTechDescFlags);
         }
@@ -28,7 +28,7 @@ namespace BitCraftRegion.Types
             {
                 if (InternalOnUnhandledReducerError != null)
                 {
-                    switch(ctx.Event.Status)
+                    switch (ctx.Event.Status)
                     {
                         case Status.Failed(var reason): InternalOnUnhandledReducerError(ctx, new Exception(reason)); break;
                         case Status.OutOfEnergy(var _): InternalOnUnhandledReducerError(ctx, new Exception("out of energy")); break;
@@ -51,9 +51,9 @@ namespace BitCraftRegion.Types
         public sealed partial class ImportClaimTechDesc : Reducer, IReducerArgs
         {
             [DataMember(Name = "records")]
-            public System.Collections.Generic.List<ClaimTechDescV2> Records;
+            public System.Collections.Generic.List<ClaimTechDesc> Records;
 
-            public ImportClaimTechDesc(System.Collections.Generic.List<ClaimTechDescV2> Records)
+            public ImportClaimTechDesc(System.Collections.Generic.List<ClaimTechDesc> Records)
             {
                 this.Records = Records;
             }

@@ -43,8 +43,8 @@ namespace BitCraftRegion.Types
         public System.Collections.Generic.List<int> DiscoveryTriggers;
         [DataMember(Name = "required_knowledges")]
         public System.Collections.Generic.List<int> RequiredKnowledges;
-        [DataMember(Name = "required_claim_tech_id")]
-        public int RequiredClaimTechId;
+        [DataMember(Name = "required_claim_tech_ids")]
+        public System.Collections.Generic.List<int> RequiredClaimTechIds;
         [DataMember(Name = "full_discovery_score")]
         public int FullDiscoveryScore;
         [DataMember(Name = "tool_mesh_index")]
@@ -75,7 +75,7 @@ namespace BitCraftRegion.Types
             System.Collections.Generic.List<ExperienceStackF32> ExperiencePerProgress,
             System.Collections.Generic.List<int> DiscoveryTriggers,
             System.Collections.Generic.List<int> RequiredKnowledges,
-            int RequiredClaimTechId,
+            System.Collections.Generic.List<int> RequiredClaimTechIds,
             int FullDiscoveryScore,
             int ToolMeshIndex,
             int BuildingDescriptionId,
@@ -99,7 +99,7 @@ namespace BitCraftRegion.Types
             this.ExperiencePerProgress = ExperiencePerProgress;
             this.DiscoveryTriggers = DiscoveryTriggers;
             this.RequiredKnowledges = RequiredKnowledges;
-            this.RequiredClaimTechId = RequiredClaimTechId;
+            this.RequiredClaimTechIds = RequiredClaimTechIds;
             this.FullDiscoveryScore = FullDiscoveryScore;
             this.ToolMeshIndex = ToolMeshIndex;
             this.BuildingDescriptionId = BuildingDescriptionId;
@@ -119,6 +119,7 @@ namespace BitCraftRegion.Types
             this.ExperiencePerProgress = new();
             this.DiscoveryTriggers = new();
             this.RequiredKnowledges = new();
+            this.RequiredClaimTechIds = new();
         }
     }
 }

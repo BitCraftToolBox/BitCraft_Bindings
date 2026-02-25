@@ -59,6 +59,8 @@ namespace BitCraftRegion.Types
         public bool IsRuins;
         [DataMember(Name = "not_deconstructible")]
         public bool NotDeconstructible;
+        [DataMember(Name = "destroy_on_unclaim")]
+        public bool DestroyOnUnclaim;
 
         public BuildingDesc(
             int Id,
@@ -82,7 +84,8 @@ namespace BitCraftRegion.Types
             bool HasAction,
             bool ShowInCompendium,
             bool IsRuins,
-            bool NotDeconstructible
+            bool NotDeconstructible,
+            bool DestroyOnUnclaim
         )
         {
             this.Id = Id;
@@ -107,6 +110,7 @@ namespace BitCraftRegion.Types
             this.ShowInCompendium = ShowInCompendium;
             this.IsRuins = IsRuins;
             this.NotDeconstructible = NotDeconstructible;
+            this.DestroyOnUnclaim = DestroyOnUnclaim;
         }
 
         public BuildingDesc()

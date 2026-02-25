@@ -14,10 +14,10 @@ namespace BitCraftRegion.Types
 {
     public sealed partial class RemoteReducers : RemoteBase
     {
-        public delegate void StageEmoteDescHandler(ReducerEventContext ctx, System.Collections.Generic.List<EmoteDescV2> records);
+        public delegate void StageEmoteDescHandler(ReducerEventContext ctx, System.Collections.Generic.List<EmoteDesc> records);
         public event StageEmoteDescHandler? OnStageEmoteDesc;
 
-        public void StageEmoteDesc(System.Collections.Generic.List<EmoteDescV2> records)
+        public void StageEmoteDesc(System.Collections.Generic.List<EmoteDesc> records)
         {
             conn.InternalCallReducer(new Reducer.StageEmoteDesc(records), this.SetCallReducerFlags.StageEmoteDescFlags);
         }
@@ -28,7 +28,7 @@ namespace BitCraftRegion.Types
             {
                 if (InternalOnUnhandledReducerError != null)
                 {
-                    switch(ctx.Event.Status)
+                    switch (ctx.Event.Status)
                     {
                         case Status.Failed(var reason): InternalOnUnhandledReducerError(ctx, new Exception(reason)); break;
                         case Status.OutOfEnergy(var _): InternalOnUnhandledReducerError(ctx, new Exception("out of energy")); break;
@@ -51,9 +51,9 @@ namespace BitCraftRegion.Types
         public sealed partial class StageEmoteDesc : Reducer, IReducerArgs
         {
             [DataMember(Name = "records")]
-            public System.Collections.Generic.List<EmoteDescV2> Records;
+            public System.Collections.Generic.List<EmoteDesc> Records;
 
-            public StageEmoteDesc(System.Collections.Generic.List<EmoteDescV2> Records)
+            public StageEmoteDesc(System.Collections.Generic.List<EmoteDesc> Records)
             {
                 this.Records = Records;
             }

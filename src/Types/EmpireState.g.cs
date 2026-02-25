@@ -29,6 +29,10 @@ namespace BitCraftRegion.Types
         public int NumClaims;
         [DataMember(Name = "location")]
         public OffsetCoordinatesSmallMessage Location;
+        [DataMember(Name = "empire_currency_treasury")]
+        public uint EmpireCurrencyTreasury;
+        [DataMember(Name = "owner_type")]
+        public EmpireOwnerType OwnerType;
 
         public EmpireState(
             ulong EntityId,
@@ -37,7 +41,9 @@ namespace BitCraftRegion.Types
             uint ShardTreasury,
             int NobilityThreshold,
             int NumClaims,
-            OffsetCoordinatesSmallMessage Location
+            OffsetCoordinatesSmallMessage Location,
+            uint EmpireCurrencyTreasury,
+            EmpireOwnerType OwnerType
         )
         {
             this.EntityId = EntityId;
@@ -47,6 +53,8 @@ namespace BitCraftRegion.Types
             this.NobilityThreshold = NobilityThreshold;
             this.NumClaims = NumClaims;
             this.Location = Location;
+            this.EmpireCurrencyTreasury = EmpireCurrencyTreasury;
+            this.OwnerType = OwnerType;
         }
 
         public EmpireState()

@@ -37,8 +37,6 @@ namespace BitCraftRegion.Types
         public int TradeOrders;
         [DataMember(Name = "allowed_item_id_per_slot")]
         public System.Collections.Generic.List<int> AllowedItemIdPerSlot;
-        [DataMember(Name = "buff_ids")]
-        public System.Collections.Generic.List<int> BuffIds;
         [DataMember(Name = "concurrent_crafts_per_player")]
         public int ConcurrentCraftsPerPlayer;
         [DataMember(Name = "terraform")]
@@ -60,7 +58,6 @@ namespace BitCraftRegion.Types
             int CargoSlotSize,
             int TradeOrders,
             System.Collections.Generic.List<int> AllowedItemIdPerSlot,
-            System.Collections.Generic.List<int> BuffIds,
             int ConcurrentCraftsPerPlayer,
             bool Terraform,
             int HousingSlots,
@@ -78,7 +75,6 @@ namespace BitCraftRegion.Types
             this.CargoSlotSize = CargoSlotSize;
             this.TradeOrders = TradeOrders;
             this.AllowedItemIdPerSlot = AllowedItemIdPerSlot;
-            this.BuffIds = BuffIds;
             this.ConcurrentCraftsPerPlayer = ConcurrentCraftsPerPlayer;
             this.Terraform = Terraform;
             this.HousingSlots = HousingSlots;
@@ -88,7 +84,6 @@ namespace BitCraftRegion.Types
         public BuildingFunction()
         {
             this.AllowedItemIdPerSlot = new();
-            this.BuffIds = new();
         }
     }
 }

@@ -55,6 +55,8 @@ namespace BitCraftRegion.Types
         public float ScheduledRespawnTime;
         [DataMember(Name = "not_respawning")]
         public bool NotRespawning;
+        [DataMember(Name = "show_time_left")]
+        public bool ShowTimeLeft;
 
         public ResourceDesc(
             int Id,
@@ -76,7 +78,8 @@ namespace BitCraftRegion.Types
             bool CompendiumEntry,
             System.Collections.Generic.List<int> EnemyParamsId,
             float ScheduledRespawnTime,
-            bool NotRespawning
+            bool NotRespawning,
+            bool ShowTimeLeft
         )
         {
             this.Id = Id;
@@ -99,6 +102,7 @@ namespace BitCraftRegion.Types
             this.EnemyParamsId = EnemyParamsId;
             this.ScheduledRespawnTime = ScheduledRespawnTime;
             this.NotRespawning = NotRespawning;
+            this.ShowTimeLeft = ShowTimeLeft;
         }
 
         public ResourceDesc()

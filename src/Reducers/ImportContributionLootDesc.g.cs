@@ -14,10 +14,10 @@ namespace BitCraftRegion.Types
 {
     public sealed partial class RemoteReducers : RemoteBase
     {
-        public delegate void ImportContributionLootDescHandler(ReducerEventContext ctx, System.Collections.Generic.List<ContributionLootDescV2> records);
+        public delegate void ImportContributionLootDescHandler(ReducerEventContext ctx, System.Collections.Generic.List<ContributionLootDesc> records);
         public event ImportContributionLootDescHandler? OnImportContributionLootDesc;
 
-        public void ImportContributionLootDesc(System.Collections.Generic.List<ContributionLootDescV2> records)
+        public void ImportContributionLootDesc(System.Collections.Generic.List<ContributionLootDesc> records)
         {
             conn.InternalCallReducer(new Reducer.ImportContributionLootDesc(records), this.SetCallReducerFlags.ImportContributionLootDescFlags);
         }
@@ -28,7 +28,7 @@ namespace BitCraftRegion.Types
             {
                 if (InternalOnUnhandledReducerError != null)
                 {
-                    switch(ctx.Event.Status)
+                    switch (ctx.Event.Status)
                     {
                         case Status.Failed(var reason): InternalOnUnhandledReducerError(ctx, new Exception(reason)); break;
                         case Status.OutOfEnergy(var _): InternalOnUnhandledReducerError(ctx, new Exception("out of energy")); break;
@@ -51,9 +51,9 @@ namespace BitCraftRegion.Types
         public sealed partial class ImportContributionLootDesc : Reducer, IReducerArgs
         {
             [DataMember(Name = "records")]
-            public System.Collections.Generic.List<ContributionLootDescV2> Records;
+            public System.Collections.Generic.List<ContributionLootDesc> Records;
 
-            public ImportContributionLootDesc(System.Collections.Generic.List<ContributionLootDescV2> Records)
+            public ImportContributionLootDesc(System.Collections.Generic.List<ContributionLootDesc> Records)
             {
                 this.Records = Records;
             }

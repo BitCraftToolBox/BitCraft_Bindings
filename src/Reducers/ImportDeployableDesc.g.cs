@@ -14,10 +14,10 @@ namespace BitCraftRegion.Types
 {
     public sealed partial class RemoteReducers : RemoteBase
     {
-        public delegate void ImportDeployableDescHandler(ReducerEventContext ctx, System.Collections.Generic.List<DeployableDescV4> records);
+        public delegate void ImportDeployableDescHandler(ReducerEventContext ctx, System.Collections.Generic.List<DeployableDesc> records);
         public event ImportDeployableDescHandler? OnImportDeployableDesc;
 
-        public void ImportDeployableDesc(System.Collections.Generic.List<DeployableDescV4> records)
+        public void ImportDeployableDesc(System.Collections.Generic.List<DeployableDesc> records)
         {
             conn.InternalCallReducer(new Reducer.ImportDeployableDesc(records), this.SetCallReducerFlags.ImportDeployableDescFlags);
         }
@@ -28,7 +28,7 @@ namespace BitCraftRegion.Types
             {
                 if (InternalOnUnhandledReducerError != null)
                 {
-                    switch(ctx.Event.Status)
+                    switch (ctx.Event.Status)
                     {
                         case Status.Failed(var reason): InternalOnUnhandledReducerError(ctx, new Exception(reason)); break;
                         case Status.OutOfEnergy(var _): InternalOnUnhandledReducerError(ctx, new Exception("out of energy")); break;
@@ -51,9 +51,9 @@ namespace BitCraftRegion.Types
         public sealed partial class ImportDeployableDesc : Reducer, IReducerArgs
         {
             [DataMember(Name = "records")]
-            public System.Collections.Generic.List<DeployableDescV4> Records;
+            public System.Collections.Generic.List<DeployableDesc> Records;
 
-            public ImportDeployableDesc(System.Collections.Generic.List<DeployableDescV4> Records)
+            public ImportDeployableDesc(System.Collections.Generic.List<DeployableDesc> Records)
             {
                 this.Records = Records;
             }

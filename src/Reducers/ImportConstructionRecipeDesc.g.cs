@@ -14,10 +14,10 @@ namespace BitCraftRegion.Types
 {
     public sealed partial class RemoteReducers : RemoteBase
     {
-        public delegate void ImportConstructionRecipeDescHandler(ReducerEventContext ctx, System.Collections.Generic.List<ConstructionRecipeDescV2> records);
+        public delegate void ImportConstructionRecipeDescHandler(ReducerEventContext ctx, System.Collections.Generic.List<ConstructionRecipeDesc> records);
         public event ImportConstructionRecipeDescHandler? OnImportConstructionRecipeDesc;
 
-        public void ImportConstructionRecipeDesc(System.Collections.Generic.List<ConstructionRecipeDescV2> records)
+        public void ImportConstructionRecipeDesc(System.Collections.Generic.List<ConstructionRecipeDesc> records)
         {
             conn.InternalCallReducer(new Reducer.ImportConstructionRecipeDesc(records), this.SetCallReducerFlags.ImportConstructionRecipeDescFlags);
         }
@@ -28,7 +28,7 @@ namespace BitCraftRegion.Types
             {
                 if (InternalOnUnhandledReducerError != null)
                 {
-                    switch(ctx.Event.Status)
+                    switch (ctx.Event.Status)
                     {
                         case Status.Failed(var reason): InternalOnUnhandledReducerError(ctx, new Exception(reason)); break;
                         case Status.OutOfEnergy(var _): InternalOnUnhandledReducerError(ctx, new Exception("out of energy")); break;
@@ -51,9 +51,9 @@ namespace BitCraftRegion.Types
         public sealed partial class ImportConstructionRecipeDesc : Reducer, IReducerArgs
         {
             [DataMember(Name = "records")]
-            public System.Collections.Generic.List<ConstructionRecipeDescV2> Records;
+            public System.Collections.Generic.List<ConstructionRecipeDesc> Records;
 
-            public ImportConstructionRecipeDesc(System.Collections.Generic.List<ConstructionRecipeDescV2> Records)
+            public ImportConstructionRecipeDesc(System.Collections.Generic.List<ConstructionRecipeDesc> Records)
             {
                 this.Records = Records;
             }

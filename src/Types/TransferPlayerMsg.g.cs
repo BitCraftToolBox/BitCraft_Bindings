@@ -99,6 +99,10 @@ namespace BitCraftRegion.Types
         public System.Collections.Generic.List<ActionState> ActionState;
         [DataMember(Name = "toolbar_state")]
         public System.Collections.Generic.List<ToolbarState> ToolbarState;
+        [DataMember(Name = "ability_state")]
+        public System.Collections.Generic.List<AbilityState> AbilityState;
+        [DataMember(Name = "action_bar_state")]
+        public System.Collections.Generic.List<ActionBarState> ActionBarState;
         [DataMember(Name = "attack_outcome_state")]
         public AttackOutcomeState AttackOutcomeState;
         [DataMember(Name = "vault_state")]
@@ -123,6 +127,10 @@ namespace BitCraftRegion.Types
         public ExtractOutcomeState ExtractOutcomeState;
         [DataMember(Name = "undeployed_deployable_states")]
         public System.Collections.Generic.List<DeployableState> UndeployedDeployableStates;
+        [DataMember(Name = "player_settings_state")]
+        public PlayerSettingsState? PlayerSettingsState;
+        [DataMember(Name = "quest_chain_states")]
+        public System.Collections.Generic.List<QuestChainState> QuestChainStates;
 
         public TransferPlayerMsg(
             FloatHexTileMessage OriginalLocation,
@@ -167,6 +175,8 @@ namespace BitCraftRegion.Types
             CombatState CombatState,
             System.Collections.Generic.List<ActionState> ActionState,
             System.Collections.Generic.List<ToolbarState> ToolbarState,
+            System.Collections.Generic.List<AbilityState> AbilityState,
+            System.Collections.Generic.List<ActionBarState> ActionBarState,
             AttackOutcomeState AttackOutcomeState,
             VaultState VaultState,
             ExplorationChunksState ExplorationChunksState,
@@ -178,7 +188,9 @@ namespace BitCraftRegion.Types
             PlayerHousingState? PlayerHousingState,
             System.Collections.Generic.List<TravelerTaskState> TravelerTaskStates,
             ExtractOutcomeState ExtractOutcomeState,
-            System.Collections.Generic.List<DeployableState> UndeployedDeployableStates
+            System.Collections.Generic.List<DeployableState> UndeployedDeployableStates,
+            PlayerSettingsState? PlayerSettingsState,
+            System.Collections.Generic.List<QuestChainState> QuestChainStates
         )
         {
             this.OriginalLocation = OriginalLocation;
@@ -223,6 +235,8 @@ namespace BitCraftRegion.Types
             this.CombatState = CombatState;
             this.ActionState = ActionState;
             this.ToolbarState = ToolbarState;
+            this.AbilityState = AbilityState;
+            this.ActionBarState = ActionBarState;
             this.AttackOutcomeState = AttackOutcomeState;
             this.VaultState = VaultState;
             this.ExplorationChunksState = ExplorationChunksState;
@@ -235,6 +249,8 @@ namespace BitCraftRegion.Types
             this.TravelerTaskStates = TravelerTaskStates;
             this.ExtractOutcomeState = ExtractOutcomeState;
             this.UndeployedDeployableStates = UndeployedDeployableStates;
+            this.PlayerSettingsState = PlayerSettingsState;
+            this.QuestChainStates = QuestChainStates;
         }
 
         public TransferPlayerMsg()
@@ -277,6 +293,8 @@ namespace BitCraftRegion.Types
             this.CombatState = new();
             this.ActionState = new();
             this.ToolbarState = new();
+            this.AbilityState = new();
+            this.ActionBarState = new();
             this.AttackOutcomeState = new();
             this.VaultState = new();
             this.ExplorationChunksState = new();
@@ -287,6 +305,7 @@ namespace BitCraftRegion.Types
             this.TravelerTaskStates = new();
             this.ExtractOutcomeState = new();
             this.UndeployedDeployableStates = new();
+            this.QuestChainStates = new();
         }
     }
 }

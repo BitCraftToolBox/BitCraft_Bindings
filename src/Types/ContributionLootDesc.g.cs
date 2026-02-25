@@ -23,18 +23,22 @@ namespace BitCraftRegion.Types
         public int ItemListId;
         [DataMember(Name = "minimum_contribution")]
         public int MinimumContribution;
+        [DataMember(Name = "weighted")]
+        public bool Weighted;
 
         public ContributionLootDesc(
             int Id,
             int EnemyTypeId,
             int ItemListId,
-            int MinimumContribution
+            int MinimumContribution,
+            bool Weighted
         )
         {
             this.Id = Id;
             this.EnemyTypeId = EnemyTypeId;
             this.ItemListId = ItemListId;
             this.MinimumContribution = MinimumContribution;
+            this.Weighted = Weighted;
         }
 
         public ContributionLootDesc()

@@ -25,6 +25,8 @@ namespace BitCraftRegion.Types
         DeleteEmpireMsg DeleteEmpire,
         EmpireClaimJoinMsg EmpireClaimJoin,
         EmpireResupplyNodeMsg EmpireResupplyNode,
+        EmpireDonateItemMsg EmpireDonateItem,
+        EmpireCreateMsg EmpireCreate,
         EmpireCollectHexiteCapsuleMsg EmpireCollectHexiteCapsule,
         EmpireStartSiegeMsg EmpireStartSiege,
         EmpireSiegeAddSuppliesMsg EmpireSiegeAddSupplies,
@@ -35,11 +37,16 @@ namespace BitCraftRegion.Types
         EmpireQueueSuppliesMsg EmpireQueueSupplies,
         EmpireUpdateEmperorCrownMsg EmpireUpdateEmperorCrown,
         EmpireRemoveCrownMsg EmpireRemoveCrown,
+        EmpireAddCurrencyMsg EmpireAddCurrency,
         SignPlayerOutMsg SignPlayerOut,
         AdminBroadcastMessageMsg AdminBroadcastMessage,
         PlayerSkipQueueMsg PlayerSkipQueue,
         GrantHubItemMsg GrantHubItem,
         RecoverDeployableMsg RecoverDeployable,
-        OnDeployableRecoveredMsg OnDeployableRecovered
+        OnDeployableRecoveredMsg OnDeployableRecovered,
+        ReplaceIdentityMsg ReplaceIdentity,
+        ClaimSetNameMsg ClaimSetName,
+        RestoreSkillsMsg RestoreSkills,
+        NpcPlaceWatchtowersMsg NpcPlaceWatchtowers
     )>;
 }

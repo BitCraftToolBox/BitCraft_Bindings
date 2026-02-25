@@ -23,30 +23,30 @@ namespace BitCraftRegion.Types
         public int QuestChainDescId;
         [DataMember(Name = "stage_id")]
         public int StageId;
-        [DataMember(Name = "is_active")]
-        public bool IsActive;
         [DataMember(Name = "completed")]
         public bool Completed;
         [DataMember(Name = "stage_rewards_awarded")]
         public System.Collections.Generic.List<int> StageRewardsAwarded;
+        [DataMember(Name = "tracked")]
+        public bool Tracked;
 
         public QuestChainState(
             ulong EntityId,
             ulong PlayerEntityId,
             int QuestChainDescId,
             int StageId,
-            bool IsActive,
             bool Completed,
-            System.Collections.Generic.List<int> StageRewardsAwarded
+            System.Collections.Generic.List<int> StageRewardsAwarded,
+            bool Tracked
         )
         {
             this.EntityId = EntityId;
             this.PlayerEntityId = PlayerEntityId;
             this.QuestChainDescId = QuestChainDescId;
             this.StageId = StageId;
-            this.IsActive = IsActive;
             this.Completed = Completed;
             this.StageRewardsAwarded = StageRewardsAwarded;
+            this.Tracked = Tracked;
         }
 
         public QuestChainState()

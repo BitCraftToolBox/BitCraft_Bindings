@@ -28,9 +28,19 @@ namespace BitCraftRegion.Types
 
             public readonly IdUniqueIndex Id;
 
+            public sealed class ShowInProgressionIndex : BTreeIndexBase<bool>
+            {
+                protected override bool GetKey(CraftingRecipeDesc row) => row.ShowInProgression;
+
+                public ShowInProgressionIndex(CraftingRecipeDescHandle table) : base(table) { }
+            }
+
+            public readonly ShowInProgressionIndex ShowInProgression;
+
             internal CraftingRecipeDescHandle(DbConnection conn) : base(conn)
             {
                 Id = new(this);
+                ShowInProgression = new(this);
             }
 
             protected override object GetPrimaryKey(CraftingRecipeDesc row) => row.Id;

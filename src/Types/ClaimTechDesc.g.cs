@@ -17,10 +17,14 @@ namespace BitCraftRegion.Types
     {
         [DataMember(Name = "id")]
         public int Id;
+        [DataMember(Name = "name")]
+        public string Name;
         [DataMember(Name = "description")]
         public string Description;
         [DataMember(Name = "tier")]
         public int Tier;
+        [DataMember(Name = "tech_type")]
+        public ClaimTechType TechType;
         [DataMember(Name = "supplies_cost")]
         public int SuppliesCost;
         [DataMember(Name = "research_time")]
@@ -37,11 +41,15 @@ namespace BitCraftRegion.Types
         public int Supplies;
         [DataMember(Name = "xp_to_mint_hex_coin")]
         public uint XpToMintHexCoin;
+        [DataMember(Name = "unlocks_techs")]
+        public System.Collections.Generic.List<int> UnlocksTechs;
 
         public ClaimTechDesc(
             int Id,
+            string Name,
             string Description,
             int Tier,
+            ClaimTechType TechType,
             int SuppliesCost,
             int ResearchTime,
             System.Collections.Generic.List<int> Requirements,
@@ -49,12 +57,15 @@ namespace BitCraftRegion.Types
             int Members,
             int Area,
             int Supplies,
-            uint XpToMintHexCoin
+            uint XpToMintHexCoin,
+            System.Collections.Generic.List<int> UnlocksTechs
         )
         {
             this.Id = Id;
+            this.Name = Name;
             this.Description = Description;
             this.Tier = Tier;
+            this.TechType = TechType;
             this.SuppliesCost = SuppliesCost;
             this.ResearchTime = ResearchTime;
             this.Requirements = Requirements;
@@ -63,13 +74,16 @@ namespace BitCraftRegion.Types
             this.Area = Area;
             this.Supplies = Supplies;
             this.XpToMintHexCoin = XpToMintHexCoin;
+            this.UnlocksTechs = UnlocksTechs;
         }
 
         public ClaimTechDesc()
         {
+            this.Name = "";
             this.Description = "";
             this.Requirements = new();
             this.Input = new();
+            this.UnlocksTechs = new();
         }
     }
 }

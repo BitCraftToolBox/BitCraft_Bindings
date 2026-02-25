@@ -14,10 +14,10 @@ namespace BitCraftRegion.Types
 {
     public sealed partial class RemoteReducers : RemoteBase
     {
-        public delegate void StageContributionLootDescHandler(ReducerEventContext ctx, System.Collections.Generic.List<ContributionLootDescV2> records);
+        public delegate void StageContributionLootDescHandler(ReducerEventContext ctx, System.Collections.Generic.List<ContributionLootDesc> records);
         public event StageContributionLootDescHandler? OnStageContributionLootDesc;
 
-        public void StageContributionLootDesc(System.Collections.Generic.List<ContributionLootDescV2> records)
+        public void StageContributionLootDesc(System.Collections.Generic.List<ContributionLootDesc> records)
         {
             conn.InternalCallReducer(new Reducer.StageContributionLootDesc(records), this.SetCallReducerFlags.StageContributionLootDescFlags);
         }
@@ -28,7 +28,7 @@ namespace BitCraftRegion.Types
             {
                 if (InternalOnUnhandledReducerError != null)
                 {
-                    switch(ctx.Event.Status)
+                    switch (ctx.Event.Status)
                     {
                         case Status.Failed(var reason): InternalOnUnhandledReducerError(ctx, new Exception(reason)); break;
                         case Status.OutOfEnergy(var _): InternalOnUnhandledReducerError(ctx, new Exception("out of energy")); break;
@@ -51,9 +51,9 @@ namespace BitCraftRegion.Types
         public sealed partial class StageContributionLootDesc : Reducer, IReducerArgs
         {
             [DataMember(Name = "records")]
-            public System.Collections.Generic.List<ContributionLootDescV2> Records;
+            public System.Collections.Generic.List<ContributionLootDesc> Records;
 
-            public StageContributionLootDesc(System.Collections.Generic.List<ContributionLootDescV2> Records)
+            public StageContributionLootDesc(System.Collections.Generic.List<ContributionLootDesc> Records)
             {
                 this.Records = Records;
             }

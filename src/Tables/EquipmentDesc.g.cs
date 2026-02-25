@@ -28,9 +28,19 @@ namespace BitCraftRegion.Types
 
             public readonly ItemIdUniqueIndex ItemId;
 
+            public sealed class ShowInProgressionIndex : BTreeIndexBase<bool>
+            {
+                protected override bool GetKey(EquipmentDesc row) => row.ShowInProgression;
+
+                public ShowInProgressionIndex(EquipmentDescHandle table) : base(table) { }
+            }
+
+            public readonly ShowInProgressionIndex ShowInProgression;
+
             internal EquipmentDescHandle(DbConnection conn) : base(conn)
             {
                 ItemId = new(this);
+                ShowInProgression = new(this);
             }
 
             protected override object GetPrimaryKey(EquipmentDesc row) => row.ItemId;

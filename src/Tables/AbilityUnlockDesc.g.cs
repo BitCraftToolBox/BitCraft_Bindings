@@ -37,10 +37,20 @@ namespace BitCraftRegion.Types
 
             public readonly IdUniqueIndex Id;
 
+            public sealed class ShowInProgressionIndex : BTreeIndexBase<bool>
+            {
+                protected override bool GetKey(AbilityUnlockDesc row) => row.ShowInProgression;
+
+                public ShowInProgressionIndex(AbilityUnlockDescHandle table) : base(table) { }
+            }
+
+            public readonly ShowInProgressionIndex ShowInProgression;
+
             internal AbilityUnlockDescHandle(DbConnection conn) : base(conn)
             {
                 AbilityTypeEnum = new(this);
                 Id = new(this);
+                ShowInProgression = new(this);
             }
 
             protected override object GetPrimaryKey(AbilityUnlockDesc row) => row.Id;

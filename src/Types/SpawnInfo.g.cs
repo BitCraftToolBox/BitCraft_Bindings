@@ -47,8 +47,8 @@ namespace BitCraftRegion.Types
         public short WaterDepthMin;
         [DataMember(Name = "water_depth_max")]
         public short WaterDepthMax;
-        [DataMember(Name = "spawns_on_uneven_terrain")]
-        public bool SpawnsOnUnevenTerrain;
+        [DataMember(Name = "max_elevation_delta")]
+        public int MaxElevationDelta;
 
         public SpawnInfo(
             ulong BiomeIndex,
@@ -67,7 +67,7 @@ namespace BitCraftRegion.Types
             bool SpawnsInWater,
             short WaterDepthMin,
             short WaterDepthMax,
-            bool SpawnsOnUnevenTerrain
+            int MaxElevationDelta
         )
         {
             this.BiomeIndex = BiomeIndex;
@@ -86,7 +86,7 @@ namespace BitCraftRegion.Types
             this.SpawnsInWater = SpawnsInWater;
             this.WaterDepthMin = WaterDepthMin;
             this.WaterDepthMax = WaterDepthMax;
-            this.SpawnsOnUnevenTerrain = SpawnsOnUnevenTerrain;
+            this.MaxElevationDelta = MaxElevationDelta;
         }
 
         public SpawnInfo()

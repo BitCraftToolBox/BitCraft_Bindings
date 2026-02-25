@@ -29,6 +29,8 @@ namespace BitCraftRegion.Types
         public System.Collections.Generic.List<int> RequiredKnowledges;
         [DataMember(Name = "blocking_knowledges")]
         public System.Collections.Generic.List<int> BlockingKnowledges;
+        [DataMember(Name = "show_in_progression")]
+        public bool ShowInProgression;
 
         public AbilityUnlockDesc(
             int Id,
@@ -37,7 +39,8 @@ namespace BitCraftRegion.Types
             System.Collections.Generic.List<LevelRequirement> LevelRequirements,
             int RequiredClaimTechId,
             System.Collections.Generic.List<int> RequiredKnowledges,
-            System.Collections.Generic.List<int> BlockingKnowledges
+            System.Collections.Generic.List<int> BlockingKnowledges,
+            bool ShowInProgression
         )
         {
             this.Id = Id;
@@ -47,6 +50,7 @@ namespace BitCraftRegion.Types
             this.RequiredClaimTechId = RequiredClaimTechId;
             this.RequiredKnowledges = RequiredKnowledges;
             this.BlockingKnowledges = BlockingKnowledges;
+            this.ShowInProgression = ShowInProgression;
         }
 
         public AbilityUnlockDesc()

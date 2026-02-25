@@ -28,9 +28,19 @@ namespace BitCraftRegion.Types
 
             public readonly IdUniqueIndex Id;
 
+            public sealed class TagIndex : BTreeIndexBase<string>
+            {
+                protected override string GetKey(ItemDesc row) => row.Tag;
+
+                public TagIndex(ItemDescHandle table) : base(table) { }
+            }
+
+            public readonly TagIndex Tag;
+
             internal ItemDescHandle(DbConnection conn) : base(conn)
             {
                 Id = new(this);
+                Tag = new(this);
             }
 
             protected override object GetPrimaryKey(ItemDesc row) => row.Id;

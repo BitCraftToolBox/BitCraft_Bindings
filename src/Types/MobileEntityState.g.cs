@@ -31,8 +31,8 @@ namespace BitCraftRegion.Types
         public int DestinationZ;
         [DataMember(Name = "dimension")]
         public uint Dimension;
-        [DataMember(Name = "is_running")]
-        public bool IsRunning;
+        [DataMember(Name = "is_walking")]
+        public bool IsWalking;
         [DataMember(Name = "_pad1")]
         public byte Pad1;
         [DataMember(Name = "_pad2")]
@@ -49,7 +49,7 @@ namespace BitCraftRegion.Types
             int DestinationX,
             int DestinationZ,
             uint Dimension,
-            bool IsRunning,
+            bool IsWalking,
             byte Pad1,
             byte Pad2,
             byte Pad3
@@ -63,7 +63,7 @@ namespace BitCraftRegion.Types
             this.DestinationX = DestinationX;
             this.DestinationZ = DestinationZ;
             this.Dimension = Dimension;
-            this.IsRunning = IsRunning;
+            this.IsWalking = IsWalking;
             this.Pad1 = Pad1;
             this.Pad2 = Pad2;
             this.Pad3 = Pad3;

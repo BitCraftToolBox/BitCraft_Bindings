@@ -37,8 +37,14 @@ namespace BitCraftRegion.Types
         public PlayerActionResult LastActionResult;
         [DataMember(Name = "client_cancel")]
         public bool ClientCancel;
-        [DataMember(Name = "_pad")]
-        public uint Pad;
+        [DataMember(Name = "was_consumed")]
+        public bool WasConsumed;
+        [DataMember(Name = "_pad1")]
+        public byte Pad1;
+        [DataMember(Name = "_pad2")]
+        public byte Pad2;
+        [DataMember(Name = "_pad3")]
+        public byte Pad3;
 
         public PlayerActionState(
             ulong AutoId,
@@ -52,7 +58,10 @@ namespace BitCraftRegion.Types
             PlayerActionLayer Layer,
             PlayerActionResult LastActionResult,
             bool ClientCancel,
-            uint Pad
+            bool WasConsumed,
+            byte Pad1,
+            byte Pad2,
+            byte Pad3
         )
         {
             this.AutoId = AutoId;
@@ -66,7 +75,10 @@ namespace BitCraftRegion.Types
             this.Layer = Layer;
             this.LastActionResult = LastActionResult;
             this.ClientCancel = ClientCancel;
-            this.Pad = Pad;
+            this.WasConsumed = WasConsumed;
+            this.Pad1 = Pad1;
+            this.Pad2 = Pad2;
+            this.Pad3 = Pad3;
         }
 
         public PlayerActionState()

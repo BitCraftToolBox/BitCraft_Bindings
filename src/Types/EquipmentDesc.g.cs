@@ -33,6 +33,8 @@ namespace BitCraftRegion.Types
         public System.Collections.Generic.List<int> RequiredAchievements;
         [DataMember(Name = "required_knowledges")]
         public System.Collections.Generic.List<int> RequiredKnowledges;
+        [DataMember(Name = "show_in_progression")]
+        public bool ShowInProgression;
 
         public EquipmentDesc(
             int ItemId,
@@ -43,7 +45,8 @@ namespace BitCraftRegion.Types
             HandEquipmentVisual? HandEquipmentVisual,
             System.Collections.Generic.List<CsvStatEntry> Stats,
             System.Collections.Generic.List<int> RequiredAchievements,
-            System.Collections.Generic.List<int> RequiredKnowledges
+            System.Collections.Generic.List<int> RequiredKnowledges,
+            bool ShowInProgression
         )
         {
             this.ItemId = ItemId;
@@ -55,6 +58,7 @@ namespace BitCraftRegion.Types
             this.Stats = Stats;
             this.RequiredAchievements = RequiredAchievements;
             this.RequiredKnowledges = RequiredKnowledges;
+            this.ShowInProgression = ShowInProgression;
         }
 
         public EquipmentDesc()

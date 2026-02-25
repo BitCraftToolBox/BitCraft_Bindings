@@ -29,6 +29,10 @@ namespace BitCraftRegion.Types
         public System.Collections.Generic.List<QuestReward> Rewards;
         [DataMember(Name = "implicit_rewards")]
         public System.Collections.Generic.List<QuestReward> ImplicitRewards;
+        [DataMember(Name = "unstartable")]
+        public bool Unstartable;
+        [DataMember(Name = "is_secret")]
+        public bool IsSecret;
 
         public QuestChainDesc(
             int Id,
@@ -37,7 +41,9 @@ namespace BitCraftRegion.Types
             System.Collections.Generic.List<int> Stages,
             System.Collections.Generic.List<QuestRequirement> Requirements,
             System.Collections.Generic.List<QuestReward> Rewards,
-            System.Collections.Generic.List<QuestReward> ImplicitRewards
+            System.Collections.Generic.List<QuestReward> ImplicitRewards,
+            bool Unstartable,
+            bool IsSecret
         )
         {
             this.Id = Id;
@@ -47,6 +53,8 @@ namespace BitCraftRegion.Types
             this.Requirements = Requirements;
             this.Rewards = Rewards;
             this.ImplicitRewards = ImplicitRewards;
+            this.Unstartable = Unstartable;
+            this.IsSecret = IsSecret;
         }
 
         public QuestChainDesc()

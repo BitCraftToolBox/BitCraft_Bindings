@@ -24,13 +24,15 @@ namespace BitCraftRegion.Types
         [DataMember(Name = "range")]
         public uint Range;
         [DataMember(Name = "max_range")]
-        public uint MaxRange;
+        public float MaxRange;
         [DataMember(Name = "auto_cast")]
         public bool AutoCast;
         [DataMember(Name = "weapon_type_requirements")]
         public System.Collections.Generic.List<int> WeaponTypeRequirements;
         [DataMember(Name = "lead_in_time")]
         public float LeadInTime;
+        [DataMember(Name = "inaction_time")]
+        public float InactionTime;
         [DataMember(Name = "can_move_during_lead_in")]
         public bool CanMoveDuringLeadIn;
         [DataMember(Name = "cooldown")]
@@ -75,16 +77,21 @@ namespace BitCraftRegion.Types
         public float BaseThreat;
         [DataMember(Name = "threat_per_damage")]
         public float ThreatPerDamage;
+        [DataMember(Name = "is_self_targeting")]
+        public bool IsSelfTargeting;
+        [DataMember(Name = "is_taunt_action")]
+        public bool IsTauntAction;
 
         public CombatActionDesc(
             string Name,
             int Id,
             bool LearnedByPlayer,
             uint Range,
-            uint MaxRange,
+            float MaxRange,
             bool AutoCast,
             System.Collections.Generic.List<int> WeaponTypeRequirements,
             float LeadInTime,
+            float InactionTime,
             bool CanMoveDuringLeadIn,
             float Cooldown,
             float GlobalCooldown,
@@ -106,7 +113,9 @@ namespace BitCraftRegion.Types
             float SelfThreatAgainstBuildings,
             float SelfThreatAgainstEnemies,
             float BaseThreat,
-            float ThreatPerDamage
+            float ThreatPerDamage,
+            bool IsSelfTargeting,
+            bool IsTauntAction
         )
         {
             this.Name = Name;
@@ -117,6 +126,7 @@ namespace BitCraftRegion.Types
             this.AutoCast = AutoCast;
             this.WeaponTypeRequirements = WeaponTypeRequirements;
             this.LeadInTime = LeadInTime;
+            this.InactionTime = InactionTime;
             this.CanMoveDuringLeadIn = CanMoveDuringLeadIn;
             this.Cooldown = Cooldown;
             this.GlobalCooldown = GlobalCooldown;
@@ -139,6 +149,8 @@ namespace BitCraftRegion.Types
             this.SelfThreatAgainstEnemies = SelfThreatAgainstEnemies;
             this.BaseThreat = BaseThreat;
             this.ThreatPerDamage = ThreatPerDamage;
+            this.IsSelfTargeting = IsSelfTargeting;
+            this.IsTauntAction = IsTauntAction;
         }
 
         public CombatActionDesc()

@@ -37,10 +37,20 @@ namespace BitCraftRegion.Types
 
             public readonly ResourceIdIndex ResourceId;
 
+            public sealed class ShowInProgressionIndex : BTreeIndexBase<bool>
+            {
+                protected override bool GetKey(ExtractionRecipeDesc row) => row.ShowInProgression;
+
+                public ShowInProgressionIndex(ExtractionRecipeDescHandle table) : base(table) { }
+            }
+
+            public readonly ShowInProgressionIndex ShowInProgression;
+
             internal ExtractionRecipeDescHandle(DbConnection conn) : base(conn)
             {
                 Id = new(this);
                 ResourceId = new(this);
+                ShowInProgression = new(this);
             }
 
             protected override object GetPrimaryKey(ExtractionRecipeDesc row) => row.Id;

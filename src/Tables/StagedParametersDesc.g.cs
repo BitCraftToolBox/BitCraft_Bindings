@@ -15,13 +15,13 @@ namespace BitCraftRegion.Types
 {
     public sealed partial class RemoteTables
     {
-        public sealed class StagedParametersDescHandle : RemoteTableHandle<EventContext, ParametersDescV2>
+        public sealed class StagedParametersDescHandle : RemoteTableHandle<EventContext, ParametersDesc>
         {
             protected override string RemoteTableName => "staged_parameters_desc";
 
             public sealed class VersionUniqueIndex : UniqueIndexBase<int>
             {
-                protected override int GetKey(ParametersDescV2 row) => row.Version;
+                protected override int GetKey(ParametersDesc row) => row.Version;
 
                 public VersionUniqueIndex(StagedParametersDescHandle table) : base(table) { }
             }
@@ -33,7 +33,7 @@ namespace BitCraftRegion.Types
                 Version = new(this);
             }
 
-            protected override object GetPrimaryKey(ParametersDescV2 row) => row.Version;
+            protected override object GetPrimaryKey(ParametersDesc row) => row.Version;
         }
 
         public readonly StagedParametersDescHandle StagedParametersDesc;

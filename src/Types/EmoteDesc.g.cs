@@ -31,6 +31,12 @@ namespace BitCraftRegion.Types
         public bool AllowWhileMounted;
         [DataMember(Name = "allow_while_moving")]
         public bool AllowWhileMoving;
+        [DataMember(Name = "enabled_by_collectible_id")]
+        public int EnabledByCollectibleId;
+        [DataMember(Name = "tool_type")]
+        public int ToolType;
+        [DataMember(Name = "tool_mesh_index")]
+        public int ToolMeshIndex;
 
         public EmoteDesc(
             int Id,
@@ -40,7 +46,10 @@ namespace BitCraftRegion.Types
             string KeyCode,
             string CommandLine,
             bool AllowWhileMounted,
-            bool AllowWhileMoving
+            bool AllowWhileMoving,
+            int EnabledByCollectibleId,
+            int ToolType,
+            int ToolMeshIndex
         )
         {
             this.Id = Id;
@@ -51,6 +60,9 @@ namespace BitCraftRegion.Types
             this.CommandLine = CommandLine;
             this.AllowWhileMounted = AllowWhileMounted;
             this.AllowWhileMoving = AllowWhileMoving;
+            this.EnabledByCollectibleId = EnabledByCollectibleId;
+            this.ToolType = ToolType;
+            this.ToolMeshIndex = ToolMeshIndex;
         }
 
         public EmoteDesc()

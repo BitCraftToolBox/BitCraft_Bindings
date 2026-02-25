@@ -34,5 +34,6 @@ namespace BitCraftRegion.Types
         Trading,
         LoreKeeper,
         Sailing,
+        HexiteGathering,
     }
 }

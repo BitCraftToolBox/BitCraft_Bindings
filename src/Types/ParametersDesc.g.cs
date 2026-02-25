@@ -21,12 +21,6 @@ namespace BitCraftRegion.Types
         public System.Collections.Generic.List<MovementSpeed> DefaultSpeed;
         [DataMember(Name = "default_num_inventory_pockets")]
         public int DefaultNumInventoryPockets;
-        [DataMember(Name = "skill_yield_power_exponent")]
-        public float SkillYieldPowerExponent;
-        [DataMember(Name = "skill_yield_log_base")]
-        public float SkillYieldLogBase;
-        [DataMember(Name = "skill_yield_cutoff_percent")]
-        public float SkillYieldCutoffPercent;
         [DataMember(Name = "tech_time_power_exponent")]
         public float TechTimePowerExponent;
         [DataMember(Name = "tech_time_log_base")]
@@ -43,8 +37,6 @@ namespace BitCraftRegion.Types
         public float RepairBuildingShowDamagePercent;
         [DataMember(Name = "environment_debuff_tick_millis")]
         public int EnvironmentDebuffTickMillis;
-        [DataMember(Name = "enemy_spawn_agent_wait_time")]
-        public int EnemySpawnAgentWaitTime;
         [DataMember(Name = "discovery_range")]
         public int DiscoveryRange;
         [DataMember(Name = "max_build_range")]
@@ -53,20 +45,10 @@ namespace BitCraftRegion.Types
         public float DeconstructDefaultTime;
         [DataMember(Name = "respawn_seconds")]
         public int RespawnSeconds;
-        [DataMember(Name = "player_climb_height")]
-        public float PlayerClimbHeight;
-        [DataMember(Name = "player_jump_height")]
-        public float PlayerJumpHeight;
-        [DataMember(Name = "player_swim_height")]
-        public float PlayerSwimHeight;
         [DataMember(Name = "daytime")]
         public int Daytime;
         [DataMember(Name = "nighttime")]
         public int Nighttime;
-        [DataMember(Name = "aggro_range")]
-        public int AggroRange;
-        [DataMember(Name = "max_cargo_per_hex")]
-        public int MaxCargoPerHex;
         [DataMember(Name = "resources_regen_loops")]
         public int ResourcesRegenLoops;
         [DataMember(Name = "selected_traveler_order_count")]
@@ -81,14 +63,6 @@ namespace BitCraftRegion.Types
         public int MaxTradeDistanceLargeTiles;
         [DataMember(Name = "min_distance_between_claims")]
         public int MinDistanceBetweenClaims;
-        [DataMember(Name = "combat_manager_tick_millis")]
-        public int CombatManagerTickMillis;
-        [DataMember(Name = "disengage_range")]
-        public int DisengageRange;
-        [DataMember(Name = "disengage_time_millis")]
-        public int DisengageTimeMillis;
-        [DataMember(Name = "action_slots")]
-        public int ActionSlots;
         [DataMember(Name = "starting_supplies")]
         public int StartingSupplies;
         [DataMember(Name = "show_shield_bar_percent")]
@@ -143,8 +117,6 @@ namespace BitCraftRegion.Types
         public int HexiteCapsuleCraftTimeSeconds;
         [DataMember(Name = "crafting_lock_duration_secs")]
         public int CraftingLockDurationSecs;
-        [DataMember(Name = "num_toolbars")]
-        public int NumToolbars;
         [DataMember(Name = "starving_tick_millis")]
         public int StarvingTickMillis;
         [DataMember(Name = "starving_damage")]
@@ -183,8 +155,6 @@ namespace BitCraftRegion.Types
         public int DroppedInventoryOwnershipSeconds;
         [DataMember(Name = "dropped_inventory_despawn_seconds")]
         public int DroppedInventoryDespawnSeconds;
-        [DataMember(Name = "enemy_loot_ownership_seconds")]
-        public int EnemyLootOwnershipSeconds;
         [DataMember(Name = "traveler_tasks_per_npc")]
         public int TravelerTasksPerNpc;
         [DataMember(Name = "traveler_tasks_times_of_day")]
@@ -211,20 +181,29 @@ namespace BitCraftRegion.Types
         public float DuelRange;
         [DataMember(Name = "duel_out_of_range_grace_period_millis")]
         public int DuelOutOfRangeGracePeriodMillis;
-        [DataMember(Name = "player_housing_same_region_move_time_minutes")]
-        public int PlayerHousingSameRegionMoveTimeMinutes;
         [DataMember(Name = "player_housing_eviction_time_minutes")]
         public int PlayerHousingEvictionTimeMinutes;
         [DataMember(Name = "player_housing_income_time_of_day")]
         public float PlayerHousingIncomeTimeOfDay;
+        [DataMember(Name = "co_owner_take_ownership_supply_time")]
+        public int CoOwnerTakeOwnershipSupplyTime;
+        [DataMember(Name = "officer_take_ownership_supply_time")]
+        public int OfficerTakeOwnershipSupplyTime;
+        [DataMember(Name = "member_take_ownership_supply_time")]
+        public int MemberTakeOwnershipSupplyTime;
+        [DataMember(Name = "empire_starting_currency")]
+        public uint EmpireStartingCurrency;
+        [DataMember(Name = "empire_rename_currency_cost")]
+        public uint EmpireRenameCurrencyCost;
+        [DataMember(Name = "empire_move_capital_currency_cost")]
+        public uint EmpireMoveCapitalCurrencyCost;
+        [DataMember(Name = "hexite_capsule_currency_cost")]
+        public uint HexiteCapsuleCurrencyCost;
 
         public ParametersDesc(
             int Version,
             System.Collections.Generic.List<MovementSpeed> DefaultSpeed,
             int DefaultNumInventoryPockets,
-            float SkillYieldPowerExponent,
-            float SkillYieldLogBase,
-            float SkillYieldCutoffPercent,
             float TechTimePowerExponent,
             float TechTimeLogBase,
             int MinSecondsToPassiveRegenHealth,
@@ -233,18 +212,12 @@ namespace BitCraftRegion.Types
             float RepairBuildingMaxRepairPercent,
             float RepairBuildingShowDamagePercent,
             int EnvironmentDebuffTickMillis,
-            int EnemySpawnAgentWaitTime,
             int DiscoveryRange,
             int MaxBuildRange,
             float DeconstructDefaultTime,
             int RespawnSeconds,
-            float PlayerClimbHeight,
-            float PlayerJumpHeight,
-            float PlayerSwimHeight,
             int Daytime,
             int Nighttime,
-            int AggroRange,
-            int MaxCargoPerHex,
             int ResourcesRegenLoops,
             int SelectedTravelerOrderCount,
             int ResourcesRegenTickMillis,
@@ -252,10 +225,6 @@ namespace BitCraftRegion.Types
             int MaxTradedItems,
             int MaxTradeDistanceLargeTiles,
             int MinDistanceBetweenClaims,
-            int CombatManagerTickMillis,
-            int DisengageRange,
-            int DisengageTimeMillis,
-            int ActionSlots,
             int StartingSupplies,
             float ShowShieldBarPercent,
             float SwimSprintSpeedMultiplier,
@@ -283,7 +252,6 @@ namespace BitCraftRegion.Types
             int HexiteCapsuleShardCost,
             int HexiteCapsuleCraftTimeSeconds,
             int CraftingLockDurationSecs,
-            int NumToolbars,
             int StarvingTickMillis,
             float StarvingDamage,
             float ClaimStabilityParamM,
@@ -303,7 +271,6 @@ namespace BitCraftRegion.Types
             float TerraformExperiencePerProgress,
             int DroppedInventoryOwnershipSeconds,
             int DroppedInventoryDespawnSeconds,
-            int EnemyLootOwnershipSeconds,
             int TravelerTasksPerNpc,
             System.Collections.Generic.List<int> TravelerTasksTimesOfDay,
             float TeleportChannelTimeHome,
@@ -317,17 +284,20 @@ namespace BitCraftRegion.Types
             float QuickBoardRange,
             float DuelRange,
             int DuelOutOfRangeGracePeriodMillis,
-            int PlayerHousingSameRegionMoveTimeMinutes,
             int PlayerHousingEvictionTimeMinutes,
-            float PlayerHousingIncomeTimeOfDay
+            float PlayerHousingIncomeTimeOfDay,
+            int CoOwnerTakeOwnershipSupplyTime,
+            int OfficerTakeOwnershipSupplyTime,
+            int MemberTakeOwnershipSupplyTime,
+            uint EmpireStartingCurrency,
+            uint EmpireRenameCurrencyCost,
+            uint EmpireMoveCapitalCurrencyCost,
+            uint HexiteCapsuleCurrencyCost
         )
         {
             this.Version = Version;
             this.DefaultSpeed = DefaultSpeed;
             this.DefaultNumInventoryPockets = DefaultNumInventoryPockets;
-            this.SkillYieldPowerExponent = SkillYieldPowerExponent;
-            this.SkillYieldLogBase = SkillYieldLogBase;
-            this.SkillYieldCutoffPercent = SkillYieldCutoffPercent;
             this.TechTimePowerExponent = TechTimePowerExponent;
             this.TechTimeLogBase = TechTimeLogBase;
             this.MinSecondsToPassiveRegenHealth = MinSecondsToPassiveRegenHealth;
@@ -336,18 +306,12 @@ namespace BitCraftRegion.Types
             this.RepairBuildingMaxRepairPercent = RepairBuildingMaxRepairPercent;
             this.RepairBuildingShowDamagePercent = RepairBuildingShowDamagePercent;
             this.EnvironmentDebuffTickMillis = EnvironmentDebuffTickMillis;
-            this.EnemySpawnAgentWaitTime = EnemySpawnAgentWaitTime;
             this.DiscoveryRange = DiscoveryRange;
             this.MaxBuildRange = MaxBuildRange;
             this.DeconstructDefaultTime = DeconstructDefaultTime;
             this.RespawnSeconds = RespawnSeconds;
-            this.PlayerClimbHeight = PlayerClimbHeight;
-            this.PlayerJumpHeight = PlayerJumpHeight;
-            this.PlayerSwimHeight = PlayerSwimHeight;
             this.Daytime = Daytime;
             this.Nighttime = Nighttime;
-            this.AggroRange = AggroRange;
-            this.MaxCargoPerHex = MaxCargoPerHex;
             this.ResourcesRegenLoops = ResourcesRegenLoops;
             this.SelectedTravelerOrderCount = SelectedTravelerOrderCount;
             this.ResourcesRegenTickMillis = ResourcesRegenTickMillis;
@@ -355,10 +319,6 @@ namespace BitCraftRegion.Types
             this.MaxTradedItems = MaxTradedItems;
             this.MaxTradeDistanceLargeTiles = MaxTradeDistanceLargeTiles;
             this.MinDistanceBetweenClaims = MinDistanceBetweenClaims;
-            this.CombatManagerTickMillis = CombatManagerTickMillis;
-            this.DisengageRange = DisengageRange;
-            this.DisengageTimeMillis = DisengageTimeMillis;
-            this.ActionSlots = ActionSlots;
             this.StartingSupplies = StartingSupplies;
             this.ShowShieldBarPercent = ShowShieldBarPercent;
             this.SwimSprintSpeedMultiplier = SwimSprintSpeedMultiplier;
@@ -386,7 +346,6 @@ namespace BitCraftRegion.Types
             this.HexiteCapsuleShardCost = HexiteCapsuleShardCost;
             this.HexiteCapsuleCraftTimeSeconds = HexiteCapsuleCraftTimeSeconds;
             this.CraftingLockDurationSecs = CraftingLockDurationSecs;
-            this.NumToolbars = NumToolbars;
             this.StarvingTickMillis = StarvingTickMillis;
             this.StarvingDamage = StarvingDamage;
             this.ClaimStabilityParamM = ClaimStabilityParamM;
@@ -406,7 +365,6 @@ namespace BitCraftRegion.Types
             this.TerraformExperiencePerProgress = TerraformExperiencePerProgress;
             this.DroppedInventoryOwnershipSeconds = DroppedInventoryOwnershipSeconds;
             this.DroppedInventoryDespawnSeconds = DroppedInventoryDespawnSeconds;
-            this.EnemyLootOwnershipSeconds = EnemyLootOwnershipSeconds;
             this.TravelerTasksPerNpc = TravelerTasksPerNpc;
             this.TravelerTasksTimesOfDay = TravelerTasksTimesOfDay;
             this.TeleportChannelTimeHome = TeleportChannelTimeHome;
@@ -420,9 +378,15 @@ namespace BitCraftRegion.Types
             this.QuickBoardRange = QuickBoardRange;
             this.DuelRange = DuelRange;
             this.DuelOutOfRangeGracePeriodMillis = DuelOutOfRangeGracePeriodMillis;
-            this.PlayerHousingSameRegionMoveTimeMinutes = PlayerHousingSameRegionMoveTimeMinutes;
             this.PlayerHousingEvictionTimeMinutes = PlayerHousingEvictionTimeMinutes;
             this.PlayerHousingIncomeTimeOfDay = PlayerHousingIncomeTimeOfDay;
+            this.CoOwnerTakeOwnershipSupplyTime = CoOwnerTakeOwnershipSupplyTime;
+            this.OfficerTakeOwnershipSupplyTime = OfficerTakeOwnershipSupplyTime;
+            this.MemberTakeOwnershipSupplyTime = MemberTakeOwnershipSupplyTime;
+            this.EmpireStartingCurrency = EmpireStartingCurrency;
+            this.EmpireRenameCurrencyCost = EmpireRenameCurrencyCost;
+            this.EmpireMoveCapitalCurrencyCost = EmpireMoveCapitalCurrencyCost;
+            this.HexiteCapsuleCurrencyCost = HexiteCapsuleCurrencyCost;
         }
 
         public ParametersDesc()

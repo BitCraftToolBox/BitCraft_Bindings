@@ -25,13 +25,16 @@ namespace BitCraftRegion.Types
         public int DeployableDescId;
         [DataMember(Name = "location")]
         public OffsetCoordinatesSmallMessage? Location;
+        [DataMember(Name = "auto_follow")]
+        public bool AutoFollow;
 
         public DeployableCollectibleState(
             ulong DeployableEntityId,
             ulong OwnerEntityId,
             int CollectibleId,
             int DeployableDescId,
-            OffsetCoordinatesSmallMessage? Location
+            OffsetCoordinatesSmallMessage? Location,
+            bool AutoFollow
         )
         {
             this.DeployableEntityId = DeployableEntityId;
@@ -39,6 +42,7 @@ namespace BitCraftRegion.Types
             this.CollectibleId = CollectibleId;
             this.DeployableDescId = DeployableDescId;
             this.Location = Location;
+            this.AutoFollow = AutoFollow;
         }
 
         public DeployableCollectibleState()

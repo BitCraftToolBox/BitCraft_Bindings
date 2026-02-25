@@ -31,6 +31,10 @@ namespace BitCraftRegion.Types
         public MovementType MovementType;
         [DataMember(Name = "can_enter_portals")]
         public bool CanEnterPortals;
+        [DataMember(Name = "can_auto_follow")]
+        public bool CanAutoFollow;
+        [DataMember(Name = "affected_by_wind")]
+        public float AffectedByWind;
         [DataMember(Name = "speed")]
         public System.Collections.Generic.List<MovementSpeed> Speed;
         [DataMember(Name = "use_player_speed_modifier")]
@@ -71,6 +75,10 @@ namespace BitCraftRegion.Types
         public System.Collections.Generic.List<ExperienceStackF32> ExperiencePerProgress;
         [DataMember(Name = "mounting_radius")]
         public float MountingRadius;
+        [DataMember(Name = "radius")]
+        public float Radius;
+        [DataMember(Name = "allow_hunting")]
+        public bool AllowHunting;
 
         public DeployableDesc(
             int Id,
@@ -81,6 +89,8 @@ namespace BitCraftRegion.Types
             int PathfindingId,
             MovementType MovementType,
             bool CanEnterPortals,
+            bool CanAutoFollow,
+            float AffectedByWind,
             System.Collections.Generic.List<MovementSpeed> Speed,
             bool UsePlayerSpeedModifier,
             bool PlaceableOnLand,
@@ -100,7 +110,9 @@ namespace BitCraftRegion.Types
             bool AllowEmoteWhileDriver,
             bool AllowEmoteWhilePassenger,
             System.Collections.Generic.List<ExperienceStackF32> ExperiencePerProgress,
-            float MountingRadius
+            float MountingRadius,
+            float Radius,
+            bool AllowHunting
         )
         {
             this.Id = Id;
@@ -111,6 +123,8 @@ namespace BitCraftRegion.Types
             this.PathfindingId = PathfindingId;
             this.MovementType = MovementType;
             this.CanEnterPortals = CanEnterPortals;
+            this.CanAutoFollow = CanAutoFollow;
+            this.AffectedByWind = AffectedByWind;
             this.Speed = Speed;
             this.UsePlayerSpeedModifier = UsePlayerSpeedModifier;
             this.PlaceableOnLand = PlaceableOnLand;
@@ -131,6 +145,8 @@ namespace BitCraftRegion.Types
             this.AllowEmoteWhilePassenger = AllowEmoteWhilePassenger;
             this.ExperiencePerProgress = ExperiencePerProgress;
             this.MountingRadius = MountingRadius;
+            this.Radius = Radius;
+            this.AllowHunting = AllowHunting;
         }
 
         public DeployableDesc()

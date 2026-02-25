@@ -25,13 +25,16 @@ namespace BitCraftRegion.Types
         public uint DonatedShards;
         [DataMember(Name = "noble")]
         public SpacetimeDB.Timestamp? Noble;
+        [DataMember(Name = "donated_empire_currency")]
+        public uint DonatedEmpireCurrency;
 
         public EmpirePlayerDataState(
             ulong EntityId,
             ulong EmpireEntityId,
             byte Rank,
             uint DonatedShards,
-            SpacetimeDB.Timestamp? Noble
+            SpacetimeDB.Timestamp? Noble,
+            uint DonatedEmpireCurrency
         )
         {
             this.EntityId = EntityId;
@@ -39,6 +42,7 @@ namespace BitCraftRegion.Types
             this.Rank = Rank;
             this.DonatedShards = DonatedShards;
             this.Noble = Noble;
+            this.DonatedEmpireCurrency = DonatedEmpireCurrency;
         }
 
         public EmpirePlayerDataState()

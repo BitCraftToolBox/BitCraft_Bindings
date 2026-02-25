@@ -15,6 +15,7 @@ namespace BitCraftRegion.Types
         PermanentBlockLogin,
         TemporaryBlockLogin,
         BlockChat,
+        PermanentBlockChat,
         BlockConstruct,
     }
 }

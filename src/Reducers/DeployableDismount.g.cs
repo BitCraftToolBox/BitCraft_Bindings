@@ -14,12 +14,12 @@ namespace BitCraftRegion.Types
 {
     public sealed partial class RemoteReducers : RemoteBase
     {
-        public delegate void DeployableDismountHandler(ReducerEventContext ctx, PlayerDeployableDismountRequest request);
+        public delegate void DeployableDismountHandler(ReducerEventContext ctx, OffsetCoordinatesFloat coordinates, OffsetCoordinatesFloat deployableCoordinates);
         public event DeployableDismountHandler? OnDeployableDismount;
 
-        public void DeployableDismount(PlayerDeployableDismountRequest request)
+        public void DeployableDismount(OffsetCoordinatesFloat coordinates, OffsetCoordinatesFloat deployableCoordinates)
         {
-            conn.InternalCallReducer(new Reducer.DeployableDismount(request), this.SetCallReducerFlags.DeployableDismountFlags);
+            conn.InternalCallReducer(new Reducer.DeployableDismount(coordinates, deployableCoordinates), this.SetCallReducerFlags.DeployableDismountFlags);
         }
 
         public bool InvokeDeployableDismount(ReducerEventContext ctx, Reducer.DeployableDismount args)
@@ -28,7 +28,7 @@ namespace BitCraftRegion.Types
             {
                 if (InternalOnUnhandledReducerError != null)
                 {
-                    switch(ctx.Event.Status)
+                    switch (ctx.Event.Status)
                     {
                         case Status.Failed(var reason): InternalOnUnhandledReducerError(ctx, new Exception(reason)); break;
                         case Status.OutOfEnergy(var _): InternalOnUnhandledReducerError(ctx, new Exception("out of energy")); break;
@@ -38,7 +38,8 @@ namespace BitCraftRegion.Types
             }
             OnDeployableDismount(
                 ctx,
-                args.Request
+                args.Coordinates,
+                args.DeployableCoordinates
             );
             return true;
         }
@@ -50,17 +51,24 @@ namespace BitCraftRegion.Types
         [DataContract]
         public sealed partial class DeployableDismount : Reducer, IReducerArgs
         {
-            [DataMember(Name = "request")]
-            public PlayerDeployableDismountRequest Request;
+            [DataMember(Name = "coordinates")]
+            public OffsetCoordinatesFloat Coordinates;
+            [DataMember(Name = "deployable_coordinates")]
+            public OffsetCoordinatesFloat DeployableCoordinates;
 
-            public DeployableDismount(PlayerDeployableDismountRequest Request)
+            public DeployableDismount(
+                OffsetCoordinatesFloat Coordinates,
+                OffsetCoordinatesFloat DeployableCoordinates
+            )
             {
-                this.Request = Request;
+                this.Coordinates = Coordinates;
+                this.DeployableCoordinates = DeployableCoordinates;
             }
 
             public DeployableDismount()
             {
-                this.Request = new();
+                this.Coordinates = new();
+                this.DeployableCoordinates = new();
             }
 
             string IReducerArgs.ReducerName => "deployable_dismount";

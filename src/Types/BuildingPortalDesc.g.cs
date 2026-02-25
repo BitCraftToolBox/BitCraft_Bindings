@@ -23,6 +23,8 @@ namespace BitCraftRegion.Types
         public int BuildingId;
         [DataMember(Name = "allow_deployables")]
         public bool AllowDeployables;
+        [DataMember(Name = "enemy_lock")]
+        public bool EnemyLock;
         [DataMember(Name = "pos_x")]
         public int PosX;
         [DataMember(Name = "pos_z")]
@@ -33,6 +35,7 @@ namespace BitCraftRegion.Types
             string Name,
             int BuildingId,
             bool AllowDeployables,
+            bool EnemyLock,
             int PosX,
             int PosZ
         )
@@ -41,6 +44,7 @@ namespace BitCraftRegion.Types
             this.Name = Name;
             this.BuildingId = BuildingId;
             this.AllowDeployables = AllowDeployables;
+            this.EnemyLock = EnemyLock;
             this.PosX = PosX;
             this.PosZ = PosZ;
         }

@@ -25,8 +25,8 @@ namespace BitCraftRegion.Types
         public bool SpawnsInWater;
         [DataMember(Name = "water_depth_range")]
         public WorldGenVector2Int WaterDepthRange;
-        [DataMember(Name = "spawns_on_uneven_terrain")]
-        public bool SpawnsOnUnevenTerrain;
+        [DataMember(Name = "max_elevation_delta")]
+        public int MaxElevationDelta;
 
         public WorldGenResourceDetails(
             int ClumpId,
@@ -34,7 +34,7 @@ namespace BitCraftRegion.Types
             WorldGenVector2Int LandElevationRange,
             bool SpawnsInWater,
             WorldGenVector2Int WaterDepthRange,
-            bool SpawnsOnUnevenTerrain
+            int MaxElevationDelta
         )
         {
             this.ClumpId = ClumpId;
@@ -42,7 +42,7 @@ namespace BitCraftRegion.Types
             this.LandElevationRange = LandElevationRange;
             this.SpawnsInWater = SpawnsInWater;
             this.WaterDepthRange = WaterDepthRange;
-            this.SpawnsOnUnevenTerrain = SpawnsOnUnevenTerrain;
+            this.MaxElevationDelta = MaxElevationDelta;
         }
 
         public WorldGenResourceDetails()

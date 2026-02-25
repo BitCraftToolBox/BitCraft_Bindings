@@ -21,14 +21,14 @@ namespace BitCraftRegion.Types
         public System.Collections.Generic.List<BuildingNicknameStateOp>? BuildingNicknameState;
         [DataMember(Name = "building_state")]
         public System.Collections.Generic.List<BuildingStateOp>? BuildingState;
+        [DataMember(Name = "claim_lowercase_name_state")]
+        public System.Collections.Generic.List<ClaimLowercaseNameStateOp>? ClaimLowercaseNameState;
         [DataMember(Name = "claim_member_state")]
         public System.Collections.Generic.List<ClaimMemberStateOp>? ClaimMemberState;
         [DataMember(Name = "claim_state")]
         public System.Collections.Generic.List<ClaimStateOp>? ClaimState;
         [DataMember(Name = "empire_chunk_state")]
         public System.Collections.Generic.List<EmpireChunkStateOp>? EmpireChunkState;
-        [DataMember(Name = "empire_expansion_state")]
-        public System.Collections.Generic.List<EmpireExpansionStateOp>? EmpireExpansionState;
         [DataMember(Name = "empire_node_siege_state")]
         public System.Collections.Generic.List<EmpireNodeSiegeStateOp>? EmpireNodeSiegeState;
         [DataMember(Name = "empire_node_state")]
@@ -51,6 +51,8 @@ namespace BitCraftRegion.Types
         public System.Collections.Generic.List<PlayerReportStateOp>? PlayerReportState;
         [DataMember(Name = "region_connection_info")]
         public System.Collections.Generic.List<RegionConnectionInfoOp>? RegionConnectionInfo;
+        [DataMember(Name = "region_control_info")]
+        public System.Collections.Generic.List<RegionControlInfoOp>? RegionControlInfo;
         [DataMember(Name = "region_population_info")]
         public System.Collections.Generic.List<RegionPopulationInfoOp>? RegionPopulationInfo;
         [DataMember(Name = "region_sign_in_parameters")]
@@ -66,10 +68,10 @@ namespace BitCraftRegion.Types
             System.Collections.Generic.List<BlockedIdentityOp>? BlockedIdentity,
             System.Collections.Generic.List<BuildingNicknameStateOp>? BuildingNicknameState,
             System.Collections.Generic.List<BuildingStateOp>? BuildingState,
+            System.Collections.Generic.List<ClaimLowercaseNameStateOp>? ClaimLowercaseNameState,
             System.Collections.Generic.List<ClaimMemberStateOp>? ClaimMemberState,
             System.Collections.Generic.List<ClaimStateOp>? ClaimState,
             System.Collections.Generic.List<EmpireChunkStateOp>? EmpireChunkState,
-            System.Collections.Generic.List<EmpireExpansionStateOp>? EmpireExpansionState,
             System.Collections.Generic.List<EmpireNodeSiegeStateOp>? EmpireNodeSiegeState,
             System.Collections.Generic.List<EmpireNodeStateOp>? EmpireNodeState,
             System.Collections.Generic.List<EmpirePlayerDataStateOp>? EmpirePlayerDataState,
@@ -81,6 +83,7 @@ namespace BitCraftRegion.Types
             System.Collections.Generic.List<PlayerHousingStateOp>? PlayerHousingState,
             System.Collections.Generic.List<PlayerReportStateOp>? PlayerReportState,
             System.Collections.Generic.List<RegionConnectionInfoOp>? RegionConnectionInfo,
+            System.Collections.Generic.List<RegionControlInfoOp>? RegionControlInfo,
             System.Collections.Generic.List<RegionPopulationInfoOp>? RegionPopulationInfo,
             System.Collections.Generic.List<RegionSignInParametersOp>? RegionSignInParameters,
             System.Collections.Generic.List<UserAuthenticationStateOp>? UserAuthenticationState,
@@ -91,10 +94,10 @@ namespace BitCraftRegion.Types
             this.BlockedIdentity = BlockedIdentity;
             this.BuildingNicknameState = BuildingNicknameState;
             this.BuildingState = BuildingState;
+            this.ClaimLowercaseNameState = ClaimLowercaseNameState;
             this.ClaimMemberState = ClaimMemberState;
             this.ClaimState = ClaimState;
             this.EmpireChunkState = EmpireChunkState;
-            this.EmpireExpansionState = EmpireExpansionState;
             this.EmpireNodeSiegeState = EmpireNodeSiegeState;
             this.EmpireNodeState = EmpireNodeState;
             this.EmpirePlayerDataState = EmpirePlayerDataState;
@@ -106,6 +109,7 @@ namespace BitCraftRegion.Types
             this.PlayerHousingState = PlayerHousingState;
             this.PlayerReportState = PlayerReportState;
             this.RegionConnectionInfo = RegionConnectionInfo;
+            this.RegionControlInfo = RegionControlInfo;
             this.RegionPopulationInfo = RegionPopulationInfo;
             this.RegionSignInParameters = RegionSignInParameters;
             this.UserAuthenticationState = UserAuthenticationState;

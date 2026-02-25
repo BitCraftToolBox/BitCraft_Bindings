@@ -28,14 +28,14 @@ namespace BitCraftRegion.Types
 
             public readonly EntityIdUniqueIndex EntityId;
 
-            public sealed class NameIndex : BTreeIndexBase<string>
+            public sealed class NameUniqueIndex : UniqueIndexBase<string>
             {
                 protected override string GetKey(ClaimState row) => row.Name;
 
-                public NameIndex(ClaimStateHandle table) : base(table) { }
+                public NameUniqueIndex(ClaimStateHandle table) : base(table) { }
             }
 
-            public readonly NameIndex Name;
+            public readonly NameUniqueIndex Name;
 
             public sealed class NeutralIndex : BTreeIndexBase<bool>
             {

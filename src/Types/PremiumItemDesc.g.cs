@@ -23,42 +23,42 @@ namespace BitCraftRegion.Types
         public string Description;
         [DataMember(Name = "image_address")]
         public string ImageAddress;
-        [DataMember(Name = "collectible_desc_id")]
-        public int CollectibleDescId;
+        [DataMember(Name = "collectible_ids")]
+        public System.Collections.Generic.List<int> CollectibleIds;
         [DataMember(Name = "price")]
         public uint Price;
         [DataMember(Name = "base_price")]
         public uint BasePrice;
-        [DataMember(Name = "is_enabled")]
-        public bool IsEnabled;
         [DataMember(Name = "quantity")]
         public uint Quantity;
         [DataMember(Name = "sorting_priority")]
         public ushort SortingPriority;
+        [DataMember(Name = "is_enabled")]
+        public bool IsEnabled;
 
         public PremiumItemDesc(
             int Id,
             string Name,
             string Description,
             string ImageAddress,
-            int CollectibleDescId,
+            System.Collections.Generic.List<int> CollectibleIds,
             uint Price,
             uint BasePrice,
-            bool IsEnabled,
             uint Quantity,
-            ushort SortingPriority
+            ushort SortingPriority,
+            bool IsEnabled
         )
         {
             this.Id = Id;
             this.Name = Name;
             this.Description = Description;
             this.ImageAddress = ImageAddress;
-            this.CollectibleDescId = CollectibleDescId;
+            this.CollectibleIds = CollectibleIds;
             this.Price = Price;
             this.BasePrice = BasePrice;
-            this.IsEnabled = IsEnabled;
             this.Quantity = Quantity;
             this.SortingPriority = SortingPriority;
+            this.IsEnabled = IsEnabled;
         }
 
         public PremiumItemDesc()
@@ -66,6 +66,7 @@ namespace BitCraftRegion.Types
             this.Name = "";
             this.Description = "";
             this.ImageAddress = "";
+            this.CollectibleIds = new();
         }
     }
 }

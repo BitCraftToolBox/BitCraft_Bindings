@@ -31,6 +31,7 @@ namespace BitCraftRegion.Types
             AddTable(ActionBarState = new(conn));
             AddTable(ActionState = new(conn));
             AddTable(ActiveBuffState = new(conn));
+            AddTable(ActiveEnvironmentBuffState = new(conn));
             AddTable(AdminBroadcast = new(conn));
             AddTable(AdminClearResourceTimer = new(conn));
             AddTable(AdminRestorePlayerStateTimer = new(conn));
@@ -49,6 +50,7 @@ namespace BitCraftRegion.Types
             AddTable(BlockedIdentity = new(conn));
             AddTable(BuffDesc = new(conn));
             AddTable(BuffTypeDesc = new(conn));
+            AddTable(BuildingBuffDesc = new(conn));
             AddTable(BuildingClaimDesc = new(conn));
             AddTable(BuildingDecayLoopTimer = new(conn));
             AddTable(BuildingDesc = new(conn));
@@ -56,7 +58,6 @@ namespace BitCraftRegion.Types
             AddTable(BuildingFunctionTypeMappingDesc = new(conn));
             AddTable(BuildingNicknameState = new(conn));
             AddTable(BuildingPortalDesc = new(conn));
-            AddTable(BuildingPortalDescV2 = new(conn));
             AddTable(BuildingRepairsDesc = new(conn));
             AddTable(BuildingSpawnDesc = new(conn));
             AddTable(BuildingState = new(conn));
@@ -70,11 +71,11 @@ namespace BitCraftRegion.Types
             AddTable(ChestRarityDesc = new(conn));
             AddTable(ClaimLocalState = new(conn));
             AddTable(ClaimLocalSupplySecurityThresholdState = new(conn));
+            AddTable(ClaimLowercaseNameState = new(conn));
             AddTable(ClaimMemberState = new(conn));
             AddTable(ClaimRecruitmentState = new(conn));
             AddTable(ClaimState = new(conn));
             AddTable(ClaimTechDesc = new(conn));
-            AddTable(ClaimTechDescV2 = new(conn));
             AddTable(ClaimTechState = new(conn));
             AddTable(ClaimTechUnlockTimer = new(conn));
             AddTable(ClaimTileCost = new(conn));
@@ -85,18 +86,20 @@ namespace BitCraftRegion.Types
             AddTable(CollectStatsTimer = new(conn));
             AddTable(CollectibleDesc = new(conn));
             AddTable(CombatActionDesc = new(conn));
-            AddTable(CombatActionDescV2 = new(conn));
-            AddTable(CombatActionDescV3 = new(conn));
             AddTable(CombatActionMultiHitDesc = new(conn));
             AddTable(CombatDimensionState = new(conn));
             AddTable(CombatState = new(conn));
             AddTable(Config = new(conn));
             AddTable(ConstructionRecipeDesc = new(conn));
-            AddTable(ConstructionRecipeDescV2 = new(conn));
+            AddTable(ConstructionRecipeDiscoveryCargoDesc = new(conn));
+            AddTable(ConstructionRecipeDiscoveryItemDesc = new(conn));
+            AddTable(ConstructionRecipeDiscoveryKnowledgeDesc = new(conn));
             AddTable(ContributionLootDesc = new(conn));
-            AddTable(ContributionLootDescV2 = new(conn));
             AddTable(ContributionState = new(conn));
             AddTable(CraftingRecipeDesc = new(conn));
+            AddTable(CraftingRecipeDiscoveryCargoDesc = new(conn));
+            AddTable(CraftingRecipeDiscoveryItemDesc = new(conn));
+            AddTable(CraftingRecipeDiscoveryKnowledgeDesc = new(conn));
             AddTable(CrumbTailCleanupTimer = new(conn));
             AddTable(CrumbTrailContributionLockState = new(conn));
             AddTable(CrumbTrailContributionSpentState = new(conn));
@@ -104,11 +107,7 @@ namespace BitCraftRegion.Types
             AddTable(DayNightLoopTimer = new(conn));
             AddTable(DeconstructionRecipeDesc = new(conn));
             AddTable(DeployableCollectibleState = new(conn));
-            AddTable(DeployableCollectibleStateV2 = new(conn));
             AddTable(DeployableDesc = new(conn));
-            AddTable(DeployableDescV2 = new(conn));
-            AddTable(DeployableDescV3 = new(conn));
-            AddTable(DeployableDescV4 = new(conn));
             AddTable(DeployableDismountTimer = new(conn));
             AddTable(DeployableState = new(conn));
             AddTable(DestroyDimensionNetworkTimer = new(conn));
@@ -126,11 +125,10 @@ namespace BitCraftRegion.Types
             AddTable(DungeonState = new(conn));
             AddTable(ElevatorDesc = new(conn));
             AddTable(EmoteDesc = new(conn));
-            AddTable(EmoteDescV2 = new(conn));
             AddTable(EmpireChunkState = new(conn));
             AddTable(EmpireColorDesc = new(conn));
-            AddTable(EmpireExpansionState = new(conn));
             AddTable(EmpireIconDesc = new(conn));
+            AddTable(EmpireLowercaseNameState = new(conn));
             AddTable(EmpireNodeSiegeState = new(conn));
             AddTable(EmpireNodeState = new(conn));
             AddTable(EmpireNotificationDesc = new(conn));
@@ -174,9 +172,6 @@ namespace BitCraftRegion.Types
             AddTable(InterModuleMessage = new(conn));
             AddTable(InterModuleMessageCounter = new(conn));
             AddTable(InterModuleMessageErrors = new(conn));
-            AddTable(InterModuleMessageV2 = new(conn));
-            AddTable(InterModuleMessageV3 = new(conn));
-            AddTable(InterModuleMessageV4 = new(conn));
             AddTable(InterModuleResponseMessageCounter = new(conn));
             AddTable(InteriorCollapseTriggerState = new(conn));
             AddTable(InteriorEnvironmentDesc = new(conn));
@@ -238,16 +233,21 @@ namespace BitCraftRegion.Types
             AddTable(OnboardingRewardDesc = new(conn));
             AddTable(OnboardingState = new(conn));
             AddTable(ParametersDesc = new(conn));
-            AddTable(ParametersDescV2 = new(conn));
             AddTable(ParametersPlayerMoveDesc = new(conn));
             AddTable(PartialExperienceState = new(conn));
             AddTable(PassiveCraftState = new(conn));
             AddTable(PassiveCraftTimer = new(conn));
             AddTable(PathfindingDesc = new(conn));
             AddTable(PavedTileState = new(conn));
+            AddTable(PavingRecipeDiscoveryCargoDesc = new(conn));
+            AddTable(PavingRecipeDiscoveryItemDesc = new(conn));
+            AddTable(PavingRecipeDiscoveryKnowledgeDesc = new(conn));
             AddTable(PavingTileDesc = new(conn));
             AddTable(PermissionState = new(conn));
             AddTable(PillarShapingDesc = new(conn));
+            AddTable(PillarShapingRecipeDiscoveryCargoDesc = new(conn));
+            AddTable(PillarShapingRecipeDiscoveryItemDesc = new(conn));
+            AddTable(PillarShapingRecipeDiscoveryKnowledgeDesc = new(conn));
             AddTable(PillarShapingState = new(conn));
             AddTable(PlayerActionDesc = new(conn));
             AddTable(PlayerActionState = new(conn));
@@ -269,7 +269,6 @@ namespace BitCraftRegion.Types
             AddTable(PlayerReportStateTimestamp = new(conn));
             AddTable(PlayerSetNameOutcomeEvent = new(conn));
             AddTable(PlayerSettingsState = new(conn));
-            AddTable(PlayerSettingsStateV2 = new(conn));
             AddTable(PlayerState = new(conn));
             AddTable(PlayerTimestampState = new(conn));
             AddTable(PlayerUseElevatorTimer = new(conn));
@@ -279,6 +278,9 @@ namespace BitCraftRegion.Types
             AddTable(PortalState = new(conn));
             AddTable(PremiumItemDesc = new(conn));
             AddTable(PremiumServiceDesc = new(conn));
+            AddTable(PreviousEmpireNameState = new(conn));
+            AddTable(PreviousPlayerSkillsState = new(conn));
+            AddTable(PreviousPlayerUsernameState = new(conn));
             AddTable(PrivateParametersDesc = new(conn));
             AddTable(ProgressiveActionState = new(conn));
             AddTable(ProjectSiteState = new(conn));
@@ -289,6 +291,8 @@ namespace BitCraftRegion.Types
             AddTable(QuestChainState = new(conn));
             AddTable(QuestStageDesc = new(conn));
             AddTable(RegionConnectionInfo = new(conn));
+            AddTable(RegionControlInfo = new(conn));
+            AddTable(RegionModerationConfigState = new(conn));
             AddTable(RegionPopulationInfo = new(conn));
             AddTable(RegionPopuplationLoopTimer = new(conn));
             AddTable(RegionSignInParameters = new(conn));
@@ -304,7 +308,9 @@ namespace BitCraftRegion.Types
             AddTable(ResourceGrowthRecipeDesc = new(conn));
             AddTable(ResourceHealthState = new(conn));
             AddTable(ResourcePlacementRecipeDesc = new(conn));
-            AddTable(ResourcePlacementRecipeDescV2 = new(conn));
+            AddTable(ResourcePlacementRecipeDiscoveryCargoDesc = new(conn));
+            AddTable(ResourcePlacementRecipeDiscoveryItemDesc = new(conn));
+            AddTable(ResourcePlacementRecipeDiscoveryKnowledgeDesc = new(conn));
             AddTable(ResourceSpawnTimer = new(conn));
             AddTable(ResourceState = new(conn));
             AddTable(ResourcesLog = new(conn));
@@ -327,9 +333,10 @@ namespace BitCraftRegion.Types
             AddTable(StagedBiomeDesc = new(conn));
             AddTable(StagedBuffDesc = new(conn));
             AddTable(StagedBuffTypeDesc = new(conn));
+            AddTable(StagedBuildingBuffDesc = new(conn));
             AddTable(StagedBuildingClaimDesc = new(conn));
             AddTable(StagedBuildingDesc = new(conn));
-            AddTable(StagedBuildingPortalDescV2 = new(conn));
+            AddTable(StagedBuildingPortalDesc = new(conn));
             AddTable(StagedBuildingRepairsDesc = new(conn));
             AddTable(StagedBuildingSpawnDesc = new(conn));
             AddTable(StagedBuildingTypeDesc = new(conn));
@@ -337,15 +344,13 @@ namespace BitCraftRegion.Types
             AddTable(StagedCharacterStatDesc = new(conn));
             AddTable(StagedChestRarityDesc = new(conn));
             AddTable(StagedClaimTechDesc = new(conn));
-            AddTable(StagedClaimTechDescV2 = new(conn));
             AddTable(StagedClaimTileCost = new(conn));
             AddTable(StagedClimbRequirementDesc = new(conn));
             AddTable(StagedClothingDesc = new(conn));
             AddTable(StagedCollectibleDesc = new(conn));
-            AddTable(StagedCombatActionDescV3 = new(conn));
+            AddTable(StagedCombatActionDesc = new(conn));
             AddTable(StagedCombatActionMultiHitDesc = new(conn));
             AddTable(StagedConstructionRecipeDesc = new(conn));
-            AddTable(StagedConstructionRecipeDescV2 = new(conn));
             AddTable(StagedContributionLootDesc = new(conn));
             AddTable(StagedCraftingRecipeDesc = new(conn));
             AddTable(StagedDeconstructionRecipeDesc = new(conn));
@@ -402,18 +407,9 @@ namespace BitCraftRegion.Types
             AddTable(StagedResourceDesc = new(conn));
             AddTable(StagedResourceGrowthRecipeDesc = new(conn));
             AddTable(StagedResourcePlacementRecipeDesc = new(conn));
-            AddTable(StagedResourcePlacementRecipeDescV2 = new(conn));
             AddTable(StagedSecondaryKnowledgeDesc = new(conn));
             AddTable(StagedSkillDesc = new(conn));
             AddTable(StagedStageRewardsDesc = new(conn));
-            AddTable(StagedStaticData = new(conn));
-            AddTable(StagedStaticDataV2 = new(conn));
-            AddTable(StagedStaticDataV3 = new(conn));
-            AddTable(StagedStaticDataV4 = new(conn));
-            AddTable(StagedStaticDataV5 = new(conn));
-            AddTable(StagedStaticDataV6 = new(conn));
-            AddTable(StagedStaticDataV7 = new(conn));
-            AddTable(StagedStaticDataV8 = new(conn));
             AddTable(StagedTargetingMatrixDesc = new(conn));
             AddTable(StagedTeleportItemDesc = new(conn));
             AddTable(StagedTerraformRecipeDesc = new(conn));
@@ -474,409 +470,421 @@ namespace BitCraftRegion.Types
 
     public sealed partial class SetReducerFlags { }
 
-        public interface IRemoteDbContext : IDbContext<RemoteTables, RemoteReducers, SetReducerFlags, SubscriptionBuilder> {
-            public event Action<ReducerEventContext, Exception>? OnUnhandledReducerError;
+    public interface IRemoteDbContext : IDbContext<RemoteTables, RemoteReducers, SetReducerFlags, SubscriptionBuilder>
+    {
+        public event Action<ReducerEventContext, Exception>? OnUnhandledReducerError;
+    }
+
+    public sealed class EventContext : IEventContext, IRemoteDbContext
+    {
+        private readonly DbConnection conn;
+
+        /// <summary>
+        /// The event that caused this callback to run.
+        /// </summary>
+        public readonly Event<Reducer> Event;
+
+        /// <summary>
+        /// Access to tables in the client cache, which stores a read-only replica of the remote database state.
+        ///
+        /// The returned <c>DbView</c> will have a method to access each table defined by the module.
+        /// </summary>
+        public RemoteTables Db => conn.Db;
+        /// <summary>
+        /// Access to reducers defined by the module.
+        ///
+        /// The returned <c>RemoteReducers</c> will have a method to invoke each reducer defined by the module,
+        /// plus methods for adding and removing callbacks on each of those reducers.
+        /// </summary>
+        public RemoteReducers Reducers => conn.Reducers;
+        /// <summary>
+        /// Access to setters for per-reducer flags.
+        ///
+        /// The returned <c>SetReducerFlags</c> will have a method to invoke,
+        /// for each reducer defined by the module,
+        /// which call-flags for the reducer can be set.
+        /// </summary>
+        public SetReducerFlags SetReducerFlags => conn.SetReducerFlags;
+        /// <summary>
+        /// Returns <c>true</c> if the connection is active, i.e. has not yet disconnected.
+        /// </summary>
+        public bool IsActive => conn.IsActive;
+        /// <summary>
+        /// Close the connection.
+        ///
+        /// Throws an error if the connection is already closed.
+        /// </summary>
+        public void Disconnect()
+        {
+            conn.Disconnect();
+        }
+        /// <summary>
+        /// Start building a subscription.
+        /// </summary>
+        /// <returns>A builder-pattern constructor for subscribing to queries,
+        /// causing matching rows to be replicated into the client cache.</returns>
+        public SubscriptionBuilder SubscriptionBuilder() => conn.SubscriptionBuilder();
+        /// <summary>
+        /// Get the <c>Identity</c> of this connection.
+        ///
+        /// This method returns null if the connection was constructed anonymously
+        /// and we have not yet received our newly-generated <c>Identity</c> from the host.
+        /// </summary>
+        public Identity? Identity => conn.Identity;
+        /// <summary>
+        /// Get this connection's <c>ConnectionId</c>.
+        /// </summary>
+        public ConnectionId ConnectionId => conn.ConnectionId;
+        /// <summary>
+        /// Register a callback to be called when a reducer with no handler returns an error.
+        /// </summary>
+        public event Action<ReducerEventContext, Exception>? OnUnhandledReducerError
+        {
+            add => Reducers.InternalOnUnhandledReducerError += value;
+            remove => Reducers.InternalOnUnhandledReducerError -= value;
         }
 
-        public sealed class EventContext : IEventContext, IRemoteDbContext
+        internal EventContext(DbConnection conn, Event<Reducer> Event)
         {
-            private readonly DbConnection conn;
+            this.conn = conn;
+            this.Event = Event;
+        }
+    }
 
-            /// <summary>
-            /// The event that caused this callback to run.
-            /// </summary>
-            public readonly Event<Reducer> Event;
+    public sealed class ReducerEventContext : IReducerEventContext, IRemoteDbContext
+    {
+        private readonly DbConnection conn;
+        /// <summary>
+        /// The reducer event that caused this callback to run.
+        /// </summary>
+        public readonly ReducerEvent<Reducer> Event;
 
-            /// <summary>
-            /// Access to tables in the client cache, which stores a read-only replica of the remote database state.
-            ///
-            /// The returned <c>DbView</c> will have a method to access each table defined by the module.
-            /// </summary>
-            public RemoteTables Db => conn.Db;
-            /// <summary>
-            /// Access to reducers defined by the module.
-            ///
-            /// The returned <c>RemoteReducers</c> will have a method to invoke each reducer defined by the module,
-            /// plus methods for adding and removing callbacks on each of those reducers.
-            /// </summary>
-            public RemoteReducers Reducers => conn.Reducers;
-            /// <summary>
-            /// Access to setters for per-reducer flags.
-            ///
-            /// The returned <c>SetReducerFlags</c> will have a method to invoke,
-            /// for each reducer defined by the module,
-            /// which call-flags for the reducer can be set.
-            /// </summary>
-            public SetReducerFlags SetReducerFlags => conn.SetReducerFlags;
-            /// <summary>
-            /// Returns <c>true</c> if the connection is active, i.e. has not yet disconnected.
-            /// </summary>
-            public bool IsActive => conn.IsActive;
-            /// <summary>
-            /// Close the connection.
-            ///
-            /// Throws an error if the connection is already closed.
-            /// </summary>
-            public void Disconnect() {
-                conn.Disconnect();
-            }
-            /// <summary>
-            /// Start building a subscription.
-            /// </summary>
-            /// <returns>A builder-pattern constructor for subscribing to queries,
-            /// causing matching rows to be replicated into the client cache.</returns>
-            public SubscriptionBuilder SubscriptionBuilder() => conn.SubscriptionBuilder();
-            /// <summary>
-            /// Get the <c>Identity</c> of this connection.
-            ///
-            /// This method returns null if the connection was constructed anonymously
-            /// and we have not yet received our newly-generated <c>Identity</c> from the host.
-            /// </summary>
-            public Identity? Identity => conn.Identity;
-            /// <summary>
-            /// Get this connection's <c>ConnectionId</c>.
-            /// </summary>
-            public ConnectionId ConnectionId => conn.ConnectionId;
-            /// <summary>
-            /// Register a callback to be called when a reducer with no handler returns an error.
-            /// </summary>
-            public event Action<ReducerEventContext, Exception>? OnUnhandledReducerError {
-                add => Reducers.InternalOnUnhandledReducerError += value;
-                remove => Reducers.InternalOnUnhandledReducerError -= value;
-            }
-
-            internal EventContext(DbConnection conn, Event<Reducer> Event)
-            {
-                this.conn = conn;
-                this.Event = Event;
-            }
+        /// <summary>
+        /// Access to tables in the client cache, which stores a read-only replica of the remote database state.
+        ///
+        /// The returned <c>DbView</c> will have a method to access each table defined by the module.
+        /// </summary>
+        public RemoteTables Db => conn.Db;
+        /// <summary>
+        /// Access to reducers defined by the module.
+        ///
+        /// The returned <c>RemoteReducers</c> will have a method to invoke each reducer defined by the module,
+        /// plus methods for adding and removing callbacks on each of those reducers.
+        /// </summary>
+        public RemoteReducers Reducers => conn.Reducers;
+        /// <summary>
+        /// Access to setters for per-reducer flags.
+        ///
+        /// The returned <c>SetReducerFlags</c> will have a method to invoke,
+        /// for each reducer defined by the module,
+        /// which call-flags for the reducer can be set.
+        /// </summary>
+        public SetReducerFlags SetReducerFlags => conn.SetReducerFlags;
+        /// <summary>
+        /// Returns <c>true</c> if the connection is active, i.e. has not yet disconnected.
+        /// </summary>
+        public bool IsActive => conn.IsActive;
+        /// <summary>
+        /// Close the connection.
+        ///
+        /// Throws an error if the connection is already closed.
+        /// </summary>
+        public void Disconnect()
+        {
+            conn.Disconnect();
+        }
+        /// <summary>
+        /// Start building a subscription.
+        /// </summary>
+        /// <returns>A builder-pattern constructor for subscribing to queries,
+        /// causing matching rows to be replicated into the client cache.</returns>
+        public SubscriptionBuilder SubscriptionBuilder() => conn.SubscriptionBuilder();
+        /// <summary>
+        /// Get the <c>Identity</c> of this connection.
+        ///
+        /// This method returns null if the connection was constructed anonymously
+        /// and we have not yet received our newly-generated <c>Identity</c> from the host.
+        /// </summary>
+        public Identity? Identity => conn.Identity;
+        /// <summary>
+        /// Get this connection's <c>ConnectionId</c>.
+        /// </summary>
+        public ConnectionId ConnectionId => conn.ConnectionId;
+        /// <summary>
+        /// Register a callback to be called when a reducer with no handler returns an error.
+        /// </summary>
+        public event Action<ReducerEventContext, Exception>? OnUnhandledReducerError
+        {
+            add => Reducers.InternalOnUnhandledReducerError += value;
+            remove => Reducers.InternalOnUnhandledReducerError -= value;
         }
 
-        public sealed class ReducerEventContext : IReducerEventContext, IRemoteDbContext
+        internal ReducerEventContext(DbConnection conn, ReducerEvent<Reducer> reducerEvent)
         {
-            private readonly DbConnection conn;
-            /// <summary>
-            /// The reducer event that caused this callback to run.
-            /// </summary>
-            public readonly ReducerEvent<Reducer> Event;
-
-            /// <summary>
-            /// Access to tables in the client cache, which stores a read-only replica of the remote database state.
-            ///
-            /// The returned <c>DbView</c> will have a method to access each table defined by the module.
-            /// </summary>
-            public RemoteTables Db => conn.Db;
-            /// <summary>
-            /// Access to reducers defined by the module.
-            ///
-            /// The returned <c>RemoteReducers</c> will have a method to invoke each reducer defined by the module,
-            /// plus methods for adding and removing callbacks on each of those reducers.
-            /// </summary>
-            public RemoteReducers Reducers => conn.Reducers;
-            /// <summary>
-            /// Access to setters for per-reducer flags.
-            ///
-            /// The returned <c>SetReducerFlags</c> will have a method to invoke,
-            /// for each reducer defined by the module,
-            /// which call-flags for the reducer can be set.
-            /// </summary>
-            public SetReducerFlags SetReducerFlags => conn.SetReducerFlags;
-            /// <summary>
-            /// Returns <c>true</c> if the connection is active, i.e. has not yet disconnected.
-            /// </summary>
-            public bool IsActive => conn.IsActive;
-            /// <summary>
-            /// Close the connection.
-            ///
-            /// Throws an error if the connection is already closed.
-            /// </summary>
-            public void Disconnect() {
-                conn.Disconnect();
-            }
-            /// <summary>
-            /// Start building a subscription.
-            /// </summary>
-            /// <returns>A builder-pattern constructor for subscribing to queries,
-            /// causing matching rows to be replicated into the client cache.</returns>
-            public SubscriptionBuilder SubscriptionBuilder() => conn.SubscriptionBuilder();
-            /// <summary>
-            /// Get the <c>Identity</c> of this connection.
-            ///
-            /// This method returns null if the connection was constructed anonymously
-            /// and we have not yet received our newly-generated <c>Identity</c> from the host.
-            /// </summary>
-            public Identity? Identity => conn.Identity;
-            /// <summary>
-            /// Get this connection's <c>ConnectionId</c>.
-            /// </summary>
-            public ConnectionId ConnectionId => conn.ConnectionId;
-            /// <summary>
-            /// Register a callback to be called when a reducer with no handler returns an error.
-            /// </summary>
-            public event Action<ReducerEventContext, Exception>? OnUnhandledReducerError {
-                add => Reducers.InternalOnUnhandledReducerError += value;
-                remove => Reducers.InternalOnUnhandledReducerError -= value;
-            }
-
-            internal ReducerEventContext(DbConnection conn, ReducerEvent<Reducer> reducerEvent)
-            {
-                this.conn = conn;
-                Event = reducerEvent;
-            }
+            this.conn = conn;
+            Event = reducerEvent;
         }
+    }
 
-        public sealed class ErrorContext : IErrorContext, IRemoteDbContext
+    public sealed class ErrorContext : IErrorContext, IRemoteDbContext
+    {
+        private readonly DbConnection conn;
+        /// <summary>
+        /// The <c>Exception</c> that caused this error callback to be run.
+        /// </summary>
+        public readonly Exception Event;
+        Exception IErrorContext.Event
         {
-            private readonly DbConnection conn;
-            /// <summary>
-            /// The <c>Exception</c> that caused this error callback to be run.
-            /// </summary>
-            public readonly Exception Event;
-            Exception IErrorContext.Event {
-                get {
-                    return Event;
-                }
-            }
-
-            /// <summary>
-            /// Access to tables in the client cache, which stores a read-only replica of the remote database state.
-            ///
-            /// The returned <c>DbView</c> will have a method to access each table defined by the module.
-            /// </summary>
-            public RemoteTables Db => conn.Db;
-            /// <summary>
-            /// Access to reducers defined by the module.
-            ///
-            /// The returned <c>RemoteReducers</c> will have a method to invoke each reducer defined by the module,
-            /// plus methods for adding and removing callbacks on each of those reducers.
-            /// </summary>
-            public RemoteReducers Reducers => conn.Reducers;
-            /// <summary>
-            /// Access to setters for per-reducer flags.
-            ///
-            /// The returned <c>SetReducerFlags</c> will have a method to invoke,
-            /// for each reducer defined by the module,
-            /// which call-flags for the reducer can be set.
-            /// </summary>
-            public SetReducerFlags SetReducerFlags => conn.SetReducerFlags;
-            /// <summary>
-            /// Returns <c>true</c> if the connection is active, i.e. has not yet disconnected.
-            /// </summary>
-            public bool IsActive => conn.IsActive;
-            /// <summary>
-            /// Close the connection.
-            ///
-            /// Throws an error if the connection is already closed.
-            /// </summary>
-            public void Disconnect() {
-                conn.Disconnect();
-            }
-            /// <summary>
-            /// Start building a subscription.
-            /// </summary>
-            /// <returns>A builder-pattern constructor for subscribing to queries,
-            /// causing matching rows to be replicated into the client cache.</returns>
-            public SubscriptionBuilder SubscriptionBuilder() => conn.SubscriptionBuilder();
-            /// <summary>
-            /// Get the <c>Identity</c> of this connection.
-            ///
-            /// This method returns null if the connection was constructed anonymously
-            /// and we have not yet received our newly-generated <c>Identity</c> from the host.
-            /// </summary>
-            public Identity? Identity => conn.Identity;
-            /// <summary>
-            /// Get this connection's <c>ConnectionId</c>.
-            /// </summary>
-            public ConnectionId ConnectionId => conn.ConnectionId;
-            /// <summary>
-            /// Register a callback to be called when a reducer with no handler returns an error.
-            /// </summary>
-            public event Action<ReducerEventContext, Exception>? OnUnhandledReducerError {
-                add => Reducers.InternalOnUnhandledReducerError += value;
-                remove => Reducers.InternalOnUnhandledReducerError -= value;
-            }
-
-            internal ErrorContext(DbConnection conn, Exception error)
+            get
             {
-                this.conn = conn;
-                Event = error;
-            }
-        }
-
-        public sealed class SubscriptionEventContext : ISubscriptionEventContext, IRemoteDbContext
-        {
-            private readonly DbConnection conn;
-
-            /// <summary>
-            /// Access to tables in the client cache, which stores a read-only replica of the remote database state.
-            ///
-            /// The returned <c>DbView</c> will have a method to access each table defined by the module.
-            /// </summary>
-            public RemoteTables Db => conn.Db;
-            /// <summary>
-            /// Access to reducers defined by the module.
-            ///
-            /// The returned <c>RemoteReducers</c> will have a method to invoke each reducer defined by the module,
-            /// plus methods for adding and removing callbacks on each of those reducers.
-            /// </summary>
-            public RemoteReducers Reducers => conn.Reducers;
-            /// <summary>
-            /// Access to setters for per-reducer flags.
-            ///
-            /// The returned <c>SetReducerFlags</c> will have a method to invoke,
-            /// for each reducer defined by the module,
-            /// which call-flags for the reducer can be set.
-            /// </summary>
-            public SetReducerFlags SetReducerFlags => conn.SetReducerFlags;
-            /// <summary>
-            /// Returns <c>true</c> if the connection is active, i.e. has not yet disconnected.
-            /// </summary>
-            public bool IsActive => conn.IsActive;
-            /// <summary>
-            /// Close the connection.
-            ///
-            /// Throws an error if the connection is already closed.
-            /// </summary>
-            public void Disconnect() {
-                conn.Disconnect();
-            }
-            /// <summary>
-            /// Start building a subscription.
-            /// </summary>
-            /// <returns>A builder-pattern constructor for subscribing to queries,
-            /// causing matching rows to be replicated into the client cache.</returns>
-            public SubscriptionBuilder SubscriptionBuilder() => conn.SubscriptionBuilder();
-            /// <summary>
-            /// Get the <c>Identity</c> of this connection.
-            ///
-            /// This method returns null if the connection was constructed anonymously
-            /// and we have not yet received our newly-generated <c>Identity</c> from the host.
-            /// </summary>
-            public Identity? Identity => conn.Identity;
-            /// <summary>
-            /// Get this connection's <c>ConnectionId</c>.
-            /// </summary>
-            public ConnectionId ConnectionId => conn.ConnectionId;
-            /// <summary>
-            /// Register a callback to be called when a reducer with no handler returns an error.
-            /// </summary>
-            public event Action<ReducerEventContext, Exception>? OnUnhandledReducerError {
-                add => Reducers.InternalOnUnhandledReducerError += value;
-                remove => Reducers.InternalOnUnhandledReducerError -= value;
-            }
-
-            internal SubscriptionEventContext(DbConnection conn)
-            {
-                this.conn = conn;
+                return Event;
             }
         }
 
         /// <summary>
-        /// Builder-pattern constructor for subscription queries.
+        /// Access to tables in the client cache, which stores a read-only replica of the remote database state.
+        ///
+        /// The returned <c>DbView</c> will have a method to access each table defined by the module.
         /// </summary>
-        public sealed class SubscriptionBuilder
+        public RemoteTables Db => conn.Db;
+        /// <summary>
+        /// Access to reducers defined by the module.
+        ///
+        /// The returned <c>RemoteReducers</c> will have a method to invoke each reducer defined by the module,
+        /// plus methods for adding and removing callbacks on each of those reducers.
+        /// </summary>
+        public RemoteReducers Reducers => conn.Reducers;
+        /// <summary>
+        /// Access to setters for per-reducer flags.
+        ///
+        /// The returned <c>SetReducerFlags</c> will have a method to invoke,
+        /// for each reducer defined by the module,
+        /// which call-flags for the reducer can be set.
+        /// </summary>
+        public SetReducerFlags SetReducerFlags => conn.SetReducerFlags;
+        /// <summary>
+        /// Returns <c>true</c> if the connection is active, i.e. has not yet disconnected.
+        /// </summary>
+        public bool IsActive => conn.IsActive;
+        /// <summary>
+        /// Close the connection.
+        ///
+        /// Throws an error if the connection is already closed.
+        /// </summary>
+        public void Disconnect()
         {
-            private readonly IDbConnection conn;
-
-            private event Action<SubscriptionEventContext>? Applied;
-            private event Action<ErrorContext, Exception>? Error;
-
-            /// <summary>
-            /// Private API, use <c>conn.SubscriptionBuilder()</c> instead.
-            /// </summary>
-            public SubscriptionBuilder(IDbConnection conn)
-            {
-                this.conn = conn;
-            }
-
-            /// <summary>
-            /// Register a callback to run when the subscription is applied.
-            /// </summary>
-            public SubscriptionBuilder OnApplied(
-                Action<SubscriptionEventContext> callback
-            )
-            {
-                Applied += callback;
-                return this;
-            }
-
-            /// <summary>
-            /// Register a callback to run when the subscription fails.
-            ///
-            /// Note that this callback may run either when attempting to apply the subscription,
-            /// in which case <c>Self::on_applied</c> will never run,
-            /// or later during the subscription's lifetime if the module's interface changes,
-            /// in which case <c>Self::on_applied</c> may have already run.
-            /// </summary>
-            public SubscriptionBuilder OnError(
-                Action<ErrorContext, Exception> callback
-            )
-            {
-                Error += callback;
-                return this;
-            }
-
-            /// <summary>
-            /// Subscribe to the following SQL queries.
-            ///
-            /// This method returns immediately, with the data not yet added to the DbConnection.
-            /// The provided callbacks will be invoked once the data is returned from the remote server.
-            /// Data from all the provided queries will be returned at the same time.
-            ///
-            /// See the SpacetimeDB SQL docs for more information on SQL syntax:
-            /// <a href="https://spacetimedb.com/docs/sql">https://spacetimedb.com/docs/sql</a>
-            /// </summary>
-            public SubscriptionHandle Subscribe(
-                string[] querySqls
-            ) => new(conn, Applied, Error, querySqls);
-
-            /// <summary>
-            /// Subscribe to all rows from all tables.
-            ///
-            /// This method is intended as a convenience
-            /// for applications where client-side memory use and network bandwidth are not concerns.
-            /// Applications where these resources are a constraint
-            /// should register more precise queries via <c>Self.Subscribe</c>
-            /// in order to replicate only the subset of data which the client needs to function.
-            ///
-            /// This method should not be combined with <c>Self.Subscribe</c> on the same <c>DbConnection</c>.
-            /// A connection may either <c>Self.Subscribe</c> to particular queries,
-            /// or <c>Self.SubscribeToAllTables</c>, but not both.
-            /// Attempting to call <c>Self.Subscribe</c>
-            /// on a <c>DbConnection</c> that has previously used <c>Self.SubscribeToAllTables</c>,
-            /// or vice versa, may misbehave in any number of ways,
-            /// including dropping subscriptions, corrupting the client cache, or panicking.
-            /// </summary>
-            public void SubscribeToAllTables()
-            {
-                // Make sure we use the legacy handle constructor here, even though there's only 1 query.
-                // We drop the error handler, since it can't be called for legacy subscriptions.
-                new SubscriptionHandle(
-                    conn,
-                    Applied,
-                    new string[] { "SELECT * FROM *" }
-                );
-            }
+            conn.Disconnect();
+        }
+        /// <summary>
+        /// Start building a subscription.
+        /// </summary>
+        /// <returns>A builder-pattern constructor for subscribing to queries,
+        /// causing matching rows to be replicated into the client cache.</returns>
+        public SubscriptionBuilder SubscriptionBuilder() => conn.SubscriptionBuilder();
+        /// <summary>
+        /// Get the <c>Identity</c> of this connection.
+        ///
+        /// This method returns null if the connection was constructed anonymously
+        /// and we have not yet received our newly-generated <c>Identity</c> from the host.
+        /// </summary>
+        public Identity? Identity => conn.Identity;
+        /// <summary>
+        /// Get this connection's <c>ConnectionId</c>.
+        /// </summary>
+        public ConnectionId ConnectionId => conn.ConnectionId;
+        /// <summary>
+        /// Register a callback to be called when a reducer with no handler returns an error.
+        /// </summary>
+        public event Action<ReducerEventContext, Exception>? OnUnhandledReducerError
+        {
+            add => Reducers.InternalOnUnhandledReducerError += value;
+            remove => Reducers.InternalOnUnhandledReducerError -= value;
         }
 
-        public sealed class SubscriptionHandle : SubscriptionHandleBase<SubscriptionEventContext, ErrorContext> {
-            /// <summary>
-            /// Internal API. Construct <c>SubscriptionHandle</c>s using <c>conn.SubscriptionBuilder</c>.
-            /// </summary>
-            public SubscriptionHandle(IDbConnection conn, Action<SubscriptionEventContext>? onApplied, string[] querySqls) : base(conn, onApplied, querySqls)
-            { }
-
-            /// <summary>
-            /// Internal API. Construct <c>SubscriptionHandle</c>s using <c>conn.SubscriptionBuilder</c>.
-            /// </summary>
-            public SubscriptionHandle(
-                IDbConnection conn,
-                Action<SubscriptionEventContext>? onApplied,
-                Action<ErrorContext, Exception>? onError,
-                string[] querySqls
-            ) : base(conn, onApplied, onError, querySqls)
-            { }
+        internal ErrorContext(DbConnection conn, Exception error)
+        {
+            this.conn = conn;
+            Event = error;
         }
+    }
+
+    public sealed class SubscriptionEventContext : ISubscriptionEventContext, IRemoteDbContext
+    {
+        private readonly DbConnection conn;
+
+        /// <summary>
+        /// Access to tables in the client cache, which stores a read-only replica of the remote database state.
+        ///
+        /// The returned <c>DbView</c> will have a method to access each table defined by the module.
+        /// </summary>
+        public RemoteTables Db => conn.Db;
+        /// <summary>
+        /// Access to reducers defined by the module.
+        ///
+        /// The returned <c>RemoteReducers</c> will have a method to invoke each reducer defined by the module,
+        /// plus methods for adding and removing callbacks on each of those reducers.
+        /// </summary>
+        public RemoteReducers Reducers => conn.Reducers;
+        /// <summary>
+        /// Access to setters for per-reducer flags.
+        ///
+        /// The returned <c>SetReducerFlags</c> will have a method to invoke,
+        /// for each reducer defined by the module,
+        /// which call-flags for the reducer can be set.
+        /// </summary>
+        public SetReducerFlags SetReducerFlags => conn.SetReducerFlags;
+        /// <summary>
+        /// Returns <c>true</c> if the connection is active, i.e. has not yet disconnected.
+        /// </summary>
+        public bool IsActive => conn.IsActive;
+        /// <summary>
+        /// Close the connection.
+        ///
+        /// Throws an error if the connection is already closed.
+        /// </summary>
+        public void Disconnect()
+        {
+            conn.Disconnect();
+        }
+        /// <summary>
+        /// Start building a subscription.
+        /// </summary>
+        /// <returns>A builder-pattern constructor for subscribing to queries,
+        /// causing matching rows to be replicated into the client cache.</returns>
+        public SubscriptionBuilder SubscriptionBuilder() => conn.SubscriptionBuilder();
+        /// <summary>
+        /// Get the <c>Identity</c> of this connection.
+        ///
+        /// This method returns null if the connection was constructed anonymously
+        /// and we have not yet received our newly-generated <c>Identity</c> from the host.
+        /// </summary>
+        public Identity? Identity => conn.Identity;
+        /// <summary>
+        /// Get this connection's <c>ConnectionId</c>.
+        /// </summary>
+        public ConnectionId ConnectionId => conn.ConnectionId;
+        /// <summary>
+        /// Register a callback to be called when a reducer with no handler returns an error.
+        /// </summary>
+        public event Action<ReducerEventContext, Exception>? OnUnhandledReducerError
+        {
+            add => Reducers.InternalOnUnhandledReducerError += value;
+            remove => Reducers.InternalOnUnhandledReducerError -= value;
+        }
+
+        internal SubscriptionEventContext(DbConnection conn)
+        {
+            this.conn = conn;
+        }
+    }
+
+    /// <summary>
+    /// Builder-pattern constructor for subscription queries.
+    /// </summary>
+    public sealed class SubscriptionBuilder
+    {
+        private readonly IDbConnection conn;
+
+        private event Action<SubscriptionEventContext>? Applied;
+        private event Action<ErrorContext, Exception>? Error;
+
+        /// <summary>
+        /// Private API, use <c>conn.SubscriptionBuilder()</c> instead.
+        /// </summary>
+        public SubscriptionBuilder(IDbConnection conn)
+        {
+            this.conn = conn;
+        }
+
+        /// <summary>
+        /// Register a callback to run when the subscription is applied.
+        /// </summary>
+        public SubscriptionBuilder OnApplied(
+            Action<SubscriptionEventContext> callback
+        )
+        {
+            Applied += callback;
+            return this;
+        }
+
+        /// <summary>
+        /// Register a callback to run when the subscription fails.
+        ///
+        /// Note that this callback may run either when attempting to apply the subscription,
+        /// in which case <c>Self::on_applied</c> will never run,
+        /// or later during the subscription's lifetime if the module's interface changes,
+        /// in which case <c>Self::on_applied</c> may have already run.
+        /// </summary>
+        public SubscriptionBuilder OnError(
+            Action<ErrorContext, Exception> callback
+        )
+        {
+            Error += callback;
+            return this;
+        }
+
+        /// <summary>
+        /// Subscribe to the following SQL queries.
+        ///
+        /// This method returns immediately, with the data not yet added to the DbConnection.
+        /// The provided callbacks will be invoked once the data is returned from the remote server.
+        /// Data from all the provided queries will be returned at the same time.
+        ///
+        /// See the SpacetimeDB SQL docs for more information on SQL syntax:
+        /// <a href="https://spacetimedb.com/docs/sql">https://spacetimedb.com/docs/sql</a>
+        /// </summary>
+        public SubscriptionHandle Subscribe(
+            string[] querySqls
+        ) => new(conn, Applied, Error, querySqls);
+
+        /// <summary>
+        /// Subscribe to all rows from all tables.
+        ///
+        /// This method is intended as a convenience
+        /// for applications where client-side memory use and network bandwidth are not concerns.
+        /// Applications where these resources are a constraint
+        /// should register more precise queries via <c>Self.Subscribe</c>
+        /// in order to replicate only the subset of data which the client needs to function.
+        ///
+        /// This method should not be combined with <c>Self.Subscribe</c> on the same <c>DbConnection</c>.
+        /// A connection may either <c>Self.Subscribe</c> to particular queries,
+        /// or <c>Self.SubscribeToAllTables</c>, but not both.
+        /// Attempting to call <c>Self.Subscribe</c>
+        /// on a <c>DbConnection</c> that has previously used <c>Self.SubscribeToAllTables</c>,
+        /// or vice versa, may misbehave in any number of ways,
+        /// including dropping subscriptions, corrupting the client cache, or panicking.
+        /// </summary>
+        public void SubscribeToAllTables()
+        {
+            // Make sure we use the legacy handle constructor here, even though there's only 1 query.
+            // We drop the error handler, since it can't be called for legacy subscriptions.
+            new SubscriptionHandle(
+                conn,
+                Applied,
+                new string[] { "SELECT * FROM *" }
+            );
+        }
+    }
+
+    public sealed class SubscriptionHandle : SubscriptionHandleBase<SubscriptionEventContext, ErrorContext>
+    {
+        /// <summary>
+        /// Internal API. Construct <c>SubscriptionHandle</c>s using <c>conn.SubscriptionBuilder</c>.
+        /// </summary>
+        public SubscriptionHandle(IDbConnection conn, Action<SubscriptionEventContext>? onApplied, string[] querySqls) : base(conn, onApplied, querySqls)
+        { }
+
+        /// <summary>
+        /// Internal API. Construct <c>SubscriptionHandle</c>s using <c>conn.SubscriptionBuilder</c>.
+        /// </summary>
+        public SubscriptionHandle(
+            IDbConnection conn,
+            Action<SubscriptionEventContext>? onApplied,
+            Action<ErrorContext, Exception>? onError,
+            string[] querySqls
+        ) : base(conn, onApplied, onError, querySqls)
+        { }
+    }
 
     public abstract partial class Reducer
     {
@@ -898,13 +906,15 @@ namespace BitCraftRegion.Types
         protected override Reducer ToReducer(TransactionUpdate update)
         {
             var encodedArgs = update.ReducerCall.Args;
-            return update.ReducerCall.ReducerName switch {
+            return update.ReducerCall.ReducerName switch
+            {
                 "ability_custom_activate" => BSATNHelpers.Decode<Reducer.AbilityCustomActivate>(encodedArgs),
                 "ability_custom_activate_start" => BSATNHelpers.Decode<Reducer.AbilityCustomActivateStart>(encodedArgs),
                 "ability_remove" => BSATNHelpers.Decode<Reducer.AbilityRemove>(encodedArgs),
                 "ability_set" => BSATNHelpers.Decode<Reducer.AbilitySet>(encodedArgs),
                 "achievement_claim" => BSATNHelpers.Decode<Reducer.AchievementClaim>(encodedArgs),
                 "acquire_knowledge_from_entities" => BSATNHelpers.Decode<Reducer.AcquireKnowledgeFromEntities>(encodedArgs),
+                "activate_building_buff" => BSATNHelpers.Decode<Reducer.ActivateBuildingBuff>(encodedArgs),
                 "admin_add_specific_building_type_states" => BSATNHelpers.Decode<Reducer.AdminAddSpecificBuildingTypeStates>(encodedArgs),
                 "admin_alpha3_complete_onboarding" => BSATNHelpers.Decode<Reducer.AdminAlpha3CompleteOnboarding>(encodedArgs),
                 "admin_alpha3_reset_onboarding_to_fifth_temple_quest" => BSATNHelpers.Decode<Reducer.AdminAlpha3ResetOnboardingToFifthTempleQuest>(encodedArgs),
@@ -934,6 +944,7 @@ namespace BitCraftRegion.Types
                 "admin_delete_chat_message" => BSATNHelpers.Decode<Reducer.AdminDeleteChatMessage>(encodedArgs),
                 "admin_despawn_overworld_enemies" => BSATNHelpers.Decode<Reducer.AdminDespawnOverworldEnemies>(encodedArgs),
                 "admin_dungeon_update_portals" => BSATNHelpers.Decode<Reducer.AdminDungeonUpdatePortals>(encodedArgs),
+                "admin_fail_quest" => BSATNHelpers.Decode<Reducer.AdminFailQuest>(encodedArgs),
                 "admin_find_all_players_with_item" => BSATNHelpers.Decode<Reducer.AdminFindAllPlayersWithItem>(encodedArgs),
                 "admin_find_all_players_with_item_above_quantity" => BSATNHelpers.Decode<Reducer.AdminFindAllPlayersWithItemAboveQuantity>(encodedArgs),
                 "admin_find_items_in_inventories" => BSATNHelpers.Decode<Reducer.AdminFindItemsInInventories>(encodedArgs),
@@ -941,7 +952,6 @@ namespace BitCraftRegion.Types
                 "admin_grant_all_claim_supplies" => BSATNHelpers.Decode<Reducer.AdminGrantAllClaimSupplies>(encodedArgs),
                 "admin_grant_collectibles" => BSATNHelpers.Decode<Reducer.AdminGrantCollectibles>(encodedArgs),
                 "admin_migrate_action_state" => BSATNHelpers.Decode<Reducer.AdminMigrateActionState>(encodedArgs),
-                "admin_migrate_housing" => BSATNHelpers.Decode<Reducer.AdminMigrateHousing>(encodedArgs),
                 "admin_migrate_trade_orders" => BSATNHelpers.Decode<Reducer.AdminMigrateTradeOrders>(encodedArgs),
                 "admin_modify_chat_message" => BSATNHelpers.Decode<Reducer.AdminModifyChatMessage>(encodedArgs),
                 "admin_patch_housing_costs" => BSATNHelpers.Decode<Reducer.AdminPatchHousingCosts>(encodedArgs),
@@ -962,6 +972,7 @@ namespace BitCraftRegion.Types
                 "admin_restore_all_collapsed_ruins" => BSATNHelpers.Decode<Reducer.AdminRestoreAllCollapsedRuins>(encodedArgs),
                 "admin_restore_player_state" => BSATNHelpers.Decode<Reducer.AdminRestorePlayerState>(encodedArgs),
                 "admin_restore_player_state_scheduled" => BSATNHelpers.Decode<Reducer.AdminRestorePlayerStateScheduled>(encodedArgs),
+                "admin_set_region_control_state" => BSATNHelpers.Decode<Reducer.AdminSetRegionControlState>(encodedArgs),
                 "admin_set_resource_world_target" => BSATNHelpers.Decode<Reducer.AdminSetResourceWorldTarget>(encodedArgs),
                 "admin_set_sign_text" => BSATNHelpers.Decode<Reducer.AdminSetSignText>(encodedArgs),
                 "admin_set_sign_text_coord" => BSATNHelpers.Decode<Reducer.AdminSetSignTextCoord>(encodedArgs),
@@ -973,6 +984,7 @@ namespace BitCraftRegion.Types
                 "admin_update_housing_portals" => BSATNHelpers.Decode<Reducer.AdminUpdateHousingPortals>(encodedArgs),
                 "admin_update_light_source_states" => BSATNHelpers.Decode<Reducer.AdminUpdateLightSourceStates>(encodedArgs),
                 "admin_update_lore_knowledge" => BSATNHelpers.Decode<Reducer.AdminUpdateLoreKnowledge>(encodedArgs),
+                "admin_update_region_moderation_config" => BSATNHelpers.Decode<Reducer.AdminUpdateRegionModerationConfig>(encodedArgs),
                 "advance_quest_stage" => BSATNHelpers.Decode<Reducer.AdvanceQuestStage>(encodedArgs),
                 "attack" => BSATNHelpers.Decode<Reducer.Attack>(encodedArgs),
                 "attack_impact" => BSATNHelpers.Decode<Reducer.AttackImpact>(encodedArgs),
@@ -1027,6 +1039,7 @@ namespace BitCraftRegion.Types
                 "cheat_pillar_shaping_destroy" => BSATNHelpers.Decode<Reducer.CheatPillarShapingDestroy>(encodedArgs),
                 "cheat_project_site_add_all_materials" => BSATNHelpers.Decode<Reducer.CheatProjectSiteAddAllMaterials>(encodedArgs),
                 "cheat_quest_advance_to_handin" => BSATNHelpers.Decode<Reducer.CheatQuestAdvanceToHandin>(encodedArgs),
+                "cheat_quest_clear" => BSATNHelpers.Decode<Reducer.CheatQuestClear>(encodedArgs),
                 "cheat_quest_restart" => BSATNHelpers.Decode<Reducer.CheatQuestRestart>(encodedArgs),
                 "cheat_quest_skip" => BSATNHelpers.Decode<Reducer.CheatQuestSkip>(encodedArgs),
                 "cheat_quest_skip_stage" => BSATNHelpers.Decode<Reducer.CheatQuestSkipStage>(encodedArgs),
@@ -1093,6 +1106,7 @@ namespace BitCraftRegion.Types
                 "deployable_deploy_start" => BSATNHelpers.Decode<Reducer.DeployableDeployStart>(encodedArgs),
                 "deployable_dismount" => BSATNHelpers.Decode<Reducer.DeployableDismount>(encodedArgs),
                 "deployable_dismount_scheduled" => BSATNHelpers.Decode<Reducer.DeployableDismountScheduled>(encodedArgs),
+                "deployable_dismount_server" => BSATNHelpers.Decode<Reducer.DeployableDismountServer>(encodedArgs),
                 "deployable_follow" => BSATNHelpers.Decode<Reducer.DeployableFollow>(encodedArgs),
                 "deployable_mount" => BSATNHelpers.Decode<Reducer.DeployableMount>(encodedArgs),
                 "deployable_move" => BSATNHelpers.Decode<Reducer.DeployableMove>(encodedArgs),
@@ -1117,8 +1131,10 @@ namespace BitCraftRegion.Types
                 "empire_add_siege_supplies" => BSATNHelpers.Decode<Reducer.EmpireAddSiegeSupplies>(encodedArgs),
                 "empire_claim_join" => BSATNHelpers.Decode<Reducer.EmpireClaimJoin>(encodedArgs),
                 "empire_collect_hexite_capsule" => BSATNHelpers.Decode<Reducer.EmpireCollectHexiteCapsule>(encodedArgs),
+                "empire_create" => BSATNHelpers.Decode<Reducer.EmpireCreate>(encodedArgs),
                 "empire_deploy_siege_engine" => BSATNHelpers.Decode<Reducer.EmpireDeploySiegeEngine>(encodedArgs),
                 "empire_deploy_siege_engine_start" => BSATNHelpers.Decode<Reducer.EmpireDeploySiegeEngineStart>(encodedArgs),
+                "empire_donate_item" => BSATNHelpers.Decode<Reducer.EmpireDonateItem>(encodedArgs),
                 "empire_queue_supplies" => BSATNHelpers.Decode<Reducer.EmpireQueueSupplies>(encodedArgs),
                 "empire_resupply_node" => BSATNHelpers.Decode<Reducer.EmpireResupplyNode>(encodedArgs),
                 "empire_resupply_node_start" => BSATNHelpers.Decode<Reducer.EmpireResupplyNodeStart>(encodedArgs),
@@ -1160,9 +1176,10 @@ namespace BitCraftRegion.Types
                 "import_biome_desc" => BSATNHelpers.Decode<Reducer.ImportBiomeDesc>(encodedArgs),
                 "import_buff_desc" => BSATNHelpers.Decode<Reducer.ImportBuffDesc>(encodedArgs),
                 "import_buff_type_desc" => BSATNHelpers.Decode<Reducer.ImportBuffTypeDesc>(encodedArgs),
+                "import_building_buff_desc" => BSATNHelpers.Decode<Reducer.ImportBuildingBuffDesc>(encodedArgs),
                 "import_building_claim_desc" => BSATNHelpers.Decode<Reducer.ImportBuildingClaimDesc>(encodedArgs),
                 "import_building_desc" => BSATNHelpers.Decode<Reducer.ImportBuildingDesc>(encodedArgs),
-                "import_building_portal_desc_v2" => BSATNHelpers.Decode<Reducer.ImportBuildingPortalDescV2>(encodedArgs),
+                "import_building_portal_desc" => BSATNHelpers.Decode<Reducer.ImportBuildingPortalDesc>(encodedArgs),
                 "import_building_repairs_desc" => BSATNHelpers.Decode<Reducer.ImportBuildingRepairsDesc>(encodedArgs),
                 "import_building_spawn_desc" => BSATNHelpers.Decode<Reducer.ImportBuildingSpawnDesc>(encodedArgs),
                 "import_building_state" => BSATNHelpers.Decode<Reducer.ImportBuildingState>(encodedArgs),
@@ -1182,7 +1199,7 @@ namespace BitCraftRegion.Types
                 "import_climb_requirement_desc" => BSATNHelpers.Decode<Reducer.ImportClimbRequirementDesc>(encodedArgs),
                 "import_clothing_desc" => BSATNHelpers.Decode<Reducer.ImportClothingDesc>(encodedArgs),
                 "import_collectible_desc" => BSATNHelpers.Decode<Reducer.ImportCollectibleDesc>(encodedArgs),
-                "import_combat_action_desc_v3" => BSATNHelpers.Decode<Reducer.ImportCombatActionDescV3>(encodedArgs),
+                "import_combat_action_desc" => BSATNHelpers.Decode<Reducer.ImportCombatActionDesc>(encodedArgs),
                 "import_combat_action_multi_hit_desc" => BSATNHelpers.Decode<Reducer.ImportCombatActionMultiHitDesc>(encodedArgs),
                 "import_combat_state" => BSATNHelpers.Decode<Reducer.ImportCombatState>(encodedArgs),
                 "import_config" => BSATNHelpers.Decode<Reducer.ImportConfig>(encodedArgs),
@@ -1324,6 +1341,7 @@ namespace BitCraftRegion.Types
                 "import_wind_params_desc" => BSATNHelpers.Decode<Reducer.ImportWindParamsDesc>(encodedArgs),
                 "import_world_region_name_state" => BSATNHelpers.Decode<Reducer.ImportWorldRegionNameState>(encodedArgs),
                 "import_world_region_state" => BSATNHelpers.Decode<Reducer.ImportWorldRegionState>(encodedArgs),
+                "init_region_info" => BSATNHelpers.Decode<Reducer.InitRegionInfo>(encodedArgs),
                 "insert_developer_identity" => BSATNHelpers.Decode<Reducer.InsertDeveloperIdentity>(encodedArgs),
                 "insert_resources_log" => BSATNHelpers.Decode<Reducer.InsertResourcesLog>(encodedArgs),
                 "insert_terrain_chunk" => BSATNHelpers.Decode<Reducer.InsertTerrainChunk>(encodedArgs),
@@ -1454,7 +1472,7 @@ namespace BitCraftRegion.Types
                 "search_for_closest_building_type" => BSATNHelpers.Decode<Reducer.SearchForClosestBuildingType>(encodedArgs),
                 "server_teleport_player" => BSATNHelpers.Decode<Reducer.ServerTeleportPlayer>(encodedArgs),
                 "set_home" => BSATNHelpers.Decode<Reducer.SetHome>(encodedArgs),
-                "set_quest_chain_active" => BSATNHelpers.Decode<Reducer.SetQuestChainActive>(encodedArgs),
+                "set_quest_tracked" => BSATNHelpers.Decode<Reducer.SetQuestTracked>(encodedArgs),
                 "sign_in" => BSATNHelpers.Decode<Reducer.SignIn>(encodedArgs),
                 "sign_out" => BSATNHelpers.Decode<Reducer.SignOut>(encodedArgs),
                 "skip_onboarding" => BSATNHelpers.Decode<Reducer.SkipOnboarding>(encodedArgs),
@@ -1466,23 +1484,24 @@ namespace BitCraftRegion.Types
                 "stage_biome_desc" => BSATNHelpers.Decode<Reducer.StageBiomeDesc>(encodedArgs),
                 "stage_buff_desc" => BSATNHelpers.Decode<Reducer.StageBuffDesc>(encodedArgs),
                 "stage_buff_type_desc" => BSATNHelpers.Decode<Reducer.StageBuffTypeDesc>(encodedArgs),
+                "stage_building_buff_desc" => BSATNHelpers.Decode<Reducer.StageBuildingBuffDesc>(encodedArgs),
                 "stage_building_claim_desc" => BSATNHelpers.Decode<Reducer.StageBuildingClaimDesc>(encodedArgs),
                 "stage_building_desc" => BSATNHelpers.Decode<Reducer.StageBuildingDesc>(encodedArgs),
-                "stage_building_portal_desc_v2" => BSATNHelpers.Decode<Reducer.StageBuildingPortalDescV2>(encodedArgs),
+                "stage_building_portal_desc" => BSATNHelpers.Decode<Reducer.StageBuildingPortalDesc>(encodedArgs),
                 "stage_building_repairs_desc" => BSATNHelpers.Decode<Reducer.StageBuildingRepairsDesc>(encodedArgs),
                 "stage_building_spawn_desc" => BSATNHelpers.Decode<Reducer.StageBuildingSpawnDesc>(encodedArgs),
                 "stage_building_type_desc" => BSATNHelpers.Decode<Reducer.StageBuildingTypeDesc>(encodedArgs),
                 "stage_cargo_desc" => BSATNHelpers.Decode<Reducer.StageCargoDesc>(encodedArgs),
                 "stage_character_stat_desc" => BSATNHelpers.Decode<Reducer.StageCharacterStatDesc>(encodedArgs),
                 "stage_chest_rarity_desc" => BSATNHelpers.Decode<Reducer.StageChestRarityDesc>(encodedArgs),
-                "stage_claim_tech_desc_v2" => BSATNHelpers.Decode<Reducer.StageClaimTechDescV2>(encodedArgs),
+                "stage_claim_tech_desc" => BSATNHelpers.Decode<Reducer.StageClaimTechDesc>(encodedArgs),
                 "stage_claim_tile_cost" => BSATNHelpers.Decode<Reducer.StageClaimTileCost>(encodedArgs),
                 "stage_climb_requirement_desc" => BSATNHelpers.Decode<Reducer.StageClimbRequirementDesc>(encodedArgs),
                 "stage_clothing_desc" => BSATNHelpers.Decode<Reducer.StageClothingDesc>(encodedArgs),
                 "stage_collectible_desc" => BSATNHelpers.Decode<Reducer.StageCollectibleDesc>(encodedArgs),
-                "stage_combat_action_desc_v3" => BSATNHelpers.Decode<Reducer.StageCombatActionDescV3>(encodedArgs),
+                "stage_combat_action_desc" => BSATNHelpers.Decode<Reducer.StageCombatActionDesc>(encodedArgs),
                 "stage_combat_action_multi_hit_desc" => BSATNHelpers.Decode<Reducer.StageCombatActionMultiHitDesc>(encodedArgs),
-                "stage_construction_recipe_desc_v2" => BSATNHelpers.Decode<Reducer.StageConstructionRecipeDescV2>(encodedArgs),
+                "stage_construction_recipe_desc" => BSATNHelpers.Decode<Reducer.StageConstructionRecipeDesc>(encodedArgs),
                 "stage_contribution_loot_desc" => BSATNHelpers.Decode<Reducer.StageContributionLootDesc>(encodedArgs),
                 "stage_crafting_recipe_desc" => BSATNHelpers.Decode<Reducer.StageCraftingRecipeDesc>(encodedArgs),
                 "stage_deconstruction_recipe_desc" => BSATNHelpers.Decode<Reducer.StageDeconstructionRecipeDesc>(encodedArgs),
@@ -1538,7 +1557,7 @@ namespace BitCraftRegion.Types
                 "stage_resource_clump_desc" => BSATNHelpers.Decode<Reducer.StageResourceClumpDesc>(encodedArgs),
                 "stage_resource_desc" => BSATNHelpers.Decode<Reducer.StageResourceDesc>(encodedArgs),
                 "stage_resource_growth_recipe_desc" => BSATNHelpers.Decode<Reducer.StageResourceGrowthRecipeDesc>(encodedArgs),
-                "stage_resource_placement_recipe_desc_v2" => BSATNHelpers.Decode<Reducer.StageResourcePlacementRecipeDescV2>(encodedArgs),
+                "stage_resource_placement_recipe_desc" => BSATNHelpers.Decode<Reducer.StageResourcePlacementRecipeDesc>(encodedArgs),
                 "stage_secondary_knowledge_desc" => BSATNHelpers.Decode<Reducer.StageSecondaryKnowledgeDesc>(encodedArgs),
                 "stage_skill_desc" => BSATNHelpers.Decode<Reducer.StageSkillDesc>(encodedArgs),
                 "stage_stage_rewards_desc" => BSATNHelpers.Decode<Reducer.StageStageRewardsDesc>(encodedArgs),
@@ -1581,7 +1600,9 @@ namespace BitCraftRegion.Types
                 "traveler_task_agent_loop" => BSATNHelpers.Decode<Reducer.TravelerTaskAgentLoop>(encodedArgs),
                 "update_moving_cost" => BSATNHelpers.Decode<Reducer.UpdateMovingCost>(encodedArgs),
                 "update_scheduled_timers_from_static_data" => BSATNHelpers.Decode<Reducer.UpdateScheduledTimersFromStaticData>(encodedArgs),
+                "world_clear_npc_watchtowers" => BSATNHelpers.Decode<Reducer.WorldClearNpcWatchtowers>(encodedArgs),
                 "world_place_building" => BSATNHelpers.Decode<Reducer.WorldPlaceBuilding>(encodedArgs),
+                "world_place_npc_watchtowers" => BSATNHelpers.Decode<Reducer.WorldPlaceNpcWatchtowers>(encodedArgs),
                 "world_place_resource" => BSATNHelpers.Decode<Reducer.WorldPlaceResource>(encodedArgs),
                 var reducer => throw new ArgumentOutOfRangeException("Reducer", $"Unknown reducer {reducer}")
             };
@@ -1602,13 +1623,15 @@ namespace BitCraftRegion.Types
         protected override bool Dispatch(IReducerEventContext context, Reducer reducer)
         {
             var eventContext = (ReducerEventContext)context;
-            return reducer switch {
+            return reducer switch
+            {
                 Reducer.AbilityCustomActivate args => Reducers.InvokeAbilityCustomActivate(eventContext, args),
                 Reducer.AbilityCustomActivateStart args => Reducers.InvokeAbilityCustomActivateStart(eventContext, args),
                 Reducer.AbilityRemove args => Reducers.InvokeAbilityRemove(eventContext, args),
                 Reducer.AbilitySet args => Reducers.InvokeAbilitySet(eventContext, args),
                 Reducer.AchievementClaim args => Reducers.InvokeAchievementClaim(eventContext, args),
                 Reducer.AcquireKnowledgeFromEntities args => Reducers.InvokeAcquireKnowledgeFromEntities(eventContext, args),
+                Reducer.ActivateBuildingBuff args => Reducers.InvokeActivateBuildingBuff(eventContext, args),
                 Reducer.AdminAddSpecificBuildingTypeStates args => Reducers.InvokeAdminAddSpecificBuildingTypeStates(eventContext, args),
                 Reducer.AdminAlpha3CompleteOnboarding args => Reducers.InvokeAdminAlpha3CompleteOnboarding(eventContext, args),
                 Reducer.AdminAlpha3ResetOnboardingToFifthTempleQuest args => Reducers.InvokeAdminAlpha3ResetOnboardingToFifthTempleQuest(eventContext, args),
@@ -1638,6 +1661,7 @@ namespace BitCraftRegion.Types
                 Reducer.AdminDeleteChatMessage args => Reducers.InvokeAdminDeleteChatMessage(eventContext, args),
                 Reducer.AdminDespawnOverworldEnemies args => Reducers.InvokeAdminDespawnOverworldEnemies(eventContext, args),
                 Reducer.AdminDungeonUpdatePortals args => Reducers.InvokeAdminDungeonUpdatePortals(eventContext, args),
+                Reducer.AdminFailQuest args => Reducers.InvokeAdminFailQuest(eventContext, args),
                 Reducer.AdminFindAllPlayersWithItem args => Reducers.InvokeAdminFindAllPlayersWithItem(eventContext, args),
                 Reducer.AdminFindAllPlayersWithItemAboveQuantity args => Reducers.InvokeAdminFindAllPlayersWithItemAboveQuantity(eventContext, args),
                 Reducer.AdminFindItemsInInventories args => Reducers.InvokeAdminFindItemsInInventories(eventContext, args),
@@ -1645,7 +1669,6 @@ namespace BitCraftRegion.Types
                 Reducer.AdminGrantAllClaimSupplies args => Reducers.InvokeAdminGrantAllClaimSupplies(eventContext, args),
                 Reducer.AdminGrantCollectibles args => Reducers.InvokeAdminGrantCollectibles(eventContext, args),
                 Reducer.AdminMigrateActionState args => Reducers.InvokeAdminMigrateActionState(eventContext, args),
-                Reducer.AdminMigrateHousing args => Reducers.InvokeAdminMigrateHousing(eventContext, args),
                 Reducer.AdminMigrateTradeOrders args => Reducers.InvokeAdminMigrateTradeOrders(eventContext, args),
                 Reducer.AdminModifyChatMessage args => Reducers.InvokeAdminModifyChatMessage(eventContext, args),
                 Reducer.AdminPatchHousingCosts args => Reducers.InvokeAdminPatchHousingCosts(eventContext, args),
@@ -1666,6 +1689,7 @@ namespace BitCraftRegion.Types
                 Reducer.AdminRestoreAllCollapsedRuins args => Reducers.InvokeAdminRestoreAllCollapsedRuins(eventContext, args),
                 Reducer.AdminRestorePlayerState args => Reducers.InvokeAdminRestorePlayerState(eventContext, args),
                 Reducer.AdminRestorePlayerStateScheduled args => Reducers.InvokeAdminRestorePlayerStateScheduled(eventContext, args),
+                Reducer.AdminSetRegionControlState args => Reducers.InvokeAdminSetRegionControlState(eventContext, args),
                 Reducer.AdminSetResourceWorldTarget args => Reducers.InvokeAdminSetResourceWorldTarget(eventContext, args),
                 Reducer.AdminSetSignText args => Reducers.InvokeAdminSetSignText(eventContext, args),
                 Reducer.AdminSetSignTextCoord args => Reducers.InvokeAdminSetSignTextCoord(eventContext, args),
@@ -1677,6 +1701,7 @@ namespace BitCraftRegion.Types
                 Reducer.AdminUpdateHousingPortals args => Reducers.InvokeAdminUpdateHousingPortals(eventContext, args),
                 Reducer.AdminUpdateLightSourceStates args => Reducers.InvokeAdminUpdateLightSourceStates(eventContext, args),
                 Reducer.AdminUpdateLoreKnowledge args => Reducers.InvokeAdminUpdateLoreKnowledge(eventContext, args),
+                Reducer.AdminUpdateRegionModerationConfig args => Reducers.InvokeAdminUpdateRegionModerationConfig(eventContext, args),
                 Reducer.AdvanceQuestStage args => Reducers.InvokeAdvanceQuestStage(eventContext, args),
                 Reducer.Attack args => Reducers.InvokeAttack(eventContext, args),
                 Reducer.AttackImpact args => Reducers.InvokeAttackImpact(eventContext, args),
@@ -1731,6 +1756,7 @@ namespace BitCraftRegion.Types
                 Reducer.CheatPillarShapingDestroy args => Reducers.InvokeCheatPillarShapingDestroy(eventContext, args),
                 Reducer.CheatProjectSiteAddAllMaterials args => Reducers.InvokeCheatProjectSiteAddAllMaterials(eventContext, args),
                 Reducer.CheatQuestAdvanceToHandin args => Reducers.InvokeCheatQuestAdvanceToHandin(eventContext, args),
+                Reducer.CheatQuestClear args => Reducers.InvokeCheatQuestClear(eventContext, args),
                 Reducer.CheatQuestRestart args => Reducers.InvokeCheatQuestRestart(eventContext, args),
                 Reducer.CheatQuestSkip args => Reducers.InvokeCheatQuestSkip(eventContext, args),
                 Reducer.CheatQuestSkipStage args => Reducers.InvokeCheatQuestSkipStage(eventContext, args),
@@ -1797,6 +1823,7 @@ namespace BitCraftRegion.Types
                 Reducer.DeployableDeployStart args => Reducers.InvokeDeployableDeployStart(eventContext, args),
                 Reducer.DeployableDismount args => Reducers.InvokeDeployableDismount(eventContext, args),
                 Reducer.DeployableDismountScheduled args => Reducers.InvokeDeployableDismountScheduled(eventContext, args),
+                Reducer.DeployableDismountServer args => Reducers.InvokeDeployableDismountServer(eventContext, args),
                 Reducer.DeployableFollow args => Reducers.InvokeDeployableFollow(eventContext, args),
                 Reducer.DeployableMount args => Reducers.InvokeDeployableMount(eventContext, args),
                 Reducer.DeployableMove args => Reducers.InvokeDeployableMove(eventContext, args),
@@ -1821,8 +1848,10 @@ namespace BitCraftRegion.Types
                 Reducer.EmpireAddSiegeSupplies args => Reducers.InvokeEmpireAddSiegeSupplies(eventContext, args),
                 Reducer.EmpireClaimJoin args => Reducers.InvokeEmpireClaimJoin(eventContext, args),
                 Reducer.EmpireCollectHexiteCapsule args => Reducers.InvokeEmpireCollectHexiteCapsule(eventContext, args),
+                Reducer.EmpireCreate args => Reducers.InvokeEmpireCreate(eventContext, args),
                 Reducer.EmpireDeploySiegeEngine args => Reducers.InvokeEmpireDeploySiegeEngine(eventContext, args),
                 Reducer.EmpireDeploySiegeEngineStart args => Reducers.InvokeEmpireDeploySiegeEngineStart(eventContext, args),
+                Reducer.EmpireDonateItem args => Reducers.InvokeEmpireDonateItem(eventContext, args),
                 Reducer.EmpireQueueSupplies args => Reducers.InvokeEmpireQueueSupplies(eventContext, args),
                 Reducer.EmpireResupplyNode args => Reducers.InvokeEmpireResupplyNode(eventContext, args),
                 Reducer.EmpireResupplyNodeStart args => Reducers.InvokeEmpireResupplyNodeStart(eventContext, args),
@@ -1864,9 +1893,10 @@ namespace BitCraftRegion.Types
                 Reducer.ImportBiomeDesc args => Reducers.InvokeImportBiomeDesc(eventContext, args),
                 Reducer.ImportBuffDesc args => Reducers.InvokeImportBuffDesc(eventContext, args),
                 Reducer.ImportBuffTypeDesc args => Reducers.InvokeImportBuffTypeDesc(eventContext, args),
+                Reducer.ImportBuildingBuffDesc args => Reducers.InvokeImportBuildingBuffDesc(eventContext, args),
                 Reducer.ImportBuildingClaimDesc args => Reducers.InvokeImportBuildingClaimDesc(eventContext, args),
                 Reducer.ImportBuildingDesc args => Reducers.InvokeImportBuildingDesc(eventContext, args),
-                Reducer.ImportBuildingPortalDescV2 args => Reducers.InvokeImportBuildingPortalDescV2(eventContext, args),
+                Reducer.ImportBuildingPortalDesc args => Reducers.InvokeImportBuildingPortalDesc(eventContext, args),
                 Reducer.ImportBuildingRepairsDesc args => Reducers.InvokeImportBuildingRepairsDesc(eventContext, args),
                 Reducer.ImportBuildingSpawnDesc args => Reducers.InvokeImportBuildingSpawnDesc(eventContext, args),
                 Reducer.ImportBuildingState args => Reducers.InvokeImportBuildingState(eventContext, args),
@@ -1886,7 +1916,7 @@ namespace BitCraftRegion.Types
                 Reducer.ImportClimbRequirementDesc args => Reducers.InvokeImportClimbRequirementDesc(eventContext, args),
                 Reducer.ImportClothingDesc args => Reducers.InvokeImportClothingDesc(eventContext, args),
                 Reducer.ImportCollectibleDesc args => Reducers.InvokeImportCollectibleDesc(eventContext, args),
-                Reducer.ImportCombatActionDescV3 args => Reducers.InvokeImportCombatActionDescV3(eventContext, args),
+                Reducer.ImportCombatActionDesc args => Reducers.InvokeImportCombatActionDesc(eventContext, args),
                 Reducer.ImportCombatActionMultiHitDesc args => Reducers.InvokeImportCombatActionMultiHitDesc(eventContext, args),
                 Reducer.ImportCombatState args => Reducers.InvokeImportCombatState(eventContext, args),
                 Reducer.ImportConfig args => Reducers.InvokeImportConfig(eventContext, args),
@@ -2028,6 +2058,7 @@ namespace BitCraftRegion.Types
                 Reducer.ImportWindParamsDesc args => Reducers.InvokeImportWindParamsDesc(eventContext, args),
                 Reducer.ImportWorldRegionNameState args => Reducers.InvokeImportWorldRegionNameState(eventContext, args),
                 Reducer.ImportWorldRegionState args => Reducers.InvokeImportWorldRegionState(eventContext, args),
+                Reducer.InitRegionInfo args => Reducers.InvokeInitRegionInfo(eventContext, args),
                 Reducer.InsertDeveloperIdentity args => Reducers.InvokeInsertDeveloperIdentity(eventContext, args),
                 Reducer.InsertResourcesLog args => Reducers.InvokeInsertResourcesLog(eventContext, args),
                 Reducer.InsertTerrainChunk args => Reducers.InvokeInsertTerrainChunk(eventContext, args),
@@ -2158,7 +2189,7 @@ namespace BitCraftRegion.Types
                 Reducer.SearchForClosestBuildingType args => Reducers.InvokeSearchForClosestBuildingType(eventContext, args),
                 Reducer.ServerTeleportPlayer args => Reducers.InvokeServerTeleportPlayer(eventContext, args),
                 Reducer.SetHome args => Reducers.InvokeSetHome(eventContext, args),
-                Reducer.SetQuestChainActive args => Reducers.InvokeSetQuestChainActive(eventContext, args),
+                Reducer.SetQuestTracked args => Reducers.InvokeSetQuestTracked(eventContext, args),
                 Reducer.SignIn args => Reducers.InvokeSignIn(eventContext, args),
                 Reducer.SignOut args => Reducers.InvokeSignOut(eventContext, args),
                 Reducer.SkipOnboarding args => Reducers.InvokeSkipOnboarding(eventContext, args),
@@ -2170,23 +2201,24 @@ namespace BitCraftRegion.Types
                 Reducer.StageBiomeDesc args => Reducers.InvokeStageBiomeDesc(eventContext, args),
                 Reducer.StageBuffDesc args => Reducers.InvokeStageBuffDesc(eventContext, args),
                 Reducer.StageBuffTypeDesc args => Reducers.InvokeStageBuffTypeDesc(eventContext, args),
+                Reducer.StageBuildingBuffDesc args => Reducers.InvokeStageBuildingBuffDesc(eventContext, args),
                 Reducer.StageBuildingClaimDesc args => Reducers.InvokeStageBuildingClaimDesc(eventContext, args),
                 Reducer.StageBuildingDesc args => Reducers.InvokeStageBuildingDesc(eventContext, args),
-                Reducer.StageBuildingPortalDescV2 args => Reducers.InvokeStageBuildingPortalDescV2(eventContext, args),
+                Reducer.StageBuildingPortalDesc args => Reducers.InvokeStageBuildingPortalDesc(eventContext, args),
                 Reducer.StageBuildingRepairsDesc args => Reducers.InvokeStageBuildingRepairsDesc(eventContext, args),
                 Reducer.StageBuildingSpawnDesc args => Reducers.InvokeStageBuildingSpawnDesc(eventContext, args),
                 Reducer.StageBuildingTypeDesc args => Reducers.InvokeStageBuildingTypeDesc(eventContext, args),
                 Reducer.StageCargoDesc args => Reducers.InvokeStageCargoDesc(eventContext, args),
                 Reducer.StageCharacterStatDesc args => Reducers.InvokeStageCharacterStatDesc(eventContext, args),
                 Reducer.StageChestRarityDesc args => Reducers.InvokeStageChestRarityDesc(eventContext, args),
-                Reducer.StageClaimTechDescV2 args => Reducers.InvokeStageClaimTechDescV2(eventContext, args),
+                Reducer.StageClaimTechDesc args => Reducers.InvokeStageClaimTechDesc(eventContext, args),
                 Reducer.StageClaimTileCost args => Reducers.InvokeStageClaimTileCost(eventContext, args),
                 Reducer.StageClimbRequirementDesc args => Reducers.InvokeStageClimbRequirementDesc(eventContext, args),
                 Reducer.StageClothingDesc args => Reducers.InvokeStageClothingDesc(eventContext, args),
                 Reducer.StageCollectibleDesc args => Reducers.InvokeStageCollectibleDesc(eventContext, args),
-                Reducer.StageCombatActionDescV3 args => Reducers.InvokeStageCombatActionDescV3(eventContext, args),
+                Reducer.StageCombatActionDesc args => Reducers.InvokeStageCombatActionDesc(eventContext, args),
                 Reducer.StageCombatActionMultiHitDesc args => Reducers.InvokeStageCombatActionMultiHitDesc(eventContext, args),
-                Reducer.StageConstructionRecipeDescV2 args => Reducers.InvokeStageConstructionRecipeDescV2(eventContext, args),
+                Reducer.StageConstructionRecipeDesc args => Reducers.InvokeStageConstructionRecipeDesc(eventContext, args),
                 Reducer.StageContributionLootDesc args => Reducers.InvokeStageContributionLootDesc(eventContext, args),
                 Reducer.StageCraftingRecipeDesc args => Reducers.InvokeStageCraftingRecipeDesc(eventContext, args),
                 Reducer.StageDeconstructionRecipeDesc args => Reducers.InvokeStageDeconstructionRecipeDesc(eventContext, args),
@@ -2242,7 +2274,7 @@ namespace BitCraftRegion.Types
                 Reducer.StageResourceClumpDesc args => Reducers.InvokeStageResourceClumpDesc(eventContext, args),
                 Reducer.StageResourceDesc args => Reducers.InvokeStageResourceDesc(eventContext, args),
                 Reducer.StageResourceGrowthRecipeDesc args => Reducers.InvokeStageResourceGrowthRecipeDesc(eventContext, args),
-                Reducer.StageResourcePlacementRecipeDescV2 args => Reducers.InvokeStageResourcePlacementRecipeDescV2(eventContext, args),
+                Reducer.StageResourcePlacementRecipeDesc args => Reducers.InvokeStageResourcePlacementRecipeDesc(eventContext, args),
                 Reducer.StageSecondaryKnowledgeDesc args => Reducers.InvokeStageSecondaryKnowledgeDesc(eventContext, args),
                 Reducer.StageSkillDesc args => Reducers.InvokeStageSkillDesc(eventContext, args),
                 Reducer.StageStageRewardsDesc args => Reducers.InvokeStageStageRewardsDesc(eventContext, args),
@@ -2285,7 +2317,9 @@ namespace BitCraftRegion.Types
                 Reducer.TravelerTaskAgentLoop args => Reducers.InvokeTravelerTaskAgentLoop(eventContext, args),
                 Reducer.UpdateMovingCost args => Reducers.InvokeUpdateMovingCost(eventContext, args),
                 Reducer.UpdateScheduledTimersFromStaticData args => Reducers.InvokeUpdateScheduledTimersFromStaticData(eventContext, args),
+                Reducer.WorldClearNpcWatchtowers args => Reducers.InvokeWorldClearNpcWatchtowers(eventContext, args),
                 Reducer.WorldPlaceBuilding args => Reducers.InvokeWorldPlaceBuilding(eventContext, args),
+                Reducer.WorldPlaceNpcWatchtowers args => Reducers.InvokeWorldPlaceNpcWatchtowers(eventContext, args),
                 Reducer.WorldPlaceResource args => Reducers.InvokeWorldPlaceResource(eventContext, args),
                 _ => throw new ArgumentOutOfRangeException("Reducer", $"Unknown reducer {reducer}")
             };

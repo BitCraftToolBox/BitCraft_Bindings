@@ -25,6 +25,8 @@ namespace BitCraftRegion.Types
         public System.Collections.Generic.List<int> DiscoveryTriggers;
         [DataMember(Name = "required_knowledges")]
         public System.Collections.Generic.List<int> RequiredKnowledges;
+        [DataMember(Name = "blocking_knowledges")]
+        public System.Collections.Generic.List<int> BlockingKnowledges;
         [DataMember(Name = "time_requirement")]
         public float TimeRequirement;
         [DataMember(Name = "stamina_requirement")]
@@ -51,6 +53,10 @@ namespace BitCraftRegion.Types
         public int ToolMeshIndex;
         [DataMember(Name = "recipe_performance_id")]
         public int RecipePerformanceId;
+        [DataMember(Name = "empire_rank_requirement")]
+        public int? EmpireRankRequirement;
+        [DataMember(Name = "show_in_progression")]
+        public bool ShowInProgression;
 
         public ExtractionRecipeDesc(
             int Id,
@@ -58,6 +64,7 @@ namespace BitCraftRegion.Types
             int CargoId,
             System.Collections.Generic.List<int> DiscoveryTriggers,
             System.Collections.Generic.List<int> RequiredKnowledges,
+            System.Collections.Generic.List<int> BlockingKnowledges,
             float TimeRequirement,
             float StaminaRequirement,
             int ToolDurabilityLost,
@@ -70,7 +77,9 @@ namespace BitCraftRegion.Types
             System.Collections.Generic.List<ExperienceStackF32> ExperiencePerProgress,
             string VerbPhrase,
             int ToolMeshIndex,
-            int RecipePerformanceId
+            int RecipePerformanceId,
+            int? EmpireRankRequirement,
+            bool ShowInProgression
         )
         {
             this.Id = Id;
@@ -78,6 +87,7 @@ namespace BitCraftRegion.Types
             this.CargoId = CargoId;
             this.DiscoveryTriggers = DiscoveryTriggers;
             this.RequiredKnowledges = RequiredKnowledges;
+            this.BlockingKnowledges = BlockingKnowledges;
             this.TimeRequirement = TimeRequirement;
             this.StaminaRequirement = StaminaRequirement;
             this.ToolDurabilityLost = ToolDurabilityLost;
@@ -91,12 +101,15 @@ namespace BitCraftRegion.Types
             this.VerbPhrase = VerbPhrase;
             this.ToolMeshIndex = ToolMeshIndex;
             this.RecipePerformanceId = RecipePerformanceId;
+            this.EmpireRankRequirement = EmpireRankRequirement;
+            this.ShowInProgression = ShowInProgression;
         }
 
         public ExtractionRecipeDesc()
         {
             this.DiscoveryTriggers = new();
             this.RequiredKnowledges = new();
+            this.BlockingKnowledges = new();
             this.ExtractedItemStacks = new();
             this.ConsumedItemStacks = new();
             this.ToolRequirements = new();

@@ -18,20 +18,23 @@ namespace BitCraftRegion.Types
         [DataMember(Name = "chunk_index")]
         public ulong ChunkIndex;
         [DataMember(Name = "empire_entity_id")]
-        public System.Collections.Generic.List<ulong> EmpireEntityId;
+        public ulong EmpireEntityId;
+        [DataMember(Name = "watchtower_entity_id")]
+        public ulong WatchtowerEntityId;
 
         public EmpireChunkState(
             ulong ChunkIndex,
-            System.Collections.Generic.List<ulong> EmpireEntityId
+            ulong EmpireEntityId,
+            ulong WatchtowerEntityId
         )
         {
             this.ChunkIndex = ChunkIndex;
             this.EmpireEntityId = EmpireEntityId;
+            this.WatchtowerEntityId = WatchtowerEntityId;
         }
 
         public EmpireChunkState()
         {
-            this.EmpireEntityId = new();
         }
     }
 }

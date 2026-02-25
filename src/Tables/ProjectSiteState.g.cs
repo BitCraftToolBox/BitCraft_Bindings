@@ -28,9 +28,19 @@ namespace BitCraftRegion.Types
 
             public readonly EntityIdUniqueIndex EntityId;
 
+            public sealed class OwnerIdIndex : BTreeIndexBase<ulong>
+            {
+                protected override ulong GetKey(ProjectSiteState row) => row.OwnerId;
+
+                public OwnerIdIndex(ProjectSiteStateHandle table) : base(table) { }
+            }
+
+            public readonly OwnerIdIndex OwnerId;
+
             internal ProjectSiteStateHandle(DbConnection conn) : base(conn)
             {
                 EntityId = new(this);
+                OwnerId = new(this);
             }
 
             protected override object GetPrimaryKey(ProjectSiteState row) => row.EntityId;

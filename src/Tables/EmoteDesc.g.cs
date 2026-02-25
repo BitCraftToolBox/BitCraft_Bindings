@@ -19,6 +19,15 @@ namespace BitCraftRegion.Types
         {
             protected override string RemoteTableName => "emote_desc";
 
+            public sealed class EnabledByCollectibleIdIndex : BTreeIndexBase<int>
+            {
+                protected override int GetKey(EmoteDesc row) => row.EnabledByCollectibleId;
+
+                public EnabledByCollectibleIdIndex(EmoteDescHandle table) : base(table) { }
+            }
+
+            public readonly EnabledByCollectibleIdIndex EnabledByCollectibleId;
+
             public sealed class IdUniqueIndex : UniqueIndexBase<int>
             {
                 protected override int GetKey(EmoteDesc row) => row.Id;
@@ -30,6 +39,7 @@ namespace BitCraftRegion.Types
 
             internal EmoteDescHandle(DbConnection conn) : base(conn)
             {
+                EnabledByCollectibleId = new(this);
                 Id = new(this);
             }
 

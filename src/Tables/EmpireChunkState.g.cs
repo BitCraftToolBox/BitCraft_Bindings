@@ -28,9 +28,29 @@ namespace BitCraftRegion.Types
 
             public readonly ChunkIndexUniqueIndex ChunkIndex;
 
+            public sealed class EmpireEntityIdIndex : BTreeIndexBase<ulong>
+            {
+                protected override ulong GetKey(EmpireChunkState row) => row.EmpireEntityId;
+
+                public EmpireEntityIdIndex(EmpireChunkStateHandle table) : base(table) { }
+            }
+
+            public readonly EmpireEntityIdIndex EmpireEntityId;
+
+            public sealed class WatchtowerEntityIdIndex : BTreeIndexBase<ulong>
+            {
+                protected override ulong GetKey(EmpireChunkState row) => row.WatchtowerEntityId;
+
+                public WatchtowerEntityIdIndex(EmpireChunkStateHandle table) : base(table) { }
+            }
+
+            public readonly WatchtowerEntityIdIndex WatchtowerEntityId;
+
             internal EmpireChunkStateHandle(DbConnection conn) : base(conn)
             {
                 ChunkIndex = new(this);
+                EmpireEntityId = new(this);
+                WatchtowerEntityId = new(this);
             }
 
             protected override object GetPrimaryKey(EmpireChunkState row) => row.ChunkIndex;
