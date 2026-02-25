@@ -9,6 +9,7 @@ use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 #[sats(crate = __lib)]
 pub struct PlayerSettingsState {
     pub entity_id: u64,
+    pub fill_player_inventory: bool,
     pub fill_deployable_inventory_first: bool,
 }
 

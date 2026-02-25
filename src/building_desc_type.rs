@@ -34,6 +34,7 @@ pub struct BuildingDesc {
     pub show_in_compendium: bool,
     pub is_ruins: bool,
     pub not_deconstructible: bool,
+    pub destroy_on_unclaim: bool,
 }
 
 impl __sdk::InModule for BuildingDesc {

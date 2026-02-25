@@ -15,6 +15,7 @@ pub struct DeployableCollectibleState {
     pub collectible_id: i32,
     pub deployable_desc_id: i32,
     pub location: Option<OffsetCoordinatesSmallMessage>,
+    pub auto_follow: bool,
 }
 
 impl __sdk::InModule for DeployableCollectibleState {

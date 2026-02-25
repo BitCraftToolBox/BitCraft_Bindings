@@ -15,10 +15,11 @@ pub struct CombatActionDesc {
     pub id: i32,
     pub learned_by_player: bool,
     pub range: u32,
-    pub max_range: u32,
+    pub max_range: f32,
     pub auto_cast: bool,
     pub weapon_type_requirements: Vec<i32>,
     pub lead_in_time: f32,
+    pub inaction_time: f32,
     pub can_move_during_lead_in: bool,
     pub cooldown: f32,
     pub global_cooldown: f32,
@@ -41,6 +42,8 @@ pub struct CombatActionDesc {
     pub self_threat_against_enemies: f32,
     pub base_threat: f32,
     pub threat_per_damage: f32,
+    pub is_self_targeting: bool,
+    pub is_taunt_action: bool,
 }
 
 impl __sdk::InModule for CombatActionDesc {

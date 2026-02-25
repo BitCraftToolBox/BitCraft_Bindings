@@ -18,6 +18,7 @@ pub struct AbilityUnlockDesc {
     pub required_claim_tech_id: i32,
     pub required_knowledges: Vec<i32>,
     pub blocking_knowledges: Vec<i32>,
+    pub show_in_progression: bool,
 }
 
 impl __sdk::InModule for AbilityUnlockDesc {

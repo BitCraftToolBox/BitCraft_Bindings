@@ -13,6 +13,7 @@ pub struct EmpirePlayerDataState {
     pub rank: u8,
     pub donated_shards: u32,
     pub noble: Option<__sdk::Timestamp>,
+    pub donated_empire_currency: u32,
 }
 
 impl __sdk::InModule for EmpirePlayerDataState {

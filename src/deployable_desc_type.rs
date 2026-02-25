@@ -22,6 +22,8 @@ pub struct DeployableDesc {
     pub pathfinding_id: i32,
     pub movement_type: MovementType,
     pub can_enter_portals: bool,
+    pub can_auto_follow: bool,
+    pub affected_by_wind: f32,
     pub speed: Vec<MovementSpeed>,
     pub use_player_speed_modifier: bool,
     pub placeable_on_land: bool,
@@ -42,6 +44,8 @@ pub struct DeployableDesc {
     pub allow_emote_while_passenger: bool,
     pub experience_per_progress: Vec<ExperienceStackF32>,
     pub mounting_radius: f32,
+    pub radius: f32,
+    pub allow_hunting: bool,
 }
 
 impl __sdk::InModule for DeployableDesc {

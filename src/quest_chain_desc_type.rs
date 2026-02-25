@@ -18,6 +18,8 @@ pub struct QuestChainDesc {
     pub requirements: Vec<QuestRequirement>,
     pub rewards: Vec<QuestReward>,
     pub implicit_rewards: Vec<QuestReward>,
+    pub unstartable: bool,
+    pub is_secret: bool,
 }
 
 impl __sdk::InModule for QuestChainDesc {

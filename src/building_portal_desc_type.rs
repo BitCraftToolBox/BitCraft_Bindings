@@ -12,6 +12,7 @@ pub struct BuildingPortalDesc {
     pub name: String,
     pub building_id: i32,
     pub allow_deployables: bool,
+    pub enemy_lock: bool,
     pub pos_x: i32,
     pub pos_z: i32,
 }

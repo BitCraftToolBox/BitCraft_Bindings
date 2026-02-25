@@ -16,6 +16,9 @@ pub struct EmoteDesc {
     pub command_line: String,
     pub allow_while_mounted: bool,
     pub allow_while_moving: bool,
+    pub enabled_by_collectible_id: i32,
+    pub tool_type: i32,
+    pub tool_mesh_index: i32,
 }
 
 impl __sdk::InModule for EmoteDesc {

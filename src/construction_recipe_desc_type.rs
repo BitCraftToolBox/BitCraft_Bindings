@@ -27,7 +27,7 @@ pub struct ConstructionRecipeDesc {
     pub experience_per_progress: Vec<ExperienceStackF32>,
     pub discovery_triggers: Vec<i32>,
     pub required_knowledges: Vec<i32>,
-    pub required_claim_tech_id: i32,
+    pub required_claim_tech_ids: Vec<i32>,
     pub full_discovery_score: i32,
     pub tool_mesh_index: i32,
     pub building_description_id: i32,

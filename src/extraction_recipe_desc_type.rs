@@ -19,6 +19,7 @@ pub struct ExtractionRecipeDesc {
     pub cargo_id: i32,
     pub discovery_triggers: Vec<i32>,
     pub required_knowledges: Vec<i32>,
+    pub blocking_knowledges: Vec<i32>,
     pub time_requirement: f32,
     pub stamina_requirement: f32,
     pub tool_durability_lost: i32,
@@ -32,6 +33,8 @@ pub struct ExtractionRecipeDesc {
     pub verb_phrase: String,
     pub tool_mesh_index: i32,
     pub recipe_performance_id: i32,
+    pub empire_rank_requirement: Option<i32>,
+    pub show_in_progression: bool,
 }
 
 impl __sdk::InModule for ExtractionRecipeDesc {

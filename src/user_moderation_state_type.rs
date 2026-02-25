@@ -11,12 +11,11 @@ use super::user_moderation_policy_type::UserModerationPolicy;
 #[sats(crate = __lib)]
 pub struct UserModerationState {
     pub entity_id: u64,
-    pub target_entity_id: u64,
-    pub created_by_entity_id: u64,
+    pub target_identity: __sdk::Identity,
+    pub created_by_identity: __sdk::Identity,
     pub user_moderation_policy: UserModerationPolicy,
     pub created_time: __sdk::Timestamp,
     pub expiration_time: __sdk::Timestamp,
-    pub duration_ms: u64,
 }
 
 impl __sdk::InModule for UserModerationState {

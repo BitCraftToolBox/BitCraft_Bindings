@@ -5,6 +5,7 @@
 #![allow(unused, clippy::all)]
 use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
+use super::empire_owner_type_type::EmpireOwnerType;
 use super::offset_coordinates_small_message_type::OffsetCoordinatesSmallMessage;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
@@ -17,6 +18,8 @@ pub struct EmpireState {
     pub nobility_threshold: i32,
     pub num_claims: i32,
     pub location: OffsetCoordinatesSmallMessage,
+    pub empire_currency_treasury: u32,
+    pub owner_type: EmpireOwnerType,
 }
 
 impl __sdk::InModule for EmpireState {

@@ -38,6 +38,7 @@ pub struct CraftingRecipeDesc {
     pub hide_with_blocking_knowledges: bool,
     pub allow_use_hands: bool,
     pub is_passive: bool,
+    pub show_in_progression: bool,
 }
 
 impl __sdk::InModule for CraftingRecipeDesc {

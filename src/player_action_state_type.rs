@@ -23,7 +23,10 @@ pub struct PlayerActionState {
     pub layer: PlayerActionLayer,
     pub last_action_result: PlayerActionResult,
     pub client_cancel: bool,
-    pub pad: u32,
+    pub was_consumed: bool,
+    pub pad_1: u8,
+    pub pad_2: u8,
+    pub pad_3: u8,
 }
 
 impl __sdk::InModule for PlayerActionState {

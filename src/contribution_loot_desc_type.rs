@@ -12,6 +12,7 @@ pub struct ContributionLootDesc {
     pub enemy_type_id: i32,
     pub item_list_id: i32,
     pub minimum_contribution: i32,
+    pub weighted: bool,
 }
 
 impl __sdk::InModule for ContributionLootDesc {

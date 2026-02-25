@@ -32,6 +32,7 @@ pub struct ResourceDesc {
     pub enemy_params_id: Vec<i32>,
     pub scheduled_respawn_time: f32,
     pub not_respawning: bool,
+    pub show_time_left: bool,
 }
 
 impl __sdk::InModule for ResourceDesc {

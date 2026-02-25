@@ -5,14 +5,17 @@
 #![allow(unused, clippy::all)]
 use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
+use super::claim_tech_type_type::ClaimTechType;
 use super::item_stack_type::ItemStack;
 
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
 pub struct ClaimTechDesc {
     pub id: i32,
+    pub name: String,
     pub description: String,
     pub tier: i32,
+    pub tech_type: ClaimTechType,
     pub supplies_cost: i32,
     pub research_time: i32,
     pub requirements: Vec<i32>,
@@ -21,6 +24,7 @@ pub struct ClaimTechDesc {
     pub area: i32,
     pub supplies: i32,
     pub xp_to_mint_hex_coin: u32,
+    pub unlocks_techs: Vec<i32>,
 }
 
 impl __sdk::InModule for ClaimTechDesc {

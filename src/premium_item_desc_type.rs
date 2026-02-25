@@ -12,12 +12,12 @@ pub struct PremiumItemDesc {
     pub name: String,
     pub description: String,
     pub image_address: String,
-    pub collectible_desc_id: i32,
+    pub collectible_ids: Vec<i32>,
     pub price: u32,
     pub base_price: u32,
-    pub is_enabled: bool,
     pub quantity: u32,
     pub sorting_priority: u16,
+    pub is_enabled: bool,
 }
 
 impl __sdk::InModule for PremiumItemDesc {

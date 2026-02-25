@@ -16,7 +16,7 @@ pub struct MobileEntityState {
     pub destination_x: i32,
     pub destination_z: i32,
     pub dimension: u32,
-    pub is_running: bool,
+    pub is_walking: bool,
     pub pad_1: u8,
     pub pad_2: u8,
     pub pad_3: u8,

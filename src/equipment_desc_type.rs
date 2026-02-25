@@ -24,6 +24,7 @@ pub struct EquipmentDesc {
     pub stats: Vec<CsvStatEntry>,
     pub required_achievements: Vec<i32>,
     pub required_knowledges: Vec<i32>,
+    pub show_in_progression: bool,
 }
 
 impl __sdk::InModule for EquipmentDesc {

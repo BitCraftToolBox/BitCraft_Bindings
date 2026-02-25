@@ -12,9 +12,9 @@ pub struct QuestChainState {
     pub player_entity_id: u64,
     pub quest_chain_desc_id: i32,
     pub stage_id: i32,
-    pub is_active: bool,
     pub completed: bool,
     pub stage_rewards_awarded: Vec<i32>,
+    pub tracked: bool,
 }
 
 impl __sdk::InModule for QuestChainState {
