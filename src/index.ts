@@ -115,6 +115,8 @@ import { AdminFindItemsInInventories } from "./admin_find_items_in_inventories_r
 export { AdminFindItemsInInventories };
 import { AdminFindItemsInTrades } from "./admin_find_items_in_trades_reducer.ts";
 export { AdminFindItemsInTrades };
+import { AdminFlipInteriorInstanceDoors } from "./admin_flip_interior_instance_doors_reducer.ts";
+export { AdminFlipInteriorInstanceDoors };
 import { AdminGrantAllClaimSupplies } from "./admin_grant_all_claim_supplies_reducer.ts";
 export { AdminGrantAllClaimSupplies };
 import { AdminGrantCollectibles } from "./admin_grant_collectibles_reducer.ts";
@@ -7726,6 +7728,10 @@ export const REMOTE_MODULE = {
       reducerName: "admin_find_items_in_trades",
       argsType: AdminFindItemsInTrades.getTypeScriptAlgebraicType(),
     },
+    admin_flip_interior_instance_doors: {
+      reducerName: "admin_flip_interior_instance_doors",
+      argsType: AdminFlipInteriorInstanceDoors.getTypeScriptAlgebraicType(),
+    },
     admin_grant_all_claim_supplies: {
       reducerName: "admin_grant_all_claim_supplies",
       argsType: AdminGrantAllClaimSupplies.getTypeScriptAlgebraicType(),
@@ -10417,6 +10423,7 @@ export type Reducer = never
 | { name: "AdminFindAllPlayersWithItemAboveQuantity", args: AdminFindAllPlayersWithItemAboveQuantity }
 | { name: "AdminFindItemsInInventories", args: AdminFindItemsInInventories }
 | { name: "AdminFindItemsInTrades", args: AdminFindItemsInTrades }
+| { name: "AdminFlipInteriorInstanceDoors", args: AdminFlipInteriorInstanceDoors }
 | { name: "AdminGrantAllClaimSupplies", args: AdminGrantAllClaimSupplies }
 | { name: "AdminGrantCollectibles", args: AdminGrantCollectibles }
 | { name: "AdminMigrateActionState", args: AdminMigrateActionState }
@@ -11703,6 +11710,22 @@ export class RemoteReducers {
 
   removeOnAdminFindItemsInTrades(callback: (ctx: ReducerEventContext, itemId: number, isCargo: boolean, minThreshold: bigint) => void) {
     this.connection.offReducer("admin_find_items_in_trades", callback);
+  }
+
+  adminFlipInteriorInstanceDoors(interiorInstanceId: number) {
+    const __args = { interiorInstanceId };
+    let __writer = new BinaryWriter(1024);
+    AdminFlipInteriorInstanceDoors.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("admin_flip_interior_instance_doors", __argsBuffer, this.setCallReducerFlags.adminFlipInteriorInstanceDoorsFlags);
+  }
+
+  onAdminFlipInteriorInstanceDoors(callback: (ctx: ReducerEventContext, interiorInstanceId: number) => void) {
+    this.connection.onReducer("admin_flip_interior_instance_doors", callback);
+  }
+
+  removeOnAdminFlipInteriorInstanceDoors(callback: (ctx: ReducerEventContext, interiorInstanceId: number) => void) {
+    this.connection.offReducer("admin_flip_interior_instance_doors", callback);
   }
 
   adminGrantAllClaimSupplies(daysOfSupplies: number, dryRun: boolean) {
@@ -22211,6 +22234,11 @@ export class SetReducerFlags {
   adminFindItemsInTradesFlags: CallReducerFlags = 'FullUpdate';
   adminFindItemsInTrades(flags: CallReducerFlags) {
     this.adminFindItemsInTradesFlags = flags;
+  }
+
+  adminFlipInteriorInstanceDoorsFlags: CallReducerFlags = 'FullUpdate';
+  adminFlipInteriorInstanceDoors(flags: CallReducerFlags) {
+    this.adminFlipInteriorInstanceDoorsFlags = flags;
   }
 
   adminGrantAllClaimSuppliesFlags: CallReducerFlags = 'FullUpdate';
