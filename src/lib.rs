@@ -76,6 +76,7 @@ pub mod admin_find_all_players_with_item_above_quantity_reducer;
 pub mod admin_find_all_players_with_item_reducer;
 pub mod admin_find_items_in_inventories_reducer;
 pub mod admin_find_items_in_trades_reducer;
+pub mod admin_flip_interior_instance_doors_reducer;
 pub mod admin_grant_all_claim_supplies_reducer;
 pub mod admin_grant_collectibles_reducer;
 pub mod admin_migrate_action_state_reducer;
@@ -2014,6 +2015,10 @@ pub use admin_find_items_in_inventories_reducer::{
 pub use admin_find_items_in_trades_reducer::{
     admin_find_items_in_trades, set_flags_for_admin_find_items_in_trades,
     AdminFindItemsInTradesCallbackId,
+};
+pub use admin_flip_interior_instance_doors_reducer::{
+    admin_flip_interior_instance_doors, set_flags_for_admin_flip_interior_instance_doors,
+    AdminFlipInteriorInstanceDoorsCallbackId,
 };
 pub use admin_grant_all_claim_supplies_reducer::{
     admin_grant_all_claim_supplies, set_flags_for_admin_grant_all_claim_supplies,
@@ -5452,6 +5457,9 @@ pub enum Reducer {
         is_cargo: bool,
         min_threshold: u64,
     },
+    AdminFlipInteriorInstanceDoors {
+        interior_instance_id: i32,
+    },
     AdminGrantAllClaimSupplies {
         days_of_supplies: i32,
         dry_run: bool,
@@ -7507,6 +7515,7 @@ impl __sdk::Reducer for Reducer {
             }
             Reducer::AdminFindItemsInInventories { .. } => "admin_find_items_in_inventories",
             Reducer::AdminFindItemsInTrades { .. } => "admin_find_items_in_trades",
+            Reducer::AdminFlipInteriorInstanceDoors { .. } => "admin_flip_interior_instance_doors",
             Reducer::AdminGrantAllClaimSupplies { .. } => "admin_grant_all_claim_supplies",
             Reducer::AdminGrantCollectibles { .. } => "admin_grant_collectibles",
             Reducer::AdminMigrateActionState => "admin_migrate_action_state",
@@ -8262,6 +8271,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "admin_find_all_players_with_item_above_quantity" => Ok(__sdk::parse_reducer_args::<admin_find_all_players_with_item_above_quantity_reducer::AdminFindAllPlayersWithItemAboveQuantityArgs>("admin_find_all_players_with_item_above_quantity", &value.args)?.into()),
             "admin_find_items_in_inventories" => Ok(__sdk::parse_reducer_args::<admin_find_items_in_inventories_reducer::AdminFindItemsInInventoriesArgs>("admin_find_items_in_inventories", &value.args)?.into()),
             "admin_find_items_in_trades" => Ok(__sdk::parse_reducer_args::<admin_find_items_in_trades_reducer::AdminFindItemsInTradesArgs>("admin_find_items_in_trades", &value.args)?.into()),
+            "admin_flip_interior_instance_doors" => Ok(__sdk::parse_reducer_args::<admin_flip_interior_instance_doors_reducer::AdminFlipInteriorInstanceDoorsArgs>("admin_flip_interior_instance_doors", &value.args)?.into()),
             "admin_grant_all_claim_supplies" => Ok(__sdk::parse_reducer_args::<admin_grant_all_claim_supplies_reducer::AdminGrantAllClaimSuppliesArgs>("admin_grant_all_claim_supplies", &value.args)?.into()),
             "admin_grant_collectibles" => Ok(__sdk::parse_reducer_args::<admin_grant_collectibles_reducer::AdminGrantCollectiblesArgs>("admin_grant_collectibles", &value.args)?.into()),
             "admin_migrate_action_state" => Ok(__sdk::parse_reducer_args::<admin_migrate_action_state_reducer::AdminMigrateActionStateArgs>("admin_migrate_action_state", &value.args)?.into()),
