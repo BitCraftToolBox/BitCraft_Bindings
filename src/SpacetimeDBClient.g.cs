@@ -416,6 +416,7 @@ namespace BitCraftRegion.Types
             AddTable(StagedToolDesc = new(conn));
             AddTable(StagedToolTypeDesc = new(conn));
             AddTable(StagedTravelerTaskDesc = new(conn));
+            AddTable(StagedTravelerTaskKnowledgeRequirementDesc = new(conn));
             AddTable(StagedTravelerTradeOrderDesc = new(conn));
             AddTable(StagedWallDesc = new(conn));
             AddTable(StagedWeaponDesc = new(conn));
@@ -446,6 +447,7 @@ namespace BitCraftRegion.Types
             AddTable(TradeSessionState = new(conn));
             AddTable(TransferPlayerTimer = new(conn));
             AddTable(TravelerTaskDesc = new(conn));
+            AddTable(TravelerTaskKnowledgeRequirementDesc = new(conn));
             AddTable(TravelerTaskLoopTimer = new(conn));
             AddTable(TravelerTaskState = new(conn));
             AddTable(TravelerTradeOrderDesc = new(conn));
@@ -1332,6 +1334,7 @@ namespace BitCraftRegion.Types
                 "import_trade_order_state" => BSATNHelpers.Decode<Reducer.ImportTradeOrderState>(encodedArgs),
                 "import_trade_session_state" => BSATNHelpers.Decode<Reducer.ImportTradeSessionState>(encodedArgs),
                 "import_traveler_task_desc" => BSATNHelpers.Decode<Reducer.ImportTravelerTaskDesc>(encodedArgs),
+                "import_traveler_task_knowledge_requirement_desc" => BSATNHelpers.Decode<Reducer.ImportTravelerTaskKnowledgeRequirementDesc>(encodedArgs),
                 "import_traveler_trade_order_desc" => BSATNHelpers.Decode<Reducer.ImportTravelerTradeOrderDesc>(encodedArgs),
                 "import_user_moderation_state" => BSATNHelpers.Decode<Reducer.ImportUserModerationState>(encodedArgs),
                 "import_user_state" => BSATNHelpers.Decode<Reducer.ImportUserState>(encodedArgs),
@@ -1568,6 +1571,7 @@ namespace BitCraftRegion.Types
                 "stage_tool_desc" => BSATNHelpers.Decode<Reducer.StageToolDesc>(encodedArgs),
                 "stage_tool_type_desc" => BSATNHelpers.Decode<Reducer.StageToolTypeDesc>(encodedArgs),
                 "stage_traveler_task_desc" => BSATNHelpers.Decode<Reducer.StageTravelerTaskDesc>(encodedArgs),
+                "stage_traveler_task_knowledge_requirement_desc" => BSATNHelpers.Decode<Reducer.StageTravelerTaskKnowledgeRequirementDesc>(encodedArgs),
                 "stage_traveler_trade_order_desc" => BSATNHelpers.Decode<Reducer.StageTravelerTradeOrderDesc>(encodedArgs),
                 "stage_wall_desc" => BSATNHelpers.Decode<Reducer.StageWallDesc>(encodedArgs),
                 "stage_weapon_desc" => BSATNHelpers.Decode<Reducer.StageWeaponDesc>(encodedArgs),
@@ -2050,6 +2054,7 @@ namespace BitCraftRegion.Types
                 Reducer.ImportTradeOrderState args => Reducers.InvokeImportTradeOrderState(eventContext, args),
                 Reducer.ImportTradeSessionState args => Reducers.InvokeImportTradeSessionState(eventContext, args),
                 Reducer.ImportTravelerTaskDesc args => Reducers.InvokeImportTravelerTaskDesc(eventContext, args),
+                Reducer.ImportTravelerTaskKnowledgeRequirementDesc args => Reducers.InvokeImportTravelerTaskKnowledgeRequirementDesc(eventContext, args),
                 Reducer.ImportTravelerTradeOrderDesc args => Reducers.InvokeImportTravelerTradeOrderDesc(eventContext, args),
                 Reducer.ImportUserModerationState args => Reducers.InvokeImportUserModerationState(eventContext, args),
                 Reducer.ImportUserState args => Reducers.InvokeImportUserState(eventContext, args),
@@ -2286,6 +2291,7 @@ namespace BitCraftRegion.Types
                 Reducer.StageToolDesc args => Reducers.InvokeStageToolDesc(eventContext, args),
                 Reducer.StageToolTypeDesc args => Reducers.InvokeStageToolTypeDesc(eventContext, args),
                 Reducer.StageTravelerTaskDesc args => Reducers.InvokeStageTravelerTaskDesc(eventContext, args),
+                Reducer.StageTravelerTaskKnowledgeRequirementDesc args => Reducers.InvokeStageTravelerTaskKnowledgeRequirementDesc(eventContext, args),
                 Reducer.StageTravelerTradeOrderDesc args => Reducers.InvokeStageTravelerTradeOrderDesc(eventContext, args),
                 Reducer.StageWallDesc args => Reducers.InvokeStageWallDesc(eventContext, args),
                 Reducer.StageWeaponDesc args => Reducers.InvokeStageWeaponDesc(eventContext, args),
