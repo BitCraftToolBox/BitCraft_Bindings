@@ -881,6 +881,8 @@ import { ImportTradeSessionState } from "./import_trade_session_state_reducer.ts
 export { ImportTradeSessionState };
 import { ImportTravelerTaskDesc } from "./import_traveler_task_desc_reducer.ts";
 export { ImportTravelerTaskDesc };
+import { ImportTravelerTaskKnowledgeRequirementDesc } from "./import_traveler_task_knowledge_requirement_desc_reducer.ts";
+export { ImportTravelerTaskKnowledgeRequirementDesc };
 import { ImportTravelerTradeOrderDesc } from "./import_traveler_trade_order_desc_reducer.ts";
 export { ImportTravelerTradeOrderDesc };
 import { ImportUserModerationState } from "./import_user_moderation_state_reducer.ts";
@@ -1353,6 +1355,8 @@ import { StageToolTypeDesc } from "./stage_tool_type_desc_reducer.ts";
 export { StageToolTypeDesc };
 import { StageTravelerTaskDesc } from "./stage_traveler_task_desc_reducer.ts";
 export { StageTravelerTaskDesc };
+import { StageTravelerTaskKnowledgeRequirementDesc } from "./stage_traveler_task_knowledge_requirement_desc_reducer.ts";
+export { StageTravelerTaskKnowledgeRequirementDesc };
 import { StageTravelerTradeOrderDesc } from "./stage_traveler_trade_order_desc_reducer.ts";
 export { StageTravelerTradeOrderDesc };
 import { StageWallDesc } from "./stage_wall_desc_reducer.ts";
@@ -2215,6 +2219,8 @@ import { StagedToolTypeDescTableHandle } from "./staged_tool_type_desc_table.ts"
 export { StagedToolTypeDescTableHandle };
 import { StagedTravelerTaskDescTableHandle } from "./staged_traveler_task_desc_table.ts";
 export { StagedTravelerTaskDescTableHandle };
+import { StagedTravelerTaskKnowledgeRequirementDescTableHandle } from "./staged_traveler_task_knowledge_requirement_desc_table.ts";
+export { StagedTravelerTaskKnowledgeRequirementDescTableHandle };
 import { StagedTravelerTradeOrderDescTableHandle } from "./staged_traveler_trade_order_desc_table.ts";
 export { StagedTravelerTradeOrderDescTableHandle };
 import { StagedWallDescTableHandle } from "./staged_wall_desc_table.ts";
@@ -2275,6 +2281,8 @@ import { TransferPlayerTimerTableHandle } from "./transfer_player_timer_table.ts
 export { TransferPlayerTimerTableHandle };
 import { TravelerTaskDescTableHandle } from "./traveler_task_desc_table.ts";
 export { TravelerTaskDescTableHandle };
+import { TravelerTaskKnowledgeRequirementDescTableHandle } from "./traveler_task_knowledge_requirement_desc_table.ts";
+export { TravelerTaskKnowledgeRequirementDescTableHandle };
 import { TravelerTaskLoopTimerTableHandle } from "./traveler_task_loop_timer_table.ts";
 export { TravelerTaskLoopTimerTableHandle };
 import { TravelerTaskStateTableHandle } from "./traveler_task_state_table.ts";
@@ -3559,6 +3567,8 @@ import { TransferPlayerTimer } from "./transfer_player_timer_type.ts";
 export { TransferPlayerTimer };
 import { TravelerTaskDesc } from "./traveler_task_desc_type.ts";
 export { TravelerTaskDesc };
+import { TravelerTaskKnowledgeRequirementDesc } from "./traveler_task_knowledge_requirement_desc_type.ts";
+export { TravelerTaskKnowledgeRequirementDesc };
 import { TravelerTaskLoopTimer } from "./traveler_task_loop_timer_type.ts";
 export { TravelerTaskLoopTimer };
 import { TravelerTaskState } from "./traveler_task_state_type.ts";
@@ -7121,6 +7131,15 @@ export const REMOTE_MODULE = {
         colType: TravelerTaskDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    staged_traveler_task_knowledge_requirement_desc: {
+      tableName: "staged_traveler_task_knowledge_requirement_desc",
+      rowType: TravelerTaskKnowledgeRequirementDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "travelerTaskId",
+      primaryKeyInfo: {
+        colName: "travelerTaskId",
+        colType: TravelerTaskKnowledgeRequirementDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     staged_traveler_trade_order_desc: {
       tableName: "staged_traveler_trade_order_desc",
       rowType: TravelerTradeOrderDesc.getTypeScriptAlgebraicType(),
@@ -7389,6 +7408,15 @@ export const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "id",
         colType: TravelerTaskDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    traveler_task_knowledge_requirement_desc: {
+      tableName: "traveler_task_knowledge_requirement_desc",
+      rowType: TravelerTaskKnowledgeRequirementDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "travelerTaskId",
+      primaryKeyInfo: {
+        colName: "travelerTaskId",
+        colType: TravelerTaskKnowledgeRequirementDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     traveler_task_loop_timer: {
@@ -9260,6 +9288,10 @@ export const REMOTE_MODULE = {
       reducerName: "import_traveler_task_desc",
       argsType: ImportTravelerTaskDesc.getTypeScriptAlgebraicType(),
     },
+    import_traveler_task_knowledge_requirement_desc: {
+      reducerName: "import_traveler_task_knowledge_requirement_desc",
+      argsType: ImportTravelerTaskKnowledgeRequirementDesc.getTypeScriptAlgebraicType(),
+    },
     import_traveler_trade_order_desc: {
       reducerName: "import_traveler_trade_order_desc",
       argsType: ImportTravelerTradeOrderDesc.getTypeScriptAlgebraicType(),
@@ -10204,6 +10236,10 @@ export const REMOTE_MODULE = {
       reducerName: "stage_traveler_task_desc",
       argsType: StageTravelerTaskDesc.getTypeScriptAlgebraicType(),
     },
+    stage_traveler_task_knowledge_requirement_desc: {
+      reducerName: "stage_traveler_task_knowledge_requirement_desc",
+      argsType: StageTravelerTaskKnowledgeRequirementDesc.getTypeScriptAlgebraicType(),
+    },
     stage_traveler_trade_order_desc: {
       reducerName: "stage_traveler_trade_order_desc",
       argsType: StageTravelerTradeOrderDesc.getTypeScriptAlgebraicType(),
@@ -10806,6 +10842,7 @@ export type Reducer = never
 | { name: "ImportTradeOrderState", args: ImportTradeOrderState }
 | { name: "ImportTradeSessionState", args: ImportTradeSessionState }
 | { name: "ImportTravelerTaskDesc", args: ImportTravelerTaskDesc }
+| { name: "ImportTravelerTaskKnowledgeRequirementDesc", args: ImportTravelerTaskKnowledgeRequirementDesc }
 | { name: "ImportTravelerTradeOrderDesc", args: ImportTravelerTradeOrderDesc }
 | { name: "ImportUserModerationState", args: ImportUserModerationState }
 | { name: "ImportUserState", args: ImportUserState }
@@ -11042,6 +11079,7 @@ export type Reducer = never
 | { name: "StageToolDesc", args: StageToolDesc }
 | { name: "StageToolTypeDesc", args: StageToolTypeDesc }
 | { name: "StageTravelerTaskDesc", args: StageTravelerTaskDesc }
+| { name: "StageTravelerTaskKnowledgeRequirementDesc", args: StageTravelerTaskKnowledgeRequirementDesc }
 | { name: "StageTravelerTradeOrderDesc", args: StageTravelerTradeOrderDesc }
 | { name: "StageWallDesc", args: StageWallDesc }
 | { name: "StageWeaponDesc", args: StageWeaponDesc }
@@ -17740,6 +17778,22 @@ export class RemoteReducers {
     this.connection.offReducer("import_traveler_task_desc", callback);
   }
 
+  importTravelerTaskKnowledgeRequirementDesc(records: TravelerTaskKnowledgeRequirementDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    ImportTravelerTaskKnowledgeRequirementDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("import_traveler_task_knowledge_requirement_desc", __argsBuffer, this.setCallReducerFlags.importTravelerTaskKnowledgeRequirementDescFlags);
+  }
+
+  onImportTravelerTaskKnowledgeRequirementDesc(callback: (ctx: ReducerEventContext, records: TravelerTaskKnowledgeRequirementDesc[]) => void) {
+    this.connection.onReducer("import_traveler_task_knowledge_requirement_desc", callback);
+  }
+
+  removeOnImportTravelerTaskKnowledgeRequirementDesc(callback: (ctx: ReducerEventContext, records: TravelerTaskKnowledgeRequirementDesc[]) => void) {
+    this.connection.offReducer("import_traveler_task_knowledge_requirement_desc", callback);
+  }
+
   importTravelerTradeOrderDesc(records: TravelerTradeOrderDesc[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
@@ -21448,6 +21502,22 @@ export class RemoteReducers {
     this.connection.offReducer("stage_traveler_task_desc", callback);
   }
 
+  stageTravelerTaskKnowledgeRequirementDesc(records: TravelerTaskKnowledgeRequirementDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    StageTravelerTaskKnowledgeRequirementDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("stage_traveler_task_knowledge_requirement_desc", __argsBuffer, this.setCallReducerFlags.stageTravelerTaskKnowledgeRequirementDescFlags);
+  }
+
+  onStageTravelerTaskKnowledgeRequirementDesc(callback: (ctx: ReducerEventContext, records: TravelerTaskKnowledgeRequirementDesc[]) => void) {
+    this.connection.onReducer("stage_traveler_task_knowledge_requirement_desc", callback);
+  }
+
+  removeOnStageTravelerTaskKnowledgeRequirementDesc(callback: (ctx: ReducerEventContext, records: TravelerTaskKnowledgeRequirementDesc[]) => void) {
+    this.connection.offReducer("stage_traveler_task_knowledge_requirement_desc", callback);
+  }
+
   stageTravelerTradeOrderDesc(records: TravelerTradeOrderDesc[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
@@ -24141,6 +24211,11 @@ export class SetReducerFlags {
     this.importTravelerTaskDescFlags = flags;
   }
 
+  importTravelerTaskKnowledgeRequirementDescFlags: CallReducerFlags = 'FullUpdate';
+  importTravelerTaskKnowledgeRequirementDesc(flags: CallReducerFlags) {
+    this.importTravelerTaskKnowledgeRequirementDescFlags = flags;
+  }
+
   importTravelerTradeOrderDescFlags: CallReducerFlags = 'FullUpdate';
   importTravelerTradeOrderDesc(flags: CallReducerFlags) {
     this.importTravelerTradeOrderDescFlags = flags;
@@ -25319,6 +25394,11 @@ export class SetReducerFlags {
   stageTravelerTaskDescFlags: CallReducerFlags = 'FullUpdate';
   stageTravelerTaskDesc(flags: CallReducerFlags) {
     this.stageTravelerTaskDescFlags = flags;
+  }
+
+  stageTravelerTaskKnowledgeRequirementDescFlags: CallReducerFlags = 'FullUpdate';
+  stageTravelerTaskKnowledgeRequirementDesc(flags: CallReducerFlags) {
+    this.stageTravelerTaskKnowledgeRequirementDescFlags = flags;
   }
 
   stageTravelerTradeOrderDescFlags: CallReducerFlags = 'FullUpdate';
@@ -27083,6 +27163,10 @@ export class RemoteTables {
     return new StagedTravelerTaskDescTableHandle(this.connection.clientCache.getOrCreateTable<TravelerTaskDesc>(REMOTE_MODULE.tables.staged_traveler_task_desc));
   }
 
+  get stagedTravelerTaskKnowledgeRequirementDesc(): StagedTravelerTaskKnowledgeRequirementDescTableHandle {
+    return new StagedTravelerTaskKnowledgeRequirementDescTableHandle(this.connection.clientCache.getOrCreateTable<TravelerTaskKnowledgeRequirementDesc>(REMOTE_MODULE.tables.staged_traveler_task_knowledge_requirement_desc));
+  }
+
   get stagedTravelerTradeOrderDesc(): StagedTravelerTradeOrderDescTableHandle {
     return new StagedTravelerTradeOrderDescTableHandle(this.connection.clientCache.getOrCreateTable<TravelerTradeOrderDesc>(REMOTE_MODULE.tables.staged_traveler_trade_order_desc));
   }
@@ -27201,6 +27285,10 @@ export class RemoteTables {
 
   get travelerTaskDesc(): TravelerTaskDescTableHandle {
     return new TravelerTaskDescTableHandle(this.connection.clientCache.getOrCreateTable<TravelerTaskDesc>(REMOTE_MODULE.tables.traveler_task_desc));
+  }
+
+  get travelerTaskKnowledgeRequirementDesc(): TravelerTaskKnowledgeRequirementDescTableHandle {
+    return new TravelerTaskKnowledgeRequirementDescTableHandle(this.connection.clientCache.getOrCreateTable<TravelerTaskKnowledgeRequirementDesc>(REMOTE_MODULE.tables.traveler_task_knowledge_requirement_desc));
   }
 
   get travelerTaskLoopTimer(): TravelerTaskLoopTimerTableHandle {
