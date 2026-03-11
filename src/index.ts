@@ -62,6 +62,8 @@ import { AdminBroadcastMsg } from "./admin_broadcast_msg_reducer.ts";
 export { AdminBroadcastMsg };
 import { AdminChangeEmpireEmblem } from "./admin_change_empire_emblem_reducer.ts";
 export { AdminChangeEmpireEmblem };
+import { AdminCleanSieges } from "./admin_clean_sieges_reducer.ts";
+export { AdminCleanSieges };
 import { AdminCreateChatMessage } from "./admin_create_chat_message_reducer.ts";
 export { AdminCreateChatMessage };
 import { AdminCreateDirectChatMessage } from "./admin_create_direct_chat_message_reducer.ts";
@@ -6355,6 +6357,10 @@ const REMOTE_MODULE = {
       reducerName: "admin_change_empire_emblem",
       argsType: AdminChangeEmpireEmblem.getTypeScriptAlgebraicType(),
     },
+    admin_clean_sieges: {
+      reducerName: "admin_clean_sieges",
+      argsType: AdminCleanSieges.getTypeScriptAlgebraicType(),
+    },
     admin_create_chat_message: {
       reducerName: "admin_create_chat_message",
       argsType: AdminCreateChatMessage.getTypeScriptAlgebraicType(),
@@ -7899,6 +7905,7 @@ export type Reducer = never
 | { name: "AdminAssignEmpireChunks", args: AdminAssignEmpireChunks }
 | { name: "AdminBroadcastMsg", args: AdminBroadcastMsg }
 | { name: "AdminChangeEmpireEmblem", args: AdminChangeEmpireEmblem }
+| { name: "AdminCleanSieges", args: AdminCleanSieges }
 | { name: "AdminCreateChatMessage", args: AdminCreateChatMessage }
 | { name: "AdminCreateDirectChatMessage", args: AdminCreateDirectChatMessage }
 | { name: "AdminCreateEntityNameReport", args: AdminCreateEntityNameReport }
@@ -8501,6 +8508,18 @@ export class RemoteReducers {
 
   removeOnAdminChangeEmpireEmblem(callback: (ctx: ReducerEventContext, empireEntityId: bigint, iconId: number, shapeId: number, color1Id: number, color2Id: number) => void) {
     this.connection.offReducer("admin_change_empire_emblem", callback);
+  }
+
+  adminCleanSieges() {
+    this.connection.callReducer("admin_clean_sieges", new Uint8Array(0), this.setCallReducerFlags.adminCleanSiegesFlags);
+  }
+
+  onAdminCleanSieges(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.onReducer("admin_clean_sieges", callback);
+  }
+
+  removeOnAdminCleanSieges(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.offReducer("admin_clean_sieges", callback);
   }
 
   adminCreateChatMessage(channelId: ChatChannel, username: string, titleId: number, targetId: bigint, newMessageText: string) {
@@ -14510,6 +14529,11 @@ export class SetReducerFlags {
   adminChangeEmpireEmblemFlags: CallReducerFlags = 'FullUpdate';
   adminChangeEmpireEmblem(flags: CallReducerFlags) {
     this.adminChangeEmpireEmblemFlags = flags;
+  }
+
+  adminCleanSiegesFlags: CallReducerFlags = 'FullUpdate';
+  adminCleanSieges(flags: CallReducerFlags) {
+    this.adminCleanSiegesFlags = flags;
   }
 
   adminCreateChatMessageFlags: CallReducerFlags = 'FullUpdate';
