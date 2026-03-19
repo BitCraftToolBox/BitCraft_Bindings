@@ -138,6 +138,8 @@ import { AdminUnassignEmpireChunks } from "./admin_unassign_empire_chunks_reduce
 export { AdminUnassignEmpireChunks };
 import { AdminUpdateEmpireRanks } from "./admin_update_empire_ranks_reducer.ts";
 export { AdminUpdateEmpireRanks };
+import { AdminUpdateEmpireRanks2 } from "./admin_update_empire_ranks_2_reducer.ts";
+export { AdminUpdateEmpireRanks2 };
 import { AdminUpdateGrantedHubItemState } from "./admin_update_granted_hub_item_state_reducer.ts";
 export { AdminUpdateGrantedHubItemState };
 import { AdminUpdateModerationEnforcementConfig } from "./admin_update_moderation_enforcement_config_reducer.ts";
@@ -6623,6 +6625,10 @@ const REMOTE_MODULE = {
       reducerName: "admin_update_empire_ranks",
       argsType: AdminUpdateEmpireRanks.getTypeScriptAlgebraicType(),
     },
+    admin_update_empire_ranks2: {
+      reducerName: "admin_update_empire_ranks2",
+      argsType: AdminUpdateEmpireRanks2.getTypeScriptAlgebraicType(),
+    },
     admin_update_granted_hub_item_state: {
       reducerName: "admin_update_granted_hub_item_state",
       argsType: AdminUpdateGrantedHubItemState.getTypeScriptAlgebraicType(),
@@ -8069,6 +8075,7 @@ export type Reducer = never
 | { name: "AdminSkipQueueName", args: AdminSkipQueueName }
 | { name: "AdminUnassignEmpireChunks", args: AdminUnassignEmpireChunks }
 | { name: "AdminUpdateEmpireRanks", args: AdminUpdateEmpireRanks }
+| { name: "AdminUpdateEmpireRanks2", args: AdminUpdateEmpireRanks2 }
 | { name: "AdminUpdateGrantedHubItemState", args: AdminUpdateGrantedHubItemState }
 | { name: "AdminUpdateModerationEnforcementConfig", args: AdminUpdateModerationEnforcementConfig }
 | { name: "AdminUpdateReportModerationConfig", args: AdminUpdateReportModerationConfig }
@@ -9233,6 +9240,18 @@ export class RemoteReducers {
 
   removeOnAdminUpdateEmpireRanks(callback: (ctx: ReducerEventContext) => void) {
     this.connection.offReducer("admin_update_empire_ranks", callback);
+  }
+
+  adminUpdateEmpireRanks2() {
+    this.connection.callReducer("admin_update_empire_ranks2", new Uint8Array(0), this.setCallReducerFlags.adminUpdateEmpireRanks2Flags);
+  }
+
+  onAdminUpdateEmpireRanks2(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.onReducer("admin_update_empire_ranks2", callback);
+  }
+
+  removeOnAdminUpdateEmpireRanks2(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.offReducer("admin_update_empire_ranks2", callback);
   }
 
   adminUpdateGrantedHubItemState(identity: Identity, itemType: HubItemType, itemId: number, balance: number) {
@@ -14892,6 +14911,11 @@ export class SetReducerFlags {
   adminUpdateEmpireRanksFlags: CallReducerFlags = 'FullUpdate';
   adminUpdateEmpireRanks(flags: CallReducerFlags) {
     this.adminUpdateEmpireRanksFlags = flags;
+  }
+
+  adminUpdateEmpireRanks2Flags: CallReducerFlags = 'FullUpdate';
+  adminUpdateEmpireRanks2(flags: CallReducerFlags) {
+    this.adminUpdateEmpireRanks2Flags = flags;
   }
 
   adminUpdateGrantedHubItemStateFlags: CallReducerFlags = 'FullUpdate';
