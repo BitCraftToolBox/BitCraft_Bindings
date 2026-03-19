@@ -36,6 +36,7 @@ import { PocketKey as __PocketKey } from "./pocket_key_type";
 
 export type PlayerEquipmentAddRequest = {
   fromPocket: __PocketKey | undefined,
+  presetIndex: number,
 };
 
 /**
@@ -49,6 +50,7 @@ export namespace PlayerEquipmentAddRequest {
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
       new ProductTypeElement("fromPocket", AlgebraicType.createOptionType(__PocketKey.getTypeScriptAlgebraicType())),
+      new ProductTypeElement("presetIndex", AlgebraicType.createI32Type()),
     ]);
   }
 

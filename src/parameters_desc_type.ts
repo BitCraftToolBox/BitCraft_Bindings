@@ -127,6 +127,7 @@ export type ParametersDesc = {
   empireRenameCurrencyCost: number,
   empireMoveCapitalCurrencyCost: number,
   hexiteCapsuleCurrencyCost: number,
+  prospectingHerdImmunitySecs: number,
 };
 
 /**
@@ -231,6 +232,7 @@ export namespace ParametersDesc {
       new ProductTypeElement("empireRenameCurrencyCost", AlgebraicType.createU32Type()),
       new ProductTypeElement("empireMoveCapitalCurrencyCost", AlgebraicType.createU32Type()),
       new ProductTypeElement("hexiteCapsuleCurrencyCost", AlgebraicType.createU32Type()),
+      new ProductTypeElement("prospectingHerdImmunitySecs", AlgebraicType.createU32Type()),
     ]);
   }
 

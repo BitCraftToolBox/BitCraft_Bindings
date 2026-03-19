@@ -37,6 +37,7 @@ import { PocketKey as __PocketKey } from "./pocket_key_type";
 export type PlayerEquipmentRemoveRequest = {
   slot: number,
   toPocket: __PocketKey | undefined,
+  presetIndex: number,
 };
 
 /**
@@ -51,6 +52,7 @@ export namespace PlayerEquipmentRemoveRequest {
     return AlgebraicType.createProductType([
       new ProductTypeElement("slot", AlgebraicType.createI32Type()),
       new ProductTypeElement("toPocket", AlgebraicType.createOptionType(__PocketKey.getTypeScriptAlgebraicType())),
+      new ProductTypeElement("presetIndex", AlgebraicType.createI32Type()),
     ]);
   }
 

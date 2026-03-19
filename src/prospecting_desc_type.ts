@@ -33,6 +33,7 @@ import {
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
 import { ItemStack as __ItemStack } from "./item_stack_type";
+import { ExperienceStackF32 as __ExperienceStackF32 } from "./experience_stack_f_32_type";
 
 export type ProspectingDesc = {
   id: number,
@@ -62,6 +63,8 @@ export type ProspectingDesc = {
   breadcrumbFoundBySomeoneElseMessage: string,
   resourceUncoveredBySomeoneElseMessage: string,
   iconAssetPath: string,
+  experiencePerNode: __ExperienceStackF32,
+  pctNodesForMaxContribution: number,
 };
 
 /**
@@ -101,6 +104,8 @@ export namespace ProspectingDesc {
       new ProductTypeElement("breadcrumbFoundBySomeoneElseMessage", AlgebraicType.createStringType()),
       new ProductTypeElement("resourceUncoveredBySomeoneElseMessage", AlgebraicType.createStringType()),
       new ProductTypeElement("iconAssetPath", AlgebraicType.createStringType()),
+      new ProductTypeElement("experiencePerNode", __ExperienceStackF32.getTypeScriptAlgebraicType()),
+      new ProductTypeElement("pctNodesForMaxContribution", AlgebraicType.createF32Type()),
     ]);
   }
 

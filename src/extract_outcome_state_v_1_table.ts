@@ -32,26 +32,23 @@ import {
   type ReducerEventContextInterface,
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
-import { ProspectingDesc } from "./prospecting_desc_type";
-import { ItemStack as __ItemStack } from "./item_stack_type";
-import { ExperienceStackF32 as __ExperienceStackF32 } from "./experience_stack_f_32_type";
-
+import { ExtractOutcomeState } from "./extract_outcome_state_type";
 import { type EventContext, type Reducer, RemoteReducers, RemoteTables } from ".";
 
 /**
- * Table handle for the table `prospecting_desc`.
+ * Table handle for the table `extract_outcome_state_v1`.
  *
- * Obtain a handle from the [`prospectingDesc`] property on [`RemoteTables`],
- * like `ctx.db.prospectingDesc`.
+ * Obtain a handle from the [`extractOutcomeStateV1`] property on [`RemoteTables`],
+ * like `ctx.db.extractOutcomeStateV1`.
  *
  * Users are encouraged not to explicitly reference this type,
  * but to directly chain method calls,
- * like `ctx.db.prospectingDesc.on_insert(...)`.
+ * like `ctx.db.extractOutcomeStateV1.on_insert(...)`.
  */
-export class ProspectingDescTableHandle {
-  tableCache: TableCache<ProspectingDesc>;
+export class ExtractOutcomeStateV1TableHandle {
+  tableCache: TableCache<ExtractOutcomeState>;
 
-  constructor(tableCache: TableCache<ProspectingDesc>) {
+  constructor(tableCache: TableCache<ExtractOutcomeState>) {
     this.tableCache = tableCache;
   }
 
@@ -59,53 +56,53 @@ export class ProspectingDescTableHandle {
     return this.tableCache.count();
   }
 
-  iter(): Iterable<ProspectingDesc> {
+  iter(): Iterable<ExtractOutcomeState> {
     return this.tableCache.iter();
   }
   /**
-   * Access to the `id` unique index on the table `prospecting_desc`,
+   * Access to the `entityId` unique index on the table `extract_outcome_state_v1`,
    * which allows point queries on the field of the same name
-   * via the [`ProspectingDescIdUnique.find`] method.
+   * via the [`ExtractOutcomeStateV1EntityIdUnique.find`] method.
    *
    * Users are encouraged not to explicitly reference this type,
    * but to directly chain method calls,
-   * like `ctx.db.prospectingDesc.id().find(...)`.
+   * like `ctx.db.extractOutcomeStateV1.entityId().find(...)`.
    *
-   * Get a handle on the `id` unique index on the table `prospecting_desc`.
+   * Get a handle on the `entityId` unique index on the table `extract_outcome_state_v1`.
    */
-  id = {
-    // Find the subscribed row whose `id` column value is equal to `col_val`,
+  entityId = {
+    // Find the subscribed row whose `entityId` column value is equal to `col_val`,
     // if such a row is present in the client cache.
-    find: (col_val: number): ProspectingDesc | undefined => {
+    find: (col_val: bigint): ExtractOutcomeState | undefined => {
       for (let row of this.tableCache.iter()) {
-        if (deepEqual(row.id, col_val)) {
+        if (deepEqual(row.entityId, col_val)) {
           return row;
         }
       }
     },
   };
 
-  onInsert = (cb: (ctx: EventContext, row: ProspectingDesc) => void) => {
+  onInsert = (cb: (ctx: EventContext, row: ExtractOutcomeState) => void) => {
     return this.tableCache.onInsert(cb);
   }
 
-  removeOnInsert = (cb: (ctx: EventContext, row: ProspectingDesc) => void) => {
+  removeOnInsert = (cb: (ctx: EventContext, row: ExtractOutcomeState) => void) => {
     return this.tableCache.removeOnInsert(cb);
   }
 
-  onDelete = (cb: (ctx: EventContext, row: ProspectingDesc) => void) => {
+  onDelete = (cb: (ctx: EventContext, row: ExtractOutcomeState) => void) => {
     return this.tableCache.onDelete(cb);
   }
 
-  removeOnDelete = (cb: (ctx: EventContext, row: ProspectingDesc) => void) => {
+  removeOnDelete = (cb: (ctx: EventContext, row: ExtractOutcomeState) => void) => {
     return this.tableCache.removeOnDelete(cb);
   }
 
   // Updates are only defined for tables with primary keys.
-  onUpdate = (cb: (ctx: EventContext, oldRow: ProspectingDesc, newRow: ProspectingDesc) => void) => {
+  onUpdate = (cb: (ctx: EventContext, oldRow: ExtractOutcomeState, newRow: ExtractOutcomeState) => void) => {
     return this.tableCache.onUpdate(cb);
   }
 
-  removeOnUpdate = (cb: (ctx: EventContext, onRow: ProspectingDesc, newRow: ProspectingDesc) => void) => {
+  removeOnUpdate = (cb: (ctx: EventContext, onRow: ExtractOutcomeState, newRow: ExtractOutcomeState) => void) => {
     return this.tableCache.removeOnUpdate(cb);
   }}

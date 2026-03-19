@@ -32,26 +32,25 @@ import {
   type ReducerEventContextInterface,
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
-import { ProspectingDesc } from "./prospecting_desc_type";
-import { ItemStack as __ItemStack } from "./item_stack_type";
-import { ExperienceStackF32 as __ExperienceStackF32 } from "./experience_stack_f_32_type";
+import { InterModuleMessageV2 } from "./inter_module_message_v_2_type";
+import { MessageContentsV2 as __MessageContentsV2 } from "./message_contents_v_2_type";
 
 import { type EventContext, type Reducer, RemoteReducers, RemoteTables } from ".";
 
 /**
- * Table handle for the table `prospecting_desc`.
+ * Table handle for the table `inter_module_message_v2`.
  *
- * Obtain a handle from the [`prospectingDesc`] property on [`RemoteTables`],
- * like `ctx.db.prospectingDesc`.
+ * Obtain a handle from the [`interModuleMessageV2`] property on [`RemoteTables`],
+ * like `ctx.db.interModuleMessageV2`.
  *
  * Users are encouraged not to explicitly reference this type,
  * but to directly chain method calls,
- * like `ctx.db.prospectingDesc.on_insert(...)`.
+ * like `ctx.db.interModuleMessageV2.on_insert(...)`.
  */
-export class ProspectingDescTableHandle {
-  tableCache: TableCache<ProspectingDesc>;
+export class InterModuleMessageV2TableHandle {
+  tableCache: TableCache<InterModuleMessageV2>;
 
-  constructor(tableCache: TableCache<ProspectingDesc>) {
+  constructor(tableCache: TableCache<InterModuleMessageV2>) {
     this.tableCache = tableCache;
   }
 
@@ -59,24 +58,24 @@ export class ProspectingDescTableHandle {
     return this.tableCache.count();
   }
 
-  iter(): Iterable<ProspectingDesc> {
+  iter(): Iterable<InterModuleMessageV2> {
     return this.tableCache.iter();
   }
   /**
-   * Access to the `id` unique index on the table `prospecting_desc`,
+   * Access to the `id` unique index on the table `inter_module_message_v2`,
    * which allows point queries on the field of the same name
-   * via the [`ProspectingDescIdUnique.find`] method.
+   * via the [`InterModuleMessageV2IdUnique.find`] method.
    *
    * Users are encouraged not to explicitly reference this type,
    * but to directly chain method calls,
-   * like `ctx.db.prospectingDesc.id().find(...)`.
+   * like `ctx.db.interModuleMessageV2.id().find(...)`.
    *
-   * Get a handle on the `id` unique index on the table `prospecting_desc`.
+   * Get a handle on the `id` unique index on the table `inter_module_message_v2`.
    */
   id = {
     // Find the subscribed row whose `id` column value is equal to `col_val`,
     // if such a row is present in the client cache.
-    find: (col_val: number): ProspectingDesc | undefined => {
+    find: (col_val: bigint): InterModuleMessageV2 | undefined => {
       for (let row of this.tableCache.iter()) {
         if (deepEqual(row.id, col_val)) {
           return row;
@@ -85,27 +84,27 @@ export class ProspectingDescTableHandle {
     },
   };
 
-  onInsert = (cb: (ctx: EventContext, row: ProspectingDesc) => void) => {
+  onInsert = (cb: (ctx: EventContext, row: InterModuleMessageV2) => void) => {
     return this.tableCache.onInsert(cb);
   }
 
-  removeOnInsert = (cb: (ctx: EventContext, row: ProspectingDesc) => void) => {
+  removeOnInsert = (cb: (ctx: EventContext, row: InterModuleMessageV2) => void) => {
     return this.tableCache.removeOnInsert(cb);
   }
 
-  onDelete = (cb: (ctx: EventContext, row: ProspectingDesc) => void) => {
+  onDelete = (cb: (ctx: EventContext, row: InterModuleMessageV2) => void) => {
     return this.tableCache.onDelete(cb);
   }
 
-  removeOnDelete = (cb: (ctx: EventContext, row: ProspectingDesc) => void) => {
+  removeOnDelete = (cb: (ctx: EventContext, row: InterModuleMessageV2) => void) => {
     return this.tableCache.removeOnDelete(cb);
   }
 
   // Updates are only defined for tables with primary keys.
-  onUpdate = (cb: (ctx: EventContext, oldRow: ProspectingDesc, newRow: ProspectingDesc) => void) => {
+  onUpdate = (cb: (ctx: EventContext, oldRow: InterModuleMessageV2, newRow: InterModuleMessageV2) => void) => {
     return this.tableCache.onUpdate(cb);
   }
 
-  removeOnUpdate = (cb: (ctx: EventContext, onRow: ProspectingDesc, newRow: ProspectingDesc) => void) => {
+  removeOnUpdate = (cb: (ctx: EventContext, onRow: InterModuleMessageV2, newRow: InterModuleMessageV2) => void) => {
     return this.tableCache.removeOnUpdate(cb);
   }}

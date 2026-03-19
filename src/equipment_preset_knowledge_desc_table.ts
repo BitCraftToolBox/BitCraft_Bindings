@@ -32,26 +32,23 @@ import {
   type ReducerEventContextInterface,
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
-import { ProspectingDesc } from "./prospecting_desc_type";
-import { ItemStack as __ItemStack } from "./item_stack_type";
-import { ExperienceStackF32 as __ExperienceStackF32 } from "./experience_stack_f_32_type";
-
+import { EquipmentPresetKnowledgeDesc } from "./equipment_preset_knowledge_desc_type";
 import { type EventContext, type Reducer, RemoteReducers, RemoteTables } from ".";
 
 /**
- * Table handle for the table `prospecting_desc`.
+ * Table handle for the table `equipment_preset_knowledge_desc`.
  *
- * Obtain a handle from the [`prospectingDesc`] property on [`RemoteTables`],
- * like `ctx.db.prospectingDesc`.
+ * Obtain a handle from the [`equipmentPresetKnowledgeDesc`] property on [`RemoteTables`],
+ * like `ctx.db.equipmentPresetKnowledgeDesc`.
  *
  * Users are encouraged not to explicitly reference this type,
  * but to directly chain method calls,
- * like `ctx.db.prospectingDesc.on_insert(...)`.
+ * like `ctx.db.equipmentPresetKnowledgeDesc.on_insert(...)`.
  */
-export class ProspectingDescTableHandle {
-  tableCache: TableCache<ProspectingDesc>;
+export class EquipmentPresetKnowledgeDescTableHandle {
+  tableCache: TableCache<EquipmentPresetKnowledgeDesc>;
 
-  constructor(tableCache: TableCache<ProspectingDesc>) {
+  constructor(tableCache: TableCache<EquipmentPresetKnowledgeDesc>) {
     this.tableCache = tableCache;
   }
 
@@ -59,53 +56,53 @@ export class ProspectingDescTableHandle {
     return this.tableCache.count();
   }
 
-  iter(): Iterable<ProspectingDesc> {
+  iter(): Iterable<EquipmentPresetKnowledgeDesc> {
     return this.tableCache.iter();
   }
   /**
-   * Access to the `id` unique index on the table `prospecting_desc`,
+   * Access to the `knowledgeId` unique index on the table `equipment_preset_knowledge_desc`,
    * which allows point queries on the field of the same name
-   * via the [`ProspectingDescIdUnique.find`] method.
+   * via the [`EquipmentPresetKnowledgeDescKnowledgeIdUnique.find`] method.
    *
    * Users are encouraged not to explicitly reference this type,
    * but to directly chain method calls,
-   * like `ctx.db.prospectingDesc.id().find(...)`.
+   * like `ctx.db.equipmentPresetKnowledgeDesc.knowledgeId().find(...)`.
    *
-   * Get a handle on the `id` unique index on the table `prospecting_desc`.
+   * Get a handle on the `knowledgeId` unique index on the table `equipment_preset_knowledge_desc`.
    */
-  id = {
-    // Find the subscribed row whose `id` column value is equal to `col_val`,
+  knowledgeId = {
+    // Find the subscribed row whose `knowledgeId` column value is equal to `col_val`,
     // if such a row is present in the client cache.
-    find: (col_val: number): ProspectingDesc | undefined => {
+    find: (col_val: number): EquipmentPresetKnowledgeDesc | undefined => {
       for (let row of this.tableCache.iter()) {
-        if (deepEqual(row.id, col_val)) {
+        if (deepEqual(row.knowledgeId, col_val)) {
           return row;
         }
       }
     },
   };
 
-  onInsert = (cb: (ctx: EventContext, row: ProspectingDesc) => void) => {
+  onInsert = (cb: (ctx: EventContext, row: EquipmentPresetKnowledgeDesc) => void) => {
     return this.tableCache.onInsert(cb);
   }
 
-  removeOnInsert = (cb: (ctx: EventContext, row: ProspectingDesc) => void) => {
+  removeOnInsert = (cb: (ctx: EventContext, row: EquipmentPresetKnowledgeDesc) => void) => {
     return this.tableCache.removeOnInsert(cb);
   }
 
-  onDelete = (cb: (ctx: EventContext, row: ProspectingDesc) => void) => {
+  onDelete = (cb: (ctx: EventContext, row: EquipmentPresetKnowledgeDesc) => void) => {
     return this.tableCache.onDelete(cb);
   }
 
-  removeOnDelete = (cb: (ctx: EventContext, row: ProspectingDesc) => void) => {
+  removeOnDelete = (cb: (ctx: EventContext, row: EquipmentPresetKnowledgeDesc) => void) => {
     return this.tableCache.removeOnDelete(cb);
   }
 
   // Updates are only defined for tables with primary keys.
-  onUpdate = (cb: (ctx: EventContext, oldRow: ProspectingDesc, newRow: ProspectingDesc) => void) => {
+  onUpdate = (cb: (ctx: EventContext, oldRow: EquipmentPresetKnowledgeDesc, newRow: EquipmentPresetKnowledgeDesc) => void) => {
     return this.tableCache.onUpdate(cb);
   }
 
-  removeOnUpdate = (cb: (ctx: EventContext, onRow: ProspectingDesc, newRow: ProspectingDesc) => void) => {
+  removeOnUpdate = (cb: (ctx: EventContext, onRow: EquipmentPresetKnowledgeDesc, newRow: EquipmentPresetKnowledgeDesc) => void) => {
     return this.tableCache.removeOnUpdate(cb);
   }}
