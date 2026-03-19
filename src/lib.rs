@@ -83,6 +83,7 @@ pub mod admin_skip_queue_entity_reducer;
 pub mod admin_skip_queue_identity_reducer;
 pub mod admin_skip_queue_name_reducer;
 pub mod admin_unassign_empire_chunks_reducer;
+pub mod admin_update_empire_ranks_2_reducer;
 pub mod admin_update_empire_ranks_reducer;
 pub mod admin_update_granted_hub_item_state_reducer;
 pub mod admin_update_moderation_enforcement_config_reducer;
@@ -1551,6 +1552,10 @@ pub use admin_skip_queue_name_reducer::{
 pub use admin_unassign_empire_chunks_reducer::{
     admin_unassign_empire_chunks, set_flags_for_admin_unassign_empire_chunks,
     AdminUnassignEmpireChunksCallbackId,
+};
+pub use admin_update_empire_ranks_2_reducer::{
+    admin_update_empire_ranks_2, set_flags_for_admin_update_empire_ranks_2,
+    AdminUpdateEmpireRanks2CallbackId,
 };
 pub use admin_update_empire_ranks_reducer::{
     admin_update_empire_ranks, set_flags_for_admin_update_empire_ranks,
@@ -3867,6 +3872,7 @@ pub enum Reducer {
         chunk_indexes: Vec<u64>,
     },
     AdminUpdateEmpireRanks,
+    AdminUpdateEmpireRanks2,
     AdminUpdateGrantedHubItemState {
         identity: __sdk::Identity,
         item_type: HubItemType,
@@ -5000,6 +5006,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::AdminSkipQueueName { .. } => "admin_skip_queue_name",
             Reducer::AdminUnassignEmpireChunks { .. } => "admin_unassign_empire_chunks",
             Reducer::AdminUpdateEmpireRanks => "admin_update_empire_ranks",
+            Reducer::AdminUpdateEmpireRanks2 => "admin_update_empire_ranks2",
             Reducer::AdminUpdateGrantedHubItemState { .. } => "admin_update_granted_hub_item_state",
             Reducer::AdminUpdateModerationEnforcementConfig { .. } => {
                 "admin_update_moderation_enforcement_config"
@@ -5433,6 +5440,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "admin_skip_queue_name" => Ok(__sdk::parse_reducer_args::<admin_skip_queue_name_reducer::AdminSkipQueueNameArgs>("admin_skip_queue_name", &value.args)?.into()),
             "admin_unassign_empire_chunks" => Ok(__sdk::parse_reducer_args::<admin_unassign_empire_chunks_reducer::AdminUnassignEmpireChunksArgs>("admin_unassign_empire_chunks", &value.args)?.into()),
             "admin_update_empire_ranks" => Ok(__sdk::parse_reducer_args::<admin_update_empire_ranks_reducer::AdminUpdateEmpireRanksArgs>("admin_update_empire_ranks", &value.args)?.into()),
+            "admin_update_empire_ranks2" => Ok(__sdk::parse_reducer_args::<admin_update_empire_ranks_2_reducer::AdminUpdateEmpireRanks2Args>("admin_update_empire_ranks2", &value.args)?.into()),
             "admin_update_granted_hub_item_state" => Ok(__sdk::parse_reducer_args::<admin_update_granted_hub_item_state_reducer::AdminUpdateGrantedHubItemStateArgs>("admin_update_granted_hub_item_state", &value.args)?.into()),
             "admin_update_moderation_enforcement_config" => Ok(__sdk::parse_reducer_args::<admin_update_moderation_enforcement_config_reducer::AdminUpdateModerationEnforcementConfigArgs>("admin_update_moderation_enforcement_config", &value.args)?.into()),
             "admin_update_report_moderation_config" => Ok(__sdk::parse_reducer_args::<admin_update_report_moderation_config_reducer::AdminUpdateReportModerationConfigArgs>("admin_update_report_moderation_config", &value.args)?.into()),
