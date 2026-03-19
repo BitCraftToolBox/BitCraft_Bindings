@@ -59,6 +59,7 @@ namespace BitCraftGlobal.Types
         public global::SpacetimeDB.Col<ProspectingState, System.Collections.Generic.List<float>> NextCrumbAngle { get; }
         public global::SpacetimeDB.Col<ProspectingState, SpacetimeDB.Timestamp> LastProspectionTimestamp { get; }
         public global::SpacetimeDB.Col<ProspectingState, int> Contribution { get; }
+        public global::SpacetimeDB.Col<ProspectingState, float> ToNextNode { get; }
 
         public ProspectingStateCols(string tableName)
         {
@@ -71,6 +72,7 @@ namespace BitCraftGlobal.Types
             NextCrumbAngle = new global::SpacetimeDB.Col<ProspectingState, System.Collections.Generic.List<float>>(tableName, "next_crumb_angle");
             LastProspectionTimestamp = new global::SpacetimeDB.Col<ProspectingState, SpacetimeDB.Timestamp>(tableName, "last_prospection_timestamp");
             Contribution = new global::SpacetimeDB.Col<ProspectingState, int>(tableName, "contribution");
+            ToNextNode = new global::SpacetimeDB.Col<ProspectingState, float>(tableName, "to_next_node");
         }
     }
 

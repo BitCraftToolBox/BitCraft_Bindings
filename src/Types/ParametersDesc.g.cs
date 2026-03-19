@@ -198,6 +198,8 @@ namespace BitCraftGlobal.Types
         public uint EmpireMoveCapitalCurrencyCost;
         [DataMember(Name = "hexite_capsule_currency_cost")]
         public uint HexiteCapsuleCurrencyCost;
+        [DataMember(Name = "prospecting_herd_immunity_secs")]
+        public uint ProspectingHerdImmunitySecs;
 
         public ParametersDesc(
             int Version,
@@ -291,7 +293,8 @@ namespace BitCraftGlobal.Types
             uint EmpireStartingCurrency,
             uint EmpireRenameCurrencyCost,
             uint EmpireMoveCapitalCurrencyCost,
-            uint HexiteCapsuleCurrencyCost
+            uint HexiteCapsuleCurrencyCost,
+            uint ProspectingHerdImmunitySecs
         )
         {
             this.Version = Version;
@@ -386,6 +389,7 @@ namespace BitCraftGlobal.Types
             this.EmpireRenameCurrencyCost = EmpireRenameCurrencyCost;
             this.EmpireMoveCapitalCurrencyCost = EmpireMoveCapitalCurrencyCost;
             this.HexiteCapsuleCurrencyCost = HexiteCapsuleCurrencyCost;
+            this.ProspectingHerdImmunitySecs = ProspectingHerdImmunitySecs;
         }
 
         public ParametersDesc()

@@ -68,6 +68,10 @@ namespace BitCraftGlobal.Types
         public string ResourceUncoveredBySomeoneElseMessage;
         [DataMember(Name = "icon_asset_path")]
         public string IconAssetPath;
+        [DataMember(Name = "experience_per_node")]
+        public ExperienceStackF32 ExperiencePerNode;
+        [DataMember(Name = "pct_nodes_for_max_contribution")]
+        public float PctNodesForMaxContribution;
 
         public ProspectingDesc(
             int Id,
@@ -96,7 +100,9 @@ namespace BitCraftGlobal.Types
             string ResourceUncoveredMessage,
             string BreadcrumbFoundBySomeoneElseMessage,
             string ResourceUncoveredBySomeoneElseMessage,
-            string IconAssetPath
+            string IconAssetPath,
+            ExperienceStackF32 ExperiencePerNode,
+            float PctNodesForMaxContribution
         )
         {
             this.Id = Id;
@@ -126,6 +132,8 @@ namespace BitCraftGlobal.Types
             this.BreadcrumbFoundBySomeoneElseMessage = BreadcrumbFoundBySomeoneElseMessage;
             this.ResourceUncoveredBySomeoneElseMessage = ResourceUncoveredBySomeoneElseMessage;
             this.IconAssetPath = IconAssetPath;
+            this.ExperiencePerNode = ExperiencePerNode;
+            this.PctNodesForMaxContribution = PctNodesForMaxContribution;
         }
 
         public ProspectingDesc()
@@ -145,6 +153,7 @@ namespace BitCraftGlobal.Types
             this.BreadcrumbFoundBySomeoneElseMessage = "";
             this.ResourceUncoveredBySomeoneElseMessage = "";
             this.IconAssetPath = "";
+            this.ExperiencePerNode = new();
         }
     }
 }

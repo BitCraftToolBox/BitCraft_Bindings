@@ -19,5 +19,7 @@ namespace BitCraftGlobal.Types
         PromoteLesserRanks,
         CraftHexiteCapsule,
         Count,
+        HarvestEmpireResources,
+        WithdrawEmpireCurrency,
     }
 }

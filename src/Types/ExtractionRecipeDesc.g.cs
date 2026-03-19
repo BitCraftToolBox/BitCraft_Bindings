@@ -56,6 +56,8 @@ namespace BitCraftGlobal.Types
         public int? EmpireRankRequirement;
         [DataMember(Name = "show_in_progression")]
         public bool ShowInProgression;
+        [DataMember(Name = "empire_permission_required")]
+        public EmpirePermission? EmpirePermissionRequired;
 
         public ExtractionRecipeDesc(
             int Id,
@@ -78,7 +80,8 @@ namespace BitCraftGlobal.Types
             int ToolMeshIndex,
             int RecipePerformanceId,
             int? EmpireRankRequirement,
-            bool ShowInProgression
+            bool ShowInProgression,
+            EmpirePermission? EmpirePermissionRequired
         )
         {
             this.Id = Id;
@@ -102,6 +105,7 @@ namespace BitCraftGlobal.Types
             this.RecipePerformanceId = RecipePerformanceId;
             this.EmpireRankRequirement = EmpireRankRequirement;
             this.ShowInProgression = ShowInProgression;
+            this.EmpirePermissionRequired = EmpirePermissionRequired;
         }
 
         public ExtractionRecipeDesc()

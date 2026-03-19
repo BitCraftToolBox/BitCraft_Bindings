@@ -81,6 +81,7 @@ namespace BitCraftGlobal.Types
         public global::SpacetimeDB.Col<ExtractionRecipeDesc, int> RecipePerformanceId { get; }
         public global::SpacetimeDB.NullableCol<ExtractionRecipeDesc, int> EmpireRankRequirement { get; }
         public global::SpacetimeDB.Col<ExtractionRecipeDesc, bool> ShowInProgression { get; }
+        public global::SpacetimeDB.NullableCol<ExtractionRecipeDesc, EmpirePermission> EmpirePermissionRequired { get; }
 
         public ExtractionRecipeDescCols(string tableName)
         {
@@ -105,6 +106,7 @@ namespace BitCraftGlobal.Types
             RecipePerformanceId = new global::SpacetimeDB.Col<ExtractionRecipeDesc, int>(tableName, "recipe_performance_id");
             EmpireRankRequirement = new global::SpacetimeDB.NullableCol<ExtractionRecipeDesc, int>(tableName, "empire_rank_requirement");
             ShowInProgression = new global::SpacetimeDB.Col<ExtractionRecipeDesc, bool>(tableName, "show_in_progression");
+            EmpirePermissionRequired = new global::SpacetimeDB.NullableCol<ExtractionRecipeDesc, EmpirePermission>(tableName, "empire_permission_required");
         }
     }
 

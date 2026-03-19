@@ -67,6 +67,8 @@ namespace BitCraftGlobal.Types
         public global::SpacetimeDB.Col<ProspectingDesc, string> BreadcrumbFoundBySomeoneElseMessage { get; }
         public global::SpacetimeDB.Col<ProspectingDesc, string> ResourceUncoveredBySomeoneElseMessage { get; }
         public global::SpacetimeDB.Col<ProspectingDesc, string> IconAssetPath { get; }
+        public global::SpacetimeDB.Col<ProspectingDesc, ExperienceStackF32> ExperiencePerNode { get; }
+        public global::SpacetimeDB.Col<ProspectingDesc, float> PctNodesForMaxContribution { get; }
 
         public ProspectingDescCols(string tableName)
         {
@@ -97,6 +99,8 @@ namespace BitCraftGlobal.Types
             BreadcrumbFoundBySomeoneElseMessage = new global::SpacetimeDB.Col<ProspectingDesc, string>(tableName, "breadcrumb_found_by_someone_else_message");
             ResourceUncoveredBySomeoneElseMessage = new global::SpacetimeDB.Col<ProspectingDesc, string>(tableName, "resource_uncovered_by_someone_else_message");
             IconAssetPath = new global::SpacetimeDB.Col<ProspectingDesc, string>(tableName, "icon_asset_path");
+            ExperiencePerNode = new global::SpacetimeDB.Col<ProspectingDesc, ExperienceStackF32>(tableName, "experience_per_node");
+            PctNodesForMaxContribution = new global::SpacetimeDB.Col<ProspectingDesc, float>(tableName, "pct_nodes_for_max_contribution");
         }
     }
 

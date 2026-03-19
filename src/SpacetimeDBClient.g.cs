@@ -85,6 +85,7 @@ namespace BitCraftGlobal.Types
             AddTable(CombatActionDesc = new(conn));
             AddTable(CombatActionMultiHitDesc = new(conn));
             AddTable(CombatDimensionState = new(conn));
+            AddTable(CombatImmunityState = new(conn));
             AddTable(CombatState = new(conn));
             AddTable(Config = new(conn));
             AddTable(ConstructionRecipeDesc = new(conn));
@@ -99,6 +100,7 @@ namespace BitCraftGlobal.Types
             AddTable(CraftingRecipeDiscoveryKnowledgeDesc = new(conn));
             AddTable(CrumbTrailContributionLockState = new(conn));
             AddTable(CrumbTrailContributionSpentState = new(conn));
+            AddTable(CrumbTrailExposedState = new(conn));
             AddTable(CrumbTrailState = new(conn));
             AddTable(DeconstructionRecipeDesc = new(conn));
             AddTable(DeployableCollectibleState = new(conn));
@@ -147,16 +149,20 @@ namespace BitCraftGlobal.Types
             AddTable(EnemyState = new(conn));
             AddTable(EnvironmentDebuffDesc = new(conn));
             AddTable(EquipmentDesc = new(conn));
+            AddTable(EquipmentPresetKnowledgeDesc = new(conn));
+            AddTable(EquipmentPresetState = new(conn));
             AddTable(EquipmentState = new(conn));
             AddTable(ExperienceState = new(conn));
             AddTable(ExplorationChunksState = new(conn));
             AddTable(ExtractOutcomeState = new(conn));
+            AddTable(ExtractOutcomeStateV1 = new(conn));
             AddTable(ExtractionRecipeDesc = new(conn));
             AddTable(FoodDesc = new(conn));
             AddTable(FootprintTileState = new(conn));
             AddTable(ForceGenerateTypes = new(conn));
             AddTable(FriendsState = new(conn));
             AddTable(GateDesc = new(conn));
+            AddTable(GatedFeatures = new(conn));
             AddTable(GlobalSearchState = new(conn));
             AddTable(Globals = new(conn));
             AddTable(GrantedHubItemState = new(conn));
@@ -168,6 +174,7 @@ namespace BitCraftGlobal.Types
             AddTable(InterModuleMessage = new(conn));
             AddTable(InterModuleMessageCounter = new(conn));
             AddTable(InterModuleMessageErrors = new(conn));
+            AddTable(InterModuleMessageV2 = new(conn));
             AddTable(InterModuleResponseMessageCounter = new(conn));
             AddTable(InteriorCollapseTriggerState = new(conn));
             AddTable(InteriorEnvironmentDesc = new(conn));
@@ -355,6 +362,7 @@ namespace BitCraftGlobal.Types
             AddTable(StagedEnemyScalingDesc = new(conn));
             AddTable(StagedEnvironmentDebuffDesc = new(conn));
             AddTable(StagedEquipmentDesc = new(conn));
+            AddTable(StagedEquipmentPresetKnowledgeDesc = new(conn));
             AddTable(StagedExtractionRecipeDesc = new(conn));
             AddTable(StagedFoodDesc = new(conn));
             AddTable(StagedGateDesc = new(conn));
@@ -1057,6 +1065,7 @@ namespace BitCraftGlobal.Types
         public global::SpacetimeDB.Table<CombatActionDesc, CombatActionDescCols, CombatActionDescIxCols> CombatActionDesc() => new("combat_action_desc", new CombatActionDescCols("combat_action_desc"), new CombatActionDescIxCols("combat_action_desc"));
         public global::SpacetimeDB.Table<CombatActionMultiHitDesc, CombatActionMultiHitDescCols, CombatActionMultiHitDescIxCols> CombatActionMultiHitDesc() => new("combat_action_multi_hit_desc", new CombatActionMultiHitDescCols("combat_action_multi_hit_desc"), new CombatActionMultiHitDescIxCols("combat_action_multi_hit_desc"));
         public global::SpacetimeDB.Table<CombatDimensionState, CombatDimensionStateCols, CombatDimensionStateIxCols> CombatDimensionState() => new("combat_dimension_state", new CombatDimensionStateCols("combat_dimension_state"), new CombatDimensionStateIxCols("combat_dimension_state"));
+        public global::SpacetimeDB.Table<CombatImmunityState, CombatImmunityStateCols, CombatImmunityStateIxCols> CombatImmunityState() => new("combat_immunity_state", new CombatImmunityStateCols("combat_immunity_state"), new CombatImmunityStateIxCols("combat_immunity_state"));
         public global::SpacetimeDB.Table<CombatState, CombatStateCols, CombatStateIxCols> CombatState() => new("combat_state", new CombatStateCols("combat_state"), new CombatStateIxCols("combat_state"));
         public global::SpacetimeDB.Table<Config, ConfigCols, ConfigIxCols> Config() => new("config", new ConfigCols("config"), new ConfigIxCols("config"));
         public global::SpacetimeDB.Table<ConstructionRecipeDesc, ConstructionRecipeDescCols, ConstructionRecipeDescIxCols> ConstructionRecipeDesc() => new("construction_recipe_desc", new ConstructionRecipeDescCols("construction_recipe_desc"), new ConstructionRecipeDescIxCols("construction_recipe_desc"));
@@ -1071,6 +1080,7 @@ namespace BitCraftGlobal.Types
         public global::SpacetimeDB.Table<DiscoveryTriggerDesc, CraftingRecipeDiscoveryKnowledgeDescCols, CraftingRecipeDiscoveryKnowledgeDescIxCols> CraftingRecipeDiscoveryKnowledgeDesc() => new("crafting_recipe_discovery_knowledge_desc", new CraftingRecipeDiscoveryKnowledgeDescCols("crafting_recipe_discovery_knowledge_desc"), new CraftingRecipeDiscoveryKnowledgeDescIxCols("crafting_recipe_discovery_knowledge_desc"));
         public global::SpacetimeDB.Table<CrumbTrailContributionLockState, CrumbTrailContributionLockStateCols, CrumbTrailContributionLockStateIxCols> CrumbTrailContributionLockState() => new("crumb_trail_contribution_lock_state", new CrumbTrailContributionLockStateCols("crumb_trail_contribution_lock_state"), new CrumbTrailContributionLockStateIxCols("crumb_trail_contribution_lock_state"));
         public global::SpacetimeDB.Table<CrumbTrailContributionSpentState, CrumbTrailContributionSpentStateCols, CrumbTrailContributionSpentStateIxCols> CrumbTrailContributionSpentState() => new("crumb_trail_contribution_spent_state", new CrumbTrailContributionSpentStateCols("crumb_trail_contribution_spent_state"), new CrumbTrailContributionSpentStateIxCols("crumb_trail_contribution_spent_state"));
+        public global::SpacetimeDB.Table<CrumbTrailExposedState, CrumbTrailExposedStateCols, CrumbTrailExposedStateIxCols> CrumbTrailExposedState() => new("crumb_trail_exposed_state", new CrumbTrailExposedStateCols("crumb_trail_exposed_state"), new CrumbTrailExposedStateIxCols("crumb_trail_exposed_state"));
         public global::SpacetimeDB.Table<CrumbTrailState, CrumbTrailStateCols, CrumbTrailStateIxCols> CrumbTrailState() => new("crumb_trail_state", new CrumbTrailStateCols("crumb_trail_state"), new CrumbTrailStateIxCols("crumb_trail_state"));
         public global::SpacetimeDB.Table<DeconstructionRecipeDesc, DeconstructionRecipeDescCols, DeconstructionRecipeDescIxCols> DeconstructionRecipeDesc() => new("deconstruction_recipe_desc", new DeconstructionRecipeDescCols("deconstruction_recipe_desc"), new DeconstructionRecipeDescIxCols("deconstruction_recipe_desc"));
         public global::SpacetimeDB.Table<DeployableCollectibleState, DeployableCollectibleStateCols, DeployableCollectibleStateIxCols> DeployableCollectibleState() => new("deployable_collectible_state", new DeployableCollectibleStateCols("deployable_collectible_state"), new DeployableCollectibleStateIxCols("deployable_collectible_state"));
@@ -1119,16 +1129,20 @@ namespace BitCraftGlobal.Types
         public global::SpacetimeDB.Table<EnemyState, EnemyStateCols, EnemyStateIxCols> EnemyState() => new("enemy_state", new EnemyStateCols("enemy_state"), new EnemyStateIxCols("enemy_state"));
         public global::SpacetimeDB.Table<EnvironmentDebuffDesc, EnvironmentDebuffDescCols, EnvironmentDebuffDescIxCols> EnvironmentDebuffDesc() => new("environment_debuff_desc", new EnvironmentDebuffDescCols("environment_debuff_desc"), new EnvironmentDebuffDescIxCols("environment_debuff_desc"));
         public global::SpacetimeDB.Table<EquipmentDesc, EquipmentDescCols, EquipmentDescIxCols> EquipmentDesc() => new("equipment_desc", new EquipmentDescCols("equipment_desc"), new EquipmentDescIxCols("equipment_desc"));
+        public global::SpacetimeDB.Table<EquipmentPresetKnowledgeDesc, EquipmentPresetKnowledgeDescCols, EquipmentPresetKnowledgeDescIxCols> EquipmentPresetKnowledgeDesc() => new("equipment_preset_knowledge_desc", new EquipmentPresetKnowledgeDescCols("equipment_preset_knowledge_desc"), new EquipmentPresetKnowledgeDescIxCols("equipment_preset_knowledge_desc"));
+        public global::SpacetimeDB.Table<EquipmentPresetState, EquipmentPresetStateCols, EquipmentPresetStateIxCols> EquipmentPresetState() => new("equipment_preset_state", new EquipmentPresetStateCols("equipment_preset_state"), new EquipmentPresetStateIxCols("equipment_preset_state"));
         public global::SpacetimeDB.Table<EquipmentState, EquipmentStateCols, EquipmentStateIxCols> EquipmentState() => new("equipment_state", new EquipmentStateCols("equipment_state"), new EquipmentStateIxCols("equipment_state"));
         public global::SpacetimeDB.Table<ExperienceState, ExperienceStateCols, ExperienceStateIxCols> ExperienceState() => new("experience_state", new ExperienceStateCols("experience_state"), new ExperienceStateIxCols("experience_state"));
         public global::SpacetimeDB.Table<ExplorationChunksState, ExplorationChunksStateCols, ExplorationChunksStateIxCols> ExplorationChunksState() => new("exploration_chunks_state", new ExplorationChunksStateCols("exploration_chunks_state"), new ExplorationChunksStateIxCols("exploration_chunks_state"));
-        public global::SpacetimeDB.Table<ExtractOutcomeState, ExtractOutcomeStateCols, ExtractOutcomeStateIxCols> ExtractOutcomeState() => new("extract_outcome_state", new ExtractOutcomeStateCols("extract_outcome_state"), new ExtractOutcomeStateIxCols("extract_outcome_state"));
+        public global::SpacetimeDB.Table<ExtractOutcomeStateV2, ExtractOutcomeStateCols, ExtractOutcomeStateIxCols> ExtractOutcomeState() => new("extract_outcome_state", new ExtractOutcomeStateCols("extract_outcome_state"), new ExtractOutcomeStateIxCols("extract_outcome_state"));
+        public global::SpacetimeDB.Table<ExtractOutcomeState, ExtractOutcomeStateV1Cols, ExtractOutcomeStateV1IxCols> ExtractOutcomeStateV1() => new("extract_outcome_state_v1", new ExtractOutcomeStateV1Cols("extract_outcome_state_v1"), new ExtractOutcomeStateV1IxCols("extract_outcome_state_v1"));
         public global::SpacetimeDB.Table<ExtractionRecipeDesc, ExtractionRecipeDescCols, ExtractionRecipeDescIxCols> ExtractionRecipeDesc() => new("extraction_recipe_desc", new ExtractionRecipeDescCols("extraction_recipe_desc"), new ExtractionRecipeDescIxCols("extraction_recipe_desc"));
         public global::SpacetimeDB.Table<FoodDesc, FoodDescCols, FoodDescIxCols> FoodDesc() => new("food_desc", new FoodDescCols("food_desc"), new FoodDescIxCols("food_desc"));
         public global::SpacetimeDB.Table<FootprintTileState, FootprintTileStateCols, FootprintTileStateIxCols> FootprintTileState() => new("footprint_tile_state", new FootprintTileStateCols("footprint_tile_state"), new FootprintTileStateIxCols("footprint_tile_state"));
         public global::SpacetimeDB.Table<ForceGenerateTypes, ForceGenerateTypesCols, ForceGenerateTypesIxCols> ForceGenerateTypes() => new("force_generate_types", new ForceGenerateTypesCols("force_generate_types"), new ForceGenerateTypesIxCols("force_generate_types"));
         public global::SpacetimeDB.Table<FriendsState, FriendsStateCols, FriendsStateIxCols> FriendsState() => new("friends_state", new FriendsStateCols("friends_state"), new FriendsStateIxCols("friends_state"));
         public global::SpacetimeDB.Table<GateDesc, GateDescCols, GateDescIxCols> GateDesc() => new("gate_desc", new GateDescCols("gate_desc"), new GateDescIxCols("gate_desc"));
+        public global::SpacetimeDB.Table<GatedFeature, GatedFeaturesCols, GatedFeaturesIxCols> GatedFeatures() => new("gated_features", new GatedFeaturesCols("gated_features"), new GatedFeaturesIxCols("gated_features"));
         public global::SpacetimeDB.Table<GlobalSearchState, GlobalSearchStateCols, GlobalSearchStateIxCols> GlobalSearchState() => new("global_search_state", new GlobalSearchStateCols("global_search_state"), new GlobalSearchStateIxCols("global_search_state"));
         public global::SpacetimeDB.Table<Globals, GlobalsCols, GlobalsIxCols> Globals() => new("globals", new GlobalsCols("globals"), new GlobalsIxCols("globals"));
         public global::SpacetimeDB.Table<GrantedHubItemState, GrantedHubItemStateCols, GrantedHubItemStateIxCols> GrantedHubItemState() => new("granted_hub_item_state", new GrantedHubItemStateCols("granted_hub_item_state"), new GrantedHubItemStateIxCols("granted_hub_item_state"));
@@ -1140,6 +1154,7 @@ namespace BitCraftGlobal.Types
         public global::SpacetimeDB.Table<InterModuleMessage, InterModuleMessageCols, InterModuleMessageIxCols> InterModuleMessage() => new("inter_module_message", new InterModuleMessageCols("inter_module_message"), new InterModuleMessageIxCols("inter_module_message"));
         public global::SpacetimeDB.Table<InterModuleMessageCounter, InterModuleMessageCounterCols, InterModuleMessageCounterIxCols> InterModuleMessageCounter() => new("inter_module_message_counter", new InterModuleMessageCounterCols("inter_module_message_counter"), new InterModuleMessageCounterIxCols("inter_module_message_counter"));
         public global::SpacetimeDB.Table<InterModuleMessageErrors, InterModuleMessageErrorsCols, InterModuleMessageErrorsIxCols> InterModuleMessageErrors() => new("inter_module_message_errors", new InterModuleMessageErrorsCols("inter_module_message_errors"), new InterModuleMessageErrorsIxCols("inter_module_message_errors"));
+        public global::SpacetimeDB.Table<InterModuleMessageV2, InterModuleMessageV2Cols, InterModuleMessageV2IxCols> InterModuleMessageV2() => new("inter_module_message_v2", new InterModuleMessageV2Cols("inter_module_message_v2"), new InterModuleMessageV2IxCols("inter_module_message_v2"));
         public global::SpacetimeDB.Table<InterModuleResponseMessageCounter, InterModuleResponseMessageCounterCols, InterModuleResponseMessageCounterIxCols> InterModuleResponseMessageCounter() => new("inter_module_response_message_counter", new InterModuleResponseMessageCounterCols("inter_module_response_message_counter"), new InterModuleResponseMessageCounterIxCols("inter_module_response_message_counter"));
         public global::SpacetimeDB.Table<InteriorCollapseTriggerState, InteriorCollapseTriggerStateCols, InteriorCollapseTriggerStateIxCols> InteriorCollapseTriggerState() => new("interior_collapse_trigger_state", new InteriorCollapseTriggerStateCols("interior_collapse_trigger_state"), new InteriorCollapseTriggerStateIxCols("interior_collapse_trigger_state"));
         public global::SpacetimeDB.Table<InteriorEnvironmentDesc, InteriorEnvironmentDescCols, InteriorEnvironmentDescIxCols> InteriorEnvironmentDesc() => new("interior_environment_desc", new InteriorEnvironmentDescCols("interior_environment_desc"), new InteriorEnvironmentDescIxCols("interior_environment_desc"));
@@ -1327,6 +1342,7 @@ namespace BitCraftGlobal.Types
         public global::SpacetimeDB.Table<EnemyScalingDesc, StagedEnemyScalingDescCols, StagedEnemyScalingDescIxCols> StagedEnemyScalingDesc() => new("staged_enemy_scaling_desc", new StagedEnemyScalingDescCols("staged_enemy_scaling_desc"), new StagedEnemyScalingDescIxCols("staged_enemy_scaling_desc"));
         public global::SpacetimeDB.Table<EnvironmentDebuffDesc, StagedEnvironmentDebuffDescCols, StagedEnvironmentDebuffDescIxCols> StagedEnvironmentDebuffDesc() => new("staged_environment_debuff_desc", new StagedEnvironmentDebuffDescCols("staged_environment_debuff_desc"), new StagedEnvironmentDebuffDescIxCols("staged_environment_debuff_desc"));
         public global::SpacetimeDB.Table<EquipmentDesc, StagedEquipmentDescCols, StagedEquipmentDescIxCols> StagedEquipmentDesc() => new("staged_equipment_desc", new StagedEquipmentDescCols("staged_equipment_desc"), new StagedEquipmentDescIxCols("staged_equipment_desc"));
+        public global::SpacetimeDB.Table<EquipmentPresetKnowledgeDesc, StagedEquipmentPresetKnowledgeDescCols, StagedEquipmentPresetKnowledgeDescIxCols> StagedEquipmentPresetKnowledgeDesc() => new("staged_equipment_preset_knowledge_desc", new StagedEquipmentPresetKnowledgeDescCols("staged_equipment_preset_knowledge_desc"), new StagedEquipmentPresetKnowledgeDescIxCols("staged_equipment_preset_knowledge_desc"));
         public global::SpacetimeDB.Table<ExtractionRecipeDesc, StagedExtractionRecipeDescCols, StagedExtractionRecipeDescIxCols> StagedExtractionRecipeDesc() => new("staged_extraction_recipe_desc", new StagedExtractionRecipeDescCols("staged_extraction_recipe_desc"), new StagedExtractionRecipeDescIxCols("staged_extraction_recipe_desc"));
         public global::SpacetimeDB.Table<FoodDesc, StagedFoodDescCols, StagedFoodDescIxCols> StagedFoodDesc() => new("staged_food_desc", new StagedFoodDescCols("staged_food_desc"), new StagedFoodDescIxCols("staged_food_desc"));
         public global::SpacetimeDB.Table<GateDesc, StagedGateDescCols, StagedGateDescIxCols> StagedGateDesc() => new("staged_gate_desc", new StagedGateDescCols("staged_gate_desc"), new StagedGateDescIxCols("staged_gate_desc"));
@@ -1539,6 +1555,7 @@ namespace BitCraftGlobal.Types
                 "admin_skip_queue_identity" => BSATNHelpers.Decode<Reducer.AdminSkipQueueIdentity>(encodedArgs),
                 "admin_skip_queue_name" => BSATNHelpers.Decode<Reducer.AdminSkipQueueName>(encodedArgs),
                 "admin_unassign_empire_chunks" => BSATNHelpers.Decode<Reducer.AdminUnassignEmpireChunks>(encodedArgs),
+                "admin_update_empire_ranks" => BSATNHelpers.Decode<Reducer.AdminUpdateEmpireRanks>(encodedArgs),
                 "admin_update_granted_hub_item_state" => BSATNHelpers.Decode<Reducer.AdminUpdateGrantedHubItemState>(encodedArgs),
                 "admin_update_moderation_enforcement_config" => BSATNHelpers.Decode<Reducer.AdminUpdateModerationEnforcementConfig>(encodedArgs),
                 "admin_update_report_moderation_config" => BSATNHelpers.Decode<Reducer.AdminUpdateReportModerationConfig>(encodedArgs),
@@ -1639,6 +1656,7 @@ namespace BitCraftGlobal.Types
                 "import_enemy_state" => BSATNHelpers.Decode<Reducer.ImportEnemyState>(encodedArgs),
                 "import_environment_debuff_desc" => BSATNHelpers.Decode<Reducer.ImportEnvironmentDebuffDesc>(encodedArgs),
                 "import_equipment_desc" => BSATNHelpers.Decode<Reducer.ImportEquipmentDesc>(encodedArgs),
+                "import_equipment_preset_state" => BSATNHelpers.Decode<Reducer.ImportEquipmentPresetState>(encodedArgs),
                 "import_equipment_state" => BSATNHelpers.Decode<Reducer.ImportEquipmentState>(encodedArgs),
                 "import_experience_state" => BSATNHelpers.Decode<Reducer.ImportExperienceState>(encodedArgs),
                 "import_exploration_chunks_state" => BSATNHelpers.Decode<Reducer.ImportExplorationChunksState>(encodedArgs),
@@ -1816,6 +1834,7 @@ namespace BitCraftGlobal.Types
                 "stage_enemy_scaling_desc" => BSATNHelpers.Decode<Reducer.StageEnemyScalingDesc>(encodedArgs),
                 "stage_environment_debuff_desc" => BSATNHelpers.Decode<Reducer.StageEnvironmentDebuffDesc>(encodedArgs),
                 "stage_equipment_desc" => BSATNHelpers.Decode<Reducer.StageEquipmentDesc>(encodedArgs),
+                "stage_equipment_preset_knowledge_desc" => BSATNHelpers.Decode<Reducer.StageEquipmentPresetKnowledgeDesc>(encodedArgs),
                 "stage_extraction_recipe_desc" => BSATNHelpers.Decode<Reducer.StageExtractionRecipeDesc>(encodedArgs),
                 "stage_food_desc" => BSATNHelpers.Decode<Reducer.StageFoodDesc>(encodedArgs),
                 "stage_gate_desc" => BSATNHelpers.Decode<Reducer.StageGateDesc>(encodedArgs),
@@ -1954,6 +1973,7 @@ namespace BitCraftGlobal.Types
                 Reducer.AdminSkipQueueIdentity args => Reducers.InvokeAdminSkipQueueIdentity(eventContext, args),
                 Reducer.AdminSkipQueueName args => Reducers.InvokeAdminSkipQueueName(eventContext, args),
                 Reducer.AdminUnassignEmpireChunks args => Reducers.InvokeAdminUnassignEmpireChunks(eventContext, args),
+                Reducer.AdminUpdateEmpireRanks args => Reducers.InvokeAdminUpdateEmpireRanks(eventContext, args),
                 Reducer.AdminUpdateGrantedHubItemState args => Reducers.InvokeAdminUpdateGrantedHubItemState(eventContext, args),
                 Reducer.AdminUpdateModerationEnforcementConfig args => Reducers.InvokeAdminUpdateModerationEnforcementConfig(eventContext, args),
                 Reducer.AdminUpdateReportModerationConfig args => Reducers.InvokeAdminUpdateReportModerationConfig(eventContext, args),
@@ -2054,6 +2074,7 @@ namespace BitCraftGlobal.Types
                 Reducer.ImportEnemyState args => Reducers.InvokeImportEnemyState(eventContext, args),
                 Reducer.ImportEnvironmentDebuffDesc args => Reducers.InvokeImportEnvironmentDebuffDesc(eventContext, args),
                 Reducer.ImportEquipmentDesc args => Reducers.InvokeImportEquipmentDesc(eventContext, args),
+                Reducer.ImportEquipmentPresetState args => Reducers.InvokeImportEquipmentPresetState(eventContext, args),
                 Reducer.ImportEquipmentState args => Reducers.InvokeImportEquipmentState(eventContext, args),
                 Reducer.ImportExperienceState args => Reducers.InvokeImportExperienceState(eventContext, args),
                 Reducer.ImportExplorationChunksState args => Reducers.InvokeImportExplorationChunksState(eventContext, args),
@@ -2231,6 +2252,7 @@ namespace BitCraftGlobal.Types
                 Reducer.StageEnemyScalingDesc args => Reducers.InvokeStageEnemyScalingDesc(eventContext, args),
                 Reducer.StageEnvironmentDebuffDesc args => Reducers.InvokeStageEnvironmentDebuffDesc(eventContext, args),
                 Reducer.StageEquipmentDesc args => Reducers.InvokeStageEquipmentDesc(eventContext, args),
+                Reducer.StageEquipmentPresetKnowledgeDesc args => Reducers.InvokeStageEquipmentPresetKnowledgeDesc(eventContext, args),
                 Reducer.StageExtractionRecipeDesc args => Reducers.InvokeStageExtractionRecipeDesc(eventContext, args),
                 Reducer.StageFoodDesc args => Reducers.InvokeStageFoodDesc(eventContext, args),
                 Reducer.StageGateDesc args => Reducers.InvokeStageGateDesc(eventContext, args),

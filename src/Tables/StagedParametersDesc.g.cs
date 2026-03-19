@@ -132,6 +132,7 @@ namespace BitCraftGlobal.Types
         public global::SpacetimeDB.Col<ParametersDesc, uint> EmpireRenameCurrencyCost { get; }
         public global::SpacetimeDB.Col<ParametersDesc, uint> EmpireMoveCapitalCurrencyCost { get; }
         public global::SpacetimeDB.Col<ParametersDesc, uint> HexiteCapsuleCurrencyCost { get; }
+        public global::SpacetimeDB.Col<ParametersDesc, uint> ProspectingHerdImmunitySecs { get; }
 
         public StagedParametersDescCols(string tableName)
         {
@@ -227,6 +228,7 @@ namespace BitCraftGlobal.Types
             EmpireRenameCurrencyCost = new global::SpacetimeDB.Col<ParametersDesc, uint>(tableName, "empire_rename_currency_cost");
             EmpireMoveCapitalCurrencyCost = new global::SpacetimeDB.Col<ParametersDesc, uint>(tableName, "empire_move_capital_currency_cost");
             HexiteCapsuleCurrencyCost = new global::SpacetimeDB.Col<ParametersDesc, uint>(tableName, "hexite_capsule_currency_cost");
+            ProspectingHerdImmunitySecs = new global::SpacetimeDB.Col<ParametersDesc, uint>(tableName, "prospecting_herd_immunity_secs");
         }
     }
 
