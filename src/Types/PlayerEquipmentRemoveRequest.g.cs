@@ -18,14 +18,18 @@ namespace BitCraftRegion.Types
         public int Slot;
         [DataMember(Name = "to_pocket")]
         public PocketKey? ToPocket;
+        [DataMember(Name = "preset_index")]
+        public int PresetIndex;
 
         public PlayerEquipmentRemoveRequest(
             int Slot,
-            PocketKey? ToPocket
+            PocketKey? ToPocket,
+            int PresetIndex
         )
         {
             this.Slot = Slot;
             this.ToPocket = ToPocket;
+            this.PresetIndex = PresetIndex;
         }
 
         public PlayerEquipmentRemoveRequest()

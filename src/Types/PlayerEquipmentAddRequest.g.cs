@@ -16,10 +16,16 @@ namespace BitCraftRegion.Types
     {
         [DataMember(Name = "from_pocket")]
         public PocketKey? FromPocket;
+        [DataMember(Name = "preset_index")]
+        public int PresetIndex;
 
-        public PlayerEquipmentAddRequest(PocketKey? FromPocket)
+        public PlayerEquipmentAddRequest(
+            PocketKey? FromPocket,
+            int PresetIndex
+        )
         {
             this.FromPocket = FromPocket;
+            this.PresetIndex = PresetIndex;
         }
 
         public PlayerEquipmentAddRequest()

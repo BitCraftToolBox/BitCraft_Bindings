@@ -14,13 +14,13 @@ namespace BitCraftRegion.Types
 {
     public sealed partial class RemoteTables
     {
-        public sealed class ExtractOutcomeStateHandle : RemoteTableHandle<EventContext, ExtractOutcomeState>
+        public sealed class ExtractOutcomeStateHandle : RemoteTableHandle<EventContext, ExtractOutcomeStateV2>
         {
             protected override string RemoteTableName => "extract_outcome_state";
 
             public sealed class EntityIdUniqueIndex : UniqueIndexBase<ulong>
             {
-                protected override ulong GetKey(ExtractOutcomeState row) => row.EntityId;
+                protected override ulong GetKey(ExtractOutcomeStateV2 row) => row.EntityId;
 
                 public EntityIdUniqueIndex(ExtractOutcomeStateHandle table) : base(table) { }
             }
@@ -32,7 +32,7 @@ namespace BitCraftRegion.Types
                 EntityId = new(this);
             }
 
-            protected override object GetPrimaryKey(ExtractOutcomeState row) => row.EntityId;
+            protected override object GetPrimaryKey(ExtractOutcomeStateV2 row) => row.EntityId;
         }
 
         public readonly ExtractOutcomeStateHandle ExtractOutcomeState;
@@ -40,27 +40,29 @@ namespace BitCraftRegion.Types
 
     public sealed class ExtractOutcomeStateCols
     {
-        public global::SpacetimeDB.Col<ExtractOutcomeState, ulong> EntityId { get; }
-        public global::SpacetimeDB.Col<ExtractOutcomeState, ulong> TargetEntityId { get; }
-        public global::SpacetimeDB.Col<ExtractOutcomeState, SpacetimeDB.Timestamp> LastTimestamp { get; }
-        public global::SpacetimeDB.Col<ExtractOutcomeState, int> Damage { get; }
+        public global::SpacetimeDB.Col<ExtractOutcomeStateV2, ulong> EntityId { get; }
+        public global::SpacetimeDB.Col<ExtractOutcomeStateV2, ulong> TargetEntityId { get; }
+        public global::SpacetimeDB.Col<ExtractOutcomeStateV2, SpacetimeDB.Timestamp> LastTimestamp { get; }
+        public global::SpacetimeDB.Col<ExtractOutcomeStateV2, int> Damage { get; }
+        public global::SpacetimeDB.Col<ExtractOutcomeStateV2, bool> IsCrit { get; }
 
         public ExtractOutcomeStateCols(string tableName)
         {
-            EntityId = new global::SpacetimeDB.Col<ExtractOutcomeState, ulong>(tableName, "entity_id");
-            TargetEntityId = new global::SpacetimeDB.Col<ExtractOutcomeState, ulong>(tableName, "target_entity_id");
-            LastTimestamp = new global::SpacetimeDB.Col<ExtractOutcomeState, SpacetimeDB.Timestamp>(tableName, "last_timestamp");
-            Damage = new global::SpacetimeDB.Col<ExtractOutcomeState, int>(tableName, "damage");
+            EntityId = new global::SpacetimeDB.Col<ExtractOutcomeStateV2, ulong>(tableName, "entity_id");
+            TargetEntityId = new global::SpacetimeDB.Col<ExtractOutcomeStateV2, ulong>(tableName, "target_entity_id");
+            LastTimestamp = new global::SpacetimeDB.Col<ExtractOutcomeStateV2, SpacetimeDB.Timestamp>(tableName, "last_timestamp");
+            Damage = new global::SpacetimeDB.Col<ExtractOutcomeStateV2, int>(tableName, "damage");
+            IsCrit = new global::SpacetimeDB.Col<ExtractOutcomeStateV2, bool>(tableName, "is_crit");
         }
     }
 
     public sealed class ExtractOutcomeStateIxCols
     {
-        public global::SpacetimeDB.IxCol<ExtractOutcomeState, ulong> EntityId { get; }
+        public global::SpacetimeDB.IxCol<ExtractOutcomeStateV2, ulong> EntityId { get; }
 
         public ExtractOutcomeStateIxCols(string tableName)
         {
-            EntityId = new global::SpacetimeDB.IxCol<ExtractOutcomeState, ulong>(tableName, "entity_id");
+            EntityId = new global::SpacetimeDB.IxCol<ExtractOutcomeStateV2, ulong>(tableName, "entity_id");
         }
     }
 }
