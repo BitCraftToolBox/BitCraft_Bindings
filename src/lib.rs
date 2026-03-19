@@ -368,6 +368,8 @@ pub mod combat_action_multi_hit_desc_table;
 pub mod combat_action_multi_hit_desc_type;
 pub mod combat_dimension_state_table;
 pub mod combat_dimension_state_type;
+pub mod combat_immunity_state_table;
+pub mod combat_immunity_state_type;
 pub mod combat_state_table;
 pub mod combat_state_type;
 pub mod commit_staged_static_data_reducer;
@@ -411,6 +413,8 @@ pub mod crumb_trail_contribution_lock_state_table;
 pub mod crumb_trail_contribution_lock_state_type;
 pub mod crumb_trail_contribution_spent_state_table;
 pub mod crumb_trail_contribution_spent_state_type;
+pub mod crumb_trail_exposed_state_table;
+pub mod crumb_trail_exposed_state_type;
 pub mod crumb_trail_state_table;
 pub mod crumb_trail_state_type;
 pub mod csv_stat_entry_type;
@@ -528,6 +532,7 @@ pub mod empire_notification_desc_table;
 pub mod empire_notification_desc_type;
 pub mod empire_notification_type_type;
 pub mod empire_owner_type_type;
+pub mod empire_permission_type;
 pub mod empire_player_data_state_op_type;
 pub mod empire_player_data_state_table;
 pub mod empire_player_data_state_type;
@@ -559,6 +564,8 @@ pub mod empire_supplies_desc_type;
 pub mod empire_territory_desc_table;
 pub mod empire_territory_desc_type;
 pub mod empire_update_emperor_crown_msg_type;
+pub mod empire_withdraw_item_msg_type;
+pub mod empire_withdraw_item_reducer;
 pub mod end_grace_period_reducer;
 pub mod end_grace_period_timer_table;
 pub mod end_grace_period_timer_type;
@@ -608,6 +615,11 @@ pub mod environment_resistance_type_type;
 pub mod equipment_add_reducer;
 pub mod equipment_desc_table;
 pub mod equipment_desc_type;
+pub mod equipment_preset_activate_reducer;
+pub mod equipment_preset_knowledge_desc_table;
+pub mod equipment_preset_knowledge_desc_type;
+pub mod equipment_preset_state_table;
+pub mod equipment_preset_state_type;
 pub mod equipment_remove_reducer;
 pub mod equipment_slot_type;
 pub mod equipment_slot_type_type;
@@ -620,8 +632,11 @@ pub mod experience_state_table;
 pub mod experience_state_type;
 pub mod exploration_chunks_state_table;
 pub mod exploration_chunks_state_type;
+pub mod exposed_breadcrumbs_table;
 pub mod extract_outcome_state_table;
 pub mod extract_outcome_state_type;
+pub mod extract_outcome_state_v_1_table;
+pub mod extract_outcome_state_v_2_type;
 pub mod extract_reducer;
 pub mod extract_start_reducer;
 pub mod extraction_recipe_desc_table;
@@ -638,6 +653,8 @@ pub mod force_generate_types_type;
 pub mod force_start_agents_reducer;
 pub mod gate_desc_table;
 pub mod gate_desc_type;
+pub mod gated_feature_type;
+pub mod gated_features_table;
 pub mod generate_dev_island_reducer;
 pub mod generate_flat_world_reducer;
 pub mod generate_world_reducer;
@@ -732,6 +749,7 @@ pub mod import_enemy_scaling_desc_reducer;
 pub mod import_enemy_state_reducer;
 pub mod import_environment_debuff_desc_reducer;
 pub mod import_equipment_desc_reducer;
+pub mod import_equipment_preset_knowledge_desc_reducer;
 pub mod import_equipment_state_reducer;
 pub mod import_experience_state_reducer;
 pub mod import_exploration_chunks_state_reducer;
@@ -858,6 +876,8 @@ pub mod inter_module_message_errors_table;
 pub mod inter_module_message_errors_type;
 pub mod inter_module_message_table;
 pub mod inter_module_message_type;
+pub mod inter_module_message_v_2_table;
+pub mod inter_module_message_v_2_type;
 pub mod inter_module_response_message_counter_table;
 pub mod inter_module_response_message_counter_type;
 pub mod inter_module_table_updates_type;
@@ -987,6 +1007,7 @@ pub mod lost_items_state_type;
 pub mod marketplace_state_table;
 pub mod marketplace_state_type;
 pub mod message_contents_type;
+pub mod message_contents_v_2_type;
 pub mod migrate_auto_attacks_reducer;
 pub mod migrate_character_stats_reducer;
 pub mod migrate_claim_tech_reducer;
@@ -1319,6 +1340,8 @@ pub mod prospect_reducer;
 pub mod prospect_start_reducer;
 pub mod prospecting_desc_table;
 pub mod prospecting_desc_type;
+pub mod prospecting_participant_type;
+pub mod prospecting_participants_table;
 pub mod prospecting_state_table;
 pub mod prospecting_state_type;
 pub mod public_progressive_action_state_table;
@@ -1509,6 +1532,7 @@ pub mod stage_enemy_desc_reducer;
 pub mod stage_enemy_scaling_desc_reducer;
 pub mod stage_environment_debuff_desc_reducer;
 pub mod stage_equipment_desc_reducer;
+pub mod stage_equipment_preset_knowledge_desc_reducer;
 pub mod stage_extraction_recipe_desc_reducer;
 pub mod stage_food_desc_reducer;
 pub mod stage_gate_desc_reducer;
@@ -1607,6 +1631,7 @@ pub mod staged_enemy_desc_table;
 pub mod staged_enemy_scaling_desc_table;
 pub mod staged_environment_debuff_desc_table;
 pub mod staged_equipment_desc_table;
+pub mod staged_equipment_preset_knowledge_desc_table;
 pub mod staged_extraction_recipe_desc_table;
 pub mod staged_food_desc_table;
 pub mod staged_gate_desc_table;
@@ -1740,6 +1765,7 @@ pub mod trade_swap_pockets_reducer;
 pub mod transfer_player_delayed_reducer;
 pub mod transfer_player_housing_msg_type;
 pub mod transfer_player_msg_type;
+pub mod transfer_player_msg_v_2_type;
 pub mod transfer_player_timer_table;
 pub mod transfer_player_timer_type;
 pub mod traveler_task_agent_loop_reducer;
@@ -2641,6 +2667,8 @@ pub use combat_action_multi_hit_desc_table::*;
 pub use combat_action_multi_hit_desc_type::CombatActionMultiHitDesc;
 pub use combat_dimension_state_table::*;
 pub use combat_dimension_state_type::CombatDimensionState;
+pub use combat_immunity_state_table::*;
+pub use combat_immunity_state_type::CombatImmunityState;
 pub use combat_state_table::*;
 pub use combat_state_type::CombatState;
 pub use commit_staged_static_data_reducer::{
@@ -2721,6 +2749,8 @@ pub use crumb_trail_contribution_lock_state_table::*;
 pub use crumb_trail_contribution_lock_state_type::CrumbTrailContributionLockState;
 pub use crumb_trail_contribution_spent_state_table::*;
 pub use crumb_trail_contribution_spent_state_type::CrumbTrailContributionSpentState;
+pub use crumb_trail_exposed_state_table::*;
+pub use crumb_trail_exposed_state_type::CrumbTrailExposedState;
 pub use crumb_trail_state_table::*;
 pub use crumb_trail_state_type::CrumbTrailState;
 pub use csv_stat_entry_type::CsvStatEntry;
@@ -2920,6 +2950,7 @@ pub use empire_notification_desc_table::*;
 pub use empire_notification_desc_type::EmpireNotificationDesc;
 pub use empire_notification_type_type::EmpireNotificationType;
 pub use empire_owner_type_type::EmpireOwnerType;
+pub use empire_permission_type::EmpirePermission;
 pub use empire_player_data_state_op_type::EmpirePlayerDataStateOp;
 pub use empire_player_data_state_table::*;
 pub use empire_player_data_state_type::EmpirePlayerDataState;
@@ -2961,6 +2992,10 @@ pub use empire_supplies_desc_type::EmpireSuppliesDesc;
 pub use empire_territory_desc_table::*;
 pub use empire_territory_desc_type::EmpireTerritoryDesc;
 pub use empire_update_emperor_crown_msg_type::EmpireUpdateEmperorCrownMsg;
+pub use empire_withdraw_item_msg_type::EmpireWithdrawItemMsg;
+pub use empire_withdraw_item_reducer::{
+    empire_withdraw_item, set_flags_for_empire_withdraw_item, EmpireWithdrawItemCallbackId,
+};
 pub use end_grace_period_reducer::{
     end_grace_period, set_flags_for_end_grace_period, EndGracePeriodCallbackId,
 };
@@ -3039,6 +3074,14 @@ pub use equipment_add_reducer::{
 };
 pub use equipment_desc_table::*;
 pub use equipment_desc_type::EquipmentDesc;
+pub use equipment_preset_activate_reducer::{
+    equipment_preset_activate, set_flags_for_equipment_preset_activate,
+    EquipmentPresetActivateCallbackId,
+};
+pub use equipment_preset_knowledge_desc_table::*;
+pub use equipment_preset_knowledge_desc_type::EquipmentPresetKnowledgeDesc;
+pub use equipment_preset_state_table::*;
+pub use equipment_preset_state_type::EquipmentPresetState;
 pub use equipment_remove_reducer::{
     equipment_remove, set_flags_for_equipment_remove, EquipmentRemoveCallbackId,
 };
@@ -3053,8 +3096,11 @@ pub use experience_state_table::*;
 pub use experience_state_type::ExperienceState;
 pub use exploration_chunks_state_table::*;
 pub use exploration_chunks_state_type::ExplorationChunksState;
+pub use exposed_breadcrumbs_table::*;
 pub use extract_outcome_state_table::*;
 pub use extract_outcome_state_type::ExtractOutcomeState;
+pub use extract_outcome_state_v_1_table::*;
+pub use extract_outcome_state_v_2_type::ExtractOutcomeStateV2;
 pub use extract_reducer::{extract, set_flags_for_extract, ExtractCallbackId};
 pub use extract_start_reducer::{
     extract_start, set_flags_for_extract_start, ExtractStartCallbackId,
@@ -3075,6 +3121,8 @@ pub use force_start_agents_reducer::{
 };
 pub use gate_desc_table::*;
 pub use gate_desc_type::GateDesc;
+pub use gated_feature_type::GatedFeature;
+pub use gated_features_table::*;
 pub use generate_dev_island_reducer::{
     generate_dev_island, set_flags_for_generate_dev_island, GenerateDevIslandCallbackId,
 };
@@ -3341,6 +3389,10 @@ pub use import_environment_debuff_desc_reducer::{
 };
 pub use import_equipment_desc_reducer::{
     import_equipment_desc, set_flags_for_import_equipment_desc, ImportEquipmentDescCallbackId,
+};
+pub use import_equipment_preset_knowledge_desc_reducer::{
+    import_equipment_preset_knowledge_desc, set_flags_for_import_equipment_preset_knowledge_desc,
+    ImportEquipmentPresetKnowledgeDescCallbackId,
 };
 pub use import_equipment_state_reducer::{
     import_equipment_state, set_flags_for_import_equipment_state, ImportEquipmentStateCallbackId,
@@ -3774,6 +3826,8 @@ pub use inter_module_message_errors_table::*;
 pub use inter_module_message_errors_type::InterModuleMessageErrors;
 pub use inter_module_message_table::*;
 pub use inter_module_message_type::InterModuleMessage;
+pub use inter_module_message_v_2_table::*;
+pub use inter_module_message_v_2_type::InterModuleMessageV2;
 pub use inter_module_response_message_counter_table::*;
 pub use inter_module_response_message_counter_type::InterModuleResponseMessageCounter;
 pub use inter_module_table_updates_type::InterModuleTableUpdates;
@@ -3933,6 +3987,7 @@ pub use lost_items_state_type::LostItemsState;
 pub use marketplace_state_table::*;
 pub use marketplace_state_type::MarketplaceState;
 pub use message_contents_type::MessageContents;
+pub use message_contents_v_2_type::MessageContentsV2;
 pub use migrate_auto_attacks_reducer::{
     migrate_auto_attacks, set_flags_for_migrate_auto_attacks, MigrateAutoAttacksCallbackId,
 };
@@ -4437,6 +4492,8 @@ pub use prospect_start_reducer::{
 };
 pub use prospecting_desc_table::*;
 pub use prospecting_desc_type::ProspectingDesc;
+pub use prospecting_participant_type::ProspectingParticipant;
+pub use prospecting_participants_table::*;
 pub use prospecting_state_table::*;
 pub use prospecting_state_type::ProspectingState;
 pub use public_progressive_action_state_table::*;
@@ -4807,6 +4864,10 @@ pub use stage_environment_debuff_desc_reducer::{
 pub use stage_equipment_desc_reducer::{
     set_flags_for_stage_equipment_desc, stage_equipment_desc, StageEquipmentDescCallbackId,
 };
+pub use stage_equipment_preset_knowledge_desc_reducer::{
+    set_flags_for_stage_equipment_preset_knowledge_desc, stage_equipment_preset_knowledge_desc,
+    StageEquipmentPresetKnowledgeDescCallbackId,
+};
 pub use stage_extraction_recipe_desc_reducer::{
     set_flags_for_stage_extraction_recipe_desc, stage_extraction_recipe_desc,
     StageExtractionRecipeDescCallbackId,
@@ -5042,6 +5103,7 @@ pub use staged_enemy_desc_table::*;
 pub use staged_enemy_scaling_desc_table::*;
 pub use staged_environment_debuff_desc_table::*;
 pub use staged_equipment_desc_table::*;
+pub use staged_equipment_preset_knowledge_desc_table::*;
 pub use staged_extraction_recipe_desc_table::*;
 pub use staged_food_desc_table::*;
 pub use staged_gate_desc_table::*;
@@ -5221,6 +5283,7 @@ pub use transfer_player_delayed_reducer::{
 };
 pub use transfer_player_housing_msg_type::TransferPlayerHousingMsg;
 pub use transfer_player_msg_type::TransferPlayerMsg;
+pub use transfer_player_msg_v_2_type::TransferPlayerMsgV2;
 pub use transfer_player_timer_table::*;
 pub use transfer_player_timer_type::TransferPlayerTimer;
 pub use traveler_task_agent_loop_reducer::{
@@ -6078,6 +6141,11 @@ pub enum Reducer {
     EmpireSiegeDepletedWatchtower {
         request: EmpireStartSiegeRequest,
     },
+    EmpireWithdrawItem {
+        item_id: i32,
+        item_type: ItemType,
+        amount: u32,
+    },
     EndGracePeriod {
         timer: EndGracePeriodTimer,
     },
@@ -6122,6 +6190,9 @@ pub enum Reducer {
     },
     EquipmentAdd {
         request: PlayerEquipmentAddRequest,
+    },
+    EquipmentPresetActivate {
+        index: i32,
     },
     EquipmentRemove {
         request: PlayerEquipmentRemoveRequest,
@@ -6331,6 +6402,9 @@ pub enum Reducer {
     },
     ImportEquipmentDesc {
         records: Vec<EquipmentDesc>,
+    },
+    ImportEquipmentPresetKnowledgeDesc {
+        records: Vec<EquipmentPresetKnowledgeDesc>,
     },
     ImportEquipmentState {
         records: Vec<EquipmentState>,
@@ -6945,7 +7019,7 @@ pub enum Reducer {
     },
     ProcessInterModuleMessage {
         sender: u8,
-        message: InterModuleMessage,
+        message: InterModuleMessageV2,
     },
     ProjectSiteAddMaterials {
         request: PlayerProjectSiteAddMaterialsRequest,
@@ -7202,6 +7276,9 @@ pub enum Reducer {
     },
     StageEquipmentDesc {
         records: Vec<EquipmentDesc>,
+    },
+    StageEquipmentPresetKnowledgeDesc {
+        records: Vec<EquipmentPresetKnowledgeDesc>,
     },
     StageExtractionRecipeDesc {
         records: Vec<ExtractionRecipeDesc>,
@@ -7749,6 +7826,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::EmpireResupplyNode { .. } => "empire_resupply_node",
             Reducer::EmpireResupplyNodeStart { .. } => "empire_resupply_node_start",
             Reducer::EmpireSiegeDepletedWatchtower { .. } => "empire_siege_depleted_watchtower",
+            Reducer::EmpireWithdrawItem { .. } => "empire_withdraw_item",
             Reducer::EndGracePeriod { .. } => "end_grace_period",
             Reducer::EnemyClearAggro { .. } => "enemy_clear_aggro",
             Reducer::EnemyDespawn { .. } => "enemy_despawn",
@@ -7766,6 +7844,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::EnemySpawnLoot { .. } => "enemy_spawn_loot",
             Reducer::EnvironmentDebuffAgentLoop { .. } => "environment_debuff_agent_loop",
             Reducer::EquipmentAdd { .. } => "equipment_add",
+            Reducer::EquipmentPresetActivate { .. } => "equipment_preset_activate",
             Reducer::EquipmentRemove { .. } => "equipment_remove",
             Reducer::Extract { .. } => "extract",
             Reducer::ExtractStart { .. } => "extract_start",
@@ -7841,6 +7920,9 @@ impl __sdk::Reducer for Reducer {
             Reducer::ImportEnemyState { .. } => "import_enemy_state",
             Reducer::ImportEnvironmentDebuffDesc { .. } => "import_environment_debuff_desc",
             Reducer::ImportEquipmentDesc { .. } => "import_equipment_desc",
+            Reducer::ImportEquipmentPresetKnowledgeDesc { .. } => {
+                "import_equipment_preset_knowledge_desc"
+            }
             Reducer::ImportEquipmentState { .. } => "import_equipment_state",
             Reducer::ImportExperienceState { .. } => "import_experience_state",
             Reducer::ImportExplorationChunksState { .. } => "import_exploration_chunks_state",
@@ -8159,6 +8241,9 @@ impl __sdk::Reducer for Reducer {
             Reducer::StageEnemyScalingDesc { .. } => "stage_enemy_scaling_desc",
             Reducer::StageEnvironmentDebuffDesc { .. } => "stage_environment_debuff_desc",
             Reducer::StageEquipmentDesc { .. } => "stage_equipment_desc",
+            Reducer::StageEquipmentPresetKnowledgeDesc { .. } => {
+                "stage_equipment_preset_knowledge_desc"
+            }
             Reducer::StageExtractionRecipeDesc { .. } => "stage_extraction_recipe_desc",
             Reducer::StageFoodDesc { .. } => "stage_food_desc",
             Reducer::StageGateDesc { .. } => "stage_gate_desc",
@@ -8494,6 +8579,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "empire_resupply_node" => Ok(__sdk::parse_reducer_args::<empire_resupply_node_reducer::EmpireResupplyNodeArgs>("empire_resupply_node", &value.args)?.into()),
             "empire_resupply_node_start" => Ok(__sdk::parse_reducer_args::<empire_resupply_node_start_reducer::EmpireResupplyNodeStartArgs>("empire_resupply_node_start", &value.args)?.into()),
             "empire_siege_depleted_watchtower" => Ok(__sdk::parse_reducer_args::<empire_siege_depleted_watchtower_reducer::EmpireSiegeDepletedWatchtowerArgs>("empire_siege_depleted_watchtower", &value.args)?.into()),
+            "empire_withdraw_item" => Ok(__sdk::parse_reducer_args::<empire_withdraw_item_reducer::EmpireWithdrawItemArgs>("empire_withdraw_item", &value.args)?.into()),
             "end_grace_period" => Ok(__sdk::parse_reducer_args::<end_grace_period_reducer::EndGracePeriodArgs>("end_grace_period", &value.args)?.into()),
             "enemy_clear_aggro" => Ok(__sdk::parse_reducer_args::<enemy_clear_aggro_reducer::EnemyClearAggroArgs>("enemy_clear_aggro", &value.args)?.into()),
             "enemy_despawn" => Ok(__sdk::parse_reducer_args::<enemy_despawn_reducer::EnemyDespawnArgs>("enemy_despawn", &value.args)?.into()),
@@ -8509,6 +8595,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "enemy_spawn_loot" => Ok(__sdk::parse_reducer_args::<enemy_spawn_loot_reducer::EnemySpawnLootArgs>("enemy_spawn_loot", &value.args)?.into()),
             "environment_debuff_agent_loop" => Ok(__sdk::parse_reducer_args::<environment_debuff_agent_loop_reducer::EnvironmentDebuffAgentLoopArgs>("environment_debuff_agent_loop", &value.args)?.into()),
             "equipment_add" => Ok(__sdk::parse_reducer_args::<equipment_add_reducer::EquipmentAddArgs>("equipment_add", &value.args)?.into()),
+            "equipment_preset_activate" => Ok(__sdk::parse_reducer_args::<equipment_preset_activate_reducer::EquipmentPresetActivateArgs>("equipment_preset_activate", &value.args)?.into()),
             "equipment_remove" => Ok(__sdk::parse_reducer_args::<equipment_remove_reducer::EquipmentRemoveArgs>("equipment_remove", &value.args)?.into()),
             "extract" => Ok(__sdk::parse_reducer_args::<extract_reducer::ExtractArgs>("extract", &value.args)?.into()),
             "extract_start" => Ok(__sdk::parse_reducer_args::<extract_start_reducer::ExtractStartArgs>("extract_start", &value.args)?.into()),
@@ -8582,6 +8669,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "import_enemy_state" => Ok(__sdk::parse_reducer_args::<import_enemy_state_reducer::ImportEnemyStateArgs>("import_enemy_state", &value.args)?.into()),
             "import_environment_debuff_desc" => Ok(__sdk::parse_reducer_args::<import_environment_debuff_desc_reducer::ImportEnvironmentDebuffDescArgs>("import_environment_debuff_desc", &value.args)?.into()),
             "import_equipment_desc" => Ok(__sdk::parse_reducer_args::<import_equipment_desc_reducer::ImportEquipmentDescArgs>("import_equipment_desc", &value.args)?.into()),
+            "import_equipment_preset_knowledge_desc" => Ok(__sdk::parse_reducer_args::<import_equipment_preset_knowledge_desc_reducer::ImportEquipmentPresetKnowledgeDescArgs>("import_equipment_preset_knowledge_desc", &value.args)?.into()),
             "import_equipment_state" => Ok(__sdk::parse_reducer_args::<import_equipment_state_reducer::ImportEquipmentStateArgs>("import_equipment_state", &value.args)?.into()),
             "import_experience_state" => Ok(__sdk::parse_reducer_args::<import_experience_state_reducer::ImportExperienceStateArgs>("import_experience_state", &value.args)?.into()),
             "import_exploration_chunks_state" => Ok(__sdk::parse_reducer_args::<import_exploration_chunks_state_reducer::ImportExplorationChunksStateArgs>("import_exploration_chunks_state", &value.args)?.into()),
@@ -8876,6 +8964,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "stage_enemy_scaling_desc" => Ok(__sdk::parse_reducer_args::<stage_enemy_scaling_desc_reducer::StageEnemyScalingDescArgs>("stage_enemy_scaling_desc", &value.args)?.into()),
             "stage_environment_debuff_desc" => Ok(__sdk::parse_reducer_args::<stage_environment_debuff_desc_reducer::StageEnvironmentDebuffDescArgs>("stage_environment_debuff_desc", &value.args)?.into()),
             "stage_equipment_desc" => Ok(__sdk::parse_reducer_args::<stage_equipment_desc_reducer::StageEquipmentDescArgs>("stage_equipment_desc", &value.args)?.into()),
+            "stage_equipment_preset_knowledge_desc" => Ok(__sdk::parse_reducer_args::<stage_equipment_preset_knowledge_desc_reducer::StageEquipmentPresetKnowledgeDescArgs>("stage_equipment_preset_knowledge_desc", &value.args)?.into()),
             "stage_extraction_recipe_desc" => Ok(__sdk::parse_reducer_args::<stage_extraction_recipe_desc_reducer::StageExtractionRecipeDescArgs>("stage_extraction_recipe_desc", &value.args)?.into()),
             "stage_food_desc" => Ok(__sdk::parse_reducer_args::<stage_food_desc_reducer::StageFoodDescArgs>("stage_food_desc", &value.args)?.into()),
             "stage_gate_desc" => Ok(__sdk::parse_reducer_args::<stage_gate_desc_reducer::StageGateDescArgs>("stage_gate_desc", &value.args)?.into()),
@@ -9036,6 +9125,7 @@ pub struct DbUpdate {
     combat_action_desc: __sdk::TableUpdate<CombatActionDesc>,
     combat_action_multi_hit_desc: __sdk::TableUpdate<CombatActionMultiHitDesc>,
     combat_dimension_state: __sdk::TableUpdate<CombatDimensionState>,
+    combat_immunity_state: __sdk::TableUpdate<CombatImmunityState>,
     combat_state: __sdk::TableUpdate<CombatState>,
     config: __sdk::TableUpdate<Config>,
     construction_recipe_desc: __sdk::TableUpdate<ConstructionRecipeDesc>,
@@ -9051,6 +9141,7 @@ pub struct DbUpdate {
     crumb_tail_cleanup_timer: __sdk::TableUpdate<CrumbTrailCleanupTimer>,
     crumb_trail_contribution_lock_state: __sdk::TableUpdate<CrumbTrailContributionLockState>,
     crumb_trail_contribution_spent_state: __sdk::TableUpdate<CrumbTrailContributionSpentState>,
+    crumb_trail_exposed_state: __sdk::TableUpdate<CrumbTrailExposedState>,
     crumb_trail_state: __sdk::TableUpdate<CrumbTrailState>,
     day_night_loop_timer: __sdk::TableUpdate<DayNightLoopTimer>,
     deconstruction_recipe_desc: __sdk::TableUpdate<DeconstructionRecipeDesc>,
@@ -9099,15 +9190,20 @@ pub struct DbUpdate {
     environment_debuff_desc: __sdk::TableUpdate<EnvironmentDebuffDesc>,
     environment_debuff_loop_timer: __sdk::TableUpdate<EnvironmentDebuffLoopTimer>,
     equipment_desc: __sdk::TableUpdate<EquipmentDesc>,
+    equipment_preset_knowledge_desc: __sdk::TableUpdate<EquipmentPresetKnowledgeDesc>,
+    equipment_preset_state: __sdk::TableUpdate<EquipmentPresetState>,
     equipment_state: __sdk::TableUpdate<EquipmentState>,
     experience_state: __sdk::TableUpdate<ExperienceState>,
     exploration_chunks_state: __sdk::TableUpdate<ExplorationChunksState>,
-    extract_outcome_state: __sdk::TableUpdate<ExtractOutcomeState>,
+    exposed_breadcrumbs: __sdk::TableUpdate<CrumbTrailExposedState>,
+    extract_outcome_state: __sdk::TableUpdate<ExtractOutcomeStateV2>,
+    extract_outcome_state_v_1: __sdk::TableUpdate<ExtractOutcomeState>,
     extraction_recipe_desc: __sdk::TableUpdate<ExtractionRecipeDesc>,
     food_desc: __sdk::TableUpdate<FoodDesc>,
     footprint_tile_state: __sdk::TableUpdate<FootprintTileState>,
     force_generate_types: __sdk::TableUpdate<ForceGenerateTypes>,
     gate_desc: __sdk::TableUpdate<GateDesc>,
+    gated_features: __sdk::TableUpdate<GatedFeature>,
     global_search_state: __sdk::TableUpdate<GlobalSearchState>,
     globals: __sdk::TableUpdate<Globals>,
     growth_loop_timer: __sdk::TableUpdate<GrowthLoopTimer>,
@@ -9120,6 +9216,7 @@ pub struct DbUpdate {
     inter_module_message: __sdk::TableUpdate<InterModuleMessage>,
     inter_module_message_counter: __sdk::TableUpdate<InterModuleMessageCounter>,
     inter_module_message_errors: __sdk::TableUpdate<InterModuleMessageErrors>,
+    inter_module_message_v_2: __sdk::TableUpdate<InterModuleMessageV2>,
     inter_module_response_message_counter: __sdk::TableUpdate<InterModuleResponseMessageCounter>,
     interior_collapse_trigger_state: __sdk::TableUpdate<InteriorCollapseTriggerState>,
     interior_environment_desc: __sdk::TableUpdate<InteriorEnvironmentDesc>,
@@ -9233,6 +9330,7 @@ pub struct DbUpdate {
     progressive_action_state: __sdk::TableUpdate<ProgressiveActionState>,
     project_site_state: __sdk::TableUpdate<ProjectSiteState>,
     prospecting_desc: __sdk::TableUpdate<ProspectingDesc>,
+    prospecting_participants: __sdk::TableUpdate<ProspectingParticipant>,
     prospecting_state: __sdk::TableUpdate<ProspectingState>,
     public_progressive_action_state: __sdk::TableUpdate<PublicProgressiveActionState>,
     quest_chain_desc: __sdk::TableUpdate<QuestChainDesc>,
@@ -9317,6 +9415,7 @@ pub struct DbUpdate {
     staged_enemy_scaling_desc: __sdk::TableUpdate<EnemyScalingDesc>,
     staged_environment_debuff_desc: __sdk::TableUpdate<EnvironmentDebuffDesc>,
     staged_equipment_desc: __sdk::TableUpdate<EquipmentDesc>,
+    staged_equipment_preset_knowledge_desc: __sdk::TableUpdate<EquipmentPresetKnowledgeDesc>,
     staged_extraction_recipe_desc: __sdk::TableUpdate<ExtractionRecipeDesc>,
     staged_food_desc: __sdk::TableUpdate<FoodDesc>,
     staged_gate_desc: __sdk::TableUpdate<GateDesc>,
@@ -9491,6 +9590,7 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "combat_action_desc" => db_update.combat_action_desc.append(combat_action_desc_table::parse_table_update(table_update)?),
     "combat_action_multi_hit_desc" => db_update.combat_action_multi_hit_desc.append(combat_action_multi_hit_desc_table::parse_table_update(table_update)?),
     "combat_dimension_state" => db_update.combat_dimension_state.append(combat_dimension_state_table::parse_table_update(table_update)?),
+    "combat_immunity_state" => db_update.combat_immunity_state.append(combat_immunity_state_table::parse_table_update(table_update)?),
     "combat_state" => db_update.combat_state.append(combat_state_table::parse_table_update(table_update)?),
     "config" => db_update.config.append(config_table::parse_table_update(table_update)?),
     "construction_recipe_desc" => db_update.construction_recipe_desc.append(construction_recipe_desc_table::parse_table_update(table_update)?),
@@ -9506,6 +9606,7 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "crumb_tail_cleanup_timer" => db_update.crumb_tail_cleanup_timer.append(crumb_tail_cleanup_timer_table::parse_table_update(table_update)?),
     "crumb_trail_contribution_lock_state" => db_update.crumb_trail_contribution_lock_state.append(crumb_trail_contribution_lock_state_table::parse_table_update(table_update)?),
     "crumb_trail_contribution_spent_state" => db_update.crumb_trail_contribution_spent_state.append(crumb_trail_contribution_spent_state_table::parse_table_update(table_update)?),
+    "crumb_trail_exposed_state" => db_update.crumb_trail_exposed_state.append(crumb_trail_exposed_state_table::parse_table_update(table_update)?),
     "crumb_trail_state" => db_update.crumb_trail_state.append(crumb_trail_state_table::parse_table_update(table_update)?),
     "day_night_loop_timer" => db_update.day_night_loop_timer.append(day_night_loop_timer_table::parse_table_update(table_update)?),
     "deconstruction_recipe_desc" => db_update.deconstruction_recipe_desc.append(deconstruction_recipe_desc_table::parse_table_update(table_update)?),
@@ -9554,15 +9655,20 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "environment_debuff_desc" => db_update.environment_debuff_desc.append(environment_debuff_desc_table::parse_table_update(table_update)?),
     "environment_debuff_loop_timer" => db_update.environment_debuff_loop_timer.append(environment_debuff_loop_timer_table::parse_table_update(table_update)?),
     "equipment_desc" => db_update.equipment_desc.append(equipment_desc_table::parse_table_update(table_update)?),
+    "equipment_preset_knowledge_desc" => db_update.equipment_preset_knowledge_desc.append(equipment_preset_knowledge_desc_table::parse_table_update(table_update)?),
+    "equipment_preset_state" => db_update.equipment_preset_state.append(equipment_preset_state_table::parse_table_update(table_update)?),
     "equipment_state" => db_update.equipment_state.append(equipment_state_table::parse_table_update(table_update)?),
     "experience_state" => db_update.experience_state.append(experience_state_table::parse_table_update(table_update)?),
     "exploration_chunks_state" => db_update.exploration_chunks_state.append(exploration_chunks_state_table::parse_table_update(table_update)?),
+    "exposed_breadcrumbs" => db_update.exposed_breadcrumbs.append(exposed_breadcrumbs_table::parse_table_update(table_update)?),
     "extract_outcome_state" => db_update.extract_outcome_state.append(extract_outcome_state_table::parse_table_update(table_update)?),
+    "extract_outcome_state_v1" => db_update.extract_outcome_state_v_1.append(extract_outcome_state_v_1_table::parse_table_update(table_update)?),
     "extraction_recipe_desc" => db_update.extraction_recipe_desc.append(extraction_recipe_desc_table::parse_table_update(table_update)?),
     "food_desc" => db_update.food_desc.append(food_desc_table::parse_table_update(table_update)?),
     "footprint_tile_state" => db_update.footprint_tile_state.append(footprint_tile_state_table::parse_table_update(table_update)?),
     "force_generate_types" => db_update.force_generate_types.append(force_generate_types_table::parse_table_update(table_update)?),
     "gate_desc" => db_update.gate_desc.append(gate_desc_table::parse_table_update(table_update)?),
+    "gated_features" => db_update.gated_features.append(gated_features_table::parse_table_update(table_update)?),
     "global_search_state" => db_update.global_search_state.append(global_search_state_table::parse_table_update(table_update)?),
     "globals" => db_update.globals.append(globals_table::parse_table_update(table_update)?),
     "growth_loop_timer" => db_update.growth_loop_timer.append(growth_loop_timer_table::parse_table_update(table_update)?),
@@ -9575,6 +9681,7 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "inter_module_message" => db_update.inter_module_message.append(inter_module_message_table::parse_table_update(table_update)?),
     "inter_module_message_counter" => db_update.inter_module_message_counter.append(inter_module_message_counter_table::parse_table_update(table_update)?),
     "inter_module_message_errors" => db_update.inter_module_message_errors.append(inter_module_message_errors_table::parse_table_update(table_update)?),
+    "inter_module_message_v2" => db_update.inter_module_message_v_2.append(inter_module_message_v_2_table::parse_table_update(table_update)?),
     "inter_module_response_message_counter" => db_update.inter_module_response_message_counter.append(inter_module_response_message_counter_table::parse_table_update(table_update)?),
     "interior_collapse_trigger_state" => db_update.interior_collapse_trigger_state.append(interior_collapse_trigger_state_table::parse_table_update(table_update)?),
     "interior_environment_desc" => db_update.interior_environment_desc.append(interior_environment_desc_table::parse_table_update(table_update)?),
@@ -9688,6 +9795,7 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "progressive_action_state" => db_update.progressive_action_state.append(progressive_action_state_table::parse_table_update(table_update)?),
     "project_site_state" => db_update.project_site_state.append(project_site_state_table::parse_table_update(table_update)?),
     "prospecting_desc" => db_update.prospecting_desc.append(prospecting_desc_table::parse_table_update(table_update)?),
+    "prospecting_participants" => db_update.prospecting_participants.append(prospecting_participants_table::parse_table_update(table_update)?),
     "prospecting_state" => db_update.prospecting_state.append(prospecting_state_table::parse_table_update(table_update)?),
     "public_progressive_action_state" => db_update.public_progressive_action_state.append(public_progressive_action_state_table::parse_table_update(table_update)?),
     "quest_chain_desc" => db_update.quest_chain_desc.append(quest_chain_desc_table::parse_table_update(table_update)?),
@@ -9772,6 +9880,7 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "staged_enemy_scaling_desc" => db_update.staged_enemy_scaling_desc.append(staged_enemy_scaling_desc_table::parse_table_update(table_update)?),
     "staged_environment_debuff_desc" => db_update.staged_environment_debuff_desc.append(staged_environment_debuff_desc_table::parse_table_update(table_update)?),
     "staged_equipment_desc" => db_update.staged_equipment_desc.append(staged_equipment_desc_table::parse_table_update(table_update)?),
+    "staged_equipment_preset_knowledge_desc" => db_update.staged_equipment_preset_knowledge_desc.append(staged_equipment_preset_knowledge_desc_table::parse_table_update(table_update)?),
     "staged_extraction_recipe_desc" => db_update.staged_extraction_recipe_desc.append(staged_extraction_recipe_desc_table::parse_table_update(table_update)?),
     "staged_food_desc" => db_update.staged_food_desc.append(staged_food_desc_table::parse_table_update(table_update)?),
     "staged_gate_desc" => db_update.staged_gate_desc.append(staged_gate_desc_table::parse_table_update(table_update)?),
@@ -10176,6 +10285,12 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.combat_dimension_state,
             )
             .with_updates_by_pk(|row| &row.dimension_id);
+        diff.combat_immunity_state = cache
+            .apply_diff_to_table::<CombatImmunityState>(
+                "combat_immunity_state",
+                &self.combat_immunity_state,
+            )
+            .with_updates_by_pk(|row| &row.entity_id);
         diff.combat_state = cache
             .apply_diff_to_table::<CombatState>("combat_state", &self.combat_state)
             .with_updates_by_pk(|row| &row.entity_id);
@@ -10254,6 +10369,12 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.crumb_trail_contribution_spent_state,
             )
             .with_updates_by_pk(|row| &row.entity_id);
+        diff.crumb_trail_exposed_state = cache
+            .apply_diff_to_table::<CrumbTrailExposedState>(
+                "crumb_trail_exposed_state",
+                &self.crumb_trail_exposed_state,
+            )
+            .with_updates_by_pk(|row| &row.crumb_trail_entity_id);
         diff.crumb_trail_state = cache
             .apply_diff_to_table::<CrumbTrailState>("crumb_trail_state", &self.crumb_trail_state)
             .with_updates_by_pk(|row| &row.entity_id);
@@ -10479,6 +10600,18 @@ impl __sdk::DbUpdate for DbUpdate {
         diff.equipment_desc = cache
             .apply_diff_to_table::<EquipmentDesc>("equipment_desc", &self.equipment_desc)
             .with_updates_by_pk(|row| &row.item_id);
+        diff.equipment_preset_knowledge_desc = cache
+            .apply_diff_to_table::<EquipmentPresetKnowledgeDesc>(
+                "equipment_preset_knowledge_desc",
+                &self.equipment_preset_knowledge_desc,
+            )
+            .with_updates_by_pk(|row| &row.knowledge_id);
+        diff.equipment_preset_state = cache
+            .apply_diff_to_table::<EquipmentPresetState>(
+                "equipment_preset_state",
+                &self.equipment_preset_state,
+            )
+            .with_updates_by_pk(|row| &row.entity_id);
         diff.equipment_state = cache
             .apply_diff_to_table::<EquipmentState>("equipment_state", &self.equipment_state)
             .with_updates_by_pk(|row| &row.entity_id);
@@ -10492,9 +10625,15 @@ impl __sdk::DbUpdate for DbUpdate {
             )
             .with_updates_by_pk(|row| &row.entity_id);
         diff.extract_outcome_state = cache
-            .apply_diff_to_table::<ExtractOutcomeState>(
+            .apply_diff_to_table::<ExtractOutcomeStateV2>(
                 "extract_outcome_state",
                 &self.extract_outcome_state,
+            )
+            .with_updates_by_pk(|row| &row.entity_id);
+        diff.extract_outcome_state_v_1 = cache
+            .apply_diff_to_table::<ExtractOutcomeState>(
+                "extract_outcome_state_v1",
+                &self.extract_outcome_state_v_1,
             )
             .with_updates_by_pk(|row| &row.entity_id);
         diff.extraction_recipe_desc = cache
@@ -10519,6 +10658,9 @@ impl __sdk::DbUpdate for DbUpdate {
         diff.gate_desc = cache
             .apply_diff_to_table::<GateDesc>("gate_desc", &self.gate_desc)
             .with_updates_by_pk(|row| &row.building_id);
+        diff.gated_features = cache
+            .apply_diff_to_table::<GatedFeature>("gated_features", &self.gated_features)
+            .with_updates_by_pk(|row| &row.feature);
         diff.global_search_state = cache
             .apply_diff_to_table::<GlobalSearchState>(
                 "global_search_state",
@@ -10573,6 +10715,12 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.inter_module_message_errors,
             )
             .with_updates_by_pk(|row| &row.sender_module_id);
+        diff.inter_module_message_v_2 = cache
+            .apply_diff_to_table::<InterModuleMessageV2>(
+                "inter_module_message_v2",
+                &self.inter_module_message_v_2,
+            )
+            .with_updates_by_pk(|row| &row.id);
         diff.inter_module_response_message_counter = cache
             .apply_diff_to_table::<InterModuleResponseMessageCounter>(
                 "inter_module_response_message_counter",
@@ -11570,6 +11718,12 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.staged_equipment_desc,
             )
             .with_updates_by_pk(|row| &row.item_id);
+        diff.staged_equipment_preset_knowledge_desc = cache
+            .apply_diff_to_table::<EquipmentPresetKnowledgeDesc>(
+                "staged_equipment_preset_knowledge_desc",
+                &self.staged_equipment_preset_knowledge_desc,
+            )
+            .with_updates_by_pk(|row| &row.knowledge_id);
         diff.staged_extraction_recipe_desc = cache
             .apply_diff_to_table::<ExtractionRecipeDesc>(
                 "staged_extraction_recipe_desc",
@@ -12071,6 +12225,14 @@ impl __sdk::DbUpdate for DbUpdate {
         diff.world_region_state = cache
             .apply_diff_to_table::<WorldRegionState>("world_region_state", &self.world_region_state)
             .with_updates_by_pk(|row| &row.id);
+        diff.exposed_breadcrumbs = cache.apply_diff_to_table::<CrumbTrailExposedState>(
+            "exposed_breadcrumbs",
+            &self.exposed_breadcrumbs,
+        );
+        diff.prospecting_participants = cache.apply_diff_to_table::<ProspectingParticipant>(
+            "prospecting_participants",
+            &self.prospecting_participants,
+        );
 
         diff
     }
@@ -12147,6 +12309,7 @@ pub struct AppliedDiff<'r> {
     combat_action_desc: __sdk::TableAppliedDiff<'r, CombatActionDesc>,
     combat_action_multi_hit_desc: __sdk::TableAppliedDiff<'r, CombatActionMultiHitDesc>,
     combat_dimension_state: __sdk::TableAppliedDiff<'r, CombatDimensionState>,
+    combat_immunity_state: __sdk::TableAppliedDiff<'r, CombatImmunityState>,
     combat_state: __sdk::TableAppliedDiff<'r, CombatState>,
     config: __sdk::TableAppliedDiff<'r, Config>,
     construction_recipe_desc: __sdk::TableAppliedDiff<'r, ConstructionRecipeDesc>,
@@ -12164,6 +12327,7 @@ pub struct AppliedDiff<'r> {
         __sdk::TableAppliedDiff<'r, CrumbTrailContributionLockState>,
     crumb_trail_contribution_spent_state:
         __sdk::TableAppliedDiff<'r, CrumbTrailContributionSpentState>,
+    crumb_trail_exposed_state: __sdk::TableAppliedDiff<'r, CrumbTrailExposedState>,
     crumb_trail_state: __sdk::TableAppliedDiff<'r, CrumbTrailState>,
     day_night_loop_timer: __sdk::TableAppliedDiff<'r, DayNightLoopTimer>,
     deconstruction_recipe_desc: __sdk::TableAppliedDiff<'r, DeconstructionRecipeDesc>,
@@ -12212,15 +12376,20 @@ pub struct AppliedDiff<'r> {
     environment_debuff_desc: __sdk::TableAppliedDiff<'r, EnvironmentDebuffDesc>,
     environment_debuff_loop_timer: __sdk::TableAppliedDiff<'r, EnvironmentDebuffLoopTimer>,
     equipment_desc: __sdk::TableAppliedDiff<'r, EquipmentDesc>,
+    equipment_preset_knowledge_desc: __sdk::TableAppliedDiff<'r, EquipmentPresetKnowledgeDesc>,
+    equipment_preset_state: __sdk::TableAppliedDiff<'r, EquipmentPresetState>,
     equipment_state: __sdk::TableAppliedDiff<'r, EquipmentState>,
     experience_state: __sdk::TableAppliedDiff<'r, ExperienceState>,
     exploration_chunks_state: __sdk::TableAppliedDiff<'r, ExplorationChunksState>,
-    extract_outcome_state: __sdk::TableAppliedDiff<'r, ExtractOutcomeState>,
+    exposed_breadcrumbs: __sdk::TableAppliedDiff<'r, CrumbTrailExposedState>,
+    extract_outcome_state: __sdk::TableAppliedDiff<'r, ExtractOutcomeStateV2>,
+    extract_outcome_state_v_1: __sdk::TableAppliedDiff<'r, ExtractOutcomeState>,
     extraction_recipe_desc: __sdk::TableAppliedDiff<'r, ExtractionRecipeDesc>,
     food_desc: __sdk::TableAppliedDiff<'r, FoodDesc>,
     footprint_tile_state: __sdk::TableAppliedDiff<'r, FootprintTileState>,
     force_generate_types: __sdk::TableAppliedDiff<'r, ForceGenerateTypes>,
     gate_desc: __sdk::TableAppliedDiff<'r, GateDesc>,
+    gated_features: __sdk::TableAppliedDiff<'r, GatedFeature>,
     global_search_state: __sdk::TableAppliedDiff<'r, GlobalSearchState>,
     globals: __sdk::TableAppliedDiff<'r, Globals>,
     growth_loop_timer: __sdk::TableAppliedDiff<'r, GrowthLoopTimer>,
@@ -12233,6 +12402,7 @@ pub struct AppliedDiff<'r> {
     inter_module_message: __sdk::TableAppliedDiff<'r, InterModuleMessage>,
     inter_module_message_counter: __sdk::TableAppliedDiff<'r, InterModuleMessageCounter>,
     inter_module_message_errors: __sdk::TableAppliedDiff<'r, InterModuleMessageErrors>,
+    inter_module_message_v_2: __sdk::TableAppliedDiff<'r, InterModuleMessageV2>,
     inter_module_response_message_counter:
         __sdk::TableAppliedDiff<'r, InterModuleResponseMessageCounter>,
     interior_collapse_trigger_state: __sdk::TableAppliedDiff<'r, InteriorCollapseTriggerState>,
@@ -12351,6 +12521,7 @@ pub struct AppliedDiff<'r> {
     progressive_action_state: __sdk::TableAppliedDiff<'r, ProgressiveActionState>,
     project_site_state: __sdk::TableAppliedDiff<'r, ProjectSiteState>,
     prospecting_desc: __sdk::TableAppliedDiff<'r, ProspectingDesc>,
+    prospecting_participants: __sdk::TableAppliedDiff<'r, ProspectingParticipant>,
     prospecting_state: __sdk::TableAppliedDiff<'r, ProspectingState>,
     public_progressive_action_state: __sdk::TableAppliedDiff<'r, PublicProgressiveActionState>,
     quest_chain_desc: __sdk::TableAppliedDiff<'r, QuestChainDesc>,
@@ -12438,6 +12609,8 @@ pub struct AppliedDiff<'r> {
     staged_enemy_scaling_desc: __sdk::TableAppliedDiff<'r, EnemyScalingDesc>,
     staged_environment_debuff_desc: __sdk::TableAppliedDiff<'r, EnvironmentDebuffDesc>,
     staged_equipment_desc: __sdk::TableAppliedDiff<'r, EquipmentDesc>,
+    staged_equipment_preset_knowledge_desc:
+        __sdk::TableAppliedDiff<'r, EquipmentPresetKnowledgeDesc>,
     staged_extraction_recipe_desc: __sdk::TableAppliedDiff<'r, ExtractionRecipeDesc>,
     staged_food_desc: __sdk::TableAppliedDiff<'r, FoodDesc>,
     staged_gate_desc: __sdk::TableAppliedDiff<'r, GateDesc>,
@@ -12850,6 +13023,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             &self.combat_dimension_state,
             event,
         );
+        callbacks.invoke_table_row_callbacks::<CombatImmunityState>(
+            "combat_immunity_state",
+            &self.combat_immunity_state,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<CombatState>(
             "combat_state",
             &self.combat_state,
@@ -12919,6 +13097,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<CrumbTrailContributionSpentState>(
             "crumb_trail_contribution_spent_state",
             &self.crumb_trail_contribution_spent_state,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<CrumbTrailExposedState>(
+            "crumb_trail_exposed_state",
+            &self.crumb_trail_exposed_state,
             event,
         );
         callbacks.invoke_table_row_callbacks::<CrumbTrailState>(
@@ -13141,6 +13324,16 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             &self.equipment_desc,
             event,
         );
+        callbacks.invoke_table_row_callbacks::<EquipmentPresetKnowledgeDesc>(
+            "equipment_preset_knowledge_desc",
+            &self.equipment_preset_knowledge_desc,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<EquipmentPresetState>(
+            "equipment_preset_state",
+            &self.equipment_preset_state,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<EquipmentState>(
             "equipment_state",
             &self.equipment_state,
@@ -13156,9 +13349,19 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             &self.exploration_chunks_state,
             event,
         );
-        callbacks.invoke_table_row_callbacks::<ExtractOutcomeState>(
+        callbacks.invoke_table_row_callbacks::<CrumbTrailExposedState>(
+            "exposed_breadcrumbs",
+            &self.exposed_breadcrumbs,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<ExtractOutcomeStateV2>(
             "extract_outcome_state",
             &self.extract_outcome_state,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<ExtractOutcomeState>(
+            "extract_outcome_state_v1",
+            &self.extract_outcome_state_v_1,
             event,
         );
         callbacks.invoke_table_row_callbacks::<ExtractionRecipeDesc>(
@@ -13178,6 +13381,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             event,
         );
         callbacks.invoke_table_row_callbacks::<GateDesc>("gate_desc", &self.gate_desc, event);
+        callbacks.invoke_table_row_callbacks::<GatedFeature>(
+            "gated_features",
+            &self.gated_features,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<GlobalSearchState>(
             "global_search_state",
             &self.global_search_state,
@@ -13228,6 +13436,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<InterModuleMessageErrors>(
             "inter_module_message_errors",
             &self.inter_module_message_errors,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<InterModuleMessageV2>(
+            "inter_module_message_v2",
+            &self.inter_module_message_v_2,
             event,
         );
         callbacks.invoke_table_row_callbacks::<InterModuleResponseMessageCounter>(
@@ -13783,6 +13996,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             &self.prospecting_desc,
             event,
         );
+        callbacks.invoke_table_row_callbacks::<ProspectingParticipant>(
+            "prospecting_participants",
+            &self.prospecting_participants,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<ProspectingState>(
             "prospecting_state",
             &self.prospecting_state,
@@ -14193,6 +14411,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<EquipmentDesc>(
             "staged_equipment_desc",
             &self.staged_equipment_desc,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<EquipmentPresetKnowledgeDesc>(
+            "staged_equipment_preset_knowledge_desc",
+            &self.staged_equipment_preset_knowledge_desc,
             event,
         );
         callbacks.invoke_table_row_callbacks::<ExtractionRecipeDesc>(
@@ -15450,6 +15673,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         combat_action_desc_table::register_table(client_cache);
         combat_action_multi_hit_desc_table::register_table(client_cache);
         combat_dimension_state_table::register_table(client_cache);
+        combat_immunity_state_table::register_table(client_cache);
         combat_state_table::register_table(client_cache);
         config_table::register_table(client_cache);
         construction_recipe_desc_table::register_table(client_cache);
@@ -15465,6 +15689,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         crumb_tail_cleanup_timer_table::register_table(client_cache);
         crumb_trail_contribution_lock_state_table::register_table(client_cache);
         crumb_trail_contribution_spent_state_table::register_table(client_cache);
+        crumb_trail_exposed_state_table::register_table(client_cache);
         crumb_trail_state_table::register_table(client_cache);
         day_night_loop_timer_table::register_table(client_cache);
         deconstruction_recipe_desc_table::register_table(client_cache);
@@ -15513,15 +15738,20 @@ impl __sdk::SpacetimeModule for RemoteModule {
         environment_debuff_desc_table::register_table(client_cache);
         environment_debuff_loop_timer_table::register_table(client_cache);
         equipment_desc_table::register_table(client_cache);
+        equipment_preset_knowledge_desc_table::register_table(client_cache);
+        equipment_preset_state_table::register_table(client_cache);
         equipment_state_table::register_table(client_cache);
         experience_state_table::register_table(client_cache);
         exploration_chunks_state_table::register_table(client_cache);
+        exposed_breadcrumbs_table::register_table(client_cache);
         extract_outcome_state_table::register_table(client_cache);
+        extract_outcome_state_v_1_table::register_table(client_cache);
         extraction_recipe_desc_table::register_table(client_cache);
         food_desc_table::register_table(client_cache);
         footprint_tile_state_table::register_table(client_cache);
         force_generate_types_table::register_table(client_cache);
         gate_desc_table::register_table(client_cache);
+        gated_features_table::register_table(client_cache);
         global_search_state_table::register_table(client_cache);
         globals_table::register_table(client_cache);
         growth_loop_timer_table::register_table(client_cache);
@@ -15534,6 +15764,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         inter_module_message_table::register_table(client_cache);
         inter_module_message_counter_table::register_table(client_cache);
         inter_module_message_errors_table::register_table(client_cache);
+        inter_module_message_v_2_table::register_table(client_cache);
         inter_module_response_message_counter_table::register_table(client_cache);
         interior_collapse_trigger_state_table::register_table(client_cache);
         interior_environment_desc_table::register_table(client_cache);
@@ -15647,6 +15878,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         progressive_action_state_table::register_table(client_cache);
         project_site_state_table::register_table(client_cache);
         prospecting_desc_table::register_table(client_cache);
+        prospecting_participants_table::register_table(client_cache);
         prospecting_state_table::register_table(client_cache);
         public_progressive_action_state_table::register_table(client_cache);
         quest_chain_desc_table::register_table(client_cache);
@@ -15731,6 +15963,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         staged_enemy_scaling_desc_table::register_table(client_cache);
         staged_environment_debuff_desc_table::register_table(client_cache);
         staged_equipment_desc_table::register_table(client_cache);
+        staged_equipment_preset_knowledge_desc_table::register_table(client_cache);
         staged_extraction_recipe_desc_table::register_table(client_cache);
         staged_food_desc_table::register_table(client_cache);
         staged_gate_desc_table::register_table(client_cache);

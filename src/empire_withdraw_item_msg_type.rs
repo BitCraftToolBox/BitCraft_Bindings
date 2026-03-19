@@ -4,15 +4,15 @@
 #![allow(unused, clippy::all)]
 use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
-use super::pocket_key_type::PocketKey;
-
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
-pub struct PlayerEquipmentAddRequest {
-    pub from_pocket: Option<PocketKey>,
-    pub preset_index: i32,
+pub struct EmpireWithdrawItemMsg {
+    pub player_entity_id: u64,
+    pub item_id: i32,
+    pub is_cargo: bool,
+    pub count: u32,
 }
 
-impl __sdk::InModule for PlayerEquipmentAddRequest {
+impl __sdk::InModule for EmpireWithdrawItemMsg {
     type Module = super::RemoteModule;
 }
