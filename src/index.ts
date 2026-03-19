@@ -94,6 +94,8 @@ import { AdminPopulateEmpireNames } from "./admin_populate_empire_names_reducer.
 export { AdminPopulateEmpireNames };
 import { AdminPopulatePlayerSkills } from "./admin_populate_player_skills_reducer.ts";
 export { AdminPopulatePlayerSkills };
+import { AdminPushEmpireRanksToRegions } from "./admin_push_empire_ranks_to_regions_reducer.ts";
+export { AdminPushEmpireRanksToRegions };
 import { AdminRecalculateEmpireUpkeeps } from "./admin_recalculate_empire_upkeeps_reducer.ts";
 export { AdminRecalculateEmpireUpkeeps };
 import { AdminRemoveFlaggedWord } from "./admin_remove_flagged_word_reducer.ts";
@@ -138,8 +140,6 @@ import { AdminUnassignEmpireChunks } from "./admin_unassign_empire_chunks_reduce
 export { AdminUnassignEmpireChunks };
 import { AdminUpdateEmpireRanks } from "./admin_update_empire_ranks_reducer.ts";
 export { AdminUpdateEmpireRanks };
-import { AdminUpdateEmpireRanks2 } from "./admin_update_empire_ranks_2_reducer.ts";
-export { AdminUpdateEmpireRanks2 };
 import { AdminUpdateGrantedHubItemState } from "./admin_update_granted_hub_item_state_reducer.ts";
 export { AdminUpdateGrantedHubItemState };
 import { AdminUpdateModerationEnforcementConfig } from "./admin_update_moderation_enforcement_config_reducer.ts";
@@ -6537,6 +6537,10 @@ const REMOTE_MODULE = {
       reducerName: "admin_populate_player_skills",
       argsType: AdminPopulatePlayerSkills.getTypeScriptAlgebraicType(),
     },
+    admin_push_empire_ranks_to_regions: {
+      reducerName: "admin_push_empire_ranks_to_regions",
+      argsType: AdminPushEmpireRanksToRegions.getTypeScriptAlgebraicType(),
+    },
     admin_recalculate_empire_upkeeps: {
       reducerName: "admin_recalculate_empire_upkeeps",
       argsType: AdminRecalculateEmpireUpkeeps.getTypeScriptAlgebraicType(),
@@ -6624,10 +6628,6 @@ const REMOTE_MODULE = {
     admin_update_empire_ranks: {
       reducerName: "admin_update_empire_ranks",
       argsType: AdminUpdateEmpireRanks.getTypeScriptAlgebraicType(),
-    },
-    admin_update_empire_ranks2: {
-      reducerName: "admin_update_empire_ranks2",
-      argsType: AdminUpdateEmpireRanks2.getTypeScriptAlgebraicType(),
     },
     admin_update_granted_hub_item_state: {
       reducerName: "admin_update_granted_hub_item_state",
@@ -8053,6 +8053,7 @@ export type Reducer = never
 | { name: "AdminNotifyPlayerByIdentity", args: AdminNotifyPlayerByIdentity }
 | { name: "AdminPopulateEmpireNames", args: AdminPopulateEmpireNames }
 | { name: "AdminPopulatePlayerSkills", args: AdminPopulatePlayerSkills }
+| { name: "AdminPushEmpireRanksToRegions", args: AdminPushEmpireRanksToRegions }
 | { name: "AdminRecalculateEmpireUpkeeps", args: AdminRecalculateEmpireUpkeeps }
 | { name: "AdminRemoveFlaggedWord", args: AdminRemoveFlaggedWord }
 | { name: "AdminRemoveModerationConsequence", args: AdminRemoveModerationConsequence }
@@ -8075,7 +8076,6 @@ export type Reducer = never
 | { name: "AdminSkipQueueName", args: AdminSkipQueueName }
 | { name: "AdminUnassignEmpireChunks", args: AdminUnassignEmpireChunks }
 | { name: "AdminUpdateEmpireRanks", args: AdminUpdateEmpireRanks }
-| { name: "AdminUpdateEmpireRanks2", args: AdminUpdateEmpireRanks2 }
 | { name: "AdminUpdateGrantedHubItemState", args: AdminUpdateGrantedHubItemState }
 | { name: "AdminUpdateModerationEnforcementConfig", args: AdminUpdateModerationEnforcementConfig }
 | { name: "AdminUpdateReportModerationConfig", args: AdminUpdateReportModerationConfig }
@@ -8898,6 +8898,18 @@ export class RemoteReducers {
     this.connection.offReducer("admin_populate_player_skills", callback);
   }
 
+  adminPushEmpireRanksToRegions() {
+    this.connection.callReducer("admin_push_empire_ranks_to_regions", new Uint8Array(0), this.setCallReducerFlags.adminPushEmpireRanksToRegionsFlags);
+  }
+
+  onAdminPushEmpireRanksToRegions(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.onReducer("admin_push_empire_ranks_to_regions", callback);
+  }
+
+  removeOnAdminPushEmpireRanksToRegions(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.offReducer("admin_push_empire_ranks_to_regions", callback);
+  }
+
   adminRecalculateEmpireUpkeeps() {
     this.connection.callReducer("admin_recalculate_empire_upkeeps", new Uint8Array(0), this.setCallReducerFlags.adminRecalculateEmpireUpkeepsFlags);
   }
@@ -9240,18 +9252,6 @@ export class RemoteReducers {
 
   removeOnAdminUpdateEmpireRanks(callback: (ctx: ReducerEventContext) => void) {
     this.connection.offReducer("admin_update_empire_ranks", callback);
-  }
-
-  adminUpdateEmpireRanks2() {
-    this.connection.callReducer("admin_update_empire_ranks2", new Uint8Array(0), this.setCallReducerFlags.adminUpdateEmpireRanks2Flags);
-  }
-
-  onAdminUpdateEmpireRanks2(callback: (ctx: ReducerEventContext) => void) {
-    this.connection.onReducer("admin_update_empire_ranks2", callback);
-  }
-
-  removeOnAdminUpdateEmpireRanks2(callback: (ctx: ReducerEventContext) => void) {
-    this.connection.offReducer("admin_update_empire_ranks2", callback);
   }
 
   adminUpdateGrantedHubItemState(identity: Identity, itemType: HubItemType, itemId: number, balance: number) {
@@ -14803,6 +14803,11 @@ export class SetReducerFlags {
     this.adminPopulatePlayerSkillsFlags = flags;
   }
 
+  adminPushEmpireRanksToRegionsFlags: CallReducerFlags = 'FullUpdate';
+  adminPushEmpireRanksToRegions(flags: CallReducerFlags) {
+    this.adminPushEmpireRanksToRegionsFlags = flags;
+  }
+
   adminRecalculateEmpireUpkeepsFlags: CallReducerFlags = 'FullUpdate';
   adminRecalculateEmpireUpkeeps(flags: CallReducerFlags) {
     this.adminRecalculateEmpireUpkeepsFlags = flags;
@@ -14911,11 +14916,6 @@ export class SetReducerFlags {
   adminUpdateEmpireRanksFlags: CallReducerFlags = 'FullUpdate';
   adminUpdateEmpireRanks(flags: CallReducerFlags) {
     this.adminUpdateEmpireRanksFlags = flags;
-  }
-
-  adminUpdateEmpireRanks2Flags: CallReducerFlags = 'FullUpdate';
-  adminUpdateEmpireRanks2(flags: CallReducerFlags) {
-    this.adminUpdateEmpireRanks2Flags = flags;
   }
 
   adminUpdateGrantedHubItemStateFlags: CallReducerFlags = 'FullUpdate';

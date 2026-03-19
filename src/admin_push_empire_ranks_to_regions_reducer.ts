@@ -33,12 +33,12 @@ import {
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
 
-export type AdminUpdateEmpireRanks2 = {};
+export type AdminPushEmpireRanksToRegions = {};
 
 /**
  * A namespace for generated helper functions.
  */
-export namespace AdminUpdateEmpireRanks2 {
+export namespace AdminPushEmpireRanksToRegions {
   /**
   * A function which returns this type represented as an AlgebraicType.
   * This function is derived from the AlgebraicType used to generate this type.
@@ -48,12 +48,12 @@ export namespace AdminUpdateEmpireRanks2 {
     ]);
   }
 
-  export function serialize(writer: BinaryWriter, value: AdminUpdateEmpireRanks2): void {
-    AdminUpdateEmpireRanks2.getTypeScriptAlgebraicType().serialize(writer, value);
+  export function serialize(writer: BinaryWriter, value: AdminPushEmpireRanksToRegions): void {
+    AdminPushEmpireRanksToRegions.getTypeScriptAlgebraicType().serialize(writer, value);
   }
 
-  export function deserialize(reader: BinaryReader): AdminUpdateEmpireRanks2 {
-    return AdminUpdateEmpireRanks2.getTypeScriptAlgebraicType().deserialize(reader);
+  export function deserialize(reader: BinaryReader): AdminPushEmpireRanksToRegions {
+    return AdminPushEmpireRanksToRegions.getTypeScriptAlgebraicType().deserialize(reader);
   }
 
 }
