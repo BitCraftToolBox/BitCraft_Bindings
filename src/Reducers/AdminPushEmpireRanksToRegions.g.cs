@@ -13,17 +13,17 @@ namespace BitCraftGlobal.Types
 {
     public sealed partial class RemoteReducers : RemoteBase
     {
-        public delegate void AdminUpdateEmpireRanks2Handler(ReducerEventContext ctx);
-        public event AdminUpdateEmpireRanks2Handler? OnAdminUpdateEmpireRanks2;
+        public delegate void AdminPushEmpireRanksToRegionsHandler(ReducerEventContext ctx);
+        public event AdminPushEmpireRanksToRegionsHandler? OnAdminPushEmpireRanksToRegions;
 
-        public void AdminUpdateEmpireRanks2()
+        public void AdminPushEmpireRanksToRegions()
         {
-            conn.InternalCallReducer(new Reducer.AdminUpdateEmpireRanks2(), this.SetCallReducerFlags.AdminUpdateEmpireRanks2Flags);
+            conn.InternalCallReducer(new Reducer.AdminPushEmpireRanksToRegions(), this.SetCallReducerFlags.AdminPushEmpireRanksToRegionsFlags);
         }
 
-        public bool InvokeAdminUpdateEmpireRanks2(ReducerEventContext ctx, Reducer.AdminUpdateEmpireRanks2 args)
+        public bool InvokeAdminPushEmpireRanksToRegions(ReducerEventContext ctx, Reducer.AdminPushEmpireRanksToRegions args)
         {
-            if (OnAdminUpdateEmpireRanks2 == null)
+            if (OnAdminPushEmpireRanksToRegions == null)
             {
                 if (InternalOnUnhandledReducerError != null)
                 {
@@ -35,7 +35,7 @@ namespace BitCraftGlobal.Types
                 }
                 return false;
             }
-            OnAdminUpdateEmpireRanks2(
+            OnAdminPushEmpireRanksToRegions(
                 ctx
             );
             return true;
@@ -46,15 +46,15 @@ namespace BitCraftGlobal.Types
     {
         [SpacetimeDB.Type]
         [DataContract]
-        public sealed partial class AdminUpdateEmpireRanks2 : Reducer, IReducerArgs
+        public sealed partial class AdminPushEmpireRanksToRegions : Reducer, IReducerArgs
         {
-            string IReducerArgs.ReducerName => "admin_update_empire_ranks2";
+            string IReducerArgs.ReducerName => "admin_push_empire_ranks_to_regions";
         }
     }
 
     public sealed partial class SetReducerFlags
     {
-        internal CallReducerFlags AdminUpdateEmpireRanks2Flags;
-        public void AdminUpdateEmpireRanks2(CallReducerFlags flags) => AdminUpdateEmpireRanks2Flags = flags;
+        internal CallReducerFlags AdminPushEmpireRanksToRegionsFlags;
+        public void AdminPushEmpireRanksToRegions(CallReducerFlags flags) => AdminPushEmpireRanksToRegionsFlags = flags;
     }
 }
