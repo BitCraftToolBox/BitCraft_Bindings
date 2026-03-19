@@ -92,6 +92,34 @@ export namespace CharacterStatType {
   export type MaxTeleportationEnergy = { tag: "MaxTeleportationEnergy" };
   export type TeleportationEnergyRegenRate = { tag: "TeleportationEnergyRegenRate" };
   export type ConstructionPower = { tag: "ConstructionPower" };
+  export type ForestryCritChance = { tag: "ForestryCritChance" };
+  export type CarpentryCritChance = { tag: "CarpentryCritChance" };
+  export type MasonryCritChance = { tag: "MasonryCritChance" };
+  export type MiningCritChance = { tag: "MiningCritChance" };
+  export type SmithingCritChance = { tag: "SmithingCritChance" };
+  export type ScholarCritChance = { tag: "ScholarCritChance" };
+  export type LeatherworkingCritChance = { tag: "LeatherworkingCritChance" };
+  export type HuntingCritChance = { tag: "HuntingCritChance" };
+  export type TailoringCritChance = { tag: "TailoringCritChance" };
+  export type FarmingCritChance = { tag: "FarmingCritChance" };
+  export type FishingCritChance = { tag: "FishingCritChance" };
+  export type ForagingCritChance = { tag: "ForagingCritChance" };
+  export type ForestryCritMultiplier = { tag: "ForestryCritMultiplier" };
+  export type CarpentryCritMultiplier = { tag: "CarpentryCritMultiplier" };
+  export type MasonryCritMultiplier = { tag: "MasonryCritMultiplier" };
+  export type MiningCritMultiplier = { tag: "MiningCritMultiplier" };
+  export type SmithingCritMultiplier = { tag: "SmithingCritMultiplier" };
+  export type ScholarCritMultiplier = { tag: "ScholarCritMultiplier" };
+  export type LeatherworkingCritMultiplier = { tag: "LeatherworkingCritMultiplier" };
+  export type HuntingCritMultiplier = { tag: "HuntingCritMultiplier" };
+  export type TailoringCritMultiplier = { tag: "TailoringCritMultiplier" };
+  export type FarmingCritMultiplier = { tag: "FarmingCritMultiplier" };
+  export type FishingCritMultiplier = { tag: "FishingCritMultiplier" };
+  export type ForagingCritMultiplier = { tag: "ForagingCritMultiplier" };
+  export type HexiteGatheringPower = { tag: "HexiteGatheringPower" };
+  export type HexiteGatheringSpeed = { tag: "HexiteGatheringSpeed" };
+  export type HexiteGatheringCritChance = { tag: "HexiteGatheringCritChance" };
+  export type HexiteGatheringCritMultiplier = { tag: "HexiteGatheringCritMultiplier" };
 
   // Helper functions for constructing each variant of the tagged union.
   // ```
@@ -154,6 +182,34 @@ export namespace CharacterStatType {
   export const MaxTeleportationEnergy = { tag: "MaxTeleportationEnergy" };
   export const TeleportationEnergyRegenRate = { tag: "TeleportationEnergyRegenRate" };
   export const ConstructionPower = { tag: "ConstructionPower" };
+  export const ForestryCritChance = { tag: "ForestryCritChance" };
+  export const CarpentryCritChance = { tag: "CarpentryCritChance" };
+  export const MasonryCritChance = { tag: "MasonryCritChance" };
+  export const MiningCritChance = { tag: "MiningCritChance" };
+  export const SmithingCritChance = { tag: "SmithingCritChance" };
+  export const ScholarCritChance = { tag: "ScholarCritChance" };
+  export const LeatherworkingCritChance = { tag: "LeatherworkingCritChance" };
+  export const HuntingCritChance = { tag: "HuntingCritChance" };
+  export const TailoringCritChance = { tag: "TailoringCritChance" };
+  export const FarmingCritChance = { tag: "FarmingCritChance" };
+  export const FishingCritChance = { tag: "FishingCritChance" };
+  export const ForagingCritChance = { tag: "ForagingCritChance" };
+  export const ForestryCritMultiplier = { tag: "ForestryCritMultiplier" };
+  export const CarpentryCritMultiplier = { tag: "CarpentryCritMultiplier" };
+  export const MasonryCritMultiplier = { tag: "MasonryCritMultiplier" };
+  export const MiningCritMultiplier = { tag: "MiningCritMultiplier" };
+  export const SmithingCritMultiplier = { tag: "SmithingCritMultiplier" };
+  export const ScholarCritMultiplier = { tag: "ScholarCritMultiplier" };
+  export const LeatherworkingCritMultiplier = { tag: "LeatherworkingCritMultiplier" };
+  export const HuntingCritMultiplier = { tag: "HuntingCritMultiplier" };
+  export const TailoringCritMultiplier = { tag: "TailoringCritMultiplier" };
+  export const FarmingCritMultiplier = { tag: "FarmingCritMultiplier" };
+  export const FishingCritMultiplier = { tag: "FishingCritMultiplier" };
+  export const ForagingCritMultiplier = { tag: "ForagingCritMultiplier" };
+  export const HexiteGatheringPower = { tag: "HexiteGatheringPower" };
+  export const HexiteGatheringSpeed = { tag: "HexiteGatheringSpeed" };
+  export const HexiteGatheringCritChance = { tag: "HexiteGatheringCritChance" };
+  export const HexiteGatheringCritMultiplier = { tag: "HexiteGatheringCritMultiplier" };
 
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createSumType([
@@ -212,6 +268,34 @@ export namespace CharacterStatType {
       new SumTypeVariant("MaxTeleportationEnergy", AlgebraicType.createProductType([])),
       new SumTypeVariant("TeleportationEnergyRegenRate", AlgebraicType.createProductType([])),
       new SumTypeVariant("ConstructionPower", AlgebraicType.createProductType([])),
+      new SumTypeVariant("ForestryCritChance", AlgebraicType.createProductType([])),
+      new SumTypeVariant("CarpentryCritChance", AlgebraicType.createProductType([])),
+      new SumTypeVariant("MasonryCritChance", AlgebraicType.createProductType([])),
+      new SumTypeVariant("MiningCritChance", AlgebraicType.createProductType([])),
+      new SumTypeVariant("SmithingCritChance", AlgebraicType.createProductType([])),
+      new SumTypeVariant("ScholarCritChance", AlgebraicType.createProductType([])),
+      new SumTypeVariant("LeatherworkingCritChance", AlgebraicType.createProductType([])),
+      new SumTypeVariant("HuntingCritChance", AlgebraicType.createProductType([])),
+      new SumTypeVariant("TailoringCritChance", AlgebraicType.createProductType([])),
+      new SumTypeVariant("FarmingCritChance", AlgebraicType.createProductType([])),
+      new SumTypeVariant("FishingCritChance", AlgebraicType.createProductType([])),
+      new SumTypeVariant("ForagingCritChance", AlgebraicType.createProductType([])),
+      new SumTypeVariant("ForestryCritMultiplier", AlgebraicType.createProductType([])),
+      new SumTypeVariant("CarpentryCritMultiplier", AlgebraicType.createProductType([])),
+      new SumTypeVariant("MasonryCritMultiplier", AlgebraicType.createProductType([])),
+      new SumTypeVariant("MiningCritMultiplier", AlgebraicType.createProductType([])),
+      new SumTypeVariant("SmithingCritMultiplier", AlgebraicType.createProductType([])),
+      new SumTypeVariant("ScholarCritMultiplier", AlgebraicType.createProductType([])),
+      new SumTypeVariant("LeatherworkingCritMultiplier", AlgebraicType.createProductType([])),
+      new SumTypeVariant("HuntingCritMultiplier", AlgebraicType.createProductType([])),
+      new SumTypeVariant("TailoringCritMultiplier", AlgebraicType.createProductType([])),
+      new SumTypeVariant("FarmingCritMultiplier", AlgebraicType.createProductType([])),
+      new SumTypeVariant("FishingCritMultiplier", AlgebraicType.createProductType([])),
+      new SumTypeVariant("ForagingCritMultiplier", AlgebraicType.createProductType([])),
+      new SumTypeVariant("HexiteGatheringPower", AlgebraicType.createProductType([])),
+      new SumTypeVariant("HexiteGatheringSpeed", AlgebraicType.createProductType([])),
+      new SumTypeVariant("HexiteGatheringCritChance", AlgebraicType.createProductType([])),
+      new SumTypeVariant("HexiteGatheringCritMultiplier", AlgebraicType.createProductType([])),
     ]);
   }
 
@@ -226,7 +310,7 @@ export namespace CharacterStatType {
 }
 
 // The tagged union or sum type for the algebraic type `CharacterStatType`.
-export type CharacterStatType = CharacterStatType.MaxHealth | CharacterStatType.MaxStamina | CharacterStatType.PassiveHealthRegenRate | CharacterStatType.PassiveStaminaRegenRate | CharacterStatType.MovementMultiplier | CharacterStatType.SprintMultiplier | CharacterStatType.SprintStaminaDrain | CharacterStatType.Armor | CharacterStatType.CooldownMultiplier | CharacterStatType.HuntingWeaponPower | CharacterStatType.Strength | CharacterStatType.ColdProtection | CharacterStatType.HeatProtection | CharacterStatType.Evasion | CharacterStatType.ToolbeltSlots | CharacterStatType.CraftingSpeed | CharacterStatType.GatheringSpeed | CharacterStatType.BuildingSpeed | CharacterStatType.SatiationRegenRate | CharacterStatType.MaxSatiation | CharacterStatType.DefenseLevel | CharacterStatType.ForestrySpeed | CharacterStatType.CarpentrySpeed | CharacterStatType.MasonrySpeed | CharacterStatType.MiningSpeed | CharacterStatType.SmithingSpeed | CharacterStatType.ScholarSpeed | CharacterStatType.LeatherworkingSpeed | CharacterStatType.HuntingSpeed | CharacterStatType.TailoringSpeed | CharacterStatType.FarmingSpeed | CharacterStatType.FishingSpeed | CharacterStatType.CookingSpeed | CharacterStatType.ForagingSpeed | CharacterStatType.ForestryPower | CharacterStatType.CarpentryPower | CharacterStatType.MasonryPower | CharacterStatType.MiningPower | CharacterStatType.SmithingPower | CharacterStatType.ScholarPower | CharacterStatType.LeatherworkingPower | CharacterStatType.HuntingPower | CharacterStatType.TailoringPower | CharacterStatType.FarmingPower | CharacterStatType.FishingPower | CharacterStatType.CookingPower | CharacterStatType.ForagingPower | CharacterStatType.ActiveHealthRegenRate | CharacterStatType.ActiveStaminaRegenRate | CharacterStatType.ClimbProficiency | CharacterStatType.ExperienceRate | CharacterStatType.Accuracy | CharacterStatType.MaxTeleportationEnergy | CharacterStatType.TeleportationEnergyRegenRate | CharacterStatType.ConstructionPower;
+export type CharacterStatType = CharacterStatType.MaxHealth | CharacterStatType.MaxStamina | CharacterStatType.PassiveHealthRegenRate | CharacterStatType.PassiveStaminaRegenRate | CharacterStatType.MovementMultiplier | CharacterStatType.SprintMultiplier | CharacterStatType.SprintStaminaDrain | CharacterStatType.Armor | CharacterStatType.CooldownMultiplier | CharacterStatType.HuntingWeaponPower | CharacterStatType.Strength | CharacterStatType.ColdProtection | CharacterStatType.HeatProtection | CharacterStatType.Evasion | CharacterStatType.ToolbeltSlots | CharacterStatType.CraftingSpeed | CharacterStatType.GatheringSpeed | CharacterStatType.BuildingSpeed | CharacterStatType.SatiationRegenRate | CharacterStatType.MaxSatiation | CharacterStatType.DefenseLevel | CharacterStatType.ForestrySpeed | CharacterStatType.CarpentrySpeed | CharacterStatType.MasonrySpeed | CharacterStatType.MiningSpeed | CharacterStatType.SmithingSpeed | CharacterStatType.ScholarSpeed | CharacterStatType.LeatherworkingSpeed | CharacterStatType.HuntingSpeed | CharacterStatType.TailoringSpeed | CharacterStatType.FarmingSpeed | CharacterStatType.FishingSpeed | CharacterStatType.CookingSpeed | CharacterStatType.ForagingSpeed | CharacterStatType.ForestryPower | CharacterStatType.CarpentryPower | CharacterStatType.MasonryPower | CharacterStatType.MiningPower | CharacterStatType.SmithingPower | CharacterStatType.ScholarPower | CharacterStatType.LeatherworkingPower | CharacterStatType.HuntingPower | CharacterStatType.TailoringPower | CharacterStatType.FarmingPower | CharacterStatType.FishingPower | CharacterStatType.CookingPower | CharacterStatType.ForagingPower | CharacterStatType.ActiveHealthRegenRate | CharacterStatType.ActiveStaminaRegenRate | CharacterStatType.ClimbProficiency | CharacterStatType.ExperienceRate | CharacterStatType.Accuracy | CharacterStatType.MaxTeleportationEnergy | CharacterStatType.TeleportationEnergyRegenRate | CharacterStatType.ConstructionPower | CharacterStatType.ForestryCritChance | CharacterStatType.CarpentryCritChance | CharacterStatType.MasonryCritChance | CharacterStatType.MiningCritChance | CharacterStatType.SmithingCritChance | CharacterStatType.ScholarCritChance | CharacterStatType.LeatherworkingCritChance | CharacterStatType.HuntingCritChance | CharacterStatType.TailoringCritChance | CharacterStatType.FarmingCritChance | CharacterStatType.FishingCritChance | CharacterStatType.ForagingCritChance | CharacterStatType.ForestryCritMultiplier | CharacterStatType.CarpentryCritMultiplier | CharacterStatType.MasonryCritMultiplier | CharacterStatType.MiningCritMultiplier | CharacterStatType.SmithingCritMultiplier | CharacterStatType.ScholarCritMultiplier | CharacterStatType.LeatherworkingCritMultiplier | CharacterStatType.HuntingCritMultiplier | CharacterStatType.TailoringCritMultiplier | CharacterStatType.FarmingCritMultiplier | CharacterStatType.FishingCritMultiplier | CharacterStatType.ForagingCritMultiplier | CharacterStatType.HexiteGatheringPower | CharacterStatType.HexiteGatheringSpeed | CharacterStatType.HexiteGatheringCritChance | CharacterStatType.HexiteGatheringCritMultiplier;
 
 export default CharacterStatType;
 

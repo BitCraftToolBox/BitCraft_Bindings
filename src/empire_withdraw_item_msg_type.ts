@@ -32,36 +32,38 @@ import {
   type ReducerEventContextInterface,
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
-
-import { InterModuleMessageV2 as __InterModuleMessageV2 } from "./inter_module_message_v_2_type";
-
-export type ProcessInterModuleMessage = {
-  sender: number,
-  message: __InterModuleMessageV2,
+export type EmpireWithdrawItemMsg = {
+  playerEntityId: bigint,
+  itemId: number,
+  isCargo: boolean,
+  count: number,
 };
 
 /**
  * A namespace for generated helper functions.
  */
-export namespace ProcessInterModuleMessage {
+export namespace EmpireWithdrawItemMsg {
   /**
   * A function which returns this type represented as an AlgebraicType.
   * This function is derived from the AlgebraicType used to generate this type.
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("sender", AlgebraicType.createU8Type()),
-      new ProductTypeElement("message", __InterModuleMessageV2.getTypeScriptAlgebraicType()),
+      new ProductTypeElement("playerEntityId", AlgebraicType.createU64Type()),
+      new ProductTypeElement("itemId", AlgebraicType.createI32Type()),
+      new ProductTypeElement("isCargo", AlgebraicType.createBoolType()),
+      new ProductTypeElement("count", AlgebraicType.createU32Type()),
     ]);
   }
 
-  export function serialize(writer: BinaryWriter, value: ProcessInterModuleMessage): void {
-    ProcessInterModuleMessage.getTypeScriptAlgebraicType().serialize(writer, value);
+  export function serialize(writer: BinaryWriter, value: EmpireWithdrawItemMsg): void {
+    EmpireWithdrawItemMsg.getTypeScriptAlgebraicType().serialize(writer, value);
   }
 
-  export function deserialize(reader: BinaryReader): ProcessInterModuleMessage {
-    return ProcessInterModuleMessage.getTypeScriptAlgebraicType().deserialize(reader);
+  export function deserialize(reader: BinaryReader): EmpireWithdrawItemMsg {
+    return EmpireWithdrawItemMsg.getTypeScriptAlgebraicType().deserialize(reader);
   }
 
 }
+
 

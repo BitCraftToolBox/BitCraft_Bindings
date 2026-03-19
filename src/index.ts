@@ -136,6 +136,8 @@ import { AdminSkipQueueName } from "./admin_skip_queue_name_reducer.ts";
 export { AdminSkipQueueName };
 import { AdminUnassignEmpireChunks } from "./admin_unassign_empire_chunks_reducer.ts";
 export { AdminUnassignEmpireChunks };
+import { AdminUpdateEmpireRanks } from "./admin_update_empire_ranks_reducer.ts";
+export { AdminUpdateEmpireRanks };
 import { AdminUpdateGrantedHubItemState } from "./admin_update_granted_hub_item_state_reducer.ts";
 export { AdminUpdateGrantedHubItemState };
 import { AdminUpdateModerationEnforcementConfig } from "./admin_update_moderation_enforcement_config_reducer.ts";
@@ -336,6 +338,8 @@ import { ImportEnvironmentDebuffDesc } from "./import_environment_debuff_desc_re
 export { ImportEnvironmentDebuffDesc };
 import { ImportEquipmentDesc } from "./import_equipment_desc_reducer.ts";
 export { ImportEquipmentDesc };
+import { ImportEquipmentPresetState } from "./import_equipment_preset_state_reducer.ts";
+export { ImportEquipmentPresetState };
 import { ImportEquipmentState } from "./import_equipment_state_reducer.ts";
 export { ImportEquipmentState };
 import { ImportExperienceState } from "./import_experience_state_reducer.ts";
@@ -690,6 +694,8 @@ import { StageEnvironmentDebuffDesc } from "./stage_environment_debuff_desc_redu
 export { StageEnvironmentDebuffDesc };
 import { StageEquipmentDesc } from "./stage_equipment_desc_reducer.ts";
 export { StageEquipmentDesc };
+import { StageEquipmentPresetKnowledgeDesc } from "./stage_equipment_preset_knowledge_desc_reducer.ts";
+export { StageEquipmentPresetKnowledgeDesc };
 import { StageExtractionRecipeDesc } from "./stage_extraction_recipe_desc_reducer.ts";
 export { StageExtractionRecipeDesc };
 import { StageFoodDesc } from "./stage_food_desc_reducer.ts";
@@ -928,6 +934,8 @@ import { CombatActionMultiHitDescTableHandle } from "./combat_action_multi_hit_d
 export { CombatActionMultiHitDescTableHandle };
 import { CombatDimensionStateTableHandle } from "./combat_dimension_state_table.ts";
 export { CombatDimensionStateTableHandle };
+import { CombatImmunityStateTableHandle } from "./combat_immunity_state_table.ts";
+export { CombatImmunityStateTableHandle };
 import { CombatStateTableHandle } from "./combat_state_table.ts";
 export { CombatStateTableHandle };
 import { ConfigTableHandle } from "./config_table.ts";
@@ -956,6 +964,8 @@ import { CrumbTrailContributionLockStateTableHandle } from "./crumb_trail_contri
 export { CrumbTrailContributionLockStateTableHandle };
 import { CrumbTrailContributionSpentStateTableHandle } from "./crumb_trail_contribution_spent_state_table.ts";
 export { CrumbTrailContributionSpentStateTableHandle };
+import { CrumbTrailExposedStateTableHandle } from "./crumb_trail_exposed_state_table.ts";
+export { CrumbTrailExposedStateTableHandle };
 import { CrumbTrailStateTableHandle } from "./crumb_trail_state_table.ts";
 export { CrumbTrailStateTableHandle };
 import { DeconstructionRecipeDescTableHandle } from "./deconstruction_recipe_desc_table.ts";
@@ -1052,6 +1062,10 @@ import { EnvironmentDebuffDescTableHandle } from "./environment_debuff_desc_tabl
 export { EnvironmentDebuffDescTableHandle };
 import { EquipmentDescTableHandle } from "./equipment_desc_table.ts";
 export { EquipmentDescTableHandle };
+import { EquipmentPresetKnowledgeDescTableHandle } from "./equipment_preset_knowledge_desc_table.ts";
+export { EquipmentPresetKnowledgeDescTableHandle };
+import { EquipmentPresetStateTableHandle } from "./equipment_preset_state_table.ts";
+export { EquipmentPresetStateTableHandle };
 import { EquipmentStateTableHandle } from "./equipment_state_table.ts";
 export { EquipmentStateTableHandle };
 import { ExperienceStateTableHandle } from "./experience_state_table.ts";
@@ -1060,6 +1074,8 @@ import { ExplorationChunksStateTableHandle } from "./exploration_chunks_state_ta
 export { ExplorationChunksStateTableHandle };
 import { ExtractOutcomeStateTableHandle } from "./extract_outcome_state_table.ts";
 export { ExtractOutcomeStateTableHandle };
+import { ExtractOutcomeStateV1TableHandle } from "./extract_outcome_state_v_1_table.ts";
+export { ExtractOutcomeStateV1TableHandle };
 import { ExtractionRecipeDescTableHandle } from "./extraction_recipe_desc_table.ts";
 export { ExtractionRecipeDescTableHandle };
 import { FoodDescTableHandle } from "./food_desc_table.ts";
@@ -1072,6 +1088,8 @@ import { FriendsStateTableHandle } from "./friends_state_table.ts";
 export { FriendsStateTableHandle };
 import { GateDescTableHandle } from "./gate_desc_table.ts";
 export { GateDescTableHandle };
+import { GatedFeaturesTableHandle } from "./gated_features_table.ts";
+export { GatedFeaturesTableHandle };
 import { GlobalSearchStateTableHandle } from "./global_search_state_table.ts";
 export { GlobalSearchStateTableHandle };
 import { GlobalsTableHandle } from "./globals_table.ts";
@@ -1094,6 +1112,8 @@ import { InterModuleMessageCounterTableHandle } from "./inter_module_message_cou
 export { InterModuleMessageCounterTableHandle };
 import { InterModuleMessageErrorsTableHandle } from "./inter_module_message_errors_table.ts";
 export { InterModuleMessageErrorsTableHandle };
+import { InterModuleMessageV2TableHandle } from "./inter_module_message_v_2_table.ts";
+export { InterModuleMessageV2TableHandle };
 import { InterModuleResponseMessageCounterTableHandle } from "./inter_module_response_message_counter_table.ts";
 export { InterModuleResponseMessageCounterTableHandle };
 import { InteriorCollapseTriggerStateTableHandle } from "./interior_collapse_trigger_state_table.ts";
@@ -1462,6 +1482,8 @@ import { StagedEnvironmentDebuffDescTableHandle } from "./staged_environment_deb
 export { StagedEnvironmentDebuffDescTableHandle };
 import { StagedEquipmentDescTableHandle } from "./staged_equipment_desc_table.ts";
 export { StagedEquipmentDescTableHandle };
+import { StagedEquipmentPresetKnowledgeDescTableHandle } from "./staged_equipment_preset_knowledge_desc_table.ts";
+export { StagedEquipmentPresetKnowledgeDescTableHandle };
 import { StagedExtractionRecipeDescTableHandle } from "./staged_extraction_recipe_desc_table.ts";
 export { StagedExtractionRecipeDescTableHandle };
 import { StagedFoodDescTableHandle } from "./staged_food_desc_table.ts";
@@ -1846,6 +1868,8 @@ import { CombatActionMultiHitDesc } from "./combat_action_multi_hit_desc_type.ts
 export { CombatActionMultiHitDesc };
 import { CombatDimensionState } from "./combat_dimension_state_type.ts";
 export { CombatDimensionState };
+import { CombatImmunityState } from "./combat_immunity_state_type.ts";
+export { CombatImmunityState };
 import { CombatState } from "./combat_state_type.ts";
 export { CombatState };
 import { CompletionCondition } from "./completion_condition_type.ts";
@@ -1866,6 +1890,8 @@ import { CrumbTrailContributionLockState } from "./crumb_trail_contribution_lock
 export { CrumbTrailContributionLockState };
 import { CrumbTrailContributionSpentState } from "./crumb_trail_contribution_spent_state_type.ts";
 export { CrumbTrailContributionSpentState };
+import { CrumbTrailExposedState } from "./crumb_trail_exposed_state_type.ts";
+export { CrumbTrailExposedState };
 import { CrumbTrailState } from "./crumb_trail_state_type.ts";
 export { CrumbTrailState };
 import { CsvStatEntry } from "./csv_stat_entry_type.ts";
@@ -2024,6 +2050,8 @@ import { EmpireUpdateEmperorCrownMsg } from "./empire_update_emperor_crown_msg_t
 export { EmpireUpdateEmperorCrownMsg };
 import { EmpireUpdatePermissionsRequest } from "./empire_update_permissions_request_type.ts";
 export { EmpireUpdatePermissionsRequest };
+import { EmpireWithdrawItemMsg } from "./empire_withdraw_item_msg_type.ts";
+export { EmpireWithdrawItemMsg };
 import { EnemyAiParamsDesc } from "./enemy_ai_params_desc_type.ts";
 export { EnemyAiParamsDesc };
 import { EnemyDesc } from "./enemy_desc_type.ts";
@@ -2048,6 +2076,10 @@ import { EnvironmentResistanceType } from "./environment_resistance_type_type.ts
 export { EnvironmentResistanceType };
 import { EquipmentDesc } from "./equipment_desc_type.ts";
 export { EquipmentDesc };
+import { EquipmentPresetKnowledgeDesc } from "./equipment_preset_knowledge_desc_type.ts";
+export { EquipmentPresetKnowledgeDesc };
+import { EquipmentPresetState } from "./equipment_preset_state_type.ts";
+export { EquipmentPresetState };
 import { EquipmentSlot } from "./equipment_slot_type.ts";
 export { EquipmentSlot };
 import { EquipmentSlotType } from "./equipment_slot_type_type.ts";
@@ -2066,6 +2098,8 @@ import { ExplorationChunksState } from "./exploration_chunks_state_type.ts";
 export { ExplorationChunksState };
 import { ExtractOutcomeState } from "./extract_outcome_state_type.ts";
 export { ExtractOutcomeState };
+import { ExtractOutcomeStateV2 } from "./extract_outcome_state_v_2_type.ts";
+export { ExtractOutcomeStateV2 };
 import { ExtractionRecipeDesc } from "./extraction_recipe_desc_type.ts";
 export { ExtractionRecipeDesc };
 import { FloatHexTileMessage } from "./float_hex_tile_message_type.ts";
@@ -2084,6 +2118,8 @@ import { FriendsState } from "./friends_state_type.ts";
 export { FriendsState };
 import { GateDesc } from "./gate_desc_type.ts";
 export { GateDesc };
+import { GatedFeature } from "./gated_feature_type.ts";
+export { GatedFeature };
 import { GlobalDeleteEmpireBuildingMsg } from "./global_delete_empire_building_msg_type.ts";
 export { GlobalDeleteEmpireBuildingMsg };
 import { GlobalSearchState } from "./global_search_state_type.ts";
@@ -2120,6 +2156,8 @@ import { InterModuleMessageCounter } from "./inter_module_message_counter_type.t
 export { InterModuleMessageCounter };
 import { InterModuleMessageErrors } from "./inter_module_message_errors_type.ts";
 export { InterModuleMessageErrors };
+import { InterModuleMessageV2 } from "./inter_module_message_v_2_type.ts";
+export { InterModuleMessageV2 };
 import { InterModuleResponseMessageCounter } from "./inter_module_response_message_counter_type.ts";
 export { InterModuleResponseMessageCounter };
 import { InterModuleTableUpdates } from "./inter_module_table_updates_type.ts";
@@ -2238,6 +2276,8 @@ import { MarketplaceState } from "./marketplace_state_type.ts";
 export { MarketplaceState };
 import { MessageContents } from "./message_contents_type.ts";
 export { MessageContents };
+import { MessageContentsV2 } from "./message_contents_v_2_type.ts";
+export { MessageContentsV2 };
 import { MinimumClientVersion } from "./minimum_client_version_type.ts";
 export { MinimumClientVersion };
 import { MobileEntityState } from "./mobile_entity_state_type.ts";
@@ -2572,6 +2612,8 @@ import { TransferPlayerHousingMsg } from "./transfer_player_housing_msg_type.ts"
 export { TransferPlayerHousingMsg };
 import { TransferPlayerMsg } from "./transfer_player_msg_type.ts";
 export { TransferPlayerMsg };
+import { TransferPlayerMsgV2 } from "./transfer_player_msg_v_2_type.ts";
+export { TransferPlayerMsgV2 };
 import { TranslationCorrections } from "./translation_corrections_type.ts";
 export { TranslationCorrections };
 import { TravelerTaskDesc } from "./traveler_task_desc_type.ts";
@@ -3140,6 +3182,15 @@ const REMOTE_MODULE = {
         colType: CombatDimensionState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    combat_immunity_state: {
+      tableName: "combat_immunity_state",
+      rowType: CombatImmunityState.getTypeScriptAlgebraicType(),
+      primaryKey: "entityId",
+      primaryKeyInfo: {
+        colName: "entityId",
+        colType: CombatImmunityState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     combat_state: {
       tableName: "combat_state",
       rowType: CombatState.getTypeScriptAlgebraicType(),
@@ -3234,6 +3285,15 @@ const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "entityId",
         colType: CrumbTrailContributionSpentState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    crumb_trail_exposed_state: {
+      tableName: "crumb_trail_exposed_state",
+      rowType: CrumbTrailExposedState.getTypeScriptAlgebraicType(),
+      primaryKey: "crumbTrailEntityId",
+      primaryKeyInfo: {
+        colName: "crumbTrailEntityId",
+        colType: CrumbTrailExposedState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     crumb_trail_state: {
@@ -3668,6 +3728,24 @@ const REMOTE_MODULE = {
         colType: EquipmentDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    equipment_preset_knowledge_desc: {
+      tableName: "equipment_preset_knowledge_desc",
+      rowType: EquipmentPresetKnowledgeDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "knowledgeId",
+      primaryKeyInfo: {
+        colName: "knowledgeId",
+        colType: EquipmentPresetKnowledgeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    equipment_preset_state: {
+      tableName: "equipment_preset_state",
+      rowType: EquipmentPresetState.getTypeScriptAlgebraicType(),
+      primaryKey: "entityId",
+      primaryKeyInfo: {
+        colName: "entityId",
+        colType: EquipmentPresetState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     equipment_state: {
       tableName: "equipment_state",
       rowType: EquipmentState.getTypeScriptAlgebraicType(),
@@ -3697,6 +3775,15 @@ const REMOTE_MODULE = {
     },
     extract_outcome_state: {
       tableName: "extract_outcome_state",
+      rowType: ExtractOutcomeStateV2.getTypeScriptAlgebraicType(),
+      primaryKey: "entityId",
+      primaryKeyInfo: {
+        colName: "entityId",
+        colType: ExtractOutcomeStateV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    extract_outcome_state_v1: {
+      tableName: "extract_outcome_state_v1",
       rowType: ExtractOutcomeState.getTypeScriptAlgebraicType(),
       primaryKey: "entityId",
       primaryKeyInfo: {
@@ -3751,6 +3838,15 @@ const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "buildingId",
         colType: GateDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    gated_features: {
+      tableName: "gated_features",
+      rowType: GatedFeature.getTypeScriptAlgebraicType(),
+      primaryKey: "feature",
+      primaryKeyInfo: {
+        colName: "feature",
+        colType: GatedFeature.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     global_search_state: {
@@ -3850,6 +3946,15 @@ const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "senderModuleId",
         colType: InterModuleMessageErrors.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    inter_module_message_v2: {
+      tableName: "inter_module_message_v2",
+      rowType: InterModuleMessageV2.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: InterModuleMessageV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     inter_module_response_message_counter: {
@@ -5453,6 +5558,15 @@ const REMOTE_MODULE = {
         colType: EquipmentDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    staged_equipment_preset_knowledge_desc: {
+      tableName: "staged_equipment_preset_knowledge_desc",
+      rowType: EquipmentPresetKnowledgeDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "knowledgeId",
+      primaryKeyInfo: {
+        colName: "knowledgeId",
+        colType: EquipmentPresetKnowledgeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     staged_extraction_recipe_desc: {
       tableName: "staged_extraction_recipe_desc",
       rowType: ExtractionRecipeDesc.getTypeScriptAlgebraicType(),
@@ -6505,6 +6619,10 @@ const REMOTE_MODULE = {
       reducerName: "admin_unassign_empire_chunks",
       argsType: AdminUnassignEmpireChunks.getTypeScriptAlgebraicType(),
     },
+    admin_update_empire_ranks: {
+      reducerName: "admin_update_empire_ranks",
+      argsType: AdminUpdateEmpireRanks.getTypeScriptAlgebraicType(),
+    },
     admin_update_granted_hub_item_state: {
       reducerName: "admin_update_granted_hub_item_state",
       argsType: AdminUpdateGrantedHubItemState.getTypeScriptAlgebraicType(),
@@ -6904,6 +7022,10 @@ const REMOTE_MODULE = {
     import_equipment_desc: {
       reducerName: "import_equipment_desc",
       argsType: ImportEquipmentDesc.getTypeScriptAlgebraicType(),
+    },
+    import_equipment_preset_state: {
+      reducerName: "import_equipment_preset_state",
+      argsType: ImportEquipmentPresetState.getTypeScriptAlgebraicType(),
     },
     import_equipment_state: {
       reducerName: "import_equipment_state",
@@ -7613,6 +7735,10 @@ const REMOTE_MODULE = {
       reducerName: "stage_equipment_desc",
       argsType: StageEquipmentDesc.getTypeScriptAlgebraicType(),
     },
+    stage_equipment_preset_knowledge_desc: {
+      reducerName: "stage_equipment_preset_knowledge_desc",
+      argsType: StageEquipmentPresetKnowledgeDesc.getTypeScriptAlgebraicType(),
+    },
     stage_extraction_recipe_desc: {
       reducerName: "stage_extraction_recipe_desc",
       argsType: StageExtractionRecipeDesc.getTypeScriptAlgebraicType(),
@@ -7942,6 +8068,7 @@ export type Reducer = never
 | { name: "AdminSkipQueueIdentity", args: AdminSkipQueueIdentity }
 | { name: "AdminSkipQueueName", args: AdminSkipQueueName }
 | { name: "AdminUnassignEmpireChunks", args: AdminUnassignEmpireChunks }
+| { name: "AdminUpdateEmpireRanks", args: AdminUpdateEmpireRanks }
 | { name: "AdminUpdateGrantedHubItemState", args: AdminUpdateGrantedHubItemState }
 | { name: "AdminUpdateModerationEnforcementConfig", args: AdminUpdateModerationEnforcementConfig }
 | { name: "AdminUpdateReportModerationConfig", args: AdminUpdateReportModerationConfig }
@@ -8042,6 +8169,7 @@ export type Reducer = never
 | { name: "ImportEnemyState", args: ImportEnemyState }
 | { name: "ImportEnvironmentDebuffDesc", args: ImportEnvironmentDebuffDesc }
 | { name: "ImportEquipmentDesc", args: ImportEquipmentDesc }
+| { name: "ImportEquipmentPresetState", args: ImportEquipmentPresetState }
 | { name: "ImportEquipmentState", args: ImportEquipmentState }
 | { name: "ImportExperienceState", args: ImportExperienceState }
 | { name: "ImportExplorationChunksState", args: ImportExplorationChunksState }
@@ -8219,6 +8347,7 @@ export type Reducer = never
 | { name: "StageEnemyScalingDesc", args: StageEnemyScalingDesc }
 | { name: "StageEnvironmentDebuffDesc", args: StageEnvironmentDebuffDesc }
 | { name: "StageEquipmentDesc", args: StageEquipmentDesc }
+| { name: "StageEquipmentPresetKnowledgeDesc", args: StageEquipmentPresetKnowledgeDesc }
 | { name: "StageExtractionRecipeDesc", args: StageExtractionRecipeDesc }
 | { name: "StageFoodDesc", args: StageFoodDesc }
 | { name: "StageGateDesc", args: StageGateDesc }
@@ -9092,6 +9221,18 @@ export class RemoteReducers {
 
   removeOnAdminUnassignEmpireChunks(callback: (ctx: ReducerEventContext, chunkIndexes: bigint[]) => void) {
     this.connection.offReducer("admin_unassign_empire_chunks", callback);
+  }
+
+  adminUpdateEmpireRanks() {
+    this.connection.callReducer("admin_update_empire_ranks", new Uint8Array(0), this.setCallReducerFlags.adminUpdateEmpireRanksFlags);
+  }
+
+  onAdminUpdateEmpireRanks(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.onReducer("admin_update_empire_ranks", callback);
+  }
+
+  removeOnAdminUpdateEmpireRanks(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.offReducer("admin_update_empire_ranks", callback);
   }
 
   adminUpdateGrantedHubItemState(identity: Identity, itemType: HubItemType, itemId: number, balance: number) {
@@ -10660,6 +10801,22 @@ export class RemoteReducers {
 
   removeOnImportEquipmentDesc(callback: (ctx: ReducerEventContext, records: EquipmentDesc[]) => void) {
     this.connection.offReducer("import_equipment_desc", callback);
+  }
+
+  importEquipmentPresetState(records: EquipmentPresetState[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    ImportEquipmentPresetState.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("import_equipment_preset_state", __argsBuffer, this.setCallReducerFlags.importEquipmentPresetStateFlags);
+  }
+
+  onImportEquipmentPresetState(callback: (ctx: ReducerEventContext, records: EquipmentPresetState[]) => void) {
+    this.connection.onReducer("import_equipment_preset_state", callback);
+  }
+
+  removeOnImportEquipmentPresetState(callback: (ctx: ReducerEventContext, records: EquipmentPresetState[]) => void) {
+    this.connection.offReducer("import_equipment_preset_state", callback);
   }
 
   importEquipmentState(records: EquipmentState[]) {
@@ -12594,7 +12751,7 @@ export class RemoteReducers {
     this.connection.offReducer("player_vote_conclude", callback);
   }
 
-  processInterModuleMessage(sender: number, message: InterModuleMessage) {
+  processInterModuleMessage(sender: number, message: InterModuleMessageV2) {
     const __args = { sender, message };
     let __writer = new BinaryWriter(1024);
     ProcessInterModuleMessage.getTypeScriptAlgebraicType().serialize(__writer, __args);
@@ -12602,11 +12759,11 @@ export class RemoteReducers {
     this.connection.callReducer("process_inter_module_message", __argsBuffer, this.setCallReducerFlags.processInterModuleMessageFlags);
   }
 
-  onProcessInterModuleMessage(callback: (ctx: ReducerEventContext, sender: number, message: InterModuleMessage) => void) {
+  onProcessInterModuleMessage(callback: (ctx: ReducerEventContext, sender: number, message: InterModuleMessageV2) => void) {
     this.connection.onReducer("process_inter_module_message", callback);
   }
 
-  removeOnProcessInterModuleMessage(callback: (ctx: ReducerEventContext, sender: number, message: InterModuleMessage) => void) {
+  removeOnProcessInterModuleMessage(callback: (ctx: ReducerEventContext, sender: number, message: InterModuleMessageV2) => void) {
     this.connection.offReducer("process_inter_module_message", callback);
   }
 
@@ -13472,6 +13629,22 @@ export class RemoteReducers {
 
   removeOnStageEquipmentDesc(callback: (ctx: ReducerEventContext, records: EquipmentDesc[]) => void) {
     this.connection.offReducer("stage_equipment_desc", callback);
+  }
+
+  stageEquipmentPresetKnowledgeDesc(records: EquipmentPresetKnowledgeDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    StageEquipmentPresetKnowledgeDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("stage_equipment_preset_knowledge_desc", __argsBuffer, this.setCallReducerFlags.stageEquipmentPresetKnowledgeDescFlags);
+  }
+
+  onStageEquipmentPresetKnowledgeDesc(callback: (ctx: ReducerEventContext, records: EquipmentPresetKnowledgeDesc[]) => void) {
+    this.connection.onReducer("stage_equipment_preset_knowledge_desc", callback);
+  }
+
+  removeOnStageEquipmentPresetKnowledgeDesc(callback: (ctx: ReducerEventContext, records: EquipmentPresetKnowledgeDesc[]) => void) {
+    this.connection.offReducer("stage_equipment_preset_knowledge_desc", callback);
   }
 
   stageExtractionRecipeDesc(records: ExtractionRecipeDesc[]) {
@@ -14716,6 +14889,11 @@ export class SetReducerFlags {
     this.adminUnassignEmpireChunksFlags = flags;
   }
 
+  adminUpdateEmpireRanksFlags: CallReducerFlags = 'FullUpdate';
+  adminUpdateEmpireRanks(flags: CallReducerFlags) {
+    this.adminUpdateEmpireRanksFlags = flags;
+  }
+
   adminUpdateGrantedHubItemStateFlags: CallReducerFlags = 'FullUpdate';
   adminUpdateGrantedHubItemState(flags: CallReducerFlags) {
     this.adminUpdateGrantedHubItemStateFlags = flags;
@@ -15204,6 +15382,11 @@ export class SetReducerFlags {
   importEquipmentDescFlags: CallReducerFlags = 'FullUpdate';
   importEquipmentDesc(flags: CallReducerFlags) {
     this.importEquipmentDescFlags = flags;
+  }
+
+  importEquipmentPresetStateFlags: CallReducerFlags = 'FullUpdate';
+  importEquipmentPresetState(flags: CallReducerFlags) {
+    this.importEquipmentPresetStateFlags = flags;
   }
 
   importEquipmentStateFlags: CallReducerFlags = 'FullUpdate';
@@ -16091,6 +16274,11 @@ export class SetReducerFlags {
     this.stageEquipmentDescFlags = flags;
   }
 
+  stageEquipmentPresetKnowledgeDescFlags: CallReducerFlags = 'FullUpdate';
+  stageEquipmentPresetKnowledgeDesc(flags: CallReducerFlags) {
+    this.stageEquipmentPresetKnowledgeDescFlags = flags;
+  }
+
   stageExtractionRecipeDescFlags: CallReducerFlags = 'FullUpdate';
   stageExtractionRecipeDesc(flags: CallReducerFlags) {
     this.stageExtractionRecipeDescFlags = flags;
@@ -16630,6 +16818,10 @@ export class RemoteTables {
     return new CombatDimensionStateTableHandle(this.connection.clientCache.getOrCreateTable<CombatDimensionState>(REMOTE_MODULE.tables.combat_dimension_state));
   }
 
+  get combatImmunityState(): CombatImmunityStateTableHandle {
+    return new CombatImmunityStateTableHandle(this.connection.clientCache.getOrCreateTable<CombatImmunityState>(REMOTE_MODULE.tables.combat_immunity_state));
+  }
+
   get combatState(): CombatStateTableHandle {
     return new CombatStateTableHandle(this.connection.clientCache.getOrCreateTable<CombatState>(REMOTE_MODULE.tables.combat_state));
   }
@@ -16684,6 +16876,10 @@ export class RemoteTables {
 
   get crumbTrailContributionSpentState(): CrumbTrailContributionSpentStateTableHandle {
     return new CrumbTrailContributionSpentStateTableHandle(this.connection.clientCache.getOrCreateTable<CrumbTrailContributionSpentState>(REMOTE_MODULE.tables.crumb_trail_contribution_spent_state));
+  }
+
+  get crumbTrailExposedState(): CrumbTrailExposedStateTableHandle {
+    return new CrumbTrailExposedStateTableHandle(this.connection.clientCache.getOrCreateTable<CrumbTrailExposedState>(REMOTE_MODULE.tables.crumb_trail_exposed_state));
   }
 
   get crumbTrailState(): CrumbTrailStateTableHandle {
@@ -16878,6 +17074,14 @@ export class RemoteTables {
     return new EquipmentDescTableHandle(this.connection.clientCache.getOrCreateTable<EquipmentDesc>(REMOTE_MODULE.tables.equipment_desc));
   }
 
+  get equipmentPresetKnowledgeDesc(): EquipmentPresetKnowledgeDescTableHandle {
+    return new EquipmentPresetKnowledgeDescTableHandle(this.connection.clientCache.getOrCreateTable<EquipmentPresetKnowledgeDesc>(REMOTE_MODULE.tables.equipment_preset_knowledge_desc));
+  }
+
+  get equipmentPresetState(): EquipmentPresetStateTableHandle {
+    return new EquipmentPresetStateTableHandle(this.connection.clientCache.getOrCreateTable<EquipmentPresetState>(REMOTE_MODULE.tables.equipment_preset_state));
+  }
+
   get equipmentState(): EquipmentStateTableHandle {
     return new EquipmentStateTableHandle(this.connection.clientCache.getOrCreateTable<EquipmentState>(REMOTE_MODULE.tables.equipment_state));
   }
@@ -16891,7 +17095,11 @@ export class RemoteTables {
   }
 
   get extractOutcomeState(): ExtractOutcomeStateTableHandle {
-    return new ExtractOutcomeStateTableHandle(this.connection.clientCache.getOrCreateTable<ExtractOutcomeState>(REMOTE_MODULE.tables.extract_outcome_state));
+    return new ExtractOutcomeStateTableHandle(this.connection.clientCache.getOrCreateTable<ExtractOutcomeStateV2>(REMOTE_MODULE.tables.extract_outcome_state));
+  }
+
+  get extractOutcomeStateV1(): ExtractOutcomeStateV1TableHandle {
+    return new ExtractOutcomeStateV1TableHandle(this.connection.clientCache.getOrCreateTable<ExtractOutcomeState>(REMOTE_MODULE.tables.extract_outcome_state_v1));
   }
 
   get extractionRecipeDesc(): ExtractionRecipeDescTableHandle {
@@ -16916,6 +17124,10 @@ export class RemoteTables {
 
   get gateDesc(): GateDescTableHandle {
     return new GateDescTableHandle(this.connection.clientCache.getOrCreateTable<GateDesc>(REMOTE_MODULE.tables.gate_desc));
+  }
+
+  get gatedFeatures(): GatedFeaturesTableHandle {
+    return new GatedFeaturesTableHandle(this.connection.clientCache.getOrCreateTable<GatedFeature>(REMOTE_MODULE.tables.gated_features));
   }
 
   get globalSearchState(): GlobalSearchStateTableHandle {
@@ -16960,6 +17172,10 @@ export class RemoteTables {
 
   get interModuleMessageErrors(): InterModuleMessageErrorsTableHandle {
     return new InterModuleMessageErrorsTableHandle(this.connection.clientCache.getOrCreateTable<InterModuleMessageErrors>(REMOTE_MODULE.tables.inter_module_message_errors));
+  }
+
+  get interModuleMessageV2(): InterModuleMessageV2TableHandle {
+    return new InterModuleMessageV2TableHandle(this.connection.clientCache.getOrCreateTable<InterModuleMessageV2>(REMOTE_MODULE.tables.inter_module_message_v2));
   }
 
   get interModuleResponseMessageCounter(): InterModuleResponseMessageCounterTableHandle {
@@ -17696,6 +17912,10 @@ export class RemoteTables {
 
   get stagedEquipmentDesc(): StagedEquipmentDescTableHandle {
     return new StagedEquipmentDescTableHandle(this.connection.clientCache.getOrCreateTable<EquipmentDesc>(REMOTE_MODULE.tables.staged_equipment_desc));
+  }
+
+  get stagedEquipmentPresetKnowledgeDesc(): StagedEquipmentPresetKnowledgeDescTableHandle {
+    return new StagedEquipmentPresetKnowledgeDescTableHandle(this.connection.clientCache.getOrCreateTable<EquipmentPresetKnowledgeDesc>(REMOTE_MODULE.tables.staged_equipment_preset_knowledge_desc));
   }
 
   get stagedExtractionRecipeDesc(): StagedExtractionRecipeDescTableHandle {

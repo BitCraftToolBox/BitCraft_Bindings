@@ -45,6 +45,8 @@ export namespace EmpirePermission {
   export type PromoteLesserRanks = { tag: "PromoteLesserRanks" };
   export type CraftHexiteCapsule = { tag: "CraftHexiteCapsule" };
   export type Count = { tag: "Count" };
+  export type HarvestEmpireResources = { tag: "HarvestEmpireResources" };
+  export type WithdrawEmpireCurrency = { tag: "WithdrawEmpireCurrency" };
 
   // Helper functions for constructing each variant of the tagged union.
   // ```
@@ -60,6 +62,8 @@ export namespace EmpirePermission {
   export const PromoteLesserRanks = { tag: "PromoteLesserRanks" };
   export const CraftHexiteCapsule = { tag: "CraftHexiteCapsule" };
   export const Count = { tag: "Count" };
+  export const HarvestEmpireResources = { tag: "HarvestEmpireResources" };
+  export const WithdrawEmpireCurrency = { tag: "WithdrawEmpireCurrency" };
 
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createSumType([
@@ -71,6 +75,8 @@ export namespace EmpirePermission {
       new SumTypeVariant("PromoteLesserRanks", AlgebraicType.createProductType([])),
       new SumTypeVariant("CraftHexiteCapsule", AlgebraicType.createProductType([])),
       new SumTypeVariant("Count", AlgebraicType.createProductType([])),
+      new SumTypeVariant("HarvestEmpireResources", AlgebraicType.createProductType([])),
+      new SumTypeVariant("WithdrawEmpireCurrency", AlgebraicType.createProductType([])),
     ]);
   }
 
@@ -85,7 +91,7 @@ export namespace EmpirePermission {
 }
 
 // The tagged union or sum type for the algebraic type `EmpirePermission`.
-export type EmpirePermission = EmpirePermission.SupplyNode | EmpirePermission.CollectHexiteCapsule | EmpirePermission.BuildWatchtower | EmpirePermission.FlagWatchtowerToSiege | EmpirePermission.AproveEmpireSubmissions | EmpirePermission.PromoteLesserRanks | EmpirePermission.CraftHexiteCapsule | EmpirePermission.Count;
+export type EmpirePermission = EmpirePermission.SupplyNode | EmpirePermission.CollectHexiteCapsule | EmpirePermission.BuildWatchtower | EmpirePermission.FlagWatchtowerToSiege | EmpirePermission.AproveEmpireSubmissions | EmpirePermission.PromoteLesserRanks | EmpirePermission.CraftHexiteCapsule | EmpirePermission.Count | EmpirePermission.HarvestEmpireResources | EmpirePermission.WithdrawEmpireCurrency;
 
 export default EmpirePermission;
 

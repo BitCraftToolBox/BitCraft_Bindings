@@ -32,7 +32,7 @@ import {
   type ReducerEventContextInterface,
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
-import { ExtractOutcomeState } from "./extract_outcome_state_type";
+import { ExtractOutcomeStateV2 } from "./extract_outcome_state_v_2_type";
 import { type EventContext, type Reducer, RemoteReducers, RemoteTables } from ".";
 
 /**
@@ -46,9 +46,9 @@ import { type EventContext, type Reducer, RemoteReducers, RemoteTables } from ".
  * like `ctx.db.extractOutcomeState.on_insert(...)`.
  */
 export class ExtractOutcomeStateTableHandle {
-  tableCache: TableCache<ExtractOutcomeState>;
+  tableCache: TableCache<ExtractOutcomeStateV2>;
 
-  constructor(tableCache: TableCache<ExtractOutcomeState>) {
+  constructor(tableCache: TableCache<ExtractOutcomeStateV2>) {
     this.tableCache = tableCache;
   }
 
@@ -56,7 +56,7 @@ export class ExtractOutcomeStateTableHandle {
     return this.tableCache.count();
   }
 
-  iter(): Iterable<ExtractOutcomeState> {
+  iter(): Iterable<ExtractOutcomeStateV2> {
     return this.tableCache.iter();
   }
   /**
@@ -73,7 +73,7 @@ export class ExtractOutcomeStateTableHandle {
   entityId = {
     // Find the subscribed row whose `entityId` column value is equal to `col_val`,
     // if such a row is present in the client cache.
-    find: (col_val: bigint): ExtractOutcomeState | undefined => {
+    find: (col_val: bigint): ExtractOutcomeStateV2 | undefined => {
       for (let row of this.tableCache.iter()) {
         if (deepEqual(row.entityId, col_val)) {
           return row;
@@ -82,27 +82,27 @@ export class ExtractOutcomeStateTableHandle {
     },
   };
 
-  onInsert = (cb: (ctx: EventContext, row: ExtractOutcomeState) => void) => {
+  onInsert = (cb: (ctx: EventContext, row: ExtractOutcomeStateV2) => void) => {
     return this.tableCache.onInsert(cb);
   }
 
-  removeOnInsert = (cb: (ctx: EventContext, row: ExtractOutcomeState) => void) => {
+  removeOnInsert = (cb: (ctx: EventContext, row: ExtractOutcomeStateV2) => void) => {
     return this.tableCache.removeOnInsert(cb);
   }
 
-  onDelete = (cb: (ctx: EventContext, row: ExtractOutcomeState) => void) => {
+  onDelete = (cb: (ctx: EventContext, row: ExtractOutcomeStateV2) => void) => {
     return this.tableCache.onDelete(cb);
   }
 
-  removeOnDelete = (cb: (ctx: EventContext, row: ExtractOutcomeState) => void) => {
+  removeOnDelete = (cb: (ctx: EventContext, row: ExtractOutcomeStateV2) => void) => {
     return this.tableCache.removeOnDelete(cb);
   }
 
   // Updates are only defined for tables with primary keys.
-  onUpdate = (cb: (ctx: EventContext, oldRow: ExtractOutcomeState, newRow: ExtractOutcomeState) => void) => {
+  onUpdate = (cb: (ctx: EventContext, oldRow: ExtractOutcomeStateV2, newRow: ExtractOutcomeStateV2) => void) => {
     return this.tableCache.onUpdate(cb);
   }
 
-  removeOnUpdate = (cb: (ctx: EventContext, onRow: ExtractOutcomeState, newRow: ExtractOutcomeState) => void) => {
+  removeOnUpdate = (cb: (ctx: EventContext, onRow: ExtractOutcomeStateV2, newRow: ExtractOutcomeStateV2) => void) => {
     return this.tableCache.removeOnUpdate(cb);
   }}

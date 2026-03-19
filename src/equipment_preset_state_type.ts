@@ -32,36 +32,42 @@ import {
   type ReducerEventContextInterface,
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
+import { EquipmentSlot as __EquipmentSlot } from "./equipment_slot_type";
 
-import { InterModuleMessageV2 as __InterModuleMessageV2 } from "./inter_module_message_v_2_type";
-
-export type ProcessInterModuleMessage = {
-  sender: number,
-  message: __InterModuleMessageV2,
+export type EquipmentPresetState = {
+  entityId: bigint,
+  playerEntityId: bigint,
+  index: number,
+  active: boolean,
+  equipmentSlots: __EquipmentSlot[],
 };
 
 /**
  * A namespace for generated helper functions.
  */
-export namespace ProcessInterModuleMessage {
+export namespace EquipmentPresetState {
   /**
   * A function which returns this type represented as an AlgebraicType.
   * This function is derived from the AlgebraicType used to generate this type.
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("sender", AlgebraicType.createU8Type()),
-      new ProductTypeElement("message", __InterModuleMessageV2.getTypeScriptAlgebraicType()),
+      new ProductTypeElement("entityId", AlgebraicType.createU64Type()),
+      new ProductTypeElement("playerEntityId", AlgebraicType.createU64Type()),
+      new ProductTypeElement("index", AlgebraicType.createI32Type()),
+      new ProductTypeElement("active", AlgebraicType.createBoolType()),
+      new ProductTypeElement("equipmentSlots", AlgebraicType.createArrayType(__EquipmentSlot.getTypeScriptAlgebraicType())),
     ]);
   }
 
-  export function serialize(writer: BinaryWriter, value: ProcessInterModuleMessage): void {
-    ProcessInterModuleMessage.getTypeScriptAlgebraicType().serialize(writer, value);
+  export function serialize(writer: BinaryWriter, value: EquipmentPresetState): void {
+    EquipmentPresetState.getTypeScriptAlgebraicType().serialize(writer, value);
   }
 
-  export function deserialize(reader: BinaryReader): ProcessInterModuleMessage {
-    return ProcessInterModuleMessage.getTypeScriptAlgebraicType().deserialize(reader);
+  export function deserialize(reader: BinaryReader): EquipmentPresetState {
+    return EquipmentPresetState.getTypeScriptAlgebraicType().deserialize(reader);
   }
 
 }
+
 

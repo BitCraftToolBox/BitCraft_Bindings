@@ -34,6 +34,7 @@ import {
 } from "@clockworklabs/spacetimedb-sdk";
 import { ProspectingDesc } from "./prospecting_desc_type";
 import { ItemStack as __ItemStack } from "./item_stack_type";
+import { ExperienceStackF32 as __ExperienceStackF32 } from "./experience_stack_f_32_type";
 
 import { type EventContext, type Reducer, RemoteReducers, RemoteTables } from ".";
 

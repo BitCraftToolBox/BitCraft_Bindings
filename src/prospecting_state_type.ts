@@ -42,6 +42,7 @@ export type ProspectingState = {
   nextCrumbAngle: number[],
   lastProspectionTimestamp: Timestamp,
   contribution: number,
+  toNextNode: number,
 };
 
 /**
@@ -63,6 +64,7 @@ export namespace ProspectingState {
       new ProductTypeElement("nextCrumbAngle", AlgebraicType.createArrayType(AlgebraicType.createF32Type())),
       new ProductTypeElement("lastProspectionTimestamp", AlgebraicType.createTimestampType()),
       new ProductTypeElement("contribution", AlgebraicType.createI32Type()),
+      new ProductTypeElement("toNextNode", AlgebraicType.createF32Type()),
     ]);
   }
 

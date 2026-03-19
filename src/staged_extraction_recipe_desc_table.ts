@@ -38,6 +38,7 @@ import { ToolRequirement as __ToolRequirement } from "./tool_requirement_type";
 import { InputItemStack as __InputItemStack } from "./input_item_stack_type";
 import { ExperienceStackF32 as __ExperienceStackF32 } from "./experience_stack_f_32_type";
 import { ProbabilisticItemStack as __ProbabilisticItemStack } from "./probabilistic_item_stack_type";
+import { EmpirePermission as __EmpirePermission } from "./empire_permission_type";
 
 import { type EventContext, type Reducer, RemoteReducers, RemoteTables } from ".";
 
