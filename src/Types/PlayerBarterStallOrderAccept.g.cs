@@ -18,14 +18,18 @@ namespace BitCraftRegion.Types
         public ulong TradeOrderEntityId;
         [DataMember(Name = "shop_entity_id")]
         public ulong ShopEntityId;
+        [DataMember(Name = "amount")]
+        public int Amount;
 
         public PlayerBarterStallOrderAccept(
             ulong TradeOrderEntityId,
-            ulong ShopEntityId
+            ulong ShopEntityId,
+            int Amount
         )
         {
             this.TradeOrderEntityId = TradeOrderEntityId;
             this.ShopEntityId = ShopEntityId;
+            this.Amount = Amount;
         }
 
         public PlayerBarterStallOrderAccept()

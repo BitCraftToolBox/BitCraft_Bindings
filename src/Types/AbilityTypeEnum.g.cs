@@ -23,5 +23,6 @@ namespace BitCraftRegion.Types
         AddToToolbelt,
         DeployableToggle,
         Emote,
+        EquipPreset,
     }
 }

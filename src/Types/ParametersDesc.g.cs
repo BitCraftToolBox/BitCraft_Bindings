@@ -200,6 +200,8 @@ namespace BitCraftRegion.Types
         public uint HexiteCapsuleCurrencyCost;
         [DataMember(Name = "prospecting_herd_immunity_secs")]
         public uint ProspectingHerdImmunitySecs;
+        [DataMember(Name = "rp_walk_speed")]
+        public float RpWalkSpeed;
 
         public ParametersDesc(
             int Version,
@@ -294,7 +296,8 @@ namespace BitCraftRegion.Types
             uint EmpireRenameCurrencyCost,
             uint EmpireMoveCapitalCurrencyCost,
             uint HexiteCapsuleCurrencyCost,
-            uint ProspectingHerdImmunitySecs
+            uint ProspectingHerdImmunitySecs,
+            float RpWalkSpeed
         )
         {
             this.Version = Version;
@@ -390,6 +393,7 @@ namespace BitCraftRegion.Types
             this.EmpireMoveCapitalCurrencyCost = EmpireMoveCapitalCurrencyCost;
             this.HexiteCapsuleCurrencyCost = HexiteCapsuleCurrencyCost;
             this.ProspectingHerdImmunitySecs = ProspectingHerdImmunitySecs;
+            this.RpWalkSpeed = RpWalkSpeed;
         }
 
         public ParametersDesc()
