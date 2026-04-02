@@ -102,6 +102,7 @@ pub struct ParametersDesc {
     pub empire_move_capital_currency_cost: u32,
     pub hexite_capsule_currency_cost: u32,
     pub prospecting_herd_immunity_secs: u32,
+    pub rp_walk_speed: f32,
 }
 
 impl __sdk::InModule for ParametersDesc {
@@ -205,6 +206,7 @@ pub struct ParametersDescCols {
     pub empire_move_capital_currency_cost: __sdk::__query_builder::Col<ParametersDesc, u32>,
     pub hexite_capsule_currency_cost: __sdk::__query_builder::Col<ParametersDesc, u32>,
     pub prospecting_herd_immunity_secs: __sdk::__query_builder::Col<ParametersDesc, u32>,
+    pub rp_walk_speed: __sdk::__query_builder::Col<ParametersDesc, f32>,
 }
 
 impl __sdk::__query_builder::HasCols for ParametersDesc {
@@ -535,6 +537,7 @@ impl __sdk::__query_builder::HasCols for ParametersDesc {
                 table_name,
                 "prospecting_herd_immunity_secs",
             ),
+            rp_walk_speed: __sdk::__query_builder::Col::new(table_name, "rp_walk_speed"),
         }
     }
 }
