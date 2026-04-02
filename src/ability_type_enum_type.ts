@@ -49,6 +49,7 @@ export namespace AbilityTypeEnum {
   export type AddToToolbelt = { tag: "AddToToolbelt" };
   export type DeployableToggle = { tag: "DeployableToggle" };
   export type Emote = { tag: "Emote" };
+  export type EquipPreset = { tag: "EquipPreset" };
 
   // Helper functions for constructing each variant of the tagged union.
   // ```
@@ -68,6 +69,7 @@ export namespace AbilityTypeEnum {
   export const AddToToolbelt = { tag: "AddToToolbelt" };
   export const DeployableToggle = { tag: "DeployableToggle" };
   export const Emote = { tag: "Emote" };
+  export const EquipPreset = { tag: "EquipPreset" };
 
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createSumType([
@@ -83,6 +85,7 @@ export namespace AbilityTypeEnum {
       new SumTypeVariant("AddToToolbelt", AlgebraicType.createProductType([])),
       new SumTypeVariant("DeployableToggle", AlgebraicType.createProductType([])),
       new SumTypeVariant("Emote", AlgebraicType.createProductType([])),
+      new SumTypeVariant("EquipPreset", AlgebraicType.createProductType([])),
     ]);
   }
 
@@ -97,7 +100,7 @@ export namespace AbilityTypeEnum {
 }
 
 // The tagged union or sum type for the algebraic type `AbilityTypeEnum`.
-export type AbilityTypeEnum = AbilityTypeEnum.Unsupported | AbilityTypeEnum.Eat | AbilityTypeEnum.CombatAction | AbilityTypeEnum.AutoAttack | AbilityTypeEnum.SelfBuff | AbilityTypeEnum.Custom | AbilityTypeEnum.Prospecting | AbilityTypeEnum.Equip | AbilityTypeEnum.DeployableDeploy | AbilityTypeEnum.AddToToolbelt | AbilityTypeEnum.DeployableToggle | AbilityTypeEnum.Emote;
+export type AbilityTypeEnum = AbilityTypeEnum.Unsupported | AbilityTypeEnum.Eat | AbilityTypeEnum.CombatAction | AbilityTypeEnum.AutoAttack | AbilityTypeEnum.SelfBuff | AbilityTypeEnum.Custom | AbilityTypeEnum.Prospecting | AbilityTypeEnum.Equip | AbilityTypeEnum.DeployableDeploy | AbilityTypeEnum.AddToToolbelt | AbilityTypeEnum.DeployableToggle | AbilityTypeEnum.Emote | AbilityTypeEnum.EquipPreset;
 
 export default AbilityTypeEnum;
 

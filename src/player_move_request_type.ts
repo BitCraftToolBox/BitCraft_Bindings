@@ -40,7 +40,7 @@ export type PlayerMoveRequest = {
   origin: __OffsetCoordinatesFloat | undefined,
   duration: number,
   moveType: number,
-  running: boolean,
+  isRpWalk: boolean,
 };
 
 /**
@@ -58,7 +58,7 @@ export namespace PlayerMoveRequest {
       new ProductTypeElement("origin", AlgebraicType.createOptionType(__OffsetCoordinatesFloat.getTypeScriptAlgebraicType())),
       new ProductTypeElement("duration", AlgebraicType.createF32Type()),
       new ProductTypeElement("moveType", AlgebraicType.createI32Type()),
-      new ProductTypeElement("running", AlgebraicType.createBoolType()),
+      new ProductTypeElement("isRpWalk", AlgebraicType.createBoolType()),
     ]);
   }
 

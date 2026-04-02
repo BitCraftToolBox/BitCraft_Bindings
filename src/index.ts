@@ -118,6 +118,10 @@ import { AdminFindItemsInTrades } from "./admin_find_items_in_trades_reducer.ts"
 export { AdminFindItemsInTrades };
 import { AdminFlipInteriorInstanceDoors } from "./admin_flip_interior_instance_doors_reducer.ts";
 export { AdminFlipInteriorInstanceDoors };
+import { AdminGatedFeatureAdd } from "./admin_gated_feature_add_reducer.ts";
+export { AdminGatedFeatureAdd };
+import { AdminGatedFeatureRemove } from "./admin_gated_feature_remove_reducer.ts";
+export { AdminGatedFeatureRemove };
 import { AdminGrantAllClaimSupplies } from "./admin_grant_all_claim_supplies_reducer.ts";
 export { AdminGrantAllClaimSupplies };
 import { AdminGrantCollectibles } from "./admin_grant_collectibles_reducer.ts";
@@ -832,6 +836,8 @@ import { ImportProspectingDesc } from "./import_prospecting_desc_reducer.ts";
 export { ImportProspectingDesc };
 import { ImportQuestChainDesc } from "./import_quest_chain_desc_reducer.ts";
 export { ImportQuestChainDesc };
+import { ImportQuestDropDesc } from "./import_quest_drop_desc_reducer.ts";
+export { ImportQuestDropDesc };
 import { ImportQuestStageDesc } from "./import_quest_stage_desc_reducer.ts";
 export { ImportQuestStageDesc };
 import { ImportRentState } from "./import_rent_state_reducer.ts";
@@ -1334,6 +1340,8 @@ import { StageProspectingDesc } from "./stage_prospecting_desc_reducer.ts";
 export { StageProspectingDesc };
 import { StageQuestChainDesc } from "./stage_quest_chain_desc_reducer.ts";
 export { StageQuestChainDesc };
+import { StageQuestDropDesc } from "./stage_quest_drop_desc_reducer.ts";
+export { StageQuestDropDesc };
 import { StageQuestStageDesc } from "./stage_quest_stage_desc_reducer.ts";
 export { StageQuestStageDesc };
 import { StageReservedNameDesc } from "./stage_reserved_name_desc_reducer.ts";
@@ -1988,6 +1996,8 @@ import { QuestChainDescTableHandle } from "./quest_chain_desc_table.ts";
 export { QuestChainDescTableHandle };
 import { QuestChainStateTableHandle } from "./quest_chain_state_table.ts";
 export { QuestChainStateTableHandle };
+import { QuestDropDescTableHandle } from "./quest_drop_desc_table.ts";
+export { QuestDropDescTableHandle };
 import { QuestStageDescTableHandle } from "./quest_stage_desc_table.ts";
 export { QuestStageDescTableHandle };
 import { RegionConnectionInfoTableHandle } from "./region_connection_info_table.ts";
@@ -2214,6 +2224,8 @@ import { StagedProspectingDescTableHandle } from "./staged_prospecting_desc_tabl
 export { StagedProspectingDescTableHandle };
 import { StagedQuestChainDescTableHandle } from "./staged_quest_chain_desc_table.ts";
 export { StagedQuestChainDescTableHandle };
+import { StagedQuestDropDescTableHandle } from "./staged_quest_drop_desc_table.ts";
+export { StagedQuestDropDescTableHandle };
 import { StagedQuestStageDescTableHandle } from "./staged_quest_stage_desc_table.ts";
 export { StagedQuestStageDescTableHandle };
 import { StagedReservedNameDescTableHandle } from "./staged_reserved_name_desc_table.ts";
@@ -3412,6 +3424,8 @@ import { QuestChainDesc } from "./quest_chain_desc_type.ts";
 export { QuestChainDesc };
 import { QuestChainState } from "./quest_chain_state_type.ts";
 export { QuestChainState };
+import { QuestDropDesc } from "./quest_drop_desc_type.ts";
+export { QuestDropDesc };
 import { QuestRequirement } from "./quest_requirement_type.ts";
 export { QuestRequirement };
 import { QuestReward } from "./quest_reward_type.ts";
@@ -6115,6 +6129,15 @@ export const REMOTE_MODULE = {
         colType: QuestChainState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    quest_drop_desc: {
+      tableName: "quest_drop_desc",
+      rowType: QuestDropDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: QuestDropDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     quest_stage_desc: {
       tableName: "quest_stage_desc",
       rowType: QuestStageDesc.getTypeScriptAlgebraicType(),
@@ -7117,6 +7140,15 @@ export const REMOTE_MODULE = {
         colType: QuestChainDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    staged_quest_drop_desc: {
+      tableName: "staged_quest_drop_desc",
+      rowType: QuestDropDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: QuestDropDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     staged_quest_stage_desc: {
       tableName: "staged_quest_stage_desc",
       rowType: QuestStageDesc.getTypeScriptAlgebraicType(),
@@ -7880,6 +7912,14 @@ export const REMOTE_MODULE = {
     admin_flip_interior_instance_doors: {
       reducerName: "admin_flip_interior_instance_doors",
       argsType: AdminFlipInteriorInstanceDoors.getTypeScriptAlgebraicType(),
+    },
+    admin_gated_feature_add: {
+      reducerName: "admin_gated_feature_add",
+      argsType: AdminGatedFeatureAdd.getTypeScriptAlgebraicType(),
+    },
+    admin_gated_feature_remove: {
+      reducerName: "admin_gated_feature_remove",
+      argsType: AdminGatedFeatureRemove.getTypeScriptAlgebraicType(),
     },
     admin_grant_all_claim_supplies: {
       reducerName: "admin_grant_all_claim_supplies",
@@ -9309,6 +9349,10 @@ export const REMOTE_MODULE = {
       reducerName: "import_quest_chain_desc",
       argsType: ImportQuestChainDesc.getTypeScriptAlgebraicType(),
     },
+    import_quest_drop_desc: {
+      reducerName: "import_quest_drop_desc",
+      argsType: ImportQuestDropDesc.getTypeScriptAlgebraicType(),
+    },
     import_quest_stage_desc: {
       reducerName: "import_quest_stage_desc",
       argsType: ImportQuestStageDesc.getTypeScriptAlgebraicType(),
@@ -10313,6 +10357,10 @@ export const REMOTE_MODULE = {
       reducerName: "stage_quest_chain_desc",
       argsType: StageQuestChainDesc.getTypeScriptAlgebraicType(),
     },
+    stage_quest_drop_desc: {
+      reducerName: "stage_quest_drop_desc",
+      argsType: StageQuestDropDesc.getTypeScriptAlgebraicType(),
+    },
     stage_quest_stage_desc: {
       reducerName: "stage_quest_stage_desc",
       argsType: StageQuestStageDesc.getTypeScriptAlgebraicType(),
@@ -10597,6 +10645,8 @@ export type Reducer = never
 | { name: "AdminFindItemsInInventories", args: AdminFindItemsInInventories }
 | { name: "AdminFindItemsInTrades", args: AdminFindItemsInTrades }
 | { name: "AdminFlipInteriorInstanceDoors", args: AdminFlipInteriorInstanceDoors }
+| { name: "AdminGatedFeatureAdd", args: AdminGatedFeatureAdd }
+| { name: "AdminGatedFeatureRemove", args: AdminGatedFeatureRemove }
 | { name: "AdminGrantAllClaimSupplies", args: AdminGrantAllClaimSupplies }
 | { name: "AdminGrantCollectibles", args: AdminGrantCollectibles }
 | { name: "AdminMigrateActionState", args: AdminMigrateActionState }
@@ -10954,6 +11004,7 @@ export type Reducer = never
 | { name: "ImportProjectSiteState", args: ImportProjectSiteState }
 | { name: "ImportProspectingDesc", args: ImportProspectingDesc }
 | { name: "ImportQuestChainDesc", args: ImportQuestChainDesc }
+| { name: "ImportQuestDropDesc", args: ImportQuestDropDesc }
 | { name: "ImportQuestStageDesc", args: ImportQuestStageDesc }
 | { name: "ImportRentState", args: ImportRentState }
 | { name: "ImportReservedNameDesc", args: ImportReservedNameDesc }
@@ -11205,6 +11256,7 @@ export type Reducer = never
 | { name: "StagePrivateParametersDesc", args: StagePrivateParametersDesc }
 | { name: "StageProspectingDesc", args: StageProspectingDesc }
 | { name: "StageQuestChainDesc", args: StageQuestChainDesc }
+| { name: "StageQuestDropDesc", args: StageQuestDropDesc }
 | { name: "StageQuestStageDesc", args: StageQuestStageDesc }
 | { name: "StageReservedNameDesc", args: StageReservedNameDesc }
 | { name: "StageResourceClumpDesc", args: StageResourceClumpDesc }
@@ -11905,6 +11957,38 @@ export class RemoteReducers {
 
   removeOnAdminFlipInteriorInstanceDoors(callback: (ctx: ReducerEventContext, interiorInstanceId: number) => void) {
     this.connection.offReducer("admin_flip_interior_instance_doors", callback);
+  }
+
+  adminGatedFeatureAdd(feature: string) {
+    const __args = { feature };
+    let __writer = new BinaryWriter(1024);
+    AdminGatedFeatureAdd.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("admin_gated_feature_add", __argsBuffer, this.setCallReducerFlags.adminGatedFeatureAddFlags);
+  }
+
+  onAdminGatedFeatureAdd(callback: (ctx: ReducerEventContext, feature: string) => void) {
+    this.connection.onReducer("admin_gated_feature_add", callback);
+  }
+
+  removeOnAdminGatedFeatureAdd(callback: (ctx: ReducerEventContext, feature: string) => void) {
+    this.connection.offReducer("admin_gated_feature_add", callback);
+  }
+
+  adminGatedFeatureRemove(feature: string) {
+    const __args = { feature };
+    let __writer = new BinaryWriter(1024);
+    AdminGatedFeatureRemove.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("admin_gated_feature_remove", __argsBuffer, this.setCallReducerFlags.adminGatedFeatureRemoveFlags);
+  }
+
+  onAdminGatedFeatureRemove(callback: (ctx: ReducerEventContext, feature: string) => void) {
+    this.connection.onReducer("admin_gated_feature_remove", callback);
+  }
+
+  removeOnAdminGatedFeatureRemove(callback: (ctx: ReducerEventContext, feature: string) => void) {
+    this.connection.offReducer("admin_gated_feature_remove", callback);
   }
 
   adminGrantAllClaimSupplies(daysOfSupplies: number, dryRun: boolean) {
@@ -17519,6 +17603,22 @@ export class RemoteReducers {
     this.connection.offReducer("import_quest_chain_desc", callback);
   }
 
+  importQuestDropDesc(records: QuestDropDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    ImportQuestDropDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("import_quest_drop_desc", __argsBuffer, this.setCallReducerFlags.importQuestDropDescFlags);
+  }
+
+  onImportQuestDropDesc(callback: (ctx: ReducerEventContext, records: QuestDropDesc[]) => void) {
+    this.connection.onReducer("import_quest_drop_desc", callback);
+  }
+
+  removeOnImportQuestDropDesc(callback: (ctx: ReducerEventContext, records: QuestDropDesc[]) => void) {
+    this.connection.offReducer("import_quest_drop_desc", callback);
+  }
+
   importQuestStageDesc(records: QuestStageDesc[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
@@ -21467,6 +21567,22 @@ export class RemoteReducers {
     this.connection.offReducer("stage_quest_chain_desc", callback);
   }
 
+  stageQuestDropDesc(records: QuestDropDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    StageQuestDropDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("stage_quest_drop_desc", __argsBuffer, this.setCallReducerFlags.stageQuestDropDescFlags);
+  }
+
+  onStageQuestDropDesc(callback: (ctx: ReducerEventContext, records: QuestDropDesc[]) => void) {
+    this.connection.onReducer("stage_quest_drop_desc", callback);
+  }
+
+  removeOnStageQuestDropDesc(callback: (ctx: ReducerEventContext, records: QuestDropDesc[]) => void) {
+    this.connection.offReducer("stage_quest_drop_desc", callback);
+  }
+
   stageQuestStageDesc(records: QuestStageDesc[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
@@ -22514,6 +22630,16 @@ export class SetReducerFlags {
   adminFlipInteriorInstanceDoorsFlags: CallReducerFlags = 'FullUpdate';
   adminFlipInteriorInstanceDoors(flags: CallReducerFlags) {
     this.adminFlipInteriorInstanceDoorsFlags = flags;
+  }
+
+  adminGatedFeatureAddFlags: CallReducerFlags = 'FullUpdate';
+  adminGatedFeatureAdd(flags: CallReducerFlags) {
+    this.adminGatedFeatureAddFlags = flags;
+  }
+
+  adminGatedFeatureRemoveFlags: CallReducerFlags = 'FullUpdate';
+  adminGatedFeatureRemove(flags: CallReducerFlags) {
+    this.adminGatedFeatureRemoveFlags = flags;
   }
 
   adminGrantAllClaimSuppliesFlags: CallReducerFlags = 'FullUpdate';
@@ -24291,6 +24417,11 @@ export class SetReducerFlags {
     this.importQuestChainDescFlags = flags;
   }
 
+  importQuestDropDescFlags: CallReducerFlags = 'FullUpdate';
+  importQuestDropDesc(flags: CallReducerFlags) {
+    this.importQuestDropDescFlags = flags;
+  }
+
   importQuestStageDescFlags: CallReducerFlags = 'FullUpdate';
   importQuestStageDesc(flags: CallReducerFlags) {
     this.importQuestStageDescFlags = flags;
@@ -25544,6 +25675,11 @@ export class SetReducerFlags {
   stageQuestChainDescFlags: CallReducerFlags = 'FullUpdate';
   stageQuestChainDesc(flags: CallReducerFlags) {
     this.stageQuestChainDescFlags = flags;
+  }
+
+  stageQuestDropDescFlags: CallReducerFlags = 'FullUpdate';
+  stageQuestDropDesc(flags: CallReducerFlags) {
+    this.stageQuestDropDescFlags = flags;
   }
 
   stageQuestStageDescFlags: CallReducerFlags = 'FullUpdate';
@@ -26908,6 +27044,10 @@ export class RemoteTables {
     return new QuestChainStateTableHandle(this.connection.clientCache.getOrCreateTable<QuestChainState>(REMOTE_MODULE.tables.quest_chain_state));
   }
 
+  get questDropDesc(): QuestDropDescTableHandle {
+    return new QuestDropDescTableHandle(this.connection.clientCache.getOrCreateTable<QuestDropDesc>(REMOTE_MODULE.tables.quest_drop_desc));
+  }
+
   get questStageDesc(): QuestStageDescTableHandle {
     return new QuestStageDescTableHandle(this.connection.clientCache.getOrCreateTable<QuestStageDesc>(REMOTE_MODULE.tables.quest_stage_desc));
   }
@@ -27358,6 +27498,10 @@ export class RemoteTables {
 
   get stagedQuestChainDesc(): StagedQuestChainDescTableHandle {
     return new StagedQuestChainDescTableHandle(this.connection.clientCache.getOrCreateTable<QuestChainDesc>(REMOTE_MODULE.tables.staged_quest_chain_desc));
+  }
+
+  get stagedQuestDropDesc(): StagedQuestDropDescTableHandle {
+    return new StagedQuestDropDescTableHandle(this.connection.clientCache.getOrCreateTable<QuestDropDesc>(REMOTE_MODULE.tables.staged_quest_drop_desc));
   }
 
   get stagedQuestStageDesc(): StagedQuestStageDescTableHandle {

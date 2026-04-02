@@ -32,36 +32,34 @@ import {
   type ReducerEventContextInterface,
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
-export type PlayerBarterStallOrderAccept = {
-  tradeOrderEntityId: bigint,
-  shopEntityId: bigint,
-  amount: number,
+
+import { QuestDropDesc as __QuestDropDesc } from "./quest_drop_desc_type";
+
+export type ImportQuestDropDesc = {
+  records: __QuestDropDesc[],
 };
 
 /**
  * A namespace for generated helper functions.
  */
-export namespace PlayerBarterStallOrderAccept {
+export namespace ImportQuestDropDesc {
   /**
   * A function which returns this type represented as an AlgebraicType.
   * This function is derived from the AlgebraicType used to generate this type.
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("tradeOrderEntityId", AlgebraicType.createU64Type()),
-      new ProductTypeElement("shopEntityId", AlgebraicType.createU64Type()),
-      new ProductTypeElement("amount", AlgebraicType.createI32Type()),
+      new ProductTypeElement("records", AlgebraicType.createArrayType(__QuestDropDesc.getTypeScriptAlgebraicType())),
     ]);
   }
 
-  export function serialize(writer: BinaryWriter, value: PlayerBarterStallOrderAccept): void {
-    PlayerBarterStallOrderAccept.getTypeScriptAlgebraicType().serialize(writer, value);
+  export function serialize(writer: BinaryWriter, value: ImportQuestDropDesc): void {
+    ImportQuestDropDesc.getTypeScriptAlgebraicType().serialize(writer, value);
   }
 
-  export function deserialize(reader: BinaryReader): PlayerBarterStallOrderAccept {
-    return PlayerBarterStallOrderAccept.getTypeScriptAlgebraicType().deserialize(reader);
+  export function deserialize(reader: BinaryReader): ImportQuestDropDesc {
+    return ImportQuestDropDesc.getTypeScriptAlgebraicType().deserialize(reader);
   }
 
 }
-
 
