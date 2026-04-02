@@ -39,6 +39,7 @@ export namespace PlayerVoteType {
   // the tagged union.
   export type JoinEmpire = { tag: "JoinEmpire" };
   export type SubmitEmpire = { tag: "SubmitEmpire" };
+  export type SubmitWatchtower = { tag: "SubmitWatchtower" };
 
   // Helper functions for constructing each variant of the tagged union.
   // ```
@@ -48,11 +49,13 @@ export namespace PlayerVoteType {
   // ```
   export const JoinEmpire = { tag: "JoinEmpire" };
   export const SubmitEmpire = { tag: "SubmitEmpire" };
+  export const SubmitWatchtower = { tag: "SubmitWatchtower" };
 
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createSumType([
       new SumTypeVariant("JoinEmpire", AlgebraicType.createProductType([])),
       new SumTypeVariant("SubmitEmpire", AlgebraicType.createProductType([])),
+      new SumTypeVariant("SubmitWatchtower", AlgebraicType.createProductType([])),
     ]);
   }
 
@@ -67,7 +70,7 @@ export namespace PlayerVoteType {
 }
 
 // The tagged union or sum type for the algebraic type `PlayerVoteType`.
-export type PlayerVoteType = PlayerVoteType.JoinEmpire | PlayerVoteType.SubmitEmpire;
+export type PlayerVoteType = PlayerVoteType.JoinEmpire | PlayerVoteType.SubmitEmpire | PlayerVoteType.SubmitWatchtower;
 
 export default PlayerVoteType;
 

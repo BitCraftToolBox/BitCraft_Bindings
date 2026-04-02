@@ -76,6 +76,10 @@ import { AdminDeleteChatMessage } from "./admin_delete_chat_message_reducer.ts";
 export { AdminDeleteChatMessage };
 import { AdminDeleteModerationActionLogEntry } from "./admin_delete_moderation_action_log_entry_reducer.ts";
 export { AdminDeleteModerationActionLogEntry };
+import { AdminGatedFeatureAdd } from "./admin_gated_feature_add_reducer.ts";
+export { AdminGatedFeatureAdd };
+import { AdminGatedFeatureRemove } from "./admin_gated_feature_remove_reducer.ts";
+export { AdminGatedFeatureRemove };
 import { AdminGrantShards } from "./admin_grant_shards_reducer.ts";
 export { AdminGrantShards };
 import { AdminLogModerationAction } from "./admin_log_moderation_action_reducer.ts";
@@ -156,6 +160,10 @@ import { BlockIdentity } from "./block_identity_reducer.ts";
 export { BlockIdentity };
 import { BlockPlayer } from "./block_player_reducer.ts";
 export { BlockPlayer };
+import { ChatCleanupAgentInsert } from "./chat_cleanup_agent_insert_reducer.ts";
+export { ChatCleanupAgentInsert };
+import { ChatCleanupAgentLoop } from "./chat_cleanup_agent_loop_reducer.ts";
+export { ChatCleanupAgentLoop };
 import { ChatPostTargetedMessage } from "./chat_post_targeted_message_reducer.ts";
 export { ChatPostTargetedMessage };
 import { CheatEmpireSiegeAddSupplies } from "./cheat_empire_siege_add_supplies_reducer.ts";
@@ -224,6 +232,8 @@ import { EmpireTakeEmperorship } from "./empire_take_emperorship_reducer.ts";
 export { EmpireTakeEmperorship };
 import { EmpireTransferEmperorship } from "./empire_transfer_emperorship_reducer.ts";
 export { EmpireTransferEmperorship };
+import { EmpireTransferWatchtowerOwnership } from "./empire_transfer_watchtower_ownership_reducer.ts";
+export { EmpireTransferWatchtowerOwnership };
 import { EmpireUpdatePermissions } from "./empire_update_permissions_reducer.ts";
 export { EmpireUpdatePermissions };
 import { IdentityConnected } from "./identity_connected_reducer.ts";
@@ -568,6 +578,8 @@ import { LogEmpireLeaderboard } from "./log_empire_leaderboard_reducer.ts";
 export { LogEmpireLeaderboard };
 import { LogPlayerWith } from "./log_player_with_reducer.ts";
 export { LogPlayerWith };
+import { MigrateFixEmpireLowercaseNames } from "./migrate_fix_empire_lowercase_names_reducer.ts";
+export { MigrateFixEmpireLowercaseNames };
 import { OnInterModuleMessageProcessed } from "./on_inter_module_message_processed_reducer.ts";
 export { OnInterModuleMessageProcessed };
 import { PlayerClaimDailyShards } from "./player_claim_daily_shards_reducer.ts";
@@ -762,6 +774,8 @@ import { StageProspectingDesc } from "./stage_prospecting_desc_reducer.ts";
 export { StageProspectingDesc };
 import { StageQuestChainDesc } from "./stage_quest_chain_desc_reducer.ts";
 export { StageQuestChainDesc };
+import { StageQuestDropDesc } from "./stage_quest_drop_desc_reducer.ts";
+export { StageQuestDropDesc };
 import { StageQuestStageDesc } from "./stage_quest_stage_desc_reducer.ts";
 export { StageQuestStageDesc };
 import { StageReservedNameDesc } from "./stage_reserved_name_desc_reducer.ts";
@@ -898,6 +912,8 @@ import { ChatChannelPermissionStateTableHandle } from "./chat_channel_permission
 export { ChatChannelPermissionStateTableHandle };
 import { ChatChannelStateTableHandle } from "./chat_channel_state_table.ts";
 export { ChatChannelStateTableHandle };
+import { ChatCleanupTimerTableHandle } from "./chat_cleanup_timer_table.ts";
+export { ChatCleanupTimerTableHandle };
 import { ChatMessageStateTableHandle } from "./chat_message_state_table.ts";
 export { ChatMessageStateTableHandle };
 import { ChestRarityDescTableHandle } from "./chest_rarity_desc_table.ts";
@@ -1346,6 +1362,8 @@ import { QuestChainDescTableHandle } from "./quest_chain_desc_table.ts";
 export { QuestChainDescTableHandle };
 import { QuestChainStateTableHandle } from "./quest_chain_state_table.ts";
 export { QuestChainStateTableHandle };
+import { QuestDropDescTableHandle } from "./quest_drop_desc_table.ts";
+export { QuestDropDescTableHandle };
 import { QuestStageDescTableHandle } from "./quest_stage_desc_table.ts";
 export { QuestStageDescTableHandle };
 import { RegionConnectionInfoTableHandle } from "./region_connection_info_table.ts";
@@ -1550,6 +1568,8 @@ import { StagedProspectingDescTableHandle } from "./staged_prospecting_desc_tabl
 export { StagedProspectingDescTableHandle };
 import { StagedQuestChainDescTableHandle } from "./staged_quest_chain_desc_table.ts";
 export { StagedQuestChainDescTableHandle };
+import { StagedQuestDropDescTableHandle } from "./staged_quest_drop_desc_table.ts";
+export { StagedQuestDropDescTableHandle };
 import { StagedQuestStageDescTableHandle } from "./staged_quest_stage_desc_table.ts";
 export { StagedQuestStageDescTableHandle };
 import { StagedReservedNameDescTableHandle } from "./staged_reserved_name_desc_table.ts";
@@ -1802,6 +1822,8 @@ import { ChatChannelState } from "./chat_channel_state_type.ts";
 export { ChatChannelState };
 import { ChatChannelVisibility } from "./chat_channel_visibility_type.ts";
 export { ChatChannelVisibility };
+import { ChatCleanupTimer } from "./chat_cleanup_timer_type.ts";
+export { ChatCleanupTimer };
 import { ChatMessageState } from "./chat_message_state_type.ts";
 export { ChatMessageState };
 import { CheatShardsGrantRequest } from "./cheat_shards_grant_request_type.ts";
@@ -2486,6 +2508,8 @@ import { QuestChainDesc } from "./quest_chain_desc_type.ts";
 export { QuestChainDesc };
 import { QuestChainState } from "./quest_chain_state_type.ts";
 export { QuestChainState };
+import { QuestDropDesc } from "./quest_drop_desc_type.ts";
+export { QuestDropDesc };
 import { QuestRequirement } from "./quest_requirement_type.ts";
 export { QuestRequirement };
 import { QuestReward } from "./quest_reward_type.ts";
@@ -3011,6 +3035,15 @@ const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "entityId",
         colType: ChatChannelState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    chat_cleanup_timer: {
+      tableName: "chat_cleanup_timer",
+      rowType: ChatCleanupTimer.getTypeScriptAlgebraicType(),
+      primaryKey: "scheduledId",
+      primaryKeyInfo: {
+        colName: "scheduledId",
+        colType: ChatCleanupTimer.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     chat_message_state: {
@@ -4954,6 +4987,15 @@ const REMOTE_MODULE = {
         colType: QuestChainState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    quest_drop_desc: {
+      tableName: "quest_drop_desc",
+      rowType: QuestDropDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: QuestDropDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     quest_stage_desc: {
       tableName: "quest_stage_desc",
       rowType: QuestStageDesc.getTypeScriptAlgebraicType(),
@@ -5857,6 +5899,15 @@ const REMOTE_MODULE = {
         colType: QuestChainDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    staged_quest_drop_desc: {
+      tableName: "staged_quest_drop_desc",
+      rowType: QuestDropDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: QuestDropDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     staged_quest_stage_desc: {
       tableName: "staged_quest_stage_desc",
       rowType: QuestStageDesc.getTypeScriptAlgebraicType(),
@@ -6501,6 +6552,14 @@ const REMOTE_MODULE = {
       reducerName: "admin_delete_moderation_action_log_entry",
       argsType: AdminDeleteModerationActionLogEntry.getTypeScriptAlgebraicType(),
     },
+    admin_gated_feature_add: {
+      reducerName: "admin_gated_feature_add",
+      argsType: AdminGatedFeatureAdd.getTypeScriptAlgebraicType(),
+    },
+    admin_gated_feature_remove: {
+      reducerName: "admin_gated_feature_remove",
+      argsType: AdminGatedFeatureRemove.getTypeScriptAlgebraicType(),
+    },
     admin_grant_shards: {
       reducerName: "admin_grant_shards",
       argsType: AdminGrantShards.getTypeScriptAlgebraicType(),
@@ -6661,6 +6720,14 @@ const REMOTE_MODULE = {
       reducerName: "block_player",
       argsType: BlockPlayer.getTypeScriptAlgebraicType(),
     },
+    chat_cleanup_agent_insert: {
+      reducerName: "chat_cleanup_agent_insert",
+      argsType: ChatCleanupAgentInsert.getTypeScriptAlgebraicType(),
+    },
+    chat_cleanup_agent_loop: {
+      reducerName: "chat_cleanup_agent_loop",
+      argsType: ChatCleanupAgentLoop.getTypeScriptAlgebraicType(),
+    },
     chat_post_targeted_message: {
       reducerName: "chat_post_targeted_message",
       argsType: ChatPostTargetedMessage.getTypeScriptAlgebraicType(),
@@ -6796,6 +6863,10 @@ const REMOTE_MODULE = {
     empire_transfer_emperorship: {
       reducerName: "empire_transfer_emperorship",
       argsType: EmpireTransferEmperorship.getTypeScriptAlgebraicType(),
+    },
+    empire_transfer_watchtower_ownership: {
+      reducerName: "empire_transfer_watchtower_ownership",
+      argsType: EmpireTransferWatchtowerOwnership.getTypeScriptAlgebraicType(),
     },
     empire_update_permissions: {
       reducerName: "empire_update_permissions",
@@ -7485,6 +7556,10 @@ const REMOTE_MODULE = {
       reducerName: "log_player_with_",
       argsType: LogPlayerWith.getTypeScriptAlgebraicType(),
     },
+    migrate_fix_empire_lowercase_names: {
+      reducerName: "migrate_fix_empire_lowercase_names",
+      argsType: MigrateFixEmpireLowercaseNames.getTypeScriptAlgebraicType(),
+    },
     on_inter_module_message_processed: {
       reducerName: "on_inter_module_message_processed",
       argsType: OnInterModuleMessageProcessed.getTypeScriptAlgebraicType(),
@@ -7873,6 +7948,10 @@ const REMOTE_MODULE = {
       reducerName: "stage_quest_chain_desc",
       argsType: StageQuestChainDesc.getTypeScriptAlgebraicType(),
     },
+    stage_quest_drop_desc: {
+      reducerName: "stage_quest_drop_desc",
+      argsType: StageQuestDropDesc.getTypeScriptAlgebraicType(),
+    },
     stage_quest_stage_desc: {
       reducerName: "stage_quest_stage_desc",
       argsType: StageQuestStageDesc.getTypeScriptAlgebraicType(),
@@ -8044,6 +8123,8 @@ export type Reducer = never
 | { name: "AdminCreatePlayerReport", args: AdminCreatePlayerReport }
 | { name: "AdminDeleteChatMessage", args: AdminDeleteChatMessage }
 | { name: "AdminDeleteModerationActionLogEntry", args: AdminDeleteModerationActionLogEntry }
+| { name: "AdminGatedFeatureAdd", args: AdminGatedFeatureAdd }
+| { name: "AdminGatedFeatureRemove", args: AdminGatedFeatureRemove }
 | { name: "AdminGrantShards", args: AdminGrantShards }
 | { name: "AdminLogModerationAction", args: AdminLogModerationAction }
 | { name: "AdminMarkPremiumPurchaseProcessed", args: AdminMarkPremiumPurchaseProcessed }
@@ -8084,6 +8165,8 @@ export type Reducer = never
 | { name: "BanPlayerFromChatChannel", args: BanPlayerFromChatChannel }
 | { name: "BlockIdentity", args: BlockIdentity }
 | { name: "BlockPlayer", args: BlockPlayer }
+| { name: "ChatCleanupAgentInsert", args: ChatCleanupAgentInsert }
+| { name: "ChatCleanupAgentLoop", args: ChatCleanupAgentLoop }
 | { name: "ChatPostTargetedMessage", args: ChatPostTargetedMessage }
 | { name: "CheatEmpireSiegeAddSupplies", args: CheatEmpireSiegeAddSupplies }
 | { name: "CheatEmpireSiegeCancel", args: CheatEmpireSiegeCancel }
@@ -8118,6 +8201,7 @@ export type Reducer = never
 | { name: "EmpireSubmit", args: EmpireSubmit }
 | { name: "EmpireTakeEmperorship", args: EmpireTakeEmperorship }
 | { name: "EmpireTransferEmperorship", args: EmpireTransferEmperorship }
+| { name: "EmpireTransferWatchtowerOwnership", args: EmpireTransferWatchtowerOwnership }
 | { name: "EmpireUpdatePermissions", args: EmpireUpdatePermissions }
 | { name: "IdentityConnected", args: IdentityConnected }
 | { name: "IdentityDisconnected", args: IdentityDisconnected }
@@ -8290,6 +8374,7 @@ export type Reducer = never
 | { name: "LoadConfig", args: LoadConfig }
 | { name: "LogEmpireLeaderboard", args: LogEmpireLeaderboard }
 | { name: "LogPlayerWith", args: LogPlayerWith }
+| { name: "MigrateFixEmpireLowercaseNames", args: MigrateFixEmpireLowercaseNames }
 | { name: "OnInterModuleMessageProcessed", args: OnInterModuleMessageProcessed }
 | { name: "PlayerClaimDailyShards", args: PlayerClaimDailyShards }
 | { name: "PlayerCreate", args: PlayerCreate }
@@ -8387,6 +8472,7 @@ export type Reducer = never
 | { name: "StagePrivateParametersDesc", args: StagePrivateParametersDesc }
 | { name: "StageProspectingDesc", args: StageProspectingDesc }
 | { name: "StageQuestChainDesc", args: StageQuestChainDesc }
+| { name: "StageQuestDropDesc", args: StageQuestDropDesc }
 | { name: "StageQuestStageDesc", args: StageQuestStageDesc }
 | { name: "StageReservedNameDesc", args: StageReservedNameDesc }
 | { name: "StageResourceClumpDesc", args: StageResourceClumpDesc }
@@ -8752,6 +8838,38 @@ export class RemoteReducers {
 
   removeOnAdminDeleteModerationActionLogEntry(callback: (ctx: ReducerEventContext, entityId: bigint) => void) {
     this.connection.offReducer("admin_delete_moderation_action_log_entry", callback);
+  }
+
+  adminGatedFeatureAdd(feature: string) {
+    const __args = { feature };
+    let __writer = new BinaryWriter(1024);
+    AdminGatedFeatureAdd.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("admin_gated_feature_add", __argsBuffer, this.setCallReducerFlags.adminGatedFeatureAddFlags);
+  }
+
+  onAdminGatedFeatureAdd(callback: (ctx: ReducerEventContext, feature: string) => void) {
+    this.connection.onReducer("admin_gated_feature_add", callback);
+  }
+
+  removeOnAdminGatedFeatureAdd(callback: (ctx: ReducerEventContext, feature: string) => void) {
+    this.connection.offReducer("admin_gated_feature_add", callback);
+  }
+
+  adminGatedFeatureRemove(feature: string) {
+    const __args = { feature };
+    let __writer = new BinaryWriter(1024);
+    AdminGatedFeatureRemove.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("admin_gated_feature_remove", __argsBuffer, this.setCallReducerFlags.adminGatedFeatureRemoveFlags);
+  }
+
+  onAdminGatedFeatureRemove(callback: (ctx: ReducerEventContext, feature: string) => void) {
+    this.connection.onReducer("admin_gated_feature_remove", callback);
+  }
+
+  removeOnAdminGatedFeatureRemove(callback: (ctx: ReducerEventContext, feature: string) => void) {
+    this.connection.offReducer("admin_gated_feature_remove", callback);
   }
 
   adminGrantShards(identity: string, amount: number) {
@@ -9382,6 +9500,34 @@ export class RemoteReducers {
     this.connection.offReducer("block_player", callback);
   }
 
+  chatCleanupAgentInsert() {
+    this.connection.callReducer("chat_cleanup_agent_insert", new Uint8Array(0), this.setCallReducerFlags.chatCleanupAgentInsertFlags);
+  }
+
+  onChatCleanupAgentInsert(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.onReducer("chat_cleanup_agent_insert", callback);
+  }
+
+  removeOnChatCleanupAgentInsert(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.offReducer("chat_cleanup_agent_insert", callback);
+  }
+
+  chatCleanupAgentLoop(timer: ChatCleanupTimer) {
+    const __args = { timer };
+    let __writer = new BinaryWriter(1024);
+    ChatCleanupAgentLoop.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("chat_cleanup_agent_loop", __argsBuffer, this.setCallReducerFlags.chatCleanupAgentLoopFlags);
+  }
+
+  onChatCleanupAgentLoop(callback: (ctx: ReducerEventContext, timer: ChatCleanupTimer) => void) {
+    this.connection.onReducer("chat_cleanup_agent_loop", callback);
+  }
+
+  removeOnChatCleanupAgentLoop(callback: (ctx: ReducerEventContext, timer: ChatCleanupTimer) => void) {
+    this.connection.offReducer("chat_cleanup_agent_loop", callback);
+  }
+
   chatPostTargetedMessage(request: PlayerChatPostMessageRequest) {
     const __args = { request };
     let __writer = new BinaryWriter(1024);
@@ -9908,6 +10054,22 @@ export class RemoteReducers {
 
   removeOnEmpireTransferEmperorship(callback: (ctx: ReducerEventContext, targetPlayerEntityId: bigint) => void) {
     this.connection.offReducer("empire_transfer_emperorship", callback);
+  }
+
+  empireTransferWatchtowerOwnership(watchtowerEntityId: bigint, targetEmpireEntityId: bigint) {
+    const __args = { watchtowerEntityId, targetEmpireEntityId };
+    let __writer = new BinaryWriter(1024);
+    EmpireTransferWatchtowerOwnership.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("empire_transfer_watchtower_ownership", __argsBuffer, this.setCallReducerFlags.empireTransferWatchtowerOwnershipFlags);
+  }
+
+  onEmpireTransferWatchtowerOwnership(callback: (ctx: ReducerEventContext, watchtowerEntityId: bigint, targetEmpireEntityId: bigint) => void) {
+    this.connection.onReducer("empire_transfer_watchtower_ownership", callback);
+  }
+
+  removeOnEmpireTransferWatchtowerOwnership(callback: (ctx: ReducerEventContext, watchtowerEntityId: bigint, targetEmpireEntityId: bigint) => void) {
+    this.connection.offReducer("empire_transfer_watchtower_ownership", callback);
   }
 
   empireUpdatePermissions(request: EmpireUpdatePermissionsRequest) {
@@ -12638,6 +12800,18 @@ export class RemoteReducers {
     this.connection.offReducer("log_player_with_", callback);
   }
 
+  migrateFixEmpireLowercaseNames() {
+    this.connection.callReducer("migrate_fix_empire_lowercase_names", new Uint8Array(0), this.setCallReducerFlags.migrateFixEmpireLowercaseNamesFlags);
+  }
+
+  onMigrateFixEmpireLowercaseNames(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.onReducer("migrate_fix_empire_lowercase_names", callback);
+  }
+
+  removeOnMigrateFixEmpireLowercaseNames(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.offReducer("migrate_fix_empire_lowercase_names", callback);
+  }
+
   onInterModuleMessageProcessed(id: bigint, error: string | undefined) {
     const __args = { id, error };
     let __writer = new BinaryWriter(1024);
@@ -14178,6 +14352,22 @@ export class RemoteReducers {
     this.connection.offReducer("stage_quest_chain_desc", callback);
   }
 
+  stageQuestDropDesc(records: QuestDropDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    StageQuestDropDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("stage_quest_drop_desc", __argsBuffer, this.setCallReducerFlags.stageQuestDropDescFlags);
+  }
+
+  onStageQuestDropDesc(callback: (ctx: ReducerEventContext, records: QuestDropDesc[]) => void) {
+    this.connection.onReducer("stage_quest_drop_desc", callback);
+  }
+
+  removeOnStageQuestDropDesc(callback: (ctx: ReducerEventContext, records: QuestDropDesc[]) => void) {
+    this.connection.offReducer("stage_quest_drop_desc", callback);
+  }
+
   stageQuestStageDesc(records: QuestStageDesc[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
@@ -14758,6 +14948,16 @@ export class SetReducerFlags {
     this.adminDeleteModerationActionLogEntryFlags = flags;
   }
 
+  adminGatedFeatureAddFlags: CallReducerFlags = 'FullUpdate';
+  adminGatedFeatureAdd(flags: CallReducerFlags) {
+    this.adminGatedFeatureAddFlags = flags;
+  }
+
+  adminGatedFeatureRemoveFlags: CallReducerFlags = 'FullUpdate';
+  adminGatedFeatureRemove(flags: CallReducerFlags) {
+    this.adminGatedFeatureRemoveFlags = flags;
+  }
+
   adminGrantShardsFlags: CallReducerFlags = 'FullUpdate';
   adminGrantShards(flags: CallReducerFlags) {
     this.adminGrantShardsFlags = flags;
@@ -14958,6 +15158,16 @@ export class SetReducerFlags {
     this.blockPlayerFlags = flags;
   }
 
+  chatCleanupAgentInsertFlags: CallReducerFlags = 'FullUpdate';
+  chatCleanupAgentInsert(flags: CallReducerFlags) {
+    this.chatCleanupAgentInsertFlags = flags;
+  }
+
+  chatCleanupAgentLoopFlags: CallReducerFlags = 'FullUpdate';
+  chatCleanupAgentLoop(flags: CallReducerFlags) {
+    this.chatCleanupAgentLoopFlags = flags;
+  }
+
   chatPostTargetedMessageFlags: CallReducerFlags = 'FullUpdate';
   chatPostTargetedMessage(flags: CallReducerFlags) {
     this.chatPostTargetedMessageFlags = flags;
@@ -15126,6 +15336,11 @@ export class SetReducerFlags {
   empireTransferEmperorshipFlags: CallReducerFlags = 'FullUpdate';
   empireTransferEmperorship(flags: CallReducerFlags) {
     this.empireTransferEmperorshipFlags = flags;
+  }
+
+  empireTransferWatchtowerOwnershipFlags: CallReducerFlags = 'FullUpdate';
+  empireTransferWatchtowerOwnership(flags: CallReducerFlags) {
+    this.empireTransferWatchtowerOwnershipFlags = flags;
   }
 
   empireUpdatePermissionsFlags: CallReducerFlags = 'FullUpdate';
@@ -15978,6 +16193,11 @@ export class SetReducerFlags {
     this.logPlayerWithFlags = flags;
   }
 
+  migrateFixEmpireLowercaseNamesFlags: CallReducerFlags = 'FullUpdate';
+  migrateFixEmpireLowercaseNames(flags: CallReducerFlags) {
+    this.migrateFixEmpireLowercaseNamesFlags = flags;
+  }
+
   onInterModuleMessageProcessedFlags: CallReducerFlags = 'FullUpdate';
   onInterModuleMessageProcessed(flags: CallReducerFlags) {
     this.onInterModuleMessageProcessedFlags = flags;
@@ -16463,6 +16683,11 @@ export class SetReducerFlags {
     this.stageQuestChainDescFlags = flags;
   }
 
+  stageQuestDropDescFlags: CallReducerFlags = 'FullUpdate';
+  stageQuestDropDesc(flags: CallReducerFlags) {
+    this.stageQuestDropDescFlags = flags;
+  }
+
   stageQuestStageDescFlags: CallReducerFlags = 'FullUpdate';
   stageQuestStageDesc(flags: CallReducerFlags) {
     this.stageQuestStageDescFlags = flags;
@@ -16764,6 +16989,10 @@ export class RemoteTables {
 
   get chatChannelState(): ChatChannelStateTableHandle {
     return new ChatChannelStateTableHandle(this.connection.clientCache.getOrCreateTable<ChatChannelState>(REMOTE_MODULE.tables.chat_channel_state));
+  }
+
+  get chatCleanupTimer(): ChatCleanupTimerTableHandle {
+    return new ChatCleanupTimerTableHandle(this.connection.clientCache.getOrCreateTable<ChatCleanupTimer>(REMOTE_MODULE.tables.chat_cleanup_timer));
   }
 
   get chatMessageState(): ChatMessageStateTableHandle {
@@ -17662,6 +17891,10 @@ export class RemoteTables {
     return new QuestChainStateTableHandle(this.connection.clientCache.getOrCreateTable<QuestChainState>(REMOTE_MODULE.tables.quest_chain_state));
   }
 
+  get questDropDesc(): QuestDropDescTableHandle {
+    return new QuestDropDescTableHandle(this.connection.clientCache.getOrCreateTable<QuestDropDesc>(REMOTE_MODULE.tables.quest_drop_desc));
+  }
+
   get questStageDesc(): QuestStageDescTableHandle {
     return new QuestStageDescTableHandle(this.connection.clientCache.getOrCreateTable<QuestStageDesc>(REMOTE_MODULE.tables.quest_stage_desc));
   }
@@ -18068,6 +18301,10 @@ export class RemoteTables {
 
   get stagedQuestChainDesc(): StagedQuestChainDescTableHandle {
     return new StagedQuestChainDescTableHandle(this.connection.clientCache.getOrCreateTable<QuestChainDesc>(REMOTE_MODULE.tables.staged_quest_chain_desc));
+  }
+
+  get stagedQuestDropDesc(): StagedQuestDropDescTableHandle {
+    return new StagedQuestDropDescTableHandle(this.connection.clientCache.getOrCreateTable<QuestDropDesc>(REMOTE_MODULE.tables.staged_quest_drop_desc));
   }
 
   get stagedQuestStageDesc(): StagedQuestStageDescTableHandle {
