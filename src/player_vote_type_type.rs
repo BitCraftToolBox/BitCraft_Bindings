@@ -11,6 +11,8 @@ pub enum PlayerVoteType {
     JoinEmpire,
 
     SubmitEmpire,
+
+    SubmitWatchtower,
 }
 
 impl __sdk::InModule for PlayerVoteType {
