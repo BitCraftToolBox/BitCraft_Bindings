@@ -13,5 +13,6 @@ namespace BitCraftGlobal.Types
     {
         JoinEmpire,
         SubmitEmpire,
+        SubmitWatchtower,
     }
 }

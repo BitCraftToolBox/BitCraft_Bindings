@@ -53,5 +53,6 @@ namespace BitCraftGlobal.Types
         SpiderDungeonSmallSpider,
         SpiderDungeonSpiderNest,
         EnragedAlphaJakyl,
+        DeerSwift,
     }
 }

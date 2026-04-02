@@ -20,6 +20,7 @@ namespace BitCraftGlobal.Types
         int DeployableDeploy,
         int AddToToolbelt,
         int DeployableToggle,
-        int Emote
+        int Emote,
+        int EquipPreset
     )>;
 }

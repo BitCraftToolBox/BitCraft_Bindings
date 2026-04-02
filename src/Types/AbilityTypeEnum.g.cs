@@ -23,5 +23,6 @@ namespace BitCraftGlobal.Types
         AddToToolbelt,
         DeployableToggle,
         Emote,
+        EquipPreset,
     }
 }
