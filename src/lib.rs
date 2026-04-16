@@ -53,8 +53,6 @@ pub mod admin_create_entity_name_report_reducer;
 pub mod admin_create_player_report_reducer;
 pub mod admin_delete_chat_message_reducer;
 pub mod admin_delete_moderation_action_log_entry_reducer;
-pub mod admin_gated_feature_add_reducer;
-pub mod admin_gated_feature_remove_reducer;
 pub mod admin_grant_shards_reducer;
 pub mod admin_log_moderation_action_reducer;
 pub mod admin_mark_premium_purchase_processed_reducer;
@@ -1451,13 +1449,6 @@ pub use admin_delete_moderation_action_log_entry_reducer::{
     admin_delete_moderation_action_log_entry,
     set_flags_for_admin_delete_moderation_action_log_entry,
     AdminDeleteModerationActionLogEntryCallbackId,
-};
-pub use admin_gated_feature_add_reducer::{
-    admin_gated_feature_add, set_flags_for_admin_gated_feature_add, AdminGatedFeatureAddCallbackId,
-};
-pub use admin_gated_feature_remove_reducer::{
-    admin_gated_feature_remove, set_flags_for_admin_gated_feature_remove,
-    AdminGatedFeatureRemoveCallbackId,
 };
 pub use admin_grant_shards_reducer::{
     admin_grant_shards, set_flags_for_admin_grant_shards, AdminGrantShardsCallbackId,
@@ -3803,12 +3794,6 @@ pub enum Reducer {
     AdminDeleteModerationActionLogEntry {
         entity_id: u64,
     },
-    AdminGatedFeatureAdd {
-        feature: String,
-    },
-    AdminGatedFeatureRemove {
-        feature: String,
-    },
     AdminGrantShards {
         identity: String,
         amount: i32,
@@ -5029,8 +5014,6 @@ impl __sdk::Reducer for Reducer {
             Reducer::AdminDeleteModerationActionLogEntry { .. } => {
                 "admin_delete_moderation_action_log_entry"
             }
-            Reducer::AdminGatedFeatureAdd { .. } => "admin_gated_feature_add",
-            Reducer::AdminGatedFeatureRemove { .. } => "admin_gated_feature_remove",
             Reducer::AdminGrantShards { .. } => "admin_grant_shards",
             Reducer::AdminLogModerationAction { .. } => "admin_log_moderation_action",
             Reducer::AdminMarkPremiumPurchaseProcessed { .. } => {
@@ -5478,8 +5461,6 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "admin_create_player_report" => Ok(__sdk::parse_reducer_args::<admin_create_player_report_reducer::AdminCreatePlayerReportArgs>("admin_create_player_report", &value.args)?.into()),
             "admin_delete_chat_message" => Ok(__sdk::parse_reducer_args::<admin_delete_chat_message_reducer::AdminDeleteChatMessageArgs>("admin_delete_chat_message", &value.args)?.into()),
             "admin_delete_moderation_action_log_entry" => Ok(__sdk::parse_reducer_args::<admin_delete_moderation_action_log_entry_reducer::AdminDeleteModerationActionLogEntryArgs>("admin_delete_moderation_action_log_entry", &value.args)?.into()),
-            "admin_gated_feature_add" => Ok(__sdk::parse_reducer_args::<admin_gated_feature_add_reducer::AdminGatedFeatureAddArgs>("admin_gated_feature_add", &value.args)?.into()),
-            "admin_gated_feature_remove" => Ok(__sdk::parse_reducer_args::<admin_gated_feature_remove_reducer::AdminGatedFeatureRemoveArgs>("admin_gated_feature_remove", &value.args)?.into()),
             "admin_grant_shards" => Ok(__sdk::parse_reducer_args::<admin_grant_shards_reducer::AdminGrantShardsArgs>("admin_grant_shards", &value.args)?.into()),
             "admin_log_moderation_action" => Ok(__sdk::parse_reducer_args::<admin_log_moderation_action_reducer::AdminLogModerationActionArgs>("admin_log_moderation_action", &value.args)?.into()),
             "admin_mark_premium_purchase_processed" => Ok(__sdk::parse_reducer_args::<admin_mark_premium_purchase_processed_reducer::AdminMarkPremiumPurchaseProcessedArgs>("admin_mark_premium_purchase_processed", &value.args)?.into()),
