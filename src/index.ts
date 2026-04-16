@@ -76,10 +76,6 @@ import { AdminDeleteChatMessage } from "./admin_delete_chat_message_reducer.ts";
 export { AdminDeleteChatMessage };
 import { AdminDeleteModerationActionLogEntry } from "./admin_delete_moderation_action_log_entry_reducer.ts";
 export { AdminDeleteModerationActionLogEntry };
-import { AdminGatedFeatureAdd } from "./admin_gated_feature_add_reducer.ts";
-export { AdminGatedFeatureAdd };
-import { AdminGatedFeatureRemove } from "./admin_gated_feature_remove_reducer.ts";
-export { AdminGatedFeatureRemove };
 import { AdminGrantShards } from "./admin_grant_shards_reducer.ts";
 export { AdminGrantShards };
 import { AdminLogModerationAction } from "./admin_log_moderation_action_reducer.ts";
@@ -6552,14 +6548,6 @@ const REMOTE_MODULE = {
       reducerName: "admin_delete_moderation_action_log_entry",
       argsType: AdminDeleteModerationActionLogEntry.getTypeScriptAlgebraicType(),
     },
-    admin_gated_feature_add: {
-      reducerName: "admin_gated_feature_add",
-      argsType: AdminGatedFeatureAdd.getTypeScriptAlgebraicType(),
-    },
-    admin_gated_feature_remove: {
-      reducerName: "admin_gated_feature_remove",
-      argsType: AdminGatedFeatureRemove.getTypeScriptAlgebraicType(),
-    },
     admin_grant_shards: {
       reducerName: "admin_grant_shards",
       argsType: AdminGrantShards.getTypeScriptAlgebraicType(),
@@ -8123,8 +8111,6 @@ export type Reducer = never
 | { name: "AdminCreatePlayerReport", args: AdminCreatePlayerReport }
 | { name: "AdminDeleteChatMessage", args: AdminDeleteChatMessage }
 | { name: "AdminDeleteModerationActionLogEntry", args: AdminDeleteModerationActionLogEntry }
-| { name: "AdminGatedFeatureAdd", args: AdminGatedFeatureAdd }
-| { name: "AdminGatedFeatureRemove", args: AdminGatedFeatureRemove }
 | { name: "AdminGrantShards", args: AdminGrantShards }
 | { name: "AdminLogModerationAction", args: AdminLogModerationAction }
 | { name: "AdminMarkPremiumPurchaseProcessed", args: AdminMarkPremiumPurchaseProcessed }
@@ -8838,38 +8824,6 @@ export class RemoteReducers {
 
   removeOnAdminDeleteModerationActionLogEntry(callback: (ctx: ReducerEventContext, entityId: bigint) => void) {
     this.connection.offReducer("admin_delete_moderation_action_log_entry", callback);
-  }
-
-  adminGatedFeatureAdd(feature: string) {
-    const __args = { feature };
-    let __writer = new BinaryWriter(1024);
-    AdminGatedFeatureAdd.getTypeScriptAlgebraicType().serialize(__writer, __args);
-    let __argsBuffer = __writer.getBuffer();
-    this.connection.callReducer("admin_gated_feature_add", __argsBuffer, this.setCallReducerFlags.adminGatedFeatureAddFlags);
-  }
-
-  onAdminGatedFeatureAdd(callback: (ctx: ReducerEventContext, feature: string) => void) {
-    this.connection.onReducer("admin_gated_feature_add", callback);
-  }
-
-  removeOnAdminGatedFeatureAdd(callback: (ctx: ReducerEventContext, feature: string) => void) {
-    this.connection.offReducer("admin_gated_feature_add", callback);
-  }
-
-  adminGatedFeatureRemove(feature: string) {
-    const __args = { feature };
-    let __writer = new BinaryWriter(1024);
-    AdminGatedFeatureRemove.getTypeScriptAlgebraicType().serialize(__writer, __args);
-    let __argsBuffer = __writer.getBuffer();
-    this.connection.callReducer("admin_gated_feature_remove", __argsBuffer, this.setCallReducerFlags.adminGatedFeatureRemoveFlags);
-  }
-
-  onAdminGatedFeatureRemove(callback: (ctx: ReducerEventContext, feature: string) => void) {
-    this.connection.onReducer("admin_gated_feature_remove", callback);
-  }
-
-  removeOnAdminGatedFeatureRemove(callback: (ctx: ReducerEventContext, feature: string) => void) {
-    this.connection.offReducer("admin_gated_feature_remove", callback);
   }
 
   adminGrantShards(identity: string, amount: number) {
@@ -14946,16 +14900,6 @@ export class SetReducerFlags {
   adminDeleteModerationActionLogEntryFlags: CallReducerFlags = 'FullUpdate';
   adminDeleteModerationActionLogEntry(flags: CallReducerFlags) {
     this.adminDeleteModerationActionLogEntryFlags = flags;
-  }
-
-  adminGatedFeatureAddFlags: CallReducerFlags = 'FullUpdate';
-  adminGatedFeatureAdd(flags: CallReducerFlags) {
-    this.adminGatedFeatureAddFlags = flags;
-  }
-
-  adminGatedFeatureRemoveFlags: CallReducerFlags = 'FullUpdate';
-  adminGatedFeatureRemove(flags: CallReducerFlags) {
-    this.adminGatedFeatureRemoveFlags = flags;
   }
 
   adminGrantShardsFlags: CallReducerFlags = 'FullUpdate';
