@@ -16,6 +16,8 @@ namespace BitCraftRegion.Types
     {
         [DataMember(Name = "building_entity_id")]
         public ulong BuildingEntityId;
+        [DataMember(Name = "from_pocket")]
+        public PocketKey FromPocket;
         [DataMember(Name = "paid_supplies")]
         public int PaidSupplies;
         [DataMember(Name = "price_per_supply")]
@@ -23,17 +25,20 @@ namespace BitCraftRegion.Types
 
         public ClaimPurchaseSuppliesFromPlayerRequest(
             ulong BuildingEntityId,
+            PocketKey FromPocket,
             int PaidSupplies,
             float PricePerSupply
         )
         {
             this.BuildingEntityId = BuildingEntityId;
+            this.FromPocket = FromPocket;
             this.PaidSupplies = PaidSupplies;
             this.PricePerSupply = PricePerSupply;
         }
 
         public ClaimPurchaseSuppliesFromPlayerRequest()
         {
+            this.FromPocket = new();
         }
     }
 }
