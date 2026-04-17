@@ -32,40 +32,34 @@ import {
   type ReducerEventContextInterface,
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
-import { PocketKey as __PocketKey } from "./pocket_key_type";
 
-export type ClaimPurchaseSuppliesFromPlayerRequest = {
-  buildingEntityId: bigint,
-  fromPocket: __PocketKey,
-  paidSupplies: number,
-  pricePerSupply: number,
+import { OffsetCoordinatesSmallMessage as __OffsetCoordinatesSmallMessage } from "./offset_coordinates_small_message_type";
+
+export type DiscoverRuins = {
+  coordinates: __OffsetCoordinatesSmallMessage,
 };
 
 /**
  * A namespace for generated helper functions.
  */
-export namespace ClaimPurchaseSuppliesFromPlayerRequest {
+export namespace DiscoverRuins {
   /**
   * A function which returns this type represented as an AlgebraicType.
   * This function is derived from the AlgebraicType used to generate this type.
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("buildingEntityId", AlgebraicType.createU64Type()),
-      new ProductTypeElement("fromPocket", __PocketKey.getTypeScriptAlgebraicType()),
-      new ProductTypeElement("paidSupplies", AlgebraicType.createI32Type()),
-      new ProductTypeElement("pricePerSupply", AlgebraicType.createF32Type()),
+      new ProductTypeElement("coordinates", __OffsetCoordinatesSmallMessage.getTypeScriptAlgebraicType()),
     ]);
   }
 
-  export function serialize(writer: BinaryWriter, value: ClaimPurchaseSuppliesFromPlayerRequest): void {
-    ClaimPurchaseSuppliesFromPlayerRequest.getTypeScriptAlgebraicType().serialize(writer, value);
+  export function serialize(writer: BinaryWriter, value: DiscoverRuins): void {
+    DiscoverRuins.getTypeScriptAlgebraicType().serialize(writer, value);
   }
 
-  export function deserialize(reader: BinaryReader): ClaimPurchaseSuppliesFromPlayerRequest {
-    return ClaimPurchaseSuppliesFromPlayerRequest.getTypeScriptAlgebraicType().deserialize(reader);
+  export function deserialize(reader: BinaryReader): DiscoverRuins {
+    return DiscoverRuins.getTypeScriptAlgebraicType().deserialize(reader);
   }
 
 }
-
 

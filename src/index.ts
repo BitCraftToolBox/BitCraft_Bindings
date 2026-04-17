@@ -460,8 +460,46 @@ import { DestroyDimensionNetwork } from "./destroy_dimension_network_reducer.ts"
 export { DestroyDimensionNetwork };
 import { DevDeleteWorld } from "./dev_delete_world_reducer.ts";
 export { DevDeleteWorld };
+import { DiscoverAchievement } from "./discover_achievement_reducer.ts";
+export { DiscoverAchievement };
+import { DiscoverBuilding } from "./discover_building_reducer.ts";
+export { DiscoverBuilding };
+import { DiscoverCargo } from "./discover_cargo_reducer.ts";
+export { DiscoverCargo };
+import { DiscoverClaim } from "./discover_claim_reducer.ts";
+export { DiscoverClaim };
+import { DiscoverCollectible } from "./discover_collectible_reducer.ts";
+export { DiscoverCollectible };
+import { DiscoverConstructionRecipe } from "./discover_construction_recipe_reducer.ts";
+export { DiscoverConstructionRecipe };
+import { DiscoverCraftingRecipe } from "./discover_crafting_recipe_reducer.ts";
+export { DiscoverCraftingRecipe };
+import { DiscoverDeployable } from "./discover_deployable_reducer.ts";
+export { DiscoverDeployable };
+import { DiscoverEnemy } from "./discover_enemy_reducer.ts";
+export { DiscoverEnemy };
 import { DiscoverEntities } from "./discover_entities_reducer.ts";
 export { DiscoverEntities };
+import { DiscoverExtractionRecipe } from "./discover_extraction_recipe_reducer.ts";
+export { DiscoverExtractionRecipe };
+import { DiscoverItem } from "./discover_item_reducer.ts";
+export { DiscoverItem };
+import { DiscoverNpc } from "./discover_npc_reducer.ts";
+export { DiscoverNpc };
+import { DiscoverPavement } from "./discover_pavement_reducer.ts";
+export { DiscoverPavement };
+import { DiscoverPillarShaping } from "./discover_pillar_shaping_reducer.ts";
+export { DiscoverPillarShaping };
+import { DiscoverResource } from "./discover_resource_reducer.ts";
+export { DiscoverResource };
+import { DiscoverResourcePlacement } from "./discover_resource_placement_reducer.ts";
+export { DiscoverResourcePlacement };
+import { DiscoverRuins } from "./discover_ruins_reducer.ts";
+export { DiscoverRuins };
+import { DiscoverScroll } from "./discover_scroll_reducer.ts";
+export { DiscoverScroll };
+import { DiscoverSecondaryKnowledge } from "./discover_secondary_knowledge_reducer.ts";
+export { DiscoverSecondaryKnowledge };
 import { DroppedInventoryDespawn } from "./dropped_inventory_despawn_reducer.ts";
 export { DroppedInventoryDespawn };
 import { DroppedInventoryDestroy } from "./dropped_inventory_destroy_reducer.ts";
@@ -8597,9 +8635,85 @@ export const REMOTE_MODULE = {
       reducerName: "dev_delete_world",
       argsType: DevDeleteWorld.getTypeScriptAlgebraicType(),
     },
+    discover_achievement: {
+      reducerName: "discover_achievement",
+      argsType: DiscoverAchievement.getTypeScriptAlgebraicType(),
+    },
+    discover_building: {
+      reducerName: "discover_building",
+      argsType: DiscoverBuilding.getTypeScriptAlgebraicType(),
+    },
+    discover_cargo: {
+      reducerName: "discover_cargo",
+      argsType: DiscoverCargo.getTypeScriptAlgebraicType(),
+    },
+    discover_claim: {
+      reducerName: "discover_claim",
+      argsType: DiscoverClaim.getTypeScriptAlgebraicType(),
+    },
+    discover_collectible: {
+      reducerName: "discover_collectible",
+      argsType: DiscoverCollectible.getTypeScriptAlgebraicType(),
+    },
+    discover_construction_recipe: {
+      reducerName: "discover_construction_recipe",
+      argsType: DiscoverConstructionRecipe.getTypeScriptAlgebraicType(),
+    },
+    discover_crafting_recipe: {
+      reducerName: "discover_crafting_recipe",
+      argsType: DiscoverCraftingRecipe.getTypeScriptAlgebraicType(),
+    },
+    discover_deployable: {
+      reducerName: "discover_deployable",
+      argsType: DiscoverDeployable.getTypeScriptAlgebraicType(),
+    },
+    discover_enemy: {
+      reducerName: "discover_enemy",
+      argsType: DiscoverEnemy.getTypeScriptAlgebraicType(),
+    },
     discover_entities: {
       reducerName: "discover_entities",
       argsType: DiscoverEntities.getTypeScriptAlgebraicType(),
+    },
+    discover_extraction_recipe: {
+      reducerName: "discover_extraction_recipe",
+      argsType: DiscoverExtractionRecipe.getTypeScriptAlgebraicType(),
+    },
+    discover_item: {
+      reducerName: "discover_item",
+      argsType: DiscoverItem.getTypeScriptAlgebraicType(),
+    },
+    discover_npc: {
+      reducerName: "discover_npc",
+      argsType: DiscoverNpc.getTypeScriptAlgebraicType(),
+    },
+    discover_pavement: {
+      reducerName: "discover_pavement",
+      argsType: DiscoverPavement.getTypeScriptAlgebraicType(),
+    },
+    discover_pillar_shaping: {
+      reducerName: "discover_pillar_shaping",
+      argsType: DiscoverPillarShaping.getTypeScriptAlgebraicType(),
+    },
+    discover_resource: {
+      reducerName: "discover_resource",
+      argsType: DiscoverResource.getTypeScriptAlgebraicType(),
+    },
+    discover_resource_placement: {
+      reducerName: "discover_resource_placement",
+      argsType: DiscoverResourcePlacement.getTypeScriptAlgebraicType(),
+    },
+    discover_ruins: {
+      reducerName: "discover_ruins",
+      argsType: DiscoverRuins.getTypeScriptAlgebraicType(),
+    },
+    discover_scroll: {
+      reducerName: "discover_scroll",
+      argsType: DiscoverScroll.getTypeScriptAlgebraicType(),
+    },
+    discover_secondary_knowledge: {
+      reducerName: "discover_secondary_knowledge",
+      argsType: DiscoverSecondaryKnowledge.getTypeScriptAlgebraicType(),
     },
     dropped_inventory_despawn: {
       reducerName: "dropped_inventory_despawn",
@@ -10816,7 +10930,26 @@ export type Reducer = never
 | { name: "DeployableToggleAutoFollow", args: DeployableToggleAutoFollow }
 | { name: "DestroyDimensionNetwork", args: DestroyDimensionNetwork }
 | { name: "DevDeleteWorld", args: DevDeleteWorld }
+| { name: "DiscoverAchievement", args: DiscoverAchievement }
+| { name: "DiscoverBuilding", args: DiscoverBuilding }
+| { name: "DiscoverCargo", args: DiscoverCargo }
+| { name: "DiscoverClaim", args: DiscoverClaim }
+| { name: "DiscoverCollectible", args: DiscoverCollectible }
+| { name: "DiscoverConstructionRecipe", args: DiscoverConstructionRecipe }
+| { name: "DiscoverCraftingRecipe", args: DiscoverCraftingRecipe }
+| { name: "DiscoverDeployable", args: DiscoverDeployable }
+| { name: "DiscoverEnemy", args: DiscoverEnemy }
 | { name: "DiscoverEntities", args: DiscoverEntities }
+| { name: "DiscoverExtractionRecipe", args: DiscoverExtractionRecipe }
+| { name: "DiscoverItem", args: DiscoverItem }
+| { name: "DiscoverNpc", args: DiscoverNpc }
+| { name: "DiscoverPavement", args: DiscoverPavement }
+| { name: "DiscoverPillarShaping", args: DiscoverPillarShaping }
+| { name: "DiscoverResource", args: DiscoverResource }
+| { name: "DiscoverResourcePlacement", args: DiscoverResourcePlacement }
+| { name: "DiscoverRuins", args: DiscoverRuins }
+| { name: "DiscoverScroll", args: DiscoverScroll }
+| { name: "DiscoverSecondaryKnowledge", args: DiscoverSecondaryKnowledge }
 | { name: "DroppedInventoryDespawn", args: DroppedInventoryDespawn }
 | { name: "DroppedInventoryDestroy", args: DroppedInventoryDestroy }
 | { name: "DroppedInventoryLoseOwnership", args: DroppedInventoryLoseOwnership }
@@ -14623,6 +14756,150 @@ export class RemoteReducers {
     this.connection.offReducer("dev_delete_world", callback);
   }
 
+  discoverAchievement(achievementId: number) {
+    const __args = { achievementId };
+    let __writer = new BinaryWriter(1024);
+    DiscoverAchievement.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("discover_achievement", __argsBuffer, this.setCallReducerFlags.discoverAchievementFlags);
+  }
+
+  onDiscoverAchievement(callback: (ctx: ReducerEventContext, achievementId: number) => void) {
+    this.connection.onReducer("discover_achievement", callback);
+  }
+
+  removeOnDiscoverAchievement(callback: (ctx: ReducerEventContext, achievementId: number) => void) {
+    this.connection.offReducer("discover_achievement", callback);
+  }
+
+  discoverBuilding(buildingId: number) {
+    const __args = { buildingId };
+    let __writer = new BinaryWriter(1024);
+    DiscoverBuilding.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("discover_building", __argsBuffer, this.setCallReducerFlags.discoverBuildingFlags);
+  }
+
+  onDiscoverBuilding(callback: (ctx: ReducerEventContext, buildingId: number) => void) {
+    this.connection.onReducer("discover_building", callback);
+  }
+
+  removeOnDiscoverBuilding(callback: (ctx: ReducerEventContext, buildingId: number) => void) {
+    this.connection.offReducer("discover_building", callback);
+  }
+
+  discoverCargo(cargoId: number) {
+    const __args = { cargoId };
+    let __writer = new BinaryWriter(1024);
+    DiscoverCargo.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("discover_cargo", __argsBuffer, this.setCallReducerFlags.discoverCargoFlags);
+  }
+
+  onDiscoverCargo(callback: (ctx: ReducerEventContext, cargoId: number) => void) {
+    this.connection.onReducer("discover_cargo", callback);
+  }
+
+  removeOnDiscoverCargo(callback: (ctx: ReducerEventContext, cargoId: number) => void) {
+    this.connection.offReducer("discover_cargo", callback);
+  }
+
+  discoverClaim(claimEntityId: bigint) {
+    const __args = { claimEntityId };
+    let __writer = new BinaryWriter(1024);
+    DiscoverClaim.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("discover_claim", __argsBuffer, this.setCallReducerFlags.discoverClaimFlags);
+  }
+
+  onDiscoverClaim(callback: (ctx: ReducerEventContext, claimEntityId: bigint) => void) {
+    this.connection.onReducer("discover_claim", callback);
+  }
+
+  removeOnDiscoverClaim(callback: (ctx: ReducerEventContext, claimEntityId: bigint) => void) {
+    this.connection.offReducer("discover_claim", callback);
+  }
+
+  discoverCollectible(collectibleId: number) {
+    const __args = { collectibleId };
+    let __writer = new BinaryWriter(1024);
+    DiscoverCollectible.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("discover_collectible", __argsBuffer, this.setCallReducerFlags.discoverCollectibleFlags);
+  }
+
+  onDiscoverCollectible(callback: (ctx: ReducerEventContext, collectibleId: number) => void) {
+    this.connection.onReducer("discover_collectible", callback);
+  }
+
+  removeOnDiscoverCollectible(callback: (ctx: ReducerEventContext, collectibleId: number) => void) {
+    this.connection.offReducer("discover_collectible", callback);
+  }
+
+  discoverConstructionRecipe(constructionId: number) {
+    const __args = { constructionId };
+    let __writer = new BinaryWriter(1024);
+    DiscoverConstructionRecipe.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("discover_construction_recipe", __argsBuffer, this.setCallReducerFlags.discoverConstructionRecipeFlags);
+  }
+
+  onDiscoverConstructionRecipe(callback: (ctx: ReducerEventContext, constructionId: number) => void) {
+    this.connection.onReducer("discover_construction_recipe", callback);
+  }
+
+  removeOnDiscoverConstructionRecipe(callback: (ctx: ReducerEventContext, constructionId: number) => void) {
+    this.connection.offReducer("discover_construction_recipe", callback);
+  }
+
+  discoverCraftingRecipe(craftId: number) {
+    const __args = { craftId };
+    let __writer = new BinaryWriter(1024);
+    DiscoverCraftingRecipe.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("discover_crafting_recipe", __argsBuffer, this.setCallReducerFlags.discoverCraftingRecipeFlags);
+  }
+
+  onDiscoverCraftingRecipe(callback: (ctx: ReducerEventContext, craftId: number) => void) {
+    this.connection.onReducer("discover_crafting_recipe", callback);
+  }
+
+  removeOnDiscoverCraftingRecipe(callback: (ctx: ReducerEventContext, craftId: number) => void) {
+    this.connection.offReducer("discover_crafting_recipe", callback);
+  }
+
+  discoverDeployable(deployableId: number) {
+    const __args = { deployableId };
+    let __writer = new BinaryWriter(1024);
+    DiscoverDeployable.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("discover_deployable", __argsBuffer, this.setCallReducerFlags.discoverDeployableFlags);
+  }
+
+  onDiscoverDeployable(callback: (ctx: ReducerEventContext, deployableId: number) => void) {
+    this.connection.onReducer("discover_deployable", callback);
+  }
+
+  removeOnDiscoverDeployable(callback: (ctx: ReducerEventContext, deployableId: number) => void) {
+    this.connection.offReducer("discover_deployable", callback);
+  }
+
+  discoverEnemy(enemyId: number) {
+    const __args = { enemyId };
+    let __writer = new BinaryWriter(1024);
+    DiscoverEnemy.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("discover_enemy", __argsBuffer, this.setCallReducerFlags.discoverEnemyFlags);
+  }
+
+  onDiscoverEnemy(callback: (ctx: ReducerEventContext, enemyId: number) => void) {
+    this.connection.onReducer("discover_enemy", callback);
+  }
+
+  removeOnDiscoverEnemy(callback: (ctx: ReducerEventContext, enemyId: number) => void) {
+    this.connection.offReducer("discover_enemy", callback);
+  }
+
   discoverEntities(request: PlayerDiscoverEntitiesRequest) {
     const __args = { request };
     let __writer = new BinaryWriter(1024);
@@ -14637,6 +14914,166 @@ export class RemoteReducers {
 
   removeOnDiscoverEntities(callback: (ctx: ReducerEventContext, request: PlayerDiscoverEntitiesRequest) => void) {
     this.connection.offReducer("discover_entities", callback);
+  }
+
+  discoverExtractionRecipe(extractId: number) {
+    const __args = { extractId };
+    let __writer = new BinaryWriter(1024);
+    DiscoverExtractionRecipe.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("discover_extraction_recipe", __argsBuffer, this.setCallReducerFlags.discoverExtractionRecipeFlags);
+  }
+
+  onDiscoverExtractionRecipe(callback: (ctx: ReducerEventContext, extractId: number) => void) {
+    this.connection.onReducer("discover_extraction_recipe", callback);
+  }
+
+  removeOnDiscoverExtractionRecipe(callback: (ctx: ReducerEventContext, extractId: number) => void) {
+    this.connection.offReducer("discover_extraction_recipe", callback);
+  }
+
+  discoverItem(itemId: number) {
+    const __args = { itemId };
+    let __writer = new BinaryWriter(1024);
+    DiscoverItem.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("discover_item", __argsBuffer, this.setCallReducerFlags.discoverItemFlags);
+  }
+
+  onDiscoverItem(callback: (ctx: ReducerEventContext, itemId: number) => void) {
+    this.connection.onReducer("discover_item", callback);
+  }
+
+  removeOnDiscoverItem(callback: (ctx: ReducerEventContext, itemId: number) => void) {
+    this.connection.offReducer("discover_item", callback);
+  }
+
+  discoverNpc(npcId: number) {
+    const __args = { npcId };
+    let __writer = new BinaryWriter(1024);
+    DiscoverNpc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("discover_npc", __argsBuffer, this.setCallReducerFlags.discoverNpcFlags);
+  }
+
+  onDiscoverNpc(callback: (ctx: ReducerEventContext, npcId: number) => void) {
+    this.connection.onReducer("discover_npc", callback);
+  }
+
+  removeOnDiscoverNpc(callback: (ctx: ReducerEventContext, npcId: number) => void) {
+    this.connection.offReducer("discover_npc", callback);
+  }
+
+  discoverPavement(pavingId: number) {
+    const __args = { pavingId };
+    let __writer = new BinaryWriter(1024);
+    DiscoverPavement.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("discover_pavement", __argsBuffer, this.setCallReducerFlags.discoverPavementFlags);
+  }
+
+  onDiscoverPavement(callback: (ctx: ReducerEventContext, pavingId: number) => void) {
+    this.connection.onReducer("discover_pavement", callback);
+  }
+
+  removeOnDiscoverPavement(callback: (ctx: ReducerEventContext, pavingId: number) => void) {
+    this.connection.offReducer("discover_pavement", callback);
+  }
+
+  discoverPillarShaping(pillarShapingId: number) {
+    const __args = { pillarShapingId };
+    let __writer = new BinaryWriter(1024);
+    DiscoverPillarShaping.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("discover_pillar_shaping", __argsBuffer, this.setCallReducerFlags.discoverPillarShapingFlags);
+  }
+
+  onDiscoverPillarShaping(callback: (ctx: ReducerEventContext, pillarShapingId: number) => void) {
+    this.connection.onReducer("discover_pillar_shaping", callback);
+  }
+
+  removeOnDiscoverPillarShaping(callback: (ctx: ReducerEventContext, pillarShapingId: number) => void) {
+    this.connection.offReducer("discover_pillar_shaping", callback);
+  }
+
+  discoverResource(resourceId: number) {
+    const __args = { resourceId };
+    let __writer = new BinaryWriter(1024);
+    DiscoverResource.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("discover_resource", __argsBuffer, this.setCallReducerFlags.discoverResourceFlags);
+  }
+
+  onDiscoverResource(callback: (ctx: ReducerEventContext, resourceId: number) => void) {
+    this.connection.onReducer("discover_resource", callback);
+  }
+
+  removeOnDiscoverResource(callback: (ctx: ReducerEventContext, resourceId: number) => void) {
+    this.connection.offReducer("discover_resource", callback);
+  }
+
+  discoverResourcePlacement(resourcePlacementId: number) {
+    const __args = { resourcePlacementId };
+    let __writer = new BinaryWriter(1024);
+    DiscoverResourcePlacement.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("discover_resource_placement", __argsBuffer, this.setCallReducerFlags.discoverResourcePlacementFlags);
+  }
+
+  onDiscoverResourcePlacement(callback: (ctx: ReducerEventContext, resourcePlacementId: number) => void) {
+    this.connection.onReducer("discover_resource_placement", callback);
+  }
+
+  removeOnDiscoverResourcePlacement(callback: (ctx: ReducerEventContext, resourcePlacementId: number) => void) {
+    this.connection.offReducer("discover_resource_placement", callback);
+  }
+
+  discoverRuins(coordinates: OffsetCoordinatesSmallMessage) {
+    const __args = { coordinates };
+    let __writer = new BinaryWriter(1024);
+    DiscoverRuins.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("discover_ruins", __argsBuffer, this.setCallReducerFlags.discoverRuinsFlags);
+  }
+
+  onDiscoverRuins(callback: (ctx: ReducerEventContext, coordinates: OffsetCoordinatesSmallMessage) => void) {
+    this.connection.onReducer("discover_ruins", callback);
+  }
+
+  removeOnDiscoverRuins(callback: (ctx: ReducerEventContext, coordinates: OffsetCoordinatesSmallMessage) => void) {
+    this.connection.offReducer("discover_ruins", callback);
+  }
+
+  discoverScroll(scrollId: number) {
+    const __args = { scrollId };
+    let __writer = new BinaryWriter(1024);
+    DiscoverScroll.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("discover_scroll", __argsBuffer, this.setCallReducerFlags.discoverScrollFlags);
+  }
+
+  onDiscoverScroll(callback: (ctx: ReducerEventContext, scrollId: number) => void) {
+    this.connection.onReducer("discover_scroll", callback);
+  }
+
+  removeOnDiscoverScroll(callback: (ctx: ReducerEventContext, scrollId: number) => void) {
+    this.connection.offReducer("discover_scroll", callback);
+  }
+
+  discoverSecondaryKnowledge(secondaryId: number) {
+    const __args = { secondaryId };
+    let __writer = new BinaryWriter(1024);
+    DiscoverSecondaryKnowledge.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("discover_secondary_knowledge", __argsBuffer, this.setCallReducerFlags.discoverSecondaryKnowledgeFlags);
+  }
+
+  onDiscoverSecondaryKnowledge(callback: (ctx: ReducerEventContext, secondaryId: number) => void) {
+    this.connection.onReducer("discover_secondary_knowledge", callback);
+  }
+
+  removeOnDiscoverSecondaryKnowledge(callback: (ctx: ReducerEventContext, secondaryId: number) => void) {
+    this.connection.offReducer("discover_secondary_knowledge", callback);
   }
 
   droppedInventoryDespawn(timer: DroppedInventoryDespawnTimer) {
@@ -23487,9 +23924,104 @@ export class SetReducerFlags {
     this.devDeleteWorldFlags = flags;
   }
 
+  discoverAchievementFlags: CallReducerFlags = 'FullUpdate';
+  discoverAchievement(flags: CallReducerFlags) {
+    this.discoverAchievementFlags = flags;
+  }
+
+  discoverBuildingFlags: CallReducerFlags = 'FullUpdate';
+  discoverBuilding(flags: CallReducerFlags) {
+    this.discoverBuildingFlags = flags;
+  }
+
+  discoverCargoFlags: CallReducerFlags = 'FullUpdate';
+  discoverCargo(flags: CallReducerFlags) {
+    this.discoverCargoFlags = flags;
+  }
+
+  discoverClaimFlags: CallReducerFlags = 'FullUpdate';
+  discoverClaim(flags: CallReducerFlags) {
+    this.discoverClaimFlags = flags;
+  }
+
+  discoverCollectibleFlags: CallReducerFlags = 'FullUpdate';
+  discoverCollectible(flags: CallReducerFlags) {
+    this.discoverCollectibleFlags = flags;
+  }
+
+  discoverConstructionRecipeFlags: CallReducerFlags = 'FullUpdate';
+  discoverConstructionRecipe(flags: CallReducerFlags) {
+    this.discoverConstructionRecipeFlags = flags;
+  }
+
+  discoverCraftingRecipeFlags: CallReducerFlags = 'FullUpdate';
+  discoverCraftingRecipe(flags: CallReducerFlags) {
+    this.discoverCraftingRecipeFlags = flags;
+  }
+
+  discoverDeployableFlags: CallReducerFlags = 'FullUpdate';
+  discoverDeployable(flags: CallReducerFlags) {
+    this.discoverDeployableFlags = flags;
+  }
+
+  discoverEnemyFlags: CallReducerFlags = 'FullUpdate';
+  discoverEnemy(flags: CallReducerFlags) {
+    this.discoverEnemyFlags = flags;
+  }
+
   discoverEntitiesFlags: CallReducerFlags = 'FullUpdate';
   discoverEntities(flags: CallReducerFlags) {
     this.discoverEntitiesFlags = flags;
+  }
+
+  discoverExtractionRecipeFlags: CallReducerFlags = 'FullUpdate';
+  discoverExtractionRecipe(flags: CallReducerFlags) {
+    this.discoverExtractionRecipeFlags = flags;
+  }
+
+  discoverItemFlags: CallReducerFlags = 'FullUpdate';
+  discoverItem(flags: CallReducerFlags) {
+    this.discoverItemFlags = flags;
+  }
+
+  discoverNpcFlags: CallReducerFlags = 'FullUpdate';
+  discoverNpc(flags: CallReducerFlags) {
+    this.discoverNpcFlags = flags;
+  }
+
+  discoverPavementFlags: CallReducerFlags = 'FullUpdate';
+  discoverPavement(flags: CallReducerFlags) {
+    this.discoverPavementFlags = flags;
+  }
+
+  discoverPillarShapingFlags: CallReducerFlags = 'FullUpdate';
+  discoverPillarShaping(flags: CallReducerFlags) {
+    this.discoverPillarShapingFlags = flags;
+  }
+
+  discoverResourceFlags: CallReducerFlags = 'FullUpdate';
+  discoverResource(flags: CallReducerFlags) {
+    this.discoverResourceFlags = flags;
+  }
+
+  discoverResourcePlacementFlags: CallReducerFlags = 'FullUpdate';
+  discoverResourcePlacement(flags: CallReducerFlags) {
+    this.discoverResourcePlacementFlags = flags;
+  }
+
+  discoverRuinsFlags: CallReducerFlags = 'FullUpdate';
+  discoverRuins(flags: CallReducerFlags) {
+    this.discoverRuinsFlags = flags;
+  }
+
+  discoverScrollFlags: CallReducerFlags = 'FullUpdate';
+  discoverScroll(flags: CallReducerFlags) {
+    this.discoverScrollFlags = flags;
+  }
+
+  discoverSecondaryKnowledgeFlags: CallReducerFlags = 'FullUpdate';
+  discoverSecondaryKnowledge(flags: CallReducerFlags) {
+    this.discoverSecondaryKnowledgeFlags = flags;
   }
 
   droppedInventoryDespawnFlags: CallReducerFlags = 'FullUpdate';

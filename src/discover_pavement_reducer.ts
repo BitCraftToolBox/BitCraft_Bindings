@@ -32,40 +32,32 @@ import {
   type ReducerEventContextInterface,
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
-import { PocketKey as __PocketKey } from "./pocket_key_type";
 
-export type ClaimPurchaseSuppliesFromPlayerRequest = {
-  buildingEntityId: bigint,
-  fromPocket: __PocketKey,
-  paidSupplies: number,
-  pricePerSupply: number,
+export type DiscoverPavement = {
+  pavingId: number,
 };
 
 /**
  * A namespace for generated helper functions.
  */
-export namespace ClaimPurchaseSuppliesFromPlayerRequest {
+export namespace DiscoverPavement {
   /**
   * A function which returns this type represented as an AlgebraicType.
   * This function is derived from the AlgebraicType used to generate this type.
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("buildingEntityId", AlgebraicType.createU64Type()),
-      new ProductTypeElement("fromPocket", __PocketKey.getTypeScriptAlgebraicType()),
-      new ProductTypeElement("paidSupplies", AlgebraicType.createI32Type()),
-      new ProductTypeElement("pricePerSupply", AlgebraicType.createF32Type()),
+      new ProductTypeElement("pavingId", AlgebraicType.createI32Type()),
     ]);
   }
 
-  export function serialize(writer: BinaryWriter, value: ClaimPurchaseSuppliesFromPlayerRequest): void {
-    ClaimPurchaseSuppliesFromPlayerRequest.getTypeScriptAlgebraicType().serialize(writer, value);
+  export function serialize(writer: BinaryWriter, value: DiscoverPavement): void {
+    DiscoverPavement.getTypeScriptAlgebraicType().serialize(writer, value);
   }
 
-  export function deserialize(reader: BinaryReader): ClaimPurchaseSuppliesFromPlayerRequest {
-    return ClaimPurchaseSuppliesFromPlayerRequest.getTypeScriptAlgebraicType().deserialize(reader);
+  export function deserialize(reader: BinaryReader): DiscoverPavement {
+    return DiscoverPavement.getTypeScriptAlgebraicType().deserialize(reader);
   }
 
 }
-
 
