@@ -58,6 +58,7 @@ export type ResourceDesc = {
   scheduledRespawnTime: number,
   notRespawning: boolean,
   showTimeLeft: boolean,
+  onDestroyYieldResourceChance: number,
 };
 
 /**
@@ -91,6 +92,7 @@ export namespace ResourceDesc {
       new ProductTypeElement("scheduledRespawnTime", AlgebraicType.createF32Type()),
       new ProductTypeElement("notRespawning", AlgebraicType.createBoolType()),
       new ProductTypeElement("showTimeLeft", AlgebraicType.createBoolType()),
+      new ProductTypeElement("onDestroyYieldResourceChance", AlgebraicType.createF32Type()),
     ]);
   }
 
