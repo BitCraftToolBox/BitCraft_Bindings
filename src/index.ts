@@ -848,6 +848,16 @@ import { ImportPavingTileDesc } from "./import_paving_tile_desc_reducer.ts";
 export { ImportPavingTileDesc };
 import { ImportPillarShapingDesc } from "./import_pillar_shaping_desc_reducer.ts";
 export { ImportPillarShapingDesc };
+import { ImportPlaceableDesc } from "./import_placeable_desc_reducer.ts";
+export { ImportPlaceableDesc };
+import { ImportPlaceableGroupDesc } from "./import_placeable_group_desc_reducer.ts";
+export { ImportPlaceableGroupDesc };
+import { ImportPlaceableGrowthDesc } from "./import_placeable_growth_desc_reducer.ts";
+export { ImportPlaceableGrowthDesc };
+import { ImportPlaceableInteractionDesc } from "./import_placeable_interaction_desc_reducer.ts";
+export { ImportPlaceableInteractionDesc };
+import { ImportPlaceablePlacementDesc } from "./import_placeable_placement_desc_reducer.ts";
+export { ImportPlaceablePlacementDesc };
 import { ImportPlayerActionDesc } from "./import_player_action_desc_reducer.ts";
 export { ImportPlayerActionDesc };
 import { ImportPlayerActionState } from "./import_player_action_state_reducer.ts";
@@ -1062,6 +1072,14 @@ import { PillarShapingPlacePillar } from "./pillar_shaping_place_pillar_reducer.
 export { PillarShapingPlacePillar };
 import { PillarShapingPlacePillarStart } from "./pillar_shaping_place_pillar_start_reducer.ts";
 export { PillarShapingPlacePillarStart };
+import { PlaceableInteract } from "./placeable_interact_reducer.ts";
+export { PlaceableInteract };
+import { PlaceableInteractStart } from "./placeable_interact_start_reducer.ts";
+export { PlaceableInteractStart };
+import { PlaceablePlace } from "./placeable_place_reducer.ts";
+export { PlaceablePlace };
+import { PlaceablePlaceStart } from "./placeable_place_start_reducer.ts";
+export { PlaceablePlaceStart };
 import { PlayerActionCancel } from "./player_action_cancel_reducer.ts";
 export { PlayerActionCancel };
 import { PlayerCancelRegionTransfer } from "./player_cancel_region_transfer_reducer.ts";
@@ -1364,6 +1382,16 @@ import { StagePavingTileDesc } from "./stage_paving_tile_desc_reducer.ts";
 export { StagePavingTileDesc };
 import { StagePillarShapingDesc } from "./stage_pillar_shaping_desc_reducer.ts";
 export { StagePillarShapingDesc };
+import { StagePlaceableDesc } from "./stage_placeable_desc_reducer.ts";
+export { StagePlaceableDesc };
+import { StagePlaceableGroupDesc } from "./stage_placeable_group_desc_reducer.ts";
+export { StagePlaceableGroupDesc };
+import { StagePlaceableGrowthDesc } from "./stage_placeable_growth_desc_reducer.ts";
+export { StagePlaceableGrowthDesc };
+import { StagePlaceableInteractionDesc } from "./stage_placeable_interaction_desc_reducer.ts";
+export { StagePlaceableInteractionDesc };
+import { StagePlaceablePlacementDesc } from "./stage_placeable_placement_desc_reducer.ts";
+export { StagePlaceablePlacementDesc };
 import { StagePlayerActionDesc } from "./stage_player_action_desc_reducer.ts";
 export { StagePlayerActionDesc };
 import { StagePlayerHousingDesc } from "./stage_player_housing_desc_reducer.ts";
@@ -1954,6 +1982,18 @@ import { PillarShapingRecipeDiscoveryKnowledgeDescTableHandle } from "./pillar_s
 export { PillarShapingRecipeDiscoveryKnowledgeDescTableHandle };
 import { PillarShapingStateTableHandle } from "./pillar_shaping_state_table.ts";
 export { PillarShapingStateTableHandle };
+import { PlaceableDescTableHandle } from "./placeable_desc_table.ts";
+export { PlaceableDescTableHandle };
+import { PlaceableGroupDescTableHandle } from "./placeable_group_desc_table.ts";
+export { PlaceableGroupDescTableHandle };
+import { PlaceableGrowthDescTableHandle } from "./placeable_growth_desc_table.ts";
+export { PlaceableGrowthDescTableHandle };
+import { PlaceableInteractionDescTableHandle } from "./placeable_interaction_desc_table.ts";
+export { PlaceableInteractionDescTableHandle };
+import { PlaceablePlacementDescTableHandle } from "./placeable_placement_desc_table.ts";
+export { PlaceablePlacementDescTableHandle };
+import { PlaceableStateTableHandle } from "./placeable_state_table.ts";
+export { PlaceableStateTableHandle };
 import { PlayerActionDescTableHandle } from "./player_action_desc_table.ts";
 export { PlayerActionDescTableHandle };
 import { PlayerActionStateTableHandle } from "./player_action_state_table.ts";
@@ -2248,6 +2288,16 @@ import { StagedPavingTileDescTableHandle } from "./staged_paving_tile_desc_table
 export { StagedPavingTileDescTableHandle };
 import { StagedPillarShapingDescTableHandle } from "./staged_pillar_shaping_desc_table.ts";
 export { StagedPillarShapingDescTableHandle };
+import { StagedPlaceableDescTableHandle } from "./staged_placeable_desc_table.ts";
+export { StagedPlaceableDescTableHandle };
+import { StagedPlaceableGroupDescTableHandle } from "./staged_placeable_group_desc_table.ts";
+export { StagedPlaceableGroupDescTableHandle };
+import { StagedPlaceableGrowthDescTableHandle } from "./staged_placeable_growth_desc_table.ts";
+export { StagedPlaceableGrowthDescTableHandle };
+import { StagedPlaceableInteractionDescTableHandle } from "./staged_placeable_interaction_desc_table.ts";
+export { StagedPlaceableInteractionDescTableHandle };
+import { StagedPlaceablePlacementDescTableHandle } from "./staged_placeable_placement_desc_table.ts";
+export { StagedPlaceablePlacementDescTableHandle };
 import { StagedPlayerActionDescTableHandle } from "./staged_player_action_desc_table.ts";
 export { StagedPlayerActionDescTableHandle };
 import { StagedPlayerHousingDescTableHandle } from "./staged_player_housing_desc_table.ts";
@@ -3162,6 +3212,20 @@ import { PillarShapingDesc } from "./pillar_shaping_desc_type.ts";
 export { PillarShapingDesc };
 import { PillarShapingState } from "./pillar_shaping_state_type.ts";
 export { PillarShapingState };
+import { PlaceableDesc } from "./placeable_desc_type.ts";
+export { PlaceableDesc };
+import { PlaceableGroupDesc } from "./placeable_group_desc_type.ts";
+export { PlaceableGroupDesc };
+import { PlaceableGrowthDesc } from "./placeable_growth_desc_type.ts";
+export { PlaceableGrowthDesc };
+import { PlaceableGrowthOutcome } from "./placeable_growth_outcome_type.ts";
+export { PlaceableGrowthOutcome };
+import { PlaceableInteractionDesc } from "./placeable_interaction_desc_type.ts";
+export { PlaceableInteractionDesc };
+import { PlaceablePlacementDesc } from "./placeable_placement_desc_type.ts";
+export { PlaceablePlacementDesc };
+import { PlaceableState } from "./placeable_state_type.ts";
+export { PlaceableState };
 import { PlayerAchievementClaimRequest } from "./player_achievement_claim_request_type.ts";
 export { PlayerAchievementClaimRequest };
 import { PlayerAcquireKnowledgeFromEntitiesRequest } from "./player_acquire_knowledge_from_entities_request_type.ts";
@@ -3332,6 +3396,10 @@ import { PlayerPillarShapingDestroyRequest } from "./player_pillar_shaping_destr
 export { PlayerPillarShapingDestroyRequest };
 import { PlayerPillarShapingPlaceRequest } from "./player_pillar_shaping_place_request_type.ts";
 export { PlayerPillarShapingPlaceRequest };
+import { PlayerPlaceableInteractRequest } from "./player_placeable_interact_request_type.ts";
+export { PlayerPlaceableInteractRequest };
+import { PlayerPlaceablePlaceRequest } from "./player_placeable_place_request_type.ts";
+export { PlayerPlaceablePlaceRequest };
 import { PlayerPocketSwapContentsRequest } from "./player_pocket_swap_contents_request_type.ts";
 export { PlayerPocketSwapContentsRequest };
 import { PlayerPortalEnterRequest } from "./player_portal_enter_request_type.ts";
@@ -5812,6 +5880,60 @@ export const REMOTE_MODULE = {
         colType: PillarShapingState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    placeable_desc: {
+      tableName: "placeable_desc",
+      rowType: PlaceableDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: PlaceableDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    placeable_group_desc: {
+      tableName: "placeable_group_desc",
+      rowType: PlaceableGroupDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: PlaceableGroupDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    placeable_growth_desc: {
+      tableName: "placeable_growth_desc",
+      rowType: PlaceableGrowthDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: PlaceableGrowthDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    placeable_interaction_desc: {
+      tableName: "placeable_interaction_desc",
+      rowType: PlaceableInteractionDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: PlaceableInteractionDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    placeable_placement_desc: {
+      tableName: "placeable_placement_desc",
+      rowType: PlaceablePlacementDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: PlaceablePlacementDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    placeable_state: {
+      tableName: "placeable_state",
+      rowType: PlaceableState.getTypeScriptAlgebraicType(),
+      primaryKey: "entityId",
+      primaryKeyInfo: {
+        colName: "entityId",
+        colType: PlaceableState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     player_action_desc: {
       tableName: "player_action_desc",
       rowType: PlayerActionDesc.getTypeScriptAlgebraicType(),
@@ -7113,6 +7235,51 @@ export const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "id",
         colType: PillarShapingDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_placeable_desc: {
+      tableName: "staged_placeable_desc",
+      rowType: PlaceableDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: PlaceableDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_placeable_group_desc: {
+      tableName: "staged_placeable_group_desc",
+      rowType: PlaceableGroupDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: PlaceableGroupDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_placeable_growth_desc: {
+      tableName: "staged_placeable_growth_desc",
+      rowType: PlaceableGrowthDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: PlaceableGrowthDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_placeable_interaction_desc: {
+      tableName: "staged_placeable_interaction_desc",
+      rowType: PlaceableInteractionDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: PlaceableInteractionDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_placeable_placement_desc: {
+      tableName: "staged_placeable_placement_desc",
+      rowType: PlaceablePlacementDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: PlaceablePlacementDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     staged_player_action_desc: {
@@ -9411,6 +9578,26 @@ export const REMOTE_MODULE = {
       reducerName: "import_pillar_shaping_desc",
       argsType: ImportPillarShapingDesc.getTypeScriptAlgebraicType(),
     },
+    import_placeable_desc: {
+      reducerName: "import_placeable_desc",
+      argsType: ImportPlaceableDesc.getTypeScriptAlgebraicType(),
+    },
+    import_placeable_group_desc: {
+      reducerName: "import_placeable_group_desc",
+      argsType: ImportPlaceableGroupDesc.getTypeScriptAlgebraicType(),
+    },
+    import_placeable_growth_desc: {
+      reducerName: "import_placeable_growth_desc",
+      argsType: ImportPlaceableGrowthDesc.getTypeScriptAlgebraicType(),
+    },
+    import_placeable_interaction_desc: {
+      reducerName: "import_placeable_interaction_desc",
+      argsType: ImportPlaceableInteractionDesc.getTypeScriptAlgebraicType(),
+    },
+    import_placeable_placement_desc: {
+      reducerName: "import_placeable_placement_desc",
+      argsType: ImportPlaceablePlacementDesc.getTypeScriptAlgebraicType(),
+    },
     import_player_action_desc: {
       reducerName: "import_player_action_desc",
       argsType: ImportPlayerActionDesc.getTypeScriptAlgebraicType(),
@@ -9838,6 +10025,22 @@ export const REMOTE_MODULE = {
     pillar_shaping_place_pillar_start: {
       reducerName: "pillar_shaping_place_pillar_start",
       argsType: PillarShapingPlacePillarStart.getTypeScriptAlgebraicType(),
+    },
+    placeable_interact: {
+      reducerName: "placeable_interact",
+      argsType: PlaceableInteract.getTypeScriptAlgebraicType(),
+    },
+    placeable_interact_start: {
+      reducerName: "placeable_interact_start",
+      argsType: PlaceableInteractStart.getTypeScriptAlgebraicType(),
+    },
+    placeable_place: {
+      reducerName: "placeable_place",
+      argsType: PlaceablePlace.getTypeScriptAlgebraicType(),
+    },
+    placeable_place_start: {
+      reducerName: "placeable_place_start",
+      argsType: PlaceablePlaceStart.getTypeScriptAlgebraicType(),
     },
     player_action_cancel: {
       reducerName: "player_action_cancel",
@@ -10442,6 +10645,26 @@ export const REMOTE_MODULE = {
     stage_pillar_shaping_desc: {
       reducerName: "stage_pillar_shaping_desc",
       argsType: StagePillarShapingDesc.getTypeScriptAlgebraicType(),
+    },
+    stage_placeable_desc: {
+      reducerName: "stage_placeable_desc",
+      argsType: StagePlaceableDesc.getTypeScriptAlgebraicType(),
+    },
+    stage_placeable_group_desc: {
+      reducerName: "stage_placeable_group_desc",
+      argsType: StagePlaceableGroupDesc.getTypeScriptAlgebraicType(),
+    },
+    stage_placeable_growth_desc: {
+      reducerName: "stage_placeable_growth_desc",
+      argsType: StagePlaceableGrowthDesc.getTypeScriptAlgebraicType(),
+    },
+    stage_placeable_interaction_desc: {
+      reducerName: "stage_placeable_interaction_desc",
+      argsType: StagePlaceableInteractionDesc.getTypeScriptAlgebraicType(),
+    },
+    stage_placeable_placement_desc: {
+      reducerName: "stage_placeable_placement_desc",
+      argsType: StagePlaceablePlacementDesc.getTypeScriptAlgebraicType(),
     },
     stage_player_action_desc: {
       reducerName: "stage_player_action_desc",
@@ -11124,6 +11347,11 @@ export type Reducer = never
 | { name: "ImportPavedTileState", args: ImportPavedTileState }
 | { name: "ImportPavingTileDesc", args: ImportPavingTileDesc }
 | { name: "ImportPillarShapingDesc", args: ImportPillarShapingDesc }
+| { name: "ImportPlaceableDesc", args: ImportPlaceableDesc }
+| { name: "ImportPlaceableGroupDesc", args: ImportPlaceableGroupDesc }
+| { name: "ImportPlaceableGrowthDesc", args: ImportPlaceableGrowthDesc }
+| { name: "ImportPlaceableInteractionDesc", args: ImportPlaceableInteractionDesc }
+| { name: "ImportPlaceablePlacementDesc", args: ImportPlaceablePlacementDesc }
 | { name: "ImportPlayerActionDesc", args: ImportPlayerActionDesc }
 | { name: "ImportPlayerActionState", args: ImportPlayerActionState }
 | { name: "ImportPlayerHousingDesc", args: ImportPlayerHousingDesc }
@@ -11231,6 +11459,10 @@ export type Reducer = never
 | { name: "PillarShapingDestroyStart", args: PillarShapingDestroyStart }
 | { name: "PillarShapingPlacePillar", args: PillarShapingPlacePillar }
 | { name: "PillarShapingPlacePillarStart", args: PillarShapingPlacePillarStart }
+| { name: "PlaceableInteract", args: PlaceableInteract }
+| { name: "PlaceableInteractStart", args: PlaceableInteractStart }
+| { name: "PlaceablePlace", args: PlaceablePlace }
+| { name: "PlaceablePlaceStart", args: PlaceablePlaceStart }
 | { name: "PlayerActionCancel", args: PlayerActionCancel }
 | { name: "PlayerCancelRegionTransfer", args: PlayerCancelRegionTransfer }
 | { name: "PlayerClearActionState", args: PlayerClearActionState }
@@ -11382,6 +11614,11 @@ export type Reducer = never
 | { name: "StagePathfindingDesc", args: StagePathfindingDesc }
 | { name: "StagePavingTileDesc", args: StagePavingTileDesc }
 | { name: "StagePillarShapingDesc", args: StagePillarShapingDesc }
+| { name: "StagePlaceableDesc", args: StagePlaceableDesc }
+| { name: "StagePlaceableGroupDesc", args: StagePlaceableGroupDesc }
+| { name: "StagePlaceableGrowthDesc", args: StagePlaceableGrowthDesc }
+| { name: "StagePlaceableInteractionDesc", args: StagePlaceableInteractionDesc }
+| { name: "StagePlaceablePlacementDesc", args: StagePlaceablePlacementDesc }
 | { name: "StagePlayerActionDesc", args: StagePlayerActionDesc }
 | { name: "StagePlayerHousingDesc", args: StagePlayerHousingDesc }
 | { name: "StagePremiumItemDesc", args: StagePremiumItemDesc }
@@ -17832,6 +18069,86 @@ export class RemoteReducers {
     this.connection.offReducer("import_pillar_shaping_desc", callback);
   }
 
+  importPlaceableDesc(records: PlaceableDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    ImportPlaceableDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("import_placeable_desc", __argsBuffer, this.setCallReducerFlags.importPlaceableDescFlags);
+  }
+
+  onImportPlaceableDesc(callback: (ctx: ReducerEventContext, records: PlaceableDesc[]) => void) {
+    this.connection.onReducer("import_placeable_desc", callback);
+  }
+
+  removeOnImportPlaceableDesc(callback: (ctx: ReducerEventContext, records: PlaceableDesc[]) => void) {
+    this.connection.offReducer("import_placeable_desc", callback);
+  }
+
+  importPlaceableGroupDesc(records: PlaceableGroupDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    ImportPlaceableGroupDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("import_placeable_group_desc", __argsBuffer, this.setCallReducerFlags.importPlaceableGroupDescFlags);
+  }
+
+  onImportPlaceableGroupDesc(callback: (ctx: ReducerEventContext, records: PlaceableGroupDesc[]) => void) {
+    this.connection.onReducer("import_placeable_group_desc", callback);
+  }
+
+  removeOnImportPlaceableGroupDesc(callback: (ctx: ReducerEventContext, records: PlaceableGroupDesc[]) => void) {
+    this.connection.offReducer("import_placeable_group_desc", callback);
+  }
+
+  importPlaceableGrowthDesc(records: PlaceableGrowthDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    ImportPlaceableGrowthDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("import_placeable_growth_desc", __argsBuffer, this.setCallReducerFlags.importPlaceableGrowthDescFlags);
+  }
+
+  onImportPlaceableGrowthDesc(callback: (ctx: ReducerEventContext, records: PlaceableGrowthDesc[]) => void) {
+    this.connection.onReducer("import_placeable_growth_desc", callback);
+  }
+
+  removeOnImportPlaceableGrowthDesc(callback: (ctx: ReducerEventContext, records: PlaceableGrowthDesc[]) => void) {
+    this.connection.offReducer("import_placeable_growth_desc", callback);
+  }
+
+  importPlaceableInteractionDesc(records: PlaceableInteractionDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    ImportPlaceableInteractionDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("import_placeable_interaction_desc", __argsBuffer, this.setCallReducerFlags.importPlaceableInteractionDescFlags);
+  }
+
+  onImportPlaceableInteractionDesc(callback: (ctx: ReducerEventContext, records: PlaceableInteractionDesc[]) => void) {
+    this.connection.onReducer("import_placeable_interaction_desc", callback);
+  }
+
+  removeOnImportPlaceableInteractionDesc(callback: (ctx: ReducerEventContext, records: PlaceableInteractionDesc[]) => void) {
+    this.connection.offReducer("import_placeable_interaction_desc", callback);
+  }
+
+  importPlaceablePlacementDesc(records: PlaceablePlacementDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    ImportPlaceablePlacementDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("import_placeable_placement_desc", __argsBuffer, this.setCallReducerFlags.importPlaceablePlacementDescFlags);
+  }
+
+  onImportPlaceablePlacementDesc(callback: (ctx: ReducerEventContext, records: PlaceablePlacementDesc[]) => void) {
+    this.connection.onReducer("import_placeable_placement_desc", callback);
+  }
+
+  removeOnImportPlaceablePlacementDesc(callback: (ctx: ReducerEventContext, records: PlaceablePlacementDesc[]) => void) {
+    this.connection.offReducer("import_placeable_placement_desc", callback);
+  }
+
   importPlayerActionDesc(records: PlayerActionDesc[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
@@ -19510,6 +19827,70 @@ export class RemoteReducers {
 
   removeOnPillarShapingPlacePillarStart(callback: (ctx: ReducerEventContext, request: PlayerPillarShapingPlaceRequest) => void) {
     this.connection.offReducer("pillar_shaping_place_pillar_start", callback);
+  }
+
+  placeableInteract(request: PlayerPlaceableInteractRequest) {
+    const __args = { request };
+    let __writer = new BinaryWriter(1024);
+    PlaceableInteract.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("placeable_interact", __argsBuffer, this.setCallReducerFlags.placeableInteractFlags);
+  }
+
+  onPlaceableInteract(callback: (ctx: ReducerEventContext, request: PlayerPlaceableInteractRequest) => void) {
+    this.connection.onReducer("placeable_interact", callback);
+  }
+
+  removeOnPlaceableInteract(callback: (ctx: ReducerEventContext, request: PlayerPlaceableInteractRequest) => void) {
+    this.connection.offReducer("placeable_interact", callback);
+  }
+
+  placeableInteractStart(request: PlayerPlaceableInteractRequest) {
+    const __args = { request };
+    let __writer = new BinaryWriter(1024);
+    PlaceableInteractStart.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("placeable_interact_start", __argsBuffer, this.setCallReducerFlags.placeableInteractStartFlags);
+  }
+
+  onPlaceableInteractStart(callback: (ctx: ReducerEventContext, request: PlayerPlaceableInteractRequest) => void) {
+    this.connection.onReducer("placeable_interact_start", callback);
+  }
+
+  removeOnPlaceableInteractStart(callback: (ctx: ReducerEventContext, request: PlayerPlaceableInteractRequest) => void) {
+    this.connection.offReducer("placeable_interact_start", callback);
+  }
+
+  placeablePlace(request: PlayerPlaceablePlaceRequest) {
+    const __args = { request };
+    let __writer = new BinaryWriter(1024);
+    PlaceablePlace.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("placeable_place", __argsBuffer, this.setCallReducerFlags.placeablePlaceFlags);
+  }
+
+  onPlaceablePlace(callback: (ctx: ReducerEventContext, request: PlayerPlaceablePlaceRequest) => void) {
+    this.connection.onReducer("placeable_place", callback);
+  }
+
+  removeOnPlaceablePlace(callback: (ctx: ReducerEventContext, request: PlayerPlaceablePlaceRequest) => void) {
+    this.connection.offReducer("placeable_place", callback);
+  }
+
+  placeablePlaceStart(request: PlayerPlaceablePlaceRequest) {
+    const __args = { request };
+    let __writer = new BinaryWriter(1024);
+    PlaceablePlaceStart.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("placeable_place_start", __argsBuffer, this.setCallReducerFlags.placeablePlaceStartFlags);
+  }
+
+  onPlaceablePlaceStart(callback: (ctx: ReducerEventContext, request: PlayerPlaceablePlaceRequest) => void) {
+    this.connection.onReducer("placeable_place_start", callback);
+  }
+
+  removeOnPlaceablePlaceStart(callback: (ctx: ReducerEventContext, request: PlayerPlaceablePlaceRequest) => void) {
+    this.connection.offReducer("placeable_place_start", callback);
   }
 
   playerActionCancel(clientCancel: boolean) {
@@ -21890,6 +22271,86 @@ export class RemoteReducers {
 
   removeOnStagePillarShapingDesc(callback: (ctx: ReducerEventContext, records: PillarShapingDesc[]) => void) {
     this.connection.offReducer("stage_pillar_shaping_desc", callback);
+  }
+
+  stagePlaceableDesc(records: PlaceableDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    StagePlaceableDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("stage_placeable_desc", __argsBuffer, this.setCallReducerFlags.stagePlaceableDescFlags);
+  }
+
+  onStagePlaceableDesc(callback: (ctx: ReducerEventContext, records: PlaceableDesc[]) => void) {
+    this.connection.onReducer("stage_placeable_desc", callback);
+  }
+
+  removeOnStagePlaceableDesc(callback: (ctx: ReducerEventContext, records: PlaceableDesc[]) => void) {
+    this.connection.offReducer("stage_placeable_desc", callback);
+  }
+
+  stagePlaceableGroupDesc(records: PlaceableGroupDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    StagePlaceableGroupDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("stage_placeable_group_desc", __argsBuffer, this.setCallReducerFlags.stagePlaceableGroupDescFlags);
+  }
+
+  onStagePlaceableGroupDesc(callback: (ctx: ReducerEventContext, records: PlaceableGroupDesc[]) => void) {
+    this.connection.onReducer("stage_placeable_group_desc", callback);
+  }
+
+  removeOnStagePlaceableGroupDesc(callback: (ctx: ReducerEventContext, records: PlaceableGroupDesc[]) => void) {
+    this.connection.offReducer("stage_placeable_group_desc", callback);
+  }
+
+  stagePlaceableGrowthDesc(records: PlaceableGrowthDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    StagePlaceableGrowthDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("stage_placeable_growth_desc", __argsBuffer, this.setCallReducerFlags.stagePlaceableGrowthDescFlags);
+  }
+
+  onStagePlaceableGrowthDesc(callback: (ctx: ReducerEventContext, records: PlaceableGrowthDesc[]) => void) {
+    this.connection.onReducer("stage_placeable_growth_desc", callback);
+  }
+
+  removeOnStagePlaceableGrowthDesc(callback: (ctx: ReducerEventContext, records: PlaceableGrowthDesc[]) => void) {
+    this.connection.offReducer("stage_placeable_growth_desc", callback);
+  }
+
+  stagePlaceableInteractionDesc(records: PlaceableInteractionDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    StagePlaceableInteractionDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("stage_placeable_interaction_desc", __argsBuffer, this.setCallReducerFlags.stagePlaceableInteractionDescFlags);
+  }
+
+  onStagePlaceableInteractionDesc(callback: (ctx: ReducerEventContext, records: PlaceableInteractionDesc[]) => void) {
+    this.connection.onReducer("stage_placeable_interaction_desc", callback);
+  }
+
+  removeOnStagePlaceableInteractionDesc(callback: (ctx: ReducerEventContext, records: PlaceableInteractionDesc[]) => void) {
+    this.connection.offReducer("stage_placeable_interaction_desc", callback);
+  }
+
+  stagePlaceablePlacementDesc(records: PlaceablePlacementDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    StagePlaceablePlacementDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("stage_placeable_placement_desc", __argsBuffer, this.setCallReducerFlags.stagePlaceablePlacementDescFlags);
+  }
+
+  onStagePlaceablePlacementDesc(callback: (ctx: ReducerEventContext, records: PlaceablePlacementDesc[]) => void) {
+    this.connection.onReducer("stage_placeable_placement_desc", callback);
+  }
+
+  removeOnStagePlaceablePlacementDesc(callback: (ctx: ReducerEventContext, records: PlaceablePlacementDesc[]) => void) {
+    this.connection.offReducer("stage_placeable_placement_desc", callback);
   }
 
   stagePlayerActionDesc(records: PlayerActionDesc[]) {
@@ -24884,6 +25345,31 @@ export class SetReducerFlags {
     this.importPillarShapingDescFlags = flags;
   }
 
+  importPlaceableDescFlags: CallReducerFlags = 'FullUpdate';
+  importPlaceableDesc(flags: CallReducerFlags) {
+    this.importPlaceableDescFlags = flags;
+  }
+
+  importPlaceableGroupDescFlags: CallReducerFlags = 'FullUpdate';
+  importPlaceableGroupDesc(flags: CallReducerFlags) {
+    this.importPlaceableGroupDescFlags = flags;
+  }
+
+  importPlaceableGrowthDescFlags: CallReducerFlags = 'FullUpdate';
+  importPlaceableGrowthDesc(flags: CallReducerFlags) {
+    this.importPlaceableGrowthDescFlags = flags;
+  }
+
+  importPlaceableInteractionDescFlags: CallReducerFlags = 'FullUpdate';
+  importPlaceableInteractionDesc(flags: CallReducerFlags) {
+    this.importPlaceableInteractionDescFlags = flags;
+  }
+
+  importPlaceablePlacementDescFlags: CallReducerFlags = 'FullUpdate';
+  importPlaceablePlacementDesc(flags: CallReducerFlags) {
+    this.importPlaceablePlacementDescFlags = flags;
+  }
+
   importPlayerActionDescFlags: CallReducerFlags = 'FullUpdate';
   importPlayerActionDesc(flags: CallReducerFlags) {
     this.importPlayerActionDescFlags = flags;
@@ -25417,6 +25903,26 @@ export class SetReducerFlags {
   pillarShapingPlacePillarStartFlags: CallReducerFlags = 'FullUpdate';
   pillarShapingPlacePillarStart(flags: CallReducerFlags) {
     this.pillarShapingPlacePillarStartFlags = flags;
+  }
+
+  placeableInteractFlags: CallReducerFlags = 'FullUpdate';
+  placeableInteract(flags: CallReducerFlags) {
+    this.placeableInteractFlags = flags;
+  }
+
+  placeableInteractStartFlags: CallReducerFlags = 'FullUpdate';
+  placeableInteractStart(flags: CallReducerFlags) {
+    this.placeableInteractStartFlags = flags;
+  }
+
+  placeablePlaceFlags: CallReducerFlags = 'FullUpdate';
+  placeablePlace(flags: CallReducerFlags) {
+    this.placeablePlaceFlags = flags;
+  }
+
+  placeablePlaceStartFlags: CallReducerFlags = 'FullUpdate';
+  placeablePlaceStart(flags: CallReducerFlags) {
+    this.placeablePlaceStartFlags = flags;
   }
 
   playerActionCancelFlags: CallReducerFlags = 'FullUpdate';
@@ -26172,6 +26678,31 @@ export class SetReducerFlags {
   stagePillarShapingDescFlags: CallReducerFlags = 'FullUpdate';
   stagePillarShapingDesc(flags: CallReducerFlags) {
     this.stagePillarShapingDescFlags = flags;
+  }
+
+  stagePlaceableDescFlags: CallReducerFlags = 'FullUpdate';
+  stagePlaceableDesc(flags: CallReducerFlags) {
+    this.stagePlaceableDescFlags = flags;
+  }
+
+  stagePlaceableGroupDescFlags: CallReducerFlags = 'FullUpdate';
+  stagePlaceableGroupDesc(flags: CallReducerFlags) {
+    this.stagePlaceableGroupDescFlags = flags;
+  }
+
+  stagePlaceableGrowthDescFlags: CallReducerFlags = 'FullUpdate';
+  stagePlaceableGrowthDesc(flags: CallReducerFlags) {
+    this.stagePlaceableGrowthDescFlags = flags;
+  }
+
+  stagePlaceableInteractionDescFlags: CallReducerFlags = 'FullUpdate';
+  stagePlaceableInteractionDesc(flags: CallReducerFlags) {
+    this.stagePlaceableInteractionDescFlags = flags;
+  }
+
+  stagePlaceablePlacementDescFlags: CallReducerFlags = 'FullUpdate';
+  stagePlaceablePlacementDesc(flags: CallReducerFlags) {
+    this.stagePlaceablePlacementDescFlags = flags;
   }
 
   stagePlayerActionDescFlags: CallReducerFlags = 'FullUpdate';
@@ -27416,6 +27947,30 @@ export class RemoteTables {
     return new PillarShapingStateTableHandle(this.connection.clientCache.getOrCreateTable<PillarShapingState>(REMOTE_MODULE.tables.pillar_shaping_state));
   }
 
+  get placeableDesc(): PlaceableDescTableHandle {
+    return new PlaceableDescTableHandle(this.connection.clientCache.getOrCreateTable<PlaceableDesc>(REMOTE_MODULE.tables.placeable_desc));
+  }
+
+  get placeableGroupDesc(): PlaceableGroupDescTableHandle {
+    return new PlaceableGroupDescTableHandle(this.connection.clientCache.getOrCreateTable<PlaceableGroupDesc>(REMOTE_MODULE.tables.placeable_group_desc));
+  }
+
+  get placeableGrowthDesc(): PlaceableGrowthDescTableHandle {
+    return new PlaceableGrowthDescTableHandle(this.connection.clientCache.getOrCreateTable<PlaceableGrowthDesc>(REMOTE_MODULE.tables.placeable_growth_desc));
+  }
+
+  get placeableInteractionDesc(): PlaceableInteractionDescTableHandle {
+    return new PlaceableInteractionDescTableHandle(this.connection.clientCache.getOrCreateTable<PlaceableInteractionDesc>(REMOTE_MODULE.tables.placeable_interaction_desc));
+  }
+
+  get placeablePlacementDesc(): PlaceablePlacementDescTableHandle {
+    return new PlaceablePlacementDescTableHandle(this.connection.clientCache.getOrCreateTable<PlaceablePlacementDesc>(REMOTE_MODULE.tables.placeable_placement_desc));
+  }
+
+  get placeableState(): PlaceableStateTableHandle {
+    return new PlaceableStateTableHandle(this.connection.clientCache.getOrCreateTable<PlaceableState>(REMOTE_MODULE.tables.placeable_state));
+  }
+
   get playerActionDesc(): PlayerActionDescTableHandle {
     return new PlayerActionDescTableHandle(this.connection.clientCache.getOrCreateTable<PlayerActionDesc>(REMOTE_MODULE.tables.player_action_desc));
   }
@@ -28002,6 +28557,26 @@ export class RemoteTables {
 
   get stagedPillarShapingDesc(): StagedPillarShapingDescTableHandle {
     return new StagedPillarShapingDescTableHandle(this.connection.clientCache.getOrCreateTable<PillarShapingDesc>(REMOTE_MODULE.tables.staged_pillar_shaping_desc));
+  }
+
+  get stagedPlaceableDesc(): StagedPlaceableDescTableHandle {
+    return new StagedPlaceableDescTableHandle(this.connection.clientCache.getOrCreateTable<PlaceableDesc>(REMOTE_MODULE.tables.staged_placeable_desc));
+  }
+
+  get stagedPlaceableGroupDesc(): StagedPlaceableGroupDescTableHandle {
+    return new StagedPlaceableGroupDescTableHandle(this.connection.clientCache.getOrCreateTable<PlaceableGroupDesc>(REMOTE_MODULE.tables.staged_placeable_group_desc));
+  }
+
+  get stagedPlaceableGrowthDesc(): StagedPlaceableGrowthDescTableHandle {
+    return new StagedPlaceableGrowthDescTableHandle(this.connection.clientCache.getOrCreateTable<PlaceableGrowthDesc>(REMOTE_MODULE.tables.staged_placeable_growth_desc));
+  }
+
+  get stagedPlaceableInteractionDesc(): StagedPlaceableInteractionDescTableHandle {
+    return new StagedPlaceableInteractionDescTableHandle(this.connection.clientCache.getOrCreateTable<PlaceableInteractionDesc>(REMOTE_MODULE.tables.staged_placeable_interaction_desc));
+  }
+
+  get stagedPlaceablePlacementDesc(): StagedPlaceablePlacementDescTableHandle {
+    return new StagedPlaceablePlacementDescTableHandle(this.connection.clientCache.getOrCreateTable<PlaceablePlacementDesc>(REMOTE_MODULE.tables.staged_placeable_placement_desc));
   }
 
   get stagedPlayerActionDesc(): StagedPlayerActionDescTableHandle {

@@ -69,6 +69,8 @@ export namespace PlayerActionType {
   export type DestroyPillarShaping = { tag: "DestroyPillarShaping" };
   export type AbilityCustom = { tag: "AbilityCustom" };
   export type Prospect = { tag: "Prospect" };
+  export type PlacePlaceable = { tag: "PlacePlaceable" };
+  export type InteractPlaceable = { tag: "InteractPlaceable" };
 
   // Helper functions for constructing each variant of the tagged union.
   // ```
@@ -108,6 +110,8 @@ export namespace PlayerActionType {
   export const DestroyPillarShaping = { tag: "DestroyPillarShaping" };
   export const AbilityCustom = { tag: "AbilityCustom" };
   export const Prospect = { tag: "Prospect" };
+  export const PlacePlaceable = { tag: "PlacePlaceable" };
+  export const InteractPlaceable = { tag: "InteractPlaceable" };
 
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createSumType([
@@ -143,6 +147,8 @@ export namespace PlayerActionType {
       new SumTypeVariant("DestroyPillarShaping", AlgebraicType.createProductType([])),
       new SumTypeVariant("AbilityCustom", AlgebraicType.createProductType([])),
       new SumTypeVariant("Prospect", AlgebraicType.createProductType([])),
+      new SumTypeVariant("PlacePlaceable", AlgebraicType.createProductType([])),
+      new SumTypeVariant("InteractPlaceable", AlgebraicType.createProductType([])),
     ]);
   }
 
@@ -157,7 +163,7 @@ export namespace PlayerActionType {
 }
 
 // The tagged union or sum type for the algebraic type `PlayerActionType`.
-export type PlayerActionType = PlayerActionType.None | PlayerActionType.Attack | PlayerActionType.DestroyPaving | PlayerActionType.StationaryEmote | PlayerActionType.Extract | PlayerActionType.PaveTile | PlayerActionType.SpawnCargo | PlayerActionType.Build | PlayerActionType.Deconstruct | PlayerActionType.RepairBuilding | PlayerActionType.ResupplyClaim | PlayerActionType.CargoPickUp | PlayerActionType.Terraform | PlayerActionType.DeployDeployable | PlayerActionType.StoreDeployable | PlayerActionType.Sleep | PlayerActionType.Teleport | PlayerActionType.Death | PlayerActionType.Climb | PlayerActionType.UseItem | PlayerActionType.Craft | PlayerActionType.ConvertItems | PlayerActionType.PlayerMove | PlayerActionType.DeployableMove | PlayerActionType.ResupplyEmpireNode | PlayerActionType.SetHome | PlayerActionType.UseElevator | PlayerActionType.MobileEmote | PlayerActionType.PlacePillarShaping | PlayerActionType.DestroyPillarShaping | PlayerActionType.AbilityCustom | PlayerActionType.Prospect;
+export type PlayerActionType = PlayerActionType.None | PlayerActionType.Attack | PlayerActionType.DestroyPaving | PlayerActionType.StationaryEmote | PlayerActionType.Extract | PlayerActionType.PaveTile | PlayerActionType.SpawnCargo | PlayerActionType.Build | PlayerActionType.Deconstruct | PlayerActionType.RepairBuilding | PlayerActionType.ResupplyClaim | PlayerActionType.CargoPickUp | PlayerActionType.Terraform | PlayerActionType.DeployDeployable | PlayerActionType.StoreDeployable | PlayerActionType.Sleep | PlayerActionType.Teleport | PlayerActionType.Death | PlayerActionType.Climb | PlayerActionType.UseItem | PlayerActionType.Craft | PlayerActionType.ConvertItems | PlayerActionType.PlayerMove | PlayerActionType.DeployableMove | PlayerActionType.ResupplyEmpireNode | PlayerActionType.SetHome | PlayerActionType.UseElevator | PlayerActionType.MobileEmote | PlayerActionType.PlacePillarShaping | PlayerActionType.DestroyPillarShaping | PlayerActionType.AbilityCustom | PlayerActionType.Prospect | PlayerActionType.PlacePlaceable | PlayerActionType.InteractPlaceable;
 
 export default PlayerActionType;
 
