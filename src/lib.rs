@@ -834,6 +834,11 @@ pub mod import_pathfinding_desc_reducer;
 pub mod import_paved_tile_state_reducer;
 pub mod import_paving_tile_desc_reducer;
 pub mod import_pillar_shaping_desc_reducer;
+pub mod import_placeable_desc_reducer;
+pub mod import_placeable_group_desc_reducer;
+pub mod import_placeable_growth_desc_reducer;
+pub mod import_placeable_interaction_desc_reducer;
+pub mod import_placeable_placement_desc_reducer;
 pub mod import_player_action_desc_reducer;
 pub mod import_player_action_state_reducer;
 pub mod import_player_housing_desc_reducer;
@@ -1136,6 +1141,23 @@ pub mod pillar_shaping_recipe_discovery_item_desc_table;
 pub mod pillar_shaping_recipe_discovery_knowledge_desc_table;
 pub mod pillar_shaping_state_table;
 pub mod pillar_shaping_state_type;
+pub mod placeable_desc_table;
+pub mod placeable_desc_type;
+pub mod placeable_group_desc_table;
+pub mod placeable_group_desc_type;
+pub mod placeable_growth_desc_table;
+pub mod placeable_growth_desc_type;
+pub mod placeable_growth_outcome_type;
+pub mod placeable_interact_reducer;
+pub mod placeable_interact_start_reducer;
+pub mod placeable_interaction_desc_table;
+pub mod placeable_interaction_desc_type;
+pub mod placeable_place_reducer;
+pub mod placeable_place_start_reducer;
+pub mod placeable_placement_desc_table;
+pub mod placeable_placement_desc_type;
+pub mod placeable_state_table;
+pub mod placeable_state_type;
 pub mod player_achievement_claim_request_type;
 pub mod player_acquire_knowledge_from_entities_request_type;
 pub mod player_action_cancel_reducer;
@@ -1252,6 +1274,8 @@ pub mod player_paving_place_tile_request_type;
 pub mod player_permission_edit_request_type;
 pub mod player_pillar_shaping_destroy_request_type;
 pub mod player_pillar_shaping_place_request_type;
+pub mod player_placeable_interact_request_type;
+pub mod player_placeable_place_request_type;
 pub mod player_pocket_swap_contents_request_type;
 pub mod player_portal_enter_request_type;
 pub mod player_post_order_request_type;
@@ -1582,6 +1606,11 @@ pub mod stage_parameters_desc_reducer;
 pub mod stage_pathfinding_desc_reducer;
 pub mod stage_paving_tile_desc_reducer;
 pub mod stage_pillar_shaping_desc_reducer;
+pub mod stage_placeable_desc_reducer;
+pub mod stage_placeable_group_desc_reducer;
+pub mod stage_placeable_growth_desc_reducer;
+pub mod stage_placeable_interaction_desc_reducer;
+pub mod stage_placeable_placement_desc_reducer;
 pub mod stage_player_action_desc_reducer;
 pub mod stage_player_housing_desc_reducer;
 pub mod stage_premium_item_desc_reducer;
@@ -1682,6 +1711,11 @@ pub mod staged_parameters_desc_table;
 pub mod staged_pathfinding_desc_table;
 pub mod staged_paving_tile_desc_table;
 pub mod staged_pillar_shaping_desc_table;
+pub mod staged_placeable_desc_table;
+pub mod staged_placeable_group_desc_table;
+pub mod staged_placeable_growth_desc_table;
+pub mod staged_placeable_interaction_desc_table;
+pub mod staged_placeable_placement_desc_table;
 pub mod staged_player_action_desc_table;
 pub mod staged_player_housing_desc_table;
 pub mod staged_premium_item_desc_table;
@@ -3714,6 +3748,25 @@ pub use import_pillar_shaping_desc_reducer::{
     import_pillar_shaping_desc, set_flags_for_import_pillar_shaping_desc,
     ImportPillarShapingDescCallbackId,
 };
+pub use import_placeable_desc_reducer::{
+    import_placeable_desc, set_flags_for_import_placeable_desc, ImportPlaceableDescCallbackId,
+};
+pub use import_placeable_group_desc_reducer::{
+    import_placeable_group_desc, set_flags_for_import_placeable_group_desc,
+    ImportPlaceableGroupDescCallbackId,
+};
+pub use import_placeable_growth_desc_reducer::{
+    import_placeable_growth_desc, set_flags_for_import_placeable_growth_desc,
+    ImportPlaceableGrowthDescCallbackId,
+};
+pub use import_placeable_interaction_desc_reducer::{
+    import_placeable_interaction_desc, set_flags_for_import_placeable_interaction_desc,
+    ImportPlaceableInteractionDescCallbackId,
+};
+pub use import_placeable_placement_desc_reducer::{
+    import_placeable_placement_desc, set_flags_for_import_placeable_placement_desc,
+    ImportPlaceablePlacementDescCallbackId,
+};
 pub use import_player_action_desc_reducer::{
     import_player_action_desc, set_flags_for_import_player_action_desc,
     ImportPlayerActionDescCallbackId,
@@ -4261,6 +4314,32 @@ pub use pillar_shaping_recipe_discovery_item_desc_table::*;
 pub use pillar_shaping_recipe_discovery_knowledge_desc_table::*;
 pub use pillar_shaping_state_table::*;
 pub use pillar_shaping_state_type::PillarShapingState;
+pub use placeable_desc_table::*;
+pub use placeable_desc_type::PlaceableDesc;
+pub use placeable_group_desc_table::*;
+pub use placeable_group_desc_type::PlaceableGroupDesc;
+pub use placeable_growth_desc_table::*;
+pub use placeable_growth_desc_type::PlaceableGrowthDesc;
+pub use placeable_growth_outcome_type::PlaceableGrowthOutcome;
+pub use placeable_interact_reducer::{
+    placeable_interact, set_flags_for_placeable_interact, PlaceableInteractCallbackId,
+};
+pub use placeable_interact_start_reducer::{
+    placeable_interact_start, set_flags_for_placeable_interact_start,
+    PlaceableInteractStartCallbackId,
+};
+pub use placeable_interaction_desc_table::*;
+pub use placeable_interaction_desc_type::PlaceableInteractionDesc;
+pub use placeable_place_reducer::{
+    placeable_place, set_flags_for_placeable_place, PlaceablePlaceCallbackId,
+};
+pub use placeable_place_start_reducer::{
+    placeable_place_start, set_flags_for_placeable_place_start, PlaceablePlaceStartCallbackId,
+};
+pub use placeable_placement_desc_table::*;
+pub use placeable_placement_desc_type::PlaceablePlacementDesc;
+pub use placeable_state_table::*;
+pub use placeable_state_type::PlaceableState;
 pub use player_achievement_claim_request_type::PlayerAchievementClaimRequest;
 pub use player_acquire_knowledge_from_entities_request_type::PlayerAcquireKnowledgeFromEntitiesRequest;
 pub use player_action_cancel_reducer::{
@@ -4419,6 +4498,8 @@ pub use player_paving_place_tile_request_type::PlayerPavingPlaceTileRequest;
 pub use player_permission_edit_request_type::PlayerPermissionEditRequest;
 pub use player_pillar_shaping_destroy_request_type::PlayerPillarShapingDestroyRequest;
 pub use player_pillar_shaping_place_request_type::PlayerPillarShapingPlaceRequest;
+pub use player_placeable_interact_request_type::PlayerPlaceableInteractRequest;
+pub use player_placeable_place_request_type::PlayerPlaceablePlaceRequest;
 pub use player_pocket_swap_contents_request_type::PlayerPocketSwapContentsRequest;
 pub use player_portal_enter_request_type::PlayerPortalEnterRequest;
 pub use player_post_order_request_type::PlayerPostOrderRequest;
@@ -5055,6 +5136,25 @@ pub use stage_pillar_shaping_desc_reducer::{
     set_flags_for_stage_pillar_shaping_desc, stage_pillar_shaping_desc,
     StagePillarShapingDescCallbackId,
 };
+pub use stage_placeable_desc_reducer::{
+    set_flags_for_stage_placeable_desc, stage_placeable_desc, StagePlaceableDescCallbackId,
+};
+pub use stage_placeable_group_desc_reducer::{
+    set_flags_for_stage_placeable_group_desc, stage_placeable_group_desc,
+    StagePlaceableGroupDescCallbackId,
+};
+pub use stage_placeable_growth_desc_reducer::{
+    set_flags_for_stage_placeable_growth_desc, stage_placeable_growth_desc,
+    StagePlaceableGrowthDescCallbackId,
+};
+pub use stage_placeable_interaction_desc_reducer::{
+    set_flags_for_stage_placeable_interaction_desc, stage_placeable_interaction_desc,
+    StagePlaceableInteractionDescCallbackId,
+};
+pub use stage_placeable_placement_desc_reducer::{
+    set_flags_for_stage_placeable_placement_desc, stage_placeable_placement_desc,
+    StagePlaceablePlacementDescCallbackId,
+};
 pub use stage_player_action_desc_reducer::{
     set_flags_for_stage_player_action_desc, stage_player_action_desc,
     StagePlayerActionDescCallbackId,
@@ -5230,6 +5330,11 @@ pub use staged_parameters_desc_table::*;
 pub use staged_pathfinding_desc_table::*;
 pub use staged_paving_tile_desc_table::*;
 pub use staged_pillar_shaping_desc_table::*;
+pub use staged_placeable_desc_table::*;
+pub use staged_placeable_group_desc_table::*;
+pub use staged_placeable_growth_desc_table::*;
+pub use staged_placeable_interaction_desc_table::*;
+pub use staged_placeable_placement_desc_table::*;
 pub use staged_player_action_desc_table::*;
 pub use staged_player_housing_desc_table::*;
 pub use staged_premium_item_desc_table::*;
@@ -6760,6 +6865,21 @@ pub enum Reducer {
     ImportPillarShapingDesc {
         records: Vec<PillarShapingDesc>,
     },
+    ImportPlaceableDesc {
+        records: Vec<PlaceableDesc>,
+    },
+    ImportPlaceableGroupDesc {
+        records: Vec<PlaceableGroupDesc>,
+    },
+    ImportPlaceableGrowthDesc {
+        records: Vec<PlaceableGrowthDesc>,
+    },
+    ImportPlaceableInteractionDesc {
+        records: Vec<PlaceableInteractionDesc>,
+    },
+    ImportPlaceablePlacementDesc {
+        records: Vec<PlaceablePlacementDesc>,
+    },
     ImportPlayerActionDesc {
         records: Vec<PlayerActionDesc>,
     },
@@ -7077,6 +7197,18 @@ pub enum Reducer {
     },
     PillarShapingPlacePillarStart {
         request: PlayerPillarShapingPlaceRequest,
+    },
+    PlaceableInteract {
+        request: PlayerPlaceableInteractRequest,
+    },
+    PlaceableInteractStart {
+        request: PlayerPlaceableInteractRequest,
+    },
+    PlaceablePlace {
+        request: PlayerPlaceablePlaceRequest,
+    },
+    PlaceablePlaceStart {
+        request: PlayerPlaceablePlaceRequest,
     },
     PlayerActionCancel {
         client_cancel: bool,
@@ -7522,6 +7654,21 @@ pub enum Reducer {
     },
     StagePillarShapingDesc {
         records: Vec<PillarShapingDesc>,
+    },
+    StagePlaceableDesc {
+        records: Vec<PlaceableDesc>,
+    },
+    StagePlaceableGroupDesc {
+        records: Vec<PlaceableGroupDesc>,
+    },
+    StagePlaceableGrowthDesc {
+        records: Vec<PlaceableGrowthDesc>,
+    },
+    StagePlaceableInteractionDesc {
+        records: Vec<PlaceableInteractionDesc>,
+    },
+    StagePlaceablePlacementDesc {
+        records: Vec<PlaceablePlacementDesc>,
     },
     StagePlayerActionDesc {
         records: Vec<PlayerActionDesc>,
@@ -8192,6 +8339,11 @@ impl __sdk::Reducer for Reducer {
             Reducer::ImportPavedTileState { .. } => "import_paved_tile_state",
             Reducer::ImportPavingTileDesc { .. } => "import_paving_tile_desc",
             Reducer::ImportPillarShapingDesc { .. } => "import_pillar_shaping_desc",
+            Reducer::ImportPlaceableDesc { .. } => "import_placeable_desc",
+            Reducer::ImportPlaceableGroupDesc { .. } => "import_placeable_group_desc",
+            Reducer::ImportPlaceableGrowthDesc { .. } => "import_placeable_growth_desc",
+            Reducer::ImportPlaceableInteractionDesc { .. } => "import_placeable_interaction_desc",
+            Reducer::ImportPlaceablePlacementDesc { .. } => "import_placeable_placement_desc",
             Reducer::ImportPlayerActionDesc { .. } => "import_player_action_desc",
             Reducer::ImportPlayerActionState { .. } => "import_player_action_state",
             Reducer::ImportPlayerHousingDesc { .. } => "import_player_housing_desc",
@@ -8303,6 +8455,10 @@ impl __sdk::Reducer for Reducer {
             Reducer::PillarShapingDestroyStart { .. } => "pillar_shaping_destroy_start",
             Reducer::PillarShapingPlacePillar { .. } => "pillar_shaping_place_pillar",
             Reducer::PillarShapingPlacePillarStart { .. } => "pillar_shaping_place_pillar_start",
+            Reducer::PlaceableInteract { .. } => "placeable_interact",
+            Reducer::PlaceableInteractStart { .. } => "placeable_interact_start",
+            Reducer::PlaceablePlace { .. } => "placeable_place",
+            Reducer::PlaceablePlaceStart { .. } => "placeable_place_start",
             Reducer::PlayerActionCancel { .. } => "player_action_cancel",
             Reducer::PlayerCancelRegionTransfer => "player_cancel_region_transfer",
             Reducer::PlayerClearActionState { .. } => "player_clear_action_state",
@@ -8464,6 +8620,11 @@ impl __sdk::Reducer for Reducer {
             Reducer::StagePathfindingDesc { .. } => "stage_pathfinding_desc",
             Reducer::StagePavingTileDesc { .. } => "stage_paving_tile_desc",
             Reducer::StagePillarShapingDesc { .. } => "stage_pillar_shaping_desc",
+            Reducer::StagePlaceableDesc { .. } => "stage_placeable_desc",
+            Reducer::StagePlaceableGroupDesc { .. } => "stage_placeable_group_desc",
+            Reducer::StagePlaceableGrowthDesc { .. } => "stage_placeable_growth_desc",
+            Reducer::StagePlaceableInteractionDesc { .. } => "stage_placeable_interaction_desc",
+            Reducer::StagePlaceablePlacementDesc { .. } => "stage_placeable_placement_desc",
             Reducer::StagePlayerActionDesc { .. } => "stage_player_action_desc",
             Reducer::StagePlayerHousingDesc { .. } => "stage_player_housing_desc",
             Reducer::StagePremiumItemDesc { .. } => "stage_premium_item_desc",
@@ -8948,6 +9109,11 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "import_paved_tile_state" => Ok(__sdk::parse_reducer_args::<import_paved_tile_state_reducer::ImportPavedTileStateArgs>("import_paved_tile_state", &value.args)?.into()),
             "import_paving_tile_desc" => Ok(__sdk::parse_reducer_args::<import_paving_tile_desc_reducer::ImportPavingTileDescArgs>("import_paving_tile_desc", &value.args)?.into()),
             "import_pillar_shaping_desc" => Ok(__sdk::parse_reducer_args::<import_pillar_shaping_desc_reducer::ImportPillarShapingDescArgs>("import_pillar_shaping_desc", &value.args)?.into()),
+            "import_placeable_desc" => Ok(__sdk::parse_reducer_args::<import_placeable_desc_reducer::ImportPlaceableDescArgs>("import_placeable_desc", &value.args)?.into()),
+            "import_placeable_group_desc" => Ok(__sdk::parse_reducer_args::<import_placeable_group_desc_reducer::ImportPlaceableGroupDescArgs>("import_placeable_group_desc", &value.args)?.into()),
+            "import_placeable_growth_desc" => Ok(__sdk::parse_reducer_args::<import_placeable_growth_desc_reducer::ImportPlaceableGrowthDescArgs>("import_placeable_growth_desc", &value.args)?.into()),
+            "import_placeable_interaction_desc" => Ok(__sdk::parse_reducer_args::<import_placeable_interaction_desc_reducer::ImportPlaceableInteractionDescArgs>("import_placeable_interaction_desc", &value.args)?.into()),
+            "import_placeable_placement_desc" => Ok(__sdk::parse_reducer_args::<import_placeable_placement_desc_reducer::ImportPlaceablePlacementDescArgs>("import_placeable_placement_desc", &value.args)?.into()),
             "import_player_action_desc" => Ok(__sdk::parse_reducer_args::<import_player_action_desc_reducer::ImportPlayerActionDescArgs>("import_player_action_desc", &value.args)?.into()),
             "import_player_action_state" => Ok(__sdk::parse_reducer_args::<import_player_action_state_reducer::ImportPlayerActionStateArgs>("import_player_action_state", &value.args)?.into()),
             "import_player_housing_desc" => Ok(__sdk::parse_reducer_args::<import_player_housing_desc_reducer::ImportPlayerHousingDescArgs>("import_player_housing_desc", &value.args)?.into()),
@@ -9055,6 +9221,10 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "pillar_shaping_destroy_start" => Ok(__sdk::parse_reducer_args::<pillar_shaping_destroy_start_reducer::PillarShapingDestroyStartArgs>("pillar_shaping_destroy_start", &value.args)?.into()),
             "pillar_shaping_place_pillar" => Ok(__sdk::parse_reducer_args::<pillar_shaping_place_pillar_reducer::PillarShapingPlacePillarArgs>("pillar_shaping_place_pillar", &value.args)?.into()),
             "pillar_shaping_place_pillar_start" => Ok(__sdk::parse_reducer_args::<pillar_shaping_place_pillar_start_reducer::PillarShapingPlacePillarStartArgs>("pillar_shaping_place_pillar_start", &value.args)?.into()),
+            "placeable_interact" => Ok(__sdk::parse_reducer_args::<placeable_interact_reducer::PlaceableInteractArgs>("placeable_interact", &value.args)?.into()),
+            "placeable_interact_start" => Ok(__sdk::parse_reducer_args::<placeable_interact_start_reducer::PlaceableInteractStartArgs>("placeable_interact_start", &value.args)?.into()),
+            "placeable_place" => Ok(__sdk::parse_reducer_args::<placeable_place_reducer::PlaceablePlaceArgs>("placeable_place", &value.args)?.into()),
+            "placeable_place_start" => Ok(__sdk::parse_reducer_args::<placeable_place_start_reducer::PlaceablePlaceStartArgs>("placeable_place_start", &value.args)?.into()),
             "player_action_cancel" => Ok(__sdk::parse_reducer_args::<player_action_cancel_reducer::PlayerActionCancelArgs>("player_action_cancel", &value.args)?.into()),
             "player_cancel_region_transfer" => Ok(__sdk::parse_reducer_args::<player_cancel_region_transfer_reducer::PlayerCancelRegionTransferArgs>("player_cancel_region_transfer", &value.args)?.into()),
             "player_clear_action_state" => Ok(__sdk::parse_reducer_args::<player_clear_action_state_reducer::PlayerClearActionStateArgs>("player_clear_action_state", &value.args)?.into()),
@@ -9206,6 +9376,11 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "stage_pathfinding_desc" => Ok(__sdk::parse_reducer_args::<stage_pathfinding_desc_reducer::StagePathfindingDescArgs>("stage_pathfinding_desc", &value.args)?.into()),
             "stage_paving_tile_desc" => Ok(__sdk::parse_reducer_args::<stage_paving_tile_desc_reducer::StagePavingTileDescArgs>("stage_paving_tile_desc", &value.args)?.into()),
             "stage_pillar_shaping_desc" => Ok(__sdk::parse_reducer_args::<stage_pillar_shaping_desc_reducer::StagePillarShapingDescArgs>("stage_pillar_shaping_desc", &value.args)?.into()),
+            "stage_placeable_desc" => Ok(__sdk::parse_reducer_args::<stage_placeable_desc_reducer::StagePlaceableDescArgs>("stage_placeable_desc", &value.args)?.into()),
+            "stage_placeable_group_desc" => Ok(__sdk::parse_reducer_args::<stage_placeable_group_desc_reducer::StagePlaceableGroupDescArgs>("stage_placeable_group_desc", &value.args)?.into()),
+            "stage_placeable_growth_desc" => Ok(__sdk::parse_reducer_args::<stage_placeable_growth_desc_reducer::StagePlaceableGrowthDescArgs>("stage_placeable_growth_desc", &value.args)?.into()),
+            "stage_placeable_interaction_desc" => Ok(__sdk::parse_reducer_args::<stage_placeable_interaction_desc_reducer::StagePlaceableInteractionDescArgs>("stage_placeable_interaction_desc", &value.args)?.into()),
+            "stage_placeable_placement_desc" => Ok(__sdk::parse_reducer_args::<stage_placeable_placement_desc_reducer::StagePlaceablePlacementDescArgs>("stage_placeable_placement_desc", &value.args)?.into()),
             "stage_player_action_desc" => Ok(__sdk::parse_reducer_args::<stage_player_action_desc_reducer::StagePlayerActionDescArgs>("stage_player_action_desc", &value.args)?.into()),
             "stage_player_housing_desc" => Ok(__sdk::parse_reducer_args::<stage_player_housing_desc_reducer::StagePlayerHousingDescArgs>("stage_player_housing_desc", &value.args)?.into()),
             "stage_premium_item_desc" => Ok(__sdk::parse_reducer_args::<stage_premium_item_desc_reducer::StagePremiumItemDescArgs>("stage_premium_item_desc", &value.args)?.into()),
@@ -9511,6 +9686,12 @@ pub struct DbUpdate {
     pillar_shaping_recipe_discovery_item_desc: __sdk::TableUpdate<DiscoveryTriggerDesc>,
     pillar_shaping_recipe_discovery_knowledge_desc: __sdk::TableUpdate<DiscoveryTriggerDesc>,
     pillar_shaping_state: __sdk::TableUpdate<PillarShapingState>,
+    placeable_desc: __sdk::TableUpdate<PlaceableDesc>,
+    placeable_group_desc: __sdk::TableUpdate<PlaceableGroupDesc>,
+    placeable_growth_desc: __sdk::TableUpdate<PlaceableGrowthDesc>,
+    placeable_interaction_desc: __sdk::TableUpdate<PlaceableInteractionDesc>,
+    placeable_placement_desc: __sdk::TableUpdate<PlaceablePlacementDesc>,
+    placeable_state: __sdk::TableUpdate<PlaceableState>,
     player_action_desc: __sdk::TableUpdate<PlayerActionDesc>,
     player_action_state: __sdk::TableUpdate<PlayerActionState>,
     player_death_timer: __sdk::TableUpdate<PlayerDeathTimer>,
@@ -9659,6 +9840,11 @@ pub struct DbUpdate {
     staged_pathfinding_desc: __sdk::TableUpdate<PathfindingDesc>,
     staged_paving_tile_desc: __sdk::TableUpdate<PavingTileDesc>,
     staged_pillar_shaping_desc: __sdk::TableUpdate<PillarShapingDesc>,
+    staged_placeable_desc: __sdk::TableUpdate<PlaceableDesc>,
+    staged_placeable_group_desc: __sdk::TableUpdate<PlaceableGroupDesc>,
+    staged_placeable_growth_desc: __sdk::TableUpdate<PlaceableGrowthDesc>,
+    staged_placeable_interaction_desc: __sdk::TableUpdate<PlaceableInteractionDesc>,
+    staged_placeable_placement_desc: __sdk::TableUpdate<PlaceablePlacementDesc>,
     staged_player_action_desc: __sdk::TableUpdate<PlayerActionDesc>,
     staged_player_housing_desc: __sdk::TableUpdate<PlayerHousingDesc>,
     staged_premium_item_desc: __sdk::TableUpdate<PremiumItemDesc>,
@@ -9978,6 +10164,12 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "pillar_shaping_recipe_discovery_item_desc" => db_update.pillar_shaping_recipe_discovery_item_desc.append(pillar_shaping_recipe_discovery_item_desc_table::parse_table_update(table_update)?),
     "pillar_shaping_recipe_discovery_knowledge_desc" => db_update.pillar_shaping_recipe_discovery_knowledge_desc.append(pillar_shaping_recipe_discovery_knowledge_desc_table::parse_table_update(table_update)?),
     "pillar_shaping_state" => db_update.pillar_shaping_state.append(pillar_shaping_state_table::parse_table_update(table_update)?),
+    "placeable_desc" => db_update.placeable_desc.append(placeable_desc_table::parse_table_update(table_update)?),
+    "placeable_group_desc" => db_update.placeable_group_desc.append(placeable_group_desc_table::parse_table_update(table_update)?),
+    "placeable_growth_desc" => db_update.placeable_growth_desc.append(placeable_growth_desc_table::parse_table_update(table_update)?),
+    "placeable_interaction_desc" => db_update.placeable_interaction_desc.append(placeable_interaction_desc_table::parse_table_update(table_update)?),
+    "placeable_placement_desc" => db_update.placeable_placement_desc.append(placeable_placement_desc_table::parse_table_update(table_update)?),
+    "placeable_state" => db_update.placeable_state.append(placeable_state_table::parse_table_update(table_update)?),
     "player_action_desc" => db_update.player_action_desc.append(player_action_desc_table::parse_table_update(table_update)?),
     "player_action_state" => db_update.player_action_state.append(player_action_state_table::parse_table_update(table_update)?),
     "player_death_timer" => db_update.player_death_timer.append(player_death_timer_table::parse_table_update(table_update)?),
@@ -10126,6 +10318,11 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "staged_pathfinding_desc" => db_update.staged_pathfinding_desc.append(staged_pathfinding_desc_table::parse_table_update(table_update)?),
     "staged_paving_tile_desc" => db_update.staged_paving_tile_desc.append(staged_paving_tile_desc_table::parse_table_update(table_update)?),
     "staged_pillar_shaping_desc" => db_update.staged_pillar_shaping_desc.append(staged_pillar_shaping_desc_table::parse_table_update(table_update)?),
+    "staged_placeable_desc" => db_update.staged_placeable_desc.append(staged_placeable_desc_table::parse_table_update(table_update)?),
+    "staged_placeable_group_desc" => db_update.staged_placeable_group_desc.append(staged_placeable_group_desc_table::parse_table_update(table_update)?),
+    "staged_placeable_growth_desc" => db_update.staged_placeable_growth_desc.append(staged_placeable_growth_desc_table::parse_table_update(table_update)?),
+    "staged_placeable_interaction_desc" => db_update.staged_placeable_interaction_desc.append(staged_placeable_interaction_desc_table::parse_table_update(table_update)?),
+    "staged_placeable_placement_desc" => db_update.staged_placeable_placement_desc.append(staged_placeable_placement_desc_table::parse_table_update(table_update)?),
     "staged_player_action_desc" => db_update.staged_player_action_desc.append(staged_player_action_desc_table::parse_table_update(table_update)?),
     "staged_player_housing_desc" => db_update.staged_player_housing_desc.append(staged_player_housing_desc_table::parse_table_update(table_update)?),
     "staged_premium_item_desc" => db_update.staged_premium_item_desc.append(staged_premium_item_desc_table::parse_table_update(table_update)?),
@@ -11331,6 +11528,36 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.pillar_shaping_state,
             )
             .with_updates_by_pk(|row| &row.entity_id);
+        diff.placeable_desc = cache
+            .apply_diff_to_table::<PlaceableDesc>("placeable_desc", &self.placeable_desc)
+            .with_updates_by_pk(|row| &row.id);
+        diff.placeable_group_desc = cache
+            .apply_diff_to_table::<PlaceableGroupDesc>(
+                "placeable_group_desc",
+                &self.placeable_group_desc,
+            )
+            .with_updates_by_pk(|row| &row.id);
+        diff.placeable_growth_desc = cache
+            .apply_diff_to_table::<PlaceableGrowthDesc>(
+                "placeable_growth_desc",
+                &self.placeable_growth_desc,
+            )
+            .with_updates_by_pk(|row| &row.id);
+        diff.placeable_interaction_desc = cache
+            .apply_diff_to_table::<PlaceableInteractionDesc>(
+                "placeable_interaction_desc",
+                &self.placeable_interaction_desc,
+            )
+            .with_updates_by_pk(|row| &row.id);
+        diff.placeable_placement_desc = cache
+            .apply_diff_to_table::<PlaceablePlacementDesc>(
+                "placeable_placement_desc",
+                &self.placeable_placement_desc,
+            )
+            .with_updates_by_pk(|row| &row.id);
+        diff.placeable_state = cache
+            .apply_diff_to_table::<PlaceableState>("placeable_state", &self.placeable_state)
+            .with_updates_by_pk(|row| &row.entity_id);
         diff.player_action_desc = cache
             .apply_diff_to_table::<PlayerActionDesc>("player_action_desc", &self.player_action_desc)
             .with_updates_by_pk(|row| &row.action_type_id);
@@ -12086,6 +12313,36 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.staged_pillar_shaping_desc,
             )
             .with_updates_by_pk(|row| &row.id);
+        diff.staged_placeable_desc = cache
+            .apply_diff_to_table::<PlaceableDesc>(
+                "staged_placeable_desc",
+                &self.staged_placeable_desc,
+            )
+            .with_updates_by_pk(|row| &row.id);
+        diff.staged_placeable_group_desc = cache
+            .apply_diff_to_table::<PlaceableGroupDesc>(
+                "staged_placeable_group_desc",
+                &self.staged_placeable_group_desc,
+            )
+            .with_updates_by_pk(|row| &row.id);
+        diff.staged_placeable_growth_desc = cache
+            .apply_diff_to_table::<PlaceableGrowthDesc>(
+                "staged_placeable_growth_desc",
+                &self.staged_placeable_growth_desc,
+            )
+            .with_updates_by_pk(|row| &row.id);
+        diff.staged_placeable_interaction_desc = cache
+            .apply_diff_to_table::<PlaceableInteractionDesc>(
+                "staged_placeable_interaction_desc",
+                &self.staged_placeable_interaction_desc,
+            )
+            .with_updates_by_pk(|row| &row.id);
+        diff.staged_placeable_placement_desc = cache
+            .apply_diff_to_table::<PlaceablePlacementDesc>(
+                "staged_placeable_placement_desc",
+                &self.staged_placeable_placement_desc,
+            )
+            .with_updates_by_pk(|row| &row.id);
         diff.staged_player_action_desc = cache
             .apply_diff_to_table::<PlayerActionDesc>(
                 "staged_player_action_desc",
@@ -12714,6 +12971,12 @@ pub struct AppliedDiff<'r> {
     pillar_shaping_recipe_discovery_knowledge_desc:
         __sdk::TableAppliedDiff<'r, DiscoveryTriggerDesc>,
     pillar_shaping_state: __sdk::TableAppliedDiff<'r, PillarShapingState>,
+    placeable_desc: __sdk::TableAppliedDiff<'r, PlaceableDesc>,
+    placeable_group_desc: __sdk::TableAppliedDiff<'r, PlaceableGroupDesc>,
+    placeable_growth_desc: __sdk::TableAppliedDiff<'r, PlaceableGrowthDesc>,
+    placeable_interaction_desc: __sdk::TableAppliedDiff<'r, PlaceableInteractionDesc>,
+    placeable_placement_desc: __sdk::TableAppliedDiff<'r, PlaceablePlacementDesc>,
+    placeable_state: __sdk::TableAppliedDiff<'r, PlaceableState>,
     player_action_desc: __sdk::TableAppliedDiff<'r, PlayerActionDesc>,
     player_action_state: __sdk::TableAppliedDiff<'r, PlayerActionState>,
     player_death_timer: __sdk::TableAppliedDiff<'r, PlayerDeathTimer>,
@@ -12868,6 +13131,11 @@ pub struct AppliedDiff<'r> {
     staged_pathfinding_desc: __sdk::TableAppliedDiff<'r, PathfindingDesc>,
     staged_paving_tile_desc: __sdk::TableAppliedDiff<'r, PavingTileDesc>,
     staged_pillar_shaping_desc: __sdk::TableAppliedDiff<'r, PillarShapingDesc>,
+    staged_placeable_desc: __sdk::TableAppliedDiff<'r, PlaceableDesc>,
+    staged_placeable_group_desc: __sdk::TableAppliedDiff<'r, PlaceableGroupDesc>,
+    staged_placeable_growth_desc: __sdk::TableAppliedDiff<'r, PlaceableGrowthDesc>,
+    staged_placeable_interaction_desc: __sdk::TableAppliedDiff<'r, PlaceableInteractionDesc>,
+    staged_placeable_placement_desc: __sdk::TableAppliedDiff<'r, PlaceablePlacementDesc>,
     staged_player_action_desc: __sdk::TableAppliedDiff<'r, PlayerActionDesc>,
     staged_player_housing_desc: __sdk::TableAppliedDiff<'r, PlayerHousingDesc>,
     staged_premium_item_desc: __sdk::TableAppliedDiff<'r, PremiumItemDesc>,
@@ -14048,6 +14316,36 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             &self.pillar_shaping_state,
             event,
         );
+        callbacks.invoke_table_row_callbacks::<PlaceableDesc>(
+            "placeable_desc",
+            &self.placeable_desc,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<PlaceableGroupDesc>(
+            "placeable_group_desc",
+            &self.placeable_group_desc,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<PlaceableGrowthDesc>(
+            "placeable_growth_desc",
+            &self.placeable_growth_desc,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<PlaceableInteractionDesc>(
+            "placeable_interaction_desc",
+            &self.placeable_interaction_desc,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<PlaceablePlacementDesc>(
+            "placeable_placement_desc",
+            &self.placeable_placement_desc,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<PlaceableState>(
+            "placeable_state",
+            &self.placeable_state,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<PlayerActionDesc>(
             "player_action_desc",
             &self.player_action_desc,
@@ -14778,6 +15076,31 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<PillarShapingDesc>(
             "staged_pillar_shaping_desc",
             &self.staged_pillar_shaping_desc,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<PlaceableDesc>(
+            "staged_placeable_desc",
+            &self.staged_placeable_desc,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<PlaceableGroupDesc>(
+            "staged_placeable_group_desc",
+            &self.staged_placeable_group_desc,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<PlaceableGrowthDesc>(
+            "staged_placeable_growth_desc",
+            &self.staged_placeable_growth_desc,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<PlaceableInteractionDesc>(
+            "staged_placeable_interaction_desc",
+            &self.staged_placeable_interaction_desc,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<PlaceablePlacementDesc>(
+            "staged_placeable_placement_desc",
+            &self.staged_placeable_placement_desc,
             event,
         );
         callbacks.invoke_table_row_callbacks::<PlayerActionDesc>(
@@ -16084,6 +16407,12 @@ impl __sdk::SpacetimeModule for RemoteModule {
         pillar_shaping_recipe_discovery_item_desc_table::register_table(client_cache);
         pillar_shaping_recipe_discovery_knowledge_desc_table::register_table(client_cache);
         pillar_shaping_state_table::register_table(client_cache);
+        placeable_desc_table::register_table(client_cache);
+        placeable_group_desc_table::register_table(client_cache);
+        placeable_growth_desc_table::register_table(client_cache);
+        placeable_interaction_desc_table::register_table(client_cache);
+        placeable_placement_desc_table::register_table(client_cache);
+        placeable_state_table::register_table(client_cache);
         player_action_desc_table::register_table(client_cache);
         player_action_state_table::register_table(client_cache);
         player_death_timer_table::register_table(client_cache);
@@ -16232,6 +16561,11 @@ impl __sdk::SpacetimeModule for RemoteModule {
         staged_pathfinding_desc_table::register_table(client_cache);
         staged_paving_tile_desc_table::register_table(client_cache);
         staged_pillar_shaping_desc_table::register_table(client_cache);
+        staged_placeable_desc_table::register_table(client_cache);
+        staged_placeable_group_desc_table::register_table(client_cache);
+        staged_placeable_growth_desc_table::register_table(client_cache);
+        staged_placeable_interaction_desc_table::register_table(client_cache);
+        staged_placeable_placement_desc_table::register_table(client_cache);
         staged_player_action_desc_table::register_table(client_cache);
         staged_player_housing_desc_table::register_table(client_cache);
         staged_premium_item_desc_table::register_table(client_cache);
