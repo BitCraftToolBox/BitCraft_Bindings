@@ -756,6 +756,16 @@ import { StagePavingTileDesc } from "./stage_paving_tile_desc_reducer.ts";
 export { StagePavingTileDesc };
 import { StagePillarShapingDesc } from "./stage_pillar_shaping_desc_reducer.ts";
 export { StagePillarShapingDesc };
+import { StagePlaceableDesc } from "./stage_placeable_desc_reducer.ts";
+export { StagePlaceableDesc };
+import { StagePlaceableGroupDesc } from "./stage_placeable_group_desc_reducer.ts";
+export { StagePlaceableGroupDesc };
+import { StagePlaceableGrowthDesc } from "./stage_placeable_growth_desc_reducer.ts";
+export { StagePlaceableGrowthDesc };
+import { StagePlaceableInteractionDesc } from "./stage_placeable_interaction_desc_reducer.ts";
+export { StagePlaceableInteractionDesc };
+import { StagePlaceablePlacementDesc } from "./stage_placeable_placement_desc_reducer.ts";
+export { StagePlaceablePlacementDesc };
 import { StagePlayerActionDesc } from "./stage_player_action_desc_reducer.ts";
 export { StagePlayerActionDesc };
 import { StagePlayerHousingDesc } from "./stage_player_housing_desc_reducer.ts";
@@ -1286,6 +1296,18 @@ import { PillarShapingRecipeDiscoveryKnowledgeDescTableHandle } from "./pillar_s
 export { PillarShapingRecipeDiscoveryKnowledgeDescTableHandle };
 import { PillarShapingStateTableHandle } from "./pillar_shaping_state_table.ts";
 export { PillarShapingStateTableHandle };
+import { PlaceableDescTableHandle } from "./placeable_desc_table.ts";
+export { PlaceableDescTableHandle };
+import { PlaceableGroupDescTableHandle } from "./placeable_group_desc_table.ts";
+export { PlaceableGroupDescTableHandle };
+import { PlaceableGrowthDescTableHandle } from "./placeable_growth_desc_table.ts";
+export { PlaceableGrowthDescTableHandle };
+import { PlaceableInteractionDescTableHandle } from "./placeable_interaction_desc_table.ts";
+export { PlaceableInteractionDescTableHandle };
+import { PlaceablePlacementDescTableHandle } from "./placeable_placement_desc_table.ts";
+export { PlaceablePlacementDescTableHandle };
+import { PlaceableStateTableHandle } from "./placeable_state_table.ts";
+export { PlaceableStateTableHandle };
 import { PlayerActionDescTableHandle } from "./player_action_desc_table.ts";
 export { PlayerActionDescTableHandle };
 import { PlayerActionStateTableHandle } from "./player_action_state_table.ts";
@@ -1550,6 +1572,16 @@ import { StagedPavingTileDescTableHandle } from "./staged_paving_tile_desc_table
 export { StagedPavingTileDescTableHandle };
 import { StagedPillarShapingDescTableHandle } from "./staged_pillar_shaping_desc_table.ts";
 export { StagedPillarShapingDescTableHandle };
+import { StagedPlaceableDescTableHandle } from "./staged_placeable_desc_table.ts";
+export { StagedPlaceableDescTableHandle };
+import { StagedPlaceableGroupDescTableHandle } from "./staged_placeable_group_desc_table.ts";
+export { StagedPlaceableGroupDescTableHandle };
+import { StagedPlaceableGrowthDescTableHandle } from "./staged_placeable_growth_desc_table.ts";
+export { StagedPlaceableGrowthDescTableHandle };
+import { StagedPlaceableInteractionDescTableHandle } from "./staged_placeable_interaction_desc_table.ts";
+export { StagedPlaceableInteractionDescTableHandle };
+import { StagedPlaceablePlacementDescTableHandle } from "./staged_placeable_placement_desc_table.ts";
+export { StagedPlaceablePlacementDescTableHandle };
 import { StagedPlayerActionDescTableHandle } from "./staged_player_action_desc_table.ts";
 export { StagedPlayerActionDescTableHandle };
 import { StagedPlayerHousingDescTableHandle } from "./staged_player_housing_desc_table.ts";
@@ -2398,6 +2430,20 @@ import { PillarShapingDesc } from "./pillar_shaping_desc_type.ts";
 export { PillarShapingDesc };
 import { PillarShapingState } from "./pillar_shaping_state_type.ts";
 export { PillarShapingState };
+import { PlaceableDesc } from "./placeable_desc_type.ts";
+export { PlaceableDesc };
+import { PlaceableGroupDesc } from "./placeable_group_desc_type.ts";
+export { PlaceableGroupDesc };
+import { PlaceableGrowthDesc } from "./placeable_growth_desc_type.ts";
+export { PlaceableGrowthDesc };
+import { PlaceableGrowthOutcome } from "./placeable_growth_outcome_type.ts";
+export { PlaceableGrowthOutcome };
+import { PlaceableInteractionDesc } from "./placeable_interaction_desc_type.ts";
+export { PlaceableInteractionDesc };
+import { PlaceablePlacementDesc } from "./placeable_placement_desc_type.ts";
+export { PlaceablePlacementDesc };
+import { PlaceableState } from "./placeable_state_type.ts";
+export { PlaceableState };
 import { PlayerActionDesc } from "./player_action_desc_type.ts";
 export { PlayerActionDesc };
 import { PlayerActionLayer } from "./player_action_layer_type.ts";
@@ -4664,6 +4710,60 @@ const REMOTE_MODULE = {
         colType: PillarShapingState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    placeable_desc: {
+      tableName: "placeable_desc",
+      rowType: PlaceableDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: PlaceableDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    placeable_group_desc: {
+      tableName: "placeable_group_desc",
+      rowType: PlaceableGroupDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: PlaceableGroupDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    placeable_growth_desc: {
+      tableName: "placeable_growth_desc",
+      rowType: PlaceableGrowthDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: PlaceableGrowthDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    placeable_interaction_desc: {
+      tableName: "placeable_interaction_desc",
+      rowType: PlaceableInteractionDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: PlaceableInteractionDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    placeable_placement_desc: {
+      tableName: "placeable_placement_desc",
+      rowType: PlaceablePlacementDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: PlaceablePlacementDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    placeable_state: {
+      tableName: "placeable_state",
+      rowType: PlaceableState.getTypeScriptAlgebraicType(),
+      primaryKey: "entityId",
+      primaryKeyInfo: {
+        colName: "entityId",
+        colType: PlaceableState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     player_action_desc: {
       tableName: "player_action_desc",
       rowType: PlayerActionDesc.getTypeScriptAlgebraicType(),
@@ -5830,6 +5930,51 @@ const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "id",
         colType: PillarShapingDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_placeable_desc: {
+      tableName: "staged_placeable_desc",
+      rowType: PlaceableDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: PlaceableDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_placeable_group_desc: {
+      tableName: "staged_placeable_group_desc",
+      rowType: PlaceableGroupDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: PlaceableGroupDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_placeable_growth_desc: {
+      tableName: "staged_placeable_growth_desc",
+      rowType: PlaceableGrowthDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: PlaceableGrowthDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_placeable_interaction_desc: {
+      tableName: "staged_placeable_interaction_desc",
+      rowType: PlaceableInteractionDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: PlaceableInteractionDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_placeable_placement_desc: {
+      tableName: "staged_placeable_placement_desc",
+      rowType: PlaceablePlacementDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: PlaceablePlacementDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     staged_player_action_desc: {
@@ -7908,6 +8053,26 @@ const REMOTE_MODULE = {
       reducerName: "stage_pillar_shaping_desc",
       argsType: StagePillarShapingDesc.getTypeScriptAlgebraicType(),
     },
+    stage_placeable_desc: {
+      reducerName: "stage_placeable_desc",
+      argsType: StagePlaceableDesc.getTypeScriptAlgebraicType(),
+    },
+    stage_placeable_group_desc: {
+      reducerName: "stage_placeable_group_desc",
+      argsType: StagePlaceableGroupDesc.getTypeScriptAlgebraicType(),
+    },
+    stage_placeable_growth_desc: {
+      reducerName: "stage_placeable_growth_desc",
+      argsType: StagePlaceableGrowthDesc.getTypeScriptAlgebraicType(),
+    },
+    stage_placeable_interaction_desc: {
+      reducerName: "stage_placeable_interaction_desc",
+      argsType: StagePlaceableInteractionDesc.getTypeScriptAlgebraicType(),
+    },
+    stage_placeable_placement_desc: {
+      reducerName: "stage_placeable_placement_desc",
+      argsType: StagePlaceablePlacementDesc.getTypeScriptAlgebraicType(),
+    },
     stage_player_action_desc: {
       reducerName: "stage_player_action_desc",
       argsType: StagePlayerActionDesc.getTypeScriptAlgebraicType(),
@@ -8451,6 +8616,11 @@ export type Reducer = never
 | { name: "StagePathfindingDesc", args: StagePathfindingDesc }
 | { name: "StagePavingTileDesc", args: StagePavingTileDesc }
 | { name: "StagePillarShapingDesc", args: StagePillarShapingDesc }
+| { name: "StagePlaceableDesc", args: StagePlaceableDesc }
+| { name: "StagePlaceableGroupDesc", args: StagePlaceableGroupDesc }
+| { name: "StagePlaceableGrowthDesc", args: StagePlaceableGrowthDesc }
+| { name: "StagePlaceableInteractionDesc", args: StagePlaceableInteractionDesc }
+| { name: "StagePlaceablePlacementDesc", args: StagePlaceablePlacementDesc }
 | { name: "StagePlayerActionDesc", args: StagePlayerActionDesc }
 | { name: "StagePlayerHousingDesc", args: StagePlayerHousingDesc }
 | { name: "StagePremiumItemDesc", args: StagePremiumItemDesc }
@@ -14194,6 +14364,86 @@ export class RemoteReducers {
     this.connection.offReducer("stage_pillar_shaping_desc", callback);
   }
 
+  stagePlaceableDesc(records: PlaceableDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    StagePlaceableDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("stage_placeable_desc", __argsBuffer, this.setCallReducerFlags.stagePlaceableDescFlags);
+  }
+
+  onStagePlaceableDesc(callback: (ctx: ReducerEventContext, records: PlaceableDesc[]) => void) {
+    this.connection.onReducer("stage_placeable_desc", callback);
+  }
+
+  removeOnStagePlaceableDesc(callback: (ctx: ReducerEventContext, records: PlaceableDesc[]) => void) {
+    this.connection.offReducer("stage_placeable_desc", callback);
+  }
+
+  stagePlaceableGroupDesc(records: PlaceableGroupDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    StagePlaceableGroupDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("stage_placeable_group_desc", __argsBuffer, this.setCallReducerFlags.stagePlaceableGroupDescFlags);
+  }
+
+  onStagePlaceableGroupDesc(callback: (ctx: ReducerEventContext, records: PlaceableGroupDesc[]) => void) {
+    this.connection.onReducer("stage_placeable_group_desc", callback);
+  }
+
+  removeOnStagePlaceableGroupDesc(callback: (ctx: ReducerEventContext, records: PlaceableGroupDesc[]) => void) {
+    this.connection.offReducer("stage_placeable_group_desc", callback);
+  }
+
+  stagePlaceableGrowthDesc(records: PlaceableGrowthDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    StagePlaceableGrowthDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("stage_placeable_growth_desc", __argsBuffer, this.setCallReducerFlags.stagePlaceableGrowthDescFlags);
+  }
+
+  onStagePlaceableGrowthDesc(callback: (ctx: ReducerEventContext, records: PlaceableGrowthDesc[]) => void) {
+    this.connection.onReducer("stage_placeable_growth_desc", callback);
+  }
+
+  removeOnStagePlaceableGrowthDesc(callback: (ctx: ReducerEventContext, records: PlaceableGrowthDesc[]) => void) {
+    this.connection.offReducer("stage_placeable_growth_desc", callback);
+  }
+
+  stagePlaceableInteractionDesc(records: PlaceableInteractionDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    StagePlaceableInteractionDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("stage_placeable_interaction_desc", __argsBuffer, this.setCallReducerFlags.stagePlaceableInteractionDescFlags);
+  }
+
+  onStagePlaceableInteractionDesc(callback: (ctx: ReducerEventContext, records: PlaceableInteractionDesc[]) => void) {
+    this.connection.onReducer("stage_placeable_interaction_desc", callback);
+  }
+
+  removeOnStagePlaceableInteractionDesc(callback: (ctx: ReducerEventContext, records: PlaceableInteractionDesc[]) => void) {
+    this.connection.offReducer("stage_placeable_interaction_desc", callback);
+  }
+
+  stagePlaceablePlacementDesc(records: PlaceablePlacementDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    StagePlaceablePlacementDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("stage_placeable_placement_desc", __argsBuffer, this.setCallReducerFlags.stagePlaceablePlacementDescFlags);
+  }
+
+  onStagePlaceablePlacementDesc(callback: (ctx: ReducerEventContext, records: PlaceablePlacementDesc[]) => void) {
+    this.connection.onReducer("stage_placeable_placement_desc", callback);
+  }
+
+  removeOnStagePlaceablePlacementDesc(callback: (ctx: ReducerEventContext, records: PlaceablePlacementDesc[]) => void) {
+    this.connection.offReducer("stage_placeable_placement_desc", callback);
+  }
+
   stagePlayerActionDesc(records: PlayerActionDesc[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
@@ -16592,6 +16842,31 @@ export class SetReducerFlags {
     this.stagePillarShapingDescFlags = flags;
   }
 
+  stagePlaceableDescFlags: CallReducerFlags = 'FullUpdate';
+  stagePlaceableDesc(flags: CallReducerFlags) {
+    this.stagePlaceableDescFlags = flags;
+  }
+
+  stagePlaceableGroupDescFlags: CallReducerFlags = 'FullUpdate';
+  stagePlaceableGroupDesc(flags: CallReducerFlags) {
+    this.stagePlaceableGroupDescFlags = flags;
+  }
+
+  stagePlaceableGrowthDescFlags: CallReducerFlags = 'FullUpdate';
+  stagePlaceableGrowthDesc(flags: CallReducerFlags) {
+    this.stagePlaceableGrowthDescFlags = flags;
+  }
+
+  stagePlaceableInteractionDescFlags: CallReducerFlags = 'FullUpdate';
+  stagePlaceableInteractionDesc(flags: CallReducerFlags) {
+    this.stagePlaceableInteractionDescFlags = flags;
+  }
+
+  stagePlaceablePlacementDescFlags: CallReducerFlags = 'FullUpdate';
+  stagePlaceablePlacementDesc(flags: CallReducerFlags) {
+    this.stagePlaceablePlacementDescFlags = flags;
+  }
+
   stagePlayerActionDescFlags: CallReducerFlags = 'FullUpdate';
   stagePlayerActionDesc(flags: CallReducerFlags) {
     this.stagePlayerActionDescFlags = flags;
@@ -17691,6 +17966,30 @@ export class RemoteTables {
     return new PillarShapingStateTableHandle(this.connection.clientCache.getOrCreateTable<PillarShapingState>(REMOTE_MODULE.tables.pillar_shaping_state));
   }
 
+  get placeableDesc(): PlaceableDescTableHandle {
+    return new PlaceableDescTableHandle(this.connection.clientCache.getOrCreateTable<PlaceableDesc>(REMOTE_MODULE.tables.placeable_desc));
+  }
+
+  get placeableGroupDesc(): PlaceableGroupDescTableHandle {
+    return new PlaceableGroupDescTableHandle(this.connection.clientCache.getOrCreateTable<PlaceableGroupDesc>(REMOTE_MODULE.tables.placeable_group_desc));
+  }
+
+  get placeableGrowthDesc(): PlaceableGrowthDescTableHandle {
+    return new PlaceableGrowthDescTableHandle(this.connection.clientCache.getOrCreateTable<PlaceableGrowthDesc>(REMOTE_MODULE.tables.placeable_growth_desc));
+  }
+
+  get placeableInteractionDesc(): PlaceableInteractionDescTableHandle {
+    return new PlaceableInteractionDescTableHandle(this.connection.clientCache.getOrCreateTable<PlaceableInteractionDesc>(REMOTE_MODULE.tables.placeable_interaction_desc));
+  }
+
+  get placeablePlacementDesc(): PlaceablePlacementDescTableHandle {
+    return new PlaceablePlacementDescTableHandle(this.connection.clientCache.getOrCreateTable<PlaceablePlacementDesc>(REMOTE_MODULE.tables.placeable_placement_desc));
+  }
+
+  get placeableState(): PlaceableStateTableHandle {
+    return new PlaceableStateTableHandle(this.connection.clientCache.getOrCreateTable<PlaceableState>(REMOTE_MODULE.tables.placeable_state));
+  }
+
   get playerActionDesc(): PlayerActionDescTableHandle {
     return new PlayerActionDescTableHandle(this.connection.clientCache.getOrCreateTable<PlayerActionDesc>(REMOTE_MODULE.tables.player_action_desc));
   }
@@ -18217,6 +18516,26 @@ export class RemoteTables {
 
   get stagedPillarShapingDesc(): StagedPillarShapingDescTableHandle {
     return new StagedPillarShapingDescTableHandle(this.connection.clientCache.getOrCreateTable<PillarShapingDesc>(REMOTE_MODULE.tables.staged_pillar_shaping_desc));
+  }
+
+  get stagedPlaceableDesc(): StagedPlaceableDescTableHandle {
+    return new StagedPlaceableDescTableHandle(this.connection.clientCache.getOrCreateTable<PlaceableDesc>(REMOTE_MODULE.tables.staged_placeable_desc));
+  }
+
+  get stagedPlaceableGroupDesc(): StagedPlaceableGroupDescTableHandle {
+    return new StagedPlaceableGroupDescTableHandle(this.connection.clientCache.getOrCreateTable<PlaceableGroupDesc>(REMOTE_MODULE.tables.staged_placeable_group_desc));
+  }
+
+  get stagedPlaceableGrowthDesc(): StagedPlaceableGrowthDescTableHandle {
+    return new StagedPlaceableGrowthDescTableHandle(this.connection.clientCache.getOrCreateTable<PlaceableGrowthDesc>(REMOTE_MODULE.tables.staged_placeable_growth_desc));
+  }
+
+  get stagedPlaceableInteractionDesc(): StagedPlaceableInteractionDescTableHandle {
+    return new StagedPlaceableInteractionDescTableHandle(this.connection.clientCache.getOrCreateTable<PlaceableInteractionDesc>(REMOTE_MODULE.tables.staged_placeable_interaction_desc));
+  }
+
+  get stagedPlaceablePlacementDesc(): StagedPlaceablePlacementDescTableHandle {
+    return new StagedPlaceablePlacementDescTableHandle(this.connection.clientCache.getOrCreateTable<PlaceablePlacementDesc>(REMOTE_MODULE.tables.staged_placeable_placement_desc));
   }
 
   get stagedPlayerActionDesc(): StagedPlayerActionDescTableHandle {
