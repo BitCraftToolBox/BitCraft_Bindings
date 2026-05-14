@@ -43,5 +43,7 @@ namespace BitCraftGlobal.Types
         DestroyPillarShaping,
         AbilityCustom,
         Prospect,
+        PlacePlaceable,
+        InteractPlaceable,
     }
 }
