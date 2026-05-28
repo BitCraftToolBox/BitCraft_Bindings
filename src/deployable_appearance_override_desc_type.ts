@@ -32,36 +32,40 @@ import {
   type ReducerEventContextInterface,
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
-
-import { InterModuleMessageV3 as __InterModuleMessageV3 } from "./inter_module_message_v_3_type";
-
-export type ProcessInterModuleMessage = {
-  sender: number,
-  message: __InterModuleMessageV3,
+export type DeployableAppearanceOverrideDesc = {
+  id: number,
+  collectibleId: number,
+  affectedModelAddress: string,
+  modelAddress: string,
+  iconAssetName: string,
 };
 
 /**
  * A namespace for generated helper functions.
  */
-export namespace ProcessInterModuleMessage {
+export namespace DeployableAppearanceOverrideDesc {
   /**
   * A function which returns this type represented as an AlgebraicType.
   * This function is derived from the AlgebraicType used to generate this type.
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("sender", AlgebraicType.createU8Type()),
-      new ProductTypeElement("message", __InterModuleMessageV3.getTypeScriptAlgebraicType()),
+      new ProductTypeElement("id", AlgebraicType.createI32Type()),
+      new ProductTypeElement("collectibleId", AlgebraicType.createI32Type()),
+      new ProductTypeElement("affectedModelAddress", AlgebraicType.createStringType()),
+      new ProductTypeElement("modelAddress", AlgebraicType.createStringType()),
+      new ProductTypeElement("iconAssetName", AlgebraicType.createStringType()),
     ]);
   }
 
-  export function serialize(writer: BinaryWriter, value: ProcessInterModuleMessage): void {
-    ProcessInterModuleMessage.getTypeScriptAlgebraicType().serialize(writer, value);
+  export function serialize(writer: BinaryWriter, value: DeployableAppearanceOverrideDesc): void {
+    DeployableAppearanceOverrideDesc.getTypeScriptAlgebraicType().serialize(writer, value);
   }
 
-  export function deserialize(reader: BinaryReader): ProcessInterModuleMessage {
-    return ProcessInterModuleMessage.getTypeScriptAlgebraicType().deserialize(reader);
+  export function deserialize(reader: BinaryReader): DeployableAppearanceOverrideDesc {
+    return DeployableAppearanceOverrideDesc.getTypeScriptAlgebraicType().deserialize(reader);
   }
 
 }
+
 

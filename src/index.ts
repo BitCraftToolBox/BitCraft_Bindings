@@ -128,6 +128,8 @@ import { AdminGrantCollectibles } from "./admin_grant_collectibles_reducer.ts";
 export { AdminGrantCollectibles };
 import { AdminMigrateActionState } from "./admin_migrate_action_state_reducer.ts";
 export { AdminMigrateActionState };
+import { AdminMigrateDeployableStateV2 } from "./admin_migrate_deployable_state_v_2_reducer.ts";
+export { AdminMigrateDeployableStateV2 };
 import { AdminMigrateTradeOrders } from "./admin_migrate_trade_orders_reducer.ts";
 export { AdminMigrateTradeOrders };
 import { AdminModifyChatMessage } from "./admin_modify_chat_message_reducer.ts";
@@ -680,6 +682,8 @@ import { ImportCraftingRecipeDesc } from "./import_crafting_recipe_desc_reducer.
 export { ImportCraftingRecipeDesc };
 import { ImportDeconstructionRecipeDesc } from "./import_deconstruction_recipe_desc_reducer.ts";
 export { ImportDeconstructionRecipeDesc };
+import { ImportDeployableAppearanceOverrideDesc } from "./import_deployable_appearance_override_desc_reducer.ts";
+export { ImportDeployableAppearanceOverrideDesc };
 import { ImportDeployableDesc } from "./import_deployable_desc_reducer.ts";
 export { ImportDeployableDesc };
 import { ImportDeployableState } from "./import_deployable_state_reducer.ts";
@@ -1300,6 +1304,8 @@ import { StageCraftingRecipeDesc } from "./stage_crafting_recipe_desc_reducer.ts
 export { StageCraftingRecipeDesc };
 import { StageDeconstructionRecipeDesc } from "./stage_deconstruction_recipe_desc_reducer.ts";
 export { StageDeconstructionRecipeDesc };
+import { StageDeployableAppearanceOverrideDesc } from "./stage_deployable_appearance_override_desc_reducer.ts";
+export { StageDeployableAppearanceOverrideDesc };
 import { StageDeployableDesc } from "./stage_deployable_desc_reducer.ts";
 export { StageDeployableDesc };
 import { StageDistantVisibleEntityDesc } from "./stage_distant_visible_entity_desc_reducer.ts";
@@ -1686,6 +1692,8 @@ import { DayNightLoopTimerTableHandle } from "./day_night_loop_timer_table.ts";
 export { DayNightLoopTimerTableHandle };
 import { DeconstructionRecipeDescTableHandle } from "./deconstruction_recipe_desc_table.ts";
 export { DeconstructionRecipeDescTableHandle };
+import { DeployableAppearanceOverrideDescTableHandle } from "./deployable_appearance_override_desc_table.ts";
+export { DeployableAppearanceOverrideDescTableHandle };
 import { DeployableCollectibleStateTableHandle } from "./deployable_collectible_state_table.ts";
 export { DeployableCollectibleStateTableHandle };
 import { DeployableDescTableHandle } from "./deployable_desc_table.ts";
@@ -1694,6 +1702,8 @@ import { DeployableDismountTimerTableHandle } from "./deployable_dismount_timer_
 export { DeployableDismountTimerTableHandle };
 import { DeployableStateTableHandle } from "./deployable_state_table.ts";
 export { DeployableStateTableHandle };
+import { DeployableStateV2TableHandle } from "./deployable_state_v_2_table.ts";
+export { DeployableStateV2TableHandle };
 import { DestroyDimensionNetworkTimerTableHandle } from "./destroy_dimension_network_timer_table.ts";
 export { DestroyDimensionNetworkTimerTableHandle };
 import { DeveloperTableHandle } from "./developer_table.ts";
@@ -1828,6 +1838,8 @@ import { InterModuleMessageErrorsTableHandle } from "./inter_module_message_erro
 export { InterModuleMessageErrorsTableHandle };
 import { InterModuleMessageV2TableHandle } from "./inter_module_message_v_2_table.ts";
 export { InterModuleMessageV2TableHandle };
+import { InterModuleMessageV3TableHandle } from "./inter_module_message_v_3_table.ts";
+export { InterModuleMessageV3TableHandle };
 import { InterModuleResponseMessageCounterTableHandle } from "./inter_module_response_message_counter_table.ts";
 export { InterModuleResponseMessageCounterTableHandle };
 import { InteriorCollapseTriggerStateTableHandle } from "./interior_collapse_trigger_state_table.ts";
@@ -2206,6 +2218,8 @@ import { StagedCraftingRecipeDescTableHandle } from "./staged_crafting_recipe_de
 export { StagedCraftingRecipeDescTableHandle };
 import { StagedDeconstructionRecipeDescTableHandle } from "./staged_deconstruction_recipe_desc_table.ts";
 export { StagedDeconstructionRecipeDescTableHandle };
+import { StagedDeployableAppearanceOverrideDescTableHandle } from "./staged_deployable_appearance_override_desc_table.ts";
+export { StagedDeployableAppearanceOverrideDescTableHandle };
 import { StagedDeployableDescTableHandle } from "./staged_deployable_desc_table.ts";
 export { StagedDeployableDescTableHandle };
 import { StagedDistantVisibleEntityDescTableHandle } from "./staged_distant_visible_entity_desc_table.ts";
@@ -2730,6 +2744,8 @@ import { DeconstructionRecipeDesc } from "./deconstruction_recipe_desc_type.ts";
 export { DeconstructionRecipeDesc };
 import { DeleteEmpireMsg } from "./delete_empire_msg_type.ts";
 export { DeleteEmpireMsg };
+import { DeployableAppearanceOverrideDesc } from "./deployable_appearance_override_desc_type.ts";
+export { DeployableAppearanceOverrideDesc };
 import { DeployableCollectibleState } from "./deployable_collectible_state_type.ts";
 export { DeployableCollectibleState };
 import { DeployableDeployRequest } from "./deployable_deploy_request_type.ts";
@@ -2740,6 +2756,8 @@ import { DeployableDismountTimer } from "./deployable_dismount_timer_type.ts";
 export { DeployableDismountTimer };
 import { DeployableState } from "./deployable_state_type.ts";
 export { DeployableState };
+import { DeployableStateV2 } from "./deployable_state_v_2_type.ts";
+export { DeployableStateV2 };
 import { DeployableStoreRequest } from "./deployable_store_request_type.ts";
 export { DeployableStoreRequest };
 import { DeployableType } from "./deployable_type_type.ts";
@@ -2994,6 +3012,8 @@ import { InterModuleMessageErrors } from "./inter_module_message_errors_type.ts"
 export { InterModuleMessageErrors };
 import { InterModuleMessageV2 } from "./inter_module_message_v_2_type.ts";
 export { InterModuleMessageV2 };
+import { InterModuleMessageV3 } from "./inter_module_message_v_3_type.ts";
+export { InterModuleMessageV3 };
 import { InterModuleResponseMessageCounter } from "./inter_module_response_message_counter_type.ts";
 export { InterModuleResponseMessageCounter };
 import { InterModuleTableUpdates } from "./inter_module_table_updates_type.ts";
@@ -3122,6 +3142,8 @@ import { MessageContents } from "./message_contents_type.ts";
 export { MessageContents };
 import { MessageContentsV2 } from "./message_contents_v_2_type.ts";
 export { MessageContentsV2 };
+import { MessageContentsV3 } from "./message_contents_v_3_type.ts";
+export { MessageContentsV3 };
 import { MigrationAchievementsParams } from "./migration_achievements_params_type.ts";
 export { MigrationAchievementsParams };
 import { MigrationBuildingDescParams } from "./migration_building_desc_params_type.ts";
@@ -3164,6 +3186,8 @@ import { OnClaimMembersChangedMsg } from "./on_claim_members_changed_msg_type.ts
 export { OnClaimMembersChangedMsg };
 import { OnDeployableRecoveredMsg } from "./on_deployable_recovered_msg_type.ts";
 export { OnDeployableRecoveredMsg };
+import { OnDeployableRecoveredMsgV2 } from "./on_deployable_recovered_msg_v_2_type.ts";
+export { OnDeployableRecoveredMsgV2 };
 import { OnDurabilityZeroTimer } from "./on_durability_zero_timer_type.ts";
 export { OnDurabilityZeroTimer };
 import { OnEmpireBuildingDeletedMsg } from "./on_empire_building_deleted_msg_type.ts";
@@ -3732,6 +3756,8 @@ import { TransferPlayerMsg } from "./transfer_player_msg_type.ts";
 export { TransferPlayerMsg };
 import { TransferPlayerMsgV2 } from "./transfer_player_msg_v_2_type.ts";
 export { TransferPlayerMsgV2 };
+import { TransferPlayerMsgV3 } from "./transfer_player_msg_v_3_type.ts";
+export { TransferPlayerMsgV3 };
 import { TransferPlayerTimer } from "./transfer_player_timer_type.ts";
 export { TransferPlayerTimer };
 import { TravelerTaskDesc } from "./traveler_task_desc_type.ts";
@@ -4583,6 +4609,15 @@ export const REMOTE_MODULE = {
         colType: DeconstructionRecipeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    deployable_appearance_override_desc: {
+      tableName: "deployable_appearance_override_desc",
+      rowType: DeployableAppearanceOverrideDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: DeployableAppearanceOverrideDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     deployable_collectible_state: {
       tableName: "deployable_collectible_state",
       rowType: DeployableCollectibleState.getTypeScriptAlgebraicType(),
@@ -4617,6 +4652,15 @@ export const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "entityId",
         colType: DeployableState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    deployable_state_v2: {
+      tableName: "deployable_state_v2",
+      rowType: DeployableStateV2.getTypeScriptAlgebraicType(),
+      primaryKey: "entityId",
+      primaryKeyInfo: {
+        colName: "entityId",
+        colType: DeployableStateV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     destroy_dimension_network_timer: {
@@ -5215,6 +5259,15 @@ export const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "id",
         colType: InterModuleMessageV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    inter_module_message_v3: {
+      tableName: "inter_module_message_v3",
+      rowType: InterModuleMessageV3.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: InterModuleMessageV3.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     inter_module_response_message_counter: {
@@ -6868,6 +6921,15 @@ export const REMOTE_MODULE = {
         colType: DeconstructionRecipeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    staged_deployable_appearance_override_desc: {
+      tableName: "staged_deployable_appearance_override_desc",
+      rowType: DeployableAppearanceOverrideDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: DeployableAppearanceOverrideDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     staged_deployable_desc: {
       tableName: "staged_deployable_desc",
       rowType: DeployableDesc.getTypeScriptAlgebraicType(),
@@ -8138,6 +8200,10 @@ export const REMOTE_MODULE = {
       reducerName: "admin_migrate_action_state",
       argsType: AdminMigrateActionState.getTypeScriptAlgebraicType(),
     },
+    admin_migrate_deployable_state_v2: {
+      reducerName: "admin_migrate_deployable_state_v2",
+      argsType: AdminMigrateDeployableStateV2.getTypeScriptAlgebraicType(),
+    },
     admin_migrate_trade_orders: {
       reducerName: "admin_migrate_trade_orders",
       argsType: AdminMigrateTradeOrders.getTypeScriptAlgebraicType(),
@@ -9241,6 +9307,10 @@ export const REMOTE_MODULE = {
     import_deconstruction_recipe_desc: {
       reducerName: "import_deconstruction_recipe_desc",
       argsType: ImportDeconstructionRecipeDesc.getTypeScriptAlgebraicType(),
+    },
+    import_deployable_appearance_override_desc: {
+      reducerName: "import_deployable_appearance_override_desc",
+      argsType: ImportDeployableAppearanceOverrideDesc.getTypeScriptAlgebraicType(),
     },
     import_deployable_desc: {
       reducerName: "import_deployable_desc",
@@ -10482,6 +10552,10 @@ export const REMOTE_MODULE = {
       reducerName: "stage_deconstruction_recipe_desc",
       argsType: StageDeconstructionRecipeDesc.getTypeScriptAlgebraicType(),
     },
+    stage_deployable_appearance_override_desc: {
+      reducerName: "stage_deployable_appearance_override_desc",
+      argsType: StageDeployableAppearanceOverrideDesc.getTypeScriptAlgebraicType(),
+    },
     stage_deployable_desc: {
       reducerName: "stage_deployable_desc",
       argsType: StageDeployableDesc.getTypeScriptAlgebraicType(),
@@ -10987,6 +11061,7 @@ export type Reducer = never
 | { name: "AdminGrantAllClaimSupplies", args: AdminGrantAllClaimSupplies }
 | { name: "AdminGrantCollectibles", args: AdminGrantCollectibles }
 | { name: "AdminMigrateActionState", args: AdminMigrateActionState }
+| { name: "AdminMigrateDeployableStateV2", args: AdminMigrateDeployableStateV2 }
 | { name: "AdminMigrateTradeOrders", args: AdminMigrateTradeOrders }
 | { name: "AdminModifyChatMessage", args: AdminModifyChatMessage }
 | { name: "AdminPatchHousingCosts", args: AdminPatchHousingCosts }
@@ -11263,6 +11338,7 @@ export type Reducer = never
 | { name: "ImportContributionLootDesc", args: ImportContributionLootDesc }
 | { name: "ImportCraftingRecipeDesc", args: ImportCraftingRecipeDesc }
 | { name: "ImportDeconstructionRecipeDesc", args: ImportDeconstructionRecipeDesc }
+| { name: "ImportDeployableAppearanceOverrideDesc", args: ImportDeployableAppearanceOverrideDesc }
 | { name: "ImportDeployableDesc", args: ImportDeployableDesc }
 | { name: "ImportDeployableState", args: ImportDeployableState }
 | { name: "ImportDimensionDescriptionState", args: ImportDimensionDescriptionState }
@@ -11573,6 +11649,7 @@ export type Reducer = never
 | { name: "StageContributionLootDesc", args: StageContributionLootDesc }
 | { name: "StageCraftingRecipeDesc", args: StageCraftingRecipeDesc }
 | { name: "StageDeconstructionRecipeDesc", args: StageDeconstructionRecipeDesc }
+| { name: "StageDeployableAppearanceOverrideDesc", args: StageDeployableAppearanceOverrideDesc }
 | { name: "StageDeployableDesc", args: StageDeployableDesc }
 | { name: "StageDistantVisibleEntityDesc", args: StageDistantVisibleEntityDesc }
 | { name: "StageElevatorDesc", args: StageElevatorDesc }
@@ -12403,6 +12480,18 @@ export class RemoteReducers {
 
   removeOnAdminMigrateActionState(callback: (ctx: ReducerEventContext) => void) {
     this.connection.offReducer("admin_migrate_action_state", callback);
+  }
+
+  adminMigrateDeployableStateV2() {
+    this.connection.callReducer("admin_migrate_deployable_state_v2", new Uint8Array(0), this.setCallReducerFlags.adminMigrateDeployableStateV2Flags);
+  }
+
+  onAdminMigrateDeployableStateV2(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.onReducer("admin_migrate_deployable_state_v2", callback);
+  }
+
+  removeOnAdminMigrateDeployableStateV2(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.offReducer("admin_migrate_deployable_state_v2", callback);
   }
 
   adminMigrateTradeOrders() {
@@ -16725,6 +16814,22 @@ export class RemoteReducers {
     this.connection.offReducer("import_deconstruction_recipe_desc", callback);
   }
 
+  importDeployableAppearanceOverrideDesc(records: DeployableAppearanceOverrideDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    ImportDeployableAppearanceOverrideDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("import_deployable_appearance_override_desc", __argsBuffer, this.setCallReducerFlags.importDeployableAppearanceOverrideDescFlags);
+  }
+
+  onImportDeployableAppearanceOverrideDesc(callback: (ctx: ReducerEventContext, records: DeployableAppearanceOverrideDesc[]) => void) {
+    this.connection.onReducer("import_deployable_appearance_override_desc", callback);
+  }
+
+  removeOnImportDeployableAppearanceOverrideDesc(callback: (ctx: ReducerEventContext, records: DeployableAppearanceOverrideDesc[]) => void) {
+    this.connection.offReducer("import_deployable_appearance_override_desc", callback);
+  }
+
   importDeployableDesc(records: DeployableDesc[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
@@ -20469,7 +20574,7 @@ export class RemoteReducers {
     this.connection.offReducer("portal_enter", callback);
   }
 
-  processInterModuleMessage(sender: number, message: InterModuleMessageV2) {
+  processInterModuleMessage(sender: number, message: InterModuleMessageV3) {
     const __args = { sender, message };
     let __writer = new BinaryWriter(1024);
     ProcessInterModuleMessage.getTypeScriptAlgebraicType().serialize(__writer, __args);
@@ -20477,11 +20582,11 @@ export class RemoteReducers {
     this.connection.callReducer("process_inter_module_message", __argsBuffer, this.setCallReducerFlags.processInterModuleMessageFlags);
   }
 
-  onProcessInterModuleMessage(callback: (ctx: ReducerEventContext, sender: number, message: InterModuleMessageV2) => void) {
+  onProcessInterModuleMessage(callback: (ctx: ReducerEventContext, sender: number, message: InterModuleMessageV3) => void) {
     this.connection.onReducer("process_inter_module_message", callback);
   }
 
-  removeOnProcessInterModuleMessage(callback: (ctx: ReducerEventContext, sender: number, message: InterModuleMessageV2) => void) {
+  removeOnProcessInterModuleMessage(callback: (ctx: ReducerEventContext, sender: number, message: InterModuleMessageV3) => void) {
     this.connection.offReducer("process_inter_module_message", callback);
   }
 
@@ -21615,6 +21720,22 @@ export class RemoteReducers {
 
   removeOnStageDeconstructionRecipeDesc(callback: (ctx: ReducerEventContext, records: DeconstructionRecipeDesc[]) => void) {
     this.connection.offReducer("stage_deconstruction_recipe_desc", callback);
+  }
+
+  stageDeployableAppearanceOverrideDesc(records: DeployableAppearanceOverrideDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    StageDeployableAppearanceOverrideDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("stage_deployable_appearance_override_desc", __argsBuffer, this.setCallReducerFlags.stageDeployableAppearanceOverrideDescFlags);
+  }
+
+  onStageDeployableAppearanceOverrideDesc(callback: (ctx: ReducerEventContext, records: DeployableAppearanceOverrideDesc[]) => void) {
+    this.connection.onReducer("stage_deployable_appearance_override_desc", callback);
+  }
+
+  removeOnStageDeployableAppearanceOverrideDesc(callback: (ctx: ReducerEventContext, records: DeployableAppearanceOverrideDesc[]) => void) {
+    this.connection.offReducer("stage_deployable_appearance_override_desc", callback);
   }
 
   stageDeployableDesc(records: DeployableDesc[]) {
@@ -23555,6 +23676,11 @@ export class SetReducerFlags {
     this.adminMigrateActionStateFlags = flags;
   }
 
+  adminMigrateDeployableStateV2Flags: CallReducerFlags = 'FullUpdate';
+  adminMigrateDeployableStateV2(flags: CallReducerFlags) {
+    this.adminMigrateDeployableStateV2Flags = flags;
+  }
+
   adminMigrateTradeOrdersFlags: CallReducerFlags = 'FullUpdate';
   adminMigrateTradeOrders(flags: CallReducerFlags) {
     this.adminMigrateTradeOrdersFlags = flags;
@@ -24923,6 +25049,11 @@ export class SetReducerFlags {
   importDeconstructionRecipeDescFlags: CallReducerFlags = 'FullUpdate';
   importDeconstructionRecipeDesc(flags: CallReducerFlags) {
     this.importDeconstructionRecipeDescFlags = flags;
+  }
+
+  importDeployableAppearanceOverrideDescFlags: CallReducerFlags = 'FullUpdate';
+  importDeployableAppearanceOverrideDesc(flags: CallReducerFlags) {
+    this.importDeployableAppearanceOverrideDescFlags = flags;
   }
 
   importDeployableDescFlags: CallReducerFlags = 'FullUpdate';
@@ -26475,6 +26606,11 @@ export class SetReducerFlags {
     this.stageDeconstructionRecipeDescFlags = flags;
   }
 
+  stageDeployableAppearanceOverrideDescFlags: CallReducerFlags = 'FullUpdate';
+  stageDeployableAppearanceOverrideDesc(flags: CallReducerFlags) {
+    this.stageDeployableAppearanceOverrideDescFlags = flags;
+  }
+
   stageDeployableDescFlags: CallReducerFlags = 'FullUpdate';
   stageDeployableDesc(flags: CallReducerFlags) {
     this.stageDeployableDescFlags = flags;
@@ -27355,6 +27491,10 @@ export class RemoteTables {
     return new DeconstructionRecipeDescTableHandle(this.connection.clientCache.getOrCreateTable<DeconstructionRecipeDesc>(REMOTE_MODULE.tables.deconstruction_recipe_desc));
   }
 
+  get deployableAppearanceOverrideDesc(): DeployableAppearanceOverrideDescTableHandle {
+    return new DeployableAppearanceOverrideDescTableHandle(this.connection.clientCache.getOrCreateTable<DeployableAppearanceOverrideDesc>(REMOTE_MODULE.tables.deployable_appearance_override_desc));
+  }
+
   get deployableCollectibleState(): DeployableCollectibleStateTableHandle {
     return new DeployableCollectibleStateTableHandle(this.connection.clientCache.getOrCreateTable<DeployableCollectibleState>(REMOTE_MODULE.tables.deployable_collectible_state));
   }
@@ -27369,6 +27509,10 @@ export class RemoteTables {
 
   get deployableState(): DeployableStateTableHandle {
     return new DeployableStateTableHandle(this.connection.clientCache.getOrCreateTable<DeployableState>(REMOTE_MODULE.tables.deployable_state));
+  }
+
+  get deployableStateV2(): DeployableStateV2TableHandle {
+    return new DeployableStateV2TableHandle(this.connection.clientCache.getOrCreateTable<DeployableStateV2>(REMOTE_MODULE.tables.deployable_state_v2));
   }
 
   get destroyDimensionNetworkTimer(): DestroyDimensionNetworkTimerTableHandle {
@@ -27637,6 +27781,10 @@ export class RemoteTables {
 
   get interModuleMessageV2(): InterModuleMessageV2TableHandle {
     return new InterModuleMessageV2TableHandle(this.connection.clientCache.getOrCreateTable<InterModuleMessageV2>(REMOTE_MODULE.tables.inter_module_message_v2));
+  }
+
+  get interModuleMessageV3(): InterModuleMessageV3TableHandle {
+    return new InterModuleMessageV3TableHandle(this.connection.clientCache.getOrCreateTable<InterModuleMessageV3>(REMOTE_MODULE.tables.inter_module_message_v3));
   }
 
   get interModuleResponseMessageCounter(): InterModuleResponseMessageCounterTableHandle {
@@ -28393,6 +28541,10 @@ export class RemoteTables {
 
   get stagedDeconstructionRecipeDesc(): StagedDeconstructionRecipeDescTableHandle {
     return new StagedDeconstructionRecipeDescTableHandle(this.connection.clientCache.getOrCreateTable<DeconstructionRecipeDesc>(REMOTE_MODULE.tables.staged_deconstruction_recipe_desc));
+  }
+
+  get stagedDeployableAppearanceOverrideDesc(): StagedDeployableAppearanceOverrideDescTableHandle {
+    return new StagedDeployableAppearanceOverrideDescTableHandle(this.connection.clientCache.getOrCreateTable<DeployableAppearanceOverrideDesc>(REMOTE_MODULE.tables.staged_deployable_appearance_override_desc));
   }
 
   get stagedDeployableDesc(): StagedDeployableDescTableHandle {
