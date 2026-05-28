@@ -34,5 +34,6 @@ namespace BitCraftGlobal.Types
         Emote,
         HousingWalls,
         HousingFloor,
+        DeployableAppearanceOverride,
     }
 }

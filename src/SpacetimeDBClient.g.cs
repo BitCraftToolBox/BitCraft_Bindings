@@ -104,9 +104,11 @@ namespace BitCraftGlobal.Types
             AddTable(CrumbTrailExposedState = new(conn));
             AddTable(CrumbTrailState = new(conn));
             AddTable(DeconstructionRecipeDesc = new(conn));
+            AddTable(DeployableAppearanceOverrideDesc = new(conn));
             AddTable(DeployableCollectibleState = new(conn));
             AddTable(DeployableDesc = new(conn));
             AddTable(DeployableState = new(conn));
+            AddTable(DeployableStateV2 = new(conn));
             AddTable(Developer = new(conn));
             AddTable(DimensionDescriptionState = new(conn));
             AddTable(DimensionNetworkState = new(conn));
@@ -176,6 +178,7 @@ namespace BitCraftGlobal.Types
             AddTable(InterModuleMessageCounter = new(conn));
             AddTable(InterModuleMessageErrors = new(conn));
             AddTable(InterModuleMessageV2 = new(conn));
+            AddTable(InterModuleMessageV3 = new(conn));
             AddTable(InterModuleResponseMessageCounter = new(conn));
             AddTable(InteriorCollapseTriggerState = new(conn));
             AddTable(InteriorEnvironmentDesc = new(conn));
@@ -355,6 +358,7 @@ namespace BitCraftGlobal.Types
             AddTable(StagedContributionLootDesc = new(conn));
             AddTable(StagedCraftingRecipeDesc = new(conn));
             AddTable(StagedDeconstructionRecipeDesc = new(conn));
+            AddTable(StagedDeployableAppearanceOverrideDesc = new(conn));
             AddTable(StagedDeployableDesc = new(conn));
             AddTable(StagedDistantVisibleEntityDesc = new(conn));
             AddTable(StagedElevatorDesc = new(conn));
@@ -1098,9 +1102,11 @@ namespace BitCraftGlobal.Types
         public global::SpacetimeDB.Table<CrumbTrailExposedState, CrumbTrailExposedStateCols, CrumbTrailExposedStateIxCols> CrumbTrailExposedState() => new("crumb_trail_exposed_state", new CrumbTrailExposedStateCols("crumb_trail_exposed_state"), new CrumbTrailExposedStateIxCols("crumb_trail_exposed_state"));
         public global::SpacetimeDB.Table<CrumbTrailState, CrumbTrailStateCols, CrumbTrailStateIxCols> CrumbTrailState() => new("crumb_trail_state", new CrumbTrailStateCols("crumb_trail_state"), new CrumbTrailStateIxCols("crumb_trail_state"));
         public global::SpacetimeDB.Table<DeconstructionRecipeDesc, DeconstructionRecipeDescCols, DeconstructionRecipeDescIxCols> DeconstructionRecipeDesc() => new("deconstruction_recipe_desc", new DeconstructionRecipeDescCols("deconstruction_recipe_desc"), new DeconstructionRecipeDescIxCols("deconstruction_recipe_desc"));
+        public global::SpacetimeDB.Table<DeployableAppearanceOverrideDesc, DeployableAppearanceOverrideDescCols, DeployableAppearanceOverrideDescIxCols> DeployableAppearanceOverrideDesc() => new("deployable_appearance_override_desc", new DeployableAppearanceOverrideDescCols("deployable_appearance_override_desc"), new DeployableAppearanceOverrideDescIxCols("deployable_appearance_override_desc"));
         public global::SpacetimeDB.Table<DeployableCollectibleState, DeployableCollectibleStateCols, DeployableCollectibleStateIxCols> DeployableCollectibleState() => new("deployable_collectible_state", new DeployableCollectibleStateCols("deployable_collectible_state"), new DeployableCollectibleStateIxCols("deployable_collectible_state"));
         public global::SpacetimeDB.Table<DeployableDesc, DeployableDescCols, DeployableDescIxCols> DeployableDesc() => new("deployable_desc", new DeployableDescCols("deployable_desc"), new DeployableDescIxCols("deployable_desc"));
         public global::SpacetimeDB.Table<DeployableState, DeployableStateCols, DeployableStateIxCols> DeployableState() => new("deployable_state", new DeployableStateCols("deployable_state"), new DeployableStateIxCols("deployable_state"));
+        public global::SpacetimeDB.Table<DeployableStateV2, DeployableStateV2Cols, DeployableStateV2IxCols> DeployableStateV2() => new("deployable_state_v2", new DeployableStateV2Cols("deployable_state_v2"), new DeployableStateV2IxCols("deployable_state_v2"));
         public global::SpacetimeDB.Table<Developer, DeveloperCols, DeveloperIxCols> Developer() => new("developer", new DeveloperCols("developer"), new DeveloperIxCols("developer"));
         public global::SpacetimeDB.Table<DimensionDescriptionState, DimensionDescriptionStateCols, DimensionDescriptionStateIxCols> DimensionDescriptionState() => new("dimension_description_state", new DimensionDescriptionStateCols("dimension_description_state"), new DimensionDescriptionStateIxCols("dimension_description_state"));
         public global::SpacetimeDB.Table<DimensionNetworkState, DimensionNetworkStateCols, DimensionNetworkStateIxCols> DimensionNetworkState() => new("dimension_network_state", new DimensionNetworkStateCols("dimension_network_state"), new DimensionNetworkStateIxCols("dimension_network_state"));
@@ -1170,6 +1176,7 @@ namespace BitCraftGlobal.Types
         public global::SpacetimeDB.Table<InterModuleMessageCounter, InterModuleMessageCounterCols, InterModuleMessageCounterIxCols> InterModuleMessageCounter() => new("inter_module_message_counter", new InterModuleMessageCounterCols("inter_module_message_counter"), new InterModuleMessageCounterIxCols("inter_module_message_counter"));
         public global::SpacetimeDB.Table<InterModuleMessageErrors, InterModuleMessageErrorsCols, InterModuleMessageErrorsIxCols> InterModuleMessageErrors() => new("inter_module_message_errors", new InterModuleMessageErrorsCols("inter_module_message_errors"), new InterModuleMessageErrorsIxCols("inter_module_message_errors"));
         public global::SpacetimeDB.Table<InterModuleMessageV2, InterModuleMessageV2Cols, InterModuleMessageV2IxCols> InterModuleMessageV2() => new("inter_module_message_v2", new InterModuleMessageV2Cols("inter_module_message_v2"), new InterModuleMessageV2IxCols("inter_module_message_v2"));
+        public global::SpacetimeDB.Table<InterModuleMessageV3, InterModuleMessageV3Cols, InterModuleMessageV3IxCols> InterModuleMessageV3() => new("inter_module_message_v3", new InterModuleMessageV3Cols("inter_module_message_v3"), new InterModuleMessageV3IxCols("inter_module_message_v3"));
         public global::SpacetimeDB.Table<InterModuleResponseMessageCounter, InterModuleResponseMessageCounterCols, InterModuleResponseMessageCounterIxCols> InterModuleResponseMessageCounter() => new("inter_module_response_message_counter", new InterModuleResponseMessageCounterCols("inter_module_response_message_counter"), new InterModuleResponseMessageCounterIxCols("inter_module_response_message_counter"));
         public global::SpacetimeDB.Table<InteriorCollapseTriggerState, InteriorCollapseTriggerStateCols, InteriorCollapseTriggerStateIxCols> InteriorCollapseTriggerState() => new("interior_collapse_trigger_state", new InteriorCollapseTriggerStateCols("interior_collapse_trigger_state"), new InteriorCollapseTriggerStateIxCols("interior_collapse_trigger_state"));
         public global::SpacetimeDB.Table<InteriorEnvironmentDesc, InteriorEnvironmentDescCols, InteriorEnvironmentDescIxCols> InteriorEnvironmentDesc() => new("interior_environment_desc", new InteriorEnvironmentDescCols("interior_environment_desc"), new InteriorEnvironmentDescIxCols("interior_environment_desc"));
@@ -1349,6 +1356,7 @@ namespace BitCraftGlobal.Types
         public global::SpacetimeDB.Table<ContributionLootDesc, StagedContributionLootDescCols, StagedContributionLootDescIxCols> StagedContributionLootDesc() => new("staged_contribution_loot_desc", new StagedContributionLootDescCols("staged_contribution_loot_desc"), new StagedContributionLootDescIxCols("staged_contribution_loot_desc"));
         public global::SpacetimeDB.Table<CraftingRecipeDesc, StagedCraftingRecipeDescCols, StagedCraftingRecipeDescIxCols> StagedCraftingRecipeDesc() => new("staged_crafting_recipe_desc", new StagedCraftingRecipeDescCols("staged_crafting_recipe_desc"), new StagedCraftingRecipeDescIxCols("staged_crafting_recipe_desc"));
         public global::SpacetimeDB.Table<DeconstructionRecipeDesc, StagedDeconstructionRecipeDescCols, StagedDeconstructionRecipeDescIxCols> StagedDeconstructionRecipeDesc() => new("staged_deconstruction_recipe_desc", new StagedDeconstructionRecipeDescCols("staged_deconstruction_recipe_desc"), new StagedDeconstructionRecipeDescIxCols("staged_deconstruction_recipe_desc"));
+        public global::SpacetimeDB.Table<DeployableAppearanceOverrideDesc, StagedDeployableAppearanceOverrideDescCols, StagedDeployableAppearanceOverrideDescIxCols> StagedDeployableAppearanceOverrideDesc() => new("staged_deployable_appearance_override_desc", new StagedDeployableAppearanceOverrideDescCols("staged_deployable_appearance_override_desc"), new StagedDeployableAppearanceOverrideDescIxCols("staged_deployable_appearance_override_desc"));
         public global::SpacetimeDB.Table<DeployableDesc, StagedDeployableDescCols, StagedDeployableDescIxCols> StagedDeployableDesc() => new("staged_deployable_desc", new StagedDeployableDescCols("staged_deployable_desc"), new StagedDeployableDescIxCols("staged_deployable_desc"));
         public global::SpacetimeDB.Table<DistantVisibleEntityDesc, StagedDistantVisibleEntityDescCols, StagedDistantVisibleEntityDescIxCols> StagedDistantVisibleEntityDesc() => new("staged_distant_visible_entity_desc", new StagedDistantVisibleEntityDescCols("staged_distant_visible_entity_desc"), new StagedDistantVisibleEntityDescIxCols("staged_distant_visible_entity_desc"));
         public global::SpacetimeDB.Table<ElevatorDesc, StagedElevatorDescCols, StagedElevatorDescIxCols> StagedElevatorDesc() => new("staged_elevator_desc", new StagedElevatorDescCols("staged_elevator_desc"), new StagedElevatorDescIxCols("staged_elevator_desc"));
@@ -1852,6 +1860,7 @@ namespace BitCraftGlobal.Types
                 "stage_contribution_loot_desc" => BSATNHelpers.Decode<Reducer.StageContributionLootDesc>(encodedArgs),
                 "stage_crafting_recipe_desc" => BSATNHelpers.Decode<Reducer.StageCraftingRecipeDesc>(encodedArgs),
                 "stage_deconstruction_recipe_desc" => BSATNHelpers.Decode<Reducer.StageDeconstructionRecipeDesc>(encodedArgs),
+                "stage_deployable_appearance_override_desc" => BSATNHelpers.Decode<Reducer.StageDeployableAppearanceOverrideDesc>(encodedArgs),
                 "stage_deployable_desc" => BSATNHelpers.Decode<Reducer.StageDeployableDesc>(encodedArgs),
                 "stage_distant_visible_entity_desc" => BSATNHelpers.Decode<Reducer.StageDistantVisibleEntityDesc>(encodedArgs),
                 "stage_elevator_desc" => BSATNHelpers.Decode<Reducer.StageElevatorDesc>(encodedArgs),
@@ -2281,6 +2290,7 @@ namespace BitCraftGlobal.Types
                 Reducer.StageContributionLootDesc args => Reducers.InvokeStageContributionLootDesc(eventContext, args),
                 Reducer.StageCraftingRecipeDesc args => Reducers.InvokeStageCraftingRecipeDesc(eventContext, args),
                 Reducer.StageDeconstructionRecipeDesc args => Reducers.InvokeStageDeconstructionRecipeDesc(eventContext, args),
+                Reducer.StageDeployableAppearanceOverrideDesc args => Reducers.InvokeStageDeployableAppearanceOverrideDesc(eventContext, args),
                 Reducer.StageDeployableDesc args => Reducers.InvokeStageDeployableDesc(eventContext, args),
                 Reducer.StageDistantVisibleEntityDesc args => Reducers.InvokeStageDistantVisibleEntityDesc(eventContext, args),
                 Reducer.StageElevatorDesc args => Reducers.InvokeStageElevatorDesc(eventContext, args),
