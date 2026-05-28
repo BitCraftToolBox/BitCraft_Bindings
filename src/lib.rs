@@ -83,6 +83,7 @@ pub mod admin_gated_feature_remove_reducer;
 pub mod admin_grant_all_claim_supplies_reducer;
 pub mod admin_grant_collectibles_reducer;
 pub mod admin_migrate_action_state_reducer;
+pub mod admin_migrate_deployable_state_v_2_reducer;
 pub mod admin_migrate_trade_orders_reducer;
 pub mod admin_modify_chat_message_reducer;
 pub mod admin_patch_housing_costs_reducer;
@@ -429,6 +430,8 @@ pub mod deconstruction_recipe_desc_type;
 pub mod delete_all_npcs_reducer;
 pub mod delete_developer_identity_reducer;
 pub mod delete_empire_msg_type;
+pub mod deployable_appearance_override_desc_table;
+pub mod deployable_appearance_override_desc_type;
 pub mod deployable_collectible_state_table;
 pub mod deployable_collectible_state_type;
 pub mod deployable_deploy_reducer;
@@ -448,6 +451,8 @@ pub mod deployable_move_off_claim_reducer;
 pub mod deployable_move_reducer;
 pub mod deployable_state_table;
 pub mod deployable_state_type;
+pub mod deployable_state_v_2_table;
+pub mod deployable_state_v_2_type;
 pub mod deployable_store_from_collectible_id_reducer;
 pub mod deployable_store_reducer;
 pub mod deployable_store_request_type;
@@ -750,6 +755,7 @@ pub mod import_construction_recipe_desc_reducer;
 pub mod import_contribution_loot_desc_reducer;
 pub mod import_crafting_recipe_desc_reducer;
 pub mod import_deconstruction_recipe_desc_reducer;
+pub mod import_deployable_appearance_override_desc_reducer;
 pub mod import_deployable_desc_reducer;
 pub mod import_deployable_state_reducer;
 pub mod import_dimension_description_state_reducer;
@@ -905,6 +911,8 @@ pub mod inter_module_message_table;
 pub mod inter_module_message_type;
 pub mod inter_module_message_v_2_table;
 pub mod inter_module_message_v_2_type;
+pub mod inter_module_message_v_3_table;
+pub mod inter_module_message_v_3_type;
 pub mod inter_module_response_message_counter_table;
 pub mod inter_module_response_message_counter_type;
 pub mod inter_module_table_updates_type;
@@ -1035,6 +1043,7 @@ pub mod marketplace_state_table;
 pub mod marketplace_state_type;
 pub mod message_contents_type;
 pub mod message_contents_v_2_type;
+pub mod message_contents_v_3_type;
 pub mod migrate_auto_attacks_reducer;
 pub mod migrate_character_stats_reducer;
 pub mod migrate_claim_tech_reducer;
@@ -1074,6 +1083,7 @@ pub mod offset_coordinates_large_message_type;
 pub mod offset_coordinates_small_message_type;
 pub mod on_claim_members_changed_msg_type;
 pub mod on_deployable_recovered_msg_type;
+pub mod on_deployable_recovered_msg_v_2_type;
 pub mod on_durability_zero_reducer;
 pub mod on_durability_zero_timer_table;
 pub mod on_durability_zero_timer_type;
@@ -1565,6 +1575,7 @@ pub mod stage_construction_recipe_desc_reducer;
 pub mod stage_contribution_loot_desc_reducer;
 pub mod stage_crafting_recipe_desc_reducer;
 pub mod stage_deconstruction_recipe_desc_reducer;
+pub mod stage_deployable_appearance_override_desc_reducer;
 pub mod stage_deployable_desc_reducer;
 pub mod stage_distant_visible_entity_desc_reducer;
 pub mod stage_elevator_desc_reducer;
@@ -1670,6 +1681,7 @@ pub mod staged_construction_recipe_desc_table;
 pub mod staged_contribution_loot_desc_table;
 pub mod staged_crafting_recipe_desc_table;
 pub mod staged_deconstruction_recipe_desc_table;
+pub mod staged_deployable_appearance_override_desc_table;
 pub mod staged_deployable_desc_table;
 pub mod staged_distant_visible_entity_desc_table;
 pub mod staged_elevator_desc_table;
@@ -1826,6 +1838,7 @@ pub mod transfer_player_delayed_reducer;
 pub mod transfer_player_housing_msg_type;
 pub mod transfer_player_msg_type;
 pub mod transfer_player_msg_v_2_type;
+pub mod transfer_player_msg_v_3_type;
 pub mod transfer_player_timer_table;
 pub mod transfer_player_timer_type;
 pub mod traveler_task_agent_loop_reducer;
@@ -2130,6 +2143,10 @@ pub use admin_grant_collectibles_reducer::{
 pub use admin_migrate_action_state_reducer::{
     admin_migrate_action_state, set_flags_for_admin_migrate_action_state,
     AdminMigrateActionStateCallbackId,
+};
+pub use admin_migrate_deployable_state_v_2_reducer::{
+    admin_migrate_deployable_state_v_2, set_flags_for_admin_migrate_deployable_state_v_2,
+    AdminMigrateDeployableStateV2CallbackId,
 };
 pub use admin_migrate_trade_orders_reducer::{
     admin_migrate_trade_orders, set_flags_for_admin_migrate_trade_orders,
@@ -2839,6 +2856,8 @@ pub use delete_developer_identity_reducer::{
     DeleteDeveloperIdentityCallbackId,
 };
 pub use delete_empire_msg_type::DeleteEmpireMsg;
+pub use deployable_appearance_override_desc_table::*;
+pub use deployable_appearance_override_desc_type::DeployableAppearanceOverrideDesc;
 pub use deployable_collectible_state_table::*;
 pub use deployable_collectible_state_type::DeployableCollectibleState;
 pub use deployable_deploy_reducer::{
@@ -2882,6 +2901,8 @@ pub use deployable_move_reducer::{
 };
 pub use deployable_state_table::*;
 pub use deployable_state_type::DeployableState;
+pub use deployable_state_v_2_table::*;
+pub use deployable_state_v_2_type::DeployableStateV2;
 pub use deployable_store_from_collectible_id_reducer::{
     deployable_store_from_collectible_id, set_flags_for_deployable_store_from_collectible_id,
     DeployableStoreFromCollectibleIdCallbackId,
@@ -3445,6 +3466,11 @@ pub use import_deconstruction_recipe_desc_reducer::{
     import_deconstruction_recipe_desc, set_flags_for_import_deconstruction_recipe_desc,
     ImportDeconstructionRecipeDescCallbackId,
 };
+pub use import_deployable_appearance_override_desc_reducer::{
+    import_deployable_appearance_override_desc,
+    set_flags_for_import_deployable_appearance_override_desc,
+    ImportDeployableAppearanceOverrideDescCallbackId,
+};
 pub use import_deployable_desc_reducer::{
     import_deployable_desc, set_flags_for_import_deployable_desc, ImportDeployableDescCallbackId,
 };
@@ -3977,6 +4003,8 @@ pub use inter_module_message_table::*;
 pub use inter_module_message_type::InterModuleMessage;
 pub use inter_module_message_v_2_table::*;
 pub use inter_module_message_v_2_type::InterModuleMessageV2;
+pub use inter_module_message_v_3_table::*;
+pub use inter_module_message_v_3_type::InterModuleMessageV3;
 pub use inter_module_response_message_counter_table::*;
 pub use inter_module_response_message_counter_type::InterModuleResponseMessageCounter;
 pub use inter_module_table_updates_type::InterModuleTableUpdates;
@@ -4137,6 +4165,7 @@ pub use marketplace_state_table::*;
 pub use marketplace_state_type::MarketplaceState;
 pub use message_contents_type::MessageContents;
 pub use message_contents_v_2_type::MessageContentsV2;
+pub use message_contents_v_3_type::MessageContentsV3;
 pub use migrate_auto_attacks_reducer::{
     migrate_auto_attacks, set_flags_for_migrate_auto_attacks, MigrateAutoAttacksCallbackId,
 };
@@ -4197,6 +4226,7 @@ pub use offset_coordinates_large_message_type::OffsetCoordinatesLargeMessage;
 pub use offset_coordinates_small_message_type::OffsetCoordinatesSmallMessage;
 pub use on_claim_members_changed_msg_type::OnClaimMembersChangedMsg;
 pub use on_deployable_recovered_msg_type::OnDeployableRecoveredMsg;
+pub use on_deployable_recovered_msg_v_2_type::OnDeployableRecoveredMsgV2;
 pub use on_durability_zero_reducer::{
     on_durability_zero, set_flags_for_on_durability_zero, OnDurabilityZeroCallbackId,
 };
@@ -4990,6 +5020,10 @@ pub use stage_deconstruction_recipe_desc_reducer::{
     set_flags_for_stage_deconstruction_recipe_desc, stage_deconstruction_recipe_desc,
     StageDeconstructionRecipeDescCallbackId,
 };
+pub use stage_deployable_appearance_override_desc_reducer::{
+    set_flags_for_stage_deployable_appearance_override_desc,
+    stage_deployable_appearance_override_desc, StageDeployableAppearanceOverrideDescCallbackId,
+};
 pub use stage_deployable_desc_reducer::{
     set_flags_for_stage_deployable_desc, stage_deployable_desc, StageDeployableDescCallbackId,
 };
@@ -5289,6 +5323,7 @@ pub use staged_construction_recipe_desc_table::*;
 pub use staged_contribution_loot_desc_table::*;
 pub use staged_crafting_recipe_desc_table::*;
 pub use staged_deconstruction_recipe_desc_table::*;
+pub use staged_deployable_appearance_override_desc_table::*;
 pub use staged_deployable_desc_table::*;
 pub use staged_distant_visible_entity_desc_table::*;
 pub use staged_elevator_desc_table::*;
@@ -5491,6 +5526,7 @@ pub use transfer_player_delayed_reducer::{
 pub use transfer_player_housing_msg_type::TransferPlayerHousingMsg;
 pub use transfer_player_msg_type::TransferPlayerMsg;
 pub use transfer_player_msg_v_2_type::TransferPlayerMsgV2;
+pub use transfer_player_msg_v_3_type::TransferPlayerMsgV3;
 pub use transfer_player_timer_table::*;
 pub use transfer_player_timer_type::TransferPlayerTimer;
 pub use traveler_task_agent_loop_reducer::{
@@ -5764,6 +5800,7 @@ pub enum Reducer {
         collectibles: Vec<i32>,
     },
     AdminMigrateActionState,
+    AdminMigrateDeployableStateV2,
     AdminMigrateTradeOrders,
     AdminModifyChatMessage {
         entity_id: u64,
@@ -6613,6 +6650,9 @@ pub enum Reducer {
     ImportDeconstructionRecipeDesc {
         records: Vec<DeconstructionRecipeDesc>,
     },
+    ImportDeployableAppearanceOverrideDesc {
+        records: Vec<DeployableAppearanceOverrideDesc>,
+    },
     ImportDeployableDesc {
         records: Vec<DeployableDesc>,
     },
@@ -7319,7 +7359,7 @@ pub enum Reducer {
     },
     ProcessInterModuleMessage {
         sender: u8,
-        message: InterModuleMessageV2,
+        message: InterModuleMessageV3,
     },
     ProjectSiteAddMaterials {
         request: PlayerProjectSiteAddMaterialsRequest,
@@ -7531,6 +7571,9 @@ pub enum Reducer {
     },
     StageDeconstructionRecipeDesc {
         records: Vec<DeconstructionRecipeDesc>,
+    },
+    StageDeployableAppearanceOverrideDesc {
+        records: Vec<DeployableAppearanceOverrideDesc>,
     },
     StageDeployableDesc {
         records: Vec<DeployableDesc>,
@@ -7941,6 +7984,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::AdminGrantAllClaimSupplies { .. } => "admin_grant_all_claim_supplies",
             Reducer::AdminGrantCollectibles { .. } => "admin_grant_collectibles",
             Reducer::AdminMigrateActionState => "admin_migrate_action_state",
+            Reducer::AdminMigrateDeployableStateV2 => "admin_migrate_deployable_state_v2",
             Reducer::AdminMigrateTradeOrders => "admin_migrate_trade_orders",
             Reducer::AdminModifyChatMessage { .. } => "admin_modify_chat_message",
             Reducer::AdminPatchHousingCosts => "admin_patch_housing_costs",
@@ -8237,6 +8281,9 @@ impl __sdk::Reducer for Reducer {
             Reducer::ImportContributionLootDesc { .. } => "import_contribution_loot_desc",
             Reducer::ImportCraftingRecipeDesc { .. } => "import_crafting_recipe_desc",
             Reducer::ImportDeconstructionRecipeDesc { .. } => "import_deconstruction_recipe_desc",
+            Reducer::ImportDeployableAppearanceOverrideDesc { .. } => {
+                "import_deployable_appearance_override_desc"
+            }
             Reducer::ImportDeployableDesc { .. } => "import_deployable_desc",
             Reducer::ImportDeployableState { .. } => "import_deployable_state",
             Reducer::ImportDimensionDescriptionState { .. } => "import_dimension_description_state",
@@ -8575,6 +8622,9 @@ impl __sdk::Reducer for Reducer {
             Reducer::StageContributionLootDesc { .. } => "stage_contribution_loot_desc",
             Reducer::StageCraftingRecipeDesc { .. } => "stage_crafting_recipe_desc",
             Reducer::StageDeconstructionRecipeDesc { .. } => "stage_deconstruction_recipe_desc",
+            Reducer::StageDeployableAppearanceOverrideDesc { .. } => {
+                "stage_deployable_appearance_override_desc"
+            }
             Reducer::StageDeployableDesc { .. } => "stage_deployable_desc",
             Reducer::StageDistantVisibleEntityDesc { .. } => "stage_distant_visible_entity_desc",
             Reducer::StageElevatorDesc { .. } => "stage_elevator_desc",
@@ -8749,6 +8799,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "admin_grant_all_claim_supplies" => Ok(__sdk::parse_reducer_args::<admin_grant_all_claim_supplies_reducer::AdminGrantAllClaimSuppliesArgs>("admin_grant_all_claim_supplies", &value.args)?.into()),
             "admin_grant_collectibles" => Ok(__sdk::parse_reducer_args::<admin_grant_collectibles_reducer::AdminGrantCollectiblesArgs>("admin_grant_collectibles", &value.args)?.into()),
             "admin_migrate_action_state" => Ok(__sdk::parse_reducer_args::<admin_migrate_action_state_reducer::AdminMigrateActionStateArgs>("admin_migrate_action_state", &value.args)?.into()),
+            "admin_migrate_deployable_state_v2" => Ok(__sdk::parse_reducer_args::<admin_migrate_deployable_state_v_2_reducer::AdminMigrateDeployableStateV2Args>("admin_migrate_deployable_state_v2", &value.args)?.into()),
             "admin_migrate_trade_orders" => Ok(__sdk::parse_reducer_args::<admin_migrate_trade_orders_reducer::AdminMigrateTradeOrdersArgs>("admin_migrate_trade_orders", &value.args)?.into()),
             "admin_modify_chat_message" => Ok(__sdk::parse_reducer_args::<admin_modify_chat_message_reducer::AdminModifyChatMessageArgs>("admin_modify_chat_message", &value.args)?.into()),
             "admin_patch_housing_costs" => Ok(__sdk::parse_reducer_args::<admin_patch_housing_costs_reducer::AdminPatchHousingCostsArgs>("admin_patch_housing_costs", &value.args)?.into()),
@@ -9025,6 +9076,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "import_contribution_loot_desc" => Ok(__sdk::parse_reducer_args::<import_contribution_loot_desc_reducer::ImportContributionLootDescArgs>("import_contribution_loot_desc", &value.args)?.into()),
             "import_crafting_recipe_desc" => Ok(__sdk::parse_reducer_args::<import_crafting_recipe_desc_reducer::ImportCraftingRecipeDescArgs>("import_crafting_recipe_desc", &value.args)?.into()),
             "import_deconstruction_recipe_desc" => Ok(__sdk::parse_reducer_args::<import_deconstruction_recipe_desc_reducer::ImportDeconstructionRecipeDescArgs>("import_deconstruction_recipe_desc", &value.args)?.into()),
+            "import_deployable_appearance_override_desc" => Ok(__sdk::parse_reducer_args::<import_deployable_appearance_override_desc_reducer::ImportDeployableAppearanceOverrideDescArgs>("import_deployable_appearance_override_desc", &value.args)?.into()),
             "import_deployable_desc" => Ok(__sdk::parse_reducer_args::<import_deployable_desc_reducer::ImportDeployableDescArgs>("import_deployable_desc", &value.args)?.into()),
             "import_deployable_state" => Ok(__sdk::parse_reducer_args::<import_deployable_state_reducer::ImportDeployableStateArgs>("import_deployable_state", &value.args)?.into()),
             "import_dimension_description_state" => Ok(__sdk::parse_reducer_args::<import_dimension_description_state_reducer::ImportDimensionDescriptionStateArgs>("import_dimension_description_state", &value.args)?.into()),
@@ -9335,6 +9387,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "stage_contribution_loot_desc" => Ok(__sdk::parse_reducer_args::<stage_contribution_loot_desc_reducer::StageContributionLootDescArgs>("stage_contribution_loot_desc", &value.args)?.into()),
             "stage_crafting_recipe_desc" => Ok(__sdk::parse_reducer_args::<stage_crafting_recipe_desc_reducer::StageCraftingRecipeDescArgs>("stage_crafting_recipe_desc", &value.args)?.into()),
             "stage_deconstruction_recipe_desc" => Ok(__sdk::parse_reducer_args::<stage_deconstruction_recipe_desc_reducer::StageDeconstructionRecipeDescArgs>("stage_deconstruction_recipe_desc", &value.args)?.into()),
+            "stage_deployable_appearance_override_desc" => Ok(__sdk::parse_reducer_args::<stage_deployable_appearance_override_desc_reducer::StageDeployableAppearanceOverrideDescArgs>("stage_deployable_appearance_override_desc", &value.args)?.into()),
             "stage_deployable_desc" => Ok(__sdk::parse_reducer_args::<stage_deployable_desc_reducer::StageDeployableDescArgs>("stage_deployable_desc", &value.args)?.into()),
             "stage_distant_visible_entity_desc" => Ok(__sdk::parse_reducer_args::<stage_distant_visible_entity_desc_reducer::StageDistantVisibleEntityDescArgs>("stage_distant_visible_entity_desc", &value.args)?.into()),
             "stage_elevator_desc" => Ok(__sdk::parse_reducer_args::<stage_elevator_desc_reducer::StageElevatorDescArgs>("stage_elevator_desc", &value.args)?.into()),
@@ -9537,10 +9590,12 @@ pub struct DbUpdate {
     crumb_trail_state: __sdk::TableUpdate<CrumbTrailState>,
     day_night_loop_timer: __sdk::TableUpdate<DayNightLoopTimer>,
     deconstruction_recipe_desc: __sdk::TableUpdate<DeconstructionRecipeDesc>,
+    deployable_appearance_override_desc: __sdk::TableUpdate<DeployableAppearanceOverrideDesc>,
     deployable_collectible_state: __sdk::TableUpdate<DeployableCollectibleState>,
     deployable_desc: __sdk::TableUpdate<DeployableDesc>,
     deployable_dismount_timer: __sdk::TableUpdate<DeployableDismountTimer>,
     deployable_state: __sdk::TableUpdate<DeployableState>,
+    deployable_state_v_2: __sdk::TableUpdate<DeployableStateV2>,
     destroy_dimension_network_timer: __sdk::TableUpdate<DestroyDimensionNetworkTimer>,
     developer: __sdk::TableUpdate<Developer>,
     dimension_description_state: __sdk::TableUpdate<DimensionDescriptionState>,
@@ -9609,6 +9664,7 @@ pub struct DbUpdate {
     inter_module_message_counter: __sdk::TableUpdate<InterModuleMessageCounter>,
     inter_module_message_errors: __sdk::TableUpdate<InterModuleMessageErrors>,
     inter_module_message_v_2: __sdk::TableUpdate<InterModuleMessageV2>,
+    inter_module_message_v_3: __sdk::TableUpdate<InterModuleMessageV3>,
     inter_module_response_message_counter: __sdk::TableUpdate<InterModuleResponseMessageCounter>,
     interior_collapse_trigger_state: __sdk::TableUpdate<InteriorCollapseTriggerState>,
     interior_environment_desc: __sdk::TableUpdate<InteriorEnvironmentDesc>,
@@ -9799,6 +9855,8 @@ pub struct DbUpdate {
     staged_contribution_loot_desc: __sdk::TableUpdate<ContributionLootDesc>,
     staged_crafting_recipe_desc: __sdk::TableUpdate<CraftingRecipeDesc>,
     staged_deconstruction_recipe_desc: __sdk::TableUpdate<DeconstructionRecipeDesc>,
+    staged_deployable_appearance_override_desc:
+        __sdk::TableUpdate<DeployableAppearanceOverrideDesc>,
     staged_deployable_desc: __sdk::TableUpdate<DeployableDesc>,
     staged_distant_visible_entity_desc: __sdk::TableUpdate<DistantVisibleEntityDesc>,
     staged_elevator_desc: __sdk::TableUpdate<ElevatorDesc>,
@@ -10015,10 +10073,12 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "crumb_trail_state" => db_update.crumb_trail_state.append(crumb_trail_state_table::parse_table_update(table_update)?),
     "day_night_loop_timer" => db_update.day_night_loop_timer.append(day_night_loop_timer_table::parse_table_update(table_update)?),
     "deconstruction_recipe_desc" => db_update.deconstruction_recipe_desc.append(deconstruction_recipe_desc_table::parse_table_update(table_update)?),
+    "deployable_appearance_override_desc" => db_update.deployable_appearance_override_desc.append(deployable_appearance_override_desc_table::parse_table_update(table_update)?),
     "deployable_collectible_state" => db_update.deployable_collectible_state.append(deployable_collectible_state_table::parse_table_update(table_update)?),
     "deployable_desc" => db_update.deployable_desc.append(deployable_desc_table::parse_table_update(table_update)?),
     "deployable_dismount_timer" => db_update.deployable_dismount_timer.append(deployable_dismount_timer_table::parse_table_update(table_update)?),
     "deployable_state" => db_update.deployable_state.append(deployable_state_table::parse_table_update(table_update)?),
+    "deployable_state_v2" => db_update.deployable_state_v_2.append(deployable_state_v_2_table::parse_table_update(table_update)?),
     "destroy_dimension_network_timer" => db_update.destroy_dimension_network_timer.append(destroy_dimension_network_timer_table::parse_table_update(table_update)?),
     "developer" => db_update.developer.append(developer_table::parse_table_update(table_update)?),
     "dimension_description_state" => db_update.dimension_description_state.append(dimension_description_state_table::parse_table_update(table_update)?),
@@ -10087,6 +10147,7 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "inter_module_message_counter" => db_update.inter_module_message_counter.append(inter_module_message_counter_table::parse_table_update(table_update)?),
     "inter_module_message_errors" => db_update.inter_module_message_errors.append(inter_module_message_errors_table::parse_table_update(table_update)?),
     "inter_module_message_v2" => db_update.inter_module_message_v_2.append(inter_module_message_v_2_table::parse_table_update(table_update)?),
+    "inter_module_message_v3" => db_update.inter_module_message_v_3.append(inter_module_message_v_3_table::parse_table_update(table_update)?),
     "inter_module_response_message_counter" => db_update.inter_module_response_message_counter.append(inter_module_response_message_counter_table::parse_table_update(table_update)?),
     "interior_collapse_trigger_state" => db_update.interior_collapse_trigger_state.append(interior_collapse_trigger_state_table::parse_table_update(table_update)?),
     "interior_environment_desc" => db_update.interior_environment_desc.append(interior_environment_desc_table::parse_table_update(table_update)?),
@@ -10277,6 +10338,7 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "staged_contribution_loot_desc" => db_update.staged_contribution_loot_desc.append(staged_contribution_loot_desc_table::parse_table_update(table_update)?),
     "staged_crafting_recipe_desc" => db_update.staged_crafting_recipe_desc.append(staged_crafting_recipe_desc_table::parse_table_update(table_update)?),
     "staged_deconstruction_recipe_desc" => db_update.staged_deconstruction_recipe_desc.append(staged_deconstruction_recipe_desc_table::parse_table_update(table_update)?),
+    "staged_deployable_appearance_override_desc" => db_update.staged_deployable_appearance_override_desc.append(staged_deployable_appearance_override_desc_table::parse_table_update(table_update)?),
     "staged_deployable_desc" => db_update.staged_deployable_desc.append(staged_deployable_desc_table::parse_table_update(table_update)?),
     "staged_distant_visible_entity_desc" => db_update.staged_distant_visible_entity_desc.append(staged_distant_visible_entity_desc_table::parse_table_update(table_update)?),
     "staged_elevator_desc" => db_update.staged_elevator_desc.append(staged_elevator_desc_table::parse_table_update(table_update)?),
@@ -10808,6 +10870,12 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.deconstruction_recipe_desc,
             )
             .with_updates_by_pk(|row| &row.id);
+        diff.deployable_appearance_override_desc = cache
+            .apply_diff_to_table::<DeployableAppearanceOverrideDesc>(
+                "deployable_appearance_override_desc",
+                &self.deployable_appearance_override_desc,
+            )
+            .with_updates_by_pk(|row| &row.id);
         diff.deployable_collectible_state = cache
             .apply_diff_to_table::<DeployableCollectibleState>(
                 "deployable_collectible_state",
@@ -10825,6 +10893,12 @@ impl __sdk::DbUpdate for DbUpdate {
             .with_updates_by_pk(|row| &row.scheduled_id);
         diff.deployable_state = cache
             .apply_diff_to_table::<DeployableState>("deployable_state", &self.deployable_state)
+            .with_updates_by_pk(|row| &row.entity_id);
+        diff.deployable_state_v_2 = cache
+            .apply_diff_to_table::<DeployableStateV2>(
+                "deployable_state_v2",
+                &self.deployable_state_v_2,
+            )
             .with_updates_by_pk(|row| &row.entity_id);
         diff.destroy_dimension_network_timer = cache
             .apply_diff_to_table::<DestroyDimensionNetworkTimer>(
@@ -11137,6 +11211,12 @@ impl __sdk::DbUpdate for DbUpdate {
             .apply_diff_to_table::<InterModuleMessageV2>(
                 "inter_module_message_v2",
                 &self.inter_module_message_v_2,
+            )
+            .with_updates_by_pk(|row| &row.id);
+        diff.inter_module_message_v_3 = cache
+            .apply_diff_to_table::<InterModuleMessageV3>(
+                "inter_module_message_v3",
+                &self.inter_module_message_v_3,
             )
             .with_updates_by_pk(|row| &row.id);
         diff.inter_module_response_message_counter = cache
@@ -12088,6 +12168,12 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.staged_deconstruction_recipe_desc,
             )
             .with_updates_by_pk(|row| &row.id);
+        diff.staged_deployable_appearance_override_desc = cache
+            .apply_diff_to_table::<DeployableAppearanceOverrideDesc>(
+                "staged_deployable_appearance_override_desc",
+                &self.staged_deployable_appearance_override_desc,
+            )
+            .with_updates_by_pk(|row| &row.id);
         diff.staged_deployable_desc = cache
             .apply_diff_to_table::<DeployableDesc>(
                 "staged_deployable_desc",
@@ -12818,10 +12904,13 @@ pub struct AppliedDiff<'r> {
     crumb_trail_state: __sdk::TableAppliedDiff<'r, CrumbTrailState>,
     day_night_loop_timer: __sdk::TableAppliedDiff<'r, DayNightLoopTimer>,
     deconstruction_recipe_desc: __sdk::TableAppliedDiff<'r, DeconstructionRecipeDesc>,
+    deployable_appearance_override_desc:
+        __sdk::TableAppliedDiff<'r, DeployableAppearanceOverrideDesc>,
     deployable_collectible_state: __sdk::TableAppliedDiff<'r, DeployableCollectibleState>,
     deployable_desc: __sdk::TableAppliedDiff<'r, DeployableDesc>,
     deployable_dismount_timer: __sdk::TableAppliedDiff<'r, DeployableDismountTimer>,
     deployable_state: __sdk::TableAppliedDiff<'r, DeployableState>,
+    deployable_state_v_2: __sdk::TableAppliedDiff<'r, DeployableStateV2>,
     destroy_dimension_network_timer: __sdk::TableAppliedDiff<'r, DestroyDimensionNetworkTimer>,
     developer: __sdk::TableAppliedDiff<'r, Developer>,
     dimension_description_state: __sdk::TableAppliedDiff<'r, DimensionDescriptionState>,
@@ -12890,6 +12979,7 @@ pub struct AppliedDiff<'r> {
     inter_module_message_counter: __sdk::TableAppliedDiff<'r, InterModuleMessageCounter>,
     inter_module_message_errors: __sdk::TableAppliedDiff<'r, InterModuleMessageErrors>,
     inter_module_message_v_2: __sdk::TableAppliedDiff<'r, InterModuleMessageV2>,
+    inter_module_message_v_3: __sdk::TableAppliedDiff<'r, InterModuleMessageV3>,
     inter_module_response_message_counter:
         __sdk::TableAppliedDiff<'r, InterModuleResponseMessageCounter>,
     interior_collapse_trigger_state: __sdk::TableAppliedDiff<'r, InteriorCollapseTriggerState>,
@@ -13088,6 +13178,8 @@ pub struct AppliedDiff<'r> {
     staged_contribution_loot_desc: __sdk::TableAppliedDiff<'r, ContributionLootDesc>,
     staged_crafting_recipe_desc: __sdk::TableAppliedDiff<'r, CraftingRecipeDesc>,
     staged_deconstruction_recipe_desc: __sdk::TableAppliedDiff<'r, DeconstructionRecipeDesc>,
+    staged_deployable_appearance_override_desc:
+        __sdk::TableAppliedDiff<'r, DeployableAppearanceOverrideDesc>,
     staged_deployable_desc: __sdk::TableAppliedDiff<'r, DeployableDesc>,
     staged_distant_visible_entity_desc: __sdk::TableAppliedDiff<'r, DistantVisibleEntityDesc>,
     staged_elevator_desc: __sdk::TableAppliedDiff<'r, ElevatorDesc>,
@@ -13619,6 +13711,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             &self.deconstruction_recipe_desc,
             event,
         );
+        callbacks.invoke_table_row_callbacks::<DeployableAppearanceOverrideDesc>(
+            "deployable_appearance_override_desc",
+            &self.deployable_appearance_override_desc,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<DeployableCollectibleState>(
             "deployable_collectible_state",
             &self.deployable_collectible_state,
@@ -13637,6 +13734,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<DeployableState>(
             "deployable_state",
             &self.deployable_state,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<DeployableStateV2>(
+            "deployable_state_v2",
+            &self.deployable_state_v_2,
             event,
         );
         callbacks.invoke_table_row_callbacks::<DestroyDimensionNetworkTimer>(
@@ -13941,6 +14043,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<InterModuleMessageV2>(
             "inter_module_message_v2",
             &self.inter_module_message_v_2,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<InterModuleMessageV3>(
+            "inter_module_message_v3",
+            &self.inter_module_message_v_3,
             event,
         );
         callbacks.invoke_table_row_callbacks::<InterModuleResponseMessageCounter>(
@@ -14871,6 +14978,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<DeconstructionRecipeDesc>(
             "staged_deconstruction_recipe_desc",
             &self.staged_deconstruction_recipe_desc,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<DeployableAppearanceOverrideDesc>(
+            "staged_deployable_appearance_override_desc",
+            &self.staged_deployable_appearance_override_desc,
             event,
         );
         callbacks.invoke_table_row_callbacks::<DeployableDesc>(
@@ -16258,10 +16370,12 @@ impl __sdk::SpacetimeModule for RemoteModule {
         crumb_trail_state_table::register_table(client_cache);
         day_night_loop_timer_table::register_table(client_cache);
         deconstruction_recipe_desc_table::register_table(client_cache);
+        deployable_appearance_override_desc_table::register_table(client_cache);
         deployable_collectible_state_table::register_table(client_cache);
         deployable_desc_table::register_table(client_cache);
         deployable_dismount_timer_table::register_table(client_cache);
         deployable_state_table::register_table(client_cache);
+        deployable_state_v_2_table::register_table(client_cache);
         destroy_dimension_network_timer_table::register_table(client_cache);
         developer_table::register_table(client_cache);
         dimension_description_state_table::register_table(client_cache);
@@ -16330,6 +16444,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         inter_module_message_counter_table::register_table(client_cache);
         inter_module_message_errors_table::register_table(client_cache);
         inter_module_message_v_2_table::register_table(client_cache);
+        inter_module_message_v_3_table::register_table(client_cache);
         inter_module_response_message_counter_table::register_table(client_cache);
         interior_collapse_trigger_state_table::register_table(client_cache);
         interior_environment_desc_table::register_table(client_cache);
@@ -16520,6 +16635,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         staged_contribution_loot_desc_table::register_table(client_cache);
         staged_crafting_recipe_desc_table::register_table(client_cache);
         staged_deconstruction_recipe_desc_table::register_table(client_cache);
+        staged_deployable_appearance_override_desc_table::register_table(client_cache);
         staged_deployable_desc_table::register_table(client_cache);
         staged_distant_visible_entity_desc_table::register_table(client_cache);
         staged_elevator_desc_table::register_table(client_cache);
