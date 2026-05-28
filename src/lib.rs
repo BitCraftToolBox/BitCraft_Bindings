@@ -269,12 +269,16 @@ pub mod deconstruction_recipe_desc_table;
 pub mod deconstruction_recipe_desc_type;
 pub mod delete_developer_identity_reducer;
 pub mod delete_empire_msg_type;
+pub mod deployable_appearance_override_desc_table;
+pub mod deployable_appearance_override_desc_type;
 pub mod deployable_collectible_state_table;
 pub mod deployable_collectible_state_type;
 pub mod deployable_desc_table;
 pub mod deployable_desc_type;
 pub mod deployable_state_table;
 pub mod deployable_state_type;
+pub mod deployable_state_v_2_table;
+pub mod deployable_state_v_2_type;
 pub mod deployable_type_type;
 pub mod developer_table;
 pub mod developer_type;
@@ -660,6 +664,8 @@ pub mod inter_module_message_table;
 pub mod inter_module_message_type;
 pub mod inter_module_message_v_2_table;
 pub mod inter_module_message_v_2_type;
+pub mod inter_module_message_v_3_table;
+pub mod inter_module_message_v_3_type;
 pub mod inter_module_response_message_counter_table;
 pub mod inter_module_response_message_counter_type;
 pub mod inter_module_table_updates_type;
@@ -770,6 +776,7 @@ pub mod marketplace_state_table;
 pub mod marketplace_state_type;
 pub mod message_contents_type;
 pub mod message_contents_v_2_type;
+pub mod message_contents_v_3_type;
 pub mod migrate_fix_empire_lowercase_names_reducer;
 pub mod minimum_client_version_table;
 pub mod minimum_client_version_type;
@@ -816,6 +823,7 @@ pub mod offset_coordinates_float_type;
 pub mod offset_coordinates_small_message_type;
 pub mod on_claim_members_changed_msg_type;
 pub mod on_deployable_recovered_msg_type;
+pub mod on_deployable_recovered_msg_v_2_type;
 pub mod on_empire_building_deleted_msg_type;
 pub mod on_inter_module_message_processed_reducer;
 pub mod on_player_joined_empire_msg_type;
@@ -1074,6 +1082,7 @@ pub mod stage_construction_recipe_desc_reducer;
 pub mod stage_contribution_loot_desc_reducer;
 pub mod stage_crafting_recipe_desc_reducer;
 pub mod stage_deconstruction_recipe_desc_reducer;
+pub mod stage_deployable_appearance_override_desc_reducer;
 pub mod stage_deployable_desc_reducer;
 pub mod stage_distant_visible_entity_desc_reducer;
 pub mod stage_elevator_desc_reducer;
@@ -1179,6 +1188,7 @@ pub mod staged_construction_recipe_desc_table;
 pub mod staged_contribution_loot_desc_table;
 pub mod staged_crafting_recipe_desc_table;
 pub mod staged_deconstruction_recipe_desc_table;
+pub mod staged_deployable_appearance_override_desc_table;
 pub mod staged_deployable_desc_table;
 pub mod staged_distant_visible_entity_desc_table;
 pub mod staged_elevator_desc_table;
@@ -1299,6 +1309,7 @@ pub mod trade_session_status_type;
 pub mod transfer_player_housing_msg_type;
 pub mod transfer_player_msg_type;
 pub mod transfer_player_msg_v_2_type;
+pub mod transfer_player_msg_v_3_type;
 pub mod translation_corrections_table;
 pub mod translation_corrections_type;
 pub mod traveler_task_desc_table;
@@ -1829,12 +1840,16 @@ pub use delete_developer_identity_reducer::{
     DeleteDeveloperIdentityCallbackId,
 };
 pub use delete_empire_msg_type::DeleteEmpireMsg;
+pub use deployable_appearance_override_desc_table::*;
+pub use deployable_appearance_override_desc_type::DeployableAppearanceOverrideDesc;
 pub use deployable_collectible_state_table::*;
 pub use deployable_collectible_state_type::DeployableCollectibleState;
 pub use deployable_desc_table::*;
 pub use deployable_desc_type::DeployableDesc;
 pub use deployable_state_table::*;
 pub use deployable_state_type::DeployableState;
+pub use deployable_state_v_2_table::*;
+pub use deployable_state_v_2_type::DeployableStateV2;
 pub use deployable_type_type::DeployableType;
 pub use developer_table::*;
 pub use developer_type::Developer;
@@ -2696,6 +2711,8 @@ pub use inter_module_message_table::*;
 pub use inter_module_message_type::InterModuleMessage;
 pub use inter_module_message_v_2_table::*;
 pub use inter_module_message_v_2_type::InterModuleMessageV2;
+pub use inter_module_message_v_3_table::*;
+pub use inter_module_message_v_3_type::InterModuleMessageV3;
 pub use inter_module_response_message_counter_table::*;
 pub use inter_module_response_message_counter_type::InterModuleResponseMessageCounter;
 pub use inter_module_table_updates_type::InterModuleTableUpdates;
@@ -2816,6 +2833,7 @@ pub use marketplace_state_table::*;
 pub use marketplace_state_type::MarketplaceState;
 pub use message_contents_type::MessageContents;
 pub use message_contents_v_2_type::MessageContentsV2;
+pub use message_contents_v_3_type::MessageContentsV3;
 pub use migrate_fix_empire_lowercase_names_reducer::{
     migrate_fix_empire_lowercase_names, set_flags_for_migrate_fix_empire_lowercase_names,
     MigrateFixEmpireLowercaseNamesCallbackId,
@@ -2865,6 +2883,7 @@ pub use offset_coordinates_float_type::OffsetCoordinatesFloat;
 pub use offset_coordinates_small_message_type::OffsetCoordinatesSmallMessage;
 pub use on_claim_members_changed_msg_type::OnClaimMembersChangedMsg;
 pub use on_deployable_recovered_msg_type::OnDeployableRecoveredMsg;
+pub use on_deployable_recovered_msg_v_2_type::OnDeployableRecoveredMsgV2;
 pub use on_empire_building_deleted_msg_type::OnEmpireBuildingDeletedMsg;
 pub use on_inter_module_message_processed_reducer::{
     on_inter_module_message_processed, set_flags_for_on_inter_module_message_processed,
@@ -3244,6 +3263,10 @@ pub use stage_deconstruction_recipe_desc_reducer::{
     set_flags_for_stage_deconstruction_recipe_desc, stage_deconstruction_recipe_desc,
     StageDeconstructionRecipeDescCallbackId,
 };
+pub use stage_deployable_appearance_override_desc_reducer::{
+    set_flags_for_stage_deployable_appearance_override_desc,
+    stage_deployable_appearance_override_desc, StageDeployableAppearanceOverrideDescCallbackId,
+};
 pub use stage_deployable_desc_reducer::{
     set_flags_for_stage_deployable_desc, stage_deployable_desc, StageDeployableDescCallbackId,
 };
@@ -3543,6 +3566,7 @@ pub use staged_construction_recipe_desc_table::*;
 pub use staged_contribution_loot_desc_table::*;
 pub use staged_crafting_recipe_desc_table::*;
 pub use staged_deconstruction_recipe_desc_table::*;
+pub use staged_deployable_appearance_override_desc_table::*;
 pub use staged_deployable_desc_table::*;
 pub use staged_distant_visible_entity_desc_table::*;
 pub use staged_elevator_desc_table::*;
@@ -3663,6 +3687,7 @@ pub use trade_session_status_type::TradeSessionStatus;
 pub use transfer_player_housing_msg_type::TransferPlayerHousingMsg;
 pub use transfer_player_msg_type::TransferPlayerMsg;
 pub use transfer_player_msg_v_2_type::TransferPlayerMsgV2;
+pub use transfer_player_msg_v_3_type::TransferPlayerMsgV3;
 pub use translation_corrections_table::*;
 pub use translation_corrections_type::TranslationCorrections;
 pub use traveler_task_desc_table::*;
@@ -4665,7 +4690,7 @@ pub enum Reducer {
     },
     ProcessInterModuleMessage {
         sender: u8,
-        message: InterModuleMessageV2,
+        message: InterModuleMessageV3,
     },
     PurchaseCharacterRename {
         premium_service_desc_id: i32,
@@ -4790,6 +4815,9 @@ pub enum Reducer {
     },
     StageDeconstructionRecipeDesc {
         records: Vec<DeconstructionRecipeDesc>,
+    },
+    StageDeployableAppearanceOverrideDesc {
+        records: Vec<DeployableAppearanceOverrideDesc>,
     },
     StageDeployableDesc {
         records: Vec<DeployableDesc>,
@@ -5418,6 +5446,9 @@ impl __sdk::Reducer for Reducer {
             Reducer::StageContributionLootDesc { .. } => "stage_contribution_loot_desc",
             Reducer::StageCraftingRecipeDesc { .. } => "stage_crafting_recipe_desc",
             Reducer::StageDeconstructionRecipeDesc { .. } => "stage_deconstruction_recipe_desc",
+            Reducer::StageDeployableAppearanceOverrideDesc { .. } => {
+                "stage_deployable_appearance_override_desc"
+            }
             Reducer::StageDeployableDesc { .. } => "stage_deployable_desc",
             Reducer::StageDistantVisibleEntityDesc { .. } => "stage_distant_visible_entity_desc",
             Reducer::StageElevatorDesc { .. } => "stage_elevator_desc",
@@ -5840,6 +5871,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "stage_contribution_loot_desc" => Ok(__sdk::parse_reducer_args::<stage_contribution_loot_desc_reducer::StageContributionLootDescArgs>("stage_contribution_loot_desc", &value.args)?.into()),
             "stage_crafting_recipe_desc" => Ok(__sdk::parse_reducer_args::<stage_crafting_recipe_desc_reducer::StageCraftingRecipeDescArgs>("stage_crafting_recipe_desc", &value.args)?.into()),
             "stage_deconstruction_recipe_desc" => Ok(__sdk::parse_reducer_args::<stage_deconstruction_recipe_desc_reducer::StageDeconstructionRecipeDescArgs>("stage_deconstruction_recipe_desc", &value.args)?.into()),
+            "stage_deployable_appearance_override_desc" => Ok(__sdk::parse_reducer_args::<stage_deployable_appearance_override_desc_reducer::StageDeployableAppearanceOverrideDescArgs>("stage_deployable_appearance_override_desc", &value.args)?.into()),
             "stage_deployable_desc" => Ok(__sdk::parse_reducer_args::<stage_deployable_desc_reducer::StageDeployableDescArgs>("stage_deployable_desc", &value.args)?.into()),
             "stage_distant_visible_entity_desc" => Ok(__sdk::parse_reducer_args::<stage_distant_visible_entity_desc_reducer::StageDistantVisibleEntityDescArgs>("stage_distant_visible_entity_desc", &value.args)?.into()),
             "stage_elevator_desc" => Ok(__sdk::parse_reducer_args::<stage_elevator_desc_reducer::StageElevatorDescArgs>("stage_elevator_desc", &value.args)?.into()),
@@ -6009,9 +6041,11 @@ pub struct DbUpdate {
     crumb_trail_exposed_state: __sdk::TableUpdate<CrumbTrailExposedState>,
     crumb_trail_state: __sdk::TableUpdate<CrumbTrailState>,
     deconstruction_recipe_desc: __sdk::TableUpdate<DeconstructionRecipeDesc>,
+    deployable_appearance_override_desc: __sdk::TableUpdate<DeployableAppearanceOverrideDesc>,
     deployable_collectible_state: __sdk::TableUpdate<DeployableCollectibleState>,
     deployable_desc: __sdk::TableUpdate<DeployableDesc>,
     deployable_state: __sdk::TableUpdate<DeployableState>,
+    deployable_state_v_2: __sdk::TableUpdate<DeployableStateV2>,
     developer: __sdk::TableUpdate<Developer>,
     dimension_description_state: __sdk::TableUpdate<DimensionDescriptionState>,
     dimension_network_state: __sdk::TableUpdate<DimensionNetworkState>,
@@ -6081,6 +6115,7 @@ pub struct DbUpdate {
     inter_module_message_counter: __sdk::TableUpdate<InterModuleMessageCounter>,
     inter_module_message_errors: __sdk::TableUpdate<InterModuleMessageErrors>,
     inter_module_message_v_2: __sdk::TableUpdate<InterModuleMessageV2>,
+    inter_module_message_v_3: __sdk::TableUpdate<InterModuleMessageV3>,
     inter_module_response_message_counter: __sdk::TableUpdate<InterModuleResponseMessageCounter>,
     interior_collapse_trigger_state: __sdk::TableUpdate<InteriorCollapseTriggerState>,
     interior_environment_desc: __sdk::TableUpdate<InteriorEnvironmentDesc>,
@@ -6260,6 +6295,8 @@ pub struct DbUpdate {
     staged_contribution_loot_desc: __sdk::TableUpdate<ContributionLootDesc>,
     staged_crafting_recipe_desc: __sdk::TableUpdate<CraftingRecipeDesc>,
     staged_deconstruction_recipe_desc: __sdk::TableUpdate<DeconstructionRecipeDesc>,
+    staged_deployable_appearance_override_desc:
+        __sdk::TableUpdate<DeployableAppearanceOverrideDesc>,
     staged_deployable_desc: __sdk::TableUpdate<DeployableDesc>,
     staged_distant_visible_entity_desc: __sdk::TableUpdate<DistantVisibleEntityDesc>,
     staged_elevator_desc: __sdk::TableUpdate<ElevatorDesc>,
@@ -6462,9 +6499,11 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "crumb_trail_exposed_state" => db_update.crumb_trail_exposed_state.append(crumb_trail_exposed_state_table::parse_table_update(table_update)?),
     "crumb_trail_state" => db_update.crumb_trail_state.append(crumb_trail_state_table::parse_table_update(table_update)?),
     "deconstruction_recipe_desc" => db_update.deconstruction_recipe_desc.append(deconstruction_recipe_desc_table::parse_table_update(table_update)?),
+    "deployable_appearance_override_desc" => db_update.deployable_appearance_override_desc.append(deployable_appearance_override_desc_table::parse_table_update(table_update)?),
     "deployable_collectible_state" => db_update.deployable_collectible_state.append(deployable_collectible_state_table::parse_table_update(table_update)?),
     "deployable_desc" => db_update.deployable_desc.append(deployable_desc_table::parse_table_update(table_update)?),
     "deployable_state" => db_update.deployable_state.append(deployable_state_table::parse_table_update(table_update)?),
+    "deployable_state_v2" => db_update.deployable_state_v_2.append(deployable_state_v_2_table::parse_table_update(table_update)?),
     "developer" => db_update.developer.append(developer_table::parse_table_update(table_update)?),
     "dimension_description_state" => db_update.dimension_description_state.append(dimension_description_state_table::parse_table_update(table_update)?),
     "dimension_network_state" => db_update.dimension_network_state.append(dimension_network_state_table::parse_table_update(table_update)?),
@@ -6534,6 +6573,7 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "inter_module_message_counter" => db_update.inter_module_message_counter.append(inter_module_message_counter_table::parse_table_update(table_update)?),
     "inter_module_message_errors" => db_update.inter_module_message_errors.append(inter_module_message_errors_table::parse_table_update(table_update)?),
     "inter_module_message_v2" => db_update.inter_module_message_v_2.append(inter_module_message_v_2_table::parse_table_update(table_update)?),
+    "inter_module_message_v3" => db_update.inter_module_message_v_3.append(inter_module_message_v_3_table::parse_table_update(table_update)?),
     "inter_module_response_message_counter" => db_update.inter_module_response_message_counter.append(inter_module_response_message_counter_table::parse_table_update(table_update)?),
     "interior_collapse_trigger_state" => db_update.interior_collapse_trigger_state.append(interior_collapse_trigger_state_table::parse_table_update(table_update)?),
     "interior_environment_desc" => db_update.interior_environment_desc.append(interior_environment_desc_table::parse_table_update(table_update)?),
@@ -6713,6 +6753,7 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "staged_contribution_loot_desc" => db_update.staged_contribution_loot_desc.append(staged_contribution_loot_desc_table::parse_table_update(table_update)?),
     "staged_crafting_recipe_desc" => db_update.staged_crafting_recipe_desc.append(staged_crafting_recipe_desc_table::parse_table_update(table_update)?),
     "staged_deconstruction_recipe_desc" => db_update.staged_deconstruction_recipe_desc.append(staged_deconstruction_recipe_desc_table::parse_table_update(table_update)?),
+    "staged_deployable_appearance_override_desc" => db_update.staged_deployable_appearance_override_desc.append(staged_deployable_appearance_override_desc_table::parse_table_update(table_update)?),
     "staged_deployable_desc" => db_update.staged_deployable_desc.append(staged_deployable_desc_table::parse_table_update(table_update)?),
     "staged_distant_visible_entity_desc" => db_update.staged_distant_visible_entity_desc.append(staged_distant_visible_entity_desc_table::parse_table_update(table_update)?),
     "staged_elevator_desc" => db_update.staged_elevator_desc.append(staged_elevator_desc_table::parse_table_update(table_update)?),
@@ -7179,6 +7220,12 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.deconstruction_recipe_desc,
             )
             .with_updates_by_pk(|row| &row.id);
+        diff.deployable_appearance_override_desc = cache
+            .apply_diff_to_table::<DeployableAppearanceOverrideDesc>(
+                "deployable_appearance_override_desc",
+                &self.deployable_appearance_override_desc,
+            )
+            .with_updates_by_pk(|row| &row.id);
         diff.deployable_collectible_state = cache
             .apply_diff_to_table::<DeployableCollectibleState>(
                 "deployable_collectible_state",
@@ -7190,6 +7237,12 @@ impl __sdk::DbUpdate for DbUpdate {
             .with_updates_by_pk(|row| &row.id);
         diff.deployable_state = cache
             .apply_diff_to_table::<DeployableState>("deployable_state", &self.deployable_state)
+            .with_updates_by_pk(|row| &row.entity_id);
+        diff.deployable_state_v_2 = cache
+            .apply_diff_to_table::<DeployableStateV2>(
+                "deployable_state_v2",
+                &self.deployable_state_v_2,
+            )
             .with_updates_by_pk(|row| &row.entity_id);
         diff.developer = cache
             .apply_diff_to_table::<Developer>("developer", &self.developer)
@@ -7517,6 +7570,12 @@ impl __sdk::DbUpdate for DbUpdate {
             .apply_diff_to_table::<InterModuleMessageV2>(
                 "inter_module_message_v2",
                 &self.inter_module_message_v_2,
+            )
+            .with_updates_by_pk(|row| &row.id);
+        diff.inter_module_message_v_3 = cache
+            .apply_diff_to_table::<InterModuleMessageV3>(
+                "inter_module_message_v3",
+                &self.inter_module_message_v_3,
             )
             .with_updates_by_pk(|row| &row.id);
         diff.inter_module_response_message_counter = cache
@@ -8400,6 +8459,12 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.staged_deconstruction_recipe_desc,
             )
             .with_updates_by_pk(|row| &row.id);
+        diff.staged_deployable_appearance_override_desc = cache
+            .apply_diff_to_table::<DeployableAppearanceOverrideDesc>(
+                "staged_deployable_appearance_override_desc",
+                &self.staged_deployable_appearance_override_desc,
+            )
+            .with_updates_by_pk(|row| &row.id);
         diff.staged_deployable_desc = cache
             .apply_diff_to_table::<DeployableDesc>(
                 "staged_deployable_desc",
@@ -9094,9 +9159,12 @@ pub struct AppliedDiff<'r> {
     crumb_trail_exposed_state: __sdk::TableAppliedDiff<'r, CrumbTrailExposedState>,
     crumb_trail_state: __sdk::TableAppliedDiff<'r, CrumbTrailState>,
     deconstruction_recipe_desc: __sdk::TableAppliedDiff<'r, DeconstructionRecipeDesc>,
+    deployable_appearance_override_desc:
+        __sdk::TableAppliedDiff<'r, DeployableAppearanceOverrideDesc>,
     deployable_collectible_state: __sdk::TableAppliedDiff<'r, DeployableCollectibleState>,
     deployable_desc: __sdk::TableAppliedDiff<'r, DeployableDesc>,
     deployable_state: __sdk::TableAppliedDiff<'r, DeployableState>,
+    deployable_state_v_2: __sdk::TableAppliedDiff<'r, DeployableStateV2>,
     developer: __sdk::TableAppliedDiff<'r, Developer>,
     dimension_description_state: __sdk::TableAppliedDiff<'r, DimensionDescriptionState>,
     dimension_network_state: __sdk::TableAppliedDiff<'r, DimensionNetworkState>,
@@ -9166,6 +9234,7 @@ pub struct AppliedDiff<'r> {
     inter_module_message_counter: __sdk::TableAppliedDiff<'r, InterModuleMessageCounter>,
     inter_module_message_errors: __sdk::TableAppliedDiff<'r, InterModuleMessageErrors>,
     inter_module_message_v_2: __sdk::TableAppliedDiff<'r, InterModuleMessageV2>,
+    inter_module_message_v_3: __sdk::TableAppliedDiff<'r, InterModuleMessageV3>,
     inter_module_response_message_counter:
         __sdk::TableAppliedDiff<'r, InterModuleResponseMessageCounter>,
     interior_collapse_trigger_state: __sdk::TableAppliedDiff<'r, InteriorCollapseTriggerState>,
@@ -9354,6 +9423,8 @@ pub struct AppliedDiff<'r> {
     staged_contribution_loot_desc: __sdk::TableAppliedDiff<'r, ContributionLootDesc>,
     staged_crafting_recipe_desc: __sdk::TableAppliedDiff<'r, CraftingRecipeDesc>,
     staged_deconstruction_recipe_desc: __sdk::TableAppliedDiff<'r, DeconstructionRecipeDesc>,
+    staged_deployable_appearance_override_desc:
+        __sdk::TableAppliedDiff<'r, DeployableAppearanceOverrideDesc>,
     staged_deployable_desc: __sdk::TableAppliedDiff<'r, DeployableDesc>,
     staged_distant_visible_entity_desc: __sdk::TableAppliedDiff<'r, DistantVisibleEntityDesc>,
     staged_elevator_desc: __sdk::TableAppliedDiff<'r, ElevatorDesc>,
@@ -9830,6 +9901,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             &self.deconstruction_recipe_desc,
             event,
         );
+        callbacks.invoke_table_row_callbacks::<DeployableAppearanceOverrideDesc>(
+            "deployable_appearance_override_desc",
+            &self.deployable_appearance_override_desc,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<DeployableCollectibleState>(
             "deployable_collectible_state",
             &self.deployable_collectible_state,
@@ -9843,6 +9919,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<DeployableState>(
             "deployable_state",
             &self.deployable_state,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<DeployableStateV2>(
+            "deployable_state_v2",
+            &self.deployable_state_v_2,
             event,
         );
         callbacks.invoke_table_row_callbacks::<Developer>("developer", &self.developer, event);
@@ -10152,6 +10233,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<InterModuleMessageV2>(
             "inter_module_message_v2",
             &self.inter_module_message_v_2,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<InterModuleMessageV3>(
+            "inter_module_message_v3",
+            &self.inter_module_message_v_3,
             event,
         );
         callbacks.invoke_table_row_callbacks::<InterModuleResponseMessageCounter>(
@@ -11027,6 +11113,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<DeconstructionRecipeDesc>(
             "staged_deconstruction_recipe_desc",
             &self.staged_deconstruction_recipe_desc,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<DeployableAppearanceOverrideDesc>(
+            "staged_deployable_appearance_override_desc",
+            &self.staged_deployable_appearance_override_desc,
             event,
         );
         callbacks.invoke_table_row_callbacks::<DeployableDesc>(
@@ -12384,9 +12475,11 @@ impl __sdk::SpacetimeModule for RemoteModule {
         crumb_trail_exposed_state_table::register_table(client_cache);
         crumb_trail_state_table::register_table(client_cache);
         deconstruction_recipe_desc_table::register_table(client_cache);
+        deployable_appearance_override_desc_table::register_table(client_cache);
         deployable_collectible_state_table::register_table(client_cache);
         deployable_desc_table::register_table(client_cache);
         deployable_state_table::register_table(client_cache);
+        deployable_state_v_2_table::register_table(client_cache);
         developer_table::register_table(client_cache);
         dimension_description_state_table::register_table(client_cache);
         dimension_network_state_table::register_table(client_cache);
@@ -12456,6 +12549,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         inter_module_message_counter_table::register_table(client_cache);
         inter_module_message_errors_table::register_table(client_cache);
         inter_module_message_v_2_table::register_table(client_cache);
+        inter_module_message_v_3_table::register_table(client_cache);
         inter_module_response_message_counter_table::register_table(client_cache);
         interior_collapse_trigger_state_table::register_table(client_cache);
         interior_environment_desc_table::register_table(client_cache);
@@ -12635,6 +12729,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         staged_contribution_loot_desc_table::register_table(client_cache);
         staged_crafting_recipe_desc_table::register_table(client_cache);
         staged_deconstruction_recipe_desc_table::register_table(client_cache);
+        staged_deployable_appearance_override_desc_table::register_table(client_cache);
         staged_deployable_desc_table::register_table(client_cache);
         staged_distant_visible_entity_desc_table::register_table(client_cache);
         staged_elevator_desc_table::register_table(client_cache);
