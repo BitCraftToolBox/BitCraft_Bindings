@@ -26,5 +26,9 @@ namespace BitCraftRegion.Types
         Cave,
         Jungle,
         Sapwoods,
+        DesertedBeach,
+        TropicalCanopy,
+        VolcanicCrag,
+        UnchartedOcean,
     }
 }
