@@ -1150,8 +1150,8 @@ import { PlayerTeleportWaystoneStart } from "./player_teleport_waystone_start_re
 export { PlayerTeleportWaystoneStart };
 import { PlayerUseElevator } from "./player_use_elevator_reducer.ts";
 export { PlayerUseElevator };
-import { PlayerVoteAnswer as PlayerVoteAnswerReducer } from "./player_vote_answer_reducer.ts";
-export { PlayerVoteAnswerReducer };
+import { PlayerVoteAnswer } from "./player_vote_answer_reducer.ts";
+export { PlayerVoteAnswer };
 import { PlayerVoteConclude } from "./player_vote_conclude_reducer.ts";
 export { PlayerVoteConclude };
 import { PocketSwapContents } from "./pocket_swap_contents_reducer.ts";
