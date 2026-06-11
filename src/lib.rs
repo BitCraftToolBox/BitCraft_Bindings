@@ -658,6 +658,8 @@ pub mod experience_state_table;
 pub mod experience_state_type;
 pub mod exploration_chunks_state_table;
 pub mod exploration_chunks_state_type;
+pub mod exploration_chunks_state_v_2_table;
+pub mod exploration_chunks_state_v_2_type;
 pub mod exposed_breadcrumbs_table;
 pub mod extract_outcome_state_table;
 pub mod extract_outcome_state_type;
@@ -667,6 +669,7 @@ pub mod extract_reducer;
 pub mod extract_start_reducer;
 pub mod extraction_recipe_desc_table;
 pub mod extraction_recipe_desc_type;
+pub mod extraction_spawned_placeable_type;
 pub mod float_hex_tile_message_type;
 pub mod food_desc_table;
 pub mod food_desc_type;
@@ -913,9 +916,12 @@ pub mod inter_module_message_v_2_table;
 pub mod inter_module_message_v_2_type;
 pub mod inter_module_message_v_3_table;
 pub mod inter_module_message_v_3_type;
+pub mod inter_module_message_v_4_table;
+pub mod inter_module_message_v_4_type;
 pub mod inter_module_response_message_counter_table;
 pub mod inter_module_response_message_counter_type;
 pub mod inter_module_table_updates_type;
+pub mod inter_module_table_updates_v_2_type;
 pub mod interior_collapse_trigger_state_table;
 pub mod interior_collapse_trigger_state_type;
 pub mod interior_environment_desc_table;
@@ -1044,9 +1050,11 @@ pub mod marketplace_state_type;
 pub mod message_contents_type;
 pub mod message_contents_v_2_type;
 pub mod message_contents_v_3_type;
+pub mod message_contents_v_4_type;
 pub mod migrate_auto_attacks_reducer;
 pub mod migrate_character_stats_reducer;
 pub mod migrate_claim_tech_reducer;
+pub mod migrate_exploration_achievement_counts_reducer;
 pub mod migrate_grant_default_collectibles_reducer;
 pub mod migrate_onboarding_reducer;
 pub mod migrate_player_settings_reducer;
@@ -1421,6 +1429,9 @@ pub mod region_control_info_op_type;
 pub mod region_control_info_table;
 pub mod region_control_info_type;
 pub mod region_destroy_siege_engine_msg_type;
+pub mod region_exploration_info_op_type;
+pub mod region_exploration_info_table;
+pub mod region_exploration_info_type;
 pub mod region_moderation_config_state_table;
 pub mod region_moderation_config_state_type;
 pub mod region_population_info_op_type;
@@ -1775,6 +1786,9 @@ pub mod storage_log_cleanup_loop_timer_type;
 pub mod storage_log_state_table;
 pub mod surface_type_type;
 pub mod synchronize_time_reducer;
+pub mod system_chat_broadcast_scheduled_reducer;
+pub mod system_chat_broadcast_timer_type;
+pub mod sytem_chat_broadcast_timer_table;
 pub mod target_state_table;
 pub mod target_state_type;
 pub mod target_update_reducer;
@@ -1839,6 +1853,7 @@ pub mod transfer_player_housing_msg_type;
 pub mod transfer_player_msg_type;
 pub mod transfer_player_msg_v_2_type;
 pub mod transfer_player_msg_v_3_type;
+pub mod transfer_player_msg_v_4_type;
 pub mod transfer_player_timer_table;
 pub mod transfer_player_timer_type;
 pub mod traveler_task_agent_loop_reducer;
@@ -3244,6 +3259,8 @@ pub use experience_state_table::*;
 pub use experience_state_type::ExperienceState;
 pub use exploration_chunks_state_table::*;
 pub use exploration_chunks_state_type::ExplorationChunksState;
+pub use exploration_chunks_state_v_2_table::*;
+pub use exploration_chunks_state_v_2_type::ExplorationChunksStateV2;
 pub use exposed_breadcrumbs_table::*;
 pub use extract_outcome_state_table::*;
 pub use extract_outcome_state_type::ExtractOutcomeState;
@@ -3255,6 +3272,7 @@ pub use extract_start_reducer::{
 };
 pub use extraction_recipe_desc_table::*;
 pub use extraction_recipe_desc_type::ExtractionRecipeDesc;
+pub use extraction_spawned_placeable_type::ExtractionSpawnedPlaceable;
 pub use float_hex_tile_message_type::FloatHexTileMessage;
 pub use food_desc_table::*;
 pub use food_desc_type::FoodDesc;
@@ -4005,9 +4023,12 @@ pub use inter_module_message_v_2_table::*;
 pub use inter_module_message_v_2_type::InterModuleMessageV2;
 pub use inter_module_message_v_3_table::*;
 pub use inter_module_message_v_3_type::InterModuleMessageV3;
+pub use inter_module_message_v_4_table::*;
+pub use inter_module_message_v_4_type::InterModuleMessageV4;
 pub use inter_module_response_message_counter_table::*;
 pub use inter_module_response_message_counter_type::InterModuleResponseMessageCounter;
 pub use inter_module_table_updates_type::InterModuleTableUpdates;
+pub use inter_module_table_updates_v_2_type::InterModuleTableUpdatesV2;
 pub use interior_collapse_trigger_state_table::*;
 pub use interior_collapse_trigger_state_type::InteriorCollapseTriggerState;
 pub use interior_environment_desc_table::*;
@@ -4166,6 +4187,7 @@ pub use marketplace_state_type::MarketplaceState;
 pub use message_contents_type::MessageContents;
 pub use message_contents_v_2_type::MessageContentsV2;
 pub use message_contents_v_3_type::MessageContentsV3;
+pub use message_contents_v_4_type::MessageContentsV4;
 pub use migrate_auto_attacks_reducer::{
     migrate_auto_attacks, set_flags_for_migrate_auto_attacks, MigrateAutoAttacksCallbackId,
 };
@@ -4174,6 +4196,10 @@ pub use migrate_character_stats_reducer::{
 };
 pub use migrate_claim_tech_reducer::{
     migrate_claim_tech, set_flags_for_migrate_claim_tech, MigrateClaimTechCallbackId,
+};
+pub use migrate_exploration_achievement_counts_reducer::{
+    migrate_exploration_achievement_counts, set_flags_for_migrate_exploration_achievement_counts,
+    MigrateExplorationAchievementCountsCallbackId,
 };
 pub use migrate_grant_default_collectibles_reducer::{
     migrate_grant_default_collectibles, set_flags_for_migrate_grant_default_collectibles,
@@ -4724,6 +4750,9 @@ pub use region_control_info_op_type::RegionControlInfoOp;
 pub use region_control_info_table::*;
 pub use region_control_info_type::RegionControlInfo;
 pub use region_destroy_siege_engine_msg_type::RegionDestroySiegeEngineMsg;
+pub use region_exploration_info_op_type::RegionExplorationInfoOp;
+pub use region_exploration_info_table::*;
+pub use region_exploration_info_type::RegionExplorationInfo;
 pub use region_moderation_config_state_table::*;
 pub use region_moderation_config_state_type::RegionModerationConfigState;
 pub use region_population_info_op_type::RegionPopulationInfoOp;
@@ -5430,6 +5459,12 @@ pub use surface_type_type::SurfaceType;
 pub use synchronize_time_reducer::{
     set_flags_for_synchronize_time, synchronize_time, SynchronizeTimeCallbackId,
 };
+pub use system_chat_broadcast_scheduled_reducer::{
+    set_flags_for_system_chat_broadcast_scheduled, system_chat_broadcast_scheduled,
+    SystemChatBroadcastScheduledCallbackId,
+};
+pub use system_chat_broadcast_timer_type::SystemChatBroadcastTimer;
+pub use sytem_chat_broadcast_timer_table::*;
 pub use target_state_table::*;
 pub use target_state_type::TargetState;
 pub use target_update_reducer::{
@@ -5527,6 +5562,7 @@ pub use transfer_player_housing_msg_type::TransferPlayerHousingMsg;
 pub use transfer_player_msg_type::TransferPlayerMsg;
 pub use transfer_player_msg_v_2_type::TransferPlayerMsgV2;
 pub use transfer_player_msg_v_3_type::TransferPlayerMsgV3;
+pub use transfer_player_msg_v_4_type::TransferPlayerMsgV4;
 pub use transfer_player_timer_table::*;
 pub use transfer_player_timer_type::TransferPlayerTimer;
 pub use traveler_task_agent_loop_reducer::{
@@ -6723,7 +6759,7 @@ pub enum Reducer {
         records: Vec<ExperienceState>,
     },
     ImportExplorationChunksState {
-        records: Vec<ExplorationChunksState>,
+        records: Vec<ExplorationChunksStateV2>,
     },
     ImportExtractionRecipeDesc {
         records: Vec<ExtractionRecipeDesc>,
@@ -7155,6 +7191,7 @@ pub enum Reducer {
     MigrateAutoAttacks,
     MigrateCharacterStats,
     MigrateClaimTech,
+    MigrateExplorationAchievementCounts,
     MigrateGrantDefaultCollectibles,
     MigrateOnboarding,
     MigratePlayerSettings,
@@ -7359,7 +7396,7 @@ pub enum Reducer {
     },
     ProcessInterModuleMessage {
         sender: u8,
-        message: InterModuleMessageV3,
+        message: InterModuleMessageV4,
     },
     ProjectSiteAddMaterials {
         request: PlayerProjectSiteAddMaterialsRequest,
@@ -7822,6 +7859,9 @@ pub enum Reducer {
     },
     SynchronizeTime {
         client_time: f64,
+    },
+    SystemChatBroadcastScheduled {
+        timer: SystemChatBroadcastTimer,
     },
     TargetUpdate {
         request: TargetUpdateRequest,
@@ -8473,6 +8513,9 @@ impl __sdk::Reducer for Reducer {
             Reducer::MigrateAutoAttacks => "migrate_auto_attacks",
             Reducer::MigrateCharacterStats => "migrate_character_stats",
             Reducer::MigrateClaimTech => "migrate_claim_tech",
+            Reducer::MigrateExplorationAchievementCounts => {
+                "migrate_exploration_achievement_counts"
+            }
             Reducer::MigrateGrantDefaultCollectibles => "migrate_grant_default_collectibles",
             Reducer::MigrateOnboarding => "migrate_onboarding",
             Reducer::MigratePlayerSettings => "migrate_player_settings",
@@ -8716,6 +8759,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::StopAgents => "stop_agents",
             Reducer::StorageLogCleanupLoop { .. } => "storage_log_cleanup_loop",
             Reducer::SynchronizeTime { .. } => "synchronize_time",
+            Reducer::SystemChatBroadcastScheduled { .. } => "system_chat_broadcast_scheduled",
             Reducer::TargetUpdate { .. } => "target_update",
             Reducer::TeleportationEnergyRegenAgentLoop { .. } => {
                 "teleportation_energy_regen_agent_loop"
@@ -9244,6 +9288,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "migrate_auto_attacks" => Ok(__sdk::parse_reducer_args::<migrate_auto_attacks_reducer::MigrateAutoAttacksArgs>("migrate_auto_attacks", &value.args)?.into()),
             "migrate_character_stats" => Ok(__sdk::parse_reducer_args::<migrate_character_stats_reducer::MigrateCharacterStatsArgs>("migrate_character_stats", &value.args)?.into()),
             "migrate_claim_tech" => Ok(__sdk::parse_reducer_args::<migrate_claim_tech_reducer::MigrateClaimTechArgs>("migrate_claim_tech", &value.args)?.into()),
+            "migrate_exploration_achievement_counts" => Ok(__sdk::parse_reducer_args::<migrate_exploration_achievement_counts_reducer::MigrateExplorationAchievementCountsArgs>("migrate_exploration_achievement_counts", &value.args)?.into()),
             "migrate_grant_default_collectibles" => Ok(__sdk::parse_reducer_args::<migrate_grant_default_collectibles_reducer::MigrateGrantDefaultCollectiblesArgs>("migrate_grant_default_collectibles", &value.args)?.into()),
             "migrate_onboarding" => Ok(__sdk::parse_reducer_args::<migrate_onboarding_reducer::MigrateOnboardingArgs>("migrate_onboarding", &value.args)?.into()),
             "migrate_player_settings" => Ok(__sdk::parse_reducer_args::<migrate_player_settings_reducer::MigratePlayerSettingsArgs>("migrate_player_settings", &value.args)?.into()),
@@ -9471,6 +9516,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "stop_agents" => Ok(__sdk::parse_reducer_args::<stop_agents_reducer::StopAgentsArgs>("stop_agents", &value.args)?.into()),
             "storage_log_cleanup_loop" => Ok(__sdk::parse_reducer_args::<storage_log_cleanup_loop_reducer::StorageLogCleanupLoopArgs>("storage_log_cleanup_loop", &value.args)?.into()),
             "synchronize_time" => Ok(__sdk::parse_reducer_args::<synchronize_time_reducer::SynchronizeTimeArgs>("synchronize_time", &value.args)?.into()),
+            "system_chat_broadcast_scheduled" => Ok(__sdk::parse_reducer_args::<system_chat_broadcast_scheduled_reducer::SystemChatBroadcastScheduledArgs>("system_chat_broadcast_scheduled", &value.args)?.into()),
             "target_update" => Ok(__sdk::parse_reducer_args::<target_update_reducer::TargetUpdateArgs>("target_update", &value.args)?.into()),
             "teleportation_energy_regen_agent_loop" => Ok(__sdk::parse_reducer_args::<teleportation_energy_regen_agent_loop_reducer::TeleportationEnergyRegenAgentLoopArgs>("teleportation_energy_regen_agent_loop", &value.args)?.into()),
             "terraform" => Ok(__sdk::parse_reducer_args::<terraform_reducer::TerraformArgs>("terraform", &value.args)?.into()),
@@ -9642,6 +9688,7 @@ pub struct DbUpdate {
     equipment_state: __sdk::TableUpdate<EquipmentState>,
     experience_state: __sdk::TableUpdate<ExperienceState>,
     exploration_chunks_state: __sdk::TableUpdate<ExplorationChunksState>,
+    exploration_chunks_state_v_2: __sdk::TableUpdate<ExplorationChunksStateV2>,
     exposed_breadcrumbs: __sdk::TableUpdate<CrumbTrailExposedState>,
     extract_outcome_state: __sdk::TableUpdate<ExtractOutcomeStateV2>,
     extract_outcome_state_v_1: __sdk::TableUpdate<ExtractOutcomeState>,
@@ -9665,6 +9712,7 @@ pub struct DbUpdate {
     inter_module_message_errors: __sdk::TableUpdate<InterModuleMessageErrors>,
     inter_module_message_v_2: __sdk::TableUpdate<InterModuleMessageV2>,
     inter_module_message_v_3: __sdk::TableUpdate<InterModuleMessageV3>,
+    inter_module_message_v_4: __sdk::TableUpdate<InterModuleMessageV4>,
     inter_module_response_message_counter: __sdk::TableUpdate<InterModuleResponseMessageCounter>,
     interior_collapse_trigger_state: __sdk::TableUpdate<InteriorCollapseTriggerState>,
     interior_environment_desc: __sdk::TableUpdate<InteriorEnvironmentDesc>,
@@ -9793,6 +9841,7 @@ pub struct DbUpdate {
     quest_stage_desc: __sdk::TableUpdate<QuestStageDesc>,
     region_connection_info: __sdk::TableUpdate<RegionConnectionInfo>,
     region_control_info: __sdk::TableUpdate<RegionControlInfo>,
+    region_exploration_info: __sdk::TableUpdate<RegionExplorationInfo>,
     region_moderation_config_state: __sdk::TableUpdate<RegionModerationConfigState>,
     region_population_info: __sdk::TableUpdate<RegionPopulationInfo>,
     region_popuplation_loop_timer: __sdk::TableUpdate<RegionPopulationLoopTimer>,
@@ -9938,6 +9987,7 @@ pub struct DbUpdate {
     starving_player_state: __sdk::TableUpdate<StarvingPlayerState>,
     storage_log_cleanup_loop_timer: __sdk::TableUpdate<StorageLogCleanupLoopTimer>,
     storage_log_state: __sdk::TableUpdate<ActionLogState>,
+    sytem_chat_broadcast_timer: __sdk::TableUpdate<SystemChatBroadcastTimer>,
     target_state: __sdk::TableUpdate<TargetState>,
     targetable_state: __sdk::TableUpdate<TargetableState>,
     targeting_matrix_desc: __sdk::TableUpdate<TargetingMatrixDesc>,
@@ -10125,6 +10175,7 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "equipment_state" => db_update.equipment_state.append(equipment_state_table::parse_table_update(table_update)?),
     "experience_state" => db_update.experience_state.append(experience_state_table::parse_table_update(table_update)?),
     "exploration_chunks_state" => db_update.exploration_chunks_state.append(exploration_chunks_state_table::parse_table_update(table_update)?),
+    "exploration_chunks_state_v2" => db_update.exploration_chunks_state_v_2.append(exploration_chunks_state_v_2_table::parse_table_update(table_update)?),
     "exposed_breadcrumbs" => db_update.exposed_breadcrumbs.append(exposed_breadcrumbs_table::parse_table_update(table_update)?),
     "extract_outcome_state" => db_update.extract_outcome_state.append(extract_outcome_state_table::parse_table_update(table_update)?),
     "extract_outcome_state_v1" => db_update.extract_outcome_state_v_1.append(extract_outcome_state_v_1_table::parse_table_update(table_update)?),
@@ -10148,6 +10199,7 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "inter_module_message_errors" => db_update.inter_module_message_errors.append(inter_module_message_errors_table::parse_table_update(table_update)?),
     "inter_module_message_v2" => db_update.inter_module_message_v_2.append(inter_module_message_v_2_table::parse_table_update(table_update)?),
     "inter_module_message_v3" => db_update.inter_module_message_v_3.append(inter_module_message_v_3_table::parse_table_update(table_update)?),
+    "inter_module_message_v4" => db_update.inter_module_message_v_4.append(inter_module_message_v_4_table::parse_table_update(table_update)?),
     "inter_module_response_message_counter" => db_update.inter_module_response_message_counter.append(inter_module_response_message_counter_table::parse_table_update(table_update)?),
     "interior_collapse_trigger_state" => db_update.interior_collapse_trigger_state.append(interior_collapse_trigger_state_table::parse_table_update(table_update)?),
     "interior_environment_desc" => db_update.interior_environment_desc.append(interior_environment_desc_table::parse_table_update(table_update)?),
@@ -10276,6 +10328,7 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "quest_stage_desc" => db_update.quest_stage_desc.append(quest_stage_desc_table::parse_table_update(table_update)?),
     "region_connection_info" => db_update.region_connection_info.append(region_connection_info_table::parse_table_update(table_update)?),
     "region_control_info" => db_update.region_control_info.append(region_control_info_table::parse_table_update(table_update)?),
+    "region_exploration_info" => db_update.region_exploration_info.append(region_exploration_info_table::parse_table_update(table_update)?),
     "region_moderation_config_state" => db_update.region_moderation_config_state.append(region_moderation_config_state_table::parse_table_update(table_update)?),
     "region_population_info" => db_update.region_population_info.append(region_population_info_table::parse_table_update(table_update)?),
     "region_popuplation_loop_timer" => db_update.region_popuplation_loop_timer.append(region_popuplation_loop_timer_table::parse_table_update(table_update)?),
@@ -10419,6 +10472,7 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "starving_player_state" => db_update.starving_player_state.append(starving_player_state_table::parse_table_update(table_update)?),
     "storage_log_cleanup_loop_timer" => db_update.storage_log_cleanup_loop_timer.append(storage_log_cleanup_loop_timer_table::parse_table_update(table_update)?),
     "storage_log_state" => db_update.storage_log_state.append(storage_log_state_table::parse_table_update(table_update)?),
+    "sytem_chat_broadcast_timer" => db_update.sytem_chat_broadcast_timer.append(sytem_chat_broadcast_timer_table::parse_table_update(table_update)?),
     "target_state" => db_update.target_state.append(target_state_table::parse_table_update(table_update)?),
     "targetable_state" => db_update.targetable_state.append(targetable_state_table::parse_table_update(table_update)?),
     "targeting_matrix_desc" => db_update.targeting_matrix_desc.append(targeting_matrix_desc_table::parse_table_update(table_update)?),
@@ -11116,6 +11170,12 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.exploration_chunks_state,
             )
             .with_updates_by_pk(|row| &row.entity_id);
+        diff.exploration_chunks_state_v_2 = cache
+            .apply_diff_to_table::<ExplorationChunksStateV2>(
+                "exploration_chunks_state_v2",
+                &self.exploration_chunks_state_v_2,
+            )
+            .with_updates_by_pk(|row| &row.entity_id);
         diff.extract_outcome_state = cache
             .apply_diff_to_table::<ExtractOutcomeStateV2>(
                 "extract_outcome_state",
@@ -11217,6 +11277,12 @@ impl __sdk::DbUpdate for DbUpdate {
             .apply_diff_to_table::<InterModuleMessageV3>(
                 "inter_module_message_v3",
                 &self.inter_module_message_v_3,
+            )
+            .with_updates_by_pk(|row| &row.id);
+        diff.inter_module_message_v_4 = cache
+            .apply_diff_to_table::<InterModuleMessageV4>(
+                "inter_module_message_v4",
+                &self.inter_module_message_v_4,
             )
             .with_updates_by_pk(|row| &row.id);
         diff.inter_module_response_message_counter = cache
@@ -11851,6 +11917,12 @@ impl __sdk::DbUpdate for DbUpdate {
             .apply_diff_to_table::<RegionControlInfo>(
                 "region_control_info",
                 &self.region_control_info,
+            )
+            .with_updates_by_pk(|row| &row.region_id);
+        diff.region_exploration_info = cache
+            .apply_diff_to_table::<RegionExplorationInfo>(
+                "region_exploration_info",
+                &self.region_exploration_info,
             )
             .with_updates_by_pk(|row| &row.region_id);
         diff.region_moderation_config_state = cache
@@ -12612,6 +12684,12 @@ impl __sdk::DbUpdate for DbUpdate {
         diff.storage_log_state = cache
             .apply_diff_to_table::<ActionLogState>("storage_log_state", &self.storage_log_state)
             .with_updates_by_pk(|row| &row.id);
+        diff.sytem_chat_broadcast_timer = cache
+            .apply_diff_to_table::<SystemChatBroadcastTimer>(
+                "sytem_chat_broadcast_timer",
+                &self.sytem_chat_broadcast_timer,
+            )
+            .with_updates_by_pk(|row| &row.scheduled_id);
         diff.target_state = cache
             .apply_diff_to_table::<TargetState>("target_state", &self.target_state)
             .with_updates_by_pk(|row| &row.entity_id);
@@ -12957,6 +13035,7 @@ pub struct AppliedDiff<'r> {
     equipment_state: __sdk::TableAppliedDiff<'r, EquipmentState>,
     experience_state: __sdk::TableAppliedDiff<'r, ExperienceState>,
     exploration_chunks_state: __sdk::TableAppliedDiff<'r, ExplorationChunksState>,
+    exploration_chunks_state_v_2: __sdk::TableAppliedDiff<'r, ExplorationChunksStateV2>,
     exposed_breadcrumbs: __sdk::TableAppliedDiff<'r, CrumbTrailExposedState>,
     extract_outcome_state: __sdk::TableAppliedDiff<'r, ExtractOutcomeStateV2>,
     extract_outcome_state_v_1: __sdk::TableAppliedDiff<'r, ExtractOutcomeState>,
@@ -12980,6 +13059,7 @@ pub struct AppliedDiff<'r> {
     inter_module_message_errors: __sdk::TableAppliedDiff<'r, InterModuleMessageErrors>,
     inter_module_message_v_2: __sdk::TableAppliedDiff<'r, InterModuleMessageV2>,
     inter_module_message_v_3: __sdk::TableAppliedDiff<'r, InterModuleMessageV3>,
+    inter_module_message_v_4: __sdk::TableAppliedDiff<'r, InterModuleMessageV4>,
     inter_module_response_message_counter:
         __sdk::TableAppliedDiff<'r, InterModuleResponseMessageCounter>,
     interior_collapse_trigger_state: __sdk::TableAppliedDiff<'r, InteriorCollapseTriggerState>,
@@ -13113,6 +13193,7 @@ pub struct AppliedDiff<'r> {
     quest_stage_desc: __sdk::TableAppliedDiff<'r, QuestStageDesc>,
     region_connection_info: __sdk::TableAppliedDiff<'r, RegionConnectionInfo>,
     region_control_info: __sdk::TableAppliedDiff<'r, RegionControlInfo>,
+    region_exploration_info: __sdk::TableAppliedDiff<'r, RegionExplorationInfo>,
     region_moderation_config_state: __sdk::TableAppliedDiff<'r, RegionModerationConfigState>,
     region_population_info: __sdk::TableAppliedDiff<'r, RegionPopulationInfo>,
     region_popuplation_loop_timer: __sdk::TableAppliedDiff<'r, RegionPopulationLoopTimer>,
@@ -13263,6 +13344,7 @@ pub struct AppliedDiff<'r> {
     starving_player_state: __sdk::TableAppliedDiff<'r, StarvingPlayerState>,
     storage_log_cleanup_loop_timer: __sdk::TableAppliedDiff<'r, StorageLogCleanupLoopTimer>,
     storage_log_state: __sdk::TableAppliedDiff<'r, ActionLogState>,
+    sytem_chat_broadcast_timer: __sdk::TableAppliedDiff<'r, SystemChatBroadcastTimer>,
     target_state: __sdk::TableAppliedDiff<'r, TargetState>,
     targetable_state: __sdk::TableAppliedDiff<'r, TargetableState>,
     targeting_matrix_desc: __sdk::TableAppliedDiff<'r, TargetingMatrixDesc>,
@@ -13951,6 +14033,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             &self.exploration_chunks_state,
             event,
         );
+        callbacks.invoke_table_row_callbacks::<ExplorationChunksStateV2>(
+            "exploration_chunks_state_v2",
+            &self.exploration_chunks_state_v_2,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<CrumbTrailExposedState>(
             "exposed_breadcrumbs",
             &self.exposed_breadcrumbs,
@@ -14048,6 +14135,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<InterModuleMessageV3>(
             "inter_module_message_v3",
             &self.inter_module_message_v_3,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<InterModuleMessageV4>(
+            "inter_module_message_v4",
+            &self.inter_module_message_v_4,
             event,
         );
         callbacks.invoke_table_row_callbacks::<InterModuleResponseMessageCounter>(
@@ -14676,6 +14768,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<RegionControlInfo>(
             "region_control_info",
             &self.region_control_info,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<RegionExplorationInfo>(
+            "region_exploration_info",
+            &self.region_exploration_info,
             event,
         );
         callbacks.invoke_table_row_callbacks::<RegionModerationConfigState>(
@@ -15383,6 +15480,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<ActionLogState>(
             "storage_log_state",
             &self.storage_log_state,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<SystemChatBroadcastTimer>(
+            "sytem_chat_broadcast_timer",
+            &self.sytem_chat_broadcast_timer,
             event,
         );
         callbacks.invoke_table_row_callbacks::<TargetState>(
@@ -16422,6 +16524,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         equipment_state_table::register_table(client_cache);
         experience_state_table::register_table(client_cache);
         exploration_chunks_state_table::register_table(client_cache);
+        exploration_chunks_state_v_2_table::register_table(client_cache);
         exposed_breadcrumbs_table::register_table(client_cache);
         extract_outcome_state_table::register_table(client_cache);
         extract_outcome_state_v_1_table::register_table(client_cache);
@@ -16445,6 +16548,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         inter_module_message_errors_table::register_table(client_cache);
         inter_module_message_v_2_table::register_table(client_cache);
         inter_module_message_v_3_table::register_table(client_cache);
+        inter_module_message_v_4_table::register_table(client_cache);
         inter_module_response_message_counter_table::register_table(client_cache);
         interior_collapse_trigger_state_table::register_table(client_cache);
         interior_environment_desc_table::register_table(client_cache);
@@ -16573,6 +16677,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         quest_stage_desc_table::register_table(client_cache);
         region_connection_info_table::register_table(client_cache);
         region_control_info_table::register_table(client_cache);
+        region_exploration_info_table::register_table(client_cache);
         region_moderation_config_state_table::register_table(client_cache);
         region_population_info_table::register_table(client_cache);
         region_popuplation_loop_timer_table::register_table(client_cache);
@@ -16716,6 +16821,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         starving_player_state_table::register_table(client_cache);
         storage_log_cleanup_loop_timer_table::register_table(client_cache);
         storage_log_state_table::register_table(client_cache);
+        sytem_chat_broadcast_timer_table::register_table(client_cache);
         target_state_table::register_table(client_cache);
         targetable_state_table::register_table(client_cache);
         targeting_matrix_desc_table::register_table(client_cache);
