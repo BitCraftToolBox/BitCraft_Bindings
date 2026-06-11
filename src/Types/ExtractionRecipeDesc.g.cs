@@ -58,6 +58,8 @@ namespace BitCraftGlobal.Types
         public bool ShowInProgression;
         [DataMember(Name = "empire_permission_required")]
         public EmpirePermission? EmpirePermissionRequired;
+        [DataMember(Name = "spawned_placeables")]
+        public System.Collections.Generic.List<ExtractionSpawnedPlaceable>? SpawnedPlaceables;
 
         public ExtractionRecipeDesc(
             int Id,
@@ -81,7 +83,8 @@ namespace BitCraftGlobal.Types
             int RecipePerformanceId,
             int? EmpireRankRequirement,
             bool ShowInProgression,
-            EmpirePermission? EmpirePermissionRequired
+            EmpirePermission? EmpirePermissionRequired,
+            System.Collections.Generic.List<ExtractionSpawnedPlaceable>? SpawnedPlaceables
         )
         {
             this.Id = Id;
@@ -106,6 +109,7 @@ namespace BitCraftGlobal.Types
             this.EmpireRankRequirement = EmpireRankRequirement;
             this.ShowInProgression = ShowInProgression;
             this.EmpirePermissionRequired = EmpirePermissionRequired;
+            this.SpawnedPlaceables = SpawnedPlaceables;
         }
 
         public ExtractionRecipeDesc()

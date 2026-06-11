@@ -13,17 +13,17 @@ namespace BitCraftGlobal.Types
 {
     public sealed partial class RemoteReducers : RemoteBase
     {
-        public delegate void ImportExplorationChunksStateHandler(ReducerEventContext ctx, System.Collections.Generic.List<BitCraftGlobal.Types.ExplorationChunksStateV2> records);
-        public event ImportExplorationChunksStateHandler? OnImportExplorationChunksState;
+        public delegate void ImportRegionExplorationInfoHandler(ReducerEventContext ctx, System.Collections.Generic.List<BitCraftGlobal.Types.RegionExplorationInfo> records);
+        public event ImportRegionExplorationInfoHandler? OnImportRegionExplorationInfo;
 
-        public void ImportExplorationChunksState(System.Collections.Generic.List<BitCraftGlobal.Types.ExplorationChunksStateV2> records)
+        public void ImportRegionExplorationInfo(System.Collections.Generic.List<BitCraftGlobal.Types.RegionExplorationInfo> records)
         {
-            conn.InternalCallReducer(new Reducer.ImportExplorationChunksState(records), this.SetCallReducerFlags.ImportExplorationChunksStateFlags);
+            conn.InternalCallReducer(new Reducer.ImportRegionExplorationInfo(records), this.SetCallReducerFlags.ImportRegionExplorationInfoFlags);
         }
 
-        public bool InvokeImportExplorationChunksState(ReducerEventContext ctx, Reducer.ImportExplorationChunksState args)
+        public bool InvokeImportRegionExplorationInfo(ReducerEventContext ctx, Reducer.ImportRegionExplorationInfo args)
         {
-            if (OnImportExplorationChunksState == null)
+            if (OnImportRegionExplorationInfo == null)
             {
                 if (InternalOnUnhandledReducerError != null)
                 {
@@ -35,7 +35,7 @@ namespace BitCraftGlobal.Types
                 }
                 return false;
             }
-            OnImportExplorationChunksState(
+            OnImportRegionExplorationInfo(
                 ctx,
                 args.Records
             );
@@ -47,28 +47,28 @@ namespace BitCraftGlobal.Types
     {
         [SpacetimeDB.Type]
         [DataContract]
-        public sealed partial class ImportExplorationChunksState : Reducer, IReducerArgs
+        public sealed partial class ImportRegionExplorationInfo : Reducer, IReducerArgs
         {
             [DataMember(Name = "records")]
-            public System.Collections.Generic.List<ExplorationChunksStateV2> Records;
+            public System.Collections.Generic.List<RegionExplorationInfo> Records;
 
-            public ImportExplorationChunksState(System.Collections.Generic.List<ExplorationChunksStateV2> Records)
+            public ImportRegionExplorationInfo(System.Collections.Generic.List<RegionExplorationInfo> Records)
             {
                 this.Records = Records;
             }
 
-            public ImportExplorationChunksState()
+            public ImportRegionExplorationInfo()
             {
                 this.Records = new();
             }
 
-            string IReducerArgs.ReducerName => "import_exploration_chunks_state";
+            string IReducerArgs.ReducerName => "import_region_exploration_info";
         }
     }
 
     public sealed partial class SetReducerFlags
     {
-        internal CallReducerFlags ImportExplorationChunksStateFlags;
-        public void ImportExplorationChunksState(CallReducerFlags flags) => ImportExplorationChunksStateFlags = flags;
+        internal CallReducerFlags ImportRegionExplorationInfoFlags;
+        public void ImportRegionExplorationInfo(CallReducerFlags flags) => ImportRegionExplorationInfoFlags = flags;
     }
 }

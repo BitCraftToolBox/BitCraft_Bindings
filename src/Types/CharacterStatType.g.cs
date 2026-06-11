@@ -94,5 +94,8 @@ namespace BitCraftGlobal.Types
         HexiteGatheringSpeed,
         HexiteGatheringCritChance,
         HexiteGatheringCritMultiplier,
+        CartSpeed,
+        MountSpeed,
+        BoatSpeed,
     }
 }

@@ -157,6 +157,7 @@ namespace BitCraftGlobal.Types
             AddTable(EquipmentState = new(conn));
             AddTable(ExperienceState = new(conn));
             AddTable(ExplorationChunksState = new(conn));
+            AddTable(ExplorationChunksStateV2 = new(conn));
             AddTable(ExtractOutcomeState = new(conn));
             AddTable(ExtractOutcomeStateV1 = new(conn));
             AddTable(ExtractionRecipeDesc = new(conn));
@@ -179,6 +180,7 @@ namespace BitCraftGlobal.Types
             AddTable(InterModuleMessageErrors = new(conn));
             AddTable(InterModuleMessageV2 = new(conn));
             AddTable(InterModuleMessageV3 = new(conn));
+            AddTable(InterModuleMessageV4 = new(conn));
             AddTable(InterModuleResponseMessageCounter = new(conn));
             AddTable(InteriorCollapseTriggerState = new(conn));
             AddTable(InteriorEnvironmentDesc = new(conn));
@@ -307,6 +309,7 @@ namespace BitCraftGlobal.Types
             AddTable(QuestStageDesc = new(conn));
             AddTable(RegionConnectionInfo = new(conn));
             AddTable(RegionControlInfo = new(conn));
+            AddTable(RegionExplorationInfo = new(conn));
             AddTable(RegionPopulationInfo = new(conn));
             AddTable(RegionSignInParameters = new(conn));
             AddTable(RentState = new(conn));
@@ -1155,6 +1158,7 @@ namespace BitCraftGlobal.Types
         public global::SpacetimeDB.Table<EquipmentState, EquipmentStateCols, EquipmentStateIxCols> EquipmentState() => new("equipment_state", new EquipmentStateCols("equipment_state"), new EquipmentStateIxCols("equipment_state"));
         public global::SpacetimeDB.Table<ExperienceState, ExperienceStateCols, ExperienceStateIxCols> ExperienceState() => new("experience_state", new ExperienceStateCols("experience_state"), new ExperienceStateIxCols("experience_state"));
         public global::SpacetimeDB.Table<ExplorationChunksState, ExplorationChunksStateCols, ExplorationChunksStateIxCols> ExplorationChunksState() => new("exploration_chunks_state", new ExplorationChunksStateCols("exploration_chunks_state"), new ExplorationChunksStateIxCols("exploration_chunks_state"));
+        public global::SpacetimeDB.Table<ExplorationChunksStateV2, ExplorationChunksStateV2Cols, ExplorationChunksStateV2IxCols> ExplorationChunksStateV2() => new("exploration_chunks_state_v2", new ExplorationChunksStateV2Cols("exploration_chunks_state_v2"), new ExplorationChunksStateV2IxCols("exploration_chunks_state_v2"));
         public global::SpacetimeDB.Table<ExtractOutcomeStateV2, ExtractOutcomeStateCols, ExtractOutcomeStateIxCols> ExtractOutcomeState() => new("extract_outcome_state", new ExtractOutcomeStateCols("extract_outcome_state"), new ExtractOutcomeStateIxCols("extract_outcome_state"));
         public global::SpacetimeDB.Table<ExtractOutcomeState, ExtractOutcomeStateV1Cols, ExtractOutcomeStateV1IxCols> ExtractOutcomeStateV1() => new("extract_outcome_state_v1", new ExtractOutcomeStateV1Cols("extract_outcome_state_v1"), new ExtractOutcomeStateV1IxCols("extract_outcome_state_v1"));
         public global::SpacetimeDB.Table<ExtractionRecipeDesc, ExtractionRecipeDescCols, ExtractionRecipeDescIxCols> ExtractionRecipeDesc() => new("extraction_recipe_desc", new ExtractionRecipeDescCols("extraction_recipe_desc"), new ExtractionRecipeDescIxCols("extraction_recipe_desc"));
@@ -1177,6 +1181,7 @@ namespace BitCraftGlobal.Types
         public global::SpacetimeDB.Table<InterModuleMessageErrors, InterModuleMessageErrorsCols, InterModuleMessageErrorsIxCols> InterModuleMessageErrors() => new("inter_module_message_errors", new InterModuleMessageErrorsCols("inter_module_message_errors"), new InterModuleMessageErrorsIxCols("inter_module_message_errors"));
         public global::SpacetimeDB.Table<InterModuleMessageV2, InterModuleMessageV2Cols, InterModuleMessageV2IxCols> InterModuleMessageV2() => new("inter_module_message_v2", new InterModuleMessageV2Cols("inter_module_message_v2"), new InterModuleMessageV2IxCols("inter_module_message_v2"));
         public global::SpacetimeDB.Table<InterModuleMessageV3, InterModuleMessageV3Cols, InterModuleMessageV3IxCols> InterModuleMessageV3() => new("inter_module_message_v3", new InterModuleMessageV3Cols("inter_module_message_v3"), new InterModuleMessageV3IxCols("inter_module_message_v3"));
+        public global::SpacetimeDB.Table<InterModuleMessageV4, InterModuleMessageV4Cols, InterModuleMessageV4IxCols> InterModuleMessageV4() => new("inter_module_message_v4", new InterModuleMessageV4Cols("inter_module_message_v4"), new InterModuleMessageV4IxCols("inter_module_message_v4"));
         public global::SpacetimeDB.Table<InterModuleResponseMessageCounter, InterModuleResponseMessageCounterCols, InterModuleResponseMessageCounterIxCols> InterModuleResponseMessageCounter() => new("inter_module_response_message_counter", new InterModuleResponseMessageCounterCols("inter_module_response_message_counter"), new InterModuleResponseMessageCounterIxCols("inter_module_response_message_counter"));
         public global::SpacetimeDB.Table<InteriorCollapseTriggerState, InteriorCollapseTriggerStateCols, InteriorCollapseTriggerStateIxCols> InteriorCollapseTriggerState() => new("interior_collapse_trigger_state", new InteriorCollapseTriggerStateCols("interior_collapse_trigger_state"), new InteriorCollapseTriggerStateIxCols("interior_collapse_trigger_state"));
         public global::SpacetimeDB.Table<InteriorEnvironmentDesc, InteriorEnvironmentDescCols, InteriorEnvironmentDescIxCols> InteriorEnvironmentDesc() => new("interior_environment_desc", new InteriorEnvironmentDescCols("interior_environment_desc"), new InteriorEnvironmentDescIxCols("interior_environment_desc"));
@@ -1305,6 +1310,7 @@ namespace BitCraftGlobal.Types
         public global::SpacetimeDB.Table<QuestStageDesc, QuestStageDescCols, QuestStageDescIxCols> QuestStageDesc() => new("quest_stage_desc", new QuestStageDescCols("quest_stage_desc"), new QuestStageDescIxCols("quest_stage_desc"));
         public global::SpacetimeDB.Table<RegionConnectionInfo, RegionConnectionInfoCols, RegionConnectionInfoIxCols> RegionConnectionInfo() => new("region_connection_info", new RegionConnectionInfoCols("region_connection_info"), new RegionConnectionInfoIxCols("region_connection_info"));
         public global::SpacetimeDB.Table<RegionControlInfo, RegionControlInfoCols, RegionControlInfoIxCols> RegionControlInfo() => new("region_control_info", new RegionControlInfoCols("region_control_info"), new RegionControlInfoIxCols("region_control_info"));
+        public global::SpacetimeDB.Table<RegionExplorationInfo, RegionExplorationInfoCols, RegionExplorationInfoIxCols> RegionExplorationInfo() => new("region_exploration_info", new RegionExplorationInfoCols("region_exploration_info"), new RegionExplorationInfoIxCols("region_exploration_info"));
         public global::SpacetimeDB.Table<RegionPopulationInfo, RegionPopulationInfoCols, RegionPopulationInfoIxCols> RegionPopulationInfo() => new("region_population_info", new RegionPopulationInfoCols("region_population_info"), new RegionPopulationInfoIxCols("region_population_info"));
         public global::SpacetimeDB.Table<RegionSignInParameters, RegionSignInParametersCols, RegionSignInParametersIxCols> RegionSignInParameters() => new("region_sign_in_parameters", new RegionSignInParametersCols("region_sign_in_parameters"), new RegionSignInParametersIxCols("region_sign_in_parameters"));
         public global::SpacetimeDB.Table<RentState, RentStateCols, RentStateIxCols> RentState() => new("rent_state", new RentStateCols("rent_state"), new RentStateIxCols("rent_state"));
@@ -1595,6 +1601,7 @@ namespace BitCraftGlobal.Types
                 "admin_update_empire_ranks" => BSATNHelpers.Decode<Reducer.AdminUpdateEmpireRanks>(encodedArgs),
                 "admin_update_granted_hub_item_state" => BSATNHelpers.Decode<Reducer.AdminUpdateGrantedHubItemState>(encodedArgs),
                 "admin_update_moderation_enforcement_config" => BSATNHelpers.Decode<Reducer.AdminUpdateModerationEnforcementConfig>(encodedArgs),
+                "admin_update_region_exploration_info" => BSATNHelpers.Decode<Reducer.AdminUpdateRegionExplorationInfo>(encodedArgs),
                 "admin_update_report_moderation_config" => BSATNHelpers.Decode<Reducer.AdminUpdateReportModerationConfig>(encodedArgs),
                 "admin_update_sign_in_parameters" => BSATNHelpers.Decode<Reducer.AdminUpdateSignInParameters>(encodedArgs),
                 "authenticate" => BSATNHelpers.Decode<Reducer.Authenticate>(encodedArgs),
@@ -1622,7 +1629,6 @@ namespace BitCraftGlobal.Types
                 "empire_decay_agent_loop" => BSATNHelpers.Decode<Reducer.EmpireDecayAgentLoop>(encodedArgs),
                 "empire_dismantle" => BSATNHelpers.Decode<Reducer.EmpireDismantle>(encodedArgs),
                 "empire_donate_shards" => BSATNHelpers.Decode<Reducer.EmpireDonateShards>(encodedArgs),
-                "empire_form" => BSATNHelpers.Decode<Reducer.EmpireForm>(encodedArgs),
                 "empire_leave" => BSATNHelpers.Decode<Reducer.EmpireLeave>(encodedArgs),
                 "empire_mark_for_siege" => BSATNHelpers.Decode<Reducer.EmpireMarkForSiege>(encodedArgs),
                 "empire_move_capital" => BSATNHelpers.Decode<Reducer.EmpireMoveCapital>(encodedArgs),
@@ -1687,6 +1693,7 @@ namespace BitCraftGlobal.Types
                 "import_elevator_desc" => BSATNHelpers.Decode<Reducer.ImportElevatorDesc>(encodedArgs),
                 "import_emote_desc" => BSATNHelpers.Decode<Reducer.ImportEmoteDesc>(encodedArgs),
                 "import_empire_colors_desc" => BSATNHelpers.Decode<Reducer.ImportEmpireColorsDesc>(encodedArgs),
+                "import_empire_icon_desc" => BSATNHelpers.Decode<Reducer.ImportEmpireIconDesc>(encodedArgs),
                 "import_empire_notification_desc" => BSATNHelpers.Decode<Reducer.ImportEmpireNotificationDesc>(encodedArgs),
                 "import_empire_rank_desc" => BSATNHelpers.Decode<Reducer.ImportEmpireRankDesc>(encodedArgs),
                 "import_empire_supplies_desc" => BSATNHelpers.Decode<Reducer.ImportEmpireSuppliesDesc>(encodedArgs),
@@ -1768,6 +1775,7 @@ namespace BitCraftGlobal.Types
                 "import_progressive_action_state" => BSATNHelpers.Decode<Reducer.ImportProgressiveActionState>(encodedArgs),
                 "import_project_site_state" => BSATNHelpers.Decode<Reducer.ImportProjectSiteState>(encodedArgs),
                 "import_region_connection_info" => BSATNHelpers.Decode<Reducer.ImportRegionConnectionInfo>(encodedArgs),
+                "import_region_exploration_info" => BSATNHelpers.Decode<Reducer.ImportRegionExplorationInfo>(encodedArgs),
                 "import_region_sign_in_parameters" => BSATNHelpers.Decode<Reducer.ImportRegionSignInParameters>(encodedArgs),
                 "import_rent_state" => BSATNHelpers.Decode<Reducer.ImportRentState>(encodedArgs),
                 "import_resource_clump_desc" => BSATNHelpers.Decode<Reducer.ImportResourceClumpDesc>(encodedArgs),
@@ -2025,6 +2033,7 @@ namespace BitCraftGlobal.Types
                 Reducer.AdminUpdateEmpireRanks args => Reducers.InvokeAdminUpdateEmpireRanks(eventContext, args),
                 Reducer.AdminUpdateGrantedHubItemState args => Reducers.InvokeAdminUpdateGrantedHubItemState(eventContext, args),
                 Reducer.AdminUpdateModerationEnforcementConfig args => Reducers.InvokeAdminUpdateModerationEnforcementConfig(eventContext, args),
+                Reducer.AdminUpdateRegionExplorationInfo args => Reducers.InvokeAdminUpdateRegionExplorationInfo(eventContext, args),
                 Reducer.AdminUpdateReportModerationConfig args => Reducers.InvokeAdminUpdateReportModerationConfig(eventContext, args),
                 Reducer.AdminUpdateSignInParameters args => Reducers.InvokeAdminUpdateSignInParameters(eventContext, args),
                 Reducer.Authenticate args => Reducers.InvokeAuthenticate(eventContext, args),
@@ -2052,7 +2061,6 @@ namespace BitCraftGlobal.Types
                 Reducer.EmpireDecayAgentLoop args => Reducers.InvokeEmpireDecayAgentLoop(eventContext, args),
                 Reducer.EmpireDismantle args => Reducers.InvokeEmpireDismantle(eventContext, args),
                 Reducer.EmpireDonateShards args => Reducers.InvokeEmpireDonateShards(eventContext, args),
-                Reducer.EmpireForm args => Reducers.InvokeEmpireForm(eventContext, args),
                 Reducer.EmpireLeave args => Reducers.InvokeEmpireLeave(eventContext, args),
                 Reducer.EmpireMarkForSiege args => Reducers.InvokeEmpireMarkForSiege(eventContext, args),
                 Reducer.EmpireMoveCapital args => Reducers.InvokeEmpireMoveCapital(eventContext, args),
@@ -2117,6 +2125,7 @@ namespace BitCraftGlobal.Types
                 Reducer.ImportElevatorDesc args => Reducers.InvokeImportElevatorDesc(eventContext, args),
                 Reducer.ImportEmoteDesc args => Reducers.InvokeImportEmoteDesc(eventContext, args),
                 Reducer.ImportEmpireColorsDesc args => Reducers.InvokeImportEmpireColorsDesc(eventContext, args),
+                Reducer.ImportEmpireIconDesc args => Reducers.InvokeImportEmpireIconDesc(eventContext, args),
                 Reducer.ImportEmpireNotificationDesc args => Reducers.InvokeImportEmpireNotificationDesc(eventContext, args),
                 Reducer.ImportEmpireRankDesc args => Reducers.InvokeImportEmpireRankDesc(eventContext, args),
                 Reducer.ImportEmpireSuppliesDesc args => Reducers.InvokeImportEmpireSuppliesDesc(eventContext, args),
@@ -2198,6 +2207,7 @@ namespace BitCraftGlobal.Types
                 Reducer.ImportProgressiveActionState args => Reducers.InvokeImportProgressiveActionState(eventContext, args),
                 Reducer.ImportProjectSiteState args => Reducers.InvokeImportProjectSiteState(eventContext, args),
                 Reducer.ImportRegionConnectionInfo args => Reducers.InvokeImportRegionConnectionInfo(eventContext, args),
+                Reducer.ImportRegionExplorationInfo args => Reducers.InvokeImportRegionExplorationInfo(eventContext, args),
                 Reducer.ImportRegionSignInParameters args => Reducers.InvokeImportRegionSignInParameters(eventContext, args),
                 Reducer.ImportRentState args => Reducers.InvokeImportRentState(eventContext, args),
                 Reducer.ImportResourceClumpDesc args => Reducers.InvokeImportResourceClumpDesc(eventContext, args),

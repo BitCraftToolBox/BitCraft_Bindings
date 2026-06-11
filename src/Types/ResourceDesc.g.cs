@@ -58,6 +58,10 @@ namespace BitCraftGlobal.Types
         public bool ShowTimeLeft;
         [DataMember(Name = "on_destroy_yield_resource_chance")]
         public float OnDestroyYieldResourceChance;
+        [DataMember(Name = "on_destroy_yield_resource_min_radius")]
+        public int OnDestroyYieldResourceMinRadius;
+        [DataMember(Name = "on_destroy_yield_resource_max_radius")]
+        public int OnDestroyYieldResourceMaxRadius;
 
         public ResourceDesc(
             int Id,
@@ -81,7 +85,9 @@ namespace BitCraftGlobal.Types
             float ScheduledRespawnTime,
             bool NotRespawning,
             bool ShowTimeLeft,
-            float OnDestroyYieldResourceChance
+            float OnDestroyYieldResourceChance,
+            int OnDestroyYieldResourceMinRadius,
+            int OnDestroyYieldResourceMaxRadius
         )
         {
             this.Id = Id;
@@ -106,6 +112,8 @@ namespace BitCraftGlobal.Types
             this.NotRespawning = NotRespawning;
             this.ShowTimeLeft = ShowTimeLeft;
             this.OnDestroyYieldResourceChance = OnDestroyYieldResourceChance;
+            this.OnDestroyYieldResourceMinRadius = OnDestroyYieldResourceMinRadius;
+            this.OnDestroyYieldResourceMaxRadius = OnDestroyYieldResourceMaxRadius;
         }
 
         public ResourceDesc()

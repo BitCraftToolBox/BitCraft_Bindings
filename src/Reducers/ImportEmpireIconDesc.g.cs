@@ -13,17 +13,17 @@ namespace BitCraftGlobal.Types
 {
     public sealed partial class RemoteReducers : RemoteBase
     {
-        public delegate void ImportExplorationChunksStateHandler(ReducerEventContext ctx, System.Collections.Generic.List<BitCraftGlobal.Types.ExplorationChunksStateV2> records);
-        public event ImportExplorationChunksStateHandler? OnImportExplorationChunksState;
+        public delegate void ImportEmpireIconDescHandler(ReducerEventContext ctx, System.Collections.Generic.List<BitCraftGlobal.Types.EmpireIconDesc> records);
+        public event ImportEmpireIconDescHandler? OnImportEmpireIconDesc;
 
-        public void ImportExplorationChunksState(System.Collections.Generic.List<BitCraftGlobal.Types.ExplorationChunksStateV2> records)
+        public void ImportEmpireIconDesc(System.Collections.Generic.List<BitCraftGlobal.Types.EmpireIconDesc> records)
         {
-            conn.InternalCallReducer(new Reducer.ImportExplorationChunksState(records), this.SetCallReducerFlags.ImportExplorationChunksStateFlags);
+            conn.InternalCallReducer(new Reducer.ImportEmpireIconDesc(records), this.SetCallReducerFlags.ImportEmpireIconDescFlags);
         }
 
-        public bool InvokeImportExplorationChunksState(ReducerEventContext ctx, Reducer.ImportExplorationChunksState args)
+        public bool InvokeImportEmpireIconDesc(ReducerEventContext ctx, Reducer.ImportEmpireIconDesc args)
         {
-            if (OnImportExplorationChunksState == null)
+            if (OnImportEmpireIconDesc == null)
             {
                 if (InternalOnUnhandledReducerError != null)
                 {
@@ -35,7 +35,7 @@ namespace BitCraftGlobal.Types
                 }
                 return false;
             }
-            OnImportExplorationChunksState(
+            OnImportEmpireIconDesc(
                 ctx,
                 args.Records
             );
@@ -47,28 +47,28 @@ namespace BitCraftGlobal.Types
     {
         [SpacetimeDB.Type]
         [DataContract]
-        public sealed partial class ImportExplorationChunksState : Reducer, IReducerArgs
+        public sealed partial class ImportEmpireIconDesc : Reducer, IReducerArgs
         {
             [DataMember(Name = "records")]
-            public System.Collections.Generic.List<ExplorationChunksStateV2> Records;
+            public System.Collections.Generic.List<EmpireIconDesc> Records;
 
-            public ImportExplorationChunksState(System.Collections.Generic.List<ExplorationChunksStateV2> Records)
+            public ImportEmpireIconDesc(System.Collections.Generic.List<EmpireIconDesc> Records)
             {
                 this.Records = Records;
             }
 
-            public ImportExplorationChunksState()
+            public ImportEmpireIconDesc()
             {
                 this.Records = new();
             }
 
-            string IReducerArgs.ReducerName => "import_exploration_chunks_state";
+            string IReducerArgs.ReducerName => "import_empire_icon_desc";
         }
     }
 
     public sealed partial class SetReducerFlags
     {
-        internal CallReducerFlags ImportExplorationChunksStateFlags;
-        public void ImportExplorationChunksState(CallReducerFlags flags) => ImportExplorationChunksStateFlags = flags;
+        internal CallReducerFlags ImportEmpireIconDescFlags;
+        public void ImportEmpireIconDesc(CallReducerFlags flags) => ImportEmpireIconDescFlags = flags;
     }
 }
