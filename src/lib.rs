@@ -87,6 +87,7 @@ pub mod admin_unassign_empire_chunks_reducer;
 pub mod admin_update_empire_ranks_reducer;
 pub mod admin_update_granted_hub_item_state_reducer;
 pub mod admin_update_moderation_enforcement_config_reducer;
+pub mod admin_update_region_exploration_info_reducer;
 pub mod admin_update_report_moderation_config_reducer;
 pub mod admin_update_sign_in_parameters_reducer;
 pub mod ai_debug_state_type;
@@ -334,8 +335,6 @@ pub mod empire_donate_shards_reducer;
 pub mod empire_donate_shards_request_type;
 pub mod empire_emblem_state_table;
 pub mod empire_emblem_state_type;
-pub mod empire_form_reducer;
-pub mod empire_form_request_type;
 pub mod empire_foundry_state_table;
 pub mod empire_foundry_state_type;
 pub mod empire_icon_desc_table;
@@ -447,12 +446,15 @@ pub mod experience_state_table;
 pub mod experience_state_type;
 pub mod exploration_chunks_state_table;
 pub mod exploration_chunks_state_type;
+pub mod exploration_chunks_state_v_2_table;
+pub mod exploration_chunks_state_v_2_type;
 pub mod extract_outcome_state_table;
 pub mod extract_outcome_state_type;
 pub mod extract_outcome_state_v_1_table;
 pub mod extract_outcome_state_v_2_type;
 pub mod extraction_recipe_desc_table;
 pub mod extraction_recipe_desc_type;
+pub mod extraction_spawned_placeable_type;
 pub mod float_hex_tile_message_type;
 pub mod food_desc_table;
 pub mod food_desc_type;
@@ -538,6 +540,7 @@ pub mod import_dropped_inventory_state_reducer;
 pub mod import_elevator_desc_reducer;
 pub mod import_emote_desc_reducer;
 pub mod import_empire_colors_desc_reducer;
+pub mod import_empire_icon_desc_reducer;
 pub mod import_empire_notification_desc_reducer;
 pub mod import_empire_rank_desc_reducer;
 pub mod import_empire_supplies_desc_reducer;
@@ -619,6 +622,7 @@ pub mod import_private_parameters_desc_reducer;
 pub mod import_progressive_action_state_reducer;
 pub mod import_project_site_state_reducer;
 pub mod import_region_connection_info_reducer;
+pub mod import_region_exploration_info_reducer;
 pub mod import_region_sign_in_parameters_reducer;
 pub mod import_rent_state_reducer;
 pub mod import_resource_clump_desc_reducer;
@@ -666,9 +670,12 @@ pub mod inter_module_message_v_2_table;
 pub mod inter_module_message_v_2_type;
 pub mod inter_module_message_v_3_table;
 pub mod inter_module_message_v_3_type;
+pub mod inter_module_message_v_4_table;
+pub mod inter_module_message_v_4_type;
 pub mod inter_module_response_message_counter_table;
 pub mod inter_module_response_message_counter_type;
 pub mod inter_module_table_updates_type;
+pub mod inter_module_table_updates_v_2_type;
 pub mod interior_collapse_trigger_state_table;
 pub mod interior_collapse_trigger_state_type;
 pub mod interior_environment_desc_table;
@@ -777,6 +784,7 @@ pub mod marketplace_state_type;
 pub mod message_contents_type;
 pub mod message_contents_v_2_type;
 pub mod message_contents_v_3_type;
+pub mod message_contents_v_4_type;
 pub mod migrate_fix_empire_lowercase_names_reducer;
 pub mod minimum_client_version_table;
 pub mod minimum_client_version_type;
@@ -996,6 +1004,9 @@ pub mod region_control_info_op_type;
 pub mod region_control_info_table;
 pub mod region_control_info_type;
 pub mod region_destroy_siege_engine_msg_type;
+pub mod region_exploration_info_op_type;
+pub mod region_exploration_info_table;
+pub mod region_exploration_info_type;
 pub mod region_population_info_op_type;
 pub mod region_population_info_table;
 pub mod region_population_info_type;
@@ -1310,6 +1321,7 @@ pub mod transfer_player_housing_msg_type;
 pub mod transfer_player_msg_type;
 pub mod transfer_player_msg_v_2_type;
 pub mod transfer_player_msg_v_3_type;
+pub mod transfer_player_msg_v_4_type;
 pub mod translation_corrections_table;
 pub mod translation_corrections_type;
 pub mod traveler_task_desc_table;
@@ -1613,6 +1625,10 @@ pub use admin_update_moderation_enforcement_config_reducer::{
     admin_update_moderation_enforcement_config,
     set_flags_for_admin_update_moderation_enforcement_config,
     AdminUpdateModerationEnforcementConfigCallbackId,
+};
+pub use admin_update_region_exploration_info_reducer::{
+    admin_update_region_exploration_info, set_flags_for_admin_update_region_exploration_info,
+    AdminUpdateRegionExplorationInfoCallbackId,
 };
 pub use admin_update_report_moderation_config_reducer::{
     admin_update_report_moderation_config, set_flags_for_admin_update_report_moderation_config,
@@ -1923,8 +1939,6 @@ pub use empire_donate_shards_reducer::{
 pub use empire_donate_shards_request_type::EmpireDonateShardsRequest;
 pub use empire_emblem_state_table::*;
 pub use empire_emblem_state_type::EmpireEmblemState;
-pub use empire_form_reducer::{empire_form, set_flags_for_empire_form, EmpireFormCallbackId};
-pub use empire_form_request_type::EmpireFormRequest;
 pub use empire_foundry_state_table::*;
 pub use empire_foundry_state_type::EmpireFoundryState;
 pub use empire_icon_desc_table::*;
@@ -2071,12 +2085,15 @@ pub use experience_state_table::*;
 pub use experience_state_type::ExperienceState;
 pub use exploration_chunks_state_table::*;
 pub use exploration_chunks_state_type::ExplorationChunksState;
+pub use exploration_chunks_state_v_2_table::*;
+pub use exploration_chunks_state_v_2_type::ExplorationChunksStateV2;
 pub use extract_outcome_state_table::*;
 pub use extract_outcome_state_type::ExtractOutcomeState;
 pub use extract_outcome_state_v_1_table::*;
 pub use extract_outcome_state_v_2_type::ExtractOutcomeStateV2;
 pub use extraction_recipe_desc_table::*;
 pub use extraction_recipe_desc_type::ExtractionRecipeDesc;
+pub use extraction_spawned_placeable_type::ExtractionSpawnedPlaceable;
 pub use float_hex_tile_message_type::FloatHexTileMessage;
 pub use food_desc_table::*;
 pub use food_desc_type::FoodDesc;
@@ -2281,6 +2298,9 @@ pub use import_emote_desc_reducer::{
 pub use import_empire_colors_desc_reducer::{
     import_empire_colors_desc, set_flags_for_import_empire_colors_desc,
     ImportEmpireColorsDescCallbackId,
+};
+pub use import_empire_icon_desc_reducer::{
+    import_empire_icon_desc, set_flags_for_import_empire_icon_desc, ImportEmpireIconDescCallbackId,
 };
 pub use import_empire_notification_desc_reducer::{
     import_empire_notification_desc, set_flags_for_import_empire_notification_desc,
@@ -2576,6 +2596,10 @@ pub use import_region_connection_info_reducer::{
     import_region_connection_info, set_flags_for_import_region_connection_info,
     ImportRegionConnectionInfoCallbackId,
 };
+pub use import_region_exploration_info_reducer::{
+    import_region_exploration_info, set_flags_for_import_region_exploration_info,
+    ImportRegionExplorationInfoCallbackId,
+};
 pub use import_region_sign_in_parameters_reducer::{
     import_region_sign_in_parameters, set_flags_for_import_region_sign_in_parameters,
     ImportRegionSignInParametersCallbackId,
@@ -2713,9 +2737,12 @@ pub use inter_module_message_v_2_table::*;
 pub use inter_module_message_v_2_type::InterModuleMessageV2;
 pub use inter_module_message_v_3_table::*;
 pub use inter_module_message_v_3_type::InterModuleMessageV3;
+pub use inter_module_message_v_4_table::*;
+pub use inter_module_message_v_4_type::InterModuleMessageV4;
 pub use inter_module_response_message_counter_table::*;
 pub use inter_module_response_message_counter_type::InterModuleResponseMessageCounter;
 pub use inter_module_table_updates_type::InterModuleTableUpdates;
+pub use inter_module_table_updates_v_2_type::InterModuleTableUpdatesV2;
 pub use interior_collapse_trigger_state_table::*;
 pub use interior_collapse_trigger_state_type::InteriorCollapseTriggerState;
 pub use interior_environment_desc_table::*;
@@ -2834,6 +2861,7 @@ pub use marketplace_state_type::MarketplaceState;
 pub use message_contents_type::MessageContents;
 pub use message_contents_v_2_type::MessageContentsV2;
 pub use message_contents_v_3_type::MessageContentsV3;
+pub use message_contents_v_4_type::MessageContentsV4;
 pub use migrate_fix_empire_lowercase_names_reducer::{
     migrate_fix_empire_lowercase_names, set_flags_for_migrate_fix_empire_lowercase_names,
     MigrateFixEmpireLowercaseNamesCallbackId,
@@ -3086,6 +3114,9 @@ pub use region_control_info_op_type::RegionControlInfoOp;
 pub use region_control_info_table::*;
 pub use region_control_info_type::RegionControlInfo;
 pub use region_destroy_siege_engine_msg_type::RegionDestroySiegeEngineMsg;
+pub use region_exploration_info_op_type::RegionExplorationInfoOp;
+pub use region_exploration_info_table::*;
+pub use region_exploration_info_type::RegionExplorationInfo;
 pub use region_population_info_op_type::RegionPopulationInfoOp;
 pub use region_population_info_table::*;
 pub use region_population_info_type::RegionPopulationInfo;
@@ -3688,6 +3719,7 @@ pub use transfer_player_housing_msg_type::TransferPlayerHousingMsg;
 pub use transfer_player_msg_type::TransferPlayerMsg;
 pub use transfer_player_msg_v_2_type::TransferPlayerMsgV2;
 pub use transfer_player_msg_v_3_type::TransferPlayerMsgV3;
+pub use transfer_player_msg_v_4_type::TransferPlayerMsgV4;
 pub use translation_corrections_table::*;
 pub use translation_corrections_type::TranslationCorrections;
 pub use traveler_task_desc_table::*;
@@ -4011,6 +4043,10 @@ pub enum Reducer {
         title_id_cwl: i32,
         http_request_max_retries: i32,
     },
+    AdminUpdateRegionExplorationInfo {
+        region_id: u8,
+        counts_toward_achievements: bool,
+    },
     AdminUpdateReportModerationConfig {
         model: String,
         model_double_check: String,
@@ -4103,9 +4139,6 @@ pub enum Reducer {
     },
     EmpireDonateShards {
         request: EmpireDonateShardsRequest,
-    },
-    EmpireForm {
-        request: EmpireFormRequest,
     },
     EmpireLeave {
         request: EmpireLeaveRequest,
@@ -4294,6 +4327,9 @@ pub enum Reducer {
     ImportEmpireColorsDesc {
         records: Vec<EmpireColorDesc>,
     },
+    ImportEmpireIconDesc {
+        records: Vec<EmpireIconDesc>,
+    },
     ImportEmpireNotificationDesc {
         records: Vec<EmpireNotificationDesc>,
     },
@@ -4331,7 +4367,7 @@ pub enum Reducer {
         records: Vec<ExperienceState>,
     },
     ImportExplorationChunksState {
-        records: Vec<ExplorationChunksState>,
+        records: Vec<ExplorationChunksStateV2>,
     },
     ImportExtractionRecipeDesc {
         records: Vec<ExtractionRecipeDesc>,
@@ -4537,6 +4573,9 @@ pub enum Reducer {
     ImportRegionConnectionInfo {
         records: Vec<RegionConnectionInfo>,
     },
+    ImportRegionExplorationInfo {
+        records: Vec<RegionExplorationInfo>,
+    },
     ImportRegionSignInParameters {
         records: Vec<RegionSignInParameters>,
     },
@@ -4690,7 +4729,7 @@ pub enum Reducer {
     },
     ProcessInterModuleMessage {
         sender: u8,
-        message: InterModuleMessageV3,
+        message: InterModuleMessageV4,
     },
     PurchaseCharacterRename {
         premium_service_desc_id: i32,
@@ -5159,6 +5198,9 @@ impl __sdk::Reducer for Reducer {
             Reducer::AdminUpdateModerationEnforcementConfig { .. } => {
                 "admin_update_moderation_enforcement_config"
             }
+            Reducer::AdminUpdateRegionExplorationInfo { .. } => {
+                "admin_update_region_exploration_info"
+            }
             Reducer::AdminUpdateReportModerationConfig { .. } => {
                 "admin_update_report_moderation_config"
             }
@@ -5190,7 +5232,6 @@ impl __sdk::Reducer for Reducer {
             Reducer::EmpireDecayAgentLoop { .. } => "empire_decay_agent_loop",
             Reducer::EmpireDismantle { .. } => "empire_dismantle",
             Reducer::EmpireDonateShards { .. } => "empire_donate_shards",
-            Reducer::EmpireForm { .. } => "empire_form",
             Reducer::EmpireLeave { .. } => "empire_leave",
             Reducer::EmpireMarkForSiege { .. } => "empire_mark_for_siege",
             Reducer::EmpireMoveCapital { .. } => "empire_move_capital",
@@ -5259,6 +5300,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::ImportElevatorDesc { .. } => "import_elevator_desc",
             Reducer::ImportEmoteDesc { .. } => "import_emote_desc",
             Reducer::ImportEmpireColorsDesc { .. } => "import_empire_colors_desc",
+            Reducer::ImportEmpireIconDesc { .. } => "import_empire_icon_desc",
             Reducer::ImportEmpireNotificationDesc { .. } => "import_empire_notification_desc",
             Reducer::ImportEmpireRankDesc { .. } => "import_empire_rank_desc",
             Reducer::ImportEmpireSuppliesDesc { .. } => "import_empire_supplies_desc",
@@ -5352,6 +5394,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::ImportProgressiveActionState { .. } => "import_progressive_action_state",
             Reducer::ImportProjectSiteState { .. } => "import_project_site_state",
             Reducer::ImportRegionConnectionInfo { .. } => "import_region_connection_info",
+            Reducer::ImportRegionExplorationInfo { .. } => "import_region_exploration_info",
             Reducer::ImportRegionSignInParameters { .. } => "import_region_sign_in_parameters",
             Reducer::ImportRentState { .. } => "import_rent_state",
             Reducer::ImportResourceClumpDesc { .. } => "import_resource_clump_desc",
@@ -5606,6 +5649,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "admin_update_empire_ranks" => Ok(__sdk::parse_reducer_args::<admin_update_empire_ranks_reducer::AdminUpdateEmpireRanksArgs>("admin_update_empire_ranks", &value.args)?.into()),
             "admin_update_granted_hub_item_state" => Ok(__sdk::parse_reducer_args::<admin_update_granted_hub_item_state_reducer::AdminUpdateGrantedHubItemStateArgs>("admin_update_granted_hub_item_state", &value.args)?.into()),
             "admin_update_moderation_enforcement_config" => Ok(__sdk::parse_reducer_args::<admin_update_moderation_enforcement_config_reducer::AdminUpdateModerationEnforcementConfigArgs>("admin_update_moderation_enforcement_config", &value.args)?.into()),
+            "admin_update_region_exploration_info" => Ok(__sdk::parse_reducer_args::<admin_update_region_exploration_info_reducer::AdminUpdateRegionExplorationInfoArgs>("admin_update_region_exploration_info", &value.args)?.into()),
             "admin_update_report_moderation_config" => Ok(__sdk::parse_reducer_args::<admin_update_report_moderation_config_reducer::AdminUpdateReportModerationConfigArgs>("admin_update_report_moderation_config", &value.args)?.into()),
             "admin_update_sign_in_parameters" => Ok(__sdk::parse_reducer_args::<admin_update_sign_in_parameters_reducer::AdminUpdateSignInParametersArgs>("admin_update_sign_in_parameters", &value.args)?.into()),
             "authenticate" => Ok(__sdk::parse_reducer_args::<authenticate_reducer::AuthenticateArgs>("authenticate", &value.args)?.into()),
@@ -5633,7 +5677,6 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "empire_decay_agent_loop" => Ok(__sdk::parse_reducer_args::<empire_decay_agent_loop_reducer::EmpireDecayAgentLoopArgs>("empire_decay_agent_loop", &value.args)?.into()),
             "empire_dismantle" => Ok(__sdk::parse_reducer_args::<empire_dismantle_reducer::EmpireDismantleArgs>("empire_dismantle", &value.args)?.into()),
             "empire_donate_shards" => Ok(__sdk::parse_reducer_args::<empire_donate_shards_reducer::EmpireDonateShardsArgs>("empire_donate_shards", &value.args)?.into()),
-            "empire_form" => Ok(__sdk::parse_reducer_args::<empire_form_reducer::EmpireFormArgs>("empire_form", &value.args)?.into()),
             "empire_leave" => Ok(__sdk::parse_reducer_args::<empire_leave_reducer::EmpireLeaveArgs>("empire_leave", &value.args)?.into()),
             "empire_mark_for_siege" => Ok(__sdk::parse_reducer_args::<empire_mark_for_siege_reducer::EmpireMarkForSiegeArgs>("empire_mark_for_siege", &value.args)?.into()),
             "empire_move_capital" => Ok(__sdk::parse_reducer_args::<empire_move_capital_reducer::EmpireMoveCapitalArgs>("empire_move_capital", &value.args)?.into()),
@@ -5698,6 +5741,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "import_elevator_desc" => Ok(__sdk::parse_reducer_args::<import_elevator_desc_reducer::ImportElevatorDescArgs>("import_elevator_desc", &value.args)?.into()),
             "import_emote_desc" => Ok(__sdk::parse_reducer_args::<import_emote_desc_reducer::ImportEmoteDescArgs>("import_emote_desc", &value.args)?.into()),
             "import_empire_colors_desc" => Ok(__sdk::parse_reducer_args::<import_empire_colors_desc_reducer::ImportEmpireColorsDescArgs>("import_empire_colors_desc", &value.args)?.into()),
+            "import_empire_icon_desc" => Ok(__sdk::parse_reducer_args::<import_empire_icon_desc_reducer::ImportEmpireIconDescArgs>("import_empire_icon_desc", &value.args)?.into()),
             "import_empire_notification_desc" => Ok(__sdk::parse_reducer_args::<import_empire_notification_desc_reducer::ImportEmpireNotificationDescArgs>("import_empire_notification_desc", &value.args)?.into()),
             "import_empire_rank_desc" => Ok(__sdk::parse_reducer_args::<import_empire_rank_desc_reducer::ImportEmpireRankDescArgs>("import_empire_rank_desc", &value.args)?.into()),
             "import_empire_supplies_desc" => Ok(__sdk::parse_reducer_args::<import_empire_supplies_desc_reducer::ImportEmpireSuppliesDescArgs>("import_empire_supplies_desc", &value.args)?.into()),
@@ -5779,6 +5823,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "import_progressive_action_state" => Ok(__sdk::parse_reducer_args::<import_progressive_action_state_reducer::ImportProgressiveActionStateArgs>("import_progressive_action_state", &value.args)?.into()),
             "import_project_site_state" => Ok(__sdk::parse_reducer_args::<import_project_site_state_reducer::ImportProjectSiteStateArgs>("import_project_site_state", &value.args)?.into()),
             "import_region_connection_info" => Ok(__sdk::parse_reducer_args::<import_region_connection_info_reducer::ImportRegionConnectionInfoArgs>("import_region_connection_info", &value.args)?.into()),
+            "import_region_exploration_info" => Ok(__sdk::parse_reducer_args::<import_region_exploration_info_reducer::ImportRegionExplorationInfoArgs>("import_region_exploration_info", &value.args)?.into()),
             "import_region_sign_in_parameters" => Ok(__sdk::parse_reducer_args::<import_region_sign_in_parameters_reducer::ImportRegionSignInParametersArgs>("import_region_sign_in_parameters", &value.args)?.into()),
             "import_rent_state" => Ok(__sdk::parse_reducer_args::<import_rent_state_reducer::ImportRentStateArgs>("import_rent_state", &value.args)?.into()),
             "import_resource_clump_desc" => Ok(__sdk::parse_reducer_args::<import_resource_clump_desc_reducer::ImportResourceClumpDescArgs>("import_resource_clump_desc", &value.args)?.into()),
@@ -6094,6 +6139,7 @@ pub struct DbUpdate {
     equipment_state: __sdk::TableUpdate<EquipmentState>,
     experience_state: __sdk::TableUpdate<ExperienceState>,
     exploration_chunks_state: __sdk::TableUpdate<ExplorationChunksState>,
+    exploration_chunks_state_v_2: __sdk::TableUpdate<ExplorationChunksStateV2>,
     extract_outcome_state: __sdk::TableUpdate<ExtractOutcomeStateV2>,
     extract_outcome_state_v_1: __sdk::TableUpdate<ExtractOutcomeState>,
     extraction_recipe_desc: __sdk::TableUpdate<ExtractionRecipeDesc>,
@@ -6116,6 +6162,7 @@ pub struct DbUpdate {
     inter_module_message_errors: __sdk::TableUpdate<InterModuleMessageErrors>,
     inter_module_message_v_2: __sdk::TableUpdate<InterModuleMessageV2>,
     inter_module_message_v_3: __sdk::TableUpdate<InterModuleMessageV3>,
+    inter_module_message_v_4: __sdk::TableUpdate<InterModuleMessageV4>,
     inter_module_response_message_counter: __sdk::TableUpdate<InterModuleResponseMessageCounter>,
     interior_collapse_trigger_state: __sdk::TableUpdate<InteriorCollapseTriggerState>,
     interior_environment_desc: __sdk::TableUpdate<InteriorEnvironmentDesc>,
@@ -6244,6 +6291,7 @@ pub struct DbUpdate {
     quest_stage_desc: __sdk::TableUpdate<QuestStageDesc>,
     region_connection_info: __sdk::TableUpdate<RegionConnectionInfo>,
     region_control_info: __sdk::TableUpdate<RegionControlInfo>,
+    region_exploration_info: __sdk::TableUpdate<RegionExplorationInfo>,
     region_population_info: __sdk::TableUpdate<RegionPopulationInfo>,
     region_sign_in_parameters: __sdk::TableUpdate<RegionSignInParameters>,
     rent_state: __sdk::TableUpdate<RentState>,
@@ -6552,6 +6600,7 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "equipment_state" => db_update.equipment_state.append(equipment_state_table::parse_table_update(table_update)?),
     "experience_state" => db_update.experience_state.append(experience_state_table::parse_table_update(table_update)?),
     "exploration_chunks_state" => db_update.exploration_chunks_state.append(exploration_chunks_state_table::parse_table_update(table_update)?),
+    "exploration_chunks_state_v2" => db_update.exploration_chunks_state_v_2.append(exploration_chunks_state_v_2_table::parse_table_update(table_update)?),
     "extract_outcome_state" => db_update.extract_outcome_state.append(extract_outcome_state_table::parse_table_update(table_update)?),
     "extract_outcome_state_v1" => db_update.extract_outcome_state_v_1.append(extract_outcome_state_v_1_table::parse_table_update(table_update)?),
     "extraction_recipe_desc" => db_update.extraction_recipe_desc.append(extraction_recipe_desc_table::parse_table_update(table_update)?),
@@ -6574,6 +6623,7 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "inter_module_message_errors" => db_update.inter_module_message_errors.append(inter_module_message_errors_table::parse_table_update(table_update)?),
     "inter_module_message_v2" => db_update.inter_module_message_v_2.append(inter_module_message_v_2_table::parse_table_update(table_update)?),
     "inter_module_message_v3" => db_update.inter_module_message_v_3.append(inter_module_message_v_3_table::parse_table_update(table_update)?),
+    "inter_module_message_v4" => db_update.inter_module_message_v_4.append(inter_module_message_v_4_table::parse_table_update(table_update)?),
     "inter_module_response_message_counter" => db_update.inter_module_response_message_counter.append(inter_module_response_message_counter_table::parse_table_update(table_update)?),
     "interior_collapse_trigger_state" => db_update.interior_collapse_trigger_state.append(interior_collapse_trigger_state_table::parse_table_update(table_update)?),
     "interior_environment_desc" => db_update.interior_environment_desc.append(interior_environment_desc_table::parse_table_update(table_update)?),
@@ -6702,6 +6752,7 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "quest_stage_desc" => db_update.quest_stage_desc.append(quest_stage_desc_table::parse_table_update(table_update)?),
     "region_connection_info" => db_update.region_connection_info.append(region_connection_info_table::parse_table_update(table_update)?),
     "region_control_info" => db_update.region_control_info.append(region_control_info_table::parse_table_update(table_update)?),
+    "region_exploration_info" => db_update.region_exploration_info.append(region_exploration_info_table::parse_table_update(table_update)?),
     "region_population_info" => db_update.region_population_info.append(region_population_info_table::parse_table_update(table_update)?),
     "region_sign_in_parameters" => db_update.region_sign_in_parameters.append(region_sign_in_parameters_table::parse_table_update(table_update)?),
     "rent_state" => db_update.rent_state.append(rent_state_table::parse_table_update(table_update)?),
@@ -7475,6 +7526,12 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.exploration_chunks_state,
             )
             .with_updates_by_pk(|row| &row.entity_id);
+        diff.exploration_chunks_state_v_2 = cache
+            .apply_diff_to_table::<ExplorationChunksStateV2>(
+                "exploration_chunks_state_v2",
+                &self.exploration_chunks_state_v_2,
+            )
+            .with_updates_by_pk(|row| &row.entity_id);
         diff.extract_outcome_state = cache
             .apply_diff_to_table::<ExtractOutcomeStateV2>(
                 "extract_outcome_state",
@@ -7576,6 +7633,12 @@ impl __sdk::DbUpdate for DbUpdate {
             .apply_diff_to_table::<InterModuleMessageV3>(
                 "inter_module_message_v3",
                 &self.inter_module_message_v_3,
+            )
+            .with_updates_by_pk(|row| &row.id);
+        diff.inter_module_message_v_4 = cache
+            .apply_diff_to_table::<InterModuleMessageV4>(
+                "inter_module_message_v4",
+                &self.inter_module_message_v_4,
             )
             .with_updates_by_pk(|row| &row.id);
         diff.inter_module_response_message_counter = cache
@@ -8202,6 +8265,12 @@ impl __sdk::DbUpdate for DbUpdate {
             .apply_diff_to_table::<RegionControlInfo>(
                 "region_control_info",
                 &self.region_control_info,
+            )
+            .with_updates_by_pk(|row| &row.region_id);
+        diff.region_exploration_info = cache
+            .apply_diff_to_table::<RegionExplorationInfo>(
+                "region_exploration_info",
+                &self.region_exploration_info,
             )
             .with_updates_by_pk(|row| &row.region_id);
         diff.region_population_info = cache
@@ -9213,6 +9282,7 @@ pub struct AppliedDiff<'r> {
     equipment_state: __sdk::TableAppliedDiff<'r, EquipmentState>,
     experience_state: __sdk::TableAppliedDiff<'r, ExperienceState>,
     exploration_chunks_state: __sdk::TableAppliedDiff<'r, ExplorationChunksState>,
+    exploration_chunks_state_v_2: __sdk::TableAppliedDiff<'r, ExplorationChunksStateV2>,
     extract_outcome_state: __sdk::TableAppliedDiff<'r, ExtractOutcomeStateV2>,
     extract_outcome_state_v_1: __sdk::TableAppliedDiff<'r, ExtractOutcomeState>,
     extraction_recipe_desc: __sdk::TableAppliedDiff<'r, ExtractionRecipeDesc>,
@@ -9235,6 +9305,7 @@ pub struct AppliedDiff<'r> {
     inter_module_message_errors: __sdk::TableAppliedDiff<'r, InterModuleMessageErrors>,
     inter_module_message_v_2: __sdk::TableAppliedDiff<'r, InterModuleMessageV2>,
     inter_module_message_v_3: __sdk::TableAppliedDiff<'r, InterModuleMessageV3>,
+    inter_module_message_v_4: __sdk::TableAppliedDiff<'r, InterModuleMessageV4>,
     inter_module_response_message_counter:
         __sdk::TableAppliedDiff<'r, InterModuleResponseMessageCounter>,
     interior_collapse_trigger_state: __sdk::TableAppliedDiff<'r, InteriorCollapseTriggerState>,
@@ -9369,6 +9440,7 @@ pub struct AppliedDiff<'r> {
     quest_stage_desc: __sdk::TableAppliedDiff<'r, QuestStageDesc>,
     region_connection_info: __sdk::TableAppliedDiff<'r, RegionConnectionInfo>,
     region_control_info: __sdk::TableAppliedDiff<'r, RegionControlInfo>,
+    region_exploration_info: __sdk::TableAppliedDiff<'r, RegionExplorationInfo>,
     region_population_info: __sdk::TableAppliedDiff<'r, RegionPopulationInfo>,
     region_sign_in_parameters: __sdk::TableAppliedDiff<'r, RegionSignInParameters>,
     rent_state: __sdk::TableAppliedDiff<'r, RentState>,
@@ -10146,6 +10218,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             &self.exploration_chunks_state,
             event,
         );
+        callbacks.invoke_table_row_callbacks::<ExplorationChunksStateV2>(
+            "exploration_chunks_state_v2",
+            &self.exploration_chunks_state_v_2,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<ExtractOutcomeStateV2>(
             "extract_outcome_state",
             &self.extract_outcome_state,
@@ -10238,6 +10315,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<InterModuleMessageV3>(
             "inter_module_message_v3",
             &self.inter_module_message_v_3,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<InterModuleMessageV4>(
+            "inter_module_message_v4",
+            &self.inter_module_message_v_4,
             event,
         );
         callbacks.invoke_table_row_callbacks::<InterModuleResponseMessageCounter>(
@@ -10866,6 +10948,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<RegionControlInfo>(
             "region_control_info",
             &self.region_control_info,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<RegionExplorationInfo>(
+            "region_exploration_info",
+            &self.region_exploration_info,
             event,
         );
         callbacks.invoke_table_row_callbacks::<RegionPopulationInfo>(
@@ -12528,6 +12615,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         equipment_state_table::register_table(client_cache);
         experience_state_table::register_table(client_cache);
         exploration_chunks_state_table::register_table(client_cache);
+        exploration_chunks_state_v_2_table::register_table(client_cache);
         extract_outcome_state_table::register_table(client_cache);
         extract_outcome_state_v_1_table::register_table(client_cache);
         extraction_recipe_desc_table::register_table(client_cache);
@@ -12550,6 +12638,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         inter_module_message_errors_table::register_table(client_cache);
         inter_module_message_v_2_table::register_table(client_cache);
         inter_module_message_v_3_table::register_table(client_cache);
+        inter_module_message_v_4_table::register_table(client_cache);
         inter_module_response_message_counter_table::register_table(client_cache);
         interior_collapse_trigger_state_table::register_table(client_cache);
         interior_environment_desc_table::register_table(client_cache);
@@ -12678,6 +12767,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         quest_stage_desc_table::register_table(client_cache);
         region_connection_info_table::register_table(client_cache);
         region_control_info_table::register_table(client_cache);
+        region_exploration_info_table::register_table(client_cache);
         region_population_info_table::register_table(client_cache);
         region_sign_in_parameters_table::register_table(client_cache);
         rent_state_table::register_table(client_cache);

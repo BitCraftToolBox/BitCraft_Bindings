@@ -4,17 +4,16 @@
 #![allow(unused, clippy::all)]
 use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
+use super::region_exploration_info_type::RegionExplorationInfo;
+
 #[derive(__lib::ser::Serialize, __lib::de::Deserialize, Clone, PartialEq, Debug)]
 #[sats(crate = __lib)]
-pub struct EmpireFormRequest {
-    pub building_entity_id: u64,
-    pub empire_name: String,
-    pub icon_id: i32,
-    pub shape_id: i32,
-    pub color_1_id: i32,
-    pub color_2_id: i32,
+pub enum RegionExplorationInfoOp {
+    Insert(RegionExplorationInfo),
+
+    Delete(RegionExplorationInfo),
 }
 
-impl __sdk::InModule for EmpireFormRequest {
+impl __sdk::InModule for RegionExplorationInfoOp {
     type Module = super::RemoteModule;
 }
