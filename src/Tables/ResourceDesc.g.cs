@@ -62,6 +62,8 @@ namespace BitCraftRegion.Types
         public global::SpacetimeDB.Col<ResourceDesc, bool> NotRespawning { get; }
         public global::SpacetimeDB.Col<ResourceDesc, bool> ShowTimeLeft { get; }
         public global::SpacetimeDB.Col<ResourceDesc, float> OnDestroyYieldResourceChance { get; }
+        public global::SpacetimeDB.Col<ResourceDesc, int> OnDestroyYieldResourceMinRadius { get; }
+        public global::SpacetimeDB.Col<ResourceDesc, int> OnDestroyYieldResourceMaxRadius { get; }
 
         public ResourceDescCols(string tableName)
         {
@@ -87,6 +89,8 @@ namespace BitCraftRegion.Types
             NotRespawning = new global::SpacetimeDB.Col<ResourceDesc, bool>(tableName, "not_respawning");
             ShowTimeLeft = new global::SpacetimeDB.Col<ResourceDesc, bool>(tableName, "show_time_left");
             OnDestroyYieldResourceChance = new global::SpacetimeDB.Col<ResourceDesc, float>(tableName, "on_destroy_yield_resource_chance");
+            OnDestroyYieldResourceMinRadius = new global::SpacetimeDB.Col<ResourceDesc, int>(tableName, "on_destroy_yield_resource_min_radius");
+            OnDestroyYieldResourceMaxRadius = new global::SpacetimeDB.Col<ResourceDesc, int>(tableName, "on_destroy_yield_resource_max_radius");
         }
     }
 

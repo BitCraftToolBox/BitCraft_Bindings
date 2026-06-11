@@ -13,10 +13,10 @@ namespace BitCraftRegion.Types
 {
     public sealed partial class RemoteReducers : RemoteBase
     {
-        public delegate void ProcessInterModuleMessageHandler(ReducerEventContext ctx, byte sender, BitCraftRegion.Types.InterModuleMessageV3 message);
+        public delegate void ProcessInterModuleMessageHandler(ReducerEventContext ctx, byte sender, BitCraftRegion.Types.InterModuleMessageV4 message);
         public event ProcessInterModuleMessageHandler? OnProcessInterModuleMessage;
 
-        public void ProcessInterModuleMessage(byte sender, BitCraftRegion.Types.InterModuleMessageV3 message)
+        public void ProcessInterModuleMessage(byte sender, BitCraftRegion.Types.InterModuleMessageV4 message)
         {
             conn.InternalCallReducer(new Reducer.ProcessInterModuleMessage(sender, message), this.SetCallReducerFlags.ProcessInterModuleMessageFlags);
         }
@@ -53,11 +53,11 @@ namespace BitCraftRegion.Types
             [DataMember(Name = "sender")]
             public byte Sender;
             [DataMember(Name = "message")]
-            public InterModuleMessageV3 Message;
+            public InterModuleMessageV4 Message;
 
             public ProcessInterModuleMessage(
                 byte Sender,
-                InterModuleMessageV3 Message
+                InterModuleMessageV4 Message
             )
             {
                 this.Sender = Sender;

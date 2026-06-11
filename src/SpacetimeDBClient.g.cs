@@ -166,6 +166,7 @@ namespace BitCraftRegion.Types
             AddTable(EquipmentState = new(conn));
             AddTable(ExperienceState = new(conn));
             AddTable(ExplorationChunksState = new(conn));
+            AddTable(ExplorationChunksStateV2 = new(conn));
             AddTable(ExposedBreadcrumbs = new(conn));
             AddTable(ExtractOutcomeState = new(conn));
             AddTable(ExtractOutcomeStateV1 = new(conn));
@@ -189,6 +190,7 @@ namespace BitCraftRegion.Types
             AddTable(InterModuleMessageErrors = new(conn));
             AddTable(InterModuleMessageV2 = new(conn));
             AddTable(InterModuleMessageV3 = new(conn));
+            AddTable(InterModuleMessageV4 = new(conn));
             AddTable(InterModuleResponseMessageCounter = new(conn));
             AddTable(InteriorCollapseTriggerState = new(conn));
             AddTable(InteriorEnvironmentDesc = new(conn));
@@ -317,6 +319,7 @@ namespace BitCraftRegion.Types
             AddTable(QuestStageDesc = new(conn));
             AddTable(RegionConnectionInfo = new(conn));
             AddTable(RegionControlInfo = new(conn));
+            AddTable(RegionExplorationInfo = new(conn));
             AddTable(RegionModerationConfigState = new(conn));
             AddTable(RegionPopulationInfo = new(conn));
             AddTable(RegionPopuplationLoopTimer = new(conn));
@@ -460,6 +463,7 @@ namespace BitCraftRegion.Types
             AddTable(StarvingPlayerState = new(conn));
             AddTable(StorageLogCleanupLoopTimer = new(conn));
             AddTable(StorageLogState = new(conn));
+            AddTable(SytemChatBroadcastTimer = new(conn));
             AddTable(TargetState = new(conn));
             AddTable(TargetableState = new(conn));
             AddTable(TargetingMatrixDesc = new(conn));
@@ -1189,6 +1193,7 @@ namespace BitCraftRegion.Types
         public global::SpacetimeDB.Table<EquipmentState, EquipmentStateCols, EquipmentStateIxCols> EquipmentState() => new("equipment_state", new EquipmentStateCols("equipment_state"), new EquipmentStateIxCols("equipment_state"));
         public global::SpacetimeDB.Table<ExperienceState, ExperienceStateCols, ExperienceStateIxCols> ExperienceState() => new("experience_state", new ExperienceStateCols("experience_state"), new ExperienceStateIxCols("experience_state"));
         public global::SpacetimeDB.Table<ExplorationChunksState, ExplorationChunksStateCols, ExplorationChunksStateIxCols> ExplorationChunksState() => new("exploration_chunks_state", new ExplorationChunksStateCols("exploration_chunks_state"), new ExplorationChunksStateIxCols("exploration_chunks_state"));
+        public global::SpacetimeDB.Table<ExplorationChunksStateV2, ExplorationChunksStateV2Cols, ExplorationChunksStateV2IxCols> ExplorationChunksStateV2() => new("exploration_chunks_state_v2", new ExplorationChunksStateV2Cols("exploration_chunks_state_v2"), new ExplorationChunksStateV2IxCols("exploration_chunks_state_v2"));
         public global::SpacetimeDB.Table<CrumbTrailExposedState, ExposedBreadcrumbsCols, ExposedBreadcrumbsIxCols> ExposedBreadcrumbs() => new("exposed_breadcrumbs", new ExposedBreadcrumbsCols("exposed_breadcrumbs"), new ExposedBreadcrumbsIxCols("exposed_breadcrumbs"));
         public global::SpacetimeDB.Table<ExtractOutcomeStateV2, ExtractOutcomeStateCols, ExtractOutcomeStateIxCols> ExtractOutcomeState() => new("extract_outcome_state", new ExtractOutcomeStateCols("extract_outcome_state"), new ExtractOutcomeStateIxCols("extract_outcome_state"));
         public global::SpacetimeDB.Table<ExtractOutcomeState, ExtractOutcomeStateV1Cols, ExtractOutcomeStateV1IxCols> ExtractOutcomeStateV1() => new("extract_outcome_state_v1", new ExtractOutcomeStateV1Cols("extract_outcome_state_v1"), new ExtractOutcomeStateV1IxCols("extract_outcome_state_v1"));
@@ -1212,6 +1217,7 @@ namespace BitCraftRegion.Types
         public global::SpacetimeDB.Table<InterModuleMessageErrors, InterModuleMessageErrorsCols, InterModuleMessageErrorsIxCols> InterModuleMessageErrors() => new("inter_module_message_errors", new InterModuleMessageErrorsCols("inter_module_message_errors"), new InterModuleMessageErrorsIxCols("inter_module_message_errors"));
         public global::SpacetimeDB.Table<InterModuleMessageV2, InterModuleMessageV2Cols, InterModuleMessageV2IxCols> InterModuleMessageV2() => new("inter_module_message_v2", new InterModuleMessageV2Cols("inter_module_message_v2"), new InterModuleMessageV2IxCols("inter_module_message_v2"));
         public global::SpacetimeDB.Table<InterModuleMessageV3, InterModuleMessageV3Cols, InterModuleMessageV3IxCols> InterModuleMessageV3() => new("inter_module_message_v3", new InterModuleMessageV3Cols("inter_module_message_v3"), new InterModuleMessageV3IxCols("inter_module_message_v3"));
+        public global::SpacetimeDB.Table<InterModuleMessageV4, InterModuleMessageV4Cols, InterModuleMessageV4IxCols> InterModuleMessageV4() => new("inter_module_message_v4", new InterModuleMessageV4Cols("inter_module_message_v4"), new InterModuleMessageV4IxCols("inter_module_message_v4"));
         public global::SpacetimeDB.Table<InterModuleResponseMessageCounter, InterModuleResponseMessageCounterCols, InterModuleResponseMessageCounterIxCols> InterModuleResponseMessageCounter() => new("inter_module_response_message_counter", new InterModuleResponseMessageCounterCols("inter_module_response_message_counter"), new InterModuleResponseMessageCounterIxCols("inter_module_response_message_counter"));
         public global::SpacetimeDB.Table<InteriorCollapseTriggerState, InteriorCollapseTriggerStateCols, InteriorCollapseTriggerStateIxCols> InteriorCollapseTriggerState() => new("interior_collapse_trigger_state", new InteriorCollapseTriggerStateCols("interior_collapse_trigger_state"), new InteriorCollapseTriggerStateIxCols("interior_collapse_trigger_state"));
         public global::SpacetimeDB.Table<InteriorEnvironmentDesc, InteriorEnvironmentDescCols, InteriorEnvironmentDescIxCols> InteriorEnvironmentDesc() => new("interior_environment_desc", new InteriorEnvironmentDescCols("interior_environment_desc"), new InteriorEnvironmentDescIxCols("interior_environment_desc"));
@@ -1340,6 +1346,7 @@ namespace BitCraftRegion.Types
         public global::SpacetimeDB.Table<QuestStageDesc, QuestStageDescCols, QuestStageDescIxCols> QuestStageDesc() => new("quest_stage_desc", new QuestStageDescCols("quest_stage_desc"), new QuestStageDescIxCols("quest_stage_desc"));
         public global::SpacetimeDB.Table<RegionConnectionInfo, RegionConnectionInfoCols, RegionConnectionInfoIxCols> RegionConnectionInfo() => new("region_connection_info", new RegionConnectionInfoCols("region_connection_info"), new RegionConnectionInfoIxCols("region_connection_info"));
         public global::SpacetimeDB.Table<RegionControlInfo, RegionControlInfoCols, RegionControlInfoIxCols> RegionControlInfo() => new("region_control_info", new RegionControlInfoCols("region_control_info"), new RegionControlInfoIxCols("region_control_info"));
+        public global::SpacetimeDB.Table<RegionExplorationInfo, RegionExplorationInfoCols, RegionExplorationInfoIxCols> RegionExplorationInfo() => new("region_exploration_info", new RegionExplorationInfoCols("region_exploration_info"), new RegionExplorationInfoIxCols("region_exploration_info"));
         public global::SpacetimeDB.Table<RegionModerationConfigState, RegionModerationConfigStateCols, RegionModerationConfigStateIxCols> RegionModerationConfigState() => new("region_moderation_config_state", new RegionModerationConfigStateCols("region_moderation_config_state"), new RegionModerationConfigStateIxCols("region_moderation_config_state"));
         public global::SpacetimeDB.Table<RegionPopulationInfo, RegionPopulationInfoCols, RegionPopulationInfoIxCols> RegionPopulationInfo() => new("region_population_info", new RegionPopulationInfoCols("region_population_info"), new RegionPopulationInfoIxCols("region_population_info"));
         public global::SpacetimeDB.Table<RegionPopulationLoopTimer, RegionPopuplationLoopTimerCols, RegionPopuplationLoopTimerIxCols> RegionPopuplationLoopTimer() => new("region_popuplation_loop_timer", new RegionPopuplationLoopTimerCols("region_popuplation_loop_timer"), new RegionPopuplationLoopTimerIxCols("region_popuplation_loop_timer"));
@@ -1483,6 +1490,7 @@ namespace BitCraftRegion.Types
         public global::SpacetimeDB.Table<StarvingPlayerState, StarvingPlayerStateCols, StarvingPlayerStateIxCols> StarvingPlayerState() => new("starving_player_state", new StarvingPlayerStateCols("starving_player_state"), new StarvingPlayerStateIxCols("starving_player_state"));
         public global::SpacetimeDB.Table<StorageLogCleanupLoopTimer, StorageLogCleanupLoopTimerCols, StorageLogCleanupLoopTimerIxCols> StorageLogCleanupLoopTimer() => new("storage_log_cleanup_loop_timer", new StorageLogCleanupLoopTimerCols("storage_log_cleanup_loop_timer"), new StorageLogCleanupLoopTimerIxCols("storage_log_cleanup_loop_timer"));
         public global::SpacetimeDB.Table<ActionLogState, StorageLogStateCols, StorageLogStateIxCols> StorageLogState() => new("storage_log_state", new StorageLogStateCols("storage_log_state"), new StorageLogStateIxCols("storage_log_state"));
+        public global::SpacetimeDB.Table<SystemChatBroadcastTimer, SytemChatBroadcastTimerCols, SytemChatBroadcastTimerIxCols> SytemChatBroadcastTimer() => new("sytem_chat_broadcast_timer", new SytemChatBroadcastTimerCols("sytem_chat_broadcast_timer"), new SytemChatBroadcastTimerIxCols("sytem_chat_broadcast_timer"));
         public global::SpacetimeDB.Table<TargetState, TargetStateCols, TargetStateIxCols> TargetState() => new("target_state", new TargetStateCols("target_state"), new TargetStateIxCols("target_state"));
         public global::SpacetimeDB.Table<TargetableState, TargetableStateCols, TargetableStateIxCols> TargetableState() => new("targetable_state", new TargetableStateCols("targetable_state"), new TargetableStateIxCols("targetable_state"));
         public global::SpacetimeDB.Table<TargetingMatrixDesc, TargetingMatrixDescCols, TargetingMatrixDescIxCols> TargetingMatrixDesc() => new("targeting_matrix_desc", new TargetingMatrixDescCols("targeting_matrix_desc"), new TargetingMatrixDescIxCols("targeting_matrix_desc"));
@@ -2082,6 +2090,7 @@ namespace BitCraftRegion.Types
                 "migrate_auto_attacks" => BSATNHelpers.Decode<Reducer.MigrateAutoAttacks>(encodedArgs),
                 "migrate_character_stats" => BSATNHelpers.Decode<Reducer.MigrateCharacterStats>(encodedArgs),
                 "migrate_claim_tech" => BSATNHelpers.Decode<Reducer.MigrateClaimTech>(encodedArgs),
+                "migrate_exploration_achievement_counts" => BSATNHelpers.Decode<Reducer.MigrateExplorationAchievementCounts>(encodedArgs),
                 "migrate_grant_default_collectibles" => BSATNHelpers.Decode<Reducer.MigrateGrantDefaultCollectibles>(encodedArgs),
                 "migrate_onboarding" => BSATNHelpers.Decode<Reducer.MigrateOnboarding>(encodedArgs),
                 "migrate_player_settings" => BSATNHelpers.Decode<Reducer.MigratePlayerSettings>(encodedArgs),
@@ -2309,6 +2318,7 @@ namespace BitCraftRegion.Types
                 "stop_agents" => BSATNHelpers.Decode<Reducer.StopAgents>(encodedArgs),
                 "storage_log_cleanup_loop" => BSATNHelpers.Decode<Reducer.StorageLogCleanupLoop>(encodedArgs),
                 "synchronize_time" => BSATNHelpers.Decode<Reducer.SynchronizeTime>(encodedArgs),
+                "system_chat_broadcast_scheduled" => BSATNHelpers.Decode<Reducer.SystemChatBroadcastScheduled>(encodedArgs),
                 "target_update" => BSATNHelpers.Decode<Reducer.TargetUpdate>(encodedArgs),
                 "teleportation_energy_regen_agent_loop" => BSATNHelpers.Decode<Reducer.TeleportationEnergyRegenAgentLoop>(encodedArgs),
                 "terraform" => BSATNHelpers.Decode<Reducer.Terraform>(encodedArgs),
@@ -2850,6 +2860,7 @@ namespace BitCraftRegion.Types
                 Reducer.MigrateAutoAttacks args => Reducers.InvokeMigrateAutoAttacks(eventContext, args),
                 Reducer.MigrateCharacterStats args => Reducers.InvokeMigrateCharacterStats(eventContext, args),
                 Reducer.MigrateClaimTech args => Reducers.InvokeMigrateClaimTech(eventContext, args),
+                Reducer.MigrateExplorationAchievementCounts args => Reducers.InvokeMigrateExplorationAchievementCounts(eventContext, args),
                 Reducer.MigrateGrantDefaultCollectibles args => Reducers.InvokeMigrateGrantDefaultCollectibles(eventContext, args),
                 Reducer.MigrateOnboarding args => Reducers.InvokeMigrateOnboarding(eventContext, args),
                 Reducer.MigratePlayerSettings args => Reducers.InvokeMigratePlayerSettings(eventContext, args),
@@ -3077,6 +3088,7 @@ namespace BitCraftRegion.Types
                 Reducer.StopAgents args => Reducers.InvokeStopAgents(eventContext, args),
                 Reducer.StorageLogCleanupLoop args => Reducers.InvokeStorageLogCleanupLoop(eventContext, args),
                 Reducer.SynchronizeTime args => Reducers.InvokeSynchronizeTime(eventContext, args),
+                Reducer.SystemChatBroadcastScheduled args => Reducers.InvokeSystemChatBroadcastScheduled(eventContext, args),
                 Reducer.TargetUpdate args => Reducers.InvokeTargetUpdate(eventContext, args),
                 Reducer.TeleportationEnergyRegenAgentLoop args => Reducers.InvokeTeleportationEnergyRegenAgentLoop(eventContext, args),
                 Reducer.Terraform args => Reducers.InvokeTerraform(eventContext, args),

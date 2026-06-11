@@ -54,5 +54,6 @@ namespace BitCraftRegion.Types
         SpiderDungeonSpiderNest,
         EnragedAlphaJakyl,
         DeerSwift,
+        CrystalizedHexiteCrab,
     }
 }
