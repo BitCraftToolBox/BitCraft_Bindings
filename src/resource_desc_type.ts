@@ -59,6 +59,8 @@ export type ResourceDesc = {
   notRespawning: boolean,
   showTimeLeft: boolean,
   onDestroyYieldResourceChance: number,
+  onDestroyYieldResourceMinRadius: number,
+  onDestroyYieldResourceMaxRadius: number,
 };
 
 /**
@@ -93,6 +95,8 @@ export namespace ResourceDesc {
       new ProductTypeElement("notRespawning", AlgebraicType.createBoolType()),
       new ProductTypeElement("showTimeLeft", AlgebraicType.createBoolType()),
       new ProductTypeElement("onDestroyYieldResourceChance", AlgebraicType.createF32Type()),
+      new ProductTypeElement("onDestroyYieldResourceMinRadius", AlgebraicType.createI32Type()),
+      new ProductTypeElement("onDestroyYieldResourceMaxRadius", AlgebraicType.createI32Type()),
     ]);
   }
 

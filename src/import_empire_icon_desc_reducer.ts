@@ -33,32 +33,32 @@ import {
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
 
-import { EmpireFormRequest as __EmpireFormRequest } from "./empire_form_request_type";
+import { EmpireIconDesc as __EmpireIconDesc } from "./empire_icon_desc_type";
 
-export type EmpireForm = {
-  request: __EmpireFormRequest,
+export type ImportEmpireIconDesc = {
+  records: __EmpireIconDesc[],
 };
 
 /**
  * A namespace for generated helper functions.
  */
-export namespace EmpireForm {
+export namespace ImportEmpireIconDesc {
   /**
   * A function which returns this type represented as an AlgebraicType.
   * This function is derived from the AlgebraicType used to generate this type.
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("request", __EmpireFormRequest.getTypeScriptAlgebraicType()),
+      new ProductTypeElement("records", AlgebraicType.createArrayType(__EmpireIconDesc.getTypeScriptAlgebraicType())),
     ]);
   }
 
-  export function serialize(writer: BinaryWriter, value: EmpireForm): void {
-    EmpireForm.getTypeScriptAlgebraicType().serialize(writer, value);
+  export function serialize(writer: BinaryWriter, value: ImportEmpireIconDesc): void {
+    ImportEmpireIconDesc.getTypeScriptAlgebraicType().serialize(writer, value);
   }
 
-  export function deserialize(reader: BinaryReader): EmpireForm {
-    return EmpireForm.getTypeScriptAlgebraicType().deserialize(reader);
+  export function deserialize(reader: BinaryReader): ImportEmpireIconDesc {
+    return ImportEmpireIconDesc.getTypeScriptAlgebraicType().deserialize(reader);
   }
 
 }

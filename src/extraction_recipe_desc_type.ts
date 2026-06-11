@@ -38,6 +38,7 @@ import { InputItemStack as __InputItemStack } from "./input_item_stack_type";
 import { ExperienceStackF32 as __ExperienceStackF32 } from "./experience_stack_f_32_type";
 import { ProbabilisticItemStack as __ProbabilisticItemStack } from "./probabilistic_item_stack_type";
 import { EmpirePermission as __EmpirePermission } from "./empire_permission_type";
+import { ExtractionSpawnedPlaceable as __ExtractionSpawnedPlaceable } from "./extraction_spawned_placeable_type";
 
 export type ExtractionRecipeDesc = {
   id: number,
@@ -62,6 +63,7 @@ export type ExtractionRecipeDesc = {
   empireRankRequirement: number | undefined,
   showInProgression: boolean,
   empirePermissionRequired: __EmpirePermission | undefined,
+  spawnedPlaceables: __ExtractionSpawnedPlaceable[] | undefined,
 };
 
 /**
@@ -96,6 +98,7 @@ export namespace ExtractionRecipeDesc {
       new ProductTypeElement("empireRankRequirement", AlgebraicType.createOptionType(AlgebraicType.createI32Type())),
       new ProductTypeElement("showInProgression", AlgebraicType.createBoolType()),
       new ProductTypeElement("empirePermissionRequired", AlgebraicType.createOptionType(__EmpirePermission.getTypeScriptAlgebraicType())),
+      new ProductTypeElement("spawnedPlaceables", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__ExtractionSpawnedPlaceable.getTypeScriptAlgebraicType()))),
     ]);
   }
 

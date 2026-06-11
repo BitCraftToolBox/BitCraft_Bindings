@@ -33,10 +33,10 @@ import {
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
 
-import { ExplorationChunksState as __ExplorationChunksState } from "./exploration_chunks_state_type";
+import { ExplorationChunksStateV2 as __ExplorationChunksStateV2 } from "./exploration_chunks_state_v_2_type";
 
 export type ImportExplorationChunksState = {
-  records: __ExplorationChunksState[],
+  records: __ExplorationChunksStateV2[],
 };
 
 /**
@@ -49,7 +49,7 @@ export namespace ImportExplorationChunksState {
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("records", AlgebraicType.createArrayType(__ExplorationChunksState.getTypeScriptAlgebraicType())),
+      new ProductTypeElement("records", AlgebraicType.createArrayType(__ExplorationChunksStateV2.getTypeScriptAlgebraicType())),
     ]);
   }
 

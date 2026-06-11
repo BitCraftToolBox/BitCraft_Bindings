@@ -52,6 +52,10 @@ export namespace Biome {
   export type Cave = { tag: "Cave" };
   export type Jungle = { tag: "Jungle" };
   export type Sapwoods = { tag: "Sapwoods" };
+  export type DesertedBeach = { tag: "DesertedBeach" };
+  export type TropicalCanopy = { tag: "TropicalCanopy" };
+  export type VolcanicCrag = { tag: "VolcanicCrag" };
+  export type UnchartedOcean = { tag: "UnchartedOcean" };
 
   // Helper functions for constructing each variant of the tagged union.
   // ```
@@ -74,6 +78,10 @@ export namespace Biome {
   export const Cave = { tag: "Cave" };
   export const Jungle = { tag: "Jungle" };
   export const Sapwoods = { tag: "Sapwoods" };
+  export const DesertedBeach = { tag: "DesertedBeach" };
+  export const TropicalCanopy = { tag: "TropicalCanopy" };
+  export const VolcanicCrag = { tag: "VolcanicCrag" };
+  export const UnchartedOcean = { tag: "UnchartedOcean" };
 
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createSumType([
@@ -92,6 +100,10 @@ export namespace Biome {
       new SumTypeVariant("Cave", AlgebraicType.createProductType([])),
       new SumTypeVariant("Jungle", AlgebraicType.createProductType([])),
       new SumTypeVariant("Sapwoods", AlgebraicType.createProductType([])),
+      new SumTypeVariant("DesertedBeach", AlgebraicType.createProductType([])),
+      new SumTypeVariant("TropicalCanopy", AlgebraicType.createProductType([])),
+      new SumTypeVariant("VolcanicCrag", AlgebraicType.createProductType([])),
+      new SumTypeVariant("UnchartedOcean", AlgebraicType.createProductType([])),
     ]);
   }
 
@@ -106,7 +118,7 @@ export namespace Biome {
 }
 
 // The tagged union or sum type for the algebraic type `Biome`.
-export type Biome = Biome.Dev | Biome.CalmForest | Biome.PineWoods | Biome.SnowyPeaks | Biome.BreezyPlains | Biome.AutumnForest | Biome.Tundra | Biome.Desert | Biome.Swamp | Biome.Canyon | Biome.Ocean | Biome.SafeMeadows | Biome.Cave | Biome.Jungle | Biome.Sapwoods;
+export type Biome = Biome.Dev | Biome.CalmForest | Biome.PineWoods | Biome.SnowyPeaks | Biome.BreezyPlains | Biome.AutumnForest | Biome.Tundra | Biome.Desert | Biome.Swamp | Biome.Canyon | Biome.Ocean | Biome.SafeMeadows | Biome.Cave | Biome.Jungle | Biome.Sapwoods | Biome.DesertedBeach | Biome.TropicalCanopy | Biome.VolcanicCrag | Biome.UnchartedOcean;
 
 export default Biome;
 

@@ -32,40 +32,36 @@ import {
   type ReducerEventContextInterface,
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
-export type EmpireFormRequest = {
-  buildingEntityId: bigint,
-  empireName: string,
-  iconId: number,
-  shapeId: number,
-  color1Id: number,
-  color2Id: number,
+export type ExplorationChunksStateV2 = {
+  entityId: bigint,
+  bitmap: bigint[],
+  exploredChunksCount: number,
+  achievementExploredChunksCount: number,
 };
 
 /**
  * A namespace for generated helper functions.
  */
-export namespace EmpireFormRequest {
+export namespace ExplorationChunksStateV2 {
   /**
   * A function which returns this type represented as an AlgebraicType.
   * This function is derived from the AlgebraicType used to generate this type.
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("buildingEntityId", AlgebraicType.createU64Type()),
-      new ProductTypeElement("empireName", AlgebraicType.createStringType()),
-      new ProductTypeElement("iconId", AlgebraicType.createI32Type()),
-      new ProductTypeElement("shapeId", AlgebraicType.createI32Type()),
-      new ProductTypeElement("color1Id", AlgebraicType.createI32Type()),
-      new ProductTypeElement("color2Id", AlgebraicType.createI32Type()),
+      new ProductTypeElement("entityId", AlgebraicType.createU64Type()),
+      new ProductTypeElement("bitmap", AlgebraicType.createArrayType(AlgebraicType.createU64Type())),
+      new ProductTypeElement("exploredChunksCount", AlgebraicType.createI32Type()),
+      new ProductTypeElement("achievementExploredChunksCount", AlgebraicType.createI32Type()),
     ]);
   }
 
-  export function serialize(writer: BinaryWriter, value: EmpireFormRequest): void {
-    EmpireFormRequest.getTypeScriptAlgebraicType().serialize(writer, value);
+  export function serialize(writer: BinaryWriter, value: ExplorationChunksStateV2): void {
+    ExplorationChunksStateV2.getTypeScriptAlgebraicType().serialize(writer, value);
   }
 
-  export function deserialize(reader: BinaryReader): EmpireFormRequest {
-    return EmpireFormRequest.getTypeScriptAlgebraicType().deserialize(reader);
+  export function deserialize(reader: BinaryReader): ExplorationChunksStateV2 {
+    return ExplorationChunksStateV2.getTypeScriptAlgebraicType().deserialize(reader);
   }
 
 }
