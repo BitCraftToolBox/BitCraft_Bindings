@@ -1018,6 +1018,8 @@ import { MigrateCharacterStats } from "./migrate_character_stats_reducer.ts";
 export { MigrateCharacterStats };
 import { MigrateClaimTech } from "./migrate_claim_tech_reducer.ts";
 export { MigrateClaimTech };
+import { MigrateExplorationAchievementCounts } from "./migrate_exploration_achievement_counts_reducer.ts";
+export { MigrateExplorationAchievementCounts };
 import { MigrateGrantDefaultCollectibles } from "./migrate_grant_default_collectibles_reducer.ts";
 export { MigrateGrantDefaultCollectibles };
 import { MigrateOnboarding } from "./migrate_onboarding_reducer.ts";
@@ -1472,6 +1474,8 @@ import { StorageLogCleanupLoop } from "./storage_log_cleanup_loop_reducer.ts";
 export { StorageLogCleanupLoop };
 import { SynchronizeTime } from "./synchronize_time_reducer.ts";
 export { SynchronizeTime };
+import { SystemChatBroadcastScheduled } from "./system_chat_broadcast_scheduled_reducer.ts";
+export { SystemChatBroadcastScheduled };
 import { TargetUpdate } from "./target_update_reducer.ts";
 export { TargetUpdate };
 import { TeleportationEnergyRegenAgentLoop } from "./teleportation_energy_regen_agent_loop_reducer.ts";
@@ -1796,6 +1800,8 @@ import { ExperienceStateTableHandle } from "./experience_state_table.ts";
 export { ExperienceStateTableHandle };
 import { ExplorationChunksStateTableHandle } from "./exploration_chunks_state_table.ts";
 export { ExplorationChunksStateTableHandle };
+import { ExplorationChunksStateV2TableHandle } from "./exploration_chunks_state_v_2_table.ts";
+export { ExplorationChunksStateV2TableHandle };
 import { ExtractOutcomeStateTableHandle } from "./extract_outcome_state_table.ts";
 export { ExtractOutcomeStateTableHandle };
 import { ExtractOutcomeStateV1TableHandle } from "./extract_outcome_state_v_1_table.ts";
@@ -1840,6 +1846,8 @@ import { InterModuleMessageV2TableHandle } from "./inter_module_message_v_2_tabl
 export { InterModuleMessageV2TableHandle };
 import { InterModuleMessageV3TableHandle } from "./inter_module_message_v_3_table.ts";
 export { InterModuleMessageV3TableHandle };
+import { InterModuleMessageV4TableHandle } from "./inter_module_message_v_4_table.ts";
+export { InterModuleMessageV4TableHandle };
 import { InterModuleResponseMessageCounterTableHandle } from "./inter_module_response_message_counter_table.ts";
 export { InterModuleResponseMessageCounterTableHandle };
 import { InteriorCollapseTriggerStateTableHandle } from "./interior_collapse_trigger_state_table.ts";
@@ -2094,6 +2102,8 @@ import { RegionConnectionInfoTableHandle } from "./region_connection_info_table.
 export { RegionConnectionInfoTableHandle };
 import { RegionControlInfoTableHandle } from "./region_control_info_table.ts";
 export { RegionControlInfoTableHandle };
+import { RegionExplorationInfoTableHandle } from "./region_exploration_info_table.ts";
+export { RegionExplorationInfoTableHandle };
 import { RegionModerationConfigStateTableHandle } from "./region_moderation_config_state_table.ts";
 export { RegionModerationConfigStateTableHandle };
 import { RegionPopulationInfoTableHandle } from "./region_population_info_table.ts";
@@ -2380,6 +2390,8 @@ import { StorageLogCleanupLoopTimerTableHandle } from "./storage_log_cleanup_loo
 export { StorageLogCleanupLoopTimerTableHandle };
 import { StorageLogStateTableHandle } from "./storage_log_state_table.ts";
 export { StorageLogStateTableHandle };
+import { SytemChatBroadcastTimerTableHandle } from "./sytem_chat_broadcast_timer_table.ts";
+export { SytemChatBroadcastTimerTableHandle };
 import { TargetStateTableHandle } from "./target_state_table.ts";
 export { TargetStateTableHandle };
 import { TargetableStateTableHandle } from "./targetable_state_table.ts";
@@ -2948,12 +2960,16 @@ import { ExperienceState } from "./experience_state_type.ts";
 export { ExperienceState };
 import { ExplorationChunksState } from "./exploration_chunks_state_type.ts";
 export { ExplorationChunksState };
+import { ExplorationChunksStateV2 } from "./exploration_chunks_state_v_2_type.ts";
+export { ExplorationChunksStateV2 };
 import { ExtractOutcomeState } from "./extract_outcome_state_type.ts";
 export { ExtractOutcomeState };
 import { ExtractOutcomeStateV2 } from "./extract_outcome_state_v_2_type.ts";
 export { ExtractOutcomeStateV2 };
 import { ExtractionRecipeDesc } from "./extraction_recipe_desc_type.ts";
 export { ExtractionRecipeDesc };
+import { ExtractionSpawnedPlaceable } from "./extraction_spawned_placeable_type.ts";
+export { ExtractionSpawnedPlaceable };
 import { FloatHexTileMessage } from "./float_hex_tile_message_type.ts";
 export { FloatHexTileMessage };
 import { FoodDesc } from "./food_desc_type.ts";
@@ -3014,10 +3030,14 @@ import { InterModuleMessageV2 } from "./inter_module_message_v_2_type.ts";
 export { InterModuleMessageV2 };
 import { InterModuleMessageV3 } from "./inter_module_message_v_3_type.ts";
 export { InterModuleMessageV3 };
+import { InterModuleMessageV4 } from "./inter_module_message_v_4_type.ts";
+export { InterModuleMessageV4 };
 import { InterModuleResponseMessageCounter } from "./inter_module_response_message_counter_type.ts";
 export { InterModuleResponseMessageCounter };
 import { InterModuleTableUpdates } from "./inter_module_table_updates_type.ts";
 export { InterModuleTableUpdates };
+import { InterModuleTableUpdatesV2 } from "./inter_module_table_updates_v_2_type.ts";
+export { InterModuleTableUpdatesV2 };
 import { InteriorCollapseTriggerState } from "./interior_collapse_trigger_state_type.ts";
 export { InteriorCollapseTriggerState };
 import { InteriorEnvironmentDesc } from "./interior_environment_desc_type.ts";
@@ -3144,6 +3164,8 @@ import { MessageContentsV2 } from "./message_contents_v_2_type.ts";
 export { MessageContentsV2 };
 import { MessageContentsV3 } from "./message_contents_v_3_type.ts";
 export { MessageContentsV3 };
+import { MessageContentsV4 } from "./message_contents_v_4_type.ts";
+export { MessageContentsV4 };
 import { MigrationAchievementsParams } from "./migration_achievements_params_type.ts";
 export { MigrationAchievementsParams };
 import { MigrationBuildingDescParams } from "./migration_building_desc_params_type.ts";
@@ -3576,6 +3598,10 @@ import { RegionControlInfoOp } from "./region_control_info_op_type.ts";
 export { RegionControlInfoOp };
 import { RegionDestroySiegeEngineMsg } from "./region_destroy_siege_engine_msg_type.ts";
 export { RegionDestroySiegeEngineMsg };
+import { RegionExplorationInfo } from "./region_exploration_info_type.ts";
+export { RegionExplorationInfo };
+import { RegionExplorationInfoOp } from "./region_exploration_info_op_type.ts";
+export { RegionExplorationInfoOp };
 import { RegionModerationConfigState } from "./region_moderation_config_state_type.ts";
 export { RegionModerationConfigState };
 import { RegionPopulationInfo } from "./region_population_info_type.ts";
@@ -3700,6 +3726,8 @@ import { StorageLogCleanupLoopTimer } from "./storage_log_cleanup_loop_timer_typ
 export { StorageLogCleanupLoopTimer };
 import { SurfaceType } from "./surface_type_type.ts";
 export { SurfaceType };
+import { SystemChatBroadcastTimer } from "./system_chat_broadcast_timer_type.ts";
+export { SystemChatBroadcastTimer };
 import { TargetState } from "./target_state_type.ts";
 export { TargetState };
 import { TargetUpdateRequest } from "./target_update_request_type.ts";
@@ -3758,6 +3786,8 @@ import { TransferPlayerMsgV2 } from "./transfer_player_msg_v_2_type.ts";
 export { TransferPlayerMsgV2 };
 import { TransferPlayerMsgV3 } from "./transfer_player_msg_v_3_type.ts";
 export { TransferPlayerMsgV3 };
+import { TransferPlayerMsgV4 } from "./transfer_player_msg_v_4_type.ts";
+export { TransferPlayerMsgV4 };
 import { TransferPlayerTimer } from "./transfer_player_timer_type.ts";
 export { TransferPlayerTimer };
 import { TravelerTaskDesc } from "./traveler_task_desc_type.ts";
@@ -5077,6 +5107,15 @@ export const REMOTE_MODULE = {
         colType: ExplorationChunksState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    exploration_chunks_state_v2: {
+      tableName: "exploration_chunks_state_v2",
+      rowType: ExplorationChunksStateV2.getTypeScriptAlgebraicType(),
+      primaryKey: "entityId",
+      primaryKeyInfo: {
+        colName: "entityId",
+        colType: ExplorationChunksStateV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     extract_outcome_state: {
       tableName: "extract_outcome_state",
       rowType: ExtractOutcomeStateV2.getTypeScriptAlgebraicType(),
@@ -5268,6 +5307,15 @@ export const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "id",
         colType: InterModuleMessageV3.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    inter_module_message_v4: {
+      tableName: "inter_module_message_v4",
+      rowType: InterModuleMessageV4.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: InterModuleMessageV4.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     inter_module_response_message_counter: {
@@ -6376,6 +6424,15 @@ export const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "regionId",
         colType: RegionControlInfo.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    region_exploration_info: {
+      tableName: "region_exploration_info",
+      rowType: RegionExplorationInfo.getTypeScriptAlgebraicType(),
+      primaryKey: "regionId",
+      primaryKeyInfo: {
+        colName: "regionId",
+        colType: RegionExplorationInfo.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     region_moderation_config_state: {
@@ -7648,6 +7705,15 @@ export const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "id",
         colType: ActionLogState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    sytem_chat_broadcast_timer: {
+      tableName: "sytem_chat_broadcast_timer",
+      rowType: SystemChatBroadcastTimer.getTypeScriptAlgebraicType(),
+      primaryKey: "scheduledId",
+      primaryKeyInfo: {
+        colName: "scheduledId",
+        colType: SystemChatBroadcastTimer.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     target_state: {
@@ -9980,6 +10046,10 @@ export const REMOTE_MODULE = {
       reducerName: "migrate_claim_tech",
       argsType: MigrateClaimTech.getTypeScriptAlgebraicType(),
     },
+    migrate_exploration_achievement_counts: {
+      reducerName: "migrate_exploration_achievement_counts",
+      argsType: MigrateExplorationAchievementCounts.getTypeScriptAlgebraicType(),
+    },
     migrate_grant_default_collectibles: {
       reducerName: "migrate_grant_default_collectibles",
       argsType: MigrateGrantDefaultCollectibles.getTypeScriptAlgebraicType(),
@@ -10888,6 +10958,10 @@ export const REMOTE_MODULE = {
       reducerName: "synchronize_time",
       argsType: SynchronizeTime.getTypeScriptAlgebraicType(),
     },
+    system_chat_broadcast_scheduled: {
+      reducerName: "system_chat_broadcast_scheduled",
+      argsType: SystemChatBroadcastScheduled.getTypeScriptAlgebraicType(),
+    },
     target_update: {
       reducerName: "target_update",
       argsType: TargetUpdate.getTypeScriptAlgebraicType(),
@@ -11506,6 +11580,7 @@ export type Reducer = never
 | { name: "MigrateAutoAttacks", args: MigrateAutoAttacks }
 | { name: "MigrateCharacterStats", args: MigrateCharacterStats }
 | { name: "MigrateClaimTech", args: MigrateClaimTech }
+| { name: "MigrateExplorationAchievementCounts", args: MigrateExplorationAchievementCounts }
 | { name: "MigrateGrantDefaultCollectibles", args: MigrateGrantDefaultCollectibles }
 | { name: "MigrateOnboarding", args: MigrateOnboarding }
 | { name: "MigratePlayerSettings", args: MigratePlayerSettings }
@@ -11733,6 +11808,7 @@ export type Reducer = never
 | { name: "StopAgents", args: StopAgents }
 | { name: "StorageLogCleanupLoop", args: StorageLogCleanupLoop }
 | { name: "SynchronizeTime", args: SynchronizeTime }
+| { name: "SystemChatBroadcastScheduled", args: SystemChatBroadcastScheduled }
 | { name: "TargetUpdate", args: TargetUpdate }
 | { name: "TeleportationEnergyRegenAgentLoop", args: TeleportationEnergyRegenAgentLoop }
 | { name: "Terraform", args: Terraform }
@@ -17198,7 +17274,7 @@ export class RemoteReducers {
     this.connection.offReducer("import_experience_state", callback);
   }
 
-  importExplorationChunksState(records: ExplorationChunksState[]) {
+  importExplorationChunksState(records: ExplorationChunksStateV2[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
     ImportExplorationChunksState.getTypeScriptAlgebraicType().serialize(__writer, __args);
@@ -17206,11 +17282,11 @@ export class RemoteReducers {
     this.connection.callReducer("import_exploration_chunks_state", __argsBuffer, this.setCallReducerFlags.importExplorationChunksStateFlags);
   }
 
-  onImportExplorationChunksState(callback: (ctx: ReducerEventContext, records: ExplorationChunksState[]) => void) {
+  onImportExplorationChunksState(callback: (ctx: ReducerEventContext, records: ExplorationChunksStateV2[]) => void) {
     this.connection.onReducer("import_exploration_chunks_state", callback);
   }
 
-  removeOnImportExplorationChunksState(callback: (ctx: ReducerEventContext, records: ExplorationChunksState[]) => void) {
+  removeOnImportExplorationChunksState(callback: (ctx: ReducerEventContext, records: ExplorationChunksStateV2[]) => void) {
     this.connection.offReducer("import_exploration_chunks_state", callback);
   }
 
@@ -19482,6 +19558,18 @@ export class RemoteReducers {
     this.connection.offReducer("migrate_claim_tech", callback);
   }
 
+  migrateExplorationAchievementCounts() {
+    this.connection.callReducer("migrate_exploration_achievement_counts", new Uint8Array(0), this.setCallReducerFlags.migrateExplorationAchievementCountsFlags);
+  }
+
+  onMigrateExplorationAchievementCounts(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.onReducer("migrate_exploration_achievement_counts", callback);
+  }
+
+  removeOnMigrateExplorationAchievementCounts(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.offReducer("migrate_exploration_achievement_counts", callback);
+  }
+
   migrateGrantDefaultCollectibles() {
     this.connection.callReducer("migrate_grant_default_collectibles", new Uint8Array(0), this.setCallReducerFlags.migrateGrantDefaultCollectiblesFlags);
   }
@@ -20574,7 +20662,7 @@ export class RemoteReducers {
     this.connection.offReducer("portal_enter", callback);
   }
 
-  processInterModuleMessage(sender: number, message: InterModuleMessageV3) {
+  processInterModuleMessage(sender: number, message: InterModuleMessageV4) {
     const __args = { sender, message };
     let __writer = new BinaryWriter(1024);
     ProcessInterModuleMessage.getTypeScriptAlgebraicType().serialize(__writer, __args);
@@ -20582,11 +20670,11 @@ export class RemoteReducers {
     this.connection.callReducer("process_inter_module_message", __argsBuffer, this.setCallReducerFlags.processInterModuleMessageFlags);
   }
 
-  onProcessInterModuleMessage(callback: (ctx: ReducerEventContext, sender: number, message: InterModuleMessageV3) => void) {
+  onProcessInterModuleMessage(callback: (ctx: ReducerEventContext, sender: number, message: InterModuleMessageV4) => void) {
     this.connection.onReducer("process_inter_module_message", callback);
   }
 
-  removeOnProcessInterModuleMessage(callback: (ctx: ReducerEventContext, sender: number, message: InterModuleMessageV3) => void) {
+  removeOnProcessInterModuleMessage(callback: (ctx: ReducerEventContext, sender: number, message: InterModuleMessageV4) => void) {
     this.connection.offReducer("process_inter_module_message", callback);
   }
 
@@ -23056,6 +23144,22 @@ export class RemoteReducers {
 
   removeOnSynchronizeTime(callback: (ctx: ReducerEventContext, clientTime: number) => void) {
     this.connection.offReducer("synchronize_time", callback);
+  }
+
+  systemChatBroadcastScheduled(timer: SystemChatBroadcastTimer) {
+    const __args = { timer };
+    let __writer = new BinaryWriter(1024);
+    SystemChatBroadcastScheduled.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("system_chat_broadcast_scheduled", __argsBuffer, this.setCallReducerFlags.systemChatBroadcastScheduledFlags);
+  }
+
+  onSystemChatBroadcastScheduled(callback: (ctx: ReducerEventContext, timer: SystemChatBroadcastTimer) => void) {
+    this.connection.onReducer("system_chat_broadcast_scheduled", callback);
+  }
+
+  removeOnSystemChatBroadcastScheduled(callback: (ctx: ReducerEventContext, timer: SystemChatBroadcastTimer) => void) {
+    this.connection.offReducer("system_chat_broadcast_scheduled", callback);
   }
 
   targetUpdate(request: TargetUpdateRequest) {
@@ -25891,6 +25995,11 @@ export class SetReducerFlags {
     this.migrateClaimTechFlags = flags;
   }
 
+  migrateExplorationAchievementCountsFlags: CallReducerFlags = 'FullUpdate';
+  migrateExplorationAchievementCounts(flags: CallReducerFlags) {
+    this.migrateExplorationAchievementCountsFlags = flags;
+  }
+
   migrateGrantDefaultCollectiblesFlags: CallReducerFlags = 'FullUpdate';
   migrateGrantDefaultCollectibles(flags: CallReducerFlags) {
     this.migrateGrantDefaultCollectiblesFlags = flags;
@@ -27026,6 +27135,11 @@ export class SetReducerFlags {
     this.synchronizeTimeFlags = flags;
   }
 
+  systemChatBroadcastScheduledFlags: CallReducerFlags = 'FullUpdate';
+  systemChatBroadcastScheduled(flags: CallReducerFlags) {
+    this.systemChatBroadcastScheduledFlags = flags;
+  }
+
   targetUpdateFlags: CallReducerFlags = 'FullUpdate';
   targetUpdate(flags: CallReducerFlags) {
     this.targetUpdateFlags = flags;
@@ -27699,6 +27813,10 @@ export class RemoteTables {
     return new ExplorationChunksStateTableHandle(this.connection.clientCache.getOrCreateTable<ExplorationChunksState>(REMOTE_MODULE.tables.exploration_chunks_state));
   }
 
+  get explorationChunksStateV2(): ExplorationChunksStateV2TableHandle {
+    return new ExplorationChunksStateV2TableHandle(this.connection.clientCache.getOrCreateTable<ExplorationChunksStateV2>(REMOTE_MODULE.tables.exploration_chunks_state_v2));
+  }
+
   get extractOutcomeState(): ExtractOutcomeStateTableHandle {
     return new ExtractOutcomeStateTableHandle(this.connection.clientCache.getOrCreateTable<ExtractOutcomeStateV2>(REMOTE_MODULE.tables.extract_outcome_state));
   }
@@ -27785,6 +27903,10 @@ export class RemoteTables {
 
   get interModuleMessageV3(): InterModuleMessageV3TableHandle {
     return new InterModuleMessageV3TableHandle(this.connection.clientCache.getOrCreateTable<InterModuleMessageV3>(REMOTE_MODULE.tables.inter_module_message_v3));
+  }
+
+  get interModuleMessageV4(): InterModuleMessageV4TableHandle {
+    return new InterModuleMessageV4TableHandle(this.connection.clientCache.getOrCreateTable<InterModuleMessageV4>(REMOTE_MODULE.tables.inter_module_message_v4));
   }
 
   get interModuleResponseMessageCounter(): InterModuleResponseMessageCounterTableHandle {
@@ -28293,6 +28415,10 @@ export class RemoteTables {
 
   get regionControlInfo(): RegionControlInfoTableHandle {
     return new RegionControlInfoTableHandle(this.connection.clientCache.getOrCreateTable<RegionControlInfo>(REMOTE_MODULE.tables.region_control_info));
+  }
+
+  get regionExplorationInfo(): RegionExplorationInfoTableHandle {
+    return new RegionExplorationInfoTableHandle(this.connection.clientCache.getOrCreateTable<RegionExplorationInfo>(REMOTE_MODULE.tables.region_exploration_info));
   }
 
   get regionModerationConfigState(): RegionModerationConfigStateTableHandle {
@@ -28865,6 +28991,10 @@ export class RemoteTables {
 
   get storageLogState(): StorageLogStateTableHandle {
     return new StorageLogStateTableHandle(this.connection.clientCache.getOrCreateTable<ActionLogState>(REMOTE_MODULE.tables.storage_log_state));
+  }
+
+  get sytemChatBroadcastTimer(): SytemChatBroadcastTimerTableHandle {
+    return new SytemChatBroadcastTimerTableHandle(this.connection.clientCache.getOrCreateTable<SystemChatBroadcastTimer>(REMOTE_MODULE.tables.sytem_chat_broadcast_timer));
   }
 
   get targetState(): TargetStateTableHandle {

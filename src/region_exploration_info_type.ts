@@ -32,36 +32,34 @@ import {
   type ReducerEventContextInterface,
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
-
-import { InterModuleMessageV4 as __InterModuleMessageV4 } from "./inter_module_message_v_4_type";
-
-export type ProcessInterModuleMessage = {
-  sender: number,
-  message: __InterModuleMessageV4,
+export type RegionExplorationInfo = {
+  regionId: number,
+  countsTowardAchievements: boolean,
 };
 
 /**
  * A namespace for generated helper functions.
  */
-export namespace ProcessInterModuleMessage {
+export namespace RegionExplorationInfo {
   /**
   * A function which returns this type represented as an AlgebraicType.
   * This function is derived from the AlgebraicType used to generate this type.
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("sender", AlgebraicType.createU8Type()),
-      new ProductTypeElement("message", __InterModuleMessageV4.getTypeScriptAlgebraicType()),
+      new ProductTypeElement("regionId", AlgebraicType.createU8Type()),
+      new ProductTypeElement("countsTowardAchievements", AlgebraicType.createBoolType()),
     ]);
   }
 
-  export function serialize(writer: BinaryWriter, value: ProcessInterModuleMessage): void {
-    ProcessInterModuleMessage.getTypeScriptAlgebraicType().serialize(writer, value);
+  export function serialize(writer: BinaryWriter, value: RegionExplorationInfo): void {
+    RegionExplorationInfo.getTypeScriptAlgebraicType().serialize(writer, value);
   }
 
-  export function deserialize(reader: BinaryReader): ProcessInterModuleMessage {
-    return ProcessInterModuleMessage.getTypeScriptAlgebraicType().deserialize(reader);
+  export function deserialize(reader: BinaryReader): RegionExplorationInfo {
+    return RegionExplorationInfo.getTypeScriptAlgebraicType().deserialize(reader);
   }
 
 }
+
 
