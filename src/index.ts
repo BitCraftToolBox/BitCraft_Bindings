@@ -196,6 +196,8 @@ import { AdminUpdateLoreKnowledge } from "./admin_update_lore_knowledge_reducer.
 export { AdminUpdateLoreKnowledge };
 import { AdminUpdateRegionModerationConfig } from "./admin_update_region_moderation_config_reducer.ts";
 export { AdminUpdateRegionModerationConfig };
+import { AdminUpdateResourceLightSourceStates } from "./admin_update_resource_light_source_states_reducer.ts";
+export { AdminUpdateResourceLightSourceStates };
 import { AdvanceQuestStage } from "./advance_quest_stage_reducer.ts";
 export { AdvanceQuestStage };
 import { Attack } from "./attack_reducer.ts";
@@ -8402,6 +8404,10 @@ export const REMOTE_MODULE = {
       reducerName: "admin_update_region_moderation_config",
       argsType: AdminUpdateRegionModerationConfig.getTypeScriptAlgebraicType(),
     },
+    admin_update_resource_light_source_states: {
+      reducerName: "admin_update_resource_light_source_states",
+      argsType: AdminUpdateResourceLightSourceStates.getTypeScriptAlgebraicType(),
+    },
     advance_quest_stage: {
       reducerName: "advance_quest_stage",
       argsType: AdvanceQuestStage.getTypeScriptAlgebraicType(),
@@ -11169,6 +11175,7 @@ export type Reducer = never
 | { name: "AdminUpdateLightSourceStates", args: AdminUpdateLightSourceStates }
 | { name: "AdminUpdateLoreKnowledge", args: AdminUpdateLoreKnowledge }
 | { name: "AdminUpdateRegionModerationConfig", args: AdminUpdateRegionModerationConfig }
+| { name: "AdminUpdateResourceLightSourceStates", args: AdminUpdateResourceLightSourceStates }
 | { name: "AdvanceQuestStage", args: AdvanceQuestStage }
 | { name: "Attack", args: Attack }
 | { name: "AttackImpact", args: AttackImpact }
@@ -13060,6 +13067,18 @@ export class RemoteReducers {
 
   removeOnAdminUpdateRegionModerationConfig(callback: (ctx: ReducerEventContext, maxMessagesPerTimePeriod: number, rateLimitWindowSec: number, newAccountMinPlaytimeSec: number) => void) {
     this.connection.offReducer("admin_update_region_moderation_config", callback);
+  }
+
+  adminUpdateResourceLightSourceStates() {
+    this.connection.callReducer("admin_update_resource_light_source_states", new Uint8Array(0), this.setCallReducerFlags.adminUpdateResourceLightSourceStatesFlags);
+  }
+
+  onAdminUpdateResourceLightSourceStates(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.onReducer("admin_update_resource_light_source_states", callback);
+  }
+
+  removeOnAdminUpdateResourceLightSourceStates(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.offReducer("admin_update_resource_light_source_states", callback);
   }
 
   advanceQuestStage(chainId: number) {
@@ -23948,6 +23967,11 @@ export class SetReducerFlags {
   adminUpdateRegionModerationConfigFlags: CallReducerFlags = 'FullUpdate';
   adminUpdateRegionModerationConfig(flags: CallReducerFlags) {
     this.adminUpdateRegionModerationConfigFlags = flags;
+  }
+
+  adminUpdateResourceLightSourceStatesFlags: CallReducerFlags = 'FullUpdate';
+  adminUpdateResourceLightSourceStates(flags: CallReducerFlags) {
+    this.adminUpdateResourceLightSourceStatesFlags = flags;
   }
 
   advanceQuestStageFlags: CallReducerFlags = 'FullUpdate';

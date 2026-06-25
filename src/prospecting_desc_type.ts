@@ -65,6 +65,7 @@ export type ProspectingDesc = {
   iconAssetPath: string,
   experiencePerNode: __ExperienceStackF32,
   pctNodesForMaxContribution: number,
+  singleContributionOnly: boolean,
 };
 
 /**
@@ -106,6 +107,7 @@ export namespace ProspectingDesc {
       new ProductTypeElement("iconAssetPath", AlgebraicType.createStringType()),
       new ProductTypeElement("experiencePerNode", __ExperienceStackF32.getTypeScriptAlgebraicType()),
       new ProductTypeElement("pctNodesForMaxContribution", AlgebraicType.createF32Type()),
+      new ProductTypeElement("singleContributionOnly", AlgebraicType.createBoolType()),
     ]);
   }
 
