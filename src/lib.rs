@@ -119,6 +119,7 @@ pub mod admin_update_housing_portals_reducer;
 pub mod admin_update_light_source_states_reducer;
 pub mod admin_update_lore_knowledge_reducer;
 pub mod admin_update_region_moderation_config_reducer;
+pub mod admin_update_resource_light_source_states_reducer;
 pub mod advance_quest_stage_reducer;
 pub mod ai_debug_state_type;
 pub mod alert_desc_table;
@@ -2289,6 +2290,11 @@ pub use admin_update_lore_knowledge_reducer::{
 pub use admin_update_region_moderation_config_reducer::{
     admin_update_region_moderation_config, set_flags_for_admin_update_region_moderation_config,
     AdminUpdateRegionModerationConfigCallbackId,
+};
+pub use admin_update_resource_light_source_states_reducer::{
+    admin_update_resource_light_source_states,
+    set_flags_for_admin_update_resource_light_source_states,
+    AdminUpdateResourceLightSourceStatesCallbackId,
 };
 pub use advance_quest_stage_reducer::{
     advance_quest_stage, set_flags_for_advance_quest_stage, AdvanceQuestStageCallbackId,
@@ -5942,6 +5948,7 @@ pub enum Reducer {
         rate_limit_window_sec: i32,
         new_account_min_playtime_sec: i32,
     },
+    AdminUpdateResourceLightSourceStates,
     AdvanceQuestStage {
         chain_id: i32,
     },
@@ -8062,6 +8069,9 @@ impl __sdk::Reducer for Reducer {
             Reducer::AdminUpdateRegionModerationConfig { .. } => {
                 "admin_update_region_moderation_config"
             }
+            Reducer::AdminUpdateResourceLightSourceStates => {
+                "admin_update_resource_light_source_states"
+            }
             Reducer::AdvanceQuestStage { .. } => "advance_quest_stage",
             Reducer::Attack { .. } => "attack",
             Reducer::AttackImpact { .. } => "attack_impact",
@@ -8877,6 +8887,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "admin_update_light_source_states" => Ok(__sdk::parse_reducer_args::<admin_update_light_source_states_reducer::AdminUpdateLightSourceStatesArgs>("admin_update_light_source_states", &value.args)?.into()),
             "admin_update_lore_knowledge" => Ok(__sdk::parse_reducer_args::<admin_update_lore_knowledge_reducer::AdminUpdateLoreKnowledgeArgs>("admin_update_lore_knowledge", &value.args)?.into()),
             "admin_update_region_moderation_config" => Ok(__sdk::parse_reducer_args::<admin_update_region_moderation_config_reducer::AdminUpdateRegionModerationConfigArgs>("admin_update_region_moderation_config", &value.args)?.into()),
+            "admin_update_resource_light_source_states" => Ok(__sdk::parse_reducer_args::<admin_update_resource_light_source_states_reducer::AdminUpdateResourceLightSourceStatesArgs>("admin_update_resource_light_source_states", &value.args)?.into()),
             "advance_quest_stage" => Ok(__sdk::parse_reducer_args::<advance_quest_stage_reducer::AdvanceQuestStageArgs>("advance_quest_stage", &value.args)?.into()),
             "attack" => Ok(__sdk::parse_reducer_args::<attack_reducer::AttackArgs>("attack", &value.args)?.into()),
             "attack_impact" => Ok(__sdk::parse_reducer_args::<attack_impact_reducer::AttackImpactArgs>("attack_impact", &value.args)?.into()),
