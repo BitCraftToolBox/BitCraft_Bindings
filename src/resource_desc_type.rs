@@ -35,6 +35,7 @@ pub struct ResourceDesc {
     pub on_destroy_yield_resource_chance: f32,
     pub on_destroy_yield_resource_min_radius: i32,
     pub on_destroy_yield_resource_max_radius: i32,
+    pub light_radius: i32,
 }
 
 impl __sdk::InModule for ResourceDesc {
@@ -69,6 +70,7 @@ pub struct ResourceDescCols {
     pub on_destroy_yield_resource_chance: __sdk::__query_builder::Col<ResourceDesc, f32>,
     pub on_destroy_yield_resource_min_radius: __sdk::__query_builder::Col<ResourceDesc, i32>,
     pub on_destroy_yield_resource_max_radius: __sdk::__query_builder::Col<ResourceDesc, i32>,
+    pub light_radius: __sdk::__query_builder::Col<ResourceDesc, i32>,
 }
 
 impl __sdk::__query_builder::HasCols for ResourceDesc {
@@ -114,6 +116,7 @@ impl __sdk::__query_builder::HasCols for ResourceDesc {
                 table_name,
                 "on_destroy_yield_resource_max_radius",
             ),
+            light_radius: __sdk::__query_builder::Col::new(table_name, "light_radius"),
         }
     }
 }
