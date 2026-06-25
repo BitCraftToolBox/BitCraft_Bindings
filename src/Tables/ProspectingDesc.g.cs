@@ -69,6 +69,7 @@ namespace BitCraftRegion.Types
         public global::SpacetimeDB.Col<ProspectingDesc, string> IconAssetPath { get; }
         public global::SpacetimeDB.Col<ProspectingDesc, ExperienceStackF32> ExperiencePerNode { get; }
         public global::SpacetimeDB.Col<ProspectingDesc, float> PctNodesForMaxContribution { get; }
+        public global::SpacetimeDB.Col<ProspectingDesc, bool> SingleContributionOnly { get; }
 
         public ProspectingDescCols(string tableName)
         {
@@ -101,6 +102,7 @@ namespace BitCraftRegion.Types
             IconAssetPath = new global::SpacetimeDB.Col<ProspectingDesc, string>(tableName, "icon_asset_path");
             ExperiencePerNode = new global::SpacetimeDB.Col<ProspectingDesc, ExperienceStackF32>(tableName, "experience_per_node");
             PctNodesForMaxContribution = new global::SpacetimeDB.Col<ProspectingDesc, float>(tableName, "pct_nodes_for_max_contribution");
+            SingleContributionOnly = new global::SpacetimeDB.Col<ProspectingDesc, bool>(tableName, "single_contribution_only");
         }
     }
 

@@ -62,6 +62,8 @@ namespace BitCraftRegion.Types
         public int OnDestroyYieldResourceMinRadius;
         [DataMember(Name = "on_destroy_yield_resource_max_radius")]
         public int OnDestroyYieldResourceMaxRadius;
+        [DataMember(Name = "light_radius")]
+        public int LightRadius;
 
         public ResourceDesc(
             int Id,
@@ -87,7 +89,8 @@ namespace BitCraftRegion.Types
             bool ShowTimeLeft,
             float OnDestroyYieldResourceChance,
             int OnDestroyYieldResourceMinRadius,
-            int OnDestroyYieldResourceMaxRadius
+            int OnDestroyYieldResourceMaxRadius,
+            int LightRadius
         )
         {
             this.Id = Id;
@@ -114,6 +117,7 @@ namespace BitCraftRegion.Types
             this.OnDestroyYieldResourceChance = OnDestroyYieldResourceChance;
             this.OnDestroyYieldResourceMinRadius = OnDestroyYieldResourceMinRadius;
             this.OnDestroyYieldResourceMaxRadius = OnDestroyYieldResourceMaxRadius;
+            this.LightRadius = LightRadius;
         }
 
         public ResourceDesc()
