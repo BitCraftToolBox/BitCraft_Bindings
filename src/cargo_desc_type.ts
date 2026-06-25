@@ -58,6 +58,8 @@ export type CargoDesc = {
   tag: string,
   rarity: __Rarity,
   notPickupable: boolean,
+  cannotStoreInBuildings: boolean,
+  cannotStoreInDeployables: boolean,
 };
 
 /**
@@ -93,6 +95,8 @@ export namespace CargoDesc {
       new ProductTypeElement("tag", AlgebraicType.createStringType()),
       new ProductTypeElement("rarity", __Rarity.getTypeScriptAlgebraicType()),
       new ProductTypeElement("notPickupable", AlgebraicType.createBoolType()),
+      new ProductTypeElement("cannotStoreInBuildings", AlgebraicType.createBoolType()),
+      new ProductTypeElement("cannotStoreInDeployables", AlgebraicType.createBoolType()),
     ]);
   }
 

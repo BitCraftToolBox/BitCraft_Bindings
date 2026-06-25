@@ -61,6 +61,7 @@ export type ResourceDesc = {
   onDestroyYieldResourceChance: number,
   onDestroyYieldResourceMinRadius: number,
   onDestroyYieldResourceMaxRadius: number,
+  lightRadius: number,
 };
 
 /**
@@ -97,6 +98,7 @@ export namespace ResourceDesc {
       new ProductTypeElement("onDestroyYieldResourceChance", AlgebraicType.createF32Type()),
       new ProductTypeElement("onDestroyYieldResourceMinRadius", AlgebraicType.createI32Type()),
       new ProductTypeElement("onDestroyYieldResourceMaxRadius", AlgebraicType.createI32Type()),
+      new ProductTypeElement("lightRadius", AlgebraicType.createI32Type()),
     ]);
   }
 
