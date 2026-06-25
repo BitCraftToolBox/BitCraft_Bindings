@@ -64,6 +64,7 @@ namespace BitCraftGlobal.Types
         public global::SpacetimeDB.Col<ResourceDesc, float> OnDestroyYieldResourceChance { get; }
         public global::SpacetimeDB.Col<ResourceDesc, int> OnDestroyYieldResourceMinRadius { get; }
         public global::SpacetimeDB.Col<ResourceDesc, int> OnDestroyYieldResourceMaxRadius { get; }
+        public global::SpacetimeDB.Col<ResourceDesc, int> LightRadius { get; }
 
         public ResourceDescCols(string tableName)
         {
@@ -91,6 +92,7 @@ namespace BitCraftGlobal.Types
             OnDestroyYieldResourceChance = new global::SpacetimeDB.Col<ResourceDesc, float>(tableName, "on_destroy_yield_resource_chance");
             OnDestroyYieldResourceMinRadius = new global::SpacetimeDB.Col<ResourceDesc, int>(tableName, "on_destroy_yield_resource_min_radius");
             OnDestroyYieldResourceMaxRadius = new global::SpacetimeDB.Col<ResourceDesc, int>(tableName, "on_destroy_yield_resource_max_radius");
+            LightRadius = new global::SpacetimeDB.Col<ResourceDesc, int>(tableName, "light_radius");
         }
     }
 

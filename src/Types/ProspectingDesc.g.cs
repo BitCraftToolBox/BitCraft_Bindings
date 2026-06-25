@@ -72,6 +72,8 @@ namespace BitCraftGlobal.Types
         public ExperienceStackF32 ExperiencePerNode;
         [DataMember(Name = "pct_nodes_for_max_contribution")]
         public float PctNodesForMaxContribution;
+        [DataMember(Name = "single_contribution_only")]
+        public bool SingleContributionOnly;
 
         public ProspectingDesc(
             int Id,
@@ -102,7 +104,8 @@ namespace BitCraftGlobal.Types
             string ResourceUncoveredBySomeoneElseMessage,
             string IconAssetPath,
             ExperienceStackF32 ExperiencePerNode,
-            float PctNodesForMaxContribution
+            float PctNodesForMaxContribution,
+            bool SingleContributionOnly
         )
         {
             this.Id = Id;
@@ -134,6 +137,7 @@ namespace BitCraftGlobal.Types
             this.IconAssetPath = IconAssetPath;
             this.ExperiencePerNode = ExperiencePerNode;
             this.PctNodesForMaxContribution = PctNodesForMaxContribution;
+            this.SingleContributionOnly = SingleContributionOnly;
         }
 
         public ProspectingDesc()
