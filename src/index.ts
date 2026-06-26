@@ -136,6 +136,8 @@ import { AdminModifyChatMessage } from "./admin_modify_chat_message_reducer.ts";
 export { AdminModifyChatMessage };
 import { AdminPatchHousingCosts } from "./admin_patch_housing_costs_reducer.ts";
 export { AdminPatchHousingCosts };
+import { AdminRemoveCollectible } from "./admin_remove_collectible_reducer.ts";
+export { AdminRemoveCollectible };
 import { AdminRenameBuilding } from "./admin_rename_building_reducer.ts";
 export { AdminRenameBuilding };
 import { AdminRenameBuildingCoord } from "./admin_rename_building_coord_reducer.ts";
@@ -8284,6 +8286,10 @@ export const REMOTE_MODULE = {
       reducerName: "admin_patch_housing_costs",
       argsType: AdminPatchHousingCosts.getTypeScriptAlgebraicType(),
     },
+    admin_remove_collectible: {
+      reducerName: "admin_remove_collectible",
+      argsType: AdminRemoveCollectible.getTypeScriptAlgebraicType(),
+    },
     admin_rename_building: {
       reducerName: "admin_rename_building",
       argsType: AdminRenameBuilding.getTypeScriptAlgebraicType(),
@@ -11145,6 +11151,7 @@ export type Reducer = never
 | { name: "AdminMigrateTradeOrders", args: AdminMigrateTradeOrders }
 | { name: "AdminModifyChatMessage", args: AdminModifyChatMessage }
 | { name: "AdminPatchHousingCosts", args: AdminPatchHousingCosts }
+| { name: "AdminRemoveCollectible", args: AdminRemoveCollectible }
 | { name: "AdminRenameBuilding", args: AdminRenameBuilding }
 | { name: "AdminRenameBuildingCoord", args: AdminRenameBuildingCoord }
 | { name: "AdminRenameBuildingEntity", args: AdminRenameBuildingEntity }
@@ -12615,6 +12622,22 @@ export class RemoteReducers {
 
   removeOnAdminPatchHousingCosts(callback: (ctx: ReducerEventContext) => void) {
     this.connection.offReducer("admin_patch_housing_costs", callback);
+  }
+
+  adminRemoveCollectible(identity: string, collectibleId: number, quantity: number) {
+    const __args = { identity, collectibleId, quantity };
+    let __writer = new BinaryWriter(1024);
+    AdminRemoveCollectible.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("admin_remove_collectible", __argsBuffer, this.setCallReducerFlags.adminRemoveCollectibleFlags);
+  }
+
+  onAdminRemoveCollectible(callback: (ctx: ReducerEventContext, identity: string, collectibleId: number, quantity: number) => void) {
+    this.connection.onReducer("admin_remove_collectible", callback);
+  }
+
+  removeOnAdminRemoveCollectible(callback: (ctx: ReducerEventContext, identity: string, collectibleId: number, quantity: number) => void) {
+    this.connection.offReducer("admin_remove_collectible", callback);
   }
 
   adminRenameBuilding(buildingName: string, newName: string) {
@@ -23817,6 +23840,11 @@ export class SetReducerFlags {
   adminPatchHousingCostsFlags: CallReducerFlags = 'FullUpdate';
   adminPatchHousingCosts(flags: CallReducerFlags) {
     this.adminPatchHousingCostsFlags = flags;
+  }
+
+  adminRemoveCollectibleFlags: CallReducerFlags = 'FullUpdate';
+  adminRemoveCollectible(flags: CallReducerFlags) {
+    this.adminRemoveCollectibleFlags = flags;
   }
 
   adminRenameBuildingFlags: CallReducerFlags = 'FullUpdate';
