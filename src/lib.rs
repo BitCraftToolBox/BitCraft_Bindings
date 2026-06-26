@@ -87,6 +87,7 @@ pub mod admin_migrate_deployable_state_v_2_reducer;
 pub mod admin_migrate_trade_orders_reducer;
 pub mod admin_modify_chat_message_reducer;
 pub mod admin_patch_housing_costs_reducer;
+pub mod admin_remove_collectible_reducer;
 pub mod admin_rename_building_coord_reducer;
 pub mod admin_rename_building_entity_reducer;
 pub mod admin_rename_building_reducer;
@@ -2175,6 +2176,10 @@ pub use admin_modify_chat_message_reducer::{
 pub use admin_patch_housing_costs_reducer::{
     admin_patch_housing_costs, set_flags_for_admin_patch_housing_costs,
     AdminPatchHousingCostsCallbackId,
+};
+pub use admin_remove_collectible_reducer::{
+    admin_remove_collectible, set_flags_for_admin_remove_collectible,
+    AdminRemoveCollectibleCallbackId,
 };
 pub use admin_rename_building_coord_reducer::{
     admin_rename_building_coord, set_flags_for_admin_rename_building_coord,
@@ -5849,6 +5854,11 @@ pub enum Reducer {
         new_message_text: String,
     },
     AdminPatchHousingCosts,
+    AdminRemoveCollectible {
+        identity: String,
+        collectible_id: i32,
+        quantity: u32,
+    },
     AdminRenameBuilding {
         building_name: String,
         new_name: String,
@@ -8035,6 +8045,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::AdminMigrateTradeOrders => "admin_migrate_trade_orders",
             Reducer::AdminModifyChatMessage { .. } => "admin_modify_chat_message",
             Reducer::AdminPatchHousingCosts => "admin_patch_housing_costs",
+            Reducer::AdminRemoveCollectible { .. } => "admin_remove_collectible",
             Reducer::AdminRenameBuilding { .. } => "admin_rename_building",
             Reducer::AdminRenameBuildingCoord { .. } => "admin_rename_building_coord",
             Reducer::AdminRenameBuildingEntity { .. } => "admin_rename_building_entity",
@@ -8857,6 +8868,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "admin_migrate_trade_orders" => Ok(__sdk::parse_reducer_args::<admin_migrate_trade_orders_reducer::AdminMigrateTradeOrdersArgs>("admin_migrate_trade_orders", &value.args)?.into()),
             "admin_modify_chat_message" => Ok(__sdk::parse_reducer_args::<admin_modify_chat_message_reducer::AdminModifyChatMessageArgs>("admin_modify_chat_message", &value.args)?.into()),
             "admin_patch_housing_costs" => Ok(__sdk::parse_reducer_args::<admin_patch_housing_costs_reducer::AdminPatchHousingCostsArgs>("admin_patch_housing_costs", &value.args)?.into()),
+            "admin_remove_collectible" => Ok(__sdk::parse_reducer_args::<admin_remove_collectible_reducer::AdminRemoveCollectibleArgs>("admin_remove_collectible", &value.args)?.into()),
             "admin_rename_building" => Ok(__sdk::parse_reducer_args::<admin_rename_building_reducer::AdminRenameBuildingArgs>("admin_rename_building", &value.args)?.into()),
             "admin_rename_building_coord" => Ok(__sdk::parse_reducer_args::<admin_rename_building_coord_reducer::AdminRenameBuildingCoordArgs>("admin_rename_building_coord", &value.args)?.into()),
             "admin_rename_building_entity" => Ok(__sdk::parse_reducer_args::<admin_rename_building_entity_reducer::AdminRenameBuildingEntityArgs>("admin_rename_building_entity", &value.args)?.into()),
