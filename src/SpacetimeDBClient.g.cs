@@ -54,6 +54,7 @@ namespace BitCraftGlobal.Types
             AddTable(BuildingClaimDesc = new(conn));
             AddTable(BuildingDesc = new(conn));
             AddTable(BuildingFunctionTypeMappingDesc = new(conn));
+            AddTable(BuildingMapIconDesc = new(conn));
             AddTable(BuildingNicknameState = new(conn));
             AddTable(BuildingPortalDesc = new(conn));
             AddTable(BuildingRepairsDesc = new(conn));
@@ -343,6 +344,7 @@ namespace BitCraftGlobal.Types
             AddTable(StagedBuildingBuffDesc = new(conn));
             AddTable(StagedBuildingClaimDesc = new(conn));
             AddTable(StagedBuildingDesc = new(conn));
+            AddTable(StagedBuildingMapIconDesc = new(conn));
             AddTable(StagedBuildingPortalDesc = new(conn));
             AddTable(StagedBuildingRepairsDesc = new(conn));
             AddTable(StagedBuildingSpawnDesc = new(conn));
@@ -1055,6 +1057,7 @@ namespace BitCraftGlobal.Types
         public global::SpacetimeDB.Table<BuildingClaimDesc, BuildingClaimDescCols, BuildingClaimDescIxCols> BuildingClaimDesc() => new("building_claim_desc", new BuildingClaimDescCols("building_claim_desc"), new BuildingClaimDescIxCols("building_claim_desc"));
         public global::SpacetimeDB.Table<BuildingDesc, BuildingDescCols, BuildingDescIxCols> BuildingDesc() => new("building_desc", new BuildingDescCols("building_desc"), new BuildingDescIxCols("building_desc"));
         public global::SpacetimeDB.Table<BuildingFunctionTypeMappingDesc, BuildingFunctionTypeMappingDescCols, BuildingFunctionTypeMappingDescIxCols> BuildingFunctionTypeMappingDesc() => new("building_function_type_mapping_desc", new BuildingFunctionTypeMappingDescCols("building_function_type_mapping_desc"), new BuildingFunctionTypeMappingDescIxCols("building_function_type_mapping_desc"));
+        public global::SpacetimeDB.Table<BuildingMapIconDesc, BuildingMapIconDescCols, BuildingMapIconDescIxCols> BuildingMapIconDesc() => new("building_map_icon_desc", new BuildingMapIconDescCols("building_map_icon_desc"), new BuildingMapIconDescIxCols("building_map_icon_desc"));
         public global::SpacetimeDB.Table<BuildingNicknameState, BuildingNicknameStateCols, BuildingNicknameStateIxCols> BuildingNicknameState() => new("building_nickname_state", new BuildingNicknameStateCols("building_nickname_state"), new BuildingNicknameStateIxCols("building_nickname_state"));
         public global::SpacetimeDB.Table<BuildingPortalDesc, BuildingPortalDescCols, BuildingPortalDescIxCols> BuildingPortalDesc() => new("building_portal_desc", new BuildingPortalDescCols("building_portal_desc"), new BuildingPortalDescIxCols("building_portal_desc"));
         public global::SpacetimeDB.Table<BuildingRepairsDesc, BuildingRepairsDescCols, BuildingRepairsDescIxCols> BuildingRepairsDesc() => new("building_repairs_desc", new BuildingRepairsDescCols("building_repairs_desc"), new BuildingRepairsDescIxCols("building_repairs_desc"));
@@ -1344,6 +1347,7 @@ namespace BitCraftGlobal.Types
         public global::SpacetimeDB.Table<BuildingBuffDesc, StagedBuildingBuffDescCols, StagedBuildingBuffDescIxCols> StagedBuildingBuffDesc() => new("staged_building_buff_desc", new StagedBuildingBuffDescCols("staged_building_buff_desc"), new StagedBuildingBuffDescIxCols("staged_building_buff_desc"));
         public global::SpacetimeDB.Table<BuildingClaimDesc, StagedBuildingClaimDescCols, StagedBuildingClaimDescIxCols> StagedBuildingClaimDesc() => new("staged_building_claim_desc", new StagedBuildingClaimDescCols("staged_building_claim_desc"), new StagedBuildingClaimDescIxCols("staged_building_claim_desc"));
         public global::SpacetimeDB.Table<BuildingDesc, StagedBuildingDescCols, StagedBuildingDescIxCols> StagedBuildingDesc() => new("staged_building_desc", new StagedBuildingDescCols("staged_building_desc"), new StagedBuildingDescIxCols("staged_building_desc"));
+        public global::SpacetimeDB.Table<BuildingMapIconDesc, StagedBuildingMapIconDescCols, StagedBuildingMapIconDescIxCols> StagedBuildingMapIconDesc() => new("staged_building_map_icon_desc", new StagedBuildingMapIconDescCols("staged_building_map_icon_desc"), new StagedBuildingMapIconDescIxCols("staged_building_map_icon_desc"));
         public global::SpacetimeDB.Table<BuildingPortalDesc, StagedBuildingPortalDescCols, StagedBuildingPortalDescIxCols> StagedBuildingPortalDesc() => new("staged_building_portal_desc", new StagedBuildingPortalDescCols("staged_building_portal_desc"), new StagedBuildingPortalDescIxCols("staged_building_portal_desc"));
         public global::SpacetimeDB.Table<BuildingRepairsDesc, StagedBuildingRepairsDescCols, StagedBuildingRepairsDescIxCols> StagedBuildingRepairsDesc() => new("staged_building_repairs_desc", new StagedBuildingRepairsDescCols("staged_building_repairs_desc"), new StagedBuildingRepairsDescIxCols("staged_building_repairs_desc"));
         public global::SpacetimeDB.Table<BuildingSpawnDesc, StagedBuildingSpawnDescCols, StagedBuildingSpawnDescIxCols> StagedBuildingSpawnDesc() => new("staged_building_spawn_desc", new StagedBuildingSpawnDescCols("staged_building_spawn_desc"), new StagedBuildingSpawnDescIxCols("staged_building_spawn_desc"));
@@ -1658,6 +1662,7 @@ namespace BitCraftGlobal.Types
                 "import_buff_type_desc" => BSATNHelpers.Decode<Reducer.ImportBuffTypeDesc>(encodedArgs),
                 "import_building_claim_desc" => BSATNHelpers.Decode<Reducer.ImportBuildingClaimDesc>(encodedArgs),
                 "import_building_desc" => BSATNHelpers.Decode<Reducer.ImportBuildingDesc>(encodedArgs),
+                "import_building_map_icon_desc" => BSATNHelpers.Decode<Reducer.ImportBuildingMapIconDesc>(encodedArgs),
                 "import_building_portal_desc" => BSATNHelpers.Decode<Reducer.ImportBuildingPortalDesc>(encodedArgs),
                 "import_building_repairs_desc" => BSATNHelpers.Decode<Reducer.ImportBuildingRepairsDesc>(encodedArgs),
                 "import_building_spawn_desc" => BSATNHelpers.Decode<Reducer.ImportBuildingSpawnDesc>(encodedArgs),
@@ -1850,6 +1855,7 @@ namespace BitCraftGlobal.Types
                 "stage_building_buff_desc" => BSATNHelpers.Decode<Reducer.StageBuildingBuffDesc>(encodedArgs),
                 "stage_building_claim_desc" => BSATNHelpers.Decode<Reducer.StageBuildingClaimDesc>(encodedArgs),
                 "stage_building_desc" => BSATNHelpers.Decode<Reducer.StageBuildingDesc>(encodedArgs),
+                "stage_building_map_icon_desc" => BSATNHelpers.Decode<Reducer.StageBuildingMapIconDesc>(encodedArgs),
                 "stage_building_portal_desc" => BSATNHelpers.Decode<Reducer.StageBuildingPortalDesc>(encodedArgs),
                 "stage_building_repairs_desc" => BSATNHelpers.Decode<Reducer.StageBuildingRepairsDesc>(encodedArgs),
                 "stage_building_spawn_desc" => BSATNHelpers.Decode<Reducer.StageBuildingSpawnDesc>(encodedArgs),
@@ -2090,6 +2096,7 @@ namespace BitCraftGlobal.Types
                 Reducer.ImportBuffTypeDesc args => Reducers.InvokeImportBuffTypeDesc(eventContext, args),
                 Reducer.ImportBuildingClaimDesc args => Reducers.InvokeImportBuildingClaimDesc(eventContext, args),
                 Reducer.ImportBuildingDesc args => Reducers.InvokeImportBuildingDesc(eventContext, args),
+                Reducer.ImportBuildingMapIconDesc args => Reducers.InvokeImportBuildingMapIconDesc(eventContext, args),
                 Reducer.ImportBuildingPortalDesc args => Reducers.InvokeImportBuildingPortalDesc(eventContext, args),
                 Reducer.ImportBuildingRepairsDesc args => Reducers.InvokeImportBuildingRepairsDesc(eventContext, args),
                 Reducer.ImportBuildingSpawnDesc args => Reducers.InvokeImportBuildingSpawnDesc(eventContext, args),
@@ -2282,6 +2289,7 @@ namespace BitCraftGlobal.Types
                 Reducer.StageBuildingBuffDesc args => Reducers.InvokeStageBuildingBuffDesc(eventContext, args),
                 Reducer.StageBuildingClaimDesc args => Reducers.InvokeStageBuildingClaimDesc(eventContext, args),
                 Reducer.StageBuildingDesc args => Reducers.InvokeStageBuildingDesc(eventContext, args),
+                Reducer.StageBuildingMapIconDesc args => Reducers.InvokeStageBuildingMapIconDesc(eventContext, args),
                 Reducer.StageBuildingPortalDesc args => Reducers.InvokeStageBuildingPortalDesc(eventContext, args),
                 Reducer.StageBuildingRepairsDesc args => Reducers.InvokeStageBuildingRepairsDesc(eventContext, args),
                 Reducer.StageBuildingSpawnDesc args => Reducers.InvokeStageBuildingSpawnDesc(eventContext, args),

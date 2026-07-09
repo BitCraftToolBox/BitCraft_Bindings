@@ -28,6 +28,8 @@ namespace BitCraftGlobal.Types
         public int ToolMeshIndex;
         [DataMember(Name = "recipe_performance_id")]
         public int RecipePerformanceId;
+        [DataMember(Name = "output_item_stacks")]
+        public System.Collections.Generic.List<ProbabilisticItemStack>? OutputItemStacks;
 
         public TerraformRecipeDesc(
             short Difference,
@@ -36,7 +38,8 @@ namespace BitCraftGlobal.Types
             float StaminaPerAction,
             float TimePerAction,
             int ToolMeshIndex,
-            int RecipePerformanceId
+            int RecipePerformanceId,
+            System.Collections.Generic.List<ProbabilisticItemStack>? OutputItemStacks
         )
         {
             this.Difference = Difference;
@@ -46,6 +49,7 @@ namespace BitCraftGlobal.Types
             this.TimePerAction = TimePerAction;
             this.ToolMeshIndex = ToolMeshIndex;
             this.RecipePerformanceId = RecipePerformanceId;
+            this.OutputItemStacks = OutputItemStacks;
         }
 
         public TerraformRecipeDesc()

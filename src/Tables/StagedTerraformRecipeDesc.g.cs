@@ -47,6 +47,7 @@ namespace BitCraftGlobal.Types
         public global::SpacetimeDB.Col<TerraformRecipeDesc, float> TimePerAction { get; }
         public global::SpacetimeDB.Col<TerraformRecipeDesc, int> ToolMeshIndex { get; }
         public global::SpacetimeDB.Col<TerraformRecipeDesc, int> RecipePerformanceId { get; }
+        public global::SpacetimeDB.NullableCol<TerraformRecipeDesc, System.Collections.Generic.List<ProbabilisticItemStack>> OutputItemStacks { get; }
 
         public StagedTerraformRecipeDescCols(string tableName)
         {
@@ -57,6 +58,7 @@ namespace BitCraftGlobal.Types
             TimePerAction = new global::SpacetimeDB.Col<TerraformRecipeDesc, float>(tableName, "time_per_action");
             ToolMeshIndex = new global::SpacetimeDB.Col<TerraformRecipeDesc, int>(tableName, "tool_mesh_index");
             RecipePerformanceId = new global::SpacetimeDB.Col<TerraformRecipeDesc, int>(tableName, "recipe_performance_id");
+            OutputItemStacks = new global::SpacetimeDB.NullableCol<TerraformRecipeDesc, System.Collections.Generic.List<ProbabilisticItemStack>>(tableName, "output_item_stacks");
         }
     }
 
