@@ -136,6 +136,8 @@ pub mod building_function_type;
 pub mod building_function_type_mapping_desc_table;
 pub mod building_function_type_mapping_desc_type;
 pub mod building_interaction_level_type;
+pub mod building_map_icon_desc_table;
+pub mod building_map_icon_desc_type;
 pub mod building_nickname_state_op_type;
 pub mod building_nickname_state_table;
 pub mod building_nickname_state_type;
@@ -505,6 +507,7 @@ pub mod import_buff_desc_reducer;
 pub mod import_buff_type_desc_reducer;
 pub mod import_building_claim_desc_reducer;
 pub mod import_building_desc_reducer;
+pub mod import_building_map_icon_desc_reducer;
 pub mod import_building_portal_desc_reducer;
 pub mod import_building_repairs_desc_reducer;
 pub mod import_building_spawn_desc_reducer;
@@ -1075,6 +1078,7 @@ pub mod stage_buff_type_desc_reducer;
 pub mod stage_building_buff_desc_reducer;
 pub mod stage_building_claim_desc_reducer;
 pub mod stage_building_desc_reducer;
+pub mod stage_building_map_icon_desc_reducer;
 pub mod stage_building_portal_desc_reducer;
 pub mod stage_building_repairs_desc_reducer;
 pub mod stage_building_spawn_desc_reducer;
@@ -1181,6 +1185,7 @@ pub mod staged_buff_type_desc_table;
 pub mod staged_building_buff_desc_table;
 pub mod staged_building_claim_desc_table;
 pub mod staged_building_desc_table;
+pub mod staged_building_map_icon_desc_table;
 pub mod staged_building_portal_desc_table;
 pub mod staged_building_repairs_desc_table;
 pub mod staged_building_spawn_desc_table;
@@ -1689,6 +1694,8 @@ pub use building_function_type::BuildingFunction;
 pub use building_function_type_mapping_desc_table::*;
 pub use building_function_type_mapping_desc_type::BuildingFunctionTypeMappingDesc;
 pub use building_interaction_level_type::BuildingInteractionLevel;
+pub use building_map_icon_desc_table::*;
+pub use building_map_icon_desc_type::BuildingMapIconDesc;
 pub use building_nickname_state_op_type::BuildingNicknameStateOp;
 pub use building_nickname_state_table::*;
 pub use building_nickname_state_type::BuildingNicknameState;
@@ -2172,6 +2179,10 @@ pub use import_building_claim_desc_reducer::{
 };
 pub use import_building_desc_reducer::{
     import_building_desc, set_flags_for_import_building_desc, ImportBuildingDescCallbackId,
+};
+pub use import_building_map_icon_desc_reducer::{
+    import_building_map_icon_desc, set_flags_for_import_building_map_icon_desc,
+    ImportBuildingMapIconDescCallbackId,
 };
 pub use import_building_portal_desc_reducer::{
     import_building_portal_desc, set_flags_for_import_building_portal_desc,
@@ -3228,6 +3239,10 @@ pub use stage_building_claim_desc_reducer::{
 pub use stage_building_desc_reducer::{
     set_flags_for_stage_building_desc, stage_building_desc, StageBuildingDescCallbackId,
 };
+pub use stage_building_map_icon_desc_reducer::{
+    set_flags_for_stage_building_map_icon_desc, stage_building_map_icon_desc,
+    StageBuildingMapIconDescCallbackId,
+};
 pub use stage_building_portal_desc_reducer::{
     set_flags_for_stage_building_portal_desc, stage_building_portal_desc,
     StageBuildingPortalDescCallbackId,
@@ -3579,6 +3594,7 @@ pub use staged_buff_type_desc_table::*;
 pub use staged_building_buff_desc_table::*;
 pub use staged_building_claim_desc_table::*;
 pub use staged_building_desc_table::*;
+pub use staged_building_map_icon_desc_table::*;
 pub use staged_building_portal_desc_table::*;
 pub use staged_building_repairs_desc_table::*;
 pub use staged_building_spawn_desc_table::*;
@@ -4222,6 +4238,9 @@ pub enum Reducer {
     ImportBuildingDesc {
         records: Vec<BuildingDesc>,
     },
+    ImportBuildingMapIconDesc {
+        records: Vec<BuildingMapIconDesc>,
+    },
     ImportBuildingPortalDesc {
         records: Vec<BuildingPortalDesc>,
     },
@@ -4801,6 +4820,9 @@ pub enum Reducer {
     StageBuildingDesc {
         records: Vec<BuildingDesc>,
     },
+    StageBuildingMapIconDesc {
+        records: Vec<BuildingMapIconDesc>,
+    },
     StageBuildingPortalDesc {
         records: Vec<BuildingPortalDesc>,
     },
@@ -5263,6 +5285,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::ImportBuffTypeDesc { .. } => "import_buff_type_desc",
             Reducer::ImportBuildingClaimDesc { .. } => "import_building_claim_desc",
             Reducer::ImportBuildingDesc { .. } => "import_building_desc",
+            Reducer::ImportBuildingMapIconDesc { .. } => "import_building_map_icon_desc",
             Reducer::ImportBuildingPortalDesc { .. } => "import_building_portal_desc",
             Reducer::ImportBuildingRepairsDesc { .. } => "import_building_repairs_desc",
             Reducer::ImportBuildingSpawnDesc { .. } => "import_building_spawn_desc",
@@ -5471,6 +5494,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::StageBuildingBuffDesc { .. } => "stage_building_buff_desc",
             Reducer::StageBuildingClaimDesc { .. } => "stage_building_claim_desc",
             Reducer::StageBuildingDesc { .. } => "stage_building_desc",
+            Reducer::StageBuildingMapIconDesc { .. } => "stage_building_map_icon_desc",
             Reducer::StageBuildingPortalDesc { .. } => "stage_building_portal_desc",
             Reducer::StageBuildingRepairsDesc { .. } => "stage_building_repairs_desc",
             Reducer::StageBuildingSpawnDesc { .. } => "stage_building_spawn_desc",
@@ -5706,6 +5730,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "import_buff_type_desc" => Ok(__sdk::parse_reducer_args::<import_buff_type_desc_reducer::ImportBuffTypeDescArgs>("import_buff_type_desc", &value.args)?.into()),
             "import_building_claim_desc" => Ok(__sdk::parse_reducer_args::<import_building_claim_desc_reducer::ImportBuildingClaimDescArgs>("import_building_claim_desc", &value.args)?.into()),
             "import_building_desc" => Ok(__sdk::parse_reducer_args::<import_building_desc_reducer::ImportBuildingDescArgs>("import_building_desc", &value.args)?.into()),
+            "import_building_map_icon_desc" => Ok(__sdk::parse_reducer_args::<import_building_map_icon_desc_reducer::ImportBuildingMapIconDescArgs>("import_building_map_icon_desc", &value.args)?.into()),
             "import_building_portal_desc" => Ok(__sdk::parse_reducer_args::<import_building_portal_desc_reducer::ImportBuildingPortalDescArgs>("import_building_portal_desc", &value.args)?.into()),
             "import_building_repairs_desc" => Ok(__sdk::parse_reducer_args::<import_building_repairs_desc_reducer::ImportBuildingRepairsDescArgs>("import_building_repairs_desc", &value.args)?.into()),
             "import_building_spawn_desc" => Ok(__sdk::parse_reducer_args::<import_building_spawn_desc_reducer::ImportBuildingSpawnDescArgs>("import_building_spawn_desc", &value.args)?.into()),
@@ -5898,6 +5923,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "stage_building_buff_desc" => Ok(__sdk::parse_reducer_args::<stage_building_buff_desc_reducer::StageBuildingBuffDescArgs>("stage_building_buff_desc", &value.args)?.into()),
             "stage_building_claim_desc" => Ok(__sdk::parse_reducer_args::<stage_building_claim_desc_reducer::StageBuildingClaimDescArgs>("stage_building_claim_desc", &value.args)?.into()),
             "stage_building_desc" => Ok(__sdk::parse_reducer_args::<stage_building_desc_reducer::StageBuildingDescArgs>("stage_building_desc", &value.args)?.into()),
+            "stage_building_map_icon_desc" => Ok(__sdk::parse_reducer_args::<stage_building_map_icon_desc_reducer::StageBuildingMapIconDescArgs>("stage_building_map_icon_desc", &value.args)?.into()),
             "stage_building_portal_desc" => Ok(__sdk::parse_reducer_args::<stage_building_portal_desc_reducer::StageBuildingPortalDescArgs>("stage_building_portal_desc", &value.args)?.into()),
             "stage_building_repairs_desc" => Ok(__sdk::parse_reducer_args::<stage_building_repairs_desc_reducer::StageBuildingRepairsDescArgs>("stage_building_repairs_desc", &value.args)?.into()),
             "stage_building_spawn_desc" => Ok(__sdk::parse_reducer_args::<stage_building_spawn_desc_reducer::StageBuildingSpawnDescArgs>("stage_building_spawn_desc", &value.args)?.into()),
@@ -6035,6 +6061,7 @@ pub struct DbUpdate {
     building_claim_desc: __sdk::TableUpdate<BuildingClaimDesc>,
     building_desc: __sdk::TableUpdate<BuildingDesc>,
     building_function_type_mapping_desc: __sdk::TableUpdate<BuildingFunctionTypeMappingDesc>,
+    building_map_icon_desc: __sdk::TableUpdate<BuildingMapIconDesc>,
     building_nickname_state: __sdk::TableUpdate<BuildingNicknameState>,
     building_portal_desc: __sdk::TableUpdate<BuildingPortalDesc>,
     building_repairs_desc: __sdk::TableUpdate<BuildingRepairsDesc>,
@@ -6325,6 +6352,7 @@ pub struct DbUpdate {
     staged_building_buff_desc: __sdk::TableUpdate<BuildingBuffDesc>,
     staged_building_claim_desc: __sdk::TableUpdate<BuildingClaimDesc>,
     staged_building_desc: __sdk::TableUpdate<BuildingDesc>,
+    staged_building_map_icon_desc: __sdk::TableUpdate<BuildingMapIconDesc>,
     staged_building_portal_desc: __sdk::TableUpdate<BuildingPortalDesc>,
     staged_building_repairs_desc: __sdk::TableUpdate<BuildingRepairsDesc>,
     staged_building_spawn_desc: __sdk::TableUpdate<BuildingSpawnDesc>,
@@ -6497,6 +6525,7 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "building_claim_desc" => db_update.building_claim_desc.append(building_claim_desc_table::parse_table_update(table_update)?),
     "building_desc" => db_update.building_desc.append(building_desc_table::parse_table_update(table_update)?),
     "building_function_type_mapping_desc" => db_update.building_function_type_mapping_desc.append(building_function_type_mapping_desc_table::parse_table_update(table_update)?),
+    "building_map_icon_desc" => db_update.building_map_icon_desc.append(building_map_icon_desc_table::parse_table_update(table_update)?),
     "building_nickname_state" => db_update.building_nickname_state.append(building_nickname_state_table::parse_table_update(table_update)?),
     "building_portal_desc" => db_update.building_portal_desc.append(building_portal_desc_table::parse_table_update(table_update)?),
     "building_repairs_desc" => db_update.building_repairs_desc.append(building_repairs_desc_table::parse_table_update(table_update)?),
@@ -6786,6 +6815,7 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "staged_building_buff_desc" => db_update.staged_building_buff_desc.append(staged_building_buff_desc_table::parse_table_update(table_update)?),
     "staged_building_claim_desc" => db_update.staged_building_claim_desc.append(staged_building_claim_desc_table::parse_table_update(table_update)?),
     "staged_building_desc" => db_update.staged_building_desc.append(staged_building_desc_table::parse_table_update(table_update)?),
+    "staged_building_map_icon_desc" => db_update.staged_building_map_icon_desc.append(staged_building_map_icon_desc_table::parse_table_update(table_update)?),
     "staged_building_portal_desc" => db_update.staged_building_portal_desc.append(staged_building_portal_desc_table::parse_table_update(table_update)?),
     "staged_building_repairs_desc" => db_update.staged_building_repairs_desc.append(staged_building_repairs_desc_table::parse_table_update(table_update)?),
     "staged_building_spawn_desc" => db_update.staged_building_spawn_desc.append(staged_building_spawn_desc_table::parse_table_update(table_update)?),
@@ -7040,6 +7070,12 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.building_function_type_mapping_desc,
             )
             .with_updates_by_pk(|row| &row.type_id);
+        diff.building_map_icon_desc = cache
+            .apply_diff_to_table::<BuildingMapIconDesc>(
+                "building_map_icon_desc",
+                &self.building_map_icon_desc,
+            )
+            .with_updates_by_pk(|row| &row.building_id);
         diff.building_nickname_state = cache
             .apply_diff_to_table::<BuildingNicknameState>(
                 "building_nickname_state",
@@ -8426,6 +8462,12 @@ impl __sdk::DbUpdate for DbUpdate {
         diff.staged_building_desc = cache
             .apply_diff_to_table::<BuildingDesc>("staged_building_desc", &self.staged_building_desc)
             .with_updates_by_pk(|row| &row.id);
+        diff.staged_building_map_icon_desc = cache
+            .apply_diff_to_table::<BuildingMapIconDesc>(
+                "staged_building_map_icon_desc",
+                &self.staged_building_map_icon_desc,
+            )
+            .with_updates_by_pk(|row| &row.building_id);
         diff.staged_building_portal_desc = cache
             .apply_diff_to_table::<BuildingPortalDesc>(
                 "staged_building_portal_desc",
@@ -9175,6 +9217,7 @@ pub struct AppliedDiff<'r> {
     building_desc: __sdk::TableAppliedDiff<'r, BuildingDesc>,
     building_function_type_mapping_desc:
         __sdk::TableAppliedDiff<'r, BuildingFunctionTypeMappingDesc>,
+    building_map_icon_desc: __sdk::TableAppliedDiff<'r, BuildingMapIconDesc>,
     building_nickname_state: __sdk::TableAppliedDiff<'r, BuildingNicknameState>,
     building_portal_desc: __sdk::TableAppliedDiff<'r, BuildingPortalDesc>,
     building_repairs_desc: __sdk::TableAppliedDiff<'r, BuildingRepairsDesc>,
@@ -9477,6 +9520,7 @@ pub struct AppliedDiff<'r> {
     staged_building_buff_desc: __sdk::TableAppliedDiff<'r, BuildingBuffDesc>,
     staged_building_claim_desc: __sdk::TableAppliedDiff<'r, BuildingClaimDesc>,
     staged_building_desc: __sdk::TableAppliedDiff<'r, BuildingDesc>,
+    staged_building_map_icon_desc: __sdk::TableAppliedDiff<'r, BuildingMapIconDesc>,
     staged_building_portal_desc: __sdk::TableAppliedDiff<'r, BuildingPortalDesc>,
     staged_building_repairs_desc: __sdk::TableAppliedDiff<'r, BuildingRepairsDesc>,
     staged_building_spawn_desc: __sdk::TableAppliedDiff<'r, BuildingSpawnDesc>,
@@ -9733,6 +9777,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<BuildingFunctionTypeMappingDesc>(
             "building_function_type_mapping_desc",
             &self.building_function_type_mapping_desc,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<BuildingMapIconDesc>(
+            "building_map_icon_desc",
+            &self.building_map_icon_desc,
             event,
         );
         callbacks.invoke_table_row_callbacks::<BuildingNicknameState>(
@@ -11110,6 +11159,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<BuildingDesc>(
             "staged_building_desc",
             &self.staged_building_desc,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<BuildingMapIconDesc>(
+            "staged_building_map_icon_desc",
+            &self.staged_building_map_icon_desc,
             event,
         );
         callbacks.invoke_table_row_callbacks::<BuildingPortalDesc>(
@@ -12512,6 +12566,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         building_claim_desc_table::register_table(client_cache);
         building_desc_table::register_table(client_cache);
         building_function_type_mapping_desc_table::register_table(client_cache);
+        building_map_icon_desc_table::register_table(client_cache);
         building_nickname_state_table::register_table(client_cache);
         building_portal_desc_table::register_table(client_cache);
         building_repairs_desc_table::register_table(client_cache);
@@ -12801,6 +12856,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         staged_building_buff_desc_table::register_table(client_cache);
         staged_building_claim_desc_table::register_table(client_cache);
         staged_building_desc_table::register_table(client_cache);
+        staged_building_map_icon_desc_table::register_table(client_cache);
         staged_building_portal_desc_table::register_table(client_cache);
         staged_building_repairs_desc_table::register_table(client_cache);
         staged_building_spawn_desc_table::register_table(client_cache);
