@@ -61,6 +61,8 @@ export namespace CollectibleType {
   export type HousingWalls = { tag: "HousingWalls" };
   export type HousingFloor = { tag: "HousingFloor" };
   export type DeployableAppearanceOverride = { tag: "DeployableAppearanceOverride" };
+  export type FaceAccessory = { tag: "FaceAccessory" };
+  export type FacialHair = { tag: "FacialHair" };
 
   // Helper functions for constructing each variant of the tagged union.
   // ```
@@ -92,6 +94,8 @@ export namespace CollectibleType {
   export const HousingWalls = { tag: "HousingWalls" };
   export const HousingFloor = { tag: "HousingFloor" };
   export const DeployableAppearanceOverride = { tag: "DeployableAppearanceOverride" };
+  export const FaceAccessory = { tag: "FaceAccessory" };
+  export const FacialHair = { tag: "FacialHair" };
 
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createSumType([
@@ -119,6 +123,8 @@ export namespace CollectibleType {
       new SumTypeVariant("HousingWalls", AlgebraicType.createProductType([])),
       new SumTypeVariant("HousingFloor", AlgebraicType.createProductType([])),
       new SumTypeVariant("DeployableAppearanceOverride", AlgebraicType.createProductType([])),
+      new SumTypeVariant("FaceAccessory", AlgebraicType.createProductType([])),
+      new SumTypeVariant("FacialHair", AlgebraicType.createProductType([])),
     ]);
   }
 
@@ -133,7 +139,7 @@ export namespace CollectibleType {
 }
 
 // The tagged union or sum type for the algebraic type `CollectibleType`.
-export type CollectibleType = CollectibleType.Default | CollectibleType.Hair | CollectibleType.Mask | CollectibleType.MaskPattern | CollectibleType.HairColor | CollectibleType.Nameplate | CollectibleType.BodyColor | CollectibleType.Emblem | CollectibleType.ClothesHead | CollectibleType.ClothesBelt | CollectibleType.ClothesTorso | CollectibleType.ClothesArms | CollectibleType.ClothesLegs | CollectibleType.ClothesFeet | CollectibleType.Deployable | CollectibleType.Title | CollectibleType.Crown | CollectibleType.Pet | CollectibleType.ClothesCape | CollectibleType.PremiumItem | CollectibleType.Emote | CollectibleType.HousingWalls | CollectibleType.HousingFloor | CollectibleType.DeployableAppearanceOverride;
+export type CollectibleType = CollectibleType.Default | CollectibleType.Hair | CollectibleType.Mask | CollectibleType.MaskPattern | CollectibleType.HairColor | CollectibleType.Nameplate | CollectibleType.BodyColor | CollectibleType.Emblem | CollectibleType.ClothesHead | CollectibleType.ClothesBelt | CollectibleType.ClothesTorso | CollectibleType.ClothesArms | CollectibleType.ClothesLegs | CollectibleType.ClothesFeet | CollectibleType.Deployable | CollectibleType.Title | CollectibleType.Crown | CollectibleType.Pet | CollectibleType.ClothesCape | CollectibleType.PremiumItem | CollectibleType.Emote | CollectibleType.HousingWalls | CollectibleType.HousingFloor | CollectibleType.DeployableAppearanceOverride | CollectibleType.FaceAccessory | CollectibleType.FacialHair;
 
 export default CollectibleType;
 

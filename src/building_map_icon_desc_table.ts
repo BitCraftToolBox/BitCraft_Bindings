@@ -32,26 +32,23 @@ import {
   type ReducerEventContextInterface,
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
-import { TerraformRecipeDesc } from "./terraform_recipe_desc_type";
-import { ToolRequirement as __ToolRequirement } from "./tool_requirement_type";
-import { ProbabilisticItemStack as __ProbabilisticItemStack } from "./probabilistic_item_stack_type";
-
+import { BuildingMapIconDesc } from "./building_map_icon_desc_type";
 import { type EventContext, type Reducer, RemoteReducers, RemoteTables } from ".";
 
 /**
- * Table handle for the table `terraform_recipe_desc`.
+ * Table handle for the table `building_map_icon_desc`.
  *
- * Obtain a handle from the [`terraformRecipeDesc`] property on [`RemoteTables`],
- * like `ctx.db.terraformRecipeDesc`.
+ * Obtain a handle from the [`buildingMapIconDesc`] property on [`RemoteTables`],
+ * like `ctx.db.buildingMapIconDesc`.
  *
  * Users are encouraged not to explicitly reference this type,
  * but to directly chain method calls,
- * like `ctx.db.terraformRecipeDesc.on_insert(...)`.
+ * like `ctx.db.buildingMapIconDesc.on_insert(...)`.
  */
-export class TerraformRecipeDescTableHandle {
-  tableCache: TableCache<TerraformRecipeDesc>;
+export class BuildingMapIconDescTableHandle {
+  tableCache: TableCache<BuildingMapIconDesc>;
 
-  constructor(tableCache: TableCache<TerraformRecipeDesc>) {
+  constructor(tableCache: TableCache<BuildingMapIconDesc>) {
     this.tableCache = tableCache;
   }
 
@@ -59,53 +56,53 @@ export class TerraformRecipeDescTableHandle {
     return this.tableCache.count();
   }
 
-  iter(): Iterable<TerraformRecipeDesc> {
+  iter(): Iterable<BuildingMapIconDesc> {
     return this.tableCache.iter();
   }
   /**
-   * Access to the `difference` unique index on the table `terraform_recipe_desc`,
+   * Access to the `buildingId` unique index on the table `building_map_icon_desc`,
    * which allows point queries on the field of the same name
-   * via the [`TerraformRecipeDescDifferenceUnique.find`] method.
+   * via the [`BuildingMapIconDescBuildingIdUnique.find`] method.
    *
    * Users are encouraged not to explicitly reference this type,
    * but to directly chain method calls,
-   * like `ctx.db.terraformRecipeDesc.difference().find(...)`.
+   * like `ctx.db.buildingMapIconDesc.buildingId().find(...)`.
    *
-   * Get a handle on the `difference` unique index on the table `terraform_recipe_desc`.
+   * Get a handle on the `buildingId` unique index on the table `building_map_icon_desc`.
    */
-  difference = {
-    // Find the subscribed row whose `difference` column value is equal to `col_val`,
+  buildingId = {
+    // Find the subscribed row whose `buildingId` column value is equal to `col_val`,
     // if such a row is present in the client cache.
-    find: (col_val: number): TerraformRecipeDesc | undefined => {
+    find: (col_val: number): BuildingMapIconDesc | undefined => {
       for (let row of this.tableCache.iter()) {
-        if (deepEqual(row.difference, col_val)) {
+        if (deepEqual(row.buildingId, col_val)) {
           return row;
         }
       }
     },
   };
 
-  onInsert = (cb: (ctx: EventContext, row: TerraformRecipeDesc) => void) => {
+  onInsert = (cb: (ctx: EventContext, row: BuildingMapIconDesc) => void) => {
     return this.tableCache.onInsert(cb);
   }
 
-  removeOnInsert = (cb: (ctx: EventContext, row: TerraformRecipeDesc) => void) => {
+  removeOnInsert = (cb: (ctx: EventContext, row: BuildingMapIconDesc) => void) => {
     return this.tableCache.removeOnInsert(cb);
   }
 
-  onDelete = (cb: (ctx: EventContext, row: TerraformRecipeDesc) => void) => {
+  onDelete = (cb: (ctx: EventContext, row: BuildingMapIconDesc) => void) => {
     return this.tableCache.onDelete(cb);
   }
 
-  removeOnDelete = (cb: (ctx: EventContext, row: TerraformRecipeDesc) => void) => {
+  removeOnDelete = (cb: (ctx: EventContext, row: BuildingMapIconDesc) => void) => {
     return this.tableCache.removeOnDelete(cb);
   }
 
   // Updates are only defined for tables with primary keys.
-  onUpdate = (cb: (ctx: EventContext, oldRow: TerraformRecipeDesc, newRow: TerraformRecipeDesc) => void) => {
+  onUpdate = (cb: (ctx: EventContext, oldRow: BuildingMapIconDesc, newRow: BuildingMapIconDesc) => void) => {
     return this.tableCache.onUpdate(cb);
   }
 
-  removeOnUpdate = (cb: (ctx: EventContext, onRow: TerraformRecipeDesc, newRow: TerraformRecipeDesc) => void) => {
+  removeOnUpdate = (cb: (ctx: EventContext, onRow: BuildingMapIconDesc, newRow: BuildingMapIconDesc) => void) => {
     return this.tableCache.removeOnUpdate(cb);
   }}

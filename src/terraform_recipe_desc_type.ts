@@ -33,6 +33,7 @@ import {
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
 import { ToolRequirement as __ToolRequirement } from "./tool_requirement_type";
+import { ProbabilisticItemStack as __ProbabilisticItemStack } from "./probabilistic_item_stack_type";
 
 export type TerraformRecipeDesc = {
   difference: number,
@@ -42,6 +43,7 @@ export type TerraformRecipeDesc = {
   timePerAction: number,
   toolMeshIndex: number,
   recipePerformanceId: number,
+  outputItemStacks: __ProbabilisticItemStack[] | undefined,
 };
 
 /**
@@ -61,6 +63,7 @@ export namespace TerraformRecipeDesc {
       new ProductTypeElement("timePerAction", AlgebraicType.createF32Type()),
       new ProductTypeElement("toolMeshIndex", AlgebraicType.createI32Type()),
       new ProductTypeElement("recipePerformanceId", AlgebraicType.createI32Type()),
+      new ProductTypeElement("outputItemStacks", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__ProbabilisticItemStack.getTypeScriptAlgebraicType()))),
     ]);
   }
 

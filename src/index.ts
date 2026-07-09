@@ -630,6 +630,8 @@ import { ImportBuildingClaimDesc } from "./import_building_claim_desc_reducer.ts
 export { ImportBuildingClaimDesc };
 import { ImportBuildingDesc } from "./import_building_desc_reducer.ts";
 export { ImportBuildingDesc };
+import { ImportBuildingMapIconDesc } from "./import_building_map_icon_desc_reducer.ts";
+export { ImportBuildingMapIconDesc };
 import { ImportBuildingPortalDesc } from "./import_building_portal_desc_reducer.ts";
 export { ImportBuildingPortalDesc };
 import { ImportBuildingRepairsDesc } from "./import_building_repairs_desc_reducer.ts";
@@ -1274,6 +1276,8 @@ import { StageBuildingClaimDesc } from "./stage_building_claim_desc_reducer.ts";
 export { StageBuildingClaimDesc };
 import { StageBuildingDesc } from "./stage_building_desc_reducer.ts";
 export { StageBuildingDesc };
+import { StageBuildingMapIconDesc } from "./stage_building_map_icon_desc_reducer.ts";
+export { StageBuildingMapIconDesc };
 import { StageBuildingPortalDesc } from "./stage_building_portal_desc_reducer.ts";
 export { StageBuildingPortalDesc };
 import { StageBuildingRepairsDesc } from "./stage_building_repairs_desc_reducer.ts";
@@ -1596,6 +1600,8 @@ import { BuildingDespawnTimerTableHandle } from "./building_despawn_timer_table.
 export { BuildingDespawnTimerTableHandle };
 import { BuildingFunctionTypeMappingDescTableHandle } from "./building_function_type_mapping_desc_table.ts";
 export { BuildingFunctionTypeMappingDescTableHandle };
+import { BuildingMapIconDescTableHandle } from "./building_map_icon_desc_table.ts";
+export { BuildingMapIconDescTableHandle };
 import { BuildingNicknameStateTableHandle } from "./building_nickname_state_table.ts";
 export { BuildingNicknameStateTableHandle };
 import { BuildingPortalDescTableHandle } from "./building_portal_desc_table.ts";
@@ -2196,6 +2202,8 @@ import { StagedBuildingClaimDescTableHandle } from "./staged_building_claim_desc
 export { StagedBuildingClaimDescTableHandle };
 import { StagedBuildingDescTableHandle } from "./staged_building_desc_table.ts";
 export { StagedBuildingDescTableHandle };
+import { StagedBuildingMapIconDescTableHandle } from "./staged_building_map_icon_desc_table.ts";
+export { StagedBuildingMapIconDescTableHandle };
 import { StagedBuildingPortalDescTableHandle } from "./staged_building_portal_desc_table.ts";
 export { StagedBuildingPortalDescTableHandle };
 import { StagedBuildingRepairsDescTableHandle } from "./staged_building_repairs_desc_table.ts";
@@ -2582,6 +2590,8 @@ import { BuildingFunctionTypeMappingDesc } from "./building_function_type_mappin
 export { BuildingFunctionTypeMappingDesc };
 import { BuildingInteractionLevel } from "./building_interaction_level_type.ts";
 export { BuildingInteractionLevel };
+import { BuildingMapIconDesc } from "./building_map_icon_desc_type.ts";
+export { BuildingMapIconDesc };
 import { BuildingNicknameState } from "./building_nickname_state_type.ts";
 export { BuildingNicknameState };
 import { BuildingNicknameStateOp } from "./building_nickname_state_op_type.ts";
@@ -4203,6 +4213,15 @@ export const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "typeId",
         colType: BuildingFunctionTypeMappingDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    building_map_icon_desc: {
+      tableName: "building_map_icon_desc",
+      rowType: BuildingMapIconDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "buildingId",
+      primaryKeyInfo: {
+        colName: "buildingId",
+        colType: BuildingMapIconDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     building_nickname_state: {
@@ -6820,6 +6839,15 @@ export const REMOTE_MODULE = {
         colType: BuildingDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    staged_building_map_icon_desc: {
+      tableName: "staged_building_map_icon_desc",
+      rowType: BuildingMapIconDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "buildingId",
+      primaryKeyInfo: {
+        colName: "buildingId",
+        colType: BuildingMapIconDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     staged_building_portal_desc: {
       tableName: "staged_building_portal_desc",
       rowType: BuildingPortalDesc.getTypeScriptAlgebraicType(),
@@ -9274,6 +9302,10 @@ export const REMOTE_MODULE = {
       reducerName: "import_building_desc",
       argsType: ImportBuildingDesc.getTypeScriptAlgebraicType(),
     },
+    import_building_map_icon_desc: {
+      reducerName: "import_building_map_icon_desc",
+      argsType: ImportBuildingMapIconDesc.getTypeScriptAlgebraicType(),
+    },
     import_building_portal_desc: {
       reducerName: "import_building_portal_desc",
       argsType: ImportBuildingPortalDesc.getTypeScriptAlgebraicType(),
@@ -10562,6 +10594,10 @@ export const REMOTE_MODULE = {
       reducerName: "stage_building_desc",
       argsType: StageBuildingDesc.getTypeScriptAlgebraicType(),
     },
+    stage_building_map_icon_desc: {
+      reducerName: "stage_building_map_icon_desc",
+      argsType: StageBuildingMapIconDesc.getTypeScriptAlgebraicType(),
+    },
     stage_building_portal_desc: {
       reducerName: "stage_building_portal_desc",
       argsType: StageBuildingPortalDesc.getTypeScriptAlgebraicType(),
@@ -11398,6 +11434,7 @@ export type Reducer = never
 | { name: "ImportBuildingBuffDesc", args: ImportBuildingBuffDesc }
 | { name: "ImportBuildingClaimDesc", args: ImportBuildingClaimDesc }
 | { name: "ImportBuildingDesc", args: ImportBuildingDesc }
+| { name: "ImportBuildingMapIconDesc", args: ImportBuildingMapIconDesc }
 | { name: "ImportBuildingPortalDesc", args: ImportBuildingPortalDesc }
 | { name: "ImportBuildingRepairsDesc", args: ImportBuildingRepairsDesc }
 | { name: "ImportBuildingSpawnDesc", args: ImportBuildingSpawnDesc }
@@ -11720,6 +11757,7 @@ export type Reducer = never
 | { name: "StageBuildingBuffDesc", args: StageBuildingBuffDesc }
 | { name: "StageBuildingClaimDesc", args: StageBuildingClaimDesc }
 | { name: "StageBuildingDesc", args: StageBuildingDesc }
+| { name: "StageBuildingMapIconDesc", args: StageBuildingMapIconDesc }
 | { name: "StageBuildingPortalDesc", args: StageBuildingPortalDesc }
 | { name: "StageBuildingRepairsDesc", args: StageBuildingRepairsDesc }
 | { name: "StageBuildingSpawnDesc", args: StageBuildingSpawnDesc }
@@ -16482,6 +16520,22 @@ export class RemoteReducers {
 
   removeOnImportBuildingDesc(callback: (ctx: ReducerEventContext, records: BuildingDesc[]) => void) {
     this.connection.offReducer("import_building_desc", callback);
+  }
+
+  importBuildingMapIconDesc(records: BuildingMapIconDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    ImportBuildingMapIconDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("import_building_map_icon_desc", __argsBuffer, this.setCallReducerFlags.importBuildingMapIconDescFlags);
+  }
+
+  onImportBuildingMapIconDesc(callback: (ctx: ReducerEventContext, records: BuildingMapIconDesc[]) => void) {
+    this.connection.onReducer("import_building_map_icon_desc", callback);
+  }
+
+  removeOnImportBuildingMapIconDesc(callback: (ctx: ReducerEventContext, records: BuildingMapIconDesc[]) => void) {
+    this.connection.offReducer("import_building_map_icon_desc", callback);
   }
 
   importBuildingPortalDesc(records: BuildingPortalDesc[]) {
@@ -21564,6 +21618,22 @@ export class RemoteReducers {
     this.connection.offReducer("stage_building_desc", callback);
   }
 
+  stageBuildingMapIconDesc(records: BuildingMapIconDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    StageBuildingMapIconDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("stage_building_map_icon_desc", __argsBuffer, this.setCallReducerFlags.stageBuildingMapIconDescFlags);
+  }
+
+  onStageBuildingMapIconDesc(callback: (ctx: ReducerEventContext, records: BuildingMapIconDesc[]) => void) {
+    this.connection.onReducer("stage_building_map_icon_desc", callback);
+  }
+
+  removeOnStageBuildingMapIconDesc(callback: (ctx: ReducerEventContext, records: BuildingMapIconDesc[]) => void) {
+    this.connection.offReducer("stage_building_map_icon_desc", callback);
+  }
+
   stageBuildingPortalDesc(records: BuildingPortalDesc[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
@@ -25067,6 +25137,11 @@ export class SetReducerFlags {
     this.importBuildingDescFlags = flags;
   }
 
+  importBuildingMapIconDescFlags: CallReducerFlags = 'FullUpdate';
+  importBuildingMapIconDesc(flags: CallReducerFlags) {
+    this.importBuildingMapIconDescFlags = flags;
+  }
+
   importBuildingPortalDescFlags: CallReducerFlags = 'FullUpdate';
   importBuildingPortalDesc(flags: CallReducerFlags) {
     this.importBuildingPortalDescFlags = flags;
@@ -26677,6 +26752,11 @@ export class SetReducerFlags {
     this.stageBuildingDescFlags = flags;
   }
 
+  stageBuildingMapIconDescFlags: CallReducerFlags = 'FullUpdate';
+  stageBuildingMapIconDesc(flags: CallReducerFlags) {
+    this.stageBuildingMapIconDescFlags = flags;
+  }
+
   stageBuildingPortalDescFlags: CallReducerFlags = 'FullUpdate';
   stageBuildingPortalDesc(flags: CallReducerFlags) {
     this.stageBuildingPortalDescFlags = flags;
@@ -27447,6 +27527,10 @@ export class RemoteTables {
 
   get buildingFunctionTypeMappingDesc(): BuildingFunctionTypeMappingDescTableHandle {
     return new BuildingFunctionTypeMappingDescTableHandle(this.connection.clientCache.getOrCreateTable<BuildingFunctionTypeMappingDesc>(REMOTE_MODULE.tables.building_function_type_mapping_desc));
+  }
+
+  get buildingMapIconDesc(): BuildingMapIconDescTableHandle {
+    return new BuildingMapIconDescTableHandle(this.connection.clientCache.getOrCreateTable<BuildingMapIconDesc>(REMOTE_MODULE.tables.building_map_icon_desc));
   }
 
   get buildingNicknameState(): BuildingNicknameStateTableHandle {
@@ -28647,6 +28731,10 @@ export class RemoteTables {
 
   get stagedBuildingDesc(): StagedBuildingDescTableHandle {
     return new StagedBuildingDescTableHandle(this.connection.clientCache.getOrCreateTable<BuildingDesc>(REMOTE_MODULE.tables.staged_building_desc));
+  }
+
+  get stagedBuildingMapIconDesc(): StagedBuildingMapIconDescTableHandle {
+    return new StagedBuildingMapIconDescTableHandle(this.connection.clientCache.getOrCreateTable<BuildingMapIconDesc>(REMOTE_MODULE.tables.staged_building_map_icon_desc));
   }
 
   get stagedBuildingPortalDesc(): StagedBuildingPortalDescTableHandle {

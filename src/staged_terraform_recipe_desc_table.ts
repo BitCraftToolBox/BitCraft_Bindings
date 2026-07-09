@@ -34,6 +34,7 @@ import {
 } from "@clockworklabs/spacetimedb-sdk";
 import { TerraformRecipeDesc } from "./terraform_recipe_desc_type";
 import { ToolRequirement as __ToolRequirement } from "./tool_requirement_type";
+import { ProbabilisticItemStack as __ProbabilisticItemStack } from "./probabilistic_item_stack_type";
 
 import { type EventContext, type Reducer, RemoteReducers, RemoteTables } from ".";
 
