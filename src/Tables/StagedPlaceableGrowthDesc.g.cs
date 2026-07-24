@@ -55,6 +55,7 @@ namespace BitCraftRegion.Types
         public global::SpacetimeDB.Col<PlaceableGrowthDesc, System.Collections.Generic.List<float>> Time { get; }
         public global::SpacetimeDB.Col<PlaceableGrowthDesc, System.Collections.Generic.List<PlaceableGrowthOutcome>> Outcomes { get; }
         public global::SpacetimeDB.Col<PlaceableGrowthDesc, bool> ShowTimeLeft { get; }
+        public global::SpacetimeDB.NullableCol<PlaceableGrowthDesc, System.Collections.Generic.List<PlaceableGrowthOutcomeV2>> OutcomesV2 { get; }
 
         public StagedPlaceableGrowthDescCols(string tableName)
         {
@@ -63,6 +64,7 @@ namespace BitCraftRegion.Types
             Time = new global::SpacetimeDB.Col<PlaceableGrowthDesc, System.Collections.Generic.List<float>>(tableName, "time");
             Outcomes = new global::SpacetimeDB.Col<PlaceableGrowthDesc, System.Collections.Generic.List<PlaceableGrowthOutcome>>(tableName, "outcomes");
             ShowTimeLeft = new global::SpacetimeDB.Col<PlaceableGrowthDesc, bool>(tableName, "show_time_left");
+            OutcomesV2 = new global::SpacetimeDB.NullableCol<PlaceableGrowthDesc, System.Collections.Generic.List<PlaceableGrowthOutcomeV2>>(tableName, "outcomes_v2");
         }
     }
 

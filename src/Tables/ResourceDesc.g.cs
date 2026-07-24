@@ -65,6 +65,13 @@ namespace BitCraftRegion.Types
         public global::SpacetimeDB.Col<ResourceDesc, int> OnDestroyYieldResourceMinRadius { get; }
         public global::SpacetimeDB.Col<ResourceDesc, int> OnDestroyYieldResourceMaxRadius { get; }
         public global::SpacetimeDB.Col<ResourceDesc, int> LightRadius { get; }
+        public global::SpacetimeDB.Col<ResourceDesc, bool> SpawnsOnLand { get; }
+        public global::SpacetimeDB.Col<ResourceDesc, int> LandElevationMin { get; }
+        public global::SpacetimeDB.Col<ResourceDesc, int> LandElevationMax { get; }
+        public global::SpacetimeDB.Col<ResourceDesc, bool> SpawnsInWater { get; }
+        public global::SpacetimeDB.Col<ResourceDesc, int> WaterDepthMin { get; }
+        public global::SpacetimeDB.Col<ResourceDesc, int> WaterDepthMax { get; }
+        public global::SpacetimeDB.Col<ResourceDesc, int> MaxElevationDelta { get; }
 
         public ResourceDescCols(string tableName)
         {
@@ -93,6 +100,13 @@ namespace BitCraftRegion.Types
             OnDestroyYieldResourceMinRadius = new global::SpacetimeDB.Col<ResourceDesc, int>(tableName, "on_destroy_yield_resource_min_radius");
             OnDestroyYieldResourceMaxRadius = new global::SpacetimeDB.Col<ResourceDesc, int>(tableName, "on_destroy_yield_resource_max_radius");
             LightRadius = new global::SpacetimeDB.Col<ResourceDesc, int>(tableName, "light_radius");
+            SpawnsOnLand = new global::SpacetimeDB.Col<ResourceDesc, bool>(tableName, "spawns_on_land");
+            LandElevationMin = new global::SpacetimeDB.Col<ResourceDesc, int>(tableName, "land_elevation_min");
+            LandElevationMax = new global::SpacetimeDB.Col<ResourceDesc, int>(tableName, "land_elevation_max");
+            SpawnsInWater = new global::SpacetimeDB.Col<ResourceDesc, bool>(tableName, "spawns_in_water");
+            WaterDepthMin = new global::SpacetimeDB.Col<ResourceDesc, int>(tableName, "water_depth_min");
+            WaterDepthMax = new global::SpacetimeDB.Col<ResourceDesc, int>(tableName, "water_depth_max");
+            MaxElevationDelta = new global::SpacetimeDB.Col<ResourceDesc, int>(tableName, "max_elevation_delta");
         }
     }
 

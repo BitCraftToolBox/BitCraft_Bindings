@@ -22,18 +22,30 @@ namespace BitCraftRegion.Types
         public System.Collections.Generic.List<float> Time;
         [DataMember(Name = "grown_resource_id")]
         public int GrownResourceId;
+        [DataMember(Name = "grown_resource_chance")]
+        public float GrownResourceChance;
+        [DataMember(Name = "grown_resource_min_radius")]
+        public int GrownResourceMinRadius;
+        [DataMember(Name = "grown_resource_max_radius")]
+        public int GrownResourceMaxRadius;
 
         public ResourceGrowthRecipeDesc(
             int Id,
             int ResourceId,
             System.Collections.Generic.List<float> Time,
-            int GrownResourceId
+            int GrownResourceId,
+            float GrownResourceChance,
+            int GrownResourceMinRadius,
+            int GrownResourceMaxRadius
         )
         {
             this.Id = Id;
             this.ResourceId = ResourceId;
             this.Time = Time;
             this.GrownResourceId = GrownResourceId;
+            this.GrownResourceChance = GrownResourceChance;
+            this.GrownResourceMinRadius = GrownResourceMinRadius;
+            this.GrownResourceMaxRadius = GrownResourceMaxRadius;
         }
 
         public ResourceGrowthRecipeDesc()

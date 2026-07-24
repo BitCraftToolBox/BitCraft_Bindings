@@ -34,6 +34,18 @@ namespace BitCraftRegion.Types
         public int MaxHealth;
         [DataMember(Name = "visible_to_others")]
         public bool VisibleToOthers;
+        [DataMember(Name = "spawns_on_land")]
+        public bool SpawnsOnLand;
+        [DataMember(Name = "land_elevation_min")]
+        public int LandElevationMin;
+        [DataMember(Name = "land_elevation_max")]
+        public int LandElevationMax;
+        [DataMember(Name = "spawns_in_water")]
+        public bool SpawnsInWater;
+        [DataMember(Name = "water_depth_min")]
+        public int WaterDepthMin;
+        [DataMember(Name = "water_depth_max")]
+        public int WaterDepthMax;
 
         public PlaceableDesc(
             int Id,
@@ -45,7 +57,13 @@ namespace BitCraftRegion.Types
             string ModelAssetName,
             string IconAssetName,
             int MaxHealth,
-            bool VisibleToOthers
+            bool VisibleToOthers,
+            bool SpawnsOnLand,
+            int LandElevationMin,
+            int LandElevationMax,
+            bool SpawnsInWater,
+            int WaterDepthMin,
+            int WaterDepthMax
         )
         {
             this.Id = Id;
@@ -58,6 +76,12 @@ namespace BitCraftRegion.Types
             this.IconAssetName = IconAssetName;
             this.MaxHealth = MaxHealth;
             this.VisibleToOthers = VisibleToOthers;
+            this.SpawnsOnLand = SpawnsOnLand;
+            this.LandElevationMin = LandElevationMin;
+            this.LandElevationMax = LandElevationMax;
+            this.SpawnsInWater = SpawnsInWater;
+            this.WaterDepthMin = WaterDepthMin;
+            this.WaterDepthMax = WaterDepthMax;
         }
 
         public PlaceableDesc()

@@ -134,6 +134,8 @@ namespace BitCraftRegion.Types
         public global::SpacetimeDB.Col<ParametersDesc, uint> HexiteCapsuleCurrencyCost { get; }
         public global::SpacetimeDB.Col<ParametersDesc, uint> ProspectingHerdImmunitySecs { get; }
         public global::SpacetimeDB.Col<ParametersDesc, float> RpWalkSpeed { get; }
+        public global::SpacetimeDB.NullableCol<ParametersDesc, System.Collections.Generic.List<TravelerWeeklyTaskCredits>> TravelerTaskWeeklyCredits { get; }
+        public global::SpacetimeDB.Col<ParametersDesc, int> TravelerTaskRerollCreditCost { get; }
 
         public StagedParametersDescCols(string tableName)
         {
@@ -231,6 +233,8 @@ namespace BitCraftRegion.Types
             HexiteCapsuleCurrencyCost = new global::SpacetimeDB.Col<ParametersDesc, uint>(tableName, "hexite_capsule_currency_cost");
             ProspectingHerdImmunitySecs = new global::SpacetimeDB.Col<ParametersDesc, uint>(tableName, "prospecting_herd_immunity_secs");
             RpWalkSpeed = new global::SpacetimeDB.Col<ParametersDesc, float>(tableName, "rp_walk_speed");
+            TravelerTaskWeeklyCredits = new global::SpacetimeDB.NullableCol<ParametersDesc, System.Collections.Generic.List<TravelerWeeklyTaskCredits>>(tableName, "traveler_task_weekly_credits");
+            TravelerTaskRerollCreditCost = new global::SpacetimeDB.Col<ParametersDesc, int>(tableName, "traveler_task_reroll_credit_cost");
         }
     }
 

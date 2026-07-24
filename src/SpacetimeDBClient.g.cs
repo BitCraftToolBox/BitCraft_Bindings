@@ -37,6 +37,7 @@ namespace BitCraftRegion.Types
             AddTable(ActionBarState = new(conn));
             AddTable(ActionState = new(conn));
             AddTable(ActiveBuffState = new(conn));
+            AddTable(ActiveConnectionState = new(conn));
             AddTable(ActiveEnvironmentBuffState = new(conn));
             AddTable(AdminBroadcast = new(conn));
             AddTable(AdminClearResourceTimer = new(conn));
@@ -192,6 +193,7 @@ namespace BitCraftRegion.Types
             AddTable(InterModuleMessageV2 = new(conn));
             AddTable(InterModuleMessageV3 = new(conn));
             AddTable(InterModuleMessageV4 = new(conn));
+            AddTable(InterModuleMessageV5 = new(conn));
             AddTable(InterModuleResponseMessageCounter = new(conn));
             AddTable(InteriorCollapseTriggerState = new(conn));
             AddTable(InteriorEnvironmentDesc = new(conn));
@@ -272,6 +274,7 @@ namespace BitCraftRegion.Types
             AddTable(PlaceableDesc = new(conn));
             AddTable(PlaceableGroupDesc = new(conn));
             AddTable(PlaceableGrowthDesc = new(conn));
+            AddTable(PlaceableGrowthTimer = new(conn));
             AddTable(PlaceableInteractionDesc = new(conn));
             AddTable(PlaceablePlacementDesc = new(conn));
             AddTable(PlaceableState = new(conn));
@@ -335,6 +338,7 @@ namespace BitCraftRegion.Types
             AddTable(ResourceCount = new(conn));
             AddTable(ResourceDesc = new(conn));
             AddTable(ResourceGrowthRecipeDesc = new(conn));
+            AddTable(ResourceGrowthTimer = new(conn));
             AddTable(ResourceHealthState = new(conn));
             AddTable(ResourcePlacementRecipeDesc = new(conn));
             AddTable(ResourcePlacementRecipeDiscoveryCargoDesc = new(conn));
@@ -485,6 +489,7 @@ namespace BitCraftRegion.Types
             AddTable(TradeSessionLoopTimer = new(conn));
             AddTable(TradeSessionState = new(conn));
             AddTable(TransferPlayerTimer = new(conn));
+            AddTable(TravelerTaskCreditState = new(conn));
             AddTable(TravelerTaskDesc = new(conn));
             AddTable(TravelerTaskKnowledgeRequirementDesc = new(conn));
             AddTable(TravelerTaskLoopTimer = new(conn));
@@ -1066,6 +1071,7 @@ namespace BitCraftRegion.Types
         public global::SpacetimeDB.Table<ActionBarState, ActionBarStateCols, ActionBarStateIxCols> ActionBarState() => new("action_bar_state", new ActionBarStateCols("action_bar_state"), new ActionBarStateIxCols("action_bar_state"));
         public global::SpacetimeDB.Table<ActionState, ActionStateCols, ActionStateIxCols> ActionState() => new("action_state", new ActionStateCols("action_state"), new ActionStateIxCols("action_state"));
         public global::SpacetimeDB.Table<ActiveBuffState, ActiveBuffStateCols, ActiveBuffStateIxCols> ActiveBuffState() => new("active_buff_state", new ActiveBuffStateCols("active_buff_state"), new ActiveBuffStateIxCols("active_buff_state"));
+        public global::SpacetimeDB.Table<ActiveConnectionState, ActiveConnectionStateCols, ActiveConnectionStateIxCols> ActiveConnectionState() => new("active_connection_state", new ActiveConnectionStateCols("active_connection_state"), new ActiveConnectionStateIxCols("active_connection_state"));
         public global::SpacetimeDB.Table<ActiveEnvironmentBuffState, ActiveEnvironmentBuffStateCols, ActiveEnvironmentBuffStateIxCols> ActiveEnvironmentBuffState() => new("active_environment_buff_state", new ActiveEnvironmentBuffStateCols("active_environment_buff_state"), new ActiveEnvironmentBuffStateIxCols("active_environment_buff_state"));
         public global::SpacetimeDB.Table<AdminBroadcast, AdminBroadcastCols, AdminBroadcastIxCols> AdminBroadcast() => new("admin_broadcast", new AdminBroadcastCols("admin_broadcast"), new AdminBroadcastIxCols("admin_broadcast"));
         public global::SpacetimeDB.Table<AdminClearResourceTimer, AdminClearResourceTimerCols, AdminClearResourceTimerIxCols> AdminClearResourceTimer() => new("admin_clear_resource_timer", new AdminClearResourceTimerCols("admin_clear_resource_timer"), new AdminClearResourceTimerIxCols("admin_clear_resource_timer"));
@@ -1221,6 +1227,7 @@ namespace BitCraftRegion.Types
         public global::SpacetimeDB.Table<InterModuleMessageV2, InterModuleMessageV2Cols, InterModuleMessageV2IxCols> InterModuleMessageV2() => new("inter_module_message_v2", new InterModuleMessageV2Cols("inter_module_message_v2"), new InterModuleMessageV2IxCols("inter_module_message_v2"));
         public global::SpacetimeDB.Table<InterModuleMessageV3, InterModuleMessageV3Cols, InterModuleMessageV3IxCols> InterModuleMessageV3() => new("inter_module_message_v3", new InterModuleMessageV3Cols("inter_module_message_v3"), new InterModuleMessageV3IxCols("inter_module_message_v3"));
         public global::SpacetimeDB.Table<InterModuleMessageV4, InterModuleMessageV4Cols, InterModuleMessageV4IxCols> InterModuleMessageV4() => new("inter_module_message_v4", new InterModuleMessageV4Cols("inter_module_message_v4"), new InterModuleMessageV4IxCols("inter_module_message_v4"));
+        public global::SpacetimeDB.Table<InterModuleMessageV5, InterModuleMessageV5Cols, InterModuleMessageV5IxCols> InterModuleMessageV5() => new("inter_module_message_v5", new InterModuleMessageV5Cols("inter_module_message_v5"), new InterModuleMessageV5IxCols("inter_module_message_v5"));
         public global::SpacetimeDB.Table<InterModuleResponseMessageCounter, InterModuleResponseMessageCounterCols, InterModuleResponseMessageCounterIxCols> InterModuleResponseMessageCounter() => new("inter_module_response_message_counter", new InterModuleResponseMessageCounterCols("inter_module_response_message_counter"), new InterModuleResponseMessageCounterIxCols("inter_module_response_message_counter"));
         public global::SpacetimeDB.Table<InteriorCollapseTriggerState, InteriorCollapseTriggerStateCols, InteriorCollapseTriggerStateIxCols> InteriorCollapseTriggerState() => new("interior_collapse_trigger_state", new InteriorCollapseTriggerStateCols("interior_collapse_trigger_state"), new InteriorCollapseTriggerStateIxCols("interior_collapse_trigger_state"));
         public global::SpacetimeDB.Table<InteriorEnvironmentDesc, InteriorEnvironmentDescCols, InteriorEnvironmentDescIxCols> InteriorEnvironmentDesc() => new("interior_environment_desc", new InteriorEnvironmentDescCols("interior_environment_desc"), new InteriorEnvironmentDescIxCols("interior_environment_desc"));
@@ -1301,6 +1308,7 @@ namespace BitCraftRegion.Types
         public global::SpacetimeDB.Table<PlaceableDesc, PlaceableDescCols, PlaceableDescIxCols> PlaceableDesc() => new("placeable_desc", new PlaceableDescCols("placeable_desc"), new PlaceableDescIxCols("placeable_desc"));
         public global::SpacetimeDB.Table<PlaceableGroupDesc, PlaceableGroupDescCols, PlaceableGroupDescIxCols> PlaceableGroupDesc() => new("placeable_group_desc", new PlaceableGroupDescCols("placeable_group_desc"), new PlaceableGroupDescIxCols("placeable_group_desc"));
         public global::SpacetimeDB.Table<PlaceableGrowthDesc, PlaceableGrowthDescCols, PlaceableGrowthDescIxCols> PlaceableGrowthDesc() => new("placeable_growth_desc", new PlaceableGrowthDescCols("placeable_growth_desc"), new PlaceableGrowthDescIxCols("placeable_growth_desc"));
+        public global::SpacetimeDB.Table<GrowthTimer, PlaceableGrowthTimerCols, PlaceableGrowthTimerIxCols> PlaceableGrowthTimer() => new("placeable_growth_timer", new PlaceableGrowthTimerCols("placeable_growth_timer"), new PlaceableGrowthTimerIxCols("placeable_growth_timer"));
         public global::SpacetimeDB.Table<PlaceableInteractionDesc, PlaceableInteractionDescCols, PlaceableInteractionDescIxCols> PlaceableInteractionDesc() => new("placeable_interaction_desc", new PlaceableInteractionDescCols("placeable_interaction_desc"), new PlaceableInteractionDescIxCols("placeable_interaction_desc"));
         public global::SpacetimeDB.Table<PlaceablePlacementDesc, PlaceablePlacementDescCols, PlaceablePlacementDescIxCols> PlaceablePlacementDesc() => new("placeable_placement_desc", new PlaceablePlacementDescCols("placeable_placement_desc"), new PlaceablePlacementDescIxCols("placeable_placement_desc"));
         public global::SpacetimeDB.Table<PlaceableState, PlaceableStateCols, PlaceableStateIxCols> PlaceableState() => new("placeable_state", new PlaceableStateCols("placeable_state"), new PlaceableStateIxCols("placeable_state"));
@@ -1364,6 +1372,7 @@ namespace BitCraftRegion.Types
         public global::SpacetimeDB.Table<ResourceCount, ResourceCountCols, ResourceCountIxCols> ResourceCount() => new("resource_count", new ResourceCountCols("resource_count"), new ResourceCountIxCols("resource_count"));
         public global::SpacetimeDB.Table<ResourceDesc, ResourceDescCols, ResourceDescIxCols> ResourceDesc() => new("resource_desc", new ResourceDescCols("resource_desc"), new ResourceDescIxCols("resource_desc"));
         public global::SpacetimeDB.Table<ResourceGrowthRecipeDesc, ResourceGrowthRecipeDescCols, ResourceGrowthRecipeDescIxCols> ResourceGrowthRecipeDesc() => new("resource_growth_recipe_desc", new ResourceGrowthRecipeDescCols("resource_growth_recipe_desc"), new ResourceGrowthRecipeDescIxCols("resource_growth_recipe_desc"));
+        public global::SpacetimeDB.Table<GrowthTimer, ResourceGrowthTimerCols, ResourceGrowthTimerIxCols> ResourceGrowthTimer() => new("resource_growth_timer", new ResourceGrowthTimerCols("resource_growth_timer"), new ResourceGrowthTimerIxCols("resource_growth_timer"));
         public global::SpacetimeDB.Table<ResourceHealthState, ResourceHealthStateCols, ResourceHealthStateIxCols> ResourceHealthState() => new("resource_health_state", new ResourceHealthStateCols("resource_health_state"), new ResourceHealthStateIxCols("resource_health_state"));
         public global::SpacetimeDB.Table<ResourcePlacementRecipeDesc, ResourcePlacementRecipeDescCols, ResourcePlacementRecipeDescIxCols> ResourcePlacementRecipeDesc() => new("resource_placement_recipe_desc", new ResourcePlacementRecipeDescCols("resource_placement_recipe_desc"), new ResourcePlacementRecipeDescIxCols("resource_placement_recipe_desc"));
         public global::SpacetimeDB.Table<DiscoveryTriggerDesc, ResourcePlacementRecipeDiscoveryCargoDescCols, ResourcePlacementRecipeDiscoveryCargoDescIxCols> ResourcePlacementRecipeDiscoveryCargoDesc() => new("resource_placement_recipe_discovery_cargo_desc", new ResourcePlacementRecipeDiscoveryCargoDescCols("resource_placement_recipe_discovery_cargo_desc"), new ResourcePlacementRecipeDiscoveryCargoDescIxCols("resource_placement_recipe_discovery_cargo_desc"));
@@ -1514,6 +1523,7 @@ namespace BitCraftRegion.Types
         public global::SpacetimeDB.Table<TradeSessionLoopTimer, TradeSessionLoopTimerCols, TradeSessionLoopTimerIxCols> TradeSessionLoopTimer() => new("trade_session_loop_timer", new TradeSessionLoopTimerCols("trade_session_loop_timer"), new TradeSessionLoopTimerIxCols("trade_session_loop_timer"));
         public global::SpacetimeDB.Table<TradeSessionState, TradeSessionStateCols, TradeSessionStateIxCols> TradeSessionState() => new("trade_session_state", new TradeSessionStateCols("trade_session_state"), new TradeSessionStateIxCols("trade_session_state"));
         public global::SpacetimeDB.Table<TransferPlayerTimer, TransferPlayerTimerCols, TransferPlayerTimerIxCols> TransferPlayerTimer() => new("transfer_player_timer", new TransferPlayerTimerCols("transfer_player_timer"), new TransferPlayerTimerIxCols("transfer_player_timer"));
+        public global::SpacetimeDB.Table<TravelerTaskCreditState, TravelerTaskCreditStateCols, TravelerTaskCreditStateIxCols> TravelerTaskCreditState() => new("traveler_task_credit_state", new TravelerTaskCreditStateCols("traveler_task_credit_state"), new TravelerTaskCreditStateIxCols("traveler_task_credit_state"));
         public global::SpacetimeDB.Table<TravelerTaskDesc, TravelerTaskDescCols, TravelerTaskDescIxCols> TravelerTaskDesc() => new("traveler_task_desc", new TravelerTaskDescCols("traveler_task_desc"), new TravelerTaskDescIxCols("traveler_task_desc"));
         public global::SpacetimeDB.Table<TravelerTaskKnowledgeRequirementDesc, TravelerTaskKnowledgeRequirementDescCols, TravelerTaskKnowledgeRequirementDescIxCols> TravelerTaskKnowledgeRequirementDesc() => new("traveler_task_knowledge_requirement_desc", new TravelerTaskKnowledgeRequirementDescCols("traveler_task_knowledge_requirement_desc"), new TravelerTaskKnowledgeRequirementDescIxCols("traveler_task_knowledge_requirement_desc"));
         public global::SpacetimeDB.Table<TravelerTaskLoopTimer, TravelerTaskLoopTimerCols, TravelerTaskLoopTimerIxCols> TravelerTaskLoopTimer() => new("traveler_task_loop_timer", new TravelerTaskLoopTimerCols("traveler_task_loop_timer"), new TravelerTaskLoopTimerIxCols("traveler_task_loop_timer"));
@@ -1648,6 +1658,7 @@ namespace BitCraftRegion.Types
                 "admin_gated_feature_remove" => BSATNHelpers.Decode<Reducer.AdminGatedFeatureRemove>(encodedArgs),
                 "admin_grant_all_claim_supplies" => BSATNHelpers.Decode<Reducer.AdminGrantAllClaimSupplies>(encodedArgs),
                 "admin_grant_collectibles" => BSATNHelpers.Decode<Reducer.AdminGrantCollectibles>(encodedArgs),
+                "admin_insert_resource_growth_timer" => BSATNHelpers.Decode<Reducer.AdminInsertResourceGrowthTimer>(encodedArgs),
                 "admin_migrate_action_state" => BSATNHelpers.Decode<Reducer.AdminMigrateActionState>(encodedArgs),
                 "admin_migrate_deployable_state_v2" => BSATNHelpers.Decode<Reducer.AdminMigrateDeployableStateV2>(encodedArgs),
                 "admin_migrate_trade_orders" => BSATNHelpers.Decode<Reducer.AdminMigrateTradeOrders>(encodedArgs),
@@ -1664,7 +1675,9 @@ namespace BitCraftRegion.Types
                 "admin_reset_all_herd_locations" => BSATNHelpers.Decode<Reducer.AdminResetAllHerdLocations>(encodedArgs),
                 "admin_reset_herd_locations" => BSATNHelpers.Decode<Reducer.AdminResetHerdLocations>(encodedArgs),
                 "admin_reset_onboarding_completely" => BSATNHelpers.Decode<Reducer.AdminResetOnboardingCompletely>(encodedArgs),
+                "admin_reset_traveler_task_credits" => BSATNHelpers.Decode<Reducer.AdminResetTravelerTaskCredits>(encodedArgs),
                 "admin_resource_force_regen" => BSATNHelpers.Decode<Reducer.AdminResourceForceRegen>(encodedArgs),
+                "admin_resources_delete_percentage" => BSATNHelpers.Decode<Reducer.AdminResourcesDeletePercentage>(encodedArgs),
                 "admin_resources_delete_very_slow" => BSATNHelpers.Decode<Reducer.AdminResourcesDeleteVerySlow>(encodedArgs),
                 "admin_resources_log_count" => BSATNHelpers.Decode<Reducer.AdminResourcesLogCount>(encodedArgs),
                 "admin_restore_all_buildings_health" => BSATNHelpers.Decode<Reducer.AdminRestoreAllBuildingsHealth>(encodedArgs),
@@ -2097,6 +2110,7 @@ namespace BitCraftRegion.Types
                 "migrate_auto_attacks" => BSATNHelpers.Decode<Reducer.MigrateAutoAttacks>(encodedArgs),
                 "migrate_character_stats" => BSATNHelpers.Decode<Reducer.MigrateCharacterStats>(encodedArgs),
                 "migrate_claim_tech" => BSATNHelpers.Decode<Reducer.MigrateClaimTech>(encodedArgs),
+                "migrate_equipment_slots" => BSATNHelpers.Decode<Reducer.MigrateEquipmentSlots>(encodedArgs),
                 "migrate_exploration_achievement_counts" => BSATNHelpers.Decode<Reducer.MigrateExplorationAchievementCounts>(encodedArgs),
                 "migrate_grant_default_collectibles" => BSATNHelpers.Decode<Reducer.MigrateGrantDefaultCollectibles>(encodedArgs),
                 "migrate_onboarding" => BSATNHelpers.Decode<Reducer.MigrateOnboarding>(encodedArgs),
@@ -2127,6 +2141,7 @@ namespace BitCraftRegion.Types
                 "pillar_shaping_destroy_start" => BSATNHelpers.Decode<Reducer.PillarShapingDestroyStart>(encodedArgs),
                 "pillar_shaping_place_pillar" => BSATNHelpers.Decode<Reducer.PillarShapingPlacePillar>(encodedArgs),
                 "pillar_shaping_place_pillar_start" => BSATNHelpers.Decode<Reducer.PillarShapingPlacePillarStart>(encodedArgs),
+                "placeable_growth_scheduled" => BSATNHelpers.Decode<Reducer.PlaceableGrowthScheduled>(encodedArgs),
                 "placeable_interact" => BSATNHelpers.Decode<Reducer.PlaceableInteract>(encodedArgs),
                 "placeable_interact_start" => BSATNHelpers.Decode<Reducer.PlaceableInteractStart>(encodedArgs),
                 "placeable_place" => BSATNHelpers.Decode<Reducer.PlaceablePlace>(encodedArgs),
@@ -2155,6 +2170,7 @@ namespace BitCraftRegion.Types
                 "player_regen_agent_loop" => BSATNHelpers.Decode<Reducer.PlayerRegenAgentLoop>(encodedArgs),
                 "player_region_crossover" => BSATNHelpers.Decode<Reducer.PlayerRegionCrossover>(encodedArgs),
                 "player_region_transfer_event_reducer" => BSATNHelpers.Decode<Reducer.PlayerRegionTransferEventReducer>(encodedArgs),
+                "player_reroll_traveler_task" => BSATNHelpers.Decode<Reducer.PlayerRerollTravelerTask>(encodedArgs),
                 "player_respawn" => BSATNHelpers.Decode<Reducer.PlayerRespawn>(encodedArgs),
                 "player_set_default_deployable" => BSATNHelpers.Decode<Reducer.PlayerSetDefaultDeployable>(encodedArgs),
                 "player_set_name_outcome_event_reducer" => BSATNHelpers.Decode<Reducer.PlayerSetNameOutcomeEventReducer>(encodedArgs),
@@ -2197,6 +2213,7 @@ namespace BitCraftRegion.Types
                 "reset_chunk_index_with_dimension" => BSATNHelpers.Decode<Reducer.ResetChunkIndexWithDimension>(encodedArgs),
                 "reset_mobile_entity_position" => BSATNHelpers.Decode<Reducer.ResetMobileEntityPosition>(encodedArgs),
                 "reset_onboarding" => BSATNHelpers.Decode<Reducer.ResetOnboarding>(encodedArgs),
+                "resource_growth_scheduled" => BSATNHelpers.Decode<Reducer.ResourceGrowthScheduled>(encodedArgs),
                 "resource_spawn_scheduled" => BSATNHelpers.Decode<Reducer.ResourceSpawnScheduled>(encodedArgs),
                 "resources_regen" => BSATNHelpers.Decode<Reducer.ResourcesRegen>(encodedArgs),
                 "respawn_interior_npcs" => BSATNHelpers.Decode<Reducer.RespawnInteriorNpcs>(encodedArgs),
@@ -2422,6 +2439,7 @@ namespace BitCraftRegion.Types
                 Reducer.AdminGatedFeatureRemove args => Reducers.InvokeAdminGatedFeatureRemove(eventContext, args),
                 Reducer.AdminGrantAllClaimSupplies args => Reducers.InvokeAdminGrantAllClaimSupplies(eventContext, args),
                 Reducer.AdminGrantCollectibles args => Reducers.InvokeAdminGrantCollectibles(eventContext, args),
+                Reducer.AdminInsertResourceGrowthTimer args => Reducers.InvokeAdminInsertResourceGrowthTimer(eventContext, args),
                 Reducer.AdminMigrateActionState args => Reducers.InvokeAdminMigrateActionState(eventContext, args),
                 Reducer.AdminMigrateDeployableStateV2 args => Reducers.InvokeAdminMigrateDeployableStateV2(eventContext, args),
                 Reducer.AdminMigrateTradeOrders args => Reducers.InvokeAdminMigrateTradeOrders(eventContext, args),
@@ -2438,7 +2456,9 @@ namespace BitCraftRegion.Types
                 Reducer.AdminResetAllHerdLocations args => Reducers.InvokeAdminResetAllHerdLocations(eventContext, args),
                 Reducer.AdminResetHerdLocations args => Reducers.InvokeAdminResetHerdLocations(eventContext, args),
                 Reducer.AdminResetOnboardingCompletely args => Reducers.InvokeAdminResetOnboardingCompletely(eventContext, args),
+                Reducer.AdminResetTravelerTaskCredits args => Reducers.InvokeAdminResetTravelerTaskCredits(eventContext, args),
                 Reducer.AdminResourceForceRegen args => Reducers.InvokeAdminResourceForceRegen(eventContext, args),
+                Reducer.AdminResourcesDeletePercentage args => Reducers.InvokeAdminResourcesDeletePercentage(eventContext, args),
                 Reducer.AdminResourcesDeleteVerySlow args => Reducers.InvokeAdminResourcesDeleteVerySlow(eventContext, args),
                 Reducer.AdminResourcesLogCount args => Reducers.InvokeAdminResourcesLogCount(eventContext, args),
                 Reducer.AdminRestoreAllBuildingsHealth args => Reducers.InvokeAdminRestoreAllBuildingsHealth(eventContext, args),
@@ -2871,6 +2891,7 @@ namespace BitCraftRegion.Types
                 Reducer.MigrateAutoAttacks args => Reducers.InvokeMigrateAutoAttacks(eventContext, args),
                 Reducer.MigrateCharacterStats args => Reducers.InvokeMigrateCharacterStats(eventContext, args),
                 Reducer.MigrateClaimTech args => Reducers.InvokeMigrateClaimTech(eventContext, args),
+                Reducer.MigrateEquipmentSlots args => Reducers.InvokeMigrateEquipmentSlots(eventContext, args),
                 Reducer.MigrateExplorationAchievementCounts args => Reducers.InvokeMigrateExplorationAchievementCounts(eventContext, args),
                 Reducer.MigrateGrantDefaultCollectibles args => Reducers.InvokeMigrateGrantDefaultCollectibles(eventContext, args),
                 Reducer.MigrateOnboarding args => Reducers.InvokeMigrateOnboarding(eventContext, args),
@@ -2901,6 +2922,7 @@ namespace BitCraftRegion.Types
                 Reducer.PillarShapingDestroyStart args => Reducers.InvokePillarShapingDestroyStart(eventContext, args),
                 Reducer.PillarShapingPlacePillar args => Reducers.InvokePillarShapingPlacePillar(eventContext, args),
                 Reducer.PillarShapingPlacePillarStart args => Reducers.InvokePillarShapingPlacePillarStart(eventContext, args),
+                Reducer.PlaceableGrowthScheduled args => Reducers.InvokePlaceableGrowthScheduled(eventContext, args),
                 Reducer.PlaceableInteract args => Reducers.InvokePlaceableInteract(eventContext, args),
                 Reducer.PlaceableInteractStart args => Reducers.InvokePlaceableInteractStart(eventContext, args),
                 Reducer.PlaceablePlace args => Reducers.InvokePlaceablePlace(eventContext, args),
@@ -2929,6 +2951,7 @@ namespace BitCraftRegion.Types
                 Reducer.PlayerRegenAgentLoop args => Reducers.InvokePlayerRegenAgentLoop(eventContext, args),
                 Reducer.PlayerRegionCrossover args => Reducers.InvokePlayerRegionCrossover(eventContext, args),
                 Reducer.PlayerRegionTransferEventReducer args => Reducers.InvokePlayerRegionTransferEventReducer(eventContext, args),
+                Reducer.PlayerRerollTravelerTask args => Reducers.InvokePlayerRerollTravelerTask(eventContext, args),
                 Reducer.PlayerRespawn args => Reducers.InvokePlayerRespawn(eventContext, args),
                 Reducer.PlayerSetDefaultDeployable args => Reducers.InvokePlayerSetDefaultDeployable(eventContext, args),
                 Reducer.PlayerSetNameOutcomeEventReducer args => Reducers.InvokePlayerSetNameOutcomeEventReducer(eventContext, args),
@@ -2971,6 +2994,7 @@ namespace BitCraftRegion.Types
                 Reducer.ResetChunkIndexWithDimension args => Reducers.InvokeResetChunkIndexWithDimension(eventContext, args),
                 Reducer.ResetMobileEntityPosition args => Reducers.InvokeResetMobileEntityPosition(eventContext, args),
                 Reducer.ResetOnboarding args => Reducers.InvokeResetOnboarding(eventContext, args),
+                Reducer.ResourceGrowthScheduled args => Reducers.InvokeResourceGrowthScheduled(eventContext, args),
                 Reducer.ResourceSpawnScheduled args => Reducers.InvokeResourceSpawnScheduled(eventContext, args),
                 Reducer.ResourcesRegen args => Reducers.InvokeResourcesRegen(eventContext, args),
                 Reducer.RespawnInteriorNpcs args => Reducers.InvokeRespawnInteriorNpcs(eventContext, args),
