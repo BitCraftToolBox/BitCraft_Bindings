@@ -1036,6 +1036,8 @@ import { MigrateExplorationAchievementCounts } from "./migrate_exploration_achie
 export { MigrateExplorationAchievementCounts };
 import { MigrateGrantDefaultCollectibles } from "./migrate_grant_default_collectibles_reducer.ts";
 export { MigrateGrantDefaultCollectibles };
+import { MigrateMissingEquipmentSlotTypes } from "./migrate_missing_equipment_slot_types_reducer.ts";
+export { MigrateMissingEquipmentSlotTypes };
 import { MigrateOnboarding } from "./migrate_onboarding_reducer.ts";
 export { MigrateOnboarding };
 import { MigratePlayerSettings } from "./migrate_player_settings_reducer.ts";
@@ -10201,6 +10203,10 @@ export const REMOTE_MODULE = {
       reducerName: "migrate_grant_default_collectibles",
       argsType: MigrateGrantDefaultCollectibles.getTypeScriptAlgebraicType(),
     },
+    migrate_missing_equipment_slot_types: {
+      reducerName: "migrate_missing_equipment_slot_types",
+      argsType: MigrateMissingEquipmentSlotTypes.getTypeScriptAlgebraicType(),
+    },
     migrate_onboarding: {
       reducerName: "migrate_onboarding",
       argsType: MigrateOnboarding.getTypeScriptAlgebraicType(),
@@ -11752,6 +11758,7 @@ export type Reducer = never
 | { name: "MigrateEquipmentSlots", args: MigrateEquipmentSlots }
 | { name: "MigrateExplorationAchievementCounts", args: MigrateExplorationAchievementCounts }
 | { name: "MigrateGrantDefaultCollectibles", args: MigrateGrantDefaultCollectibles }
+| { name: "MigrateMissingEquipmentSlotTypes", args: MigrateMissingEquipmentSlotTypes }
 | { name: "MigrateOnboarding", args: MigrateOnboarding }
 | { name: "MigratePlayerSettings", args: MigratePlayerSettings }
 | { name: "MigrationSetAchievementParams", args: MigrationSetAchievementParams }
@@ -19856,6 +19863,18 @@ export class RemoteReducers {
     this.connection.offReducer("migrate_grant_default_collectibles", callback);
   }
 
+  migrateMissingEquipmentSlotTypes() {
+    this.connection.callReducer("migrate_missing_equipment_slot_types", new Uint8Array(0), this.setCallReducerFlags.migrateMissingEquipmentSlotTypesFlags);
+  }
+
+  onMigrateMissingEquipmentSlotTypes(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.onReducer("migrate_missing_equipment_slot_types", callback);
+  }
+
+  removeOnMigrateMissingEquipmentSlotTypes(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.offReducer("migrate_missing_equipment_slot_types", callback);
+  }
+
   migrateOnboarding() {
     this.connection.callReducer("migrate_onboarding", new Uint8Array(0), this.setCallReducerFlags.migrateOnboardingFlags);
   }
@@ -26376,6 +26395,11 @@ export class SetReducerFlags {
   migrateGrantDefaultCollectiblesFlags: CallReducerFlags = 'FullUpdate';
   migrateGrantDefaultCollectibles(flags: CallReducerFlags) {
     this.migrateGrantDefaultCollectiblesFlags = flags;
+  }
+
+  migrateMissingEquipmentSlotTypesFlags: CallReducerFlags = 'FullUpdate';
+  migrateMissingEquipmentSlotTypes(flags: CallReducerFlags) {
+    this.migrateMissingEquipmentSlotTypesFlags = flags;
   }
 
   migrateOnboardingFlags: CallReducerFlags = 'FullUpdate';
