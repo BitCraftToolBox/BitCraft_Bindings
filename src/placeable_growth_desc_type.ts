@@ -33,6 +33,7 @@ import {
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
 import { PlaceableGrowthOutcome as __PlaceableGrowthOutcome } from "./placeable_growth_outcome_type";
+import { PlaceableGrowthOutcomeV2 as __PlaceableGrowthOutcomeV2 } from "./placeable_growth_outcome_v_2_type";
 
 export type PlaceableGrowthDesc = {
   id: number,
@@ -40,6 +41,7 @@ export type PlaceableGrowthDesc = {
   time: number[],
   outcomes: __PlaceableGrowthOutcome[],
   showTimeLeft: boolean,
+  outcomesV2: __PlaceableGrowthOutcomeV2[] | undefined,
 };
 
 /**
@@ -57,6 +59,7 @@ export namespace PlaceableGrowthDesc {
       new ProductTypeElement("time", AlgebraicType.createArrayType(AlgebraicType.createF32Type())),
       new ProductTypeElement("outcomes", AlgebraicType.createArrayType(__PlaceableGrowthOutcome.getTypeScriptAlgebraicType())),
       new ProductTypeElement("showTimeLeft", AlgebraicType.createBoolType()),
+      new ProductTypeElement("outcomesV2", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__PlaceableGrowthOutcomeV2.getTypeScriptAlgebraicType()))),
     ]);
   }
 

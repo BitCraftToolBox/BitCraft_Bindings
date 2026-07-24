@@ -32,26 +32,23 @@ import {
   type ReducerEventContextInterface,
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
-import { ParametersDesc } from "./parameters_desc_type";
-import { MovementSpeed as __MovementSpeed } from "./movement_speed_type";
-import { TravelerWeeklyTaskCredits as __TravelerWeeklyTaskCredits } from "./traveler_weekly_task_credits_type";
-
+import { TravelerTaskCreditState } from "./traveler_task_credit_state_type";
 import { type EventContext, type Reducer, RemoteReducers, RemoteTables } from ".";
 
 /**
- * Table handle for the table `parameters_desc`.
+ * Table handle for the table `traveler_task_credit_state`.
  *
- * Obtain a handle from the [`parametersDesc`] property on [`RemoteTables`],
- * like `ctx.db.parametersDesc`.
+ * Obtain a handle from the [`travelerTaskCreditState`] property on [`RemoteTables`],
+ * like `ctx.db.travelerTaskCreditState`.
  *
  * Users are encouraged not to explicitly reference this type,
  * but to directly chain method calls,
- * like `ctx.db.parametersDesc.on_insert(...)`.
+ * like `ctx.db.travelerTaskCreditState.on_insert(...)`.
  */
-export class ParametersDescTableHandle {
-  tableCache: TableCache<ParametersDesc>;
+export class TravelerTaskCreditStateTableHandle {
+  tableCache: TableCache<TravelerTaskCreditState>;
 
-  constructor(tableCache: TableCache<ParametersDesc>) {
+  constructor(tableCache: TableCache<TravelerTaskCreditState>) {
     this.tableCache = tableCache;
   }
 
@@ -59,53 +56,53 @@ export class ParametersDescTableHandle {
     return this.tableCache.count();
   }
 
-  iter(): Iterable<ParametersDesc> {
+  iter(): Iterable<TravelerTaskCreditState> {
     return this.tableCache.iter();
   }
   /**
-   * Access to the `version` unique index on the table `parameters_desc`,
+   * Access to the `entityId` unique index on the table `traveler_task_credit_state`,
    * which allows point queries on the field of the same name
-   * via the [`ParametersDescVersionUnique.find`] method.
+   * via the [`TravelerTaskCreditStateEntityIdUnique.find`] method.
    *
    * Users are encouraged not to explicitly reference this type,
    * but to directly chain method calls,
-   * like `ctx.db.parametersDesc.version().find(...)`.
+   * like `ctx.db.travelerTaskCreditState.entityId().find(...)`.
    *
-   * Get a handle on the `version` unique index on the table `parameters_desc`.
+   * Get a handle on the `entityId` unique index on the table `traveler_task_credit_state`.
    */
-  version = {
-    // Find the subscribed row whose `version` column value is equal to `col_val`,
+  entityId = {
+    // Find the subscribed row whose `entityId` column value is equal to `col_val`,
     // if such a row is present in the client cache.
-    find: (col_val: number): ParametersDesc | undefined => {
+    find: (col_val: bigint): TravelerTaskCreditState | undefined => {
       for (let row of this.tableCache.iter()) {
-        if (deepEqual(row.version, col_val)) {
+        if (deepEqual(row.entityId, col_val)) {
           return row;
         }
       }
     },
   };
 
-  onInsert = (cb: (ctx: EventContext, row: ParametersDesc) => void) => {
+  onInsert = (cb: (ctx: EventContext, row: TravelerTaskCreditState) => void) => {
     return this.tableCache.onInsert(cb);
   }
 
-  removeOnInsert = (cb: (ctx: EventContext, row: ParametersDesc) => void) => {
+  removeOnInsert = (cb: (ctx: EventContext, row: TravelerTaskCreditState) => void) => {
     return this.tableCache.removeOnInsert(cb);
   }
 
-  onDelete = (cb: (ctx: EventContext, row: ParametersDesc) => void) => {
+  onDelete = (cb: (ctx: EventContext, row: TravelerTaskCreditState) => void) => {
     return this.tableCache.onDelete(cb);
   }
 
-  removeOnDelete = (cb: (ctx: EventContext, row: ParametersDesc) => void) => {
+  removeOnDelete = (cb: (ctx: EventContext, row: TravelerTaskCreditState) => void) => {
     return this.tableCache.removeOnDelete(cb);
   }
 
   // Updates are only defined for tables with primary keys.
-  onUpdate = (cb: (ctx: EventContext, oldRow: ParametersDesc, newRow: ParametersDesc) => void) => {
+  onUpdate = (cb: (ctx: EventContext, oldRow: TravelerTaskCreditState, newRow: TravelerTaskCreditState) => void) => {
     return this.tableCache.onUpdate(cb);
   }
 
-  removeOnUpdate = (cb: (ctx: EventContext, onRow: ParametersDesc, newRow: ParametersDesc) => void) => {
+  removeOnUpdate = (cb: (ctx: EventContext, onRow: TravelerTaskCreditState, newRow: TravelerTaskCreditState) => void) => {
     return this.tableCache.removeOnUpdate(cb);
   }}

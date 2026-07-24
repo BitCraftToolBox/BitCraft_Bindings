@@ -62,6 +62,13 @@ export type ResourceDesc = {
   onDestroyYieldResourceMinRadius: number,
   onDestroyYieldResourceMaxRadius: number,
   lightRadius: number,
+  spawnsOnLand: boolean,
+  landElevationMin: number,
+  landElevationMax: number,
+  spawnsInWater: boolean,
+  waterDepthMin: number,
+  waterDepthMax: number,
+  maxElevationDelta: number,
 };
 
 /**
@@ -99,6 +106,13 @@ export namespace ResourceDesc {
       new ProductTypeElement("onDestroyYieldResourceMinRadius", AlgebraicType.createI32Type()),
       new ProductTypeElement("onDestroyYieldResourceMaxRadius", AlgebraicType.createI32Type()),
       new ProductTypeElement("lightRadius", AlgebraicType.createI32Type()),
+      new ProductTypeElement("spawnsOnLand", AlgebraicType.createBoolType()),
+      new ProductTypeElement("landElevationMin", AlgebraicType.createI32Type()),
+      new ProductTypeElement("landElevationMax", AlgebraicType.createI32Type()),
+      new ProductTypeElement("spawnsInWater", AlgebraicType.createBoolType()),
+      new ProductTypeElement("waterDepthMin", AlgebraicType.createI32Type()),
+      new ProductTypeElement("waterDepthMax", AlgebraicType.createI32Type()),
+      new ProductTypeElement("maxElevationDelta", AlgebraicType.createI32Type()),
     ]);
   }
 

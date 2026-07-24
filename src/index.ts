@@ -870,6 +870,8 @@ import { ActionStateTableHandle } from "./action_state_table.ts";
 export { ActionStateTableHandle };
 import { ActiveBuffStateTableHandle } from "./active_buff_state_table.ts";
 export { ActiveBuffStateTableHandle };
+import { ActiveConnectionStateTableHandle } from "./active_connection_state_table.ts";
+export { ActiveConnectionStateTableHandle };
 import { AdminBroadcastTableHandle } from "./admin_broadcast_table.ts";
 export { AdminBroadcastTableHandle };
 import { AlertDescTableHandle } from "./alert_desc_table.ts";
@@ -1160,6 +1162,8 @@ import { InterModuleMessageV3TableHandle } from "./inter_module_message_v_3_tabl
 export { InterModuleMessageV3TableHandle };
 import { InterModuleMessageV4TableHandle } from "./inter_module_message_v_4_table.ts";
 export { InterModuleMessageV4TableHandle };
+import { InterModuleMessageV5TableHandle } from "./inter_module_message_v_5_table.ts";
+export { InterModuleMessageV5TableHandle };
 import { InterModuleResponseMessageCounterTableHandle } from "./inter_module_response_message_counter_table.ts";
 export { InterModuleResponseMessageCounterTableHandle };
 import { InteriorCollapseTriggerStateTableHandle } from "./interior_collapse_trigger_state_table.ts";
@@ -1706,6 +1710,8 @@ import { TradeSessionStateTableHandle } from "./trade_session_state_table.ts";
 export { TradeSessionStateTableHandle };
 import { TranslationCorrectionsTableHandle } from "./translation_corrections_table.ts";
 export { TranslationCorrectionsTableHandle };
+import { TravelerTaskCreditStateTableHandle } from "./traveler_task_credit_state_table.ts";
+export { TravelerTaskCreditStateTableHandle };
 import { TravelerTaskDescTableHandle } from "./traveler_task_desc_table.ts";
 export { TravelerTaskDescTableHandle };
 import { TravelerTaskKnowledgeRequirementDescTableHandle } from "./traveler_task_knowledge_requirement_desc_table.ts";
@@ -1784,6 +1790,8 @@ import { ActiveBuff } from "./active_buff_type.ts";
 export { ActiveBuff };
 import { ActiveBuffState } from "./active_buff_state_type.ts";
 export { ActiveBuffState };
+import { ActiveConnectionState } from "./active_connection_state_type.ts";
+export { ActiveConnectionState };
 import { AdminBroadcast } from "./admin_broadcast_type.ts";
 export { AdminBroadcast };
 import { AdminBroadcastMessageMsg } from "./admin_broadcast_message_msg_type.ts";
@@ -2250,6 +2258,8 @@ import { InterModuleMessageV3 } from "./inter_module_message_v_3_type.ts";
 export { InterModuleMessageV3 };
 import { InterModuleMessageV4 } from "./inter_module_message_v_4_type.ts";
 export { InterModuleMessageV4 };
+import { InterModuleMessageV5 } from "./inter_module_message_v_5_type.ts";
+export { InterModuleMessageV5 };
 import { InterModuleResponseMessageCounter } from "./inter_module_response_message_counter_type.ts";
 export { InterModuleResponseMessageCounter };
 import { InterModuleTableUpdates } from "./inter_module_table_updates_type.ts";
@@ -2376,6 +2386,8 @@ import { MessageContentsV3 } from "./message_contents_v_3_type.ts";
 export { MessageContentsV3 };
 import { MessageContentsV4 } from "./message_contents_v_4_type.ts";
 export { MessageContentsV4 };
+import { MessageContentsV5 } from "./message_contents_v_5_type.ts";
+export { MessageContentsV5 };
 import { MinimumClientVersion } from "./minimum_client_version_type.ts";
 export { MinimumClientVersion };
 import { MobileEntityState } from "./mobile_entity_state_type.ts";
@@ -2486,10 +2498,14 @@ import { PlaceableGrowthDesc } from "./placeable_growth_desc_type.ts";
 export { PlaceableGrowthDesc };
 import { PlaceableGrowthOutcome } from "./placeable_growth_outcome_type.ts";
 export { PlaceableGrowthOutcome };
+import { PlaceableGrowthOutcomeV2 } from "./placeable_growth_outcome_v_2_type.ts";
+export { PlaceableGrowthOutcomeV2 };
 import { PlaceableInteractionDesc } from "./placeable_interaction_desc_type.ts";
 export { PlaceableInteractionDesc };
 import { PlaceablePlacementDesc } from "./placeable_placement_desc_type.ts";
 export { PlaceablePlacementDesc };
+import { PlaceableSelfBuffChance } from "./placeable_self_buff_chance_type.ts";
+export { PlaceableSelfBuffChance };
 import { PlaceableState } from "./placeable_state_type.ts";
 export { PlaceableState };
 import { PlayerActionDesc } from "./player_action_desc_type.ts";
@@ -2738,8 +2754,12 @@ import { TransferPlayerMsgV3 } from "./transfer_player_msg_v_3_type.ts";
 export { TransferPlayerMsgV3 };
 import { TransferPlayerMsgV4 } from "./transfer_player_msg_v_4_type.ts";
 export { TransferPlayerMsgV4 };
+import { TransferPlayerMsgV5 } from "./transfer_player_msg_v_5_type.ts";
+export { TransferPlayerMsgV5 };
 import { TranslationCorrections } from "./translation_corrections_type.ts";
 export { TranslationCorrections };
+import { TravelerTaskCreditState } from "./traveler_task_credit_state_type.ts";
+export { TravelerTaskCreditState };
 import { TravelerTaskDesc } from "./traveler_task_desc_type.ts";
 export { TravelerTaskDesc };
 import { TravelerTaskKnowledgeRequirementDesc } from "./traveler_task_knowledge_requirement_desc_type.ts";
@@ -2748,6 +2768,8 @@ import { TravelerTaskState } from "./traveler_task_state_type.ts";
 export { TravelerTaskState };
 import { TravelerTradeOrderDesc } from "./traveler_trade_order_desc_type.ts";
 export { TravelerTradeOrderDesc };
+import { TravelerWeeklyTaskCredits } from "./traveler_weekly_task_credits_type.ts";
+export { TravelerWeeklyTaskCredits };
 import { TraversalSettings } from "./traversal_settings_type.ts";
 export { TraversalSettings };
 import { UnclaimedCollectiblesState } from "./unclaimed_collectibles_state_type.ts";
@@ -2877,6 +2899,15 @@ const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "entityId",
         colType: ActiveBuffState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    active_connection_state: {
+      tableName: "active_connection_state",
+      rowType: ActiveConnectionState.getTypeScriptAlgebraicType(),
+      primaryKey: "entityId",
+      primaryKeyInfo: {
+        colName: "entityId",
+        colType: ActiveConnectionState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     admin_broadcast: {
@@ -4142,6 +4173,15 @@ const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "id",
         colType: InterModuleMessageV4.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    inter_module_message_v5: {
+      tableName: "inter_module_message_v5",
+      rowType: InterModuleMessageV5.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: InterModuleMessageV5.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     inter_module_response_message_counter: {
@@ -6544,6 +6584,15 @@ const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "id",
         colType: TranslationCorrections.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    traveler_task_credit_state: {
+      tableName: "traveler_task_credit_state",
+      rowType: TravelerTaskCreditState.getTypeScriptAlgebraicType(),
+      primaryKey: "entityId",
+      primaryKeyInfo: {
+        colName: "entityId",
+        colType: TravelerTaskCreditState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     traveler_task_desc: {
@@ -13278,7 +13327,7 @@ export class RemoteReducers {
     this.connection.offReducer("player_vote_conclude", callback);
   }
 
-  processInterModuleMessage(sender: number, message: InterModuleMessageV4) {
+  processInterModuleMessage(sender: number, message: InterModuleMessageV5) {
     const __args = { sender, message };
     let __writer = new BinaryWriter(1024);
     ProcessInterModuleMessage.getTypeScriptAlgebraicType().serialize(__writer, __args);
@@ -13286,11 +13335,11 @@ export class RemoteReducers {
     this.connection.callReducer("process_inter_module_message", __argsBuffer, this.setCallReducerFlags.processInterModuleMessageFlags);
   }
 
-  onProcessInterModuleMessage(callback: (ctx: ReducerEventContext, sender: number, message: InterModuleMessageV4) => void) {
+  onProcessInterModuleMessage(callback: (ctx: ReducerEventContext, sender: number, message: InterModuleMessageV5) => void) {
     this.connection.onReducer("process_inter_module_message", callback);
   }
 
-  removeOnProcessInterModuleMessage(callback: (ctx: ReducerEventContext, sender: number, message: InterModuleMessageV4) => void) {
+  removeOnProcessInterModuleMessage(callback: (ctx: ReducerEventContext, sender: number, message: InterModuleMessageV5) => void) {
     this.connection.offReducer("process_inter_module_message", callback);
   }
 
@@ -17361,6 +17410,10 @@ export class RemoteTables {
     return new ActiveBuffStateTableHandle(this.connection.clientCache.getOrCreateTable<ActiveBuffState>(REMOTE_MODULE.tables.active_buff_state));
   }
 
+  get activeConnectionState(): ActiveConnectionStateTableHandle {
+    return new ActiveConnectionStateTableHandle(this.connection.clientCache.getOrCreateTable<ActiveConnectionState>(REMOTE_MODULE.tables.active_connection_state));
+  }
+
   get adminBroadcast(): AdminBroadcastTableHandle {
     return new AdminBroadcastTableHandle(this.connection.clientCache.getOrCreateTable<AdminBroadcast>(REMOTE_MODULE.tables.admin_broadcast));
   }
@@ -17939,6 +17992,10 @@ export class RemoteTables {
 
   get interModuleMessageV4(): InterModuleMessageV4TableHandle {
     return new InterModuleMessageV4TableHandle(this.connection.clientCache.getOrCreateTable<InterModuleMessageV4>(REMOTE_MODULE.tables.inter_module_message_v4));
+  }
+
+  get interModuleMessageV5(): InterModuleMessageV5TableHandle {
+    return new InterModuleMessageV5TableHandle(this.connection.clientCache.getOrCreateTable<InterModuleMessageV5>(REMOTE_MODULE.tables.inter_module_message_v5));
   }
 
   get interModuleResponseMessageCounter(): InterModuleResponseMessageCounterTableHandle {
@@ -19031,6 +19088,10 @@ export class RemoteTables {
 
   get translationCorrections(): TranslationCorrectionsTableHandle {
     return new TranslationCorrectionsTableHandle(this.connection.clientCache.getOrCreateTable<TranslationCorrections>(REMOTE_MODULE.tables.translation_corrections));
+  }
+
+  get travelerTaskCreditState(): TravelerTaskCreditStateTableHandle {
+    return new TravelerTaskCreditStateTableHandle(this.connection.clientCache.getOrCreateTable<TravelerTaskCreditState>(REMOTE_MODULE.tables.traveler_task_credit_state));
   }
 
   get travelerTaskDesc(): TravelerTaskDescTableHandle {

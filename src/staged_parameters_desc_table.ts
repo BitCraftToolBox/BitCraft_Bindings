@@ -34,6 +34,7 @@ import {
 } from "@clockworklabs/spacetimedb-sdk";
 import { ParametersDesc } from "./parameters_desc_type";
 import { MovementSpeed as __MovementSpeed } from "./movement_speed_type";
+import { TravelerWeeklyTaskCredits as __TravelerWeeklyTaskCredits } from "./traveler_weekly_task_credits_type";
 
 import { type EventContext, type Reducer, RemoteReducers, RemoteTables } from ".";
 
