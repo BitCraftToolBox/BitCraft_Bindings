@@ -34,6 +34,7 @@ import {
 } from "@clockworklabs/spacetimedb-sdk";
 import { PlaceableGrowthDesc } from "./placeable_growth_desc_type";
 import { PlaceableGrowthOutcome as __PlaceableGrowthOutcome } from "./placeable_growth_outcome_type";
+import { PlaceableGrowthOutcomeV2 as __PlaceableGrowthOutcomeV2 } from "./placeable_growth_outcome_v_2_type";
 
 import { type EventContext, type Reducer, RemoteReducers, RemoteTables } from ".";
 

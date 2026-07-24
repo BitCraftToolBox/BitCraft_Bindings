@@ -45,6 +45,12 @@ export type PlaceableDesc = {
   iconAssetName: string,
   maxHealth: number,
   visibleToOthers: boolean,
+  spawnsOnLand: boolean,
+  landElevationMin: number,
+  landElevationMax: number,
+  spawnsInWater: boolean,
+  waterDepthMin: number,
+  waterDepthMax: number,
 };
 
 /**
@@ -67,6 +73,12 @@ export namespace PlaceableDesc {
       new ProductTypeElement("iconAssetName", AlgebraicType.createStringType()),
       new ProductTypeElement("maxHealth", AlgebraicType.createI32Type()),
       new ProductTypeElement("visibleToOthers", AlgebraicType.createBoolType()),
+      new ProductTypeElement("spawnsOnLand", AlgebraicType.createBoolType()),
+      new ProductTypeElement("landElevationMin", AlgebraicType.createI32Type()),
+      new ProductTypeElement("landElevationMax", AlgebraicType.createI32Type()),
+      new ProductTypeElement("spawnsInWater", AlgebraicType.createBoolType()),
+      new ProductTypeElement("waterDepthMin", AlgebraicType.createI32Type()),
+      new ProductTypeElement("waterDepthMax", AlgebraicType.createI32Type()),
     ]);
   }
 

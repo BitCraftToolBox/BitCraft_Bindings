@@ -36,6 +36,7 @@ import { LevelRequirement as __LevelRequirement } from "./level_requirement_type
 import { ItemStack as __ItemStack } from "./item_stack_type";
 import { ToolRequirement as __ToolRequirement } from "./tool_requirement_type";
 import { Biome as __Biome } from "./biome_type";
+import { PlaceableSelfBuffChance as __PlaceableSelfBuffChance } from "./placeable_self_buff_chance_type";
 
 export type PlaceablePlacementDesc = {
   id: number,
@@ -63,6 +64,7 @@ export type PlaceablePlacementDesc = {
   maxDistanceToBuildings: number,
   buildings: number[],
   recipePerformanceId: number,
+  selfBuffs: __PlaceableSelfBuffChance[] | undefined,
 };
 
 /**
@@ -100,6 +102,7 @@ export namespace PlaceablePlacementDesc {
       new ProductTypeElement("maxDistanceToBuildings", AlgebraicType.createI32Type()),
       new ProductTypeElement("buildings", AlgebraicType.createArrayType(AlgebraicType.createI32Type())),
       new ProductTypeElement("recipePerformanceId", AlgebraicType.createI32Type()),
+      new ProductTypeElement("selfBuffs", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__PlaceableSelfBuffChance.getTypeScriptAlgebraicType()))),
     ]);
   }
 

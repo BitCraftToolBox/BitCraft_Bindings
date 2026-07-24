@@ -37,6 +37,9 @@ export type ResourceGrowthRecipeDesc = {
   resourceId: number,
   time: number[],
   grownResourceId: number,
+  grownResourceChance: number,
+  grownResourceMinRadius: number,
+  grownResourceMaxRadius: number,
 };
 
 /**
@@ -53,6 +56,9 @@ export namespace ResourceGrowthRecipeDesc {
       new ProductTypeElement("resourceId", AlgebraicType.createI32Type()),
       new ProductTypeElement("time", AlgebraicType.createArrayType(AlgebraicType.createF32Type())),
       new ProductTypeElement("grownResourceId", AlgebraicType.createI32Type()),
+      new ProductTypeElement("grownResourceChance", AlgebraicType.createF32Type()),
+      new ProductTypeElement("grownResourceMinRadius", AlgebraicType.createI32Type()),
+      new ProductTypeElement("grownResourceMaxRadius", AlgebraicType.createI32Type()),
     ]);
   }
 

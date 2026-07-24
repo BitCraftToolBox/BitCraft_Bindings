@@ -32,36 +32,38 @@ import {
   type ReducerEventContextInterface,
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
-
-import { InterModuleMessageV5 as __InterModuleMessageV5 } from "./inter_module_message_v_5_type";
-
-export type ProcessInterModuleMessage = {
-  sender: number,
-  message: __InterModuleMessageV5,
+export type GrowthTimer = {
+  scheduledId: bigint,
+  scheduledAt: { tag: "Interval", value: TimeDuration } | { tag: "Time", value: Timestamp },
+  entityId: bigint,
+  growthRecipeId: number,
 };
 
 /**
  * A namespace for generated helper functions.
  */
-export namespace ProcessInterModuleMessage {
+export namespace GrowthTimer {
   /**
   * A function which returns this type represented as an AlgebraicType.
   * This function is derived from the AlgebraicType used to generate this type.
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("sender", AlgebraicType.createU8Type()),
-      new ProductTypeElement("message", __InterModuleMessageV5.getTypeScriptAlgebraicType()),
+      new ProductTypeElement("scheduledId", AlgebraicType.createU64Type()),
+      new ProductTypeElement("scheduledAt", AlgebraicType.createScheduleAtType()),
+      new ProductTypeElement("entityId", AlgebraicType.createU64Type()),
+      new ProductTypeElement("growthRecipeId", AlgebraicType.createI32Type()),
     ]);
   }
 
-  export function serialize(writer: BinaryWriter, value: ProcessInterModuleMessage): void {
-    ProcessInterModuleMessage.getTypeScriptAlgebraicType().serialize(writer, value);
+  export function serialize(writer: BinaryWriter, value: GrowthTimer): void {
+    GrowthTimer.getTypeScriptAlgebraicType().serialize(writer, value);
   }
 
-  export function deserialize(reader: BinaryReader): ProcessInterModuleMessage {
-    return ProcessInterModuleMessage.getTypeScriptAlgebraicType().deserialize(reader);
+  export function deserialize(reader: BinaryReader): GrowthTimer {
+    return GrowthTimer.getTypeScriptAlgebraicType().deserialize(reader);
   }
 
 }
+
 

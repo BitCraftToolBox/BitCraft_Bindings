@@ -33,6 +33,7 @@ import {
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
 import { MovementSpeed as __MovementSpeed } from "./movement_speed_type";
+import { TravelerWeeklyTaskCredits as __TravelerWeeklyTaskCredits } from "./traveler_weekly_task_credits_type";
 
 export type ParametersDesc = {
   version: number,
@@ -129,6 +130,8 @@ export type ParametersDesc = {
   hexiteCapsuleCurrencyCost: number,
   prospectingHerdImmunitySecs: number,
   rpWalkSpeed: number,
+  travelerTaskWeeklyCredits: __TravelerWeeklyTaskCredits[] | undefined,
+  travelerTaskRerollCreditCost: number,
 };
 
 /**
@@ -235,6 +238,8 @@ export namespace ParametersDesc {
       new ProductTypeElement("hexiteCapsuleCurrencyCost", AlgebraicType.createU32Type()),
       new ProductTypeElement("prospectingHerdImmunitySecs", AlgebraicType.createU32Type()),
       new ProductTypeElement("rpWalkSpeed", AlgebraicType.createF32Type()),
+      new ProductTypeElement("travelerTaskWeeklyCredits", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__TravelerWeeklyTaskCredits.getTypeScriptAlgebraicType()))),
+      new ProductTypeElement("travelerTaskRerollCreditCost", AlgebraicType.createI32Type()),
     ]);
   }
 

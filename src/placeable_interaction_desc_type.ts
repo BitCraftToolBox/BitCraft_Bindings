@@ -37,6 +37,8 @@ import { ItemStack as __ItemStack } from "./item_stack_type";
 import { ToolRequirement as __ToolRequirement } from "./tool_requirement_type";
 import { InputItemStack as __InputItemStack } from "./input_item_stack_type";
 import { ExperienceStackF32 as __ExperienceStackF32 } from "./experience_stack_f_32_type";
+import { PlaceableGrowthOutcomeV2 as __PlaceableGrowthOutcomeV2 } from "./placeable_growth_outcome_v_2_type";
+import { PlaceableSelfBuffChance as __PlaceableSelfBuffChance } from "./placeable_self_buff_chance_type";
 
 export type PlaceableInteractionDesc = {
   id: number,
@@ -58,6 +60,8 @@ export type PlaceableInteractionDesc = {
   recipePerformanceId: number,
   onDestroySpawnedPlaceableId: number,
   onDestroySpawnedPlaceableChance: number,
+  onDestroyOutcomes: __PlaceableGrowthOutcomeV2[] | undefined,
+  selfBuffs: __PlaceableSelfBuffChance[] | undefined,
 };
 
 /**
@@ -89,6 +93,8 @@ export namespace PlaceableInteractionDesc {
       new ProductTypeElement("recipePerformanceId", AlgebraicType.createI32Type()),
       new ProductTypeElement("onDestroySpawnedPlaceableId", AlgebraicType.createI32Type()),
       new ProductTypeElement("onDestroySpawnedPlaceableChance", AlgebraicType.createF32Type()),
+      new ProductTypeElement("onDestroyOutcomes", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__PlaceableGrowthOutcomeV2.getTypeScriptAlgebraicType()))),
+      new ProductTypeElement("selfBuffs", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__PlaceableSelfBuffChance.getTypeScriptAlgebraicType()))),
     ]);
   }
 

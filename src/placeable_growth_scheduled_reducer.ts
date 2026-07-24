@@ -33,34 +33,32 @@ import {
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
 
-import { InterModuleMessageV5 as __InterModuleMessageV5 } from "./inter_module_message_v_5_type";
+import { GrowthTimer as __GrowthTimer } from "./growth_timer_type";
 
-export type ProcessInterModuleMessage = {
-  sender: number,
-  message: __InterModuleMessageV5,
+export type PlaceableGrowthScheduled = {
+  timer: __GrowthTimer,
 };
 
 /**
  * A namespace for generated helper functions.
  */
-export namespace ProcessInterModuleMessage {
+export namespace PlaceableGrowthScheduled {
   /**
   * A function which returns this type represented as an AlgebraicType.
   * This function is derived from the AlgebraicType used to generate this type.
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
-      new ProductTypeElement("sender", AlgebraicType.createU8Type()),
-      new ProductTypeElement("message", __InterModuleMessageV5.getTypeScriptAlgebraicType()),
+      new ProductTypeElement("timer", __GrowthTimer.getTypeScriptAlgebraicType()),
     ]);
   }
 
-  export function serialize(writer: BinaryWriter, value: ProcessInterModuleMessage): void {
-    ProcessInterModuleMessage.getTypeScriptAlgebraicType().serialize(writer, value);
+  export function serialize(writer: BinaryWriter, value: PlaceableGrowthScheduled): void {
+    PlaceableGrowthScheduled.getTypeScriptAlgebraicType().serialize(writer, value);
   }
 
-  export function deserialize(reader: BinaryReader): ProcessInterModuleMessage {
-    return ProcessInterModuleMessage.getTypeScriptAlgebraicType().deserialize(reader);
+  export function deserialize(reader: BinaryReader): PlaceableGrowthScheduled {
+    return PlaceableGrowthScheduled.getTypeScriptAlgebraicType().deserialize(reader);
   }
 
 }

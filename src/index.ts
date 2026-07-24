@@ -126,6 +126,8 @@ import { AdminGrantAllClaimSupplies } from "./admin_grant_all_claim_supplies_red
 export { AdminGrantAllClaimSupplies };
 import { AdminGrantCollectibles } from "./admin_grant_collectibles_reducer.ts";
 export { AdminGrantCollectibles };
+import { AdminInsertResourceGrowthTimer } from "./admin_insert_resource_growth_timer_reducer.ts";
+export { AdminInsertResourceGrowthTimer };
 import { AdminMigrateActionState } from "./admin_migrate_action_state_reducer.ts";
 export { AdminMigrateActionState };
 import { AdminMigrateDeployableStateV2 } from "./admin_migrate_deployable_state_v_2_reducer.ts";
@@ -158,8 +160,12 @@ import { AdminResetHerdLocations } from "./admin_reset_herd_locations_reducer.ts
 export { AdminResetHerdLocations };
 import { AdminResetOnboardingCompletely } from "./admin_reset_onboarding_completely_reducer.ts";
 export { AdminResetOnboardingCompletely };
+import { AdminResetTravelerTaskCredits } from "./admin_reset_traveler_task_credits_reducer.ts";
+export { AdminResetTravelerTaskCredits };
 import { AdminResourceForceRegen } from "./admin_resource_force_regen_reducer.ts";
 export { AdminResourceForceRegen };
+import { AdminResourcesDeletePercentage } from "./admin_resources_delete_percentage_reducer.ts";
+export { AdminResourcesDeletePercentage };
 import { AdminResourcesDeleteVerySlow } from "./admin_resources_delete_very_slow_reducer.ts";
 export { AdminResourcesDeleteVerySlow };
 import { AdminResourcesLogCount } from "./admin_resources_log_count_reducer.ts";
@@ -1024,6 +1030,8 @@ import { MigrateCharacterStats } from "./migrate_character_stats_reducer.ts";
 export { MigrateCharacterStats };
 import { MigrateClaimTech } from "./migrate_claim_tech_reducer.ts";
 export { MigrateClaimTech };
+import { MigrateEquipmentSlots } from "./migrate_equipment_slots_reducer.ts";
+export { MigrateEquipmentSlots };
 import { MigrateExplorationAchievementCounts } from "./migrate_exploration_achievement_counts_reducer.ts";
 export { MigrateExplorationAchievementCounts };
 import { MigrateGrantDefaultCollectibles } from "./migrate_grant_default_collectibles_reducer.ts";
@@ -1084,6 +1092,8 @@ import { PillarShapingPlacePillar } from "./pillar_shaping_place_pillar_reducer.
 export { PillarShapingPlacePillar };
 import { PillarShapingPlacePillarStart } from "./pillar_shaping_place_pillar_start_reducer.ts";
 export { PillarShapingPlacePillarStart };
+import { PlaceableGrowthScheduled } from "./placeable_growth_scheduled_reducer.ts";
+export { PlaceableGrowthScheduled };
 import { PlaceableInteract } from "./placeable_interact_reducer.ts";
 export { PlaceableInteract };
 import { PlaceableInteractStart } from "./placeable_interact_start_reducer.ts";
@@ -1140,6 +1150,8 @@ import { PlayerRegionCrossover } from "./player_region_crossover_reducer.ts";
 export { PlayerRegionCrossover };
 import { PlayerRegionTransferEventReducer } from "./player_region_transfer_event_reducer_reducer.ts";
 export { PlayerRegionTransferEventReducer };
+import { PlayerRerollTravelerTask } from "./player_reroll_traveler_task_reducer.ts";
+export { PlayerRerollTravelerTask };
 import { PlayerRespawn } from "./player_respawn_reducer.ts";
 export { PlayerRespawn };
 import { PlayerSetDefaultDeployable } from "./player_set_default_deployable_reducer.ts";
@@ -1224,6 +1236,8 @@ import { ResetMobileEntityPosition } from "./reset_mobile_entity_position_reduce
 export { ResetMobileEntityPosition };
 import { ResetOnboarding } from "./reset_onboarding_reducer.ts";
 export { ResetOnboarding };
+import { ResourceGrowthScheduled } from "./resource_growth_scheduled_reducer.ts";
+export { ResourceGrowthScheduled };
 import { ResourceSpawnScheduled } from "./resource_spawn_scheduled_reducer.ts";
 export { ResourceSpawnScheduled };
 import { ResourcesRegen } from "./resources_regen_reducer.ts";
@@ -1550,6 +1564,8 @@ import { ActionStateTableHandle } from "./action_state_table.ts";
 export { ActionStateTableHandle };
 import { ActiveBuffStateTableHandle } from "./active_buff_state_table.ts";
 export { ActiveBuffStateTableHandle };
+import { ActiveConnectionStateTableHandle } from "./active_connection_state_table.ts";
+export { ActiveConnectionStateTableHandle };
 import { ActiveEnvironmentBuffStateTableHandle } from "./active_environment_buff_state_table.ts";
 export { ActiveEnvironmentBuffStateTableHandle };
 import { AdminBroadcastTableHandle } from "./admin_broadcast_table.ts";
@@ -1858,6 +1874,8 @@ import { InterModuleMessageV3TableHandle } from "./inter_module_message_v_3_tabl
 export { InterModuleMessageV3TableHandle };
 import { InterModuleMessageV4TableHandle } from "./inter_module_message_v_4_table.ts";
 export { InterModuleMessageV4TableHandle };
+import { InterModuleMessageV5TableHandle } from "./inter_module_message_v_5_table.ts";
+export { InterModuleMessageV5TableHandle };
 import { InterModuleResponseMessageCounterTableHandle } from "./inter_module_response_message_counter_table.ts";
 export { InterModuleResponseMessageCounterTableHandle };
 import { InteriorCollapseTriggerStateTableHandle } from "./interior_collapse_trigger_state_table.ts";
@@ -2018,6 +2036,8 @@ import { PlaceableGroupDescTableHandle } from "./placeable_group_desc_table.ts";
 export { PlaceableGroupDescTableHandle };
 import { PlaceableGrowthDescTableHandle } from "./placeable_growth_desc_table.ts";
 export { PlaceableGrowthDescTableHandle };
+import { PlaceableGrowthTimerTableHandle } from "./placeable_growth_timer_table.ts";
+export { PlaceableGrowthTimerTableHandle };
 import { PlaceableInteractionDescTableHandle } from "./placeable_interaction_desc_table.ts";
 export { PlaceableInteractionDescTableHandle };
 import { PlaceablePlacementDescTableHandle } from "./placeable_placement_desc_table.ts";
@@ -2142,6 +2162,8 @@ import { ResourceDescTableHandle } from "./resource_desc_table.ts";
 export { ResourceDescTableHandle };
 import { ResourceGrowthRecipeDescTableHandle } from "./resource_growth_recipe_desc_table.ts";
 export { ResourceGrowthRecipeDescTableHandle };
+import { ResourceGrowthTimerTableHandle } from "./resource_growth_timer_table.ts";
+export { ResourceGrowthTimerTableHandle };
 import { ResourceHealthStateTableHandle } from "./resource_health_state_table.ts";
 export { ResourceHealthStateTableHandle };
 import { ResourcePlacementRecipeDescTableHandle } from "./resource_placement_recipe_desc_table.ts";
@@ -2442,6 +2464,8 @@ import { TradeSessionStateTableHandle } from "./trade_session_state_table.ts";
 export { TradeSessionStateTableHandle };
 import { TransferPlayerTimerTableHandle } from "./transfer_player_timer_table.ts";
 export { TransferPlayerTimerTableHandle };
+import { TravelerTaskCreditStateTableHandle } from "./traveler_task_credit_state_table.ts";
+export { TravelerTaskCreditStateTableHandle };
 import { TravelerTaskDescTableHandle } from "./traveler_task_desc_table.ts";
 export { TravelerTaskDescTableHandle };
 import { TravelerTaskKnowledgeRequirementDescTableHandle } from "./traveler_task_knowledge_requirement_desc_table.ts";
@@ -2518,6 +2542,8 @@ import { ActiveBuff } from "./active_buff_type.ts";
 export { ActiveBuff };
 import { ActiveBuffState } from "./active_buff_state_type.ts";
 export { ActiveBuffState };
+import { ActiveConnectionState } from "./active_connection_state_type.ts";
+export { ActiveConnectionState };
 import { ActiveEnvironmentBuffState } from "./active_environment_buff_state_type.ts";
 export { ActiveEnvironmentBuffState };
 import { AdminBroadcast } from "./admin_broadcast_type.ts";
@@ -3014,6 +3040,8 @@ import { GrowthLoopTimer } from "./growth_loop_timer_type.ts";
 export { GrowthLoopTimer };
 import { GrowthState } from "./growth_state_type.ts";
 export { GrowthState };
+import { GrowthTimer } from "./growth_timer_type.ts";
+export { GrowthTimer };
 import { HandEquipmentVisual } from "./hand_equipment_visual_type.ts";
 export { HandEquipmentVisual };
 import { HealthState } from "./health_state_type.ts";
@@ -3046,6 +3074,8 @@ import { InterModuleMessageV3 } from "./inter_module_message_v_3_type.ts";
 export { InterModuleMessageV3 };
 import { InterModuleMessageV4 } from "./inter_module_message_v_4_type.ts";
 export { InterModuleMessageV4 };
+import { InterModuleMessageV5 } from "./inter_module_message_v_5_type.ts";
+export { InterModuleMessageV5 };
 import { InterModuleResponseMessageCounter } from "./inter_module_response_message_counter_type.ts";
 export { InterModuleResponseMessageCounter };
 import { InterModuleTableUpdates } from "./inter_module_table_updates_type.ts";
@@ -3180,6 +3210,8 @@ import { MessageContentsV3 } from "./message_contents_v_3_type.ts";
 export { MessageContentsV3 };
 import { MessageContentsV4 } from "./message_contents_v_4_type.ts";
 export { MessageContentsV4 };
+import { MessageContentsV5 } from "./message_contents_v_5_type.ts";
+export { MessageContentsV5 };
 import { MigrationAchievementsParams } from "./migration_achievements_params_type.ts";
 export { MigrationAchievementsParams };
 import { MigrationBuildingDescParams } from "./migration_building_desc_params_type.ts";
@@ -3280,10 +3312,14 @@ import { PlaceableGrowthDesc } from "./placeable_growth_desc_type.ts";
 export { PlaceableGrowthDesc };
 import { PlaceableGrowthOutcome } from "./placeable_growth_outcome_type.ts";
 export { PlaceableGrowthOutcome };
+import { PlaceableGrowthOutcomeV2 } from "./placeable_growth_outcome_v_2_type.ts";
+export { PlaceableGrowthOutcomeV2 };
 import { PlaceableInteractionDesc } from "./placeable_interaction_desc_type.ts";
 export { PlaceableInteractionDesc };
 import { PlaceablePlacementDesc } from "./placeable_placement_desc_type.ts";
 export { PlaceablePlacementDesc };
+import { PlaceableSelfBuffChance } from "./placeable_self_buff_chance_type.ts";
+export { PlaceableSelfBuffChance };
 import { PlaceableState } from "./placeable_state_type.ts";
 export { PlaceableState };
 import { PlayerAchievementClaimRequest } from "./player_achievement_claim_request_type.ts";
@@ -3802,8 +3838,12 @@ import { TransferPlayerMsgV3 } from "./transfer_player_msg_v_3_type.ts";
 export { TransferPlayerMsgV3 };
 import { TransferPlayerMsgV4 } from "./transfer_player_msg_v_4_type.ts";
 export { TransferPlayerMsgV4 };
+import { TransferPlayerMsgV5 } from "./transfer_player_msg_v_5_type.ts";
+export { TransferPlayerMsgV5 };
 import { TransferPlayerTimer } from "./transfer_player_timer_type.ts";
 export { TransferPlayerTimer };
+import { TravelerTaskCreditState } from "./traveler_task_credit_state_type.ts";
+export { TravelerTaskCreditState };
 import { TravelerTaskDesc } from "./traveler_task_desc_type.ts";
 export { TravelerTaskDesc };
 import { TravelerTaskKnowledgeRequirementDesc } from "./traveler_task_knowledge_requirement_desc_type.ts";
@@ -3814,6 +3854,8 @@ import { TravelerTaskState } from "./traveler_task_state_type.ts";
 export { TravelerTaskState };
 import { TravelerTradeOrderDesc } from "./traveler_trade_order_desc_type.ts";
 export { TravelerTradeOrderDesc };
+import { TravelerWeeklyTaskCredits } from "./traveler_weekly_task_credits_type.ts";
+export { TravelerWeeklyTaskCredits };
 import { TraversalSettings } from "./traversal_settings_type.ts";
 export { TraversalSettings };
 import { UnclaimedCollectiblesState } from "./unclaimed_collectibles_state_type.ts";
@@ -3993,6 +4035,15 @@ export const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "entityId",
         colType: ActiveBuffState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    active_connection_state: {
+      tableName: "active_connection_state",
+      rowType: ActiveConnectionState.getTypeScriptAlgebraicType(),
+      primaryKey: "entityId",
+      primaryKeyInfo: {
+        colName: "entityId",
+        colType: ActiveConnectionState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     active_environment_buff_state: {
@@ -5341,6 +5392,15 @@ export const REMOTE_MODULE = {
         colType: InterModuleMessageV4.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    inter_module_message_v5: {
+      tableName: "inter_module_message_v5",
+      rowType: InterModuleMessageV5.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: InterModuleMessageV5.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     inter_module_response_message_counter: {
       tableName: "inter_module_response_message_counter",
       rowType: InterModuleResponseMessageCounter.getTypeScriptAlgebraicType(),
@@ -6031,6 +6091,15 @@ export const REMOTE_MODULE = {
         colType: PlaceableGrowthDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    placeable_growth_timer: {
+      tableName: "placeable_growth_timer",
+      rowType: GrowthTimer.getTypeScriptAlgebraicType(),
+      primaryKey: "scheduledId",
+      primaryKeyInfo: {
+        colName: "scheduledId",
+        colType: GrowthTimer.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     placeable_interaction_desc: {
       tableName: "placeable_interaction_desc",
       rowType: PlaceableInteractionDesc.getTypeScriptAlgebraicType(),
@@ -6582,6 +6651,15 @@ export const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "id",
         colType: ResourceGrowthRecipeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    resource_growth_timer: {
+      tableName: "resource_growth_timer",
+      rowType: GrowthTimer.getTypeScriptAlgebraicType(),
+      primaryKey: "scheduledId",
+      primaryKeyInfo: {
+        colName: "scheduledId",
+        colType: GrowthTimer.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     resource_health_state: {
@@ -7919,6 +7997,15 @@ export const REMOTE_MODULE = {
         colType: TransferPlayerTimer.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    traveler_task_credit_state: {
+      tableName: "traveler_task_credit_state",
+      rowType: TravelerTaskCreditState.getTypeScriptAlgebraicType(),
+      primaryKey: "entityId",
+      primaryKeyInfo: {
+        colName: "entityId",
+        colType: TravelerTaskCreditState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     traveler_task_desc: {
       tableName: "traveler_task_desc",
       rowType: TravelerTaskDesc.getTypeScriptAlgebraicType(),
@@ -8294,6 +8381,10 @@ export const REMOTE_MODULE = {
       reducerName: "admin_grant_collectibles",
       argsType: AdminGrantCollectibles.getTypeScriptAlgebraicType(),
     },
+    admin_insert_resource_growth_timer: {
+      reducerName: "admin_insert_resource_growth_timer",
+      argsType: AdminInsertResourceGrowthTimer.getTypeScriptAlgebraicType(),
+    },
     admin_migrate_action_state: {
       reducerName: "admin_migrate_action_state",
       argsType: AdminMigrateActionState.getTypeScriptAlgebraicType(),
@@ -8358,9 +8449,17 @@ export const REMOTE_MODULE = {
       reducerName: "admin_reset_onboarding_completely",
       argsType: AdminResetOnboardingCompletely.getTypeScriptAlgebraicType(),
     },
+    admin_reset_traveler_task_credits: {
+      reducerName: "admin_reset_traveler_task_credits",
+      argsType: AdminResetTravelerTaskCredits.getTypeScriptAlgebraicType(),
+    },
     admin_resource_force_regen: {
       reducerName: "admin_resource_force_regen",
       argsType: AdminResourceForceRegen.getTypeScriptAlgebraicType(),
+    },
+    admin_resources_delete_percentage: {
+      reducerName: "admin_resources_delete_percentage",
+      argsType: AdminResourcesDeletePercentage.getTypeScriptAlgebraicType(),
     },
     admin_resources_delete_very_slow: {
       reducerName: "admin_resources_delete_very_slow",
@@ -10090,6 +10189,10 @@ export const REMOTE_MODULE = {
       reducerName: "migrate_claim_tech",
       argsType: MigrateClaimTech.getTypeScriptAlgebraicType(),
     },
+    migrate_equipment_slots: {
+      reducerName: "migrate_equipment_slots",
+      argsType: MigrateEquipmentSlots.getTypeScriptAlgebraicType(),
+    },
     migrate_exploration_achievement_counts: {
       reducerName: "migrate_exploration_achievement_counts",
       argsType: MigrateExplorationAchievementCounts.getTypeScriptAlgebraicType(),
@@ -10210,6 +10313,10 @@ export const REMOTE_MODULE = {
       reducerName: "pillar_shaping_place_pillar_start",
       argsType: PillarShapingPlacePillarStart.getTypeScriptAlgebraicType(),
     },
+    placeable_growth_scheduled: {
+      reducerName: "placeable_growth_scheduled",
+      argsType: PlaceableGrowthScheduled.getTypeScriptAlgebraicType(),
+    },
     placeable_interact: {
       reducerName: "placeable_interact",
       argsType: PlaceableInteract.getTypeScriptAlgebraicType(),
@@ -10321,6 +10428,10 @@ export const REMOTE_MODULE = {
     player_region_transfer_event_reducer: {
       reducerName: "player_region_transfer_event_reducer",
       argsType: PlayerRegionTransferEventReducer.getTypeScriptAlgebraicType(),
+    },
+    player_reroll_traveler_task: {
+      reducerName: "player_reroll_traveler_task",
+      argsType: PlayerRerollTravelerTask.getTypeScriptAlgebraicType(),
     },
     player_respawn: {
       reducerName: "player_respawn",
@@ -10489,6 +10600,10 @@ export const REMOTE_MODULE = {
     reset_onboarding: {
       reducerName: "reset_onboarding",
       argsType: ResetOnboarding.getTypeScriptAlgebraicType(),
+    },
+    resource_growth_scheduled: {
+      reducerName: "resource_growth_scheduled",
+      argsType: ResourceGrowthScheduled.getTypeScriptAlgebraicType(),
     },
     resource_spawn_scheduled: {
       reducerName: "resource_spawn_scheduled",
@@ -11182,6 +11297,7 @@ export type Reducer = never
 | { name: "AdminGatedFeatureRemove", args: AdminGatedFeatureRemove }
 | { name: "AdminGrantAllClaimSupplies", args: AdminGrantAllClaimSupplies }
 | { name: "AdminGrantCollectibles", args: AdminGrantCollectibles }
+| { name: "AdminInsertResourceGrowthTimer", args: AdminInsertResourceGrowthTimer }
 | { name: "AdminMigrateActionState", args: AdminMigrateActionState }
 | { name: "AdminMigrateDeployableStateV2", args: AdminMigrateDeployableStateV2 }
 | { name: "AdminMigrateTradeOrders", args: AdminMigrateTradeOrders }
@@ -11198,7 +11314,9 @@ export type Reducer = never
 | { name: "AdminResetAllHerdLocations", args: AdminResetAllHerdLocations }
 | { name: "AdminResetHerdLocations", args: AdminResetHerdLocations }
 | { name: "AdminResetOnboardingCompletely", args: AdminResetOnboardingCompletely }
+| { name: "AdminResetTravelerTaskCredits", args: AdminResetTravelerTaskCredits }
 | { name: "AdminResourceForceRegen", args: AdminResourceForceRegen }
+| { name: "AdminResourcesDeletePercentage", args: AdminResourcesDeletePercentage }
 | { name: "AdminResourcesDeleteVerySlow", args: AdminResourcesDeleteVerySlow }
 | { name: "AdminResourcesLogCount", args: AdminResourcesLogCount }
 | { name: "AdminRestoreAllBuildingsHealth", args: AdminRestoreAllBuildingsHealth }
@@ -11631,6 +11749,7 @@ export type Reducer = never
 | { name: "MigrateAutoAttacks", args: MigrateAutoAttacks }
 | { name: "MigrateCharacterStats", args: MigrateCharacterStats }
 | { name: "MigrateClaimTech", args: MigrateClaimTech }
+| { name: "MigrateEquipmentSlots", args: MigrateEquipmentSlots }
 | { name: "MigrateExplorationAchievementCounts", args: MigrateExplorationAchievementCounts }
 | { name: "MigrateGrantDefaultCollectibles", args: MigrateGrantDefaultCollectibles }
 | { name: "MigrateOnboarding", args: MigrateOnboarding }
@@ -11661,6 +11780,7 @@ export type Reducer = never
 | { name: "PillarShapingDestroyStart", args: PillarShapingDestroyStart }
 | { name: "PillarShapingPlacePillar", args: PillarShapingPlacePillar }
 | { name: "PillarShapingPlacePillarStart", args: PillarShapingPlacePillarStart }
+| { name: "PlaceableGrowthScheduled", args: PlaceableGrowthScheduled }
 | { name: "PlaceableInteract", args: PlaceableInteract }
 | { name: "PlaceableInteractStart", args: PlaceableInteractStart }
 | { name: "PlaceablePlace", args: PlaceablePlace }
@@ -11689,6 +11809,7 @@ export type Reducer = never
 | { name: "PlayerRegenAgentLoop", args: PlayerRegenAgentLoop }
 | { name: "PlayerRegionCrossover", args: PlayerRegionCrossover }
 | { name: "PlayerRegionTransferEventReducer", args: PlayerRegionTransferEventReducer }
+| { name: "PlayerRerollTravelerTask", args: PlayerRerollTravelerTask }
 | { name: "PlayerRespawn", args: PlayerRespawn }
 | { name: "PlayerSetDefaultDeployable", args: PlayerSetDefaultDeployable }
 | { name: "PlayerSetNameOutcomeEventReducer", args: PlayerSetNameOutcomeEventReducer }
@@ -11731,6 +11852,7 @@ export type Reducer = never
 | { name: "ResetChunkIndexWithDimension", args: ResetChunkIndexWithDimension }
 | { name: "ResetMobileEntityPosition", args: ResetMobileEntityPosition }
 | { name: "ResetOnboarding", args: ResetOnboarding }
+| { name: "ResourceGrowthScheduled", args: ResourceGrowthScheduled }
 | { name: "ResourceSpawnScheduled", args: ResourceSpawnScheduled }
 | { name: "ResourcesRegen", args: ResourcesRegen }
 | { name: "RespawnInteriorNpcs", args: RespawnInteriorNpcs }
@@ -12598,6 +12720,22 @@ export class RemoteReducers {
     this.connection.offReducer("admin_grant_collectibles", callback);
   }
 
+  adminInsertResourceGrowthTimer(resourceId: number) {
+    const __args = { resourceId };
+    let __writer = new BinaryWriter(1024);
+    AdminInsertResourceGrowthTimer.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("admin_insert_resource_growth_timer", __argsBuffer, this.setCallReducerFlags.adminInsertResourceGrowthTimerFlags);
+  }
+
+  onAdminInsertResourceGrowthTimer(callback: (ctx: ReducerEventContext, resourceId: number) => void) {
+    this.connection.onReducer("admin_insert_resource_growth_timer", callback);
+  }
+
+  removeOnAdminInsertResourceGrowthTimer(callback: (ctx: ReducerEventContext, resourceId: number) => void) {
+    this.connection.offReducer("admin_insert_resource_growth_timer", callback);
+  }
+
   adminMigrateActionState() {
     this.connection.callReducer("admin_migrate_action_state", new Uint8Array(0), this.setCallReducerFlags.adminMigrateActionStateFlags);
   }
@@ -12834,6 +12972,18 @@ export class RemoteReducers {
     this.connection.offReducer("admin_reset_onboarding_completely", callback);
   }
 
+  adminResetTravelerTaskCredits() {
+    this.connection.callReducer("admin_reset_traveler_task_credits", new Uint8Array(0), this.setCallReducerFlags.adminResetTravelerTaskCreditsFlags);
+  }
+
+  onAdminResetTravelerTaskCredits(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.onReducer("admin_reset_traveler_task_credits", callback);
+  }
+
+  removeOnAdminResetTravelerTaskCredits(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.offReducer("admin_reset_traveler_task_credits", callback);
+  }
+
   adminResourceForceRegen(resourceId: number, iterations: number, ignoreTargetCount: boolean) {
     const __args = { resourceId, iterations, ignoreTargetCount };
     let __writer = new BinaryWriter(1024);
@@ -12848,6 +12998,22 @@ export class RemoteReducers {
 
   removeOnAdminResourceForceRegen(callback: (ctx: ReducerEventContext, resourceId: number, iterations: number, ignoreTargetCount: boolean) => void) {
     this.connection.offReducer("admin_resource_force_regen", callback);
+  }
+
+  adminResourcesDeletePercentage(resourceId: number, percentage: number, updateResourcesLog: boolean) {
+    const __args = { resourceId, percentage, updateResourcesLog };
+    let __writer = new BinaryWriter(1024);
+    AdminResourcesDeletePercentage.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("admin_resources_delete_percentage", __argsBuffer, this.setCallReducerFlags.adminResourcesDeletePercentageFlags);
+  }
+
+  onAdminResourcesDeletePercentage(callback: (ctx: ReducerEventContext, resourceId: number, percentage: number, updateResourcesLog: boolean) => void) {
+    this.connection.onReducer("admin_resources_delete_percentage", callback);
+  }
+
+  removeOnAdminResourcesDeletePercentage(callback: (ctx: ReducerEventContext, resourceId: number, percentage: number, updateResourcesLog: boolean) => void) {
+    this.connection.offReducer("admin_resources_delete_percentage", callback);
   }
 
   adminResourcesDeleteVerySlow(resourceId: number) {
@@ -19654,6 +19820,18 @@ export class RemoteReducers {
     this.connection.offReducer("migrate_claim_tech", callback);
   }
 
+  migrateEquipmentSlots() {
+    this.connection.callReducer("migrate_equipment_slots", new Uint8Array(0), this.setCallReducerFlags.migrateEquipmentSlotsFlags);
+  }
+
+  onMigrateEquipmentSlots(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.onReducer("migrate_equipment_slots", callback);
+  }
+
+  removeOnMigrateEquipmentSlots(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.offReducer("migrate_equipment_slots", callback);
+  }
+
   migrateExplorationAchievementCounts() {
     this.connection.callReducer("migrate_exploration_achievement_counts", new Uint8Array(0), this.setCallReducerFlags.migrateExplorationAchievementCountsFlags);
   }
@@ -20118,6 +20296,22 @@ export class RemoteReducers {
     this.connection.offReducer("pillar_shaping_place_pillar_start", callback);
   }
 
+  placeableGrowthScheduled(timer: GrowthTimer) {
+    const __args = { timer };
+    let __writer = new BinaryWriter(1024);
+    PlaceableGrowthScheduled.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("placeable_growth_scheduled", __argsBuffer, this.setCallReducerFlags.placeableGrowthScheduledFlags);
+  }
+
+  onPlaceableGrowthScheduled(callback: (ctx: ReducerEventContext, timer: GrowthTimer) => void) {
+    this.connection.onReducer("placeable_growth_scheduled", callback);
+  }
+
+  removeOnPlaceableGrowthScheduled(callback: (ctx: ReducerEventContext, timer: GrowthTimer) => void) {
+    this.connection.offReducer("placeable_growth_scheduled", callback);
+  }
+
   placeableInteract(request: PlayerPlaceableInteractRequest) {
     const __args = { request };
     let __writer = new BinaryWriter(1024);
@@ -20550,6 +20744,22 @@ export class RemoteReducers {
     this.connection.offReducer("player_region_transfer_event_reducer", callback);
   }
 
+  playerRerollTravelerTask(taskEntityId: bigint) {
+    const __args = { taskEntityId };
+    let __writer = new BinaryWriter(1024);
+    PlayerRerollTravelerTask.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("player_reroll_traveler_task", __argsBuffer, this.setCallReducerFlags.playerRerollTravelerTaskFlags);
+  }
+
+  onPlayerRerollTravelerTask(callback: (ctx: ReducerEventContext, taskEntityId: bigint) => void) {
+    this.connection.onReducer("player_reroll_traveler_task", callback);
+  }
+
+  removeOnPlayerRerollTravelerTask(callback: (ctx: ReducerEventContext, taskEntityId: bigint) => void) {
+    this.connection.offReducer("player_reroll_traveler_task", callback);
+  }
+
   playerRespawn(teleportHome: boolean) {
     const __args = { teleportHome };
     let __writer = new BinaryWriter(1024);
@@ -20758,7 +20968,7 @@ export class RemoteReducers {
     this.connection.offReducer("portal_enter", callback);
   }
 
-  processInterModuleMessage(sender: number, message: InterModuleMessageV4) {
+  processInterModuleMessage(sender: number, message: InterModuleMessageV5) {
     const __args = { sender, message };
     let __writer = new BinaryWriter(1024);
     ProcessInterModuleMessage.getTypeScriptAlgebraicType().serialize(__writer, __args);
@@ -20766,11 +20976,11 @@ export class RemoteReducers {
     this.connection.callReducer("process_inter_module_message", __argsBuffer, this.setCallReducerFlags.processInterModuleMessageFlags);
   }
 
-  onProcessInterModuleMessage(callback: (ctx: ReducerEventContext, sender: number, message: InterModuleMessageV4) => void) {
+  onProcessInterModuleMessage(callback: (ctx: ReducerEventContext, sender: number, message: InterModuleMessageV5) => void) {
     this.connection.onReducer("process_inter_module_message", callback);
   }
 
-  removeOnProcessInterModuleMessage(callback: (ctx: ReducerEventContext, sender: number, message: InterModuleMessageV4) => void) {
+  removeOnProcessInterModuleMessage(callback: (ctx: ReducerEventContext, sender: number, message: InterModuleMessageV5) => void) {
     this.connection.offReducer("process_inter_module_message", callback);
   }
 
@@ -21212,6 +21422,22 @@ export class RemoteReducers {
 
   removeOnResetOnboarding(callback: (ctx: ReducerEventContext) => void) {
     this.connection.offReducer("reset_onboarding", callback);
+  }
+
+  resourceGrowthScheduled(timer: GrowthTimer) {
+    const __args = { timer };
+    let __writer = new BinaryWriter(1024);
+    ResourceGrowthScheduled.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("resource_growth_scheduled", __argsBuffer, this.setCallReducerFlags.resourceGrowthScheduledFlags);
+  }
+
+  onResourceGrowthScheduled(callback: (ctx: ReducerEventContext, timer: GrowthTimer) => void) {
+    this.connection.onReducer("resource_growth_scheduled", callback);
+  }
+
+  removeOnResourceGrowthScheduled(callback: (ctx: ReducerEventContext, timer: GrowthTimer) => void) {
+    this.connection.offReducer("resource_growth_scheduled", callback);
   }
 
   resourceSpawnScheduled(timer: ResourceSpawnTimer) {
@@ -23887,6 +24113,11 @@ export class SetReducerFlags {
     this.adminGrantCollectiblesFlags = flags;
   }
 
+  adminInsertResourceGrowthTimerFlags: CallReducerFlags = 'FullUpdate';
+  adminInsertResourceGrowthTimer(flags: CallReducerFlags) {
+    this.adminInsertResourceGrowthTimerFlags = flags;
+  }
+
   adminMigrateActionStateFlags: CallReducerFlags = 'FullUpdate';
   adminMigrateActionState(flags: CallReducerFlags) {
     this.adminMigrateActionStateFlags = flags;
@@ -23967,9 +24198,19 @@ export class SetReducerFlags {
     this.adminResetOnboardingCompletelyFlags = flags;
   }
 
+  adminResetTravelerTaskCreditsFlags: CallReducerFlags = 'FullUpdate';
+  adminResetTravelerTaskCredits(flags: CallReducerFlags) {
+    this.adminResetTravelerTaskCreditsFlags = flags;
+  }
+
   adminResourceForceRegenFlags: CallReducerFlags = 'FullUpdate';
   adminResourceForceRegen(flags: CallReducerFlags) {
     this.adminResourceForceRegenFlags = flags;
+  }
+
+  adminResourcesDeletePercentageFlags: CallReducerFlags = 'FullUpdate';
+  adminResourcesDeletePercentage(flags: CallReducerFlags) {
+    this.adminResourcesDeletePercentageFlags = flags;
   }
 
   adminResourcesDeleteVerySlowFlags: CallReducerFlags = 'FullUpdate';
@@ -26122,6 +26363,11 @@ export class SetReducerFlags {
     this.migrateClaimTechFlags = flags;
   }
 
+  migrateEquipmentSlotsFlags: CallReducerFlags = 'FullUpdate';
+  migrateEquipmentSlots(flags: CallReducerFlags) {
+    this.migrateEquipmentSlotsFlags = flags;
+  }
+
   migrateExplorationAchievementCountsFlags: CallReducerFlags = 'FullUpdate';
   migrateExplorationAchievementCounts(flags: CallReducerFlags) {
     this.migrateExplorationAchievementCountsFlags = flags;
@@ -26272,6 +26518,11 @@ export class SetReducerFlags {
     this.pillarShapingPlacePillarStartFlags = flags;
   }
 
+  placeableGrowthScheduledFlags: CallReducerFlags = 'FullUpdate';
+  placeableGrowthScheduled(flags: CallReducerFlags) {
+    this.placeableGrowthScheduledFlags = flags;
+  }
+
   placeableInteractFlags: CallReducerFlags = 'FullUpdate';
   placeableInteract(flags: CallReducerFlags) {
     this.placeableInteractFlags = flags;
@@ -26410,6 +26661,11 @@ export class SetReducerFlags {
   playerRegionTransferEventReducerFlags: CallReducerFlags = 'FullUpdate';
   playerRegionTransferEventReducer(flags: CallReducerFlags) {
     this.playerRegionTransferEventReducerFlags = flags;
+  }
+
+  playerRerollTravelerTaskFlags: CallReducerFlags = 'FullUpdate';
+  playerRerollTravelerTask(flags: CallReducerFlags) {
+    this.playerRerollTravelerTaskFlags = flags;
   }
 
   playerRespawnFlags: CallReducerFlags = 'FullUpdate';
@@ -26620,6 +26876,11 @@ export class SetReducerFlags {
   resetOnboardingFlags: CallReducerFlags = 'FullUpdate';
   resetOnboarding(flags: CallReducerFlags) {
     this.resetOnboardingFlags = flags;
+  }
+
+  resourceGrowthScheduledFlags: CallReducerFlags = 'FullUpdate';
+  resourceGrowthScheduled(flags: CallReducerFlags) {
+    this.resourceGrowthScheduledFlags = flags;
   }
 
   resourceSpawnScheduledFlags: CallReducerFlags = 'FullUpdate';
@@ -27429,6 +27690,10 @@ export class RemoteTables {
     return new ActiveBuffStateTableHandle(this.connection.clientCache.getOrCreateTable<ActiveBuffState>(REMOTE_MODULE.tables.active_buff_state));
   }
 
+  get activeConnectionState(): ActiveConnectionStateTableHandle {
+    return new ActiveConnectionStateTableHandle(this.connection.clientCache.getOrCreateTable<ActiveConnectionState>(REMOTE_MODULE.tables.active_connection_state));
+  }
+
   get activeEnvironmentBuffState(): ActiveEnvironmentBuffStateTableHandle {
     return new ActiveEnvironmentBuffStateTableHandle(this.connection.clientCache.getOrCreateTable<ActiveEnvironmentBuffState>(REMOTE_MODULE.tables.active_environment_buff_state));
   }
@@ -28045,6 +28310,10 @@ export class RemoteTables {
     return new InterModuleMessageV4TableHandle(this.connection.clientCache.getOrCreateTable<InterModuleMessageV4>(REMOTE_MODULE.tables.inter_module_message_v4));
   }
 
+  get interModuleMessageV5(): InterModuleMessageV5TableHandle {
+    return new InterModuleMessageV5TableHandle(this.connection.clientCache.getOrCreateTable<InterModuleMessageV5>(REMOTE_MODULE.tables.inter_module_message_v5));
+  }
+
   get interModuleResponseMessageCounter(): InterModuleResponseMessageCounterTableHandle {
     return new InterModuleResponseMessageCounterTableHandle(this.connection.clientCache.getOrCreateTable<InterModuleResponseMessageCounter>(REMOTE_MODULE.tables.inter_module_response_message_counter));
   }
@@ -28365,6 +28634,10 @@ export class RemoteTables {
     return new PlaceableGrowthDescTableHandle(this.connection.clientCache.getOrCreateTable<PlaceableGrowthDesc>(REMOTE_MODULE.tables.placeable_growth_desc));
   }
 
+  get placeableGrowthTimer(): PlaceableGrowthTimerTableHandle {
+    return new PlaceableGrowthTimerTableHandle(this.connection.clientCache.getOrCreateTable<GrowthTimer>(REMOTE_MODULE.tables.placeable_growth_timer));
+  }
+
   get placeableInteractionDesc(): PlaceableInteractionDescTableHandle {
     return new PlaceableInteractionDescTableHandle(this.connection.clientCache.getOrCreateTable<PlaceableInteractionDesc>(REMOTE_MODULE.tables.placeable_interaction_desc));
   }
@@ -28611,6 +28884,10 @@ export class RemoteTables {
 
   get resourceGrowthRecipeDesc(): ResourceGrowthRecipeDescTableHandle {
     return new ResourceGrowthRecipeDescTableHandle(this.connection.clientCache.getOrCreateTable<ResourceGrowthRecipeDesc>(REMOTE_MODULE.tables.resource_growth_recipe_desc));
+  }
+
+  get resourceGrowthTimer(): ResourceGrowthTimerTableHandle {
+    return new ResourceGrowthTimerTableHandle(this.connection.clientCache.getOrCreateTable<GrowthTimer>(REMOTE_MODULE.tables.resource_growth_timer));
   }
 
   get resourceHealthState(): ResourceHealthStateTableHandle {
@@ -29211,6 +29488,10 @@ export class RemoteTables {
 
   get transferPlayerTimer(): TransferPlayerTimerTableHandle {
     return new TransferPlayerTimerTableHandle(this.connection.clientCache.getOrCreateTable<TransferPlayerTimer>(REMOTE_MODULE.tables.transfer_player_timer));
+  }
+
+  get travelerTaskCreditState(): TravelerTaskCreditStateTableHandle {
+    return new TravelerTaskCreditStateTableHandle(this.connection.clientCache.getOrCreateTable<TravelerTaskCreditState>(REMOTE_MODULE.tables.traveler_task_credit_state));
   }
 
   get travelerTaskDesc(): TravelerTaskDescTableHandle {

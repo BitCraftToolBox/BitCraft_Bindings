@@ -50,6 +50,30 @@ export namespace EquipmentSlotType {
   export type LegClothing = { tag: "LegClothing" };
   export type FeetClothing = { tag: "FeetClothing" };
   export type None = { tag: "None" };
+  export type ForestryCharm = { tag: "ForestryCharm" };
+  export type ForestryInstrument = { tag: "ForestryInstrument" };
+  export type CarpentryCharm = { tag: "CarpentryCharm" };
+  export type CarpentryInstrument = { tag: "CarpentryInstrument" };
+  export type MasonryCharm = { tag: "MasonryCharm" };
+  export type MasonryInstrument = { tag: "MasonryInstrument" };
+  export type MiningCharm = { tag: "MiningCharm" };
+  export type MiningInstrument = { tag: "MiningInstrument" };
+  export type SmithingCharm = { tag: "SmithingCharm" };
+  export type SmithingInstrument = { tag: "SmithingInstrument" };
+  export type LeatherworkingCharm = { tag: "LeatherworkingCharm" };
+  export type LeatherworkingInstrument = { tag: "LeatherworkingInstrument" };
+  export type HuntingCharm = { tag: "HuntingCharm" };
+  export type HuntingInstrument = { tag: "HuntingInstrument" };
+  export type TailoringCharm = { tag: "TailoringCharm" };
+  export type TailoringInstrument = { tag: "TailoringInstrument" };
+  export type FarmingCharm = { tag: "FarmingCharm" };
+  export type FarmingInstrument = { tag: "FarmingInstrument" };
+  export type FishingCharm = { tag: "FishingCharm" };
+  export type FishingInstrument = { tag: "FishingInstrument" };
+  export type ForagingCharm = { tag: "ForagingCharm" };
+  export type ForagingInstrument = { tag: "ForagingInstrument" };
+  export type ScholarCharm = { tag: "ScholarCharm" };
+  export type ScholarInstrument = { tag: "ScholarInstrument" };
 
   // Helper functions for constructing each variant of the tagged union.
   // ```
@@ -70,6 +94,30 @@ export namespace EquipmentSlotType {
   export const LegClothing = { tag: "LegClothing" };
   export const FeetClothing = { tag: "FeetClothing" };
   export const None = { tag: "None" };
+  export const ForestryCharm = { tag: "ForestryCharm" };
+  export const ForestryInstrument = { tag: "ForestryInstrument" };
+  export const CarpentryCharm = { tag: "CarpentryCharm" };
+  export const CarpentryInstrument = { tag: "CarpentryInstrument" };
+  export const MasonryCharm = { tag: "MasonryCharm" };
+  export const MasonryInstrument = { tag: "MasonryInstrument" };
+  export const MiningCharm = { tag: "MiningCharm" };
+  export const MiningInstrument = { tag: "MiningInstrument" };
+  export const SmithingCharm = { tag: "SmithingCharm" };
+  export const SmithingInstrument = { tag: "SmithingInstrument" };
+  export const LeatherworkingCharm = { tag: "LeatherworkingCharm" };
+  export const LeatherworkingInstrument = { tag: "LeatherworkingInstrument" };
+  export const HuntingCharm = { tag: "HuntingCharm" };
+  export const HuntingInstrument = { tag: "HuntingInstrument" };
+  export const TailoringCharm = { tag: "TailoringCharm" };
+  export const TailoringInstrument = { tag: "TailoringInstrument" };
+  export const FarmingCharm = { tag: "FarmingCharm" };
+  export const FarmingInstrument = { tag: "FarmingInstrument" };
+  export const FishingCharm = { tag: "FishingCharm" };
+  export const FishingInstrument = { tag: "FishingInstrument" };
+  export const ForagingCharm = { tag: "ForagingCharm" };
+  export const ForagingInstrument = { tag: "ForagingInstrument" };
+  export const ScholarCharm = { tag: "ScholarCharm" };
+  export const ScholarInstrument = { tag: "ScholarInstrument" };
 
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createSumType([
@@ -86,6 +134,30 @@ export namespace EquipmentSlotType {
       new SumTypeVariant("LegClothing", AlgebraicType.createProductType([])),
       new SumTypeVariant("FeetClothing", AlgebraicType.createProductType([])),
       new SumTypeVariant("None", AlgebraicType.createProductType([])),
+      new SumTypeVariant("ForestryCharm", AlgebraicType.createProductType([])),
+      new SumTypeVariant("ForestryInstrument", AlgebraicType.createProductType([])),
+      new SumTypeVariant("CarpentryCharm", AlgebraicType.createProductType([])),
+      new SumTypeVariant("CarpentryInstrument", AlgebraicType.createProductType([])),
+      new SumTypeVariant("MasonryCharm", AlgebraicType.createProductType([])),
+      new SumTypeVariant("MasonryInstrument", AlgebraicType.createProductType([])),
+      new SumTypeVariant("MiningCharm", AlgebraicType.createProductType([])),
+      new SumTypeVariant("MiningInstrument", AlgebraicType.createProductType([])),
+      new SumTypeVariant("SmithingCharm", AlgebraicType.createProductType([])),
+      new SumTypeVariant("SmithingInstrument", AlgebraicType.createProductType([])),
+      new SumTypeVariant("LeatherworkingCharm", AlgebraicType.createProductType([])),
+      new SumTypeVariant("LeatherworkingInstrument", AlgebraicType.createProductType([])),
+      new SumTypeVariant("HuntingCharm", AlgebraicType.createProductType([])),
+      new SumTypeVariant("HuntingInstrument", AlgebraicType.createProductType([])),
+      new SumTypeVariant("TailoringCharm", AlgebraicType.createProductType([])),
+      new SumTypeVariant("TailoringInstrument", AlgebraicType.createProductType([])),
+      new SumTypeVariant("FarmingCharm", AlgebraicType.createProductType([])),
+      new SumTypeVariant("FarmingInstrument", AlgebraicType.createProductType([])),
+      new SumTypeVariant("FishingCharm", AlgebraicType.createProductType([])),
+      new SumTypeVariant("FishingInstrument", AlgebraicType.createProductType([])),
+      new SumTypeVariant("ForagingCharm", AlgebraicType.createProductType([])),
+      new SumTypeVariant("ForagingInstrument", AlgebraicType.createProductType([])),
+      new SumTypeVariant("ScholarCharm", AlgebraicType.createProductType([])),
+      new SumTypeVariant("ScholarInstrument", AlgebraicType.createProductType([])),
     ]);
   }
 
@@ -100,7 +172,7 @@ export namespace EquipmentSlotType {
 }
 
 // The tagged union or sum type for the algebraic type `EquipmentSlotType`.
-export type EquipmentSlotType = EquipmentSlotType.MainHand | EquipmentSlotType.OffHand | EquipmentSlotType.HeadArtifact | EquipmentSlotType.TorsoArtifact | EquipmentSlotType.HandArtifact | EquipmentSlotType.FeetArtifact | EquipmentSlotType.HeadClothing | EquipmentSlotType.TorsoClothing | EquipmentSlotType.HandClothing | EquipmentSlotType.BeltClothing | EquipmentSlotType.LegClothing | EquipmentSlotType.FeetClothing | EquipmentSlotType.None;
+export type EquipmentSlotType = EquipmentSlotType.MainHand | EquipmentSlotType.OffHand | EquipmentSlotType.HeadArtifact | EquipmentSlotType.TorsoArtifact | EquipmentSlotType.HandArtifact | EquipmentSlotType.FeetArtifact | EquipmentSlotType.HeadClothing | EquipmentSlotType.TorsoClothing | EquipmentSlotType.HandClothing | EquipmentSlotType.BeltClothing | EquipmentSlotType.LegClothing | EquipmentSlotType.FeetClothing | EquipmentSlotType.None | EquipmentSlotType.ForestryCharm | EquipmentSlotType.ForestryInstrument | EquipmentSlotType.CarpentryCharm | EquipmentSlotType.CarpentryInstrument | EquipmentSlotType.MasonryCharm | EquipmentSlotType.MasonryInstrument | EquipmentSlotType.MiningCharm | EquipmentSlotType.MiningInstrument | EquipmentSlotType.SmithingCharm | EquipmentSlotType.SmithingInstrument | EquipmentSlotType.LeatherworkingCharm | EquipmentSlotType.LeatherworkingInstrument | EquipmentSlotType.HuntingCharm | EquipmentSlotType.HuntingInstrument | EquipmentSlotType.TailoringCharm | EquipmentSlotType.TailoringInstrument | EquipmentSlotType.FarmingCharm | EquipmentSlotType.FarmingInstrument | EquipmentSlotType.FishingCharm | EquipmentSlotType.FishingInstrument | EquipmentSlotType.ForagingCharm | EquipmentSlotType.ForagingInstrument | EquipmentSlotType.ScholarCharm | EquipmentSlotType.ScholarInstrument;
 
 export default EquipmentSlotType;
 

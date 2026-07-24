@@ -32,29 +32,25 @@ import {
   type ReducerEventContextInterface,
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
-import { PlaceablePlacementDesc } from "./placeable_placement_desc_type";
-import { LevelRequirement as __LevelRequirement } from "./level_requirement_type";
-import { ItemStack as __ItemStack } from "./item_stack_type";
-import { ToolRequirement as __ToolRequirement } from "./tool_requirement_type";
-import { Biome as __Biome } from "./biome_type";
-import { PlaceableSelfBuffChance as __PlaceableSelfBuffChance } from "./placeable_self_buff_chance_type";
+import { InterModuleMessageV5 } from "./inter_module_message_v_5_type";
+import { MessageContentsV5 as __MessageContentsV5 } from "./message_contents_v_5_type";
 
 import { type EventContext, type Reducer, RemoteReducers, RemoteTables } from ".";
 
 /**
- * Table handle for the table `placeable_placement_desc`.
+ * Table handle for the table `inter_module_message_v5`.
  *
- * Obtain a handle from the [`placeablePlacementDesc`] property on [`RemoteTables`],
- * like `ctx.db.placeablePlacementDesc`.
+ * Obtain a handle from the [`interModuleMessageV5`] property on [`RemoteTables`],
+ * like `ctx.db.interModuleMessageV5`.
  *
  * Users are encouraged not to explicitly reference this type,
  * but to directly chain method calls,
- * like `ctx.db.placeablePlacementDesc.on_insert(...)`.
+ * like `ctx.db.interModuleMessageV5.on_insert(...)`.
  */
-export class PlaceablePlacementDescTableHandle {
-  tableCache: TableCache<PlaceablePlacementDesc>;
+export class InterModuleMessageV5TableHandle {
+  tableCache: TableCache<InterModuleMessageV5>;
 
-  constructor(tableCache: TableCache<PlaceablePlacementDesc>) {
+  constructor(tableCache: TableCache<InterModuleMessageV5>) {
     this.tableCache = tableCache;
   }
 
@@ -62,24 +58,24 @@ export class PlaceablePlacementDescTableHandle {
     return this.tableCache.count();
   }
 
-  iter(): Iterable<PlaceablePlacementDesc> {
+  iter(): Iterable<InterModuleMessageV5> {
     return this.tableCache.iter();
   }
   /**
-   * Access to the `id` unique index on the table `placeable_placement_desc`,
+   * Access to the `id` unique index on the table `inter_module_message_v5`,
    * which allows point queries on the field of the same name
-   * via the [`PlaceablePlacementDescIdUnique.find`] method.
+   * via the [`InterModuleMessageV5IdUnique.find`] method.
    *
    * Users are encouraged not to explicitly reference this type,
    * but to directly chain method calls,
-   * like `ctx.db.placeablePlacementDesc.id().find(...)`.
+   * like `ctx.db.interModuleMessageV5.id().find(...)`.
    *
-   * Get a handle on the `id` unique index on the table `placeable_placement_desc`.
+   * Get a handle on the `id` unique index on the table `inter_module_message_v5`.
    */
   id = {
     // Find the subscribed row whose `id` column value is equal to `col_val`,
     // if such a row is present in the client cache.
-    find: (col_val: number): PlaceablePlacementDesc | undefined => {
+    find: (col_val: bigint): InterModuleMessageV5 | undefined => {
       for (let row of this.tableCache.iter()) {
         if (deepEqual(row.id, col_val)) {
           return row;
@@ -88,27 +84,27 @@ export class PlaceablePlacementDescTableHandle {
     },
   };
 
-  onInsert = (cb: (ctx: EventContext, row: PlaceablePlacementDesc) => void) => {
+  onInsert = (cb: (ctx: EventContext, row: InterModuleMessageV5) => void) => {
     return this.tableCache.onInsert(cb);
   }
 
-  removeOnInsert = (cb: (ctx: EventContext, row: PlaceablePlacementDesc) => void) => {
+  removeOnInsert = (cb: (ctx: EventContext, row: InterModuleMessageV5) => void) => {
     return this.tableCache.removeOnInsert(cb);
   }
 
-  onDelete = (cb: (ctx: EventContext, row: PlaceablePlacementDesc) => void) => {
+  onDelete = (cb: (ctx: EventContext, row: InterModuleMessageV5) => void) => {
     return this.tableCache.onDelete(cb);
   }
 
-  removeOnDelete = (cb: (ctx: EventContext, row: PlaceablePlacementDesc) => void) => {
+  removeOnDelete = (cb: (ctx: EventContext, row: InterModuleMessageV5) => void) => {
     return this.tableCache.removeOnDelete(cb);
   }
 
   // Updates are only defined for tables with primary keys.
-  onUpdate = (cb: (ctx: EventContext, oldRow: PlaceablePlacementDesc, newRow: PlaceablePlacementDesc) => void) => {
+  onUpdate = (cb: (ctx: EventContext, oldRow: InterModuleMessageV5, newRow: InterModuleMessageV5) => void) => {
     return this.tableCache.onUpdate(cb);
   }
 
-  removeOnUpdate = (cb: (ctx: EventContext, onRow: PlaceablePlacementDesc, newRow: PlaceablePlacementDesc) => void) => {
+  removeOnUpdate = (cb: (ctx: EventContext, onRow: InterModuleMessageV5, newRow: InterModuleMessageV5) => void) => {
     return this.tableCache.removeOnUpdate(cb);
   }}
