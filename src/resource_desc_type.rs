@@ -36,6 +36,13 @@ pub struct ResourceDesc {
     pub on_destroy_yield_resource_min_radius: i32,
     pub on_destroy_yield_resource_max_radius: i32,
     pub light_radius: i32,
+    pub spawns_on_land: bool,
+    pub land_elevation_min: i32,
+    pub land_elevation_max: i32,
+    pub spawns_in_water: bool,
+    pub water_depth_min: i32,
+    pub water_depth_max: i32,
+    pub max_elevation_delta: i32,
 }
 
 impl __sdk::InModule for ResourceDesc {
@@ -71,6 +78,13 @@ pub struct ResourceDescCols {
     pub on_destroy_yield_resource_min_radius: __sdk::__query_builder::Col<ResourceDesc, i32>,
     pub on_destroy_yield_resource_max_radius: __sdk::__query_builder::Col<ResourceDesc, i32>,
     pub light_radius: __sdk::__query_builder::Col<ResourceDesc, i32>,
+    pub spawns_on_land: __sdk::__query_builder::Col<ResourceDesc, bool>,
+    pub land_elevation_min: __sdk::__query_builder::Col<ResourceDesc, i32>,
+    pub land_elevation_max: __sdk::__query_builder::Col<ResourceDesc, i32>,
+    pub spawns_in_water: __sdk::__query_builder::Col<ResourceDesc, bool>,
+    pub water_depth_min: __sdk::__query_builder::Col<ResourceDesc, i32>,
+    pub water_depth_max: __sdk::__query_builder::Col<ResourceDesc, i32>,
+    pub max_elevation_delta: __sdk::__query_builder::Col<ResourceDesc, i32>,
 }
 
 impl __sdk::__query_builder::HasCols for ResourceDesc {
@@ -117,6 +131,16 @@ impl __sdk::__query_builder::HasCols for ResourceDesc {
                 "on_destroy_yield_resource_max_radius",
             ),
             light_radius: __sdk::__query_builder::Col::new(table_name, "light_radius"),
+            spawns_on_land: __sdk::__query_builder::Col::new(table_name, "spawns_on_land"),
+            land_elevation_min: __sdk::__query_builder::Col::new(table_name, "land_elevation_min"),
+            land_elevation_max: __sdk::__query_builder::Col::new(table_name, "land_elevation_max"),
+            spawns_in_water: __sdk::__query_builder::Col::new(table_name, "spawns_in_water"),
+            water_depth_min: __sdk::__query_builder::Col::new(table_name, "water_depth_min"),
+            water_depth_max: __sdk::__query_builder::Col::new(table_name, "water_depth_max"),
+            max_elevation_delta: __sdk::__query_builder::Col::new(
+                table_name,
+                "max_elevation_delta",
+            ),
         }
     }
 }

@@ -29,6 +29,8 @@ pub mod action_state_type;
 pub mod active_buff_state_table;
 pub mod active_buff_state_type;
 pub mod active_buff_type;
+pub mod active_connection_state_table;
+pub mod active_connection_state_type;
 pub mod add_favorite_friend_reducer;
 pub mod add_friend_reducer;
 pub mod add_official_translator_reducer;
@@ -675,6 +677,8 @@ pub mod inter_module_message_v_3_table;
 pub mod inter_module_message_v_3_type;
 pub mod inter_module_message_v_4_table;
 pub mod inter_module_message_v_4_type;
+pub mod inter_module_message_v_5_table;
+pub mod inter_module_message_v_5_type;
 pub mod inter_module_response_message_counter_table;
 pub mod inter_module_response_message_counter_type;
 pub mod inter_module_table_updates_type;
@@ -788,6 +792,7 @@ pub mod message_contents_type;
 pub mod message_contents_v_2_type;
 pub mod message_contents_v_3_type;
 pub mod message_contents_v_4_type;
+pub mod message_contents_v_5_type;
 pub mod migrate_fix_empire_lowercase_names_reducer;
 pub mod minimum_client_version_table;
 pub mod minimum_client_version_type;
@@ -883,10 +888,12 @@ pub mod placeable_group_desc_type;
 pub mod placeable_growth_desc_table;
 pub mod placeable_growth_desc_type;
 pub mod placeable_growth_outcome_type;
+pub mod placeable_growth_outcome_v_2_type;
 pub mod placeable_interaction_desc_table;
 pub mod placeable_interaction_desc_type;
 pub mod placeable_placement_desc_table;
 pub mod placeable_placement_desc_type;
+pub mod placeable_self_buff_chance_type;
 pub mod placeable_state_table;
 pub mod placeable_state_type;
 pub mod player_action_desc_table;
@@ -1327,8 +1334,11 @@ pub mod transfer_player_msg_type;
 pub mod transfer_player_msg_v_2_type;
 pub mod transfer_player_msg_v_3_type;
 pub mod transfer_player_msg_v_4_type;
+pub mod transfer_player_msg_v_5_type;
 pub mod translation_corrections_table;
 pub mod translation_corrections_type;
+pub mod traveler_task_credit_state_table;
+pub mod traveler_task_credit_state_type;
 pub mod traveler_task_desc_table;
 pub mod traveler_task_desc_type;
 pub mod traveler_task_knowledge_requirement_desc_table;
@@ -1337,6 +1347,7 @@ pub mod traveler_task_state_table;
 pub mod traveler_task_state_type;
 pub mod traveler_trade_order_desc_table;
 pub mod traveler_trade_order_desc_type;
+pub mod traveler_weekly_task_credits_type;
 pub mod traversal_settings_type;
 pub mod unban_player_from_chat_channel_reducer;
 pub mod unblock_player_reducer;
@@ -1416,6 +1427,8 @@ pub use action_state_type::ActionState;
 pub use active_buff_state_table::*;
 pub use active_buff_state_type::ActiveBuffState;
 pub use active_buff_type::ActiveBuff;
+pub use active_connection_state_table::*;
+pub use active_connection_state_type::ActiveConnectionState;
 pub use add_favorite_friend_reducer::{
     add_favorite_friend, set_flags_for_add_favorite_friend, AddFavoriteFriendCallbackId,
 };
@@ -2750,6 +2763,8 @@ pub use inter_module_message_v_3_table::*;
 pub use inter_module_message_v_3_type::InterModuleMessageV3;
 pub use inter_module_message_v_4_table::*;
 pub use inter_module_message_v_4_type::InterModuleMessageV4;
+pub use inter_module_message_v_5_table::*;
+pub use inter_module_message_v_5_type::InterModuleMessageV5;
 pub use inter_module_response_message_counter_table::*;
 pub use inter_module_response_message_counter_type::InterModuleResponseMessageCounter;
 pub use inter_module_table_updates_type::InterModuleTableUpdates;
@@ -2873,6 +2888,7 @@ pub use message_contents_type::MessageContents;
 pub use message_contents_v_2_type::MessageContentsV2;
 pub use message_contents_v_3_type::MessageContentsV3;
 pub use message_contents_v_4_type::MessageContentsV4;
+pub use message_contents_v_5_type::MessageContentsV5;
 pub use migrate_fix_empire_lowercase_names_reducer::{
     migrate_fix_empire_lowercase_names, set_flags_for_migrate_fix_empire_lowercase_names,
     MigrateFixEmpireLowercaseNamesCallbackId,
@@ -2974,10 +2990,12 @@ pub use placeable_group_desc_type::PlaceableGroupDesc;
 pub use placeable_growth_desc_table::*;
 pub use placeable_growth_desc_type::PlaceableGrowthDesc;
 pub use placeable_growth_outcome_type::PlaceableGrowthOutcome;
+pub use placeable_growth_outcome_v_2_type::PlaceableGrowthOutcomeV2;
 pub use placeable_interaction_desc_table::*;
 pub use placeable_interaction_desc_type::PlaceableInteractionDesc;
 pub use placeable_placement_desc_table::*;
 pub use placeable_placement_desc_type::PlaceablePlacementDesc;
+pub use placeable_self_buff_chance_type::PlaceableSelfBuffChance;
 pub use placeable_state_table::*;
 pub use placeable_state_type::PlaceableState;
 pub use player_action_desc_table::*;
@@ -3736,8 +3754,11 @@ pub use transfer_player_msg_type::TransferPlayerMsg;
 pub use transfer_player_msg_v_2_type::TransferPlayerMsgV2;
 pub use transfer_player_msg_v_3_type::TransferPlayerMsgV3;
 pub use transfer_player_msg_v_4_type::TransferPlayerMsgV4;
+pub use transfer_player_msg_v_5_type::TransferPlayerMsgV5;
 pub use translation_corrections_table::*;
 pub use translation_corrections_type::TranslationCorrections;
+pub use traveler_task_credit_state_table::*;
+pub use traveler_task_credit_state_type::TravelerTaskCreditState;
 pub use traveler_task_desc_table::*;
 pub use traveler_task_desc_type::TravelerTaskDesc;
 pub use traveler_task_knowledge_requirement_desc_table::*;
@@ -3746,6 +3767,7 @@ pub use traveler_task_state_table::*;
 pub use traveler_task_state_type::TravelerTaskState;
 pub use traveler_trade_order_desc_table::*;
 pub use traveler_trade_order_desc_type::TravelerTradeOrderDesc;
+pub use traveler_weekly_task_credits_type::TravelerWeeklyTaskCredits;
 pub use traversal_settings_type::TraversalSettings;
 pub use unban_player_from_chat_channel_reducer::{
     set_flags_for_unban_player_from_chat_channel, unban_player_from_chat_channel,
@@ -4748,7 +4770,7 @@ pub enum Reducer {
     },
     ProcessInterModuleMessage {
         sender: u8,
-        message: InterModuleMessageV4,
+        message: InterModuleMessageV5,
     },
     PurchaseCharacterRename {
         premium_service_desc_id: i32,
@@ -6044,6 +6066,7 @@ pub struct DbUpdate {
     action_bar_state: __sdk::TableUpdate<ActionBarState>,
     action_state: __sdk::TableUpdate<ActionState>,
     active_buff_state: __sdk::TableUpdate<ActiveBuffState>,
+    active_connection_state: __sdk::TableUpdate<ActiveConnectionState>,
     admin_broadcast: __sdk::TableUpdate<AdminBroadcast>,
     alert_desc: __sdk::TableUpdate<AlertDesc>,
     alert_state: __sdk::TableUpdate<AlertState>,
@@ -6190,6 +6213,7 @@ pub struct DbUpdate {
     inter_module_message_v_2: __sdk::TableUpdate<InterModuleMessageV2>,
     inter_module_message_v_3: __sdk::TableUpdate<InterModuleMessageV3>,
     inter_module_message_v_4: __sdk::TableUpdate<InterModuleMessageV4>,
+    inter_module_message_v_5: __sdk::TableUpdate<InterModuleMessageV5>,
     inter_module_response_message_counter: __sdk::TableUpdate<InterModuleResponseMessageCounter>,
     interior_collapse_trigger_state: __sdk::TableUpdate<InteriorCollapseTriggerState>,
     interior_environment_desc: __sdk::TableUpdate<InteriorEnvironmentDesc>,
@@ -6468,6 +6492,7 @@ pub struct DbUpdate {
     trade_order_state: __sdk::TableUpdate<TradeOrderState>,
     trade_session_state: __sdk::TableUpdate<TradeSessionState>,
     translation_corrections: __sdk::TableUpdate<TranslationCorrections>,
+    traveler_task_credit_state: __sdk::TableUpdate<TravelerTaskCreditState>,
     traveler_task_desc: __sdk::TableUpdate<TravelerTaskDesc>,
     traveler_task_knowledge_requirement_desc:
         __sdk::TableUpdate<TravelerTaskKnowledgeRequirementDesc>,
@@ -6508,6 +6533,7 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "action_bar_state" => db_update.action_bar_state.append(action_bar_state_table::parse_table_update(table_update)?),
     "action_state" => db_update.action_state.append(action_state_table::parse_table_update(table_update)?),
     "active_buff_state" => db_update.active_buff_state.append(active_buff_state_table::parse_table_update(table_update)?),
+    "active_connection_state" => db_update.active_connection_state.append(active_connection_state_table::parse_table_update(table_update)?),
     "admin_broadcast" => db_update.admin_broadcast.append(admin_broadcast_table::parse_table_update(table_update)?),
     "alert_desc" => db_update.alert_desc.append(alert_desc_table::parse_table_update(table_update)?),
     "alert_state" => db_update.alert_state.append(alert_state_table::parse_table_update(table_update)?),
@@ -6653,6 +6679,7 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "inter_module_message_v2" => db_update.inter_module_message_v_2.append(inter_module_message_v_2_table::parse_table_update(table_update)?),
     "inter_module_message_v3" => db_update.inter_module_message_v_3.append(inter_module_message_v_3_table::parse_table_update(table_update)?),
     "inter_module_message_v4" => db_update.inter_module_message_v_4.append(inter_module_message_v_4_table::parse_table_update(table_update)?),
+    "inter_module_message_v5" => db_update.inter_module_message_v_5.append(inter_module_message_v_5_table::parse_table_update(table_update)?),
     "inter_module_response_message_counter" => db_update.inter_module_response_message_counter.append(inter_module_response_message_counter_table::parse_table_update(table_update)?),
     "interior_collapse_trigger_state" => db_update.interior_collapse_trigger_state.append(interior_collapse_trigger_state_table::parse_table_update(table_update)?),
     "interior_environment_desc" => db_update.interior_environment_desc.append(interior_environment_desc_table::parse_table_update(table_update)?),
@@ -6929,6 +6956,7 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "trade_order_state" => db_update.trade_order_state.append(trade_order_state_table::parse_table_update(table_update)?),
     "trade_session_state" => db_update.trade_session_state.append(trade_session_state_table::parse_table_update(table_update)?),
     "translation_corrections" => db_update.translation_corrections.append(translation_corrections_table::parse_table_update(table_update)?),
+    "traveler_task_credit_state" => db_update.traveler_task_credit_state.append(traveler_task_credit_state_table::parse_table_update(table_update)?),
     "traveler_task_desc" => db_update.traveler_task_desc.append(traveler_task_desc_table::parse_table_update(table_update)?),
     "traveler_task_knowledge_requirement_desc" => db_update.traveler_task_knowledge_requirement_desc.append(traveler_task_knowledge_requirement_desc_table::parse_table_update(table_update)?),
     "traveler_task_state" => db_update.traveler_task_state.append(traveler_task_state_table::parse_table_update(table_update)?),
@@ -7005,6 +7033,12 @@ impl __sdk::DbUpdate for DbUpdate {
             .with_updates_by_pk(|row| &row.entity_id);
         diff.active_buff_state = cache
             .apply_diff_to_table::<ActiveBuffState>("active_buff_state", &self.active_buff_state)
+            .with_updates_by_pk(|row| &row.entity_id);
+        diff.active_connection_state = cache
+            .apply_diff_to_table::<ActiveConnectionState>(
+                "active_connection_state",
+                &self.active_connection_state,
+            )
             .with_updates_by_pk(|row| &row.entity_id);
         diff.admin_broadcast = cache
             .apply_diff_to_table::<AdminBroadcast>("admin_broadcast", &self.admin_broadcast)
@@ -7675,6 +7709,12 @@ impl __sdk::DbUpdate for DbUpdate {
             .apply_diff_to_table::<InterModuleMessageV4>(
                 "inter_module_message_v4",
                 &self.inter_module_message_v_4,
+            )
+            .with_updates_by_pk(|row| &row.id);
+        diff.inter_module_message_v_5 = cache
+            .apply_diff_to_table::<InterModuleMessageV5>(
+                "inter_module_message_v5",
+                &self.inter_module_message_v_5,
             )
             .with_updates_by_pk(|row| &row.id);
         diff.inter_module_response_message_counter = cache
@@ -9074,6 +9114,12 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.translation_corrections,
             )
             .with_updates_by_pk(|row| &row.id);
+        diff.traveler_task_credit_state = cache
+            .apply_diff_to_table::<TravelerTaskCreditState>(
+                "traveler_task_credit_state",
+                &self.traveler_task_credit_state,
+            )
+            .with_updates_by_pk(|row| &row.entity_id);
         diff.traveler_task_desc = cache
             .apply_diff_to_table::<TravelerTaskDesc>("traveler_task_desc", &self.traveler_task_desc)
             .with_updates_by_pk(|row| &row.id);
@@ -9199,6 +9245,7 @@ pub struct AppliedDiff<'r> {
     action_bar_state: __sdk::TableAppliedDiff<'r, ActionBarState>,
     action_state: __sdk::TableAppliedDiff<'r, ActionState>,
     active_buff_state: __sdk::TableAppliedDiff<'r, ActiveBuffState>,
+    active_connection_state: __sdk::TableAppliedDiff<'r, ActiveConnectionState>,
     admin_broadcast: __sdk::TableAppliedDiff<'r, AdminBroadcast>,
     alert_desc: __sdk::TableAppliedDiff<'r, AlertDesc>,
     alert_state: __sdk::TableAppliedDiff<'r, AlertState>,
@@ -9349,6 +9396,7 @@ pub struct AppliedDiff<'r> {
     inter_module_message_v_2: __sdk::TableAppliedDiff<'r, InterModuleMessageV2>,
     inter_module_message_v_3: __sdk::TableAppliedDiff<'r, InterModuleMessageV3>,
     inter_module_message_v_4: __sdk::TableAppliedDiff<'r, InterModuleMessageV4>,
+    inter_module_message_v_5: __sdk::TableAppliedDiff<'r, InterModuleMessageV5>,
     inter_module_response_message_counter:
         __sdk::TableAppliedDiff<'r, InterModuleResponseMessageCounter>,
     interior_collapse_trigger_state: __sdk::TableAppliedDiff<'r, InteriorCollapseTriggerState>,
@@ -9638,6 +9686,7 @@ pub struct AppliedDiff<'r> {
     trade_order_state: __sdk::TableAppliedDiff<'r, TradeOrderState>,
     trade_session_state: __sdk::TableAppliedDiff<'r, TradeSessionState>,
     translation_corrections: __sdk::TableAppliedDiff<'r, TranslationCorrections>,
+    traveler_task_credit_state: __sdk::TableAppliedDiff<'r, TravelerTaskCreditState>,
     traveler_task_desc: __sdk::TableAppliedDiff<'r, TravelerTaskDesc>,
     traveler_task_knowledge_requirement_desc:
         __sdk::TableAppliedDiff<'r, TravelerTaskKnowledgeRequirementDesc>,
@@ -9712,6 +9761,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<ActiveBuffState>(
             "active_buff_state",
             &self.active_buff_state,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<ActiveConnectionState>(
+            "active_connection_state",
+            &self.active_connection_state,
             event,
         );
         callbacks.invoke_table_row_callbacks::<AdminBroadcast>(
@@ -10369,6 +10423,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<InterModuleMessageV4>(
             "inter_module_message_v4",
             &self.inter_module_message_v_4,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<InterModuleMessageV5>(
+            "inter_module_message_v5",
+            &self.inter_module_message_v_5,
             event,
         );
         callbacks.invoke_table_row_callbacks::<InterModuleResponseMessageCounter>(
@@ -11727,6 +11786,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             &self.translation_corrections,
             event,
         );
+        callbacks.invoke_table_row_callbacks::<TravelerTaskCreditState>(
+            "traveler_task_credit_state",
+            &self.traveler_task_credit_state,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<TravelerTaskDesc>(
             "traveler_task_desc",
             &self.traveler_task_desc,
@@ -12549,6 +12613,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         action_bar_state_table::register_table(client_cache);
         action_state_table::register_table(client_cache);
         active_buff_state_table::register_table(client_cache);
+        active_connection_state_table::register_table(client_cache);
         admin_broadcast_table::register_table(client_cache);
         alert_desc_table::register_table(client_cache);
         alert_state_table::register_table(client_cache);
@@ -12694,6 +12759,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         inter_module_message_v_2_table::register_table(client_cache);
         inter_module_message_v_3_table::register_table(client_cache);
         inter_module_message_v_4_table::register_table(client_cache);
+        inter_module_message_v_5_table::register_table(client_cache);
         inter_module_response_message_counter_table::register_table(client_cache);
         interior_collapse_trigger_state_table::register_table(client_cache);
         interior_environment_desc_table::register_table(client_cache);
@@ -12970,6 +13036,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         trade_order_state_table::register_table(client_cache);
         trade_session_state_table::register_table(client_cache);
         translation_corrections_table::register_table(client_cache);
+        traveler_task_credit_state_table::register_table(client_cache);
         traveler_task_desc_table::register_table(client_cache);
         traveler_task_knowledge_requirement_desc_table::register_table(client_cache);
         traveler_task_state_table::register_table(client_cache);

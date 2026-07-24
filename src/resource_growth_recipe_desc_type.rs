@@ -11,6 +11,9 @@ pub struct ResourceGrowthRecipeDesc {
     pub resource_id: i32,
     pub time: Vec<f32>,
     pub grown_resource_id: i32,
+    pub grown_resource_chance: f32,
+    pub grown_resource_min_radius: i32,
+    pub grown_resource_max_radius: i32,
 }
 
 impl __sdk::InModule for ResourceGrowthRecipeDesc {
@@ -25,6 +28,9 @@ pub struct ResourceGrowthRecipeDescCols {
     pub resource_id: __sdk::__query_builder::Col<ResourceGrowthRecipeDesc, i32>,
     pub time: __sdk::__query_builder::Col<ResourceGrowthRecipeDesc, Vec<f32>>,
     pub grown_resource_id: __sdk::__query_builder::Col<ResourceGrowthRecipeDesc, i32>,
+    pub grown_resource_chance: __sdk::__query_builder::Col<ResourceGrowthRecipeDesc, f32>,
+    pub grown_resource_min_radius: __sdk::__query_builder::Col<ResourceGrowthRecipeDesc, i32>,
+    pub grown_resource_max_radius: __sdk::__query_builder::Col<ResourceGrowthRecipeDesc, i32>,
 }
 
 impl __sdk::__query_builder::HasCols for ResourceGrowthRecipeDesc {
@@ -35,6 +41,18 @@ impl __sdk::__query_builder::HasCols for ResourceGrowthRecipeDesc {
             resource_id: __sdk::__query_builder::Col::new(table_name, "resource_id"),
             time: __sdk::__query_builder::Col::new(table_name, "time"),
             grown_resource_id: __sdk::__query_builder::Col::new(table_name, "grown_resource_id"),
+            grown_resource_chance: __sdk::__query_builder::Col::new(
+                table_name,
+                "grown_resource_chance",
+            ),
+            grown_resource_min_radius: __sdk::__query_builder::Col::new(
+                table_name,
+                "grown_resource_min_radius",
+            ),
+            grown_resource_max_radius: __sdk::__query_builder::Col::new(
+                table_name,
+                "grown_resource_max_radius",
+            ),
         }
     }
 }
