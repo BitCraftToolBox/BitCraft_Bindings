@@ -1071,6 +1071,7 @@ pub mod migrate_claim_tech_reducer;
 pub mod migrate_equipment_slots_reducer;
 pub mod migrate_exploration_achievement_counts_reducer;
 pub mod migrate_grant_default_collectibles_reducer;
+pub mod migrate_missing_equipment_slot_types_reducer;
 pub mod migrate_onboarding_reducer;
 pub mod migrate_player_settings_reducer;
 pub mod migration_achievements_params_table;
@@ -4269,6 +4270,10 @@ pub use migrate_grant_default_collectibles_reducer::{
     migrate_grant_default_collectibles, set_flags_for_migrate_grant_default_collectibles,
     MigrateGrantDefaultCollectiblesCallbackId,
 };
+pub use migrate_missing_equipment_slot_types_reducer::{
+    migrate_missing_equipment_slot_types, set_flags_for_migrate_missing_equipment_slot_types,
+    MigrateMissingEquipmentSlotTypesCallbackId,
+};
 pub use migrate_onboarding_reducer::{
     migrate_onboarding, set_flags_for_migrate_onboarding, MigrateOnboardingCallbackId,
 };
@@ -7301,6 +7306,7 @@ pub enum Reducer {
     MigrateEquipmentSlots,
     MigrateExplorationAchievementCounts,
     MigrateGrantDefaultCollectibles,
+    MigrateMissingEquipmentSlotTypes,
     MigrateOnboarding,
     MigratePlayerSettings,
     MigrationSetAchievementParams {
@@ -8646,6 +8652,7 @@ impl __sdk::Reducer for Reducer {
                 "migrate_exploration_achievement_counts"
             }
             Reducer::MigrateGrantDefaultCollectibles => "migrate_grant_default_collectibles",
+            Reducer::MigrateMissingEquipmentSlotTypes => "migrate_missing_equipment_slot_types",
             Reducer::MigrateOnboarding => "migrate_onboarding",
             Reducer::MigratePlayerSettings => "migrate_player_settings",
             Reducer::MigrationSetAchievementParams { .. } => "migration_set_achievement_params",
@@ -9430,6 +9437,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "migrate_equipment_slots" => Ok(__sdk::parse_reducer_args::<migrate_equipment_slots_reducer::MigrateEquipmentSlotsArgs>("migrate_equipment_slots", &value.args)?.into()),
             "migrate_exploration_achievement_counts" => Ok(__sdk::parse_reducer_args::<migrate_exploration_achievement_counts_reducer::MigrateExplorationAchievementCountsArgs>("migrate_exploration_achievement_counts", &value.args)?.into()),
             "migrate_grant_default_collectibles" => Ok(__sdk::parse_reducer_args::<migrate_grant_default_collectibles_reducer::MigrateGrantDefaultCollectiblesArgs>("migrate_grant_default_collectibles", &value.args)?.into()),
+            "migrate_missing_equipment_slot_types" => Ok(__sdk::parse_reducer_args::<migrate_missing_equipment_slot_types_reducer::MigrateMissingEquipmentSlotTypesArgs>("migrate_missing_equipment_slot_types", &value.args)?.into()),
             "migrate_onboarding" => Ok(__sdk::parse_reducer_args::<migrate_onboarding_reducer::MigrateOnboardingArgs>("migrate_onboarding", &value.args)?.into()),
             "migrate_player_settings" => Ok(__sdk::parse_reducer_args::<migrate_player_settings_reducer::MigratePlayerSettingsArgs>("migrate_player_settings", &value.args)?.into()),
             "migration_set_achievement_params" => Ok(__sdk::parse_reducer_args::<migration_set_achievement_params_reducer::MigrationSetAchievementParamsArgs>("migration_set_achievement_params", &value.args)?.into()),
