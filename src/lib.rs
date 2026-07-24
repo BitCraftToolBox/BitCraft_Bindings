@@ -36,6 +36,8 @@ pub mod activate_building_buff_reducer;
 pub mod active_buff_state_table;
 pub mod active_buff_state_type;
 pub mod active_buff_type;
+pub mod active_connection_state_table;
+pub mod active_connection_state_type;
 pub mod active_environment_buff_state_table;
 pub mod active_environment_buff_state_type;
 pub mod admin_add_specific_building_type_states_reducer;
@@ -82,6 +84,7 @@ pub mod admin_gated_feature_add_reducer;
 pub mod admin_gated_feature_remove_reducer;
 pub mod admin_grant_all_claim_supplies_reducer;
 pub mod admin_grant_collectibles_reducer;
+pub mod admin_insert_resource_growth_timer_reducer;
 pub mod admin_migrate_action_state_reducer;
 pub mod admin_migrate_deployable_state_v_2_reducer;
 pub mod admin_migrate_trade_orders_reducer;
@@ -98,7 +101,9 @@ pub mod admin_rename_deployable_reducer;
 pub mod admin_reset_all_herd_locations_reducer;
 pub mod admin_reset_herd_locations_reducer;
 pub mod admin_reset_onboarding_completely_reducer;
+pub mod admin_reset_traveler_task_credits_reducer;
 pub mod admin_resource_force_regen_reducer;
+pub mod admin_resources_delete_percentage_reducer;
 pub mod admin_resources_delete_very_slow_reducer;
 pub mod admin_resources_log_count_reducer;
 pub mod admin_restore_all_buildings_health_reducer;
@@ -703,6 +708,7 @@ pub mod growth_loop_timer_table;
 pub mod growth_loop_timer_type;
 pub mod growth_state_table;
 pub mod growth_state_type;
+pub mod growth_timer_type;
 pub mod hand_equipment_visual_type;
 pub mod health_state_table;
 pub mod health_state_type;
@@ -923,6 +929,8 @@ pub mod inter_module_message_v_3_table;
 pub mod inter_module_message_v_3_type;
 pub mod inter_module_message_v_4_table;
 pub mod inter_module_message_v_4_type;
+pub mod inter_module_message_v_5_table;
+pub mod inter_module_message_v_5_type;
 pub mod inter_module_response_message_counter_table;
 pub mod inter_module_response_message_counter_type;
 pub mod inter_module_table_updates_type;
@@ -1056,9 +1064,11 @@ pub mod message_contents_type;
 pub mod message_contents_v_2_type;
 pub mod message_contents_v_3_type;
 pub mod message_contents_v_4_type;
+pub mod message_contents_v_5_type;
 pub mod migrate_auto_attacks_reducer;
 pub mod migrate_character_stats_reducer;
 pub mod migrate_claim_tech_reducer;
+pub mod migrate_equipment_slots_reducer;
 pub mod migrate_exploration_achievement_counts_reducer;
 pub mod migrate_grant_default_collectibles_reducer;
 pub mod migrate_onboarding_reducer;
@@ -1171,6 +1181,9 @@ pub mod placeable_group_desc_type;
 pub mod placeable_growth_desc_table;
 pub mod placeable_growth_desc_type;
 pub mod placeable_growth_outcome_type;
+pub mod placeable_growth_outcome_v_2_type;
+pub mod placeable_growth_scheduled_reducer;
+pub mod placeable_growth_timer_table;
 pub mod placeable_interact_reducer;
 pub mod placeable_interact_start_reducer;
 pub mod placeable_interaction_desc_table;
@@ -1179,6 +1192,7 @@ pub mod placeable_place_reducer;
 pub mod placeable_place_start_reducer;
 pub mod placeable_placement_desc_table;
 pub mod placeable_placement_desc_type;
+pub mod placeable_self_buff_chance_type;
 pub mod placeable_state_table;
 pub mod placeable_state_type;
 pub mod player_achievement_claim_request_type;
@@ -1324,6 +1338,7 @@ pub mod player_report_state_table;
 pub mod player_report_state_timestamp_table;
 pub mod player_report_state_timestamp_type;
 pub mod player_report_state_type;
+pub mod player_reroll_traveler_task_reducer;
 pub mod player_respawn_reducer;
 pub mod player_retrieve_lost_item_request_type;
 pub mod player_scroll_read_request_type;
@@ -1502,6 +1517,8 @@ pub mod resource_desc_table;
 pub mod resource_desc_type;
 pub mod resource_growth_recipe_desc_table;
 pub mod resource_growth_recipe_desc_type;
+pub mod resource_growth_scheduled_reducer;
+pub mod resource_growth_timer_table;
 pub mod resource_health_state_table;
 pub mod resource_health_state_type;
 pub mod resource_info_type;
@@ -1861,9 +1878,12 @@ pub mod transfer_player_msg_type;
 pub mod transfer_player_msg_v_2_type;
 pub mod transfer_player_msg_v_3_type;
 pub mod transfer_player_msg_v_4_type;
+pub mod transfer_player_msg_v_5_type;
 pub mod transfer_player_timer_table;
 pub mod transfer_player_timer_type;
 pub mod traveler_task_agent_loop_reducer;
+pub mod traveler_task_credit_state_table;
+pub mod traveler_task_credit_state_type;
 pub mod traveler_task_desc_table;
 pub mod traveler_task_desc_type;
 pub mod traveler_task_knowledge_requirement_desc_table;
@@ -1874,6 +1894,7 @@ pub mod traveler_task_state_table;
 pub mod traveler_task_state_type;
 pub mod traveler_trade_order_desc_table;
 pub mod traveler_trade_order_desc_type;
+pub mod traveler_weekly_task_credits_type;
 pub mod traversal_settings_type;
 pub mod unclaimed_collectibles_state_table;
 pub mod unclaimed_collectibles_state_type;
@@ -1994,6 +2015,8 @@ pub use activate_building_buff_reducer::{
 pub use active_buff_state_table::*;
 pub use active_buff_state_type::ActiveBuffState;
 pub use active_buff_type::ActiveBuff;
+pub use active_connection_state_table::*;
+pub use active_connection_state_type::ActiveConnectionState;
 pub use active_environment_buff_state_table::*;
 pub use active_environment_buff_state_type::ActiveEnvironmentBuffState;
 pub use admin_add_specific_building_type_states_reducer::{
@@ -2162,6 +2185,10 @@ pub use admin_grant_collectibles_reducer::{
     admin_grant_collectibles, set_flags_for_admin_grant_collectibles,
     AdminGrantCollectiblesCallbackId,
 };
+pub use admin_insert_resource_growth_timer_reducer::{
+    admin_insert_resource_growth_timer, set_flags_for_admin_insert_resource_growth_timer,
+    AdminInsertResourceGrowthTimerCallbackId,
+};
 pub use admin_migrate_action_state_reducer::{
     admin_migrate_action_state, set_flags_for_admin_migrate_action_state,
     AdminMigrateActionStateCallbackId,
@@ -2223,9 +2250,17 @@ pub use admin_reset_onboarding_completely_reducer::{
     admin_reset_onboarding_completely, set_flags_for_admin_reset_onboarding_completely,
     AdminResetOnboardingCompletelyCallbackId,
 };
+pub use admin_reset_traveler_task_credits_reducer::{
+    admin_reset_traveler_task_credits, set_flags_for_admin_reset_traveler_task_credits,
+    AdminResetTravelerTaskCreditsCallbackId,
+};
 pub use admin_resource_force_regen_reducer::{
     admin_resource_force_regen, set_flags_for_admin_resource_force_regen,
     AdminResourceForceRegenCallbackId,
+};
+pub use admin_resources_delete_percentage_reducer::{
+    admin_resources_delete_percentage, set_flags_for_admin_resources_delete_percentage,
+    AdminResourcesDeletePercentageCallbackId,
 };
 pub use admin_resources_delete_very_slow_reducer::{
     admin_resources_delete_very_slow, set_flags_for_admin_resources_delete_very_slow,
@@ -3330,6 +3365,7 @@ pub use growth_loop_timer_table::*;
 pub use growth_loop_timer_type::GrowthLoopTimer;
 pub use growth_state_table::*;
 pub use growth_state_type::GrowthState;
+pub use growth_timer_type::GrowthTimer;
 pub use hand_equipment_visual_type::HandEquipmentVisual;
 pub use health_state_table::*;
 pub use health_state_type::HealthState;
@@ -4047,6 +4083,8 @@ pub use inter_module_message_v_3_table::*;
 pub use inter_module_message_v_3_type::InterModuleMessageV3;
 pub use inter_module_message_v_4_table::*;
 pub use inter_module_message_v_4_type::InterModuleMessageV4;
+pub use inter_module_message_v_5_table::*;
+pub use inter_module_message_v_5_type::InterModuleMessageV5;
 pub use inter_module_response_message_counter_table::*;
 pub use inter_module_response_message_counter_type::InterModuleResponseMessageCounter;
 pub use inter_module_table_updates_type::InterModuleTableUpdates;
@@ -4210,6 +4248,7 @@ pub use message_contents_type::MessageContents;
 pub use message_contents_v_2_type::MessageContentsV2;
 pub use message_contents_v_3_type::MessageContentsV3;
 pub use message_contents_v_4_type::MessageContentsV4;
+pub use message_contents_v_5_type::MessageContentsV5;
 pub use migrate_auto_attacks_reducer::{
     migrate_auto_attacks, set_flags_for_migrate_auto_attacks, MigrateAutoAttacksCallbackId,
 };
@@ -4218,6 +4257,9 @@ pub use migrate_character_stats_reducer::{
 };
 pub use migrate_claim_tech_reducer::{
     migrate_claim_tech, set_flags_for_migrate_claim_tech, MigrateClaimTechCallbackId,
+};
+pub use migrate_equipment_slots_reducer::{
+    migrate_equipment_slots, set_flags_for_migrate_equipment_slots, MigrateEquipmentSlotsCallbackId,
 };
 pub use migrate_exploration_achievement_counts_reducer::{
     migrate_exploration_achievement_counts, set_flags_for_migrate_exploration_achievement_counts,
@@ -4399,6 +4441,12 @@ pub use placeable_group_desc_type::PlaceableGroupDesc;
 pub use placeable_growth_desc_table::*;
 pub use placeable_growth_desc_type::PlaceableGrowthDesc;
 pub use placeable_growth_outcome_type::PlaceableGrowthOutcome;
+pub use placeable_growth_outcome_v_2_type::PlaceableGrowthOutcomeV2;
+pub use placeable_growth_scheduled_reducer::{
+    placeable_growth_scheduled, set_flags_for_placeable_growth_scheduled,
+    PlaceableGrowthScheduledCallbackId,
+};
+pub use placeable_growth_timer_table::*;
 pub use placeable_interact_reducer::{
     placeable_interact, set_flags_for_placeable_interact, PlaceableInteractCallbackId,
 };
@@ -4416,6 +4464,7 @@ pub use placeable_place_start_reducer::{
 };
 pub use placeable_placement_desc_table::*;
 pub use placeable_placement_desc_type::PlaceablePlacementDesc;
+pub use placeable_self_buff_chance_type::PlaceableSelfBuffChance;
 pub use placeable_state_table::*;
 pub use placeable_state_type::PlaceableState;
 pub use player_achievement_claim_request_type::PlayerAchievementClaimRequest;
@@ -4614,6 +4663,10 @@ pub use player_report_state_table::*;
 pub use player_report_state_timestamp_table::*;
 pub use player_report_state_timestamp_type::PlayerReportStateTimestamp;
 pub use player_report_state_type::PlayerReportState;
+pub use player_reroll_traveler_task_reducer::{
+    player_reroll_traveler_task, set_flags_for_player_reroll_traveler_task,
+    PlayerRerollTravelerTaskCallbackId,
+};
 pub use player_respawn_reducer::{
     player_respawn, set_flags_for_player_respawn, PlayerRespawnCallbackId,
 };
@@ -4883,6 +4936,11 @@ pub use resource_desc_table::*;
 pub use resource_desc_type::ResourceDesc;
 pub use resource_growth_recipe_desc_table::*;
 pub use resource_growth_recipe_desc_type::ResourceGrowthRecipeDesc;
+pub use resource_growth_scheduled_reducer::{
+    resource_growth_scheduled, set_flags_for_resource_growth_scheduled,
+    ResourceGrowthScheduledCallbackId,
+};
+pub use resource_growth_timer_table::*;
 pub use resource_health_state_table::*;
 pub use resource_health_state_type::ResourceHealthState;
 pub use resource_info_type::ResourceInfo;
@@ -5590,12 +5648,15 @@ pub use transfer_player_msg_type::TransferPlayerMsg;
 pub use transfer_player_msg_v_2_type::TransferPlayerMsgV2;
 pub use transfer_player_msg_v_3_type::TransferPlayerMsgV3;
 pub use transfer_player_msg_v_4_type::TransferPlayerMsgV4;
+pub use transfer_player_msg_v_5_type::TransferPlayerMsgV5;
 pub use transfer_player_timer_table::*;
 pub use transfer_player_timer_type::TransferPlayerTimer;
 pub use traveler_task_agent_loop_reducer::{
     set_flags_for_traveler_task_agent_loop, traveler_task_agent_loop,
     TravelerTaskAgentLoopCallbackId,
 };
+pub use traveler_task_credit_state_table::*;
+pub use traveler_task_credit_state_type::TravelerTaskCreditState;
 pub use traveler_task_desc_table::*;
 pub use traveler_task_desc_type::TravelerTaskDesc;
 pub use traveler_task_knowledge_requirement_desc_table::*;
@@ -5606,6 +5667,7 @@ pub use traveler_task_state_table::*;
 pub use traveler_task_state_type::TravelerTaskState;
 pub use traveler_trade_order_desc_table::*;
 pub use traveler_trade_order_desc_type::TravelerTradeOrderDesc;
+pub use traveler_weekly_task_credits_type::TravelerWeeklyTaskCredits;
 pub use traversal_settings_type::TraversalSettings;
 pub use unclaimed_collectibles_state_table::*;
 pub use unclaimed_collectibles_state_type::UnclaimedCollectiblesState;
@@ -5862,6 +5924,9 @@ pub enum Reducer {
         identity: String,
         collectibles: Vec<i32>,
     },
+    AdminInsertResourceGrowthTimer {
+        resource_id: i32,
+    },
     AdminMigrateActionState,
     AdminMigrateDeployableStateV2,
     AdminMigrateTradeOrders,
@@ -5910,10 +5975,16 @@ pub enum Reducer {
     AdminResetOnboardingCompletely {
         entity_id: u64,
     },
+    AdminResetTravelerTaskCredits,
     AdminResourceForceRegen {
         resource_id: i32,
         iterations: i32,
         ignore_target_count: bool,
+    },
+    AdminResourcesDeletePercentage {
+        resource_id: i32,
+        percentage: f32,
+        update_resources_log: bool,
     },
     AdminResourcesDeleteVerySlow {
         resource_id: i32,
@@ -7227,6 +7298,7 @@ pub enum Reducer {
     MigrateAutoAttacks,
     MigrateCharacterStats,
     MigrateClaimTech,
+    MigrateEquipmentSlots,
     MigrateExplorationAchievementCounts,
     MigrateGrantDefaultCollectibles,
     MigrateOnboarding,
@@ -7311,6 +7383,9 @@ pub enum Reducer {
     PillarShapingPlacePillarStart {
         request: PlayerPillarShapingPlaceRequest,
     },
+    PlaceableGrowthScheduled {
+        timer: GrowthTimer,
+    },
     PlaceableInteract {
         request: PlayerPlaceableInteractRequest,
     },
@@ -7391,6 +7466,9 @@ pub enum Reducer {
     PlayerRegionTransferEventReducer {
         timer: PlayerRegionTransferEvent,
     },
+    PlayerRerollTravelerTask {
+        task_entity_id: u64,
+    },
     PlayerRespawn {
         teleport_home: bool,
     },
@@ -7432,7 +7510,7 @@ pub enum Reducer {
     },
     ProcessInterModuleMessage {
         sender: u8,
-        message: InterModuleMessageV4,
+        message: InterModuleMessageV5,
     },
     ProjectSiteAddMaterials {
         request: PlayerProjectSiteAddMaterialsRequest,
@@ -7516,6 +7594,9 @@ pub enum Reducer {
         timer: ResetMobileEntityTimer,
     },
     ResetOnboarding,
+    ResourceGrowthScheduled {
+        timer: GrowthTimer,
+    },
     ResourceSpawnScheduled {
         timer: ResourceSpawnTimer,
     },
@@ -8062,6 +8143,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::AdminGatedFeatureRemove { .. } => "admin_gated_feature_remove",
             Reducer::AdminGrantAllClaimSupplies { .. } => "admin_grant_all_claim_supplies",
             Reducer::AdminGrantCollectibles { .. } => "admin_grant_collectibles",
+            Reducer::AdminInsertResourceGrowthTimer { .. } => "admin_insert_resource_growth_timer",
             Reducer::AdminMigrateActionState => "admin_migrate_action_state",
             Reducer::AdminMigrateDeployableStateV2 => "admin_migrate_deployable_state_v2",
             Reducer::AdminMigrateTradeOrders => "admin_migrate_trade_orders",
@@ -8078,7 +8160,9 @@ impl __sdk::Reducer for Reducer {
             Reducer::AdminResetAllHerdLocations => "admin_reset_all_herd_locations",
             Reducer::AdminResetHerdLocations { .. } => "admin_reset_herd_locations",
             Reducer::AdminResetOnboardingCompletely { .. } => "admin_reset_onboarding_completely",
+            Reducer::AdminResetTravelerTaskCredits => "admin_reset_traveler_task_credits",
             Reducer::AdminResourceForceRegen { .. } => "admin_resource_force_regen",
+            Reducer::AdminResourcesDeletePercentage { .. } => "admin_resources_delete_percentage",
             Reducer::AdminResourcesDeleteVerySlow { .. } => "admin_resources_delete_very_slow",
             Reducer::AdminResourcesLogCount { .. } => "admin_resources_log_count",
             Reducer::AdminRestoreAllBuildingsHealth => "admin_restore_all_buildings_health",
@@ -8557,6 +8641,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::MigrateAutoAttacks => "migrate_auto_attacks",
             Reducer::MigrateCharacterStats => "migrate_character_stats",
             Reducer::MigrateClaimTech => "migrate_claim_tech",
+            Reducer::MigrateEquipmentSlots => "migrate_equipment_slots",
             Reducer::MigrateExplorationAchievementCounts => {
                 "migrate_exploration_achievement_counts"
             }
@@ -8589,6 +8674,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::PillarShapingDestroyStart { .. } => "pillar_shaping_destroy_start",
             Reducer::PillarShapingPlacePillar { .. } => "pillar_shaping_place_pillar",
             Reducer::PillarShapingPlacePillarStart { .. } => "pillar_shaping_place_pillar_start",
+            Reducer::PlaceableGrowthScheduled { .. } => "placeable_growth_scheduled",
             Reducer::PlaceableInteract { .. } => "placeable_interact",
             Reducer::PlaceableInteractStart { .. } => "placeable_interact_start",
             Reducer::PlaceablePlace { .. } => "placeable_place",
@@ -8621,6 +8707,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::PlayerRegionTransferEventReducer { .. } => {
                 "player_region_transfer_event_reducer"
             }
+            Reducer::PlayerRerollTravelerTask { .. } => "player_reroll_traveler_task",
             Reducer::PlayerRespawn { .. } => "player_respawn",
             Reducer::PlayerSetDefaultDeployable { .. } => "player_set_default_deployable",
             Reducer::PlayerSetNameOutcomeEventReducer { .. } => {
@@ -8665,6 +8752,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::ResetChunkIndexWithDimension { .. } => "reset_chunk_index_with_dimension",
             Reducer::ResetMobileEntityPosition { .. } => "reset_mobile_entity_position",
             Reducer::ResetOnboarding => "reset_onboarding",
+            Reducer::ResourceGrowthScheduled { .. } => "resource_growth_scheduled",
             Reducer::ResourceSpawnScheduled { .. } => "resource_spawn_scheduled",
             Reducer::ResourcesRegen { .. } => "resources_regen",
             Reducer::RespawnInteriorNpcs => "respawn_interior_npcs",
@@ -8887,6 +8975,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "admin_gated_feature_remove" => Ok(__sdk::parse_reducer_args::<admin_gated_feature_remove_reducer::AdminGatedFeatureRemoveArgs>("admin_gated_feature_remove", &value.args)?.into()),
             "admin_grant_all_claim_supplies" => Ok(__sdk::parse_reducer_args::<admin_grant_all_claim_supplies_reducer::AdminGrantAllClaimSuppliesArgs>("admin_grant_all_claim_supplies", &value.args)?.into()),
             "admin_grant_collectibles" => Ok(__sdk::parse_reducer_args::<admin_grant_collectibles_reducer::AdminGrantCollectiblesArgs>("admin_grant_collectibles", &value.args)?.into()),
+            "admin_insert_resource_growth_timer" => Ok(__sdk::parse_reducer_args::<admin_insert_resource_growth_timer_reducer::AdminInsertResourceGrowthTimerArgs>("admin_insert_resource_growth_timer", &value.args)?.into()),
             "admin_migrate_action_state" => Ok(__sdk::parse_reducer_args::<admin_migrate_action_state_reducer::AdminMigrateActionStateArgs>("admin_migrate_action_state", &value.args)?.into()),
             "admin_migrate_deployable_state_v2" => Ok(__sdk::parse_reducer_args::<admin_migrate_deployable_state_v_2_reducer::AdminMigrateDeployableStateV2Args>("admin_migrate_deployable_state_v2", &value.args)?.into()),
             "admin_migrate_trade_orders" => Ok(__sdk::parse_reducer_args::<admin_migrate_trade_orders_reducer::AdminMigrateTradeOrdersArgs>("admin_migrate_trade_orders", &value.args)?.into()),
@@ -8903,7 +8992,9 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "admin_reset_all_herd_locations" => Ok(__sdk::parse_reducer_args::<admin_reset_all_herd_locations_reducer::AdminResetAllHerdLocationsArgs>("admin_reset_all_herd_locations", &value.args)?.into()),
             "admin_reset_herd_locations" => Ok(__sdk::parse_reducer_args::<admin_reset_herd_locations_reducer::AdminResetHerdLocationsArgs>("admin_reset_herd_locations", &value.args)?.into()),
             "admin_reset_onboarding_completely" => Ok(__sdk::parse_reducer_args::<admin_reset_onboarding_completely_reducer::AdminResetOnboardingCompletelyArgs>("admin_reset_onboarding_completely", &value.args)?.into()),
+            "admin_reset_traveler_task_credits" => Ok(__sdk::parse_reducer_args::<admin_reset_traveler_task_credits_reducer::AdminResetTravelerTaskCreditsArgs>("admin_reset_traveler_task_credits", &value.args)?.into()),
             "admin_resource_force_regen" => Ok(__sdk::parse_reducer_args::<admin_resource_force_regen_reducer::AdminResourceForceRegenArgs>("admin_resource_force_regen", &value.args)?.into()),
+            "admin_resources_delete_percentage" => Ok(__sdk::parse_reducer_args::<admin_resources_delete_percentage_reducer::AdminResourcesDeletePercentageArgs>("admin_resources_delete_percentage", &value.args)?.into()),
             "admin_resources_delete_very_slow" => Ok(__sdk::parse_reducer_args::<admin_resources_delete_very_slow_reducer::AdminResourcesDeleteVerySlowArgs>("admin_resources_delete_very_slow", &value.args)?.into()),
             "admin_resources_log_count" => Ok(__sdk::parse_reducer_args::<admin_resources_log_count_reducer::AdminResourcesLogCountArgs>("admin_resources_log_count", &value.args)?.into()),
             "admin_restore_all_buildings_health" => Ok(__sdk::parse_reducer_args::<admin_restore_all_buildings_health_reducer::AdminRestoreAllBuildingsHealthArgs>("admin_restore_all_buildings_health", &value.args)?.into()),
@@ -9336,6 +9427,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "migrate_auto_attacks" => Ok(__sdk::parse_reducer_args::<migrate_auto_attacks_reducer::MigrateAutoAttacksArgs>("migrate_auto_attacks", &value.args)?.into()),
             "migrate_character_stats" => Ok(__sdk::parse_reducer_args::<migrate_character_stats_reducer::MigrateCharacterStatsArgs>("migrate_character_stats", &value.args)?.into()),
             "migrate_claim_tech" => Ok(__sdk::parse_reducer_args::<migrate_claim_tech_reducer::MigrateClaimTechArgs>("migrate_claim_tech", &value.args)?.into()),
+            "migrate_equipment_slots" => Ok(__sdk::parse_reducer_args::<migrate_equipment_slots_reducer::MigrateEquipmentSlotsArgs>("migrate_equipment_slots", &value.args)?.into()),
             "migrate_exploration_achievement_counts" => Ok(__sdk::parse_reducer_args::<migrate_exploration_achievement_counts_reducer::MigrateExplorationAchievementCountsArgs>("migrate_exploration_achievement_counts", &value.args)?.into()),
             "migrate_grant_default_collectibles" => Ok(__sdk::parse_reducer_args::<migrate_grant_default_collectibles_reducer::MigrateGrantDefaultCollectiblesArgs>("migrate_grant_default_collectibles", &value.args)?.into()),
             "migrate_onboarding" => Ok(__sdk::parse_reducer_args::<migrate_onboarding_reducer::MigrateOnboardingArgs>("migrate_onboarding", &value.args)?.into()),
@@ -9366,6 +9458,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "pillar_shaping_destroy_start" => Ok(__sdk::parse_reducer_args::<pillar_shaping_destroy_start_reducer::PillarShapingDestroyStartArgs>("pillar_shaping_destroy_start", &value.args)?.into()),
             "pillar_shaping_place_pillar" => Ok(__sdk::parse_reducer_args::<pillar_shaping_place_pillar_reducer::PillarShapingPlacePillarArgs>("pillar_shaping_place_pillar", &value.args)?.into()),
             "pillar_shaping_place_pillar_start" => Ok(__sdk::parse_reducer_args::<pillar_shaping_place_pillar_start_reducer::PillarShapingPlacePillarStartArgs>("pillar_shaping_place_pillar_start", &value.args)?.into()),
+            "placeable_growth_scheduled" => Ok(__sdk::parse_reducer_args::<placeable_growth_scheduled_reducer::PlaceableGrowthScheduledArgs>("placeable_growth_scheduled", &value.args)?.into()),
             "placeable_interact" => Ok(__sdk::parse_reducer_args::<placeable_interact_reducer::PlaceableInteractArgs>("placeable_interact", &value.args)?.into()),
             "placeable_interact_start" => Ok(__sdk::parse_reducer_args::<placeable_interact_start_reducer::PlaceableInteractStartArgs>("placeable_interact_start", &value.args)?.into()),
             "placeable_place" => Ok(__sdk::parse_reducer_args::<placeable_place_reducer::PlaceablePlaceArgs>("placeable_place", &value.args)?.into()),
@@ -9394,6 +9487,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "player_regen_agent_loop" => Ok(__sdk::parse_reducer_args::<player_regen_agent_loop_reducer::PlayerRegenAgentLoopArgs>("player_regen_agent_loop", &value.args)?.into()),
             "player_region_crossover" => Ok(__sdk::parse_reducer_args::<player_region_crossover_reducer::PlayerRegionCrossoverArgs>("player_region_crossover", &value.args)?.into()),
             "player_region_transfer_event_reducer" => Ok(__sdk::parse_reducer_args::<player_region_transfer_event_reducer_reducer::PlayerRegionTransferEventReducerArgs>("player_region_transfer_event_reducer", &value.args)?.into()),
+            "player_reroll_traveler_task" => Ok(__sdk::parse_reducer_args::<player_reroll_traveler_task_reducer::PlayerRerollTravelerTaskArgs>("player_reroll_traveler_task", &value.args)?.into()),
             "player_respawn" => Ok(__sdk::parse_reducer_args::<player_respawn_reducer::PlayerRespawnArgs>("player_respawn", &value.args)?.into()),
             "player_set_default_deployable" => Ok(__sdk::parse_reducer_args::<player_set_default_deployable_reducer::PlayerSetDefaultDeployableArgs>("player_set_default_deployable", &value.args)?.into()),
             "player_set_name_outcome_event_reducer" => Ok(__sdk::parse_reducer_args::<player_set_name_outcome_event_reducer_reducer::PlayerSetNameOutcomeEventReducerArgs>("player_set_name_outcome_event_reducer", &value.args)?.into()),
@@ -9436,6 +9530,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "reset_chunk_index_with_dimension" => Ok(__sdk::parse_reducer_args::<reset_chunk_index_with_dimension_reducer::ResetChunkIndexWithDimensionArgs>("reset_chunk_index_with_dimension", &value.args)?.into()),
             "reset_mobile_entity_position" => Ok(__sdk::parse_reducer_args::<reset_mobile_entity_position_reducer::ResetMobileEntityPositionArgs>("reset_mobile_entity_position", &value.args)?.into()),
             "reset_onboarding" => Ok(__sdk::parse_reducer_args::<reset_onboarding_reducer::ResetOnboardingArgs>("reset_onboarding", &value.args)?.into()),
+            "resource_growth_scheduled" => Ok(__sdk::parse_reducer_args::<resource_growth_scheduled_reducer::ResourceGrowthScheduledArgs>("resource_growth_scheduled", &value.args)?.into()),
             "resource_spawn_scheduled" => Ok(__sdk::parse_reducer_args::<resource_spawn_scheduled_reducer::ResourceSpawnScheduledArgs>("resource_spawn_scheduled", &value.args)?.into()),
             "resources_regen" => Ok(__sdk::parse_reducer_args::<resources_regen_reducer::ResourcesRegenArgs>("resources_regen", &value.args)?.into()),
             "respawn_interior_npcs" => Ok(__sdk::parse_reducer_args::<respawn_interior_npcs_reducer::RespawnInteriorNpcsArgs>("respawn_interior_npcs", &value.args)?.into()),
@@ -9607,6 +9702,7 @@ pub struct DbUpdate {
     action_bar_state: __sdk::TableUpdate<ActionBarState>,
     action_state: __sdk::TableUpdate<ActionState>,
     active_buff_state: __sdk::TableUpdate<ActiveBuffState>,
+    active_connection_state: __sdk::TableUpdate<ActiveConnectionState>,
     active_environment_buff_state: __sdk::TableUpdate<ActiveEnvironmentBuffState>,
     admin_broadcast: __sdk::TableUpdate<AdminBroadcast>,
     admin_clear_resource_timer: __sdk::TableUpdate<AdminClearResourceTimer>,
@@ -9763,6 +9859,7 @@ pub struct DbUpdate {
     inter_module_message_v_2: __sdk::TableUpdate<InterModuleMessageV2>,
     inter_module_message_v_3: __sdk::TableUpdate<InterModuleMessageV3>,
     inter_module_message_v_4: __sdk::TableUpdate<InterModuleMessageV4>,
+    inter_module_message_v_5: __sdk::TableUpdate<InterModuleMessageV5>,
     inter_module_response_message_counter: __sdk::TableUpdate<InterModuleResponseMessageCounter>,
     interior_collapse_trigger_state: __sdk::TableUpdate<InteriorCollapseTriggerState>,
     interior_environment_desc: __sdk::TableUpdate<InteriorEnvironmentDesc>,
@@ -9843,6 +9940,7 @@ pub struct DbUpdate {
     placeable_desc: __sdk::TableUpdate<PlaceableDesc>,
     placeable_group_desc: __sdk::TableUpdate<PlaceableGroupDesc>,
     placeable_growth_desc: __sdk::TableUpdate<PlaceableGrowthDesc>,
+    placeable_growth_timer: __sdk::TableUpdate<GrowthTimer>,
     placeable_interaction_desc: __sdk::TableUpdate<PlaceableInteractionDesc>,
     placeable_placement_desc: __sdk::TableUpdate<PlaceablePlacementDesc>,
     placeable_state: __sdk::TableUpdate<PlaceableState>,
@@ -9906,6 +10004,7 @@ pub struct DbUpdate {
     resource_count: __sdk::TableUpdate<ResourceCount>,
     resource_desc: __sdk::TableUpdate<ResourceDesc>,
     resource_growth_recipe_desc: __sdk::TableUpdate<ResourceGrowthRecipeDesc>,
+    resource_growth_timer: __sdk::TableUpdate<GrowthTimer>,
     resource_health_state: __sdk::TableUpdate<ResourceHealthState>,
     resource_placement_recipe_desc: __sdk::TableUpdate<ResourcePlacementRecipeDesc>,
     resource_placement_recipe_discovery_cargo_desc: __sdk::TableUpdate<DiscoveryTriggerDesc>,
@@ -10058,6 +10157,7 @@ pub struct DbUpdate {
     trade_session_loop_timer: __sdk::TableUpdate<TradeSessionLoopTimer>,
     trade_session_state: __sdk::TableUpdate<TradeSessionState>,
     transfer_player_timer: __sdk::TableUpdate<TransferPlayerTimer>,
+    traveler_task_credit_state: __sdk::TableUpdate<TravelerTaskCreditState>,
     traveler_task_desc: __sdk::TableUpdate<TravelerTaskDesc>,
     traveler_task_knowledge_requirement_desc:
         __sdk::TableUpdate<TravelerTaskKnowledgeRequirementDesc>,
@@ -10097,6 +10197,7 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "action_bar_state" => db_update.action_bar_state.append(action_bar_state_table::parse_table_update(table_update)?),
     "action_state" => db_update.action_state.append(action_state_table::parse_table_update(table_update)?),
     "active_buff_state" => db_update.active_buff_state.append(active_buff_state_table::parse_table_update(table_update)?),
+    "active_connection_state" => db_update.active_connection_state.append(active_connection_state_table::parse_table_update(table_update)?),
     "active_environment_buff_state" => db_update.active_environment_buff_state.append(active_environment_buff_state_table::parse_table_update(table_update)?),
     "admin_broadcast" => db_update.admin_broadcast.append(admin_broadcast_table::parse_table_update(table_update)?),
     "admin_clear_resource_timer" => db_update.admin_clear_resource_timer.append(admin_clear_resource_timer_table::parse_table_update(table_update)?),
@@ -10252,6 +10353,7 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "inter_module_message_v2" => db_update.inter_module_message_v_2.append(inter_module_message_v_2_table::parse_table_update(table_update)?),
     "inter_module_message_v3" => db_update.inter_module_message_v_3.append(inter_module_message_v_3_table::parse_table_update(table_update)?),
     "inter_module_message_v4" => db_update.inter_module_message_v_4.append(inter_module_message_v_4_table::parse_table_update(table_update)?),
+    "inter_module_message_v5" => db_update.inter_module_message_v_5.append(inter_module_message_v_5_table::parse_table_update(table_update)?),
     "inter_module_response_message_counter" => db_update.inter_module_response_message_counter.append(inter_module_response_message_counter_table::parse_table_update(table_update)?),
     "interior_collapse_trigger_state" => db_update.interior_collapse_trigger_state.append(interior_collapse_trigger_state_table::parse_table_update(table_update)?),
     "interior_environment_desc" => db_update.interior_environment_desc.append(interior_environment_desc_table::parse_table_update(table_update)?),
@@ -10332,6 +10434,7 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "placeable_desc" => db_update.placeable_desc.append(placeable_desc_table::parse_table_update(table_update)?),
     "placeable_group_desc" => db_update.placeable_group_desc.append(placeable_group_desc_table::parse_table_update(table_update)?),
     "placeable_growth_desc" => db_update.placeable_growth_desc.append(placeable_growth_desc_table::parse_table_update(table_update)?),
+    "placeable_growth_timer" => db_update.placeable_growth_timer.append(placeable_growth_timer_table::parse_table_update(table_update)?),
     "placeable_interaction_desc" => db_update.placeable_interaction_desc.append(placeable_interaction_desc_table::parse_table_update(table_update)?),
     "placeable_placement_desc" => db_update.placeable_placement_desc.append(placeable_placement_desc_table::parse_table_update(table_update)?),
     "placeable_state" => db_update.placeable_state.append(placeable_state_table::parse_table_update(table_update)?),
@@ -10395,6 +10498,7 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "resource_count" => db_update.resource_count.append(resource_count_table::parse_table_update(table_update)?),
     "resource_desc" => db_update.resource_desc.append(resource_desc_table::parse_table_update(table_update)?),
     "resource_growth_recipe_desc" => db_update.resource_growth_recipe_desc.append(resource_growth_recipe_desc_table::parse_table_update(table_update)?),
+    "resource_growth_timer" => db_update.resource_growth_timer.append(resource_growth_timer_table::parse_table_update(table_update)?),
     "resource_health_state" => db_update.resource_health_state.append(resource_health_state_table::parse_table_update(table_update)?),
     "resource_placement_recipe_desc" => db_update.resource_placement_recipe_desc.append(resource_placement_recipe_desc_table::parse_table_update(table_update)?),
     "resource_placement_recipe_discovery_cargo_desc" => db_update.resource_placement_recipe_discovery_cargo_desc.append(resource_placement_recipe_discovery_cargo_desc_table::parse_table_update(table_update)?),
@@ -10545,6 +10649,7 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "trade_session_loop_timer" => db_update.trade_session_loop_timer.append(trade_session_loop_timer_table::parse_table_update(table_update)?),
     "trade_session_state" => db_update.trade_session_state.append(trade_session_state_table::parse_table_update(table_update)?),
     "transfer_player_timer" => db_update.transfer_player_timer.append(transfer_player_timer_table::parse_table_update(table_update)?),
+    "traveler_task_credit_state" => db_update.traveler_task_credit_state.append(traveler_task_credit_state_table::parse_table_update(table_update)?),
     "traveler_task_desc" => db_update.traveler_task_desc.append(traveler_task_desc_table::parse_table_update(table_update)?),
     "traveler_task_knowledge_requirement_desc" => db_update.traveler_task_knowledge_requirement_desc.append(traveler_task_knowledge_requirement_desc_table::parse_table_update(table_update)?),
     "traveler_task_loop_timer" => db_update.traveler_task_loop_timer.append(traveler_task_loop_timer_table::parse_table_update(table_update)?),
@@ -10620,6 +10725,12 @@ impl __sdk::DbUpdate for DbUpdate {
             .with_updates_by_pk(|row| &row.entity_id);
         diff.active_buff_state = cache
             .apply_diff_to_table::<ActiveBuffState>("active_buff_state", &self.active_buff_state)
+            .with_updates_by_pk(|row| &row.entity_id);
+        diff.active_connection_state = cache
+            .apply_diff_to_table::<ActiveConnectionState>(
+                "active_connection_state",
+                &self.active_connection_state,
+            )
             .with_updates_by_pk(|row| &row.entity_id);
         diff.active_environment_buff_state = cache
             .apply_diff_to_table::<ActiveEnvironmentBuffState>(
@@ -11344,6 +11455,12 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.inter_module_message_v_4,
             )
             .with_updates_by_pk(|row| &row.id);
+        diff.inter_module_message_v_5 = cache
+            .apply_diff_to_table::<InterModuleMessageV5>(
+                "inter_module_message_v5",
+                &self.inter_module_message_v_5,
+            )
+            .with_updates_by_pk(|row| &row.id);
         diff.inter_module_response_message_counter = cache
             .apply_diff_to_table::<InterModuleResponseMessageCounter>(
                 "inter_module_response_message_counter",
@@ -11748,6 +11865,12 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.placeable_growth_desc,
             )
             .with_updates_by_pk(|row| &row.id);
+        diff.placeable_growth_timer = cache
+            .apply_diff_to_table::<GrowthTimer>(
+                "placeable_growth_timer",
+                &self.placeable_growth_timer,
+            )
+            .with_updates_by_pk(|row| &row.scheduled_id);
         diff.placeable_interaction_desc = cache
             .apply_diff_to_table::<PlaceableInteractionDesc>(
                 "placeable_interaction_desc",
@@ -12053,6 +12176,12 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.resource_growth_recipe_desc,
             )
             .with_updates_by_pk(|row| &row.id);
+        diff.resource_growth_timer = cache
+            .apply_diff_to_table::<GrowthTimer>(
+                "resource_growth_timer",
+                &self.resource_growth_timer,
+            )
+            .with_updates_by_pk(|row| &row.scheduled_id);
         diff.resource_health_state = cache
             .apply_diff_to_table::<ResourceHealthState>(
                 "resource_health_state",
@@ -12845,6 +12974,12 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.transfer_player_timer,
             )
             .with_updates_by_pk(|row| &row.scheduled_id);
+        diff.traveler_task_credit_state = cache
+            .apply_diff_to_table::<TravelerTaskCreditState>(
+                "traveler_task_credit_state",
+                &self.traveler_task_credit_state,
+            )
+            .with_updates_by_pk(|row| &row.entity_id);
         diff.traveler_task_desc = cache
             .apply_diff_to_table::<TravelerTaskDesc>("traveler_task_desc", &self.traveler_task_desc)
             .with_updates_by_pk(|row| &row.id);
@@ -12966,6 +13101,7 @@ pub struct AppliedDiff<'r> {
     action_bar_state: __sdk::TableAppliedDiff<'r, ActionBarState>,
     action_state: __sdk::TableAppliedDiff<'r, ActionState>,
     active_buff_state: __sdk::TableAppliedDiff<'r, ActiveBuffState>,
+    active_connection_state: __sdk::TableAppliedDiff<'r, ActiveConnectionState>,
     active_environment_buff_state: __sdk::TableAppliedDiff<'r, ActiveEnvironmentBuffState>,
     admin_broadcast: __sdk::TableAppliedDiff<'r, AdminBroadcast>,
     admin_clear_resource_timer: __sdk::TableAppliedDiff<'r, AdminClearResourceTimer>,
@@ -13126,6 +13262,7 @@ pub struct AppliedDiff<'r> {
     inter_module_message_v_2: __sdk::TableAppliedDiff<'r, InterModuleMessageV2>,
     inter_module_message_v_3: __sdk::TableAppliedDiff<'r, InterModuleMessageV3>,
     inter_module_message_v_4: __sdk::TableAppliedDiff<'r, InterModuleMessageV4>,
+    inter_module_message_v_5: __sdk::TableAppliedDiff<'r, InterModuleMessageV5>,
     inter_module_response_message_counter:
         __sdk::TableAppliedDiff<'r, InterModuleResponseMessageCounter>,
     interior_collapse_trigger_state: __sdk::TableAppliedDiff<'r, InteriorCollapseTriggerState>,
@@ -13210,6 +13347,7 @@ pub struct AppliedDiff<'r> {
     placeable_desc: __sdk::TableAppliedDiff<'r, PlaceableDesc>,
     placeable_group_desc: __sdk::TableAppliedDiff<'r, PlaceableGroupDesc>,
     placeable_growth_desc: __sdk::TableAppliedDiff<'r, PlaceableGrowthDesc>,
+    placeable_growth_timer: __sdk::TableAppliedDiff<'r, GrowthTimer>,
     placeable_interaction_desc: __sdk::TableAppliedDiff<'r, PlaceableInteractionDesc>,
     placeable_placement_desc: __sdk::TableAppliedDiff<'r, PlaceablePlacementDesc>,
     placeable_state: __sdk::TableAppliedDiff<'r, PlaceableState>,
@@ -13274,6 +13412,7 @@ pub struct AppliedDiff<'r> {
     resource_count: __sdk::TableAppliedDiff<'r, ResourceCount>,
     resource_desc: __sdk::TableAppliedDiff<'r, ResourceDesc>,
     resource_growth_recipe_desc: __sdk::TableAppliedDiff<'r, ResourceGrowthRecipeDesc>,
+    resource_growth_timer: __sdk::TableAppliedDiff<'r, GrowthTimer>,
     resource_health_state: __sdk::TableAppliedDiff<'r, ResourceHealthState>,
     resource_placement_recipe_desc: __sdk::TableAppliedDiff<'r, ResourcePlacementRecipeDesc>,
     resource_placement_recipe_discovery_cargo_desc:
@@ -13432,6 +13571,7 @@ pub struct AppliedDiff<'r> {
     trade_session_loop_timer: __sdk::TableAppliedDiff<'r, TradeSessionLoopTimer>,
     trade_session_state: __sdk::TableAppliedDiff<'r, TradeSessionState>,
     transfer_player_timer: __sdk::TableAppliedDiff<'r, TransferPlayerTimer>,
+    traveler_task_credit_state: __sdk::TableAppliedDiff<'r, TravelerTaskCreditState>,
     traveler_task_desc: __sdk::TableAppliedDiff<'r, TravelerTaskDesc>,
     traveler_task_knowledge_requirement_desc:
         __sdk::TableAppliedDiff<'r, TravelerTaskKnowledgeRequirementDesc>,
@@ -13505,6 +13645,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<ActiveBuffState>(
             "active_buff_state",
             &self.active_buff_state,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<ActiveConnectionState>(
+            "active_connection_state",
+            &self.active_connection_state,
             event,
         );
         callbacks.invoke_table_row_callbacks::<ActiveEnvironmentBuffState>(
@@ -14214,6 +14359,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             &self.inter_module_message_v_4,
             event,
         );
+        callbacks.invoke_table_row_callbacks::<InterModuleMessageV5>(
+            "inter_module_message_v5",
+            &self.inter_module_message_v_5,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<InterModuleResponseMessageCounter>(
             "inter_module_response_message_counter",
             &self.inter_module_response_message_counter,
@@ -14602,6 +14752,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             &self.placeable_growth_desc,
             event,
         );
+        callbacks.invoke_table_row_callbacks::<GrowthTimer>(
+            "placeable_growth_timer",
+            &self.placeable_growth_timer,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<PlaceableInteractionDesc>(
             "placeable_interaction_desc",
             &self.placeable_interaction_desc,
@@ -14911,6 +15066,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<ResourceGrowthRecipeDesc>(
             "resource_growth_recipe_desc",
             &self.resource_growth_recipe_desc,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<GrowthTimer>(
+            "resource_growth_timer",
+            &self.resource_growth_timer,
             event,
         );
         callbacks.invoke_table_row_callbacks::<ResourceHealthState>(
@@ -15653,6 +15813,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<TransferPlayerTimer>(
             "transfer_player_timer",
             &self.transfer_player_timer,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<TravelerTaskCreditState>(
+            "traveler_task_credit_state",
+            &self.traveler_task_credit_state,
             event,
         );
         callbacks.invoke_table_row_callbacks::<TravelerTaskDesc>(
@@ -16472,6 +16637,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         action_bar_state_table::register_table(client_cache);
         action_state_table::register_table(client_cache);
         active_buff_state_table::register_table(client_cache);
+        active_connection_state_table::register_table(client_cache);
         active_environment_buff_state_table::register_table(client_cache);
         admin_broadcast_table::register_table(client_cache);
         admin_clear_resource_timer_table::register_table(client_cache);
@@ -16627,6 +16793,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         inter_module_message_v_2_table::register_table(client_cache);
         inter_module_message_v_3_table::register_table(client_cache);
         inter_module_message_v_4_table::register_table(client_cache);
+        inter_module_message_v_5_table::register_table(client_cache);
         inter_module_response_message_counter_table::register_table(client_cache);
         interior_collapse_trigger_state_table::register_table(client_cache);
         interior_environment_desc_table::register_table(client_cache);
@@ -16707,6 +16874,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         placeable_desc_table::register_table(client_cache);
         placeable_group_desc_table::register_table(client_cache);
         placeable_growth_desc_table::register_table(client_cache);
+        placeable_growth_timer_table::register_table(client_cache);
         placeable_interaction_desc_table::register_table(client_cache);
         placeable_placement_desc_table::register_table(client_cache);
         placeable_state_table::register_table(client_cache);
@@ -16770,6 +16938,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         resource_count_table::register_table(client_cache);
         resource_desc_table::register_table(client_cache);
         resource_growth_recipe_desc_table::register_table(client_cache);
+        resource_growth_timer_table::register_table(client_cache);
         resource_health_state_table::register_table(client_cache);
         resource_placement_recipe_desc_table::register_table(client_cache);
         resource_placement_recipe_discovery_cargo_desc_table::register_table(client_cache);
@@ -16920,6 +17089,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         trade_session_loop_timer_table::register_table(client_cache);
         trade_session_state_table::register_table(client_cache);
         transfer_player_timer_table::register_table(client_cache);
+        traveler_task_credit_state_table::register_table(client_cache);
         traveler_task_desc_table::register_table(client_cache);
         traveler_task_knowledge_requirement_desc_table::register_table(client_cache);
         traveler_task_loop_timer_table::register_table(client_cache);
