@@ -202,6 +202,10 @@ namespace BitCraftGlobal.Types
         public uint ProspectingHerdImmunitySecs;
         [DataMember(Name = "rp_walk_speed")]
         public float RpWalkSpeed;
+        [DataMember(Name = "traveler_task_weekly_credits")]
+        public System.Collections.Generic.List<TravelerWeeklyTaskCredits>? TravelerTaskWeeklyCredits;
+        [DataMember(Name = "traveler_task_reroll_credit_cost")]
+        public int TravelerTaskRerollCreditCost;
 
         public ParametersDesc(
             int Version,
@@ -297,7 +301,9 @@ namespace BitCraftGlobal.Types
             uint EmpireMoveCapitalCurrencyCost,
             uint HexiteCapsuleCurrencyCost,
             uint ProspectingHerdImmunitySecs,
-            float RpWalkSpeed
+            float RpWalkSpeed,
+            System.Collections.Generic.List<TravelerWeeklyTaskCredits>? TravelerTaskWeeklyCredits,
+            int TravelerTaskRerollCreditCost
         )
         {
             this.Version = Version;
@@ -394,6 +400,8 @@ namespace BitCraftGlobal.Types
             this.HexiteCapsuleCurrencyCost = HexiteCapsuleCurrencyCost;
             this.ProspectingHerdImmunitySecs = ProspectingHerdImmunitySecs;
             this.RpWalkSpeed = RpWalkSpeed;
+            this.TravelerTaskWeeklyCredits = TravelerTaskWeeklyCredits;
+            this.TravelerTaskRerollCreditCost = TravelerTaskRerollCreditCost;
         }
 
         public ParametersDesc()

@@ -24,13 +24,16 @@ namespace BitCraftGlobal.Types
         public System.Collections.Generic.List<PlaceableGrowthOutcome> Outcomes;
         [DataMember(Name = "show_time_left")]
         public bool ShowTimeLeft;
+        [DataMember(Name = "outcomes_v2")]
+        public System.Collections.Generic.List<PlaceableGrowthOutcomeV2>? OutcomesV2;
 
         public PlaceableGrowthDesc(
             int Id,
             int PlaceableId,
             System.Collections.Generic.List<float> Time,
             System.Collections.Generic.List<PlaceableGrowthOutcome> Outcomes,
-            bool ShowTimeLeft
+            bool ShowTimeLeft,
+            System.Collections.Generic.List<PlaceableGrowthOutcomeV2>? OutcomesV2
         )
         {
             this.Id = Id;
@@ -38,6 +41,7 @@ namespace BitCraftGlobal.Types
             this.Time = Time;
             this.Outcomes = Outcomes;
             this.ShowTimeLeft = ShowTimeLeft;
+            this.OutcomesV2 = OutcomesV2;
         }
 
         public PlaceableGrowthDesc()

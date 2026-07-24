@@ -37,6 +37,7 @@ namespace BitCraftGlobal.Types
             AddTable(ActionBarState = new(conn));
             AddTable(ActionState = new(conn));
             AddTable(ActiveBuffState = new(conn));
+            AddTable(ActiveConnectionState = new(conn));
             AddTable(AdminBroadcast = new(conn));
             AddTable(AlertDesc = new(conn));
             AddTable(AlertState = new(conn));
@@ -182,6 +183,7 @@ namespace BitCraftGlobal.Types
             AddTable(InterModuleMessageV2 = new(conn));
             AddTable(InterModuleMessageV3 = new(conn));
             AddTable(InterModuleMessageV4 = new(conn));
+            AddTable(InterModuleMessageV5 = new(conn));
             AddTable(InterModuleResponseMessageCounter = new(conn));
             AddTable(InteriorCollapseTriggerState = new(conn));
             AddTable(InteriorEnvironmentDesc = new(conn));
@@ -458,6 +460,7 @@ namespace BitCraftGlobal.Types
             AddTable(TradeOrderState = new(conn));
             AddTable(TradeSessionState = new(conn));
             AddTable(TranslationCorrections = new(conn));
+            AddTable(TravelerTaskCreditState = new(conn));
             AddTable(TravelerTaskDesc = new(conn));
             AddTable(TravelerTaskKnowledgeRequirementDesc = new(conn));
             AddTable(TravelerTaskState = new(conn));
@@ -1040,6 +1043,7 @@ namespace BitCraftGlobal.Types
         public global::SpacetimeDB.Table<ActionBarState, ActionBarStateCols, ActionBarStateIxCols> ActionBarState() => new("action_bar_state", new ActionBarStateCols("action_bar_state"), new ActionBarStateIxCols("action_bar_state"));
         public global::SpacetimeDB.Table<ActionState, ActionStateCols, ActionStateIxCols> ActionState() => new("action_state", new ActionStateCols("action_state"), new ActionStateIxCols("action_state"));
         public global::SpacetimeDB.Table<ActiveBuffState, ActiveBuffStateCols, ActiveBuffStateIxCols> ActiveBuffState() => new("active_buff_state", new ActiveBuffStateCols("active_buff_state"), new ActiveBuffStateIxCols("active_buff_state"));
+        public global::SpacetimeDB.Table<ActiveConnectionState, ActiveConnectionStateCols, ActiveConnectionStateIxCols> ActiveConnectionState() => new("active_connection_state", new ActiveConnectionStateCols("active_connection_state"), new ActiveConnectionStateIxCols("active_connection_state"));
         public global::SpacetimeDB.Table<AdminBroadcast, AdminBroadcastCols, AdminBroadcastIxCols> AdminBroadcast() => new("admin_broadcast", new AdminBroadcastCols("admin_broadcast"), new AdminBroadcastIxCols("admin_broadcast"));
         public global::SpacetimeDB.Table<AlertDesc, AlertDescCols, AlertDescIxCols> AlertDesc() => new("alert_desc", new AlertDescCols("alert_desc"), new AlertDescIxCols("alert_desc"));
         public global::SpacetimeDB.Table<AlertState, AlertStateCols, AlertStateIxCols> AlertState() => new("alert_state", new AlertStateCols("alert_state"), new AlertStateIxCols("alert_state"));
@@ -1185,6 +1189,7 @@ namespace BitCraftGlobal.Types
         public global::SpacetimeDB.Table<InterModuleMessageV2, InterModuleMessageV2Cols, InterModuleMessageV2IxCols> InterModuleMessageV2() => new("inter_module_message_v2", new InterModuleMessageV2Cols("inter_module_message_v2"), new InterModuleMessageV2IxCols("inter_module_message_v2"));
         public global::SpacetimeDB.Table<InterModuleMessageV3, InterModuleMessageV3Cols, InterModuleMessageV3IxCols> InterModuleMessageV3() => new("inter_module_message_v3", new InterModuleMessageV3Cols("inter_module_message_v3"), new InterModuleMessageV3IxCols("inter_module_message_v3"));
         public global::SpacetimeDB.Table<InterModuleMessageV4, InterModuleMessageV4Cols, InterModuleMessageV4IxCols> InterModuleMessageV4() => new("inter_module_message_v4", new InterModuleMessageV4Cols("inter_module_message_v4"), new InterModuleMessageV4IxCols("inter_module_message_v4"));
+        public global::SpacetimeDB.Table<InterModuleMessageV5, InterModuleMessageV5Cols, InterModuleMessageV5IxCols> InterModuleMessageV5() => new("inter_module_message_v5", new InterModuleMessageV5Cols("inter_module_message_v5"), new InterModuleMessageV5IxCols("inter_module_message_v5"));
         public global::SpacetimeDB.Table<InterModuleResponseMessageCounter, InterModuleResponseMessageCounterCols, InterModuleResponseMessageCounterIxCols> InterModuleResponseMessageCounter() => new("inter_module_response_message_counter", new InterModuleResponseMessageCounterCols("inter_module_response_message_counter"), new InterModuleResponseMessageCounterIxCols("inter_module_response_message_counter"));
         public global::SpacetimeDB.Table<InteriorCollapseTriggerState, InteriorCollapseTriggerStateCols, InteriorCollapseTriggerStateIxCols> InteriorCollapseTriggerState() => new("interior_collapse_trigger_state", new InteriorCollapseTriggerStateCols("interior_collapse_trigger_state"), new InteriorCollapseTriggerStateIxCols("interior_collapse_trigger_state"));
         public global::SpacetimeDB.Table<InteriorEnvironmentDesc, InteriorEnvironmentDescCols, InteriorEnvironmentDescIxCols> InteriorEnvironmentDesc() => new("interior_environment_desc", new InteriorEnvironmentDescCols("interior_environment_desc"), new InteriorEnvironmentDescIxCols("interior_environment_desc"));
@@ -1461,6 +1466,7 @@ namespace BitCraftGlobal.Types
         public global::SpacetimeDB.Table<TradeOrderState, TradeOrderStateCols, TradeOrderStateIxCols> TradeOrderState() => new("trade_order_state", new TradeOrderStateCols("trade_order_state"), new TradeOrderStateIxCols("trade_order_state"));
         public global::SpacetimeDB.Table<TradeSessionState, TradeSessionStateCols, TradeSessionStateIxCols> TradeSessionState() => new("trade_session_state", new TradeSessionStateCols("trade_session_state"), new TradeSessionStateIxCols("trade_session_state"));
         public global::SpacetimeDB.Table<TranslationCorrections, TranslationCorrectionsCols, TranslationCorrectionsIxCols> TranslationCorrections() => new("translation_corrections", new TranslationCorrectionsCols("translation_corrections"), new TranslationCorrectionsIxCols("translation_corrections"));
+        public global::SpacetimeDB.Table<TravelerTaskCreditState, TravelerTaskCreditStateCols, TravelerTaskCreditStateIxCols> TravelerTaskCreditState() => new("traveler_task_credit_state", new TravelerTaskCreditStateCols("traveler_task_credit_state"), new TravelerTaskCreditStateIxCols("traveler_task_credit_state"));
         public global::SpacetimeDB.Table<TravelerTaskDesc, TravelerTaskDescCols, TravelerTaskDescIxCols> TravelerTaskDesc() => new("traveler_task_desc", new TravelerTaskDescCols("traveler_task_desc"), new TravelerTaskDescIxCols("traveler_task_desc"));
         public global::SpacetimeDB.Table<TravelerTaskKnowledgeRequirementDesc, TravelerTaskKnowledgeRequirementDescCols, TravelerTaskKnowledgeRequirementDescIxCols> TravelerTaskKnowledgeRequirementDesc() => new("traveler_task_knowledge_requirement_desc", new TravelerTaskKnowledgeRequirementDescCols("traveler_task_knowledge_requirement_desc"), new TravelerTaskKnowledgeRequirementDescIxCols("traveler_task_knowledge_requirement_desc"));
         public global::SpacetimeDB.Table<TravelerTaskState, TravelerTaskStateCols, TravelerTaskStateIxCols> TravelerTaskState() => new("traveler_task_state", new TravelerTaskStateCols("traveler_task_state"), new TravelerTaskStateIxCols("traveler_task_state"));

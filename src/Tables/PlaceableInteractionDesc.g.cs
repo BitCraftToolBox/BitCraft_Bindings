@@ -69,6 +69,8 @@ namespace BitCraftGlobal.Types
         public global::SpacetimeDB.Col<PlaceableInteractionDesc, int> RecipePerformanceId { get; }
         public global::SpacetimeDB.Col<PlaceableInteractionDesc, int> OnDestroySpawnedPlaceableId { get; }
         public global::SpacetimeDB.Col<PlaceableInteractionDesc, float> OnDestroySpawnedPlaceableChance { get; }
+        public global::SpacetimeDB.NullableCol<PlaceableInteractionDesc, System.Collections.Generic.List<PlaceableGrowthOutcomeV2>> OnDestroyOutcomes { get; }
+        public global::SpacetimeDB.NullableCol<PlaceableInteractionDesc, System.Collections.Generic.List<PlaceableSelfBuffChance>> SelfBuffs { get; }
 
         public PlaceableInteractionDescCols(string tableName)
         {
@@ -91,6 +93,8 @@ namespace BitCraftGlobal.Types
             RecipePerformanceId = new global::SpacetimeDB.Col<PlaceableInteractionDesc, int>(tableName, "recipe_performance_id");
             OnDestroySpawnedPlaceableId = new global::SpacetimeDB.Col<PlaceableInteractionDesc, int>(tableName, "on_destroy_spawned_placeable_id");
             OnDestroySpawnedPlaceableChance = new global::SpacetimeDB.Col<PlaceableInteractionDesc, float>(tableName, "on_destroy_spawned_placeable_chance");
+            OnDestroyOutcomes = new global::SpacetimeDB.NullableCol<PlaceableInteractionDesc, System.Collections.Generic.List<PlaceableGrowthOutcomeV2>>(tableName, "on_destroy_outcomes");
+            SelfBuffs = new global::SpacetimeDB.NullableCol<PlaceableInteractionDesc, System.Collections.Generic.List<PlaceableSelfBuffChance>>(tableName, "self_buffs");
         }
     }
 

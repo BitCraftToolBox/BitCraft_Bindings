@@ -50,6 +50,12 @@ namespace BitCraftGlobal.Types
         public global::SpacetimeDB.Col<PlaceableDesc, string> IconAssetName { get; }
         public global::SpacetimeDB.Col<PlaceableDesc, int> MaxHealth { get; }
         public global::SpacetimeDB.Col<PlaceableDesc, bool> VisibleToOthers { get; }
+        public global::SpacetimeDB.Col<PlaceableDesc, bool> SpawnsOnLand { get; }
+        public global::SpacetimeDB.Col<PlaceableDesc, int> LandElevationMin { get; }
+        public global::SpacetimeDB.Col<PlaceableDesc, int> LandElevationMax { get; }
+        public global::SpacetimeDB.Col<PlaceableDesc, bool> SpawnsInWater { get; }
+        public global::SpacetimeDB.Col<PlaceableDesc, int> WaterDepthMin { get; }
+        public global::SpacetimeDB.Col<PlaceableDesc, int> WaterDepthMax { get; }
 
         public StagedPlaceableDescCols(string tableName)
         {
@@ -63,6 +69,12 @@ namespace BitCraftGlobal.Types
             IconAssetName = new global::SpacetimeDB.Col<PlaceableDesc, string>(tableName, "icon_asset_name");
             MaxHealth = new global::SpacetimeDB.Col<PlaceableDesc, int>(tableName, "max_health");
             VisibleToOthers = new global::SpacetimeDB.Col<PlaceableDesc, bool>(tableName, "visible_to_others");
+            SpawnsOnLand = new global::SpacetimeDB.Col<PlaceableDesc, bool>(tableName, "spawns_on_land");
+            LandElevationMin = new global::SpacetimeDB.Col<PlaceableDesc, int>(tableName, "land_elevation_min");
+            LandElevationMax = new global::SpacetimeDB.Col<PlaceableDesc, int>(tableName, "land_elevation_max");
+            SpawnsInWater = new global::SpacetimeDB.Col<PlaceableDesc, bool>(tableName, "spawns_in_water");
+            WaterDepthMin = new global::SpacetimeDB.Col<PlaceableDesc, int>(tableName, "water_depth_min");
+            WaterDepthMax = new global::SpacetimeDB.Col<PlaceableDesc, int>(tableName, "water_depth_max");
         }
     }
 

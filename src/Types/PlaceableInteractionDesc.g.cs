@@ -52,6 +52,10 @@ namespace BitCraftGlobal.Types
         public int OnDestroySpawnedPlaceableId;
         [DataMember(Name = "on_destroy_spawned_placeable_chance")]
         public float OnDestroySpawnedPlaceableChance;
+        [DataMember(Name = "on_destroy_outcomes")]
+        public System.Collections.Generic.List<PlaceableGrowthOutcomeV2>? OnDestroyOutcomes;
+        [DataMember(Name = "self_buffs")]
+        public System.Collections.Generic.List<PlaceableSelfBuffChance>? SelfBuffs;
 
         public PlaceableInteractionDesc(
             int Id,
@@ -72,7 +76,9 @@ namespace BitCraftGlobal.Types
             float PowerMultiplier,
             int RecipePerformanceId,
             int OnDestroySpawnedPlaceableId,
-            float OnDestroySpawnedPlaceableChance
+            float OnDestroySpawnedPlaceableChance,
+            System.Collections.Generic.List<PlaceableGrowthOutcomeV2>? OnDestroyOutcomes,
+            System.Collections.Generic.List<PlaceableSelfBuffChance>? SelfBuffs
         )
         {
             this.Id = Id;
@@ -94,6 +100,8 @@ namespace BitCraftGlobal.Types
             this.RecipePerformanceId = RecipePerformanceId;
             this.OnDestroySpawnedPlaceableId = OnDestroySpawnedPlaceableId;
             this.OnDestroySpawnedPlaceableChance = OnDestroySpawnedPlaceableChance;
+            this.OnDestroyOutcomes = OnDestroyOutcomes;
+            this.SelfBuffs = SelfBuffs;
         }
 
         public PlaceableInteractionDesc()

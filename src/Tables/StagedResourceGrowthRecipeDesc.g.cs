@@ -44,6 +44,9 @@ namespace BitCraftGlobal.Types
         public global::SpacetimeDB.Col<ResourceGrowthRecipeDesc, int> ResourceId { get; }
         public global::SpacetimeDB.Col<ResourceGrowthRecipeDesc, System.Collections.Generic.List<float>> Time { get; }
         public global::SpacetimeDB.Col<ResourceGrowthRecipeDesc, int> GrownResourceId { get; }
+        public global::SpacetimeDB.Col<ResourceGrowthRecipeDesc, float> GrownResourceChance { get; }
+        public global::SpacetimeDB.Col<ResourceGrowthRecipeDesc, int> GrownResourceMinRadius { get; }
+        public global::SpacetimeDB.Col<ResourceGrowthRecipeDesc, int> GrownResourceMaxRadius { get; }
 
         public StagedResourceGrowthRecipeDescCols(string tableName)
         {
@@ -51,6 +54,9 @@ namespace BitCraftGlobal.Types
             ResourceId = new global::SpacetimeDB.Col<ResourceGrowthRecipeDesc, int>(tableName, "resource_id");
             Time = new global::SpacetimeDB.Col<ResourceGrowthRecipeDesc, System.Collections.Generic.List<float>>(tableName, "time");
             GrownResourceId = new global::SpacetimeDB.Col<ResourceGrowthRecipeDesc, int>(tableName, "grown_resource_id");
+            GrownResourceChance = new global::SpacetimeDB.Col<ResourceGrowthRecipeDesc, float>(tableName, "grown_resource_chance");
+            GrownResourceMinRadius = new global::SpacetimeDB.Col<ResourceGrowthRecipeDesc, int>(tableName, "grown_resource_min_radius");
+            GrownResourceMaxRadius = new global::SpacetimeDB.Col<ResourceGrowthRecipeDesc, int>(tableName, "grown_resource_max_radius");
         }
     }
 
