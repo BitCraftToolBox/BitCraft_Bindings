@@ -172,6 +172,10 @@ import { AdminResourcesDeleteVerySlow } from "./admin_resources_delete_very_slow
 export { AdminResourcesDeleteVerySlow };
 import { AdminResourcesLogCount } from "./admin_resources_log_count_reducer.ts";
 export { AdminResourcesLogCount };
+import { AdminRespawnBuildingSpawnDesc } from "./admin_respawn_building_spawn_desc_reducer.ts";
+export { AdminRespawnBuildingSpawnDesc };
+import { AdminRespawnInteriorSpawnDesc } from "./admin_respawn_interior_spawn_desc_reducer.ts";
+export { AdminRespawnInteriorSpawnDesc };
 import { AdminRestoreAllBuildingsHealth } from "./admin_restore_all_buildings_health_reducer.ts";
 export { AdminRestoreAllBuildingsHealth };
 import { AdminRestoreAllCollapsedRuins } from "./admin_restore_all_collapsed_ruins_reducer.ts";
@@ -8477,6 +8481,14 @@ export const REMOTE_MODULE = {
       reducerName: "admin_resources_log_count",
       argsType: AdminResourcesLogCount.getTypeScriptAlgebraicType(),
     },
+    admin_respawn_building_spawn_desc: {
+      reducerName: "admin_respawn_building_spawn_desc",
+      argsType: AdminRespawnBuildingSpawnDesc.getTypeScriptAlgebraicType(),
+    },
+    admin_respawn_interior_spawn_desc: {
+      reducerName: "admin_respawn_interior_spawn_desc",
+      argsType: AdminRespawnInteriorSpawnDesc.getTypeScriptAlgebraicType(),
+    },
     admin_restore_all_buildings_health: {
       reducerName: "admin_restore_all_buildings_health",
       argsType: AdminRestoreAllBuildingsHealth.getTypeScriptAlgebraicType(),
@@ -11332,6 +11344,8 @@ export type Reducer = never
 | { name: "AdminResourcesDeletePercentage", args: AdminResourcesDeletePercentage }
 | { name: "AdminResourcesDeleteVerySlow", args: AdminResourcesDeleteVerySlow }
 | { name: "AdminResourcesLogCount", args: AdminResourcesLogCount }
+| { name: "AdminRespawnBuildingSpawnDesc", args: AdminRespawnBuildingSpawnDesc }
+| { name: "AdminRespawnInteriorSpawnDesc", args: AdminRespawnInteriorSpawnDesc }
 | { name: "AdminRestoreAllBuildingsHealth", args: AdminRestoreAllBuildingsHealth }
 | { name: "AdminRestoreAllCollapsedRuins", args: AdminRestoreAllCollapsedRuins }
 | { name: "AdminRestorePlayerState", args: AdminRestorePlayerState }
@@ -13072,6 +13086,38 @@ export class RemoteReducers {
 
   removeOnAdminResourcesLogCount(callback: (ctx: ReducerEventContext, threshold: number) => void) {
     this.connection.offReducer("admin_resources_log_count", callback);
+  }
+
+  adminRespawnBuildingSpawnDesc(buildingSpawnDescId: number, commit: boolean) {
+    const __args = { buildingSpawnDescId, commit };
+    let __writer = new BinaryWriter(1024);
+    AdminRespawnBuildingSpawnDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("admin_respawn_building_spawn_desc", __argsBuffer, this.setCallReducerFlags.adminRespawnBuildingSpawnDescFlags);
+  }
+
+  onAdminRespawnBuildingSpawnDesc(callback: (ctx: ReducerEventContext, buildingSpawnDescId: number, commit: boolean) => void) {
+    this.connection.onReducer("admin_respawn_building_spawn_desc", callback);
+  }
+
+  removeOnAdminRespawnBuildingSpawnDesc(callback: (ctx: ReducerEventContext, buildingSpawnDescId: number, commit: boolean) => void) {
+    this.connection.offReducer("admin_respawn_building_spawn_desc", callback);
+  }
+
+  adminRespawnInteriorSpawnDesc(interiorSpawnDescId: number, commit: boolean) {
+    const __args = { interiorSpawnDescId, commit };
+    let __writer = new BinaryWriter(1024);
+    AdminRespawnInteriorSpawnDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("admin_respawn_interior_spawn_desc", __argsBuffer, this.setCallReducerFlags.adminRespawnInteriorSpawnDescFlags);
+  }
+
+  onAdminRespawnInteriorSpawnDesc(callback: (ctx: ReducerEventContext, interiorSpawnDescId: number, commit: boolean) => void) {
+    this.connection.onReducer("admin_respawn_interior_spawn_desc", callback);
+  }
+
+  removeOnAdminRespawnInteriorSpawnDesc(callback: (ctx: ReducerEventContext, interiorSpawnDescId: number, commit: boolean) => void) {
+    this.connection.offReducer("admin_respawn_interior_spawn_desc", callback);
   }
 
   adminRestoreAllBuildingsHealth() {
@@ -24264,6 +24310,16 @@ export class SetReducerFlags {
   adminResourcesLogCountFlags: CallReducerFlags = 'FullUpdate';
   adminResourcesLogCount(flags: CallReducerFlags) {
     this.adminResourcesLogCountFlags = flags;
+  }
+
+  adminRespawnBuildingSpawnDescFlags: CallReducerFlags = 'FullUpdate';
+  adminRespawnBuildingSpawnDesc(flags: CallReducerFlags) {
+    this.adminRespawnBuildingSpawnDescFlags = flags;
+  }
+
+  adminRespawnInteriorSpawnDescFlags: CallReducerFlags = 'FullUpdate';
+  adminRespawnInteriorSpawnDesc(flags: CallReducerFlags) {
+    this.adminRespawnInteriorSpawnDescFlags = flags;
   }
 
   adminRestoreAllBuildingsHealthFlags: CallReducerFlags = 'FullUpdate';
