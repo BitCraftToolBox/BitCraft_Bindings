@@ -134,6 +134,8 @@ import { AdminMigrateDeployableStateV2 } from "./admin_migrate_deployable_state_
 export { AdminMigrateDeployableStateV2 };
 import { AdminMigrateTradeOrders } from "./admin_migrate_trade_orders_reducer.ts";
 export { AdminMigrateTradeOrders };
+import { AdminMigrateTravelerTasks } from "./admin_migrate_traveler_tasks_reducer.ts";
+export { AdminMigrateTravelerTasks };
 import { AdminModifyChatMessage } from "./admin_modify_chat_message_reducer.ts";
 export { AdminModifyChatMessage };
 import { AdminPatchHousingCosts } from "./admin_patch_housing_costs_reducer.ts";
@@ -8399,6 +8401,10 @@ export const REMOTE_MODULE = {
       reducerName: "admin_migrate_trade_orders",
       argsType: AdminMigrateTradeOrders.getTypeScriptAlgebraicType(),
     },
+    admin_migrate_traveler_tasks: {
+      reducerName: "admin_migrate_traveler_tasks",
+      argsType: AdminMigrateTravelerTasks.getTypeScriptAlgebraicType(),
+    },
     admin_modify_chat_message: {
       reducerName: "admin_modify_chat_message",
       argsType: AdminModifyChatMessage.getTypeScriptAlgebraicType(),
@@ -11307,6 +11313,7 @@ export type Reducer = never
 | { name: "AdminMigrateActionState", args: AdminMigrateActionState }
 | { name: "AdminMigrateDeployableStateV2", args: AdminMigrateDeployableStateV2 }
 | { name: "AdminMigrateTradeOrders", args: AdminMigrateTradeOrders }
+| { name: "AdminMigrateTravelerTasks", args: AdminMigrateTravelerTasks }
 | { name: "AdminModifyChatMessage", args: AdminModifyChatMessage }
 | { name: "AdminPatchHousingCosts", args: AdminPatchHousingCosts }
 | { name: "AdminRemoveCollectible", args: AdminRemoveCollectible }
@@ -12777,6 +12784,18 @@ export class RemoteReducers {
 
   removeOnAdminMigrateTradeOrders(callback: (ctx: ReducerEventContext) => void) {
     this.connection.offReducer("admin_migrate_trade_orders", callback);
+  }
+
+  adminMigrateTravelerTasks() {
+    this.connection.callReducer("admin_migrate_traveler_tasks", new Uint8Array(0), this.setCallReducerFlags.adminMigrateTravelerTasksFlags);
+  }
+
+  onAdminMigrateTravelerTasks(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.onReducer("admin_migrate_traveler_tasks", callback);
+  }
+
+  removeOnAdminMigrateTravelerTasks(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.offReducer("admin_migrate_traveler_tasks", callback);
   }
 
   adminModifyChatMessage(entityId: bigint, newMessageText: string) {
@@ -24150,6 +24169,11 @@ export class SetReducerFlags {
   adminMigrateTradeOrdersFlags: CallReducerFlags = 'FullUpdate';
   adminMigrateTradeOrders(flags: CallReducerFlags) {
     this.adminMigrateTradeOrdersFlags = flags;
+  }
+
+  adminMigrateTravelerTasksFlags: CallReducerFlags = 'FullUpdate';
+  adminMigrateTravelerTasks(flags: CallReducerFlags) {
+    this.adminMigrateTravelerTasksFlags = flags;
   }
 
   adminModifyChatMessageFlags: CallReducerFlags = 'FullUpdate';
