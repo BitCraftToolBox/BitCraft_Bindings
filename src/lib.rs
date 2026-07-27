@@ -88,6 +88,7 @@ pub mod admin_insert_resource_growth_timer_reducer;
 pub mod admin_migrate_action_state_reducer;
 pub mod admin_migrate_deployable_state_v_2_reducer;
 pub mod admin_migrate_trade_orders_reducer;
+pub mod admin_migrate_traveler_tasks_reducer;
 pub mod admin_modify_chat_message_reducer;
 pub mod admin_patch_housing_costs_reducer;
 pub mod admin_remove_collectible_reducer;
@@ -2201,6 +2202,10 @@ pub use admin_migrate_deployable_state_v_2_reducer::{
 pub use admin_migrate_trade_orders_reducer::{
     admin_migrate_trade_orders, set_flags_for_admin_migrate_trade_orders,
     AdminMigrateTradeOrdersCallbackId,
+};
+pub use admin_migrate_traveler_tasks_reducer::{
+    admin_migrate_traveler_tasks, set_flags_for_admin_migrate_traveler_tasks,
+    AdminMigrateTravelerTasksCallbackId,
 };
 pub use admin_modify_chat_message_reducer::{
     admin_modify_chat_message, set_flags_for_admin_modify_chat_message,
@@ -5935,6 +5940,7 @@ pub enum Reducer {
     AdminMigrateActionState,
     AdminMigrateDeployableStateV2,
     AdminMigrateTradeOrders,
+    AdminMigrateTravelerTasks,
     AdminModifyChatMessage {
         entity_id: u64,
         new_message_text: String,
@@ -8153,6 +8159,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::AdminMigrateActionState => "admin_migrate_action_state",
             Reducer::AdminMigrateDeployableStateV2 => "admin_migrate_deployable_state_v2",
             Reducer::AdminMigrateTradeOrders => "admin_migrate_trade_orders",
+            Reducer::AdminMigrateTravelerTasks => "admin_migrate_traveler_tasks",
             Reducer::AdminModifyChatMessage { .. } => "admin_modify_chat_message",
             Reducer::AdminPatchHousingCosts => "admin_patch_housing_costs",
             Reducer::AdminRemoveCollectible { .. } => "admin_remove_collectible",
@@ -8986,6 +8993,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "admin_migrate_action_state" => Ok(__sdk::parse_reducer_args::<admin_migrate_action_state_reducer::AdminMigrateActionStateArgs>("admin_migrate_action_state", &value.args)?.into()),
             "admin_migrate_deployable_state_v2" => Ok(__sdk::parse_reducer_args::<admin_migrate_deployable_state_v_2_reducer::AdminMigrateDeployableStateV2Args>("admin_migrate_deployable_state_v2", &value.args)?.into()),
             "admin_migrate_trade_orders" => Ok(__sdk::parse_reducer_args::<admin_migrate_trade_orders_reducer::AdminMigrateTradeOrdersArgs>("admin_migrate_trade_orders", &value.args)?.into()),
+            "admin_migrate_traveler_tasks" => Ok(__sdk::parse_reducer_args::<admin_migrate_traveler_tasks_reducer::AdminMigrateTravelerTasksArgs>("admin_migrate_traveler_tasks", &value.args)?.into()),
             "admin_modify_chat_message" => Ok(__sdk::parse_reducer_args::<admin_modify_chat_message_reducer::AdminModifyChatMessageArgs>("admin_modify_chat_message", &value.args)?.into()),
             "admin_patch_housing_costs" => Ok(__sdk::parse_reducer_args::<admin_patch_housing_costs_reducer::AdminPatchHousingCostsArgs>("admin_patch_housing_costs", &value.args)?.into()),
             "admin_remove_collectible" => Ok(__sdk::parse_reducer_args::<admin_remove_collectible_reducer::AdminRemoveCollectibleArgs>("admin_remove_collectible", &value.args)?.into()),
