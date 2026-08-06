@@ -4,6 +4,7 @@
 #![allow(unused, clippy::all)]
 use super::buff_effect_type::BuffEffect;
 use super::food_desc_type::FoodDesc;
+use super::item_stack_type::ItemStack;
 use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
 
 /// Table handle for the table `food_desc`.
