@@ -39,6 +39,7 @@ import { ExperienceStackF32 as __ExperienceStackF32 } from "./experience_stack_f
 import { ProbabilisticItemStack as __ProbabilisticItemStack } from "./probabilistic_item_stack_type";
 import { EmpirePermission as __EmpirePermission } from "./empire_permission_type";
 import { ExtractionSpawnedPlaceable as __ExtractionSpawnedPlaceable } from "./extraction_spawned_placeable_type";
+import { PlaceableSelfBuffChance as __PlaceableSelfBuffChance } from "./placeable_self_buff_chance_type";
 
 export type ExtractionRecipeDesc = {
   id: number,
@@ -64,6 +65,7 @@ export type ExtractionRecipeDesc = {
   showInProgression: boolean,
   empirePermissionRequired: __EmpirePermission | undefined,
   spawnedPlaceables: __ExtractionSpawnedPlaceable[] | undefined,
+  selfBuffs: __PlaceableSelfBuffChance[] | undefined,
 };
 
 /**
@@ -99,6 +101,7 @@ export namespace ExtractionRecipeDesc {
       new ProductTypeElement("showInProgression", AlgebraicType.createBoolType()),
       new ProductTypeElement("empirePermissionRequired", AlgebraicType.createOptionType(__EmpirePermission.getTypeScriptAlgebraicType())),
       new ProductTypeElement("spawnedPlaceables", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__ExtractionSpawnedPlaceable.getTypeScriptAlgebraicType()))),
+      new ProductTypeElement("selfBuffs", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__PlaceableSelfBuffChance.getTypeScriptAlgebraicType()))),
     ]);
   }
 

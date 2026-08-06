@@ -33,6 +33,7 @@ import {
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
 import { BuffEffect as __BuffEffect } from "./buff_effect_type";
+import { ItemStack as __ItemStack } from "./item_stack_type";
 
 export type FoodDesc = {
   itemId: number,
@@ -44,6 +45,8 @@ export type FoodDesc = {
   teleportationEnergy: number,
   consumableWhileInCombat: boolean,
   buffs: __BuffEffect[],
+  autoConsume: boolean,
+  outputItemStacks: __ItemStack[] | undefined,
 };
 
 /**
@@ -65,6 +68,8 @@ export namespace FoodDesc {
       new ProductTypeElement("teleportationEnergy", AlgebraicType.createF32Type()),
       new ProductTypeElement("consumableWhileInCombat", AlgebraicType.createBoolType()),
       new ProductTypeElement("buffs", AlgebraicType.createArrayType(__BuffEffect.getTypeScriptAlgebraicType())),
+      new ProductTypeElement("autoConsume", AlgebraicType.createBoolType()),
+      new ProductTypeElement("outputItemStacks", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__ItemStack.getTypeScriptAlgebraicType()))),
     ]);
   }
 

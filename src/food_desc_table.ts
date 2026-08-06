@@ -34,6 +34,7 @@ import {
 } from "@clockworklabs/spacetimedb-sdk";
 import { FoodDesc } from "./food_desc_type";
 import { BuffEffect as __BuffEffect } from "./buff_effect_type";
+import { ItemStack as __ItemStack } from "./item_stack_type";
 
 import { type EventContext, type Reducer, RemoteReducers, RemoteTables } from ".";
 
