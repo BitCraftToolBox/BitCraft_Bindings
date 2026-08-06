@@ -83,6 +83,7 @@ namespace BitCraftGlobal.Types
         public global::SpacetimeDB.Col<ExtractionRecipeDesc, bool> ShowInProgression { get; }
         public global::SpacetimeDB.NullableCol<ExtractionRecipeDesc, EmpirePermission> EmpirePermissionRequired { get; }
         public global::SpacetimeDB.NullableCol<ExtractionRecipeDesc, System.Collections.Generic.List<ExtractionSpawnedPlaceable>> SpawnedPlaceables { get; }
+        public global::SpacetimeDB.NullableCol<ExtractionRecipeDesc, System.Collections.Generic.List<PlaceableSelfBuffChance>> SelfBuffs { get; }
 
         public ExtractionRecipeDescCols(string tableName)
         {
@@ -109,6 +110,7 @@ namespace BitCraftGlobal.Types
             ShowInProgression = new global::SpacetimeDB.Col<ExtractionRecipeDesc, bool>(tableName, "show_in_progression");
             EmpirePermissionRequired = new global::SpacetimeDB.NullableCol<ExtractionRecipeDesc, EmpirePermission>(tableName, "empire_permission_required");
             SpawnedPlaceables = new global::SpacetimeDB.NullableCol<ExtractionRecipeDesc, System.Collections.Generic.List<ExtractionSpawnedPlaceable>>(tableName, "spawned_placeables");
+            SelfBuffs = new global::SpacetimeDB.NullableCol<ExtractionRecipeDesc, System.Collections.Generic.List<PlaceableSelfBuffChance>>(tableName, "self_buffs");
         }
     }
 

@@ -74,6 +74,8 @@ namespace BitCraftGlobal.Types
         public float PctNodesForMaxContribution;
         [DataMember(Name = "single_contribution_only")]
         public bool SingleContributionOnly;
+        [DataMember(Name = "step_item_stacks")]
+        public System.Collections.Generic.List<ItemStack>? StepItemStacks;
 
         public ProspectingDesc(
             int Id,
@@ -105,7 +107,8 @@ namespace BitCraftGlobal.Types
             string IconAssetPath,
             ExperienceStackF32 ExperiencePerNode,
             float PctNodesForMaxContribution,
-            bool SingleContributionOnly
+            bool SingleContributionOnly,
+            System.Collections.Generic.List<ItemStack>? StepItemStacks
         )
         {
             this.Id = Id;
@@ -138,6 +141,7 @@ namespace BitCraftGlobal.Types
             this.ExperiencePerNode = ExperiencePerNode;
             this.PctNodesForMaxContribution = PctNodesForMaxContribution;
             this.SingleContributionOnly = SingleContributionOnly;
+            this.StepItemStacks = StepItemStacks;
         }
 
         public ProspectingDesc()
