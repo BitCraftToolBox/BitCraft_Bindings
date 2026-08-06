@@ -8,6 +8,7 @@ use super::extraction_recipe_desc_type::ExtractionRecipeDesc;
 use super::extraction_spawned_placeable_type::ExtractionSpawnedPlaceable;
 use super::input_item_stack_type::InputItemStack;
 use super::level_requirement_type::LevelRequirement;
+use super::placeable_self_buff_chance_type::PlaceableSelfBuffChance;
 use super::probabilistic_item_stack_type::ProbabilisticItemStack;
 use super::tool_requirement_type::ToolRequirement;
 use spacetimedb_sdk::__codegen::{self as __sdk, __lib, __sats, __ws};
