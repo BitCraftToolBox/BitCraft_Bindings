@@ -66,6 +66,7 @@ export type ProspectingDesc = {
   experiencePerNode: __ExperienceStackF32,
   pctNodesForMaxContribution: number,
   singleContributionOnly: boolean,
+  stepItemStacks: __ItemStack[] | undefined,
 };
 
 /**
@@ -108,6 +109,7 @@ export namespace ProspectingDesc {
       new ProductTypeElement("experiencePerNode", __ExperienceStackF32.getTypeScriptAlgebraicType()),
       new ProductTypeElement("pctNodesForMaxContribution", AlgebraicType.createF32Type()),
       new ProductTypeElement("singleContributionOnly", AlgebraicType.createBoolType()),
+      new ProductTypeElement("stepItemStacks", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__ItemStack.getTypeScriptAlgebraicType()))),
     ]);
   }
 

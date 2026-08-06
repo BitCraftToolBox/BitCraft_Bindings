@@ -38,8 +38,8 @@ import { ItemStack as __ItemStack } from "./item_stack_type";
 import { ToolRequirement as __ToolRequirement } from "./tool_requirement_type";
 import { InputItemStack as __InputItemStack } from "./input_item_stack_type";
 import { ExperienceStackF32 as __ExperienceStackF32 } from "./experience_stack_f_32_type";
-import { PlaceableGrowthOutcomeV2 as __PlaceableGrowthOutcomeV2 } from "./placeable_growth_outcome_v_2_type";
 import { PlaceableSelfBuffChance as __PlaceableSelfBuffChance } from "./placeable_self_buff_chance_type";
+import { PlaceableGrowthOutcomeV2 as __PlaceableGrowthOutcomeV2 } from "./placeable_growth_outcome_v_2_type";
 
 import { type EventContext, type Reducer, RemoteReducers, RemoteTables } from ".";
 
