@@ -60,6 +60,8 @@ namespace BitCraftRegion.Types
         public EmpirePermission? EmpirePermissionRequired;
         [DataMember(Name = "spawned_placeables")]
         public System.Collections.Generic.List<ExtractionSpawnedPlaceable>? SpawnedPlaceables;
+        [DataMember(Name = "self_buffs")]
+        public System.Collections.Generic.List<PlaceableSelfBuffChance>? SelfBuffs;
 
         public ExtractionRecipeDesc(
             int Id,
@@ -84,7 +86,8 @@ namespace BitCraftRegion.Types
             int? EmpireRankRequirement,
             bool ShowInProgression,
             EmpirePermission? EmpirePermissionRequired,
-            System.Collections.Generic.List<ExtractionSpawnedPlaceable>? SpawnedPlaceables
+            System.Collections.Generic.List<ExtractionSpawnedPlaceable>? SpawnedPlaceables,
+            System.Collections.Generic.List<PlaceableSelfBuffChance>? SelfBuffs
         )
         {
             this.Id = Id;
@@ -110,6 +113,7 @@ namespace BitCraftRegion.Types
             this.ShowInProgression = ShowInProgression;
             this.EmpirePermissionRequired = EmpirePermissionRequired;
             this.SpawnedPlaceables = SpawnedPlaceables;
+            this.SelfBuffs = SelfBuffs;
         }
 
         public ExtractionRecipeDesc()

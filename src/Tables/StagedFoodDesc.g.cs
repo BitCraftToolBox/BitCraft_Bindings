@@ -49,6 +49,8 @@ namespace BitCraftRegion.Types
         public global::SpacetimeDB.Col<FoodDesc, float> TeleportationEnergy { get; }
         public global::SpacetimeDB.Col<FoodDesc, bool> ConsumableWhileInCombat { get; }
         public global::SpacetimeDB.Col<FoodDesc, System.Collections.Generic.List<BuffEffect>> Buffs { get; }
+        public global::SpacetimeDB.Col<FoodDesc, bool> AutoConsume { get; }
+        public global::SpacetimeDB.NullableCol<FoodDesc, System.Collections.Generic.List<ItemStack>> OutputItemStacks { get; }
 
         public StagedFoodDescCols(string tableName)
         {
@@ -61,6 +63,8 @@ namespace BitCraftRegion.Types
             TeleportationEnergy = new global::SpacetimeDB.Col<FoodDesc, float>(tableName, "teleportation_energy");
             ConsumableWhileInCombat = new global::SpacetimeDB.Col<FoodDesc, bool>(tableName, "consumable_while_in_combat");
             Buffs = new global::SpacetimeDB.Col<FoodDesc, System.Collections.Generic.List<BuffEffect>>(tableName, "buffs");
+            AutoConsume = new global::SpacetimeDB.Col<FoodDesc, bool>(tableName, "auto_consume");
+            OutputItemStacks = new global::SpacetimeDB.NullableCol<FoodDesc, System.Collections.Generic.List<ItemStack>>(tableName, "output_item_stacks");
         }
     }
 
