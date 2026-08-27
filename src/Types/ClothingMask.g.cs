@@ -15,5 +15,6 @@ namespace BitCraftGlobal.Types
         HairFront,
         HairBottom,
         HairFull,
+        Bald,
     }
 }

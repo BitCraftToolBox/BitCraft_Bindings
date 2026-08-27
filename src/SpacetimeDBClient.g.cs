@@ -335,6 +335,7 @@ namespace BitCraftGlobal.Types
             AddTable(SignedInPlayerState = new(conn));
             AddTable(SingleResourceToClumpDesc = new(conn));
             AddTable(SkillDesc = new(conn));
+            AddTable(SkillLevelKnowledgeDesc = new(conn));
             AddTable(StageRewardsDesc = new(conn));
             AddTable(StagedAbilityCustomDesc = new(conn));
             AddTable(StagedAbilityUnlockDesc = new(conn));
@@ -428,6 +429,7 @@ namespace BitCraftGlobal.Types
             AddTable(StagedResourcePlacementRecipeDesc = new(conn));
             AddTable(StagedSecondaryKnowledgeDesc = new(conn));
             AddTable(StagedSkillDesc = new(conn));
+            AddTable(StagedSkillLevelKnowledgeDesc = new(conn));
             AddTable(StagedStageRewardsDesc = new(conn));
             AddTable(StagedTargetingMatrixDesc = new(conn));
             AddTable(StagedTeleportItemDesc = new(conn));
@@ -1341,6 +1343,7 @@ namespace BitCraftGlobal.Types
         public global::SpacetimeDB.Table<SignedInPlayerState, SignedInPlayerStateCols, SignedInPlayerStateIxCols> SignedInPlayerState() => new("signed_in_player_state", new SignedInPlayerStateCols("signed_in_player_state"), new SignedInPlayerStateIxCols("signed_in_player_state"));
         public global::SpacetimeDB.Table<SingleResourceToClumpDesc, SingleResourceToClumpDescCols, SingleResourceToClumpDescIxCols> SingleResourceToClumpDesc() => new("single_resource_to_clump_desc", new SingleResourceToClumpDescCols("single_resource_to_clump_desc"), new SingleResourceToClumpDescIxCols("single_resource_to_clump_desc"));
         public global::SpacetimeDB.Table<SkillDesc, SkillDescCols, SkillDescIxCols> SkillDesc() => new("skill_desc", new SkillDescCols("skill_desc"), new SkillDescIxCols("skill_desc"));
+        public global::SpacetimeDB.Table<SkillLevelKnowledgeDesc, SkillLevelKnowledgeDescCols, SkillLevelKnowledgeDescIxCols> SkillLevelKnowledgeDesc() => new("skill_level_knowledge_desc", new SkillLevelKnowledgeDescCols("skill_level_knowledge_desc"), new SkillLevelKnowledgeDescIxCols("skill_level_knowledge_desc"));
         public global::SpacetimeDB.Table<StageRewardsDesc, StageRewardsDescCols, StageRewardsDescIxCols> StageRewardsDesc() => new("stage_rewards_desc", new StageRewardsDescCols("stage_rewards_desc"), new StageRewardsDescIxCols("stage_rewards_desc"));
         public global::SpacetimeDB.Table<AbilityCustomDesc, StagedAbilityCustomDescCols, StagedAbilityCustomDescIxCols> StagedAbilityCustomDesc() => new("staged_ability_custom_desc", new StagedAbilityCustomDescCols("staged_ability_custom_desc"), new StagedAbilityCustomDescIxCols("staged_ability_custom_desc"));
         public global::SpacetimeDB.Table<AbilityUnlockDesc, StagedAbilityUnlockDescCols, StagedAbilityUnlockDescIxCols> StagedAbilityUnlockDesc() => new("staged_ability_unlock_desc", new StagedAbilityUnlockDescCols("staged_ability_unlock_desc"), new StagedAbilityUnlockDescIxCols("staged_ability_unlock_desc"));
@@ -1434,6 +1437,7 @@ namespace BitCraftGlobal.Types
         public global::SpacetimeDB.Table<ResourcePlacementRecipeDesc, StagedResourcePlacementRecipeDescCols, StagedResourcePlacementRecipeDescIxCols> StagedResourcePlacementRecipeDesc() => new("staged_resource_placement_recipe_desc", new StagedResourcePlacementRecipeDescCols("staged_resource_placement_recipe_desc"), new StagedResourcePlacementRecipeDescIxCols("staged_resource_placement_recipe_desc"));
         public global::SpacetimeDB.Table<SecondaryKnowledgeDesc, StagedSecondaryKnowledgeDescCols, StagedSecondaryKnowledgeDescIxCols> StagedSecondaryKnowledgeDesc() => new("staged_secondary_knowledge_desc", new StagedSecondaryKnowledgeDescCols("staged_secondary_knowledge_desc"), new StagedSecondaryKnowledgeDescIxCols("staged_secondary_knowledge_desc"));
         public global::SpacetimeDB.Table<SkillDesc, StagedSkillDescCols, StagedSkillDescIxCols> StagedSkillDesc() => new("staged_skill_desc", new StagedSkillDescCols("staged_skill_desc"), new StagedSkillDescIxCols("staged_skill_desc"));
+        public global::SpacetimeDB.Table<SkillLevelKnowledgeDesc, StagedSkillLevelKnowledgeDescCols, StagedSkillLevelKnowledgeDescIxCols> StagedSkillLevelKnowledgeDesc() => new("staged_skill_level_knowledge_desc", new StagedSkillLevelKnowledgeDescCols("staged_skill_level_knowledge_desc"), new StagedSkillLevelKnowledgeDescIxCols("staged_skill_level_knowledge_desc"));
         public global::SpacetimeDB.Table<StageRewardsDesc, StagedStageRewardsDescCols, StagedStageRewardsDescIxCols> StagedStageRewardsDesc() => new("staged_stage_rewards_desc", new StagedStageRewardsDescCols("staged_stage_rewards_desc"), new StagedStageRewardsDescIxCols("staged_stage_rewards_desc"));
         public global::SpacetimeDB.Table<TargetingMatrixDesc, StagedTargetingMatrixDescCols, StagedTargetingMatrixDescIxCols> StagedTargetingMatrixDesc() => new("staged_targeting_matrix_desc", new StagedTargetingMatrixDescCols("staged_targeting_matrix_desc"), new StagedTargetingMatrixDescIxCols("staged_targeting_matrix_desc"));
         public global::SpacetimeDB.Table<TeleportItemDesc, StagedTeleportItemDescCols, StagedTeleportItemDescIxCols> StagedTeleportItemDesc() => new("staged_teleport_item_desc", new StagedTeleportItemDescCols("staged_teleport_item_desc"), new StagedTeleportItemDescIxCols("staged_teleport_item_desc"));
@@ -1943,6 +1947,7 @@ namespace BitCraftGlobal.Types
                 "stage_resource_placement_recipe_desc" => BSATNHelpers.Decode<Reducer.StageResourcePlacementRecipeDesc>(encodedArgs),
                 "stage_secondary_knowledge_desc" => BSATNHelpers.Decode<Reducer.StageSecondaryKnowledgeDesc>(encodedArgs),
                 "stage_skill_desc" => BSATNHelpers.Decode<Reducer.StageSkillDesc>(encodedArgs),
+                "stage_skill_level_knowledge_desc" => BSATNHelpers.Decode<Reducer.StageSkillLevelKnowledgeDesc>(encodedArgs),
                 "stage_stage_rewards_desc" => BSATNHelpers.Decode<Reducer.StageStageRewardsDesc>(encodedArgs),
                 "stage_targeting_matrix_desc" => BSATNHelpers.Decode<Reducer.StageTargetingMatrixDesc>(encodedArgs),
                 "stage_teleport_item_desc" => BSATNHelpers.Decode<Reducer.StageTeleportItemDesc>(encodedArgs),
@@ -2377,6 +2382,7 @@ namespace BitCraftGlobal.Types
                 Reducer.StageResourcePlacementRecipeDesc args => Reducers.InvokeStageResourcePlacementRecipeDesc(eventContext, args),
                 Reducer.StageSecondaryKnowledgeDesc args => Reducers.InvokeStageSecondaryKnowledgeDesc(eventContext, args),
                 Reducer.StageSkillDesc args => Reducers.InvokeStageSkillDesc(eventContext, args),
+                Reducer.StageSkillLevelKnowledgeDesc args => Reducers.InvokeStageSkillLevelKnowledgeDesc(eventContext, args),
                 Reducer.StageStageRewardsDesc args => Reducers.InvokeStageStageRewardsDesc(eventContext, args),
                 Reducer.StageTargetingMatrixDesc args => Reducers.InvokeStageTargetingMatrixDesc(eventContext, args),
                 Reducer.StageTeleportItemDesc args => Reducers.InvokeStageTeleportItemDesc(eventContext, args),
