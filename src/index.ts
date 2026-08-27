@@ -106,6 +106,8 @@ import { AdminDespawnOverworldEnemies } from "./admin_despawn_overworld_enemies_
 export { AdminDespawnOverworldEnemies };
 import { AdminDungeonUpdatePortals } from "./admin_dungeon_update_portals_reducer.ts";
 export { AdminDungeonUpdatePortals };
+import { AdminExpelPlayers } from "./admin_expel_players_reducer.ts";
+export { AdminExpelPlayers };
 import { AdminFailQuest } from "./admin_fail_quest_reducer.ts";
 export { AdminFailQuest };
 import { AdminFindAllPlayersWithItem } from "./admin_find_all_players_with_item_reducer.ts";
@@ -938,6 +940,8 @@ import { ImportSignedInPlayerState } from "./import_signed_in_player_state_reduc
 export { ImportSignedInPlayerState };
 import { ImportSkillDesc } from "./import_skill_desc_reducer.ts";
 export { ImportSkillDesc };
+import { ImportSkillLevelKnowledgeDesc } from "./import_skill_level_knowledge_desc_reducer.ts";
+export { ImportSkillLevelKnowledgeDesc };
 import { ImportStageRewardsDesc } from "./import_stage_rewards_desc_reducer.ts";
 export { ImportStageRewardsDesc };
 import { ImportStaminaState } from "./import_stamina_state_reducer.ts";
@@ -1048,6 +1052,8 @@ import { MigrateOnboarding } from "./migrate_onboarding_reducer.ts";
 export { MigrateOnboarding };
 import { MigratePlayerSettings } from "./migrate_player_settings_reducer.ts";
 export { MigratePlayerSettings };
+import { MigrateSkillLevelKnowledge } from "./migrate_skill_level_knowledge_reducer.ts";
+export { MigrateSkillLevelKnowledge };
 import { MigrationSetAchievementParams } from "./migration_set_achievement_params_reducer.ts";
 export { MigrationSetAchievementParams };
 import { MigrationSetBuildingDescParams } from "./migration_set_building_desc_params_reducer.ts";
@@ -1462,6 +1468,8 @@ import { StageSecondaryKnowledgeDesc } from "./stage_secondary_knowledge_desc_re
 export { StageSecondaryKnowledgeDesc };
 import { StageSkillDesc } from "./stage_skill_desc_reducer.ts";
 export { StageSkillDesc };
+import { StageSkillLevelKnowledgeDesc } from "./stage_skill_level_knowledge_desc_reducer.ts";
+export { StageSkillLevelKnowledgeDesc };
 import { StageStageRewardsDesc } from "./stage_stage_rewards_desc_reducer.ts";
 export { StageStageRewardsDesc };
 import { StageTargetingMatrixDesc } from "./stage_targeting_matrix_desc_reducer.ts";
@@ -2210,6 +2218,8 @@ import { SingleResourceToClumpDescTableHandle } from "./single_resource_to_clump
 export { SingleResourceToClumpDescTableHandle };
 import { SkillDescTableHandle } from "./skill_desc_table.ts";
 export { SkillDescTableHandle };
+import { SkillLevelKnowledgeDescTableHandle } from "./skill_level_knowledge_desc_table.ts";
+export { SkillLevelKnowledgeDescTableHandle };
 import { StageRewardsDescTableHandle } from "./stage_rewards_desc_table.ts";
 export { StageRewardsDescTableHandle };
 import { StagedAbilityCustomDescTableHandle } from "./staged_ability_custom_desc_table.ts";
@@ -2396,6 +2406,8 @@ import { StagedSecondaryKnowledgeDescTableHandle } from "./staged_secondary_know
 export { StagedSecondaryKnowledgeDescTableHandle };
 import { StagedSkillDescTableHandle } from "./staged_skill_desc_table.ts";
 export { StagedSkillDescTableHandle };
+import { StagedSkillLevelKnowledgeDescTableHandle } from "./staged_skill_level_knowledge_desc_table.ts";
+export { StagedSkillLevelKnowledgeDescTableHandle };
 import { StagedStageRewardsDescTableHandle } from "./staged_stage_rewards_desc_table.ts";
 export { StagedStageRewardsDescTableHandle };
 import { StagedTargetingMatrixDescTableHandle } from "./staged_targeting_matrix_desc_table.ts";
@@ -3766,6 +3778,8 @@ import { SkillCategory } from "./skill_category_type.ts";
 export { SkillCategory };
 import { SkillDesc } from "./skill_desc_type.ts";
 export { SkillDesc };
+import { SkillLevelKnowledgeDesc } from "./skill_level_knowledge_desc_type.ts";
+export { SkillLevelKnowledgeDesc };
 import { SkillType } from "./skill_type_type.ts";
 export { SkillType };
 import { SmallHexTileMessage } from "./small_hex_tile_message_type.ts";
@@ -6826,6 +6840,15 @@ export const REMOTE_MODULE = {
         colType: SkillDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    skill_level_knowledge_desc: {
+      tableName: "skill_level_knowledge_desc",
+      rowType: SkillLevelKnowledgeDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: SkillLevelKnowledgeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     stage_rewards_desc: {
       tableName: "stage_rewards_desc",
       rowType: StageRewardsDesc.getTypeScriptAlgebraicType(),
@@ -7663,6 +7686,15 @@ export const REMOTE_MODULE = {
         colType: SkillDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    staged_skill_level_knowledge_desc: {
+      tableName: "staged_skill_level_knowledge_desc",
+      rowType: SkillLevelKnowledgeDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: SkillLevelKnowledgeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     staged_stage_rewards_desc: {
       tableName: "staged_stage_rewards_desc",
       rowType: StageRewardsDesc.getTypeScriptAlgebraicType(),
@@ -8348,6 +8380,10 @@ export const REMOTE_MODULE = {
     admin_dungeon_update_portals: {
       reducerName: "admin_dungeon_update_portals",
       argsType: AdminDungeonUpdatePortals.getTypeScriptAlgebraicType(),
+    },
+    admin_expel_players: {
+      reducerName: "admin_expel_players",
+      argsType: AdminExpelPlayers.getTypeScriptAlgebraicType(),
     },
     admin_fail_quest: {
       reducerName: "admin_fail_quest",
@@ -10013,6 +10049,10 @@ export const REMOTE_MODULE = {
       reducerName: "import_skill_desc",
       argsType: ImportSkillDesc.getTypeScriptAlgebraicType(),
     },
+    import_skill_level_knowledge_desc: {
+      reducerName: "import_skill_level_knowledge_desc",
+      argsType: ImportSkillLevelKnowledgeDesc.getTypeScriptAlgebraicType(),
+    },
     import_stage_rewards_desc: {
       reducerName: "import_stage_rewards_desc",
       argsType: ImportStageRewardsDesc.getTypeScriptAlgebraicType(),
@@ -10232,6 +10272,10 @@ export const REMOTE_MODULE = {
     migrate_player_settings: {
       reducerName: "migrate_player_settings",
       argsType: MigratePlayerSettings.getTypeScriptAlgebraicType(),
+    },
+    migrate_skill_level_knowledge: {
+      reducerName: "migrate_skill_level_knowledge",
+      argsType: MigrateSkillLevelKnowledge.getTypeScriptAlgebraicType(),
     },
     migration_set_achievement_params: {
       reducerName: "migration_set_achievement_params",
@@ -11061,6 +11105,10 @@ export const REMOTE_MODULE = {
       reducerName: "stage_skill_desc",
       argsType: StageSkillDesc.getTypeScriptAlgebraicType(),
     },
+    stage_skill_level_knowledge_desc: {
+      reducerName: "stage_skill_level_knowledge_desc",
+      argsType: StageSkillLevelKnowledgeDesc.getTypeScriptAlgebraicType(),
+    },
     stage_stage_rewards_desc: {
       reducerName: "stage_stage_rewards_desc",
       argsType: StageStageRewardsDesc.getTypeScriptAlgebraicType(),
@@ -11311,6 +11359,7 @@ export type Reducer = never
 | { name: "AdminDeleteChatMessage", args: AdminDeleteChatMessage }
 | { name: "AdminDespawnOverworldEnemies", args: AdminDespawnOverworldEnemies }
 | { name: "AdminDungeonUpdatePortals", args: AdminDungeonUpdatePortals }
+| { name: "AdminExpelPlayers", args: AdminExpelPlayers }
 | { name: "AdminFailQuest", args: AdminFailQuest }
 | { name: "AdminFindAllPlayersWithItem", args: AdminFindAllPlayersWithItem }
 | { name: "AdminFindAllPlayersWithItemAboveQuantity", args: AdminFindAllPlayersWithItemAboveQuantity }
@@ -11727,6 +11776,7 @@ export type Reducer = never
 | { name: "ImportServerIdentity", args: ImportServerIdentity }
 | { name: "ImportSignedInPlayerState", args: ImportSignedInPlayerState }
 | { name: "ImportSkillDesc", args: ImportSkillDesc }
+| { name: "ImportSkillLevelKnowledgeDesc", args: ImportSkillLevelKnowledgeDesc }
 | { name: "ImportStageRewardsDesc", args: ImportStageRewardsDesc }
 | { name: "ImportStaminaState", args: ImportStaminaState }
 | { name: "ImportTargetState", args: ImportTargetState }
@@ -11782,6 +11832,7 @@ export type Reducer = never
 | { name: "MigrateMissingEquipmentSlotTypes", args: MigrateMissingEquipmentSlotTypes }
 | { name: "MigrateOnboarding", args: MigrateOnboarding }
 | { name: "MigratePlayerSettings", args: MigratePlayerSettings }
+| { name: "MigrateSkillLevelKnowledge", args: MigrateSkillLevelKnowledge }
 | { name: "MigrationSetAchievementParams", args: MigrationSetAchievementParams }
 | { name: "MigrationSetBuildingDescParams", args: MigrationSetBuildingDescParams }
 | { name: "NpcAiAgentLoop", args: NpcAiAgentLoop }
@@ -11989,6 +12040,7 @@ export type Reducer = never
 | { name: "StageResourcePlacementRecipeDesc", args: StageResourcePlacementRecipeDesc }
 | { name: "StageSecondaryKnowledgeDesc", args: StageSecondaryKnowledgeDesc }
 | { name: "StageSkillDesc", args: StageSkillDesc }
+| { name: "StageSkillLevelKnowledgeDesc", args: StageSkillLevelKnowledgeDesc }
 | { name: "StageStageRewardsDesc", args: StageStageRewardsDesc }
 | { name: "StageTargetingMatrixDesc", args: StageTargetingMatrixDesc }
 | { name: "StageTeleportItemDesc", args: StageTeleportItemDesc }
@@ -12586,6 +12638,22 @@ export class RemoteReducers {
 
   removeOnAdminDungeonUpdatePortals(callback: (ctx: ReducerEventContext) => void) {
     this.connection.offReducer("admin_dungeon_update_portals", callback);
+  }
+
+  adminExpelPlayers(commit: boolean) {
+    const __args = { commit };
+    let __writer = new BinaryWriter(1024);
+    AdminExpelPlayers.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("admin_expel_players", __argsBuffer, this.setCallReducerFlags.adminExpelPlayersFlags);
+  }
+
+  onAdminExpelPlayers(callback: (ctx: ReducerEventContext, commit: boolean) => void) {
+    this.connection.onReducer("admin_expel_players", callback);
+  }
+
+  removeOnAdminExpelPlayers(callback: (ctx: ReducerEventContext, commit: boolean) => void) {
+    this.connection.offReducer("admin_expel_players", callback);
   }
 
   adminFailQuest(questDescId: number) {
@@ -19128,6 +19196,22 @@ export class RemoteReducers {
     this.connection.offReducer("import_skill_desc", callback);
   }
 
+  importSkillLevelKnowledgeDesc(records: SkillLevelKnowledgeDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    ImportSkillLevelKnowledgeDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("import_skill_level_knowledge_desc", __argsBuffer, this.setCallReducerFlags.importSkillLevelKnowledgeDescFlags);
+  }
+
+  onImportSkillLevelKnowledgeDesc(callback: (ctx: ReducerEventContext, records: SkillLevelKnowledgeDesc[]) => void) {
+    this.connection.onReducer("import_skill_level_knowledge_desc", callback);
+  }
+
+  removeOnImportSkillLevelKnowledgeDesc(callback: (ctx: ReducerEventContext, records: SkillLevelKnowledgeDesc[]) => void) {
+    this.connection.offReducer("import_skill_level_knowledge_desc", callback);
+  }
+
   importStageRewardsDesc(records: StageRewardsDesc[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
@@ -19962,6 +20046,18 @@ export class RemoteReducers {
 
   removeOnMigratePlayerSettings(callback: (ctx: ReducerEventContext) => void) {
     this.connection.offReducer("migrate_player_settings", callback);
+  }
+
+  migrateSkillLevelKnowledge() {
+    this.connection.callReducer("migrate_skill_level_knowledge", new Uint8Array(0), this.setCallReducerFlags.migrateSkillLevelKnowledgeFlags);
+  }
+
+  onMigrateSkillLevelKnowledge(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.onReducer("migrate_skill_level_knowledge", callback);
+  }
+
+  removeOnMigrateSkillLevelKnowledge(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.offReducer("migrate_skill_level_knowledge", callback);
   }
 
   migrationSetAchievementParams(allowDestructive: boolean, grantIfAlreadyOwned: boolean) {
@@ -23240,6 +23336,22 @@ export class RemoteReducers {
     this.connection.offReducer("stage_skill_desc", callback);
   }
 
+  stageSkillLevelKnowledgeDesc(records: SkillLevelKnowledgeDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    StageSkillLevelKnowledgeDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("stage_skill_level_knowledge_desc", __argsBuffer, this.setCallReducerFlags.stageSkillLevelKnowledgeDescFlags);
+  }
+
+  onStageSkillLevelKnowledgeDesc(callback: (ctx: ReducerEventContext, records: SkillLevelKnowledgeDesc[]) => void) {
+    this.connection.onReducer("stage_skill_level_knowledge_desc", callback);
+  }
+
+  removeOnStageSkillLevelKnowledgeDesc(callback: (ctx: ReducerEventContext, records: SkillLevelKnowledgeDesc[]) => void) {
+    this.connection.offReducer("stage_skill_level_knowledge_desc", callback);
+  }
+
   stageStageRewardsDesc(records: StageRewardsDesc[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
@@ -24145,6 +24257,11 @@ export class SetReducerFlags {
   adminDungeonUpdatePortalsFlags: CallReducerFlags = 'FullUpdate';
   adminDungeonUpdatePortals(flags: CallReducerFlags) {
     this.adminDungeonUpdatePortalsFlags = flags;
+  }
+
+  adminExpelPlayersFlags: CallReducerFlags = 'FullUpdate';
+  adminExpelPlayers(flags: CallReducerFlags) {
+    this.adminExpelPlayersFlags = flags;
   }
 
   adminFailQuestFlags: CallReducerFlags = 'FullUpdate';
@@ -26217,6 +26334,11 @@ export class SetReducerFlags {
     this.importSkillDescFlags = flags;
   }
 
+  importSkillLevelKnowledgeDescFlags: CallReducerFlags = 'FullUpdate';
+  importSkillLevelKnowledgeDesc(flags: CallReducerFlags) {
+    this.importSkillLevelKnowledgeDescFlags = flags;
+  }
+
   importStageRewardsDescFlags: CallReducerFlags = 'FullUpdate';
   importStageRewardsDesc(flags: CallReducerFlags) {
     this.importStageRewardsDescFlags = flags;
@@ -26490,6 +26612,11 @@ export class SetReducerFlags {
   migratePlayerSettingsFlags: CallReducerFlags = 'FullUpdate';
   migratePlayerSettings(flags: CallReducerFlags) {
     this.migratePlayerSettingsFlags = flags;
+  }
+
+  migrateSkillLevelKnowledgeFlags: CallReducerFlags = 'FullUpdate';
+  migrateSkillLevelKnowledge(flags: CallReducerFlags) {
+    this.migrateSkillLevelKnowledgeFlags = flags;
   }
 
   migrationSetAchievementParamsFlags: CallReducerFlags = 'FullUpdate';
@@ -27525,6 +27652,11 @@ export class SetReducerFlags {
   stageSkillDescFlags: CallReducerFlags = 'FullUpdate';
   stageSkillDesc(flags: CallReducerFlags) {
     this.stageSkillDescFlags = flags;
+  }
+
+  stageSkillLevelKnowledgeDescFlags: CallReducerFlags = 'FullUpdate';
+  stageSkillLevelKnowledgeDesc(flags: CallReducerFlags) {
+    this.stageSkillLevelKnowledgeDescFlags = flags;
   }
 
   stageStageRewardsDescFlags: CallReducerFlags = 'FullUpdate';
@@ -29070,6 +29202,10 @@ export class RemoteTables {
     return new SkillDescTableHandle(this.connection.clientCache.getOrCreateTable<SkillDesc>(REMOTE_MODULE.tables.skill_desc));
   }
 
+  get skillLevelKnowledgeDesc(): SkillLevelKnowledgeDescTableHandle {
+    return new SkillLevelKnowledgeDescTableHandle(this.connection.clientCache.getOrCreateTable<SkillLevelKnowledgeDesc>(REMOTE_MODULE.tables.skill_level_knowledge_desc));
+  }
+
   get stageRewardsDesc(): StageRewardsDescTableHandle {
     return new StageRewardsDescTableHandle(this.connection.clientCache.getOrCreateTable<StageRewardsDesc>(REMOTE_MODULE.tables.stage_rewards_desc));
   }
@@ -29440,6 +29576,10 @@ export class RemoteTables {
 
   get stagedSkillDesc(): StagedSkillDescTableHandle {
     return new StagedSkillDescTableHandle(this.connection.clientCache.getOrCreateTable<SkillDesc>(REMOTE_MODULE.tables.staged_skill_desc));
+  }
+
+  get stagedSkillLevelKnowledgeDesc(): StagedSkillLevelKnowledgeDescTableHandle {
+    return new StagedSkillLevelKnowledgeDescTableHandle(this.connection.clientCache.getOrCreateTable<SkillLevelKnowledgeDesc>(REMOTE_MODULE.tables.staged_skill_level_knowledge_desc));
   }
 
   get stagedStageRewardsDesc(): StagedStageRewardsDescTableHandle {

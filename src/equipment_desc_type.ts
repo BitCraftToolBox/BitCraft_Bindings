@@ -50,6 +50,9 @@ export type EquipmentDesc = {
   requiredAchievements: number[],
   requiredKnowledges: number[],
   showInProgression: boolean,
+  equipmentBuffId: number,
+  equipmentBuffChancePerHit: number,
+  equipmentBuffSkillId: number,
 };
 
 /**
@@ -72,6 +75,9 @@ export namespace EquipmentDesc {
       new ProductTypeElement("requiredAchievements", AlgebraicType.createArrayType(AlgebraicType.createI32Type())),
       new ProductTypeElement("requiredKnowledges", AlgebraicType.createArrayType(AlgebraicType.createI32Type())),
       new ProductTypeElement("showInProgression", AlgebraicType.createBoolType()),
+      new ProductTypeElement("equipmentBuffId", AlgebraicType.createI32Type()),
+      new ProductTypeElement("equipmentBuffChancePerHit", AlgebraicType.createF32Type()),
+      new ProductTypeElement("equipmentBuffSkillId", AlgebraicType.createI32Type()),
     ]);
   }
 

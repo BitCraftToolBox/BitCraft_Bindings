@@ -41,6 +41,7 @@ export namespace ClothingMask {
   export type HairFront = { tag: "HairFront" };
   export type HairBottom = { tag: "HairBottom" };
   export type HairFull = { tag: "HairFull" };
+  export type Bald = { tag: "Bald" };
 
   // Helper functions for constructing each variant of the tagged union.
   // ```
@@ -52,6 +53,7 @@ export namespace ClothingMask {
   export const HairFront = { tag: "HairFront" };
   export const HairBottom = { tag: "HairBottom" };
   export const HairFull = { tag: "HairFull" };
+  export const Bald = { tag: "Bald" };
 
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createSumType([
@@ -59,6 +61,7 @@ export namespace ClothingMask {
       new SumTypeVariant("HairFront", AlgebraicType.createProductType([])),
       new SumTypeVariant("HairBottom", AlgebraicType.createProductType([])),
       new SumTypeVariant("HairFull", AlgebraicType.createProductType([])),
+      new SumTypeVariant("Bald", AlgebraicType.createProductType([])),
     ]);
   }
 
@@ -73,7 +76,7 @@ export namespace ClothingMask {
 }
 
 // The tagged union or sum type for the algebraic type `ClothingMask`.
-export type ClothingMask = ClothingMask.None | ClothingMask.HairFront | ClothingMask.HairBottom | ClothingMask.HairFull;
+export type ClothingMask = ClothingMask.None | ClothingMask.HairFront | ClothingMask.HairBottom | ClothingMask.HairFull | ClothingMask.Bald;
 
 export default ClothingMask;
 
