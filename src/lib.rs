@@ -74,6 +74,7 @@ pub mod admin_delete_all_items_of_type_reducer;
 pub mod admin_delete_chat_message_reducer;
 pub mod admin_despawn_overworld_enemies_reducer;
 pub mod admin_dungeon_update_portals_reducer;
+pub mod admin_expel_players_reducer;
 pub mod admin_fail_quest_reducer;
 pub mod admin_find_all_players_with_item_above_quantity_reducer;
 pub mod admin_find_all_players_with_item_reducer;
@@ -891,6 +892,7 @@ pub mod import_secondary_knowledge_desc_reducer;
 pub mod import_server_identity_reducer;
 pub mod import_signed_in_player_state_reducer;
 pub mod import_skill_desc_reducer;
+pub mod import_skill_level_knowledge_desc_reducer;
 pub mod import_stage_rewards_desc_reducer;
 pub mod import_stamina_state_reducer;
 pub mod import_target_state_reducer;
@@ -1077,6 +1079,7 @@ pub mod migrate_grant_default_collectibles_reducer;
 pub mod migrate_missing_equipment_slot_types_reducer;
 pub mod migrate_onboarding_reducer;
 pub mod migrate_player_settings_reducer;
+pub mod migrate_skill_level_knowledge_reducer;
 pub mod migration_achievements_params_table;
 pub mod migration_achievements_params_type;
 pub mod migration_building_desc_params_table;
@@ -1579,6 +1582,8 @@ pub mod single_resource_to_clump_desc_type;
 pub mod skill_category_type;
 pub mod skill_desc_table;
 pub mod skill_desc_type;
+pub mod skill_level_knowledge_desc_table;
+pub mod skill_level_knowledge_desc_type;
 pub mod skill_type_type;
 pub mod skip_onboarding_reducer;
 pub mod sleep_reducer;
@@ -1678,6 +1683,7 @@ pub mod stage_rewards_desc_table;
 pub mod stage_rewards_desc_type;
 pub mod stage_secondary_knowledge_desc_reducer;
 pub mod stage_skill_desc_reducer;
+pub mod stage_skill_level_knowledge_desc_reducer;
 pub mod stage_stage_rewards_desc_reducer;
 pub mod stage_targeting_matrix_desc_reducer;
 pub mod stage_teleport_item_desc_reducer;
@@ -1783,6 +1789,7 @@ pub mod staged_resource_growth_recipe_desc_table;
 pub mod staged_resource_placement_recipe_desc_table;
 pub mod staged_secondary_knowledge_desc_table;
 pub mod staged_skill_desc_table;
+pub mod staged_skill_level_knowledge_desc_table;
 pub mod staged_stage_rewards_desc_table;
 pub mod staged_targeting_matrix_desc_table;
 pub mod staged_teleport_item_desc_table;
@@ -2149,6 +2156,9 @@ pub use admin_despawn_overworld_enemies_reducer::{
 pub use admin_dungeon_update_portals_reducer::{
     admin_dungeon_update_portals, set_flags_for_admin_dungeon_update_portals,
     AdminDungeonUpdatePortalsCallbackId,
+};
+pub use admin_expel_players_reducer::{
+    admin_expel_players, set_flags_for_admin_expel_players, AdminExpelPlayersCallbackId,
 };
 pub use admin_fail_quest_reducer::{
     admin_fail_quest, set_flags_for_admin_fail_quest, AdminFailQuestCallbackId,
@@ -3987,6 +3997,10 @@ pub use import_signed_in_player_state_reducer::{
 pub use import_skill_desc_reducer::{
     import_skill_desc, set_flags_for_import_skill_desc, ImportSkillDescCallbackId,
 };
+pub use import_skill_level_knowledge_desc_reducer::{
+    import_skill_level_knowledge_desc, set_flags_for_import_skill_level_knowledge_desc,
+    ImportSkillLevelKnowledgeDescCallbackId,
+};
 pub use import_stage_rewards_desc_reducer::{
     import_stage_rewards_desc, set_flags_for_import_stage_rewards_desc,
     ImportStageRewardsDescCallbackId,
@@ -4294,6 +4308,10 @@ pub use migrate_onboarding_reducer::{
 };
 pub use migrate_player_settings_reducer::{
     migrate_player_settings, set_flags_for_migrate_player_settings, MigratePlayerSettingsCallbackId,
+};
+pub use migrate_skill_level_knowledge_reducer::{
+    migrate_skill_level_knowledge, set_flags_for_migrate_skill_level_knowledge,
+    MigrateSkillLevelKnowledgeCallbackId,
 };
 pub use migration_achievements_params_table::*;
 pub use migration_achievements_params_type::MigrationAchievementsParams;
@@ -5042,6 +5060,8 @@ pub use single_resource_to_clump_desc_type::SingleResourceToClumpDesc;
 pub use skill_category_type::SkillCategory;
 pub use skill_desc_table::*;
 pub use skill_desc_type::SkillDesc;
+pub use skill_level_knowledge_desc_table::*;
+pub use skill_level_knowledge_desc_type::SkillLevelKnowledgeDesc;
 pub use skill_type_type::SkillType;
 pub use skip_onboarding_reducer::{
     set_flags_for_skip_onboarding, skip_onboarding, SkipOnboardingCallbackId,
@@ -5381,6 +5401,10 @@ pub use stage_secondary_knowledge_desc_reducer::{
 pub use stage_skill_desc_reducer::{
     set_flags_for_stage_skill_desc, stage_skill_desc, StageSkillDescCallbackId,
 };
+pub use stage_skill_level_knowledge_desc_reducer::{
+    set_flags_for_stage_skill_level_knowledge_desc, stage_skill_level_knowledge_desc,
+    StageSkillLevelKnowledgeDescCallbackId,
+};
 pub use stage_stage_rewards_desc_reducer::{
     set_flags_for_stage_stage_rewards_desc, stage_stage_rewards_desc,
     StageStageRewardsDescCallbackId,
@@ -5520,6 +5544,7 @@ pub use staged_resource_growth_recipe_desc_table::*;
 pub use staged_resource_placement_recipe_desc_table::*;
 pub use staged_secondary_knowledge_desc_table::*;
 pub use staged_skill_desc_table::*;
+pub use staged_skill_level_knowledge_desc_table::*;
 pub use staged_stage_rewards_desc_table::*;
 pub use staged_targeting_matrix_desc_table::*;
 pub use staged_teleport_item_desc_table::*;
@@ -5903,6 +5928,9 @@ pub enum Reducer {
     },
     AdminDespawnOverworldEnemies,
     AdminDungeonUpdatePortals,
+    AdminExpelPlayers {
+        commit: bool,
+    },
     AdminFailQuest {
         quest_desc_id: i32,
     },
@@ -7179,6 +7207,9 @@ pub enum Reducer {
     ImportSkillDesc {
         records: Vec<SkillDesc>,
     },
+    ImportSkillLevelKnowledgeDesc {
+        records: Vec<SkillLevelKnowledgeDesc>,
+    },
     ImportStageRewardsDesc {
         records: Vec<StageRewardsDesc>,
     },
@@ -7333,6 +7364,7 @@ pub enum Reducer {
     MigrateMissingEquipmentSlotTypes,
     MigrateOnboarding,
     MigratePlayerSettings,
+    MigrateSkillLevelKnowledge,
     MigrationSetAchievementParams {
         allow_destructive: bool,
         grant_if_already_owned: bool,
@@ -7948,6 +7980,9 @@ pub enum Reducer {
     StageSkillDesc {
         records: Vec<SkillDesc>,
     },
+    StageSkillLevelKnowledgeDesc {
+        records: Vec<SkillLevelKnowledgeDesc>,
+    },
     StageStageRewardsDesc {
         records: Vec<StageRewardsDesc>,
     },
@@ -8161,6 +8196,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::AdminDeleteChatMessage { .. } => "admin_delete_chat_message",
             Reducer::AdminDespawnOverworldEnemies => "admin_despawn_overworld_enemies",
             Reducer::AdminDungeonUpdatePortals => "admin_dungeon_update_portals",
+            Reducer::AdminExpelPlayers { .. } => "admin_expel_players",
             Reducer::AdminFailQuest { .. } => "admin_fail_quest",
             Reducer::AdminFindAllPlayersWithItem { .. } => "admin_find_all_players_with_item",
             Reducer::AdminFindAllPlayersWithItemAboveQuantity { .. } => {
@@ -8623,6 +8659,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::ImportServerIdentity { .. } => "import_server_identity",
             Reducer::ImportSignedInPlayerState { .. } => "import_signed_in_player_state",
             Reducer::ImportSkillDesc { .. } => "import_skill_desc",
+            Reducer::ImportSkillLevelKnowledgeDesc { .. } => "import_skill_level_knowledge_desc",
             Reducer::ImportStageRewardsDesc { .. } => "import_stage_rewards_desc",
             Reducer::ImportStaminaState { .. } => "import_stamina_state",
             Reducer::ImportTargetState { .. } => "import_target_state",
@@ -8682,6 +8719,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::MigrateMissingEquipmentSlotTypes => "migrate_missing_equipment_slot_types",
             Reducer::MigrateOnboarding => "migrate_onboarding",
             Reducer::MigratePlayerSettings => "migrate_player_settings",
+            Reducer::MigrateSkillLevelKnowledge => "migrate_skill_level_knowledge",
             Reducer::MigrationSetAchievementParams { .. } => "migration_set_achievement_params",
             Reducer::MigrationSetBuildingDescParams { .. } => "migration_set_building_desc_params",
             Reducer::NpcAiAgentLoop { .. } => "npc_ai_agent_loop",
@@ -8903,6 +8941,7 @@ impl __sdk::Reducer for Reducer {
             }
             Reducer::StageSecondaryKnowledgeDesc { .. } => "stage_secondary_knowledge_desc",
             Reducer::StageSkillDesc { .. } => "stage_skill_desc",
+            Reducer::StageSkillLevelKnowledgeDesc { .. } => "stage_skill_level_knowledge_desc",
             Reducer::StageStageRewardsDesc { .. } => "stage_stage_rewards_desc",
             Reducer::StageTargetingMatrixDesc { .. } => "stage_targeting_matrix_desc",
             Reducer::StageTeleportItemDesc { .. } => "stage_teleport_item_desc",
@@ -8999,6 +9038,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "admin_delete_chat_message" => Ok(__sdk::parse_reducer_args::<admin_delete_chat_message_reducer::AdminDeleteChatMessageArgs>("admin_delete_chat_message", &value.args)?.into()),
             "admin_despawn_overworld_enemies" => Ok(__sdk::parse_reducer_args::<admin_despawn_overworld_enemies_reducer::AdminDespawnOverworldEnemiesArgs>("admin_despawn_overworld_enemies", &value.args)?.into()),
             "admin_dungeon_update_portals" => Ok(__sdk::parse_reducer_args::<admin_dungeon_update_portals_reducer::AdminDungeonUpdatePortalsArgs>("admin_dungeon_update_portals", &value.args)?.into()),
+            "admin_expel_players" => Ok(__sdk::parse_reducer_args::<admin_expel_players_reducer::AdminExpelPlayersArgs>("admin_expel_players", &value.args)?.into()),
             "admin_fail_quest" => Ok(__sdk::parse_reducer_args::<admin_fail_quest_reducer::AdminFailQuestArgs>("admin_fail_quest", &value.args)?.into()),
             "admin_find_all_players_with_item" => Ok(__sdk::parse_reducer_args::<admin_find_all_players_with_item_reducer::AdminFindAllPlayersWithItemArgs>("admin_find_all_players_with_item", &value.args)?.into()),
             "admin_find_all_players_with_item_above_quantity" => Ok(__sdk::parse_reducer_args::<admin_find_all_players_with_item_above_quantity_reducer::AdminFindAllPlayersWithItemAboveQuantityArgs>("admin_find_all_players_with_item_above_quantity", &value.args)?.into()),
@@ -9415,6 +9455,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "import_server_identity" => Ok(__sdk::parse_reducer_args::<import_server_identity_reducer::ImportServerIdentityArgs>("import_server_identity", &value.args)?.into()),
             "import_signed_in_player_state" => Ok(__sdk::parse_reducer_args::<import_signed_in_player_state_reducer::ImportSignedInPlayerStateArgs>("import_signed_in_player_state", &value.args)?.into()),
             "import_skill_desc" => Ok(__sdk::parse_reducer_args::<import_skill_desc_reducer::ImportSkillDescArgs>("import_skill_desc", &value.args)?.into()),
+            "import_skill_level_knowledge_desc" => Ok(__sdk::parse_reducer_args::<import_skill_level_knowledge_desc_reducer::ImportSkillLevelKnowledgeDescArgs>("import_skill_level_knowledge_desc", &value.args)?.into()),
             "import_stage_rewards_desc" => Ok(__sdk::parse_reducer_args::<import_stage_rewards_desc_reducer::ImportStageRewardsDescArgs>("import_stage_rewards_desc", &value.args)?.into()),
             "import_stamina_state" => Ok(__sdk::parse_reducer_args::<import_stamina_state_reducer::ImportStaminaStateArgs>("import_stamina_state", &value.args)?.into()),
             "import_target_state" => Ok(__sdk::parse_reducer_args::<import_target_state_reducer::ImportTargetStateArgs>("import_target_state", &value.args)?.into()),
@@ -9470,6 +9511,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "migrate_missing_equipment_slot_types" => Ok(__sdk::parse_reducer_args::<migrate_missing_equipment_slot_types_reducer::MigrateMissingEquipmentSlotTypesArgs>("migrate_missing_equipment_slot_types", &value.args)?.into()),
             "migrate_onboarding" => Ok(__sdk::parse_reducer_args::<migrate_onboarding_reducer::MigrateOnboardingArgs>("migrate_onboarding", &value.args)?.into()),
             "migrate_player_settings" => Ok(__sdk::parse_reducer_args::<migrate_player_settings_reducer::MigratePlayerSettingsArgs>("migrate_player_settings", &value.args)?.into()),
+            "migrate_skill_level_knowledge" => Ok(__sdk::parse_reducer_args::<migrate_skill_level_knowledge_reducer::MigrateSkillLevelKnowledgeArgs>("migrate_skill_level_knowledge", &value.args)?.into()),
             "migration_set_achievement_params" => Ok(__sdk::parse_reducer_args::<migration_set_achievement_params_reducer::MigrationSetAchievementParamsArgs>("migration_set_achievement_params", &value.args)?.into()),
             "migration_set_building_desc_params" => Ok(__sdk::parse_reducer_args::<migration_set_building_desc_params_reducer::MigrationSetBuildingDescParamsArgs>("migration_set_building_desc_params", &value.args)?.into()),
             "npc_ai_agent_loop" => Ok(__sdk::parse_reducer_args::<npc_ai_agent_loop_reducer::NpcAiAgentLoopArgs>("npc_ai_agent_loop", &value.args)?.into()),
@@ -9677,6 +9719,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "stage_resource_placement_recipe_desc" => Ok(__sdk::parse_reducer_args::<stage_resource_placement_recipe_desc_reducer::StageResourcePlacementRecipeDescArgs>("stage_resource_placement_recipe_desc", &value.args)?.into()),
             "stage_secondary_knowledge_desc" => Ok(__sdk::parse_reducer_args::<stage_secondary_knowledge_desc_reducer::StageSecondaryKnowledgeDescArgs>("stage_secondary_knowledge_desc", &value.args)?.into()),
             "stage_skill_desc" => Ok(__sdk::parse_reducer_args::<stage_skill_desc_reducer::StageSkillDescArgs>("stage_skill_desc", &value.args)?.into()),
+            "stage_skill_level_knowledge_desc" => Ok(__sdk::parse_reducer_args::<stage_skill_level_knowledge_desc_reducer::StageSkillLevelKnowledgeDescArgs>("stage_skill_level_knowledge_desc", &value.args)?.into()),
             "stage_stage_rewards_desc" => Ok(__sdk::parse_reducer_args::<stage_stage_rewards_desc_reducer::StageStageRewardsDescArgs>("stage_stage_rewards_desc", &value.args)?.into()),
             "stage_targeting_matrix_desc" => Ok(__sdk::parse_reducer_args::<stage_targeting_matrix_desc_reducer::StageTargetingMatrixDescArgs>("stage_targeting_matrix_desc", &value.args)?.into()),
             "stage_teleport_item_desc" => Ok(__sdk::parse_reducer_args::<stage_teleport_item_desc_reducer::StageTeleportItemDescArgs>("stage_teleport_item_desc", &value.args)?.into()),
@@ -10062,6 +10105,7 @@ pub struct DbUpdate {
     single_resource_clump_info: __sdk::TableUpdate<SingleResourceClumpInfo>,
     single_resource_to_clump_desc: __sdk::TableUpdate<SingleResourceToClumpDesc>,
     skill_desc: __sdk::TableUpdate<SkillDesc>,
+    skill_level_knowledge_desc: __sdk::TableUpdate<SkillLevelKnowledgeDesc>,
     stage_rewards_desc: __sdk::TableUpdate<StageRewardsDesc>,
     staged_ability_custom_desc: __sdk::TableUpdate<AbilityCustomDesc>,
     staged_ability_unlock_desc: __sdk::TableUpdate<AbilityUnlockDesc>,
@@ -10156,6 +10200,7 @@ pub struct DbUpdate {
     staged_resource_placement_recipe_desc: __sdk::TableUpdate<ResourcePlacementRecipeDesc>,
     staged_secondary_knowledge_desc: __sdk::TableUpdate<SecondaryKnowledgeDesc>,
     staged_skill_desc: __sdk::TableUpdate<SkillDesc>,
+    staged_skill_level_knowledge_desc: __sdk::TableUpdate<SkillLevelKnowledgeDesc>,
     staged_stage_rewards_desc: __sdk::TableUpdate<StageRewardsDesc>,
     staged_targeting_matrix_desc: __sdk::TableUpdate<TargetingMatrixDesc>,
     staged_teleport_item_desc: __sdk::TableUpdate<TeleportItemDesc>,
@@ -10556,6 +10601,7 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "single_resource_clump_info" => db_update.single_resource_clump_info.append(single_resource_clump_info_table::parse_table_update(table_update)?),
     "single_resource_to_clump_desc" => db_update.single_resource_to_clump_desc.append(single_resource_to_clump_desc_table::parse_table_update(table_update)?),
     "skill_desc" => db_update.skill_desc.append(skill_desc_table::parse_table_update(table_update)?),
+    "skill_level_knowledge_desc" => db_update.skill_level_knowledge_desc.append(skill_level_knowledge_desc_table::parse_table_update(table_update)?),
     "stage_rewards_desc" => db_update.stage_rewards_desc.append(stage_rewards_desc_table::parse_table_update(table_update)?),
     "staged_ability_custom_desc" => db_update.staged_ability_custom_desc.append(staged_ability_custom_desc_table::parse_table_update(table_update)?),
     "staged_ability_unlock_desc" => db_update.staged_ability_unlock_desc.append(staged_ability_unlock_desc_table::parse_table_update(table_update)?),
@@ -10649,6 +10695,7 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "staged_resource_placement_recipe_desc" => db_update.staged_resource_placement_recipe_desc.append(staged_resource_placement_recipe_desc_table::parse_table_update(table_update)?),
     "staged_secondary_knowledge_desc" => db_update.staged_secondary_knowledge_desc.append(staged_secondary_knowledge_desc_table::parse_table_update(table_update)?),
     "staged_skill_desc" => db_update.staged_skill_desc.append(staged_skill_desc_table::parse_table_update(table_update)?),
+    "staged_skill_level_knowledge_desc" => db_update.staged_skill_level_knowledge_desc.append(staged_skill_level_knowledge_desc_table::parse_table_update(table_update)?),
     "staged_stage_rewards_desc" => db_update.staged_stage_rewards_desc.append(staged_stage_rewards_desc_table::parse_table_update(table_update)?),
     "staged_targeting_matrix_desc" => db_update.staged_targeting_matrix_desc.append(staged_targeting_matrix_desc_table::parse_table_update(table_update)?),
     "staged_teleport_item_desc" => db_update.staged_teleport_item_desc.append(staged_teleport_item_desc_table::parse_table_update(table_update)?),
@@ -12313,6 +12360,12 @@ impl __sdk::DbUpdate for DbUpdate {
         diff.skill_desc = cache
             .apply_diff_to_table::<SkillDesc>("skill_desc", &self.skill_desc)
             .with_updates_by_pk(|row| &row.id);
+        diff.skill_level_knowledge_desc = cache
+            .apply_diff_to_table::<SkillLevelKnowledgeDesc>(
+                "skill_level_knowledge_desc",
+                &self.skill_level_knowledge_desc,
+            )
+            .with_updates_by_pk(|row| &row.id);
         diff.stage_rewards_desc = cache
             .apply_diff_to_table::<StageRewardsDesc>("stage_rewards_desc", &self.stage_rewards_desc)
             .with_updates_by_pk(|row| &row.id);
@@ -12822,6 +12875,12 @@ impl __sdk::DbUpdate for DbUpdate {
             .with_updates_by_pk(|row| &row.id);
         diff.staged_skill_desc = cache
             .apply_diff_to_table::<SkillDesc>("staged_skill_desc", &self.staged_skill_desc)
+            .with_updates_by_pk(|row| &row.id);
+        diff.staged_skill_level_knowledge_desc = cache
+            .apply_diff_to_table::<SkillLevelKnowledgeDesc>(
+                "staged_skill_level_knowledge_desc",
+                &self.staged_skill_level_knowledge_desc,
+            )
             .with_updates_by_pk(|row| &row.id);
         diff.staged_stage_rewards_desc = cache
             .apply_diff_to_table::<StageRewardsDesc>(
@@ -13473,6 +13532,7 @@ pub struct AppliedDiff<'r> {
     single_resource_clump_info: __sdk::TableAppliedDiff<'r, SingleResourceClumpInfo>,
     single_resource_to_clump_desc: __sdk::TableAppliedDiff<'r, SingleResourceToClumpDesc>,
     skill_desc: __sdk::TableAppliedDiff<'r, SkillDesc>,
+    skill_level_knowledge_desc: __sdk::TableAppliedDiff<'r, SkillLevelKnowledgeDesc>,
     stage_rewards_desc: __sdk::TableAppliedDiff<'r, StageRewardsDesc>,
     staged_ability_custom_desc: __sdk::TableAppliedDiff<'r, AbilityCustomDesc>,
     staged_ability_unlock_desc: __sdk::TableAppliedDiff<'r, AbilityUnlockDesc>,
@@ -13569,6 +13629,7 @@ pub struct AppliedDiff<'r> {
     staged_resource_placement_recipe_desc: __sdk::TableAppliedDiff<'r, ResourcePlacementRecipeDesc>,
     staged_secondary_knowledge_desc: __sdk::TableAppliedDiff<'r, SecondaryKnowledgeDesc>,
     staged_skill_desc: __sdk::TableAppliedDiff<'r, SkillDesc>,
+    staged_skill_level_knowledge_desc: __sdk::TableAppliedDiff<'r, SkillLevelKnowledgeDesc>,
     staged_stage_rewards_desc: __sdk::TableAppliedDiff<'r, StageRewardsDesc>,
     staged_targeting_matrix_desc: __sdk::TableAppliedDiff<'r, TargetingMatrixDesc>,
     staged_teleport_item_desc: __sdk::TableAppliedDiff<'r, TeleportItemDesc>,
@@ -15202,6 +15263,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             event,
         );
         callbacks.invoke_table_row_callbacks::<SkillDesc>("skill_desc", &self.skill_desc, event);
+        callbacks.invoke_table_row_callbacks::<SkillLevelKnowledgeDesc>(
+            "skill_level_knowledge_desc",
+            &self.skill_level_knowledge_desc,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<StageRewardsDesc>(
             "stage_rewards_desc",
             &self.stage_rewards_desc,
@@ -15665,6 +15731,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<SkillDesc>(
             "staged_skill_desc",
             &self.staged_skill_desc,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<SkillLevelKnowledgeDesc>(
+            "staged_skill_level_knowledge_desc",
+            &self.staged_skill_level_knowledge_desc,
             event,
         );
         callbacks.invoke_table_row_callbacks::<StageRewardsDesc>(
@@ -16996,6 +17067,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         single_resource_clump_info_table::register_table(client_cache);
         single_resource_to_clump_desc_table::register_table(client_cache);
         skill_desc_table::register_table(client_cache);
+        skill_level_knowledge_desc_table::register_table(client_cache);
         stage_rewards_desc_table::register_table(client_cache);
         staged_ability_custom_desc_table::register_table(client_cache);
         staged_ability_unlock_desc_table::register_table(client_cache);
@@ -17089,6 +17161,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         staged_resource_placement_recipe_desc_table::register_table(client_cache);
         staged_secondary_knowledge_desc_table::register_table(client_cache);
         staged_skill_desc_table::register_table(client_cache);
+        staged_skill_level_knowledge_desc_table::register_table(client_cache);
         staged_stage_rewards_desc_table::register_table(client_cache);
         staged_targeting_matrix_desc_table::register_table(client_cache);
         staged_teleport_item_desc_table::register_table(client_cache);
