@@ -24,6 +24,9 @@ pub struct EquipmentDesc {
     pub required_achievements: Vec<i32>,
     pub required_knowledges: Vec<i32>,
     pub show_in_progression: bool,
+    pub equipment_buff_id: i32,
+    pub equipment_buff_chance_per_hit: f32,
+    pub equipment_buff_skill_id: i32,
 }
 
 impl __sdk::InModule for EquipmentDesc {
@@ -45,6 +48,9 @@ pub struct EquipmentDescCols {
     pub required_achievements: __sdk::__query_builder::Col<EquipmentDesc, Vec<i32>>,
     pub required_knowledges: __sdk::__query_builder::Col<EquipmentDesc, Vec<i32>>,
     pub show_in_progression: __sdk::__query_builder::Col<EquipmentDesc, bool>,
+    pub equipment_buff_id: __sdk::__query_builder::Col<EquipmentDesc, i32>,
+    pub equipment_buff_chance_per_hit: __sdk::__query_builder::Col<EquipmentDesc, f32>,
+    pub equipment_buff_skill_id: __sdk::__query_builder::Col<EquipmentDesc, i32>,
 }
 
 impl __sdk::__query_builder::HasCols for EquipmentDesc {
@@ -72,6 +78,15 @@ impl __sdk::__query_builder::HasCols for EquipmentDesc {
             show_in_progression: __sdk::__query_builder::Col::new(
                 table_name,
                 "show_in_progression",
+            ),
+            equipment_buff_id: __sdk::__query_builder::Col::new(table_name, "equipment_buff_id"),
+            equipment_buff_chance_per_hit: __sdk::__query_builder::Col::new(
+                table_name,
+                "equipment_buff_chance_per_hit",
+            ),
+            equipment_buff_skill_id: __sdk::__query_builder::Col::new(
+                table_name,
+                "equipment_buff_skill_id",
             ),
         }
     }

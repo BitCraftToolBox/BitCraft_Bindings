@@ -1073,6 +1073,8 @@ pub mod single_resource_to_clump_desc_type;
 pub mod skill_category_type;
 pub mod skill_desc_table;
 pub mod skill_desc_type;
+pub mod skill_level_knowledge_desc_table;
+pub mod skill_level_knowledge_desc_type;
 pub mod skill_type_type;
 pub mod small_hex_tile_message_type;
 pub mod stage_ability_custom_desc_reducer;
@@ -1169,6 +1171,7 @@ pub mod stage_rewards_desc_table;
 pub mod stage_rewards_desc_type;
 pub mod stage_secondary_knowledge_desc_reducer;
 pub mod stage_skill_desc_reducer;
+pub mod stage_skill_level_knowledge_desc_reducer;
 pub mod stage_stage_rewards_desc_reducer;
 pub mod stage_targeting_matrix_desc_reducer;
 pub mod stage_teleport_item_desc_reducer;
@@ -1274,6 +1277,7 @@ pub mod staged_resource_growth_recipe_desc_table;
 pub mod staged_resource_placement_recipe_desc_table;
 pub mod staged_secondary_knowledge_desc_table;
 pub mod staged_skill_desc_table;
+pub mod staged_skill_level_knowledge_desc_table;
 pub mod staged_stage_rewards_desc_table;
 pub mod staged_targeting_matrix_desc_table;
 pub mod staged_teleport_item_desc_table;
@@ -3221,6 +3225,8 @@ pub use single_resource_to_clump_desc_type::SingleResourceToClumpDesc;
 pub use skill_category_type::SkillCategory;
 pub use skill_desc_table::*;
 pub use skill_desc_type::SkillDesc;
+pub use skill_level_knowledge_desc_table::*;
+pub use skill_level_knowledge_desc_type::SkillLevelKnowledgeDesc;
 pub use skill_type_type::SkillType;
 pub use small_hex_tile_message_type::SmallHexTileMessage;
 pub use stage_ability_custom_desc_reducer::{
@@ -3555,6 +3561,10 @@ pub use stage_secondary_knowledge_desc_reducer::{
 pub use stage_skill_desc_reducer::{
     set_flags_for_stage_skill_desc, stage_skill_desc, StageSkillDescCallbackId,
 };
+pub use stage_skill_level_knowledge_desc_reducer::{
+    set_flags_for_stage_skill_level_knowledge_desc, stage_skill_level_knowledge_desc,
+    StageSkillLevelKnowledgeDescCallbackId,
+};
 pub use stage_stage_rewards_desc_reducer::{
     set_flags_for_stage_stage_rewards_desc, stage_stage_rewards_desc,
     StageStageRewardsDescCallbackId,
@@ -3694,6 +3704,7 @@ pub use staged_resource_growth_recipe_desc_table::*;
 pub use staged_resource_placement_recipe_desc_table::*;
 pub use staged_secondary_knowledge_desc_table::*;
 pub use staged_skill_desc_table::*;
+pub use staged_skill_level_knowledge_desc_table::*;
 pub use staged_stage_rewards_desc_table::*;
 pub use staged_targeting_matrix_desc_table::*;
 pub use staged_teleport_item_desc_table::*;
@@ -5088,6 +5099,9 @@ pub enum Reducer {
     StageSkillDesc {
         records: Vec<SkillDesc>,
     },
+    StageSkillLevelKnowledgeDesc {
+        records: Vec<SkillLevelKnowledgeDesc>,
+    },
     StageStageRewardsDesc {
         records: Vec<StageRewardsDesc>,
     },
@@ -5606,6 +5620,7 @@ impl __sdk::Reducer for Reducer {
             }
             Reducer::StageSecondaryKnowledgeDesc { .. } => "stage_secondary_knowledge_desc",
             Reducer::StageSkillDesc { .. } => "stage_skill_desc",
+            Reducer::StageSkillLevelKnowledgeDesc { .. } => "stage_skill_level_knowledge_desc",
             Reducer::StageStageRewardsDesc { .. } => "stage_stage_rewards_desc",
             Reducer::StageTargetingMatrixDesc { .. } => "stage_targeting_matrix_desc",
             Reducer::StageTeleportItemDesc { .. } => "stage_teleport_item_desc",
@@ -6027,6 +6042,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "stage_resource_placement_recipe_desc" => Ok(__sdk::parse_reducer_args::<stage_resource_placement_recipe_desc_reducer::StageResourcePlacementRecipeDescArgs>("stage_resource_placement_recipe_desc", &value.args)?.into()),
             "stage_secondary_knowledge_desc" => Ok(__sdk::parse_reducer_args::<stage_secondary_knowledge_desc_reducer::StageSecondaryKnowledgeDescArgs>("stage_secondary_knowledge_desc", &value.args)?.into()),
             "stage_skill_desc" => Ok(__sdk::parse_reducer_args::<stage_skill_desc_reducer::StageSkillDescArgs>("stage_skill_desc", &value.args)?.into()),
+            "stage_skill_level_knowledge_desc" => Ok(__sdk::parse_reducer_args::<stage_skill_level_knowledge_desc_reducer::StageSkillLevelKnowledgeDescArgs>("stage_skill_level_knowledge_desc", &value.args)?.into()),
             "stage_stage_rewards_desc" => Ok(__sdk::parse_reducer_args::<stage_stage_rewards_desc_reducer::StageStageRewardsDescArgs>("stage_stage_rewards_desc", &value.args)?.into()),
             "stage_targeting_matrix_desc" => Ok(__sdk::parse_reducer_args::<stage_targeting_matrix_desc_reducer::StageTargetingMatrixDescArgs>("stage_targeting_matrix_desc", &value.args)?.into()),
             "stage_teleport_item_desc" => Ok(__sdk::parse_reducer_args::<stage_teleport_item_desc_reducer::StageTeleportItemDescArgs>("stage_teleport_item_desc", &value.args)?.into()),
@@ -6365,6 +6381,7 @@ pub struct DbUpdate {
     signed_in_player_state: __sdk::TableUpdate<SignedInPlayerState>,
     single_resource_to_clump_desc: __sdk::TableUpdate<SingleResourceToClumpDesc>,
     skill_desc: __sdk::TableUpdate<SkillDesc>,
+    skill_level_knowledge_desc: __sdk::TableUpdate<SkillLevelKnowledgeDesc>,
     stage_rewards_desc: __sdk::TableUpdate<StageRewardsDesc>,
     staged_ability_custom_desc: __sdk::TableUpdate<AbilityCustomDesc>,
     staged_ability_unlock_desc: __sdk::TableUpdate<AbilityUnlockDesc>,
@@ -6459,6 +6476,7 @@ pub struct DbUpdate {
     staged_resource_placement_recipe_desc: __sdk::TableUpdate<ResourcePlacementRecipeDesc>,
     staged_secondary_knowledge_desc: __sdk::TableUpdate<SecondaryKnowledgeDesc>,
     staged_skill_desc: __sdk::TableUpdate<SkillDesc>,
+    staged_skill_level_knowledge_desc: __sdk::TableUpdate<SkillLevelKnowledgeDesc>,
     staged_stage_rewards_desc: __sdk::TableUpdate<StageRewardsDesc>,
     staged_targeting_matrix_desc: __sdk::TableUpdate<TargetingMatrixDesc>,
     staged_teleport_item_desc: __sdk::TableUpdate<TeleportItemDesc>,
@@ -6831,6 +6849,7 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "signed_in_player_state" => db_update.signed_in_player_state.append(signed_in_player_state_table::parse_table_update(table_update)?),
     "single_resource_to_clump_desc" => db_update.single_resource_to_clump_desc.append(single_resource_to_clump_desc_table::parse_table_update(table_update)?),
     "skill_desc" => db_update.skill_desc.append(skill_desc_table::parse_table_update(table_update)?),
+    "skill_level_knowledge_desc" => db_update.skill_level_knowledge_desc.append(skill_level_knowledge_desc_table::parse_table_update(table_update)?),
     "stage_rewards_desc" => db_update.stage_rewards_desc.append(stage_rewards_desc_table::parse_table_update(table_update)?),
     "staged_ability_custom_desc" => db_update.staged_ability_custom_desc.append(staged_ability_custom_desc_table::parse_table_update(table_update)?),
     "staged_ability_unlock_desc" => db_update.staged_ability_unlock_desc.append(staged_ability_unlock_desc_table::parse_table_update(table_update)?),
@@ -6924,6 +6943,7 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "staged_resource_placement_recipe_desc" => db_update.staged_resource_placement_recipe_desc.append(staged_resource_placement_recipe_desc_table::parse_table_update(table_update)?),
     "staged_secondary_knowledge_desc" => db_update.staged_secondary_knowledge_desc.append(staged_secondary_knowledge_desc_table::parse_table_update(table_update)?),
     "staged_skill_desc" => db_update.staged_skill_desc.append(staged_skill_desc_table::parse_table_update(table_update)?),
+    "staged_skill_level_knowledge_desc" => db_update.staged_skill_level_knowledge_desc.append(staged_skill_level_knowledge_desc_table::parse_table_update(table_update)?),
     "staged_stage_rewards_desc" => db_update.staged_stage_rewards_desc.append(staged_stage_rewards_desc_table::parse_table_update(table_update)?),
     "staged_targeting_matrix_desc" => db_update.staged_targeting_matrix_desc.append(staged_targeting_matrix_desc_table::parse_table_update(table_update)?),
     "staged_teleport_item_desc" => db_update.staged_teleport_item_desc.append(staged_teleport_item_desc_table::parse_table_update(table_update)?),
@@ -8451,6 +8471,12 @@ impl __sdk::DbUpdate for DbUpdate {
         diff.skill_desc = cache
             .apply_diff_to_table::<SkillDesc>("skill_desc", &self.skill_desc)
             .with_updates_by_pk(|row| &row.id);
+        diff.skill_level_knowledge_desc = cache
+            .apply_diff_to_table::<SkillLevelKnowledgeDesc>(
+                "skill_level_knowledge_desc",
+                &self.skill_level_knowledge_desc,
+            )
+            .with_updates_by_pk(|row| &row.id);
         diff.stage_rewards_desc = cache
             .apply_diff_to_table::<StageRewardsDesc>("stage_rewards_desc", &self.stage_rewards_desc)
             .with_updates_by_pk(|row| &row.id);
@@ -8960,6 +8986,12 @@ impl __sdk::DbUpdate for DbUpdate {
             .with_updates_by_pk(|row| &row.id);
         diff.staged_skill_desc = cache
             .apply_diff_to_table::<SkillDesc>("staged_skill_desc", &self.staged_skill_desc)
+            .with_updates_by_pk(|row| &row.id);
+        diff.staged_skill_level_knowledge_desc = cache
+            .apply_diff_to_table::<SkillLevelKnowledgeDesc>(
+                "staged_skill_level_knowledge_desc",
+                &self.staged_skill_level_knowledge_desc,
+            )
             .with_updates_by_pk(|row| &row.id);
         diff.staged_stage_rewards_desc = cache
             .apply_diff_to_table::<StageRewardsDesc>(
@@ -9557,6 +9589,7 @@ pub struct AppliedDiff<'r> {
     signed_in_player_state: __sdk::TableAppliedDiff<'r, SignedInPlayerState>,
     single_resource_to_clump_desc: __sdk::TableAppliedDiff<'r, SingleResourceToClumpDesc>,
     skill_desc: __sdk::TableAppliedDiff<'r, SkillDesc>,
+    skill_level_knowledge_desc: __sdk::TableAppliedDiff<'r, SkillLevelKnowledgeDesc>,
     stage_rewards_desc: __sdk::TableAppliedDiff<'r, StageRewardsDesc>,
     staged_ability_custom_desc: __sdk::TableAppliedDiff<'r, AbilityCustomDesc>,
     staged_ability_unlock_desc: __sdk::TableAppliedDiff<'r, AbilityUnlockDesc>,
@@ -9653,6 +9686,7 @@ pub struct AppliedDiff<'r> {
     staged_resource_placement_recipe_desc: __sdk::TableAppliedDiff<'r, ResourcePlacementRecipeDesc>,
     staged_secondary_knowledge_desc: __sdk::TableAppliedDiff<'r, SecondaryKnowledgeDesc>,
     staged_skill_desc: __sdk::TableAppliedDiff<'r, SkillDesc>,
+    staged_skill_level_knowledge_desc: __sdk::TableAppliedDiff<'r, SkillLevelKnowledgeDesc>,
     staged_stage_rewards_desc: __sdk::TableAppliedDiff<'r, StageRewardsDesc>,
     staged_targeting_matrix_desc: __sdk::TableAppliedDiff<'r, TargetingMatrixDesc>,
     staged_teleport_item_desc: __sdk::TableAppliedDiff<'r, TeleportItemDesc>,
@@ -11165,6 +11199,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             event,
         );
         callbacks.invoke_table_row_callbacks::<SkillDesc>("skill_desc", &self.skill_desc, event);
+        callbacks.invoke_table_row_callbacks::<SkillLevelKnowledgeDesc>(
+            "skill_level_knowledge_desc",
+            &self.skill_level_knowledge_desc,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<StageRewardsDesc>(
             "stage_rewards_desc",
             &self.stage_rewards_desc,
@@ -11628,6 +11667,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<SkillDesc>(
             "staged_skill_desc",
             &self.staged_skill_desc,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<SkillLevelKnowledgeDesc>(
+            "staged_skill_level_knowledge_desc",
+            &self.staged_skill_level_knowledge_desc,
             event,
         );
         callbacks.invoke_table_row_callbacks::<StageRewardsDesc>(
@@ -12911,6 +12955,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         signed_in_player_state_table::register_table(client_cache);
         single_resource_to_clump_desc_table::register_table(client_cache);
         skill_desc_table::register_table(client_cache);
+        skill_level_knowledge_desc_table::register_table(client_cache);
         stage_rewards_desc_table::register_table(client_cache);
         staged_ability_custom_desc_table::register_table(client_cache);
         staged_ability_unlock_desc_table::register_table(client_cache);
@@ -13004,6 +13049,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         staged_resource_placement_recipe_desc_table::register_table(client_cache);
         staged_secondary_knowledge_desc_table::register_table(client_cache);
         staged_skill_desc_table::register_table(client_cache);
+        staged_skill_level_knowledge_desc_table::register_table(client_cache);
         staged_stage_rewards_desc_table::register_table(client_cache);
         staged_targeting_matrix_desc_table::register_table(client_cache);
         staged_teleport_item_desc_table::register_table(client_cache);
