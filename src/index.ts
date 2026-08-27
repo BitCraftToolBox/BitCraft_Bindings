@@ -808,6 +808,8 @@ import { StageSecondaryKnowledgeDesc } from "./stage_secondary_knowledge_desc_re
 export { StageSecondaryKnowledgeDesc };
 import { StageSkillDesc } from "./stage_skill_desc_reducer.ts";
 export { StageSkillDesc };
+import { StageSkillLevelKnowledgeDesc } from "./stage_skill_level_knowledge_desc_reducer.ts";
+export { StageSkillLevelKnowledgeDesc };
 import { StageStageRewardsDesc } from "./stage_stage_rewards_desc_reducer.ts";
 export { StageStageRewardsDesc };
 import { StageTargetingMatrixDesc } from "./stage_targeting_matrix_desc_reducer.ts";
@@ -1460,6 +1462,8 @@ import { SingleResourceToClumpDescTableHandle } from "./single_resource_to_clump
 export { SingleResourceToClumpDescTableHandle };
 import { SkillDescTableHandle } from "./skill_desc_table.ts";
 export { SkillDescTableHandle };
+import { SkillLevelKnowledgeDescTableHandle } from "./skill_level_knowledge_desc_table.ts";
+export { SkillLevelKnowledgeDescTableHandle };
 import { StageRewardsDescTableHandle } from "./stage_rewards_desc_table.ts";
 export { StageRewardsDescTableHandle };
 import { StagedAbilityCustomDescTableHandle } from "./staged_ability_custom_desc_table.ts";
@@ -1646,6 +1650,8 @@ import { StagedSecondaryKnowledgeDescTableHandle } from "./staged_secondary_know
 export { StagedSecondaryKnowledgeDescTableHandle };
 import { StagedSkillDescTableHandle } from "./staged_skill_desc_table.ts";
 export { StagedSkillDescTableHandle };
+import { StagedSkillLevelKnowledgeDescTableHandle } from "./staged_skill_level_knowledge_desc_table.ts";
+export { StagedSkillLevelKnowledgeDescTableHandle };
 import { StagedStageRewardsDescTableHandle } from "./staged_stage_rewards_desc_table.ts";
 export { StagedStageRewardsDescTableHandle };
 import { StagedTargetingMatrixDescTableHandle } from "./staged_targeting_matrix_desc_table.ts";
@@ -2690,6 +2696,8 @@ import { SkillCategory } from "./skill_category_type.ts";
 export { SkillCategory };
 import { SkillDesc } from "./skill_desc_type.ts";
 export { SkillDesc };
+import { SkillLevelKnowledgeDesc } from "./skill_level_knowledge_desc_type.ts";
+export { SkillLevelKnowledgeDesc };
 import { SkillType } from "./skill_type_type.ts";
 export { SkillType };
 import { SmallHexTileMessage } from "./small_hex_tile_message_type.ts";
@@ -5461,6 +5469,15 @@ const REMOTE_MODULE = {
         colType: SkillDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    skill_level_knowledge_desc: {
+      tableName: "skill_level_knowledge_desc",
+      rowType: SkillLevelKnowledgeDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: SkillLevelKnowledgeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     stage_rewards_desc: {
       tableName: "stage_rewards_desc",
       rowType: StageRewardsDesc.getTypeScriptAlgebraicType(),
@@ -6296,6 +6313,15 @@ const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "id",
         colType: SkillDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_skill_level_knowledge_desc: {
+      tableName: "staged_skill_level_knowledge_desc",
+      rowType: SkillLevelKnowledgeDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: SkillLevelKnowledgeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     staged_stage_rewards_desc: {
@@ -8343,6 +8369,10 @@ const REMOTE_MODULE = {
       reducerName: "stage_skill_desc",
       argsType: StageSkillDesc.getTypeScriptAlgebraicType(),
     },
+    stage_skill_level_knowledge_desc: {
+      reducerName: "stage_skill_level_knowledge_desc",
+      argsType: StageSkillLevelKnowledgeDesc.getTypeScriptAlgebraicType(),
+    },
     stage_stage_rewards_desc: {
       reducerName: "stage_stage_rewards_desc",
       argsType: StageStageRewardsDesc.getTypeScriptAlgebraicType(),
@@ -8848,6 +8878,7 @@ export type Reducer = never
 | { name: "StageResourcePlacementRecipeDesc", args: StageResourcePlacementRecipeDesc }
 | { name: "StageSecondaryKnowledgeDesc", args: StageSecondaryKnowledgeDesc }
 | { name: "StageSkillDesc", args: StageSkillDesc }
+| { name: "StageSkillLevelKnowledgeDesc", args: StageSkillLevelKnowledgeDesc }
 | { name: "StageStageRewardsDesc", args: StageStageRewardsDesc }
 | { name: "StageTargetingMatrixDesc", args: StageTargetingMatrixDesc }
 | { name: "StageTeleportItemDesc", args: StageTeleportItemDesc }
@@ -14991,6 +15022,22 @@ export class RemoteReducers {
     this.connection.offReducer("stage_skill_desc", callback);
   }
 
+  stageSkillLevelKnowledgeDesc(records: SkillLevelKnowledgeDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    StageSkillLevelKnowledgeDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("stage_skill_level_knowledge_desc", __argsBuffer, this.setCallReducerFlags.stageSkillLevelKnowledgeDescFlags);
+  }
+
+  onStageSkillLevelKnowledgeDesc(callback: (ctx: ReducerEventContext, records: SkillLevelKnowledgeDesc[]) => void) {
+    this.connection.onReducer("stage_skill_level_knowledge_desc", callback);
+  }
+
+  removeOnStageSkillLevelKnowledgeDesc(callback: (ctx: ReducerEventContext, records: SkillLevelKnowledgeDesc[]) => void) {
+    this.connection.offReducer("stage_skill_level_knowledge_desc", callback);
+  }
+
   stageStageRewardsDesc(records: StageRewardsDesc[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
@@ -17263,6 +17310,11 @@ export class SetReducerFlags {
     this.stageSkillDescFlags = flags;
   }
 
+  stageSkillLevelKnowledgeDescFlags: CallReducerFlags = 'FullUpdate';
+  stageSkillLevelKnowledgeDesc(flags: CallReducerFlags) {
+    this.stageSkillLevelKnowledgeDescFlags = flags;
+  }
+
   stageStageRewardsDescFlags: CallReducerFlags = 'FullUpdate';
   stageStageRewardsDesc(flags: CallReducerFlags) {
     this.stageStageRewardsDescFlags = flags;
@@ -18590,6 +18642,10 @@ export class RemoteTables {
     return new SkillDescTableHandle(this.connection.clientCache.getOrCreateTable<SkillDesc>(REMOTE_MODULE.tables.skill_desc));
   }
 
+  get skillLevelKnowledgeDesc(): SkillLevelKnowledgeDescTableHandle {
+    return new SkillLevelKnowledgeDescTableHandle(this.connection.clientCache.getOrCreateTable<SkillLevelKnowledgeDesc>(REMOTE_MODULE.tables.skill_level_knowledge_desc));
+  }
+
   get stageRewardsDesc(): StageRewardsDescTableHandle {
     return new StageRewardsDescTableHandle(this.connection.clientCache.getOrCreateTable<StageRewardsDesc>(REMOTE_MODULE.tables.stage_rewards_desc));
   }
@@ -18960,6 +19016,10 @@ export class RemoteTables {
 
   get stagedSkillDesc(): StagedSkillDescTableHandle {
     return new StagedSkillDescTableHandle(this.connection.clientCache.getOrCreateTable<SkillDesc>(REMOTE_MODULE.tables.staged_skill_desc));
+  }
+
+  get stagedSkillLevelKnowledgeDesc(): StagedSkillLevelKnowledgeDescTableHandle {
+    return new StagedSkillLevelKnowledgeDescTableHandle(this.connection.clientCache.getOrCreateTable<SkillLevelKnowledgeDesc>(REMOTE_MODULE.tables.staged_skill_level_knowledge_desc));
   }
 
   get stagedStageRewardsDesc(): StagedStageRewardsDescTableHandle {
