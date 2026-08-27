@@ -60,6 +60,9 @@ namespace BitCraftRegion.Types
         public global::SpacetimeDB.Col<EquipmentDesc, System.Collections.Generic.List<int>> RequiredAchievements { get; }
         public global::SpacetimeDB.Col<EquipmentDesc, System.Collections.Generic.List<int>> RequiredKnowledges { get; }
         public global::SpacetimeDB.Col<EquipmentDesc, bool> ShowInProgression { get; }
+        public global::SpacetimeDB.Col<EquipmentDesc, int> EquipmentBuffId { get; }
+        public global::SpacetimeDB.Col<EquipmentDesc, float> EquipmentBuffChancePerHit { get; }
+        public global::SpacetimeDB.Col<EquipmentDesc, int> EquipmentBuffSkillId { get; }
 
         public EquipmentDescCols(string tableName)
         {
@@ -73,6 +76,9 @@ namespace BitCraftRegion.Types
             RequiredAchievements = new global::SpacetimeDB.Col<EquipmentDesc, System.Collections.Generic.List<int>>(tableName, "required_achievements");
             RequiredKnowledges = new global::SpacetimeDB.Col<EquipmentDesc, System.Collections.Generic.List<int>>(tableName, "required_knowledges");
             ShowInProgression = new global::SpacetimeDB.Col<EquipmentDesc, bool>(tableName, "show_in_progression");
+            EquipmentBuffId = new global::SpacetimeDB.Col<EquipmentDesc, int>(tableName, "equipment_buff_id");
+            EquipmentBuffChancePerHit = new global::SpacetimeDB.Col<EquipmentDesc, float>(tableName, "equipment_buff_chance_per_hit");
+            EquipmentBuffSkillId = new global::SpacetimeDB.Col<EquipmentDesc, int>(tableName, "equipment_buff_skill_id");
         }
     }
 

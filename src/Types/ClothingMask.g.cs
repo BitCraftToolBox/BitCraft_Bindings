@@ -15,5 +15,6 @@ namespace BitCraftRegion.Types
         HairFront,
         HairBottom,
         HairFull,
+        Bald,
     }
 }
