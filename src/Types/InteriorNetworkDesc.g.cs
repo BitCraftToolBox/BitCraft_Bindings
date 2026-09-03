@@ -24,13 +24,19 @@ namespace BitCraftRegion.Types
         public uint RespawnTime;
         [DataMember(Name = "child_interior_instances")]
         public System.Collections.Generic.List<int> ChildInteriorInstances;
+        [DataMember(Name = "start_collapsing")]
+        public bool StartCollapsing;
+        [DataMember(Name = "destroy_building_on_collapse")]
+        public bool DestroyBuildingOnCollapse;
 
         public InteriorNetworkDesc(
             int BuildingId,
             DimensionType DimensionType,
             uint TriggerCollapseTime,
             uint RespawnTime,
-            System.Collections.Generic.List<int> ChildInteriorInstances
+            System.Collections.Generic.List<int> ChildInteriorInstances,
+            bool StartCollapsing,
+            bool DestroyBuildingOnCollapse
         )
         {
             this.BuildingId = BuildingId;
@@ -38,6 +44,8 @@ namespace BitCraftRegion.Types
             this.TriggerCollapseTime = TriggerCollapseTime;
             this.RespawnTime = RespawnTime;
             this.ChildInteriorInstances = ChildInteriorInstances;
+            this.StartCollapsing = StartCollapsing;
+            this.DestroyBuildingOnCollapse = DestroyBuildingOnCollapse;
         }
 
         public InteriorNetworkDesc()
