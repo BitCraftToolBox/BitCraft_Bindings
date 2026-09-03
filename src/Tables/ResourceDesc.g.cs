@@ -72,6 +72,7 @@ namespace BitCraftGlobal.Types
         public global::SpacetimeDB.Col<ResourceDesc, int> WaterDepthMin { get; }
         public global::SpacetimeDB.Col<ResourceDesc, int> WaterDepthMax { get; }
         public global::SpacetimeDB.Col<ResourceDesc, int> MaxElevationDelta { get; }
+        public global::SpacetimeDB.NullableCol<ResourceDesc, System.Collections.Generic.List<ResourceDestroyBuildingOutcome>> OnDestroyBuildingOutcomes { get; }
 
         public ResourceDescCols(string tableName)
         {
@@ -107,6 +108,7 @@ namespace BitCraftGlobal.Types
             WaterDepthMin = new global::SpacetimeDB.Col<ResourceDesc, int>(tableName, "water_depth_min");
             WaterDepthMax = new global::SpacetimeDB.Col<ResourceDesc, int>(tableName, "water_depth_max");
             MaxElevationDelta = new global::SpacetimeDB.Col<ResourceDesc, int>(tableName, "max_elevation_delta");
+            OnDestroyBuildingOutcomes = new global::SpacetimeDB.NullableCol<ResourceDesc, System.Collections.Generic.List<ResourceDestroyBuildingOutcome>>(tableName, "on_destroy_building_outcomes");
         }
     }
 

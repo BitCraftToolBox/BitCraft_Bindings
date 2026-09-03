@@ -78,6 +78,8 @@ namespace BitCraftGlobal.Types
         public int WaterDepthMax;
         [DataMember(Name = "max_elevation_delta")]
         public int MaxElevationDelta;
+        [DataMember(Name = "on_destroy_building_outcomes")]
+        public System.Collections.Generic.List<ResourceDestroyBuildingOutcome>? OnDestroyBuildingOutcomes;
 
         public ResourceDesc(
             int Id,
@@ -111,7 +113,8 @@ namespace BitCraftGlobal.Types
             bool SpawnsInWater,
             int WaterDepthMin,
             int WaterDepthMax,
-            int MaxElevationDelta
+            int MaxElevationDelta,
+            System.Collections.Generic.List<ResourceDestroyBuildingOutcome>? OnDestroyBuildingOutcomes
         )
         {
             this.Id = Id;
@@ -146,6 +149,7 @@ namespace BitCraftGlobal.Types
             this.WaterDepthMin = WaterDepthMin;
             this.WaterDepthMax = WaterDepthMax;
             this.MaxElevationDelta = MaxElevationDelta;
+            this.OnDestroyBuildingOutcomes = OnDestroyBuildingOutcomes;
         }
 
         public ResourceDesc()
