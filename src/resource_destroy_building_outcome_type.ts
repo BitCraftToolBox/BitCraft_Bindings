@@ -32,44 +32,36 @@ import {
   type ReducerEventContextInterface,
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
-import { DimensionType as __DimensionType } from "./dimension_type_type";
-
-export type InteriorNetworkDesc = {
+export type ResourceDestroyBuildingOutcome = {
+  probability: number,
   buildingId: number,
-  dimensionType: __DimensionType,
-  triggerCollapseTime: number,
-  respawnTime: number,
-  childInteriorInstances: number[],
-  startCollapsing: boolean,
-  destroyBuildingOnCollapse: boolean,
+  radiusMin: number,
+  radiusMax: number,
 };
 
 /**
  * A namespace for generated helper functions.
  */
-export namespace InteriorNetworkDesc {
+export namespace ResourceDestroyBuildingOutcome {
   /**
   * A function which returns this type represented as an AlgebraicType.
   * This function is derived from the AlgebraicType used to generate this type.
   */
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createProductType([
+      new ProductTypeElement("probability", AlgebraicType.createF32Type()),
       new ProductTypeElement("buildingId", AlgebraicType.createI32Type()),
-      new ProductTypeElement("dimensionType", __DimensionType.getTypeScriptAlgebraicType()),
-      new ProductTypeElement("triggerCollapseTime", AlgebraicType.createU32Type()),
-      new ProductTypeElement("respawnTime", AlgebraicType.createU32Type()),
-      new ProductTypeElement("childInteriorInstances", AlgebraicType.createArrayType(AlgebraicType.createI32Type())),
-      new ProductTypeElement("startCollapsing", AlgebraicType.createBoolType()),
-      new ProductTypeElement("destroyBuildingOnCollapse", AlgebraicType.createBoolType()),
+      new ProductTypeElement("radiusMin", AlgebraicType.createI32Type()),
+      new ProductTypeElement("radiusMax", AlgebraicType.createI32Type()),
     ]);
   }
 
-  export function serialize(writer: BinaryWriter, value: InteriorNetworkDesc): void {
-    InteriorNetworkDesc.getTypeScriptAlgebraicType().serialize(writer, value);
+  export function serialize(writer: BinaryWriter, value: ResourceDestroyBuildingOutcome): void {
+    ResourceDestroyBuildingOutcome.getTypeScriptAlgebraicType().serialize(writer, value);
   }
 
-  export function deserialize(reader: BinaryReader): InteriorNetworkDesc {
-    return InteriorNetworkDesc.getTypeScriptAlgebraicType().deserialize(reader);
+  export function deserialize(reader: BinaryReader): ResourceDestroyBuildingOutcome {
+    return ResourceDestroyBuildingOutcome.getTypeScriptAlgebraicType().deserialize(reader);
   }
 
 }

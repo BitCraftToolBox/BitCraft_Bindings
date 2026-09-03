@@ -2666,6 +2666,8 @@ import { ResourceCount } from "./resource_count_type.ts";
 export { ResourceCount };
 import { ResourceDesc } from "./resource_desc_type.ts";
 export { ResourceDesc };
+import { ResourceDestroyBuildingOutcome } from "./resource_destroy_building_outcome_type.ts";
+export { ResourceDestroyBuildingOutcome };
 import { ResourceGrowthRecipeDesc } from "./resource_growth_recipe_desc_type.ts";
 export { ResourceGrowthRecipeDesc };
 import { ResourceHealthState } from "./resource_health_state_type.ts";

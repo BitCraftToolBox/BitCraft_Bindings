@@ -35,6 +35,7 @@ import {
 import { FootprintTile as __FootprintTile } from "./footprint_tile_type";
 import { Rarity as __Rarity } from "./rarity_type";
 import { ItemStack as __ItemStack } from "./item_stack_type";
+import { ResourceDestroyBuildingOutcome as __ResourceDestroyBuildingOutcome } from "./resource_destroy_building_outcome_type";
 
 export type ResourceDesc = {
   id: number,
@@ -69,6 +70,7 @@ export type ResourceDesc = {
   waterDepthMin: number,
   waterDepthMax: number,
   maxElevationDelta: number,
+  onDestroyBuildingOutcomes: __ResourceDestroyBuildingOutcome[] | undefined,
 };
 
 /**
@@ -113,6 +115,7 @@ export namespace ResourceDesc {
       new ProductTypeElement("waterDepthMin", AlgebraicType.createI32Type()),
       new ProductTypeElement("waterDepthMax", AlgebraicType.createI32Type()),
       new ProductTypeElement("maxElevationDelta", AlgebraicType.createI32Type()),
+      new ProductTypeElement("onDestroyBuildingOutcomes", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__ResourceDestroyBuildingOutcome.getTypeScriptAlgebraicType()))),
     ]);
   }
 
