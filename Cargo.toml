@@ -1,0 +1,7 @@
+[package]
+name = "region-bindings"
+edition = "2024"
+version = "0.1.0"
+
+[dependencies]
+spacetimedb-sdk = { version = "2.10.0" }
