@@ -6236,6 +6236,14 @@ export const PlayerUsernameState = __t.object("PlayerUsernameState", {
 });
 export type PlayerUsernameState = __Infer<typeof PlayerUsernameState>;
 
+// The tagged union or sum type for the algebraic type `PlayerVoteAnswer`.
+export const PlayerVoteAnswer = __t.enum("PlayerVoteAnswer", {
+  None: __t.unit(),
+  No: __t.unit(),
+  Yes: __t.unit(),
+});
+export type PlayerVoteAnswer = __Infer<typeof PlayerVoteAnswer>;
+
 export const PlayerVoteAnswerRequest = __t.object("PlayerVoteAnswerRequest", {
   voteEntityId: __t.u64(),
   accept: __t.bool(),
