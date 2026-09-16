@@ -313,6 +313,23 @@ export const AttachedHerdsState = __t.object("AttachedHerdsState", {
 });
 export type AttachedHerdsState = __Infer<typeof AttachedHerdsState>;
 
+export const AttackEvent = __t.object("AttackEvent", {
+  attackerEntityId: __t.u64(),
+  defenderEntityId: __t.u64(),
+  combatActionId: __t.i32(),
+  damage: __t.i32(),
+  isCrit: __t.bool(),
+  isDodge: __t.bool(),
+});
+export type AttackEvent = __Infer<typeof AttackEvent>;
+
+export const AttackImpactEvent = __t.object("AttackImpactEvent", {
+  get timer() {
+    return AttackImpactTimerMigrated;
+  },
+});
+export type AttackImpactEvent = __Infer<typeof AttackImpactEvent>;
+
 export const AttackImpactTimer = __t.object("AttackImpactTimer", {
   scheduledId: __t.u64(),
   scheduledAt: __t.scheduleAt(),
@@ -573,6 +590,14 @@ export const BuildingDecayLoopTimer = __t.object("BuildingDecayLoopTimer", {
 });
 export type BuildingDecayLoopTimer = __Infer<typeof BuildingDecayLoopTimer>;
 
+export const BuildingDeconstructStartEvent = __t.object("BuildingDeconstructStartEvent", {
+  actorId: __t.u64(),
+  get request() {
+    return PlayerBuildingDeconstructRequest;
+  },
+});
+export type BuildingDeconstructStartEvent = __Infer<typeof BuildingDeconstructStartEvent>;
+
 export const BuildingDesc = __t.object("BuildingDesc", {
   id: __t.i32(),
   get functions() {
@@ -692,6 +717,14 @@ export const BuildingPortalDesc = __t.object("BuildingPortalDesc", {
   posZ: __t.i32(),
 });
 export type BuildingPortalDesc = __Infer<typeof BuildingPortalDesc>;
+
+export const BuildingRepairStartEvent = __t.object("BuildingRepairStartEvent", {
+  actorId: __t.u64(),
+  get request() {
+    return PlayerBuildingRepairRequest;
+  },
+});
+export type BuildingRepairStartEvent = __Infer<typeof BuildingRepairStartEvent>;
 
 export const BuildingRepairsDesc = __t.object("BuildingRepairsDesc", {
   cargoId: __t.i32(),
@@ -1178,6 +1211,14 @@ export const ClaimResupplyRequest = __t.object("ClaimResupplyRequest", {
 });
 export type ClaimResupplyRequest = __Infer<typeof ClaimResupplyRequest>;
 
+export const ClaimResupplyStartEvent = __t.object("ClaimResupplyStartEvent", {
+  actorId: __t.u64(),
+  get request() {
+    return ClaimResupplyRequest;
+  },
+});
+export type ClaimResupplyStartEvent = __Infer<typeof ClaimResupplyStartEvent>;
+
 export const ClaimSetNameMsg = __t.object("ClaimSetNameMsg", {
   playerEntityId: __t.u64(),
   claimEntityId: __t.u64(),
@@ -1583,6 +1624,30 @@ export const ContributionState = __t.object("ContributionState", {
 });
 export type ContributionState = __Infer<typeof ContributionState>;
 
+export const CraftContinueStartEvent = __t.object("CraftContinueStartEvent", {
+  actorId: __t.u64(),
+  get request() {
+    return PlayerCraftContinueRequest;
+  },
+});
+export type CraftContinueStartEvent = __Infer<typeof CraftContinueStartEvent>;
+
+export const CraftEvent = __t.object("CraftEvent", {
+  actorEntityId: __t.u64(),
+  targetEntityId: __t.u64(),
+  progress: __t.i32(),
+  isCrit: __t.bool(),
+});
+export type CraftEvent = __Infer<typeof CraftEvent>;
+
+export const CraftInitiateStartEvent = __t.object("CraftInitiateStartEvent", {
+  actorId: __t.u64(),
+  get request() {
+    return PlayerCraftInitiateRequest;
+  },
+});
+export type CraftInitiateStartEvent = __Infer<typeof CraftInitiateStartEvent>;
+
 export const CraftingRecipeDesc = __t.object("CraftingRecipeDesc", {
   id: __t.i32(),
   name: __t.string(),
@@ -1751,6 +1816,14 @@ export const DeployableDeployRequest = __t.object("DeployableDeployRequest", {
 });
 export type DeployableDeployRequest = __Infer<typeof DeployableDeployRequest>;
 
+export const DeployableDeployStartEvent = __t.object("DeployableDeployStartEvent", {
+  actorId: __t.u64(),
+  get request() {
+    return DeployableDeployRequest;
+  },
+});
+export type DeployableDeployStartEvent = __Infer<typeof DeployableDeployStartEvent>;
+
 export const DeployableDesc = __t.object("DeployableDesc", {
   id: __t.i32(),
   name: __t.string(),
@@ -1797,6 +1870,12 @@ export const DeployableDesc = __t.object("DeployableDesc", {
 });
 export type DeployableDesc = __Infer<typeof DeployableDesc>;
 
+export const DeployableDisembarkEvent = __t.object("DeployableDisembarkEvent", {
+  actorId: __t.u64(),
+  deployableEntityId: __t.u64(),
+});
+export type DeployableDisembarkEvent = __Infer<typeof DeployableDisembarkEvent>;
+
 export const DeployableDismountTimer = __t.object("DeployableDismountTimer", {
   scheduledId: __t.u64(),
   scheduledAt: __t.scheduleAt(),
@@ -1808,6 +1887,21 @@ export const DeployableDismountTimer = __t.object("DeployableDismountTimer", {
   skipDeployableIcon: __t.bool(),
 });
 export type DeployableDismountTimer = __Infer<typeof DeployableDismountTimer>;
+
+export const DeployableMountEvent = __t.object("DeployableMountEvent", {
+  actorId: __t.u64(),
+  deployableEntityId: __t.u64(),
+});
+export type DeployableMountEvent = __Infer<typeof DeployableMountEvent>;
+
+export const DeployableMoveEvent = __t.object("DeployableMoveEvent", {
+  actorId: __t.u64(),
+  get request() {
+    return PlayerDeployableMoveRequest;
+  },
+  isFollow: __t.bool(),
+});
+export type DeployableMoveEvent = __Infer<typeof DeployableMoveEvent>;
 
 export const DeployableState = __t.object("DeployableState", {
   entityId: __t.u64(),
@@ -1837,6 +1931,14 @@ export const DeployableStoreRequest = __t.object("DeployableStoreRequest", {
   remotely: __t.bool(),
 });
 export type DeployableStoreRequest = __Infer<typeof DeployableStoreRequest>;
+
+export const DeployableStoreStartEvent = __t.object("DeployableStoreStartEvent", {
+  actorId: __t.u64(),
+  get request() {
+    return DeployableStoreRequest;
+  },
+});
+export type DeployableStoreStartEvent = __Infer<typeof DeployableStoreStartEvent>;
 
 // The tagged union or sum type for the algebraic type `DeployableType`.
 export const DeployableType = __t.enum("DeployableType", {
@@ -2005,6 +2107,14 @@ export const EmoteDesc = __t.object("EmoteDesc", {
   toolMeshIndex: __t.i32(),
 });
 export type EmoteDesc = __Infer<typeof EmoteDesc>;
+
+export const EmoteStartEvent = __t.object("EmoteStartEvent", {
+  actorId: __t.u64(),
+  get request() {
+    return PlayerEmoteRequest;
+  },
+});
+export type EmoteStartEvent = __Infer<typeof EmoteStartEvent>;
 
 export const EmpireAddCurrencyMsg = __t.object("EmpireAddCurrencyMsg", {
   empireEntityId: __t.u64(),
@@ -2306,6 +2416,14 @@ export const EmpireResupplyNodeRequest = __t.object("EmpireResupplyNodeRequest",
 });
 export type EmpireResupplyNodeRequest = __Infer<typeof EmpireResupplyNodeRequest>;
 
+export const EmpireResupplyNodeStartEvent = __t.object("EmpireResupplyNodeStartEvent", {
+  actorId: __t.u64(),
+  get request() {
+    return EmpireResupplyNodeRequest;
+  },
+});
+export type EmpireResupplyNodeStartEvent = __Infer<typeof EmpireResupplyNodeStartEvent>;
+
 export const EmpireSettlementState = __t.object("EmpireSettlementState", {
   buildingEntityId: __t.u64(),
   claimEntityId: __t.u64(),
@@ -2500,6 +2618,22 @@ export const EnemyDesc = __t.object("EnemyDesc", {
 });
 export type EnemyDesc = __Infer<typeof EnemyDesc>;
 
+export const EnemyDespawnEvent = __t.object("EnemyDespawnEvent", {
+  entityId: __t.u64(),
+  get enemyType() {
+    return EnemyType;
+  },
+  despawnTimestamp: __t.u64(),
+  get location() {
+    return OffsetCoordinatesFloat;
+  },
+  get destination() {
+    return OffsetCoordinatesFloat;
+  },
+  movementTimestamp: __t.u64(),
+});
+export type EnemyDespawnEvent = __Infer<typeof EnemyDespawnEvent>;
+
 export const EnemyDespawnTimer = __t.object("EnemyDespawnTimer", {
   scheduledId: __t.u64(),
   scheduledAt: __t.scheduleAt(),
@@ -2519,6 +2653,13 @@ export const EnemyMobMonitorState = __t.object("EnemyMobMonitorState", {
   },
 });
 export type EnemyMobMonitorState = __Infer<typeof EnemyMobMonitorState>;
+
+export const EnemyMoveEvent = __t.object("EnemyMoveEvent", {
+  get request() {
+    return EnemyMoveRequest;
+  },
+});
+export type EnemyMoveEvent = __Infer<typeof EnemyMoveEvent>;
 
 export const EnemyMoveRequest = __t.object("EnemyMoveRequest", {
   entityId: __t.u64(),
@@ -2672,6 +2813,13 @@ export const EntityAttackRequest = __t.object("EntityAttackRequest", {
   },
 });
 export type EntityAttackRequest = __Infer<typeof EntityAttackRequest>;
+
+export const EntityAttackStartEvent = __t.object("EntityAttackStartEvent", {
+  get request() {
+    return EntityAttackRequest;
+  },
+});
+export type EntityAttackStartEvent = __Infer<typeof EntityAttackStartEvent>;
 
 // The tagged union or sum type for the algebraic type `EntityType`.
 export const EntityType = __t.enum("EntityType", {
@@ -2858,6 +3006,14 @@ export const ExplorationChunksStateV2 = __t.object("ExplorationChunksStateV2", {
 });
 export type ExplorationChunksStateV2 = __Infer<typeof ExplorationChunksStateV2>;
 
+export const ExtractEvent = __t.object("ExtractEvent", {
+  actorEntityId: __t.u64(),
+  targetEntityId: __t.u64(),
+  damage: __t.i32(),
+  isCrit: __t.bool(),
+});
+export type ExtractEvent = __Infer<typeof ExtractEvent>;
+
 export const ExtractOutcomeState = __t.object("ExtractOutcomeState", {
   entityId: __t.u64(),
   targetEntityId: __t.u64(),
@@ -2874,6 +3030,14 @@ export const ExtractOutcomeStateV2 = __t.object("ExtractOutcomeStateV2", {
   isCrit: __t.bool(),
 });
 export type ExtractOutcomeStateV2 = __Infer<typeof ExtractOutcomeStateV2>;
+
+export const ExtractStartEvent = __t.object("ExtractStartEvent", {
+  actorId: __t.u64(),
+  get request() {
+    return PlayerExtractRequest;
+  },
+});
+export type ExtractStartEvent = __Infer<typeof ExtractStartEvent>;
 
 export const ExtractionRecipeDesc = __t.object("ExtractionRecipeDesc", {
   id: __t.i32(),
@@ -3566,6 +3730,14 @@ export const ItemConversionRecipeDesc = __t.object("ItemConversionRecipeDesc", {
 });
 export type ItemConversionRecipeDesc = __Infer<typeof ItemConversionRecipeDesc>;
 
+export const ItemConvertStartEvent = __t.object("ItemConvertStartEvent", {
+  actorId: __t.u64(),
+  get request() {
+    return PlayerItemConvertRequest;
+  },
+});
+export type ItemConvertStartEvent = __Infer<typeof ItemConvertStartEvent>;
+
 export const ItemDesc = __t.object("ItemDesc", {
   id: __t.i32(),
   name: __t.string(),
@@ -3966,6 +4138,32 @@ export const LostItemsState = __t.object("LostItemsState", {
   },
 });
 export type LostItemsState = __Infer<typeof LostItemsState>;
+
+// The tagged union or sum type for the algebraic type `MarketOrderType`.
+export const MarketOrderType = __t.enum("MarketOrderType", {
+  BuyOrder: __t.unit(),
+  SellOrder: __t.unit(),
+});
+export type MarketOrderType = __Infer<typeof MarketOrderType>;
+
+export const MarketTradeEvent = __t.object("MarketTradeEvent", {
+  claimEntityId: __t.u64(),
+  listingEntityId: __t.u64(),
+  get listingType() {
+    return MarketOrderType;
+  },
+  buyerEntityId: __t.u64(),
+  sellerEntityId: __t.u64(),
+  itemId: __t.i32(),
+  get itemType() {
+    return ItemType;
+  },
+  quantity: __t.i32(),
+  unitPrice: __t.i32(),
+  listingRemainingQuantity: __t.i32(),
+  timestamp: __t.timestamp(),
+});
+export type MarketTradeEvent = __Infer<typeof MarketTradeEvent>;
 
 export const MarketplaceState = __t.object("MarketplaceState", {
   buildingEntityId: __t.u64(),
@@ -5016,6 +5214,22 @@ export const PavedTileState = __t.object("PavedTileState", {
 });
 export type PavedTileState = __Infer<typeof PavedTileState>;
 
+export const PavingDestroyTileStartEvent = __t.object("PavingDestroyTileStartEvent", {
+  actorId: __t.u64(),
+  get request() {
+    return PlayerPavingDestroyTileRequest;
+  },
+});
+export type PavingDestroyTileStartEvent = __Infer<typeof PavingDestroyTileStartEvent>;
+
+export const PavingPlaceTileStartEvent = __t.object("PavingPlaceTileStartEvent", {
+  actorId: __t.u64(),
+  get request() {
+    return PlayerPavingPlaceTileRequest;
+  },
+});
+export type PavingPlaceTileStartEvent = __Infer<typeof PavingPlaceTileStartEvent>;
+
 export const PavingTileDesc = __t.object("PavingTileDesc", {
   id: __t.i32(),
   name: __t.string(),
@@ -5094,6 +5308,22 @@ export const PillarShapingDesc = __t.object("PillarShapingDesc", {
 });
 export type PillarShapingDesc = __Infer<typeof PillarShapingDesc>;
 
+export const PillarShapingDestroyStartEvent = __t.object("PillarShapingDestroyStartEvent", {
+  actorId: __t.u64(),
+  get request() {
+    return PlayerPillarShapingDestroyRequest;
+  },
+});
+export type PillarShapingDestroyStartEvent = __Infer<typeof PillarShapingDestroyStartEvent>;
+
+export const PillarShapingPlacePillarStartEvent = __t.object("PillarShapingPlacePillarStartEvent", {
+  actorId: __t.u64(),
+  get request() {
+    return PlayerPillarShapingPlaceRequest;
+  },
+});
+export type PillarShapingPlacePillarStartEvent = __Infer<typeof PillarShapingPlacePillarStartEvent>;
+
 export const PillarShapingState = __t.object("PillarShapingState", {
   entityId: __t.u64(),
   pillarTypeId: __t.i32(),
@@ -5158,6 +5388,14 @@ export const PlaceableGrowthOutcomeV2 = __t.object("PlaceableGrowthOutcomeV2", {
 });
 export type PlaceableGrowthOutcomeV2 = __Infer<typeof PlaceableGrowthOutcomeV2>;
 
+export const PlaceableInteractStartEvent = __t.object("PlaceableInteractStartEvent", {
+  actorId: __t.u64(),
+  get request() {
+    return PlayerPlaceableInteractRequest;
+  },
+});
+export type PlaceableInteractStartEvent = __Infer<typeof PlaceableInteractStartEvent>;
+
 export const PlaceableInteractionDesc = __t.object("PlaceableInteractionDesc", {
   id: __t.i32(),
   verbPhrase: __t.string(),
@@ -5196,6 +5434,14 @@ export const PlaceableInteractionDesc = __t.object("PlaceableInteractionDesc", {
   },
 });
 export type PlaceableInteractionDesc = __Infer<typeof PlaceableInteractionDesc>;
+
+export const PlaceablePlaceStartEvent = __t.object("PlaceablePlaceStartEvent", {
+  actorId: __t.u64(),
+  get request() {
+    return PlayerPlaceablePlaceRequest;
+  },
+});
+export type PlaceablePlaceStartEvent = __Infer<typeof PlaceablePlaceStartEvent>;
 
 export const PlaceablePlacementDesc = __t.object("PlaceablePlacementDesc", {
   id: __t.i32(),
@@ -5526,6 +5772,14 @@ export const PlayerClimbRequest = __t.object("PlayerClimbRequest", {
 });
 export type PlayerClimbRequest = __Infer<typeof PlayerClimbRequest>;
 
+export const PlayerClimbStartEvent = __t.object("PlayerClimbStartEvent", {
+  actorId: __t.u64(),
+  get request() {
+    return PlayerClimbRequest;
+  },
+});
+export type PlayerClimbStartEvent = __Infer<typeof PlayerClimbStartEvent>;
+
 export const PlayerClosedListingCollectRequest = __t.object("PlayerClosedListingCollectRequest", {
   buildingEntityId: __t.u64(),
   auctionListingEntityId: __t.u64(),
@@ -5589,6 +5843,19 @@ export const PlayerCreateMsg = __t.object("PlayerCreateMsg", {
   identity: __t.identity(),
 });
 export type PlayerCreateMsg = __Infer<typeof PlayerCreateMsg>;
+
+export const PlayerDeathEvent = __t.object("PlayerDeathEvent", {
+  playerEntityId: __t.u64(),
+});
+export type PlayerDeathEvent = __Infer<typeof PlayerDeathEvent>;
+
+export const PlayerDeathStartEvent = __t.object("PlayerDeathStartEvent", {
+  actorId: __t.u64(),
+  get timer() {
+    return PlayerDeathTimer;
+  },
+});
+export type PlayerDeathStartEvent = __Infer<typeof PlayerDeathStartEvent>;
 
 export const PlayerDeathTimer = __t.object("PlayerDeathTimer", {
   scheduledId: __t.u64(),
@@ -5825,6 +6092,14 @@ export const PlayerLowercaseUsernameState = __t.object("PlayerLowercaseUsernameS
   usernameLowercase: __t.string(),
 });
 export type PlayerLowercaseUsernameState = __Infer<typeof PlayerLowercaseUsernameState>;
+
+export const PlayerMoveEvent = __t.object("PlayerMoveEvent", {
+  actorId: __t.u64(),
+  get request() {
+    return PlayerMoveRequest;
+  },
+});
+export type PlayerMoveEvent = __Infer<typeof PlayerMoveEvent>;
 
 export const PlayerMoveRequest = __t.object("PlayerMoveRequest", {
   timestamp: __t.u64(),
@@ -6110,6 +6385,22 @@ export const PlayerSignInRequest = __t.object("PlayerSignInRequest", {
 });
 export type PlayerSignInRequest = __Infer<typeof PlayerSignInRequest>;
 
+export const PlayerSignedOutEvent = __t.object("PlayerSignedOutEvent", {
+  identity: __t.identity(),
+  get reason() {
+    return PlayerSignedOutReason;
+  },
+});
+export type PlayerSignedOutEvent = __Infer<typeof PlayerSignedOutEvent>;
+
+// The tagged union or sum type for the algebraic type `PlayerSignedOutReason`.
+export const PlayerSignedOutReason = __t.enum("PlayerSignedOutReason", {
+  Inactivity: __t.unit(),
+  AdminAction: __t.unit(),
+  ServerAction: __t.unit(),
+});
+export type PlayerSignedOutReason = __Infer<typeof PlayerSignedOutReason>;
+
 export const PlayerSkipQueueMsg = __t.object("PlayerSkipQueueMsg", {
   playerIdentity: __t.identity(),
 });
@@ -6134,16 +6425,37 @@ export const PlayerState = __t.object("PlayerState", {
 });
 export type PlayerState = __Infer<typeof PlayerState>;
 
+export const PlayerTeleportEvent = __t.object("PlayerTeleportEvent", {
+  actorId: __t.u64(),
+});
+export type PlayerTeleportEvent = __Infer<typeof PlayerTeleportEvent>;
+
 export const PlayerTeleportHomeRequest = __t.object("PlayerTeleportHomeRequest", {
   dummy: __t.i32(),
 });
 export type PlayerTeleportHomeRequest = __Infer<typeof PlayerTeleportHomeRequest>;
+
+export const PlayerTeleportHomeStartEvent = __t.object("PlayerTeleportHomeStartEvent", {
+  actorId: __t.u64(),
+  get request() {
+    return PlayerTeleportHomeRequest;
+  },
+});
+export type PlayerTeleportHomeStartEvent = __Infer<typeof PlayerTeleportHomeStartEvent>;
 
 export const PlayerTeleportWaystoneRequest = __t.object("PlayerTeleportWaystoneRequest", {
   entityIdFrom: __t.u64(),
   entityIdTo: __t.u64(),
 });
 export type PlayerTeleportWaystoneRequest = __Infer<typeof PlayerTeleportWaystoneRequest>;
+
+export const PlayerTeleportWaystoneStartEvent = __t.object("PlayerTeleportWaystoneStartEvent", {
+  actorId: __t.u64(),
+  get request() {
+    return PlayerTeleportWaystoneRequest;
+  },
+});
+export type PlayerTeleportWaystoneStartEvent = __Infer<typeof PlayerTeleportWaystoneStartEvent>;
 
 export const PlayerTerraformCancelRequest = __t.object("PlayerTerraformCancelRequest", {
   get coordinates() {
@@ -6405,6 +6717,14 @@ export const ProgressiveActionStatus = __t.enum("ProgressiveActionStatus", {
 });
 export type ProgressiveActionStatus = __Infer<typeof ProgressiveActionStatus>;
 
+export const ProjectSiteAdvanceProjectStartEvent = __t.object("ProjectSiteAdvanceProjectStartEvent", {
+  actorId: __t.u64(),
+  get request() {
+    return PlayerProjectSiteAdvanceProjectRequest;
+  },
+});
+export type ProjectSiteAdvanceProjectStartEvent = __Infer<typeof ProjectSiteAdvanceProjectStartEvent>;
+
 export const ProjectSiteState = __t.object("ProjectSiteState", {
   entityId: __t.u64(),
   constructionRecipeId: __t.i32(),
@@ -6422,6 +6742,13 @@ export const ProjectSiteState = __t.object("ProjectSiteState", {
   lastHitTimestamp: __t.timestamp(),
 });
 export type ProjectSiteState = __Infer<typeof ProjectSiteState>;
+
+export const ProspectStartEvent = __t.object("ProspectStartEvent", {
+  actorId: __t.u64(),
+  prospectingId: __t.i32(),
+  timestamp: __t.u64(),
+});
+export type ProspectStartEvent = __Infer<typeof ProspectStartEvent>;
 
 export const ProspectingDesc = __t.object("ProspectingDesc", {
   id: __t.i32(),
@@ -6865,6 +7192,16 @@ export const ResourceCount = __t.object("ResourceCount", {
 });
 export type ResourceCount = __Infer<typeof ResourceCount>;
 
+export const ResourceDepletedEvent = __t.object("ResourceDepletedEvent", {
+  playerEntityId: __t.u64(),
+  resourceEntityId: __t.u64(),
+  get location() {
+    return SmallHexTileMessage;
+  },
+  showTimeLeft: __t.bool(),
+});
+export type ResourceDepletedEvent = __Infer<typeof ResourceDepletedEvent>;
+
 export const ResourceDesc = __t.object("ResourceDesc", {
   id: __t.i32(),
   name: __t.string(),
@@ -7092,6 +7429,14 @@ export const ServerIdentity = __t.object("ServerIdentity", {
 });
 export type ServerIdentity = __Infer<typeof ServerIdentity>;
 
+export const ServerTeleportEvent = __t.object("ServerTeleportEvent", {
+  playerEntityId: __t.u64(),
+  get reason() {
+    return ServerTeleportReason;
+  },
+});
+export type ServerTeleportEvent = __Infer<typeof ServerTeleportEvent>;
+
 // The tagged union or sum type for the algebraic type `ServerTeleportReason`.
 export const ServerTeleportReason = __t.enum("ServerTeleportReason", {
   RuinCollapse: __t.unit(),
@@ -7103,6 +7448,14 @@ export const ServerTeleportReason = __t.enum("ServerTeleportReason", {
   PlayerHousingDeconstructed: __t.unit(),
 });
 export type ServerTeleportReason = __Infer<typeof ServerTeleportReason>;
+
+export const SetHomeEvent = __t.object("SetHomeEvent", {
+  actorId: __t.u64(),
+  get request() {
+    return PlayerSetHomeRequest;
+  },
+});
+export type SetHomeEvent = __Infer<typeof SetHomeEvent>;
 
 export const SignPlayerOutMsg = __t.object("SignPlayerOutMsg", {
   playerIdentity: __t.identity(),
@@ -7185,6 +7538,14 @@ export const SkillType = __t.enum("SkillType", {
   HexiteGathering: __t.unit(),
 });
 export type SkillType = __Infer<typeof SkillType>;
+
+export const SleepEvent = __t.object("SleepEvent", {
+  actorId: __t.u64(),
+  get request() {
+    return PlayerSleepRequest;
+  },
+});
+export type SleepEvent = __Infer<typeof SleepEvent>;
 
 export const SmallHexTileMessage = __t.object("SmallHexTileMessage", {
   x: __t.i32(),
@@ -7366,6 +7727,14 @@ export const TerraformRecipeDesc = __t.object("TerraformRecipeDesc", {
   },
 });
 export type TerraformRecipeDesc = __Infer<typeof TerraformRecipeDesc>;
+
+export const TerraformStartEvent = __t.object("TerraformStartEvent", {
+  actorId: __t.u64(),
+  get request() {
+    return PlayerTerraformRequest;
+  },
+});
+export type TerraformStartEvent = __Infer<typeof TerraformStartEvent>;
 
 export const TerrainCell = __t.object("TerrainCell", {
   x: __t.i32(),
