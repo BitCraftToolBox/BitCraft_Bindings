@@ -139,6 +139,10 @@ pub mod alert_state_type;
 pub mod alert_type_type;
 pub mod attached_herds_state_table;
 pub mod attached_herds_state_type;
+pub mod attack_event_table;
+pub mod attack_event_type;
+pub mod attack_impact_event_table;
+pub mod attack_impact_event_type;
 pub mod attack_impact_migrated_reducer;
 pub mod attack_impact_reducer;
 pub mod attack_impact_timer_migrated_table;
@@ -160,6 +164,9 @@ pub mod auto_logout_loop_timer_table;
 pub mod auto_logout_loop_timer_type;
 pub mod bank_state_table;
 pub mod bank_state_type;
+pub mod barter_stall_inventory_change_reason_type;
+pub mod barter_stall_inventory_event_table;
+pub mod barter_stall_inventory_event_type;
 pub mod barter_stall_order_accept_reducer;
 pub mod barter_stall_order_create_reducer;
 pub mod barter_stall_order_delete_reducer;
@@ -180,6 +187,8 @@ pub mod buff_desc_type;
 pub mod buff_effect_type;
 pub mod buff_type_desc_table;
 pub mod buff_type_desc_type;
+pub mod building_buff_activate_event_table;
+pub mod building_buff_activate_event_type;
 pub mod building_buff_desc_table;
 pub mod building_buff_desc_type;
 pub mod building_category_type;
@@ -189,6 +198,8 @@ pub mod building_decay_agent_loop_reducer;
 pub mod building_decay_loop_timer_table;
 pub mod building_decay_loop_timer_type;
 pub mod building_deconstruct_reducer;
+pub mod building_deconstruct_start_event_table;
+pub mod building_deconstruct_start_event_type;
 pub mod building_deconstruct_start_reducer;
 pub mod building_desc_table;
 pub mod building_desc_type;
@@ -209,6 +220,8 @@ pub mod building_placement_type;
 pub mod building_portal_desc_table;
 pub mod building_portal_desc_type;
 pub mod building_repair_reducer;
+pub mod building_repair_start_event_table;
+pub mod building_repair_start_event_type;
 pub mod building_repair_start_reducer;
 pub mod building_repairs_desc_table;
 pub mod building_repairs_desc_type;
@@ -330,6 +343,8 @@ pub mod claim_remove_tile_reducer;
 pub mod claim_rename_reducer;
 pub mod claim_resupply_reducer;
 pub mod claim_resupply_request_type;
+pub mod claim_resupply_start_event_table;
+pub mod claim_resupply_start_event_type;
 pub mod claim_resupply_start_reducer;
 pub mod claim_set_member_permissions_reducer;
 pub mod claim_set_name_msg_type;
@@ -357,7 +372,10 @@ pub mod claim_tile_cost_type;
 pub mod claim_tile_state_table;
 pub mod claim_tile_state_type;
 pub mod claim_transfer_ownership_reducer;
+pub mod claim_treasury_change_reason_type;
 pub mod claim_treasury_deposit_reducer;
+pub mod claim_treasury_event_table;
+pub mod claim_treasury_event_type;
 pub mod claim_type_type;
 pub mod claim_withdraw_from_treasury_reducer;
 pub mod clear_staged_static_data_reducer;
@@ -410,9 +428,17 @@ pub mod convert_deed_to_collectible_reducer;
 pub mod craft_cancel_reducer;
 pub mod craft_collect_all_reducer;
 pub mod craft_collect_reducer;
+pub mod craft_completed_event_table;
+pub mod craft_completed_event_type;
 pub mod craft_continue_reducer;
+pub mod craft_continue_start_event_table;
+pub mod craft_continue_start_event_type;
 pub mod craft_continue_start_reducer;
+pub mod craft_event_table;
+pub mod craft_event_type;
 pub mod craft_initiate_reducer;
+pub mod craft_initiate_start_event_table;
+pub mod craft_initiate_start_event_type;
 pub mod craft_initiate_start_reducer;
 pub mod craft_set_public_reducer;
 pub mod crafting_recipe_desc_table;
@@ -449,16 +475,24 @@ pub mod deployable_collectible_state_table;
 pub mod deployable_collectible_state_type;
 pub mod deployable_deploy_reducer;
 pub mod deployable_deploy_request_type;
+pub mod deployable_deploy_start_event_table;
+pub mod deployable_deploy_start_event_type;
 pub mod deployable_deploy_start_reducer;
 pub mod deployable_desc_table;
 pub mod deployable_desc_type;
+pub mod deployable_disembark_event_table;
+pub mod deployable_disembark_event_type;
 pub mod deployable_dismount_reducer;
 pub mod deployable_dismount_scheduled_reducer;
 pub mod deployable_dismount_server_reducer;
 pub mod deployable_dismount_timer_table;
 pub mod deployable_dismount_timer_type;
 pub mod deployable_follow_reducer;
+pub mod deployable_mount_event_table;
+pub mod deployable_mount_event_type;
 pub mod deployable_mount_reducer;
+pub mod deployable_move_event_table;
+pub mod deployable_move_event_type;
 pub mod deployable_move_off_bounds_reducer;
 pub mod deployable_move_off_claim_reducer;
 pub mod deployable_move_reducer;
@@ -469,6 +503,8 @@ pub mod deployable_state_v_2_type;
 pub mod deployable_store_from_collectible_id_reducer;
 pub mod deployable_store_reducer;
 pub mod deployable_store_request_type;
+pub mod deployable_store_start_event_table;
+pub mod deployable_store_start_event_type;
 pub mod deployable_store_start_reducer;
 pub mod deployable_toggle_auto_follow_reducer;
 pub mod deployable_type_type;
@@ -534,6 +570,8 @@ pub mod elevator_desc_type;
 pub mod emote_desc_table;
 pub mod emote_desc_type;
 pub mod emote_reducer;
+pub mod emote_start_event_table;
+pub mod emote_start_event_type;
 pub mod emote_start_reducer;
 pub mod empire_add_currency_msg_type;
 pub mod empire_add_siege_supplies_reducer;
@@ -587,6 +625,8 @@ pub mod empire_remove_crown_msg_type;
 pub mod empire_resupply_node_msg_type;
 pub mod empire_resupply_node_reducer;
 pub mod empire_resupply_node_request_type;
+pub mod empire_resupply_node_start_event_table;
+pub mod empire_resupply_node_start_event_type;
 pub mod empire_resupply_node_start_reducer;
 pub mod empire_settlement_state_op_type;
 pub mod empire_settlement_state_table;
@@ -614,6 +654,8 @@ pub mod enemy_clear_aggro_reducer;
 pub mod enemy_clear_aggro_request_type;
 pub mod enemy_desc_table;
 pub mod enemy_desc_type;
+pub mod enemy_despawn_event_table;
+pub mod enemy_despawn_event_type;
 pub mod enemy_despawn_from_mob_monitor_batch_reducer;
 pub mod enemy_despawn_from_mob_monitor_reducer;
 pub mod enemy_despawn_reducer;
@@ -622,6 +664,8 @@ pub mod enemy_despawn_timer_type;
 pub mod enemy_mob_monitor_state_table;
 pub mod enemy_mob_monitor_state_type;
 pub mod enemy_move_batch_reducer;
+pub mod enemy_move_event_table;
+pub mod enemy_move_event_type;
 pub mod enemy_move_reducer;
 pub mod enemy_move_request_type;
 pub mod enemy_regen_agent_loop_reducer;
@@ -644,6 +688,8 @@ pub mod enemy_state_type;
 pub mod enemy_status_type;
 pub mod enemy_type_type;
 pub mod entity_attack_request_type;
+pub mod entity_attack_start_event_table;
+pub mod entity_attack_start_event_type;
 pub mod entity_type_type;
 pub mod environment_debuff_agent_loop_reducer;
 pub mod environment_debuff_desc_table;
@@ -674,11 +720,15 @@ pub mod exploration_chunks_state_type;
 pub mod exploration_chunks_state_v_2_table;
 pub mod exploration_chunks_state_v_2_type;
 pub mod exposed_breadcrumbs_table;
+pub mod extract_event_table;
+pub mod extract_event_type;
 pub mod extract_outcome_state_table;
 pub mod extract_outcome_state_type;
 pub mod extract_outcome_state_v_1_table;
 pub mod extract_outcome_state_v_2_type;
 pub mod extract_reducer;
+pub mod extract_start_event_table;
+pub mod extract_start_event_type;
 pub mod extract_start_reducer;
 pub mod extraction_recipe_desc_table;
 pub mod extraction_recipe_desc_type;
@@ -969,6 +1019,8 @@ pub mod item_conversion_location_context_type;
 pub mod item_conversion_recipe_desc_table;
 pub mod item_conversion_recipe_desc_type;
 pub mod item_convert_reducer;
+pub mod item_convert_start_event_table;
+pub mod item_convert_start_event_type;
 pub mod item_convert_start_reducer;
 pub mod item_desc_table;
 pub mod item_desc_type;
@@ -1063,6 +1115,9 @@ pub mod loot_table_desc_table;
 pub mod loot_table_desc_type;
 pub mod lost_items_state_table;
 pub mod lost_items_state_type;
+pub mod market_order_type_type;
+pub mod market_trade_event_table;
+pub mod market_trade_event_type;
 pub mod marketplace_state_table;
 pub mod marketplace_state_type;
 pub mod message_contents_type;
@@ -1157,8 +1212,12 @@ pub mod pause_play_timer_reducer;
 pub mod paved_tile_state_table;
 pub mod paved_tile_state_type;
 pub mod paving_destroy_tile_reducer;
+pub mod paving_destroy_tile_start_event_table;
+pub mod paving_destroy_tile_start_event_type;
 pub mod paving_destroy_tile_start_reducer;
 pub mod paving_place_tile_reducer;
+pub mod paving_place_tile_start_event_table;
+pub mod paving_place_tile_start_event_type;
 pub mod paving_place_tile_start_reducer;
 pub mod paving_recipe_discovery_cargo_desc_table;
 pub mod paving_recipe_discovery_item_desc_table;
@@ -1173,8 +1232,12 @@ pub mod permission_type;
 pub mod pillar_shaping_desc_table;
 pub mod pillar_shaping_desc_type;
 pub mod pillar_shaping_destroy_reducer;
+pub mod pillar_shaping_destroy_start_event_table;
+pub mod pillar_shaping_destroy_start_event_type;
 pub mod pillar_shaping_destroy_start_reducer;
 pub mod pillar_shaping_place_pillar_reducer;
+pub mod pillar_shaping_place_pillar_start_event_table;
+pub mod pillar_shaping_place_pillar_start_event_type;
 pub mod pillar_shaping_place_pillar_start_reducer;
 pub mod pillar_shaping_recipe_discovery_cargo_desc_table;
 pub mod pillar_shaping_recipe_discovery_item_desc_table;
@@ -1192,10 +1255,14 @@ pub mod placeable_growth_outcome_v_2_type;
 pub mod placeable_growth_scheduled_reducer;
 pub mod placeable_growth_timer_table;
 pub mod placeable_interact_reducer;
+pub mod placeable_interact_start_event_table;
+pub mod placeable_interact_start_event_type;
 pub mod placeable_interact_start_reducer;
 pub mod placeable_interaction_desc_table;
 pub mod placeable_interaction_desc_type;
 pub mod placeable_place_reducer;
+pub mod placeable_place_start_event_table;
+pub mod placeable_place_start_event_type;
 pub mod placeable_place_start_reducer;
 pub mod placeable_placement_desc_table;
 pub mod placeable_placement_desc_type;
@@ -1240,6 +1307,8 @@ pub mod player_claim_withdraw_from_treasury_request_type;
 pub mod player_clear_action_state_reducer;
 pub mod player_climb_reducer;
 pub mod player_climb_request_type;
+pub mod player_climb_start_event_table;
+pub mod player_climb_start_event_type;
 pub mod player_climb_start_reducer;
 pub mod player_closed_listing_collect_request_type;
 pub mod player_collectible_activate_request_type;
@@ -1253,6 +1322,10 @@ pub mod player_craft_collect_request_type;
 pub mod player_craft_continue_request_type;
 pub mod player_craft_initiate_request_type;
 pub mod player_create_msg_type;
+pub mod player_death_event_table;
+pub mod player_death_event_type;
+pub mod player_death_start_event_table;
+pub mod player_death_start_event_type;
 pub mod player_death_start_reducer;
 pub mod player_death_timer_table;
 pub mod player_death_timer_type;
@@ -1302,6 +1375,8 @@ pub mod player_item_stack_split_request_type;
 pub mod player_item_use_request_type;
 pub mod player_lowercase_username_state_table;
 pub mod player_lowercase_username_state_type;
+pub mod player_move_event_table;
+pub mod player_move_event_type;
 pub mod player_move_reducer;
 pub mod player_move_request_type;
 pub mod player_note_state_table;
@@ -1359,15 +1434,24 @@ pub mod player_settings_state_table;
 pub mod player_settings_state_type;
 pub mod player_settings_state_update_reducer;
 pub mod player_sign_in_request_type;
+pub mod player_signed_out_event_table;
+pub mod player_signed_out_event_type;
+pub mod player_signed_out_reason_type;
 pub mod player_skip_queue_msg_type;
 pub mod player_sleep_request_type;
 pub mod player_state_table;
 pub mod player_state_type;
+pub mod player_teleport_event_table;
+pub mod player_teleport_event_type;
 pub mod player_teleport_home_reducer;
 pub mod player_teleport_home_request_type;
+pub mod player_teleport_home_start_event_table;
+pub mod player_teleport_home_start_event_type;
 pub mod player_teleport_home_start_reducer;
 pub mod player_teleport_waystone_reducer;
 pub mod player_teleport_waystone_request_type;
+pub mod player_teleport_waystone_start_event_table;
+pub mod player_teleport_waystone_start_event_type;
 pub mod player_teleport_waystone_start_reducer;
 pub mod player_terraform_cancel_request_type;
 pub mod player_terraform_request_type;
@@ -1422,12 +1506,16 @@ pub mod progressive_action_state_type;
 pub mod progressive_action_status_type;
 pub mod project_site_add_materials_reducer;
 pub mod project_site_advance_project_reducer;
+pub mod project_site_advance_project_start_event_table;
+pub mod project_site_advance_project_start_event_type;
 pub mod project_site_advance_project_start_reducer;
 pub mod project_site_cancel_reducer;
 pub mod project_site_place_reducer;
 pub mod project_site_state_table;
 pub mod project_site_state_type;
 pub mod prospect_reducer;
+pub mod prospect_start_event_table;
+pub mod prospect_start_event_type;
 pub mod prospect_start_reducer;
 pub mod prospecting_desc_table;
 pub mod prospecting_desc_type;
@@ -1520,6 +1608,8 @@ pub mod resource_clump_desc_type;
 pub mod resource_clump_info_type;
 pub mod resource_count_table;
 pub mod resource_count_type;
+pub mod resource_depleted_event_table;
+pub mod resource_depleted_event_type;
 pub mod resource_desc_table;
 pub mod resource_desc_type;
 pub mod resource_destroy_building_outcome_type;
@@ -1567,8 +1657,12 @@ pub mod secondary_knowledge_desc_type;
 pub mod sell_order_state_table;
 pub mod server_identity_table;
 pub mod server_identity_type;
+pub mod server_teleport_event_table;
+pub mod server_teleport_event_type;
 pub mod server_teleport_player_reducer;
 pub mod server_teleport_reason_type;
+pub mod set_home_event_table;
+pub mod set_home_event_type;
 pub mod set_home_reducer;
 pub mod set_quest_tracked_reducer;
 pub mod sign_in_reducer;
@@ -1587,6 +1681,8 @@ pub mod skill_level_knowledge_desc_table;
 pub mod skill_level_knowledge_desc_type;
 pub mod skill_type_type;
 pub mod skip_onboarding_reducer;
+pub mod sleep_event_table;
+pub mod sleep_event_type;
 pub mod sleep_reducer;
 pub mod small_hex_tile_message_type;
 pub mod spawn_info_type;
@@ -1851,6 +1947,8 @@ pub mod terraform_recipe_desc_table;
 pub mod terraform_recipe_desc_type;
 pub mod terraform_reducer;
 pub mod terraform_set_final_target_reducer;
+pub mod terraform_start_event_table;
+pub mod terraform_start_event_type;
 pub mod terraform_start_reducer;
 pub mod terrain_cell_type;
 pub mod terrain_chunk_state_table;
@@ -2379,6 +2477,10 @@ pub use alert_state_type::AlertState;
 pub use alert_type_type::AlertType;
 pub use attached_herds_state_table::*;
 pub use attached_herds_state_type::AttachedHerdsState;
+pub use attack_event_table::*;
+pub use attack_event_type::AttackEvent;
+pub use attack_impact_event_table::*;
+pub use attack_impact_event_type::AttackImpactEvent;
 pub use attack_impact_migrated_reducer::{
     attack_impact_migrated, set_flags_for_attack_impact_migrated, AttackImpactMigratedCallbackId,
 };
@@ -2408,6 +2510,9 @@ pub use auto_logout_loop_timer_table::*;
 pub use auto_logout_loop_timer_type::AutoLogoutLoopTimer;
 pub use bank_state_table::*;
 pub use bank_state_type::BankState;
+pub use barter_stall_inventory_change_reason_type::BarterStallInventoryChangeReason;
+pub use barter_stall_inventory_event_table::*;
+pub use barter_stall_inventory_event_type::BarterStallInventoryEvent;
 pub use barter_stall_order_accept_reducer::{
     barter_stall_order_accept, set_flags_for_barter_stall_order_accept,
     BarterStallOrderAcceptCallbackId,
@@ -2442,6 +2547,8 @@ pub use buff_desc_type::BuffDesc;
 pub use buff_effect_type::BuffEffect;
 pub use buff_type_desc_table::*;
 pub use buff_type_desc_type::BuffTypeDesc;
+pub use building_buff_activate_event_table::*;
+pub use building_buff_activate_event_type::BuildingBuffActivateEvent;
 pub use building_buff_desc_table::*;
 pub use building_buff_desc_type::BuildingBuffDesc;
 pub use building_category_type::BuildingCategory;
@@ -2456,6 +2563,8 @@ pub use building_decay_loop_timer_type::BuildingDecayLoopTimer;
 pub use building_deconstruct_reducer::{
     building_deconstruct, set_flags_for_building_deconstruct, BuildingDeconstructCallbackId,
 };
+pub use building_deconstruct_start_event_table::*;
+pub use building_deconstruct_start_event_type::BuildingDeconstructStartEvent;
 pub use building_deconstruct_start_reducer::{
     building_deconstruct_start, set_flags_for_building_deconstruct_start,
     BuildingDeconstructStartCallbackId,
@@ -2485,6 +2594,8 @@ pub use building_portal_desc_type::BuildingPortalDesc;
 pub use building_repair_reducer::{
     building_repair, set_flags_for_building_repair, BuildingRepairCallbackId,
 };
+pub use building_repair_start_event_table::*;
+pub use building_repair_start_event_type::BuildingRepairStartEvent;
 pub use building_repair_start_reducer::{
     building_repair_start, set_flags_for_building_repair_start, BuildingRepairStartCallbackId,
 };
@@ -2753,6 +2864,8 @@ pub use claim_resupply_reducer::{
     claim_resupply, set_flags_for_claim_resupply, ClaimResupplyCallbackId,
 };
 pub use claim_resupply_request_type::ClaimResupplyRequest;
+pub use claim_resupply_start_event_table::*;
+pub use claim_resupply_start_event_type::ClaimResupplyStartEvent;
 pub use claim_resupply_start_reducer::{
     claim_resupply_start, set_flags_for_claim_resupply_start, ClaimResupplyStartCallbackId,
 };
@@ -2805,9 +2918,12 @@ pub use claim_transfer_ownership_reducer::{
     claim_transfer_ownership, set_flags_for_claim_transfer_ownership,
     ClaimTransferOwnershipCallbackId,
 };
+pub use claim_treasury_change_reason_type::ClaimTreasuryChangeReason;
 pub use claim_treasury_deposit_reducer::{
     claim_treasury_deposit, set_flags_for_claim_treasury_deposit, ClaimTreasuryDepositCallbackId,
 };
+pub use claim_treasury_event_table::*;
+pub use claim_treasury_event_type::ClaimTreasuryEvent;
 pub use claim_type_type::ClaimType;
 pub use claim_withdraw_from_treasury_reducer::{
     claim_withdraw_from_treasury, set_flags_for_claim_withdraw_from_treasury,
@@ -2893,15 +3009,23 @@ pub use craft_collect_all_reducer::{
 pub use craft_collect_reducer::{
     craft_collect, set_flags_for_craft_collect, CraftCollectCallbackId,
 };
+pub use craft_completed_event_table::*;
+pub use craft_completed_event_type::CraftCompletedEvent;
 pub use craft_continue_reducer::{
     craft_continue, set_flags_for_craft_continue, CraftContinueCallbackId,
 };
+pub use craft_continue_start_event_table::*;
+pub use craft_continue_start_event_type::CraftContinueStartEvent;
 pub use craft_continue_start_reducer::{
     craft_continue_start, set_flags_for_craft_continue_start, CraftContinueStartCallbackId,
 };
+pub use craft_event_table::*;
+pub use craft_event_type::CraftEvent;
 pub use craft_initiate_reducer::{
     craft_initiate, set_flags_for_craft_initiate, CraftInitiateCallbackId,
 };
+pub use craft_initiate_start_event_table::*;
+pub use craft_initiate_start_event_type::CraftInitiateStartEvent;
 pub use craft_initiate_start_reducer::{
     craft_initiate_start, set_flags_for_craft_initiate_start, CraftInitiateStartCallbackId,
 };
@@ -2959,11 +3083,15 @@ pub use deployable_deploy_reducer::{
     deployable_deploy, set_flags_for_deployable_deploy, DeployableDeployCallbackId,
 };
 pub use deployable_deploy_request_type::DeployableDeployRequest;
+pub use deployable_deploy_start_event_table::*;
+pub use deployable_deploy_start_event_type::DeployableDeployStartEvent;
 pub use deployable_deploy_start_reducer::{
     deployable_deploy_start, set_flags_for_deployable_deploy_start, DeployableDeployStartCallbackId,
 };
 pub use deployable_desc_table::*;
 pub use deployable_desc_type::DeployableDesc;
+pub use deployable_disembark_event_table::*;
+pub use deployable_disembark_event_type::DeployableDisembarkEvent;
 pub use deployable_dismount_reducer::{
     deployable_dismount, set_flags_for_deployable_dismount, DeployableDismountCallbackId,
 };
@@ -2980,9 +3108,13 @@ pub use deployable_dismount_timer_type::DeployableDismountTimer;
 pub use deployable_follow_reducer::{
     deployable_follow, set_flags_for_deployable_follow, DeployableFollowCallbackId,
 };
+pub use deployable_mount_event_table::*;
+pub use deployable_mount_event_type::DeployableMountEvent;
 pub use deployable_mount_reducer::{
     deployable_mount, set_flags_for_deployable_mount, DeployableMountCallbackId,
 };
+pub use deployable_move_event_table::*;
+pub use deployable_move_event_type::DeployableMoveEvent;
 pub use deployable_move_off_bounds_reducer::{
     deployable_move_off_bounds, set_flags_for_deployable_move_off_bounds,
     DeployableMoveOffBoundsCallbackId,
@@ -3006,6 +3138,8 @@ pub use deployable_store_reducer::{
     deployable_store, set_flags_for_deployable_store, DeployableStoreCallbackId,
 };
 pub use deployable_store_request_type::DeployableStoreRequest;
+pub use deployable_store_start_event_table::*;
+pub use deployable_store_start_event_type::DeployableStoreStartEvent;
 pub use deployable_store_start_reducer::{
     deployable_store_start, set_flags_for_deployable_store_start, DeployableStoreStartCallbackId,
 };
@@ -3138,6 +3272,8 @@ pub use elevator_desc_type::ElevatorDesc;
 pub use emote_desc_table::*;
 pub use emote_desc_type::EmoteDesc;
 pub use emote_reducer::{emote, set_flags_for_emote, EmoteCallbackId};
+pub use emote_start_event_table::*;
+pub use emote_start_event_type::EmoteStartEvent;
 pub use emote_start_reducer::{emote_start, set_flags_for_emote_start, EmoteStartCallbackId};
 pub use empire_add_currency_msg_type::EmpireAddCurrencyMsg;
 pub use empire_add_siege_supplies_reducer::{
@@ -3213,6 +3349,8 @@ pub use empire_resupply_node_reducer::{
     empire_resupply_node, set_flags_for_empire_resupply_node, EmpireResupplyNodeCallbackId,
 };
 pub use empire_resupply_node_request_type::EmpireResupplyNodeRequest;
+pub use empire_resupply_node_start_event_table::*;
+pub use empire_resupply_node_start_event_type::EmpireResupplyNodeStartEvent;
 pub use empire_resupply_node_start_reducer::{
     empire_resupply_node_start, set_flags_for_empire_resupply_node_start,
     EmpireResupplyNodeStartCallbackId,
@@ -3252,6 +3390,8 @@ pub use enemy_clear_aggro_reducer::{
 pub use enemy_clear_aggro_request_type::EnemyClearAggroRequest;
 pub use enemy_desc_table::*;
 pub use enemy_desc_type::EnemyDesc;
+pub use enemy_despawn_event_table::*;
+pub use enemy_despawn_event_type::EnemyDespawnEvent;
 pub use enemy_despawn_from_mob_monitor_batch_reducer::{
     enemy_despawn_from_mob_monitor_batch, set_flags_for_enemy_despawn_from_mob_monitor_batch,
     EnemyDespawnFromMobMonitorBatchCallbackId,
@@ -3270,6 +3410,8 @@ pub use enemy_mob_monitor_state_type::EnemyMobMonitorState;
 pub use enemy_move_batch_reducer::{
     enemy_move_batch, set_flags_for_enemy_move_batch, EnemyMoveBatchCallbackId,
 };
+pub use enemy_move_event_table::*;
+pub use enemy_move_event_type::EnemyMoveEvent;
 pub use enemy_move_reducer::{enemy_move, set_flags_for_enemy_move, EnemyMoveCallbackId};
 pub use enemy_move_request_type::EnemyMoveRequest;
 pub use enemy_regen_agent_loop_reducer::{
@@ -3302,6 +3444,8 @@ pub use enemy_state_type::EnemyState;
 pub use enemy_status_type::EnemyStatus;
 pub use enemy_type_type::EnemyType;
 pub use entity_attack_request_type::EntityAttackRequest;
+pub use entity_attack_start_event_table::*;
+pub use entity_attack_start_event_type::EntityAttackStartEvent;
 pub use entity_type_type::EntityType;
 pub use environment_debuff_agent_loop_reducer::{
     environment_debuff_agent_loop, set_flags_for_environment_debuff_agent_loop,
@@ -3342,11 +3486,15 @@ pub use exploration_chunks_state_type::ExplorationChunksState;
 pub use exploration_chunks_state_v_2_table::*;
 pub use exploration_chunks_state_v_2_type::ExplorationChunksStateV2;
 pub use exposed_breadcrumbs_table::*;
+pub use extract_event_table::*;
+pub use extract_event_type::ExtractEvent;
 pub use extract_outcome_state_table::*;
 pub use extract_outcome_state_type::ExtractOutcomeState;
 pub use extract_outcome_state_v_1_table::*;
 pub use extract_outcome_state_v_2_type::ExtractOutcomeStateV2;
 pub use extract_reducer::{extract, set_flags_for_extract, ExtractCallbackId};
+pub use extract_start_event_table::*;
+pub use extract_start_event_type::ExtractStartEvent;
 pub use extract_start_reducer::{
     extract_start, set_flags_for_extract_start, ExtractStartCallbackId,
 };
@@ -4159,6 +4307,8 @@ pub use item_conversion_location_context_type::ItemConversionLocationContext;
 pub use item_conversion_recipe_desc_table::*;
 pub use item_conversion_recipe_desc_type::ItemConversionRecipeDesc;
 pub use item_convert_reducer::{item_convert, set_flags_for_item_convert, ItemConvertCallbackId};
+pub use item_convert_start_event_table::*;
+pub use item_convert_start_event_type::ItemConvertStartEvent;
 pub use item_convert_start_reducer::{
     item_convert_start, set_flags_for_item_convert_start, ItemConvertStartCallbackId,
 };
@@ -4273,6 +4423,9 @@ pub use loot_table_desc_table::*;
 pub use loot_table_desc_type::LootTableDesc;
 pub use lost_items_state_table::*;
 pub use lost_items_state_type::LostItemsState;
+pub use market_order_type_type::MarketOrderType;
+pub use market_trade_event_table::*;
+pub use market_trade_event_type::MarketTradeEvent;
 pub use marketplace_state_table::*;
 pub use marketplace_state_type::MarketplaceState;
 pub use message_contents_type::MessageContents;
@@ -4429,6 +4582,8 @@ pub use paved_tile_state_type::PavedTileState;
 pub use paving_destroy_tile_reducer::{
     paving_destroy_tile, set_flags_for_paving_destroy_tile, PavingDestroyTileCallbackId,
 };
+pub use paving_destroy_tile_start_event_table::*;
+pub use paving_destroy_tile_start_event_type::PavingDestroyTileStartEvent;
 pub use paving_destroy_tile_start_reducer::{
     paving_destroy_tile_start, set_flags_for_paving_destroy_tile_start,
     PavingDestroyTileStartCallbackId,
@@ -4436,6 +4591,8 @@ pub use paving_destroy_tile_start_reducer::{
 pub use paving_place_tile_reducer::{
     paving_place_tile, set_flags_for_paving_place_tile, PavingPlaceTileCallbackId,
 };
+pub use paving_place_tile_start_event_table::*;
+pub use paving_place_tile_start_event_type::PavingPlaceTileStartEvent;
 pub use paving_place_tile_start_reducer::{
     paving_place_tile_start, set_flags_for_paving_place_tile_start, PavingPlaceTileStartCallbackId,
 };
@@ -4456,6 +4613,8 @@ pub use pillar_shaping_desc_type::PillarShapingDesc;
 pub use pillar_shaping_destroy_reducer::{
     pillar_shaping_destroy, set_flags_for_pillar_shaping_destroy, PillarShapingDestroyCallbackId,
 };
+pub use pillar_shaping_destroy_start_event_table::*;
+pub use pillar_shaping_destroy_start_event_type::PillarShapingDestroyStartEvent;
 pub use pillar_shaping_destroy_start_reducer::{
     pillar_shaping_destroy_start, set_flags_for_pillar_shaping_destroy_start,
     PillarShapingDestroyStartCallbackId,
@@ -4464,6 +4623,8 @@ pub use pillar_shaping_place_pillar_reducer::{
     pillar_shaping_place_pillar, set_flags_for_pillar_shaping_place_pillar,
     PillarShapingPlacePillarCallbackId,
 };
+pub use pillar_shaping_place_pillar_start_event_table::*;
+pub use pillar_shaping_place_pillar_start_event_type::PillarShapingPlacePillarStartEvent;
 pub use pillar_shaping_place_pillar_start_reducer::{
     pillar_shaping_place_pillar_start, set_flags_for_pillar_shaping_place_pillar_start,
     PillarShapingPlacePillarStartCallbackId,
@@ -4489,6 +4650,8 @@ pub use placeable_growth_timer_table::*;
 pub use placeable_interact_reducer::{
     placeable_interact, set_flags_for_placeable_interact, PlaceableInteractCallbackId,
 };
+pub use placeable_interact_start_event_table::*;
+pub use placeable_interact_start_event_type::PlaceableInteractStartEvent;
 pub use placeable_interact_start_reducer::{
     placeable_interact_start, set_flags_for_placeable_interact_start,
     PlaceableInteractStartCallbackId,
@@ -4498,6 +4661,8 @@ pub use placeable_interaction_desc_type::PlaceableInteractionDesc;
 pub use placeable_place_reducer::{
     placeable_place, set_flags_for_placeable_place, PlaceablePlaceCallbackId,
 };
+pub use placeable_place_start_event_table::*;
+pub use placeable_place_start_event_type::PlaceablePlaceStartEvent;
 pub use placeable_place_start_reducer::{
     placeable_place_start, set_flags_for_placeable_place_start, PlaceablePlaceStartCallbackId,
 };
@@ -4552,6 +4717,8 @@ pub use player_clear_action_state_reducer::{
 };
 pub use player_climb_reducer::{player_climb, set_flags_for_player_climb, PlayerClimbCallbackId};
 pub use player_climb_request_type::PlayerClimbRequest;
+pub use player_climb_start_event_table::*;
+pub use player_climb_start_event_type::PlayerClimbStartEvent;
 pub use player_climb_start_reducer::{
     player_climb_start, set_flags_for_player_climb_start, PlayerClimbStartCallbackId,
 };
@@ -4569,6 +4736,10 @@ pub use player_craft_collect_request_type::PlayerCraftCollectRequest;
 pub use player_craft_continue_request_type::PlayerCraftContinueRequest;
 pub use player_craft_initiate_request_type::PlayerCraftInitiateRequest;
 pub use player_create_msg_type::PlayerCreateMsg;
+pub use player_death_event_table::*;
+pub use player_death_event_type::PlayerDeathEvent;
+pub use player_death_start_event_table::*;
+pub use player_death_start_event_type::PlayerDeathStartEvent;
 pub use player_death_start_reducer::{
     player_death_start, set_flags_for_player_death_start, PlayerDeathStartCallbackId,
 };
@@ -4645,6 +4816,8 @@ pub use player_item_stack_split_request_type::PlayerItemStackSplitRequest;
 pub use player_item_use_request_type::PlayerItemUseRequest;
 pub use player_lowercase_username_state_table::*;
 pub use player_lowercase_username_state_type::PlayerLowercaseUsernameState;
+pub use player_move_event_table::*;
+pub use player_move_event_type::PlayerMoveEvent;
 pub use player_move_reducer::{player_move, set_flags_for_player_move, PlayerMoveCallbackId};
 pub use player_move_request_type::PlayerMoveRequest;
 pub use player_note_state_table::*;
@@ -4730,14 +4903,21 @@ pub use player_settings_state_update_reducer::{
     PlayerSettingsStateUpdateCallbackId,
 };
 pub use player_sign_in_request_type::PlayerSignInRequest;
+pub use player_signed_out_event_table::*;
+pub use player_signed_out_event_type::PlayerSignedOutEvent;
+pub use player_signed_out_reason_type::PlayerSignedOutReason;
 pub use player_skip_queue_msg_type::PlayerSkipQueueMsg;
 pub use player_sleep_request_type::PlayerSleepRequest;
 pub use player_state_table::*;
 pub use player_state_type::PlayerState;
+pub use player_teleport_event_table::*;
+pub use player_teleport_event_type::PlayerTeleportEvent;
 pub use player_teleport_home_reducer::{
     player_teleport_home, set_flags_for_player_teleport_home, PlayerTeleportHomeCallbackId,
 };
 pub use player_teleport_home_request_type::PlayerTeleportHomeRequest;
+pub use player_teleport_home_start_event_table::*;
+pub use player_teleport_home_start_event_type::PlayerTeleportHomeStartEvent;
 pub use player_teleport_home_start_reducer::{
     player_teleport_home_start, set_flags_for_player_teleport_home_start,
     PlayerTeleportHomeStartCallbackId,
@@ -4747,6 +4927,8 @@ pub use player_teleport_waystone_reducer::{
     PlayerTeleportWaystoneCallbackId,
 };
 pub use player_teleport_waystone_request_type::PlayerTeleportWaystoneRequest;
+pub use player_teleport_waystone_start_event_table::*;
+pub use player_teleport_waystone_start_event_type::PlayerTeleportWaystoneStartEvent;
 pub use player_teleport_waystone_start_reducer::{
     player_teleport_waystone_start, set_flags_for_player_teleport_waystone_start,
     PlayerTeleportWaystoneStartCallbackId,
@@ -4821,6 +5003,8 @@ pub use project_site_advance_project_reducer::{
     project_site_advance_project, set_flags_for_project_site_advance_project,
     ProjectSiteAdvanceProjectCallbackId,
 };
+pub use project_site_advance_project_start_event_table::*;
+pub use project_site_advance_project_start_event_type::ProjectSiteAdvanceProjectStartEvent;
 pub use project_site_advance_project_start_reducer::{
     project_site_advance_project_start, set_flags_for_project_site_advance_project_start,
     ProjectSiteAdvanceProjectStartCallbackId,
@@ -4834,6 +5018,8 @@ pub use project_site_place_reducer::{
 pub use project_site_state_table::*;
 pub use project_site_state_type::ProjectSiteState;
 pub use prospect_reducer::{prospect, set_flags_for_prospect, ProspectCallbackId};
+pub use prospect_start_event_table::*;
+pub use prospect_start_event_type::ProspectStartEvent;
 pub use prospect_start_reducer::{
     prospect_start, set_flags_for_prospect_start, ProspectStartCallbackId,
 };
@@ -4971,6 +5157,8 @@ pub use resource_clump_desc_type::ResourceClumpDesc;
 pub use resource_clump_info_type::ResourceClumpInfo;
 pub use resource_count_table::*;
 pub use resource_count_type::ResourceCount;
+pub use resource_depleted_event_table::*;
+pub use resource_depleted_event_type::ResourceDepletedEvent;
 pub use resource_desc_table::*;
 pub use resource_desc_type::ResourceDesc;
 pub use resource_destroy_building_outcome_type::ResourceDestroyBuildingOutcome;
@@ -5042,10 +5230,14 @@ pub use secondary_knowledge_desc_type::SecondaryKnowledgeDesc;
 pub use sell_order_state_table::*;
 pub use server_identity_table::*;
 pub use server_identity_type::ServerIdentity;
+pub use server_teleport_event_table::*;
+pub use server_teleport_event_type::ServerTeleportEvent;
 pub use server_teleport_player_reducer::{
     server_teleport_player, set_flags_for_server_teleport_player, ServerTeleportPlayerCallbackId,
 };
 pub use server_teleport_reason_type::ServerTeleportReason;
+pub use set_home_event_table::*;
+pub use set_home_event_type::SetHomeEvent;
 pub use set_home_reducer::{set_flags_for_set_home, set_home, SetHomeCallbackId};
 pub use set_quest_tracked_reducer::{
     set_flags_for_set_quest_tracked, set_quest_tracked, SetQuestTrackedCallbackId,
@@ -5068,6 +5260,8 @@ pub use skill_type_type::SkillType;
 pub use skip_onboarding_reducer::{
     set_flags_for_skip_onboarding, skip_onboarding, SkipOnboardingCallbackId,
 };
+pub use sleep_event_table::*;
+pub use sleep_event_type::SleepEvent;
 pub use sleep_reducer::{set_flags_for_sleep, sleep, SleepCallbackId};
 pub use small_hex_tile_message_type::SmallHexTileMessage;
 pub use spawn_info_type::SpawnInfo;
@@ -5633,6 +5827,8 @@ pub use terraform_set_final_target_reducer::{
     set_flags_for_terraform_set_final_target, terraform_set_final_target,
     TerraformSetFinalTargetCallbackId,
 };
+pub use terraform_start_event_table::*;
+pub use terraform_start_event_type::TerraformStartEvent;
 pub use terraform_start_reducer::{
     set_flags_for_terraform_start, terraform_start, TerraformStartCallbackId,
 };
@@ -9793,6 +9989,8 @@ pub struct DbUpdate {
     alert_desc: __sdk::TableUpdate<AlertDesc>,
     alert_state: __sdk::TableUpdate<AlertState>,
     attached_herds_state: __sdk::TableUpdate<AttachedHerdsState>,
+    attack_event: __sdk::TableUpdate<AttackEvent>,
+    attack_impact_event: __sdk::TableUpdate<AttackImpactEvent>,
     attack_impact_timer: __sdk::TableUpdate<AttackImpactTimer>,
     attack_impact_timer_migrated: __sdk::TableUpdate<AttackImpactTimerMigrated>,
     attack_outcome_state: __sdk::TableUpdate<AttackOutcomeState>,
@@ -9800,20 +9998,24 @@ pub struct DbUpdate {
     auto_claim_state: __sdk::TableUpdate<AutoClaimState>,
     auto_logout_loop_timer: __sdk::TableUpdate<AutoLogoutLoopTimer>,
     bank_state: __sdk::TableUpdate<BankState>,
+    barter_stall_inventory_event: __sdk::TableUpdate<BarterStallInventoryEvent>,
     barter_stall_state: __sdk::TableUpdate<BarterStallState>,
     biome_desc: __sdk::TableUpdate<BiomeDesc>,
     blocked_identity: __sdk::TableUpdate<BlockedIdentity>,
     buff_desc: __sdk::TableUpdate<BuffDesc>,
     buff_type_desc: __sdk::TableUpdate<BuffTypeDesc>,
+    building_buff_activate_event: __sdk::TableUpdate<BuildingBuffActivateEvent>,
     building_buff_desc: __sdk::TableUpdate<BuildingBuffDesc>,
     building_claim_desc: __sdk::TableUpdate<BuildingClaimDesc>,
     building_decay_loop_timer: __sdk::TableUpdate<BuildingDecayLoopTimer>,
+    building_deconstruct_start_event: __sdk::TableUpdate<BuildingDeconstructStartEvent>,
     building_desc: __sdk::TableUpdate<BuildingDesc>,
     building_despawn_timer: __sdk::TableUpdate<BuildingDespawnTimer>,
     building_function_type_mapping_desc: __sdk::TableUpdate<BuildingFunctionTypeMappingDesc>,
     building_map_icon_desc: __sdk::TableUpdate<BuildingMapIconDesc>,
     building_nickname_state: __sdk::TableUpdate<BuildingNicknameState>,
     building_portal_desc: __sdk::TableUpdate<BuildingPortalDesc>,
+    building_repair_start_event: __sdk::TableUpdate<BuildingRepairStartEvent>,
     building_repairs_desc: __sdk::TableUpdate<BuildingRepairsDesc>,
     building_spawn_desc: __sdk::TableUpdate<BuildingSpawnDesc>,
     building_state: __sdk::TableUpdate<BuildingState>,
@@ -9831,12 +10033,14 @@ pub struct DbUpdate {
     claim_lowercase_name_state: __sdk::TableUpdate<ClaimLowercaseNameState>,
     claim_member_state: __sdk::TableUpdate<ClaimMemberState>,
     claim_recruitment_state: __sdk::TableUpdate<ClaimRecruitmentState>,
+    claim_resupply_start_event: __sdk::TableUpdate<ClaimResupplyStartEvent>,
     claim_state: __sdk::TableUpdate<ClaimState>,
     claim_tech_desc: __sdk::TableUpdate<ClaimTechDesc>,
     claim_tech_state: __sdk::TableUpdate<ClaimTechState>,
     claim_tech_unlock_timer: __sdk::TableUpdate<ClaimTechUnlockTimer>,
     claim_tile_cost: __sdk::TableUpdate<ClaimTileCost>,
     claim_tile_state: __sdk::TableUpdate<ClaimTileState>,
+    claim_treasury_event: __sdk::TableUpdate<ClaimTreasuryEvent>,
     climb_requirement_desc: __sdk::TableUpdate<ClimbRequirementDesc>,
     closed_listing_state: __sdk::TableUpdate<ClosedListingState>,
     clothing_desc: __sdk::TableUpdate<ClothingDesc>,
@@ -9854,6 +10058,10 @@ pub struct DbUpdate {
     construction_recipe_discovery_knowledge_desc: __sdk::TableUpdate<DiscoveryTriggerDesc>,
     contribution_loot_desc: __sdk::TableUpdate<ContributionLootDesc>,
     contribution_state: __sdk::TableUpdate<ContributionState>,
+    craft_completed_event: __sdk::TableUpdate<CraftCompletedEvent>,
+    craft_continue_start_event: __sdk::TableUpdate<CraftContinueStartEvent>,
+    craft_event: __sdk::TableUpdate<CraftEvent>,
+    craft_initiate_start_event: __sdk::TableUpdate<CraftInitiateStartEvent>,
     crafting_recipe_desc: __sdk::TableUpdate<CraftingRecipeDesc>,
     crafting_recipe_discovery_cargo_desc: __sdk::TableUpdate<DiscoveryTriggerDesc>,
     crafting_recipe_discovery_item_desc: __sdk::TableUpdate<DiscoveryTriggerDesc>,
@@ -9867,10 +10075,15 @@ pub struct DbUpdate {
     deconstruction_recipe_desc: __sdk::TableUpdate<DeconstructionRecipeDesc>,
     deployable_appearance_override_desc: __sdk::TableUpdate<DeployableAppearanceOverrideDesc>,
     deployable_collectible_state: __sdk::TableUpdate<DeployableCollectibleState>,
+    deployable_deploy_start_event: __sdk::TableUpdate<DeployableDeployStartEvent>,
     deployable_desc: __sdk::TableUpdate<DeployableDesc>,
+    deployable_disembark_event: __sdk::TableUpdate<DeployableDisembarkEvent>,
     deployable_dismount_timer: __sdk::TableUpdate<DeployableDismountTimer>,
+    deployable_mount_event: __sdk::TableUpdate<DeployableMountEvent>,
+    deployable_move_event: __sdk::TableUpdate<DeployableMoveEvent>,
     deployable_state: __sdk::TableUpdate<DeployableState>,
     deployable_state_v_2: __sdk::TableUpdate<DeployableStateV2>,
+    deployable_store_start_event: __sdk::TableUpdate<DeployableStoreStartEvent>,
     destroy_dimension_network_timer: __sdk::TableUpdate<DestroyDimensionNetworkTimer>,
     developer: __sdk::TableUpdate<Developer>,
     dimension_description_state: __sdk::TableUpdate<DimensionDescriptionState>,
@@ -9886,6 +10099,7 @@ pub struct DbUpdate {
     dungeon_state: __sdk::TableUpdate<DungeonState>,
     elevator_desc: __sdk::TableUpdate<ElevatorDesc>,
     emote_desc: __sdk::TableUpdate<EmoteDesc>,
+    emote_start_event: __sdk::TableUpdate<EmoteStartEvent>,
     empire_chunk_state: __sdk::TableUpdate<EmpireChunkState>,
     empire_color_desc: __sdk::TableUpdate<EmpireColorDesc>,
     empire_icon_desc: __sdk::TableUpdate<EmpireIconDesc>,
@@ -9896,6 +10110,7 @@ pub struct DbUpdate {
     empire_player_data_state: __sdk::TableUpdate<EmpirePlayerDataState>,
     empire_rank_desc: __sdk::TableUpdate<EmpireRankDesc>,
     empire_rank_state: __sdk::TableUpdate<EmpireRankState>,
+    empire_resupply_node_start_event: __sdk::TableUpdate<EmpireResupplyNodeStartEvent>,
     empire_settlement_state: __sdk::TableUpdate<EmpireSettlementState>,
     empire_state: __sdk::TableUpdate<EmpireState>,
     empire_supplies_desc: __sdk::TableUpdate<EmpireSuppliesDesc>,
@@ -9903,12 +10118,15 @@ pub struct DbUpdate {
     end_grace_period_timer: __sdk::TableUpdate<EndGracePeriodTimer>,
     enemy_ai_params_desc: __sdk::TableUpdate<EnemyAiParamsDesc>,
     enemy_desc: __sdk::TableUpdate<EnemyDesc>,
+    enemy_despawn_event: __sdk::TableUpdate<EnemyDespawnEvent>,
     enemy_despawn_timer: __sdk::TableUpdate<EnemyDespawnTimer>,
     enemy_mob_monitor_state: __sdk::TableUpdate<EnemyMobMonitorState>,
+    enemy_move_event: __sdk::TableUpdate<EnemyMoveEvent>,
     enemy_regen_loop_timer: __sdk::TableUpdate<EnemyRegenLoopTimer>,
     enemy_scaling_desc: __sdk::TableUpdate<EnemyScalingDesc>,
     enemy_scaling_state: __sdk::TableUpdate<EnemyScalingState>,
     enemy_state: __sdk::TableUpdate<EnemyState>,
+    entity_attack_start_event: __sdk::TableUpdate<EntityAttackStartEvent>,
     environment_debuff_desc: __sdk::TableUpdate<EnvironmentDebuffDesc>,
     environment_debuff_loop_timer: __sdk::TableUpdate<EnvironmentDebuffLoopTimer>,
     equipment_desc: __sdk::TableUpdate<EquipmentDesc>,
@@ -9919,8 +10137,10 @@ pub struct DbUpdate {
     exploration_chunks_state: __sdk::TableUpdate<ExplorationChunksState>,
     exploration_chunks_state_v_2: __sdk::TableUpdate<ExplorationChunksStateV2>,
     exposed_breadcrumbs: __sdk::TableUpdate<CrumbTrailExposedState>,
+    extract_event: __sdk::TableUpdate<ExtractEvent>,
     extract_outcome_state: __sdk::TableUpdate<ExtractOutcomeStateV2>,
     extract_outcome_state_v_1: __sdk::TableUpdate<ExtractOutcomeState>,
+    extract_start_event: __sdk::TableUpdate<ExtractStartEvent>,
     extraction_recipe_desc: __sdk::TableUpdate<ExtractionRecipeDesc>,
     food_desc: __sdk::TableUpdate<FoodDesc>,
     footprint_tile_state: __sdk::TableUpdate<FootprintTileState>,
@@ -9955,6 +10175,7 @@ pub struct DbUpdate {
     interior_spawn_desc: __sdk::TableUpdate<InteriorSpawnDesc>,
     inventory_state: __sdk::TableUpdate<InventoryState>,
     item_conversion_recipe_desc: __sdk::TableUpdate<ItemConversionRecipeDesc>,
+    item_convert_start_event: __sdk::TableUpdate<ItemConvertStartEvent>,
     item_desc: __sdk::TableUpdate<ItemDesc>,
     item_list_desc: __sdk::TableUpdate<ItemListDesc>,
     knowledge_achievement_state: __sdk::TableUpdate<KnowledgeAchievementState>,
@@ -9990,6 +10211,7 @@ pub struct DbUpdate {
     loot_rarity_desc: __sdk::TableUpdate<LootRarityDesc>,
     loot_table_desc: __sdk::TableUpdate<LootTableDesc>,
     lost_items_state: __sdk::TableUpdate<LostItemsState>,
+    market_trade_event: __sdk::TableUpdate<MarketTradeEvent>,
     marketplace_state: __sdk::TableUpdate<MarketplaceState>,
     migration_achievements_params: __sdk::TableUpdate<MigrationAchievementsParams>,
     migration_building_desc_params: __sdk::TableUpdate<MigrationBuildingDescParams>,
@@ -10010,12 +10232,16 @@ pub struct DbUpdate {
     passive_craft_timer: __sdk::TableUpdate<PassiveCraftTimer>,
     pathfinding_desc: __sdk::TableUpdate<PathfindingDesc>,
     paved_tile_state: __sdk::TableUpdate<PavedTileState>,
+    paving_destroy_tile_start_event: __sdk::TableUpdate<PavingDestroyTileStartEvent>,
+    paving_place_tile_start_event: __sdk::TableUpdate<PavingPlaceTileStartEvent>,
     paving_recipe_discovery_cargo_desc: __sdk::TableUpdate<DiscoveryTriggerDesc>,
     paving_recipe_discovery_item_desc: __sdk::TableUpdate<DiscoveryTriggerDesc>,
     paving_recipe_discovery_knowledge_desc: __sdk::TableUpdate<DiscoveryTriggerDesc>,
     paving_tile_desc: __sdk::TableUpdate<PavingTileDesc>,
     permission_state: __sdk::TableUpdate<PermissionState>,
     pillar_shaping_desc: __sdk::TableUpdate<PillarShapingDesc>,
+    pillar_shaping_destroy_start_event: __sdk::TableUpdate<PillarShapingDestroyStartEvent>,
+    pillar_shaping_place_pillar_start_event: __sdk::TableUpdate<PillarShapingPlacePillarStartEvent>,
     pillar_shaping_recipe_discovery_cargo_desc: __sdk::TableUpdate<DiscoveryTriggerDesc>,
     pillar_shaping_recipe_discovery_item_desc: __sdk::TableUpdate<DiscoveryTriggerDesc>,
     pillar_shaping_recipe_discovery_knowledge_desc: __sdk::TableUpdate<DiscoveryTriggerDesc>,
@@ -10024,11 +10250,16 @@ pub struct DbUpdate {
     placeable_group_desc: __sdk::TableUpdate<PlaceableGroupDesc>,
     placeable_growth_desc: __sdk::TableUpdate<PlaceableGrowthDesc>,
     placeable_growth_timer: __sdk::TableUpdate<GrowthTimer>,
+    placeable_interact_start_event: __sdk::TableUpdate<PlaceableInteractStartEvent>,
     placeable_interaction_desc: __sdk::TableUpdate<PlaceableInteractionDesc>,
+    placeable_place_start_event: __sdk::TableUpdate<PlaceablePlaceStartEvent>,
     placeable_placement_desc: __sdk::TableUpdate<PlaceablePlacementDesc>,
     placeable_state: __sdk::TableUpdate<PlaceableState>,
     player_action_desc: __sdk::TableUpdate<PlayerActionDesc>,
     player_action_state: __sdk::TableUpdate<PlayerActionState>,
+    player_climb_start_event: __sdk::TableUpdate<PlayerClimbStartEvent>,
+    player_death_event: __sdk::TableUpdate<PlayerDeathEvent>,
+    player_death_start_event: __sdk::TableUpdate<PlayerDeathStartEvent>,
     player_death_timer: __sdk::TableUpdate<PlayerDeathTimer>,
     player_housing_customization_state: __sdk::TableUpdate<PlayerHousingCustomizationState>,
     player_housing_desc: __sdk::TableUpdate<PlayerHousingDesc>,
@@ -10037,6 +10268,7 @@ pub struct DbUpdate {
     player_housing_moving_cost_state: __sdk::TableUpdate<PlayerHousingMovingCostState>,
     player_housing_state: __sdk::TableUpdate<PlayerHousingState>,
     player_lowercase_username_state: __sdk::TableUpdate<PlayerLowercaseUsernameState>,
+    player_move_event: __sdk::TableUpdate<PlayerMoveEvent>,
     player_note_state: __sdk::TableUpdate<PlayerNoteState>,
     player_notification_event: __sdk::TableUpdate<PlayerNotificationEvent>,
     player_prefs_state: __sdk::TableUpdate<PlayerPrefsState>,
@@ -10047,7 +10279,11 @@ pub struct DbUpdate {
     player_report_state_timestamp: __sdk::TableUpdate<PlayerReportStateTimestamp>,
     player_set_name_outcome_event: __sdk::TableUpdate<PlayerSetNameOutcomeEvent>,
     player_settings_state: __sdk::TableUpdate<PlayerSettingsState>,
+    player_signed_out_event: __sdk::TableUpdate<PlayerSignedOutEvent>,
     player_state: __sdk::TableUpdate<PlayerState>,
+    player_teleport_event: __sdk::TableUpdate<PlayerTeleportEvent>,
+    player_teleport_home_start_event: __sdk::TableUpdate<PlayerTeleportHomeStartEvent>,
+    player_teleport_waystone_start_event: __sdk::TableUpdate<PlayerTeleportWaystoneStartEvent>,
     player_timestamp_state: __sdk::TableUpdate<PlayerTimestampState>,
     player_use_elevator_timer: __sdk::TableUpdate<PlayerUseElevatorTimer>,
     player_username_state: __sdk::TableUpdate<PlayerUsernameState>,
@@ -10061,7 +10297,10 @@ pub struct DbUpdate {
     previous_player_username_state: __sdk::TableUpdate<PreviousPlayerUsernameState>,
     private_parameters_desc: __sdk::TableUpdate<PrivateParametersDesc>,
     progressive_action_state: __sdk::TableUpdate<ProgressiveActionState>,
+    project_site_advance_project_start_event:
+        __sdk::TableUpdate<ProjectSiteAdvanceProjectStartEvent>,
     project_site_state: __sdk::TableUpdate<ProjectSiteState>,
+    prospect_start_event: __sdk::TableUpdate<ProspectStartEvent>,
     prospecting_desc: __sdk::TableUpdate<ProspectingDesc>,
     prospecting_participants: __sdk::TableUpdate<ProspectingParticipant>,
     prospecting_state: __sdk::TableUpdate<ProspectingState>,
@@ -10085,6 +10324,7 @@ pub struct DbUpdate {
     reset_mobile_entity_timer: __sdk::TableUpdate<ResetMobileEntityTimer>,
     resource_clump_desc: __sdk::TableUpdate<ResourceClumpDesc>,
     resource_count: __sdk::TableUpdate<ResourceCount>,
+    resource_depleted_event: __sdk::TableUpdate<ResourceDepletedEvent>,
     resource_desc: __sdk::TableUpdate<ResourceDesc>,
     resource_growth_recipe_desc: __sdk::TableUpdate<ResourceGrowthRecipeDesc>,
     resource_growth_timer: __sdk::TableUpdate<GrowthTimer>,
@@ -10103,11 +10343,14 @@ pub struct DbUpdate {
     secondary_knowledge_desc: __sdk::TableUpdate<SecondaryKnowledgeDesc>,
     sell_order_state: __sdk::TableUpdate<AuctionListingState>,
     server_identity: __sdk::TableUpdate<ServerIdentity>,
+    server_teleport_event: __sdk::TableUpdate<ServerTeleportEvent>,
+    set_home_event: __sdk::TableUpdate<SetHomeEvent>,
     signed_in_player_state: __sdk::TableUpdate<SignedInPlayerState>,
     single_resource_clump_info: __sdk::TableUpdate<SingleResourceClumpInfo>,
     single_resource_to_clump_desc: __sdk::TableUpdate<SingleResourceToClumpDesc>,
     skill_desc: __sdk::TableUpdate<SkillDesc>,
     skill_level_knowledge_desc: __sdk::TableUpdate<SkillLevelKnowledgeDesc>,
+    sleep_event: __sdk::TableUpdate<SleepEvent>,
     stage_rewards_desc: __sdk::TableUpdate<StageRewardsDesc>,
     staged_ability_custom_desc: __sdk::TableUpdate<AbilityCustomDesc>,
     staged_ability_unlock_desc: __sdk::TableUpdate<AbilityUnlockDesc>,
@@ -10232,6 +10475,7 @@ pub struct DbUpdate {
     teleportation_energy_state: __sdk::TableUpdate<TeleportationEnergyState>,
     terraform_progress_state: __sdk::TableUpdate<TerraformProgressState>,
     terraform_recipe_desc: __sdk::TableUpdate<TerraformRecipeDesc>,
+    terraform_start_event: __sdk::TableUpdate<TerraformStartEvent>,
     terrain_chunk_state: __sdk::TableUpdate<TerrainChunkState>,
     the_great_placeholder_table: __sdk::TableUpdate<TheGreatPlaceHolderTable>,
     threat_state: __sdk::TableUpdate<ThreatState>,
@@ -10290,6 +10534,8 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "alert_desc" => db_update.alert_desc.append(alert_desc_table::parse_table_update(table_update)?),
     "alert_state" => db_update.alert_state.append(alert_state_table::parse_table_update(table_update)?),
     "attached_herds_state" => db_update.attached_herds_state.append(attached_herds_state_table::parse_table_update(table_update)?),
+    "attack_event" => db_update.attack_event.append(attack_event_table::parse_table_update(table_update)?),
+    "attack_impact_event" => db_update.attack_impact_event.append(attack_impact_event_table::parse_table_update(table_update)?),
     "attack_impact_timer" => db_update.attack_impact_timer.append(attack_impact_timer_table::parse_table_update(table_update)?),
     "attack_impact_timer_migrated" => db_update.attack_impact_timer_migrated.append(attack_impact_timer_migrated_table::parse_table_update(table_update)?),
     "attack_outcome_state" => db_update.attack_outcome_state.append(attack_outcome_state_table::parse_table_update(table_update)?),
@@ -10297,20 +10543,24 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "auto_claim_state" => db_update.auto_claim_state.append(auto_claim_state_table::parse_table_update(table_update)?),
     "auto_logout_loop_timer" => db_update.auto_logout_loop_timer.append(auto_logout_loop_timer_table::parse_table_update(table_update)?),
     "bank_state" => db_update.bank_state.append(bank_state_table::parse_table_update(table_update)?),
+    "barter_stall_inventory_event" => db_update.barter_stall_inventory_event.append(barter_stall_inventory_event_table::parse_table_update(table_update)?),
     "barter_stall_state" => db_update.barter_stall_state.append(barter_stall_state_table::parse_table_update(table_update)?),
     "biome_desc" => db_update.biome_desc.append(biome_desc_table::parse_table_update(table_update)?),
     "blocked_identity" => db_update.blocked_identity.append(blocked_identity_table::parse_table_update(table_update)?),
     "buff_desc" => db_update.buff_desc.append(buff_desc_table::parse_table_update(table_update)?),
     "buff_type_desc" => db_update.buff_type_desc.append(buff_type_desc_table::parse_table_update(table_update)?),
+    "building_buff_activate_event" => db_update.building_buff_activate_event.append(building_buff_activate_event_table::parse_table_update(table_update)?),
     "building_buff_desc" => db_update.building_buff_desc.append(building_buff_desc_table::parse_table_update(table_update)?),
     "building_claim_desc" => db_update.building_claim_desc.append(building_claim_desc_table::parse_table_update(table_update)?),
     "building_decay_loop_timer" => db_update.building_decay_loop_timer.append(building_decay_loop_timer_table::parse_table_update(table_update)?),
+    "building_deconstruct_start_event" => db_update.building_deconstruct_start_event.append(building_deconstruct_start_event_table::parse_table_update(table_update)?),
     "building_desc" => db_update.building_desc.append(building_desc_table::parse_table_update(table_update)?),
     "building_despawn_timer" => db_update.building_despawn_timer.append(building_despawn_timer_table::parse_table_update(table_update)?),
     "building_function_type_mapping_desc" => db_update.building_function_type_mapping_desc.append(building_function_type_mapping_desc_table::parse_table_update(table_update)?),
     "building_map_icon_desc" => db_update.building_map_icon_desc.append(building_map_icon_desc_table::parse_table_update(table_update)?),
     "building_nickname_state" => db_update.building_nickname_state.append(building_nickname_state_table::parse_table_update(table_update)?),
     "building_portal_desc" => db_update.building_portal_desc.append(building_portal_desc_table::parse_table_update(table_update)?),
+    "building_repair_start_event" => db_update.building_repair_start_event.append(building_repair_start_event_table::parse_table_update(table_update)?),
     "building_repairs_desc" => db_update.building_repairs_desc.append(building_repairs_desc_table::parse_table_update(table_update)?),
     "building_spawn_desc" => db_update.building_spawn_desc.append(building_spawn_desc_table::parse_table_update(table_update)?),
     "building_state" => db_update.building_state.append(building_state_table::parse_table_update(table_update)?),
@@ -10327,12 +10577,14 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "claim_lowercase_name_state" => db_update.claim_lowercase_name_state.append(claim_lowercase_name_state_table::parse_table_update(table_update)?),
     "claim_member_state" => db_update.claim_member_state.append(claim_member_state_table::parse_table_update(table_update)?),
     "claim_recruitment_state" => db_update.claim_recruitment_state.append(claim_recruitment_state_table::parse_table_update(table_update)?),
+    "claim_resupply_start_event" => db_update.claim_resupply_start_event.append(claim_resupply_start_event_table::parse_table_update(table_update)?),
     "claim_state" => db_update.claim_state.append(claim_state_table::parse_table_update(table_update)?),
     "claim_tech_desc" => db_update.claim_tech_desc.append(claim_tech_desc_table::parse_table_update(table_update)?),
     "claim_tech_state" => db_update.claim_tech_state.append(claim_tech_state_table::parse_table_update(table_update)?),
     "claim_tech_unlock_timer" => db_update.claim_tech_unlock_timer.append(claim_tech_unlock_timer_table::parse_table_update(table_update)?),
     "claim_tile_cost" => db_update.claim_tile_cost.append(claim_tile_cost_table::parse_table_update(table_update)?),
     "claim_tile_state" => db_update.claim_tile_state.append(claim_tile_state_table::parse_table_update(table_update)?),
+    "claim_treasury_event" => db_update.claim_treasury_event.append(claim_treasury_event_table::parse_table_update(table_update)?),
     "climb_requirement_desc" => db_update.climb_requirement_desc.append(climb_requirement_desc_table::parse_table_update(table_update)?),
     "closed_listing_state" => db_update.closed_listing_state.append(closed_listing_state_table::parse_table_update(table_update)?),
     "clothing_desc" => db_update.clothing_desc.append(clothing_desc_table::parse_table_update(table_update)?),
@@ -10350,6 +10602,10 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "construction_recipe_discovery_knowledge_desc" => db_update.construction_recipe_discovery_knowledge_desc.append(construction_recipe_discovery_knowledge_desc_table::parse_table_update(table_update)?),
     "contribution_loot_desc" => db_update.contribution_loot_desc.append(contribution_loot_desc_table::parse_table_update(table_update)?),
     "contribution_state" => db_update.contribution_state.append(contribution_state_table::parse_table_update(table_update)?),
+    "craft_completed_event" => db_update.craft_completed_event.append(craft_completed_event_table::parse_table_update(table_update)?),
+    "craft_continue_start_event" => db_update.craft_continue_start_event.append(craft_continue_start_event_table::parse_table_update(table_update)?),
+    "craft_event" => db_update.craft_event.append(craft_event_table::parse_table_update(table_update)?),
+    "craft_initiate_start_event" => db_update.craft_initiate_start_event.append(craft_initiate_start_event_table::parse_table_update(table_update)?),
     "crafting_recipe_desc" => db_update.crafting_recipe_desc.append(crafting_recipe_desc_table::parse_table_update(table_update)?),
     "crafting_recipe_discovery_cargo_desc" => db_update.crafting_recipe_discovery_cargo_desc.append(crafting_recipe_discovery_cargo_desc_table::parse_table_update(table_update)?),
     "crafting_recipe_discovery_item_desc" => db_update.crafting_recipe_discovery_item_desc.append(crafting_recipe_discovery_item_desc_table::parse_table_update(table_update)?),
@@ -10363,10 +10619,15 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "deconstruction_recipe_desc" => db_update.deconstruction_recipe_desc.append(deconstruction_recipe_desc_table::parse_table_update(table_update)?),
     "deployable_appearance_override_desc" => db_update.deployable_appearance_override_desc.append(deployable_appearance_override_desc_table::parse_table_update(table_update)?),
     "deployable_collectible_state" => db_update.deployable_collectible_state.append(deployable_collectible_state_table::parse_table_update(table_update)?),
+    "deployable_deploy_start_event" => db_update.deployable_deploy_start_event.append(deployable_deploy_start_event_table::parse_table_update(table_update)?),
     "deployable_desc" => db_update.deployable_desc.append(deployable_desc_table::parse_table_update(table_update)?),
+    "deployable_disembark_event" => db_update.deployable_disembark_event.append(deployable_disembark_event_table::parse_table_update(table_update)?),
     "deployable_dismount_timer" => db_update.deployable_dismount_timer.append(deployable_dismount_timer_table::parse_table_update(table_update)?),
+    "deployable_mount_event" => db_update.deployable_mount_event.append(deployable_mount_event_table::parse_table_update(table_update)?),
+    "deployable_move_event" => db_update.deployable_move_event.append(deployable_move_event_table::parse_table_update(table_update)?),
     "deployable_state" => db_update.deployable_state.append(deployable_state_table::parse_table_update(table_update)?),
     "deployable_state_v2" => db_update.deployable_state_v_2.append(deployable_state_v_2_table::parse_table_update(table_update)?),
+    "deployable_store_start_event" => db_update.deployable_store_start_event.append(deployable_store_start_event_table::parse_table_update(table_update)?),
     "destroy_dimension_network_timer" => db_update.destroy_dimension_network_timer.append(destroy_dimension_network_timer_table::parse_table_update(table_update)?),
     "developer" => db_update.developer.append(developer_table::parse_table_update(table_update)?),
     "dimension_description_state" => db_update.dimension_description_state.append(dimension_description_state_table::parse_table_update(table_update)?),
@@ -10382,6 +10643,7 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "dungeon_state" => db_update.dungeon_state.append(dungeon_state_table::parse_table_update(table_update)?),
     "elevator_desc" => db_update.elevator_desc.append(elevator_desc_table::parse_table_update(table_update)?),
     "emote_desc" => db_update.emote_desc.append(emote_desc_table::parse_table_update(table_update)?),
+    "emote_start_event" => db_update.emote_start_event.append(emote_start_event_table::parse_table_update(table_update)?),
     "empire_chunk_state" => db_update.empire_chunk_state.append(empire_chunk_state_table::parse_table_update(table_update)?),
     "empire_color_desc" => db_update.empire_color_desc.append(empire_color_desc_table::parse_table_update(table_update)?),
     "empire_icon_desc" => db_update.empire_icon_desc.append(empire_icon_desc_table::parse_table_update(table_update)?),
@@ -10392,6 +10654,7 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "empire_player_data_state" => db_update.empire_player_data_state.append(empire_player_data_state_table::parse_table_update(table_update)?),
     "empire_rank_desc" => db_update.empire_rank_desc.append(empire_rank_desc_table::parse_table_update(table_update)?),
     "empire_rank_state" => db_update.empire_rank_state.append(empire_rank_state_table::parse_table_update(table_update)?),
+    "empire_resupply_node_start_event" => db_update.empire_resupply_node_start_event.append(empire_resupply_node_start_event_table::parse_table_update(table_update)?),
     "empire_settlement_state" => db_update.empire_settlement_state.append(empire_settlement_state_table::parse_table_update(table_update)?),
     "empire_state" => db_update.empire_state.append(empire_state_table::parse_table_update(table_update)?),
     "empire_supplies_desc" => db_update.empire_supplies_desc.append(empire_supplies_desc_table::parse_table_update(table_update)?),
@@ -10399,12 +10662,15 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "end_grace_period_timer" => db_update.end_grace_period_timer.append(end_grace_period_timer_table::parse_table_update(table_update)?),
     "enemy_ai_params_desc" => db_update.enemy_ai_params_desc.append(enemy_ai_params_desc_table::parse_table_update(table_update)?),
     "enemy_desc" => db_update.enemy_desc.append(enemy_desc_table::parse_table_update(table_update)?),
+    "enemy_despawn_event" => db_update.enemy_despawn_event.append(enemy_despawn_event_table::parse_table_update(table_update)?),
     "enemy_despawn_timer" => db_update.enemy_despawn_timer.append(enemy_despawn_timer_table::parse_table_update(table_update)?),
     "enemy_mob_monitor_state" => db_update.enemy_mob_monitor_state.append(enemy_mob_monitor_state_table::parse_table_update(table_update)?),
+    "enemy_move_event" => db_update.enemy_move_event.append(enemy_move_event_table::parse_table_update(table_update)?),
     "enemy_regen_loop_timer" => db_update.enemy_regen_loop_timer.append(enemy_regen_loop_timer_table::parse_table_update(table_update)?),
     "enemy_scaling_desc" => db_update.enemy_scaling_desc.append(enemy_scaling_desc_table::parse_table_update(table_update)?),
     "enemy_scaling_state" => db_update.enemy_scaling_state.append(enemy_scaling_state_table::parse_table_update(table_update)?),
     "enemy_state" => db_update.enemy_state.append(enemy_state_table::parse_table_update(table_update)?),
+    "entity_attack_start_event" => db_update.entity_attack_start_event.append(entity_attack_start_event_table::parse_table_update(table_update)?),
     "environment_debuff_desc" => db_update.environment_debuff_desc.append(environment_debuff_desc_table::parse_table_update(table_update)?),
     "environment_debuff_loop_timer" => db_update.environment_debuff_loop_timer.append(environment_debuff_loop_timer_table::parse_table_update(table_update)?),
     "equipment_desc" => db_update.equipment_desc.append(equipment_desc_table::parse_table_update(table_update)?),
@@ -10415,8 +10681,10 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "exploration_chunks_state" => db_update.exploration_chunks_state.append(exploration_chunks_state_table::parse_table_update(table_update)?),
     "exploration_chunks_state_v2" => db_update.exploration_chunks_state_v_2.append(exploration_chunks_state_v_2_table::parse_table_update(table_update)?),
     "exposed_breadcrumbs" => db_update.exposed_breadcrumbs.append(exposed_breadcrumbs_table::parse_table_update(table_update)?),
+    "extract_event" => db_update.extract_event.append(extract_event_table::parse_table_update(table_update)?),
     "extract_outcome_state" => db_update.extract_outcome_state.append(extract_outcome_state_table::parse_table_update(table_update)?),
     "extract_outcome_state_v1" => db_update.extract_outcome_state_v_1.append(extract_outcome_state_v_1_table::parse_table_update(table_update)?),
+    "extract_start_event" => db_update.extract_start_event.append(extract_start_event_table::parse_table_update(table_update)?),
     "extraction_recipe_desc" => db_update.extraction_recipe_desc.append(extraction_recipe_desc_table::parse_table_update(table_update)?),
     "food_desc" => db_update.food_desc.append(food_desc_table::parse_table_update(table_update)?),
     "footprint_tile_state" => db_update.footprint_tile_state.append(footprint_tile_state_table::parse_table_update(table_update)?),
@@ -10451,6 +10719,7 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "interior_spawn_desc" => db_update.interior_spawn_desc.append(interior_spawn_desc_table::parse_table_update(table_update)?),
     "inventory_state" => db_update.inventory_state.append(inventory_state_table::parse_table_update(table_update)?),
     "item_conversion_recipe_desc" => db_update.item_conversion_recipe_desc.append(item_conversion_recipe_desc_table::parse_table_update(table_update)?),
+    "item_convert_start_event" => db_update.item_convert_start_event.append(item_convert_start_event_table::parse_table_update(table_update)?),
     "item_desc" => db_update.item_desc.append(item_desc_table::parse_table_update(table_update)?),
     "item_list_desc" => db_update.item_list_desc.append(item_list_desc_table::parse_table_update(table_update)?),
     "knowledge_achievement_state" => db_update.knowledge_achievement_state.append(knowledge_achievement_state_table::parse_table_update(table_update)?),
@@ -10486,6 +10755,7 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "loot_rarity_desc" => db_update.loot_rarity_desc.append(loot_rarity_desc_table::parse_table_update(table_update)?),
     "loot_table_desc" => db_update.loot_table_desc.append(loot_table_desc_table::parse_table_update(table_update)?),
     "lost_items_state" => db_update.lost_items_state.append(lost_items_state_table::parse_table_update(table_update)?),
+    "market_trade_event" => db_update.market_trade_event.append(market_trade_event_table::parse_table_update(table_update)?),
     "marketplace_state" => db_update.marketplace_state.append(marketplace_state_table::parse_table_update(table_update)?),
     "migration_achievements_params" => db_update.migration_achievements_params.append(migration_achievements_params_table::parse_table_update(table_update)?),
     "migration_building_desc_params" => db_update.migration_building_desc_params.append(migration_building_desc_params_table::parse_table_update(table_update)?),
@@ -10506,12 +10776,16 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "passive_craft_timer" => db_update.passive_craft_timer.append(passive_craft_timer_table::parse_table_update(table_update)?),
     "pathfinding_desc" => db_update.pathfinding_desc.append(pathfinding_desc_table::parse_table_update(table_update)?),
     "paved_tile_state" => db_update.paved_tile_state.append(paved_tile_state_table::parse_table_update(table_update)?),
+    "paving_destroy_tile_start_event" => db_update.paving_destroy_tile_start_event.append(paving_destroy_tile_start_event_table::parse_table_update(table_update)?),
+    "paving_place_tile_start_event" => db_update.paving_place_tile_start_event.append(paving_place_tile_start_event_table::parse_table_update(table_update)?),
     "paving_recipe_discovery_cargo_desc" => db_update.paving_recipe_discovery_cargo_desc.append(paving_recipe_discovery_cargo_desc_table::parse_table_update(table_update)?),
     "paving_recipe_discovery_item_desc" => db_update.paving_recipe_discovery_item_desc.append(paving_recipe_discovery_item_desc_table::parse_table_update(table_update)?),
     "paving_recipe_discovery_knowledge_desc" => db_update.paving_recipe_discovery_knowledge_desc.append(paving_recipe_discovery_knowledge_desc_table::parse_table_update(table_update)?),
     "paving_tile_desc" => db_update.paving_tile_desc.append(paving_tile_desc_table::parse_table_update(table_update)?),
     "permission_state" => db_update.permission_state.append(permission_state_table::parse_table_update(table_update)?),
     "pillar_shaping_desc" => db_update.pillar_shaping_desc.append(pillar_shaping_desc_table::parse_table_update(table_update)?),
+    "pillar_shaping_destroy_start_event" => db_update.pillar_shaping_destroy_start_event.append(pillar_shaping_destroy_start_event_table::parse_table_update(table_update)?),
+    "pillar_shaping_place_pillar_start_event" => db_update.pillar_shaping_place_pillar_start_event.append(pillar_shaping_place_pillar_start_event_table::parse_table_update(table_update)?),
     "pillar_shaping_recipe_discovery_cargo_desc" => db_update.pillar_shaping_recipe_discovery_cargo_desc.append(pillar_shaping_recipe_discovery_cargo_desc_table::parse_table_update(table_update)?),
     "pillar_shaping_recipe_discovery_item_desc" => db_update.pillar_shaping_recipe_discovery_item_desc.append(pillar_shaping_recipe_discovery_item_desc_table::parse_table_update(table_update)?),
     "pillar_shaping_recipe_discovery_knowledge_desc" => db_update.pillar_shaping_recipe_discovery_knowledge_desc.append(pillar_shaping_recipe_discovery_knowledge_desc_table::parse_table_update(table_update)?),
@@ -10520,11 +10794,16 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "placeable_group_desc" => db_update.placeable_group_desc.append(placeable_group_desc_table::parse_table_update(table_update)?),
     "placeable_growth_desc" => db_update.placeable_growth_desc.append(placeable_growth_desc_table::parse_table_update(table_update)?),
     "placeable_growth_timer" => db_update.placeable_growth_timer.append(placeable_growth_timer_table::parse_table_update(table_update)?),
+    "placeable_interact_start_event" => db_update.placeable_interact_start_event.append(placeable_interact_start_event_table::parse_table_update(table_update)?),
     "placeable_interaction_desc" => db_update.placeable_interaction_desc.append(placeable_interaction_desc_table::parse_table_update(table_update)?),
+    "placeable_place_start_event" => db_update.placeable_place_start_event.append(placeable_place_start_event_table::parse_table_update(table_update)?),
     "placeable_placement_desc" => db_update.placeable_placement_desc.append(placeable_placement_desc_table::parse_table_update(table_update)?),
     "placeable_state" => db_update.placeable_state.append(placeable_state_table::parse_table_update(table_update)?),
     "player_action_desc" => db_update.player_action_desc.append(player_action_desc_table::parse_table_update(table_update)?),
     "player_action_state" => db_update.player_action_state.append(player_action_state_table::parse_table_update(table_update)?),
+    "player_climb_start_event" => db_update.player_climb_start_event.append(player_climb_start_event_table::parse_table_update(table_update)?),
+    "player_death_event" => db_update.player_death_event.append(player_death_event_table::parse_table_update(table_update)?),
+    "player_death_start_event" => db_update.player_death_start_event.append(player_death_start_event_table::parse_table_update(table_update)?),
     "player_death_timer" => db_update.player_death_timer.append(player_death_timer_table::parse_table_update(table_update)?),
     "player_housing_customization_state" => db_update.player_housing_customization_state.append(player_housing_customization_state_table::parse_table_update(table_update)?),
     "player_housing_desc" => db_update.player_housing_desc.append(player_housing_desc_table::parse_table_update(table_update)?),
@@ -10533,6 +10812,7 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "player_housing_moving_cost_state" => db_update.player_housing_moving_cost_state.append(player_housing_moving_cost_state_table::parse_table_update(table_update)?),
     "player_housing_state" => db_update.player_housing_state.append(player_housing_state_table::parse_table_update(table_update)?),
     "player_lowercase_username_state" => db_update.player_lowercase_username_state.append(player_lowercase_username_state_table::parse_table_update(table_update)?),
+    "player_move_event" => db_update.player_move_event.append(player_move_event_table::parse_table_update(table_update)?),
     "player_note_state" => db_update.player_note_state.append(player_note_state_table::parse_table_update(table_update)?),
     "player_notification_event" => db_update.player_notification_event.append(player_notification_event_table::parse_table_update(table_update)?),
     "player_prefs_state" => db_update.player_prefs_state.append(player_prefs_state_table::parse_table_update(table_update)?),
@@ -10543,7 +10823,11 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "player_report_state_timestamp" => db_update.player_report_state_timestamp.append(player_report_state_timestamp_table::parse_table_update(table_update)?),
     "player_set_name_outcome_event" => db_update.player_set_name_outcome_event.append(player_set_name_outcome_event_table::parse_table_update(table_update)?),
     "player_settings_state" => db_update.player_settings_state.append(player_settings_state_table::parse_table_update(table_update)?),
+    "player_signed_out_event" => db_update.player_signed_out_event.append(player_signed_out_event_table::parse_table_update(table_update)?),
     "player_state" => db_update.player_state.append(player_state_table::parse_table_update(table_update)?),
+    "player_teleport_event" => db_update.player_teleport_event.append(player_teleport_event_table::parse_table_update(table_update)?),
+    "player_teleport_home_start_event" => db_update.player_teleport_home_start_event.append(player_teleport_home_start_event_table::parse_table_update(table_update)?),
+    "player_teleport_waystone_start_event" => db_update.player_teleport_waystone_start_event.append(player_teleport_waystone_start_event_table::parse_table_update(table_update)?),
     "player_timestamp_state" => db_update.player_timestamp_state.append(player_timestamp_state_table::parse_table_update(table_update)?),
     "player_use_elevator_timer" => db_update.player_use_elevator_timer.append(player_use_elevator_timer_table::parse_table_update(table_update)?),
     "player_username_state" => db_update.player_username_state.append(player_username_state_table::parse_table_update(table_update)?),
@@ -10557,7 +10841,9 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "previous_player_username_state" => db_update.previous_player_username_state.append(previous_player_username_state_table::parse_table_update(table_update)?),
     "private_parameters_desc" => db_update.private_parameters_desc.append(private_parameters_desc_table::parse_table_update(table_update)?),
     "progressive_action_state" => db_update.progressive_action_state.append(progressive_action_state_table::parse_table_update(table_update)?),
+    "project_site_advance_project_start_event" => db_update.project_site_advance_project_start_event.append(project_site_advance_project_start_event_table::parse_table_update(table_update)?),
     "project_site_state" => db_update.project_site_state.append(project_site_state_table::parse_table_update(table_update)?),
+    "prospect_start_event" => db_update.prospect_start_event.append(prospect_start_event_table::parse_table_update(table_update)?),
     "prospecting_desc" => db_update.prospecting_desc.append(prospecting_desc_table::parse_table_update(table_update)?),
     "prospecting_participants" => db_update.prospecting_participants.append(prospecting_participants_table::parse_table_update(table_update)?),
     "prospecting_state" => db_update.prospecting_state.append(prospecting_state_table::parse_table_update(table_update)?),
@@ -10581,6 +10867,7 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "reset_mobile_entity_timer" => db_update.reset_mobile_entity_timer.append(reset_mobile_entity_timer_table::parse_table_update(table_update)?),
     "resource_clump_desc" => db_update.resource_clump_desc.append(resource_clump_desc_table::parse_table_update(table_update)?),
     "resource_count" => db_update.resource_count.append(resource_count_table::parse_table_update(table_update)?),
+    "resource_depleted_event" => db_update.resource_depleted_event.append(resource_depleted_event_table::parse_table_update(table_update)?),
     "resource_desc" => db_update.resource_desc.append(resource_desc_table::parse_table_update(table_update)?),
     "resource_growth_recipe_desc" => db_update.resource_growth_recipe_desc.append(resource_growth_recipe_desc_table::parse_table_update(table_update)?),
     "resource_growth_timer" => db_update.resource_growth_timer.append(resource_growth_timer_table::parse_table_update(table_update)?),
@@ -10599,11 +10886,14 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "secondary_knowledge_desc" => db_update.secondary_knowledge_desc.append(secondary_knowledge_desc_table::parse_table_update(table_update)?),
     "sell_order_state" => db_update.sell_order_state.append(sell_order_state_table::parse_table_update(table_update)?),
     "server_identity" => db_update.server_identity.append(server_identity_table::parse_table_update(table_update)?),
+    "server_teleport_event" => db_update.server_teleport_event.append(server_teleport_event_table::parse_table_update(table_update)?),
+    "set_home_event" => db_update.set_home_event.append(set_home_event_table::parse_table_update(table_update)?),
     "signed_in_player_state" => db_update.signed_in_player_state.append(signed_in_player_state_table::parse_table_update(table_update)?),
     "single_resource_clump_info" => db_update.single_resource_clump_info.append(single_resource_clump_info_table::parse_table_update(table_update)?),
     "single_resource_to_clump_desc" => db_update.single_resource_to_clump_desc.append(single_resource_to_clump_desc_table::parse_table_update(table_update)?),
     "skill_desc" => db_update.skill_desc.append(skill_desc_table::parse_table_update(table_update)?),
     "skill_level_knowledge_desc" => db_update.skill_level_knowledge_desc.append(skill_level_knowledge_desc_table::parse_table_update(table_update)?),
+    "sleep_event" => db_update.sleep_event.append(sleep_event_table::parse_table_update(table_update)?),
     "stage_rewards_desc" => db_update.stage_rewards_desc.append(stage_rewards_desc_table::parse_table_update(table_update)?),
     "staged_ability_custom_desc" => db_update.staged_ability_custom_desc.append(staged_ability_custom_desc_table::parse_table_update(table_update)?),
     "staged_ability_unlock_desc" => db_update.staged_ability_unlock_desc.append(staged_ability_unlock_desc_table::parse_table_update(table_update)?),
@@ -10726,6 +11016,7 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "teleportation_energy_state" => db_update.teleportation_energy_state.append(teleportation_energy_state_table::parse_table_update(table_update)?),
     "terraform_progress_state" => db_update.terraform_progress_state.append(terraform_progress_state_table::parse_table_update(table_update)?),
     "terraform_recipe_desc" => db_update.terraform_recipe_desc.append(terraform_recipe_desc_table::parse_table_update(table_update)?),
+    "terraform_start_event" => db_update.terraform_start_event.append(terraform_start_event_table::parse_table_update(table_update)?),
     "terrain_chunk_state" => db_update.terrain_chunk_state.append(terrain_chunk_state_table::parse_table_update(table_update)?),
     "the_great_placeholder_table" => db_update.the_great_placeholder_table.append(the_great_placeholder_table_table::parse_table_update(table_update)?),
     "threat_state" => db_update.threat_state.append(threat_state_table::parse_table_update(table_update)?),
@@ -10851,6 +11142,12 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.attached_herds_state,
             )
             .with_updates_by_pk(|row| &row.entity_id);
+        diff.attack_event =
+            cache.apply_diff_to_table::<AttackEvent>("attack_event", &self.attack_event);
+        diff.attack_impact_event = cache.apply_diff_to_table::<AttackImpactEvent>(
+            "attack_impact_event",
+            &self.attack_impact_event,
+        );
         diff.attack_impact_timer = cache
             .apply_diff_to_table::<AttackImpactTimer>(
                 "attack_impact_timer",
@@ -10884,6 +11181,10 @@ impl __sdk::DbUpdate for DbUpdate {
         diff.bank_state = cache
             .apply_diff_to_table::<BankState>("bank_state", &self.bank_state)
             .with_updates_by_pk(|row| &row.building_entity_id);
+        diff.barter_stall_inventory_event = cache.apply_diff_to_table::<BarterStallInventoryEvent>(
+            "barter_stall_inventory_event",
+            &self.barter_stall_inventory_event,
+        );
         diff.barter_stall_state = cache
             .apply_diff_to_table::<BarterStallState>("barter_stall_state", &self.barter_stall_state)
             .with_updates_by_pk(|row| &row.entity_id);
@@ -10899,6 +11200,10 @@ impl __sdk::DbUpdate for DbUpdate {
         diff.buff_type_desc = cache
             .apply_diff_to_table::<BuffTypeDesc>("buff_type_desc", &self.buff_type_desc)
             .with_updates_by_pk(|row| &row.id);
+        diff.building_buff_activate_event = cache.apply_diff_to_table::<BuildingBuffActivateEvent>(
+            "building_buff_activate_event",
+            &self.building_buff_activate_event,
+        );
         diff.building_buff_desc = cache
             .apply_diff_to_table::<BuildingBuffDesc>("building_buff_desc", &self.building_buff_desc)
             .with_updates_by_pk(|row| &row.id);
@@ -10914,6 +11219,11 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.building_decay_loop_timer,
             )
             .with_updates_by_pk(|row| &row.scheduled_id);
+        diff.building_deconstruct_start_event = cache
+            .apply_diff_to_table::<BuildingDeconstructStartEvent>(
+                "building_deconstruct_start_event",
+                &self.building_deconstruct_start_event,
+            );
         diff.building_desc = cache
             .apply_diff_to_table::<BuildingDesc>("building_desc", &self.building_desc)
             .with_updates_by_pk(|row| &row.id);
@@ -10947,6 +11257,10 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.building_portal_desc,
             )
             .with_updates_by_pk(|row| &row.id);
+        diff.building_repair_start_event = cache.apply_diff_to_table::<BuildingRepairStartEvent>(
+            "building_repair_start_event",
+            &self.building_repair_start_event,
+        );
         diff.building_repairs_desc = cache
             .apply_diff_to_table::<BuildingRepairsDesc>(
                 "building_repairs_desc",
@@ -11016,6 +11330,10 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.claim_recruitment_state,
             )
             .with_updates_by_pk(|row| &row.entity_id);
+        diff.claim_resupply_start_event = cache.apply_diff_to_table::<ClaimResupplyStartEvent>(
+            "claim_resupply_start_event",
+            &self.claim_resupply_start_event,
+        );
         diff.claim_state = cache
             .apply_diff_to_table::<ClaimState>("claim_state", &self.claim_state)
             .with_updates_by_pk(|row| &row.entity_id);
@@ -11037,6 +11355,10 @@ impl __sdk::DbUpdate for DbUpdate {
         diff.claim_tile_state = cache
             .apply_diff_to_table::<ClaimTileState>("claim_tile_state", &self.claim_tile_state)
             .with_updates_by_pk(|row| &row.entity_id);
+        diff.claim_treasury_event = cache.apply_diff_to_table::<ClaimTreasuryEvent>(
+            "claim_treasury_event",
+            &self.claim_treasury_event,
+        );
         diff.climb_requirement_desc = cache
             .apply_diff_to_table::<ClimbRequirementDesc>(
                 "climb_requirement_desc",
@@ -11121,6 +11443,20 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.contribution_state,
             )
             .with_updates_by_pk(|row| &row.entity_id);
+        diff.craft_completed_event = cache.apply_diff_to_table::<CraftCompletedEvent>(
+            "craft_completed_event",
+            &self.craft_completed_event,
+        );
+        diff.craft_continue_start_event = cache.apply_diff_to_table::<CraftContinueStartEvent>(
+            "craft_continue_start_event",
+            &self.craft_continue_start_event,
+        );
+        diff.craft_event =
+            cache.apply_diff_to_table::<CraftEvent>("craft_event", &self.craft_event);
+        diff.craft_initiate_start_event = cache.apply_diff_to_table::<CraftInitiateStartEvent>(
+            "craft_initiate_start_event",
+            &self.craft_initiate_start_event,
+        );
         diff.crafting_recipe_desc = cache
             .apply_diff_to_table::<CraftingRecipeDesc>(
                 "crafting_recipe_desc",
@@ -11193,15 +11529,32 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.deployable_collectible_state,
             )
             .with_updates_by_pk(|row| &row.deployable_entity_id);
+        diff.deployable_deploy_start_event = cache
+            .apply_diff_to_table::<DeployableDeployStartEvent>(
+                "deployable_deploy_start_event",
+                &self.deployable_deploy_start_event,
+            );
         diff.deployable_desc = cache
             .apply_diff_to_table::<DeployableDesc>("deployable_desc", &self.deployable_desc)
             .with_updates_by_pk(|row| &row.id);
+        diff.deployable_disembark_event = cache.apply_diff_to_table::<DeployableDisembarkEvent>(
+            "deployable_disembark_event",
+            &self.deployable_disembark_event,
+        );
         diff.deployable_dismount_timer = cache
             .apply_diff_to_table::<DeployableDismountTimer>(
                 "deployable_dismount_timer",
                 &self.deployable_dismount_timer,
             )
             .with_updates_by_pk(|row| &row.scheduled_id);
+        diff.deployable_mount_event = cache.apply_diff_to_table::<DeployableMountEvent>(
+            "deployable_mount_event",
+            &self.deployable_mount_event,
+        );
+        diff.deployable_move_event = cache.apply_diff_to_table::<DeployableMoveEvent>(
+            "deployable_move_event",
+            &self.deployable_move_event,
+        );
         diff.deployable_state = cache
             .apply_diff_to_table::<DeployableState>("deployable_state", &self.deployable_state)
             .with_updates_by_pk(|row| &row.entity_id);
@@ -11211,6 +11564,10 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.deployable_state_v_2,
             )
             .with_updates_by_pk(|row| &row.entity_id);
+        diff.deployable_store_start_event = cache.apply_diff_to_table::<DeployableStoreStartEvent>(
+            "deployable_store_start_event",
+            &self.deployable_store_start_event,
+        );
         diff.destroy_dimension_network_timer = cache
             .apply_diff_to_table::<DestroyDimensionNetworkTimer>(
                 "destroy_dimension_network_timer",
@@ -11280,6 +11637,8 @@ impl __sdk::DbUpdate for DbUpdate {
         diff.emote_desc = cache
             .apply_diff_to_table::<EmoteDesc>("emote_desc", &self.emote_desc)
             .with_updates_by_pk(|row| &row.id);
+        diff.emote_start_event = cache
+            .apply_diff_to_table::<EmoteStartEvent>("emote_start_event", &self.emote_start_event);
         diff.empire_chunk_state = cache
             .apply_diff_to_table::<EmpireChunkState>("empire_chunk_state", &self.empire_chunk_state)
             .with_updates_by_pk(|row| &row.chunk_index);
@@ -11322,6 +11681,11 @@ impl __sdk::DbUpdate for DbUpdate {
         diff.empire_rank_state = cache
             .apply_diff_to_table::<EmpireRankState>("empire_rank_state", &self.empire_rank_state)
             .with_updates_by_pk(|row| &row.entity_id);
+        diff.empire_resupply_node_start_event = cache
+            .apply_diff_to_table::<EmpireResupplyNodeStartEvent>(
+                "empire_resupply_node_start_event",
+                &self.empire_resupply_node_start_event,
+            );
         diff.empire_settlement_state = cache
             .apply_diff_to_table::<EmpireSettlementState>(
                 "empire_settlement_state",
@@ -11358,6 +11722,10 @@ impl __sdk::DbUpdate for DbUpdate {
         diff.enemy_desc = cache
             .apply_diff_to_table::<EnemyDesc>("enemy_desc", &self.enemy_desc)
             .with_updates_by_pk(|row| &row.enemy_type);
+        diff.enemy_despawn_event = cache.apply_diff_to_table::<EnemyDespawnEvent>(
+            "enemy_despawn_event",
+            &self.enemy_despawn_event,
+        );
         diff.enemy_despawn_timer = cache
             .apply_diff_to_table::<EnemyDespawnTimer>(
                 "enemy_despawn_timer",
@@ -11370,6 +11738,8 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.enemy_mob_monitor_state,
             )
             .with_updates_by_pk(|row| &row.entity_id);
+        diff.enemy_move_event =
+            cache.apply_diff_to_table::<EnemyMoveEvent>("enemy_move_event", &self.enemy_move_event);
         diff.enemy_regen_loop_timer = cache
             .apply_diff_to_table::<EnemyRegenLoopTimer>(
                 "enemy_regen_loop_timer",
@@ -11388,6 +11758,10 @@ impl __sdk::DbUpdate for DbUpdate {
         diff.enemy_state = cache
             .apply_diff_to_table::<EnemyState>("enemy_state", &self.enemy_state)
             .with_updates_by_pk(|row| &row.entity_id);
+        diff.entity_attack_start_event = cache.apply_diff_to_table::<EntityAttackStartEvent>(
+            "entity_attack_start_event",
+            &self.entity_attack_start_event,
+        );
         diff.environment_debuff_desc = cache
             .apply_diff_to_table::<EnvironmentDebuffDesc>(
                 "environment_debuff_desc",
@@ -11433,6 +11807,8 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.exploration_chunks_state_v_2,
             )
             .with_updates_by_pk(|row| &row.entity_id);
+        diff.extract_event =
+            cache.apply_diff_to_table::<ExtractEvent>("extract_event", &self.extract_event);
         diff.extract_outcome_state = cache
             .apply_diff_to_table::<ExtractOutcomeStateV2>(
                 "extract_outcome_state",
@@ -11445,6 +11821,10 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.extract_outcome_state_v_1,
             )
             .with_updates_by_pk(|row| &row.entity_id);
+        diff.extract_start_event = cache.apply_diff_to_table::<ExtractStartEvent>(
+            "extract_start_event",
+            &self.extract_start_event,
+        );
         diff.extraction_recipe_desc = cache
             .apply_diff_to_table::<ExtractionRecipeDesc>(
                 "extraction_recipe_desc",
@@ -11617,6 +11997,10 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.item_conversion_recipe_desc,
             )
             .with_updates_by_pk(|row| &row.id);
+        diff.item_convert_start_event = cache.apply_diff_to_table::<ItemConvertStartEvent>(
+            "item_convert_start_event",
+            &self.item_convert_start_event,
+        );
         diff.item_desc = cache
             .apply_diff_to_table::<ItemDesc>("item_desc", &self.item_desc)
             .with_updates_by_pk(|row| &row.id);
@@ -11797,6 +12181,10 @@ impl __sdk::DbUpdate for DbUpdate {
         diff.lost_items_state = cache
             .apply_diff_to_table::<LostItemsState>("lost_items_state", &self.lost_items_state)
             .with_updates_by_pk(|row| &row.inventory_entity_id);
+        diff.market_trade_event = cache.apply_diff_to_table::<MarketTradeEvent>(
+            "market_trade_event",
+            &self.market_trade_event,
+        );
         diff.marketplace_state = cache
             .apply_diff_to_table::<MarketplaceState>("marketplace_state", &self.marketplace_state)
             .with_updates_by_pk(|row| &row.building_entity_id);
@@ -11890,6 +12278,16 @@ impl __sdk::DbUpdate for DbUpdate {
         diff.paved_tile_state = cache
             .apply_diff_to_table::<PavedTileState>("paved_tile_state", &self.paved_tile_state)
             .with_updates_by_pk(|row| &row.entity_id);
+        diff.paving_destroy_tile_start_event = cache
+            .apply_diff_to_table::<PavingDestroyTileStartEvent>(
+                "paving_destroy_tile_start_event",
+                &self.paving_destroy_tile_start_event,
+            );
+        diff.paving_place_tile_start_event = cache
+            .apply_diff_to_table::<PavingPlaceTileStartEvent>(
+                "paving_place_tile_start_event",
+                &self.paving_place_tile_start_event,
+            );
         diff.paving_recipe_discovery_cargo_desc = cache
             .apply_diff_to_table::<DiscoveryTriggerDesc>(
                 "paving_recipe_discovery_cargo_desc",
@@ -11916,6 +12314,16 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.pillar_shaping_desc,
             )
             .with_updates_by_pk(|row| &row.id);
+        diff.pillar_shaping_destroy_start_event = cache
+            .apply_diff_to_table::<PillarShapingDestroyStartEvent>(
+                "pillar_shaping_destroy_start_event",
+                &self.pillar_shaping_destroy_start_event,
+            );
+        diff.pillar_shaping_place_pillar_start_event = cache
+            .apply_diff_to_table::<PillarShapingPlacePillarStartEvent>(
+                "pillar_shaping_place_pillar_start_event",
+                &self.pillar_shaping_place_pillar_start_event,
+            );
         diff.pillar_shaping_recipe_discovery_cargo_desc = cache
             .apply_diff_to_table::<DiscoveryTriggerDesc>(
                 "pillar_shaping_recipe_discovery_cargo_desc",
@@ -11958,12 +12366,21 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.placeable_growth_timer,
             )
             .with_updates_by_pk(|row| &row.scheduled_id);
+        diff.placeable_interact_start_event = cache
+            .apply_diff_to_table::<PlaceableInteractStartEvent>(
+                "placeable_interact_start_event",
+                &self.placeable_interact_start_event,
+            );
         diff.placeable_interaction_desc = cache
             .apply_diff_to_table::<PlaceableInteractionDesc>(
                 "placeable_interaction_desc",
                 &self.placeable_interaction_desc,
             )
             .with_updates_by_pk(|row| &row.id);
+        diff.placeable_place_start_event = cache.apply_diff_to_table::<PlaceablePlaceStartEvent>(
+            "placeable_place_start_event",
+            &self.placeable_place_start_event,
+        );
         diff.placeable_placement_desc = cache
             .apply_diff_to_table::<PlaceablePlacementDesc>(
                 "placeable_placement_desc",
@@ -11982,6 +12399,18 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.player_action_state,
             )
             .with_updates_by_pk(|row| &row.auto_id);
+        diff.player_climb_start_event = cache.apply_diff_to_table::<PlayerClimbStartEvent>(
+            "player_climb_start_event",
+            &self.player_climb_start_event,
+        );
+        diff.player_death_event = cache.apply_diff_to_table::<PlayerDeathEvent>(
+            "player_death_event",
+            &self.player_death_event,
+        );
+        diff.player_death_start_event = cache.apply_diff_to_table::<PlayerDeathStartEvent>(
+            "player_death_start_event",
+            &self.player_death_start_event,
+        );
         diff.player_death_timer = cache
             .apply_diff_to_table::<PlayerDeathTimer>("player_death_timer", &self.player_death_timer)
             .with_updates_by_pk(|row| &row.scheduled_id);
@@ -12027,6 +12456,8 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.player_lowercase_username_state,
             )
             .with_updates_by_pk(|row| &row.entity_id);
+        diff.player_move_event = cache
+            .apply_diff_to_table::<PlayerMoveEvent>("player_move_event", &self.player_move_event);
         diff.player_note_state = cache
             .apply_diff_to_table::<PlayerNoteState>("player_note_state", &self.player_note_state)
             .with_updates_by_pk(|row| &row.entity_id);
@@ -12078,9 +12509,27 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.player_settings_state,
             )
             .with_updates_by_pk(|row| &row.entity_id);
+        diff.player_signed_out_event = cache.apply_diff_to_table::<PlayerSignedOutEvent>(
+            "player_signed_out_event",
+            &self.player_signed_out_event,
+        );
         diff.player_state = cache
             .apply_diff_to_table::<PlayerState>("player_state", &self.player_state)
             .with_updates_by_pk(|row| &row.entity_id);
+        diff.player_teleport_event = cache.apply_diff_to_table::<PlayerTeleportEvent>(
+            "player_teleport_event",
+            &self.player_teleport_event,
+        );
+        diff.player_teleport_home_start_event = cache
+            .apply_diff_to_table::<PlayerTeleportHomeStartEvent>(
+                "player_teleport_home_start_event",
+                &self.player_teleport_home_start_event,
+            );
+        diff.player_teleport_waystone_start_event = cache
+            .apply_diff_to_table::<PlayerTeleportWaystoneStartEvent>(
+                "player_teleport_waystone_start_event",
+                &self.player_teleport_waystone_start_event,
+            );
         diff.player_timestamp_state = cache
             .apply_diff_to_table::<PlayerTimestampState>(
                 "player_timestamp_state",
@@ -12149,9 +12598,18 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.progressive_action_state,
             )
             .with_updates_by_pk(|row| &row.entity_id);
+        diff.project_site_advance_project_start_event = cache
+            .apply_diff_to_table::<ProjectSiteAdvanceProjectStartEvent>(
+                "project_site_advance_project_start_event",
+                &self.project_site_advance_project_start_event,
+            );
         diff.project_site_state = cache
             .apply_diff_to_table::<ProjectSiteState>("project_site_state", &self.project_site_state)
             .with_updates_by_pk(|row| &row.entity_id);
+        diff.prospect_start_event = cache.apply_diff_to_table::<ProspectStartEvent>(
+            "prospect_start_event",
+            &self.prospect_start_event,
+        );
         diff.prospecting_desc = cache
             .apply_diff_to_table::<ProspectingDesc>("prospecting_desc", &self.prospecting_desc)
             .with_updates_by_pk(|row| &row.id);
@@ -12254,6 +12712,10 @@ impl __sdk::DbUpdate for DbUpdate {
         diff.resource_count = cache
             .apply_diff_to_table::<ResourceCount>("resource_count", &self.resource_count)
             .with_updates_by_pk(|row| &row.resource_id);
+        diff.resource_depleted_event = cache.apply_diff_to_table::<ResourceDepletedEvent>(
+            "resource_depleted_event",
+            &self.resource_depleted_event,
+        );
         diff.resource_desc = cache
             .apply_diff_to_table::<ResourceDesc>("resource_desc", &self.resource_desc)
             .with_updates_by_pk(|row| &row.id);
@@ -12341,6 +12803,12 @@ impl __sdk::DbUpdate for DbUpdate {
         diff.server_identity = cache
             .apply_diff_to_table::<ServerIdentity>("server_identity", &self.server_identity)
             .with_updates_by_pk(|row| &row.version);
+        diff.server_teleport_event = cache.apply_diff_to_table::<ServerTeleportEvent>(
+            "server_teleport_event",
+            &self.server_teleport_event,
+        );
+        diff.set_home_event =
+            cache.apply_diff_to_table::<SetHomeEvent>("set_home_event", &self.set_home_event);
         diff.signed_in_player_state = cache
             .apply_diff_to_table::<SignedInPlayerState>(
                 "signed_in_player_state",
@@ -12368,6 +12836,8 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.skill_level_knowledge_desc,
             )
             .with_updates_by_pk(|row| &row.id);
+        diff.sleep_event =
+            cache.apply_diff_to_table::<SleepEvent>("sleep_event", &self.sleep_event);
         diff.stage_rewards_desc = cache
             .apply_diff_to_table::<StageRewardsDesc>("stage_rewards_desc", &self.stage_rewards_desc)
             .with_updates_by_pk(|row| &row.id);
@@ -13028,6 +13498,10 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.terraform_recipe_desc,
             )
             .with_updates_by_pk(|row| &row.difference);
+        diff.terraform_start_event = cache.apply_diff_to_table::<TerraformStartEvent>(
+            "terraform_start_event",
+            &self.terraform_start_event,
+        );
         diff.terrain_chunk_state = cache
             .apply_diff_to_table::<TerrainChunkState>(
                 "terrain_chunk_state",
@@ -13208,6 +13682,8 @@ pub struct AppliedDiff<'r> {
     alert_desc: __sdk::TableAppliedDiff<'r, AlertDesc>,
     alert_state: __sdk::TableAppliedDiff<'r, AlertState>,
     attached_herds_state: __sdk::TableAppliedDiff<'r, AttachedHerdsState>,
+    attack_event: __sdk::TableAppliedDiff<'r, AttackEvent>,
+    attack_impact_event: __sdk::TableAppliedDiff<'r, AttackImpactEvent>,
     attack_impact_timer: __sdk::TableAppliedDiff<'r, AttackImpactTimer>,
     attack_impact_timer_migrated: __sdk::TableAppliedDiff<'r, AttackImpactTimerMigrated>,
     attack_outcome_state: __sdk::TableAppliedDiff<'r, AttackOutcomeState>,
@@ -13215,14 +13691,17 @@ pub struct AppliedDiff<'r> {
     auto_claim_state: __sdk::TableAppliedDiff<'r, AutoClaimState>,
     auto_logout_loop_timer: __sdk::TableAppliedDiff<'r, AutoLogoutLoopTimer>,
     bank_state: __sdk::TableAppliedDiff<'r, BankState>,
+    barter_stall_inventory_event: __sdk::TableAppliedDiff<'r, BarterStallInventoryEvent>,
     barter_stall_state: __sdk::TableAppliedDiff<'r, BarterStallState>,
     biome_desc: __sdk::TableAppliedDiff<'r, BiomeDesc>,
     blocked_identity: __sdk::TableAppliedDiff<'r, BlockedIdentity>,
     buff_desc: __sdk::TableAppliedDiff<'r, BuffDesc>,
     buff_type_desc: __sdk::TableAppliedDiff<'r, BuffTypeDesc>,
+    building_buff_activate_event: __sdk::TableAppliedDiff<'r, BuildingBuffActivateEvent>,
     building_buff_desc: __sdk::TableAppliedDiff<'r, BuildingBuffDesc>,
     building_claim_desc: __sdk::TableAppliedDiff<'r, BuildingClaimDesc>,
     building_decay_loop_timer: __sdk::TableAppliedDiff<'r, BuildingDecayLoopTimer>,
+    building_deconstruct_start_event: __sdk::TableAppliedDiff<'r, BuildingDeconstructStartEvent>,
     building_desc: __sdk::TableAppliedDiff<'r, BuildingDesc>,
     building_despawn_timer: __sdk::TableAppliedDiff<'r, BuildingDespawnTimer>,
     building_function_type_mapping_desc:
@@ -13230,6 +13709,7 @@ pub struct AppliedDiff<'r> {
     building_map_icon_desc: __sdk::TableAppliedDiff<'r, BuildingMapIconDesc>,
     building_nickname_state: __sdk::TableAppliedDiff<'r, BuildingNicknameState>,
     building_portal_desc: __sdk::TableAppliedDiff<'r, BuildingPortalDesc>,
+    building_repair_start_event: __sdk::TableAppliedDiff<'r, BuildingRepairStartEvent>,
     building_repairs_desc: __sdk::TableAppliedDiff<'r, BuildingRepairsDesc>,
     building_spawn_desc: __sdk::TableAppliedDiff<'r, BuildingSpawnDesc>,
     building_state: __sdk::TableAppliedDiff<'r, BuildingState>,
@@ -13247,12 +13727,14 @@ pub struct AppliedDiff<'r> {
     claim_lowercase_name_state: __sdk::TableAppliedDiff<'r, ClaimLowercaseNameState>,
     claim_member_state: __sdk::TableAppliedDiff<'r, ClaimMemberState>,
     claim_recruitment_state: __sdk::TableAppliedDiff<'r, ClaimRecruitmentState>,
+    claim_resupply_start_event: __sdk::TableAppliedDiff<'r, ClaimResupplyStartEvent>,
     claim_state: __sdk::TableAppliedDiff<'r, ClaimState>,
     claim_tech_desc: __sdk::TableAppliedDiff<'r, ClaimTechDesc>,
     claim_tech_state: __sdk::TableAppliedDiff<'r, ClaimTechState>,
     claim_tech_unlock_timer: __sdk::TableAppliedDiff<'r, ClaimTechUnlockTimer>,
     claim_tile_cost: __sdk::TableAppliedDiff<'r, ClaimTileCost>,
     claim_tile_state: __sdk::TableAppliedDiff<'r, ClaimTileState>,
+    claim_treasury_event: __sdk::TableAppliedDiff<'r, ClaimTreasuryEvent>,
     climb_requirement_desc: __sdk::TableAppliedDiff<'r, ClimbRequirementDesc>,
     closed_listing_state: __sdk::TableAppliedDiff<'r, ClosedListingState>,
     clothing_desc: __sdk::TableAppliedDiff<'r, ClothingDesc>,
@@ -13270,6 +13752,10 @@ pub struct AppliedDiff<'r> {
     construction_recipe_discovery_knowledge_desc: __sdk::TableAppliedDiff<'r, DiscoveryTriggerDesc>,
     contribution_loot_desc: __sdk::TableAppliedDiff<'r, ContributionLootDesc>,
     contribution_state: __sdk::TableAppliedDiff<'r, ContributionState>,
+    craft_completed_event: __sdk::TableAppliedDiff<'r, CraftCompletedEvent>,
+    craft_continue_start_event: __sdk::TableAppliedDiff<'r, CraftContinueStartEvent>,
+    craft_event: __sdk::TableAppliedDiff<'r, CraftEvent>,
+    craft_initiate_start_event: __sdk::TableAppliedDiff<'r, CraftInitiateStartEvent>,
     crafting_recipe_desc: __sdk::TableAppliedDiff<'r, CraftingRecipeDesc>,
     crafting_recipe_discovery_cargo_desc: __sdk::TableAppliedDiff<'r, DiscoveryTriggerDesc>,
     crafting_recipe_discovery_item_desc: __sdk::TableAppliedDiff<'r, DiscoveryTriggerDesc>,
@@ -13286,10 +13772,15 @@ pub struct AppliedDiff<'r> {
     deployable_appearance_override_desc:
         __sdk::TableAppliedDiff<'r, DeployableAppearanceOverrideDesc>,
     deployable_collectible_state: __sdk::TableAppliedDiff<'r, DeployableCollectibleState>,
+    deployable_deploy_start_event: __sdk::TableAppliedDiff<'r, DeployableDeployStartEvent>,
     deployable_desc: __sdk::TableAppliedDiff<'r, DeployableDesc>,
+    deployable_disembark_event: __sdk::TableAppliedDiff<'r, DeployableDisembarkEvent>,
     deployable_dismount_timer: __sdk::TableAppliedDiff<'r, DeployableDismountTimer>,
+    deployable_mount_event: __sdk::TableAppliedDiff<'r, DeployableMountEvent>,
+    deployable_move_event: __sdk::TableAppliedDiff<'r, DeployableMoveEvent>,
     deployable_state: __sdk::TableAppliedDiff<'r, DeployableState>,
     deployable_state_v_2: __sdk::TableAppliedDiff<'r, DeployableStateV2>,
+    deployable_store_start_event: __sdk::TableAppliedDiff<'r, DeployableStoreStartEvent>,
     destroy_dimension_network_timer: __sdk::TableAppliedDiff<'r, DestroyDimensionNetworkTimer>,
     developer: __sdk::TableAppliedDiff<'r, Developer>,
     dimension_description_state: __sdk::TableAppliedDiff<'r, DimensionDescriptionState>,
@@ -13305,6 +13796,7 @@ pub struct AppliedDiff<'r> {
     dungeon_state: __sdk::TableAppliedDiff<'r, DungeonState>,
     elevator_desc: __sdk::TableAppliedDiff<'r, ElevatorDesc>,
     emote_desc: __sdk::TableAppliedDiff<'r, EmoteDesc>,
+    emote_start_event: __sdk::TableAppliedDiff<'r, EmoteStartEvent>,
     empire_chunk_state: __sdk::TableAppliedDiff<'r, EmpireChunkState>,
     empire_color_desc: __sdk::TableAppliedDiff<'r, EmpireColorDesc>,
     empire_icon_desc: __sdk::TableAppliedDiff<'r, EmpireIconDesc>,
@@ -13315,6 +13807,7 @@ pub struct AppliedDiff<'r> {
     empire_player_data_state: __sdk::TableAppliedDiff<'r, EmpirePlayerDataState>,
     empire_rank_desc: __sdk::TableAppliedDiff<'r, EmpireRankDesc>,
     empire_rank_state: __sdk::TableAppliedDiff<'r, EmpireRankState>,
+    empire_resupply_node_start_event: __sdk::TableAppliedDiff<'r, EmpireResupplyNodeStartEvent>,
     empire_settlement_state: __sdk::TableAppliedDiff<'r, EmpireSettlementState>,
     empire_state: __sdk::TableAppliedDiff<'r, EmpireState>,
     empire_supplies_desc: __sdk::TableAppliedDiff<'r, EmpireSuppliesDesc>,
@@ -13322,12 +13815,15 @@ pub struct AppliedDiff<'r> {
     end_grace_period_timer: __sdk::TableAppliedDiff<'r, EndGracePeriodTimer>,
     enemy_ai_params_desc: __sdk::TableAppliedDiff<'r, EnemyAiParamsDesc>,
     enemy_desc: __sdk::TableAppliedDiff<'r, EnemyDesc>,
+    enemy_despawn_event: __sdk::TableAppliedDiff<'r, EnemyDespawnEvent>,
     enemy_despawn_timer: __sdk::TableAppliedDiff<'r, EnemyDespawnTimer>,
     enemy_mob_monitor_state: __sdk::TableAppliedDiff<'r, EnemyMobMonitorState>,
+    enemy_move_event: __sdk::TableAppliedDiff<'r, EnemyMoveEvent>,
     enemy_regen_loop_timer: __sdk::TableAppliedDiff<'r, EnemyRegenLoopTimer>,
     enemy_scaling_desc: __sdk::TableAppliedDiff<'r, EnemyScalingDesc>,
     enemy_scaling_state: __sdk::TableAppliedDiff<'r, EnemyScalingState>,
     enemy_state: __sdk::TableAppliedDiff<'r, EnemyState>,
+    entity_attack_start_event: __sdk::TableAppliedDiff<'r, EntityAttackStartEvent>,
     environment_debuff_desc: __sdk::TableAppliedDiff<'r, EnvironmentDebuffDesc>,
     environment_debuff_loop_timer: __sdk::TableAppliedDiff<'r, EnvironmentDebuffLoopTimer>,
     equipment_desc: __sdk::TableAppliedDiff<'r, EquipmentDesc>,
@@ -13338,8 +13834,10 @@ pub struct AppliedDiff<'r> {
     exploration_chunks_state: __sdk::TableAppliedDiff<'r, ExplorationChunksState>,
     exploration_chunks_state_v_2: __sdk::TableAppliedDiff<'r, ExplorationChunksStateV2>,
     exposed_breadcrumbs: __sdk::TableAppliedDiff<'r, CrumbTrailExposedState>,
+    extract_event: __sdk::TableAppliedDiff<'r, ExtractEvent>,
     extract_outcome_state: __sdk::TableAppliedDiff<'r, ExtractOutcomeStateV2>,
     extract_outcome_state_v_1: __sdk::TableAppliedDiff<'r, ExtractOutcomeState>,
+    extract_start_event: __sdk::TableAppliedDiff<'r, ExtractStartEvent>,
     extraction_recipe_desc: __sdk::TableAppliedDiff<'r, ExtractionRecipeDesc>,
     food_desc: __sdk::TableAppliedDiff<'r, FoodDesc>,
     footprint_tile_state: __sdk::TableAppliedDiff<'r, FootprintTileState>,
@@ -13375,6 +13873,7 @@ pub struct AppliedDiff<'r> {
     interior_spawn_desc: __sdk::TableAppliedDiff<'r, InteriorSpawnDesc>,
     inventory_state: __sdk::TableAppliedDiff<'r, InventoryState>,
     item_conversion_recipe_desc: __sdk::TableAppliedDiff<'r, ItemConversionRecipeDesc>,
+    item_convert_start_event: __sdk::TableAppliedDiff<'r, ItemConvertStartEvent>,
     item_desc: __sdk::TableAppliedDiff<'r, ItemDesc>,
     item_list_desc: __sdk::TableAppliedDiff<'r, ItemListDesc>,
     knowledge_achievement_state: __sdk::TableAppliedDiff<'r, KnowledgeAchievementState>,
@@ -13411,6 +13910,7 @@ pub struct AppliedDiff<'r> {
     loot_rarity_desc: __sdk::TableAppliedDiff<'r, LootRarityDesc>,
     loot_table_desc: __sdk::TableAppliedDiff<'r, LootTableDesc>,
     lost_items_state: __sdk::TableAppliedDiff<'r, LostItemsState>,
+    market_trade_event: __sdk::TableAppliedDiff<'r, MarketTradeEvent>,
     marketplace_state: __sdk::TableAppliedDiff<'r, MarketplaceState>,
     migration_achievements_params: __sdk::TableAppliedDiff<'r, MigrationAchievementsParams>,
     migration_building_desc_params: __sdk::TableAppliedDiff<'r, MigrationBuildingDescParams>,
@@ -13432,12 +13932,17 @@ pub struct AppliedDiff<'r> {
     passive_craft_timer: __sdk::TableAppliedDiff<'r, PassiveCraftTimer>,
     pathfinding_desc: __sdk::TableAppliedDiff<'r, PathfindingDesc>,
     paved_tile_state: __sdk::TableAppliedDiff<'r, PavedTileState>,
+    paving_destroy_tile_start_event: __sdk::TableAppliedDiff<'r, PavingDestroyTileStartEvent>,
+    paving_place_tile_start_event: __sdk::TableAppliedDiff<'r, PavingPlaceTileStartEvent>,
     paving_recipe_discovery_cargo_desc: __sdk::TableAppliedDiff<'r, DiscoveryTriggerDesc>,
     paving_recipe_discovery_item_desc: __sdk::TableAppliedDiff<'r, DiscoveryTriggerDesc>,
     paving_recipe_discovery_knowledge_desc: __sdk::TableAppliedDiff<'r, DiscoveryTriggerDesc>,
     paving_tile_desc: __sdk::TableAppliedDiff<'r, PavingTileDesc>,
     permission_state: __sdk::TableAppliedDiff<'r, PermissionState>,
     pillar_shaping_desc: __sdk::TableAppliedDiff<'r, PillarShapingDesc>,
+    pillar_shaping_destroy_start_event: __sdk::TableAppliedDiff<'r, PillarShapingDestroyStartEvent>,
+    pillar_shaping_place_pillar_start_event:
+        __sdk::TableAppliedDiff<'r, PillarShapingPlacePillarStartEvent>,
     pillar_shaping_recipe_discovery_cargo_desc: __sdk::TableAppliedDiff<'r, DiscoveryTriggerDesc>,
     pillar_shaping_recipe_discovery_item_desc: __sdk::TableAppliedDiff<'r, DiscoveryTriggerDesc>,
     pillar_shaping_recipe_discovery_knowledge_desc:
@@ -13447,11 +13952,16 @@ pub struct AppliedDiff<'r> {
     placeable_group_desc: __sdk::TableAppliedDiff<'r, PlaceableGroupDesc>,
     placeable_growth_desc: __sdk::TableAppliedDiff<'r, PlaceableGrowthDesc>,
     placeable_growth_timer: __sdk::TableAppliedDiff<'r, GrowthTimer>,
+    placeable_interact_start_event: __sdk::TableAppliedDiff<'r, PlaceableInteractStartEvent>,
     placeable_interaction_desc: __sdk::TableAppliedDiff<'r, PlaceableInteractionDesc>,
+    placeable_place_start_event: __sdk::TableAppliedDiff<'r, PlaceablePlaceStartEvent>,
     placeable_placement_desc: __sdk::TableAppliedDiff<'r, PlaceablePlacementDesc>,
     placeable_state: __sdk::TableAppliedDiff<'r, PlaceableState>,
     player_action_desc: __sdk::TableAppliedDiff<'r, PlayerActionDesc>,
     player_action_state: __sdk::TableAppliedDiff<'r, PlayerActionState>,
+    player_climb_start_event: __sdk::TableAppliedDiff<'r, PlayerClimbStartEvent>,
+    player_death_event: __sdk::TableAppliedDiff<'r, PlayerDeathEvent>,
+    player_death_start_event: __sdk::TableAppliedDiff<'r, PlayerDeathStartEvent>,
     player_death_timer: __sdk::TableAppliedDiff<'r, PlayerDeathTimer>,
     player_housing_customization_state:
         __sdk::TableAppliedDiff<'r, PlayerHousingCustomizationState>,
@@ -13461,6 +13971,7 @@ pub struct AppliedDiff<'r> {
     player_housing_moving_cost_state: __sdk::TableAppliedDiff<'r, PlayerHousingMovingCostState>,
     player_housing_state: __sdk::TableAppliedDiff<'r, PlayerHousingState>,
     player_lowercase_username_state: __sdk::TableAppliedDiff<'r, PlayerLowercaseUsernameState>,
+    player_move_event: __sdk::TableAppliedDiff<'r, PlayerMoveEvent>,
     player_note_state: __sdk::TableAppliedDiff<'r, PlayerNoteState>,
     player_notification_event: __sdk::TableAppliedDiff<'r, PlayerNotificationEvent>,
     player_prefs_state: __sdk::TableAppliedDiff<'r, PlayerPrefsState>,
@@ -13471,7 +13982,12 @@ pub struct AppliedDiff<'r> {
     player_report_state_timestamp: __sdk::TableAppliedDiff<'r, PlayerReportStateTimestamp>,
     player_set_name_outcome_event: __sdk::TableAppliedDiff<'r, PlayerSetNameOutcomeEvent>,
     player_settings_state: __sdk::TableAppliedDiff<'r, PlayerSettingsState>,
+    player_signed_out_event: __sdk::TableAppliedDiff<'r, PlayerSignedOutEvent>,
     player_state: __sdk::TableAppliedDiff<'r, PlayerState>,
+    player_teleport_event: __sdk::TableAppliedDiff<'r, PlayerTeleportEvent>,
+    player_teleport_home_start_event: __sdk::TableAppliedDiff<'r, PlayerTeleportHomeStartEvent>,
+    player_teleport_waystone_start_event:
+        __sdk::TableAppliedDiff<'r, PlayerTeleportWaystoneStartEvent>,
     player_timestamp_state: __sdk::TableAppliedDiff<'r, PlayerTimestampState>,
     player_use_elevator_timer: __sdk::TableAppliedDiff<'r, PlayerUseElevatorTimer>,
     player_username_state: __sdk::TableAppliedDiff<'r, PlayerUsernameState>,
@@ -13485,7 +14001,10 @@ pub struct AppliedDiff<'r> {
     previous_player_username_state: __sdk::TableAppliedDiff<'r, PreviousPlayerUsernameState>,
     private_parameters_desc: __sdk::TableAppliedDiff<'r, PrivateParametersDesc>,
     progressive_action_state: __sdk::TableAppliedDiff<'r, ProgressiveActionState>,
+    project_site_advance_project_start_event:
+        __sdk::TableAppliedDiff<'r, ProjectSiteAdvanceProjectStartEvent>,
     project_site_state: __sdk::TableAppliedDiff<'r, ProjectSiteState>,
+    prospect_start_event: __sdk::TableAppliedDiff<'r, ProspectStartEvent>,
     prospecting_desc: __sdk::TableAppliedDiff<'r, ProspectingDesc>,
     prospecting_participants: __sdk::TableAppliedDiff<'r, ProspectingParticipant>,
     prospecting_state: __sdk::TableAppliedDiff<'r, ProspectingState>,
@@ -13509,6 +14028,7 @@ pub struct AppliedDiff<'r> {
     reset_mobile_entity_timer: __sdk::TableAppliedDiff<'r, ResetMobileEntityTimer>,
     resource_clump_desc: __sdk::TableAppliedDiff<'r, ResourceClumpDesc>,
     resource_count: __sdk::TableAppliedDiff<'r, ResourceCount>,
+    resource_depleted_event: __sdk::TableAppliedDiff<'r, ResourceDepletedEvent>,
     resource_desc: __sdk::TableAppliedDiff<'r, ResourceDesc>,
     resource_growth_recipe_desc: __sdk::TableAppliedDiff<'r, ResourceGrowthRecipeDesc>,
     resource_growth_timer: __sdk::TableAppliedDiff<'r, GrowthTimer>,
@@ -13530,11 +14050,14 @@ pub struct AppliedDiff<'r> {
     secondary_knowledge_desc: __sdk::TableAppliedDiff<'r, SecondaryKnowledgeDesc>,
     sell_order_state: __sdk::TableAppliedDiff<'r, AuctionListingState>,
     server_identity: __sdk::TableAppliedDiff<'r, ServerIdentity>,
+    server_teleport_event: __sdk::TableAppliedDiff<'r, ServerTeleportEvent>,
+    set_home_event: __sdk::TableAppliedDiff<'r, SetHomeEvent>,
     signed_in_player_state: __sdk::TableAppliedDiff<'r, SignedInPlayerState>,
     single_resource_clump_info: __sdk::TableAppliedDiff<'r, SingleResourceClumpInfo>,
     single_resource_to_clump_desc: __sdk::TableAppliedDiff<'r, SingleResourceToClumpDesc>,
     skill_desc: __sdk::TableAppliedDiff<'r, SkillDesc>,
     skill_level_knowledge_desc: __sdk::TableAppliedDiff<'r, SkillLevelKnowledgeDesc>,
+    sleep_event: __sdk::TableAppliedDiff<'r, SleepEvent>,
     stage_rewards_desc: __sdk::TableAppliedDiff<'r, StageRewardsDesc>,
     staged_ability_custom_desc: __sdk::TableAppliedDiff<'r, AbilityCustomDesc>,
     staged_ability_unlock_desc: __sdk::TableAppliedDiff<'r, AbilityUnlockDesc>,
@@ -13662,6 +14185,7 @@ pub struct AppliedDiff<'r> {
     teleportation_energy_state: __sdk::TableAppliedDiff<'r, TeleportationEnergyState>,
     terraform_progress_state: __sdk::TableAppliedDiff<'r, TerraformProgressState>,
     terraform_recipe_desc: __sdk::TableAppliedDiff<'r, TerraformRecipeDesc>,
+    terraform_start_event: __sdk::TableAppliedDiff<'r, TerraformStartEvent>,
     terrain_chunk_state: __sdk::TableAppliedDiff<'r, TerrainChunkState>,
     the_great_placeholder_table: __sdk::TableAppliedDiff<'r, TheGreatPlaceHolderTable>,
     threat_state: __sdk::TableAppliedDiff<'r, ThreatState>,
@@ -13780,6 +14304,16 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             &self.attached_herds_state,
             event,
         );
+        callbacks.invoke_table_row_callbacks::<AttackEvent>(
+            "attack_event",
+            &self.attack_event,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<AttackImpactEvent>(
+            "attack_impact_event",
+            &self.attack_impact_event,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<AttackImpactTimer>(
             "attack_impact_timer",
             &self.attack_impact_timer,
@@ -13811,6 +14345,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             event,
         );
         callbacks.invoke_table_row_callbacks::<BankState>("bank_state", &self.bank_state, event);
+        callbacks.invoke_table_row_callbacks::<BarterStallInventoryEvent>(
+            "barter_stall_inventory_event",
+            &self.barter_stall_inventory_event,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<BarterStallState>(
             "barter_stall_state",
             &self.barter_stall_state,
@@ -13828,6 +14367,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             &self.buff_type_desc,
             event,
         );
+        callbacks.invoke_table_row_callbacks::<BuildingBuffActivateEvent>(
+            "building_buff_activate_event",
+            &self.building_buff_activate_event,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<BuildingBuffDesc>(
             "building_buff_desc",
             &self.building_buff_desc,
@@ -13841,6 +14385,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<BuildingDecayLoopTimer>(
             "building_decay_loop_timer",
             &self.building_decay_loop_timer,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<BuildingDeconstructStartEvent>(
+            "building_deconstruct_start_event",
+            &self.building_deconstruct_start_event,
             event,
         );
         callbacks.invoke_table_row_callbacks::<BuildingDesc>(
@@ -13871,6 +14420,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<BuildingPortalDesc>(
             "building_portal_desc",
             &self.building_portal_desc,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<BuildingRepairStartEvent>(
+            "building_repair_start_event",
+            &self.building_repair_start_event,
             event,
         );
         callbacks.invoke_table_row_callbacks::<BuildingRepairsDesc>(
@@ -13949,6 +14503,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             &self.claim_recruitment_state,
             event,
         );
+        callbacks.invoke_table_row_callbacks::<ClaimResupplyStartEvent>(
+            "claim_resupply_start_event",
+            &self.claim_resupply_start_event,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<ClaimState>("claim_state", &self.claim_state, event);
         callbacks.invoke_table_row_callbacks::<ClaimTechDesc>(
             "claim_tech_desc",
@@ -13973,6 +14532,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<ClaimTileState>(
             "claim_tile_state",
             &self.claim_tile_state,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<ClaimTreasuryEvent>(
+            "claim_treasury_event",
+            &self.claim_treasury_event,
             event,
         );
         callbacks.invoke_table_row_callbacks::<ClimbRequirementDesc>(
@@ -14056,6 +14620,22 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             &self.contribution_state,
             event,
         );
+        callbacks.invoke_table_row_callbacks::<CraftCompletedEvent>(
+            "craft_completed_event",
+            &self.craft_completed_event,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<CraftContinueStartEvent>(
+            "craft_continue_start_event",
+            &self.craft_continue_start_event,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<CraftEvent>("craft_event", &self.craft_event, event);
+        callbacks.invoke_table_row_callbacks::<CraftInitiateStartEvent>(
+            "craft_initiate_start_event",
+            &self.craft_initiate_start_event,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<CraftingRecipeDesc>(
             "crafting_recipe_desc",
             &self.crafting_recipe_desc,
@@ -14121,14 +14701,34 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             &self.deployable_collectible_state,
             event,
         );
+        callbacks.invoke_table_row_callbacks::<DeployableDeployStartEvent>(
+            "deployable_deploy_start_event",
+            &self.deployable_deploy_start_event,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<DeployableDesc>(
             "deployable_desc",
             &self.deployable_desc,
             event,
         );
+        callbacks.invoke_table_row_callbacks::<DeployableDisembarkEvent>(
+            "deployable_disembark_event",
+            &self.deployable_disembark_event,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<DeployableDismountTimer>(
             "deployable_dismount_timer",
             &self.deployable_dismount_timer,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<DeployableMountEvent>(
+            "deployable_mount_event",
+            &self.deployable_mount_event,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<DeployableMoveEvent>(
+            "deployable_move_event",
+            &self.deployable_move_event,
             event,
         );
         callbacks.invoke_table_row_callbacks::<DeployableState>(
@@ -14139,6 +14739,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<DeployableStateV2>(
             "deployable_state_v2",
             &self.deployable_state_v_2,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<DeployableStoreStartEvent>(
+            "deployable_store_start_event",
+            &self.deployable_store_start_event,
             event,
         );
         callbacks.invoke_table_row_callbacks::<DestroyDimensionNetworkTimer>(
@@ -14204,6 +14809,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             event,
         );
         callbacks.invoke_table_row_callbacks::<EmoteDesc>("emote_desc", &self.emote_desc, event);
+        callbacks.invoke_table_row_callbacks::<EmoteStartEvent>(
+            "emote_start_event",
+            &self.emote_start_event,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<EmpireChunkState>(
             "empire_chunk_state",
             &self.empire_chunk_state,
@@ -14254,6 +14864,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             &self.empire_rank_state,
             event,
         );
+        callbacks.invoke_table_row_callbacks::<EmpireResupplyNodeStartEvent>(
+            "empire_resupply_node_start_event",
+            &self.empire_resupply_node_start_event,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<EmpireSettlementState>(
             "empire_settlement_state",
             &self.empire_settlement_state,
@@ -14285,6 +14900,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             event,
         );
         callbacks.invoke_table_row_callbacks::<EnemyDesc>("enemy_desc", &self.enemy_desc, event);
+        callbacks.invoke_table_row_callbacks::<EnemyDespawnEvent>(
+            "enemy_despawn_event",
+            &self.enemy_despawn_event,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<EnemyDespawnTimer>(
             "enemy_despawn_timer",
             &self.enemy_despawn_timer,
@@ -14293,6 +14913,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<EnemyMobMonitorState>(
             "enemy_mob_monitor_state",
             &self.enemy_mob_monitor_state,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<EnemyMoveEvent>(
+            "enemy_move_event",
+            &self.enemy_move_event,
             event,
         );
         callbacks.invoke_table_row_callbacks::<EnemyRegenLoopTimer>(
@@ -14311,6 +14936,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             event,
         );
         callbacks.invoke_table_row_callbacks::<EnemyState>("enemy_state", &self.enemy_state, event);
+        callbacks.invoke_table_row_callbacks::<EntityAttackStartEvent>(
+            "entity_attack_start_event",
+            &self.entity_attack_start_event,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<EnvironmentDebuffDesc>(
             "environment_debuff_desc",
             &self.environment_debuff_desc,
@@ -14361,6 +14991,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             &self.exposed_breadcrumbs,
             event,
         );
+        callbacks.invoke_table_row_callbacks::<ExtractEvent>(
+            "extract_event",
+            &self.extract_event,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<ExtractOutcomeStateV2>(
             "extract_outcome_state",
             &self.extract_outcome_state,
@@ -14369,6 +15004,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<ExtractOutcomeState>(
             "extract_outcome_state_v1",
             &self.extract_outcome_state_v_1,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<ExtractStartEvent>(
+            "extract_start_event",
+            &self.extract_start_event,
             event,
         );
         callbacks.invoke_table_row_callbacks::<ExtractionRecipeDesc>(
@@ -14523,6 +15163,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<ItemConversionRecipeDesc>(
             "item_conversion_recipe_desc",
             &self.item_conversion_recipe_desc,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<ItemConvertStartEvent>(
+            "item_convert_start_event",
+            &self.item_convert_start_event,
             event,
         );
         callbacks.invoke_table_row_callbacks::<ItemDesc>("item_desc", &self.item_desc, event);
@@ -14696,6 +15341,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             &self.lost_items_state,
             event,
         );
+        callbacks.invoke_table_row_callbacks::<MarketTradeEvent>(
+            "market_trade_event",
+            &self.market_trade_event,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<MarketplaceState>(
             "marketplace_state",
             &self.marketplace_state,
@@ -14788,6 +15438,16 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             &self.paved_tile_state,
             event,
         );
+        callbacks.invoke_table_row_callbacks::<PavingDestroyTileStartEvent>(
+            "paving_destroy_tile_start_event",
+            &self.paving_destroy_tile_start_event,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<PavingPlaceTileStartEvent>(
+            "paving_place_tile_start_event",
+            &self.paving_place_tile_start_event,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<DiscoveryTriggerDesc>(
             "paving_recipe_discovery_cargo_desc",
             &self.paving_recipe_discovery_cargo_desc,
@@ -14816,6 +15476,16 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<PillarShapingDesc>(
             "pillar_shaping_desc",
             &self.pillar_shaping_desc,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<PillarShapingDestroyStartEvent>(
+            "pillar_shaping_destroy_start_event",
+            &self.pillar_shaping_destroy_start_event,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<PillarShapingPlacePillarStartEvent>(
+            "pillar_shaping_place_pillar_start_event",
+            &self.pillar_shaping_place_pillar_start_event,
             event,
         );
         callbacks.invoke_table_row_callbacks::<DiscoveryTriggerDesc>(
@@ -14858,9 +15528,19 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             &self.placeable_growth_timer,
             event,
         );
+        callbacks.invoke_table_row_callbacks::<PlaceableInteractStartEvent>(
+            "placeable_interact_start_event",
+            &self.placeable_interact_start_event,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<PlaceableInteractionDesc>(
             "placeable_interaction_desc",
             &self.placeable_interaction_desc,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<PlaceablePlaceStartEvent>(
+            "placeable_place_start_event",
+            &self.placeable_place_start_event,
             event,
         );
         callbacks.invoke_table_row_callbacks::<PlaceablePlacementDesc>(
@@ -14881,6 +15561,21 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<PlayerActionState>(
             "player_action_state",
             &self.player_action_state,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<PlayerClimbStartEvent>(
+            "player_climb_start_event",
+            &self.player_climb_start_event,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<PlayerDeathEvent>(
+            "player_death_event",
+            &self.player_death_event,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<PlayerDeathStartEvent>(
+            "player_death_start_event",
+            &self.player_death_start_event,
             event,
         );
         callbacks.invoke_table_row_callbacks::<PlayerDeathTimer>(
@@ -14921,6 +15616,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<PlayerLowercaseUsernameState>(
             "player_lowercase_username_state",
             &self.player_lowercase_username_state,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<PlayerMoveEvent>(
+            "player_move_event",
+            &self.player_move_event,
             event,
         );
         callbacks.invoke_table_row_callbacks::<PlayerNoteState>(
@@ -14973,9 +15673,29 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             &self.player_settings_state,
             event,
         );
+        callbacks.invoke_table_row_callbacks::<PlayerSignedOutEvent>(
+            "player_signed_out_event",
+            &self.player_signed_out_event,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<PlayerState>(
             "player_state",
             &self.player_state,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<PlayerTeleportEvent>(
+            "player_teleport_event",
+            &self.player_teleport_event,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<PlayerTeleportHomeStartEvent>(
+            "player_teleport_home_start_event",
+            &self.player_teleport_home_start_event,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<PlayerTeleportWaystoneStartEvent>(
+            "player_teleport_waystone_start_event",
+            &self.player_teleport_waystone_start_event,
             event,
         );
         callbacks.invoke_table_row_callbacks::<PlayerTimestampState>(
@@ -15043,9 +15763,19 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             &self.progressive_action_state,
             event,
         );
+        callbacks.invoke_table_row_callbacks::<ProjectSiteAdvanceProjectStartEvent>(
+            "project_site_advance_project_start_event",
+            &self.project_site_advance_project_start_event,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<ProjectSiteState>(
             "project_site_state",
             &self.project_site_state,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<ProspectStartEvent>(
+            "prospect_start_event",
+            &self.prospect_start_event,
             event,
         );
         callbacks.invoke_table_row_callbacks::<ProspectingDesc>(
@@ -15159,6 +15889,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             &self.resource_count,
             event,
         );
+        callbacks.invoke_table_row_callbacks::<ResourceDepletedEvent>(
+            "resource_depleted_event",
+            &self.resource_depleted_event,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<ResourceDesc>(
             "resource_desc",
             &self.resource_desc,
@@ -15249,6 +15984,16 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             &self.server_identity,
             event,
         );
+        callbacks.invoke_table_row_callbacks::<ServerTeleportEvent>(
+            "server_teleport_event",
+            &self.server_teleport_event,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<SetHomeEvent>(
+            "set_home_event",
+            &self.set_home_event,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<SignedInPlayerState>(
             "signed_in_player_state",
             &self.signed_in_player_state,
@@ -15270,6 +16015,7 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             &self.skill_level_knowledge_desc,
             event,
         );
+        callbacks.invoke_table_row_callbacks::<SleepEvent>("sleep_event", &self.sleep_event, event);
         callbacks.invoke_table_row_callbacks::<StageRewardsDesc>(
             "stage_rewards_desc",
             &self.stage_rewards_desc,
@@ -15878,6 +16624,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<TerraformRecipeDesc>(
             "terraform_recipe_desc",
             &self.terraform_recipe_desc,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<TerraformStartEvent>(
+            "terraform_start_event",
+            &self.terraform_start_event,
             event,
         );
         callbacks.invoke_table_row_callbacks::<TerrainChunkState>(
@@ -16756,6 +17507,8 @@ impl __sdk::SpacetimeModule for RemoteModule {
         alert_desc_table::register_table(client_cache);
         alert_state_table::register_table(client_cache);
         attached_herds_state_table::register_table(client_cache);
+        attack_event_table::register_table(client_cache);
+        attack_impact_event_table::register_table(client_cache);
         attack_impact_timer_table::register_table(client_cache);
         attack_impact_timer_migrated_table::register_table(client_cache);
         attack_outcome_state_table::register_table(client_cache);
@@ -16763,20 +17516,24 @@ impl __sdk::SpacetimeModule for RemoteModule {
         auto_claim_state_table::register_table(client_cache);
         auto_logout_loop_timer_table::register_table(client_cache);
         bank_state_table::register_table(client_cache);
+        barter_stall_inventory_event_table::register_table(client_cache);
         barter_stall_state_table::register_table(client_cache);
         biome_desc_table::register_table(client_cache);
         blocked_identity_table::register_table(client_cache);
         buff_desc_table::register_table(client_cache);
         buff_type_desc_table::register_table(client_cache);
+        building_buff_activate_event_table::register_table(client_cache);
         building_buff_desc_table::register_table(client_cache);
         building_claim_desc_table::register_table(client_cache);
         building_decay_loop_timer_table::register_table(client_cache);
+        building_deconstruct_start_event_table::register_table(client_cache);
         building_desc_table::register_table(client_cache);
         building_despawn_timer_table::register_table(client_cache);
         building_function_type_mapping_desc_table::register_table(client_cache);
         building_map_icon_desc_table::register_table(client_cache);
         building_nickname_state_table::register_table(client_cache);
         building_portal_desc_table::register_table(client_cache);
+        building_repair_start_event_table::register_table(client_cache);
         building_repairs_desc_table::register_table(client_cache);
         building_spawn_desc_table::register_table(client_cache);
         building_state_table::register_table(client_cache);
@@ -16793,12 +17550,14 @@ impl __sdk::SpacetimeModule for RemoteModule {
         claim_lowercase_name_state_table::register_table(client_cache);
         claim_member_state_table::register_table(client_cache);
         claim_recruitment_state_table::register_table(client_cache);
+        claim_resupply_start_event_table::register_table(client_cache);
         claim_state_table::register_table(client_cache);
         claim_tech_desc_table::register_table(client_cache);
         claim_tech_state_table::register_table(client_cache);
         claim_tech_unlock_timer_table::register_table(client_cache);
         claim_tile_cost_table::register_table(client_cache);
         claim_tile_state_table::register_table(client_cache);
+        claim_treasury_event_table::register_table(client_cache);
         climb_requirement_desc_table::register_table(client_cache);
         closed_listing_state_table::register_table(client_cache);
         clothing_desc_table::register_table(client_cache);
@@ -16816,6 +17575,10 @@ impl __sdk::SpacetimeModule for RemoteModule {
         construction_recipe_discovery_knowledge_desc_table::register_table(client_cache);
         contribution_loot_desc_table::register_table(client_cache);
         contribution_state_table::register_table(client_cache);
+        craft_completed_event_table::register_table(client_cache);
+        craft_continue_start_event_table::register_table(client_cache);
+        craft_event_table::register_table(client_cache);
+        craft_initiate_start_event_table::register_table(client_cache);
         crafting_recipe_desc_table::register_table(client_cache);
         crafting_recipe_discovery_cargo_desc_table::register_table(client_cache);
         crafting_recipe_discovery_item_desc_table::register_table(client_cache);
@@ -16829,10 +17592,15 @@ impl __sdk::SpacetimeModule for RemoteModule {
         deconstruction_recipe_desc_table::register_table(client_cache);
         deployable_appearance_override_desc_table::register_table(client_cache);
         deployable_collectible_state_table::register_table(client_cache);
+        deployable_deploy_start_event_table::register_table(client_cache);
         deployable_desc_table::register_table(client_cache);
+        deployable_disembark_event_table::register_table(client_cache);
         deployable_dismount_timer_table::register_table(client_cache);
+        deployable_mount_event_table::register_table(client_cache);
+        deployable_move_event_table::register_table(client_cache);
         deployable_state_table::register_table(client_cache);
         deployable_state_v_2_table::register_table(client_cache);
+        deployable_store_start_event_table::register_table(client_cache);
         destroy_dimension_network_timer_table::register_table(client_cache);
         developer_table::register_table(client_cache);
         dimension_description_state_table::register_table(client_cache);
@@ -16848,6 +17616,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         dungeon_state_table::register_table(client_cache);
         elevator_desc_table::register_table(client_cache);
         emote_desc_table::register_table(client_cache);
+        emote_start_event_table::register_table(client_cache);
         empire_chunk_state_table::register_table(client_cache);
         empire_color_desc_table::register_table(client_cache);
         empire_icon_desc_table::register_table(client_cache);
@@ -16858,6 +17627,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         empire_player_data_state_table::register_table(client_cache);
         empire_rank_desc_table::register_table(client_cache);
         empire_rank_state_table::register_table(client_cache);
+        empire_resupply_node_start_event_table::register_table(client_cache);
         empire_settlement_state_table::register_table(client_cache);
         empire_state_table::register_table(client_cache);
         empire_supplies_desc_table::register_table(client_cache);
@@ -16865,12 +17635,15 @@ impl __sdk::SpacetimeModule for RemoteModule {
         end_grace_period_timer_table::register_table(client_cache);
         enemy_ai_params_desc_table::register_table(client_cache);
         enemy_desc_table::register_table(client_cache);
+        enemy_despawn_event_table::register_table(client_cache);
         enemy_despawn_timer_table::register_table(client_cache);
         enemy_mob_monitor_state_table::register_table(client_cache);
+        enemy_move_event_table::register_table(client_cache);
         enemy_regen_loop_timer_table::register_table(client_cache);
         enemy_scaling_desc_table::register_table(client_cache);
         enemy_scaling_state_table::register_table(client_cache);
         enemy_state_table::register_table(client_cache);
+        entity_attack_start_event_table::register_table(client_cache);
         environment_debuff_desc_table::register_table(client_cache);
         environment_debuff_loop_timer_table::register_table(client_cache);
         equipment_desc_table::register_table(client_cache);
@@ -16881,8 +17654,10 @@ impl __sdk::SpacetimeModule for RemoteModule {
         exploration_chunks_state_table::register_table(client_cache);
         exploration_chunks_state_v_2_table::register_table(client_cache);
         exposed_breadcrumbs_table::register_table(client_cache);
+        extract_event_table::register_table(client_cache);
         extract_outcome_state_table::register_table(client_cache);
         extract_outcome_state_v_1_table::register_table(client_cache);
+        extract_start_event_table::register_table(client_cache);
         extraction_recipe_desc_table::register_table(client_cache);
         food_desc_table::register_table(client_cache);
         footprint_tile_state_table::register_table(client_cache);
@@ -16917,6 +17692,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         interior_spawn_desc_table::register_table(client_cache);
         inventory_state_table::register_table(client_cache);
         item_conversion_recipe_desc_table::register_table(client_cache);
+        item_convert_start_event_table::register_table(client_cache);
         item_desc_table::register_table(client_cache);
         item_list_desc_table::register_table(client_cache);
         knowledge_achievement_state_table::register_table(client_cache);
@@ -16952,6 +17728,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         loot_rarity_desc_table::register_table(client_cache);
         loot_table_desc_table::register_table(client_cache);
         lost_items_state_table::register_table(client_cache);
+        market_trade_event_table::register_table(client_cache);
         marketplace_state_table::register_table(client_cache);
         migration_achievements_params_table::register_table(client_cache);
         migration_building_desc_params_table::register_table(client_cache);
@@ -16972,12 +17749,16 @@ impl __sdk::SpacetimeModule for RemoteModule {
         passive_craft_timer_table::register_table(client_cache);
         pathfinding_desc_table::register_table(client_cache);
         paved_tile_state_table::register_table(client_cache);
+        paving_destroy_tile_start_event_table::register_table(client_cache);
+        paving_place_tile_start_event_table::register_table(client_cache);
         paving_recipe_discovery_cargo_desc_table::register_table(client_cache);
         paving_recipe_discovery_item_desc_table::register_table(client_cache);
         paving_recipe_discovery_knowledge_desc_table::register_table(client_cache);
         paving_tile_desc_table::register_table(client_cache);
         permission_state_table::register_table(client_cache);
         pillar_shaping_desc_table::register_table(client_cache);
+        pillar_shaping_destroy_start_event_table::register_table(client_cache);
+        pillar_shaping_place_pillar_start_event_table::register_table(client_cache);
         pillar_shaping_recipe_discovery_cargo_desc_table::register_table(client_cache);
         pillar_shaping_recipe_discovery_item_desc_table::register_table(client_cache);
         pillar_shaping_recipe_discovery_knowledge_desc_table::register_table(client_cache);
@@ -16986,11 +17767,16 @@ impl __sdk::SpacetimeModule for RemoteModule {
         placeable_group_desc_table::register_table(client_cache);
         placeable_growth_desc_table::register_table(client_cache);
         placeable_growth_timer_table::register_table(client_cache);
+        placeable_interact_start_event_table::register_table(client_cache);
         placeable_interaction_desc_table::register_table(client_cache);
+        placeable_place_start_event_table::register_table(client_cache);
         placeable_placement_desc_table::register_table(client_cache);
         placeable_state_table::register_table(client_cache);
         player_action_desc_table::register_table(client_cache);
         player_action_state_table::register_table(client_cache);
+        player_climb_start_event_table::register_table(client_cache);
+        player_death_event_table::register_table(client_cache);
+        player_death_start_event_table::register_table(client_cache);
         player_death_timer_table::register_table(client_cache);
         player_housing_customization_state_table::register_table(client_cache);
         player_housing_desc_table::register_table(client_cache);
@@ -16999,6 +17785,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         player_housing_moving_cost_state_table::register_table(client_cache);
         player_housing_state_table::register_table(client_cache);
         player_lowercase_username_state_table::register_table(client_cache);
+        player_move_event_table::register_table(client_cache);
         player_note_state_table::register_table(client_cache);
         player_notification_event_table::register_table(client_cache);
         player_prefs_state_table::register_table(client_cache);
@@ -17009,7 +17796,11 @@ impl __sdk::SpacetimeModule for RemoteModule {
         player_report_state_timestamp_table::register_table(client_cache);
         player_set_name_outcome_event_table::register_table(client_cache);
         player_settings_state_table::register_table(client_cache);
+        player_signed_out_event_table::register_table(client_cache);
         player_state_table::register_table(client_cache);
+        player_teleport_event_table::register_table(client_cache);
+        player_teleport_home_start_event_table::register_table(client_cache);
+        player_teleport_waystone_start_event_table::register_table(client_cache);
         player_timestamp_state_table::register_table(client_cache);
         player_use_elevator_timer_table::register_table(client_cache);
         player_username_state_table::register_table(client_cache);
@@ -17023,7 +17814,9 @@ impl __sdk::SpacetimeModule for RemoteModule {
         previous_player_username_state_table::register_table(client_cache);
         private_parameters_desc_table::register_table(client_cache);
         progressive_action_state_table::register_table(client_cache);
+        project_site_advance_project_start_event_table::register_table(client_cache);
         project_site_state_table::register_table(client_cache);
+        prospect_start_event_table::register_table(client_cache);
         prospecting_desc_table::register_table(client_cache);
         prospecting_participants_table::register_table(client_cache);
         prospecting_state_table::register_table(client_cache);
@@ -17047,6 +17840,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         reset_mobile_entity_timer_table::register_table(client_cache);
         resource_clump_desc_table::register_table(client_cache);
         resource_count_table::register_table(client_cache);
+        resource_depleted_event_table::register_table(client_cache);
         resource_desc_table::register_table(client_cache);
         resource_growth_recipe_desc_table::register_table(client_cache);
         resource_growth_timer_table::register_table(client_cache);
@@ -17065,11 +17859,14 @@ impl __sdk::SpacetimeModule for RemoteModule {
         secondary_knowledge_desc_table::register_table(client_cache);
         sell_order_state_table::register_table(client_cache);
         server_identity_table::register_table(client_cache);
+        server_teleport_event_table::register_table(client_cache);
+        set_home_event_table::register_table(client_cache);
         signed_in_player_state_table::register_table(client_cache);
         single_resource_clump_info_table::register_table(client_cache);
         single_resource_to_clump_desc_table::register_table(client_cache);
         skill_desc_table::register_table(client_cache);
         skill_level_knowledge_desc_table::register_table(client_cache);
+        sleep_event_table::register_table(client_cache);
         stage_rewards_desc_table::register_table(client_cache);
         staged_ability_custom_desc_table::register_table(client_cache);
         staged_ability_unlock_desc_table::register_table(client_cache);
@@ -17192,6 +17989,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         teleportation_energy_state_table::register_table(client_cache);
         terraform_progress_state_table::register_table(client_cache);
         terraform_recipe_desc_table::register_table(client_cache);
+        terraform_start_event_table::register_table(client_cache);
         terrain_chunk_state_table::register_table(client_cache);
         the_great_placeholder_table_table::register_table(client_cache);
         threat_state_table::register_table(client_cache);
