@@ -1596,6 +1596,10 @@ import { AlertStateTableHandle } from "./alert_state_table.ts";
 export { AlertStateTableHandle };
 import { AttachedHerdsStateTableHandle } from "./attached_herds_state_table.ts";
 export { AttachedHerdsStateTableHandle };
+import { AttackEventTableHandle } from "./attack_event_table.ts";
+export { AttackEventTableHandle };
+import { AttackImpactEventTableHandle } from "./attack_impact_event_table.ts";
+export { AttackImpactEventTableHandle };
 import { AttackImpactTimerTableHandle } from "./attack_impact_timer_table.ts";
 export { AttackImpactTimerTableHandle };
 import { AttackImpactTimerMigratedTableHandle } from "./attack_impact_timer_migrated_table.ts";
@@ -1610,6 +1614,8 @@ import { AutoLogoutLoopTimerTableHandle } from "./auto_logout_loop_timer_table.t
 export { AutoLogoutLoopTimerTableHandle };
 import { BankStateTableHandle } from "./bank_state_table.ts";
 export { BankStateTableHandle };
+import { BarterStallInventoryEventTableHandle } from "./barter_stall_inventory_event_table.ts";
+export { BarterStallInventoryEventTableHandle };
 import { BarterStallStateTableHandle } from "./barter_stall_state_table.ts";
 export { BarterStallStateTableHandle };
 import { BiomeDescTableHandle } from "./biome_desc_table.ts";
@@ -1620,12 +1626,16 @@ import { BuffDescTableHandle } from "./buff_desc_table.ts";
 export { BuffDescTableHandle };
 import { BuffTypeDescTableHandle } from "./buff_type_desc_table.ts";
 export { BuffTypeDescTableHandle };
+import { BuildingBuffActivateEventTableHandle } from "./building_buff_activate_event_table.ts";
+export { BuildingBuffActivateEventTableHandle };
 import { BuildingBuffDescTableHandle } from "./building_buff_desc_table.ts";
 export { BuildingBuffDescTableHandle };
 import { BuildingClaimDescTableHandle } from "./building_claim_desc_table.ts";
 export { BuildingClaimDescTableHandle };
 import { BuildingDecayLoopTimerTableHandle } from "./building_decay_loop_timer_table.ts";
 export { BuildingDecayLoopTimerTableHandle };
+import { BuildingDeconstructStartEventTableHandle } from "./building_deconstruct_start_event_table.ts";
+export { BuildingDeconstructStartEventTableHandle };
 import { BuildingDescTableHandle } from "./building_desc_table.ts";
 export { BuildingDescTableHandle };
 import { BuildingDespawnTimerTableHandle } from "./building_despawn_timer_table.ts";
@@ -1638,6 +1648,8 @@ import { BuildingNicknameStateTableHandle } from "./building_nickname_state_tabl
 export { BuildingNicknameStateTableHandle };
 import { BuildingPortalDescTableHandle } from "./building_portal_desc_table.ts";
 export { BuildingPortalDescTableHandle };
+import { BuildingRepairStartEventTableHandle } from "./building_repair_start_event_table.ts";
+export { BuildingRepairStartEventTableHandle };
 import { BuildingRepairsDescTableHandle } from "./building_repairs_desc_table.ts";
 export { BuildingRepairsDescTableHandle };
 import { BuildingSpawnDescTableHandle } from "./building_spawn_desc_table.ts";
@@ -1670,6 +1682,8 @@ import { ClaimMemberStateTableHandle } from "./claim_member_state_table.ts";
 export { ClaimMemberStateTableHandle };
 import { ClaimRecruitmentStateTableHandle } from "./claim_recruitment_state_table.ts";
 export { ClaimRecruitmentStateTableHandle };
+import { ClaimResupplyStartEventTableHandle } from "./claim_resupply_start_event_table.ts";
+export { ClaimResupplyStartEventTableHandle };
 import { ClaimStateTableHandle } from "./claim_state_table.ts";
 export { ClaimStateTableHandle };
 import { ClaimTechDescTableHandle } from "./claim_tech_desc_table.ts";
@@ -1682,6 +1696,8 @@ import { ClaimTileCostTableHandle } from "./claim_tile_cost_table.ts";
 export { ClaimTileCostTableHandle };
 import { ClaimTileStateTableHandle } from "./claim_tile_state_table.ts";
 export { ClaimTileStateTableHandle };
+import { ClaimTreasuryEventTableHandle } from "./claim_treasury_event_table.ts";
+export { ClaimTreasuryEventTableHandle };
 import { ClimbRequirementDescTableHandle } from "./climb_requirement_desc_table.ts";
 export { ClimbRequirementDescTableHandle };
 import { ClosedListingStateTableHandle } from "./closed_listing_state_table.ts";
@@ -1716,6 +1732,14 @@ import { ContributionLootDescTableHandle } from "./contribution_loot_desc_table.
 export { ContributionLootDescTableHandle };
 import { ContributionStateTableHandle } from "./contribution_state_table.ts";
 export { ContributionStateTableHandle };
+import { CraftCompletedEventTableHandle } from "./craft_completed_event_table.ts";
+export { CraftCompletedEventTableHandle };
+import { CraftContinueStartEventTableHandle } from "./craft_continue_start_event_table.ts";
+export { CraftContinueStartEventTableHandle };
+import { CraftEventTableHandle } from "./craft_event_table.ts";
+export { CraftEventTableHandle };
+import { CraftInitiateStartEventTableHandle } from "./craft_initiate_start_event_table.ts";
+export { CraftInitiateStartEventTableHandle };
 import { CraftingRecipeDescTableHandle } from "./crafting_recipe_desc_table.ts";
 export { CraftingRecipeDescTableHandle };
 import { CraftingRecipeDiscoveryCargoDescTableHandle } from "./crafting_recipe_discovery_cargo_desc_table.ts";
@@ -1742,14 +1766,24 @@ import { DeployableAppearanceOverrideDescTableHandle } from "./deployable_appear
 export { DeployableAppearanceOverrideDescTableHandle };
 import { DeployableCollectibleStateTableHandle } from "./deployable_collectible_state_table.ts";
 export { DeployableCollectibleStateTableHandle };
+import { DeployableDeployStartEventTableHandle } from "./deployable_deploy_start_event_table.ts";
+export { DeployableDeployStartEventTableHandle };
 import { DeployableDescTableHandle } from "./deployable_desc_table.ts";
 export { DeployableDescTableHandle };
+import { DeployableDisembarkEventTableHandle } from "./deployable_disembark_event_table.ts";
+export { DeployableDisembarkEventTableHandle };
 import { DeployableDismountTimerTableHandle } from "./deployable_dismount_timer_table.ts";
 export { DeployableDismountTimerTableHandle };
+import { DeployableMountEventTableHandle } from "./deployable_mount_event_table.ts";
+export { DeployableMountEventTableHandle };
+import { DeployableMoveEventTableHandle } from "./deployable_move_event_table.ts";
+export { DeployableMoveEventTableHandle };
 import { DeployableStateTableHandle } from "./deployable_state_table.ts";
 export { DeployableStateTableHandle };
 import { DeployableStateV2TableHandle } from "./deployable_state_v_2_table.ts";
 export { DeployableStateV2TableHandle };
+import { DeployableStoreStartEventTableHandle } from "./deployable_store_start_event_table.ts";
+export { DeployableStoreStartEventTableHandle };
 import { DestroyDimensionNetworkTimerTableHandle } from "./destroy_dimension_network_timer_table.ts";
 export { DestroyDimensionNetworkTimerTableHandle };
 import { DeveloperTableHandle } from "./developer_table.ts";
@@ -1780,6 +1814,8 @@ import { ElevatorDescTableHandle } from "./elevator_desc_table.ts";
 export { ElevatorDescTableHandle };
 import { EmoteDescTableHandle } from "./emote_desc_table.ts";
 export { EmoteDescTableHandle };
+import { EmoteStartEventTableHandle } from "./emote_start_event_table.ts";
+export { EmoteStartEventTableHandle };
 import { EmpireChunkStateTableHandle } from "./empire_chunk_state_table.ts";
 export { EmpireChunkStateTableHandle };
 import { EmpireColorDescTableHandle } from "./empire_color_desc_table.ts";
@@ -1800,6 +1836,8 @@ import { EmpireRankDescTableHandle } from "./empire_rank_desc_table.ts";
 export { EmpireRankDescTableHandle };
 import { EmpireRankStateTableHandle } from "./empire_rank_state_table.ts";
 export { EmpireRankStateTableHandle };
+import { EmpireResupplyNodeStartEventTableHandle } from "./empire_resupply_node_start_event_table.ts";
+export { EmpireResupplyNodeStartEventTableHandle };
 import { EmpireSettlementStateTableHandle } from "./empire_settlement_state_table.ts";
 export { EmpireSettlementStateTableHandle };
 import { EmpireStateTableHandle } from "./empire_state_table.ts";
@@ -1814,10 +1852,14 @@ import { EnemyAiParamsDescTableHandle } from "./enemy_ai_params_desc_table.ts";
 export { EnemyAiParamsDescTableHandle };
 import { EnemyDescTableHandle } from "./enemy_desc_table.ts";
 export { EnemyDescTableHandle };
+import { EnemyDespawnEventTableHandle } from "./enemy_despawn_event_table.ts";
+export { EnemyDespawnEventTableHandle };
 import { EnemyDespawnTimerTableHandle } from "./enemy_despawn_timer_table.ts";
 export { EnemyDespawnTimerTableHandle };
 import { EnemyMobMonitorStateTableHandle } from "./enemy_mob_monitor_state_table.ts";
 export { EnemyMobMonitorStateTableHandle };
+import { EnemyMoveEventTableHandle } from "./enemy_move_event_table.ts";
+export { EnemyMoveEventTableHandle };
 import { EnemyRegenLoopTimerTableHandle } from "./enemy_regen_loop_timer_table.ts";
 export { EnemyRegenLoopTimerTableHandle };
 import { EnemyScalingDescTableHandle } from "./enemy_scaling_desc_table.ts";
@@ -1826,6 +1868,8 @@ import { EnemyScalingStateTableHandle } from "./enemy_scaling_state_table.ts";
 export { EnemyScalingStateTableHandle };
 import { EnemyStateTableHandle } from "./enemy_state_table.ts";
 export { EnemyStateTableHandle };
+import { EntityAttackStartEventTableHandle } from "./entity_attack_start_event_table.ts";
+export { EntityAttackStartEventTableHandle };
 import { EnvironmentDebuffDescTableHandle } from "./environment_debuff_desc_table.ts";
 export { EnvironmentDebuffDescTableHandle };
 import { EnvironmentDebuffLoopTimerTableHandle } from "./environment_debuff_loop_timer_table.ts";
@@ -1844,10 +1888,14 @@ import { ExplorationChunksStateTableHandle } from "./exploration_chunks_state_ta
 export { ExplorationChunksStateTableHandle };
 import { ExplorationChunksStateV2TableHandle } from "./exploration_chunks_state_v_2_table.ts";
 export { ExplorationChunksStateV2TableHandle };
+import { ExtractEventTableHandle } from "./extract_event_table.ts";
+export { ExtractEventTableHandle };
 import { ExtractOutcomeStateTableHandle } from "./extract_outcome_state_table.ts";
 export { ExtractOutcomeStateTableHandle };
 import { ExtractOutcomeStateV1TableHandle } from "./extract_outcome_state_v_1_table.ts";
 export { ExtractOutcomeStateV1TableHandle };
+import { ExtractStartEventTableHandle } from "./extract_start_event_table.ts";
+export { ExtractStartEventTableHandle };
 import { ExtractionRecipeDescTableHandle } from "./extraction_recipe_desc_table.ts";
 export { ExtractionRecipeDescTableHandle };
 import { FoodDescTableHandle } from "./food_desc_table.ts";
@@ -1916,6 +1964,8 @@ import { InventoryStateTableHandle } from "./inventory_state_table.ts";
 export { InventoryStateTableHandle };
 import { ItemConversionRecipeDescTableHandle } from "./item_conversion_recipe_desc_table.ts";
 export { ItemConversionRecipeDescTableHandle };
+import { ItemConvertStartEventTableHandle } from "./item_convert_start_event_table.ts";
+export { ItemConvertStartEventTableHandle };
 import { ItemDescTableHandle } from "./item_desc_table.ts";
 export { ItemDescTableHandle };
 import { ItemListDescTableHandle } from "./item_list_desc_table.ts";
@@ -1986,6 +2036,8 @@ import { LootTableDescTableHandle } from "./loot_table_desc_table.ts";
 export { LootTableDescTableHandle };
 import { LostItemsStateTableHandle } from "./lost_items_state_table.ts";
 export { LostItemsStateTableHandle };
+import { MarketTradeEventTableHandle } from "./market_trade_event_table.ts";
+export { MarketTradeEventTableHandle };
 import { MarketplaceStateTableHandle } from "./marketplace_state_table.ts";
 export { MarketplaceStateTableHandle };
 import { MigrationAchievementsParamsTableHandle } from "./migration_achievements_params_table.ts";
@@ -2026,6 +2078,10 @@ import { PathfindingDescTableHandle } from "./pathfinding_desc_table.ts";
 export { PathfindingDescTableHandle };
 import { PavedTileStateTableHandle } from "./paved_tile_state_table.ts";
 export { PavedTileStateTableHandle };
+import { PavingDestroyTileStartEventTableHandle } from "./paving_destroy_tile_start_event_table.ts";
+export { PavingDestroyTileStartEventTableHandle };
+import { PavingPlaceTileStartEventTableHandle } from "./paving_place_tile_start_event_table.ts";
+export { PavingPlaceTileStartEventTableHandle };
 import { PavingRecipeDiscoveryCargoDescTableHandle } from "./paving_recipe_discovery_cargo_desc_table.ts";
 export { PavingRecipeDiscoveryCargoDescTableHandle };
 import { PavingRecipeDiscoveryItemDescTableHandle } from "./paving_recipe_discovery_item_desc_table.ts";
@@ -2038,6 +2094,10 @@ import { PermissionStateTableHandle } from "./permission_state_table.ts";
 export { PermissionStateTableHandle };
 import { PillarShapingDescTableHandle } from "./pillar_shaping_desc_table.ts";
 export { PillarShapingDescTableHandle };
+import { PillarShapingDestroyStartEventTableHandle } from "./pillar_shaping_destroy_start_event_table.ts";
+export { PillarShapingDestroyStartEventTableHandle };
+import { PillarShapingPlacePillarStartEventTableHandle } from "./pillar_shaping_place_pillar_start_event_table.ts";
+export { PillarShapingPlacePillarStartEventTableHandle };
 import { PillarShapingRecipeDiscoveryCargoDescTableHandle } from "./pillar_shaping_recipe_discovery_cargo_desc_table.ts";
 export { PillarShapingRecipeDiscoveryCargoDescTableHandle };
 import { PillarShapingRecipeDiscoveryItemDescTableHandle } from "./pillar_shaping_recipe_discovery_item_desc_table.ts";
@@ -2054,8 +2114,12 @@ import { PlaceableGrowthDescTableHandle } from "./placeable_growth_desc_table.ts
 export { PlaceableGrowthDescTableHandle };
 import { PlaceableGrowthTimerTableHandle } from "./placeable_growth_timer_table.ts";
 export { PlaceableGrowthTimerTableHandle };
+import { PlaceableInteractStartEventTableHandle } from "./placeable_interact_start_event_table.ts";
+export { PlaceableInteractStartEventTableHandle };
 import { PlaceableInteractionDescTableHandle } from "./placeable_interaction_desc_table.ts";
 export { PlaceableInteractionDescTableHandle };
+import { PlaceablePlaceStartEventTableHandle } from "./placeable_place_start_event_table.ts";
+export { PlaceablePlaceStartEventTableHandle };
 import { PlaceablePlacementDescTableHandle } from "./placeable_placement_desc_table.ts";
 export { PlaceablePlacementDescTableHandle };
 import { PlaceableStateTableHandle } from "./placeable_state_table.ts";
@@ -2064,6 +2128,12 @@ import { PlayerActionDescTableHandle } from "./player_action_desc_table.ts";
 export { PlayerActionDescTableHandle };
 import { PlayerActionStateTableHandle } from "./player_action_state_table.ts";
 export { PlayerActionStateTableHandle };
+import { PlayerClimbStartEventTableHandle } from "./player_climb_start_event_table.ts";
+export { PlayerClimbStartEventTableHandle };
+import { PlayerDeathEventTableHandle } from "./player_death_event_table.ts";
+export { PlayerDeathEventTableHandle };
+import { PlayerDeathStartEventTableHandle } from "./player_death_start_event_table.ts";
+export { PlayerDeathStartEventTableHandle };
 import { PlayerDeathTimerTableHandle } from "./player_death_timer_table.ts";
 export { PlayerDeathTimerTableHandle };
 import { PlayerHousingCustomizationStateTableHandle } from "./player_housing_customization_state_table.ts";
@@ -2080,6 +2150,8 @@ import { PlayerHousingStateTableHandle } from "./player_housing_state_table.ts";
 export { PlayerHousingStateTableHandle };
 import { PlayerLowercaseUsernameStateTableHandle } from "./player_lowercase_username_state_table.ts";
 export { PlayerLowercaseUsernameStateTableHandle };
+import { PlayerMoveEventTableHandle } from "./player_move_event_table.ts";
+export { PlayerMoveEventTableHandle };
 import { PlayerNoteStateTableHandle } from "./player_note_state_table.ts";
 export { PlayerNoteStateTableHandle };
 import { PlayerNotificationEventTableHandle } from "./player_notification_event_table.ts";
@@ -2100,8 +2172,16 @@ import { PlayerSetNameOutcomeEventTableHandle } from "./player_set_name_outcome_
 export { PlayerSetNameOutcomeEventTableHandle };
 import { PlayerSettingsStateTableHandle } from "./player_settings_state_table.ts";
 export { PlayerSettingsStateTableHandle };
+import { PlayerSignedOutEventTableHandle } from "./player_signed_out_event_table.ts";
+export { PlayerSignedOutEventTableHandle };
 import { PlayerStateTableHandle } from "./player_state_table.ts";
 export { PlayerStateTableHandle };
+import { PlayerTeleportEventTableHandle } from "./player_teleport_event_table.ts";
+export { PlayerTeleportEventTableHandle };
+import { PlayerTeleportHomeStartEventTableHandle } from "./player_teleport_home_start_event_table.ts";
+export { PlayerTeleportHomeStartEventTableHandle };
+import { PlayerTeleportWaystoneStartEventTableHandle } from "./player_teleport_waystone_start_event_table.ts";
+export { PlayerTeleportWaystoneStartEventTableHandle };
 import { PlayerTimestampStateTableHandle } from "./player_timestamp_state_table.ts";
 export { PlayerTimestampStateTableHandle };
 import { PlayerUseElevatorTimerTableHandle } from "./player_use_elevator_timer_table.ts";
@@ -2128,8 +2208,12 @@ import { PrivateParametersDescTableHandle } from "./private_parameters_desc_tabl
 export { PrivateParametersDescTableHandle };
 import { ProgressiveActionStateTableHandle } from "./progressive_action_state_table.ts";
 export { ProgressiveActionStateTableHandle };
+import { ProjectSiteAdvanceProjectStartEventTableHandle } from "./project_site_advance_project_start_event_table.ts";
+export { ProjectSiteAdvanceProjectStartEventTableHandle };
 import { ProjectSiteStateTableHandle } from "./project_site_state_table.ts";
 export { ProjectSiteStateTableHandle };
+import { ProspectStartEventTableHandle } from "./prospect_start_event_table.ts";
+export { ProspectStartEventTableHandle };
 import { ProspectingDescTableHandle } from "./prospecting_desc_table.ts";
 export { ProspectingDescTableHandle };
 import { ProspectingStateTableHandle } from "./prospecting_state_table.ts";
@@ -2174,6 +2258,8 @@ import { ResourceClumpDescTableHandle } from "./resource_clump_desc_table.ts";
 export { ResourceClumpDescTableHandle };
 import { ResourceCountTableHandle } from "./resource_count_table.ts";
 export { ResourceCountTableHandle };
+import { ResourceDepletedEventTableHandle } from "./resource_depleted_event_table.ts";
+export { ResourceDepletedEventTableHandle };
 import { ResourceDescTableHandle } from "./resource_desc_table.ts";
 export { ResourceDescTableHandle };
 import { ResourceGrowthRecipeDescTableHandle } from "./resource_growth_recipe_desc_table.ts";
@@ -2210,6 +2296,10 @@ import { SellOrderStateTableHandle } from "./sell_order_state_table.ts";
 export { SellOrderStateTableHandle };
 import { ServerIdentityTableHandle } from "./server_identity_table.ts";
 export { ServerIdentityTableHandle };
+import { ServerTeleportEventTableHandle } from "./server_teleport_event_table.ts";
+export { ServerTeleportEventTableHandle };
+import { SetHomeEventTableHandle } from "./set_home_event_table.ts";
+export { SetHomeEventTableHandle };
 import { SignedInPlayerStateTableHandle } from "./signed_in_player_state_table.ts";
 export { SignedInPlayerStateTableHandle };
 import { SingleResourceClumpInfoTableHandle } from "./single_resource_clump_info_table.ts";
@@ -2220,6 +2310,8 @@ import { SkillDescTableHandle } from "./skill_desc_table.ts";
 export { SkillDescTableHandle };
 import { SkillLevelKnowledgeDescTableHandle } from "./skill_level_knowledge_desc_table.ts";
 export { SkillLevelKnowledgeDescTableHandle };
+import { SleepEventTableHandle } from "./sleep_event_table.ts";
+export { SleepEventTableHandle };
 import { StageRewardsDescTableHandle } from "./stage_rewards_desc_table.ts";
 export { StageRewardsDescTableHandle };
 import { StagedAbilityCustomDescTableHandle } from "./staged_ability_custom_desc_table.ts";
@@ -2464,6 +2556,8 @@ import { TerraformProgressStateTableHandle } from "./terraform_progress_state_ta
 export { TerraformProgressStateTableHandle };
 import { TerraformRecipeDescTableHandle } from "./terraform_recipe_desc_table.ts";
 export { TerraformRecipeDescTableHandle };
+import { TerraformStartEventTableHandle } from "./terraform_start_event_table.ts";
+export { TerraformStartEventTableHandle };
 import { TerrainChunkStateTableHandle } from "./terrain_chunk_state_table.ts";
 export { TerrainChunkStateTableHandle };
 import { TheGreatPlaceholderTableTableHandle } from "./the_great_placeholder_table_table.ts";
@@ -2582,6 +2676,10 @@ import { AlertType } from "./alert_type_type.ts";
 export { AlertType };
 import { AttachedHerdsState } from "./attached_herds_state_type.ts";
 export { AttachedHerdsState };
+import { AttackEvent } from "./attack_event_type.ts";
+export { AttackEvent };
+import { AttackImpactEvent } from "./attack_impact_event_type.ts";
+export { AttackImpactEvent };
 import { AttackImpactTimer } from "./attack_impact_timer_type.ts";
 export { AttackImpactTimer };
 import { AttackImpactTimerMigrated } from "./attack_impact_timer_migrated_type.ts";
@@ -2598,6 +2696,10 @@ import { AutoLogoutLoopTimer } from "./auto_logout_loop_timer_type.ts";
 export { AutoLogoutLoopTimer };
 import { BankState } from "./bank_state_type.ts";
 export { BankState };
+import { BarterStallInventoryChangeReason } from "./barter_stall_inventory_change_reason_type.ts";
+export { BarterStallInventoryChangeReason };
+import { BarterStallInventoryEvent } from "./barter_stall_inventory_event_type.ts";
+export { BarterStallInventoryEvent };
 import { BarterStallSetMarketModeEnabledRequest } from "./barter_stall_set_market_mode_enabled_request_type.ts";
 export { BarterStallSetMarketModeEnabledRequest };
 import { BarterStallState } from "./barter_stall_state_type.ts";
@@ -2618,6 +2720,8 @@ import { BuffEffect } from "./buff_effect_type.ts";
 export { BuffEffect };
 import { BuffTypeDesc } from "./buff_type_desc_type.ts";
 export { BuffTypeDesc };
+import { BuildingBuffActivateEvent } from "./building_buff_activate_event_type.ts";
+export { BuildingBuffActivateEvent };
 import { BuildingBuffDesc } from "./building_buff_desc_type.ts";
 export { BuildingBuffDesc };
 import { BuildingCategory } from "./building_category_type.ts";
@@ -2626,6 +2730,8 @@ import { BuildingClaimDesc } from "./building_claim_desc_type.ts";
 export { BuildingClaimDesc };
 import { BuildingDecayLoopTimer } from "./building_decay_loop_timer_type.ts";
 export { BuildingDecayLoopTimer };
+import { BuildingDeconstructStartEvent } from "./building_deconstruct_start_event_type.ts";
+export { BuildingDeconstructStartEvent };
 import { BuildingDesc } from "./building_desc_type.ts";
 export { BuildingDesc };
 import { BuildingDespawnTimer } from "./building_despawn_timer_type.ts";
@@ -2646,6 +2752,8 @@ import { BuildingPlacement } from "./building_placement_type.ts";
 export { BuildingPlacement };
 import { BuildingPortalDesc } from "./building_portal_desc_type.ts";
 export { BuildingPortalDesc };
+import { BuildingRepairStartEvent } from "./building_repair_start_event_type.ts";
+export { BuildingRepairStartEvent };
 import { BuildingRepairsDesc } from "./building_repairs_desc_type.ts";
 export { BuildingRepairsDesc };
 import { BuildingRequirement } from "./building_requirement_type.ts";
@@ -2730,6 +2838,8 @@ import { ClaimRecruitmentState } from "./claim_recruitment_state_type.ts";
 export { ClaimRecruitmentState };
 import { ClaimResupplyRequest } from "./claim_resupply_request_type.ts";
 export { ClaimResupplyRequest };
+import { ClaimResupplyStartEvent } from "./claim_resupply_start_event_type.ts";
+export { ClaimResupplyStartEvent };
 import { ClaimSetNameMsg } from "./claim_set_name_msg_type.ts";
 export { ClaimSetNameMsg };
 import { ClaimSetPurchaseSupplyPriceRequest } from "./claim_set_purchase_supply_price_request_type.ts";
@@ -2752,6 +2862,10 @@ import { ClaimTileCost } from "./claim_tile_cost_type.ts";
 export { ClaimTileCost };
 import { ClaimTileState } from "./claim_tile_state_type.ts";
 export { ClaimTileState };
+import { ClaimTreasuryChangeReason } from "./claim_treasury_change_reason_type.ts";
+export { ClaimTreasuryChangeReason };
+import { ClaimTreasuryEvent } from "./claim_treasury_event_type.ts";
+export { ClaimTreasuryEvent };
 import { ClaimType } from "./claim_type_type.ts";
 export { ClaimType };
 import { ClimbRequirementDesc } from "./climb_requirement_desc_type.ts";
@@ -2794,6 +2908,14 @@ import { ContributionLootDesc } from "./contribution_loot_desc_type.ts";
 export { ContributionLootDesc };
 import { ContributionState } from "./contribution_state_type.ts";
 export { ContributionState };
+import { CraftCompletedEvent } from "./craft_completed_event_type.ts";
+export { CraftCompletedEvent };
+import { CraftContinueStartEvent } from "./craft_continue_start_event_type.ts";
+export { CraftContinueStartEvent };
+import { CraftEvent } from "./craft_event_type.ts";
+export { CraftEvent };
+import { CraftInitiateStartEvent } from "./craft_initiate_start_event_type.ts";
+export { CraftInitiateStartEvent };
 import { CraftingRecipeDesc } from "./crafting_recipe_desc_type.ts";
 export { CraftingRecipeDesc };
 import { CreatePlayerReportRequest } from "./create_player_report_request_type.ts";
@@ -2822,16 +2944,26 @@ import { DeployableCollectibleState } from "./deployable_collectible_state_type.
 export { DeployableCollectibleState };
 import { DeployableDeployRequest } from "./deployable_deploy_request_type.ts";
 export { DeployableDeployRequest };
+import { DeployableDeployStartEvent } from "./deployable_deploy_start_event_type.ts";
+export { DeployableDeployStartEvent };
 import { DeployableDesc } from "./deployable_desc_type.ts";
 export { DeployableDesc };
+import { DeployableDisembarkEvent } from "./deployable_disembark_event_type.ts";
+export { DeployableDisembarkEvent };
 import { DeployableDismountTimer } from "./deployable_dismount_timer_type.ts";
 export { DeployableDismountTimer };
+import { DeployableMountEvent } from "./deployable_mount_event_type.ts";
+export { DeployableMountEvent };
+import { DeployableMoveEvent } from "./deployable_move_event_type.ts";
+export { DeployableMoveEvent };
 import { DeployableState } from "./deployable_state_type.ts";
 export { DeployableState };
 import { DeployableStateV2 } from "./deployable_state_v_2_type.ts";
 export { DeployableStateV2 };
 import { DeployableStoreRequest } from "./deployable_store_request_type.ts";
 export { DeployableStoreRequest };
+import { DeployableStoreStartEvent } from "./deployable_store_start_event_type.ts";
+export { DeployableStoreStartEvent };
 import { DeployableType } from "./deployable_type_type.ts";
 export { DeployableType };
 import { DestroyDimensionNetworkTimer } from "./destroy_dimension_network_timer_type.ts";
@@ -2868,6 +3000,8 @@ import { ElevatorDesc } from "./elevator_desc_type.ts";
 export { ElevatorDesc };
 import { EmoteDesc } from "./emote_desc_type.ts";
 export { EmoteDesc };
+import { EmoteStartEvent } from "./emote_start_event_type.ts";
+export { EmoteStartEvent };
 import { EmpireAddCurrencyMsg } from "./empire_add_currency_msg_type.ts";
 export { EmpireAddCurrencyMsg };
 import { EmpireAddSiegeSuppliesRequest } from "./empire_add_siege_supplies_request_type.ts";
@@ -2934,6 +3068,8 @@ import { EmpireResupplyNodeMsg } from "./empire_resupply_node_msg_type.ts";
 export { EmpireResupplyNodeMsg };
 import { EmpireResupplyNodeRequest } from "./empire_resupply_node_request_type.ts";
 export { EmpireResupplyNodeRequest };
+import { EmpireResupplyNodeStartEvent } from "./empire_resupply_node_start_event_type.ts";
+export { EmpireResupplyNodeStartEvent };
 import { EmpireSettlementState } from "./empire_settlement_state_type.ts";
 export { EmpireSettlementState };
 import { EmpireSettlementStateOp } from "./empire_settlement_state_op_type.ts";
@@ -2964,10 +3100,14 @@ import { EnemyClearAggroRequest } from "./enemy_clear_aggro_request_type.ts";
 export { EnemyClearAggroRequest };
 import { EnemyDesc } from "./enemy_desc_type.ts";
 export { EnemyDesc };
+import { EnemyDespawnEvent } from "./enemy_despawn_event_type.ts";
+export { EnemyDespawnEvent };
 import { EnemyDespawnTimer } from "./enemy_despawn_timer_type.ts";
 export { EnemyDespawnTimer };
 import { EnemyMobMonitorState } from "./enemy_mob_monitor_state_type.ts";
 export { EnemyMobMonitorState };
+import { EnemyMoveEvent } from "./enemy_move_event_type.ts";
+export { EnemyMoveEvent };
 import { EnemyMoveRequest } from "./enemy_move_request_type.ts";
 export { EnemyMoveRequest };
 import { EnemyRegenLoopTimer } from "./enemy_regen_loop_timer_type.ts";
@@ -2990,6 +3130,8 @@ import { EnemyType } from "./enemy_type_type.ts";
 export { EnemyType };
 import { EntityAttackRequest } from "./entity_attack_request_type.ts";
 export { EntityAttackRequest };
+import { EntityAttackStartEvent } from "./entity_attack_start_event_type.ts";
+export { EntityAttackStartEvent };
 import { EntityType } from "./entity_type_type.ts";
 export { EntityType };
 import { EnvironmentDebuffDesc } from "./environment_debuff_desc_type.ts";
@@ -3022,10 +3164,14 @@ import { ExplorationChunksState } from "./exploration_chunks_state_type.ts";
 export { ExplorationChunksState };
 import { ExplorationChunksStateV2 } from "./exploration_chunks_state_v_2_type.ts";
 export { ExplorationChunksStateV2 };
+import { ExtractEvent } from "./extract_event_type.ts";
+export { ExtractEvent };
 import { ExtractOutcomeState } from "./extract_outcome_state_type.ts";
 export { ExtractOutcomeState };
 import { ExtractOutcomeStateV2 } from "./extract_outcome_state_v_2_type.ts";
 export { ExtractOutcomeStateV2 };
+import { ExtractStartEvent } from "./extract_start_event_type.ts";
+export { ExtractStartEvent };
 import { ExtractionRecipeDesc } from "./extraction_recipe_desc_type.ts";
 export { ExtractionRecipeDesc };
 import { ExtractionSpawnedPlaceable } from "./extraction_spawned_placeable_type.ts";
@@ -3128,6 +3274,8 @@ import { ItemConversionLocationContext } from "./item_conversion_location_contex
 export { ItemConversionLocationContext };
 import { ItemConversionRecipeDesc } from "./item_conversion_recipe_desc_type.ts";
 export { ItemConversionRecipeDesc };
+import { ItemConvertStartEvent } from "./item_convert_start_event_type.ts";
+export { ItemConvertStartEvent };
 import { ItemDesc } from "./item_desc_type.ts";
 export { ItemDesc };
 import { ItemListDesc } from "./item_list_desc_type.ts";
@@ -3220,6 +3368,10 @@ import { LootTableDesc } from "./loot_table_desc_type.ts";
 export { LootTableDesc };
 import { LostItemsState } from "./lost_items_state_type.ts";
 export { LostItemsState };
+import { MarketOrderType } from "./market_order_type_type.ts";
+export { MarketOrderType };
+import { MarketTradeEvent } from "./market_trade_event_type.ts";
+export { MarketTradeEvent };
 import { MarketplaceState } from "./marketplace_state_type.ts";
 export { MarketplaceState };
 import { MessageContents } from "./message_contents_type.ts";
@@ -3312,6 +3464,10 @@ import { PathfindingTraversalOption } from "./pathfinding_traversal_option_type.
 export { PathfindingTraversalOption };
 import { PavedTileState } from "./paved_tile_state_type.ts";
 export { PavedTileState };
+import { PavingDestroyTileStartEvent } from "./paving_destroy_tile_start_event_type.ts";
+export { PavingDestroyTileStartEvent };
+import { PavingPlaceTileStartEvent } from "./paving_place_tile_start_event_type.ts";
+export { PavingPlaceTileStartEvent };
 import { PavingTileDesc } from "./paving_tile_desc_type.ts";
 export { PavingTileDesc };
 import { Permission } from "./permission_type.ts";
@@ -3322,6 +3478,10 @@ import { PermissionState } from "./permission_state_type.ts";
 export { PermissionState };
 import { PillarShapingDesc } from "./pillar_shaping_desc_type.ts";
 export { PillarShapingDesc };
+import { PillarShapingDestroyStartEvent } from "./pillar_shaping_destroy_start_event_type.ts";
+export { PillarShapingDestroyStartEvent };
+import { PillarShapingPlacePillarStartEvent } from "./pillar_shaping_place_pillar_start_event_type.ts";
+export { PillarShapingPlacePillarStartEvent };
 import { PillarShapingState } from "./pillar_shaping_state_type.ts";
 export { PillarShapingState };
 import { PlaceableDesc } from "./placeable_desc_type.ts";
@@ -3334,8 +3494,12 @@ import { PlaceableGrowthOutcome } from "./placeable_growth_outcome_type.ts";
 export { PlaceableGrowthOutcome };
 import { PlaceableGrowthOutcomeV2 } from "./placeable_growth_outcome_v_2_type.ts";
 export { PlaceableGrowthOutcomeV2 };
+import { PlaceableInteractStartEvent } from "./placeable_interact_start_event_type.ts";
+export { PlaceableInteractStartEvent };
 import { PlaceableInteractionDesc } from "./placeable_interaction_desc_type.ts";
 export { PlaceableInteractionDesc };
+import { PlaceablePlaceStartEvent } from "./placeable_place_start_event_type.ts";
+export { PlaceablePlaceStartEvent };
 import { PlaceablePlacementDesc } from "./placeable_placement_desc_type.ts";
 export { PlaceablePlacementDesc };
 import { PlaceableSelfBuffChance } from "./placeable_self_buff_chance_type.ts";
@@ -3406,6 +3570,8 @@ import { PlayerClaimWithdrawFromTreasuryRequest } from "./player_claim_withdraw_
 export { PlayerClaimWithdrawFromTreasuryRequest };
 import { PlayerClimbRequest } from "./player_climb_request_type.ts";
 export { PlayerClimbRequest };
+import { PlayerClimbStartEvent } from "./player_climb_start_event_type.ts";
+export { PlayerClimbStartEvent };
 import { PlayerClosedListingCollectRequest } from "./player_closed_listing_collect_request_type.ts";
 export { PlayerClosedListingCollectRequest };
 import { PlayerCollectibleActivateRequest } from "./player_collectible_activate_request_type.ts";
@@ -3428,6 +3594,10 @@ import { PlayerCraftInitiateRequest } from "./player_craft_initiate_request_type
 export { PlayerCraftInitiateRequest };
 import { PlayerCreateMsg } from "./player_create_msg_type.ts";
 export { PlayerCreateMsg };
+import { PlayerDeathEvent } from "./player_death_event_type.ts";
+export { PlayerDeathEvent };
+import { PlayerDeathStartEvent } from "./player_death_start_event_type.ts";
+export { PlayerDeathStartEvent };
 import { PlayerDeathTimer } from "./player_death_timer_type.ts";
 export { PlayerDeathTimer };
 import { PlayerDeployableDismountRequest } from "./player_deployable_dismount_request_type.ts";
@@ -3488,6 +3658,8 @@ import { PlayerItemUseRequest } from "./player_item_use_request_type.ts";
 export { PlayerItemUseRequest };
 import { PlayerLowercaseUsernameState } from "./player_lowercase_username_state_type.ts";
 export { PlayerLowercaseUsernameState };
+import { PlayerMoveEvent } from "./player_move_event_type.ts";
+export { PlayerMoveEvent };
 import { PlayerMoveRequest } from "./player_move_request_type.ts";
 export { PlayerMoveRequest };
 import { PlayerNoteState } from "./player_note_state_type.ts";
@@ -3558,16 +3730,26 @@ import { PlayerSettingsState } from "./player_settings_state_type.ts";
 export { PlayerSettingsState };
 import { PlayerSignInRequest } from "./player_sign_in_request_type.ts";
 export { PlayerSignInRequest };
+import { PlayerSignedOutEvent } from "./player_signed_out_event_type.ts";
+export { PlayerSignedOutEvent };
+import { PlayerSignedOutReason } from "./player_signed_out_reason_type.ts";
+export { PlayerSignedOutReason };
 import { PlayerSkipQueueMsg } from "./player_skip_queue_msg_type.ts";
 export { PlayerSkipQueueMsg };
 import { PlayerSleepRequest } from "./player_sleep_request_type.ts";
 export { PlayerSleepRequest };
 import { PlayerState } from "./player_state_type.ts";
 export { PlayerState };
+import { PlayerTeleportEvent } from "./player_teleport_event_type.ts";
+export { PlayerTeleportEvent };
 import { PlayerTeleportHomeRequest } from "./player_teleport_home_request_type.ts";
 export { PlayerTeleportHomeRequest };
+import { PlayerTeleportHomeStartEvent } from "./player_teleport_home_start_event_type.ts";
+export { PlayerTeleportHomeStartEvent };
 import { PlayerTeleportWaystoneRequest } from "./player_teleport_waystone_request_type.ts";
 export { PlayerTeleportWaystoneRequest };
+import { PlayerTeleportWaystoneStartEvent } from "./player_teleport_waystone_start_event_type.ts";
+export { PlayerTeleportWaystoneStartEvent };
 import { PlayerTerraformCancelRequest } from "./player_terraform_cancel_request_type.ts";
 export { PlayerTerraformCancelRequest };
 import { PlayerTerraformRequest } from "./player_terraform_request_type.ts";
@@ -3632,8 +3814,12 @@ import { ProgressiveActionState } from "./progressive_action_state_type.ts";
 export { ProgressiveActionState };
 import { ProgressiveActionStatus } from "./progressive_action_status_type.ts";
 export { ProgressiveActionStatus };
+import { ProjectSiteAdvanceProjectStartEvent } from "./project_site_advance_project_start_event_type.ts";
+export { ProjectSiteAdvanceProjectStartEvent };
 import { ProjectSiteState } from "./project_site_state_type.ts";
 export { ProjectSiteState };
+import { ProspectStartEvent } from "./prospect_start_event_type.ts";
+export { ProspectStartEvent };
 import { ProspectingDesc } from "./prospecting_desc_type.ts";
 export { ProspectingDesc };
 import { ProspectingParticipant } from "./prospecting_participant_type.ts";
@@ -3728,6 +3914,8 @@ import { ResourceClumpInfo } from "./resource_clump_info_type.ts";
 export { ResourceClumpInfo };
 import { ResourceCount } from "./resource_count_type.ts";
 export { ResourceCount };
+import { ResourceDepletedEvent } from "./resource_depleted_event_type.ts";
+export { ResourceDepletedEvent };
 import { ResourceDesc } from "./resource_desc_type.ts";
 export { ResourceDesc };
 import { ResourceDestroyBuildingOutcome } from "./resource_destroy_building_outcome_type.ts";
@@ -3766,8 +3954,12 @@ import { SecondaryKnowledgeDesc } from "./secondary_knowledge_desc_type.ts";
 export { SecondaryKnowledgeDesc };
 import { ServerIdentity } from "./server_identity_type.ts";
 export { ServerIdentity };
+import { ServerTeleportEvent } from "./server_teleport_event_type.ts";
+export { ServerTeleportEvent };
 import { ServerTeleportReason } from "./server_teleport_reason_type.ts";
 export { ServerTeleportReason };
+import { SetHomeEvent } from "./set_home_event_type.ts";
+export { SetHomeEvent };
 import { SignPlayerOutMsg } from "./sign_player_out_msg_type.ts";
 export { SignPlayerOutMsg };
 import { SignedInPlayerState } from "./signed_in_player_state_type.ts";
@@ -3784,6 +3976,8 @@ import { SkillLevelKnowledgeDesc } from "./skill_level_knowledge_desc_type.ts";
 export { SkillLevelKnowledgeDesc };
 import { SkillType } from "./skill_type_type.ts";
 export { SkillType };
+import { SleepEvent } from "./sleep_event_type.ts";
+export { SleepEvent };
 import { SmallHexTileMessage } from "./small_hex_tile_message_type.ts";
 export { SmallHexTileMessage };
 import { SpawnInfo } from "./spawn_info_type.ts";
@@ -3826,6 +4020,8 @@ import { TerraformProgressState } from "./terraform_progress_state_type.ts";
 export { TerraformProgressState };
 import { TerraformRecipeDesc } from "./terraform_recipe_desc_type.ts";
 export { TerraformRecipeDesc };
+import { TerraformStartEvent } from "./terraform_start_event_type.ts";
+export { TerraformStartEvent };
 import { TerrainCell } from "./terrain_cell_type.ts";
 export { TerrainCell };
 import { TerrainChunkState } from "./terrain_chunk_state_type.ts";
@@ -4128,6 +4324,14 @@ export const REMOTE_MODULE = {
         colType: AttachedHerdsState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    attack_event: {
+      tableName: "attack_event",
+      rowType: AttackEvent.getTypeScriptAlgebraicType(),
+    },
+    attack_impact_event: {
+      tableName: "attack_impact_event",
+      rowType: AttackImpactEvent.getTypeScriptAlgebraicType(),
+    },
     attack_impact_timer: {
       tableName: "attack_impact_timer",
       rowType: AttackImpactTimer.getTypeScriptAlgebraicType(),
@@ -4191,6 +4395,10 @@ export const REMOTE_MODULE = {
         colType: BankState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    barter_stall_inventory_event: {
+      tableName: "barter_stall_inventory_event",
+      rowType: BarterStallInventoryEvent.getTypeScriptAlgebraicType(),
+    },
     barter_stall_state: {
       tableName: "barter_stall_state",
       rowType: BarterStallState.getTypeScriptAlgebraicType(),
@@ -4236,6 +4444,10 @@ export const REMOTE_MODULE = {
         colType: BuffTypeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    building_buff_activate_event: {
+      tableName: "building_buff_activate_event",
+      rowType: BuildingBuffActivateEvent.getTypeScriptAlgebraicType(),
+    },
     building_buff_desc: {
       tableName: "building_buff_desc",
       rowType: BuildingBuffDesc.getTypeScriptAlgebraicType(),
@@ -4262,6 +4474,10 @@ export const REMOTE_MODULE = {
         colName: "scheduledId",
         colType: BuildingDecayLoopTimer.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
+    },
+    building_deconstruct_start_event: {
+      tableName: "building_deconstruct_start_event",
+      rowType: BuildingDeconstructStartEvent.getTypeScriptAlgebraicType(),
     },
     building_desc: {
       tableName: "building_desc",
@@ -4316,6 +4532,10 @@ export const REMOTE_MODULE = {
         colName: "id",
         colType: BuildingPortalDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
+    },
+    building_repair_start_event: {
+      tableName: "building_repair_start_event",
+      rowType: BuildingRepairStartEvent.getTypeScriptAlgebraicType(),
     },
     building_repairs_desc: {
       tableName: "building_repairs_desc",
@@ -4461,6 +4681,10 @@ export const REMOTE_MODULE = {
         colType: ClaimRecruitmentState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    claim_resupply_start_event: {
+      tableName: "claim_resupply_start_event",
+      rowType: ClaimResupplyStartEvent.getTypeScriptAlgebraicType(),
+    },
     claim_state: {
       tableName: "claim_state",
       rowType: ClaimState.getTypeScriptAlgebraicType(),
@@ -4514,6 +4738,10 @@ export const REMOTE_MODULE = {
         colName: "entityId",
         colType: ClaimTileState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
+    },
+    claim_treasury_event: {
+      tableName: "claim_treasury_event",
+      rowType: ClaimTreasuryEvent.getTypeScriptAlgebraicType(),
     },
     climb_requirement_desc: {
       tableName: "climb_requirement_desc",
@@ -4653,6 +4881,22 @@ export const REMOTE_MODULE = {
         colType: ContributionState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    craft_completed_event: {
+      tableName: "craft_completed_event",
+      rowType: CraftCompletedEvent.getTypeScriptAlgebraicType(),
+    },
+    craft_continue_start_event: {
+      tableName: "craft_continue_start_event",
+      rowType: CraftContinueStartEvent.getTypeScriptAlgebraicType(),
+    },
+    craft_event: {
+      tableName: "craft_event",
+      rowType: CraftEvent.getTypeScriptAlgebraicType(),
+    },
+    craft_initiate_start_event: {
+      tableName: "craft_initiate_start_event",
+      rowType: CraftInitiateStartEvent.getTypeScriptAlgebraicType(),
+    },
     crafting_recipe_desc: {
       tableName: "crafting_recipe_desc",
       rowType: CraftingRecipeDesc.getTypeScriptAlgebraicType(),
@@ -4755,6 +4999,10 @@ export const REMOTE_MODULE = {
         colType: DeployableCollectibleState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    deployable_deploy_start_event: {
+      tableName: "deployable_deploy_start_event",
+      rowType: DeployableDeployStartEvent.getTypeScriptAlgebraicType(),
+    },
     deployable_desc: {
       tableName: "deployable_desc",
       rowType: DeployableDesc.getTypeScriptAlgebraicType(),
@@ -4764,6 +5012,10 @@ export const REMOTE_MODULE = {
         colType: DeployableDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    deployable_disembark_event: {
+      tableName: "deployable_disembark_event",
+      rowType: DeployableDisembarkEvent.getTypeScriptAlgebraicType(),
+    },
     deployable_dismount_timer: {
       tableName: "deployable_dismount_timer",
       rowType: DeployableDismountTimer.getTypeScriptAlgebraicType(),
@@ -4772,6 +5024,14 @@ export const REMOTE_MODULE = {
         colName: "scheduledId",
         colType: DeployableDismountTimer.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
+    },
+    deployable_mount_event: {
+      tableName: "deployable_mount_event",
+      rowType: DeployableMountEvent.getTypeScriptAlgebraicType(),
+    },
+    deployable_move_event: {
+      tableName: "deployable_move_event",
+      rowType: DeployableMoveEvent.getTypeScriptAlgebraicType(),
     },
     deployable_state: {
       tableName: "deployable_state",
@@ -4790,6 +5050,10 @@ export const REMOTE_MODULE = {
         colName: "entityId",
         colType: DeployableStateV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
+    },
+    deployable_store_start_event: {
+      tableName: "deployable_store_start_event",
+      rowType: DeployableStoreStartEvent.getTypeScriptAlgebraicType(),
     },
     destroy_dimension_network_timer: {
       tableName: "destroy_dimension_network_timer",
@@ -4926,6 +5190,10 @@ export const REMOTE_MODULE = {
         colType: EmoteDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    emote_start_event: {
+      tableName: "emote_start_event",
+      rowType: EmoteStartEvent.getTypeScriptAlgebraicType(),
+    },
     empire_chunk_state: {
       tableName: "empire_chunk_state",
       rowType: EmpireChunkState.getTypeScriptAlgebraicType(),
@@ -5016,6 +5284,10 @@ export const REMOTE_MODULE = {
         colType: EmpireRankState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    empire_resupply_node_start_event: {
+      tableName: "empire_resupply_node_start_event",
+      rowType: EmpireResupplyNodeStartEvent.getTypeScriptAlgebraicType(),
+    },
     empire_settlement_state: {
       tableName: "empire_settlement_state",
       rowType: EmpireSettlementState.getTypeScriptAlgebraicType(),
@@ -5079,6 +5351,10 @@ export const REMOTE_MODULE = {
         colType: EnemyDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    enemy_despawn_event: {
+      tableName: "enemy_despawn_event",
+      rowType: EnemyDespawnEvent.getTypeScriptAlgebraicType(),
+    },
     enemy_despawn_timer: {
       tableName: "enemy_despawn_timer",
       rowType: EnemyDespawnTimer.getTypeScriptAlgebraicType(),
@@ -5096,6 +5372,10 @@ export const REMOTE_MODULE = {
         colName: "entityId",
         colType: EnemyMobMonitorState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
+    },
+    enemy_move_event: {
+      tableName: "enemy_move_event",
+      rowType: EnemyMoveEvent.getTypeScriptAlgebraicType(),
     },
     enemy_regen_loop_timer: {
       tableName: "enemy_regen_loop_timer",
@@ -5132,6 +5412,10 @@ export const REMOTE_MODULE = {
         colName: "entityId",
         colType: EnemyState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
+    },
+    entity_attack_start_event: {
+      tableName: "entity_attack_start_event",
+      rowType: EntityAttackStartEvent.getTypeScriptAlgebraicType(),
     },
     environment_debuff_desc: {
       tableName: "environment_debuff_desc",
@@ -5214,6 +5498,10 @@ export const REMOTE_MODULE = {
         colType: ExplorationChunksStateV2.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    extract_event: {
+      tableName: "extract_event",
+      rowType: ExtractEvent.getTypeScriptAlgebraicType(),
+    },
     extract_outcome_state: {
       tableName: "extract_outcome_state",
       rowType: ExtractOutcomeStateV2.getTypeScriptAlgebraicType(),
@@ -5231,6 +5519,10 @@ export const REMOTE_MODULE = {
         colName: "entityId",
         colType: ExtractOutcomeState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
+    },
+    extract_start_event: {
+      tableName: "extract_start_event",
+      rowType: ExtractStartEvent.getTypeScriptAlgebraicType(),
     },
     extraction_recipe_desc: {
       tableName: "extraction_recipe_desc",
@@ -5532,6 +5824,10 @@ export const REMOTE_MODULE = {
         colName: "id",
         colType: ItemConversionRecipeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
+    },
+    item_convert_start_event: {
+      tableName: "item_convert_start_event",
+      rowType: ItemConvertStartEvent.getTypeScriptAlgebraicType(),
     },
     item_desc: {
       tableName: "item_desc",
@@ -5848,6 +6144,10 @@ export const REMOTE_MODULE = {
         colType: LostItemsState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    market_trade_event: {
+      tableName: "market_trade_event",
+      rowType: MarketTradeEvent.getTypeScriptAlgebraicType(),
+    },
     marketplace_state: {
       tableName: "marketplace_state",
       rowType: MarketplaceState.getTypeScriptAlgebraicType(),
@@ -6028,6 +6328,14 @@ export const REMOTE_MODULE = {
         colType: PavedTileState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    paving_destroy_tile_start_event: {
+      tableName: "paving_destroy_tile_start_event",
+      rowType: PavingDestroyTileStartEvent.getTypeScriptAlgebraicType(),
+    },
+    paving_place_tile_start_event: {
+      tableName: "paving_place_tile_start_event",
+      rowType: PavingPlaceTileStartEvent.getTypeScriptAlgebraicType(),
+    },
     paving_recipe_discovery_cargo_desc: {
       tableName: "paving_recipe_discovery_cargo_desc",
       rowType: DiscoveryTriggerDesc.getTypeScriptAlgebraicType(),
@@ -6066,6 +6374,14 @@ export const REMOTE_MODULE = {
         colName: "id",
         colType: PillarShapingDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
+    },
+    pillar_shaping_destroy_start_event: {
+      tableName: "pillar_shaping_destroy_start_event",
+      rowType: PillarShapingDestroyStartEvent.getTypeScriptAlgebraicType(),
+    },
+    pillar_shaping_place_pillar_start_event: {
+      tableName: "pillar_shaping_place_pillar_start_event",
+      rowType: PillarShapingPlacePillarStartEvent.getTypeScriptAlgebraicType(),
     },
     pillar_shaping_recipe_discovery_cargo_desc: {
       tableName: "pillar_shaping_recipe_discovery_cargo_desc",
@@ -6124,6 +6440,10 @@ export const REMOTE_MODULE = {
         colType: GrowthTimer.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    placeable_interact_start_event: {
+      tableName: "placeable_interact_start_event",
+      rowType: PlaceableInteractStartEvent.getTypeScriptAlgebraicType(),
+    },
     placeable_interaction_desc: {
       tableName: "placeable_interaction_desc",
       rowType: PlaceableInteractionDesc.getTypeScriptAlgebraicType(),
@@ -6132,6 +6452,10 @@ export const REMOTE_MODULE = {
         colName: "id",
         colType: PlaceableInteractionDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
+    },
+    placeable_place_start_event: {
+      tableName: "placeable_place_start_event",
+      rowType: PlaceablePlaceStartEvent.getTypeScriptAlgebraicType(),
     },
     placeable_placement_desc: {
       tableName: "placeable_placement_desc",
@@ -6168,6 +6492,18 @@ export const REMOTE_MODULE = {
         colName: "autoId",
         colType: PlayerActionState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
+    },
+    player_climb_start_event: {
+      tableName: "player_climb_start_event",
+      rowType: PlayerClimbStartEvent.getTypeScriptAlgebraicType(),
+    },
+    player_death_event: {
+      tableName: "player_death_event",
+      rowType: PlayerDeathEvent.getTypeScriptAlgebraicType(),
+    },
+    player_death_start_event: {
+      tableName: "player_death_start_event",
+      rowType: PlayerDeathStartEvent.getTypeScriptAlgebraicType(),
     },
     player_death_timer: {
       tableName: "player_death_timer",
@@ -6240,6 +6576,10 @@ export const REMOTE_MODULE = {
         colName: "entityId",
         colType: PlayerLowercaseUsernameState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
+    },
+    player_move_event: {
+      tableName: "player_move_event",
+      rowType: PlayerMoveEvent.getTypeScriptAlgebraicType(),
     },
     player_note_state: {
       tableName: "player_note_state",
@@ -6331,6 +6671,10 @@ export const REMOTE_MODULE = {
         colType: PlayerSettingsState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    player_signed_out_event: {
+      tableName: "player_signed_out_event",
+      rowType: PlayerSignedOutEvent.getTypeScriptAlgebraicType(),
+    },
     player_state: {
       tableName: "player_state",
       rowType: PlayerState.getTypeScriptAlgebraicType(),
@@ -6339,6 +6683,18 @@ export const REMOTE_MODULE = {
         colName: "entityId",
         colType: PlayerState.getTypeScriptAlgebraicType().product.elements[1].algebraicType,
       },
+    },
+    player_teleport_event: {
+      tableName: "player_teleport_event",
+      rowType: PlayerTeleportEvent.getTypeScriptAlgebraicType(),
+    },
+    player_teleport_home_start_event: {
+      tableName: "player_teleport_home_start_event",
+      rowType: PlayerTeleportHomeStartEvent.getTypeScriptAlgebraicType(),
+    },
+    player_teleport_waystone_start_event: {
+      tableName: "player_teleport_waystone_start_event",
+      rowType: PlayerTeleportWaystoneStartEvent.getTypeScriptAlgebraicType(),
     },
     player_timestamp_state: {
       tableName: "player_timestamp_state",
@@ -6452,6 +6808,10 @@ export const REMOTE_MODULE = {
         colType: ProgressiveActionState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    project_site_advance_project_start_event: {
+      tableName: "project_site_advance_project_start_event",
+      rowType: ProjectSiteAdvanceProjectStartEvent.getTypeScriptAlgebraicType(),
+    },
     project_site_state: {
       tableName: "project_site_state",
       rowType: ProjectSiteState.getTypeScriptAlgebraicType(),
@@ -6460,6 +6820,10 @@ export const REMOTE_MODULE = {
         colName: "entityId",
         colType: ProjectSiteState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
+    },
+    prospect_start_event: {
+      tableName: "prospect_start_event",
+      rowType: ProspectStartEvent.getTypeScriptAlgebraicType(),
     },
     prospecting_desc: {
       tableName: "prospecting_desc",
@@ -6659,6 +7023,10 @@ export const REMOTE_MODULE = {
         colType: ResourceCount.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    resource_depleted_event: {
+      tableName: "resource_depleted_event",
+      rowType: ResourceDepletedEvent.getTypeScriptAlgebraicType(),
+    },
     resource_desc: {
       tableName: "resource_desc",
       rowType: ResourceDesc.getTypeScriptAlgebraicType(),
@@ -6806,6 +7174,14 @@ export const REMOTE_MODULE = {
         colType: ServerIdentity.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    server_teleport_event: {
+      tableName: "server_teleport_event",
+      rowType: ServerTeleportEvent.getTypeScriptAlgebraicType(),
+    },
+    set_home_event: {
+      tableName: "set_home_event",
+      rowType: SetHomeEvent.getTypeScriptAlgebraicType(),
+    },
     signed_in_player_state: {
       tableName: "signed_in_player_state",
       rowType: SignedInPlayerState.getTypeScriptAlgebraicType(),
@@ -6850,6 +7226,10 @@ export const REMOTE_MODULE = {
         colName: "id",
         colType: SkillLevelKnowledgeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
+    },
+    sleep_event: {
+      tableName: "sleep_event",
+      rowType: SleepEvent.getTypeScriptAlgebraicType(),
     },
     stage_rewards_desc: {
       tableName: "stage_rewards_desc",
@@ -7948,6 +8328,10 @@ export const REMOTE_MODULE = {
         colName: "difference",
         colType: TerraformRecipeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
+    },
+    terraform_start_event: {
+      tableName: "terraform_start_event",
+      rowType: TerraformStartEvent.getTypeScriptAlgebraicType(),
     },
     terrain_chunk_state: {
       tableName: "terrain_chunk_state",
@@ -27960,6 +28344,14 @@ export class RemoteTables {
     return new AttachedHerdsStateTableHandle(this.connection.clientCache.getOrCreateTable<AttachedHerdsState>(REMOTE_MODULE.tables.attached_herds_state));
   }
 
+  get attackEvent(): AttackEventTableHandle {
+    return new AttackEventTableHandle(this.connection.clientCache.getOrCreateTable<AttackEvent>(REMOTE_MODULE.tables.attack_event));
+  }
+
+  get attackImpactEvent(): AttackImpactEventTableHandle {
+    return new AttackImpactEventTableHandle(this.connection.clientCache.getOrCreateTable<AttackImpactEvent>(REMOTE_MODULE.tables.attack_impact_event));
+  }
+
   get attackImpactTimer(): AttackImpactTimerTableHandle {
     return new AttackImpactTimerTableHandle(this.connection.clientCache.getOrCreateTable<AttackImpactTimer>(REMOTE_MODULE.tables.attack_impact_timer));
   }
@@ -27988,6 +28380,10 @@ export class RemoteTables {
     return new BankStateTableHandle(this.connection.clientCache.getOrCreateTable<BankState>(REMOTE_MODULE.tables.bank_state));
   }
 
+  get barterStallInventoryEvent(): BarterStallInventoryEventTableHandle {
+    return new BarterStallInventoryEventTableHandle(this.connection.clientCache.getOrCreateTable<BarterStallInventoryEvent>(REMOTE_MODULE.tables.barter_stall_inventory_event));
+  }
+
   get barterStallState(): BarterStallStateTableHandle {
     return new BarterStallStateTableHandle(this.connection.clientCache.getOrCreateTable<BarterStallState>(REMOTE_MODULE.tables.barter_stall_state));
   }
@@ -28008,6 +28404,10 @@ export class RemoteTables {
     return new BuffTypeDescTableHandle(this.connection.clientCache.getOrCreateTable<BuffTypeDesc>(REMOTE_MODULE.tables.buff_type_desc));
   }
 
+  get buildingBuffActivateEvent(): BuildingBuffActivateEventTableHandle {
+    return new BuildingBuffActivateEventTableHandle(this.connection.clientCache.getOrCreateTable<BuildingBuffActivateEvent>(REMOTE_MODULE.tables.building_buff_activate_event));
+  }
+
   get buildingBuffDesc(): BuildingBuffDescTableHandle {
     return new BuildingBuffDescTableHandle(this.connection.clientCache.getOrCreateTable<BuildingBuffDesc>(REMOTE_MODULE.tables.building_buff_desc));
   }
@@ -28018,6 +28418,10 @@ export class RemoteTables {
 
   get buildingDecayLoopTimer(): BuildingDecayLoopTimerTableHandle {
     return new BuildingDecayLoopTimerTableHandle(this.connection.clientCache.getOrCreateTable<BuildingDecayLoopTimer>(REMOTE_MODULE.tables.building_decay_loop_timer));
+  }
+
+  get buildingDeconstructStartEvent(): BuildingDeconstructStartEventTableHandle {
+    return new BuildingDeconstructStartEventTableHandle(this.connection.clientCache.getOrCreateTable<BuildingDeconstructStartEvent>(REMOTE_MODULE.tables.building_deconstruct_start_event));
   }
 
   get buildingDesc(): BuildingDescTableHandle {
@@ -28042,6 +28446,10 @@ export class RemoteTables {
 
   get buildingPortalDesc(): BuildingPortalDescTableHandle {
     return new BuildingPortalDescTableHandle(this.connection.clientCache.getOrCreateTable<BuildingPortalDesc>(REMOTE_MODULE.tables.building_portal_desc));
+  }
+
+  get buildingRepairStartEvent(): BuildingRepairStartEventTableHandle {
+    return new BuildingRepairStartEventTableHandle(this.connection.clientCache.getOrCreateTable<BuildingRepairStartEvent>(REMOTE_MODULE.tables.building_repair_start_event));
   }
 
   get buildingRepairsDesc(): BuildingRepairsDescTableHandle {
@@ -28108,6 +28516,10 @@ export class RemoteTables {
     return new ClaimRecruitmentStateTableHandle(this.connection.clientCache.getOrCreateTable<ClaimRecruitmentState>(REMOTE_MODULE.tables.claim_recruitment_state));
   }
 
+  get claimResupplyStartEvent(): ClaimResupplyStartEventTableHandle {
+    return new ClaimResupplyStartEventTableHandle(this.connection.clientCache.getOrCreateTable<ClaimResupplyStartEvent>(REMOTE_MODULE.tables.claim_resupply_start_event));
+  }
+
   get claimState(): ClaimStateTableHandle {
     return new ClaimStateTableHandle(this.connection.clientCache.getOrCreateTable<ClaimState>(REMOTE_MODULE.tables.claim_state));
   }
@@ -28130,6 +28542,10 @@ export class RemoteTables {
 
   get claimTileState(): ClaimTileStateTableHandle {
     return new ClaimTileStateTableHandle(this.connection.clientCache.getOrCreateTable<ClaimTileState>(REMOTE_MODULE.tables.claim_tile_state));
+  }
+
+  get claimTreasuryEvent(): ClaimTreasuryEventTableHandle {
+    return new ClaimTreasuryEventTableHandle(this.connection.clientCache.getOrCreateTable<ClaimTreasuryEvent>(REMOTE_MODULE.tables.claim_treasury_event));
   }
 
   get climbRequirementDesc(): ClimbRequirementDescTableHandle {
@@ -28200,6 +28616,22 @@ export class RemoteTables {
     return new ContributionStateTableHandle(this.connection.clientCache.getOrCreateTable<ContributionState>(REMOTE_MODULE.tables.contribution_state));
   }
 
+  get craftCompletedEvent(): CraftCompletedEventTableHandle {
+    return new CraftCompletedEventTableHandle(this.connection.clientCache.getOrCreateTable<CraftCompletedEvent>(REMOTE_MODULE.tables.craft_completed_event));
+  }
+
+  get craftContinueStartEvent(): CraftContinueStartEventTableHandle {
+    return new CraftContinueStartEventTableHandle(this.connection.clientCache.getOrCreateTable<CraftContinueStartEvent>(REMOTE_MODULE.tables.craft_continue_start_event));
+  }
+
+  get craftEvent(): CraftEventTableHandle {
+    return new CraftEventTableHandle(this.connection.clientCache.getOrCreateTable<CraftEvent>(REMOTE_MODULE.tables.craft_event));
+  }
+
+  get craftInitiateStartEvent(): CraftInitiateStartEventTableHandle {
+    return new CraftInitiateStartEventTableHandle(this.connection.clientCache.getOrCreateTable<CraftInitiateStartEvent>(REMOTE_MODULE.tables.craft_initiate_start_event));
+  }
+
   get craftingRecipeDesc(): CraftingRecipeDescTableHandle {
     return new CraftingRecipeDescTableHandle(this.connection.clientCache.getOrCreateTable<CraftingRecipeDesc>(REMOTE_MODULE.tables.crafting_recipe_desc));
   }
@@ -28252,12 +28684,28 @@ export class RemoteTables {
     return new DeployableCollectibleStateTableHandle(this.connection.clientCache.getOrCreateTable<DeployableCollectibleState>(REMOTE_MODULE.tables.deployable_collectible_state));
   }
 
+  get deployableDeployStartEvent(): DeployableDeployStartEventTableHandle {
+    return new DeployableDeployStartEventTableHandle(this.connection.clientCache.getOrCreateTable<DeployableDeployStartEvent>(REMOTE_MODULE.tables.deployable_deploy_start_event));
+  }
+
   get deployableDesc(): DeployableDescTableHandle {
     return new DeployableDescTableHandle(this.connection.clientCache.getOrCreateTable<DeployableDesc>(REMOTE_MODULE.tables.deployable_desc));
   }
 
+  get deployableDisembarkEvent(): DeployableDisembarkEventTableHandle {
+    return new DeployableDisembarkEventTableHandle(this.connection.clientCache.getOrCreateTable<DeployableDisembarkEvent>(REMOTE_MODULE.tables.deployable_disembark_event));
+  }
+
   get deployableDismountTimer(): DeployableDismountTimerTableHandle {
     return new DeployableDismountTimerTableHandle(this.connection.clientCache.getOrCreateTable<DeployableDismountTimer>(REMOTE_MODULE.tables.deployable_dismount_timer));
+  }
+
+  get deployableMountEvent(): DeployableMountEventTableHandle {
+    return new DeployableMountEventTableHandle(this.connection.clientCache.getOrCreateTable<DeployableMountEvent>(REMOTE_MODULE.tables.deployable_mount_event));
+  }
+
+  get deployableMoveEvent(): DeployableMoveEventTableHandle {
+    return new DeployableMoveEventTableHandle(this.connection.clientCache.getOrCreateTable<DeployableMoveEvent>(REMOTE_MODULE.tables.deployable_move_event));
   }
 
   get deployableState(): DeployableStateTableHandle {
@@ -28266,6 +28714,10 @@ export class RemoteTables {
 
   get deployableStateV2(): DeployableStateV2TableHandle {
     return new DeployableStateV2TableHandle(this.connection.clientCache.getOrCreateTable<DeployableStateV2>(REMOTE_MODULE.tables.deployable_state_v2));
+  }
+
+  get deployableStoreStartEvent(): DeployableStoreStartEventTableHandle {
+    return new DeployableStoreStartEventTableHandle(this.connection.clientCache.getOrCreateTable<DeployableStoreStartEvent>(REMOTE_MODULE.tables.deployable_store_start_event));
   }
 
   get destroyDimensionNetworkTimer(): DestroyDimensionNetworkTimerTableHandle {
@@ -28328,6 +28780,10 @@ export class RemoteTables {
     return new EmoteDescTableHandle(this.connection.clientCache.getOrCreateTable<EmoteDesc>(REMOTE_MODULE.tables.emote_desc));
   }
 
+  get emoteStartEvent(): EmoteStartEventTableHandle {
+    return new EmoteStartEventTableHandle(this.connection.clientCache.getOrCreateTable<EmoteStartEvent>(REMOTE_MODULE.tables.emote_start_event));
+  }
+
   get empireChunkState(): EmpireChunkStateTableHandle {
     return new EmpireChunkStateTableHandle(this.connection.clientCache.getOrCreateTable<EmpireChunkState>(REMOTE_MODULE.tables.empire_chunk_state));
   }
@@ -28368,6 +28824,10 @@ export class RemoteTables {
     return new EmpireRankStateTableHandle(this.connection.clientCache.getOrCreateTable<EmpireRankState>(REMOTE_MODULE.tables.empire_rank_state));
   }
 
+  get empireResupplyNodeStartEvent(): EmpireResupplyNodeStartEventTableHandle {
+    return new EmpireResupplyNodeStartEventTableHandle(this.connection.clientCache.getOrCreateTable<EmpireResupplyNodeStartEvent>(REMOTE_MODULE.tables.empire_resupply_node_start_event));
+  }
+
   get empireSettlementState(): EmpireSettlementStateTableHandle {
     return new EmpireSettlementStateTableHandle(this.connection.clientCache.getOrCreateTable<EmpireSettlementState>(REMOTE_MODULE.tables.empire_settlement_state));
   }
@@ -28396,12 +28856,20 @@ export class RemoteTables {
     return new EnemyDescTableHandle(this.connection.clientCache.getOrCreateTable<EnemyDesc>(REMOTE_MODULE.tables.enemy_desc));
   }
 
+  get enemyDespawnEvent(): EnemyDespawnEventTableHandle {
+    return new EnemyDespawnEventTableHandle(this.connection.clientCache.getOrCreateTable<EnemyDespawnEvent>(REMOTE_MODULE.tables.enemy_despawn_event));
+  }
+
   get enemyDespawnTimer(): EnemyDespawnTimerTableHandle {
     return new EnemyDespawnTimerTableHandle(this.connection.clientCache.getOrCreateTable<EnemyDespawnTimer>(REMOTE_MODULE.tables.enemy_despawn_timer));
   }
 
   get enemyMobMonitorState(): EnemyMobMonitorStateTableHandle {
     return new EnemyMobMonitorStateTableHandle(this.connection.clientCache.getOrCreateTable<EnemyMobMonitorState>(REMOTE_MODULE.tables.enemy_mob_monitor_state));
+  }
+
+  get enemyMoveEvent(): EnemyMoveEventTableHandle {
+    return new EnemyMoveEventTableHandle(this.connection.clientCache.getOrCreateTable<EnemyMoveEvent>(REMOTE_MODULE.tables.enemy_move_event));
   }
 
   get enemyRegenLoopTimer(): EnemyRegenLoopTimerTableHandle {
@@ -28418,6 +28886,10 @@ export class RemoteTables {
 
   get enemyState(): EnemyStateTableHandle {
     return new EnemyStateTableHandle(this.connection.clientCache.getOrCreateTable<EnemyState>(REMOTE_MODULE.tables.enemy_state));
+  }
+
+  get entityAttackStartEvent(): EntityAttackStartEventTableHandle {
+    return new EntityAttackStartEventTableHandle(this.connection.clientCache.getOrCreateTable<EntityAttackStartEvent>(REMOTE_MODULE.tables.entity_attack_start_event));
   }
 
   get environmentDebuffDesc(): EnvironmentDebuffDescTableHandle {
@@ -28456,12 +28928,20 @@ export class RemoteTables {
     return new ExplorationChunksStateV2TableHandle(this.connection.clientCache.getOrCreateTable<ExplorationChunksStateV2>(REMOTE_MODULE.tables.exploration_chunks_state_v2));
   }
 
+  get extractEvent(): ExtractEventTableHandle {
+    return new ExtractEventTableHandle(this.connection.clientCache.getOrCreateTable<ExtractEvent>(REMOTE_MODULE.tables.extract_event));
+  }
+
   get extractOutcomeState(): ExtractOutcomeStateTableHandle {
     return new ExtractOutcomeStateTableHandle(this.connection.clientCache.getOrCreateTable<ExtractOutcomeStateV2>(REMOTE_MODULE.tables.extract_outcome_state));
   }
 
   get extractOutcomeStateV1(): ExtractOutcomeStateV1TableHandle {
     return new ExtractOutcomeStateV1TableHandle(this.connection.clientCache.getOrCreateTable<ExtractOutcomeState>(REMOTE_MODULE.tables.extract_outcome_state_v1));
+  }
+
+  get extractStartEvent(): ExtractStartEventTableHandle {
+    return new ExtractStartEventTableHandle(this.connection.clientCache.getOrCreateTable<ExtractStartEvent>(REMOTE_MODULE.tables.extract_start_event));
   }
 
   get extractionRecipeDesc(): ExtractionRecipeDescTableHandle {
@@ -28598,6 +29078,10 @@ export class RemoteTables {
 
   get itemConversionRecipeDesc(): ItemConversionRecipeDescTableHandle {
     return new ItemConversionRecipeDescTableHandle(this.connection.clientCache.getOrCreateTable<ItemConversionRecipeDesc>(REMOTE_MODULE.tables.item_conversion_recipe_desc));
+  }
+
+  get itemConvertStartEvent(): ItemConvertStartEventTableHandle {
+    return new ItemConvertStartEventTableHandle(this.connection.clientCache.getOrCreateTable<ItemConvertStartEvent>(REMOTE_MODULE.tables.item_convert_start_event));
   }
 
   get itemDesc(): ItemDescTableHandle {
@@ -28740,6 +29224,10 @@ export class RemoteTables {
     return new LostItemsStateTableHandle(this.connection.clientCache.getOrCreateTable<LostItemsState>(REMOTE_MODULE.tables.lost_items_state));
   }
 
+  get marketTradeEvent(): MarketTradeEventTableHandle {
+    return new MarketTradeEventTableHandle(this.connection.clientCache.getOrCreateTable<MarketTradeEvent>(REMOTE_MODULE.tables.market_trade_event));
+  }
+
   get marketplaceState(): MarketplaceStateTableHandle {
     return new MarketplaceStateTableHandle(this.connection.clientCache.getOrCreateTable<MarketplaceState>(REMOTE_MODULE.tables.marketplace_state));
   }
@@ -28820,6 +29308,14 @@ export class RemoteTables {
     return new PavedTileStateTableHandle(this.connection.clientCache.getOrCreateTable<PavedTileState>(REMOTE_MODULE.tables.paved_tile_state));
   }
 
+  get pavingDestroyTileStartEvent(): PavingDestroyTileStartEventTableHandle {
+    return new PavingDestroyTileStartEventTableHandle(this.connection.clientCache.getOrCreateTable<PavingDestroyTileStartEvent>(REMOTE_MODULE.tables.paving_destroy_tile_start_event));
+  }
+
+  get pavingPlaceTileStartEvent(): PavingPlaceTileStartEventTableHandle {
+    return new PavingPlaceTileStartEventTableHandle(this.connection.clientCache.getOrCreateTable<PavingPlaceTileStartEvent>(REMOTE_MODULE.tables.paving_place_tile_start_event));
+  }
+
   get pavingRecipeDiscoveryCargoDesc(): PavingRecipeDiscoveryCargoDescTableHandle {
     return new PavingRecipeDiscoveryCargoDescTableHandle(this.connection.clientCache.getOrCreateTable<DiscoveryTriggerDesc>(REMOTE_MODULE.tables.paving_recipe_discovery_cargo_desc));
   }
@@ -28842,6 +29338,14 @@ export class RemoteTables {
 
   get pillarShapingDesc(): PillarShapingDescTableHandle {
     return new PillarShapingDescTableHandle(this.connection.clientCache.getOrCreateTable<PillarShapingDesc>(REMOTE_MODULE.tables.pillar_shaping_desc));
+  }
+
+  get pillarShapingDestroyStartEvent(): PillarShapingDestroyStartEventTableHandle {
+    return new PillarShapingDestroyStartEventTableHandle(this.connection.clientCache.getOrCreateTable<PillarShapingDestroyStartEvent>(REMOTE_MODULE.tables.pillar_shaping_destroy_start_event));
+  }
+
+  get pillarShapingPlacePillarStartEvent(): PillarShapingPlacePillarStartEventTableHandle {
+    return new PillarShapingPlacePillarStartEventTableHandle(this.connection.clientCache.getOrCreateTable<PillarShapingPlacePillarStartEvent>(REMOTE_MODULE.tables.pillar_shaping_place_pillar_start_event));
   }
 
   get pillarShapingRecipeDiscoveryCargoDesc(): PillarShapingRecipeDiscoveryCargoDescTableHandle {
@@ -28876,8 +29380,16 @@ export class RemoteTables {
     return new PlaceableGrowthTimerTableHandle(this.connection.clientCache.getOrCreateTable<GrowthTimer>(REMOTE_MODULE.tables.placeable_growth_timer));
   }
 
+  get placeableInteractStartEvent(): PlaceableInteractStartEventTableHandle {
+    return new PlaceableInteractStartEventTableHandle(this.connection.clientCache.getOrCreateTable<PlaceableInteractStartEvent>(REMOTE_MODULE.tables.placeable_interact_start_event));
+  }
+
   get placeableInteractionDesc(): PlaceableInteractionDescTableHandle {
     return new PlaceableInteractionDescTableHandle(this.connection.clientCache.getOrCreateTable<PlaceableInteractionDesc>(REMOTE_MODULE.tables.placeable_interaction_desc));
+  }
+
+  get placeablePlaceStartEvent(): PlaceablePlaceStartEventTableHandle {
+    return new PlaceablePlaceStartEventTableHandle(this.connection.clientCache.getOrCreateTable<PlaceablePlaceStartEvent>(REMOTE_MODULE.tables.placeable_place_start_event));
   }
 
   get placeablePlacementDesc(): PlaceablePlacementDescTableHandle {
@@ -28894,6 +29406,18 @@ export class RemoteTables {
 
   get playerActionState(): PlayerActionStateTableHandle {
     return new PlayerActionStateTableHandle(this.connection.clientCache.getOrCreateTable<PlayerActionState>(REMOTE_MODULE.tables.player_action_state));
+  }
+
+  get playerClimbStartEvent(): PlayerClimbStartEventTableHandle {
+    return new PlayerClimbStartEventTableHandle(this.connection.clientCache.getOrCreateTable<PlayerClimbStartEvent>(REMOTE_MODULE.tables.player_climb_start_event));
+  }
+
+  get playerDeathEvent(): PlayerDeathEventTableHandle {
+    return new PlayerDeathEventTableHandle(this.connection.clientCache.getOrCreateTable<PlayerDeathEvent>(REMOTE_MODULE.tables.player_death_event));
+  }
+
+  get playerDeathStartEvent(): PlayerDeathStartEventTableHandle {
+    return new PlayerDeathStartEventTableHandle(this.connection.clientCache.getOrCreateTable<PlayerDeathStartEvent>(REMOTE_MODULE.tables.player_death_start_event));
   }
 
   get playerDeathTimer(): PlayerDeathTimerTableHandle {
@@ -28926,6 +29450,10 @@ export class RemoteTables {
 
   get playerLowercaseUsernameState(): PlayerLowercaseUsernameStateTableHandle {
     return new PlayerLowercaseUsernameStateTableHandle(this.connection.clientCache.getOrCreateTable<PlayerLowercaseUsernameState>(REMOTE_MODULE.tables.player_lowercase_username_state));
+  }
+
+  get playerMoveEvent(): PlayerMoveEventTableHandle {
+    return new PlayerMoveEventTableHandle(this.connection.clientCache.getOrCreateTable<PlayerMoveEvent>(REMOTE_MODULE.tables.player_move_event));
   }
 
   get playerNoteState(): PlayerNoteStateTableHandle {
@@ -28968,8 +29496,24 @@ export class RemoteTables {
     return new PlayerSettingsStateTableHandle(this.connection.clientCache.getOrCreateTable<PlayerSettingsState>(REMOTE_MODULE.tables.player_settings_state));
   }
 
+  get playerSignedOutEvent(): PlayerSignedOutEventTableHandle {
+    return new PlayerSignedOutEventTableHandle(this.connection.clientCache.getOrCreateTable<PlayerSignedOutEvent>(REMOTE_MODULE.tables.player_signed_out_event));
+  }
+
   get playerState(): PlayerStateTableHandle {
     return new PlayerStateTableHandle(this.connection.clientCache.getOrCreateTable<PlayerState>(REMOTE_MODULE.tables.player_state));
+  }
+
+  get playerTeleportEvent(): PlayerTeleportEventTableHandle {
+    return new PlayerTeleportEventTableHandle(this.connection.clientCache.getOrCreateTable<PlayerTeleportEvent>(REMOTE_MODULE.tables.player_teleport_event));
+  }
+
+  get playerTeleportHomeStartEvent(): PlayerTeleportHomeStartEventTableHandle {
+    return new PlayerTeleportHomeStartEventTableHandle(this.connection.clientCache.getOrCreateTable<PlayerTeleportHomeStartEvent>(REMOTE_MODULE.tables.player_teleport_home_start_event));
+  }
+
+  get playerTeleportWaystoneStartEvent(): PlayerTeleportWaystoneStartEventTableHandle {
+    return new PlayerTeleportWaystoneStartEventTableHandle(this.connection.clientCache.getOrCreateTable<PlayerTeleportWaystoneStartEvent>(REMOTE_MODULE.tables.player_teleport_waystone_start_event));
   }
 
   get playerTimestampState(): PlayerTimestampStateTableHandle {
@@ -29024,8 +29568,16 @@ export class RemoteTables {
     return new ProgressiveActionStateTableHandle(this.connection.clientCache.getOrCreateTable<ProgressiveActionState>(REMOTE_MODULE.tables.progressive_action_state));
   }
 
+  get projectSiteAdvanceProjectStartEvent(): ProjectSiteAdvanceProjectStartEventTableHandle {
+    return new ProjectSiteAdvanceProjectStartEventTableHandle(this.connection.clientCache.getOrCreateTable<ProjectSiteAdvanceProjectStartEvent>(REMOTE_MODULE.tables.project_site_advance_project_start_event));
+  }
+
   get projectSiteState(): ProjectSiteStateTableHandle {
     return new ProjectSiteStateTableHandle(this.connection.clientCache.getOrCreateTable<ProjectSiteState>(REMOTE_MODULE.tables.project_site_state));
+  }
+
+  get prospectStartEvent(): ProspectStartEventTableHandle {
+    return new ProspectStartEventTableHandle(this.connection.clientCache.getOrCreateTable<ProspectStartEvent>(REMOTE_MODULE.tables.prospect_start_event));
   }
 
   get prospectingDesc(): ProspectingDescTableHandle {
@@ -29116,6 +29668,10 @@ export class RemoteTables {
     return new ResourceCountTableHandle(this.connection.clientCache.getOrCreateTable<ResourceCount>(REMOTE_MODULE.tables.resource_count));
   }
 
+  get resourceDepletedEvent(): ResourceDepletedEventTableHandle {
+    return new ResourceDepletedEventTableHandle(this.connection.clientCache.getOrCreateTable<ResourceDepletedEvent>(REMOTE_MODULE.tables.resource_depleted_event));
+  }
+
   get resourceDesc(): ResourceDescTableHandle {
     return new ResourceDescTableHandle(this.connection.clientCache.getOrCreateTable<ResourceDesc>(REMOTE_MODULE.tables.resource_desc));
   }
@@ -29188,6 +29744,14 @@ export class RemoteTables {
     return new ServerIdentityTableHandle(this.connection.clientCache.getOrCreateTable<ServerIdentity>(REMOTE_MODULE.tables.server_identity));
   }
 
+  get serverTeleportEvent(): ServerTeleportEventTableHandle {
+    return new ServerTeleportEventTableHandle(this.connection.clientCache.getOrCreateTable<ServerTeleportEvent>(REMOTE_MODULE.tables.server_teleport_event));
+  }
+
+  get setHomeEvent(): SetHomeEventTableHandle {
+    return new SetHomeEventTableHandle(this.connection.clientCache.getOrCreateTable<SetHomeEvent>(REMOTE_MODULE.tables.set_home_event));
+  }
+
   get signedInPlayerState(): SignedInPlayerStateTableHandle {
     return new SignedInPlayerStateTableHandle(this.connection.clientCache.getOrCreateTable<SignedInPlayerState>(REMOTE_MODULE.tables.signed_in_player_state));
   }
@@ -29206,6 +29770,10 @@ export class RemoteTables {
 
   get skillLevelKnowledgeDesc(): SkillLevelKnowledgeDescTableHandle {
     return new SkillLevelKnowledgeDescTableHandle(this.connection.clientCache.getOrCreateTable<SkillLevelKnowledgeDesc>(REMOTE_MODULE.tables.skill_level_knowledge_desc));
+  }
+
+  get sleepEvent(): SleepEventTableHandle {
+    return new SleepEventTableHandle(this.connection.clientCache.getOrCreateTable<SleepEvent>(REMOTE_MODULE.tables.sleep_event));
   }
 
   get stageRewardsDesc(): StageRewardsDescTableHandle {
@@ -29694,6 +30262,10 @@ export class RemoteTables {
 
   get terraformRecipeDesc(): TerraformRecipeDescTableHandle {
     return new TerraformRecipeDescTableHandle(this.connection.clientCache.getOrCreateTable<TerraformRecipeDesc>(REMOTE_MODULE.tables.terraform_recipe_desc));
+  }
+
+  get terraformStartEvent(): TerraformStartEventTableHandle {
+    return new TerraformStartEventTableHandle(this.connection.clientCache.getOrCreateTable<TerraformStartEvent>(REMOTE_MODULE.tables.terraform_start_event));
   }
 
   get terrainChunkState(): TerrainChunkStateTableHandle {
