@@ -825,11 +825,13 @@ import AttackTimerRow from "./attack_timer_table";
 import AutoClaimStateRow from "./auto_claim_state_table";
 import AutoLogoutLoopTimerRow from "./auto_logout_loop_timer_table";
 import BankStateRow from "./bank_state_table";
+import BarterStallInventoryEventRow from "./barter_stall_inventory_event_table";
 import BarterStallStateRow from "./barter_stall_state_table";
 import BiomeDescRow from "./biome_desc_table";
 import BlockedIdentityRow from "./blocked_identity_table";
 import BuffDescRow from "./buff_desc_table";
 import BuffTypeDescRow from "./buff_type_desc_table";
+import BuildingBuffActivateEventRow from "./building_buff_activate_event_table";
 import BuildingBuffDescRow from "./building_buff_desc_table";
 import BuildingClaimDescRow from "./building_claim_desc_table";
 import BuildingDecayLoopTimerRow from "./building_decay_loop_timer_table";
@@ -864,6 +866,7 @@ import ClaimTechStateRow from "./claim_tech_state_table";
 import ClaimTechUnlockTimerRow from "./claim_tech_unlock_timer_table";
 import ClaimTileCostRow from "./claim_tile_cost_table";
 import ClaimTileStateRow from "./claim_tile_state_table";
+import ClaimTreasuryEventRow from "./claim_treasury_event_table";
 import ClimbRequirementDescRow from "./climb_requirement_desc_table";
 import ClosedListingStateRow from "./closed_listing_state_table";
 import ClothingDescRow from "./clothing_desc_table";
@@ -881,6 +884,7 @@ import ConstructionRecipeDiscoveryItemDescRow from "./construction_recipe_discov
 import ConstructionRecipeDiscoveryKnowledgeDescRow from "./construction_recipe_discovery_knowledge_desc_table";
 import ContributionLootDescRow from "./contribution_loot_desc_table";
 import ContributionStateRow from "./contribution_state_table";
+import CraftCompletedEventRow from "./craft_completed_event_table";
 import CraftContinueStartEventRow from "./craft_continue_start_event_table";
 import CraftEventRow from "./craft_event_table";
 import CraftInitiateStartEventRow from "./craft_initiate_start_event_table";
@@ -1633,6 +1637,14 @@ const tablesSchema = __schema({
       { name: 'bank_state_building_entity_id_key', constraint: 'unique', columns: ['buildingEntityId'] },
     ],
   }, BankStateRow),
+  barterStallInventoryEvent: __table({
+    name: 'barter_stall_inventory_event',
+    indexes: [
+    ],
+    constraints: [
+    ],
+    event: true,
+  }, BarterStallInventoryEventRow),
   barterStallState: __table({
     name: 'barter_stall_state',
     indexes: [
@@ -1697,6 +1709,14 @@ const tablesSchema = __schema({
       { name: 'buff_type_desc_id_key', constraint: 'unique', columns: ['id'] },
     ],
   }, BuffTypeDescRow),
+  buildingBuffActivateEvent: __table({
+    name: 'building_buff_activate_event',
+    indexes: [
+    ],
+    constraints: [
+    ],
+    event: true,
+  }, BuildingBuffActivateEventRow),
   buildingBuffDesc: __table({
     name: 'building_buff_desc',
     indexes: [
@@ -2142,6 +2162,14 @@ const tablesSchema = __schema({
       { name: 'claim_tile_state_entity_id_key', constraint: 'unique', columns: ['entityId'] },
     ],
   }, ClaimTileStateRow),
+  claimTreasuryEvent: __table({
+    name: 'claim_treasury_event',
+    indexes: [
+    ],
+    constraints: [
+    ],
+    event: true,
+  }, ClaimTreasuryEventRow),
   climbRequirementDesc: __table({
     name: 'climb_requirement_desc',
     indexes: [
@@ -2352,6 +2380,14 @@ const tablesSchema = __schema({
       { name: 'contribution_state_entity_id_key', constraint: 'unique', columns: ['entityId'] },
     ],
   }, ContributionStateRow),
+  craftCompletedEvent: __table({
+    name: 'craft_completed_event',
+    indexes: [
+    ],
+    constraints: [
+    ],
+    event: true,
+  }, CraftCompletedEventRow),
   craftContinueStartEvent: __table({
     name: 'craft_continue_start_event',
     indexes: [
@@ -8434,6 +8470,8 @@ type __SchemaWithTableAccessorAliases = Omit<typeof tablesSchema.schemaType, "ta
     readonly "auto_logout_loop_timer": Omit<typeof tablesSchema.schemaType.tables["autoLogoutLoopTimer"], "accessorName"> & { readonly accessorName: "auto_logout_loop_timer" };
     /** @deprecated Use `bankState` instead. This alias will be removed in the next major version. */
     readonly "bank_state": Omit<typeof tablesSchema.schemaType.tables["bankState"], "accessorName"> & { readonly accessorName: "bank_state" };
+    /** @deprecated Use `barterStallInventoryEvent` instead. This alias will be removed in the next major version. */
+    readonly "barter_stall_inventory_event": Omit<typeof tablesSchema.schemaType.tables["barterStallInventoryEvent"], "accessorName"> & { readonly accessorName: "barter_stall_inventory_event" };
     /** @deprecated Use `barterStallState` instead. This alias will be removed in the next major version. */
     readonly "barter_stall_state": Omit<typeof tablesSchema.schemaType.tables["barterStallState"], "accessorName"> & { readonly accessorName: "barter_stall_state" };
     /** @deprecated Use `biomeDesc` instead. This alias will be removed in the next major version. */
@@ -8444,6 +8482,8 @@ type __SchemaWithTableAccessorAliases = Omit<typeof tablesSchema.schemaType, "ta
     readonly "buff_desc": Omit<typeof tablesSchema.schemaType.tables["buffDesc"], "accessorName"> & { readonly accessorName: "buff_desc" };
     /** @deprecated Use `buffTypeDesc` instead. This alias will be removed in the next major version. */
     readonly "buff_type_desc": Omit<typeof tablesSchema.schemaType.tables["buffTypeDesc"], "accessorName"> & { readonly accessorName: "buff_type_desc" };
+    /** @deprecated Use `buildingBuffActivateEvent` instead. This alias will be removed in the next major version. */
+    readonly "building_buff_activate_event": Omit<typeof tablesSchema.schemaType.tables["buildingBuffActivateEvent"], "accessorName"> & { readonly accessorName: "building_buff_activate_event" };
     /** @deprecated Use `buildingBuffDesc` instead. This alias will be removed in the next major version. */
     readonly "building_buff_desc": Omit<typeof tablesSchema.schemaType.tables["buildingBuffDesc"], "accessorName"> & { readonly accessorName: "building_buff_desc" };
     /** @deprecated Use `buildingClaimDesc` instead. This alias will be removed in the next major version. */
@@ -8512,6 +8552,8 @@ type __SchemaWithTableAccessorAliases = Omit<typeof tablesSchema.schemaType, "ta
     readonly "claim_tile_cost": Omit<typeof tablesSchema.schemaType.tables["claimTileCost"], "accessorName"> & { readonly accessorName: "claim_tile_cost" };
     /** @deprecated Use `claimTileState` instead. This alias will be removed in the next major version. */
     readonly "claim_tile_state": Omit<typeof tablesSchema.schemaType.tables["claimTileState"], "accessorName"> & { readonly accessorName: "claim_tile_state" };
+    /** @deprecated Use `claimTreasuryEvent` instead. This alias will be removed in the next major version. */
+    readonly "claim_treasury_event": Omit<typeof tablesSchema.schemaType.tables["claimTreasuryEvent"], "accessorName"> & { readonly accessorName: "claim_treasury_event" };
     /** @deprecated Use `climbRequirementDesc` instead. This alias will be removed in the next major version. */
     readonly "climb_requirement_desc": Omit<typeof tablesSchema.schemaType.tables["climbRequirementDesc"], "accessorName"> & { readonly accessorName: "climb_requirement_desc" };
     /** @deprecated Use `closedListingState` instead. This alias will be removed in the next major version. */
@@ -8544,6 +8586,8 @@ type __SchemaWithTableAccessorAliases = Omit<typeof tablesSchema.schemaType, "ta
     readonly "contribution_loot_desc": Omit<typeof tablesSchema.schemaType.tables["contributionLootDesc"], "accessorName"> & { readonly accessorName: "contribution_loot_desc" };
     /** @deprecated Use `contributionState` instead. This alias will be removed in the next major version. */
     readonly "contribution_state": Omit<typeof tablesSchema.schemaType.tables["contributionState"], "accessorName"> & { readonly accessorName: "contribution_state" };
+    /** @deprecated Use `craftCompletedEvent` instead. This alias will be removed in the next major version. */
+    readonly "craft_completed_event": Omit<typeof tablesSchema.schemaType.tables["craftCompletedEvent"], "accessorName"> & { readonly accessorName: "craft_completed_event" };
     /** @deprecated Use `craftContinueStartEvent` instead. This alias will be removed in the next major version. */
     readonly "craft_continue_start_event": Omit<typeof tablesSchema.schemaType.tables["craftContinueStartEvent"], "accessorName"> & { readonly accessorName: "craft_continue_start_event" };
     /** @deprecated Use `craftEvent` instead. This alias will be removed in the next major version. */
@@ -9475,11 +9519,13 @@ const tableAccessorAliases = {
   "auto_claim_state": "autoClaimState",
   "auto_logout_loop_timer": "autoLogoutLoopTimer",
   "bank_state": "bankState",
+  "barter_stall_inventory_event": "barterStallInventoryEvent",
   "barter_stall_state": "barterStallState",
   "biome_desc": "biomeDesc",
   "blocked_identity": "blockedIdentity",
   "buff_desc": "buffDesc",
   "buff_type_desc": "buffTypeDesc",
+  "building_buff_activate_event": "buildingBuffActivateEvent",
   "building_buff_desc": "buildingBuffDesc",
   "building_claim_desc": "buildingClaimDesc",
   "building_decay_loop_timer": "buildingDecayLoopTimer",
@@ -9514,6 +9560,7 @@ const tableAccessorAliases = {
   "claim_tech_unlock_timer": "claimTechUnlockTimer",
   "claim_tile_cost": "claimTileCost",
   "claim_tile_state": "claimTileState",
+  "claim_treasury_event": "claimTreasuryEvent",
   "climb_requirement_desc": "climbRequirementDesc",
   "closed_listing_state": "closedListingState",
   "clothing_desc": "clothingDesc",
@@ -9530,6 +9577,7 @@ const tableAccessorAliases = {
   "construction_recipe_discovery_knowledge_desc": "constructionRecipeDiscoveryKnowledgeDesc",
   "contribution_loot_desc": "contributionLootDesc",
   "contribution_state": "contributionState",
+  "craft_completed_event": "craftCompletedEvent",
   "craft_continue_start_event": "craftContinueStartEvent",
   "craft_event": "craftEvent",
   "craft_initiate_start_event": "craftInitiateStartEvent",
@@ -10044,6 +10092,8 @@ export type DbView = __DbViewBase & {
   readonly "auto_logout_loop_timer": __DbViewBase["autoLogoutLoopTimer"];
   /** @deprecated Use `bankState` instead. This alias will be removed in the next major version. */
   readonly "bank_state": __DbViewBase["bankState"];
+  /** @deprecated Use `barterStallInventoryEvent` instead. This alias will be removed in the next major version. */
+  readonly "barter_stall_inventory_event": __DbViewBase["barterStallInventoryEvent"];
   /** @deprecated Use `barterStallState` instead. This alias will be removed in the next major version. */
   readonly "barter_stall_state": __DbViewBase["barterStallState"];
   /** @deprecated Use `biomeDesc` instead. This alias will be removed in the next major version. */
@@ -10054,6 +10104,8 @@ export type DbView = __DbViewBase & {
   readonly "buff_desc": __DbViewBase["buffDesc"];
   /** @deprecated Use `buffTypeDesc` instead. This alias will be removed in the next major version. */
   readonly "buff_type_desc": __DbViewBase["buffTypeDesc"];
+  /** @deprecated Use `buildingBuffActivateEvent` instead. This alias will be removed in the next major version. */
+  readonly "building_buff_activate_event": __DbViewBase["buildingBuffActivateEvent"];
   /** @deprecated Use `buildingBuffDesc` instead. This alias will be removed in the next major version. */
   readonly "building_buff_desc": __DbViewBase["buildingBuffDesc"];
   /** @deprecated Use `buildingClaimDesc` instead. This alias will be removed in the next major version. */
@@ -10122,6 +10174,8 @@ export type DbView = __DbViewBase & {
   readonly "claim_tile_cost": __DbViewBase["claimTileCost"];
   /** @deprecated Use `claimTileState` instead. This alias will be removed in the next major version. */
   readonly "claim_tile_state": __DbViewBase["claimTileState"];
+  /** @deprecated Use `claimTreasuryEvent` instead. This alias will be removed in the next major version. */
+  readonly "claim_treasury_event": __DbViewBase["claimTreasuryEvent"];
   /** @deprecated Use `climbRequirementDesc` instead. This alias will be removed in the next major version. */
   readonly "climb_requirement_desc": __DbViewBase["climbRequirementDesc"];
   /** @deprecated Use `closedListingState` instead. This alias will be removed in the next major version. */
@@ -10154,6 +10208,8 @@ export type DbView = __DbViewBase & {
   readonly "contribution_loot_desc": __DbViewBase["contributionLootDesc"];
   /** @deprecated Use `contributionState` instead. This alias will be removed in the next major version. */
   readonly "contribution_state": __DbViewBase["contributionState"];
+  /** @deprecated Use `craftCompletedEvent` instead. This alias will be removed in the next major version. */
+  readonly "craft_completed_event": __DbViewBase["craftCompletedEvent"];
   /** @deprecated Use `craftContinueStartEvent` instead. This alias will be removed in the next major version. */
   readonly "craft_continue_start_event": __DbViewBase["craftContinueStartEvent"];
   /** @deprecated Use `craftEvent` instead. This alias will be removed in the next major version. */
@@ -11096,6 +11152,8 @@ export type Tables = __TablesBase & {
   readonly "auto_logout_loop_timer": __TablesBase["autoLogoutLoopTimer"];
   /** @deprecated Use `bankState` instead. This alias will be removed in the next major version. */
   readonly "bank_state": __TablesBase["bankState"];
+  /** @deprecated Use `barterStallInventoryEvent` instead. This alias will be removed in the next major version. */
+  readonly "barter_stall_inventory_event": __TablesBase["barterStallInventoryEvent"];
   /** @deprecated Use `barterStallState` instead. This alias will be removed in the next major version. */
   readonly "barter_stall_state": __TablesBase["barterStallState"];
   /** @deprecated Use `biomeDesc` instead. This alias will be removed in the next major version. */
@@ -11106,6 +11164,8 @@ export type Tables = __TablesBase & {
   readonly "buff_desc": __TablesBase["buffDesc"];
   /** @deprecated Use `buffTypeDesc` instead. This alias will be removed in the next major version. */
   readonly "buff_type_desc": __TablesBase["buffTypeDesc"];
+  /** @deprecated Use `buildingBuffActivateEvent` instead. This alias will be removed in the next major version. */
+  readonly "building_buff_activate_event": __TablesBase["buildingBuffActivateEvent"];
   /** @deprecated Use `buildingBuffDesc` instead. This alias will be removed in the next major version. */
   readonly "building_buff_desc": __TablesBase["buildingBuffDesc"];
   /** @deprecated Use `buildingClaimDesc` instead. This alias will be removed in the next major version. */
@@ -11174,6 +11234,8 @@ export type Tables = __TablesBase & {
   readonly "claim_tile_cost": __TablesBase["claimTileCost"];
   /** @deprecated Use `claimTileState` instead. This alias will be removed in the next major version. */
   readonly "claim_tile_state": __TablesBase["claimTileState"];
+  /** @deprecated Use `claimTreasuryEvent` instead. This alias will be removed in the next major version. */
+  readonly "claim_treasury_event": __TablesBase["claimTreasuryEvent"];
   /** @deprecated Use `climbRequirementDesc` instead. This alias will be removed in the next major version. */
   readonly "climb_requirement_desc": __TablesBase["climbRequirementDesc"];
   /** @deprecated Use `closedListingState` instead. This alias will be removed in the next major version. */
@@ -11206,6 +11268,8 @@ export type Tables = __TablesBase & {
   readonly "contribution_loot_desc": __TablesBase["contributionLootDesc"];
   /** @deprecated Use `contributionState` instead. This alias will be removed in the next major version. */
   readonly "contribution_state": __TablesBase["contributionState"];
+  /** @deprecated Use `craftCompletedEvent` instead. This alias will be removed in the next major version. */
+  readonly "craft_completed_event": __TablesBase["craftCompletedEvent"];
   /** @deprecated Use `craftContinueStartEvent` instead. This alias will be removed in the next major version. */
   readonly "craft_continue_start_event": __TablesBase["craftContinueStartEvent"];
   /** @deprecated Use `craftEvent` instead. This alias will be removed in the next major version. */

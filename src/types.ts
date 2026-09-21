@@ -419,6 +419,33 @@ export const BankState = __t.object("BankState", {
 });
 export type BankState = __Infer<typeof BankState>;
 
+// The tagged union or sum type for the algebraic type `BarterStallInventoryChangeReason`.
+export const BarterStallInventoryChangeReason = __t.enum("BarterStallInventoryChangeReason", {
+  Sale: __t.unit(),
+});
+export type BarterStallInventoryChangeReason = __Infer<typeof BarterStallInventoryChangeReason>;
+
+export const BarterStallInventoryEvent = __t.object("BarterStallInventoryEvent", {
+  shopEntityId: __t.u64(),
+  claimEntityId: __t.u64(),
+  actorEntityId: __t.u64(),
+  get reason() {
+    return BarterStallInventoryChangeReason;
+  },
+  tradeOrderEntityId: __t.option(__t.u64()),
+  tradeAmount: __t.option(__t.i32()),
+  get addedItems() {
+    return __t.array(ItemStack);
+  },
+  get removedItems() {
+    return __t.array(ItemStack);
+  },
+  treasuryCoinsAdded: __t.i32(),
+  treasuryCoinsRemoved: __t.i32(),
+  timestamp: __t.timestamp(),
+});
+export type BarterStallInventoryEvent = __Infer<typeof BarterStallInventoryEvent>;
+
 export const BarterStallSetMarketModeEnabledRequest = __t.object("BarterStallSetMarketModeEnabledRequest", {
   shopEntityId: __t.u64(),
   enabled: __t.bool(),
@@ -533,6 +560,14 @@ export const BuffTypeDesc = __t.object("BuffTypeDesc", {
   category: __t.i32(),
 });
 export type BuffTypeDesc = __Infer<typeof BuffTypeDesc>;
+
+export const BuildingBuffActivateEvent = __t.object("BuildingBuffActivateEvent", {
+  actorEntityId: __t.u64(),
+  buildingEntityId: __t.u64(),
+  empireEntityId: __t.u64(),
+  amount: __t.u32(),
+});
+export type BuildingBuffActivateEvent = __Infer<typeof BuildingBuffActivateEvent>;
 
 export const BuildingBuffDesc = __t.object("BuildingBuffDesc", {
   id: __t.i32(),
@@ -1336,6 +1371,25 @@ export const ClaimTileState = __t.object("ClaimTileState", {
 });
 export type ClaimTileState = __Infer<typeof ClaimTileState>;
 
+// The tagged union or sum type for the algebraic type `ClaimTreasuryChangeReason`.
+export const ClaimTreasuryChangeReason = __t.enum("ClaimTreasuryChangeReason", {
+  Deposit: __t.unit(),
+  Withdraw: __t.unit(),
+});
+export type ClaimTreasuryChangeReason = __Infer<typeof ClaimTreasuryChangeReason>;
+
+export const ClaimTreasuryEvent = __t.object("ClaimTreasuryEvent", {
+  claimEntityId: __t.u64(),
+  actorEntityId: __t.u64(),
+  get reason() {
+    return ClaimTreasuryChangeReason;
+  },
+  amount: __t.u32(),
+  treasuryAfter: __t.u32(),
+  timestamp: __t.timestamp(),
+});
+export type ClaimTreasuryEvent = __Infer<typeof ClaimTreasuryEvent>;
+
 // The tagged union or sum type for the algebraic type `ClaimType`.
 export const ClaimType = __t.enum("ClaimType", {
   Source: __t.unit(),
@@ -1623,6 +1677,15 @@ export const ContributionState = __t.object("ContributionState", {
   contribution: __t.f32(),
 });
 export type ContributionState = __Infer<typeof ContributionState>;
+
+export const CraftCompletedEvent = __t.object("CraftCompletedEvent", {
+  actorEntityId: __t.u64(),
+  progressiveActionEntityId: __t.u64(),
+  buildingEntityId: __t.u64(),
+  recipeId: __t.i32(),
+  craftCount: __t.i32(),
+});
+export type CraftCompletedEvent = __Infer<typeof CraftCompletedEvent>;
 
 export const CraftContinueStartEvent = __t.object("CraftContinueStartEvent", {
   actorId: __t.u64(),
