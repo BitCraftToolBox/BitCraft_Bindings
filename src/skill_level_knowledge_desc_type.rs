@@ -46,16 +46,16 @@ impl __sdk::__query_builder::HasCols for SkillLevelKnowledgeDesc {
 ///
 /// Provides typed access to indexed columns for query building.
 pub struct SkillLevelKnowledgeDescIxCols {
-    pub id: __sdk::__query_builder::IxCol<SkillLevelKnowledgeDesc, i32>,
     pub skill_id: __sdk::__query_builder::IxCol<SkillLevelKnowledgeDesc, i32>,
+    pub id: __sdk::__query_builder::IxCol<SkillLevelKnowledgeDesc, i32>,
 }
 
 impl __sdk::__query_builder::HasIxCols for SkillLevelKnowledgeDesc {
     type IxCols = SkillLevelKnowledgeDescIxCols;
     fn ix_cols(table_name: &'static str) -> Self::IxCols {
         SkillLevelKnowledgeDescIxCols {
-            id: __sdk::__query_builder::IxCol::new(table_name, "id"),
             skill_id: __sdk::__query_builder::IxCol::new(table_name, "skill_id"),
+            id: __sdk::__query_builder::IxCol::new(table_name, "id"),
         }
     }
 }
