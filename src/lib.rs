@@ -164,6 +164,9 @@ pub mod auto_logout_loop_timer_table;
 pub mod auto_logout_loop_timer_type;
 pub mod bank_state_table;
 pub mod bank_state_type;
+pub mod barter_stall_inventory_change_reason_type;
+pub mod barter_stall_inventory_event_table;
+pub mod barter_stall_inventory_event_type;
 pub mod barter_stall_order_accept_reducer;
 pub mod barter_stall_order_create_reducer;
 pub mod barter_stall_order_delete_reducer;
@@ -184,6 +187,8 @@ pub mod buff_desc_type;
 pub mod buff_effect_type;
 pub mod buff_type_desc_table;
 pub mod buff_type_desc_type;
+pub mod building_buff_activate_event_table;
+pub mod building_buff_activate_event_type;
 pub mod building_buff_desc_table;
 pub mod building_buff_desc_type;
 pub mod building_category_type;
@@ -367,7 +372,10 @@ pub mod claim_tile_cost_type;
 pub mod claim_tile_state_table;
 pub mod claim_tile_state_type;
 pub mod claim_transfer_ownership_reducer;
+pub mod claim_treasury_change_reason_type;
 pub mod claim_treasury_deposit_reducer;
+pub mod claim_treasury_event_table;
+pub mod claim_treasury_event_type;
 pub mod claim_type_type;
 pub mod claim_withdraw_from_treasury_reducer;
 pub mod clear_staged_static_data_reducer;
@@ -420,6 +428,8 @@ pub mod convert_deed_to_collectible_reducer;
 pub mod craft_cancel_reducer;
 pub mod craft_collect_all_reducer;
 pub mod craft_collect_reducer;
+pub mod craft_completed_event_table;
+pub mod craft_completed_event_type;
 pub mod craft_continue_reducer;
 pub mod craft_continue_start_event_table;
 pub mod craft_continue_start_event_type;
@@ -2229,6 +2239,9 @@ pub use auto_logout_loop_timer_table::*;
 pub use auto_logout_loop_timer_type::AutoLogoutLoopTimer;
 pub use bank_state_table::*;
 pub use bank_state_type::BankState;
+pub use barter_stall_inventory_change_reason_type::BarterStallInventoryChangeReason;
+pub use barter_stall_inventory_event_table::*;
+pub use barter_stall_inventory_event_type::BarterStallInventoryEvent;
 pub use barter_stall_order_accept_reducer::barter_stall_order_accept;
 pub use barter_stall_order_create_reducer::barter_stall_order_create;
 pub use barter_stall_order_delete_reducer::barter_stall_order_delete;
@@ -2249,6 +2262,8 @@ pub use buff_desc_type::BuffDesc;
 pub use buff_effect_type::BuffEffect;
 pub use buff_type_desc_table::*;
 pub use buff_type_desc_type::BuffTypeDesc;
+pub use building_buff_activate_event_table::*;
+pub use building_buff_activate_event_type::BuildingBuffActivateEvent;
 pub use building_buff_desc_table::*;
 pub use building_buff_desc_type::BuildingBuffDesc;
 pub use building_category_type::BuildingCategory;
@@ -2432,7 +2447,10 @@ pub use claim_tile_cost_type::ClaimTileCost;
 pub use claim_tile_state_table::*;
 pub use claim_tile_state_type::ClaimTileState;
 pub use claim_transfer_ownership_reducer::claim_transfer_ownership;
+pub use claim_treasury_change_reason_type::ClaimTreasuryChangeReason;
 pub use claim_treasury_deposit_reducer::claim_treasury_deposit;
+pub use claim_treasury_event_table::*;
+pub use claim_treasury_event_type::ClaimTreasuryEvent;
 pub use claim_type_type::ClaimType;
 pub use claim_withdraw_from_treasury_reducer::claim_withdraw_from_treasury;
 pub use clear_staged_static_data_reducer::clear_staged_static_data;
@@ -2485,6 +2503,8 @@ pub use convert_deed_to_collectible_reducer::convert_deed_to_collectible;
 pub use craft_cancel_reducer::craft_cancel;
 pub use craft_collect_all_reducer::craft_collect_all;
 pub use craft_collect_reducer::craft_collect;
+pub use craft_completed_event_table::*;
+pub use craft_completed_event_type::CraftCompletedEvent;
 pub use craft_continue_reducer::craft_continue;
 pub use craft_continue_start_event_table::*;
 pub use craft_continue_start_event_type::CraftContinueStartEvent;
@@ -11298,11 +11318,13 @@ pub struct DbUpdate {
     auto_claim_state: __sdk::TableUpdate<AutoClaimState>,
     auto_logout_loop_timer: __sdk::TableUpdate<AutoLogoutLoopTimer>,
     bank_state: __sdk::TableUpdate<BankState>,
+    barter_stall_inventory_event: __sdk::TableUpdate<BarterStallInventoryEvent>,
     barter_stall_state: __sdk::TableUpdate<BarterStallState>,
     biome_desc: __sdk::TableUpdate<BiomeDesc>,
     blocked_identity: __sdk::TableUpdate<BlockedIdentity>,
     buff_desc: __sdk::TableUpdate<BuffDesc>,
     buff_type_desc: __sdk::TableUpdate<BuffTypeDesc>,
+    building_buff_activate_event: __sdk::TableUpdate<BuildingBuffActivateEvent>,
     building_buff_desc: __sdk::TableUpdate<BuildingBuffDesc>,
     building_claim_desc: __sdk::TableUpdate<BuildingClaimDesc>,
     building_decay_loop_timer: __sdk::TableUpdate<BuildingDecayLoopTimer>,
@@ -11338,6 +11360,7 @@ pub struct DbUpdate {
     claim_tech_unlock_timer: __sdk::TableUpdate<ClaimTechUnlockTimer>,
     claim_tile_cost: __sdk::TableUpdate<ClaimTileCost>,
     claim_tile_state: __sdk::TableUpdate<ClaimTileState>,
+    claim_treasury_event: __sdk::TableUpdate<ClaimTreasuryEvent>,
     climb_requirement_desc: __sdk::TableUpdate<ClimbRequirementDesc>,
     closed_listing_state: __sdk::TableUpdate<ClosedListingState>,
     clothing_desc: __sdk::TableUpdate<ClothingDesc>,
@@ -11355,6 +11378,7 @@ pub struct DbUpdate {
     construction_recipe_discovery_knowledge_desc: __sdk::TableUpdate<DiscoveryTriggerDesc>,
     contribution_loot_desc: __sdk::TableUpdate<ContributionLootDesc>,
     contribution_state: __sdk::TableUpdate<ContributionState>,
+    craft_completed_event: __sdk::TableUpdate<CraftCompletedEvent>,
     craft_continue_start_event: __sdk::TableUpdate<CraftContinueStartEvent>,
     craft_event: __sdk::TableUpdate<CraftEvent>,
     craft_initiate_start_event: __sdk::TableUpdate<CraftInitiateStartEvent>,
@@ -11839,11 +11863,13 @@ impl TryFrom<__ws::v2::TransactionUpdate> for DbUpdate {
     "auto_claim_state" => db_update.auto_claim_state.append(auto_claim_state_table::parse_table_update(table_update)?),
     "auto_logout_loop_timer" => db_update.auto_logout_loop_timer.append(auto_logout_loop_timer_table::parse_table_update(table_update)?),
     "bank_state" => db_update.bank_state.append(bank_state_table::parse_table_update(table_update)?),
+    "barter_stall_inventory_event" => db_update.barter_stall_inventory_event.append(barter_stall_inventory_event_table::parse_table_update(table_update)?),
     "barter_stall_state" => db_update.barter_stall_state.append(barter_stall_state_table::parse_table_update(table_update)?),
     "biome_desc" => db_update.biome_desc.append(biome_desc_table::parse_table_update(table_update)?),
     "blocked_identity" => db_update.blocked_identity.append(blocked_identity_table::parse_table_update(table_update)?),
     "buff_desc" => db_update.buff_desc.append(buff_desc_table::parse_table_update(table_update)?),
     "buff_type_desc" => db_update.buff_type_desc.append(buff_type_desc_table::parse_table_update(table_update)?),
+    "building_buff_activate_event" => db_update.building_buff_activate_event.append(building_buff_activate_event_table::parse_table_update(table_update)?),
     "building_buff_desc" => db_update.building_buff_desc.append(building_buff_desc_table::parse_table_update(table_update)?),
     "building_claim_desc" => db_update.building_claim_desc.append(building_claim_desc_table::parse_table_update(table_update)?),
     "building_decay_loop_timer" => db_update.building_decay_loop_timer.append(building_decay_loop_timer_table::parse_table_update(table_update)?),
@@ -11878,6 +11904,7 @@ impl TryFrom<__ws::v2::TransactionUpdate> for DbUpdate {
     "claim_tech_unlock_timer" => db_update.claim_tech_unlock_timer.append(claim_tech_unlock_timer_table::parse_table_update(table_update)?),
     "claim_tile_cost" => db_update.claim_tile_cost.append(claim_tile_cost_table::parse_table_update(table_update)?),
     "claim_tile_state" => db_update.claim_tile_state.append(claim_tile_state_table::parse_table_update(table_update)?),
+    "claim_treasury_event" => db_update.claim_treasury_event.append(claim_treasury_event_table::parse_table_update(table_update)?),
     "climb_requirement_desc" => db_update.climb_requirement_desc.append(climb_requirement_desc_table::parse_table_update(table_update)?),
     "closed_listing_state" => db_update.closed_listing_state.append(closed_listing_state_table::parse_table_update(table_update)?),
     "clothing_desc" => db_update.clothing_desc.append(clothing_desc_table::parse_table_update(table_update)?),
@@ -11895,6 +11922,7 @@ impl TryFrom<__ws::v2::TransactionUpdate> for DbUpdate {
     "construction_recipe_discovery_knowledge_desc" => db_update.construction_recipe_discovery_knowledge_desc.append(construction_recipe_discovery_knowledge_desc_table::parse_table_update(table_update)?),
     "contribution_loot_desc" => db_update.contribution_loot_desc.append(contribution_loot_desc_table::parse_table_update(table_update)?),
     "contribution_state" => db_update.contribution_state.append(contribution_state_table::parse_table_update(table_update)?),
+    "craft_completed_event" => db_update.craft_completed_event.append(craft_completed_event_table::parse_table_update(table_update)?),
     "craft_continue_start_event" => db_update.craft_continue_start_event.append(craft_continue_start_event_table::parse_table_update(table_update)?),
     "craft_event" => db_update.craft_event.append(craft_event_table::parse_table_update(table_update)?),
     "craft_initiate_start_event" => db_update.craft_initiate_start_event.append(craft_initiate_start_event_table::parse_table_update(table_update)?),
@@ -12469,6 +12497,7 @@ impl __sdk::DbUpdate for DbUpdate {
         diff.bank_state = cache
             .apply_diff_to_table::<BankState>("bank_state", &self.bank_state)
             .with_updates_by_pk(|row| &row.building_entity_id);
+        diff.barter_stall_inventory_event = self.barter_stall_inventory_event.into_event_diff();
         diff.barter_stall_state = cache
             .apply_diff_to_table::<BarterStallState>("barter_stall_state", &self.barter_stall_state)
             .with_updates_by_pk(|row| &row.entity_id);
@@ -12484,6 +12513,7 @@ impl __sdk::DbUpdate for DbUpdate {
         diff.buff_type_desc = cache
             .apply_diff_to_table::<BuffTypeDesc>("buff_type_desc", &self.buff_type_desc)
             .with_updates_by_pk(|row| &row.id);
+        diff.building_buff_activate_event = self.building_buff_activate_event.into_event_diff();
         diff.building_buff_desc = cache
             .apply_diff_to_table::<BuildingBuffDesc>("building_buff_desc", &self.building_buff_desc)
             .with_updates_by_pk(|row| &row.id);
@@ -12626,6 +12656,7 @@ impl __sdk::DbUpdate for DbUpdate {
         diff.claim_tile_state = cache
             .apply_diff_to_table::<ClaimTileState>("claim_tile_state", &self.claim_tile_state)
             .with_updates_by_pk(|row| &row.entity_id);
+        diff.claim_treasury_event = self.claim_treasury_event.into_event_diff();
         diff.climb_requirement_desc = cache
             .apply_diff_to_table::<ClimbRequirementDesc>(
                 "climb_requirement_desc",
@@ -12710,6 +12741,7 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.contribution_state,
             )
             .with_updates_by_pk(|row| &row.entity_id);
+        diff.craft_completed_event = self.craft_completed_event.into_event_diff();
         diff.craft_continue_start_event = self.craft_continue_start_event.into_event_diff();
         diff.craft_event = self.craft_event.into_event_diff();
         diff.craft_initiate_start_event = self.craft_initiate_start_event.into_event_diff();
@@ -14901,6 +14933,9 @@ impl __sdk::DbUpdate for DbUpdate {
                 "bank_state" => db_update
                     .bank_state
                     .append(__sdk::parse_row_list_as_inserts(table_rows.rows)?),
+                "barter_stall_inventory_event" => db_update
+                    .barter_stall_inventory_event
+                    .append(__sdk::parse_row_list_as_inserts(table_rows.rows)?),
                 "barter_stall_state" => db_update
                     .barter_stall_state
                     .append(__sdk::parse_row_list_as_inserts(table_rows.rows)?),
@@ -14915,6 +14950,9 @@ impl __sdk::DbUpdate for DbUpdate {
                     .append(__sdk::parse_row_list_as_inserts(table_rows.rows)?),
                 "buff_type_desc" => db_update
                     .buff_type_desc
+                    .append(__sdk::parse_row_list_as_inserts(table_rows.rows)?),
+                "building_buff_activate_event" => db_update
+                    .building_buff_activate_event
                     .append(__sdk::parse_row_list_as_inserts(table_rows.rows)?),
                 "building_buff_desc" => db_update
                     .building_buff_desc
@@ -15018,6 +15056,9 @@ impl __sdk::DbUpdate for DbUpdate {
                 "claim_tile_state" => db_update
                     .claim_tile_state
                     .append(__sdk::parse_row_list_as_inserts(table_rows.rows)?),
+                "claim_treasury_event" => db_update
+                    .claim_treasury_event
+                    .append(__sdk::parse_row_list_as_inserts(table_rows.rows)?),
                 "climb_requirement_desc" => db_update
                     .climb_requirement_desc
                     .append(__sdk::parse_row_list_as_inserts(table_rows.rows)?),
@@ -15068,6 +15109,9 @@ impl __sdk::DbUpdate for DbUpdate {
                     .append(__sdk::parse_row_list_as_inserts(table_rows.rows)?),
                 "contribution_state" => db_update
                     .contribution_state
+                    .append(__sdk::parse_row_list_as_inserts(table_rows.rows)?),
+                "craft_completed_event" => db_update
+                    .craft_completed_event
                     .append(__sdk::parse_row_list_as_inserts(table_rows.rows)?),
                 "craft_continue_start_event" => db_update
                     .craft_continue_start_event
@@ -16495,6 +16539,9 @@ impl __sdk::DbUpdate for DbUpdate {
                 "bank_state" => db_update
                     .bank_state
                     .append(__sdk::parse_row_list_as_deletes(table_rows.rows)?),
+                "barter_stall_inventory_event" => db_update
+                    .barter_stall_inventory_event
+                    .append(__sdk::parse_row_list_as_deletes(table_rows.rows)?),
                 "barter_stall_state" => db_update
                     .barter_stall_state
                     .append(__sdk::parse_row_list_as_deletes(table_rows.rows)?),
@@ -16509,6 +16556,9 @@ impl __sdk::DbUpdate for DbUpdate {
                     .append(__sdk::parse_row_list_as_deletes(table_rows.rows)?),
                 "buff_type_desc" => db_update
                     .buff_type_desc
+                    .append(__sdk::parse_row_list_as_deletes(table_rows.rows)?),
+                "building_buff_activate_event" => db_update
+                    .building_buff_activate_event
                     .append(__sdk::parse_row_list_as_deletes(table_rows.rows)?),
                 "building_buff_desc" => db_update
                     .building_buff_desc
@@ -16612,6 +16662,9 @@ impl __sdk::DbUpdate for DbUpdate {
                 "claim_tile_state" => db_update
                     .claim_tile_state
                     .append(__sdk::parse_row_list_as_deletes(table_rows.rows)?),
+                "claim_treasury_event" => db_update
+                    .claim_treasury_event
+                    .append(__sdk::parse_row_list_as_deletes(table_rows.rows)?),
                 "climb_requirement_desc" => db_update
                     .climb_requirement_desc
                     .append(__sdk::parse_row_list_as_deletes(table_rows.rows)?),
@@ -16662,6 +16715,9 @@ impl __sdk::DbUpdate for DbUpdate {
                     .append(__sdk::parse_row_list_as_deletes(table_rows.rows)?),
                 "contribution_state" => db_update
                     .contribution_state
+                    .append(__sdk::parse_row_list_as_deletes(table_rows.rows)?),
+                "craft_completed_event" => db_update
+                    .craft_completed_event
                     .append(__sdk::parse_row_list_as_deletes(table_rows.rows)?),
                 "craft_continue_start_event" => db_update
                     .craft_continue_start_event
@@ -18041,11 +18097,13 @@ pub struct AppliedDiff<'r> {
     auto_claim_state: __sdk::TableAppliedDiff<'r, AutoClaimState>,
     auto_logout_loop_timer: __sdk::TableAppliedDiff<'r, AutoLogoutLoopTimer>,
     bank_state: __sdk::TableAppliedDiff<'r, BankState>,
+    barter_stall_inventory_event: __sdk::TableAppliedDiff<'r, BarterStallInventoryEvent>,
     barter_stall_state: __sdk::TableAppliedDiff<'r, BarterStallState>,
     biome_desc: __sdk::TableAppliedDiff<'r, BiomeDesc>,
     blocked_identity: __sdk::TableAppliedDiff<'r, BlockedIdentity>,
     buff_desc: __sdk::TableAppliedDiff<'r, BuffDesc>,
     buff_type_desc: __sdk::TableAppliedDiff<'r, BuffTypeDesc>,
+    building_buff_activate_event: __sdk::TableAppliedDiff<'r, BuildingBuffActivateEvent>,
     building_buff_desc: __sdk::TableAppliedDiff<'r, BuildingBuffDesc>,
     building_claim_desc: __sdk::TableAppliedDiff<'r, BuildingClaimDesc>,
     building_decay_loop_timer: __sdk::TableAppliedDiff<'r, BuildingDecayLoopTimer>,
@@ -18082,6 +18140,7 @@ pub struct AppliedDiff<'r> {
     claim_tech_unlock_timer: __sdk::TableAppliedDiff<'r, ClaimTechUnlockTimer>,
     claim_tile_cost: __sdk::TableAppliedDiff<'r, ClaimTileCost>,
     claim_tile_state: __sdk::TableAppliedDiff<'r, ClaimTileState>,
+    claim_treasury_event: __sdk::TableAppliedDiff<'r, ClaimTreasuryEvent>,
     climb_requirement_desc: __sdk::TableAppliedDiff<'r, ClimbRequirementDesc>,
     closed_listing_state: __sdk::TableAppliedDiff<'r, ClosedListingState>,
     clothing_desc: __sdk::TableAppliedDiff<'r, ClothingDesc>,
@@ -18099,6 +18158,7 @@ pub struct AppliedDiff<'r> {
     construction_recipe_discovery_knowledge_desc: __sdk::TableAppliedDiff<'r, DiscoveryTriggerDesc>,
     contribution_loot_desc: __sdk::TableAppliedDiff<'r, ContributionLootDesc>,
     contribution_state: __sdk::TableAppliedDiff<'r, ContributionState>,
+    craft_completed_event: __sdk::TableAppliedDiff<'r, CraftCompletedEvent>,
     craft_continue_start_event: __sdk::TableAppliedDiff<'r, CraftContinueStartEvent>,
     craft_event: __sdk::TableAppliedDiff<'r, CraftEvent>,
     craft_initiate_start_event: __sdk::TableAppliedDiff<'r, CraftInitiateStartEvent>,
@@ -18691,6 +18751,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             event,
         );
         callbacks.invoke_table_row_callbacks::<BankState>("bank_state", &self.bank_state, event);
+        callbacks.invoke_table_row_callbacks::<BarterStallInventoryEvent>(
+            "barter_stall_inventory_event",
+            &self.barter_stall_inventory_event,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<BarterStallState>(
             "barter_stall_state",
             &self.barter_stall_state,
@@ -18706,6 +18771,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<BuffTypeDesc>(
             "buff_type_desc",
             &self.buff_type_desc,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<BuildingBuffActivateEvent>(
+            "building_buff_activate_event",
+            &self.building_buff_activate_event,
             event,
         );
         callbacks.invoke_table_row_callbacks::<BuildingBuffDesc>(
@@ -18870,6 +18940,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             &self.claim_tile_state,
             event,
         );
+        callbacks.invoke_table_row_callbacks::<ClaimTreasuryEvent>(
+            "claim_treasury_event",
+            &self.claim_treasury_event,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<ClimbRequirementDesc>(
             "climb_requirement_desc",
             &self.climb_requirement_desc,
@@ -18949,6 +19024,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<ContributionState>(
             "contribution_state",
             &self.contribution_state,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<CraftCompletedEvent>(
+            "craft_completed_event",
+            &self.craft_completed_event,
             event,
         );
         callbacks.invoke_table_row_callbacks::<CraftContinueStartEvent>(
@@ -21782,11 +21862,13 @@ impl __sdk::SpacetimeModule for RemoteModule {
         auto_claim_state_table::register_table(client_cache);
         auto_logout_loop_timer_table::register_table(client_cache);
         bank_state_table::register_table(client_cache);
+        barter_stall_inventory_event_table::register_table(client_cache);
         barter_stall_state_table::register_table(client_cache);
         biome_desc_table::register_table(client_cache);
         blocked_identity_table::register_table(client_cache);
         buff_desc_table::register_table(client_cache);
         buff_type_desc_table::register_table(client_cache);
+        building_buff_activate_event_table::register_table(client_cache);
         building_buff_desc_table::register_table(client_cache);
         building_claim_desc_table::register_table(client_cache);
         building_decay_loop_timer_table::register_table(client_cache);
@@ -21821,6 +21903,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         claim_tech_unlock_timer_table::register_table(client_cache);
         claim_tile_cost_table::register_table(client_cache);
         claim_tile_state_table::register_table(client_cache);
+        claim_treasury_event_table::register_table(client_cache);
         climb_requirement_desc_table::register_table(client_cache);
         closed_listing_state_table::register_table(client_cache);
         clothing_desc_table::register_table(client_cache);
@@ -21838,6 +21921,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         construction_recipe_discovery_knowledge_desc_table::register_table(client_cache);
         contribution_loot_desc_table::register_table(client_cache);
         contribution_state_table::register_table(client_cache);
+        craft_completed_event_table::register_table(client_cache);
         craft_continue_start_event_table::register_table(client_cache);
         craft_event_table::register_table(client_cache);
         craft_initiate_start_event_table::register_table(client_cache);
@@ -22311,11 +22395,13 @@ impl __sdk::SpacetimeModule for RemoteModule {
         "auto_claim_state",
         "auto_logout_loop_timer",
         "bank_state",
+        "barter_stall_inventory_event",
         "barter_stall_state",
         "biome_desc",
         "blocked_identity",
         "buff_desc",
         "buff_type_desc",
+        "building_buff_activate_event",
         "building_buff_desc",
         "building_claim_desc",
         "building_decay_loop_timer",
@@ -22350,6 +22436,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         "claim_tech_unlock_timer",
         "claim_tile_cost",
         "claim_tile_state",
+        "claim_treasury_event",
         "climb_requirement_desc",
         "closed_listing_state",
         "clothing_desc",
@@ -22367,6 +22454,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         "construction_recipe_discovery_knowledge_desc",
         "contribution_loot_desc",
         "contribution_state",
+        "craft_completed_event",
         "craft_continue_start_event",
         "craft_event",
         "craft_initiate_start_event",
