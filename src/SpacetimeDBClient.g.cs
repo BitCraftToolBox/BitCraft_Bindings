@@ -53,11 +53,13 @@ namespace BitCraftRegion.Types
             AddTable(AutoClaimState = new(conn));
             AddTable(AutoLogoutLoopTimer = new(conn));
             AddTable(BankState = new(conn));
+            AddTable(BarterStallInventoryEvent = new(conn));
             AddTable(BarterStallState = new(conn));
             AddTable(BiomeDesc = new(conn));
             AddTable(BlockedIdentity = new(conn));
             AddTable(BuffDesc = new(conn));
             AddTable(BuffTypeDesc = new(conn));
+            AddTable(BuildingBuffActivateEvent = new(conn));
             AddTable(BuildingBuffDesc = new(conn));
             AddTable(BuildingClaimDesc = new(conn));
             AddTable(BuildingDecayLoopTimer = new(conn));
@@ -92,6 +94,7 @@ namespace BitCraftRegion.Types
             AddTable(ClaimTechUnlockTimer = new(conn));
             AddTable(ClaimTileCost = new(conn));
             AddTable(ClaimTileState = new(conn));
+            AddTable(ClaimTreasuryEvent = new(conn));
             AddTable(ClimbRequirementDesc = new(conn));
             AddTable(ClosedListingState = new(conn));
             AddTable(ClothingDesc = new(conn));
@@ -109,6 +112,7 @@ namespace BitCraftRegion.Types
             AddTable(ConstructionRecipeDiscoveryKnowledgeDesc = new(conn));
             AddTable(ContributionLootDesc = new(conn));
             AddTable(ContributionState = new(conn));
+            AddTable(CraftCompletedEvent = new(conn));
             AddTable(CraftContinueStartEvent = new(conn));
             AddTable(CraftEvent = new(conn));
             AddTable(CraftInitiateStartEvent = new(conn));
@@ -1076,11 +1080,13 @@ namespace BitCraftRegion.Types
             new QueryBuilder().From.AutoClaimState().ToSql(),
             new QueryBuilder().From.AutoLogoutLoopTimer().ToSql(),
             new QueryBuilder().From.BankState().ToSql(),
+            new QueryBuilder().From.BarterStallInventoryEvent().ToSql(),
             new QueryBuilder().From.BarterStallState().ToSql(),
             new QueryBuilder().From.BiomeDesc().ToSql(),
             new QueryBuilder().From.BlockedIdentity().ToSql(),
             new QueryBuilder().From.BuffDesc().ToSql(),
             new QueryBuilder().From.BuffTypeDesc().ToSql(),
+            new QueryBuilder().From.BuildingBuffActivateEvent().ToSql(),
             new QueryBuilder().From.BuildingBuffDesc().ToSql(),
             new QueryBuilder().From.BuildingClaimDesc().ToSql(),
             new QueryBuilder().From.BuildingDecayLoopTimer().ToSql(),
@@ -1115,6 +1121,7 @@ namespace BitCraftRegion.Types
             new QueryBuilder().From.ClaimTechUnlockTimer().ToSql(),
             new QueryBuilder().From.ClaimTileCost().ToSql(),
             new QueryBuilder().From.ClaimTileState().ToSql(),
+            new QueryBuilder().From.ClaimTreasuryEvent().ToSql(),
             new QueryBuilder().From.ClimbRequirementDesc().ToSql(),
             new QueryBuilder().From.ClosedListingState().ToSql(),
             new QueryBuilder().From.ClothingDesc().ToSql(),
@@ -1132,6 +1139,7 @@ namespace BitCraftRegion.Types
             new QueryBuilder().From.ConstructionRecipeDiscoveryKnowledgeDesc().ToSql(),
             new QueryBuilder().From.ContributionLootDesc().ToSql(),
             new QueryBuilder().From.ContributionState().ToSql(),
+            new QueryBuilder().From.CraftCompletedEvent().ToSql(),
             new QueryBuilder().From.CraftContinueStartEvent().ToSql(),
             new QueryBuilder().From.CraftEvent().ToSql(),
             new QueryBuilder().From.CraftInitiateStartEvent().ToSql(),
@@ -1609,11 +1617,13 @@ namespace BitCraftRegion.Types
         public global::SpacetimeDB.Table<AutoClaimState, AutoClaimStateCols, AutoClaimStateIxCols> AutoClaimState() => new("auto_claim_state", new AutoClaimStateCols("auto_claim_state"), new AutoClaimStateIxCols("auto_claim_state"));
         public global::SpacetimeDB.Table<AutoLogoutLoopTimer, AutoLogoutLoopTimerCols, AutoLogoutLoopTimerIxCols> AutoLogoutLoopTimer() => new("auto_logout_loop_timer", new AutoLogoutLoopTimerCols("auto_logout_loop_timer"), new AutoLogoutLoopTimerIxCols("auto_logout_loop_timer"));
         public global::SpacetimeDB.Table<BankState, BankStateCols, BankStateIxCols> BankState() => new("bank_state", new BankStateCols("bank_state"), new BankStateIxCols("bank_state"));
+        public global::SpacetimeDB.Table<BarterStallInventoryEvent, BarterStallInventoryEventCols, BarterStallInventoryEventIxCols> BarterStallInventoryEvent() => new("barter_stall_inventory_event", new BarterStallInventoryEventCols("barter_stall_inventory_event"), new BarterStallInventoryEventIxCols("barter_stall_inventory_event"));
         public global::SpacetimeDB.Table<BarterStallState, BarterStallStateCols, BarterStallStateIxCols> BarterStallState() => new("barter_stall_state", new BarterStallStateCols("barter_stall_state"), new BarterStallStateIxCols("barter_stall_state"));
         public global::SpacetimeDB.Table<BiomeDesc, BiomeDescCols, BiomeDescIxCols> BiomeDesc() => new("biome_desc", new BiomeDescCols("biome_desc"), new BiomeDescIxCols("biome_desc"));
         public global::SpacetimeDB.Table<BlockedIdentity, BlockedIdentityCols, BlockedIdentityIxCols> BlockedIdentity() => new("blocked_identity", new BlockedIdentityCols("blocked_identity"), new BlockedIdentityIxCols("blocked_identity"));
         public global::SpacetimeDB.Table<BuffDesc, BuffDescCols, BuffDescIxCols> BuffDesc() => new("buff_desc", new BuffDescCols("buff_desc"), new BuffDescIxCols("buff_desc"));
         public global::SpacetimeDB.Table<BuffTypeDesc, BuffTypeDescCols, BuffTypeDescIxCols> BuffTypeDesc() => new("buff_type_desc", new BuffTypeDescCols("buff_type_desc"), new BuffTypeDescIxCols("buff_type_desc"));
+        public global::SpacetimeDB.Table<BuildingBuffActivateEvent, BuildingBuffActivateEventCols, BuildingBuffActivateEventIxCols> BuildingBuffActivateEvent() => new("building_buff_activate_event", new BuildingBuffActivateEventCols("building_buff_activate_event"), new BuildingBuffActivateEventIxCols("building_buff_activate_event"));
         public global::SpacetimeDB.Table<BuildingBuffDesc, BuildingBuffDescCols, BuildingBuffDescIxCols> BuildingBuffDesc() => new("building_buff_desc", new BuildingBuffDescCols("building_buff_desc"), new BuildingBuffDescIxCols("building_buff_desc"));
         public global::SpacetimeDB.Table<BuildingClaimDesc, BuildingClaimDescCols, BuildingClaimDescIxCols> BuildingClaimDesc() => new("building_claim_desc", new BuildingClaimDescCols("building_claim_desc"), new BuildingClaimDescIxCols("building_claim_desc"));
         public global::SpacetimeDB.Table<BuildingDecayLoopTimer, BuildingDecayLoopTimerCols, BuildingDecayLoopTimerIxCols> BuildingDecayLoopTimer() => new("building_decay_loop_timer", new BuildingDecayLoopTimerCols("building_decay_loop_timer"), new BuildingDecayLoopTimerIxCols("building_decay_loop_timer"));
@@ -1648,6 +1658,7 @@ namespace BitCraftRegion.Types
         public global::SpacetimeDB.Table<ClaimTechUnlockTimer, ClaimTechUnlockTimerCols, ClaimTechUnlockTimerIxCols> ClaimTechUnlockTimer() => new("claim_tech_unlock_timer", new ClaimTechUnlockTimerCols("claim_tech_unlock_timer"), new ClaimTechUnlockTimerIxCols("claim_tech_unlock_timer"));
         public global::SpacetimeDB.Table<ClaimTileCost, ClaimTileCostCols, ClaimTileCostIxCols> ClaimTileCost() => new("claim_tile_cost", new ClaimTileCostCols("claim_tile_cost"), new ClaimTileCostIxCols("claim_tile_cost"));
         public global::SpacetimeDB.Table<ClaimTileState, ClaimTileStateCols, ClaimTileStateIxCols> ClaimTileState() => new("claim_tile_state", new ClaimTileStateCols("claim_tile_state"), new ClaimTileStateIxCols("claim_tile_state"));
+        public global::SpacetimeDB.Table<ClaimTreasuryEvent, ClaimTreasuryEventCols, ClaimTreasuryEventIxCols> ClaimTreasuryEvent() => new("claim_treasury_event", new ClaimTreasuryEventCols("claim_treasury_event"), new ClaimTreasuryEventIxCols("claim_treasury_event"));
         public global::SpacetimeDB.Table<ClimbRequirementDesc, ClimbRequirementDescCols, ClimbRequirementDescIxCols> ClimbRequirementDesc() => new("climb_requirement_desc", new ClimbRequirementDescCols("climb_requirement_desc"), new ClimbRequirementDescIxCols("climb_requirement_desc"));
         public global::SpacetimeDB.Table<ClosedListingState, ClosedListingStateCols, ClosedListingStateIxCols> ClosedListingState() => new("closed_listing_state", new ClosedListingStateCols("closed_listing_state"), new ClosedListingStateIxCols("closed_listing_state"));
         public global::SpacetimeDB.Table<ClothingDesc, ClothingDescCols, ClothingDescIxCols> ClothingDesc() => new("clothing_desc", new ClothingDescCols("clothing_desc"), new ClothingDescIxCols("clothing_desc"));
@@ -1665,6 +1676,7 @@ namespace BitCraftRegion.Types
         public global::SpacetimeDB.Table<DiscoveryTriggerDesc, ConstructionRecipeDiscoveryKnowledgeDescCols, ConstructionRecipeDiscoveryKnowledgeDescIxCols> ConstructionRecipeDiscoveryKnowledgeDesc() => new("construction_recipe_discovery_knowledge_desc", new ConstructionRecipeDiscoveryKnowledgeDescCols("construction_recipe_discovery_knowledge_desc"), new ConstructionRecipeDiscoveryKnowledgeDescIxCols("construction_recipe_discovery_knowledge_desc"));
         public global::SpacetimeDB.Table<ContributionLootDesc, ContributionLootDescCols, ContributionLootDescIxCols> ContributionLootDesc() => new("contribution_loot_desc", new ContributionLootDescCols("contribution_loot_desc"), new ContributionLootDescIxCols("contribution_loot_desc"));
         public global::SpacetimeDB.Table<ContributionState, ContributionStateCols, ContributionStateIxCols> ContributionState() => new("contribution_state", new ContributionStateCols("contribution_state"), new ContributionStateIxCols("contribution_state"));
+        public global::SpacetimeDB.Table<CraftCompletedEvent, CraftCompletedEventCols, CraftCompletedEventIxCols> CraftCompletedEvent() => new("craft_completed_event", new CraftCompletedEventCols("craft_completed_event"), new CraftCompletedEventIxCols("craft_completed_event"));
         public global::SpacetimeDB.Table<CraftContinueStartEvent, CraftContinueStartEventCols, CraftContinueStartEventIxCols> CraftContinueStartEvent() => new("craft_continue_start_event", new CraftContinueStartEventCols("craft_continue_start_event"), new CraftContinueStartEventIxCols("craft_continue_start_event"));
         public global::SpacetimeDB.Table<CraftEvent, CraftEventCols, CraftEventIxCols> CraftEvent() => new("craft_event", new CraftEventCols("craft_event"), new CraftEventIxCols("craft_event"));
         public global::SpacetimeDB.Table<CraftInitiateStartEvent, CraftInitiateStartEventCols, CraftInitiateStartEventIxCols> CraftInitiateStartEvent() => new("craft_initiate_start_event", new CraftInitiateStartEventCols("craft_initiate_start_event"), new CraftInitiateStartEventIxCols("craft_initiate_start_event"));
