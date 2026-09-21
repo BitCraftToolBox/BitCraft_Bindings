@@ -18,15 +18,6 @@ namespace BitCraftRegion.Types
         {
             protected override string RemoteTableName => "skill_level_knowledge_desc";
 
-            public sealed class IdUniqueIndex : UniqueIndexBase<int>
-            {
-                protected override int GetKey(SkillLevelKnowledgeDesc row) => row.Id;
-
-                public IdUniqueIndex(SkillLevelKnowledgeDescHandle table) : base(table) { }
-            }
-
-            public readonly IdUniqueIndex Id;
-
             public sealed class SkillIdIndex : BTreeIndexBase<int>
             {
                 protected override int GetKey(SkillLevelKnowledgeDesc row) => row.SkillId;
@@ -45,11 +36,20 @@ namespace BitCraftRegion.Types
 
             public readonly SkillLevelIndex SkillLevel;
 
+            public sealed class IdUniqueIndex : UniqueIndexBase<int>
+            {
+                protected override int GetKey(SkillLevelKnowledgeDesc row) => row.Id;
+
+                public IdUniqueIndex(SkillLevelKnowledgeDescHandle table) : base(table) { }
+            }
+
+            public readonly IdUniqueIndex Id;
+
             internal SkillLevelKnowledgeDescHandle(DbConnection conn) : base(conn)
             {
-                Id = new(this);
                 SkillId = new(this);
                 SkillLevel = new(this);
+                Id = new(this);
             }
 
             protected override object GetPrimaryKey(SkillLevelKnowledgeDesc row) => row.Id;

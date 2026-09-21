@@ -49,7 +49,7 @@ namespace BitCraftRegion.Types
         [DataContract]
         public sealed partial class Sleep : Reducer, IReducerArgs
         {
-            [DataMember(Name = "_request")]
+            [DataMember(Name = "request")]
             public PlayerSleepRequest Request;
 
             public Sleep(PlayerSleepRequest Request)
