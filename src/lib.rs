@@ -274,6 +274,7 @@ pub mod deconstruction_recipe_desc_table;
 pub mod deconstruction_recipe_desc_type;
 pub mod delete_developer_identity_reducer;
 pub mod delete_empire_msg_type;
+pub mod delete_translation_correction_reducer;
 pub mod deployable_appearance_override_desc_table;
 pub mod deployable_appearance_override_desc_type;
 pub mod deployable_collectible_state_table;
@@ -1027,6 +1028,7 @@ pub mod remove_chat_channel_member_reducer;
 pub mod remove_chat_channel_reducer;
 pub mod remove_favorite_friend_reducer;
 pub mod remove_friend_reducer;
+pub mod remove_official_translator_reducer;
 pub mod rent_state_table;
 pub mod rent_state_type;
 pub mod replace_identity_msg_type;
@@ -1881,6 +1883,10 @@ pub use delete_developer_identity_reducer::{
     DeleteDeveloperIdentityCallbackId,
 };
 pub use delete_empire_msg_type::DeleteEmpireMsg;
+pub use delete_translation_correction_reducer::{
+    delete_translation_correction, set_flags_for_delete_translation_correction,
+    DeleteTranslationCorrectionCallbackId,
+};
 pub use deployable_appearance_override_desc_table::*;
 pub use deployable_appearance_override_desc_type::DeployableAppearanceOverrideDesc;
 pub use deployable_collectible_state_table::*;
@@ -3170,6 +3176,10 @@ pub use remove_favorite_friend_reducer::{
 pub use remove_friend_reducer::{
     remove_friend, set_flags_for_remove_friend, RemoveFriendCallbackId,
 };
+pub use remove_official_translator_reducer::{
+    remove_official_translator, set_flags_for_remove_official_translator,
+    RemoveOfficialTranslatorCallbackId,
+};
 pub use rent_state_table::*;
 pub use rent_state_type::RentState;
 pub use replace_identity_msg_type::ReplaceIdentityMsg;
@@ -4162,6 +4172,9 @@ pub enum Reducer {
     DeleteDeveloperIdentity {
         identity: String,
     },
+    DeleteTranslationCorrection {
+        id: u64,
+    },
     EditChatChannel {
         entity_id: u64,
         name: String,
@@ -4805,6 +4818,10 @@ pub enum Reducer {
     RemoveFriend {
         player_entity_id: u64,
     },
+    RemoveOfficialTranslator {
+        player_entity_id: u64,
+        lang: String,
+    },
     ReportTargetedChatMessage {
         chat_message_id: u64,
         report_type: String,
@@ -5282,6 +5299,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::CreateChatChannel { .. } => "create_chat_channel",
             Reducer::CurrentVersion => "current_version",
             Reducer::DeleteDeveloperIdentity { .. } => "delete_developer_identity",
+            Reducer::DeleteTranslationCorrection { .. } => "delete_translation_correction",
             Reducer::EditChatChannel { .. } => "edit_chat_channel",
             Reducer::EditChatChannelMemberPermission { .. } => {
                 "edit_chat_channel_member_permission"
@@ -5517,6 +5535,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::RemoveChatChannelMember { .. } => "remove_chat_channel_member",
             Reducer::RemoveFavoriteFriend { .. } => "remove_favorite_friend",
             Reducer::RemoveFriend { .. } => "remove_friend",
+            Reducer::RemoveOfficialTranslator { .. } => "remove_official_translator",
             Reducer::ReportTargetedChatMessage { .. } => "report_targeted_chat_message",
             Reducer::SaveInterModuleMessageError { .. } => "save_inter_module_message_error",
             Reducer::SetRoleForIdentity { .. } => "set_role_for_identity",
@@ -5732,6 +5751,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "create_chat_channel" => Ok(__sdk::parse_reducer_args::<create_chat_channel_reducer::CreateChatChannelArgs>("create_chat_channel", &value.args)?.into()),
             "current_version" => Ok(__sdk::parse_reducer_args::<current_version_reducer::CurrentVersionArgs>("current_version", &value.args)?.into()),
             "delete_developer_identity" => Ok(__sdk::parse_reducer_args::<delete_developer_identity_reducer::DeleteDeveloperIdentityArgs>("delete_developer_identity", &value.args)?.into()),
+            "delete_translation_correction" => Ok(__sdk::parse_reducer_args::<delete_translation_correction_reducer::DeleteTranslationCorrectionArgs>("delete_translation_correction", &value.args)?.into()),
             "edit_chat_channel" => Ok(__sdk::parse_reducer_args::<edit_chat_channel_reducer::EditChatChannelArgs>("edit_chat_channel", &value.args)?.into()),
             "edit_chat_channel_member_permission" => Ok(__sdk::parse_reducer_args::<edit_chat_channel_member_permission_reducer::EditChatChannelMemberPermissionArgs>("edit_chat_channel_member_permission", &value.args)?.into()),
             "empire_change_emblem" => Ok(__sdk::parse_reducer_args::<empire_change_emblem_reducer::EmpireChangeEmblemArgs>("empire_change_emblem", &value.args)?.into()),
@@ -5947,6 +5967,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "remove_chat_channel_member" => Ok(__sdk::parse_reducer_args::<remove_chat_channel_member_reducer::RemoveChatChannelMemberArgs>("remove_chat_channel_member", &value.args)?.into()),
             "remove_favorite_friend" => Ok(__sdk::parse_reducer_args::<remove_favorite_friend_reducer::RemoveFavoriteFriendArgs>("remove_favorite_friend", &value.args)?.into()),
             "remove_friend" => Ok(__sdk::parse_reducer_args::<remove_friend_reducer::RemoveFriendArgs>("remove_friend", &value.args)?.into()),
+            "remove_official_translator" => Ok(__sdk::parse_reducer_args::<remove_official_translator_reducer::RemoveOfficialTranslatorArgs>("remove_official_translator", &value.args)?.into()),
             "report_targeted_chat_message" => Ok(__sdk::parse_reducer_args::<report_targeted_chat_message_reducer::ReportTargetedChatMessageArgs>("report_targeted_chat_message", &value.args)?.into()),
             "save_inter_module_message_error" => Ok(__sdk::parse_reducer_args::<save_inter_module_message_error_reducer::SaveInterModuleMessageErrorArgs>("save_inter_module_message_error", &value.args)?.into()),
             "set_role_for_identity" => Ok(__sdk::parse_reducer_args::<set_role_for_identity_reducer::SetRoleForIdentityArgs>("set_role_for_identity", &value.args)?.into()),
