@@ -109,6 +109,7 @@ import CorrectTranslationReducer from "./correct_translation_reducer";
 import CreateChatChannelReducer from "./create_chat_channel_reducer";
 import CurrentVersionReducer from "./current_version_reducer";
 import DeleteDeveloperIdentityReducer from "./delete_developer_identity_reducer";
+import DeleteTranslationCorrectionReducer from "./delete_translation_correction_reducer";
 import EditChatChannelReducer from "./edit_chat_channel_reducer";
 import EditChatChannelMemberPermissionReducer from "./edit_chat_channel_member_permission_reducer";
 import EmpireChangeEmblemReducer from "./empire_change_emblem_reducer";
@@ -322,6 +323,7 @@ import RemoveChatChannelReducer from "./remove_chat_channel_reducer";
 import RemoveChatChannelMemberReducer from "./remove_chat_channel_member_reducer";
 import RemoveFavoriteFriendReducer from "./remove_favorite_friend_reducer";
 import RemoveFriendReducer from "./remove_friend_reducer";
+import RemoveOfficialTranslatorReducer from "./remove_official_translator_reducer";
 import ReportTargetedChatMessageReducer from "./report_targeted_chat_message_reducer";
 import SaveInterModuleMessageErrorReducer from "./save_inter_module_message_error_reducer";
 import SetRoleForIdentityReducer from "./set_role_for_identity_reducer";
@@ -6630,6 +6632,7 @@ const reducersSchema = __reducers(
   __reducerSchema("create_chat_channel", CreateChatChannelReducer),
   __reducerSchema("current_version", CurrentVersionReducer),
   __reducerSchema("delete_developer_identity", DeleteDeveloperIdentityReducer),
+  __reducerSchema("delete_translation_correction", DeleteTranslationCorrectionReducer),
   __reducerSchema("edit_chat_channel", EditChatChannelReducer),
   __reducerSchema("edit_chat_channel_member_permission", EditChatChannelMemberPermissionReducer),
   __reducerSchema("empire_change_emblem", EmpireChangeEmblemReducer),
@@ -6843,6 +6846,7 @@ const reducersSchema = __reducers(
   __reducerSchema("remove_chat_channel_member", RemoveChatChannelMemberReducer),
   __reducerSchema("remove_favorite_friend", RemoveFavoriteFriendReducer),
   __reducerSchema("remove_friend", RemoveFriendReducer),
+  __reducerSchema("remove_official_translator", RemoveOfficialTranslatorReducer),
   __reducerSchema("report_targeted_chat_message", ReportTargetedChatMessageReducer),
   __reducerSchema("save_inter_module_message_error", SaveInterModuleMessageErrorReducer),
   __reducerSchema("set_role_for_identity", SetRoleForIdentityReducer),
