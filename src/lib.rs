@@ -274,6 +274,7 @@ pub mod deconstruction_recipe_desc_table;
 pub mod deconstruction_recipe_desc_type;
 pub mod delete_developer_identity_reducer;
 pub mod delete_empire_msg_type;
+pub mod delete_translation_correction_reducer;
 pub mod deployable_appearance_override_desc_table;
 pub mod deployable_appearance_override_desc_type;
 pub mod deployable_collectible_state_table;
@@ -1027,6 +1028,7 @@ pub mod remove_chat_channel_member_reducer;
 pub mod remove_chat_channel_reducer;
 pub mod remove_favorite_friend_reducer;
 pub mod remove_friend_reducer;
+pub mod remove_official_translator_reducer;
 pub mod rent_state_table;
 pub mod rent_state_type;
 pub mod replace_identity_msg_type;
@@ -1677,6 +1679,7 @@ pub use deconstruction_recipe_desc_table::*;
 pub use deconstruction_recipe_desc_type::DeconstructionRecipeDesc;
 pub use delete_developer_identity_reducer::delete_developer_identity;
 pub use delete_empire_msg_type::DeleteEmpireMsg;
+pub use delete_translation_correction_reducer::delete_translation_correction;
 pub use deployable_appearance_override_desc_table::*;
 pub use deployable_appearance_override_desc_type::DeployableAppearanceOverrideDesc;
 pub use deployable_collectible_state_table::*;
@@ -2430,6 +2433,7 @@ pub use remove_chat_channel_member_reducer::remove_chat_channel_member;
 pub use remove_chat_channel_reducer::remove_chat_channel;
 pub use remove_favorite_friend_reducer::remove_favorite_friend;
 pub use remove_friend_reducer::remove_friend;
+pub use remove_official_translator_reducer::remove_official_translator;
 pub use rent_state_table::*;
 pub use rent_state_type::RentState;
 pub use replace_identity_msg_type::ReplaceIdentityMsg;
@@ -3116,6 +3120,9 @@ pub enum Reducer {
     DeleteDeveloperIdentity {
         identity: String,
     },
+    DeleteTranslationCorrection {
+        id: u64,
+    },
     EditChatChannel {
         entity_id: u64,
         name: String,
@@ -3759,6 +3766,10 @@ pub enum Reducer {
     RemoveFriend {
         player_entity_id: u64,
     },
+    RemoveOfficialTranslator {
+        player_entity_id: u64,
+        lang: String,
+    },
     ReportTargetedChatMessage {
         chat_message_id: u64,
         report_type: String,
@@ -4236,6 +4247,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::CreateChatChannel { .. } => "create_chat_channel",
             Reducer::CurrentVersion => "current_version",
             Reducer::DeleteDeveloperIdentity { .. } => "delete_developer_identity",
+            Reducer::DeleteTranslationCorrection { .. } => "delete_translation_correction",
             Reducer::EditChatChannel { .. } => "edit_chat_channel",
             Reducer::EditChatChannelMemberPermission { .. } => {
                 "edit_chat_channel_member_permission"
@@ -4471,6 +4483,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::RemoveChatChannelMember { .. } => "remove_chat_channel_member",
             Reducer::RemoveFavoriteFriend { .. } => "remove_favorite_friend",
             Reducer::RemoveFriend { .. } => "remove_friend",
+            Reducer::RemoveOfficialTranslator { .. } => "remove_official_translator",
             Reducer::ReportTargetedChatMessage { .. } => "report_targeted_chat_message",
             Reducer::SaveInterModuleMessageError { .. } => "save_inter_module_message_error",
             Reducer::SetRoleForIdentity { .. } => "set_role_for_identity",
@@ -5133,6 +5146,11 @@ Reducer::DeleteDeveloperIdentity{
                 identity,
 }             => __sats::bsatn::to_vec(&delete_developer_identity_reducer::DeleteDeveloperIdentityArgs {
                 identity: identity.clone(),
+}),
+            Reducer::DeleteTranslationCorrection{
+                id,
+}             => __sats::bsatn::to_vec(&delete_translation_correction_reducer::DeleteTranslationCorrectionArgs {
+                id: id.clone(),
 }),
             Reducer::EditChatChannel{
                 entity_id,
@@ -6213,6 +6231,13 @@ Reducer::PlayerNotificationEventReducer{
                 player_entity_id,
 }             => __sats::bsatn::to_vec(&remove_friend_reducer::RemoveFriendArgs {
                 player_entity_id: player_entity_id.clone(),
+}),
+            Reducer::RemoveOfficialTranslator{
+                player_entity_id,
+                lang,
+}             => __sats::bsatn::to_vec(&remove_official_translator_reducer::RemoveOfficialTranslatorArgs {
+                player_entity_id: player_entity_id.clone(),
+                lang: lang.clone(),
 }),
             Reducer::ReportTargetedChatMessage{
                 chat_message_id,
