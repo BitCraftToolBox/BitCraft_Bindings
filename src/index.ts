@@ -184,6 +184,8 @@ import { CurrentVersion } from "./current_version_reducer.ts";
 export { CurrentVersion };
 import { DeleteDeveloperIdentity } from "./delete_developer_identity_reducer.ts";
 export { DeleteDeveloperIdentity };
+import { DeleteTranslationCorrection } from "./delete_translation_correction_reducer.ts";
+export { DeleteTranslationCorrection };
 import { EditChatChannel } from "./edit_chat_channel_reducer.ts";
 export { EditChatChannel };
 import { EditChatChannelMemberPermission } from "./edit_chat_channel_member_permission_reducer.ts";
@@ -614,6 +616,8 @@ import { RemoveFavoriteFriend } from "./remove_favorite_friend_reducer.ts";
 export { RemoveFavoriteFriend };
 import { RemoveFriend } from "./remove_friend_reducer.ts";
 export { RemoveFriend };
+import { RemoveOfficialTranslator } from "./remove_official_translator_reducer.ts";
+export { RemoveOfficialTranslator };
 import { ReportTargetedChatMessage } from "./report_targeted_chat_message_reducer.ts";
 export { ReportTargetedChatMessage };
 import { SaveInterModuleMessageError } from "./save_inter_module_message_error_reducer.ts";
@@ -7123,6 +7127,10 @@ const REMOTE_MODULE = {
       reducerName: "delete_developer_identity",
       argsType: DeleteDeveloperIdentity.getTypeScriptAlgebraicType(),
     },
+    delete_translation_correction: {
+      reducerName: "delete_translation_correction",
+      argsType: DeleteTranslationCorrection.getTypeScriptAlgebraicType(),
+    },
     edit_chat_channel: {
       reducerName: "edit_chat_channel",
       argsType: EditChatChannel.getTypeScriptAlgebraicType(),
@@ -7983,6 +7991,10 @@ const REMOTE_MODULE = {
       reducerName: "remove_friend",
       argsType: RemoveFriend.getTypeScriptAlgebraicType(),
     },
+    remove_official_translator: {
+      reducerName: "remove_official_translator",
+      argsType: RemoveOfficialTranslator.getTypeScriptAlgebraicType(),
+    },
     report_targeted_chat_message: {
       reducerName: "report_targeted_chat_message",
       argsType: ReportTargetedChatMessage.getTypeScriptAlgebraicType(),
@@ -8568,6 +8580,7 @@ export type Reducer = never
 | { name: "CreateChatChannel", args: CreateChatChannel }
 | { name: "CurrentVersion", args: CurrentVersion }
 | { name: "DeleteDeveloperIdentity", args: DeleteDeveloperIdentity }
+| { name: "DeleteTranslationCorrection", args: DeleteTranslationCorrection }
 | { name: "EditChatChannel", args: EditChatChannel }
 | { name: "EditChatChannelMemberPermission", args: EditChatChannelMemberPermission }
 | { name: "EmpireChangeEmblem", args: EmpireChangeEmblem }
@@ -8783,6 +8796,7 @@ export type Reducer = never
 | { name: "RemoveChatChannelMember", args: RemoveChatChannelMember }
 | { name: "RemoveFavoriteFriend", args: RemoveFavoriteFriend }
 | { name: "RemoveFriend", args: RemoveFriend }
+| { name: "RemoveOfficialTranslator", args: RemoveOfficialTranslator }
 | { name: "ReportTargetedChatMessage", args: ReportTargetedChatMessage }
 | { name: "SaveInterModuleMessageError", args: SaveInterModuleMessageError }
 | { name: "SetRoleForIdentity", args: SetRoleForIdentity }
@@ -10074,6 +10088,22 @@ export class RemoteReducers {
 
   removeOnDeleteDeveloperIdentity(callback: (ctx: ReducerEventContext, identity: string) => void) {
     this.connection.offReducer("delete_developer_identity", callback);
+  }
+
+  deleteTranslationCorrection(id: bigint) {
+    const __args = { id };
+    let __writer = new BinaryWriter(1024);
+    DeleteTranslationCorrection.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("delete_translation_correction", __argsBuffer, this.setCallReducerFlags.deleteTranslationCorrectionFlags);
+  }
+
+  onDeleteTranslationCorrection(callback: (ctx: ReducerEventContext, id: bigint) => void) {
+    this.connection.onReducer("delete_translation_correction", callback);
+  }
+
+  removeOnDeleteTranslationCorrection(callback: (ctx: ReducerEventContext, id: bigint) => void) {
+    this.connection.offReducer("delete_translation_correction", callback);
   }
 
   editChatChannel(entityId: bigint, name: string, description: string, visibility: ChatChannelVisibility) {
@@ -13472,6 +13502,22 @@ export class RemoteReducers {
     this.connection.offReducer("remove_friend", callback);
   }
 
+  removeOfficialTranslator(playerEntityId: bigint, lang: string) {
+    const __args = { playerEntityId, lang };
+    let __writer = new BinaryWriter(1024);
+    RemoveOfficialTranslator.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("remove_official_translator", __argsBuffer, this.setCallReducerFlags.removeOfficialTranslatorFlags);
+  }
+
+  onRemoveOfficialTranslator(callback: (ctx: ReducerEventContext, playerEntityId: bigint, lang: string) => void) {
+    this.connection.onReducer("remove_official_translator", callback);
+  }
+
+  removeOnRemoveOfficialTranslator(callback: (ctx: ReducerEventContext, playerEntityId: bigint, lang: string) => void) {
+    this.connection.offReducer("remove_official_translator", callback);
+  }
+
   reportTargetedChatMessage(chatMessageId: bigint, reportType: string, message: string) {
     const __args = { chatMessageId, reportType, message };
     let __writer = new BinaryWriter(1024);
@@ -15762,6 +15808,11 @@ export class SetReducerFlags {
     this.deleteDeveloperIdentityFlags = flags;
   }
 
+  deleteTranslationCorrectionFlags: CallReducerFlags = 'FullUpdate';
+  deleteTranslationCorrection(flags: CallReducerFlags) {
+    this.deleteTranslationCorrectionFlags = flags;
+  }
+
   editChatChannelFlags: CallReducerFlags = 'FullUpdate';
   editChatChannel(flags: CallReducerFlags) {
     this.editChatChannelFlags = flags;
@@ -16825,6 +16876,11 @@ export class SetReducerFlags {
   removeFriendFlags: CallReducerFlags = 'FullUpdate';
   removeFriend(flags: CallReducerFlags) {
     this.removeFriendFlags = flags;
+  }
+
+  removeOfficialTranslatorFlags: CallReducerFlags = 'FullUpdate';
+  removeOfficialTranslator(flags: CallReducerFlags) {
+    this.removeOfficialTranslatorFlags = flags;
   }
 
   reportTargetedChatMessageFlags: CallReducerFlags = 'FullUpdate';
