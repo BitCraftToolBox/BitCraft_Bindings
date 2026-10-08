@@ -535,6 +535,7 @@ import LootChestSpawnReducer from "./loot_chest_spawn_reducer";
 import MigrateAutoAttacksReducer from "./migrate_auto_attacks_reducer";
 import MigrateCharacterStatsReducer from "./migrate_character_stats_reducer";
 import MigrateClaimTechReducer from "./migrate_claim_tech_reducer";
+import MigrateDuplicateEquipmentSlotsReducer from "./migrate_duplicate_equipment_slots_reducer";
 import MigrateEquipmentSlotsReducer from "./migrate_equipment_slots_reducer";
 import MigrateExplorationAchievementCountsReducer from "./migrate_exploration_achievement_counts_reducer";
 import MigrateGrantDefaultCollectiblesReducer from "./migrate_grant_default_collectibles_reducer";
@@ -618,6 +619,7 @@ import ProjectSiteAdvanceProjectStartReducer from "./project_site_advance_projec
 import ProjectSiteCancelReducer from "./project_site_cancel_reducer";
 import ProjectSitePlaceReducer from "./project_site_place_reducer";
 import ProspectReducer from "./prospect_reducer";
+import ProspectCancelReducer from "./prospect_cancel_reducer";
 import ProspectStartReducer from "./prospect_start_reducer";
 import RegionPopuplationAgentLoopReducer from "./region_popuplation_agent_loop_reducer";
 import RentAddListingReducer from "./rent_add_listing_reducer";
@@ -8151,6 +8153,7 @@ const reducersSchema = __reducers(
   __reducerSchema("migrate_auto_attacks", MigrateAutoAttacksReducer),
   __reducerSchema("migrate_character_stats", MigrateCharacterStatsReducer),
   __reducerSchema("migrate_claim_tech", MigrateClaimTechReducer),
+  __reducerSchema("migrate_duplicate_equipment_slots", MigrateDuplicateEquipmentSlotsReducer),
   __reducerSchema("migrate_equipment_slots", MigrateEquipmentSlotsReducer),
   __reducerSchema("migrate_exploration_achievement_counts", MigrateExplorationAchievementCountsReducer),
   __reducerSchema("migrate_grant_default_collectibles", MigrateGrantDefaultCollectiblesReducer),
@@ -8234,6 +8237,7 @@ const reducersSchema = __reducers(
   __reducerSchema("project_site_cancel", ProjectSiteCancelReducer),
   __reducerSchema("project_site_place", ProjectSitePlaceReducer),
   __reducerSchema("prospect", ProspectReducer),
+  __reducerSchema("prospect_cancel", ProspectCancelReducer),
   __reducerSchema("prospect_start", ProspectStartReducer),
   __reducerSchema("region_popuplation_agent_loop", RegionPopuplationAgentLoopReducer),
   __reducerSchema("rent_add_listing", RentAddListingReducer),
