@@ -1128,6 +1128,7 @@ pub mod message_contents_v_5_type;
 pub mod migrate_auto_attacks_reducer;
 pub mod migrate_character_stats_reducer;
 pub mod migrate_claim_tech_reducer;
+pub mod migrate_duplicate_equipment_slots_reducer;
 pub mod migrate_equipment_slots_reducer;
 pub mod migrate_exploration_achievement_counts_reducer;
 pub mod migrate_grant_default_collectibles_reducer;
@@ -1513,6 +1514,7 @@ pub mod project_site_cancel_reducer;
 pub mod project_site_place_reducer;
 pub mod project_site_state_table;
 pub mod project_site_state_type;
+pub mod prospect_cancel_reducer;
 pub mod prospect_reducer;
 pub mod prospect_start_event_table;
 pub mod prospect_start_event_type;
@@ -4442,6 +4444,10 @@ pub use migrate_character_stats_reducer::{
 pub use migrate_claim_tech_reducer::{
     migrate_claim_tech, set_flags_for_migrate_claim_tech, MigrateClaimTechCallbackId,
 };
+pub use migrate_duplicate_equipment_slots_reducer::{
+    migrate_duplicate_equipment_slots, set_flags_for_migrate_duplicate_equipment_slots,
+    MigrateDuplicateEquipmentSlotsCallbackId,
+};
 pub use migrate_equipment_slots_reducer::{
     migrate_equipment_slots, set_flags_for_migrate_equipment_slots, MigrateEquipmentSlotsCallbackId,
 };
@@ -5017,6 +5023,9 @@ pub use project_site_place_reducer::{
 };
 pub use project_site_state_table::*;
 pub use project_site_state_type::ProjectSiteState;
+pub use prospect_cancel_reducer::{
+    prospect_cancel, set_flags_for_prospect_cancel, ProspectCancelCallbackId,
+};
 pub use prospect_reducer::{prospect, set_flags_for_prospect, ProspectCallbackId};
 pub use prospect_start_event_table::*;
 pub use prospect_start_event_type::ProspectStartEvent;
@@ -7556,6 +7565,7 @@ pub enum Reducer {
     MigrateAutoAttacks,
     MigrateCharacterStats,
     MigrateClaimTech,
+    MigrateDuplicateEquipmentSlots,
     MigrateEquipmentSlots,
     MigrateExplorationAchievementCounts,
     MigrateGrantDefaultCollectibles,
@@ -7791,6 +7801,7 @@ pub enum Reducer {
         prospecting_id: i32,
         timestamp: u64,
     },
+    ProspectCancel,
     ProspectStart {
         prospecting_id: i32,
         timestamp: u64,
@@ -8909,6 +8920,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::MigrateAutoAttacks => "migrate_auto_attacks",
             Reducer::MigrateCharacterStats => "migrate_character_stats",
             Reducer::MigrateClaimTech => "migrate_claim_tech",
+            Reducer::MigrateDuplicateEquipmentSlots => "migrate_duplicate_equipment_slots",
             Reducer::MigrateEquipmentSlots => "migrate_equipment_slots",
             Reducer::MigrateExplorationAchievementCounts => {
                 "migrate_exploration_achievement_counts"
@@ -9000,6 +9012,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::ProjectSiteCancel { .. } => "project_site_cancel",
             Reducer::ProjectSitePlace { .. } => "project_site_place",
             Reducer::Prospect { .. } => "prospect",
+            Reducer::ProspectCancel => "prospect_cancel",
             Reducer::ProspectStart { .. } => "prospect_start",
             Reducer::RegionPopuplationAgentLoop { .. } => "region_popuplation_agent_loop",
             Reducer::RentAddListing { .. } => "rent_add_listing",
@@ -9703,6 +9716,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "migrate_auto_attacks" => Ok(__sdk::parse_reducer_args::<migrate_auto_attacks_reducer::MigrateAutoAttacksArgs>("migrate_auto_attacks", &value.args)?.into()),
             "migrate_character_stats" => Ok(__sdk::parse_reducer_args::<migrate_character_stats_reducer::MigrateCharacterStatsArgs>("migrate_character_stats", &value.args)?.into()),
             "migrate_claim_tech" => Ok(__sdk::parse_reducer_args::<migrate_claim_tech_reducer::MigrateClaimTechArgs>("migrate_claim_tech", &value.args)?.into()),
+            "migrate_duplicate_equipment_slots" => Ok(__sdk::parse_reducer_args::<migrate_duplicate_equipment_slots_reducer::MigrateDuplicateEquipmentSlotsArgs>("migrate_duplicate_equipment_slots", &value.args)?.into()),
             "migrate_equipment_slots" => Ok(__sdk::parse_reducer_args::<migrate_equipment_slots_reducer::MigrateEquipmentSlotsArgs>("migrate_equipment_slots", &value.args)?.into()),
             "migrate_exploration_achievement_counts" => Ok(__sdk::parse_reducer_args::<migrate_exploration_achievement_counts_reducer::MigrateExplorationAchievementCountsArgs>("migrate_exploration_achievement_counts", &value.args)?.into()),
             "migrate_grant_default_collectibles" => Ok(__sdk::parse_reducer_args::<migrate_grant_default_collectibles_reducer::MigrateGrantDefaultCollectiblesArgs>("migrate_grant_default_collectibles", &value.args)?.into()),
@@ -9786,6 +9800,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "project_site_cancel" => Ok(__sdk::parse_reducer_args::<project_site_cancel_reducer::ProjectSiteCancelArgs>("project_site_cancel", &value.args)?.into()),
             "project_site_place" => Ok(__sdk::parse_reducer_args::<project_site_place_reducer::ProjectSitePlaceArgs>("project_site_place", &value.args)?.into()),
             "prospect" => Ok(__sdk::parse_reducer_args::<prospect_reducer::ProspectArgs>("prospect", &value.args)?.into()),
+            "prospect_cancel" => Ok(__sdk::parse_reducer_args::<prospect_cancel_reducer::ProspectCancelArgs>("prospect_cancel", &value.args)?.into()),
             "prospect_start" => Ok(__sdk::parse_reducer_args::<prospect_start_reducer::ProspectStartArgs>("prospect_start", &value.args)?.into()),
             "region_popuplation_agent_loop" => Ok(__sdk::parse_reducer_args::<region_popuplation_agent_loop_reducer::RegionPopuplationAgentLoopArgs>("region_popuplation_agent_loop", &value.args)?.into()),
             "rent_add_listing" => Ok(__sdk::parse_reducer_args::<rent_add_listing_reducer::RentAddListingArgs>("rent_add_listing", &value.args)?.into()),
