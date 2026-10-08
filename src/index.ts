@@ -1040,6 +1040,8 @@ import { MigrateCharacterStats } from "./migrate_character_stats_reducer.ts";
 export { MigrateCharacterStats };
 import { MigrateClaimTech } from "./migrate_claim_tech_reducer.ts";
 export { MigrateClaimTech };
+import { MigrateDuplicateEquipmentSlots } from "./migrate_duplicate_equipment_slots_reducer.ts";
+export { MigrateDuplicateEquipmentSlots };
 import { MigrateEquipmentSlots } from "./migrate_equipment_slots_reducer.ts";
 export { MigrateEquipmentSlots };
 import { MigrateExplorationAchievementCounts } from "./migrate_exploration_achievement_counts_reducer.ts";
@@ -1206,6 +1208,8 @@ import { ProjectSitePlace } from "./project_site_place_reducer.ts";
 export { ProjectSitePlace };
 import { Prospect } from "./prospect_reducer.ts";
 export { Prospect };
+import { ProspectCancel } from "./prospect_cancel_reducer.ts";
+export { ProspectCancel };
 import { ProspectStart } from "./prospect_start_reducer.ts";
 export { ProspectStart };
 import { RegionPopuplationAgentLoop } from "./region_popuplation_agent_loop_reducer.ts";
@@ -10635,6 +10639,10 @@ export const REMOTE_MODULE = {
       reducerName: "migrate_claim_tech",
       argsType: MigrateClaimTech.getTypeScriptAlgebraicType(),
     },
+    migrate_duplicate_equipment_slots: {
+      reducerName: "migrate_duplicate_equipment_slots",
+      argsType: MigrateDuplicateEquipmentSlots.getTypeScriptAlgebraicType(),
+    },
     migrate_equipment_slots: {
       reducerName: "migrate_equipment_slots",
       argsType: MigrateEquipmentSlots.getTypeScriptAlgebraicType(),
@@ -10966,6 +10974,10 @@ export const REMOTE_MODULE = {
     prospect: {
       reducerName: "prospect",
       argsType: Prospect.getTypeScriptAlgebraicType(),
+    },
+    prospect_cancel: {
+      reducerName: "prospect_cancel",
+      argsType: ProspectCancel.getTypeScriptAlgebraicType(),
     },
     prospect_start: {
       reducerName: "prospect_start",
@@ -12212,6 +12224,7 @@ export type Reducer = never
 | { name: "MigrateAutoAttacks", args: MigrateAutoAttacks }
 | { name: "MigrateCharacterStats", args: MigrateCharacterStats }
 | { name: "MigrateClaimTech", args: MigrateClaimTech }
+| { name: "MigrateDuplicateEquipmentSlots", args: MigrateDuplicateEquipmentSlots }
 | { name: "MigrateEquipmentSlots", args: MigrateEquipmentSlots }
 | { name: "MigrateExplorationAchievementCounts", args: MigrateExplorationAchievementCounts }
 | { name: "MigrateGrantDefaultCollectibles", args: MigrateGrantDefaultCollectibles }
@@ -12295,6 +12308,7 @@ export type Reducer = never
 | { name: "ProjectSiteCancel", args: ProjectSiteCancel }
 | { name: "ProjectSitePlace", args: ProjectSitePlace }
 | { name: "Prospect", args: Prospect }
+| { name: "ProspectCancel", args: ProspectCancel }
 | { name: "ProspectStart", args: ProspectStart }
 | { name: "RegionPopuplationAgentLoop", args: RegionPopuplationAgentLoop }
 | { name: "RentAddListing", args: RentAddListing }
@@ -20362,6 +20376,18 @@ export class RemoteReducers {
     this.connection.offReducer("migrate_claim_tech", callback);
   }
 
+  migrateDuplicateEquipmentSlots() {
+    this.connection.callReducer("migrate_duplicate_equipment_slots", new Uint8Array(0), this.setCallReducerFlags.migrateDuplicateEquipmentSlotsFlags);
+  }
+
+  onMigrateDuplicateEquipmentSlots(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.onReducer("migrate_duplicate_equipment_slots", callback);
+  }
+
+  removeOnMigrateDuplicateEquipmentSlots(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.offReducer("migrate_duplicate_equipment_slots", callback);
+  }
+
   migrateEquipmentSlots() {
     this.connection.callReducer("migrate_equipment_slots", new Uint8Array(0), this.setCallReducerFlags.migrateEquipmentSlotsFlags);
   }
@@ -21644,6 +21670,18 @@ export class RemoteReducers {
 
   removeOnProspect(callback: (ctx: ReducerEventContext, prospectingId: number, timestamp: bigint) => void) {
     this.connection.offReducer("prospect", callback);
+  }
+
+  prospectCancel() {
+    this.connection.callReducer("prospect_cancel", new Uint8Array(0), this.setCallReducerFlags.prospectCancelFlags);
+  }
+
+  onProspectCancel(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.onReducer("prospect_cancel", callback);
+  }
+
+  removeOnProspectCancel(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.offReducer("prospect_cancel", callback);
   }
 
   prospectStart(prospectingId: number, timestamp: bigint) {
@@ -26970,6 +27008,11 @@ export class SetReducerFlags {
     this.migrateClaimTechFlags = flags;
   }
 
+  migrateDuplicateEquipmentSlotsFlags: CallReducerFlags = 'FullUpdate';
+  migrateDuplicateEquipmentSlots(flags: CallReducerFlags) {
+    this.migrateDuplicateEquipmentSlotsFlags = flags;
+  }
+
   migrateEquipmentSlotsFlags: CallReducerFlags = 'FullUpdate';
   migrateEquipmentSlots(flags: CallReducerFlags) {
     this.migrateEquipmentSlotsFlags = flags;
@@ -27383,6 +27426,11 @@ export class SetReducerFlags {
   prospectFlags: CallReducerFlags = 'FullUpdate';
   prospect(flags: CallReducerFlags) {
     this.prospectFlags = flags;
+  }
+
+  prospectCancelFlags: CallReducerFlags = 'FullUpdate';
+  prospectCancel(flags: CallReducerFlags) {
+    this.prospectCancelFlags = flags;
   }
 
   prospectStartFlags: CallReducerFlags = 'FullUpdate';
