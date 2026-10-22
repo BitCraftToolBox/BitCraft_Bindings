@@ -10,9 +10,9 @@ import {
   type Infer as __Infer,
 } from "spacetimedb";
 import {
+  InputItemStack,
   LevelRequirement,
   ToolRequirement,
-  InputItemStack,
   ExperienceStackF32,
   Biome,
 } from "./types";

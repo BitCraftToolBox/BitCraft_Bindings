@@ -39,4 +39,5 @@ export default __t.row({
   travelerRuinEntityId: __t.i32().name("traveler_ruin_entity_id"),
   respawn: __t.bool(),
   collapseTrigger: __t.bool().name("collapse_trigger"),
+  interiorSpawnRandomGroupId: __t.i32().name("interior_spawn_random_group_id"),
 });

@@ -16,4 +16,5 @@ export default __t.row({
   affectedModelAddress: __t.string().name("affected_model_address"),
   modelAddress: __t.string().name("model_address"),
   iconAssetName: __t.string().name("icon_asset_name"),
+  affectedModelAddresses: __t.option(__t.array(__t.string())).name("affected_model_addresses"),
 });

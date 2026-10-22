@@ -10,11 +10,11 @@ import {
   type Infer as __Infer,
 } from "spacetimedb";
 import {
-  LevelRequirement,
   ItemStack,
+  LevelRequirement,
   ToolRequirement,
-  Biome,
   PlaceableSelfBuffChance,
+  Biome,
 } from "./types";
 
 

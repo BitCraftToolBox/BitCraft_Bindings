@@ -11,6 +11,9 @@ import {
 } from "spacetimedb";
 import {
   BuffEffect,
+  InputItemStack,
+  ProbabilisticItemStack,
+  ExtractionSpawnedPlaceable,
 } from "./types";
 
 
@@ -34,4 +37,19 @@ export default __t.row({
   linkedAbilityBuffDescId: __t.i32().name("linked_ability_buff_desc_id"),
   animation: __t.string(),
   iconPath: __t.string().name("icon_path"),
+  requiredBuffIds: __t.option(__t.array(__t.i32())).name("required_buff_ids"),
+  consumeRequiredBuff: __t.bool().name("consume_required_buff"),
+  performProfessionHit: __t.bool().name("perform_profession_hit"),
+  professionHitBonusDamage: __t.i32().name("profession_hit_bonus_damage"),
+  professionHitSkillId: __t.i32().name("profession_hit_skill_id"),
+  description: __t.string(),
+  get inputItemStacks() {
+    return __t.option(__t.array(InputItemStack)).name("input_item_stacks");
+  },
+  get outputItemStacks() {
+    return __t.option(__t.array(ProbabilisticItemStack)).name("output_item_stacks");
+  },
+  get spawnedPlaceables() {
+    return __t.option(__t.array(ExtractionSpawnedPlaceable)).name("spawned_placeables");
+  },
 });

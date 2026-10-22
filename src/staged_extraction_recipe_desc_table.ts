@@ -10,14 +10,14 @@ import {
   type Infer as __Infer,
 } from "spacetimedb";
 import {
+  InputItemStack,
+  ProbabilisticItemStack,
+  ExtractionSpawnedPlaceable,
   LevelRequirement,
   ToolRequirement,
-  InputItemStack,
   ExperienceStackF32,
-  ProbabilisticItemStack,
-  EmpirePermission,
-  ExtractionSpawnedPlaceable,
   PlaceableSelfBuffChance,
+  EmpirePermission,
 } from "./types";
 
 

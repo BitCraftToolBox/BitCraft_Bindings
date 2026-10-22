@@ -30,6 +30,21 @@ export const AbilityCustomDesc = __t.object("AbilityCustomDesc", {
   linkedAbilityBuffDescId: __t.i32(),
   animation: __t.string(),
   iconPath: __t.string(),
+  requiredBuffIds: __t.option(__t.array(__t.i32())),
+  consumeRequiredBuff: __t.bool(),
+  performProfessionHit: __t.bool(),
+  professionHitBonusDamage: __t.i32(),
+  professionHitSkillId: __t.i32(),
+  description: __t.string(),
+  get inputItemStacks() {
+    return __t.option(__t.array(InputItemStack));
+  },
+  get outputItemStacks() {
+    return __t.option(__t.array(ProbabilisticItemStack));
+  },
+  get spawnedPlaceables() {
+    return __t.option(__t.array(ExtractionSpawnedPlaceable));
+  },
 });
 export type AbilityCustomDesc = __Infer<typeof AbilityCustomDesc>;
 
@@ -1748,6 +1763,9 @@ export const CraftingRecipeDesc = __t.object("CraftingRecipeDesc", {
   allowUseHands: __t.bool(),
   isPassive: __t.bool(),
   showInProgression: __t.bool(),
+  get selfBuffs() {
+    return __t.option(__t.array(PlaceableSelfBuffChance));
+  },
 });
 export type CraftingRecipeDesc = __Infer<typeof CraftingRecipeDesc>;
 
@@ -1855,6 +1873,7 @@ export const DeployableAppearanceOverrideDesc = __t.object("DeployableAppearance
   affectedModelAddress: __t.string(),
   modelAddress: __t.string(),
   iconAssetName: __t.string(),
+  affectedModelAddresses: __t.option(__t.array(__t.string())),
 });
 export type DeployableAppearanceOverrideDesc = __Infer<typeof DeployableAppearanceOverrideDesc>;
 
@@ -2861,6 +2880,16 @@ export const EnemyType = __t.enum("EnemyType", {
   EnragedAlphaJakyl: __t.unit(),
   DeerSwift: __t.unit(),
   CrystalizedHexiteCrab: __t.unit(),
+  DistractedSagiBird: __t.unit(),
+  DistractedNubiGoat: __t.unit(),
+  DistractedCervus: __t.unit(),
+  DistractedScrofa: __t.unit(),
+  DistractedOx: __t.unit(),
+  DistractedYagiGoat: __t.unit(),
+  DistractedJungleTerrorBird: __t.unit(),
+  DistractedElderScrofa: __t.unit(),
+  DistractedTundraOx: __t.unit(),
+  DistractedDesertTerrorbird: __t.unit(),
 });
 export type EnemyType = __Infer<typeof EnemyType>;
 
@@ -3161,6 +3190,19 @@ export const FloatHexTileMessage = __t.object("FloatHexTileMessage", {
 });
 export type FloatHexTileMessage = __Infer<typeof FloatHexTileMessage>;
 
+export const FloatingPlatformDesc = __t.object("FloatingPlatformDesc", {
+  buildingId: __t.i32(),
+  tier: __t.i32(),
+  minWaterDepth: __t.i16(),
+  maxWaterDepth: __t.i16(),
+  get allowedBiomes() {
+    return __t.array(Biome);
+  },
+  supportsBuildings: __t.bool(),
+  maxPerPlayer: __t.i32(),
+});
+export type FloatingPlatformDesc = __Infer<typeof FloatingPlatformDesc>;
+
 export const FoodDesc = __t.object("FoodDesc", {
   itemId: __t.i32(),
   hp: __t.f32(),
@@ -3204,6 +3246,7 @@ export const FootprintType = __t.enum("FootprintType", {
   Walkable: __t.unit(),
   Perimeter: __t.unit(),
   WalkableResource: __t.unit(),
+  Platform: __t.unit(),
 });
 export type FootprintType = __Infer<typeof FootprintType>;
 
@@ -3739,8 +3782,25 @@ export const InteriorSpawnDesc = __t.object("InteriorSpawnDesc", {
   travelerRuinEntityId: __t.i32(),
   respawn: __t.bool(),
   collapseTrigger: __t.bool(),
+  interiorSpawnRandomGroupId: __t.i32(),
 });
 export type InteriorSpawnDesc = __Infer<typeof InteriorSpawnDesc>;
+
+export const InteriorSpawnDestroyTriggerDesc = __t.object("InteriorSpawnDestroyTriggerDesc", {
+  id: __t.i32(),
+  name: __t.string(),
+  destroyedInteriorSpawnIds: __t.array(__t.i32()),
+  triggerInteriorSpawnIds: __t.array(__t.i32()),
+  requireAllTriggers: __t.bool(),
+});
+export type InteriorSpawnDestroyTriggerDesc = __Infer<typeof InteriorSpawnDestroyTriggerDesc>;
+
+export const InteriorSpawnRandomGroupDesc = __t.object("InteriorSpawnRandomGroupDesc", {
+  id: __t.i32(),
+  name: __t.string(),
+  resourceClumpIds: __t.array(__t.i32()),
+});
+export type InteriorSpawnRandomGroupDesc = __Infer<typeof InteriorSpawnRandomGroupDesc>;
 
 // The tagged union or sum type for the algebraic type `InteriorSpawnType`.
 export const InteriorSpawnType = __t.enum("InteriorSpawnType", {
@@ -3751,8 +3811,16 @@ export const InteriorSpawnType = __t.enum("InteriorSpawnType", {
   Resource: __t.unit(),
   Enemy: __t.unit(),
   Paving: __t.unit(),
+  InteriorSpawnRandomGroup: __t.unit(),
 });
 export type InteriorSpawnType = __Infer<typeof InteriorSpawnType>;
+
+export const InteriorSpawnedResourceState = __t.object("InteriorSpawnedResourceState", {
+  entityId: __t.u64(),
+  interiorSpawnDescId: __t.i32(),
+  dimensionId: __t.u32(),
+});
+export type InteriorSpawnedResourceState = __Infer<typeof InteriorSpawnedResourceState>;
 
 export const InventoryState = __t.object("InventoryState", {
   entityId: __t.u64(),
@@ -5412,6 +5480,7 @@ export const PlaceableDesc = __t.object("PlaceableDesc", {
   spawnsInWater: __t.bool(),
   waterDepthMin: __t.i32(),
   waterDepthMax: __t.i32(),
+  enemyParamsId: __t.option(__t.array(__t.i32())),
 });
 export type PlaceableDesc = __Infer<typeof PlaceableDesc>;
 
@@ -6991,6 +7060,13 @@ export const RecoverDeployableMsg = __t.object("RecoverDeployableMsg", {
   deployableDescId: __t.i32(),
 });
 export type RecoverDeployableMsg = __Infer<typeof RecoverDeployableMsg>;
+
+export const RefreshPlayerKnowledgesTimer = __t.object("RefreshPlayerKnowledgesTimer", {
+  scheduledId: __t.u64(),
+  scheduledAt: __t.scheduleAt(),
+  playerEntityIds: __t.array(__t.u64()),
+});
+export type RefreshPlayerKnowledgesTimer = __Infer<typeof RefreshPlayerKnowledgesTimer>;
 
 export const RegionConnectionInfo = __t.object("RegionConnectionInfo", {
   id: __t.u8(),
