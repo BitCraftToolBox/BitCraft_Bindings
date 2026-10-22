@@ -15,5 +15,6 @@ namespace BitCraftRegion.Types
         Walkable,
         Perimeter,
         WalkableResource,
+        Platform,
     }
 }

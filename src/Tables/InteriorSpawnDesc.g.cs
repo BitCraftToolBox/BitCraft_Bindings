@@ -66,6 +66,7 @@ namespace BitCraftRegion.Types
         public global::SpacetimeDB.Col<InteriorSpawnDesc, int> TravelerRuinEntityId { get; }
         public global::SpacetimeDB.Col<InteriorSpawnDesc, bool> Respawn { get; }
         public global::SpacetimeDB.Col<InteriorSpawnDesc, bool> CollapseTrigger { get; }
+        public global::SpacetimeDB.Col<InteriorSpawnDesc, int> InteriorSpawnRandomGroupId { get; }
 
         public InteriorSpawnDescCols(string tableName)
         {
@@ -85,6 +86,7 @@ namespace BitCraftRegion.Types
             TravelerRuinEntityId = new global::SpacetimeDB.Col<InteriorSpawnDesc, int>(tableName, "traveler_ruin_entity_id");
             Respawn = new global::SpacetimeDB.Col<InteriorSpawnDesc, bool>(tableName, "respawn");
             CollapseTrigger = new global::SpacetimeDB.Col<InteriorSpawnDesc, bool>(tableName, "collapse_trigger");
+            InteriorSpawnRandomGroupId = new global::SpacetimeDB.Col<InteriorSpawnDesc, int>(tableName, "interior_spawn_random_group_id");
         }
     }
 

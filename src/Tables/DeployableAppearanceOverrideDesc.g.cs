@@ -65,6 +65,7 @@ namespace BitCraftRegion.Types
         public global::SpacetimeDB.Col<DeployableAppearanceOverrideDesc, string> AffectedModelAddress { get; }
         public global::SpacetimeDB.Col<DeployableAppearanceOverrideDesc, string> ModelAddress { get; }
         public global::SpacetimeDB.Col<DeployableAppearanceOverrideDesc, string> IconAssetName { get; }
+        public global::SpacetimeDB.NullableCol<DeployableAppearanceOverrideDesc, System.Collections.Generic.List<string>> AffectedModelAddresses { get; }
 
         public DeployableAppearanceOverrideDescCols(string tableName)
         {
@@ -73,6 +74,7 @@ namespace BitCraftRegion.Types
             AffectedModelAddress = new global::SpacetimeDB.Col<DeployableAppearanceOverrideDesc, string>(tableName, "affected_model_address");
             ModelAddress = new global::SpacetimeDB.Col<DeployableAppearanceOverrideDesc, string>(tableName, "model_address");
             IconAssetName = new global::SpacetimeDB.Col<DeployableAppearanceOverrideDesc, string>(tableName, "icon_asset_name");
+            AffectedModelAddresses = new global::SpacetimeDB.NullableCol<DeployableAppearanceOverrideDesc, System.Collections.Generic.List<string>>(tableName, "affected_model_addresses");
         }
     }
 

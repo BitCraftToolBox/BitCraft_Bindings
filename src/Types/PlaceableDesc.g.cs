@@ -46,6 +46,8 @@ namespace BitCraftRegion.Types
         public int WaterDepthMin;
         [DataMember(Name = "water_depth_max")]
         public int WaterDepthMax;
+        [DataMember(Name = "enemy_params_id")]
+        public System.Collections.Generic.List<int>? EnemyParamsId;
 
         public PlaceableDesc(
             int Id,
@@ -63,7 +65,8 @@ namespace BitCraftRegion.Types
             int LandElevationMax,
             bool SpawnsInWater,
             int WaterDepthMin,
-            int WaterDepthMax
+            int WaterDepthMax,
+            System.Collections.Generic.List<int>? EnemyParamsId
         )
         {
             this.Id = Id;
@@ -82,6 +85,7 @@ namespace BitCraftRegion.Types
             this.SpawnsInWater = SpawnsInWater;
             this.WaterDepthMin = WaterDepthMin;
             this.WaterDepthMax = WaterDepthMax;
+            this.EnemyParamsId = EnemyParamsId;
         }
 
         public PlaceableDesc()

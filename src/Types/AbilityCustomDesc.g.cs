@@ -48,6 +48,24 @@ namespace BitCraftRegion.Types
         public string Animation;
         [DataMember(Name = "icon_path")]
         public string IconPath;
+        [DataMember(Name = "required_buff_ids")]
+        public System.Collections.Generic.List<int>? RequiredBuffIds;
+        [DataMember(Name = "consume_required_buff")]
+        public bool ConsumeRequiredBuff;
+        [DataMember(Name = "perform_profession_hit")]
+        public bool PerformProfessionHit;
+        [DataMember(Name = "profession_hit_bonus_damage")]
+        public int ProfessionHitBonusDamage;
+        [DataMember(Name = "profession_hit_skill_id")]
+        public int ProfessionHitSkillId;
+        [DataMember(Name = "description")]
+        public string Description;
+        [DataMember(Name = "input_item_stacks")]
+        public System.Collections.Generic.List<InputItemStack>? InputItemStacks;
+        [DataMember(Name = "output_item_stacks")]
+        public System.Collections.Generic.List<ProbabilisticItemStack>? OutputItemStacks;
+        [DataMember(Name = "spawned_placeables")]
+        public System.Collections.Generic.List<ExtractionSpawnedPlaceable>? SpawnedPlaceables;
 
         public AbilityCustomDesc(
             int Id,
@@ -66,7 +84,16 @@ namespace BitCraftRegion.Types
             float GlobalCooldown,
             int LinkedAbilityBuffDescId,
             string Animation,
-            string IconPath
+            string IconPath,
+            System.Collections.Generic.List<int>? RequiredBuffIds,
+            bool ConsumeRequiredBuff,
+            bool PerformProfessionHit,
+            int ProfessionHitBonusDamage,
+            int ProfessionHitSkillId,
+            string Description,
+            System.Collections.Generic.List<InputItemStack>? InputItemStacks,
+            System.Collections.Generic.List<ProbabilisticItemStack>? OutputItemStacks,
+            System.Collections.Generic.List<ExtractionSpawnedPlaceable>? SpawnedPlaceables
         )
         {
             this.Id = Id;
@@ -86,6 +113,15 @@ namespace BitCraftRegion.Types
             this.LinkedAbilityBuffDescId = LinkedAbilityBuffDescId;
             this.Animation = Animation;
             this.IconPath = IconPath;
+            this.RequiredBuffIds = RequiredBuffIds;
+            this.ConsumeRequiredBuff = ConsumeRequiredBuff;
+            this.PerformProfessionHit = PerformProfessionHit;
+            this.ProfessionHitBonusDamage = ProfessionHitBonusDamage;
+            this.ProfessionHitSkillId = ProfessionHitSkillId;
+            this.Description = Description;
+            this.InputItemStacks = InputItemStacks;
+            this.OutputItemStacks = OutputItemStacks;
+            this.SpawnedPlaceables = SpawnedPlaceables;
         }
 
         public AbilityCustomDesc()
@@ -94,6 +130,7 @@ namespace BitCraftRegion.Types
             this.Buffs = new();
             this.Animation = "";
             this.IconPath = "";
+            this.Description = "";
         }
     }
 }
