@@ -10,12 +10,13 @@ import {
   type Infer as __Infer,
 } from "spacetimedb";
 import {
-  LevelRequirement,
-  ItemStack,
-  ToolRequirement,
   InputItemStack,
+  ItemStack,
+  LevelRequirement,
+  ToolRequirement,
   ExperienceStackF32,
   BuildingRequirement,
+  PlaceableSelfBuffChance,
 } from "./types";
 
 
@@ -56,4 +57,7 @@ export default __t.row({
   allowUseHands: __t.bool().name("allow_use_hands"),
   isPassive: __t.bool().name("is_passive"),
   showInProgression: __t.bool().name("show_in_progression"),
+  get selfBuffs() {
+    return __t.option(__t.array(PlaceableSelfBuffChance)).name("self_buffs");
+  },
 });

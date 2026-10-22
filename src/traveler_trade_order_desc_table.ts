@@ -10,9 +10,9 @@ import {
   type Infer as __Infer,
 } from "spacetimedb";
 import {
+  ItemStack,
   LevelRequirement,
   NpcType,
-  ItemStack,
 } from "./types";
 
 

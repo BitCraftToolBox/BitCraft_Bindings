@@ -10,9 +10,9 @@ import {
   type Infer as __Infer,
 } from "spacetimedb";
 import {
+  ProbabilisticItemStack,
   Rarity,
   ExperienceStackF32,
-  ProbabilisticItemStack,
 } from "./types";
 
 

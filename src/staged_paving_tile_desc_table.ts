@@ -10,8 +10,8 @@ import {
   type Infer as __Infer,
 } from "spacetimedb";
 import {
-  CsvStatEntry,
   InputItemStack,
+  CsvStatEntry,
   ExperienceStackF32,
 } from "./types";
 

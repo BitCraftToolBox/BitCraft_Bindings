@@ -170,6 +170,7 @@ import ImportEquipmentStateReducer from "../import_equipment_state_reducer";
 import ImportExperienceStateReducer from "../import_experience_state_reducer";
 import ImportExplorationChunksStateReducer from "../import_exploration_chunks_state_reducer";
 import ImportExtractionRecipeDescReducer from "../import_extraction_recipe_desc_reducer";
+import ImportFloatingPlatformDescReducer from "../import_floating_platform_desc_reducer";
 import ImportFoodDescReducer from "../import_food_desc_reducer";
 import ImportFootprintTileStateReducer from "../import_footprint_tile_state_reducer";
 import ImportGateDescReducer from "../import_gate_desc_reducer";
@@ -185,6 +186,8 @@ import ImportInteriorNetworkDescReducer from "../import_interior_network_desc_re
 import ImportInteriorPortalConnectionsDescReducer from "../import_interior_portal_connections_desc_reducer";
 import ImportInteriorShapeDescReducer from "../import_interior_shape_desc_reducer";
 import ImportInteriorSpawnDescReducer from "../import_interior_spawn_desc_reducer";
+import ImportInteriorSpawnDestroyTriggerDescReducer from "../import_interior_spawn_destroy_trigger_desc_reducer";
+import ImportInteriorSpawnRandomGroupDescReducer from "../import_interior_spawn_random_group_desc_reducer";
 import ImportInventoryStateReducer from "../import_inventory_state_reducer";
 import ImportItemConversionRecipeDescReducer from "../import_item_conversion_recipe_desc_reducer";
 import ImportItemDescReducer from "../import_item_desc_reducer";
@@ -350,6 +353,7 @@ import StageEnvironmentDebuffDescReducer from "../stage_environment_debuff_desc_
 import StageEquipmentDescReducer from "../stage_equipment_desc_reducer";
 import StageEquipmentPresetKnowledgeDescReducer from "../stage_equipment_preset_knowledge_desc_reducer";
 import StageExtractionRecipeDescReducer from "../stage_extraction_recipe_desc_reducer";
+import StageFloatingPlatformDescReducer from "../stage_floating_platform_desc_reducer";
 import StageFoodDescReducer from "../stage_food_desc_reducer";
 import StageGateDescReducer from "../stage_gate_desc_reducer";
 import StageHexiteExchangeEntryDescReducer from "../stage_hexite_exchange_entry_desc_reducer";
@@ -359,6 +363,8 @@ import StageInteriorNetworkDescReducer from "../stage_interior_network_desc_redu
 import StageInteriorPortalConnectionsDescReducer from "../stage_interior_portal_connections_desc_reducer";
 import StageInteriorShapeDescReducer from "../stage_interior_shape_desc_reducer";
 import StageInteriorSpawnDescReducer from "../stage_interior_spawn_desc_reducer";
+import StageInteriorSpawnDestroyTriggerDescReducer from "../stage_interior_spawn_destroy_trigger_desc_reducer";
+import StageInteriorSpawnRandomGroupDescReducer from "../stage_interior_spawn_random_group_desc_reducer";
 import StageItemConversionRecipeDescReducer from "../stage_item_conversion_recipe_desc_reducer";
 import StageItemDescReducer from "../stage_item_desc_reducer";
 import StageItemListDescReducer from "../stage_item_list_desc_reducer";
@@ -583,6 +589,7 @@ export type ImportEquipmentStateParams = __Infer<typeof ImportEquipmentStateRedu
 export type ImportExperienceStateParams = __Infer<typeof ImportExperienceStateReducer>;
 export type ImportExplorationChunksStateParams = __Infer<typeof ImportExplorationChunksStateReducer>;
 export type ImportExtractionRecipeDescParams = __Infer<typeof ImportExtractionRecipeDescReducer>;
+export type ImportFloatingPlatformDescParams = __Infer<typeof ImportFloatingPlatformDescReducer>;
 export type ImportFoodDescParams = __Infer<typeof ImportFoodDescReducer>;
 export type ImportFootprintTileStateParams = __Infer<typeof ImportFootprintTileStateReducer>;
 export type ImportGateDescParams = __Infer<typeof ImportGateDescReducer>;
@@ -598,6 +605,8 @@ export type ImportInteriorNetworkDescParams = __Infer<typeof ImportInteriorNetwo
 export type ImportInteriorPortalConnectionsDescParams = __Infer<typeof ImportInteriorPortalConnectionsDescReducer>;
 export type ImportInteriorShapeDescParams = __Infer<typeof ImportInteriorShapeDescReducer>;
 export type ImportInteriorSpawnDescParams = __Infer<typeof ImportInteriorSpawnDescReducer>;
+export type ImportInteriorSpawnDestroyTriggerDescParams = __Infer<typeof ImportInteriorSpawnDestroyTriggerDescReducer>;
+export type ImportInteriorSpawnRandomGroupDescParams = __Infer<typeof ImportInteriorSpawnRandomGroupDescReducer>;
 export type ImportInventoryStateParams = __Infer<typeof ImportInventoryStateReducer>;
 export type ImportItemConversionRecipeDescParams = __Infer<typeof ImportItemConversionRecipeDescReducer>;
 export type ImportItemDescParams = __Infer<typeof ImportItemDescReducer>;
@@ -763,6 +772,7 @@ export type StageEnvironmentDebuffDescParams = __Infer<typeof StageEnvironmentDe
 export type StageEquipmentDescParams = __Infer<typeof StageEquipmentDescReducer>;
 export type StageEquipmentPresetKnowledgeDescParams = __Infer<typeof StageEquipmentPresetKnowledgeDescReducer>;
 export type StageExtractionRecipeDescParams = __Infer<typeof StageExtractionRecipeDescReducer>;
+export type StageFloatingPlatformDescParams = __Infer<typeof StageFloatingPlatformDescReducer>;
 export type StageFoodDescParams = __Infer<typeof StageFoodDescReducer>;
 export type StageGateDescParams = __Infer<typeof StageGateDescReducer>;
 export type StageHexiteExchangeEntryDescParams = __Infer<typeof StageHexiteExchangeEntryDescReducer>;
@@ -772,6 +782,8 @@ export type StageInteriorNetworkDescParams = __Infer<typeof StageInteriorNetwork
 export type StageInteriorPortalConnectionsDescParams = __Infer<typeof StageInteriorPortalConnectionsDescReducer>;
 export type StageInteriorShapeDescParams = __Infer<typeof StageInteriorShapeDescReducer>;
 export type StageInteriorSpawnDescParams = __Infer<typeof StageInteriorSpawnDescReducer>;
+export type StageInteriorSpawnDestroyTriggerDescParams = __Infer<typeof StageInteriorSpawnDestroyTriggerDescReducer>;
+export type StageInteriorSpawnRandomGroupDescParams = __Infer<typeof StageInteriorSpawnRandomGroupDescReducer>;
 export type StageItemConversionRecipeDescParams = __Infer<typeof StageItemConversionRecipeDescReducer>;
 export type StageItemDescParams = __Infer<typeof StageItemDescReducer>;
 export type StageItemListDescParams = __Infer<typeof StageItemListDescReducer>;

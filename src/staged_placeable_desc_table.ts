@@ -33,4 +33,5 @@ export default __t.row({
   spawnsInWater: __t.bool().name("spawns_in_water"),
   waterDepthMin: __t.i32().name("water_depth_min"),
   waterDepthMax: __t.i32().name("water_depth_max"),
+  enemyParamsId: __t.option(__t.array(__t.i32())).name("enemy_params_id"),
 });

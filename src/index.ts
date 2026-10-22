@@ -196,6 +196,7 @@ import ImportEquipmentStateReducer from "./import_equipment_state_reducer";
 import ImportExperienceStateReducer from "./import_experience_state_reducer";
 import ImportExplorationChunksStateReducer from "./import_exploration_chunks_state_reducer";
 import ImportExtractionRecipeDescReducer from "./import_extraction_recipe_desc_reducer";
+import ImportFloatingPlatformDescReducer from "./import_floating_platform_desc_reducer";
 import ImportFoodDescReducer from "./import_food_desc_reducer";
 import ImportFootprintTileStateReducer from "./import_footprint_tile_state_reducer";
 import ImportGateDescReducer from "./import_gate_desc_reducer";
@@ -211,6 +212,8 @@ import ImportInteriorNetworkDescReducer from "./import_interior_network_desc_red
 import ImportInteriorPortalConnectionsDescReducer from "./import_interior_portal_connections_desc_reducer";
 import ImportInteriorShapeDescReducer from "./import_interior_shape_desc_reducer";
 import ImportInteriorSpawnDescReducer from "./import_interior_spawn_desc_reducer";
+import ImportInteriorSpawnDestroyTriggerDescReducer from "./import_interior_spawn_destroy_trigger_desc_reducer";
+import ImportInteriorSpawnRandomGroupDescReducer from "./import_interior_spawn_random_group_desc_reducer";
 import ImportInventoryStateReducer from "./import_inventory_state_reducer";
 import ImportItemConversionRecipeDescReducer from "./import_item_conversion_recipe_desc_reducer";
 import ImportItemDescReducer from "./import_item_desc_reducer";
@@ -376,6 +379,7 @@ import StageEnvironmentDebuffDescReducer from "./stage_environment_debuff_desc_r
 import StageEquipmentDescReducer from "./stage_equipment_desc_reducer";
 import StageEquipmentPresetKnowledgeDescReducer from "./stage_equipment_preset_knowledge_desc_reducer";
 import StageExtractionRecipeDescReducer from "./stage_extraction_recipe_desc_reducer";
+import StageFloatingPlatformDescReducer from "./stage_floating_platform_desc_reducer";
 import StageFoodDescReducer from "./stage_food_desc_reducer";
 import StageGateDescReducer from "./stage_gate_desc_reducer";
 import StageHexiteExchangeEntryDescReducer from "./stage_hexite_exchange_entry_desc_reducer";
@@ -385,6 +389,8 @@ import StageInteriorNetworkDescReducer from "./stage_interior_network_desc_reduc
 import StageInteriorPortalConnectionsDescReducer from "./stage_interior_portal_connections_desc_reducer";
 import StageInteriorShapeDescReducer from "./stage_interior_shape_desc_reducer";
 import StageInteriorSpawnDescReducer from "./stage_interior_spawn_desc_reducer";
+import StageInteriorSpawnDestroyTriggerDescReducer from "./stage_interior_spawn_destroy_trigger_desc_reducer";
+import StageInteriorSpawnRandomGroupDescReducer from "./stage_interior_spawn_random_group_desc_reducer";
 import StageItemConversionRecipeDescReducer from "./stage_item_conversion_recipe_desc_reducer";
 import StageItemDescReducer from "./stage_item_desc_reducer";
 import StageItemListDescReducer from "./stage_item_list_desc_reducer";
@@ -582,6 +588,7 @@ import ExplorationChunksStateV2Row from "./exploration_chunks_state_v_2_table";
 import ExtractOutcomeStateRow from "./extract_outcome_state_table";
 import ExtractOutcomeStateV1Row from "./extract_outcome_state_v_1_table";
 import ExtractionRecipeDescRow from "./extraction_recipe_desc_table";
+import FloatingPlatformDescRow from "./floating_platform_desc_table";
 import FoodDescRow from "./food_desc_table";
 import FootprintTileStateRow from "./footprint_tile_state_table";
 import ForceGenerateTypesRow from "./force_generate_types_table";
@@ -612,6 +619,9 @@ import InteriorPlayerCountStateRow from "./interior_player_count_state_table";
 import InteriorPortalConnectionsDescRow from "./interior_portal_connections_desc_table";
 import InteriorShapeDescRow from "./interior_shape_desc_table";
 import InteriorSpawnDescRow from "./interior_spawn_desc_table";
+import InteriorSpawnDestroyTriggerDescRow from "./interior_spawn_destroy_trigger_desc_table";
+import InteriorSpawnRandomGroupDescRow from "./interior_spawn_random_group_desc_table";
+import InteriorSpawnedResourceStateRow from "./interior_spawned_resource_state_table";
 import InventoryStateRow from "./inventory_state_table";
 import ItemConversionRecipeDescRow from "./item_conversion_recipe_desc_table";
 import ItemDescRow from "./item_desc_table";
@@ -803,6 +813,7 @@ import StagedEnvironmentDebuffDescRow from "./staged_environment_debuff_desc_tab
 import StagedEquipmentDescRow from "./staged_equipment_desc_table";
 import StagedEquipmentPresetKnowledgeDescRow from "./staged_equipment_preset_knowledge_desc_table";
 import StagedExtractionRecipeDescRow from "./staged_extraction_recipe_desc_table";
+import StagedFloatingPlatformDescRow from "./staged_floating_platform_desc_table";
 import StagedFoodDescRow from "./staged_food_desc_table";
 import StagedGateDescRow from "./staged_gate_desc_table";
 import StagedHexiteExchangeEntryDescRow from "./staged_hexite_exchange_entry_desc_table";
@@ -812,6 +823,8 @@ import StagedInteriorNetworkDescRow from "./staged_interior_network_desc_table";
 import StagedInteriorPortalConnectionsDescRow from "./staged_interior_portal_connections_desc_table";
 import StagedInteriorShapeDescRow from "./staged_interior_shape_desc_table";
 import StagedInteriorSpawnDescRow from "./staged_interior_spawn_desc_table";
+import StagedInteriorSpawnDestroyTriggerDescRow from "./staged_interior_spawn_destroy_trigger_desc_table";
+import StagedInteriorSpawnRandomGroupDescRow from "./staged_interior_spawn_random_group_desc_table";
 import StagedItemConversionRecipeDescRow from "./staged_item_conversion_recipe_desc_table";
 import StagedItemDescRow from "./staged_item_desc_table";
 import StagedItemListDescRow from "./staged_item_list_desc_table";
@@ -1308,6 +1321,10 @@ const tablesSchema = __schema({
       ] },
       { accessor: 'claim_entity_id', name: 'building_state_claim_entity_id_idx_btree', algorithm: 'btree', columns: [
         'claimEntityId',
+      ] },
+      { accessor: 'constructed_by_player_and_description', name: 'building_state_constructed_by_player_entity_id_building_description_id_idx_btree', algorithm: 'btree', columns: [
+        'constructedByPlayerEntityId',
+        'buildingDescriptionId',
       ] },
       { accessor: 'entity_id', name: 'building_state_entity_id_idx_btree', algorithm: 'btree', columns: [
         'entityId',
@@ -2717,6 +2734,17 @@ const tablesSchema = __schema({
       { name: 'extraction_recipe_desc_id_key', constraint: 'unique', columns: ['id'] },
     ],
   }, ExtractionRecipeDescRow),
+  floatingPlatformDesc: __table({
+    name: 'floating_platform_desc',
+    indexes: [
+      { accessor: 'building_id', name: 'floating_platform_desc_building_id_idx_btree', algorithm: 'btree', columns: [
+        'buildingId',
+      ] },
+    ],
+    constraints: [
+      { name: 'floating_platform_desc_building_id_key', constraint: 'unique', columns: ['buildingId'] },
+    ],
+  }, FloatingPlatformDescRow),
   foodDesc: __table({
     name: 'food_desc',
     indexes: [
@@ -3077,6 +3105,45 @@ const tablesSchema = __schema({
       { name: 'interior_spawn_desc_id_key', constraint: 'unique', columns: ['id'] },
     ],
   }, InteriorSpawnDescRow),
+  interiorSpawnDestroyTriggerDesc: __table({
+    name: 'interior_spawn_destroy_trigger_desc',
+    indexes: [
+      { accessor: 'id', name: 'interior_spawn_destroy_trigger_desc_id_idx_btree', algorithm: 'btree', columns: [
+        'id',
+      ] },
+    ],
+    constraints: [
+      { name: 'interior_spawn_destroy_trigger_desc_id_key', constraint: 'unique', columns: ['id'] },
+    ],
+  }, InteriorSpawnDestroyTriggerDescRow),
+  interiorSpawnRandomGroupDesc: __table({
+    name: 'interior_spawn_random_group_desc',
+    indexes: [
+      { accessor: 'id', name: 'interior_spawn_random_group_desc_id_idx_btree', algorithm: 'btree', columns: [
+        'id',
+      ] },
+    ],
+    constraints: [
+      { name: 'interior_spawn_random_group_desc_id_key', constraint: 'unique', columns: ['id'] },
+    ],
+  }, InteriorSpawnRandomGroupDescRow),
+  interiorSpawnedResourceState: __table({
+    name: 'interior_spawned_resource_state',
+    indexes: [
+      { accessor: 'dimension_id', name: 'interior_spawned_resource_state_dimension_id_idx_btree', algorithm: 'btree', columns: [
+        'dimensionId',
+      ] },
+      { accessor: 'entity_id', name: 'interior_spawned_resource_state_entity_id_idx_btree', algorithm: 'btree', columns: [
+        'entityId',
+      ] },
+      { accessor: 'interior_spawn_desc_id', name: 'interior_spawned_resource_state_interior_spawn_desc_id_idx_btree', algorithm: 'btree', columns: [
+        'interiorSpawnDescId',
+      ] },
+    ],
+    constraints: [
+      { name: 'interior_spawned_resource_state_entity_id_key', constraint: 'unique', columns: ['entityId'] },
+    ],
+  }, InteriorSpawnedResourceStateRow),
   inventoryState: __table({
     name: 'inventory_state',
     indexes: [
@@ -5339,6 +5406,17 @@ const tablesSchema = __schema({
       { name: 'staged_extraction_recipe_desc_id_key', constraint: 'unique', columns: ['id'] },
     ],
   }, StagedExtractionRecipeDescRow),
+  stagedFloatingPlatformDesc: __table({
+    name: 'staged_floating_platform_desc',
+    indexes: [
+      { accessor: 'building_id', name: 'staged_floating_platform_desc_building_id_idx_btree', algorithm: 'btree', columns: [
+        'buildingId',
+      ] },
+    ],
+    constraints: [
+      { name: 'staged_floating_platform_desc_building_id_key', constraint: 'unique', columns: ['buildingId'] },
+    ],
+  }, StagedFloatingPlatformDescRow),
   stagedFoodDesc: __table({
     name: 'staged_food_desc',
     indexes: [
@@ -5438,6 +5516,28 @@ const tablesSchema = __schema({
       { name: 'staged_interior_spawn_desc_id_key', constraint: 'unique', columns: ['id'] },
     ],
   }, StagedInteriorSpawnDescRow),
+  stagedInteriorSpawnDestroyTriggerDesc: __table({
+    name: 'staged_interior_spawn_destroy_trigger_desc',
+    indexes: [
+      { accessor: 'id', name: 'staged_interior_spawn_destroy_trigger_desc_id_idx_btree', algorithm: 'btree', columns: [
+        'id',
+      ] },
+    ],
+    constraints: [
+      { name: 'staged_interior_spawn_destroy_trigger_desc_id_key', constraint: 'unique', columns: ['id'] },
+    ],
+  }, StagedInteriorSpawnDestroyTriggerDescRow),
+  stagedInteriorSpawnRandomGroupDesc: __table({
+    name: 'staged_interior_spawn_random_group_desc',
+    indexes: [
+      { accessor: 'id', name: 'staged_interior_spawn_random_group_desc_id_idx_btree', algorithm: 'btree', columns: [
+        'id',
+      ] },
+    ],
+    constraints: [
+      { name: 'staged_interior_spawn_random_group_desc_id_key', constraint: 'unique', columns: ['id'] },
+    ],
+  }, StagedInteriorSpawnRandomGroupDescRow),
   stagedItemConversionRecipeDesc: __table({
     name: 'staged_item_conversion_recipe_desc',
     indexes: [
@@ -6719,6 +6819,7 @@ const reducersSchema = __reducers(
   __reducerSchema("import_experience_state", ImportExperienceStateReducer),
   __reducerSchema("import_exploration_chunks_state", ImportExplorationChunksStateReducer),
   __reducerSchema("import_extraction_recipe_desc", ImportExtractionRecipeDescReducer),
+  __reducerSchema("import_floating_platform_desc", ImportFloatingPlatformDescReducer),
   __reducerSchema("import_food_desc", ImportFoodDescReducer),
   __reducerSchema("import_footprint_tile_state", ImportFootprintTileStateReducer),
   __reducerSchema("import_gate_desc", ImportGateDescReducer),
@@ -6734,6 +6835,8 @@ const reducersSchema = __reducers(
   __reducerSchema("import_interior_portal_connections_desc", ImportInteriorPortalConnectionsDescReducer),
   __reducerSchema("import_interior_shape_desc", ImportInteriorShapeDescReducer),
   __reducerSchema("import_interior_spawn_desc", ImportInteriorSpawnDescReducer),
+  __reducerSchema("import_interior_spawn_destroy_trigger_desc", ImportInteriorSpawnDestroyTriggerDescReducer),
+  __reducerSchema("import_interior_spawn_random_group_desc", ImportInteriorSpawnRandomGroupDescReducer),
   __reducerSchema("import_inventory_state", ImportInventoryStateReducer),
   __reducerSchema("import_item_conversion_recipe_desc", ImportItemConversionRecipeDescReducer),
   __reducerSchema("import_item_desc", ImportItemDescReducer),
@@ -6899,6 +7002,7 @@ const reducersSchema = __reducers(
   __reducerSchema("stage_equipment_desc", StageEquipmentDescReducer),
   __reducerSchema("stage_equipment_preset_knowledge_desc", StageEquipmentPresetKnowledgeDescReducer),
   __reducerSchema("stage_extraction_recipe_desc", StageExtractionRecipeDescReducer),
+  __reducerSchema("stage_floating_platform_desc", StageFloatingPlatformDescReducer),
   __reducerSchema("stage_food_desc", StageFoodDescReducer),
   __reducerSchema("stage_gate_desc", StageGateDescReducer),
   __reducerSchema("stage_hexite_exchange_entry_desc", StageHexiteExchangeEntryDescReducer),
@@ -6908,6 +7012,8 @@ const reducersSchema = __reducers(
   __reducerSchema("stage_interior_portal_connections_desc", StageInteriorPortalConnectionsDescReducer),
   __reducerSchema("stage_interior_shape_desc", StageInteriorShapeDescReducer),
   __reducerSchema("stage_interior_spawn_desc", StageInteriorSpawnDescReducer),
+  __reducerSchema("stage_interior_spawn_destroy_trigger_desc", StageInteriorSpawnDestroyTriggerDescReducer),
+  __reducerSchema("stage_interior_spawn_random_group_desc", StageInteriorSpawnRandomGroupDescReducer),
   __reducerSchema("stage_item_conversion_recipe_desc", StageItemConversionRecipeDescReducer),
   __reducerSchema("stage_item_desc", StageItemDescReducer),
   __reducerSchema("stage_item_list_desc", StageItemListDescReducer),
@@ -7239,6 +7345,8 @@ type __SchemaWithTableAccessorAliases = Omit<typeof tablesSchema.schemaType, "ta
     readonly "extract_outcome_state_v1": Omit<typeof tablesSchema.schemaType.tables["extractOutcomeStateV1"], "accessorName"> & { readonly accessorName: "extract_outcome_state_v1" };
     /** @deprecated Use `extractionRecipeDesc` instead. This alias will be removed in the next major version. */
     readonly "extraction_recipe_desc": Omit<typeof tablesSchema.schemaType.tables["extractionRecipeDesc"], "accessorName"> & { readonly accessorName: "extraction_recipe_desc" };
+    /** @deprecated Use `floatingPlatformDesc` instead. This alias will be removed in the next major version. */
+    readonly "floating_platform_desc": Omit<typeof tablesSchema.schemaType.tables["floatingPlatformDesc"], "accessorName"> & { readonly accessorName: "floating_platform_desc" };
     /** @deprecated Use `foodDesc` instead. This alias will be removed in the next major version. */
     readonly "food_desc": Omit<typeof tablesSchema.schemaType.tables["foodDesc"], "accessorName"> & { readonly accessorName: "food_desc" };
     /** @deprecated Use `footprintTileState` instead. This alias will be removed in the next major version. */
@@ -7297,6 +7405,12 @@ type __SchemaWithTableAccessorAliases = Omit<typeof tablesSchema.schemaType, "ta
     readonly "interior_shape_desc": Omit<typeof tablesSchema.schemaType.tables["interiorShapeDesc"], "accessorName"> & { readonly accessorName: "interior_shape_desc" };
     /** @deprecated Use `interiorSpawnDesc` instead. This alias will be removed in the next major version. */
     readonly "interior_spawn_desc": Omit<typeof tablesSchema.schemaType.tables["interiorSpawnDesc"], "accessorName"> & { readonly accessorName: "interior_spawn_desc" };
+    /** @deprecated Use `interiorSpawnDestroyTriggerDesc` instead. This alias will be removed in the next major version. */
+    readonly "interior_spawn_destroy_trigger_desc": Omit<typeof tablesSchema.schemaType.tables["interiorSpawnDestroyTriggerDesc"], "accessorName"> & { readonly accessorName: "interior_spawn_destroy_trigger_desc" };
+    /** @deprecated Use `interiorSpawnRandomGroupDesc` instead. This alias will be removed in the next major version. */
+    readonly "interior_spawn_random_group_desc": Omit<typeof tablesSchema.schemaType.tables["interiorSpawnRandomGroupDesc"], "accessorName"> & { readonly accessorName: "interior_spawn_random_group_desc" };
+    /** @deprecated Use `interiorSpawnedResourceState` instead. This alias will be removed in the next major version. */
+    readonly "interior_spawned_resource_state": Omit<typeof tablesSchema.schemaType.tables["interiorSpawnedResourceState"], "accessorName"> & { readonly accessorName: "interior_spawned_resource_state" };
     /** @deprecated Use `inventoryState` instead. This alias will be removed in the next major version. */
     readonly "inventory_state": Omit<typeof tablesSchema.schemaType.tables["inventoryState"], "accessorName"> & { readonly accessorName: "inventory_state" };
     /** @deprecated Use `itemConversionRecipeDesc` instead. This alias will be removed in the next major version. */
@@ -7673,6 +7787,8 @@ type __SchemaWithTableAccessorAliases = Omit<typeof tablesSchema.schemaType, "ta
     readonly "staged_equipment_preset_knowledge_desc": Omit<typeof tablesSchema.schemaType.tables["stagedEquipmentPresetKnowledgeDesc"], "accessorName"> & { readonly accessorName: "staged_equipment_preset_knowledge_desc" };
     /** @deprecated Use `stagedExtractionRecipeDesc` instead. This alias will be removed in the next major version. */
     readonly "staged_extraction_recipe_desc": Omit<typeof tablesSchema.schemaType.tables["stagedExtractionRecipeDesc"], "accessorName"> & { readonly accessorName: "staged_extraction_recipe_desc" };
+    /** @deprecated Use `stagedFloatingPlatformDesc` instead. This alias will be removed in the next major version. */
+    readonly "staged_floating_platform_desc": Omit<typeof tablesSchema.schemaType.tables["stagedFloatingPlatformDesc"], "accessorName"> & { readonly accessorName: "staged_floating_platform_desc" };
     /** @deprecated Use `stagedFoodDesc` instead. This alias will be removed in the next major version. */
     readonly "staged_food_desc": Omit<typeof tablesSchema.schemaType.tables["stagedFoodDesc"], "accessorName"> & { readonly accessorName: "staged_food_desc" };
     /** @deprecated Use `stagedGateDesc` instead. This alias will be removed in the next major version. */
@@ -7691,6 +7807,10 @@ type __SchemaWithTableAccessorAliases = Omit<typeof tablesSchema.schemaType, "ta
     readonly "staged_interior_shape_desc": Omit<typeof tablesSchema.schemaType.tables["stagedInteriorShapeDesc"], "accessorName"> & { readonly accessorName: "staged_interior_shape_desc" };
     /** @deprecated Use `stagedInteriorSpawnDesc` instead. This alias will be removed in the next major version. */
     readonly "staged_interior_spawn_desc": Omit<typeof tablesSchema.schemaType.tables["stagedInteriorSpawnDesc"], "accessorName"> & { readonly accessorName: "staged_interior_spawn_desc" };
+    /** @deprecated Use `stagedInteriorSpawnDestroyTriggerDesc` instead. This alias will be removed in the next major version. */
+    readonly "staged_interior_spawn_destroy_trigger_desc": Omit<typeof tablesSchema.schemaType.tables["stagedInteriorSpawnDestroyTriggerDesc"], "accessorName"> & { readonly accessorName: "staged_interior_spawn_destroy_trigger_desc" };
+    /** @deprecated Use `stagedInteriorSpawnRandomGroupDesc` instead. This alias will be removed in the next major version. */
+    readonly "staged_interior_spawn_random_group_desc": Omit<typeof tablesSchema.schemaType.tables["stagedInteriorSpawnRandomGroupDesc"], "accessorName"> & { readonly accessorName: "staged_interior_spawn_random_group_desc" };
     /** @deprecated Use `stagedItemConversionRecipeDesc` instead. This alias will be removed in the next major version. */
     readonly "staged_item_conversion_recipe_desc": Omit<typeof tablesSchema.schemaType.tables["stagedItemConversionRecipeDesc"], "accessorName"> & { readonly accessorName: "staged_item_conversion_recipe_desc" };
     /** @deprecated Use `stagedItemDesc` instead. This alias will be removed in the next major version. */
@@ -8031,6 +8151,7 @@ const tableAccessorAliases = {
   "extract_outcome_state": "extractOutcomeState",
   "extract_outcome_state_v1": "extractOutcomeStateV1",
   "extraction_recipe_desc": "extractionRecipeDesc",
+  "floating_platform_desc": "floatingPlatformDesc",
   "food_desc": "foodDesc",
   "footprint_tile_state": "footprintTileState",
   "force_generate_types": "forceGenerateTypes",
@@ -8060,6 +8181,9 @@ const tableAccessorAliases = {
   "interior_portal_connections_desc": "interiorPortalConnectionsDesc",
   "interior_shape_desc": "interiorShapeDesc",
   "interior_spawn_desc": "interiorSpawnDesc",
+  "interior_spawn_destroy_trigger_desc": "interiorSpawnDestroyTriggerDesc",
+  "interior_spawn_random_group_desc": "interiorSpawnRandomGroupDesc",
+  "interior_spawned_resource_state": "interiorSpawnedResourceState",
   "inventory_state": "inventoryState",
   "item_conversion_recipe_desc": "itemConversionRecipeDesc",
   "item_desc": "itemDesc",
@@ -8248,6 +8372,7 @@ const tableAccessorAliases = {
   "staged_equipment_desc": "stagedEquipmentDesc",
   "staged_equipment_preset_knowledge_desc": "stagedEquipmentPresetKnowledgeDesc",
   "staged_extraction_recipe_desc": "stagedExtractionRecipeDesc",
+  "staged_floating_platform_desc": "stagedFloatingPlatformDesc",
   "staged_food_desc": "stagedFoodDesc",
   "staged_gate_desc": "stagedGateDesc",
   "staged_hexite_exchange_entry_desc": "stagedHexiteExchangeEntryDesc",
@@ -8257,6 +8382,8 @@ const tableAccessorAliases = {
   "staged_interior_portal_connections_desc": "stagedInteriorPortalConnectionsDesc",
   "staged_interior_shape_desc": "stagedInteriorShapeDesc",
   "staged_interior_spawn_desc": "stagedInteriorSpawnDesc",
+  "staged_interior_spawn_destroy_trigger_desc": "stagedInteriorSpawnDestroyTriggerDesc",
+  "staged_interior_spawn_random_group_desc": "stagedInteriorSpawnRandomGroupDesc",
   "staged_item_conversion_recipe_desc": "stagedItemConversionRecipeDesc",
   "staged_item_desc": "stagedItemDesc",
   "staged_item_list_desc": "stagedItemListDesc",
@@ -8636,6 +8763,8 @@ export type DbView = __DbViewBase & {
   readonly "extract_outcome_state_v1": __DbViewBase["extractOutcomeStateV1"];
   /** @deprecated Use `extractionRecipeDesc` instead. This alias will be removed in the next major version. */
   readonly "extraction_recipe_desc": __DbViewBase["extractionRecipeDesc"];
+  /** @deprecated Use `floatingPlatformDesc` instead. This alias will be removed in the next major version. */
+  readonly "floating_platform_desc": __DbViewBase["floatingPlatformDesc"];
   /** @deprecated Use `foodDesc` instead. This alias will be removed in the next major version. */
   readonly "food_desc": __DbViewBase["foodDesc"];
   /** @deprecated Use `footprintTileState` instead. This alias will be removed in the next major version. */
@@ -8694,6 +8823,12 @@ export type DbView = __DbViewBase & {
   readonly "interior_shape_desc": __DbViewBase["interiorShapeDesc"];
   /** @deprecated Use `interiorSpawnDesc` instead. This alias will be removed in the next major version. */
   readonly "interior_spawn_desc": __DbViewBase["interiorSpawnDesc"];
+  /** @deprecated Use `interiorSpawnDestroyTriggerDesc` instead. This alias will be removed in the next major version. */
+  readonly "interior_spawn_destroy_trigger_desc": __DbViewBase["interiorSpawnDestroyTriggerDesc"];
+  /** @deprecated Use `interiorSpawnRandomGroupDesc` instead. This alias will be removed in the next major version. */
+  readonly "interior_spawn_random_group_desc": __DbViewBase["interiorSpawnRandomGroupDesc"];
+  /** @deprecated Use `interiorSpawnedResourceState` instead. This alias will be removed in the next major version. */
+  readonly "interior_spawned_resource_state": __DbViewBase["interiorSpawnedResourceState"];
   /** @deprecated Use `inventoryState` instead. This alias will be removed in the next major version. */
   readonly "inventory_state": __DbViewBase["inventoryState"];
   /** @deprecated Use `itemConversionRecipeDesc` instead. This alias will be removed in the next major version. */
@@ -9070,6 +9205,8 @@ export type DbView = __DbViewBase & {
   readonly "staged_equipment_preset_knowledge_desc": __DbViewBase["stagedEquipmentPresetKnowledgeDesc"];
   /** @deprecated Use `stagedExtractionRecipeDesc` instead. This alias will be removed in the next major version. */
   readonly "staged_extraction_recipe_desc": __DbViewBase["stagedExtractionRecipeDesc"];
+  /** @deprecated Use `stagedFloatingPlatformDesc` instead. This alias will be removed in the next major version. */
+  readonly "staged_floating_platform_desc": __DbViewBase["stagedFloatingPlatformDesc"];
   /** @deprecated Use `stagedFoodDesc` instead. This alias will be removed in the next major version. */
   readonly "staged_food_desc": __DbViewBase["stagedFoodDesc"];
   /** @deprecated Use `stagedGateDesc` instead. This alias will be removed in the next major version. */
@@ -9088,6 +9225,10 @@ export type DbView = __DbViewBase & {
   readonly "staged_interior_shape_desc": __DbViewBase["stagedInteriorShapeDesc"];
   /** @deprecated Use `stagedInteriorSpawnDesc` instead. This alias will be removed in the next major version. */
   readonly "staged_interior_spawn_desc": __DbViewBase["stagedInteriorSpawnDesc"];
+  /** @deprecated Use `stagedInteriorSpawnDestroyTriggerDesc` instead. This alias will be removed in the next major version. */
+  readonly "staged_interior_spawn_destroy_trigger_desc": __DbViewBase["stagedInteriorSpawnDestroyTriggerDesc"];
+  /** @deprecated Use `stagedInteriorSpawnRandomGroupDesc` instead. This alias will be removed in the next major version. */
+  readonly "staged_interior_spawn_random_group_desc": __DbViewBase["stagedInteriorSpawnRandomGroupDesc"];
   /** @deprecated Use `stagedItemConversionRecipeDesc` instead. This alias will be removed in the next major version. */
   readonly "staged_item_conversion_recipe_desc": __DbViewBase["stagedItemConversionRecipeDesc"];
   /** @deprecated Use `stagedItemDesc` instead. This alias will be removed in the next major version. */
@@ -9546,6 +9687,8 @@ export type Tables = __TablesBase & {
   readonly "extract_outcome_state_v1": __TablesBase["extractOutcomeStateV1"];
   /** @deprecated Use `extractionRecipeDesc` instead. This alias will be removed in the next major version. */
   readonly "extraction_recipe_desc": __TablesBase["extractionRecipeDesc"];
+  /** @deprecated Use `floatingPlatformDesc` instead. This alias will be removed in the next major version. */
+  readonly "floating_platform_desc": __TablesBase["floatingPlatformDesc"];
   /** @deprecated Use `foodDesc` instead. This alias will be removed in the next major version. */
   readonly "food_desc": __TablesBase["foodDesc"];
   /** @deprecated Use `footprintTileState` instead. This alias will be removed in the next major version. */
@@ -9604,6 +9747,12 @@ export type Tables = __TablesBase & {
   readonly "interior_shape_desc": __TablesBase["interiorShapeDesc"];
   /** @deprecated Use `interiorSpawnDesc` instead. This alias will be removed in the next major version. */
   readonly "interior_spawn_desc": __TablesBase["interiorSpawnDesc"];
+  /** @deprecated Use `interiorSpawnDestroyTriggerDesc` instead. This alias will be removed in the next major version. */
+  readonly "interior_spawn_destroy_trigger_desc": __TablesBase["interiorSpawnDestroyTriggerDesc"];
+  /** @deprecated Use `interiorSpawnRandomGroupDesc` instead. This alias will be removed in the next major version. */
+  readonly "interior_spawn_random_group_desc": __TablesBase["interiorSpawnRandomGroupDesc"];
+  /** @deprecated Use `interiorSpawnedResourceState` instead. This alias will be removed in the next major version. */
+  readonly "interior_spawned_resource_state": __TablesBase["interiorSpawnedResourceState"];
   /** @deprecated Use `inventoryState` instead. This alias will be removed in the next major version. */
   readonly "inventory_state": __TablesBase["inventoryState"];
   /** @deprecated Use `itemConversionRecipeDesc` instead. This alias will be removed in the next major version. */
@@ -9980,6 +10129,8 @@ export type Tables = __TablesBase & {
   readonly "staged_equipment_preset_knowledge_desc": __TablesBase["stagedEquipmentPresetKnowledgeDesc"];
   /** @deprecated Use `stagedExtractionRecipeDesc` instead. This alias will be removed in the next major version. */
   readonly "staged_extraction_recipe_desc": __TablesBase["stagedExtractionRecipeDesc"];
+  /** @deprecated Use `stagedFloatingPlatformDesc` instead. This alias will be removed in the next major version. */
+  readonly "staged_floating_platform_desc": __TablesBase["stagedFloatingPlatformDesc"];
   /** @deprecated Use `stagedFoodDesc` instead. This alias will be removed in the next major version. */
   readonly "staged_food_desc": __TablesBase["stagedFoodDesc"];
   /** @deprecated Use `stagedGateDesc` instead. This alias will be removed in the next major version. */
@@ -9998,6 +10149,10 @@ export type Tables = __TablesBase & {
   readonly "staged_interior_shape_desc": __TablesBase["stagedInteriorShapeDesc"];
   /** @deprecated Use `stagedInteriorSpawnDesc` instead. This alias will be removed in the next major version. */
   readonly "staged_interior_spawn_desc": __TablesBase["stagedInteriorSpawnDesc"];
+  /** @deprecated Use `stagedInteriorSpawnDestroyTriggerDesc` instead. This alias will be removed in the next major version. */
+  readonly "staged_interior_spawn_destroy_trigger_desc": __TablesBase["stagedInteriorSpawnDestroyTriggerDesc"];
+  /** @deprecated Use `stagedInteriorSpawnRandomGroupDesc` instead. This alias will be removed in the next major version. */
+  readonly "staged_interior_spawn_random_group_desc": __TablesBase["stagedInteriorSpawnRandomGroupDesc"];
   /** @deprecated Use `stagedItemConversionRecipeDesc` instead. This alias will be removed in the next major version. */
   readonly "staged_item_conversion_recipe_desc": __TablesBase["stagedItemConversionRecipeDesc"];
   /** @deprecated Use `stagedItemDesc` instead. This alias will be removed in the next major version. */
