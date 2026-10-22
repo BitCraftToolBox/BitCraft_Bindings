@@ -81,6 +81,16 @@ export namespace EnemyType {
   export type EnragedAlphaJakyl = { tag: "EnragedAlphaJakyl" };
   export type DeerSwift = { tag: "DeerSwift" };
   export type CrystalizedHexiteCrab = { tag: "CrystalizedHexiteCrab" };
+  export type DistractedSagiBird = { tag: "DistractedSagiBird" };
+  export type DistractedNubiGoat = { tag: "DistractedNubiGoat" };
+  export type DistractedCervus = { tag: "DistractedCervus" };
+  export type DistractedScrofa = { tag: "DistractedScrofa" };
+  export type DistractedOx = { tag: "DistractedOx" };
+  export type DistractedYagiGoat = { tag: "DistractedYagiGoat" };
+  export type DistractedJungleTerrorBird = { tag: "DistractedJungleTerrorBird" };
+  export type DistractedElderScrofa = { tag: "DistractedElderScrofa" };
+  export type DistractedTundraOx = { tag: "DistractedTundraOx" };
+  export type DistractedDesertTerrorbird = { tag: "DistractedDesertTerrorbird" };
 
   // Helper functions for constructing each variant of the tagged union.
   // ```
@@ -132,6 +142,16 @@ export namespace EnemyType {
   export const EnragedAlphaJakyl = { tag: "EnragedAlphaJakyl" };
   export const DeerSwift = { tag: "DeerSwift" };
   export const CrystalizedHexiteCrab = { tag: "CrystalizedHexiteCrab" };
+  export const DistractedSagiBird = { tag: "DistractedSagiBird" };
+  export const DistractedNubiGoat = { tag: "DistractedNubiGoat" };
+  export const DistractedCervus = { tag: "DistractedCervus" };
+  export const DistractedScrofa = { tag: "DistractedScrofa" };
+  export const DistractedOx = { tag: "DistractedOx" };
+  export const DistractedYagiGoat = { tag: "DistractedYagiGoat" };
+  export const DistractedJungleTerrorBird = { tag: "DistractedJungleTerrorBird" };
+  export const DistractedElderScrofa = { tag: "DistractedElderScrofa" };
+  export const DistractedTundraOx = { tag: "DistractedTundraOx" };
+  export const DistractedDesertTerrorbird = { tag: "DistractedDesertTerrorbird" };
 
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createSumType([
@@ -179,6 +199,16 @@ export namespace EnemyType {
       new SumTypeVariant("EnragedAlphaJakyl", AlgebraicType.createProductType([])),
       new SumTypeVariant("DeerSwift", AlgebraicType.createProductType([])),
       new SumTypeVariant("CrystalizedHexiteCrab", AlgebraicType.createProductType([])),
+      new SumTypeVariant("DistractedSagiBird", AlgebraicType.createProductType([])),
+      new SumTypeVariant("DistractedNubiGoat", AlgebraicType.createProductType([])),
+      new SumTypeVariant("DistractedCervus", AlgebraicType.createProductType([])),
+      new SumTypeVariant("DistractedScrofa", AlgebraicType.createProductType([])),
+      new SumTypeVariant("DistractedOx", AlgebraicType.createProductType([])),
+      new SumTypeVariant("DistractedYagiGoat", AlgebraicType.createProductType([])),
+      new SumTypeVariant("DistractedJungleTerrorBird", AlgebraicType.createProductType([])),
+      new SumTypeVariant("DistractedElderScrofa", AlgebraicType.createProductType([])),
+      new SumTypeVariant("DistractedTundraOx", AlgebraicType.createProductType([])),
+      new SumTypeVariant("DistractedDesertTerrorbird", AlgebraicType.createProductType([])),
     ]);
   }
 
@@ -193,7 +223,7 @@ export namespace EnemyType {
 }
 
 // The tagged union or sum type for the algebraic type `EnemyType`.
-export type EnemyType = EnemyType.None | EnemyType.PracticeDummy | EnemyType.GrassBird | EnemyType.DesertBird | EnemyType.SwampBird | EnemyType.Goat | EnemyType.MountainGoat | EnemyType.DeerFemale | EnemyType.DeerMale | EnemyType.Elk | EnemyType.BoarFemale | EnemyType.BoarMale | EnemyType.BoarElder | EnemyType.PlainsOx | EnemyType.TundraOx | EnemyType.JungleLargeBird | EnemyType.DesertLargeBird | EnemyType.Jakyl | EnemyType.AlphaJakyl | EnemyType.KingJakyl | EnemyType.RockCrab | EnemyType.DesertCrab | EnemyType.FrostCrab | EnemyType.ForestToad | EnemyType.SwampToad | EnemyType.FrostToad | EnemyType.Umbura | EnemyType.AlphaUmbura | EnemyType.KingUmbura | EnemyType.Drone | EnemyType.Soldier | EnemyType.Queen | EnemyType.Sentinel | EnemyType.SentinelDungeonJakyl | EnemyType.SentinelDungeonSkitch | EnemyType.SentinelDungeonLargeJakyl | EnemyType.CrabDungeonCrabBoss | EnemyType.CrabDungeonCrabTrash | EnemyType.SpiderDungeonEliteSpider | EnemyType.SpiderDungeonSmallSpider | EnemyType.SpiderDungeonSpiderNest | EnemyType.EnragedAlphaJakyl | EnemyType.DeerSwift | EnemyType.CrystalizedHexiteCrab;
+export type EnemyType = EnemyType.None | EnemyType.PracticeDummy | EnemyType.GrassBird | EnemyType.DesertBird | EnemyType.SwampBird | EnemyType.Goat | EnemyType.MountainGoat | EnemyType.DeerFemale | EnemyType.DeerMale | EnemyType.Elk | EnemyType.BoarFemale | EnemyType.BoarMale | EnemyType.BoarElder | EnemyType.PlainsOx | EnemyType.TundraOx | EnemyType.JungleLargeBird | EnemyType.DesertLargeBird | EnemyType.Jakyl | EnemyType.AlphaJakyl | EnemyType.KingJakyl | EnemyType.RockCrab | EnemyType.DesertCrab | EnemyType.FrostCrab | EnemyType.ForestToad | EnemyType.SwampToad | EnemyType.FrostToad | EnemyType.Umbura | EnemyType.AlphaUmbura | EnemyType.KingUmbura | EnemyType.Drone | EnemyType.Soldier | EnemyType.Queen | EnemyType.Sentinel | EnemyType.SentinelDungeonJakyl | EnemyType.SentinelDungeonSkitch | EnemyType.SentinelDungeonLargeJakyl | EnemyType.CrabDungeonCrabBoss | EnemyType.CrabDungeonCrabTrash | EnemyType.SpiderDungeonEliteSpider | EnemyType.SpiderDungeonSmallSpider | EnemyType.SpiderDungeonSpiderNest | EnemyType.EnragedAlphaJakyl | EnemyType.DeerSwift | EnemyType.CrystalizedHexiteCrab | EnemyType.DistractedSagiBird | EnemyType.DistractedNubiGoat | EnemyType.DistractedCervus | EnemyType.DistractedScrofa | EnemyType.DistractedOx | EnemyType.DistractedYagiGoat | EnemyType.DistractedJungleTerrorBird | EnemyType.DistractedElderScrofa | EnemyType.DistractedTundraOx | EnemyType.DistractedDesertTerrorbird;
 
 export default EnemyType;
 

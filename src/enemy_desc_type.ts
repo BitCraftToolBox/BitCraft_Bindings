@@ -32,9 +32,9 @@ import {
   type ReducerEventContextInterface,
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
+import { ProbabilisticItemStack as __ProbabilisticItemStack } from "./probabilistic_item_stack_type";
 import { Rarity as __Rarity } from "./rarity_type";
 import { ExperienceStackF32 as __ExperienceStackF32 } from "./experience_stack_f_32_type";
-import { ProbabilisticItemStack as __ProbabilisticItemStack } from "./probabilistic_item_stack_type";
 
 export type EnemyDesc = {
   enemyType: number,

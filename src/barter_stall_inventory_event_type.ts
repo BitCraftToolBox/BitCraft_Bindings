@@ -32,8 +32,8 @@ import {
   type ReducerEventContextInterface,
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
-import { BarterStallInventoryChangeReason as __BarterStallInventoryChangeReason } from "./barter_stall_inventory_change_reason_type";
 import { ItemStack as __ItemStack } from "./item_stack_type";
+import { BarterStallInventoryChangeReason as __BarterStallInventoryChangeReason } from "./barter_stall_inventory_change_reason_type";
 
 export type BarterStallInventoryEvent = {
   shopEntityId: bigint,

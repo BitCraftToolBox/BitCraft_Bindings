@@ -32,8 +32,8 @@ import {
   type ReducerEventContextInterface,
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
-import { ToolRequirement as __ToolRequirement } from "./tool_requirement_type";
 import { ProbabilisticItemStack as __ProbabilisticItemStack } from "./probabilistic_item_stack_type";
+import { ToolRequirement as __ToolRequirement } from "./tool_requirement_type";
 
 export type TerraformRecipeDesc = {
   difference: number,

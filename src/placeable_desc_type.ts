@@ -51,6 +51,7 @@ export type PlaceableDesc = {
   spawnsInWater: boolean,
   waterDepthMin: number,
   waterDepthMax: number,
+  enemyParamsId: number[] | undefined,
 };
 
 /**
@@ -79,6 +80,7 @@ export namespace PlaceableDesc {
       new ProductTypeElement("spawnsInWater", AlgebraicType.createBoolType()),
       new ProductTypeElement("waterDepthMin", AlgebraicType.createI32Type()),
       new ProductTypeElement("waterDepthMax", AlgebraicType.createI32Type()),
+      new ProductTypeElement("enemyParamsId", AlgebraicType.createOptionType(AlgebraicType.createArrayType(AlgebraicType.createI32Type()))),
     ]);
   }
 

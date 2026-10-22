@@ -754,6 +754,8 @@ import { ImportExplorationChunksState } from "./import_exploration_chunks_state_
 export { ImportExplorationChunksState };
 import { ImportExtractionRecipeDesc } from "./import_extraction_recipe_desc_reducer.ts";
 export { ImportExtractionRecipeDesc };
+import { ImportFloatingPlatformDesc } from "./import_floating_platform_desc_reducer.ts";
+export { ImportFloatingPlatformDesc };
 import { ImportFoodDesc } from "./import_food_desc_reducer.ts";
 export { ImportFoodDesc };
 import { ImportFootprintTileState } from "./import_footprint_tile_state_reducer.ts";
@@ -786,6 +788,10 @@ import { ImportInteriorShapeDesc } from "./import_interior_shape_desc_reducer.ts
 export { ImportInteriorShapeDesc };
 import { ImportInteriorSpawnDesc } from "./import_interior_spawn_desc_reducer.ts";
 export { ImportInteriorSpawnDesc };
+import { ImportInteriorSpawnDestroyTriggerDesc } from "./import_interior_spawn_destroy_trigger_desc_reducer.ts";
+export { ImportInteriorSpawnDestroyTriggerDesc };
+import { ImportInteriorSpawnRandomGroupDesc } from "./import_interior_spawn_random_group_desc_reducer.ts";
+export { ImportInteriorSpawnRandomGroupDesc };
 import { ImportInventoryState } from "./import_inventory_state_reducer.ts";
 export { ImportInventoryState };
 import { ImportItemConversionRecipeDesc } from "./import_item_conversion_recipe_desc_reducer.ts";
@@ -1212,6 +1218,8 @@ import { ProspectCancel } from "./prospect_cancel_reducer.ts";
 export { ProspectCancel };
 import { ProspectStart } from "./prospect_start_reducer.ts";
 export { ProspectStart };
+import { RefreshPlayerKnowledgesScheduled } from "./refresh_player_knowledges_scheduled_reducer.ts";
+export { RefreshPlayerKnowledgesScheduled };
 import { RegionPopuplationAgentLoop } from "./region_popuplation_agent_loop_reducer.ts";
 export { RegionPopuplationAgentLoop };
 import { RentAddListing } from "./rent_add_listing_reducer.ts";
@@ -1382,6 +1390,8 @@ import { StageEquipmentPresetKnowledgeDesc } from "./stage_equipment_preset_know
 export { StageEquipmentPresetKnowledgeDesc };
 import { StageExtractionRecipeDesc } from "./stage_extraction_recipe_desc_reducer.ts";
 export { StageExtractionRecipeDesc };
+import { StageFloatingPlatformDesc } from "./stage_floating_platform_desc_reducer.ts";
+export { StageFloatingPlatformDesc };
 import { StageFoodDesc } from "./stage_food_desc_reducer.ts";
 export { StageFoodDesc };
 import { StageGateDesc } from "./stage_gate_desc_reducer.ts";
@@ -1400,6 +1410,10 @@ import { StageInteriorShapeDesc } from "./stage_interior_shape_desc_reducer.ts";
 export { StageInteriorShapeDesc };
 import { StageInteriorSpawnDesc } from "./stage_interior_spawn_desc_reducer.ts";
 export { StageInteriorSpawnDesc };
+import { StageInteriorSpawnDestroyTriggerDesc } from "./stage_interior_spawn_destroy_trigger_desc_reducer.ts";
+export { StageInteriorSpawnDestroyTriggerDesc };
+import { StageInteriorSpawnRandomGroupDesc } from "./stage_interior_spawn_random_group_desc_reducer.ts";
+export { StageInteriorSpawnRandomGroupDesc };
 import { StageItemConversionRecipeDesc } from "./stage_item_conversion_recipe_desc_reducer.ts";
 export { StageItemConversionRecipeDesc };
 import { StageItemDesc } from "./stage_item_desc_reducer.ts";
@@ -1902,6 +1916,8 @@ import { ExtractStartEventTableHandle } from "./extract_start_event_table.ts";
 export { ExtractStartEventTableHandle };
 import { ExtractionRecipeDescTableHandle } from "./extraction_recipe_desc_table.ts";
 export { ExtractionRecipeDescTableHandle };
+import { FloatingPlatformDescTableHandle } from "./floating_platform_desc_table.ts";
+export { FloatingPlatformDescTableHandle };
 import { FoodDescTableHandle } from "./food_desc_table.ts";
 export { FoodDescTableHandle };
 import { FootprintTileStateTableHandle } from "./footprint_tile_state_table.ts";
@@ -1964,6 +1980,12 @@ import { InteriorShapeDescTableHandle } from "./interior_shape_desc_table.ts";
 export { InteriorShapeDescTableHandle };
 import { InteriorSpawnDescTableHandle } from "./interior_spawn_desc_table.ts";
 export { InteriorSpawnDescTableHandle };
+import { InteriorSpawnDestroyTriggerDescTableHandle } from "./interior_spawn_destroy_trigger_desc_table.ts";
+export { InteriorSpawnDestroyTriggerDescTableHandle };
+import { InteriorSpawnRandomGroupDescTableHandle } from "./interior_spawn_random_group_desc_table.ts";
+export { InteriorSpawnRandomGroupDescTableHandle };
+import { InteriorSpawnedResourceStateTableHandle } from "./interior_spawned_resource_state_table.ts";
+export { InteriorSpawnedResourceStateTableHandle };
 import { InventoryStateTableHandle } from "./inventory_state_table.ts";
 export { InventoryStateTableHandle };
 import { ItemConversionRecipeDescTableHandle } from "./item_conversion_recipe_desc_table.ts";
@@ -2232,6 +2254,8 @@ import { QuestDropDescTableHandle } from "./quest_drop_desc_table.ts";
 export { QuestDropDescTableHandle };
 import { QuestStageDescTableHandle } from "./quest_stage_desc_table.ts";
 export { QuestStageDescTableHandle };
+import { RefreshPlayerKnowledgesTimerTableHandle } from "./refresh_player_knowledges_timer_table.ts";
+export { RefreshPlayerKnowledgesTimerTableHandle };
 import { RegionConnectionInfoTableHandle } from "./region_connection_info_table.ts";
 export { RegionConnectionInfoTableHandle };
 import { RegionControlInfoTableHandle } from "./region_control_info_table.ts";
@@ -2412,6 +2436,8 @@ import { StagedEquipmentPresetKnowledgeDescTableHandle } from "./staged_equipmen
 export { StagedEquipmentPresetKnowledgeDescTableHandle };
 import { StagedExtractionRecipeDescTableHandle } from "./staged_extraction_recipe_desc_table.ts";
 export { StagedExtractionRecipeDescTableHandle };
+import { StagedFloatingPlatformDescTableHandle } from "./staged_floating_platform_desc_table.ts";
+export { StagedFloatingPlatformDescTableHandle };
 import { StagedFoodDescTableHandle } from "./staged_food_desc_table.ts";
 export { StagedFoodDescTableHandle };
 import { StagedGateDescTableHandle } from "./staged_gate_desc_table.ts";
@@ -2430,6 +2456,10 @@ import { StagedInteriorShapeDescTableHandle } from "./staged_interior_shape_desc
 export { StagedInteriorShapeDescTableHandle };
 import { StagedInteriorSpawnDescTableHandle } from "./staged_interior_spawn_desc_table.ts";
 export { StagedInteriorSpawnDescTableHandle };
+import { StagedInteriorSpawnDestroyTriggerDescTableHandle } from "./staged_interior_spawn_destroy_trigger_desc_table.ts";
+export { StagedInteriorSpawnDestroyTriggerDescTableHandle };
+import { StagedInteriorSpawnRandomGroupDescTableHandle } from "./staged_interior_spawn_random_group_desc_table.ts";
+export { StagedInteriorSpawnRandomGroupDescTableHandle };
 import { StagedItemConversionRecipeDescTableHandle } from "./staged_item_conversion_recipe_desc_table.ts";
 export { StagedItemConversionRecipeDescTableHandle };
 import { StagedItemDescTableHandle } from "./staged_item_desc_table.ts";
@@ -3182,6 +3212,8 @@ import { ExtractionSpawnedPlaceable } from "./extraction_spawned_placeable_type.
 export { ExtractionSpawnedPlaceable };
 import { FloatHexTileMessage } from "./float_hex_tile_message_type.ts";
 export { FloatHexTileMessage };
+import { FloatingPlatformDesc } from "./floating_platform_desc_type.ts";
+export { FloatingPlatformDesc };
 import { FoodDesc } from "./food_desc_type.ts";
 export { FoodDesc };
 import { FootprintTile } from "./footprint_tile_type.ts";
@@ -3270,8 +3302,14 @@ import { InteriorShapeDesc } from "./interior_shape_desc_type.ts";
 export { InteriorShapeDesc };
 import { InteriorSpawnDesc } from "./interior_spawn_desc_type.ts";
 export { InteriorSpawnDesc };
+import { InteriorSpawnDestroyTriggerDesc } from "./interior_spawn_destroy_trigger_desc_type.ts";
+export { InteriorSpawnDestroyTriggerDesc };
+import { InteriorSpawnRandomGroupDesc } from "./interior_spawn_random_group_desc_type.ts";
+export { InteriorSpawnRandomGroupDesc };
 import { InteriorSpawnType } from "./interior_spawn_type_type.ts";
 export { InteriorSpawnType };
+import { InteriorSpawnedResourceState } from "./interior_spawned_resource_state_type.ts";
+export { InteriorSpawnedResourceState };
 import { InventoryState } from "./inventory_state_type.ts";
 export { InventoryState };
 import { ItemConversionLocationContext } from "./item_conversion_location_context_type.ts";
@@ -3848,6 +3886,8 @@ import { Rarity } from "./rarity_type.ts";
 export { Rarity };
 import { RecoverDeployableMsg } from "./recover_deployable_msg_type.ts";
 export { RecoverDeployableMsg };
+import { RefreshPlayerKnowledgesTimer } from "./refresh_player_knowledges_timer_type.ts";
+export { RefreshPlayerKnowledgesTimer };
 import { RegionConnectionInfo } from "./region_connection_info_type.ts";
 export { RegionConnectionInfo };
 import { RegionConnectionInfoOp } from "./region_connection_info_op_type.ts";
@@ -5537,6 +5577,15 @@ export const REMOTE_MODULE = {
         colType: ExtractionRecipeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    floating_platform_desc: {
+      tableName: "floating_platform_desc",
+      rowType: FloatingPlatformDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "buildingId",
+      primaryKeyInfo: {
+        colName: "buildingId",
+        colType: FloatingPlatformDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     food_desc: {
       tableName: "food_desc",
       rowType: FoodDesc.getTypeScriptAlgebraicType(),
@@ -5809,6 +5858,33 @@ export const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "id",
         colType: InteriorSpawnDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    interior_spawn_destroy_trigger_desc: {
+      tableName: "interior_spawn_destroy_trigger_desc",
+      rowType: InteriorSpawnDestroyTriggerDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: InteriorSpawnDestroyTriggerDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    interior_spawn_random_group_desc: {
+      tableName: "interior_spawn_random_group_desc",
+      rowType: InteriorSpawnRandomGroupDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: InteriorSpawnRandomGroupDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    interior_spawned_resource_state: {
+      tableName: "interior_spawned_resource_state",
+      rowType: InteriorSpawnedResourceState.getTypeScriptAlgebraicType(),
+      primaryKey: "entityId",
+      primaryKeyInfo: {
+        colName: "entityId",
+        colType: InteriorSpawnedResourceState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     inventory_state: {
@@ -6892,6 +6968,15 @@ export const REMOTE_MODULE = {
         colType: QuestStageDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    refresh_player_knowledges_timer: {
+      tableName: "refresh_player_knowledges_timer",
+      rowType: RefreshPlayerKnowledgesTimer.getTypeScriptAlgebraicType(),
+      primaryKey: "scheduledId",
+      primaryKeyInfo: {
+        colName: "scheduledId",
+        colType: RefreshPlayerKnowledgesTimer.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     region_connection_info: {
       tableName: "region_connection_info",
       rowType: RegionConnectionInfo.getTypeScriptAlgebraicType(),
@@ -7667,6 +7752,15 @@ export const REMOTE_MODULE = {
         colType: ExtractionRecipeDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    staged_floating_platform_desc: {
+      tableName: "staged_floating_platform_desc",
+      rowType: FloatingPlatformDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "buildingId",
+      primaryKeyInfo: {
+        colName: "buildingId",
+        colType: FloatingPlatformDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     staged_food_desc: {
       tableName: "staged_food_desc",
       rowType: FoodDesc.getTypeScriptAlgebraicType(),
@@ -7746,6 +7840,24 @@ export const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "id",
         colType: InteriorSpawnDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_interior_spawn_destroy_trigger_desc: {
+      tableName: "staged_interior_spawn_destroy_trigger_desc",
+      rowType: InteriorSpawnDestroyTriggerDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: InteriorSpawnDestroyTriggerDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_interior_spawn_random_group_desc: {
+      tableName: "staged_interior_spawn_random_group_desc",
+      rowType: InteriorSpawnRandomGroupDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: InteriorSpawnRandomGroupDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     staged_item_conversion_recipe_desc: {
@@ -10067,6 +10179,10 @@ export const REMOTE_MODULE = {
       reducerName: "import_extraction_recipe_desc",
       argsType: ImportExtractionRecipeDesc.getTypeScriptAlgebraicType(),
     },
+    import_floating_platform_desc: {
+      reducerName: "import_floating_platform_desc",
+      argsType: ImportFloatingPlatformDesc.getTypeScriptAlgebraicType(),
+    },
     import_food_desc: {
       reducerName: "import_food_desc",
       argsType: ImportFoodDesc.getTypeScriptAlgebraicType(),
@@ -10130,6 +10246,14 @@ export const REMOTE_MODULE = {
     import_interior_spawn_desc: {
       reducerName: "import_interior_spawn_desc",
       argsType: ImportInteriorSpawnDesc.getTypeScriptAlgebraicType(),
+    },
+    import_interior_spawn_destroy_trigger_desc: {
+      reducerName: "import_interior_spawn_destroy_trigger_desc",
+      argsType: ImportInteriorSpawnDestroyTriggerDesc.getTypeScriptAlgebraicType(),
+    },
+    import_interior_spawn_random_group_desc: {
+      reducerName: "import_interior_spawn_random_group_desc",
+      argsType: ImportInteriorSpawnRandomGroupDesc.getTypeScriptAlgebraicType(),
     },
     import_inventory_state: {
       reducerName: "import_inventory_state",
@@ -10983,6 +11107,10 @@ export const REMOTE_MODULE = {
       reducerName: "prospect_start",
       argsType: ProspectStart.getTypeScriptAlgebraicType(),
     },
+    refresh_player_knowledges_scheduled: {
+      reducerName: "refresh_player_knowledges_scheduled",
+      argsType: RefreshPlayerKnowledgesScheduled.getTypeScriptAlgebraicType(),
+    },
     region_popuplation_agent_loop: {
       reducerName: "region_popuplation_agent_loop",
       argsType: RegionPopuplationAgentLoop.getTypeScriptAlgebraicType(),
@@ -11323,6 +11451,10 @@ export const REMOTE_MODULE = {
       reducerName: "stage_extraction_recipe_desc",
       argsType: StageExtractionRecipeDesc.getTypeScriptAlgebraicType(),
     },
+    stage_floating_platform_desc: {
+      reducerName: "stage_floating_platform_desc",
+      argsType: StageFloatingPlatformDesc.getTypeScriptAlgebraicType(),
+    },
     stage_food_desc: {
       reducerName: "stage_food_desc",
       argsType: StageFoodDesc.getTypeScriptAlgebraicType(),
@@ -11358,6 +11490,14 @@ export const REMOTE_MODULE = {
     stage_interior_spawn_desc: {
       reducerName: "stage_interior_spawn_desc",
       argsType: StageInteriorSpawnDesc.getTypeScriptAlgebraicType(),
+    },
+    stage_interior_spawn_destroy_trigger_desc: {
+      reducerName: "stage_interior_spawn_destroy_trigger_desc",
+      argsType: StageInteriorSpawnDestroyTriggerDesc.getTypeScriptAlgebraicType(),
+    },
+    stage_interior_spawn_random_group_desc: {
+      reducerName: "stage_interior_spawn_random_group_desc",
+      argsType: StageInteriorSpawnRandomGroupDesc.getTypeScriptAlgebraicType(),
     },
     stage_item_conversion_recipe_desc: {
       reducerName: "stage_item_conversion_recipe_desc",
@@ -12081,6 +12221,7 @@ export type Reducer = never
 | { name: "ImportExperienceState", args: ImportExperienceState }
 | { name: "ImportExplorationChunksState", args: ImportExplorationChunksState }
 | { name: "ImportExtractionRecipeDesc", args: ImportExtractionRecipeDesc }
+| { name: "ImportFloatingPlatformDesc", args: ImportFloatingPlatformDesc }
 | { name: "ImportFoodDesc", args: ImportFoodDesc }
 | { name: "ImportFootprintTileState", args: ImportFootprintTileState }
 | { name: "ImportGateDesc", args: ImportGateDesc }
@@ -12097,6 +12238,8 @@ export type Reducer = never
 | { name: "ImportInteriorPortalConnectionsDesc", args: ImportInteriorPortalConnectionsDesc }
 | { name: "ImportInteriorShapeDesc", args: ImportInteriorShapeDesc }
 | { name: "ImportInteriorSpawnDesc", args: ImportInteriorSpawnDesc }
+| { name: "ImportInteriorSpawnDestroyTriggerDesc", args: ImportInteriorSpawnDestroyTriggerDesc }
+| { name: "ImportInteriorSpawnRandomGroupDesc", args: ImportInteriorSpawnRandomGroupDesc }
 | { name: "ImportInventoryState", args: ImportInventoryState }
 | { name: "ImportItemConversionRecipeDesc", args: ImportItemConversionRecipeDesc }
 | { name: "ImportItemDesc", args: ImportItemDesc }
@@ -12310,6 +12453,7 @@ export type Reducer = never
 | { name: "Prospect", args: Prospect }
 | { name: "ProspectCancel", args: ProspectCancel }
 | { name: "ProspectStart", args: ProspectStart }
+| { name: "RefreshPlayerKnowledgesScheduled", args: RefreshPlayerKnowledgesScheduled }
 | { name: "RegionPopuplationAgentLoop", args: RegionPopuplationAgentLoop }
 | { name: "RentAddListing", args: RentAddListing }
 | { name: "RentAddTenant", args: RentAddTenant }
@@ -12395,6 +12539,7 @@ export type Reducer = never
 | { name: "StageEquipmentDesc", args: StageEquipmentDesc }
 | { name: "StageEquipmentPresetKnowledgeDesc", args: StageEquipmentPresetKnowledgeDesc }
 | { name: "StageExtractionRecipeDesc", args: StageExtractionRecipeDesc }
+| { name: "StageFloatingPlatformDesc", args: StageFloatingPlatformDesc }
 | { name: "StageFoodDesc", args: StageFoodDesc }
 | { name: "StageGateDesc", args: StageGateDesc }
 | { name: "StageHexiteExchangeEntryDesc", args: StageHexiteExchangeEntryDesc }
@@ -12404,6 +12549,8 @@ export type Reducer = never
 | { name: "StageInteriorPortalConnectionsDesc", args: StageInteriorPortalConnectionsDesc }
 | { name: "StageInteriorShapeDesc", args: StageInteriorShapeDesc }
 | { name: "StageInteriorSpawnDesc", args: StageInteriorSpawnDesc }
+| { name: "StageInteriorSpawnDestroyTriggerDesc", args: StageInteriorSpawnDestroyTriggerDesc }
+| { name: "StageInteriorSpawnRandomGroupDesc", args: StageInteriorSpawnRandomGroupDesc }
 | { name: "StageItemConversionRecipeDesc", args: StageItemConversionRecipeDesc }
 | { name: "StageItemDesc", args: StageItemDesc }
 | { name: "StageItemListDesc", args: StageItemListDesc }
@@ -18108,6 +18255,22 @@ export class RemoteReducers {
     this.connection.offReducer("import_extraction_recipe_desc", callback);
   }
 
+  importFloatingPlatformDesc(records: FloatingPlatformDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    ImportFloatingPlatformDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("import_floating_platform_desc", __argsBuffer, this.setCallReducerFlags.importFloatingPlatformDescFlags);
+  }
+
+  onImportFloatingPlatformDesc(callback: (ctx: ReducerEventContext, records: FloatingPlatformDesc[]) => void) {
+    this.connection.onReducer("import_floating_platform_desc", callback);
+  }
+
+  removeOnImportFloatingPlatformDesc(callback: (ctx: ReducerEventContext, records: FloatingPlatformDesc[]) => void) {
+    this.connection.offReducer("import_floating_platform_desc", callback);
+  }
+
   importFoodDesc(records: FoodDesc[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
@@ -18362,6 +18525,38 @@ export class RemoteReducers {
 
   removeOnImportInteriorSpawnDesc(callback: (ctx: ReducerEventContext, records: InteriorSpawnDesc[]) => void) {
     this.connection.offReducer("import_interior_spawn_desc", callback);
+  }
+
+  importInteriorSpawnDestroyTriggerDesc(records: InteriorSpawnDestroyTriggerDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    ImportInteriorSpawnDestroyTriggerDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("import_interior_spawn_destroy_trigger_desc", __argsBuffer, this.setCallReducerFlags.importInteriorSpawnDestroyTriggerDescFlags);
+  }
+
+  onImportInteriorSpawnDestroyTriggerDesc(callback: (ctx: ReducerEventContext, records: InteriorSpawnDestroyTriggerDesc[]) => void) {
+    this.connection.onReducer("import_interior_spawn_destroy_trigger_desc", callback);
+  }
+
+  removeOnImportInteriorSpawnDestroyTriggerDesc(callback: (ctx: ReducerEventContext, records: InteriorSpawnDestroyTriggerDesc[]) => void) {
+    this.connection.offReducer("import_interior_spawn_destroy_trigger_desc", callback);
+  }
+
+  importInteriorSpawnRandomGroupDesc(records: InteriorSpawnRandomGroupDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    ImportInteriorSpawnRandomGroupDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("import_interior_spawn_random_group_desc", __argsBuffer, this.setCallReducerFlags.importInteriorSpawnRandomGroupDescFlags);
+  }
+
+  onImportInteriorSpawnRandomGroupDesc(callback: (ctx: ReducerEventContext, records: InteriorSpawnRandomGroupDesc[]) => void) {
+    this.connection.onReducer("import_interior_spawn_random_group_desc", callback);
+  }
+
+  removeOnImportInteriorSpawnRandomGroupDesc(callback: (ctx: ReducerEventContext, records: InteriorSpawnRandomGroupDesc[]) => void) {
+    this.connection.offReducer("import_interior_spawn_random_group_desc", callback);
   }
 
   importInventoryState(records: InventoryState[]) {
@@ -21700,6 +21895,22 @@ export class RemoteReducers {
     this.connection.offReducer("prospect_start", callback);
   }
 
+  refreshPlayerKnowledgesScheduled(timer: RefreshPlayerKnowledgesTimer) {
+    const __args = { timer };
+    let __writer = new BinaryWriter(1024);
+    RefreshPlayerKnowledgesScheduled.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("refresh_player_knowledges_scheduled", __argsBuffer, this.setCallReducerFlags.refreshPlayerKnowledgesScheduledFlags);
+  }
+
+  onRefreshPlayerKnowledgesScheduled(callback: (ctx: ReducerEventContext, timer: RefreshPlayerKnowledgesTimer) => void) {
+    this.connection.onReducer("refresh_player_knowledges_scheduled", callback);
+  }
+
+  removeOnRefreshPlayerKnowledgesScheduled(callback: (ctx: ReducerEventContext, timer: RefreshPlayerKnowledgesTimer) => void) {
+    this.connection.offReducer("refresh_player_knowledges_scheduled", callback);
+  }
+
   regionPopuplationAgentLoop(timer: RegionPopulationLoopTimer) {
     const __args = { timer };
     let __writer = new BinaryWriter(1024);
@@ -23040,6 +23251,22 @@ export class RemoteReducers {
     this.connection.offReducer("stage_extraction_recipe_desc", callback);
   }
 
+  stageFloatingPlatformDesc(records: FloatingPlatformDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    StageFloatingPlatformDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("stage_floating_platform_desc", __argsBuffer, this.setCallReducerFlags.stageFloatingPlatformDescFlags);
+  }
+
+  onStageFloatingPlatformDesc(callback: (ctx: ReducerEventContext, records: FloatingPlatformDesc[]) => void) {
+    this.connection.onReducer("stage_floating_platform_desc", callback);
+  }
+
+  removeOnStageFloatingPlatformDesc(callback: (ctx: ReducerEventContext, records: FloatingPlatformDesc[]) => void) {
+    this.connection.offReducer("stage_floating_platform_desc", callback);
+  }
+
   stageFoodDesc(records: FoodDesc[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
@@ -23182,6 +23409,38 @@ export class RemoteReducers {
 
   removeOnStageInteriorSpawnDesc(callback: (ctx: ReducerEventContext, records: InteriorSpawnDesc[]) => void) {
     this.connection.offReducer("stage_interior_spawn_desc", callback);
+  }
+
+  stageInteriorSpawnDestroyTriggerDesc(records: InteriorSpawnDestroyTriggerDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    StageInteriorSpawnDestroyTriggerDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("stage_interior_spawn_destroy_trigger_desc", __argsBuffer, this.setCallReducerFlags.stageInteriorSpawnDestroyTriggerDescFlags);
+  }
+
+  onStageInteriorSpawnDestroyTriggerDesc(callback: (ctx: ReducerEventContext, records: InteriorSpawnDestroyTriggerDesc[]) => void) {
+    this.connection.onReducer("stage_interior_spawn_destroy_trigger_desc", callback);
+  }
+
+  removeOnStageInteriorSpawnDestroyTriggerDesc(callback: (ctx: ReducerEventContext, records: InteriorSpawnDestroyTriggerDesc[]) => void) {
+    this.connection.offReducer("stage_interior_spawn_destroy_trigger_desc", callback);
+  }
+
+  stageInteriorSpawnRandomGroupDesc(records: InteriorSpawnRandomGroupDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    StageInteriorSpawnRandomGroupDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("stage_interior_spawn_random_group_desc", __argsBuffer, this.setCallReducerFlags.stageInteriorSpawnRandomGroupDescFlags);
+  }
+
+  onStageInteriorSpawnRandomGroupDesc(callback: (ctx: ReducerEventContext, records: InteriorSpawnRandomGroupDesc[]) => void) {
+    this.connection.onReducer("stage_interior_spawn_random_group_desc", callback);
+  }
+
+  removeOnStageInteriorSpawnRandomGroupDesc(callback: (ctx: ReducerEventContext, records: InteriorSpawnRandomGroupDesc[]) => void) {
+    this.connection.offReducer("stage_interior_spawn_random_group_desc", callback);
   }
 
   stageItemConversionRecipeDesc(records: ItemConversionRecipeDesc[]) {
@@ -26293,6 +26552,11 @@ export class SetReducerFlags {
     this.importExtractionRecipeDescFlags = flags;
   }
 
+  importFloatingPlatformDescFlags: CallReducerFlags = 'FullUpdate';
+  importFloatingPlatformDesc(flags: CallReducerFlags) {
+    this.importFloatingPlatformDescFlags = flags;
+  }
+
   importFoodDescFlags: CallReducerFlags = 'FullUpdate';
   importFoodDesc(flags: CallReducerFlags) {
     this.importFoodDescFlags = flags;
@@ -26371,6 +26635,16 @@ export class SetReducerFlags {
   importInteriorSpawnDescFlags: CallReducerFlags = 'FullUpdate';
   importInteriorSpawnDesc(flags: CallReducerFlags) {
     this.importInteriorSpawnDescFlags = flags;
+  }
+
+  importInteriorSpawnDestroyTriggerDescFlags: CallReducerFlags = 'FullUpdate';
+  importInteriorSpawnDestroyTriggerDesc(flags: CallReducerFlags) {
+    this.importInteriorSpawnDestroyTriggerDescFlags = flags;
+  }
+
+  importInteriorSpawnRandomGroupDescFlags: CallReducerFlags = 'FullUpdate';
+  importInteriorSpawnRandomGroupDesc(flags: CallReducerFlags) {
+    this.importInteriorSpawnRandomGroupDescFlags = flags;
   }
 
   importInventoryStateFlags: CallReducerFlags = 'FullUpdate';
@@ -27438,6 +27712,11 @@ export class SetReducerFlags {
     this.prospectStartFlags = flags;
   }
 
+  refreshPlayerKnowledgesScheduledFlags: CallReducerFlags = 'FullUpdate';
+  refreshPlayerKnowledgesScheduled(flags: CallReducerFlags) {
+    this.refreshPlayerKnowledgesScheduledFlags = flags;
+  }
+
   regionPopuplationAgentLoopFlags: CallReducerFlags = 'FullUpdate';
   regionPopuplationAgentLoop(flags: CallReducerFlags) {
     this.regionPopuplationAgentLoopFlags = flags;
@@ -27863,6 +28142,11 @@ export class SetReducerFlags {
     this.stageExtractionRecipeDescFlags = flags;
   }
 
+  stageFloatingPlatformDescFlags: CallReducerFlags = 'FullUpdate';
+  stageFloatingPlatformDesc(flags: CallReducerFlags) {
+    this.stageFloatingPlatformDescFlags = flags;
+  }
+
   stageFoodDescFlags: CallReducerFlags = 'FullUpdate';
   stageFoodDesc(flags: CallReducerFlags) {
     this.stageFoodDescFlags = flags;
@@ -27906,6 +28190,16 @@ export class SetReducerFlags {
   stageInteriorSpawnDescFlags: CallReducerFlags = 'FullUpdate';
   stageInteriorSpawnDesc(flags: CallReducerFlags) {
     this.stageInteriorSpawnDescFlags = flags;
+  }
+
+  stageInteriorSpawnDestroyTriggerDescFlags: CallReducerFlags = 'FullUpdate';
+  stageInteriorSpawnDestroyTriggerDesc(flags: CallReducerFlags) {
+    this.stageInteriorSpawnDestroyTriggerDescFlags = flags;
+  }
+
+  stageInteriorSpawnRandomGroupDescFlags: CallReducerFlags = 'FullUpdate';
+  stageInteriorSpawnRandomGroupDesc(flags: CallReducerFlags) {
+    this.stageInteriorSpawnRandomGroupDescFlags = flags;
   }
 
   stageItemConversionRecipeDescFlags: CallReducerFlags = 'FullUpdate';
@@ -28996,6 +29290,10 @@ export class RemoteTables {
     return new ExtractionRecipeDescTableHandle(this.connection.clientCache.getOrCreateTable<ExtractionRecipeDesc>(REMOTE_MODULE.tables.extraction_recipe_desc));
   }
 
+  get floatingPlatformDesc(): FloatingPlatformDescTableHandle {
+    return new FloatingPlatformDescTableHandle(this.connection.clientCache.getOrCreateTable<FloatingPlatformDesc>(REMOTE_MODULE.tables.floating_platform_desc));
+  }
+
   get foodDesc(): FoodDescTableHandle {
     return new FoodDescTableHandle(this.connection.clientCache.getOrCreateTable<FoodDesc>(REMOTE_MODULE.tables.food_desc));
   }
@@ -29118,6 +29416,18 @@ export class RemoteTables {
 
   get interiorSpawnDesc(): InteriorSpawnDescTableHandle {
     return new InteriorSpawnDescTableHandle(this.connection.clientCache.getOrCreateTable<InteriorSpawnDesc>(REMOTE_MODULE.tables.interior_spawn_desc));
+  }
+
+  get interiorSpawnDestroyTriggerDesc(): InteriorSpawnDestroyTriggerDescTableHandle {
+    return new InteriorSpawnDestroyTriggerDescTableHandle(this.connection.clientCache.getOrCreateTable<InteriorSpawnDestroyTriggerDesc>(REMOTE_MODULE.tables.interior_spawn_destroy_trigger_desc));
+  }
+
+  get interiorSpawnRandomGroupDesc(): InteriorSpawnRandomGroupDescTableHandle {
+    return new InteriorSpawnRandomGroupDescTableHandle(this.connection.clientCache.getOrCreateTable<InteriorSpawnRandomGroupDesc>(REMOTE_MODULE.tables.interior_spawn_random_group_desc));
+  }
+
+  get interiorSpawnedResourceState(): InteriorSpawnedResourceStateTableHandle {
+    return new InteriorSpawnedResourceStateTableHandle(this.connection.clientCache.getOrCreateTable<InteriorSpawnedResourceState>(REMOTE_MODULE.tables.interior_spawned_resource_state));
   }
 
   get inventoryState(): InventoryStateTableHandle {
@@ -29656,6 +29966,10 @@ export class RemoteTables {
     return new QuestStageDescTableHandle(this.connection.clientCache.getOrCreateTable<QuestStageDesc>(REMOTE_MODULE.tables.quest_stage_desc));
   }
 
+  get refreshPlayerKnowledgesTimer(): RefreshPlayerKnowledgesTimerTableHandle {
+    return new RefreshPlayerKnowledgesTimerTableHandle(this.connection.clientCache.getOrCreateTable<RefreshPlayerKnowledgesTimer>(REMOTE_MODULE.tables.refresh_player_knowledges_timer));
+  }
+
   get regionConnectionInfo(): RegionConnectionInfoTableHandle {
     return new RegionConnectionInfoTableHandle(this.connection.clientCache.getOrCreateTable<RegionConnectionInfo>(REMOTE_MODULE.tables.region_connection_info));
   }
@@ -30016,6 +30330,10 @@ export class RemoteTables {
     return new StagedExtractionRecipeDescTableHandle(this.connection.clientCache.getOrCreateTable<ExtractionRecipeDesc>(REMOTE_MODULE.tables.staged_extraction_recipe_desc));
   }
 
+  get stagedFloatingPlatformDesc(): StagedFloatingPlatformDescTableHandle {
+    return new StagedFloatingPlatformDescTableHandle(this.connection.clientCache.getOrCreateTable<FloatingPlatformDesc>(REMOTE_MODULE.tables.staged_floating_platform_desc));
+  }
+
   get stagedFoodDesc(): StagedFoodDescTableHandle {
     return new StagedFoodDescTableHandle(this.connection.clientCache.getOrCreateTable<FoodDesc>(REMOTE_MODULE.tables.staged_food_desc));
   }
@@ -30050,6 +30368,14 @@ export class RemoteTables {
 
   get stagedInteriorSpawnDesc(): StagedInteriorSpawnDescTableHandle {
     return new StagedInteriorSpawnDescTableHandle(this.connection.clientCache.getOrCreateTable<InteriorSpawnDesc>(REMOTE_MODULE.tables.staged_interior_spawn_desc));
+  }
+
+  get stagedInteriorSpawnDestroyTriggerDesc(): StagedInteriorSpawnDestroyTriggerDescTableHandle {
+    return new StagedInteriorSpawnDestroyTriggerDescTableHandle(this.connection.clientCache.getOrCreateTable<InteriorSpawnDestroyTriggerDesc>(REMOTE_MODULE.tables.staged_interior_spawn_destroy_trigger_desc));
+  }
+
+  get stagedInteriorSpawnRandomGroupDesc(): StagedInteriorSpawnRandomGroupDescTableHandle {
+    return new StagedInteriorSpawnRandomGroupDescTableHandle(this.connection.clientCache.getOrCreateTable<InteriorSpawnRandomGroupDesc>(REMOTE_MODULE.tables.staged_interior_spawn_random_group_desc));
   }
 
   get stagedItemConversionRecipeDesc(): StagedItemConversionRecipeDescTableHandle {

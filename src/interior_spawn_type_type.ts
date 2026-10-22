@@ -44,6 +44,7 @@ export namespace InteriorSpawnType {
   export type Resource = { tag: "Resource" };
   export type Enemy = { tag: "Enemy" };
   export type Paving = { tag: "Paving" };
+  export type InteriorSpawnRandomGroup = { tag: "InteriorSpawnRandomGroup" };
 
   // Helper functions for constructing each variant of the tagged union.
   // ```
@@ -58,6 +59,7 @@ export namespace InteriorSpawnType {
   export const Resource = { tag: "Resource" };
   export const Enemy = { tag: "Enemy" };
   export const Paving = { tag: "Paving" };
+  export const InteriorSpawnRandomGroup = { tag: "InteriorSpawnRandomGroup" };
 
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createSumType([
@@ -68,6 +70,7 @@ export namespace InteriorSpawnType {
       new SumTypeVariant("Resource", AlgebraicType.createProductType([])),
       new SumTypeVariant("Enemy", AlgebraicType.createProductType([])),
       new SumTypeVariant("Paving", AlgebraicType.createProductType([])),
+      new SumTypeVariant("InteriorSpawnRandomGroup", AlgebraicType.createProductType([])),
     ]);
   }
 
@@ -82,7 +85,7 @@ export namespace InteriorSpawnType {
 }
 
 // The tagged union or sum type for the algebraic type `InteriorSpawnType`.
-export type InteriorSpawnType = InteriorSpawnType.Undefined | InteriorSpawnType.Traveler | InteriorSpawnType.Chest | InteriorSpawnType.Building | InteriorSpawnType.Resource | InteriorSpawnType.Enemy | InteriorSpawnType.Paving;
+export type InteriorSpawnType = InteriorSpawnType.Undefined | InteriorSpawnType.Traveler | InteriorSpawnType.Chest | InteriorSpawnType.Building | InteriorSpawnType.Resource | InteriorSpawnType.Enemy | InteriorSpawnType.Paving | InteriorSpawnType.InteriorSpawnRandomGroup;
 
 export default InteriorSpawnType;
 

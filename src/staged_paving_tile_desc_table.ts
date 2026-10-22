@@ -33,8 +33,8 @@ import {
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
 import { PavingTileDesc } from "./paving_tile_desc_type";
-import { CsvStatEntry as __CsvStatEntry } from "./csv_stat_entry_type";
 import { InputItemStack as __InputItemStack } from "./input_item_stack_type";
+import { CsvStatEntry as __CsvStatEntry } from "./csv_stat_entry_type";
 import { ExperienceStackF32 as __ExperienceStackF32 } from "./experience_stack_f_32_type";
 
 import { type EventContext, type Reducer, RemoteReducers, RemoteTables } from ".";

@@ -32,8 +32,8 @@ import {
   type ReducerEventContextInterface,
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
-import { LevelRequirement as __LevelRequirement } from "./level_requirement_type";
 import { ItemStack as __ItemStack } from "./item_stack_type";
+import { LevelRequirement as __LevelRequirement } from "./level_requirement_type";
 import { ColumnPad4U64 as __ColumnPad4U64 } from "./column_pad_4_u_64_type";
 
 // A namespace for generated variants and helper functions.

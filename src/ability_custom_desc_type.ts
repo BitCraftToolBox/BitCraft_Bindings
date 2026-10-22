@@ -33,6 +33,9 @@ import {
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
 import { BuffEffect as __BuffEffect } from "./buff_effect_type";
+import { InputItemStack as __InputItemStack } from "./input_item_stack_type";
+import { ProbabilisticItemStack as __ProbabilisticItemStack } from "./probabilistic_item_stack_type";
+import { ExtractionSpawnedPlaceable as __ExtractionSpawnedPlaceable } from "./extraction_spawned_placeable_type";
 
 export type AbilityCustomDesc = {
   id: number,
@@ -52,6 +55,15 @@ export type AbilityCustomDesc = {
   linkedAbilityBuffDescId: number,
   animation: string,
   iconPath: string,
+  requiredBuffIds: number[] | undefined,
+  consumeRequiredBuff: boolean,
+  performProfessionHit: boolean,
+  professionHitBonusDamage: number,
+  professionHitSkillId: number,
+  description: string,
+  inputItemStacks: __InputItemStack[] | undefined,
+  outputItemStacks: __ProbabilisticItemStack[] | undefined,
+  spawnedPlaceables: __ExtractionSpawnedPlaceable[] | undefined,
 };
 
 /**
@@ -81,6 +93,15 @@ export namespace AbilityCustomDesc {
       new ProductTypeElement("linkedAbilityBuffDescId", AlgebraicType.createI32Type()),
       new ProductTypeElement("animation", AlgebraicType.createStringType()),
       new ProductTypeElement("iconPath", AlgebraicType.createStringType()),
+      new ProductTypeElement("requiredBuffIds", AlgebraicType.createOptionType(AlgebraicType.createArrayType(AlgebraicType.createI32Type()))),
+      new ProductTypeElement("consumeRequiredBuff", AlgebraicType.createBoolType()),
+      new ProductTypeElement("performProfessionHit", AlgebraicType.createBoolType()),
+      new ProductTypeElement("professionHitBonusDamage", AlgebraicType.createI32Type()),
+      new ProductTypeElement("professionHitSkillId", AlgebraicType.createI32Type()),
+      new ProductTypeElement("description", AlgebraicType.createStringType()),
+      new ProductTypeElement("inputItemStacks", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__InputItemStack.getTypeScriptAlgebraicType()))),
+      new ProductTypeElement("outputItemStacks", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__ProbabilisticItemStack.getTypeScriptAlgebraicType()))),
+      new ProductTypeElement("spawnedPlaceables", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__ExtractionSpawnedPlaceable.getTypeScriptAlgebraicType()))),
     ]);
   }
 

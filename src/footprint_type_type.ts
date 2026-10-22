@@ -41,6 +41,7 @@ export namespace FootprintType {
   export type Walkable = { tag: "Walkable" };
   export type Perimeter = { tag: "Perimeter" };
   export type WalkableResource = { tag: "WalkableResource" };
+  export type Platform = { tag: "Platform" };
 
   // Helper functions for constructing each variant of the tagged union.
   // ```
@@ -52,6 +53,7 @@ export namespace FootprintType {
   export const Walkable = { tag: "Walkable" };
   export const Perimeter = { tag: "Perimeter" };
   export const WalkableResource = { tag: "WalkableResource" };
+  export const Platform = { tag: "Platform" };
 
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createSumType([
@@ -59,6 +61,7 @@ export namespace FootprintType {
       new SumTypeVariant("Walkable", AlgebraicType.createProductType([])),
       new SumTypeVariant("Perimeter", AlgebraicType.createProductType([])),
       new SumTypeVariant("WalkableResource", AlgebraicType.createProductType([])),
+      new SumTypeVariant("Platform", AlgebraicType.createProductType([])),
     ]);
   }
 
@@ -73,7 +76,7 @@ export namespace FootprintType {
 }
 
 // The tagged union or sum type for the algebraic type `FootprintType`.
-export type FootprintType = FootprintType.Hitbox | FootprintType.Walkable | FootprintType.Perimeter | FootprintType.WalkableResource;
+export type FootprintType = FootprintType.Hitbox | FootprintType.Walkable | FootprintType.Perimeter | FootprintType.WalkableResource | FootprintType.Platform;
 
 export default FootprintType;
 

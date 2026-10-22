@@ -34,6 +34,9 @@ import {
 } from "@clockworklabs/spacetimedb-sdk";
 import { AbilityCustomDesc } from "./ability_custom_desc_type";
 import { BuffEffect as __BuffEffect } from "./buff_effect_type";
+import { InputItemStack as __InputItemStack } from "./input_item_stack_type";
+import { ProbabilisticItemStack as __ProbabilisticItemStack } from "./probabilistic_item_stack_type";
+import { ExtractionSpawnedPlaceable as __ExtractionSpawnedPlaceable } from "./extraction_spawned_placeable_type";
 
 import { type EventContext, type Reducer, RemoteReducers, RemoteTables } from ".";
 

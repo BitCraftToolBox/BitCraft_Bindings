@@ -32,8 +32,8 @@ import {
   type ReducerEventContextInterface,
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
-import { CsvStatEntry as __CsvStatEntry } from "./csv_stat_entry_type";
 import { InputItemStack as __InputItemStack } from "./input_item_stack_type";
+import { CsvStatEntry as __CsvStatEntry } from "./csv_stat_entry_type";
 import { ExperienceStackF32 as __ExperienceStackF32 } from "./experience_stack_f_32_type";
 
 export type PavingTileDesc = {
