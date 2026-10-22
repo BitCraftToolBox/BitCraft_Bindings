@@ -56,6 +56,7 @@ namespace BitCraftGlobal.Types
         public global::SpacetimeDB.Col<PlaceableDesc, bool> SpawnsInWater { get; }
         public global::SpacetimeDB.Col<PlaceableDesc, int> WaterDepthMin { get; }
         public global::SpacetimeDB.Col<PlaceableDesc, int> WaterDepthMax { get; }
+        public global::SpacetimeDB.Col<PlaceableDesc, System.Collections.Generic.List<int>> EnemyParamsId { get; }
 
         public PlaceableDescCols(string tableName)
         {
@@ -75,6 +76,7 @@ namespace BitCraftGlobal.Types
             SpawnsInWater = new global::SpacetimeDB.Col<PlaceableDesc, bool>(tableName, "spawns_in_water");
             WaterDepthMin = new global::SpacetimeDB.Col<PlaceableDesc, int>(tableName, "water_depth_min");
             WaterDepthMax = new global::SpacetimeDB.Col<PlaceableDesc, int>(tableName, "water_depth_max");
+            EnemyParamsId = new global::SpacetimeDB.Col<PlaceableDesc, System.Collections.Generic.List<int>>(tableName, "enemy_params_id");
         }
     }
 
