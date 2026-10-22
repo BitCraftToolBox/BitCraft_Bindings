@@ -55,5 +55,15 @@ namespace BitCraftGlobal.Types
         EnragedAlphaJakyl,
         DeerSwift,
         CrystalizedHexiteCrab,
+        DistractedSagiBird,
+        DistractedNubiGoat,
+        DistractedCervus,
+        DistractedScrofa,
+        DistractedOx,
+        DistractedYagiGoat,
+        DistractedJungleTerrorBird,
+        DistractedElderScrofa,
+        DistractedTundraOx,
+        DistractedDesertTerrorbird,
     }
 }
