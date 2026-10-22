@@ -33,9 +33,9 @@ import {
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
 import { ResourcePlacementRecipeDesc } from "./resource_placement_recipe_desc_type";
+import { InputItemStack as __InputItemStack } from "./input_item_stack_type";
 import { LevelRequirement as __LevelRequirement } from "./level_requirement_type";
 import { ToolRequirement as __ToolRequirement } from "./tool_requirement_type";
-import { InputItemStack as __InputItemStack } from "./input_item_stack_type";
 import { ExperienceStackF32 as __ExperienceStackF32 } from "./experience_stack_f_32_type";
 import { Biome as __Biome } from "./biome_type";
 

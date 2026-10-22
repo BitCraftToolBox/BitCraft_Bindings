@@ -32,14 +32,14 @@ import {
   type ReducerEventContextInterface,
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
+import { InputItemStack as __InputItemStack } from "./input_item_stack_type";
+import { ProbabilisticItemStack as __ProbabilisticItemStack } from "./probabilistic_item_stack_type";
+import { ExtractionSpawnedPlaceable as __ExtractionSpawnedPlaceable } from "./extraction_spawned_placeable_type";
 import { LevelRequirement as __LevelRequirement } from "./level_requirement_type";
 import { ToolRequirement as __ToolRequirement } from "./tool_requirement_type";
-import { InputItemStack as __InputItemStack } from "./input_item_stack_type";
 import { ExperienceStackF32 as __ExperienceStackF32 } from "./experience_stack_f_32_type";
-import { ProbabilisticItemStack as __ProbabilisticItemStack } from "./probabilistic_item_stack_type";
-import { EmpirePermission as __EmpirePermission } from "./empire_permission_type";
-import { ExtractionSpawnedPlaceable as __ExtractionSpawnedPlaceable } from "./extraction_spawned_placeable_type";
 import { PlaceableSelfBuffChance as __PlaceableSelfBuffChance } from "./placeable_self_buff_chance_type";
+import { EmpirePermission as __EmpirePermission } from "./empire_permission_type";
 
 export type ExtractionRecipeDesc = {
   id: number,

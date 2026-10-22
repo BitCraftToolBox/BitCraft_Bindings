@@ -38,6 +38,7 @@ export type DeployableAppearanceOverrideDesc = {
   affectedModelAddress: string,
   modelAddress: string,
   iconAssetName: string,
+  affectedModelAddresses: string[] | undefined,
 };
 
 /**
@@ -55,6 +56,7 @@ export namespace DeployableAppearanceOverrideDesc {
       new ProductTypeElement("affectedModelAddress", AlgebraicType.createStringType()),
       new ProductTypeElement("modelAddress", AlgebraicType.createStringType()),
       new ProductTypeElement("iconAssetName", AlgebraicType.createStringType()),
+      new ProductTypeElement("affectedModelAddresses", AlgebraicType.createOptionType(AlgebraicType.createArrayType(AlgebraicType.createStringType()))),
     ]);
   }
 

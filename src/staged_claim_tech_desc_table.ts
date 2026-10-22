@@ -33,8 +33,8 @@ import {
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
 import { ClaimTechDesc } from "./claim_tech_desc_type";
-import { ClaimTechType as __ClaimTechType } from "./claim_tech_type_type";
 import { ItemStack as __ItemStack } from "./item_stack_type";
+import { ClaimTechType as __ClaimTechType } from "./claim_tech_type_type";
 
 import { type EventContext, type Reducer, RemoteReducers, RemoteTables } from ".";
 

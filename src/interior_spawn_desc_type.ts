@@ -53,6 +53,7 @@ export type InteriorSpawnDesc = {
   travelerRuinEntityId: number,
   respawn: boolean,
   collapseTrigger: boolean,
+  interiorSpawnRandomGroupId: number,
 };
 
 /**
@@ -81,6 +82,7 @@ export namespace InteriorSpawnDesc {
       new ProductTypeElement("travelerRuinEntityId", AlgebraicType.createI32Type()),
       new ProductTypeElement("respawn", AlgebraicType.createBoolType()),
       new ProductTypeElement("collapseTrigger", AlgebraicType.createBoolType()),
+      new ProductTypeElement("interiorSpawnRandomGroupId", AlgebraicType.createI32Type()),
     ]);
   }
 

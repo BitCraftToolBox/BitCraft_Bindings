@@ -33,9 +33,9 @@ import {
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
 import { ConstructionRecipeDesc } from "./construction_recipe_desc_type";
+import { InputItemStack as __InputItemStack } from "./input_item_stack_type";
 import { LevelRequirement as __LevelRequirement } from "./level_requirement_type";
 import { ToolRequirement as __ToolRequirement } from "./tool_requirement_type";
-import { InputItemStack as __InputItemStack } from "./input_item_stack_type";
 import { ExperienceStackF32 as __ExperienceStackF32 } from "./experience_stack_f_32_type";
 
 import { type EventContext, type Reducer, RemoteReducers, RemoteTables } from ".";

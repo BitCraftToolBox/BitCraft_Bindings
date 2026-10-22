@@ -32,9 +32,9 @@ import {
   type ReducerEventContextInterface,
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
+import { ItemStack as __ItemStack } from "./item_stack_type";
 import { FootprintTile as __FootprintTile } from "./footprint_tile_type";
 import { Rarity as __Rarity } from "./rarity_type";
-import { ItemStack as __ItemStack } from "./item_stack_type";
 import { ResourceDestroyBuildingOutcome as __ResourceDestroyBuildingOutcome } from "./resource_destroy_building_outcome_type";
 
 export type ResourceDesc = {

@@ -33,9 +33,9 @@ import {
   type SubscriptionEventContextInterface,
 } from "@clockworklabs/spacetimedb-sdk";
 import { EnemyDesc } from "./enemy_desc_type";
+import { ProbabilisticItemStack as __ProbabilisticItemStack } from "./probabilistic_item_stack_type";
 import { Rarity as __Rarity } from "./rarity_type";
 import { ExperienceStackF32 as __ExperienceStackF32 } from "./experience_stack_f_32_type";
-import { ProbabilisticItemStack as __ProbabilisticItemStack } from "./probabilistic_item_stack_type";
 
 import { type EventContext, type Reducer, RemoteReducers, RemoteTables } from ".";
 
