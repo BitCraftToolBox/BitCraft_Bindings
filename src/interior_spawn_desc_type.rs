@@ -27,6 +27,7 @@ pub struct InteriorSpawnDesc {
     pub traveler_ruin_entity_id: i32,
     pub respawn: bool,
     pub collapse_trigger: bool,
+    pub interior_spawn_random_group_id: i32,
 }
 
 impl __sdk::InModule for InteriorSpawnDesc {
@@ -53,6 +54,7 @@ pub struct InteriorSpawnDescCols {
     pub traveler_ruin_entity_id: __sdk::__query_builder::Col<InteriorSpawnDesc, i32>,
     pub respawn: __sdk::__query_builder::Col<InteriorSpawnDesc, bool>,
     pub collapse_trigger: __sdk::__query_builder::Col<InteriorSpawnDesc, bool>,
+    pub interior_spawn_random_group_id: __sdk::__query_builder::Col<InteriorSpawnDesc, i32>,
 }
 
 impl __sdk::__query_builder::HasCols for InteriorSpawnDesc {
@@ -81,6 +83,10 @@ impl __sdk::__query_builder::HasCols for InteriorSpawnDesc {
             ),
             respawn: __sdk::__query_builder::Col::new(table_name, "respawn"),
             collapse_trigger: __sdk::__query_builder::Col::new(table_name, "collapse_trigger"),
+            interior_spawn_random_group_id: __sdk::__query_builder::Col::new(
+                table_name,
+                "interior_spawn_random_group_id",
+            ),
         }
     }
 }
@@ -90,6 +96,7 @@ impl __sdk::__query_builder::HasCols for InteriorSpawnDesc {
 /// Provides typed access to indexed columns for query building.
 pub struct InteriorSpawnDescIxCols {
     pub id: __sdk::__query_builder::IxCol<InteriorSpawnDesc, i32>,
+    pub interior_instance_id: __sdk::__query_builder::IxCol<InteriorSpawnDesc, i32>,
 }
 
 impl __sdk::__query_builder::HasIxCols for InteriorSpawnDesc {
@@ -97,6 +104,10 @@ impl __sdk::__query_builder::HasIxCols for InteriorSpawnDesc {
     fn ix_cols(table_name: &'static str) -> Self::IxCols {
         InteriorSpawnDescIxCols {
             id: __sdk::__query_builder::IxCol::new(table_name, "id"),
+            interior_instance_id: __sdk::__query_builder::IxCol::new(
+                table_name,
+                "interior_instance_id",
+            ),
         }
     }
 }
