@@ -18,5 +18,6 @@ namespace BitCraftRegion.Types
         Resource,
         Enemy,
         Paving,
+        InteriorSpawnRandomGroup,
     }
 }

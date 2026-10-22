@@ -64,6 +64,7 @@ namespace BitCraftRegion.Types
         public global::SpacetimeDB.Col<CraftingRecipeDesc, bool> AllowUseHands { get; }
         public global::SpacetimeDB.Col<CraftingRecipeDesc, bool> IsPassive { get; }
         public global::SpacetimeDB.Col<CraftingRecipeDesc, bool> ShowInProgression { get; }
+        public global::SpacetimeDB.Col<CraftingRecipeDesc, System.Collections.Generic.List<PlaceableSelfBuffChance>> SelfBuffs { get; }
 
         public StagedCraftingRecipeDescCols(string tableName)
         {
@@ -91,6 +92,7 @@ namespace BitCraftRegion.Types
             AllowUseHands = new global::SpacetimeDB.Col<CraftingRecipeDesc, bool>(tableName, "allow_use_hands");
             IsPassive = new global::SpacetimeDB.Col<CraftingRecipeDesc, bool>(tableName, "is_passive");
             ShowInProgression = new global::SpacetimeDB.Col<CraftingRecipeDesc, bool>(tableName, "show_in_progression");
+            SelfBuffs = new global::SpacetimeDB.Col<CraftingRecipeDesc, System.Collections.Generic.List<PlaceableSelfBuffChance>>(tableName, "self_buffs");
         }
     }
 

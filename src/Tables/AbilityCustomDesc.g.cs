@@ -57,6 +57,15 @@ namespace BitCraftRegion.Types
         public global::SpacetimeDB.Col<AbilityCustomDesc, int> LinkedAbilityBuffDescId { get; }
         public global::SpacetimeDB.Col<AbilityCustomDesc, string> Animation { get; }
         public global::SpacetimeDB.Col<AbilityCustomDesc, string> IconPath { get; }
+        public global::SpacetimeDB.Col<AbilityCustomDesc, System.Collections.Generic.List<int>> RequiredBuffIds { get; }
+        public global::SpacetimeDB.Col<AbilityCustomDesc, bool> ConsumeRequiredBuff { get; }
+        public global::SpacetimeDB.Col<AbilityCustomDesc, bool> PerformProfessionHit { get; }
+        public global::SpacetimeDB.Col<AbilityCustomDesc, int> ProfessionHitBonusDamage { get; }
+        public global::SpacetimeDB.Col<AbilityCustomDesc, int> ProfessionHitSkillId { get; }
+        public global::SpacetimeDB.Col<AbilityCustomDesc, string> Description { get; }
+        public global::SpacetimeDB.Col<AbilityCustomDesc, System.Collections.Generic.List<InputItemStack>> InputItemStacks { get; }
+        public global::SpacetimeDB.Col<AbilityCustomDesc, System.Collections.Generic.List<ProbabilisticItemStack>> OutputItemStacks { get; }
+        public global::SpacetimeDB.Col<AbilityCustomDesc, System.Collections.Generic.List<ExtractionSpawnedPlaceable>> SpawnedPlaceables { get; }
 
         public AbilityCustomDescCols(string tableName)
         {
@@ -77,6 +86,15 @@ namespace BitCraftRegion.Types
             LinkedAbilityBuffDescId = new global::SpacetimeDB.Col<AbilityCustomDesc, int>(tableName, "linked_ability_buff_desc_id");
             Animation = new global::SpacetimeDB.Col<AbilityCustomDesc, string>(tableName, "animation");
             IconPath = new global::SpacetimeDB.Col<AbilityCustomDesc, string>(tableName, "icon_path");
+            RequiredBuffIds = new global::SpacetimeDB.Col<AbilityCustomDesc, System.Collections.Generic.List<int>>(tableName, "required_buff_ids");
+            ConsumeRequiredBuff = new global::SpacetimeDB.Col<AbilityCustomDesc, bool>(tableName, "consume_required_buff");
+            PerformProfessionHit = new global::SpacetimeDB.Col<AbilityCustomDesc, bool>(tableName, "perform_profession_hit");
+            ProfessionHitBonusDamage = new global::SpacetimeDB.Col<AbilityCustomDesc, int>(tableName, "profession_hit_bonus_damage");
+            ProfessionHitSkillId = new global::SpacetimeDB.Col<AbilityCustomDesc, int>(tableName, "profession_hit_skill_id");
+            Description = new global::SpacetimeDB.Col<AbilityCustomDesc, string>(tableName, "description");
+            InputItemStacks = new global::SpacetimeDB.Col<AbilityCustomDesc, System.Collections.Generic.List<InputItemStack>>(tableName, "input_item_stacks");
+            OutputItemStacks = new global::SpacetimeDB.Col<AbilityCustomDesc, System.Collections.Generic.List<ProbabilisticItemStack>>(tableName, "output_item_stacks");
+            SpawnedPlaceables = new global::SpacetimeDB.Col<AbilityCustomDesc, System.Collections.Generic.List<ExtractionSpawnedPlaceable>>(tableName, "spawned_placeables");
         }
     }
 

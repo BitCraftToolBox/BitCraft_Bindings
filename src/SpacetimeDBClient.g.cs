@@ -196,6 +196,7 @@ namespace BitCraftRegion.Types
             AddTable(ExtractOutcomeStateV1 = new(conn));
             AddTable(ExtractStartEvent = new(conn));
             AddTable(ExtractionRecipeDesc = new(conn));
+            AddTable(FloatingPlatformDesc = new(conn));
             AddTable(FoodDesc = new(conn));
             AddTable(FootprintTileState = new(conn));
             AddTable(ForceGenerateTypes = new(conn));
@@ -227,6 +228,9 @@ namespace BitCraftRegion.Types
             AddTable(InteriorSetCollapsedTimer = new(conn));
             AddTable(InteriorShapeDesc = new(conn));
             AddTable(InteriorSpawnDesc = new(conn));
+            AddTable(InteriorSpawnDestroyTriggerDesc = new(conn));
+            AddTable(InteriorSpawnRandomGroupDesc = new(conn));
+            AddTable(InteriorSpawnedResourceState = new(conn));
             AddTable(InventoryState = new(conn));
             AddTable(ItemConversionRecipeDesc = new(conn));
             AddTable(ItemConvertStartEvent = new(conn));
@@ -362,6 +366,7 @@ namespace BitCraftRegion.Types
             AddTable(QuestChainState = new(conn));
             AddTable(QuestDropDesc = new(conn));
             AddTable(QuestStageDesc = new(conn));
+            AddTable(RefreshPlayerKnowledgesTimer = new(conn));
             AddTable(RegionConnectionInfo = new(conn));
             AddTable(RegionControlInfo = new(conn));
             AddTable(RegionExplorationInfo = new(conn));
@@ -452,6 +457,7 @@ namespace BitCraftRegion.Types
             AddTable(StagedEquipmentDesc = new(conn));
             AddTable(StagedEquipmentPresetKnowledgeDesc = new(conn));
             AddTable(StagedExtractionRecipeDesc = new(conn));
+            AddTable(StagedFloatingPlatformDesc = new(conn));
             AddTable(StagedFoodDesc = new(conn));
             AddTable(StagedGateDesc = new(conn));
             AddTable(StagedHexiteExchangeEntryDesc = new(conn));
@@ -461,6 +467,8 @@ namespace BitCraftRegion.Types
             AddTable(StagedInteriorPortalConnectionsDesc = new(conn));
             AddTable(StagedInteriorShapeDesc = new(conn));
             AddTable(StagedInteriorSpawnDesc = new(conn));
+            AddTable(StagedInteriorSpawnDestroyTriggerDesc = new(conn));
+            AddTable(StagedInteriorSpawnRandomGroupDesc = new(conn));
             AddTable(StagedItemConversionRecipeDesc = new(conn));
             AddTable(StagedItemDesc = new(conn));
             AddTable(StagedItemListDesc = new(conn));
@@ -1223,6 +1231,7 @@ namespace BitCraftRegion.Types
             new QueryBuilder().From.ExtractOutcomeStateV1().ToSql(),
             new QueryBuilder().From.ExtractStartEvent().ToSql(),
             new QueryBuilder().From.ExtractionRecipeDesc().ToSql(),
+            new QueryBuilder().From.FloatingPlatformDesc().ToSql(),
             new QueryBuilder().From.FoodDesc().ToSql(),
             new QueryBuilder().From.FootprintTileState().ToSql(),
             new QueryBuilder().From.ForceGenerateTypes().ToSql(),
@@ -1254,6 +1263,9 @@ namespace BitCraftRegion.Types
             new QueryBuilder().From.InteriorSetCollapsedTimer().ToSql(),
             new QueryBuilder().From.InteriorShapeDesc().ToSql(),
             new QueryBuilder().From.InteriorSpawnDesc().ToSql(),
+            new QueryBuilder().From.InteriorSpawnDestroyTriggerDesc().ToSql(),
+            new QueryBuilder().From.InteriorSpawnRandomGroupDesc().ToSql(),
+            new QueryBuilder().From.InteriorSpawnedResourceState().ToSql(),
             new QueryBuilder().From.InventoryState().ToSql(),
             new QueryBuilder().From.ItemConversionRecipeDesc().ToSql(),
             new QueryBuilder().From.ItemConvertStartEvent().ToSql(),
@@ -1389,6 +1401,7 @@ namespace BitCraftRegion.Types
             new QueryBuilder().From.QuestChainState().ToSql(),
             new QueryBuilder().From.QuestDropDesc().ToSql(),
             new QueryBuilder().From.QuestStageDesc().ToSql(),
+            new QueryBuilder().From.RefreshPlayerKnowledgesTimer().ToSql(),
             new QueryBuilder().From.RegionConnectionInfo().ToSql(),
             new QueryBuilder().From.RegionControlInfo().ToSql(),
             new QueryBuilder().From.RegionExplorationInfo().ToSql(),
@@ -1479,6 +1492,7 @@ namespace BitCraftRegion.Types
             new QueryBuilder().From.StagedEquipmentDesc().ToSql(),
             new QueryBuilder().From.StagedEquipmentPresetKnowledgeDesc().ToSql(),
             new QueryBuilder().From.StagedExtractionRecipeDesc().ToSql(),
+            new QueryBuilder().From.StagedFloatingPlatformDesc().ToSql(),
             new QueryBuilder().From.StagedFoodDesc().ToSql(),
             new QueryBuilder().From.StagedGateDesc().ToSql(),
             new QueryBuilder().From.StagedHexiteExchangeEntryDesc().ToSql(),
@@ -1488,6 +1502,8 @@ namespace BitCraftRegion.Types
             new QueryBuilder().From.StagedInteriorPortalConnectionsDesc().ToSql(),
             new QueryBuilder().From.StagedInteriorShapeDesc().ToSql(),
             new QueryBuilder().From.StagedInteriorSpawnDesc().ToSql(),
+            new QueryBuilder().From.StagedInteriorSpawnDestroyTriggerDesc().ToSql(),
+            new QueryBuilder().From.StagedInteriorSpawnRandomGroupDesc().ToSql(),
             new QueryBuilder().From.StagedItemConversionRecipeDesc().ToSql(),
             new QueryBuilder().From.StagedItemDesc().ToSql(),
             new QueryBuilder().From.StagedItemListDesc().ToSql(),
@@ -1760,6 +1776,7 @@ namespace BitCraftRegion.Types
         public global::SpacetimeDB.Table<ExtractOutcomeState, ExtractOutcomeStateV1Cols, ExtractOutcomeStateV1IxCols> ExtractOutcomeStateV1() => new("extract_outcome_state_v1", new ExtractOutcomeStateV1Cols("extract_outcome_state_v1"), new ExtractOutcomeStateV1IxCols("extract_outcome_state_v1"));
         public global::SpacetimeDB.Table<ExtractStartEvent, ExtractStartEventCols, ExtractStartEventIxCols> ExtractStartEvent() => new("extract_start_event", new ExtractStartEventCols("extract_start_event"), new ExtractStartEventIxCols("extract_start_event"));
         public global::SpacetimeDB.Table<ExtractionRecipeDesc, ExtractionRecipeDescCols, ExtractionRecipeDescIxCols> ExtractionRecipeDesc() => new("extraction_recipe_desc", new ExtractionRecipeDescCols("extraction_recipe_desc"), new ExtractionRecipeDescIxCols("extraction_recipe_desc"));
+        public global::SpacetimeDB.Table<FloatingPlatformDesc, FloatingPlatformDescCols, FloatingPlatformDescIxCols> FloatingPlatformDesc() => new("floating_platform_desc", new FloatingPlatformDescCols("floating_platform_desc"), new FloatingPlatformDescIxCols("floating_platform_desc"));
         public global::SpacetimeDB.Table<FoodDesc, FoodDescCols, FoodDescIxCols> FoodDesc() => new("food_desc", new FoodDescCols("food_desc"), new FoodDescIxCols("food_desc"));
         public global::SpacetimeDB.Table<FootprintTileState, FootprintTileStateCols, FootprintTileStateIxCols> FootprintTileState() => new("footprint_tile_state", new FootprintTileStateCols("footprint_tile_state"), new FootprintTileStateIxCols("footprint_tile_state"));
         public global::SpacetimeDB.Table<ForceGenerateTypes, ForceGenerateTypesCols, ForceGenerateTypesIxCols> ForceGenerateTypes() => new("force_generate_types", new ForceGenerateTypesCols("force_generate_types"), new ForceGenerateTypesIxCols("force_generate_types"));
@@ -1791,6 +1808,9 @@ namespace BitCraftRegion.Types
         public global::SpacetimeDB.Table<InteriorSetCollapsedTimer, InteriorSetCollapsedTimerCols, InteriorSetCollapsedTimerIxCols> InteriorSetCollapsedTimer() => new("interior_set_collapsed_timer", new InteriorSetCollapsedTimerCols("interior_set_collapsed_timer"), new InteriorSetCollapsedTimerIxCols("interior_set_collapsed_timer"));
         public global::SpacetimeDB.Table<InteriorShapeDesc, InteriorShapeDescCols, InteriorShapeDescIxCols> InteriorShapeDesc() => new("interior_shape_desc", new InteriorShapeDescCols("interior_shape_desc"), new InteriorShapeDescIxCols("interior_shape_desc"));
         public global::SpacetimeDB.Table<InteriorSpawnDesc, InteriorSpawnDescCols, InteriorSpawnDescIxCols> InteriorSpawnDesc() => new("interior_spawn_desc", new InteriorSpawnDescCols("interior_spawn_desc"), new InteriorSpawnDescIxCols("interior_spawn_desc"));
+        public global::SpacetimeDB.Table<InteriorSpawnDestroyTriggerDesc, InteriorSpawnDestroyTriggerDescCols, InteriorSpawnDestroyTriggerDescIxCols> InteriorSpawnDestroyTriggerDesc() => new("interior_spawn_destroy_trigger_desc", new InteriorSpawnDestroyTriggerDescCols("interior_spawn_destroy_trigger_desc"), new InteriorSpawnDestroyTriggerDescIxCols("interior_spawn_destroy_trigger_desc"));
+        public global::SpacetimeDB.Table<InteriorSpawnRandomGroupDesc, InteriorSpawnRandomGroupDescCols, InteriorSpawnRandomGroupDescIxCols> InteriorSpawnRandomGroupDesc() => new("interior_spawn_random_group_desc", new InteriorSpawnRandomGroupDescCols("interior_spawn_random_group_desc"), new InteriorSpawnRandomGroupDescIxCols("interior_spawn_random_group_desc"));
+        public global::SpacetimeDB.Table<InteriorSpawnedResourceState, InteriorSpawnedResourceStateCols, InteriorSpawnedResourceStateIxCols> InteriorSpawnedResourceState() => new("interior_spawned_resource_state", new InteriorSpawnedResourceStateCols("interior_spawned_resource_state"), new InteriorSpawnedResourceStateIxCols("interior_spawned_resource_state"));
         public global::SpacetimeDB.Table<InventoryState, InventoryStateCols, InventoryStateIxCols> InventoryState() => new("inventory_state", new InventoryStateCols("inventory_state"), new InventoryStateIxCols("inventory_state"));
         public global::SpacetimeDB.Table<ItemConversionRecipeDesc, ItemConversionRecipeDescCols, ItemConversionRecipeDescIxCols> ItemConversionRecipeDesc() => new("item_conversion_recipe_desc", new ItemConversionRecipeDescCols("item_conversion_recipe_desc"), new ItemConversionRecipeDescIxCols("item_conversion_recipe_desc"));
         public global::SpacetimeDB.Table<ItemConvertStartEvent, ItemConvertStartEventCols, ItemConvertStartEventIxCols> ItemConvertStartEvent() => new("item_convert_start_event", new ItemConvertStartEventCols("item_convert_start_event"), new ItemConvertStartEventIxCols("item_convert_start_event"));
@@ -1926,6 +1946,7 @@ namespace BitCraftRegion.Types
         public global::SpacetimeDB.Table<QuestChainState, QuestChainStateCols, QuestChainStateIxCols> QuestChainState() => new("quest_chain_state", new QuestChainStateCols("quest_chain_state"), new QuestChainStateIxCols("quest_chain_state"));
         public global::SpacetimeDB.Table<QuestDropDesc, QuestDropDescCols, QuestDropDescIxCols> QuestDropDesc() => new("quest_drop_desc", new QuestDropDescCols("quest_drop_desc"), new QuestDropDescIxCols("quest_drop_desc"));
         public global::SpacetimeDB.Table<QuestStageDesc, QuestStageDescCols, QuestStageDescIxCols> QuestStageDesc() => new("quest_stage_desc", new QuestStageDescCols("quest_stage_desc"), new QuestStageDescIxCols("quest_stage_desc"));
+        public global::SpacetimeDB.Table<RefreshPlayerKnowledgesTimer, RefreshPlayerKnowledgesTimerCols, RefreshPlayerKnowledgesTimerIxCols> RefreshPlayerKnowledgesTimer() => new("refresh_player_knowledges_timer", new RefreshPlayerKnowledgesTimerCols("refresh_player_knowledges_timer"), new RefreshPlayerKnowledgesTimerIxCols("refresh_player_knowledges_timer"));
         public global::SpacetimeDB.Table<RegionConnectionInfo, RegionConnectionInfoCols, RegionConnectionInfoIxCols> RegionConnectionInfo() => new("region_connection_info", new RegionConnectionInfoCols("region_connection_info"), new RegionConnectionInfoIxCols("region_connection_info"));
         public global::SpacetimeDB.Table<RegionControlInfo, RegionControlInfoCols, RegionControlInfoIxCols> RegionControlInfo() => new("region_control_info", new RegionControlInfoCols("region_control_info"), new RegionControlInfoIxCols("region_control_info"));
         public global::SpacetimeDB.Table<RegionExplorationInfo, RegionExplorationInfoCols, RegionExplorationInfoIxCols> RegionExplorationInfo() => new("region_exploration_info", new RegionExplorationInfoCols("region_exploration_info"), new RegionExplorationInfoIxCols("region_exploration_info"));
@@ -2016,6 +2037,7 @@ namespace BitCraftRegion.Types
         public global::SpacetimeDB.Table<EquipmentDesc, StagedEquipmentDescCols, StagedEquipmentDescIxCols> StagedEquipmentDesc() => new("staged_equipment_desc", new StagedEquipmentDescCols("staged_equipment_desc"), new StagedEquipmentDescIxCols("staged_equipment_desc"));
         public global::SpacetimeDB.Table<EquipmentPresetKnowledgeDesc, StagedEquipmentPresetKnowledgeDescCols, StagedEquipmentPresetKnowledgeDescIxCols> StagedEquipmentPresetKnowledgeDesc() => new("staged_equipment_preset_knowledge_desc", new StagedEquipmentPresetKnowledgeDescCols("staged_equipment_preset_knowledge_desc"), new StagedEquipmentPresetKnowledgeDescIxCols("staged_equipment_preset_knowledge_desc"));
         public global::SpacetimeDB.Table<ExtractionRecipeDesc, StagedExtractionRecipeDescCols, StagedExtractionRecipeDescIxCols> StagedExtractionRecipeDesc() => new("staged_extraction_recipe_desc", new StagedExtractionRecipeDescCols("staged_extraction_recipe_desc"), new StagedExtractionRecipeDescIxCols("staged_extraction_recipe_desc"));
+        public global::SpacetimeDB.Table<FloatingPlatformDesc, StagedFloatingPlatformDescCols, StagedFloatingPlatformDescIxCols> StagedFloatingPlatformDesc() => new("staged_floating_platform_desc", new StagedFloatingPlatformDescCols("staged_floating_platform_desc"), new StagedFloatingPlatformDescIxCols("staged_floating_platform_desc"));
         public global::SpacetimeDB.Table<FoodDesc, StagedFoodDescCols, StagedFoodDescIxCols> StagedFoodDesc() => new("staged_food_desc", new StagedFoodDescCols("staged_food_desc"), new StagedFoodDescIxCols("staged_food_desc"));
         public global::SpacetimeDB.Table<GateDesc, StagedGateDescCols, StagedGateDescIxCols> StagedGateDesc() => new("staged_gate_desc", new StagedGateDescCols("staged_gate_desc"), new StagedGateDescIxCols("staged_gate_desc"));
         public global::SpacetimeDB.Table<HexiteExchangeEntryDesc, StagedHexiteExchangeEntryDescCols, StagedHexiteExchangeEntryDescIxCols> StagedHexiteExchangeEntryDesc() => new("staged_hexite_exchange_entry_desc", new StagedHexiteExchangeEntryDescCols("staged_hexite_exchange_entry_desc"), new StagedHexiteExchangeEntryDescIxCols("staged_hexite_exchange_entry_desc"));
@@ -2025,6 +2047,8 @@ namespace BitCraftRegion.Types
         public global::SpacetimeDB.Table<InteriorPortalConnectionsDesc, StagedInteriorPortalConnectionsDescCols, StagedInteriorPortalConnectionsDescIxCols> StagedInteriorPortalConnectionsDesc() => new("staged_interior_portal_connections_desc", new StagedInteriorPortalConnectionsDescCols("staged_interior_portal_connections_desc"), new StagedInteriorPortalConnectionsDescIxCols("staged_interior_portal_connections_desc"));
         public global::SpacetimeDB.Table<InteriorShapeDesc, StagedInteriorShapeDescCols, StagedInteriorShapeDescIxCols> StagedInteriorShapeDesc() => new("staged_interior_shape_desc", new StagedInteriorShapeDescCols("staged_interior_shape_desc"), new StagedInteriorShapeDescIxCols("staged_interior_shape_desc"));
         public global::SpacetimeDB.Table<InteriorSpawnDesc, StagedInteriorSpawnDescCols, StagedInteriorSpawnDescIxCols> StagedInteriorSpawnDesc() => new("staged_interior_spawn_desc", new StagedInteriorSpawnDescCols("staged_interior_spawn_desc"), new StagedInteriorSpawnDescIxCols("staged_interior_spawn_desc"));
+        public global::SpacetimeDB.Table<InteriorSpawnDestroyTriggerDesc, StagedInteriorSpawnDestroyTriggerDescCols, StagedInteriorSpawnDestroyTriggerDescIxCols> StagedInteriorSpawnDestroyTriggerDesc() => new("staged_interior_spawn_destroy_trigger_desc", new StagedInteriorSpawnDestroyTriggerDescCols("staged_interior_spawn_destroy_trigger_desc"), new StagedInteriorSpawnDestroyTriggerDescIxCols("staged_interior_spawn_destroy_trigger_desc"));
+        public global::SpacetimeDB.Table<InteriorSpawnRandomGroupDesc, StagedInteriorSpawnRandomGroupDescCols, StagedInteriorSpawnRandomGroupDescIxCols> StagedInteriorSpawnRandomGroupDesc() => new("staged_interior_spawn_random_group_desc", new StagedInteriorSpawnRandomGroupDescCols("staged_interior_spawn_random_group_desc"), new StagedInteriorSpawnRandomGroupDescIxCols("staged_interior_spawn_random_group_desc"));
         public global::SpacetimeDB.Table<ItemConversionRecipeDesc, StagedItemConversionRecipeDescCols, StagedItemConversionRecipeDescIxCols> StagedItemConversionRecipeDesc() => new("staged_item_conversion_recipe_desc", new StagedItemConversionRecipeDescCols("staged_item_conversion_recipe_desc"), new StagedItemConversionRecipeDescIxCols("staged_item_conversion_recipe_desc"));
         public global::SpacetimeDB.Table<ItemDesc, StagedItemDescCols, StagedItemDescIxCols> StagedItemDesc() => new("staged_item_desc", new StagedItemDescCols("staged_item_desc"), new StagedItemDescIxCols("staged_item_desc"));
         public global::SpacetimeDB.Table<ItemListDesc, StagedItemListDescCols, StagedItemListDescIxCols> StagedItemListDesc() => new("staged_item_list_desc", new StagedItemListDescCols("staged_item_list_desc"), new StagedItemListDescIxCols("staged_item_list_desc"));
@@ -2564,6 +2588,7 @@ namespace BitCraftRegion.Types
                 Reducer.ImportExperienceState args => Reducers.InvokeImportExperienceState(eventContext, args),
                 Reducer.ImportExplorationChunksState args => Reducers.InvokeImportExplorationChunksState(eventContext, args),
                 Reducer.ImportExtractionRecipeDesc args => Reducers.InvokeImportExtractionRecipeDesc(eventContext, args),
+                Reducer.ImportFloatingPlatformDesc args => Reducers.InvokeImportFloatingPlatformDesc(eventContext, args),
                 Reducer.ImportFoodDesc args => Reducers.InvokeImportFoodDesc(eventContext, args),
                 Reducer.ImportFootprintTileState args => Reducers.InvokeImportFootprintTileState(eventContext, args),
                 Reducer.ImportGateDesc args => Reducers.InvokeImportGateDesc(eventContext, args),
@@ -2580,6 +2605,8 @@ namespace BitCraftRegion.Types
                 Reducer.ImportInteriorPortalConnectionsDesc args => Reducers.InvokeImportInteriorPortalConnectionsDesc(eventContext, args),
                 Reducer.ImportInteriorShapeDesc args => Reducers.InvokeImportInteriorShapeDesc(eventContext, args),
                 Reducer.ImportInteriorSpawnDesc args => Reducers.InvokeImportInteriorSpawnDesc(eventContext, args),
+                Reducer.ImportInteriorSpawnDestroyTriggerDesc args => Reducers.InvokeImportInteriorSpawnDestroyTriggerDesc(eventContext, args),
+                Reducer.ImportInteriorSpawnRandomGroupDesc args => Reducers.InvokeImportInteriorSpawnRandomGroupDesc(eventContext, args),
                 Reducer.ImportInventoryState args => Reducers.InvokeImportInventoryState(eventContext, args),
                 Reducer.ImportItemConversionRecipeDesc args => Reducers.InvokeImportItemConversionRecipeDesc(eventContext, args),
                 Reducer.ImportItemDesc args => Reducers.InvokeImportItemDesc(eventContext, args),
@@ -2793,6 +2820,7 @@ namespace BitCraftRegion.Types
                 Reducer.Prospect args => Reducers.InvokeProspect(eventContext, args),
                 Reducer.ProspectCancel args => Reducers.InvokeProspectCancel(eventContext, args),
                 Reducer.ProspectStart args => Reducers.InvokeProspectStart(eventContext, args),
+                Reducer.RefreshPlayerKnowledgesScheduled args => Reducers.InvokeRefreshPlayerKnowledgesScheduled(eventContext, args),
                 Reducer.RegionPopuplationAgentLoop args => Reducers.InvokeRegionPopuplationAgentLoop(eventContext, args),
                 Reducer.RentAddListing args => Reducers.InvokeRentAddListing(eventContext, args),
                 Reducer.RentAddTenant args => Reducers.InvokeRentAddTenant(eventContext, args),
@@ -2878,6 +2906,7 @@ namespace BitCraftRegion.Types
                 Reducer.StageEquipmentDesc args => Reducers.InvokeStageEquipmentDesc(eventContext, args),
                 Reducer.StageEquipmentPresetKnowledgeDesc args => Reducers.InvokeStageEquipmentPresetKnowledgeDesc(eventContext, args),
                 Reducer.StageExtractionRecipeDesc args => Reducers.InvokeStageExtractionRecipeDesc(eventContext, args),
+                Reducer.StageFloatingPlatformDesc args => Reducers.InvokeStageFloatingPlatformDesc(eventContext, args),
                 Reducer.StageFoodDesc args => Reducers.InvokeStageFoodDesc(eventContext, args),
                 Reducer.StageGateDesc args => Reducers.InvokeStageGateDesc(eventContext, args),
                 Reducer.StageHexiteExchangeEntryDesc args => Reducers.InvokeStageHexiteExchangeEntryDesc(eventContext, args),
@@ -2887,6 +2916,8 @@ namespace BitCraftRegion.Types
                 Reducer.StageInteriorPortalConnectionsDesc args => Reducers.InvokeStageInteriorPortalConnectionsDesc(eventContext, args),
                 Reducer.StageInteriorShapeDesc args => Reducers.InvokeStageInteriorShapeDesc(eventContext, args),
                 Reducer.StageInteriorSpawnDesc args => Reducers.InvokeStageInteriorSpawnDesc(eventContext, args),
+                Reducer.StageInteriorSpawnDestroyTriggerDesc args => Reducers.InvokeStageInteriorSpawnDestroyTriggerDesc(eventContext, args),
+                Reducer.StageInteriorSpawnRandomGroupDesc args => Reducers.InvokeStageInteriorSpawnRandomGroupDesc(eventContext, args),
                 Reducer.StageItemConversionRecipeDesc args => Reducers.InvokeStageItemConversionRecipeDesc(eventContext, args),
                 Reducer.StageItemDesc args => Reducers.InvokeStageItemDesc(eventContext, args),
                 Reducer.StageItemListDesc args => Reducers.InvokeStageItemListDesc(eventContext, args),
