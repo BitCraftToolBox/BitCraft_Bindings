@@ -12,6 +12,7 @@ pub struct DeployableAppearanceOverrideDesc {
     pub affected_model_address: String,
     pub model_address: String,
     pub icon_asset_name: String,
+    pub affected_model_addresses: Option<Vec<String>>,
 }
 
 impl __sdk::InModule for DeployableAppearanceOverrideDesc {
@@ -28,6 +29,8 @@ pub struct DeployableAppearanceOverrideDescCols {
         __sdk::__query_builder::Col<DeployableAppearanceOverrideDesc, String>,
     pub model_address: __sdk::__query_builder::Col<DeployableAppearanceOverrideDesc, String>,
     pub icon_asset_name: __sdk::__query_builder::Col<DeployableAppearanceOverrideDesc, String>,
+    pub affected_model_addresses:
+        __sdk::__query_builder::Col<DeployableAppearanceOverrideDesc, Option<Vec<String>>>,
 }
 
 impl __sdk::__query_builder::HasCols for DeployableAppearanceOverrideDesc {
@@ -42,6 +45,10 @@ impl __sdk::__query_builder::HasCols for DeployableAppearanceOverrideDesc {
             ),
             model_address: __sdk::__query_builder::Col::new(table_name, "model_address"),
             icon_asset_name: __sdk::__query_builder::Col::new(table_name, "icon_asset_name"),
+            affected_model_addresses: __sdk::__query_builder::Col::new(
+                table_name,
+                "affected_model_addresses",
+            ),
         }
     }
 }
@@ -50,8 +57,6 @@ impl __sdk::__query_builder::HasCols for DeployableAppearanceOverrideDesc {
 ///
 /// Provides typed access to indexed columns for query building.
 pub struct DeployableAppearanceOverrideDescIxCols {
-    pub affected_model_address:
-        __sdk::__query_builder::IxCol<DeployableAppearanceOverrideDesc, String>,
     pub collectible_id: __sdk::__query_builder::IxCol<DeployableAppearanceOverrideDesc, i32>,
     pub id: __sdk::__query_builder::IxCol<DeployableAppearanceOverrideDesc, i32>,
 }
@@ -60,10 +65,6 @@ impl __sdk::__query_builder::HasIxCols for DeployableAppearanceOverrideDesc {
     type IxCols = DeployableAppearanceOverrideDescIxCols;
     fn ix_cols(table_name: &'static str) -> Self::IxCols {
         DeployableAppearanceOverrideDescIxCols {
-            affected_model_address: __sdk::__query_builder::IxCol::new(
-                table_name,
-                "affected_model_address",
-            ),
             collectible_id: __sdk::__query_builder::IxCol::new(table_name, "collectible_id"),
             id: __sdk::__query_builder::IxCol::new(table_name, "id"),
         }
