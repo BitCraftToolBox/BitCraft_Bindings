@@ -1176,6 +1176,8 @@ import { PlayerRerollTravelerTask } from "./player_reroll_traveler_task_reducer.
 export { PlayerRerollTravelerTask };
 import { PlayerRespawn } from "./player_respawn_reducer.ts";
 export { PlayerRespawn };
+import { PlayerSessionLogCleanupLoop } from "./player_session_log_cleanup_loop_reducer.ts";
+export { PlayerSessionLogCleanupLoop };
 import { PlayerSetDefaultDeployable } from "./player_set_default_deployable_reducer.ts";
 export { PlayerSetDefaultDeployable };
 import { PlayerSetNameOutcomeEventReducer } from "./player_set_name_outcome_event_reducer_reducer.ts";
@@ -2194,6 +2196,10 @@ import { PlayerReportStateTableHandle } from "./player_report_state_table.ts";
 export { PlayerReportStateTableHandle };
 import { PlayerReportStateTimestampTableHandle } from "./player_report_state_timestamp_table.ts";
 export { PlayerReportStateTimestampTableHandle };
+import { PlayerSessionLogTableHandle } from "./player_session_log_table.ts";
+export { PlayerSessionLogTableHandle };
+import { PlayerSessionLogCleanupLoopTimerTableHandle } from "./player_session_log_cleanup_loop_timer_table.ts";
+export { PlayerSessionLogCleanupLoopTimerTableHandle };
 import { PlayerSetNameOutcomeEventTableHandle } from "./player_set_name_outcome_event_table.ts";
 export { PlayerSetNameOutcomeEventTableHandle };
 import { PlayerSettingsStateTableHandle } from "./player_settings_state_table.ts";
@@ -3762,6 +3768,10 @@ import { PlayerRetrieveLostItemRequest } from "./player_retrieve_lost_item_reque
 export { PlayerRetrieveLostItemRequest };
 import { PlayerScrollReadRequest } from "./player_scroll_read_request_type.ts";
 export { PlayerScrollReadRequest };
+import { PlayerSessionLog } from "./player_session_log_type.ts";
+export { PlayerSessionLog };
+import { PlayerSessionLogCleanupLoopTimer } from "./player_session_log_cleanup_loop_timer_type.ts";
+export { PlayerSessionLogCleanupLoopTimer };
 import { PlayerSetDefaultDeployableRequest } from "./player_set_default_deployable_request_type.ts";
 export { PlayerSetDefaultDeployableRequest };
 import { PlayerSetHomeRequest } from "./player_set_home_request_type.ts";
@@ -6731,6 +6741,24 @@ export const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "entityId",
         colType: PlayerReportStateTimestamp.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    player_session_log: {
+      tableName: "player_session_log",
+      rowType: PlayerSessionLog.getTypeScriptAlgebraicType(),
+      primaryKey: "id",
+      primaryKeyInfo: {
+        colName: "id",
+        colType: PlayerSessionLog.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    player_session_log_cleanup_loop_timer: {
+      tableName: "player_session_log_cleanup_loop_timer",
+      rowType: PlayerSessionLogCleanupLoopTimer.getTypeScriptAlgebraicType(),
+      primaryKey: "scheduledId",
+      primaryKeyInfo: {
+        colName: "scheduledId",
+        colType: PlayerSessionLogCleanupLoopTimer.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     player_set_name_outcome_event: {
@@ -11023,6 +11051,10 @@ export const REMOTE_MODULE = {
       reducerName: "player_respawn",
       argsType: PlayerRespawn.getTypeScriptAlgebraicType(),
     },
+    player_session_log_cleanup_loop: {
+      reducerName: "player_session_log_cleanup_loop",
+      argsType: PlayerSessionLogCleanupLoop.getTypeScriptAlgebraicType(),
+    },
     player_set_default_deployable: {
       reducerName: "player_set_default_deployable",
       argsType: PlayerSetDefaultDeployable.getTypeScriptAlgebraicType(),
@@ -12432,6 +12464,7 @@ export type Reducer = never
 | { name: "PlayerRegionTransferEventReducer", args: PlayerRegionTransferEventReducer }
 | { name: "PlayerRerollTravelerTask", args: PlayerRerollTravelerTask }
 | { name: "PlayerRespawn", args: PlayerRespawn }
+| { name: "PlayerSessionLogCleanupLoop", args: PlayerSessionLogCleanupLoop }
 | { name: "PlayerSetDefaultDeployable", args: PlayerSetDefaultDeployable }
 | { name: "PlayerSetNameOutcomeEventReducer", args: PlayerSetNameOutcomeEventReducer }
 | { name: "PlayerSettingsStateUpdate", args: PlayerSettingsStateUpdate }
@@ -21563,6 +21596,22 @@ export class RemoteReducers {
     this.connection.offReducer("player_respawn", callback);
   }
 
+  playerSessionLogCleanupLoop(timer: PlayerSessionLogCleanupLoopTimer) {
+    const __args = { timer };
+    let __writer = new BinaryWriter(1024);
+    PlayerSessionLogCleanupLoop.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("player_session_log_cleanup_loop", __argsBuffer, this.setCallReducerFlags.playerSessionLogCleanupLoopFlags);
+  }
+
+  onPlayerSessionLogCleanupLoop(callback: (ctx: ReducerEventContext, timer: PlayerSessionLogCleanupLoopTimer) => void) {
+    this.connection.onReducer("player_session_log_cleanup_loop", callback);
+  }
+
+  removeOnPlayerSessionLogCleanupLoop(callback: (ctx: ReducerEventContext, timer: PlayerSessionLogCleanupLoopTimer) => void) {
+    this.connection.offReducer("player_session_log_cleanup_loop", callback);
+  }
+
   playerSetDefaultDeployable(request: PlayerSetDefaultDeployableRequest) {
     const __args = { request };
     let __writer = new BinaryWriter(1024);
@@ -27607,6 +27656,11 @@ export class SetReducerFlags {
     this.playerRespawnFlags = flags;
   }
 
+  playerSessionLogCleanupLoopFlags: CallReducerFlags = 'FullUpdate';
+  playerSessionLogCleanupLoop(flags: CallReducerFlags) {
+    this.playerSessionLogCleanupLoopFlags = flags;
+  }
+
   playerSetDefaultDeployableFlags: CallReducerFlags = 'FullUpdate';
   playerSetDefaultDeployable(flags: CallReducerFlags) {
     this.playerSetDefaultDeployableFlags = flags;
@@ -29844,6 +29898,14 @@ export class RemoteTables {
 
   get playerReportStateTimestamp(): PlayerReportStateTimestampTableHandle {
     return new PlayerReportStateTimestampTableHandle(this.connection.clientCache.getOrCreateTable<PlayerReportStateTimestamp>(REMOTE_MODULE.tables.player_report_state_timestamp));
+  }
+
+  get playerSessionLog(): PlayerSessionLogTableHandle {
+    return new PlayerSessionLogTableHandle(this.connection.clientCache.getOrCreateTable<PlayerSessionLog>(REMOTE_MODULE.tables.player_session_log));
+  }
+
+  get playerSessionLogCleanupLoopTimer(): PlayerSessionLogCleanupLoopTimerTableHandle {
+    return new PlayerSessionLogCleanupLoopTimerTableHandle(this.connection.clientCache.getOrCreateTable<PlayerSessionLogCleanupLoopTimer>(REMOTE_MODULE.tables.player_session_log_cleanup_loop_timer));
   }
 
   get playerSetNameOutcomeEvent(): PlayerSetNameOutcomeEventTableHandle {
