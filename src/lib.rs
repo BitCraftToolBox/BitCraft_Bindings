@@ -1436,6 +1436,11 @@ pub mod player_reroll_traveler_task_reducer;
 pub mod player_respawn_reducer;
 pub mod player_retrieve_lost_item_request_type;
 pub mod player_scroll_read_request_type;
+pub mod player_session_log_cleanup_loop_reducer;
+pub mod player_session_log_cleanup_loop_timer_table;
+pub mod player_session_log_cleanup_loop_timer_type;
+pub mod player_session_log_table;
+pub mod player_session_log_type;
 pub mod player_set_default_deployable_reducer;
 pub mod player_set_default_deployable_request_type;
 pub mod player_set_home_request_type;
@@ -4931,6 +4936,14 @@ pub use player_respawn_reducer::{
 };
 pub use player_retrieve_lost_item_request_type::PlayerRetrieveLostItemRequest;
 pub use player_scroll_read_request_type::PlayerScrollReadRequest;
+pub use player_session_log_cleanup_loop_reducer::{
+    player_session_log_cleanup_loop, set_flags_for_player_session_log_cleanup_loop,
+    PlayerSessionLogCleanupLoopCallbackId,
+};
+pub use player_session_log_cleanup_loop_timer_table::*;
+pub use player_session_log_cleanup_loop_timer_type::PlayerSessionLogCleanupLoopTimer;
+pub use player_session_log_table::*;
+pub use player_session_log_type::PlayerSessionLog;
 pub use player_set_default_deployable_reducer::{
     player_set_default_deployable, set_flags_for_player_set_default_deployable,
     PlayerSetDefaultDeployableCallbackId,
@@ -7813,6 +7826,9 @@ pub enum Reducer {
     PlayerRespawn {
         teleport_home: bool,
     },
+    PlayerSessionLogCleanupLoop {
+        timer: PlayerSessionLogCleanupLoopTimer,
+    },
     PlayerSetDefaultDeployable {
         request: PlayerSetDefaultDeployableRequest,
     },
@@ -9081,6 +9097,7 @@ impl __sdk::Reducer for Reducer {
             }
             Reducer::PlayerRerollTravelerTask { .. } => "player_reroll_traveler_task",
             Reducer::PlayerRespawn { .. } => "player_respawn",
+            Reducer::PlayerSessionLogCleanupLoop { .. } => "player_session_log_cleanup_loop",
             Reducer::PlayerSetDefaultDeployable { .. } => "player_set_default_deployable",
             Reducer::PlayerSetNameOutcomeEventReducer { .. } => {
                 "player_set_name_outcome_event_reducer"
@@ -9884,6 +9901,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "player_region_transfer_event_reducer" => Ok(__sdk::parse_reducer_args::<player_region_transfer_event_reducer_reducer::PlayerRegionTransferEventReducerArgs>("player_region_transfer_event_reducer", &value.args)?.into()),
             "player_reroll_traveler_task" => Ok(__sdk::parse_reducer_args::<player_reroll_traveler_task_reducer::PlayerRerollTravelerTaskArgs>("player_reroll_traveler_task", &value.args)?.into()),
             "player_respawn" => Ok(__sdk::parse_reducer_args::<player_respawn_reducer::PlayerRespawnArgs>("player_respawn", &value.args)?.into()),
+            "player_session_log_cleanup_loop" => Ok(__sdk::parse_reducer_args::<player_session_log_cleanup_loop_reducer::PlayerSessionLogCleanupLoopArgs>("player_session_log_cleanup_loop", &value.args)?.into()),
             "player_set_default_deployable" => Ok(__sdk::parse_reducer_args::<player_set_default_deployable_reducer::PlayerSetDefaultDeployableArgs>("player_set_default_deployable", &value.args)?.into()),
             "player_set_name_outcome_event_reducer" => Ok(__sdk::parse_reducer_args::<player_set_name_outcome_event_reducer_reducer::PlayerSetNameOutcomeEventReducerArgs>("player_set_name_outcome_event_reducer", &value.args)?.into()),
             "player_settings_state_update" => Ok(__sdk::parse_reducer_args::<player_settings_state_update_reducer::PlayerSettingsStateUpdateArgs>("player_settings_state_update", &value.args)?.into()),
@@ -10403,6 +10421,8 @@ pub struct DbUpdate {
     player_region_transfer_event: __sdk::TableUpdate<PlayerRegionTransferEvent>,
     player_report_state: __sdk::TableUpdate<PlayerReportState>,
     player_report_state_timestamp: __sdk::TableUpdate<PlayerReportStateTimestamp>,
+    player_session_log: __sdk::TableUpdate<PlayerSessionLog>,
+    player_session_log_cleanup_loop_timer: __sdk::TableUpdate<PlayerSessionLogCleanupLoopTimer>,
     player_set_name_outcome_event: __sdk::TableUpdate<PlayerSetNameOutcomeEvent>,
     player_settings_state: __sdk::TableUpdate<PlayerSettingsState>,
     player_signed_out_event: __sdk::TableUpdate<PlayerSignedOutEvent>,
@@ -10955,6 +10975,8 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "player_region_transfer_event" => db_update.player_region_transfer_event.append(player_region_transfer_event_table::parse_table_update(table_update)?),
     "player_report_state" => db_update.player_report_state.append(player_report_state_table::parse_table_update(table_update)?),
     "player_report_state_timestamp" => db_update.player_report_state_timestamp.append(player_report_state_timestamp_table::parse_table_update(table_update)?),
+    "player_session_log" => db_update.player_session_log.append(player_session_log_table::parse_table_update(table_update)?),
+    "player_session_log_cleanup_loop_timer" => db_update.player_session_log_cleanup_loop_timer.append(player_session_log_cleanup_loop_timer_table::parse_table_update(table_update)?),
     "player_set_name_outcome_event" => db_update.player_set_name_outcome_event.append(player_set_name_outcome_event_table::parse_table_update(table_update)?),
     "player_settings_state" => db_update.player_settings_state.append(player_settings_state_table::parse_table_update(table_update)?),
     "player_signed_out_event" => db_update.player_signed_out_event.append(player_signed_out_event_table::parse_table_update(table_update)?),
@@ -12659,6 +12681,15 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.player_report_state_timestamp,
             )
             .with_updates_by_pk(|row| &row.entity_id);
+        diff.player_session_log = cache
+            .apply_diff_to_table::<PlayerSessionLog>("player_session_log", &self.player_session_log)
+            .with_updates_by_pk(|row| &row.id);
+        diff.player_session_log_cleanup_loop_timer = cache
+            .apply_diff_to_table::<PlayerSessionLogCleanupLoopTimer>(
+                "player_session_log_cleanup_loop_timer",
+                &self.player_session_log_cleanup_loop_timer,
+            )
+            .with_updates_by_pk(|row| &row.scheduled_id);
         diff.player_set_name_outcome_event = cache
             .apply_diff_to_table::<PlayerSetNameOutcomeEvent>(
                 "player_set_name_outcome_event",
@@ -14171,6 +14202,9 @@ pub struct AppliedDiff<'r> {
     player_region_transfer_event: __sdk::TableAppliedDiff<'r, PlayerRegionTransferEvent>,
     player_report_state: __sdk::TableAppliedDiff<'r, PlayerReportState>,
     player_report_state_timestamp: __sdk::TableAppliedDiff<'r, PlayerReportStateTimestamp>,
+    player_session_log: __sdk::TableAppliedDiff<'r, PlayerSessionLog>,
+    player_session_log_cleanup_loop_timer:
+        __sdk::TableAppliedDiff<'r, PlayerSessionLogCleanupLoopTimer>,
     player_set_name_outcome_event: __sdk::TableAppliedDiff<'r, PlayerSetNameOutcomeEvent>,
     player_settings_state: __sdk::TableAppliedDiff<'r, PlayerSettingsState>,
     player_signed_out_event: __sdk::TableAppliedDiff<'r, PlayerSignedOutEvent>,
@@ -15878,6 +15912,16 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<PlayerReportStateTimestamp>(
             "player_report_state_timestamp",
             &self.player_report_state_timestamp,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<PlayerSessionLog>(
+            "player_session_log",
+            &self.player_session_log,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<PlayerSessionLogCleanupLoopTimer>(
+            "player_session_log_cleanup_loop_timer",
+            &self.player_session_log_cleanup_loop_timer,
             event,
         );
         callbacks.invoke_table_row_callbacks::<PlayerSetNameOutcomeEvent>(
@@ -18035,6 +18079,8 @@ impl __sdk::SpacetimeModule for RemoteModule {
         player_region_transfer_event_table::register_table(client_cache);
         player_report_state_table::register_table(client_cache);
         player_report_state_timestamp_table::register_table(client_cache);
+        player_session_log_table::register_table(client_cache);
+        player_session_log_cleanup_loop_timer_table::register_table(client_cache);
         player_set_name_outcome_event_table::register_table(client_cache);
         player_settings_state_table::register_table(client_cache);
         player_signed_out_event_table::register_table(client_cache);
