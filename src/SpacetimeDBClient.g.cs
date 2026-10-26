@@ -335,6 +335,8 @@ namespace BitCraftRegion.Types
             AddTable(PlayerRegionTransferEvent = new(conn));
             AddTable(PlayerReportState = new(conn));
             AddTable(PlayerReportStateTimestamp = new(conn));
+            AddTable(PlayerSessionLog = new(conn));
+            AddTable(PlayerSessionLogCleanupLoopTimer = new(conn));
             AddTable(PlayerSetNameOutcomeEvent = new(conn));
             AddTable(PlayerSettingsState = new(conn));
             AddTable(PlayerSignedOutEvent = new(conn));
@@ -1370,6 +1372,8 @@ namespace BitCraftRegion.Types
             new QueryBuilder().From.PlayerRegionTransferEvent().ToSql(),
             new QueryBuilder().From.PlayerReportState().ToSql(),
             new QueryBuilder().From.PlayerReportStateTimestamp().ToSql(),
+            new QueryBuilder().From.PlayerSessionLog().ToSql(),
+            new QueryBuilder().From.PlayerSessionLogCleanupLoopTimer().ToSql(),
             new QueryBuilder().From.PlayerSetNameOutcomeEvent().ToSql(),
             new QueryBuilder().From.PlayerSettingsState().ToSql(),
             new QueryBuilder().From.PlayerSignedOutEvent().ToSql(),
@@ -1915,6 +1919,8 @@ namespace BitCraftRegion.Types
         public global::SpacetimeDB.Table<PlayerRegionTransferEvent, PlayerRegionTransferEventCols, PlayerRegionTransferEventIxCols> PlayerRegionTransferEvent() => new("player_region_transfer_event", new PlayerRegionTransferEventCols("player_region_transfer_event"), new PlayerRegionTransferEventIxCols("player_region_transfer_event"));
         public global::SpacetimeDB.Table<PlayerReportState, PlayerReportStateCols, PlayerReportStateIxCols> PlayerReportState() => new("player_report_state", new PlayerReportStateCols("player_report_state"), new PlayerReportStateIxCols("player_report_state"));
         public global::SpacetimeDB.Table<PlayerReportStateTimestamp, PlayerReportStateTimestampCols, PlayerReportStateTimestampIxCols> PlayerReportStateTimestamp() => new("player_report_state_timestamp", new PlayerReportStateTimestampCols("player_report_state_timestamp"), new PlayerReportStateTimestampIxCols("player_report_state_timestamp"));
+        public global::SpacetimeDB.Table<PlayerSessionLog, PlayerSessionLogCols, PlayerSessionLogIxCols> PlayerSessionLog() => new("player_session_log", new PlayerSessionLogCols("player_session_log"), new PlayerSessionLogIxCols("player_session_log"));
+        public global::SpacetimeDB.Table<PlayerSessionLogCleanupLoopTimer, PlayerSessionLogCleanupLoopTimerCols, PlayerSessionLogCleanupLoopTimerIxCols> PlayerSessionLogCleanupLoopTimer() => new("player_session_log_cleanup_loop_timer", new PlayerSessionLogCleanupLoopTimerCols("player_session_log_cleanup_loop_timer"), new PlayerSessionLogCleanupLoopTimerIxCols("player_session_log_cleanup_loop_timer"));
         public global::SpacetimeDB.Table<PlayerSetNameOutcomeEvent, PlayerSetNameOutcomeEventCols, PlayerSetNameOutcomeEventIxCols> PlayerSetNameOutcomeEvent() => new("player_set_name_outcome_event", new PlayerSetNameOutcomeEventCols("player_set_name_outcome_event"), new PlayerSetNameOutcomeEventIxCols("player_set_name_outcome_event"));
         public global::SpacetimeDB.Table<PlayerSettingsState, PlayerSettingsStateCols, PlayerSettingsStateIxCols> PlayerSettingsState() => new("player_settings_state", new PlayerSettingsStateCols("player_settings_state"), new PlayerSettingsStateIxCols("player_settings_state"));
         public global::SpacetimeDB.Table<PlayerSignedOutEvent, PlayerSignedOutEventCols, PlayerSignedOutEventIxCols> PlayerSignedOutEvent() => new("player_signed_out_event", new PlayerSignedOutEventCols("player_signed_out_event"), new PlayerSignedOutEventIxCols("player_signed_out_event"));
@@ -2799,6 +2805,7 @@ namespace BitCraftRegion.Types
                 Reducer.PlayerRegionTransferEventReducer args => Reducers.InvokePlayerRegionTransferEventReducer(eventContext, args),
                 Reducer.PlayerRerollTravelerTask args => Reducers.InvokePlayerRerollTravelerTask(eventContext, args),
                 Reducer.PlayerRespawn args => Reducers.InvokePlayerRespawn(eventContext, args),
+                Reducer.PlayerSessionLogCleanupLoop args => Reducers.InvokePlayerSessionLogCleanupLoop(eventContext, args),
                 Reducer.PlayerSetDefaultDeployable args => Reducers.InvokePlayerSetDefaultDeployable(eventContext, args),
                 Reducer.PlayerSetNameOutcomeEventReducer args => Reducers.InvokePlayerSetNameOutcomeEventReducer(eventContext, args),
                 Reducer.PlayerSettingsStateUpdate args => Reducers.InvokePlayerSettingsStateUpdate(eventContext, args),
