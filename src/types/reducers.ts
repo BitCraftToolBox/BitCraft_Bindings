@@ -577,6 +577,7 @@ import PlayerRegionCrossoverReducer from "../player_region_crossover_reducer";
 import PlayerRegionTransferEventReducerReducer from "../player_region_transfer_event_reducer_reducer";
 import PlayerRerollTravelerTaskReducer from "../player_reroll_traveler_task_reducer";
 import PlayerRespawnReducer from "../player_respawn_reducer";
+import PlayerSessionLogCleanupLoopReducer from "../player_session_log_cleanup_loop_reducer";
 import PlayerSetDefaultDeployableReducer from "../player_set_default_deployable_reducer";
 import PlayerSetNameOutcomeEventReducerReducer from "../player_set_name_outcome_event_reducer_reducer";
 import PlayerSettingsStateUpdateReducer from "../player_settings_state_update_reducer";
@@ -1351,6 +1352,7 @@ export type PlayerRegionCrossoverParams = __Infer<typeof PlayerRegionCrossoverRe
 export type PlayerRegionTransferEventReducerParams = __Infer<typeof PlayerRegionTransferEventReducerReducer>;
 export type PlayerRerollTravelerTaskParams = __Infer<typeof PlayerRerollTravelerTaskReducer>;
 export type PlayerRespawnParams = __Infer<typeof PlayerRespawnReducer>;
+export type PlayerSessionLogCleanupLoopParams = __Infer<typeof PlayerSessionLogCleanupLoopReducer>;
 export type PlayerSetDefaultDeployableParams = __Infer<typeof PlayerSetDefaultDeployableReducer>;
 export type PlayerSetNameOutcomeEventReducerParams = __Infer<typeof PlayerSetNameOutcomeEventReducerReducer>;
 export type PlayerSettingsStateUpdateParams = __Infer<typeof PlayerSettingsStateUpdateReducer>;

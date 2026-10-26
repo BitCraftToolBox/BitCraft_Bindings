@@ -603,6 +603,7 @@ import PlayerRegionCrossoverReducer from "./player_region_crossover_reducer";
 import PlayerRegionTransferEventReducerReducer from "./player_region_transfer_event_reducer_reducer";
 import PlayerRerollTravelerTaskReducer from "./player_reroll_traveler_task_reducer";
 import PlayerRespawnReducer from "./player_respawn_reducer";
+import PlayerSessionLogCleanupLoopReducer from "./player_session_log_cleanup_loop_reducer";
 import PlayerSetDefaultDeployableReducer from "./player_set_default_deployable_reducer";
 import PlayerSetNameOutcomeEventReducerReducer from "./player_set_name_outcome_event_reducer_reducer";
 import PlayerSettingsStateUpdateReducer from "./player_settings_state_update_reducer";
@@ -1116,6 +1117,8 @@ import PlayerRegenLoopTimerRow from "./player_regen_loop_timer_table";
 import PlayerRegionTransferEventRow from "./player_region_transfer_event_table";
 import PlayerReportStateRow from "./player_report_state_table";
 import PlayerReportStateTimestampRow from "./player_report_state_timestamp_table";
+import PlayerSessionLogRow from "./player_session_log_table";
+import PlayerSessionLogCleanupLoopTimerRow from "./player_session_log_cleanup_loop_timer_table";
 import PlayerSetNameOutcomeEventRow from "./player_set_name_outcome_event_table";
 import PlayerSettingsStateRow from "./player_settings_state_table";
 import PlayerSignedOutEventRow from "./player_signed_out_event_table";
@@ -5052,6 +5055,34 @@ const tablesSchema = __schema({
       { name: 'player_report_state_timestamp_entity_id_key', constraint: 'unique', columns: ['entityId'] },
     ],
   }, PlayerReportStateTimestampRow),
+  playerSessionLog: __table({
+    name: 'player_session_log',
+    indexes: [
+      { accessor: 'entity_id', name: 'player_session_log_entity_id_idx_btree', algorithm: 'btree', columns: [
+        'entityId',
+      ] },
+      { accessor: 'id', name: 'player_session_log_id_idx_btree', algorithm: 'btree', columns: [
+        'id',
+      ] },
+      { accessor: 'sign_out_timestamp', name: 'player_session_log_sign_out_timestamp_idx_btree', algorithm: 'btree', columns: [
+        'signOutTimestamp',
+      ] },
+    ],
+    constraints: [
+      { name: 'player_session_log_id_key', constraint: 'unique', columns: ['id'] },
+    ],
+  }, PlayerSessionLogRow),
+  playerSessionLogCleanupLoopTimer: __table({
+    name: 'player_session_log_cleanup_loop_timer',
+    indexes: [
+      { accessor: 'scheduled_id', name: 'player_session_log_cleanup_loop_timer_scheduled_id_idx_btree', algorithm: 'btree', columns: [
+        'scheduledId',
+      ] },
+    ],
+    constraints: [
+      { name: 'player_session_log_cleanup_loop_timer_scheduled_id_key', constraint: 'unique', columns: ['scheduledId'] },
+    ],
+  }, PlayerSessionLogCleanupLoopTimerRow),
   playerSetNameOutcomeEvent: __table({
     name: 'player_set_name_outcome_event',
     indexes: [
@@ -8334,6 +8365,7 @@ const reducersSchema = __reducers(
   __reducerSchema("player_region_transfer_event_reducer", PlayerRegionTransferEventReducerReducer),
   __reducerSchema("player_reroll_traveler_task", PlayerRerollTravelerTaskReducer),
   __reducerSchema("player_respawn", PlayerRespawnReducer),
+  __reducerSchema("player_session_log_cleanup_loop", PlayerSessionLogCleanupLoopReducer),
   __reducerSchema("player_set_default_deployable", PlayerSetDefaultDeployableReducer),
   __reducerSchema("player_set_name_outcome_event_reducer", PlayerSetNameOutcomeEventReducerReducer),
   __reducerSchema("player_settings_state_update", PlayerSettingsStateUpdateReducer),
@@ -9150,6 +9182,10 @@ type __SchemaWithTableAccessorAliases = Omit<typeof tablesSchema.schemaType, "ta
     readonly "player_report_state": Omit<typeof tablesSchema.schemaType.tables["playerReportState"], "accessorName"> & { readonly accessorName: "player_report_state" };
     /** @deprecated Use `playerReportStateTimestamp` instead. This alias will be removed in the next major version. */
     readonly "player_report_state_timestamp": Omit<typeof tablesSchema.schemaType.tables["playerReportStateTimestamp"], "accessorName"> & { readonly accessorName: "player_report_state_timestamp" };
+    /** @deprecated Use `playerSessionLog` instead. This alias will be removed in the next major version. */
+    readonly "player_session_log": Omit<typeof tablesSchema.schemaType.tables["playerSessionLog"], "accessorName"> & { readonly accessorName: "player_session_log" };
+    /** @deprecated Use `playerSessionLogCleanupLoopTimer` instead. This alias will be removed in the next major version. */
+    readonly "player_session_log_cleanup_loop_timer": Omit<typeof tablesSchema.schemaType.tables["playerSessionLogCleanupLoopTimer"], "accessorName"> & { readonly accessorName: "player_session_log_cleanup_loop_timer" };
     /** @deprecated Use `playerSetNameOutcomeEvent` instead. This alias will be removed in the next major version. */
     readonly "player_set_name_outcome_event": Omit<typeof tablesSchema.schemaType.tables["playerSetNameOutcomeEvent"], "accessorName"> & { readonly accessorName: "player_set_name_outcome_event" };
     /** @deprecated Use `playerSettingsState` instead. This alias will be removed in the next major version. */
@@ -9937,6 +9973,8 @@ const tableAccessorAliases = {
   "player_region_transfer_event": "playerRegionTransferEvent",
   "player_report_state": "playerReportState",
   "player_report_state_timestamp": "playerReportStateTimestamp",
+  "player_session_log": "playerSessionLog",
+  "player_session_log_cleanup_loop_timer": "playerSessionLogCleanupLoopTimer",
   "player_set_name_outcome_event": "playerSetNameOutcomeEvent",
   "player_settings_state": "playerSettingsState",
   "player_signed_out_event": "playerSignedOutEvent",
@@ -10796,6 +10834,10 @@ export type DbView = __DbViewBase & {
   readonly "player_report_state": __DbViewBase["playerReportState"];
   /** @deprecated Use `playerReportStateTimestamp` instead. This alias will be removed in the next major version. */
   readonly "player_report_state_timestamp": __DbViewBase["playerReportStateTimestamp"];
+  /** @deprecated Use `playerSessionLog` instead. This alias will be removed in the next major version. */
+  readonly "player_session_log": __DbViewBase["playerSessionLog"];
+  /** @deprecated Use `playerSessionLogCleanupLoopTimer` instead. This alias will be removed in the next major version. */
+  readonly "player_session_log_cleanup_loop_timer": __DbViewBase["playerSessionLogCleanupLoopTimer"];
   /** @deprecated Use `playerSetNameOutcomeEvent` instead. This alias will be removed in the next major version. */
   readonly "player_set_name_outcome_event": __DbViewBase["playerSetNameOutcomeEvent"];
   /** @deprecated Use `playerSettingsState` instead. This alias will be removed in the next major version. */
@@ -11872,6 +11914,10 @@ export type Tables = __TablesBase & {
   readonly "player_report_state": __TablesBase["playerReportState"];
   /** @deprecated Use `playerReportStateTimestamp` instead. This alias will be removed in the next major version. */
   readonly "player_report_state_timestamp": __TablesBase["playerReportStateTimestamp"];
+  /** @deprecated Use `playerSessionLog` instead. This alias will be removed in the next major version. */
+  readonly "player_session_log": __TablesBase["playerSessionLog"];
+  /** @deprecated Use `playerSessionLogCleanupLoopTimer` instead. This alias will be removed in the next major version. */
+  readonly "player_session_log_cleanup_loop_timer": __TablesBase["playerSessionLogCleanupLoopTimer"];
   /** @deprecated Use `playerSetNameOutcomeEvent` instead. This alias will be removed in the next major version. */
   readonly "player_set_name_outcome_event": __TablesBase["playerSetNameOutcomeEvent"];
   /** @deprecated Use `playerSettingsState` instead. This alias will be removed in the next major version. */

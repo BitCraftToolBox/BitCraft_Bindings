@@ -6488,6 +6488,20 @@ export const PlayerScrollReadRequest = __t.object("PlayerScrollReadRequest", {
 });
 export type PlayerScrollReadRequest = __Infer<typeof PlayerScrollReadRequest>;
 
+export const PlayerSessionLog = __t.object("PlayerSessionLog", {
+  id: __t.u64(),
+  entityId: __t.u64(),
+  signInTimestamp: __t.i32(),
+  signOutTimestamp: __t.i32(),
+});
+export type PlayerSessionLog = __Infer<typeof PlayerSessionLog>;
+
+export const PlayerSessionLogCleanupLoopTimer = __t.object("PlayerSessionLogCleanupLoopTimer", {
+  scheduledId: __t.u64(),
+  scheduledAt: __t.scheduleAt(),
+});
+export type PlayerSessionLogCleanupLoopTimer = __Infer<typeof PlayerSessionLogCleanupLoopTimer>;
+
 export const PlayerSetDefaultDeployableRequest = __t.object("PlayerSetDefaultDeployableRequest", {
   deployableCollectibleId: __t.i32(),
 });
