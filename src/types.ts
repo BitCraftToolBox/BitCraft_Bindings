@@ -4374,6 +4374,13 @@ export const ModFlaggedWordState = __t.object("ModFlaggedWordState", {
 });
 export type ModFlaggedWordState = __Infer<typeof ModFlaggedWordState>;
 
+export const ModPlaytimeThresholdState = __t.object("ModPlaytimeThresholdState", {
+  metric: __t.u8(),
+  thresholdHours: __t.i32(),
+  alertEnabled: __t.bool(),
+});
+export type ModPlaytimeThresholdState = __Infer<typeof ModPlaytimeThresholdState>;
+
 export const ModReplacementTextState = __t.object("ModReplacementTextState", {
   textType: __t.u8(),
   text: __t.string(),

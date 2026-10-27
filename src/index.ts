@@ -89,6 +89,7 @@ import AdminUnassignEmpireChunksReducer from "./admin_unassign_empire_chunks_red
 import AdminUpdateEmpireRanksReducer from "./admin_update_empire_ranks_reducer";
 import AdminUpdateGrantedHubItemStateReducer from "./admin_update_granted_hub_item_state_reducer";
 import AdminUpdateModerationEnforcementConfigReducer from "./admin_update_moderation_enforcement_config_reducer";
+import AdminUpdatePlaytimeThresholdReducer from "./admin_update_playtime_threshold_reducer";
 import AdminUpdateRegionExplorationInfoReducer from "./admin_update_region_exploration_info_reducer";
 import AdminUpdateReportModerationConfigReducer from "./admin_update_report_moderation_config_reducer";
 import AdminUpdateSignInParametersReducer from "./admin_update_sign_in_parameters_reducer";
@@ -663,6 +664,7 @@ import ModConsequenceStateRow from "./mod_consequence_state_table";
 import ModEnforcementConfigStateRow from "./mod_enforcement_config_state_table";
 import ModFlagLevelThresholdStateRow from "./mod_flag_level_threshold_state_table";
 import ModFlaggedWordStateRow from "./mod_flagged_word_state_table";
+import ModPlaytimeThresholdStateRow from "./mod_playtime_threshold_state_table";
 import ModReplacementTextStateRow from "./mod_replacement_text_state_table";
 import ModReportConfigStateRow from "./mod_report_config_state_table";
 import ModThresholdStateRow from "./mod_threshold_state_table";
@@ -3633,6 +3635,17 @@ const tablesSchema = __schema({
       { name: 'mod_flagged_word_state_id_key', constraint: 'unique', columns: ['id'] },
     ],
   }, ModFlaggedWordStateRow),
+  modPlaytimeThresholdState: __table({
+    name: 'mod_playtime_threshold_state',
+    indexes: [
+      { accessor: 'metric', name: 'mod_playtime_threshold_state_metric_idx_btree', algorithm: 'btree', columns: [
+        'metric',
+      ] },
+    ],
+    constraints: [
+      { name: 'mod_playtime_threshold_state_metric_key', constraint: 'unique', columns: ['metric'] },
+    ],
+  }, ModPlaytimeThresholdStateRow),
   modReplacementTextState: __table({
     name: 'mod_replacement_text_state',
     indexes: [
@@ -6712,6 +6725,7 @@ const reducersSchema = __reducers(
   __reducerSchema("admin_update_empire_ranks", AdminUpdateEmpireRanksReducer),
   __reducerSchema("admin_update_granted_hub_item_state", AdminUpdateGrantedHubItemStateReducer),
   __reducerSchema("admin_update_moderation_enforcement_config", AdminUpdateModerationEnforcementConfigReducer),
+  __reducerSchema("admin_update_playtime_threshold", AdminUpdatePlaytimeThresholdReducer),
   __reducerSchema("admin_update_region_exploration_info", AdminUpdateRegionExplorationInfoReducer),
   __reducerSchema("admin_update_report_moderation_config", AdminUpdateReportModerationConfigReducer),
   __reducerSchema("admin_update_sign_in_parameters", AdminUpdateSignInParametersReducer),
@@ -7493,6 +7507,8 @@ type __SchemaWithTableAccessorAliases = Omit<typeof tablesSchema.schemaType, "ta
     readonly "mod_flag_level_threshold_state": Omit<typeof tablesSchema.schemaType.tables["modFlagLevelThresholdState"], "accessorName"> & { readonly accessorName: "mod_flag_level_threshold_state" };
     /** @deprecated Use `modFlaggedWordState` instead. This alias will be removed in the next major version. */
     readonly "mod_flagged_word_state": Omit<typeof tablesSchema.schemaType.tables["modFlaggedWordState"], "accessorName"> & { readonly accessorName: "mod_flagged_word_state" };
+    /** @deprecated Use `modPlaytimeThresholdState` instead. This alias will be removed in the next major version. */
+    readonly "mod_playtime_threshold_state": Omit<typeof tablesSchema.schemaType.tables["modPlaytimeThresholdState"], "accessorName"> & { readonly accessorName: "mod_playtime_threshold_state" };
     /** @deprecated Use `modReplacementTextState` instead. This alias will be removed in the next major version. */
     readonly "mod_replacement_text_state": Omit<typeof tablesSchema.schemaType.tables["modReplacementTextState"], "accessorName"> & { readonly accessorName: "mod_replacement_text_state" };
     /** @deprecated Use `modReportConfigState` instead. This alias will be removed in the next major version. */
@@ -8225,6 +8241,7 @@ const tableAccessorAliases = {
   "mod_enforcement_config_state": "modEnforcementConfigState",
   "mod_flag_level_threshold_state": "modFlagLevelThresholdState",
   "mod_flagged_word_state": "modFlaggedWordState",
+  "mod_playtime_threshold_state": "modPlaytimeThresholdState",
   "mod_replacement_text_state": "modReplacementTextState",
   "mod_report_config_state": "modReportConfigState",
   "mod_threshold_state": "modThresholdState",
@@ -8911,6 +8928,8 @@ export type DbView = __DbViewBase & {
   readonly "mod_flag_level_threshold_state": __DbViewBase["modFlagLevelThresholdState"];
   /** @deprecated Use `modFlaggedWordState` instead. This alias will be removed in the next major version. */
   readonly "mod_flagged_word_state": __DbViewBase["modFlaggedWordState"];
+  /** @deprecated Use `modPlaytimeThresholdState` instead. This alias will be removed in the next major version. */
+  readonly "mod_playtime_threshold_state": __DbViewBase["modPlaytimeThresholdState"];
   /** @deprecated Use `modReplacementTextState` instead. This alias will be removed in the next major version. */
   readonly "mod_replacement_text_state": __DbViewBase["modReplacementTextState"];
   /** @deprecated Use `modReportConfigState` instead. This alias will be removed in the next major version. */
@@ -9835,6 +9854,8 @@ export type Tables = __TablesBase & {
   readonly "mod_flag_level_threshold_state": __TablesBase["modFlagLevelThresholdState"];
   /** @deprecated Use `modFlaggedWordState` instead. This alias will be removed in the next major version. */
   readonly "mod_flagged_word_state": __TablesBase["modFlaggedWordState"];
+  /** @deprecated Use `modPlaytimeThresholdState` instead. This alias will be removed in the next major version. */
+  readonly "mod_playtime_threshold_state": __TablesBase["modPlaytimeThresholdState"];
   /** @deprecated Use `modReplacementTextState` instead. This alias will be removed in the next major version. */
   readonly "mod_replacement_text_state": __TablesBase["modReplacementTextState"];
   /** @deprecated Use `modReportConfigState` instead. This alias will be removed in the next major version. */

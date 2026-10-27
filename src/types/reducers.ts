@@ -61,6 +61,7 @@ import AdminUnassignEmpireChunksReducer from "../admin_unassign_empire_chunks_re
 import AdminUpdateEmpireRanksReducer from "../admin_update_empire_ranks_reducer";
 import AdminUpdateGrantedHubItemStateReducer from "../admin_update_granted_hub_item_state_reducer";
 import AdminUpdateModerationEnforcementConfigReducer from "../admin_update_moderation_enforcement_config_reducer";
+import AdminUpdatePlaytimeThresholdReducer from "../admin_update_playtime_threshold_reducer";
 import AdminUpdateRegionExplorationInfoReducer from "../admin_update_region_exploration_info_reducer";
 import AdminUpdateReportModerationConfigReducer from "../admin_update_report_moderation_config_reducer";
 import AdminUpdateSignInParametersReducer from "../admin_update_sign_in_parameters_reducer";
@@ -480,6 +481,7 @@ export type AdminUnassignEmpireChunksParams = __Infer<typeof AdminUnassignEmpire
 export type AdminUpdateEmpireRanksParams = __Infer<typeof AdminUpdateEmpireRanksReducer>;
 export type AdminUpdateGrantedHubItemStateParams = __Infer<typeof AdminUpdateGrantedHubItemStateReducer>;
 export type AdminUpdateModerationEnforcementConfigParams = __Infer<typeof AdminUpdateModerationEnforcementConfigReducer>;
+export type AdminUpdatePlaytimeThresholdParams = __Infer<typeof AdminUpdatePlaytimeThresholdReducer>;
 export type AdminUpdateRegionExplorationInfoParams = __Infer<typeof AdminUpdateRegionExplorationInfoReducer>;
 export type AdminUpdateReportModerationConfigParams = __Infer<typeof AdminUpdateReportModerationConfigReducer>;
 export type AdminUpdateSignInParametersParams = __Infer<typeof AdminUpdateSignInParametersReducer>;
