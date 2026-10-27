@@ -144,6 +144,8 @@ import { AdminUpdateGrantedHubItemState } from "./admin_update_granted_hub_item_
 export { AdminUpdateGrantedHubItemState };
 import { AdminUpdateModerationEnforcementConfig } from "./admin_update_moderation_enforcement_config_reducer.ts";
 export { AdminUpdateModerationEnforcementConfig };
+import { AdminUpdatePlaytimeThreshold } from "./admin_update_playtime_threshold_reducer.ts";
+export { AdminUpdatePlaytimeThreshold };
 import { AdminUpdateRegionExplorationInfo } from "./admin_update_region_exploration_info_reducer.ts";
 export { AdminUpdateRegionExplorationInfo };
 import { AdminUpdateReportModerationConfig } from "./admin_update_report_moderation_config_reducer.ts";
@@ -1290,6 +1292,8 @@ import { ModFlagLevelThresholdStateTableHandle } from "./mod_flag_level_threshol
 export { ModFlagLevelThresholdStateTableHandle };
 import { ModFlaggedWordStateTableHandle } from "./mod_flagged_word_state_table.ts";
 export { ModFlaggedWordStateTableHandle };
+import { ModPlaytimeThresholdStateTableHandle } from "./mod_playtime_threshold_state_table.ts";
+export { ModPlaytimeThresholdStateTableHandle };
 import { ModReplacementTextStateTableHandle } from "./mod_replacement_text_state_table.ts";
 export { ModReplacementTextStateTableHandle };
 import { ModReportConfigStateTableHandle } from "./mod_report_config_state_table.ts";
@@ -2444,6 +2448,8 @@ import { ModFlagLevelThresholdState } from "./mod_flag_level_threshold_state_typ
 export { ModFlagLevelThresholdState };
 import { ModFlaggedWordState } from "./mod_flagged_word_state_type.ts";
 export { ModFlaggedWordState };
+import { ModPlaytimeThresholdState } from "./mod_playtime_threshold_state_type.ts";
+export { ModPlaytimeThresholdState };
 import { ModReplacementTextState } from "./mod_replacement_text_state_type.ts";
 export { ModReplacementTextState };
 import { ModReportConfigState } from "./mod_report_config_state_type.ts";
@@ -4716,6 +4722,15 @@ const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "id",
         colType: ModFlaggedWordState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    mod_playtime_threshold_state: {
+      tableName: "mod_playtime_threshold_state",
+      rowType: ModPlaytimeThresholdState.getTypeScriptAlgebraicType(),
+      primaryKey: "metric",
+      primaryKeyInfo: {
+        colName: "metric",
+        colType: ModPlaytimeThresholdState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     mod_replacement_text_state: {
@@ -7144,6 +7159,10 @@ const REMOTE_MODULE = {
       reducerName: "admin_update_moderation_enforcement_config",
       argsType: AdminUpdateModerationEnforcementConfig.getTypeScriptAlgebraicType(),
     },
+    admin_update_playtime_threshold: {
+      reducerName: "admin_update_playtime_threshold",
+      argsType: AdminUpdatePlaytimeThreshold.getTypeScriptAlgebraicType(),
+    },
     admin_update_region_exploration_info: {
       reducerName: "admin_update_region_exploration_info",
       argsType: AdminUpdateRegionExplorationInfo.getTypeScriptAlgebraicType(),
@@ -8681,6 +8700,7 @@ export type Reducer = never
 | { name: "AdminUpdateEmpireRanks", args: AdminUpdateEmpireRanks }
 | { name: "AdminUpdateGrantedHubItemState", args: AdminUpdateGrantedHubItemState }
 | { name: "AdminUpdateModerationEnforcementConfig", args: AdminUpdateModerationEnforcementConfig }
+| { name: "AdminUpdatePlaytimeThreshold", args: AdminUpdatePlaytimeThreshold }
 | { name: "AdminUpdateRegionExplorationInfo", args: AdminUpdateRegionExplorationInfo }
 | { name: "AdminUpdateReportModerationConfig", args: AdminUpdateReportModerationConfig }
 | { name: "AdminUpdateSignInParameters", args: AdminUpdateSignInParameters }
@@ -9911,6 +9931,22 @@ export class RemoteReducers {
 
   removeOnAdminUpdateModerationEnforcementConfig(callback: (ctx: ReducerEventContext, moderationEnforcementActive: boolean, chatModerationEnforcementActive: boolean, usernameModerationEnforcementActive: boolean, entityModerationEnforcementActive: boolean, moderatedEntityNameTypes: number, checkForLinks: boolean, checkForFlaggedWords: boolean, checkForContextFlaggedWords: boolean, deleteFlaggedMessages: boolean, allowLinksCwl: boolean, titleIdCwl: number, httpRequestMaxRetries: number) => void) {
     this.connection.offReducer("admin_update_moderation_enforcement_config", callback);
+  }
+
+  adminUpdatePlaytimeThreshold(metric: number, thresholdHours: number, alertEnabled: boolean) {
+    const __args = { metric, thresholdHours, alertEnabled };
+    let __writer = new BinaryWriter(1024);
+    AdminUpdatePlaytimeThreshold.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("admin_update_playtime_threshold", __argsBuffer, this.setCallReducerFlags.adminUpdatePlaytimeThresholdFlags);
+  }
+
+  onAdminUpdatePlaytimeThreshold(callback: (ctx: ReducerEventContext, metric: number, thresholdHours: number, alertEnabled: boolean) => void) {
+    this.connection.onReducer("admin_update_playtime_threshold", callback);
+  }
+
+  removeOnAdminUpdatePlaytimeThreshold(callback: (ctx: ReducerEventContext, metric: number, thresholdHours: number, alertEnabled: boolean) => void) {
+    this.connection.offReducer("admin_update_playtime_threshold", callback);
   }
 
   adminUpdateRegionExplorationInfo(regionId: number, countsTowardAchievements: boolean) {
@@ -15931,6 +15967,11 @@ export class SetReducerFlags {
     this.adminUpdateModerationEnforcementConfigFlags = flags;
   }
 
+  adminUpdatePlaytimeThresholdFlags: CallReducerFlags = 'FullUpdate';
+  adminUpdatePlaytimeThreshold(flags: CallReducerFlags) {
+    this.adminUpdatePlaytimeThresholdFlags = flags;
+  }
+
   adminUpdateRegionExplorationInfoFlags: CallReducerFlags = 'FullUpdate';
   adminUpdateRegionExplorationInfo(flags: CallReducerFlags) {
     this.adminUpdateRegionExplorationInfoFlags = flags;
@@ -18575,6 +18616,10 @@ export class RemoteTables {
 
   get modFlaggedWordState(): ModFlaggedWordStateTableHandle {
     return new ModFlaggedWordStateTableHandle(this.connection.clientCache.getOrCreateTable<ModFlaggedWordState>(REMOTE_MODULE.tables.mod_flagged_word_state));
+  }
+
+  get modPlaytimeThresholdState(): ModPlaytimeThresholdStateTableHandle {
+    return new ModPlaytimeThresholdStateTableHandle(this.connection.clientCache.getOrCreateTable<ModPlaytimeThresholdState>(REMOTE_MODULE.tables.mod_playtime_threshold_state));
   }
 
   get modReplacementTextState(): ModReplacementTextStateTableHandle {
