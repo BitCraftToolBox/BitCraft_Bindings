@@ -237,6 +237,7 @@ namespace BitCraftGlobal.Types
             AddTable(ModEnforcementConfigState = new(conn));
             AddTable(ModFlagLevelThresholdState = new(conn));
             AddTable(ModFlaggedWordState = new(conn));
+            AddTable(ModPlaytimeThresholdState = new(conn));
             AddTable(ModReplacementTextState = new(conn));
             AddTable(ModReportConfigState = new(conn));
             AddTable(ModThresholdState = new(conn));
@@ -1196,6 +1197,7 @@ namespace BitCraftGlobal.Types
             new QueryBuilder().From.ModEnforcementConfigState().ToSql(),
             new QueryBuilder().From.ModFlagLevelThresholdState().ToSql(),
             new QueryBuilder().From.ModFlaggedWordState().ToSql(),
+            new QueryBuilder().From.ModPlaytimeThresholdState().ToSql(),
             new QueryBuilder().From.ModReplacementTextState().ToSql(),
             new QueryBuilder().From.ModReportConfigState().ToSql(),
             new QueryBuilder().From.ModThresholdState().ToSql(),
@@ -1665,6 +1667,7 @@ namespace BitCraftGlobal.Types
         public global::SpacetimeDB.Table<ModEnforcementConfigState, ModEnforcementConfigStateCols, ModEnforcementConfigStateIxCols> ModEnforcementConfigState() => new("mod_enforcement_config_state", new ModEnforcementConfigStateCols("mod_enforcement_config_state"), new ModEnforcementConfigStateIxCols("mod_enforcement_config_state"));
         public global::SpacetimeDB.Table<ModFlagLevelThresholdState, ModFlagLevelThresholdStateCols, ModFlagLevelThresholdStateIxCols> ModFlagLevelThresholdState() => new("mod_flag_level_threshold_state", new ModFlagLevelThresholdStateCols("mod_flag_level_threshold_state"), new ModFlagLevelThresholdStateIxCols("mod_flag_level_threshold_state"));
         public global::SpacetimeDB.Table<ModFlaggedWordState, ModFlaggedWordStateCols, ModFlaggedWordStateIxCols> ModFlaggedWordState() => new("mod_flagged_word_state", new ModFlaggedWordStateCols("mod_flagged_word_state"), new ModFlaggedWordStateIxCols("mod_flagged_word_state"));
+        public global::SpacetimeDB.Table<ModPlaytimeThresholdState, ModPlaytimeThresholdStateCols, ModPlaytimeThresholdStateIxCols> ModPlaytimeThresholdState() => new("mod_playtime_threshold_state", new ModPlaytimeThresholdStateCols("mod_playtime_threshold_state"), new ModPlaytimeThresholdStateIxCols("mod_playtime_threshold_state"));
         public global::SpacetimeDB.Table<ModReplacementTextState, ModReplacementTextStateCols, ModReplacementTextStateIxCols> ModReplacementTextState() => new("mod_replacement_text_state", new ModReplacementTextStateCols("mod_replacement_text_state"), new ModReplacementTextStateIxCols("mod_replacement_text_state"));
         public global::SpacetimeDB.Table<ModReportConfigState, ModReportConfigStateCols, ModReportConfigStateIxCols> ModReportConfigState() => new("mod_report_config_state", new ModReportConfigStateCols("mod_report_config_state"), new ModReportConfigStateIxCols("mod_report_config_state"));
         public global::SpacetimeDB.Table<ModThresholdState, ModThresholdStateCols, ModThresholdStateIxCols> ModThresholdState() => new("mod_threshold_state", new ModThresholdStateCols("mod_threshold_state"), new ModThresholdStateIxCols("mod_threshold_state"));
@@ -2055,6 +2058,7 @@ namespace BitCraftGlobal.Types
                 Reducer.AdminUpdateEmpireRanks args => Reducers.InvokeAdminUpdateEmpireRanks(eventContext, args),
                 Reducer.AdminUpdateGrantedHubItemState args => Reducers.InvokeAdminUpdateGrantedHubItemState(eventContext, args),
                 Reducer.AdminUpdateModerationEnforcementConfig args => Reducers.InvokeAdminUpdateModerationEnforcementConfig(eventContext, args),
+                Reducer.AdminUpdatePlaytimeThreshold args => Reducers.InvokeAdminUpdatePlaytimeThreshold(eventContext, args),
                 Reducer.AdminUpdateRegionExplorationInfo args => Reducers.InvokeAdminUpdateRegionExplorationInfo(eventContext, args),
                 Reducer.AdminUpdateReportModerationConfig args => Reducers.InvokeAdminUpdateReportModerationConfig(eventContext, args),
                 Reducer.AdminUpdateSignInParameters args => Reducers.InvokeAdminUpdateSignInParameters(eventContext, args),
