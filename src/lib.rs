@@ -89,6 +89,7 @@ pub mod admin_unassign_empire_chunks_reducer;
 pub mod admin_update_empire_ranks_reducer;
 pub mod admin_update_granted_hub_item_state_reducer;
 pub mod admin_update_moderation_enforcement_config_reducer;
+pub mod admin_update_playtime_threshold_reducer;
 pub mod admin_update_region_exploration_info_reducer;
 pub mod admin_update_report_moderation_config_reducer;
 pub mod admin_update_sign_in_parameters_reducer;
@@ -818,6 +819,8 @@ pub mod mod_flag_level_threshold_state_table;
 pub mod mod_flag_level_threshold_state_type;
 pub mod mod_flagged_word_state_table;
 pub mod mod_flagged_word_state_type;
+pub mod mod_playtime_threshold_state_table;
+pub mod mod_playtime_threshold_state_type;
 pub mod mod_replacement_text_state_table;
 pub mod mod_replacement_text_state_type;
 pub mod mod_report_config_state_table;
@@ -1667,6 +1670,10 @@ pub use admin_update_moderation_enforcement_config_reducer::{
     admin_update_moderation_enforcement_config,
     set_flags_for_admin_update_moderation_enforcement_config,
     AdminUpdateModerationEnforcementConfigCallbackId,
+};
+pub use admin_update_playtime_threshold_reducer::{
+    admin_update_playtime_threshold, set_flags_for_admin_update_playtime_threshold,
+    AdminUpdatePlaytimeThresholdCallbackId,
 };
 pub use admin_update_region_exploration_info_reducer::{
     admin_update_region_exploration_info, set_flags_for_admin_update_region_exploration_info,
@@ -2954,6 +2961,8 @@ pub use mod_flag_level_threshold_state_table::*;
 pub use mod_flag_level_threshold_state_type::ModFlagLevelThresholdState;
 pub use mod_flagged_word_state_table::*;
 pub use mod_flagged_word_state_type::ModFlaggedWordState;
+pub use mod_playtime_threshold_state_table::*;
+pub use mod_playtime_threshold_state_type::ModPlaytimeThresholdState;
 pub use mod_replacement_text_state_table::*;
 pub use mod_replacement_text_state_type::ModReplacementTextState;
 pub use mod_report_config_state_table::*;
@@ -4157,6 +4166,11 @@ pub enum Reducer {
         title_id_cwl: i32,
         http_request_max_retries: i32,
     },
+    AdminUpdatePlaytimeThreshold {
+        metric: u8,
+        threshold_hours: i32,
+        alert_enabled: bool,
+    },
     AdminUpdateRegionExplorationInfo {
         region_id: u8,
         counts_toward_achievements: bool,
@@ -5346,6 +5360,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::AdminUpdateModerationEnforcementConfig { .. } => {
                 "admin_update_moderation_enforcement_config"
             }
+            Reducer::AdminUpdatePlaytimeThreshold { .. } => "admin_update_playtime_threshold",
             Reducer::AdminUpdateRegionExplorationInfo { .. } => {
                 "admin_update_region_exploration_info"
             }
@@ -5816,6 +5831,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "admin_update_empire_ranks" => Ok(__sdk::parse_reducer_args::<admin_update_empire_ranks_reducer::AdminUpdateEmpireRanksArgs>("admin_update_empire_ranks", &value.args)?.into()),
             "admin_update_granted_hub_item_state" => Ok(__sdk::parse_reducer_args::<admin_update_granted_hub_item_state_reducer::AdminUpdateGrantedHubItemStateArgs>("admin_update_granted_hub_item_state", &value.args)?.into()),
             "admin_update_moderation_enforcement_config" => Ok(__sdk::parse_reducer_args::<admin_update_moderation_enforcement_config_reducer::AdminUpdateModerationEnforcementConfigArgs>("admin_update_moderation_enforcement_config", &value.args)?.into()),
+            "admin_update_playtime_threshold" => Ok(__sdk::parse_reducer_args::<admin_update_playtime_threshold_reducer::AdminUpdatePlaytimeThresholdArgs>("admin_update_playtime_threshold", &value.args)?.into()),
             "admin_update_region_exploration_info" => Ok(__sdk::parse_reducer_args::<admin_update_region_exploration_info_reducer::AdminUpdateRegionExplorationInfoArgs>("admin_update_region_exploration_info", &value.args)?.into()),
             "admin_update_report_moderation_config" => Ok(__sdk::parse_reducer_args::<admin_update_report_moderation_config_reducer::AdminUpdateReportModerationConfigArgs>("admin_update_report_moderation_config", &value.args)?.into()),
             "admin_update_sign_in_parameters" => Ok(__sdk::parse_reducer_args::<admin_update_sign_in_parameters_reducer::AdminUpdateSignInParametersArgs>("admin_update_sign_in_parameters", &value.args)?.into()),
@@ -6398,6 +6414,7 @@ pub struct DbUpdate {
     mod_enforcement_config_state: __sdk::TableUpdate<ModEnforcementConfigState>,
     mod_flag_level_threshold_state: __sdk::TableUpdate<ModFlagLevelThresholdState>,
     mod_flagged_word_state: __sdk::TableUpdate<ModFlaggedWordState>,
+    mod_playtime_threshold_state: __sdk::TableUpdate<ModPlaytimeThresholdState>,
     mod_replacement_text_state: __sdk::TableUpdate<ModReplacementTextState>,
     mod_report_config_state: __sdk::TableUpdate<ModReportConfigState>,
     mod_threshold_state: __sdk::TableUpdate<ModThresholdState>,
@@ -6873,6 +6890,7 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "mod_enforcement_config_state" => db_update.mod_enforcement_config_state.append(mod_enforcement_config_state_table::parse_table_update(table_update)?),
     "mod_flag_level_threshold_state" => db_update.mod_flag_level_threshold_state.append(mod_flag_level_threshold_state_table::parse_table_update(table_update)?),
     "mod_flagged_word_state" => db_update.mod_flagged_word_state.append(mod_flagged_word_state_table::parse_table_update(table_update)?),
+    "mod_playtime_threshold_state" => db_update.mod_playtime_threshold_state.append(mod_playtime_threshold_state_table::parse_table_update(table_update)?),
     "mod_replacement_text_state" => db_update.mod_replacement_text_state.append(mod_replacement_text_state_table::parse_table_update(table_update)?),
     "mod_report_config_state" => db_update.mod_report_config_state.append(mod_report_config_state_table::parse_table_update(table_update)?),
     "mod_threshold_state" => db_update.mod_threshold_state.append(mod_threshold_state_table::parse_table_update(table_update)?),
@@ -8156,6 +8174,12 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.mod_flagged_word_state,
             )
             .with_updates_by_pk(|row| &row.id);
+        diff.mod_playtime_threshold_state = cache
+            .apply_diff_to_table::<ModPlaytimeThresholdState>(
+                "mod_playtime_threshold_state",
+                &self.mod_playtime_threshold_state,
+            )
+            .with_updates_by_pk(|row| &row.metric);
         diff.mod_replacement_text_state = cache
             .apply_diff_to_table::<ModReplacementTextState>(
                 "mod_replacement_text_state",
@@ -9656,6 +9680,7 @@ pub struct AppliedDiff<'r> {
     mod_enforcement_config_state: __sdk::TableAppliedDiff<'r, ModEnforcementConfigState>,
     mod_flag_level_threshold_state: __sdk::TableAppliedDiff<'r, ModFlagLevelThresholdState>,
     mod_flagged_word_state: __sdk::TableAppliedDiff<'r, ModFlaggedWordState>,
+    mod_playtime_threshold_state: __sdk::TableAppliedDiff<'r, ModPlaytimeThresholdState>,
     mod_replacement_text_state: __sdk::TableAppliedDiff<'r, ModReplacementTextState>,
     mod_report_config_state: __sdk::TableAppliedDiff<'r, ModReportConfigState>,
     mod_threshold_state: __sdk::TableAppliedDiff<'r, ModThresholdState>,
@@ -10908,6 +10933,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<ModFlaggedWordState>(
             "mod_flagged_word_state",
             &self.mod_flagged_word_state,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<ModPlaytimeThresholdState>(
+            "mod_playtime_threshold_state",
+            &self.mod_playtime_threshold_state,
             event,
         );
         callbacks.invoke_table_row_callbacks::<ModReplacementTextState>(
@@ -13073,6 +13103,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         mod_enforcement_config_state_table::register_table(client_cache);
         mod_flag_level_threshold_state_table::register_table(client_cache);
         mod_flagged_word_state_table::register_table(client_cache);
+        mod_playtime_threshold_state_table::register_table(client_cache);
         mod_replacement_text_state_table::register_table(client_cache);
         mod_report_config_state_table::register_table(client_cache);
         mod_threshold_state_table::register_table(client_cache);
