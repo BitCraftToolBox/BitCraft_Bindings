@@ -238,6 +238,7 @@ namespace BitCraftGlobal.Types
             AddTable(ModEnforcementConfigState = new(conn));
             AddTable(ModFlagLevelThresholdState = new(conn));
             AddTable(ModFlaggedWordState = new(conn));
+            AddTable(ModPlaytimeThresholdState = new(conn));
             AddTable(ModReplacementTextState = new(conn));
             AddTable(ModReportConfigState = new(conn));
             AddTable(ModThresholdState = new(conn));
@@ -1253,6 +1254,7 @@ namespace BitCraftGlobal.Types
         public global::SpacetimeDB.Table<ModEnforcementConfigState, ModEnforcementConfigStateCols, ModEnforcementConfigStateIxCols> ModEnforcementConfigState() => new("mod_enforcement_config_state", new ModEnforcementConfigStateCols("mod_enforcement_config_state"), new ModEnforcementConfigStateIxCols("mod_enforcement_config_state"));
         public global::SpacetimeDB.Table<ModFlagLevelThresholdState, ModFlagLevelThresholdStateCols, ModFlagLevelThresholdStateIxCols> ModFlagLevelThresholdState() => new("mod_flag_level_threshold_state", new ModFlagLevelThresholdStateCols("mod_flag_level_threshold_state"), new ModFlagLevelThresholdStateIxCols("mod_flag_level_threshold_state"));
         public global::SpacetimeDB.Table<ModFlaggedWordState, ModFlaggedWordStateCols, ModFlaggedWordStateIxCols> ModFlaggedWordState() => new("mod_flagged_word_state", new ModFlaggedWordStateCols("mod_flagged_word_state"), new ModFlaggedWordStateIxCols("mod_flagged_word_state"));
+        public global::SpacetimeDB.Table<ModPlaytimeThresholdState, ModPlaytimeThresholdStateCols, ModPlaytimeThresholdStateIxCols> ModPlaytimeThresholdState() => new("mod_playtime_threshold_state", new ModPlaytimeThresholdStateCols("mod_playtime_threshold_state"), new ModPlaytimeThresholdStateIxCols("mod_playtime_threshold_state"));
         public global::SpacetimeDB.Table<ModReplacementTextState, ModReplacementTextStateCols, ModReplacementTextStateIxCols> ModReplacementTextState() => new("mod_replacement_text_state", new ModReplacementTextStateCols("mod_replacement_text_state"), new ModReplacementTextStateIxCols("mod_replacement_text_state"));
         public global::SpacetimeDB.Table<ModReportConfigState, ModReportConfigStateCols, ModReportConfigStateIxCols> ModReportConfigState() => new("mod_report_config_state", new ModReportConfigStateCols("mod_report_config_state"), new ModReportConfigStateIxCols("mod_report_config_state"));
         public global::SpacetimeDB.Table<ModThresholdState, ModThresholdStateCols, ModThresholdStateIxCols> ModThresholdState() => new("mod_threshold_state", new ModThresholdStateCols("mod_threshold_state"), new ModThresholdStateIxCols("mod_threshold_state"));
@@ -1629,6 +1631,7 @@ namespace BitCraftGlobal.Types
                 "admin_update_empire_ranks" => BSATNHelpers.Decode<Reducer.AdminUpdateEmpireRanks>(encodedArgs),
                 "admin_update_granted_hub_item_state" => BSATNHelpers.Decode<Reducer.AdminUpdateGrantedHubItemState>(encodedArgs),
                 "admin_update_moderation_enforcement_config" => BSATNHelpers.Decode<Reducer.AdminUpdateModerationEnforcementConfig>(encodedArgs),
+                "admin_update_playtime_threshold" => BSATNHelpers.Decode<Reducer.AdminUpdatePlaytimeThreshold>(encodedArgs),
                 "admin_update_region_exploration_info" => BSATNHelpers.Decode<Reducer.AdminUpdateRegionExplorationInfo>(encodedArgs),
                 "admin_update_report_moderation_config" => BSATNHelpers.Decode<Reducer.AdminUpdateReportModerationConfig>(encodedArgs),
                 "admin_update_sign_in_parameters" => BSATNHelpers.Decode<Reducer.AdminUpdateSignInParameters>(encodedArgs),
@@ -2072,6 +2075,7 @@ namespace BitCraftGlobal.Types
                 Reducer.AdminUpdateEmpireRanks args => Reducers.InvokeAdminUpdateEmpireRanks(eventContext, args),
                 Reducer.AdminUpdateGrantedHubItemState args => Reducers.InvokeAdminUpdateGrantedHubItemState(eventContext, args),
                 Reducer.AdminUpdateModerationEnforcementConfig args => Reducers.InvokeAdminUpdateModerationEnforcementConfig(eventContext, args),
+                Reducer.AdminUpdatePlaytimeThreshold args => Reducers.InvokeAdminUpdatePlaytimeThreshold(eventContext, args),
                 Reducer.AdminUpdateRegionExplorationInfo args => Reducers.InvokeAdminUpdateRegionExplorationInfo(eventContext, args),
                 Reducer.AdminUpdateReportModerationConfig args => Reducers.InvokeAdminUpdateReportModerationConfig(eventContext, args),
                 Reducer.AdminUpdateSignInParameters args => Reducers.InvokeAdminUpdateSignInParameters(eventContext, args),
