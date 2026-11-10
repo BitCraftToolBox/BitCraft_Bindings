@@ -118,6 +118,7 @@ pub mod admin_restore_player_state_timer_table;
 pub mod admin_restore_player_state_timer_type;
 pub mod admin_set_region_control_state_reducer;
 pub mod admin_set_resource_world_target_reducer;
+pub mod admin_set_resources_to_max_health_reducer;
 pub mod admin_set_sign_text_coord_reducer;
 pub mod admin_set_sign_text_entity_reducer;
 pub mod admin_set_sign_text_reducer;
@@ -745,6 +746,8 @@ pub mod footprint_type_type;
 pub mod force_generate_types_table;
 pub mod force_generate_types_type;
 pub mod force_start_agents_reducer;
+pub mod furniture_emote_desc_table;
+pub mod furniture_emote_desc_type;
 pub mod gate_desc_table;
 pub mod gate_desc_type;
 pub mod gated_feature_type;
@@ -854,6 +857,7 @@ pub mod import_extraction_recipe_desc_reducer;
 pub mod import_floating_platform_desc_reducer;
 pub mod import_food_desc_reducer;
 pub mod import_footprint_tile_state_reducer;
+pub mod import_furniture_emote_desc_reducer;
 pub mod import_gate_desc_reducer;
 pub mod import_globals_reducer;
 pub mod import_growth_state_reducer;
@@ -1138,6 +1142,7 @@ pub mod message_contents_v_4_type;
 pub mod message_contents_v_5_type;
 pub mod migrate_auto_attacks_reducer;
 pub mod migrate_character_stats_reducer;
+pub mod migrate_claim_tech_homestead_unlocks_reducer;
 pub mod migrate_claim_tech_reducer;
 pub mod migrate_duplicate_equipment_slots_reducer;
 pub mod migrate_equipment_slots_reducer;
@@ -1146,6 +1151,7 @@ pub mod migrate_grant_default_collectibles_reducer;
 pub mod migrate_missing_equipment_slot_types_reducer;
 pub mod migrate_onboarding_reducer;
 pub mod migrate_player_settings_reducer;
+pub mod migrate_regional_banks_reducer;
 pub mod migrate_skill_level_knowledge_reducer;
 pub mod migration_achievements_params_table;
 pub mod migration_achievements_params_type;
@@ -1579,6 +1585,7 @@ pub mod region_popuplation_loop_timer_table;
 pub mod region_sign_in_parameters_op_type;
 pub mod region_sign_in_parameters_table;
 pub mod region_sign_in_parameters_type;
+pub mod regional_bank_state_table;
 pub mod rent_add_listing_reducer;
 pub mod rent_add_listing_request_type;
 pub mod rent_add_tenant_reducer;
@@ -1756,6 +1763,7 @@ pub mod stage_equipment_preset_knowledge_desc_reducer;
 pub mod stage_extraction_recipe_desc_reducer;
 pub mod stage_floating_platform_desc_reducer;
 pub mod stage_food_desc_reducer;
+pub mod stage_furniture_emote_desc_reducer;
 pub mod stage_gate_desc_reducer;
 pub mod stage_hexite_exchange_entry_desc_reducer;
 pub mod stage_interior_environment_desc_reducer;
@@ -1867,6 +1875,7 @@ pub mod staged_equipment_preset_knowledge_desc_table;
 pub mod staged_extraction_recipe_desc_table;
 pub mod staged_floating_platform_desc_table;
 pub mod staged_food_desc_table;
+pub mod staged_furniture_emote_desc_table;
 pub mod staged_gate_desc_table;
 pub mod staged_hexite_exchange_entry_desc_table;
 pub mod staged_interior_environment_desc_table;
@@ -2447,6 +2456,10 @@ pub use admin_set_region_control_state_reducer::{
 pub use admin_set_resource_world_target_reducer::{
     admin_set_resource_world_target, set_flags_for_admin_set_resource_world_target,
     AdminSetResourceWorldTargetCallbackId,
+};
+pub use admin_set_resources_to_max_health_reducer::{
+    admin_set_resources_to_max_health, set_flags_for_admin_set_resources_to_max_health,
+    AdminSetResourcesToMaxHealthCallbackId,
 };
 pub use admin_set_sign_text_coord_reducer::{
     admin_set_sign_text_coord, set_flags_for_admin_set_sign_text_coord,
@@ -3542,6 +3555,8 @@ pub use force_generate_types_type::ForceGenerateTypes;
 pub use force_start_agents_reducer::{
     force_start_agents, set_flags_for_force_start_agents, ForceStartAgentsCallbackId,
 };
+pub use furniture_emote_desc_table::*;
+pub use furniture_emote_desc_type::FurnitureEmoteDesc;
 pub use gate_desc_table::*;
 pub use gate_desc_type::GateDesc;
 pub use gated_feature_type::GatedFeature;
@@ -3851,6 +3866,10 @@ pub use import_food_desc_reducer::{
 pub use import_footprint_tile_state_reducer::{
     import_footprint_tile_state, set_flags_for_import_footprint_tile_state,
     ImportFootprintTileStateCallbackId,
+};
+pub use import_furniture_emote_desc_reducer::{
+    import_furniture_emote_desc, set_flags_for_import_furniture_emote_desc,
+    ImportFurnitureEmoteDescCallbackId,
 };
 pub use import_gate_desc_reducer::{
     import_gate_desc, set_flags_for_import_gate_desc, ImportGateDescCallbackId,
@@ -4487,6 +4506,10 @@ pub use migrate_auto_attacks_reducer::{
 pub use migrate_character_stats_reducer::{
     migrate_character_stats, set_flags_for_migrate_character_stats, MigrateCharacterStatsCallbackId,
 };
+pub use migrate_claim_tech_homestead_unlocks_reducer::{
+    migrate_claim_tech_homestead_unlocks, set_flags_for_migrate_claim_tech_homestead_unlocks,
+    MigrateClaimTechHomesteadUnlocksCallbackId,
+};
 pub use migrate_claim_tech_reducer::{
     migrate_claim_tech, set_flags_for_migrate_claim_tech, MigrateClaimTechCallbackId,
 };
@@ -4514,6 +4537,9 @@ pub use migrate_onboarding_reducer::{
 };
 pub use migrate_player_settings_reducer::{
     migrate_player_settings, set_flags_for_migrate_player_settings, MigratePlayerSettingsCallbackId,
+};
+pub use migrate_regional_banks_reducer::{
+    migrate_regional_banks, set_flags_for_migrate_regional_banks, MigrateRegionalBanksCallbackId,
 };
 pub use migrate_skill_level_knowledge_reducer::{
     migrate_skill_level_knowledge, set_flags_for_migrate_skill_level_knowledge,
@@ -5136,6 +5162,7 @@ pub use region_popuplation_loop_timer_table::*;
 pub use region_sign_in_parameters_op_type::RegionSignInParametersOp;
 pub use region_sign_in_parameters_table::*;
 pub use region_sign_in_parameters_type::RegionSignInParameters;
+pub use regional_bank_state_table::*;
 pub use rent_add_listing_reducer::{
     rent_add_listing, set_flags_for_rent_add_listing, RentAddListingCallbackId,
 };
@@ -5510,6 +5537,10 @@ pub use stage_floating_platform_desc_reducer::{
 pub use stage_food_desc_reducer::{
     set_flags_for_stage_food_desc, stage_food_desc, StageFoodDescCallbackId,
 };
+pub use stage_furniture_emote_desc_reducer::{
+    set_flags_for_stage_furniture_emote_desc, stage_furniture_emote_desc,
+    StageFurnitureEmoteDescCallbackId,
+};
 pub use stage_gate_desc_reducer::{
     set_flags_for_stage_gate_desc, stage_gate_desc, StageGateDescCallbackId,
 };
@@ -5778,6 +5809,7 @@ pub use staged_equipment_preset_knowledge_desc_table::*;
 pub use staged_extraction_recipe_desc_table::*;
 pub use staged_floating_platform_desc_table::*;
 pub use staged_food_desc_table::*;
+pub use staged_furniture_emote_desc_table::*;
 pub use staged_gate_desc_table::*;
 pub use staged_hexite_exchange_entry_desc_table::*;
 pub use staged_interior_environment_desc_table::*;
@@ -6354,6 +6386,7 @@ pub enum Reducer {
         resource_id: i32,
         world_target: i32,
     },
+    AdminSetResourcesToMaxHealth,
     AdminSetSignText {
         deployable_name: String,
         new_name: String,
@@ -7219,6 +7252,9 @@ pub enum Reducer {
     ImportFootprintTileState {
         records: Vec<FootprintTileState>,
     },
+    ImportFurnitureEmoteDesc {
+        records: Vec<FurnitureEmoteDesc>,
+    },
     ImportGateDesc {
         records: Vec<GateDesc>,
     },
@@ -7649,6 +7685,7 @@ pub enum Reducer {
     MigrateAutoAttacks,
     MigrateCharacterStats,
     MigrateClaimTech,
+    MigrateClaimTechHomesteadUnlocks,
     MigrateDuplicateEquipmentSlots,
     MigrateEquipmentSlots,
     MigrateExplorationAchievementCounts,
@@ -7656,6 +7693,7 @@ pub enum Reducer {
     MigrateMissingEquipmentSlotTypes,
     MigrateOnboarding,
     MigratePlayerSettings,
+    MigrateRegionalBanks,
     MigrateSkillLevelKnowledge,
     MigrationSetAchievementParams {
         allow_destructive: bool,
@@ -8150,6 +8188,9 @@ pub enum Reducer {
     StageFoodDesc {
         records: Vec<FoodDesc>,
     },
+    StageFurnitureEmoteDesc {
+        records: Vec<FurnitureEmoteDesc>,
+    },
     StageGateDesc {
         records: Vec<GateDesc>,
     },
@@ -8550,6 +8591,7 @@ impl __sdk::Reducer for Reducer {
             }
             Reducer::AdminSetRegionControlState { .. } => "admin_set_region_control_state",
             Reducer::AdminSetResourceWorldTarget { .. } => "admin_set_resource_world_target",
+            Reducer::AdminSetResourcesToMaxHealth => "admin_set_resources_to_max_health",
             Reducer::AdminSetSignText { .. } => "admin_set_sign_text",
             Reducer::AdminSetSignTextCoord { .. } => "admin_set_sign_text_coord",
             Reducer::AdminSetSignTextEntity { .. } => "admin_set_sign_text_entity",
@@ -8861,6 +8903,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::ImportFloatingPlatformDesc { .. } => "import_floating_platform_desc",
             Reducer::ImportFoodDesc { .. } => "import_food_desc",
             Reducer::ImportFootprintTileState { .. } => "import_footprint_tile_state",
+            Reducer::ImportFurnitureEmoteDesc { .. } => "import_furniture_emote_desc",
             Reducer::ImportGateDesc { .. } => "import_gate_desc",
             Reducer::ImportGlobals { .. } => "import_globals",
             Reducer::ImportGrowthState { .. } => "import_growth_state",
@@ -9026,6 +9069,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::MigrateAutoAttacks => "migrate_auto_attacks",
             Reducer::MigrateCharacterStats => "migrate_character_stats",
             Reducer::MigrateClaimTech => "migrate_claim_tech",
+            Reducer::MigrateClaimTechHomesteadUnlocks => "migrate_claim_tech_homestead_unlocks",
             Reducer::MigrateDuplicateEquipmentSlots => "migrate_duplicate_equipment_slots",
             Reducer::MigrateEquipmentSlots => "migrate_equipment_slots",
             Reducer::MigrateExplorationAchievementCounts => {
@@ -9035,6 +9079,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::MigrateMissingEquipmentSlotTypes => "migrate_missing_equipment_slot_types",
             Reducer::MigrateOnboarding => "migrate_onboarding",
             Reducer::MigratePlayerSettings => "migrate_player_settings",
+            Reducer::MigrateRegionalBanks => "migrate_regional_banks",
             Reducer::MigrateSkillLevelKnowledge => "migrate_skill_level_knowledge",
             Reducer::MigrationSetAchievementParams { .. } => "migration_set_achievement_params",
             Reducer::MigrationSetBuildingDescParams { .. } => "migration_set_building_desc_params",
@@ -9215,6 +9260,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::StageExtractionRecipeDesc { .. } => "stage_extraction_recipe_desc",
             Reducer::StageFloatingPlatformDesc { .. } => "stage_floating_platform_desc",
             Reducer::StageFoodDesc { .. } => "stage_food_desc",
+            Reducer::StageFurnitureEmoteDesc { .. } => "stage_furniture_emote_desc",
             Reducer::StageGateDesc { .. } => "stage_gate_desc",
             Reducer::StageHexiteExchangeEntryDesc { .. } => "stage_hexite_exchange_entry_desc",
             Reducer::StageInteriorEnvironmentDesc { .. } => "stage_interior_environment_desc",
@@ -9408,6 +9454,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "admin_restore_player_state_scheduled" => Ok(__sdk::parse_reducer_args::<admin_restore_player_state_scheduled_reducer::AdminRestorePlayerStateScheduledArgs>("admin_restore_player_state_scheduled", &value.args)?.into()),
             "admin_set_region_control_state" => Ok(__sdk::parse_reducer_args::<admin_set_region_control_state_reducer::AdminSetRegionControlStateArgs>("admin_set_region_control_state", &value.args)?.into()),
             "admin_set_resource_world_target" => Ok(__sdk::parse_reducer_args::<admin_set_resource_world_target_reducer::AdminSetResourceWorldTargetArgs>("admin_set_resource_world_target", &value.args)?.into()),
+            "admin_set_resources_to_max_health" => Ok(__sdk::parse_reducer_args::<admin_set_resources_to_max_health_reducer::AdminSetResourcesToMaxHealthArgs>("admin_set_resources_to_max_health", &value.args)?.into()),
             "admin_set_sign_text" => Ok(__sdk::parse_reducer_args::<admin_set_sign_text_reducer::AdminSetSignTextArgs>("admin_set_sign_text", &value.args)?.into()),
             "admin_set_sign_text_coord" => Ok(__sdk::parse_reducer_args::<admin_set_sign_text_coord_reducer::AdminSetSignTextCoordArgs>("admin_set_sign_text_coord", &value.args)?.into()),
             "admin_set_sign_text_entity" => Ok(__sdk::parse_reducer_args::<admin_set_sign_text_entity_reducer::AdminSetSignTextEntityArgs>("admin_set_sign_text_entity", &value.args)?.into()),
@@ -9693,6 +9740,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "import_floating_platform_desc" => Ok(__sdk::parse_reducer_args::<import_floating_platform_desc_reducer::ImportFloatingPlatformDescArgs>("import_floating_platform_desc", &value.args)?.into()),
             "import_food_desc" => Ok(__sdk::parse_reducer_args::<import_food_desc_reducer::ImportFoodDescArgs>("import_food_desc", &value.args)?.into()),
             "import_footprint_tile_state" => Ok(__sdk::parse_reducer_args::<import_footprint_tile_state_reducer::ImportFootprintTileStateArgs>("import_footprint_tile_state", &value.args)?.into()),
+            "import_furniture_emote_desc" => Ok(__sdk::parse_reducer_args::<import_furniture_emote_desc_reducer::ImportFurnitureEmoteDescArgs>("import_furniture_emote_desc", &value.args)?.into()),
             "import_gate_desc" => Ok(__sdk::parse_reducer_args::<import_gate_desc_reducer::ImportGateDescArgs>("import_gate_desc", &value.args)?.into()),
             "import_globals" => Ok(__sdk::parse_reducer_args::<import_globals_reducer::ImportGlobalsArgs>("import_globals", &value.args)?.into()),
             "import_growth_state" => Ok(__sdk::parse_reducer_args::<import_growth_state_reducer::ImportGrowthStateArgs>("import_growth_state", &value.args)?.into()),
@@ -9836,6 +9884,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "migrate_auto_attacks" => Ok(__sdk::parse_reducer_args::<migrate_auto_attacks_reducer::MigrateAutoAttacksArgs>("migrate_auto_attacks", &value.args)?.into()),
             "migrate_character_stats" => Ok(__sdk::parse_reducer_args::<migrate_character_stats_reducer::MigrateCharacterStatsArgs>("migrate_character_stats", &value.args)?.into()),
             "migrate_claim_tech" => Ok(__sdk::parse_reducer_args::<migrate_claim_tech_reducer::MigrateClaimTechArgs>("migrate_claim_tech", &value.args)?.into()),
+            "migrate_claim_tech_homestead_unlocks" => Ok(__sdk::parse_reducer_args::<migrate_claim_tech_homestead_unlocks_reducer::MigrateClaimTechHomesteadUnlocksArgs>("migrate_claim_tech_homestead_unlocks", &value.args)?.into()),
             "migrate_duplicate_equipment_slots" => Ok(__sdk::parse_reducer_args::<migrate_duplicate_equipment_slots_reducer::MigrateDuplicateEquipmentSlotsArgs>("migrate_duplicate_equipment_slots", &value.args)?.into()),
             "migrate_equipment_slots" => Ok(__sdk::parse_reducer_args::<migrate_equipment_slots_reducer::MigrateEquipmentSlotsArgs>("migrate_equipment_slots", &value.args)?.into()),
             "migrate_exploration_achievement_counts" => Ok(__sdk::parse_reducer_args::<migrate_exploration_achievement_counts_reducer::MigrateExplorationAchievementCountsArgs>("migrate_exploration_achievement_counts", &value.args)?.into()),
@@ -9843,6 +9892,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "migrate_missing_equipment_slot_types" => Ok(__sdk::parse_reducer_args::<migrate_missing_equipment_slot_types_reducer::MigrateMissingEquipmentSlotTypesArgs>("migrate_missing_equipment_slot_types", &value.args)?.into()),
             "migrate_onboarding" => Ok(__sdk::parse_reducer_args::<migrate_onboarding_reducer::MigrateOnboardingArgs>("migrate_onboarding", &value.args)?.into()),
             "migrate_player_settings" => Ok(__sdk::parse_reducer_args::<migrate_player_settings_reducer::MigratePlayerSettingsArgs>("migrate_player_settings", &value.args)?.into()),
+            "migrate_regional_banks" => Ok(__sdk::parse_reducer_args::<migrate_regional_banks_reducer::MigrateRegionalBanksArgs>("migrate_regional_banks", &value.args)?.into()),
             "migrate_skill_level_knowledge" => Ok(__sdk::parse_reducer_args::<migrate_skill_level_knowledge_reducer::MigrateSkillLevelKnowledgeArgs>("migrate_skill_level_knowledge", &value.args)?.into()),
             "migration_set_achievement_params" => Ok(__sdk::parse_reducer_args::<migration_set_achievement_params_reducer::MigrationSetAchievementParamsArgs>("migration_set_achievement_params", &value.args)?.into()),
             "migration_set_building_desc_params" => Ok(__sdk::parse_reducer_args::<migration_set_building_desc_params_reducer::MigrationSetBuildingDescParamsArgs>("migration_set_building_desc_params", &value.args)?.into()),
@@ -10011,6 +10061,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "stage_extraction_recipe_desc" => Ok(__sdk::parse_reducer_args::<stage_extraction_recipe_desc_reducer::StageExtractionRecipeDescArgs>("stage_extraction_recipe_desc", &value.args)?.into()),
             "stage_floating_platform_desc" => Ok(__sdk::parse_reducer_args::<stage_floating_platform_desc_reducer::StageFloatingPlatformDescArgs>("stage_floating_platform_desc", &value.args)?.into()),
             "stage_food_desc" => Ok(__sdk::parse_reducer_args::<stage_food_desc_reducer::StageFoodDescArgs>("stage_food_desc", &value.args)?.into()),
+            "stage_furniture_emote_desc" => Ok(__sdk::parse_reducer_args::<stage_furniture_emote_desc_reducer::StageFurnitureEmoteDescArgs>("stage_furniture_emote_desc", &value.args)?.into()),
             "stage_gate_desc" => Ok(__sdk::parse_reducer_args::<stage_gate_desc_reducer::StageGateDescArgs>("stage_gate_desc", &value.args)?.into()),
             "stage_hexite_exchange_entry_desc" => Ok(__sdk::parse_reducer_args::<stage_hexite_exchange_entry_desc_reducer::StageHexiteExchangeEntryDescArgs>("stage_hexite_exchange_entry_desc", &value.args)?.into()),
             "stage_interior_environment_desc" => Ok(__sdk::parse_reducer_args::<stage_interior_environment_desc_reducer::StageInteriorEnvironmentDescArgs>("stage_interior_environment_desc", &value.args)?.into()),
@@ -10286,6 +10337,7 @@ pub struct DbUpdate {
     food_desc: __sdk::TableUpdate<FoodDesc>,
     footprint_tile_state: __sdk::TableUpdate<FootprintTileState>,
     force_generate_types: __sdk::TableUpdate<ForceGenerateTypes>,
+    furniture_emote_desc: __sdk::TableUpdate<FurnitureEmoteDesc>,
     gate_desc: __sdk::TableUpdate<GateDesc>,
     gated_features: __sdk::TableUpdate<GatedFeature>,
     global_search_state: __sdk::TableUpdate<GlobalSearchState>,
@@ -10463,6 +10515,7 @@ pub struct DbUpdate {
     region_population_info: __sdk::TableUpdate<RegionPopulationInfo>,
     region_popuplation_loop_timer: __sdk::TableUpdate<RegionPopulationLoopTimer>,
     region_sign_in_parameters: __sdk::TableUpdate<RegionSignInParameters>,
+    regional_bank_state: __sdk::TableUpdate<BankState>,
     rent_collector_loop_timer: __sdk::TableUpdate<RentCollectorLoopTimer>,
     rent_evict_timer: __sdk::TableUpdate<RentEvictTimer>,
     rent_state: __sdk::TableUpdate<RentState>,
@@ -10549,6 +10602,7 @@ pub struct DbUpdate {
     staged_extraction_recipe_desc: __sdk::TableUpdate<ExtractionRecipeDesc>,
     staged_floating_platform_desc: __sdk::TableUpdate<FloatingPlatformDesc>,
     staged_food_desc: __sdk::TableUpdate<FoodDesc>,
+    staged_furniture_emote_desc: __sdk::TableUpdate<FurnitureEmoteDesc>,
     staged_gate_desc: __sdk::TableUpdate<GateDesc>,
     staged_hexite_exchange_entry_desc: __sdk::TableUpdate<HexiteExchangeEntryDesc>,
     staged_interior_environment_desc: __sdk::TableUpdate<InteriorEnvironmentDesc>,
@@ -10840,6 +10894,7 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "food_desc" => db_update.food_desc.append(food_desc_table::parse_table_update(table_update)?),
     "footprint_tile_state" => db_update.footprint_tile_state.append(footprint_tile_state_table::parse_table_update(table_update)?),
     "force_generate_types" => db_update.force_generate_types.append(force_generate_types_table::parse_table_update(table_update)?),
+    "furniture_emote_desc" => db_update.furniture_emote_desc.append(furniture_emote_desc_table::parse_table_update(table_update)?),
     "gate_desc" => db_update.gate_desc.append(gate_desc_table::parse_table_update(table_update)?),
     "gated_features" => db_update.gated_features.append(gated_features_table::parse_table_update(table_update)?),
     "global_search_state" => db_update.global_search_state.append(global_search_state_table::parse_table_update(table_update)?),
@@ -11016,6 +11071,7 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "region_population_info" => db_update.region_population_info.append(region_population_info_table::parse_table_update(table_update)?),
     "region_popuplation_loop_timer" => db_update.region_popuplation_loop_timer.append(region_popuplation_loop_timer_table::parse_table_update(table_update)?),
     "region_sign_in_parameters" => db_update.region_sign_in_parameters.append(region_sign_in_parameters_table::parse_table_update(table_update)?),
+    "regional_bank_state" => db_update.regional_bank_state.append(regional_bank_state_table::parse_table_update(table_update)?),
     "rent_collector_loop_timer" => db_update.rent_collector_loop_timer.append(rent_collector_loop_timer_table::parse_table_update(table_update)?),
     "rent_evict_timer" => db_update.rent_evict_timer.append(rent_evict_timer_table::parse_table_update(table_update)?),
     "rent_state" => db_update.rent_state.append(rent_state_table::parse_table_update(table_update)?),
@@ -11101,6 +11157,7 @@ impl TryFrom<__ws::DatabaseUpdate<__ws::BsatnFormat>> for DbUpdate {
     "staged_extraction_recipe_desc" => db_update.staged_extraction_recipe_desc.append(staged_extraction_recipe_desc_table::parse_table_update(table_update)?),
     "staged_floating_platform_desc" => db_update.staged_floating_platform_desc.append(staged_floating_platform_desc_table::parse_table_update(table_update)?),
     "staged_food_desc" => db_update.staged_food_desc.append(staged_food_desc_table::parse_table_update(table_update)?),
+    "staged_furniture_emote_desc" => db_update.staged_furniture_emote_desc.append(staged_furniture_emote_desc_table::parse_table_update(table_update)?),
     "staged_gate_desc" => db_update.staged_gate_desc.append(staged_gate_desc_table::parse_table_update(table_update)?),
     "staged_hexite_exchange_entry_desc" => db_update.staged_hexite_exchange_entry_desc.append(staged_hexite_exchange_entry_desc_table::parse_table_update(table_update)?),
     "staged_interior_environment_desc" => db_update.staged_interior_environment_desc.append(staged_interior_environment_desc_table::parse_table_update(table_update)?),
@@ -12010,6 +12067,12 @@ impl __sdk::DbUpdate for DbUpdate {
             "force_generate_types",
             &self.force_generate_types,
         );
+        diff.furniture_emote_desc = cache
+            .apply_diff_to_table::<FurnitureEmoteDesc>(
+                "furniture_emote_desc",
+                &self.furniture_emote_desc,
+            )
+            .with_updates_by_pk(|row| &row.emote_id);
         diff.gate_desc = cache
             .apply_diff_to_table::<GateDesc>("gate_desc", &self.gate_desc)
             .with_updates_by_pk(|row| &row.building_id);
@@ -12875,6 +12938,9 @@ impl __sdk::DbUpdate for DbUpdate {
                 &self.region_sign_in_parameters,
             )
             .with_updates_by_pk(|row| &row.region_id);
+        diff.regional_bank_state = cache
+            .apply_diff_to_table::<BankState>("regional_bank_state", &self.regional_bank_state)
+            .with_updates_by_pk(|row| &row.building_entity_id);
         diff.rent_collector_loop_timer = cache
             .apply_diff_to_table::<RentCollectorLoopTimer>(
                 "rent_collector_loop_timer",
@@ -13304,6 +13370,12 @@ impl __sdk::DbUpdate for DbUpdate {
         diff.staged_food_desc = cache
             .apply_diff_to_table::<FoodDesc>("staged_food_desc", &self.staged_food_desc)
             .with_updates_by_pk(|row| &row.item_id);
+        diff.staged_furniture_emote_desc = cache
+            .apply_diff_to_table::<FurnitureEmoteDesc>(
+                "staged_furniture_emote_desc",
+                &self.staged_furniture_emote_desc,
+            )
+            .with_updates_by_pk(|row| &row.emote_id);
         diff.staged_gate_desc = cache
             .apply_diff_to_table::<GateDesc>("staged_gate_desc", &self.staged_gate_desc)
             .with_updates_by_pk(|row| &row.building_id);
@@ -14060,6 +14132,7 @@ pub struct AppliedDiff<'r> {
     food_desc: __sdk::TableAppliedDiff<'r, FoodDesc>,
     footprint_tile_state: __sdk::TableAppliedDiff<'r, FootprintTileState>,
     force_generate_types: __sdk::TableAppliedDiff<'r, ForceGenerateTypes>,
+    furniture_emote_desc: __sdk::TableAppliedDiff<'r, FurnitureEmoteDesc>,
     gate_desc: __sdk::TableAppliedDiff<'r, GateDesc>,
     gated_features: __sdk::TableAppliedDiff<'r, GatedFeature>,
     global_search_state: __sdk::TableAppliedDiff<'r, GlobalSearchState>,
@@ -14246,6 +14319,7 @@ pub struct AppliedDiff<'r> {
     region_population_info: __sdk::TableAppliedDiff<'r, RegionPopulationInfo>,
     region_popuplation_loop_timer: __sdk::TableAppliedDiff<'r, RegionPopulationLoopTimer>,
     region_sign_in_parameters: __sdk::TableAppliedDiff<'r, RegionSignInParameters>,
+    regional_bank_state: __sdk::TableAppliedDiff<'r, BankState>,
     rent_collector_loop_timer: __sdk::TableAppliedDiff<'r, RentCollectorLoopTimer>,
     rent_evict_timer: __sdk::TableAppliedDiff<'r, RentEvictTimer>,
     rent_state: __sdk::TableAppliedDiff<'r, RentState>,
@@ -14336,6 +14410,7 @@ pub struct AppliedDiff<'r> {
     staged_extraction_recipe_desc: __sdk::TableAppliedDiff<'r, ExtractionRecipeDesc>,
     staged_floating_platform_desc: __sdk::TableAppliedDiff<'r, FloatingPlatformDesc>,
     staged_food_desc: __sdk::TableAppliedDiff<'r, FoodDesc>,
+    staged_furniture_emote_desc: __sdk::TableAppliedDiff<'r, FurnitureEmoteDesc>,
     staged_gate_desc: __sdk::TableAppliedDiff<'r, GateDesc>,
     staged_hexite_exchange_entry_desc: __sdk::TableAppliedDiff<'r, HexiteExchangeEntryDesc>,
     staged_interior_environment_desc: __sdk::TableAppliedDiff<'r, InteriorEnvironmentDesc>,
@@ -15263,6 +15338,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             &self.force_generate_types,
             event,
         );
+        callbacks.invoke_table_row_callbacks::<FurnitureEmoteDesc>(
+            "furniture_emote_desc",
+            &self.furniture_emote_desc,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<GateDesc>("gate_desc", &self.gate_desc, event);
         callbacks.invoke_table_row_callbacks::<GatedFeature>(
             "gated_features",
@@ -16119,6 +16199,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
             &self.region_sign_in_parameters,
             event,
         );
+        callbacks.invoke_table_row_callbacks::<BankState>(
+            "regional_bank_state",
+            &self.regional_bank_state,
+            event,
+        );
         callbacks.invoke_table_row_callbacks::<RentCollectorLoopTimer>(
             "rent_collector_loop_timer",
             &self.rent_collector_loop_timer,
@@ -16530,6 +16615,11 @@ impl<'r> __sdk::AppliedDiff<'r> for AppliedDiff<'r> {
         callbacks.invoke_table_row_callbacks::<FoodDesc>(
             "staged_food_desc",
             &self.staged_food_desc,
+            event,
+        );
+        callbacks.invoke_table_row_callbacks::<FurnitureEmoteDesc>(
+            "staged_furniture_emote_desc",
+            &self.staged_furniture_emote_desc,
             event,
         );
         callbacks.invoke_table_row_callbacks::<GateDesc>(
@@ -17944,6 +18034,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         food_desc_table::register_table(client_cache);
         footprint_tile_state_table::register_table(client_cache);
         force_generate_types_table::register_table(client_cache);
+        furniture_emote_desc_table::register_table(client_cache);
         gate_desc_table::register_table(client_cache);
         gated_features_table::register_table(client_cache);
         global_search_state_table::register_table(client_cache);
@@ -18120,6 +18211,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         region_population_info_table::register_table(client_cache);
         region_popuplation_loop_timer_table::register_table(client_cache);
         region_sign_in_parameters_table::register_table(client_cache);
+        regional_bank_state_table::register_table(client_cache);
         rent_collector_loop_timer_table::register_table(client_cache);
         rent_evict_timer_table::register_table(client_cache);
         rent_state_table::register_table(client_cache);
@@ -18205,6 +18297,7 @@ impl __sdk::SpacetimeModule for RemoteModule {
         staged_extraction_recipe_desc_table::register_table(client_cache);
         staged_floating_platform_desc_table::register_table(client_cache);
         staged_food_desc_table::register_table(client_cache);
+        staged_furniture_emote_desc_table::register_table(client_cache);
         staged_gate_desc_table::register_table(client_cache);
         staged_hexite_exchange_entry_desc_table::register_table(client_cache);
         staged_interior_environment_desc_table::register_table(client_cache);
