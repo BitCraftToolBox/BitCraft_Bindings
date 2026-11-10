@@ -65,6 +65,7 @@ export type PlaceablePlacementDesc = {
   buildings: number[],
   recipePerformanceId: number,
   selfBuffs: __PlaceableSelfBuffChance[] | undefined,
+  acceptablePavements: number[] | undefined,
 };
 
 /**
@@ -103,6 +104,7 @@ export namespace PlaceablePlacementDesc {
       new ProductTypeElement("buildings", AlgebraicType.createArrayType(AlgebraicType.createI32Type())),
       new ProductTypeElement("recipePerformanceId", AlgebraicType.createI32Type()),
       new ProductTypeElement("selfBuffs", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__PlaceableSelfBuffChance.getTypeScriptAlgebraicType()))),
+      new ProductTypeElement("acceptablePavements", AlgebraicType.createOptionType(AlgebraicType.createArrayType(AlgebraicType.createI32Type()))),
     ]);
   }
 

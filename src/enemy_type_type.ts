@@ -91,6 +91,14 @@ export namespace EnemyType {
   export type DistractedElderScrofa = { tag: "DistractedElderScrofa" };
   export type DistractedTundraOx = { tag: "DistractedTundraOx" };
   export type DistractedDesertTerrorbird = { tag: "DistractedDesertTerrorbird" };
+  export type StarseekerBaseT1 = { tag: "StarseekerBaseT1" };
+  export type StarseekerLightT1 = { tag: "StarseekerLightT1" };
+  export type ImmortalBaseT1 = { tag: "ImmortalBaseT1" };
+  export type ImmortalHeavyT1 = { tag: "ImmortalHeavyT1" };
+  export type ImmortalBaseT2 = { tag: "ImmortalBaseT2" };
+  export type ImmortalHeavyT2 = { tag: "ImmortalHeavyT2" };
+  export type SentinelStarseekerSkirmisher = { tag: "SentinelStarseekerSkirmisher" };
+  export type SentinelStarseekerCaptain = { tag: "SentinelStarseekerCaptain" };
 
   // Helper functions for constructing each variant of the tagged union.
   // ```
@@ -152,6 +160,14 @@ export namespace EnemyType {
   export const DistractedElderScrofa = { tag: "DistractedElderScrofa" };
   export const DistractedTundraOx = { tag: "DistractedTundraOx" };
   export const DistractedDesertTerrorbird = { tag: "DistractedDesertTerrorbird" };
+  export const StarseekerBaseT1 = { tag: "StarseekerBaseT1" };
+  export const StarseekerLightT1 = { tag: "StarseekerLightT1" };
+  export const ImmortalBaseT1 = { tag: "ImmortalBaseT1" };
+  export const ImmortalHeavyT1 = { tag: "ImmortalHeavyT1" };
+  export const ImmortalBaseT2 = { tag: "ImmortalBaseT2" };
+  export const ImmortalHeavyT2 = { tag: "ImmortalHeavyT2" };
+  export const SentinelStarseekerSkirmisher = { tag: "SentinelStarseekerSkirmisher" };
+  export const SentinelStarseekerCaptain = { tag: "SentinelStarseekerCaptain" };
 
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createSumType([
@@ -209,6 +225,14 @@ export namespace EnemyType {
       new SumTypeVariant("DistractedElderScrofa", AlgebraicType.createProductType([])),
       new SumTypeVariant("DistractedTundraOx", AlgebraicType.createProductType([])),
       new SumTypeVariant("DistractedDesertTerrorbird", AlgebraicType.createProductType([])),
+      new SumTypeVariant("StarseekerBaseT1", AlgebraicType.createProductType([])),
+      new SumTypeVariant("StarseekerLightT1", AlgebraicType.createProductType([])),
+      new SumTypeVariant("ImmortalBaseT1", AlgebraicType.createProductType([])),
+      new SumTypeVariant("ImmortalHeavyT1", AlgebraicType.createProductType([])),
+      new SumTypeVariant("ImmortalBaseT2", AlgebraicType.createProductType([])),
+      new SumTypeVariant("ImmortalHeavyT2", AlgebraicType.createProductType([])),
+      new SumTypeVariant("SentinelStarseekerSkirmisher", AlgebraicType.createProductType([])),
+      new SumTypeVariant("SentinelStarseekerCaptain", AlgebraicType.createProductType([])),
     ]);
   }
 
@@ -223,7 +247,7 @@ export namespace EnemyType {
 }
 
 // The tagged union or sum type for the algebraic type `EnemyType`.
-export type EnemyType = EnemyType.None | EnemyType.PracticeDummy | EnemyType.GrassBird | EnemyType.DesertBird | EnemyType.SwampBird | EnemyType.Goat | EnemyType.MountainGoat | EnemyType.DeerFemale | EnemyType.DeerMale | EnemyType.Elk | EnemyType.BoarFemale | EnemyType.BoarMale | EnemyType.BoarElder | EnemyType.PlainsOx | EnemyType.TundraOx | EnemyType.JungleLargeBird | EnemyType.DesertLargeBird | EnemyType.Jakyl | EnemyType.AlphaJakyl | EnemyType.KingJakyl | EnemyType.RockCrab | EnemyType.DesertCrab | EnemyType.FrostCrab | EnemyType.ForestToad | EnemyType.SwampToad | EnemyType.FrostToad | EnemyType.Umbura | EnemyType.AlphaUmbura | EnemyType.KingUmbura | EnemyType.Drone | EnemyType.Soldier | EnemyType.Queen | EnemyType.Sentinel | EnemyType.SentinelDungeonJakyl | EnemyType.SentinelDungeonSkitch | EnemyType.SentinelDungeonLargeJakyl | EnemyType.CrabDungeonCrabBoss | EnemyType.CrabDungeonCrabTrash | EnemyType.SpiderDungeonEliteSpider | EnemyType.SpiderDungeonSmallSpider | EnemyType.SpiderDungeonSpiderNest | EnemyType.EnragedAlphaJakyl | EnemyType.DeerSwift | EnemyType.CrystalizedHexiteCrab | EnemyType.DistractedSagiBird | EnemyType.DistractedNubiGoat | EnemyType.DistractedCervus | EnemyType.DistractedScrofa | EnemyType.DistractedOx | EnemyType.DistractedYagiGoat | EnemyType.DistractedJungleTerrorBird | EnemyType.DistractedElderScrofa | EnemyType.DistractedTundraOx | EnemyType.DistractedDesertTerrorbird;
+export type EnemyType = EnemyType.None | EnemyType.PracticeDummy | EnemyType.GrassBird | EnemyType.DesertBird | EnemyType.SwampBird | EnemyType.Goat | EnemyType.MountainGoat | EnemyType.DeerFemale | EnemyType.DeerMale | EnemyType.Elk | EnemyType.BoarFemale | EnemyType.BoarMale | EnemyType.BoarElder | EnemyType.PlainsOx | EnemyType.TundraOx | EnemyType.JungleLargeBird | EnemyType.DesertLargeBird | EnemyType.Jakyl | EnemyType.AlphaJakyl | EnemyType.KingJakyl | EnemyType.RockCrab | EnemyType.DesertCrab | EnemyType.FrostCrab | EnemyType.ForestToad | EnemyType.SwampToad | EnemyType.FrostToad | EnemyType.Umbura | EnemyType.AlphaUmbura | EnemyType.KingUmbura | EnemyType.Drone | EnemyType.Soldier | EnemyType.Queen | EnemyType.Sentinel | EnemyType.SentinelDungeonJakyl | EnemyType.SentinelDungeonSkitch | EnemyType.SentinelDungeonLargeJakyl | EnemyType.CrabDungeonCrabBoss | EnemyType.CrabDungeonCrabTrash | EnemyType.SpiderDungeonEliteSpider | EnemyType.SpiderDungeonSmallSpider | EnemyType.SpiderDungeonSpiderNest | EnemyType.EnragedAlphaJakyl | EnemyType.DeerSwift | EnemyType.CrystalizedHexiteCrab | EnemyType.DistractedSagiBird | EnemyType.DistractedNubiGoat | EnemyType.DistractedCervus | EnemyType.DistractedScrofa | EnemyType.DistractedOx | EnemyType.DistractedYagiGoat | EnemyType.DistractedJungleTerrorBird | EnemyType.DistractedElderScrofa | EnemyType.DistractedTundraOx | EnemyType.DistractedDesertTerrorbird | EnemyType.StarseekerBaseT1 | EnemyType.StarseekerLightT1 | EnemyType.ImmortalBaseT1 | EnemyType.ImmortalHeavyT1 | EnemyType.ImmortalBaseT2 | EnemyType.ImmortalHeavyT2 | EnemyType.SentinelStarseekerSkirmisher | EnemyType.SentinelStarseekerCaptain;
 
 export default EnemyType;
 

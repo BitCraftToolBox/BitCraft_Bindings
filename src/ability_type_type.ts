@@ -49,6 +49,7 @@ export namespace AbilityType {
   export type DeployableToggle = { tag: "DeployableToggle", value: number };
   export type Emote = { tag: "Emote", value: number };
   export type EquipPreset = { tag: "EquipPreset", value: number };
+  export type PlaceablePlace = { tag: "PlaceablePlace", value: number };
 
   // Helper functions for constructing each variant of the tagged union.
   // ```
@@ -68,6 +69,7 @@ export namespace AbilityType {
   export const DeployableToggle = (value: number): AbilityType => ({ tag: "DeployableToggle", value });
   export const Emote = (value: number): AbilityType => ({ tag: "Emote", value });
   export const EquipPreset = (value: number): AbilityType => ({ tag: "EquipPreset", value });
+  export const PlaceablePlace = (value: number): AbilityType => ({ tag: "PlaceablePlace", value });
 
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createSumType([
@@ -83,6 +85,7 @@ export namespace AbilityType {
       new SumTypeVariant("DeployableToggle", AlgebraicType.createI32Type()),
       new SumTypeVariant("Emote", AlgebraicType.createI32Type()),
       new SumTypeVariant("EquipPreset", AlgebraicType.createI32Type()),
+      new SumTypeVariant("PlaceablePlace", AlgebraicType.createI32Type()),
     ]);
   }
 
@@ -97,7 +100,7 @@ export namespace AbilityType {
 }
 
 // The tagged union or sum type for the algebraic type `AbilityType`.
-export type AbilityType = AbilityType.Unsupported | AbilityType.Eat | AbilityType.CombatAction | AbilityType.AutoAttack | AbilityType.Custom | AbilityType.Prospecting | AbilityType.Equip | AbilityType.DeployableDeploy | AbilityType.AddToToolbelt | AbilityType.DeployableToggle | AbilityType.Emote | AbilityType.EquipPreset;
+export type AbilityType = AbilityType.Unsupported | AbilityType.Eat | AbilityType.CombatAction | AbilityType.AutoAttack | AbilityType.Custom | AbilityType.Prospecting | AbilityType.Equip | AbilityType.DeployableDeploy | AbilityType.AddToToolbelt | AbilityType.DeployableToggle | AbilityType.Emote | AbilityType.EquipPreset | AbilityType.PlaceablePlace;
 
 export default AbilityType;
 

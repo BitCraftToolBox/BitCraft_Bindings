@@ -62,6 +62,8 @@ export namespace BuildingCategory {
   export type RecoveryChest = { tag: "RecoveryChest" };
   export type PlayerHousing = { tag: "PlayerHousing" };
   export type PremiumBuilding = { tag: "PremiumBuilding" };
+  export type OneWayWaystone = { tag: "OneWayWaystone" };
+  export type RegionalBank = { tag: "RegionalBank" };
 
   // Helper functions for constructing each variant of the tagged union.
   // ```
@@ -94,6 +96,8 @@ export namespace BuildingCategory {
   export const RecoveryChest = { tag: "RecoveryChest" };
   export const PlayerHousing = { tag: "PlayerHousing" };
   export const PremiumBuilding = { tag: "PremiumBuilding" };
+  export const OneWayWaystone = { tag: "OneWayWaystone" };
+  export const RegionalBank = { tag: "RegionalBank" };
 
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createSumType([
@@ -122,6 +126,8 @@ export namespace BuildingCategory {
       new SumTypeVariant("RecoveryChest", AlgebraicType.createProductType([])),
       new SumTypeVariant("PlayerHousing", AlgebraicType.createProductType([])),
       new SumTypeVariant("PremiumBuilding", AlgebraicType.createProductType([])),
+      new SumTypeVariant("OneWayWaystone", AlgebraicType.createProductType([])),
+      new SumTypeVariant("RegionalBank", AlgebraicType.createProductType([])),
     ]);
   }
 
@@ -136,7 +142,7 @@ export namespace BuildingCategory {
 }
 
 // The tagged union or sum type for the algebraic type `BuildingCategory`.
-export type BuildingCategory = BuildingCategory.Storage | BuildingCategory.Crafting | BuildingCategory.Residential | BuildingCategory.TownHall | BuildingCategory.Wall | BuildingCategory.TradingPost | BuildingCategory.Ornamental | BuildingCategory.AncientRuins | BuildingCategory.ClaimTotem | BuildingCategory.TerrraformingBase | BuildingCategory.Barter | BuildingCategory.Portal | BuildingCategory.RentTerminal | BuildingCategory.Watchtower | BuildingCategory.EmpireFoundry | BuildingCategory.Sign | BuildingCategory.Gate | BuildingCategory.Bed | BuildingCategory.Waystone | BuildingCategory.Bank | BuildingCategory.Elevator | BuildingCategory.TownMarket | BuildingCategory.RecoveryChest | BuildingCategory.PlayerHousing | BuildingCategory.PremiumBuilding;
+export type BuildingCategory = BuildingCategory.Storage | BuildingCategory.Crafting | BuildingCategory.Residential | BuildingCategory.TownHall | BuildingCategory.Wall | BuildingCategory.TradingPost | BuildingCategory.Ornamental | BuildingCategory.AncientRuins | BuildingCategory.ClaimTotem | BuildingCategory.TerrraformingBase | BuildingCategory.Barter | BuildingCategory.Portal | BuildingCategory.RentTerminal | BuildingCategory.Watchtower | BuildingCategory.EmpireFoundry | BuildingCategory.Sign | BuildingCategory.Gate | BuildingCategory.Bed | BuildingCategory.Waystone | BuildingCategory.Bank | BuildingCategory.Elevator | BuildingCategory.TownMarket | BuildingCategory.RecoveryChest | BuildingCategory.PlayerHousing | BuildingCategory.PremiumBuilding | BuildingCategory.OneWayWaystone | BuildingCategory.RegionalBank;
 
 export default BuildingCategory;
 

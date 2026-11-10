@@ -192,6 +192,10 @@ import { EditChatChannel } from "./edit_chat_channel_reducer.ts";
 export { EditChatChannel };
 import { EditChatChannelMemberPermission } from "./edit_chat_channel_member_permission_reducer.ts";
 export { EditChatChannelMemberPermission };
+import { EmpireBlacklistAdd } from "./empire_blacklist_add_reducer.ts";
+export { EmpireBlacklistAdd };
+import { EmpireBlacklistRemove } from "./empire_blacklist_remove_reducer.ts";
+export { EmpireBlacklistRemove };
 import { EmpireChangeEmblem } from "./empire_change_emblem_reducer.ts";
 export { EmpireChangeEmblem };
 import { EmpireCraftSupplies } from "./empire_craft_supplies_reducer.ts";
@@ -370,6 +374,8 @@ import { ImportFoodDesc } from "./import_food_desc_reducer.ts";
 export { ImportFoodDesc };
 import { ImportFootprintTileState } from "./import_footprint_tile_state_reducer.ts";
 export { ImportFootprintTileState };
+import { ImportFurnitureEmoteDesc } from "./import_furniture_emote_desc_reducer.ts";
+export { ImportFurnitureEmoteDesc };
 import { ImportGateDesc } from "./import_gate_desc_reducer.ts";
 export { ImportGateDesc };
 import { ImportGlobals } from "./import_globals_reducer.ts";
@@ -734,6 +740,8 @@ import { StageFloatingPlatformDesc } from "./stage_floating_platform_desc_reduce
 export { StageFloatingPlatformDesc };
 import { StageFoodDesc } from "./stage_food_desc_reducer.ts";
 export { StageFoodDesc };
+import { StageFurnitureEmoteDesc } from "./stage_furniture_emote_desc_reducer.ts";
+export { StageFurnitureEmoteDesc };
 import { StageGateDesc } from "./stage_gate_desc_reducer.ts";
 export { StageGateDesc };
 import { StageHexiteExchangeEntryDesc } from "./stage_hexite_exchange_entry_desc_reducer.ts";
@@ -1060,6 +1068,8 @@ import { ElevatorDescTableHandle } from "./elevator_desc_table.ts";
 export { ElevatorDescTableHandle };
 import { EmoteDescTableHandle } from "./emote_desc_table.ts";
 export { EmoteDescTableHandle };
+import { EmpireBlacklistStateTableHandle } from "./empire_blacklist_state_table.ts";
+export { EmpireBlacklistStateTableHandle };
 import { EmpireChunkStateTableHandle } from "./empire_chunk_state_table.ts";
 export { EmpireChunkStateTableHandle };
 import { EmpireColorDescTableHandle } from "./empire_color_desc_table.ts";
@@ -1152,6 +1162,8 @@ import { ForceGenerateTypesTableHandle } from "./force_generate_types_table.ts";
 export { ForceGenerateTypesTableHandle };
 import { FriendsStateTableHandle } from "./friends_state_table.ts";
 export { FriendsStateTableHandle };
+import { FurnitureEmoteDescTableHandle } from "./furniture_emote_desc_table.ts";
+export { FurnitureEmoteDescTableHandle };
 import { GateDescTableHandle } from "./gate_desc_table.ts";
 export { GateDescTableHandle };
 import { GatedFeaturesTableHandle } from "./gated_features_table.ts";
@@ -1450,6 +1462,8 @@ import { RegionPopulationInfoTableHandle } from "./region_population_info_table.
 export { RegionPopulationInfoTableHandle };
 import { RegionSignInParametersTableHandle } from "./region_sign_in_parameters_table.ts";
 export { RegionSignInParametersTableHandle };
+import { RegionalBankStateTableHandle } from "./regional_bank_state_table.ts";
+export { RegionalBankStateTableHandle };
 import { RentStateTableHandle } from "./rent_state_table.ts";
 export { RentStateTableHandle };
 import { ReservedNameDescTableHandle } from "./reserved_name_desc_table.ts";
@@ -1592,6 +1606,8 @@ import { StagedFloatingPlatformDescTableHandle } from "./staged_floating_platfor
 export { StagedFloatingPlatformDescTableHandle };
 import { StagedFoodDescTableHandle } from "./staged_food_desc_table.ts";
 export { StagedFoodDescTableHandle };
+import { StagedFurnitureEmoteDescTableHandle } from "./staged_furniture_emote_desc_table.ts";
+export { StagedFurnitureEmoteDescTableHandle };
 import { StagedGateDescTableHandle } from "./staged_gate_desc_table.ts";
 export { StagedGateDescTableHandle };
 import { StagedHexiteExchangeEntryDescTableHandle } from "./staged_hexite_exchange_entry_desc_table.ts";
@@ -2070,6 +2086,8 @@ import { EmoteDesc } from "./emote_desc_type.ts";
 export { EmoteDesc };
 import { EmpireAddCurrencyMsg } from "./empire_add_currency_msg_type.ts";
 export { EmpireAddCurrencyMsg };
+import { EmpireBlacklistState } from "./empire_blacklist_state_type.ts";
+export { EmpireBlacklistState };
 import { EmpireChangeEmblemRequest } from "./empire_change_emblem_request_type.ts";
 export { EmpireChangeEmblemRequest };
 import { EmpireChunkState } from "./empire_chunk_state_type.ts";
@@ -2254,6 +2272,8 @@ import { ForceGenerateTypes } from "./force_generate_types_type.ts";
 export { ForceGenerateTypes };
 import { FriendsState } from "./friends_state_type.ts";
 export { FriendsState };
+import { FurnitureEmoteDesc } from "./furniture_emote_desc_type.ts";
+export { FurnitureEmoteDesc };
 import { GateDesc } from "./gate_desc_type.ts";
 export { GateDesc };
 import { GatedFeature } from "./gated_feature_type.ts";
@@ -3685,6 +3705,15 @@ const REMOTE_MODULE = {
         colType: EmoteDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    empire_blacklist_state: {
+      tableName: "empire_blacklist_state",
+      rowType: EmpireBlacklistState.getTypeScriptAlgebraicType(),
+      primaryKey: "entityId",
+      primaryKeyInfo: {
+        colName: "entityId",
+        colType: EmpireBlacklistState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     empire_chunk_state: {
       tableName: "empire_chunk_state",
       rowType: EmpireChunkState.getTypeScriptAlgebraicType(),
@@ -4092,6 +4121,15 @@ const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "entityId",
         colType: FriendsState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    furniture_emote_desc: {
+      tableName: "furniture_emote_desc",
+      rowType: FurnitureEmoteDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "emoteId",
+      primaryKeyInfo: {
+        colName: "emoteId",
+        colType: FurnitureEmoteDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     gate_desc: {
@@ -5395,6 +5433,15 @@ const REMOTE_MODULE = {
         colType: RegionSignInParameters.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    regional_bank_state: {
+      tableName: "regional_bank_state",
+      rowType: BankState.getTypeScriptAlgebraicType(),
+      primaryKey: "buildingEntityId",
+      primaryKeyInfo: {
+        colName: "buildingEntityId",
+        colType: BankState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     rent_state: {
       tableName: "rent_state",
       rowType: RentState.getTypeScriptAlgebraicType(),
@@ -6017,6 +6064,15 @@ const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "itemId",
         colType: FoodDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_furniture_emote_desc: {
+      tableName: "staged_furniture_emote_desc",
+      rowType: FurnitureEmoteDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "emoteId",
+      primaryKeyInfo: {
+        colName: "emoteId",
+        colType: FurnitureEmoteDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     staged_gate_desc: {
@@ -7255,6 +7311,14 @@ const REMOTE_MODULE = {
       reducerName: "edit_chat_channel_member_permission",
       argsType: EditChatChannelMemberPermission.getTypeScriptAlgebraicType(),
     },
+    empire_blacklist_add: {
+      reducerName: "empire_blacklist_add",
+      argsType: EmpireBlacklistAdd.getTypeScriptAlgebraicType(),
+    },
+    empire_blacklist_remove: {
+      reducerName: "empire_blacklist_remove",
+      argsType: EmpireBlacklistRemove.getTypeScriptAlgebraicType(),
+    },
     empire_change_emblem: {
       reducerName: "empire_change_emblem",
       argsType: EmpireChangeEmblem.getTypeScriptAlgebraicType(),
@@ -7610,6 +7674,10 @@ const REMOTE_MODULE = {
     import_footprint_tile_state: {
       reducerName: "import_footprint_tile_state",
       argsType: ImportFootprintTileState.getTypeScriptAlgebraicType(),
+    },
+    import_furniture_emote_desc: {
+      reducerName: "import_furniture_emote_desc",
+      argsType: ImportFurnitureEmoteDesc.getTypeScriptAlgebraicType(),
     },
     import_gate_desc: {
       reducerName: "import_gate_desc",
@@ -8339,6 +8407,10 @@ const REMOTE_MODULE = {
       reducerName: "stage_food_desc",
       argsType: StageFoodDesc.getTypeScriptAlgebraicType(),
     },
+    stage_furniture_emote_desc: {
+      reducerName: "stage_furniture_emote_desc",
+      argsType: StageFurnitureEmoteDesc.getTypeScriptAlgebraicType(),
+    },
     stage_gate_desc: {
       reducerName: "stage_gate_desc",
       argsType: StageGateDesc.getTypeScriptAlgebraicType(),
@@ -8724,6 +8796,8 @@ export type Reducer = never
 | { name: "DeleteTranslationCorrection", args: DeleteTranslationCorrection }
 | { name: "EditChatChannel", args: EditChatChannel }
 | { name: "EditChatChannelMemberPermission", args: EditChatChannelMemberPermission }
+| { name: "EmpireBlacklistAdd", args: EmpireBlacklistAdd }
+| { name: "EmpireBlacklistRemove", args: EmpireBlacklistRemove }
 | { name: "EmpireChangeEmblem", args: EmpireChangeEmblem }
 | { name: "EmpireCraftSupplies", args: EmpireCraftSupplies }
 | { name: "EmpireCraftSuppliesScheduled", args: EmpireCraftSuppliesScheduled }
@@ -8813,6 +8887,7 @@ export type Reducer = never
 | { name: "ImportFloatingPlatformDesc", args: ImportFloatingPlatformDesc }
 | { name: "ImportFoodDesc", args: ImportFoodDesc }
 | { name: "ImportFootprintTileState", args: ImportFootprintTileState }
+| { name: "ImportFurnitureEmoteDesc", args: ImportFurnitureEmoteDesc }
 | { name: "ImportGateDesc", args: ImportGateDesc }
 | { name: "ImportGlobals", args: ImportGlobals }
 | { name: "ImportGrowthState", args: ImportGrowthState }
@@ -8995,6 +9070,7 @@ export type Reducer = never
 | { name: "StageExtractionRecipeDesc", args: StageExtractionRecipeDesc }
 | { name: "StageFloatingPlatformDesc", args: StageFloatingPlatformDesc }
 | { name: "StageFoodDesc", args: StageFoodDesc }
+| { name: "StageFurnitureEmoteDesc", args: StageFurnitureEmoteDesc }
 | { name: "StageGateDesc", args: StageGateDesc }
 | { name: "StageHexiteExchangeEntryDesc", args: StageHexiteExchangeEntryDesc }
 | { name: "StageInteriorEnvironmentDesc", args: StageInteriorEnvironmentDesc }
@@ -10299,6 +10375,38 @@ export class RemoteReducers {
 
   removeOnEditChatChannelMemberPermission(callback: (ctx: ReducerEventContext, channelEntityId: bigint, playerEntityId: bigint, rank: ChatChannelPermission) => void) {
     this.connection.offReducer("edit_chat_channel_member_permission", callback);
+  }
+
+  empireBlacklistAdd(empireEntityId: bigint, playerEntityId: bigint) {
+    const __args = { empireEntityId, playerEntityId };
+    let __writer = new BinaryWriter(1024);
+    EmpireBlacklistAdd.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("empire_blacklist_add", __argsBuffer, this.setCallReducerFlags.empireBlacklistAddFlags);
+  }
+
+  onEmpireBlacklistAdd(callback: (ctx: ReducerEventContext, empireEntityId: bigint, playerEntityId: bigint) => void) {
+    this.connection.onReducer("empire_blacklist_add", callback);
+  }
+
+  removeOnEmpireBlacklistAdd(callback: (ctx: ReducerEventContext, empireEntityId: bigint, playerEntityId: bigint) => void) {
+    this.connection.offReducer("empire_blacklist_add", callback);
+  }
+
+  empireBlacklistRemove(empireEntityId: bigint, playerEntityId: bigint) {
+    const __args = { empireEntityId, playerEntityId };
+    let __writer = new BinaryWriter(1024);
+    EmpireBlacklistRemove.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("empire_blacklist_remove", __argsBuffer, this.setCallReducerFlags.empireBlacklistRemoveFlags);
+  }
+
+  onEmpireBlacklistRemove(callback: (ctx: ReducerEventContext, empireEntityId: bigint, playerEntityId: bigint) => void) {
+    this.connection.onReducer("empire_blacklist_remove", callback);
+  }
+
+  removeOnEmpireBlacklistRemove(callback: (ctx: ReducerEventContext, empireEntityId: bigint, playerEntityId: bigint) => void) {
+    this.connection.offReducer("empire_blacklist_remove", callback);
   }
 
   empireChangeEmblem(request: EmpireChangeEmblemRequest) {
@@ -11703,6 +11811,22 @@ export class RemoteReducers {
 
   removeOnImportFootprintTileState(callback: (ctx: ReducerEventContext, records: FootprintTileState[]) => void) {
     this.connection.offReducer("import_footprint_tile_state", callback);
+  }
+
+  importFurnitureEmoteDesc(records: FurnitureEmoteDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    ImportFurnitureEmoteDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("import_furniture_emote_desc", __argsBuffer, this.setCallReducerFlags.importFurnitureEmoteDescFlags);
+  }
+
+  onImportFurnitureEmoteDesc(callback: (ctx: ReducerEventContext, records: FurnitureEmoteDesc[]) => void) {
+    this.connection.onReducer("import_furniture_emote_desc", callback);
+  }
+
+  removeOnImportFurnitureEmoteDesc(callback: (ctx: ReducerEventContext, records: FurnitureEmoteDesc[]) => void) {
+    this.connection.offReducer("import_furniture_emote_desc", callback);
   }
 
   importGateDesc(records: GateDesc[]) {
@@ -14593,6 +14717,22 @@ export class RemoteReducers {
     this.connection.offReducer("stage_food_desc", callback);
   }
 
+  stageFurnitureEmoteDesc(records: FurnitureEmoteDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    StageFurnitureEmoteDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("stage_furniture_emote_desc", __argsBuffer, this.setCallReducerFlags.stageFurnitureEmoteDescFlags);
+  }
+
+  onStageFurnitureEmoteDesc(callback: (ctx: ReducerEventContext, records: FurnitureEmoteDesc[]) => void) {
+    this.connection.onReducer("stage_furniture_emote_desc", callback);
+  }
+
+  removeOnStageFurnitureEmoteDesc(callback: (ctx: ReducerEventContext, records: FurnitureEmoteDesc[]) => void) {
+    this.connection.offReducer("stage_furniture_emote_desc", callback);
+  }
+
   stageGateDesc(records: GateDesc[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
@@ -16087,6 +16227,16 @@ export class SetReducerFlags {
     this.editChatChannelMemberPermissionFlags = flags;
   }
 
+  empireBlacklistAddFlags: CallReducerFlags = 'FullUpdate';
+  empireBlacklistAdd(flags: CallReducerFlags) {
+    this.empireBlacklistAddFlags = flags;
+  }
+
+  empireBlacklistRemoveFlags: CallReducerFlags = 'FullUpdate';
+  empireBlacklistRemove(flags: CallReducerFlags) {
+    this.empireBlacklistRemoveFlags = flags;
+  }
+
   empireChangeEmblemFlags: CallReducerFlags = 'FullUpdate';
   empireChangeEmblem(flags: CallReducerFlags) {
     this.empireChangeEmblemFlags = flags;
@@ -16520,6 +16670,11 @@ export class SetReducerFlags {
   importFootprintTileStateFlags: CallReducerFlags = 'FullUpdate';
   importFootprintTileState(flags: CallReducerFlags) {
     this.importFootprintTileStateFlags = flags;
+  }
+
+  importFurnitureEmoteDescFlags: CallReducerFlags = 'FullUpdate';
+  importFurnitureEmoteDesc(flags: CallReducerFlags) {
+    this.importFurnitureEmoteDescFlags = flags;
   }
 
   importGateDescFlags: CallReducerFlags = 'FullUpdate';
@@ -17432,6 +17587,11 @@ export class SetReducerFlags {
     this.stageFoodDescFlags = flags;
   }
 
+  stageFurnitureEmoteDescFlags: CallReducerFlags = 'FullUpdate';
+  stageFurnitureEmoteDesc(flags: CallReducerFlags) {
+    this.stageFurnitureEmoteDescFlags = flags;
+  }
+
   stageGateDescFlags: CallReducerFlags = 'FullUpdate';
   stageGateDesc(flags: CallReducerFlags) {
     this.stageGateDescFlags = flags;
@@ -18154,6 +18314,10 @@ export class RemoteTables {
     return new EmoteDescTableHandle(this.connection.clientCache.getOrCreateTable<EmoteDesc>(REMOTE_MODULE.tables.emote_desc));
   }
 
+  get empireBlacklistState(): EmpireBlacklistStateTableHandle {
+    return new EmpireBlacklistStateTableHandle(this.connection.clientCache.getOrCreateTable<EmpireBlacklistState>(REMOTE_MODULE.tables.empire_blacklist_state));
+  }
+
   get empireChunkState(): EmpireChunkStateTableHandle {
     return new EmpireChunkStateTableHandle(this.connection.clientCache.getOrCreateTable<EmpireChunkState>(REMOTE_MODULE.tables.empire_chunk_state));
   }
@@ -18336,6 +18500,10 @@ export class RemoteTables {
 
   get friendsState(): FriendsStateTableHandle {
     return new FriendsStateTableHandle(this.connection.clientCache.getOrCreateTable<FriendsState>(REMOTE_MODULE.tables.friends_state));
+  }
+
+  get furnitureEmoteDesc(): FurnitureEmoteDescTableHandle {
+    return new FurnitureEmoteDescTableHandle(this.connection.clientCache.getOrCreateTable<FurnitureEmoteDesc>(REMOTE_MODULE.tables.furniture_emote_desc));
   }
 
   get gateDesc(): GateDescTableHandle {
@@ -18934,6 +19102,10 @@ export class RemoteTables {
     return new RegionSignInParametersTableHandle(this.connection.clientCache.getOrCreateTable<RegionSignInParameters>(REMOTE_MODULE.tables.region_sign_in_parameters));
   }
 
+  get regionalBankState(): RegionalBankStateTableHandle {
+    return new RegionalBankStateTableHandle(this.connection.clientCache.getOrCreateTable<BankState>(REMOTE_MODULE.tables.regional_bank_state));
+  }
+
   get rentState(): RentStateTableHandle {
     return new RentStateTableHandle(this.connection.clientCache.getOrCreateTable<RentState>(REMOTE_MODULE.tables.rent_state));
   }
@@ -19216,6 +19388,10 @@ export class RemoteTables {
 
   get stagedFoodDesc(): StagedFoodDescTableHandle {
     return new StagedFoodDescTableHandle(this.connection.clientCache.getOrCreateTable<FoodDesc>(REMOTE_MODULE.tables.staged_food_desc));
+  }
+
+  get stagedFurnitureEmoteDesc(): StagedFurnitureEmoteDescTableHandle {
+    return new StagedFurnitureEmoteDescTableHandle(this.connection.clientCache.getOrCreateTable<FurnitureEmoteDesc>(REMOTE_MODULE.tables.staged_furniture_emote_desc));
   }
 
   get stagedGateDesc(): StagedGateDescTableHandle {

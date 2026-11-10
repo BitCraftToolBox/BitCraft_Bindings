@@ -50,6 +50,9 @@ export type ClaimTechDesc = {
   supplies: number,
   xpToMintHexCoin: number,
   unlocksTechs: number[],
+  cannotBeResearched: boolean,
+  blockingClaimTechs: number[] | undefined,
+  notShownInUi: boolean,
 };
 
 /**
@@ -76,6 +79,9 @@ export namespace ClaimTechDesc {
       new ProductTypeElement("supplies", AlgebraicType.createI32Type()),
       new ProductTypeElement("xpToMintHexCoin", AlgebraicType.createU32Type()),
       new ProductTypeElement("unlocksTechs", AlgebraicType.createArrayType(AlgebraicType.createI32Type())),
+      new ProductTypeElement("cannotBeResearched", AlgebraicType.createBoolType()),
+      new ProductTypeElement("blockingClaimTechs", AlgebraicType.createOptionType(AlgebraicType.createArrayType(AlgebraicType.createI32Type()))),
+      new ProductTypeElement("notShownInUi", AlgebraicType.createBoolType()),
     ]);
   }
 

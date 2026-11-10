@@ -36,6 +36,8 @@ export type InteriorSpawnedResourceState = {
   entityId: bigint,
   interiorSpawnDescId: number,
   dimensionId: number,
+  destroyTriggerCompleted: boolean,
+  originalResourceId: number,
 };
 
 /**
@@ -51,6 +53,8 @@ export namespace InteriorSpawnedResourceState {
       new ProductTypeElement("entityId", AlgebraicType.createU64Type()),
       new ProductTypeElement("interiorSpawnDescId", AlgebraicType.createI32Type()),
       new ProductTypeElement("dimensionId", AlgebraicType.createU32Type()),
+      new ProductTypeElement("destroyTriggerCompleted", AlgebraicType.createBoolType()),
+      new ProductTypeElement("originalResourceId", AlgebraicType.createI32Type()),
     ]);
   }
 
