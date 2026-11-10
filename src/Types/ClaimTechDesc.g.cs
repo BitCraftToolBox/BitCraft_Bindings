@@ -42,6 +42,12 @@ namespace BitCraftRegion.Types
         public uint XpToMintHexCoin;
         [DataMember(Name = "unlocks_techs")]
         public System.Collections.Generic.List<int> UnlocksTechs;
+        [DataMember(Name = "cannot_be_researched")]
+        public bool CannotBeResearched;
+        [DataMember(Name = "blocking_claim_techs")]
+        public System.Collections.Generic.List<int>? BlockingClaimTechs;
+        [DataMember(Name = "not_shown_in_ui")]
+        public bool NotShownInUi;
 
         public ClaimTechDesc(
             int Id,
@@ -57,7 +63,10 @@ namespace BitCraftRegion.Types
             int Area,
             int Supplies,
             uint XpToMintHexCoin,
-            System.Collections.Generic.List<int> UnlocksTechs
+            System.Collections.Generic.List<int> UnlocksTechs,
+            bool CannotBeResearched,
+            System.Collections.Generic.List<int>? BlockingClaimTechs,
+            bool NotShownInUi
         )
         {
             this.Id = Id;
@@ -74,6 +83,9 @@ namespace BitCraftRegion.Types
             this.Supplies = Supplies;
             this.XpToMintHexCoin = XpToMintHexCoin;
             this.UnlocksTechs = UnlocksTechs;
+            this.CannotBeResearched = CannotBeResearched;
+            this.BlockingClaimTechs = BlockingClaimTechs;
+            this.NotShownInUi = NotShownInUi;
         }
 
         public ClaimTechDesc()

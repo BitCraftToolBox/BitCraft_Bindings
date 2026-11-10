@@ -21,5 +21,6 @@ namespace BitCraftRegion.Types
         Count,
         HarvestEmpireResources,
         WithdrawEmpireCurrency,
+        ManageBlacklist,
     }
 }

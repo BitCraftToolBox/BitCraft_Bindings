@@ -56,6 +56,10 @@ namespace BitCraftRegion.Types
         public System.Collections.Generic.List<PlaceableGrowthOutcomeV2>? OnDestroyOutcomes;
         [DataMember(Name = "self_buffs")]
         public System.Collections.Generic.List<PlaceableSelfBuffChance>? SelfBuffs;
+        [DataMember(Name = "tool_mesh_index")]
+        public int ToolMeshIndex;
+        [DataMember(Name = "on_destroy_yield")]
+        public System.Collections.Generic.List<ItemStack>? OnDestroyYield;
 
         public PlaceableInteractionDesc(
             int Id,
@@ -78,7 +82,9 @@ namespace BitCraftRegion.Types
             int OnDestroySpawnedPlaceableId,
             float OnDestroySpawnedPlaceableChance,
             System.Collections.Generic.List<PlaceableGrowthOutcomeV2>? OnDestroyOutcomes,
-            System.Collections.Generic.List<PlaceableSelfBuffChance>? SelfBuffs
+            System.Collections.Generic.List<PlaceableSelfBuffChance>? SelfBuffs,
+            int ToolMeshIndex,
+            System.Collections.Generic.List<ItemStack>? OnDestroyYield
         )
         {
             this.Id = Id;
@@ -102,6 +108,8 @@ namespace BitCraftRegion.Types
             this.OnDestroySpawnedPlaceableChance = OnDestroySpawnedPlaceableChance;
             this.OnDestroyOutcomes = OnDestroyOutcomes;
             this.SelfBuffs = SelfBuffs;
+            this.ToolMeshIndex = ToolMeshIndex;
+            this.OnDestroyYield = OnDestroyYield;
         }
 
         public PlaceableInteractionDesc()

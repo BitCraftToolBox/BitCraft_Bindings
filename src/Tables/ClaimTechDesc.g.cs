@@ -64,6 +64,9 @@ namespace BitCraftRegion.Types
         public global::SpacetimeDB.Col<ClaimTechDesc, int> Supplies { get; }
         public global::SpacetimeDB.Col<ClaimTechDesc, uint> XpToMintHexCoin { get; }
         public global::SpacetimeDB.Col<ClaimTechDesc, System.Collections.Generic.List<int>> UnlocksTechs { get; }
+        public global::SpacetimeDB.Col<ClaimTechDesc, bool> CannotBeResearched { get; }
+        public global::SpacetimeDB.NullableCol<ClaimTechDesc, System.Collections.Generic.List<int>> BlockingClaimTechs { get; }
+        public global::SpacetimeDB.Col<ClaimTechDesc, bool> NotShownInUi { get; }
 
         public ClaimTechDescCols(string tableName)
         {
@@ -81,6 +84,9 @@ namespace BitCraftRegion.Types
             Supplies = new global::SpacetimeDB.Col<ClaimTechDesc, int>(tableName, "supplies");
             XpToMintHexCoin = new global::SpacetimeDB.Col<ClaimTechDesc, uint>(tableName, "xp_to_mint_hex_coin");
             UnlocksTechs = new global::SpacetimeDB.Col<ClaimTechDesc, System.Collections.Generic.List<int>>(tableName, "unlocks_techs");
+            CannotBeResearched = new global::SpacetimeDB.Col<ClaimTechDesc, bool>(tableName, "cannot_be_researched");
+            BlockingClaimTechs = new global::SpacetimeDB.NullableCol<ClaimTechDesc, System.Collections.Generic.List<int>>(tableName, "blocking_claim_techs");
+            NotShownInUi = new global::SpacetimeDB.Col<ClaimTechDesc, bool>(tableName, "not_shown_in_ui");
         }
     }
 

@@ -136,6 +136,11 @@ namespace BitCraftRegion.Types
         public global::SpacetimeDB.Col<ParametersDesc, float> RpWalkSpeed { get; }
         public global::SpacetimeDB.NullableCol<ParametersDesc, System.Collections.Generic.List<TravelerWeeklyTaskCredits>> TravelerTaskWeeklyCredits { get; }
         public global::SpacetimeDB.Col<ParametersDesc, int> TravelerTaskRerollCreditCost { get; }
+        public global::SpacetimeDB.Col<ParametersDesc, int> MinDistanceToNeutralClaims { get; }
+        public global::SpacetimeDB.Col<ParametersDesc, int> ClaimTotemSpacing { get; }
+        public global::SpacetimeDB.Col<ParametersDesc, double> EmpireWatchtowerUpkeepPerChunk { get; }
+        public global::SpacetimeDB.Col<ParametersDesc, double> EmpireWatchtowerUpkeepPerTotalChunks { get; }
+        public global::SpacetimeDB.Col<ParametersDesc, int> EmpireSiegeDelayTicks { get; }
 
         public StagedParametersDescCols(string tableName)
         {
@@ -235,6 +240,11 @@ namespace BitCraftRegion.Types
             RpWalkSpeed = new global::SpacetimeDB.Col<ParametersDesc, float>(tableName, "rp_walk_speed");
             TravelerTaskWeeklyCredits = new global::SpacetimeDB.NullableCol<ParametersDesc, System.Collections.Generic.List<TravelerWeeklyTaskCredits>>(tableName, "traveler_task_weekly_credits");
             TravelerTaskRerollCreditCost = new global::SpacetimeDB.Col<ParametersDesc, int>(tableName, "traveler_task_reroll_credit_cost");
+            MinDistanceToNeutralClaims = new global::SpacetimeDB.Col<ParametersDesc, int>(tableName, "min_distance_to_neutral_claims");
+            ClaimTotemSpacing = new global::SpacetimeDB.Col<ParametersDesc, int>(tableName, "claim_totem_spacing");
+            EmpireWatchtowerUpkeepPerChunk = new global::SpacetimeDB.Col<ParametersDesc, double>(tableName, "empire_watchtower_upkeep_per_chunk");
+            EmpireWatchtowerUpkeepPerTotalChunks = new global::SpacetimeDB.Col<ParametersDesc, double>(tableName, "empire_watchtower_upkeep_per_total_chunks");
+            EmpireSiegeDelayTicks = new global::SpacetimeDB.Col<ParametersDesc, int>(tableName, "empire_siege_delay_ticks");
         }
     }
 
