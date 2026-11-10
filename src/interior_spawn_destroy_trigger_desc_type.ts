@@ -38,6 +38,7 @@ export type InteriorSpawnDestroyTriggerDesc = {
   destroyedInteriorSpawnIds: number[],
   triggerInteriorSpawnIds: number[],
   requireAllTriggers: boolean,
+  trackOnDestroySpawnedResources: boolean,
 };
 
 /**
@@ -55,6 +56,7 @@ export namespace InteriorSpawnDestroyTriggerDesc {
       new ProductTypeElement("destroyedInteriorSpawnIds", AlgebraicType.createArrayType(AlgebraicType.createI32Type())),
       new ProductTypeElement("triggerInteriorSpawnIds", AlgebraicType.createArrayType(AlgebraicType.createI32Type())),
       new ProductTypeElement("requireAllTriggers", AlgebraicType.createBoolType()),
+      new ProductTypeElement("trackOnDestroySpawnedResources", AlgebraicType.createBoolType()),
     ]);
   }
 

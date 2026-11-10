@@ -190,6 +190,8 @@ import { AdminSetRegionControlState } from "./admin_set_region_control_state_red
 export { AdminSetRegionControlState };
 import { AdminSetResourceWorldTarget } from "./admin_set_resource_world_target_reducer.ts";
 export { AdminSetResourceWorldTarget };
+import { AdminSetResourcesToMaxHealth } from "./admin_set_resources_to_max_health_reducer.ts";
+export { AdminSetResourcesToMaxHealth };
 import { AdminSetSignText } from "./admin_set_sign_text_reducer.ts";
 export { AdminSetSignText };
 import { AdminSetSignTextCoord } from "./admin_set_sign_text_coord_reducer.ts";
@@ -760,6 +762,8 @@ import { ImportFoodDesc } from "./import_food_desc_reducer.ts";
 export { ImportFoodDesc };
 import { ImportFootprintTileState } from "./import_footprint_tile_state_reducer.ts";
 export { ImportFootprintTileState };
+import { ImportFurnitureEmoteDesc } from "./import_furniture_emote_desc_reducer.ts";
+export { ImportFurnitureEmoteDesc };
 import { ImportGateDesc } from "./import_gate_desc_reducer.ts";
 export { ImportGateDesc };
 import { ImportGlobals } from "./import_globals_reducer.ts";
@@ -1046,6 +1050,8 @@ import { MigrateCharacterStats } from "./migrate_character_stats_reducer.ts";
 export { MigrateCharacterStats };
 import { MigrateClaimTech } from "./migrate_claim_tech_reducer.ts";
 export { MigrateClaimTech };
+import { MigrateClaimTechHomesteadUnlocks } from "./migrate_claim_tech_homestead_unlocks_reducer.ts";
+export { MigrateClaimTechHomesteadUnlocks };
 import { MigrateDuplicateEquipmentSlots } from "./migrate_duplicate_equipment_slots_reducer.ts";
 export { MigrateDuplicateEquipmentSlots };
 import { MigrateEquipmentSlots } from "./migrate_equipment_slots_reducer.ts";
@@ -1060,6 +1066,8 @@ import { MigrateOnboarding } from "./migrate_onboarding_reducer.ts";
 export { MigrateOnboarding };
 import { MigratePlayerSettings } from "./migrate_player_settings_reducer.ts";
 export { MigratePlayerSettings };
+import { MigrateRegionalBanks } from "./migrate_regional_banks_reducer.ts";
+export { MigrateRegionalBanks };
 import { MigrateSkillLevelKnowledge } from "./migrate_skill_level_knowledge_reducer.ts";
 export { MigrateSkillLevelKnowledge };
 import { MigrationSetAchievementParams } from "./migration_set_achievement_params_reducer.ts";
@@ -1396,6 +1404,8 @@ import { StageFloatingPlatformDesc } from "./stage_floating_platform_desc_reduce
 export { StageFloatingPlatformDesc };
 import { StageFoodDesc } from "./stage_food_desc_reducer.ts";
 export { StageFoodDesc };
+import { StageFurnitureEmoteDesc } from "./stage_furniture_emote_desc_reducer.ts";
+export { StageFurnitureEmoteDesc };
 import { StageGateDesc } from "./stage_gate_desc_reducer.ts";
 export { StageGateDesc };
 import { StageHexiteExchangeEntryDesc } from "./stage_hexite_exchange_entry_desc_reducer.ts";
@@ -1926,6 +1936,8 @@ import { FootprintTileStateTableHandle } from "./footprint_tile_state_table.ts";
 export { FootprintTileStateTableHandle };
 import { ForceGenerateTypesTableHandle } from "./force_generate_types_table.ts";
 export { ForceGenerateTypesTableHandle };
+import { FurnitureEmoteDescTableHandle } from "./furniture_emote_desc_table.ts";
+export { FurnitureEmoteDescTableHandle };
 import { GateDescTableHandle } from "./gate_desc_table.ts";
 export { GateDescTableHandle };
 import { GatedFeaturesTableHandle } from "./gated_features_table.ts";
@@ -2276,6 +2288,8 @@ import { RegionPopuplationLoopTimerTableHandle } from "./region_popuplation_loop
 export { RegionPopuplationLoopTimerTableHandle };
 import { RegionSignInParametersTableHandle } from "./region_sign_in_parameters_table.ts";
 export { RegionSignInParametersTableHandle };
+import { RegionalBankStateTableHandle } from "./regional_bank_state_table.ts";
+export { RegionalBankStateTableHandle };
 import { RentCollectorLoopTimerTableHandle } from "./rent_collector_loop_timer_table.ts";
 export { RentCollectorLoopTimerTableHandle };
 import { RentEvictTimerTableHandle } from "./rent_evict_timer_table.ts";
@@ -2446,6 +2460,8 @@ import { StagedFloatingPlatformDescTableHandle } from "./staged_floating_platfor
 export { StagedFloatingPlatformDescTableHandle };
 import { StagedFoodDescTableHandle } from "./staged_food_desc_table.ts";
 export { StagedFoodDescTableHandle };
+import { StagedFurnitureEmoteDescTableHandle } from "./staged_furniture_emote_desc_table.ts";
+export { StagedFurnitureEmoteDescTableHandle };
 import { StagedGateDescTableHandle } from "./staged_gate_desc_table.ts";
 export { StagedGateDescTableHandle };
 import { StagedHexiteExchangeEntryDescTableHandle } from "./staged_hexite_exchange_entry_desc_table.ts";
@@ -3230,6 +3246,8 @@ import { FootprintType } from "./footprint_type_type.ts";
 export { FootprintType };
 import { ForceGenerateTypes } from "./force_generate_types_type.ts";
 export { ForceGenerateTypes };
+import { FurnitureEmoteDesc } from "./furniture_emote_desc_type.ts";
+export { FurnitureEmoteDesc };
 import { GateDesc } from "./gate_desc_type.ts";
 export { GateDesc };
 import { GatedFeature } from "./gated_feature_type.ts";
@@ -5618,6 +5636,15 @@ export const REMOTE_MODULE = {
       tableName: "force_generate_types",
       rowType: ForceGenerateTypes.getTypeScriptAlgebraicType(),
     },
+    furniture_emote_desc: {
+      tableName: "furniture_emote_desc",
+      rowType: FurnitureEmoteDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "emoteId",
+      primaryKeyInfo: {
+        colName: "emoteId",
+        colType: FurnitureEmoteDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     gate_desc: {
       tableName: "gate_desc",
       rowType: GateDesc.getTypeScriptAlgebraicType(),
@@ -7068,6 +7095,15 @@ export const REMOTE_MODULE = {
         colType: RegionSignInParameters.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
+    regional_bank_state: {
+      tableName: "regional_bank_state",
+      rowType: BankState.getTypeScriptAlgebraicType(),
+      primaryKey: "buildingEntityId",
+      primaryKeyInfo: {
+        colName: "buildingEntityId",
+        colType: BankState.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
     rent_collector_loop_timer: {
       tableName: "rent_collector_loop_timer",
       rowType: RentCollectorLoopTimer.getTypeScriptAlgebraicType(),
@@ -7796,6 +7832,15 @@ export const REMOTE_MODULE = {
       primaryKeyInfo: {
         colName: "itemId",
         colType: FoodDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
+      },
+    },
+    staged_furniture_emote_desc: {
+      tableName: "staged_furniture_emote_desc",
+      rowType: FurnitureEmoteDesc.getTypeScriptAlgebraicType(),
+      primaryKey: "emoteId",
+      primaryKeyInfo: {
+        colName: "emoteId",
+        colType: FurnitureEmoteDesc.getTypeScriptAlgebraicType().product.elements[0].algebraicType,
       },
     },
     staged_gate_desc: {
@@ -9079,6 +9124,10 @@ export const REMOTE_MODULE = {
       reducerName: "admin_set_resource_world_target",
       argsType: AdminSetResourceWorldTarget.getTypeScriptAlgebraicType(),
     },
+    admin_set_resources_to_max_health: {
+      reducerName: "admin_set_resources_to_max_health",
+      argsType: AdminSetResourcesToMaxHealth.getTypeScriptAlgebraicType(),
+    },
     admin_set_sign_text: {
       reducerName: "admin_set_sign_text",
       argsType: AdminSetSignText.getTypeScriptAlgebraicType(),
@@ -10219,6 +10268,10 @@ export const REMOTE_MODULE = {
       reducerName: "import_footprint_tile_state",
       argsType: ImportFootprintTileState.getTypeScriptAlgebraicType(),
     },
+    import_furniture_emote_desc: {
+      reducerName: "import_furniture_emote_desc",
+      argsType: ImportFurnitureEmoteDesc.getTypeScriptAlgebraicType(),
+    },
     import_gate_desc: {
       reducerName: "import_gate_desc",
       argsType: ImportGateDesc.getTypeScriptAlgebraicType(),
@@ -10791,6 +10844,10 @@ export const REMOTE_MODULE = {
       reducerName: "migrate_claim_tech",
       argsType: MigrateClaimTech.getTypeScriptAlgebraicType(),
     },
+    migrate_claim_tech_homestead_unlocks: {
+      reducerName: "migrate_claim_tech_homestead_unlocks",
+      argsType: MigrateClaimTechHomesteadUnlocks.getTypeScriptAlgebraicType(),
+    },
     migrate_duplicate_equipment_slots: {
       reducerName: "migrate_duplicate_equipment_slots",
       argsType: MigrateDuplicateEquipmentSlots.getTypeScriptAlgebraicType(),
@@ -10818,6 +10875,10 @@ export const REMOTE_MODULE = {
     migrate_player_settings: {
       reducerName: "migrate_player_settings",
       argsType: MigratePlayerSettings.getTypeScriptAlgebraicType(),
+    },
+    migrate_regional_banks: {
+      reducerName: "migrate_regional_banks",
+      argsType: MigrateRegionalBanks.getTypeScriptAlgebraicType(),
     },
     migrate_skill_level_knowledge: {
       reducerName: "migrate_skill_level_knowledge",
@@ -11491,6 +11552,10 @@ export const REMOTE_MODULE = {
       reducerName: "stage_food_desc",
       argsType: StageFoodDesc.getTypeScriptAlgebraicType(),
     },
+    stage_furniture_emote_desc: {
+      reducerName: "stage_furniture_emote_desc",
+      argsType: StageFurnitureEmoteDesc.getTypeScriptAlgebraicType(),
+    },
     stage_gate_desc: {
       reducerName: "stage_gate_desc",
       argsType: StageGateDesc.getTypeScriptAlgebraicType(),
@@ -11971,6 +12036,7 @@ export type Reducer = never
 | { name: "AdminRestorePlayerStateScheduled", args: AdminRestorePlayerStateScheduled }
 | { name: "AdminSetRegionControlState", args: AdminSetRegionControlState }
 | { name: "AdminSetResourceWorldTarget", args: AdminSetResourceWorldTarget }
+| { name: "AdminSetResourcesToMaxHealth", args: AdminSetResourcesToMaxHealth }
 | { name: "AdminSetSignText", args: AdminSetSignText }
 | { name: "AdminSetSignTextCoord", args: AdminSetSignTextCoord }
 | { name: "AdminSetSignTextEntity", args: AdminSetSignTextEntity }
@@ -12256,6 +12322,7 @@ export type Reducer = never
 | { name: "ImportFloatingPlatformDesc", args: ImportFloatingPlatformDesc }
 | { name: "ImportFoodDesc", args: ImportFoodDesc }
 | { name: "ImportFootprintTileState", args: ImportFootprintTileState }
+| { name: "ImportFurnitureEmoteDesc", args: ImportFurnitureEmoteDesc }
 | { name: "ImportGateDesc", args: ImportGateDesc }
 | { name: "ImportGlobals", args: ImportGlobals }
 | { name: "ImportGrowthState", args: ImportGrowthState }
@@ -12399,6 +12466,7 @@ export type Reducer = never
 | { name: "MigrateAutoAttacks", args: MigrateAutoAttacks }
 | { name: "MigrateCharacterStats", args: MigrateCharacterStats }
 | { name: "MigrateClaimTech", args: MigrateClaimTech }
+| { name: "MigrateClaimTechHomesteadUnlocks", args: MigrateClaimTechHomesteadUnlocks }
 | { name: "MigrateDuplicateEquipmentSlots", args: MigrateDuplicateEquipmentSlots }
 | { name: "MigrateEquipmentSlots", args: MigrateEquipmentSlots }
 | { name: "MigrateExplorationAchievementCounts", args: MigrateExplorationAchievementCounts }
@@ -12406,6 +12474,7 @@ export type Reducer = never
 | { name: "MigrateMissingEquipmentSlotTypes", args: MigrateMissingEquipmentSlotTypes }
 | { name: "MigrateOnboarding", args: MigrateOnboarding }
 | { name: "MigratePlayerSettings", args: MigratePlayerSettings }
+| { name: "MigrateRegionalBanks", args: MigrateRegionalBanks }
 | { name: "MigrateSkillLevelKnowledge", args: MigrateSkillLevelKnowledge }
 | { name: "MigrationSetAchievementParams", args: MigrationSetAchievementParams }
 | { name: "MigrationSetBuildingDescParams", args: MigrationSetBuildingDescParams }
@@ -12574,6 +12643,7 @@ export type Reducer = never
 | { name: "StageExtractionRecipeDesc", args: StageExtractionRecipeDesc }
 | { name: "StageFloatingPlatformDesc", args: StageFloatingPlatformDesc }
 | { name: "StageFoodDesc", args: StageFoodDesc }
+| { name: "StageFurnitureEmoteDesc", args: StageFurnitureEmoteDesc }
 | { name: "StageGateDesc", args: StageGateDesc }
 | { name: "StageHexiteExchangeEntryDesc", args: StageHexiteExchangeEntryDesc }
 | { name: "StageInteriorEnvironmentDesc", args: StageInteriorEnvironmentDesc }
@@ -13854,6 +13924,18 @@ export class RemoteReducers {
 
   removeOnAdminSetResourceWorldTarget(callback: (ctx: ReducerEventContext, resourceId: number, worldTarget: number) => void) {
     this.connection.offReducer("admin_set_resource_world_target", callback);
+  }
+
+  adminSetResourcesToMaxHealth() {
+    this.connection.callReducer("admin_set_resources_to_max_health", new Uint8Array(0), this.setCallReducerFlags.adminSetResourcesToMaxHealthFlags);
+  }
+
+  onAdminSetResourcesToMaxHealth(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.onReducer("admin_set_resources_to_max_health", callback);
+  }
+
+  removeOnAdminSetResourcesToMaxHealth(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.offReducer("admin_set_resources_to_max_health", callback);
   }
 
   adminSetSignText(deployableName: string, newName: string) {
@@ -18336,6 +18418,22 @@ export class RemoteReducers {
     this.connection.offReducer("import_footprint_tile_state", callback);
   }
 
+  importFurnitureEmoteDesc(records: FurnitureEmoteDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    ImportFurnitureEmoteDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("import_furniture_emote_desc", __argsBuffer, this.setCallReducerFlags.importFurnitureEmoteDescFlags);
+  }
+
+  onImportFurnitureEmoteDesc(callback: (ctx: ReducerEventContext, records: FurnitureEmoteDesc[]) => void) {
+    this.connection.onReducer("import_furniture_emote_desc", callback);
+  }
+
+  removeOnImportFurnitureEmoteDesc(callback: (ctx: ReducerEventContext, records: FurnitureEmoteDesc[]) => void) {
+    this.connection.offReducer("import_furniture_emote_desc", callback);
+  }
+
   importGateDesc(records: GateDesc[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
@@ -20604,6 +20702,18 @@ export class RemoteReducers {
     this.connection.offReducer("migrate_claim_tech", callback);
   }
 
+  migrateClaimTechHomesteadUnlocks() {
+    this.connection.callReducer("migrate_claim_tech_homestead_unlocks", new Uint8Array(0), this.setCallReducerFlags.migrateClaimTechHomesteadUnlocksFlags);
+  }
+
+  onMigrateClaimTechHomesteadUnlocks(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.onReducer("migrate_claim_tech_homestead_unlocks", callback);
+  }
+
+  removeOnMigrateClaimTechHomesteadUnlocks(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.offReducer("migrate_claim_tech_homestead_unlocks", callback);
+  }
+
   migrateDuplicateEquipmentSlots() {
     this.connection.callReducer("migrate_duplicate_equipment_slots", new Uint8Array(0), this.setCallReducerFlags.migrateDuplicateEquipmentSlotsFlags);
   }
@@ -20686,6 +20796,18 @@ export class RemoteReducers {
 
   removeOnMigratePlayerSettings(callback: (ctx: ReducerEventContext) => void) {
     this.connection.offReducer("migrate_player_settings", callback);
+  }
+
+  migrateRegionalBanks() {
+    this.connection.callReducer("migrate_regional_banks", new Uint8Array(0), this.setCallReducerFlags.migrateRegionalBanksFlags);
+  }
+
+  onMigrateRegionalBanks(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.onReducer("migrate_regional_banks", callback);
+  }
+
+  removeOnMigrateRegionalBanks(callback: (ctx: ReducerEventContext) => void) {
+    this.connection.offReducer("migrate_regional_banks", callback);
   }
 
   migrateSkillLevelKnowledge() {
@@ -23332,6 +23454,22 @@ export class RemoteReducers {
     this.connection.offReducer("stage_food_desc", callback);
   }
 
+  stageFurnitureEmoteDesc(records: FurnitureEmoteDesc[]) {
+    const __args = { records };
+    let __writer = new BinaryWriter(1024);
+    StageFurnitureEmoteDesc.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("stage_furniture_emote_desc", __argsBuffer, this.setCallReducerFlags.stageFurnitureEmoteDescFlags);
+  }
+
+  onStageFurnitureEmoteDesc(callback: (ctx: ReducerEventContext, records: FurnitureEmoteDesc[]) => void) {
+    this.connection.onReducer("stage_furniture_emote_desc", callback);
+  }
+
+  removeOnStageFurnitureEmoteDesc(callback: (ctx: ReducerEventContext, records: FurnitureEmoteDesc[]) => void) {
+    this.connection.offReducer("stage_furniture_emote_desc", callback);
+  }
+
   stageGateDesc(records: GateDesc[]) {
     const __args = { records };
     let __writer = new BinaryWriter(1024);
@@ -25201,6 +25339,11 @@ export class SetReducerFlags {
     this.adminSetResourceWorldTargetFlags = flags;
   }
 
+  adminSetResourcesToMaxHealthFlags: CallReducerFlags = 'FullUpdate';
+  adminSetResourcesToMaxHealth(flags: CallReducerFlags) {
+    this.adminSetResourcesToMaxHealthFlags = flags;
+  }
+
   adminSetSignTextFlags: CallReducerFlags = 'FullUpdate';
   adminSetSignText(flags: CallReducerFlags) {
     this.adminSetSignTextFlags = flags;
@@ -26616,6 +26759,11 @@ export class SetReducerFlags {
     this.importFootprintTileStateFlags = flags;
   }
 
+  importFurnitureEmoteDescFlags: CallReducerFlags = 'FullUpdate';
+  importFurnitureEmoteDesc(flags: CallReducerFlags) {
+    this.importFurnitureEmoteDescFlags = flags;
+  }
+
   importGateDescFlags: CallReducerFlags = 'FullUpdate';
   importGateDesc(flags: CallReducerFlags) {
     this.importGateDescFlags = flags;
@@ -27331,6 +27479,11 @@ export class SetReducerFlags {
     this.migrateClaimTechFlags = flags;
   }
 
+  migrateClaimTechHomesteadUnlocksFlags: CallReducerFlags = 'FullUpdate';
+  migrateClaimTechHomesteadUnlocks(flags: CallReducerFlags) {
+    this.migrateClaimTechHomesteadUnlocksFlags = flags;
+  }
+
   migrateDuplicateEquipmentSlotsFlags: CallReducerFlags = 'FullUpdate';
   migrateDuplicateEquipmentSlots(flags: CallReducerFlags) {
     this.migrateDuplicateEquipmentSlotsFlags = flags;
@@ -27364,6 +27517,11 @@ export class SetReducerFlags {
   migratePlayerSettingsFlags: CallReducerFlags = 'FullUpdate';
   migratePlayerSettings(flags: CallReducerFlags) {
     this.migratePlayerSettingsFlags = flags;
+  }
+
+  migrateRegionalBanksFlags: CallReducerFlags = 'FullUpdate';
+  migrateRegionalBanks(flags: CallReducerFlags) {
+    this.migrateRegionalBanksFlags = flags;
   }
 
   migrateSkillLevelKnowledgeFlags: CallReducerFlags = 'FullUpdate';
@@ -28204,6 +28362,11 @@ export class SetReducerFlags {
   stageFoodDescFlags: CallReducerFlags = 'FullUpdate';
   stageFoodDesc(flags: CallReducerFlags) {
     this.stageFoodDescFlags = flags;
+  }
+
+  stageFurnitureEmoteDescFlags: CallReducerFlags = 'FullUpdate';
+  stageFurnitureEmoteDesc(flags: CallReducerFlags) {
+    this.stageFurnitureEmoteDescFlags = flags;
   }
 
   stageGateDescFlags: CallReducerFlags = 'FullUpdate';
@@ -29360,6 +29523,10 @@ export class RemoteTables {
     return new ForceGenerateTypesTableHandle(this.connection.clientCache.getOrCreateTable<ForceGenerateTypes>(REMOTE_MODULE.tables.force_generate_types));
   }
 
+  get furnitureEmoteDesc(): FurnitureEmoteDescTableHandle {
+    return new FurnitureEmoteDescTableHandle(this.connection.clientCache.getOrCreateTable<FurnitureEmoteDesc>(REMOTE_MODULE.tables.furniture_emote_desc));
+  }
+
   get gateDesc(): GateDescTableHandle {
     return new GateDescTableHandle(this.connection.clientCache.getOrCreateTable<GateDesc>(REMOTE_MODULE.tables.gate_desc));
   }
@@ -30060,6 +30227,10 @@ export class RemoteTables {
     return new RegionSignInParametersTableHandle(this.connection.clientCache.getOrCreateTable<RegionSignInParameters>(REMOTE_MODULE.tables.region_sign_in_parameters));
   }
 
+  get regionalBankState(): RegionalBankStateTableHandle {
+    return new RegionalBankStateTableHandle(this.connection.clientCache.getOrCreateTable<BankState>(REMOTE_MODULE.tables.regional_bank_state));
+  }
+
   get rentCollectorLoopTimer(): RentCollectorLoopTimerTableHandle {
     return new RentCollectorLoopTimerTableHandle(this.connection.clientCache.getOrCreateTable<RentCollectorLoopTimer>(REMOTE_MODULE.tables.rent_collector_loop_timer));
   }
@@ -30398,6 +30569,10 @@ export class RemoteTables {
 
   get stagedFoodDesc(): StagedFoodDescTableHandle {
     return new StagedFoodDescTableHandle(this.connection.clientCache.getOrCreateTable<FoodDesc>(REMOTE_MODULE.tables.staged_food_desc));
+  }
+
+  get stagedFurnitureEmoteDesc(): StagedFurnitureEmoteDescTableHandle {
+    return new StagedFurnitureEmoteDescTableHandle(this.connection.clientCache.getOrCreateTable<FurnitureEmoteDesc>(REMOTE_MODULE.tables.staged_furniture_emote_desc));
   }
 
   get stagedGateDesc(): StagedGateDescTableHandle {

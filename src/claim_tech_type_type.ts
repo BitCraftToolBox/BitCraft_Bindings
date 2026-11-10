@@ -59,6 +59,11 @@ export namespace ClaimTechType {
   export type TownBank = { tag: "TownBank" };
   export type LargeHouse = { tag: "LargeHouse" };
   export type TownMarket = { tag: "TownMarket" };
+  export type Homestead = { tag: "Homestead" };
+  export type OneWayWaystones = { tag: "OneWayWaystones" };
+  export type DestinationWaystones = { tag: "DestinationWaystones" };
+  export type StarterTech = { tag: "StarterTech" };
+  export type RegionalBank = { tag: "RegionalBank" };
 
   // Helper functions for constructing each variant of the tagged union.
   // ```
@@ -88,6 +93,11 @@ export namespace ClaimTechType {
   export const TownBank = { tag: "TownBank" };
   export const LargeHouse = { tag: "LargeHouse" };
   export const TownMarket = { tag: "TownMarket" };
+  export const Homestead = { tag: "Homestead" };
+  export const OneWayWaystones = { tag: "OneWayWaystones" };
+  export const DestinationWaystones = { tag: "DestinationWaystones" };
+  export const StarterTech = { tag: "StarterTech" };
+  export const RegionalBank = { tag: "RegionalBank" };
 
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createSumType([
@@ -113,6 +123,11 @@ export namespace ClaimTechType {
       new SumTypeVariant("TownBank", AlgebraicType.createProductType([])),
       new SumTypeVariant("LargeHouse", AlgebraicType.createProductType([])),
       new SumTypeVariant("TownMarket", AlgebraicType.createProductType([])),
+      new SumTypeVariant("Homestead", AlgebraicType.createProductType([])),
+      new SumTypeVariant("OneWayWaystones", AlgebraicType.createProductType([])),
+      new SumTypeVariant("DestinationWaystones", AlgebraicType.createProductType([])),
+      new SumTypeVariant("StarterTech", AlgebraicType.createProductType([])),
+      new SumTypeVariant("RegionalBank", AlgebraicType.createProductType([])),
     ]);
   }
 
@@ -127,7 +142,7 @@ export namespace ClaimTechType {
 }
 
 // The tagged union or sum type for the algebraic type `ClaimTechType`.
-export type ClaimTechType = ClaimTechType.Undefined | ClaimTechType.TierUpgrade | ClaimTechType.MemberCount | ClaimTechType.MaxSupplies | ClaimTechType.ClaimArea | ClaimTechType.Settlement | ClaimTechType.Forestry | ClaimTechType.Carpentry | ClaimTechType.Masonry | ClaimTechType.Mining | ClaimTechType.Smithing | ClaimTechType.Scholar | ClaimTechType.Leatherworking | ClaimTechType.Hunting | ClaimTechType.Tailoring | ClaimTechType.Farming | ClaimTechType.Fishing | ClaimTechType.Foraging | ClaimTechType.Empire | ClaimTechType.TownBank | ClaimTechType.LargeHouse | ClaimTechType.TownMarket;
+export type ClaimTechType = ClaimTechType.Undefined | ClaimTechType.TierUpgrade | ClaimTechType.MemberCount | ClaimTechType.MaxSupplies | ClaimTechType.ClaimArea | ClaimTechType.Settlement | ClaimTechType.Forestry | ClaimTechType.Carpentry | ClaimTechType.Masonry | ClaimTechType.Mining | ClaimTechType.Smithing | ClaimTechType.Scholar | ClaimTechType.Leatherworking | ClaimTechType.Hunting | ClaimTechType.Tailoring | ClaimTechType.Farming | ClaimTechType.Fishing | ClaimTechType.Foraging | ClaimTechType.Empire | ClaimTechType.TownBank | ClaimTechType.LargeHouse | ClaimTechType.TownMarket | ClaimTechType.Homestead | ClaimTechType.OneWayWaystones | ClaimTechType.DestinationWaystones | ClaimTechType.StarterTech | ClaimTechType.RegionalBank;
 
 export default ClaimTechType;
 

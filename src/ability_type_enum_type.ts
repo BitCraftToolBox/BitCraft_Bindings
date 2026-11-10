@@ -50,6 +50,7 @@ export namespace AbilityTypeEnum {
   export type DeployableToggle = { tag: "DeployableToggle" };
   export type Emote = { tag: "Emote" };
   export type EquipPreset = { tag: "EquipPreset" };
+  export type PlaceablePlace = { tag: "PlaceablePlace" };
 
   // Helper functions for constructing each variant of the tagged union.
   // ```
@@ -70,6 +71,7 @@ export namespace AbilityTypeEnum {
   export const DeployableToggle = { tag: "DeployableToggle" };
   export const Emote = { tag: "Emote" };
   export const EquipPreset = { tag: "EquipPreset" };
+  export const PlaceablePlace = { tag: "PlaceablePlace" };
 
   export function getTypeScriptAlgebraicType(): AlgebraicType {
     return AlgebraicType.createSumType([
@@ -86,6 +88,7 @@ export namespace AbilityTypeEnum {
       new SumTypeVariant("DeployableToggle", AlgebraicType.createProductType([])),
       new SumTypeVariant("Emote", AlgebraicType.createProductType([])),
       new SumTypeVariant("EquipPreset", AlgebraicType.createProductType([])),
+      new SumTypeVariant("PlaceablePlace", AlgebraicType.createProductType([])),
     ]);
   }
 
@@ -100,7 +103,7 @@ export namespace AbilityTypeEnum {
 }
 
 // The tagged union or sum type for the algebraic type `AbilityTypeEnum`.
-export type AbilityTypeEnum = AbilityTypeEnum.Unsupported | AbilityTypeEnum.Eat | AbilityTypeEnum.CombatAction | AbilityTypeEnum.AutoAttack | AbilityTypeEnum.SelfBuff | AbilityTypeEnum.Custom | AbilityTypeEnum.Prospecting | AbilityTypeEnum.Equip | AbilityTypeEnum.DeployableDeploy | AbilityTypeEnum.AddToToolbelt | AbilityTypeEnum.DeployableToggle | AbilityTypeEnum.Emote | AbilityTypeEnum.EquipPreset;
+export type AbilityTypeEnum = AbilityTypeEnum.Unsupported | AbilityTypeEnum.Eat | AbilityTypeEnum.CombatAction | AbilityTypeEnum.AutoAttack | AbilityTypeEnum.SelfBuff | AbilityTypeEnum.Custom | AbilityTypeEnum.Prospecting | AbilityTypeEnum.Equip | AbilityTypeEnum.DeployableDeploy | AbilityTypeEnum.AddToToolbelt | AbilityTypeEnum.DeployableToggle | AbilityTypeEnum.Emote | AbilityTypeEnum.EquipPreset | AbilityTypeEnum.PlaceablePlace;
 
 export default AbilityTypeEnum;
 

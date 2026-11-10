@@ -42,6 +42,7 @@ export type FloatingPlatformDesc = {
   allowedBiomes: __Biome[],
   supportsBuildings: boolean,
   maxPerPlayer: number,
+  targetElevation: number,
 };
 
 /**
@@ -61,6 +62,7 @@ export namespace FloatingPlatformDesc {
       new ProductTypeElement("allowedBiomes", AlgebraicType.createArrayType(__Biome.getTypeScriptAlgebraicType())),
       new ProductTypeElement("supportsBuildings", AlgebraicType.createBoolType()),
       new ProductTypeElement("maxPerPlayer", AlgebraicType.createI32Type()),
+      new ProductTypeElement("targetElevation", AlgebraicType.createI16Type()),
     ]);
   }
 

@@ -132,6 +132,11 @@ export type ParametersDesc = {
   rpWalkSpeed: number,
   travelerTaskWeeklyCredits: __TravelerWeeklyTaskCredits[] | undefined,
   travelerTaskRerollCreditCost: number,
+  minDistanceToNeutralClaims: number,
+  claimTotemSpacing: number,
+  empireWatchtowerUpkeepPerChunk: number,
+  empireWatchtowerUpkeepPerTotalChunks: number,
+  empireSiegeDelayTicks: number,
 };
 
 /**
@@ -240,6 +245,11 @@ export namespace ParametersDesc {
       new ProductTypeElement("rpWalkSpeed", AlgebraicType.createF32Type()),
       new ProductTypeElement("travelerTaskWeeklyCredits", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__TravelerWeeklyTaskCredits.getTypeScriptAlgebraicType()))),
       new ProductTypeElement("travelerTaskRerollCreditCost", AlgebraicType.createI32Type()),
+      new ProductTypeElement("minDistanceToNeutralClaims", AlgebraicType.createI32Type()),
+      new ProductTypeElement("claimTotemSpacing", AlgebraicType.createI32Type()),
+      new ProductTypeElement("empireWatchtowerUpkeepPerChunk", AlgebraicType.createF64Type()),
+      new ProductTypeElement("empireWatchtowerUpkeepPerTotalChunks", AlgebraicType.createF64Type()),
+      new ProductTypeElement("empireSiegeDelayTicks", AlgebraicType.createI32Type()),
     ]);
   }
 

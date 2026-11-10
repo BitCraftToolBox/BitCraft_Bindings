@@ -62,6 +62,8 @@ export type PlaceableInteractionDesc = {
   onDestroySpawnedPlaceableChance: number,
   onDestroyOutcomes: __PlaceableGrowthOutcomeV2[] | undefined,
   selfBuffs: __PlaceableSelfBuffChance[] | undefined,
+  toolMeshIndex: number,
+  onDestroyYield: __ItemStack[] | undefined,
 };
 
 /**
@@ -95,6 +97,8 @@ export namespace PlaceableInteractionDesc {
       new ProductTypeElement("onDestroySpawnedPlaceableChance", AlgebraicType.createF32Type()),
       new ProductTypeElement("onDestroyOutcomes", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__PlaceableGrowthOutcomeV2.getTypeScriptAlgebraicType()))),
       new ProductTypeElement("selfBuffs", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__PlaceableSelfBuffChance.getTypeScriptAlgebraicType()))),
+      new ProductTypeElement("toolMeshIndex", AlgebraicType.createI32Type()),
+      new ProductTypeElement("onDestroyYield", AlgebraicType.createOptionType(AlgebraicType.createArrayType(__ItemStack.getTypeScriptAlgebraicType()))),
     ]);
   }
 
