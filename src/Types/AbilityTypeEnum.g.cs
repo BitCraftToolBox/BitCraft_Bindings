@@ -24,5 +24,6 @@ namespace BitCraftGlobal.Types
         DeployableToggle,
         Emote,
         EquipPreset,
+        PlaceablePlace,
     }
 }

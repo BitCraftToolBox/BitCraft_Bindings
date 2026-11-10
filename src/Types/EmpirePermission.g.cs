@@ -21,5 +21,6 @@ namespace BitCraftGlobal.Types
         Count,
         HarvestEmpireResources,
         WithdrawEmpireCurrency,
+        ManageBlacklist,
     }
 }

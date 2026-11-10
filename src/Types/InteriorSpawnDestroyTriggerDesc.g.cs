@@ -24,13 +24,16 @@ namespace BitCraftGlobal.Types
         public System.Collections.Generic.List<int> TriggerInteriorSpawnIds;
         [DataMember(Name = "require_all_triggers")]
         public bool RequireAllTriggers;
+        [DataMember(Name = "track_on_destroy_spawned_resources")]
+        public bool TrackOnDestroySpawnedResources;
 
         public InteriorSpawnDestroyTriggerDesc(
             int Id,
             string Name,
             System.Collections.Generic.List<int> DestroyedInteriorSpawnIds,
             System.Collections.Generic.List<int> TriggerInteriorSpawnIds,
-            bool RequireAllTriggers
+            bool RequireAllTriggers,
+            bool TrackOnDestroySpawnedResources
         )
         {
             this.Id = Id;
@@ -38,6 +41,7 @@ namespace BitCraftGlobal.Types
             this.DestroyedInteriorSpawnIds = DestroyedInteriorSpawnIds;
             this.TriggerInteriorSpawnIds = TriggerInteriorSpawnIds;
             this.RequireAllTriggers = RequireAllTriggers;
+            this.TrackOnDestroySpawnedResources = TrackOnDestroySpawnedResources;
         }
 
         public InteriorSpawnDestroyTriggerDesc()

@@ -47,6 +47,7 @@ namespace BitCraftGlobal.Types
         public global::SpacetimeDB.Col<FloatingPlatformDesc, System.Collections.Generic.List<Biome>> AllowedBiomes { get; }
         public global::SpacetimeDB.Col<FloatingPlatformDesc, bool> SupportsBuildings { get; }
         public global::SpacetimeDB.Col<FloatingPlatformDesc, int> MaxPerPlayer { get; }
+        public global::SpacetimeDB.Col<FloatingPlatformDesc, short> TargetElevation { get; }
 
         public StagedFloatingPlatformDescCols(string tableName)
         {
@@ -57,6 +58,7 @@ namespace BitCraftGlobal.Types
             AllowedBiomes = new global::SpacetimeDB.Col<FloatingPlatformDesc, System.Collections.Generic.List<Biome>>(tableName, "allowed_biomes");
             SupportsBuildings = new global::SpacetimeDB.Col<FloatingPlatformDesc, bool>(tableName, "supports_buildings");
             MaxPerPlayer = new global::SpacetimeDB.Col<FloatingPlatformDesc, int>(tableName, "max_per_player");
+            TargetElevation = new global::SpacetimeDB.Col<FloatingPlatformDesc, short>(tableName, "target_elevation");
         }
     }
 

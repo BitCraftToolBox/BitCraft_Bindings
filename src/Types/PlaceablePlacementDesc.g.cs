@@ -66,6 +66,8 @@ namespace BitCraftGlobal.Types
         public int RecipePerformanceId;
         [DataMember(Name = "self_buffs")]
         public System.Collections.Generic.List<PlaceableSelfBuffChance>? SelfBuffs;
+        [DataMember(Name = "acceptable_pavements")]
+        public System.Collections.Generic.List<int>? AcceptablePavements;
 
         public PlaceablePlacementDesc(
             int Id,
@@ -93,7 +95,8 @@ namespace BitCraftGlobal.Types
             int MaxDistanceToBuildings,
             System.Collections.Generic.List<int> Buildings,
             int RecipePerformanceId,
-            System.Collections.Generic.List<PlaceableSelfBuffChance>? SelfBuffs
+            System.Collections.Generic.List<PlaceableSelfBuffChance>? SelfBuffs,
+            System.Collections.Generic.List<int>? AcceptablePavements
         )
         {
             this.Id = Id;
@@ -122,6 +125,7 @@ namespace BitCraftGlobal.Types
             this.Buildings = Buildings;
             this.RecipePerformanceId = RecipePerformanceId;
             this.SelfBuffs = SelfBuffs;
+            this.AcceptablePavements = AcceptablePavements;
         }
 
         public PlaceablePlacementDesc()

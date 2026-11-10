@@ -63,12 +63,16 @@ namespace BitCraftGlobal.Types
         public global::SpacetimeDB.Col<InteriorSpawnedResourceState, ulong> EntityId { get; }
         public global::SpacetimeDB.Col<InteriorSpawnedResourceState, int> InteriorSpawnDescId { get; }
         public global::SpacetimeDB.Col<InteriorSpawnedResourceState, uint> DimensionId { get; }
+        public global::SpacetimeDB.Col<InteriorSpawnedResourceState, bool> DestroyTriggerCompleted { get; }
+        public global::SpacetimeDB.Col<InteriorSpawnedResourceState, int> OriginalResourceId { get; }
 
         public InteriorSpawnedResourceStateCols(string tableName)
         {
             EntityId = new global::SpacetimeDB.Col<InteriorSpawnedResourceState, ulong>(tableName, "entity_id");
             InteriorSpawnDescId = new global::SpacetimeDB.Col<InteriorSpawnedResourceState, int>(tableName, "interior_spawn_desc_id");
             DimensionId = new global::SpacetimeDB.Col<InteriorSpawnedResourceState, uint>(tableName, "dimension_id");
+            DestroyTriggerCompleted = new global::SpacetimeDB.Col<InteriorSpawnedResourceState, bool>(tableName, "destroy_trigger_completed");
+            OriginalResourceId = new global::SpacetimeDB.Col<InteriorSpawnedResourceState, int>(tableName, "original_resource_id");
         }
     }
 
