@@ -116,4 +116,9 @@ export default __t.row({
     return __t.option(__t.array(TravelerWeeklyTaskCredits)).name("traveler_task_weekly_credits");
   },
   travelerTaskRerollCreditCost: __t.i32().name("traveler_task_reroll_credit_cost"),
+  minDistanceToNeutralClaims: __t.i32().name("min_distance_to_neutral_claims"),
+  claimTotemSpacing: __t.i32().name("claim_totem_spacing"),
+  empireWatchtowerUpkeepPerChunk: __t.f64().name("empire_watchtower_upkeep_per_chunk"),
+  empireWatchtowerUpkeepPerTotalChunks: __t.f64().name("empire_watchtower_upkeep_per_total_chunks"),
+  empireSiegeDelayTicks: __t.i32().name("empire_siege_delay_ticks"),
 });

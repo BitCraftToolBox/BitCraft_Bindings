@@ -112,6 +112,7 @@ import AdminRestorePlayerStateReducer from "./admin_restore_player_state_reducer
 import AdminRestorePlayerStateScheduledReducer from "./admin_restore_player_state_scheduled_reducer";
 import AdminSetRegionControlStateReducer from "./admin_set_region_control_state_reducer";
 import AdminSetResourceWorldTargetReducer from "./admin_set_resource_world_target_reducer";
+import AdminSetResourcesToMaxHealthReducer from "./admin_set_resources_to_max_health_reducer";
 import AdminSetSignTextReducer from "./admin_set_sign_text_reducer";
 import AdminSetSignTextCoordReducer from "./admin_set_sign_text_coord_reducer";
 import AdminSetSignTextEntityReducer from "./admin_set_sign_text_entity_reducer";
@@ -395,6 +396,7 @@ import ImportExtractionRecipeDescReducer from "./import_extraction_recipe_desc_r
 import ImportFloatingPlatformDescReducer from "./import_floating_platform_desc_reducer";
 import ImportFoodDescReducer from "./import_food_desc_reducer";
 import ImportFootprintTileStateReducer from "./import_footprint_tile_state_reducer";
+import ImportFurnitureEmoteDescReducer from "./import_furniture_emote_desc_reducer";
 import ImportGateDescReducer from "./import_gate_desc_reducer";
 import ImportGlobalsReducer from "./import_globals_reducer";
 import ImportGrowthStateReducer from "./import_growth_state_reducer";
@@ -538,6 +540,7 @@ import LootChestSpawnReducer from "./loot_chest_spawn_reducer";
 import MigrateAutoAttacksReducer from "./migrate_auto_attacks_reducer";
 import MigrateCharacterStatsReducer from "./migrate_character_stats_reducer";
 import MigrateClaimTechReducer from "./migrate_claim_tech_reducer";
+import MigrateClaimTechHomesteadUnlocksReducer from "./migrate_claim_tech_homestead_unlocks_reducer";
 import MigrateDuplicateEquipmentSlotsReducer from "./migrate_duplicate_equipment_slots_reducer";
 import MigrateEquipmentSlotsReducer from "./migrate_equipment_slots_reducer";
 import MigrateExplorationAchievementCountsReducer from "./migrate_exploration_achievement_counts_reducer";
@@ -545,6 +548,7 @@ import MigrateGrantDefaultCollectiblesReducer from "./migrate_grant_default_coll
 import MigrateMissingEquipmentSlotTypesReducer from "./migrate_missing_equipment_slot_types_reducer";
 import MigrateOnboardingReducer from "./migrate_onboarding_reducer";
 import MigratePlayerSettingsReducer from "./migrate_player_settings_reducer";
+import MigrateRegionalBanksReducer from "./migrate_regional_banks_reducer";
 import MigrateSkillLevelKnowledgeReducer from "./migrate_skill_level_knowledge_reducer";
 import MigrationSetAchievementParamsReducer from "./migration_set_achievement_params_reducer";
 import MigrationSetBuildingDescParamsReducer from "./migration_set_building_desc_params_reducer";
@@ -713,6 +717,7 @@ import StageEquipmentPresetKnowledgeDescReducer from "./stage_equipment_preset_k
 import StageExtractionRecipeDescReducer from "./stage_extraction_recipe_desc_reducer";
 import StageFloatingPlatformDescReducer from "./stage_floating_platform_desc_reducer";
 import StageFoodDescReducer from "./stage_food_desc_reducer";
+import StageFurnitureEmoteDescReducer from "./stage_furniture_emote_desc_reducer";
 import StageGateDescReducer from "./stage_gate_desc_reducer";
 import StageHexiteExchangeEntryDescReducer from "./stage_hexite_exchange_entry_desc_reducer";
 import StageInteriorEnvironmentDescReducer from "./stage_interior_environment_desc_reducer";
@@ -982,6 +987,7 @@ import FloatingPlatformDescRow from "./floating_platform_desc_table";
 import FoodDescRow from "./food_desc_table";
 import FootprintTileStateRow from "./footprint_tile_state_table";
 import ForceGenerateTypesRow from "./force_generate_types_table";
+import FurnitureEmoteDescRow from "./furniture_emote_desc_table";
 import GateDescRow from "./gate_desc_table";
 import GatedFeaturesRow from "./gated_features_table";
 import GlobalSearchStateRow from "./global_search_state_table";
@@ -1158,6 +1164,7 @@ import RegionModerationConfigStateRow from "./region_moderation_config_state_tab
 import RegionPopulationInfoRow from "./region_population_info_table";
 import RegionPopuplationLoopTimerRow from "./region_popuplation_loop_timer_table";
 import RegionSignInParametersRow from "./region_sign_in_parameters_table";
+import RegionalBankStateRow from "./regional_bank_state_table";
 import RentCollectorLoopTimerRow from "./rent_collector_loop_timer_table";
 import RentEvictTimerRow from "./rent_evict_timer_table";
 import RentStateRow from "./rent_state_table";
@@ -1243,6 +1250,7 @@ import StagedEquipmentPresetKnowledgeDescRow from "./staged_equipment_preset_kno
 import StagedExtractionRecipeDescRow from "./staged_extraction_recipe_desc_table";
 import StagedFloatingPlatformDescRow from "./staged_floating_platform_desc_table";
 import StagedFoodDescRow from "./staged_food_desc_table";
+import StagedFurnitureEmoteDescRow from "./staged_furniture_emote_desc_table";
 import StagedGateDescRow from "./staged_gate_desc_table";
 import StagedHexiteExchangeEntryDescRow from "./staged_hexite_exchange_entry_desc_table";
 import StagedInteriorEnvironmentDescRow from "./staged_interior_environment_desc_table";
@@ -1929,9 +1937,12 @@ const tablesSchema = __schema({
         'itemType',
         'claimEntityId',
       ] },
-      { accessor: 'owner_for_claim', name: 'buy_order_state_owner_entity_id_claim_entity_id_idx_btree', algorithm: 'btree', columns: [
+      { accessor: 'item', name: 'buy_order_state_item_id_item_type_idx_btree', algorithm: 'btree', columns: [
+        'itemId',
+        'itemType',
+      ] },
+      { accessor: 'owner_entity_id', name: 'buy_order_state_owner_entity_id_idx_btree', algorithm: 'btree', columns: [
         'ownerEntityId',
-        'claimEntityId',
       ] },
     ],
     constraints: [
@@ -3470,6 +3481,17 @@ const tablesSchema = __schema({
     constraints: [
     ],
   }, ForceGenerateTypesRow),
+  furnitureEmoteDesc: __table({
+    name: 'furniture_emote_desc',
+    indexes: [
+      { accessor: 'emote_id', name: 'furniture_emote_desc_emote_id_idx_btree', algorithm: 'btree', columns: [
+        'emoteId',
+      ] },
+    ],
+    constraints: [
+      { name: 'furniture_emote_desc_emote_id_key', constraint: 'unique', columns: ['emoteId'] },
+    ],
+  }, FurnitureEmoteDescRow),
   gateDesc: __table({
     name: 'gate_desc',
     indexes: [
@@ -5548,6 +5570,20 @@ const tablesSchema = __schema({
       { name: 'region_sign_in_parameters_region_id_key', constraint: 'unique', columns: ['regionId'] },
     ],
   }, RegionSignInParametersRow),
+  regionalBankState: __table({
+    name: 'regional_bank_state',
+    indexes: [
+      { accessor: 'building_entity_id', name: 'regional_bank_state_building_entity_id_idx_btree', algorithm: 'btree', columns: [
+        'buildingEntityId',
+      ] },
+      { accessor: 'claim_entity_id', name: 'regional_bank_state_claim_entity_id_idx_btree', algorithm: 'btree', columns: [
+        'claimEntityId',
+      ] },
+    ],
+    constraints: [
+      { name: 'regional_bank_state_building_entity_id_key', constraint: 'unique', columns: ['buildingEntityId'] },
+    ],
+  }, RegionalBankStateRow),
   rentCollectorLoopTimer: __table({
     name: 'rent_collector_loop_timer',
     indexes: [
@@ -5848,9 +5884,12 @@ const tablesSchema = __schema({
         'itemType',
         'claimEntityId',
       ] },
-      { accessor: 'owner_for_claim', name: 'sell_order_state_owner_entity_id_claim_entity_id_idx_btree', algorithm: 'btree', columns: [
+      { accessor: 'item', name: 'sell_order_state_item_id_item_type_idx_btree', algorithm: 'btree', columns: [
+        'itemId',
+        'itemType',
+      ] },
+      { accessor: 'owner_entity_id', name: 'sell_order_state_owner_entity_id_idx_btree', algorithm: 'btree', columns: [
         'ownerEntityId',
-        'claimEntityId',
       ] },
     ],
     constraints: [
@@ -6520,6 +6559,17 @@ const tablesSchema = __schema({
       { name: 'staged_food_desc_item_id_key', constraint: 'unique', columns: ['itemId'] },
     ],
   }, StagedFoodDescRow),
+  stagedFurnitureEmoteDesc: __table({
+    name: 'staged_furniture_emote_desc',
+    indexes: [
+      { accessor: 'emote_id', name: 'staged_furniture_emote_desc_emote_id_idx_btree', algorithm: 'btree', columns: [
+        'emoteId',
+      ] },
+    ],
+    constraints: [
+      { name: 'staged_furniture_emote_desc_emote_id_key', constraint: 'unique', columns: ['emoteId'] },
+    ],
+  }, StagedFurnitureEmoteDescRow),
   stagedGateDesc: __table({
     name: 'staged_gate_desc',
     indexes: [
@@ -7874,6 +7924,7 @@ const reducersSchema = __reducers(
   __reducerSchema("admin_restore_player_state_scheduled", AdminRestorePlayerStateScheduledReducer),
   __reducerSchema("admin_set_region_control_state", AdminSetRegionControlStateReducer),
   __reducerSchema("admin_set_resource_world_target", AdminSetResourceWorldTargetReducer),
+  __reducerSchema("admin_set_resources_to_max_health", AdminSetResourcesToMaxHealthReducer),
   __reducerSchema("admin_set_sign_text", AdminSetSignTextReducer),
   __reducerSchema("admin_set_sign_text_coord", AdminSetSignTextCoordReducer),
   __reducerSchema("admin_set_sign_text_entity", AdminSetSignTextEntityReducer),
@@ -8157,6 +8208,7 @@ const reducersSchema = __reducers(
   __reducerSchema("import_floating_platform_desc", ImportFloatingPlatformDescReducer),
   __reducerSchema("import_food_desc", ImportFoodDescReducer),
   __reducerSchema("import_footprint_tile_state", ImportFootprintTileStateReducer),
+  __reducerSchema("import_furniture_emote_desc", ImportFurnitureEmoteDescReducer),
   __reducerSchema("import_gate_desc", ImportGateDescReducer),
   __reducerSchema("import_globals", ImportGlobalsReducer),
   __reducerSchema("import_growth_state", ImportGrowthStateReducer),
@@ -8300,6 +8352,7 @@ const reducersSchema = __reducers(
   __reducerSchema("migrate_auto_attacks", MigrateAutoAttacksReducer),
   __reducerSchema("migrate_character_stats", MigrateCharacterStatsReducer),
   __reducerSchema("migrate_claim_tech", MigrateClaimTechReducer),
+  __reducerSchema("migrate_claim_tech_homestead_unlocks", MigrateClaimTechHomesteadUnlocksReducer),
   __reducerSchema("migrate_duplicate_equipment_slots", MigrateDuplicateEquipmentSlotsReducer),
   __reducerSchema("migrate_equipment_slots", MigrateEquipmentSlotsReducer),
   __reducerSchema("migrate_exploration_achievement_counts", MigrateExplorationAchievementCountsReducer),
@@ -8307,6 +8360,7 @@ const reducersSchema = __reducers(
   __reducerSchema("migrate_missing_equipment_slot_types", MigrateMissingEquipmentSlotTypesReducer),
   __reducerSchema("migrate_onboarding", MigrateOnboardingReducer),
   __reducerSchema("migrate_player_settings", MigratePlayerSettingsReducer),
+  __reducerSchema("migrate_regional_banks", MigrateRegionalBanksReducer),
   __reducerSchema("migrate_skill_level_knowledge", MigrateSkillLevelKnowledgeReducer),
   __reducerSchema("migration_set_achievement_params", MigrationSetAchievementParamsReducer),
   __reducerSchema("migration_set_building_desc_params", MigrationSetBuildingDescParamsReducer),
@@ -8475,6 +8529,7 @@ const reducersSchema = __reducers(
   __reducerSchema("stage_extraction_recipe_desc", StageExtractionRecipeDescReducer),
   __reducerSchema("stage_floating_platform_desc", StageFloatingPlatformDescReducer),
   __reducerSchema("stage_food_desc", StageFoodDescReducer),
+  __reducerSchema("stage_furniture_emote_desc", StageFurnitureEmoteDescReducer),
   __reducerSchema("stage_gate_desc", StageGateDescReducer),
   __reducerSchema("stage_hexite_exchange_entry_desc", StageHexiteExchangeEntryDescReducer),
   __reducerSchema("stage_interior_environment_desc", StageInteriorEnvironmentDescReducer),
@@ -8914,6 +8969,8 @@ type __SchemaWithTableAccessorAliases = Omit<typeof tablesSchema.schemaType, "ta
     readonly "footprint_tile_state": Omit<typeof tablesSchema.schemaType.tables["footprintTileState"], "accessorName"> & { readonly accessorName: "footprint_tile_state" };
     /** @deprecated Use `forceGenerateTypes` instead. This alias will be removed in the next major version. */
     readonly "force_generate_types": Omit<typeof tablesSchema.schemaType.tables["forceGenerateTypes"], "accessorName"> & { readonly accessorName: "force_generate_types" };
+    /** @deprecated Use `furnitureEmoteDesc` instead. This alias will be removed in the next major version. */
+    readonly "furniture_emote_desc": Omit<typeof tablesSchema.schemaType.tables["furnitureEmoteDesc"], "accessorName"> & { readonly accessorName: "furniture_emote_desc" };
     /** @deprecated Use `gateDesc` instead. This alias will be removed in the next major version. */
     readonly "gate_desc": Omit<typeof tablesSchema.schemaType.tables["gateDesc"], "accessorName"> & { readonly accessorName: "gate_desc" };
     /** @deprecated Use `gatedFeatures` instead. This alias will be removed in the next major version. */
@@ -9262,6 +9319,8 @@ type __SchemaWithTableAccessorAliases = Omit<typeof tablesSchema.schemaType, "ta
     readonly "region_popuplation_loop_timer": Omit<typeof tablesSchema.schemaType.tables["regionPopuplationLoopTimer"], "accessorName"> & { readonly accessorName: "region_popuplation_loop_timer" };
     /** @deprecated Use `regionSignInParameters` instead. This alias will be removed in the next major version. */
     readonly "region_sign_in_parameters": Omit<typeof tablesSchema.schemaType.tables["regionSignInParameters"], "accessorName"> & { readonly accessorName: "region_sign_in_parameters" };
+    /** @deprecated Use `regionalBankState` instead. This alias will be removed in the next major version. */
+    readonly "regional_bank_state": Omit<typeof tablesSchema.schemaType.tables["regionalBankState"], "accessorName"> & { readonly accessorName: "regional_bank_state" };
     /** @deprecated Use `rentCollectorLoopTimer` instead. This alias will be removed in the next major version. */
     readonly "rent_collector_loop_timer": Omit<typeof tablesSchema.schemaType.tables["rentCollectorLoopTimer"], "accessorName"> & { readonly accessorName: "rent_collector_loop_timer" };
     /** @deprecated Use `rentEvictTimer` instead. This alias will be removed in the next major version. */
@@ -9432,6 +9491,8 @@ type __SchemaWithTableAccessorAliases = Omit<typeof tablesSchema.schemaType, "ta
     readonly "staged_floating_platform_desc": Omit<typeof tablesSchema.schemaType.tables["stagedFloatingPlatformDesc"], "accessorName"> & { readonly accessorName: "staged_floating_platform_desc" };
     /** @deprecated Use `stagedFoodDesc` instead. This alias will be removed in the next major version. */
     readonly "staged_food_desc": Omit<typeof tablesSchema.schemaType.tables["stagedFoodDesc"], "accessorName"> & { readonly accessorName: "staged_food_desc" };
+    /** @deprecated Use `stagedFurnitureEmoteDesc` instead. This alias will be removed in the next major version. */
+    readonly "staged_furniture_emote_desc": Omit<typeof tablesSchema.schemaType.tables["stagedFurnitureEmoteDesc"], "accessorName"> & { readonly accessorName: "staged_furniture_emote_desc" };
     /** @deprecated Use `stagedGateDesc` instead. This alias will be removed in the next major version. */
     readonly "staged_gate_desc": Omit<typeof tablesSchema.schemaType.tables["stagedGateDesc"], "accessorName"> & { readonly accessorName: "staged_gate_desc" };
     /** @deprecated Use `stagedHexiteExchangeEntryDesc` instead. This alias will be removed in the next major version. */
@@ -9839,6 +9900,7 @@ const tableAccessorAliases = {
   "food_desc": "foodDesc",
   "footprint_tile_state": "footprintTileState",
   "force_generate_types": "forceGenerateTypes",
+  "furniture_emote_desc": "furnitureEmoteDesc",
   "gate_desc": "gateDesc",
   "gated_features": "gatedFeatures",
   "global_search_state": "globalSearchState",
@@ -10013,6 +10075,7 @@ const tableAccessorAliases = {
   "region_population_info": "regionPopulationInfo",
   "region_popuplation_loop_timer": "regionPopuplationLoopTimer",
   "region_sign_in_parameters": "regionSignInParameters",
+  "regional_bank_state": "regionalBankState",
   "rent_collector_loop_timer": "rentCollectorLoopTimer",
   "rent_evict_timer": "rentEvictTimer",
   "rent_state": "rentState",
@@ -10098,6 +10161,7 @@ const tableAccessorAliases = {
   "staged_extraction_recipe_desc": "stagedExtractionRecipeDesc",
   "staged_floating_platform_desc": "stagedFloatingPlatformDesc",
   "staged_food_desc": "stagedFoodDesc",
+  "staged_furniture_emote_desc": "stagedFurnitureEmoteDesc",
   "staged_gate_desc": "stagedGateDesc",
   "staged_hexite_exchange_entry_desc": "stagedHexiteExchangeEntryDesc",
   "staged_interior_environment_desc": "stagedInteriorEnvironmentDesc",
@@ -10566,6 +10630,8 @@ export type DbView = __DbViewBase & {
   readonly "footprint_tile_state": __DbViewBase["footprintTileState"];
   /** @deprecated Use `forceGenerateTypes` instead. This alias will be removed in the next major version. */
   readonly "force_generate_types": __DbViewBase["forceGenerateTypes"];
+  /** @deprecated Use `furnitureEmoteDesc` instead. This alias will be removed in the next major version. */
+  readonly "furniture_emote_desc": __DbViewBase["furnitureEmoteDesc"];
   /** @deprecated Use `gateDesc` instead. This alias will be removed in the next major version. */
   readonly "gate_desc": __DbViewBase["gateDesc"];
   /** @deprecated Use `gatedFeatures` instead. This alias will be removed in the next major version. */
@@ -10914,6 +10980,8 @@ export type DbView = __DbViewBase & {
   readonly "region_popuplation_loop_timer": __DbViewBase["regionPopuplationLoopTimer"];
   /** @deprecated Use `regionSignInParameters` instead. This alias will be removed in the next major version. */
   readonly "region_sign_in_parameters": __DbViewBase["regionSignInParameters"];
+  /** @deprecated Use `regionalBankState` instead. This alias will be removed in the next major version. */
+  readonly "regional_bank_state": __DbViewBase["regionalBankState"];
   /** @deprecated Use `rentCollectorLoopTimer` instead. This alias will be removed in the next major version. */
   readonly "rent_collector_loop_timer": __DbViewBase["rentCollectorLoopTimer"];
   /** @deprecated Use `rentEvictTimer` instead. This alias will be removed in the next major version. */
@@ -11084,6 +11152,8 @@ export type DbView = __DbViewBase & {
   readonly "staged_floating_platform_desc": __DbViewBase["stagedFloatingPlatformDesc"];
   /** @deprecated Use `stagedFoodDesc` instead. This alias will be removed in the next major version. */
   readonly "staged_food_desc": __DbViewBase["stagedFoodDesc"];
+  /** @deprecated Use `stagedFurnitureEmoteDesc` instead. This alias will be removed in the next major version. */
+  readonly "staged_furniture_emote_desc": __DbViewBase["stagedFurnitureEmoteDesc"];
   /** @deprecated Use `stagedGateDesc` instead. This alias will be removed in the next major version. */
   readonly "staged_gate_desc": __DbViewBase["stagedGateDesc"];
   /** @deprecated Use `stagedHexiteExchangeEntryDesc` instead. This alias will be removed in the next major version. */
@@ -11646,6 +11716,8 @@ export type Tables = __TablesBase & {
   readonly "footprint_tile_state": __TablesBase["footprintTileState"];
   /** @deprecated Use `forceGenerateTypes` instead. This alias will be removed in the next major version. */
   readonly "force_generate_types": __TablesBase["forceGenerateTypes"];
+  /** @deprecated Use `furnitureEmoteDesc` instead. This alias will be removed in the next major version. */
+  readonly "furniture_emote_desc": __TablesBase["furnitureEmoteDesc"];
   /** @deprecated Use `gateDesc` instead. This alias will be removed in the next major version. */
   readonly "gate_desc": __TablesBase["gateDesc"];
   /** @deprecated Use `gatedFeatures` instead. This alias will be removed in the next major version. */
@@ -11994,6 +12066,8 @@ export type Tables = __TablesBase & {
   readonly "region_popuplation_loop_timer": __TablesBase["regionPopuplationLoopTimer"];
   /** @deprecated Use `regionSignInParameters` instead. This alias will be removed in the next major version. */
   readonly "region_sign_in_parameters": __TablesBase["regionSignInParameters"];
+  /** @deprecated Use `regionalBankState` instead. This alias will be removed in the next major version. */
+  readonly "regional_bank_state": __TablesBase["regionalBankState"];
   /** @deprecated Use `rentCollectorLoopTimer` instead. This alias will be removed in the next major version. */
   readonly "rent_collector_loop_timer": __TablesBase["rentCollectorLoopTimer"];
   /** @deprecated Use `rentEvictTimer` instead. This alias will be removed in the next major version. */
@@ -12164,6 +12238,8 @@ export type Tables = __TablesBase & {
   readonly "staged_floating_platform_desc": __TablesBase["stagedFloatingPlatformDesc"];
   /** @deprecated Use `stagedFoodDesc` instead. This alias will be removed in the next major version. */
   readonly "staged_food_desc": __TablesBase["stagedFoodDesc"];
+  /** @deprecated Use `stagedFurnitureEmoteDesc` instead. This alias will be removed in the next major version. */
+  readonly "staged_furniture_emote_desc": __TablesBase["stagedFurnitureEmoteDesc"];
   /** @deprecated Use `stagedGateDesc` instead. This alias will be removed in the next major version. */
   readonly "staged_gate_desc": __TablesBase["stagedGateDesc"];
   /** @deprecated Use `stagedHexiteExchangeEntryDesc` instead. This alias will be removed in the next major version. */

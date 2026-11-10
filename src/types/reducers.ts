@@ -84,6 +84,7 @@ import AdminRestorePlayerStateReducer from "../admin_restore_player_state_reduce
 import AdminRestorePlayerStateScheduledReducer from "../admin_restore_player_state_scheduled_reducer";
 import AdminSetRegionControlStateReducer from "../admin_set_region_control_state_reducer";
 import AdminSetResourceWorldTargetReducer from "../admin_set_resource_world_target_reducer";
+import AdminSetResourcesToMaxHealthReducer from "../admin_set_resources_to_max_health_reducer";
 import AdminSetSignTextReducer from "../admin_set_sign_text_reducer";
 import AdminSetSignTextCoordReducer from "../admin_set_sign_text_coord_reducer";
 import AdminSetSignTextEntityReducer from "../admin_set_sign_text_entity_reducer";
@@ -369,6 +370,7 @@ import ImportExtractionRecipeDescReducer from "../import_extraction_recipe_desc_
 import ImportFloatingPlatformDescReducer from "../import_floating_platform_desc_reducer";
 import ImportFoodDescReducer from "../import_food_desc_reducer";
 import ImportFootprintTileStateReducer from "../import_footprint_tile_state_reducer";
+import ImportFurnitureEmoteDescReducer from "../import_furniture_emote_desc_reducer";
 import ImportGateDescReducer from "../import_gate_desc_reducer";
 import ImportGlobalsReducer from "../import_globals_reducer";
 import ImportGrowthStateReducer from "../import_growth_state_reducer";
@@ -512,6 +514,7 @@ import LootChestSpawnReducer from "../loot_chest_spawn_reducer";
 import MigrateAutoAttacksReducer from "../migrate_auto_attacks_reducer";
 import MigrateCharacterStatsReducer from "../migrate_character_stats_reducer";
 import MigrateClaimTechReducer from "../migrate_claim_tech_reducer";
+import MigrateClaimTechHomesteadUnlocksReducer from "../migrate_claim_tech_homestead_unlocks_reducer";
 import MigrateDuplicateEquipmentSlotsReducer from "../migrate_duplicate_equipment_slots_reducer";
 import MigrateEquipmentSlotsReducer from "../migrate_equipment_slots_reducer";
 import MigrateExplorationAchievementCountsReducer from "../migrate_exploration_achievement_counts_reducer";
@@ -519,6 +522,7 @@ import MigrateGrantDefaultCollectiblesReducer from "../migrate_grant_default_col
 import MigrateMissingEquipmentSlotTypesReducer from "../migrate_missing_equipment_slot_types_reducer";
 import MigrateOnboardingReducer from "../migrate_onboarding_reducer";
 import MigratePlayerSettingsReducer from "../migrate_player_settings_reducer";
+import MigrateRegionalBanksReducer from "../migrate_regional_banks_reducer";
 import MigrateSkillLevelKnowledgeReducer from "../migrate_skill_level_knowledge_reducer";
 import MigrationSetAchievementParamsReducer from "../migration_set_achievement_params_reducer";
 import MigrationSetBuildingDescParamsReducer from "../migration_set_building_desc_params_reducer";
@@ -687,6 +691,7 @@ import StageEquipmentPresetKnowledgeDescReducer from "../stage_equipment_preset_
 import StageExtractionRecipeDescReducer from "../stage_extraction_recipe_desc_reducer";
 import StageFloatingPlatformDescReducer from "../stage_floating_platform_desc_reducer";
 import StageFoodDescReducer from "../stage_food_desc_reducer";
+import StageFurnitureEmoteDescReducer from "../stage_furniture_emote_desc_reducer";
 import StageGateDescReducer from "../stage_gate_desc_reducer";
 import StageHexiteExchangeEntryDescReducer from "../stage_hexite_exchange_entry_desc_reducer";
 import StageInteriorEnvironmentDescReducer from "../stage_interior_environment_desc_reducer";
@@ -859,6 +864,7 @@ export type AdminRestorePlayerStateParams = __Infer<typeof AdminRestorePlayerSta
 export type AdminRestorePlayerStateScheduledParams = __Infer<typeof AdminRestorePlayerStateScheduledReducer>;
 export type AdminSetRegionControlStateParams = __Infer<typeof AdminSetRegionControlStateReducer>;
 export type AdminSetResourceWorldTargetParams = __Infer<typeof AdminSetResourceWorldTargetReducer>;
+export type AdminSetResourcesToMaxHealthParams = __Infer<typeof AdminSetResourcesToMaxHealthReducer>;
 export type AdminSetSignTextParams = __Infer<typeof AdminSetSignTextReducer>;
 export type AdminSetSignTextCoordParams = __Infer<typeof AdminSetSignTextCoordReducer>;
 export type AdminSetSignTextEntityParams = __Infer<typeof AdminSetSignTextEntityReducer>;
@@ -1144,6 +1150,7 @@ export type ImportExtractionRecipeDescParams = __Infer<typeof ImportExtractionRe
 export type ImportFloatingPlatformDescParams = __Infer<typeof ImportFloatingPlatformDescReducer>;
 export type ImportFoodDescParams = __Infer<typeof ImportFoodDescReducer>;
 export type ImportFootprintTileStateParams = __Infer<typeof ImportFootprintTileStateReducer>;
+export type ImportFurnitureEmoteDescParams = __Infer<typeof ImportFurnitureEmoteDescReducer>;
 export type ImportGateDescParams = __Infer<typeof ImportGateDescReducer>;
 export type ImportGlobalsParams = __Infer<typeof ImportGlobalsReducer>;
 export type ImportGrowthStateParams = __Infer<typeof ImportGrowthStateReducer>;
@@ -1287,6 +1294,7 @@ export type LootChestSpawnParams = __Infer<typeof LootChestSpawnReducer>;
 export type MigrateAutoAttacksParams = __Infer<typeof MigrateAutoAttacksReducer>;
 export type MigrateCharacterStatsParams = __Infer<typeof MigrateCharacterStatsReducer>;
 export type MigrateClaimTechParams = __Infer<typeof MigrateClaimTechReducer>;
+export type MigrateClaimTechHomesteadUnlocksParams = __Infer<typeof MigrateClaimTechHomesteadUnlocksReducer>;
 export type MigrateDuplicateEquipmentSlotsParams = __Infer<typeof MigrateDuplicateEquipmentSlotsReducer>;
 export type MigrateEquipmentSlotsParams = __Infer<typeof MigrateEquipmentSlotsReducer>;
 export type MigrateExplorationAchievementCountsParams = __Infer<typeof MigrateExplorationAchievementCountsReducer>;
@@ -1294,6 +1302,7 @@ export type MigrateGrantDefaultCollectiblesParams = __Infer<typeof MigrateGrantD
 export type MigrateMissingEquipmentSlotTypesParams = __Infer<typeof MigrateMissingEquipmentSlotTypesReducer>;
 export type MigrateOnboardingParams = __Infer<typeof MigrateOnboardingReducer>;
 export type MigratePlayerSettingsParams = __Infer<typeof MigratePlayerSettingsReducer>;
+export type MigrateRegionalBanksParams = __Infer<typeof MigrateRegionalBanksReducer>;
 export type MigrateSkillLevelKnowledgeParams = __Infer<typeof MigrateSkillLevelKnowledgeReducer>;
 export type MigrationSetAchievementParamsParams = __Infer<typeof MigrationSetAchievementParamsReducer>;
 export type MigrationSetBuildingDescParamsParams = __Infer<typeof MigrationSetBuildingDescParamsReducer>;
@@ -1462,6 +1471,7 @@ export type StageEquipmentPresetKnowledgeDescParams = __Infer<typeof StageEquipm
 export type StageExtractionRecipeDescParams = __Infer<typeof StageExtractionRecipeDescReducer>;
 export type StageFloatingPlatformDescParams = __Infer<typeof StageFloatingPlatformDescReducer>;
 export type StageFoodDescParams = __Infer<typeof StageFoodDescReducer>;
+export type StageFurnitureEmoteDescParams = __Infer<typeof StageFurnitureEmoteDescReducer>;
 export type StageGateDescParams = __Infer<typeof StageGateDescReducer>;
 export type StageHexiteExchangeEntryDescParams = __Infer<typeof StageHexiteExchangeEntryDescReducer>;
 export type StageInteriorEnvironmentDescParams = __Infer<typeof StageInteriorEnvironmentDescReducer>;

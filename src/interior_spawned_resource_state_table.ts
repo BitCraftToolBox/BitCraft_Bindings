@@ -14,4 +14,6 @@ export default __t.row({
   entityId: __t.u64().primaryKey().name("entity_id"),
   interiorSpawnDescId: __t.i32().name("interior_spawn_desc_id"),
   dimensionId: __t.u32().name("dimension_id"),
+  destroyTriggerCompleted: __t.bool().name("destroy_trigger_completed"),
+  originalResourceId: __t.i32().name("original_resource_id"),
 });

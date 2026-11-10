@@ -56,4 +56,8 @@ export default __t.row({
   get selfBuffs() {
     return __t.option(__t.array(PlaceableSelfBuffChance)).name("self_buffs");
   },
+  toolMeshIndex: __t.i32().name("tool_mesh_index"),
+  get onDestroyYield() {
+    return __t.option(__t.array(ItemStack)).name("on_destroy_yield");
+  },
 });

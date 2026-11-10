@@ -55,4 +55,5 @@ export default __t.row({
   get selfBuffs() {
     return __t.option(__t.array(PlaceableSelfBuffChance)).name("self_buffs");
   },
+  acceptablePavements: __t.option(__t.array(__t.i32())).name("acceptable_pavements"),
 });
