@@ -24,4 +24,5 @@ export default __t.row({
   },
   supportsBuildings: __t.bool().name("supports_buildings"),
   maxPerPlayer: __t.i32().name("max_per_player"),
+  targetElevation: __t.i16().name("target_elevation"),
 });

@@ -113,6 +113,8 @@ import DeleteDeveloperIdentityReducer from "./delete_developer_identity_reducer"
 import DeleteTranslationCorrectionReducer from "./delete_translation_correction_reducer";
 import EditChatChannelReducer from "./edit_chat_channel_reducer";
 import EditChatChannelMemberPermissionReducer from "./edit_chat_channel_member_permission_reducer";
+import EmpireBlacklistAddReducer from "./empire_blacklist_add_reducer";
+import EmpireBlacklistRemoveReducer from "./empire_blacklist_remove_reducer";
 import EmpireChangeEmblemReducer from "./empire_change_emblem_reducer";
 import EmpireCraftSuppliesReducer from "./empire_craft_supplies_reducer";
 import EmpireCraftSuppliesScheduledReducer from "./empire_craft_supplies_scheduled_reducer";
@@ -200,6 +202,7 @@ import ImportExtractionRecipeDescReducer from "./import_extraction_recipe_desc_r
 import ImportFloatingPlatformDescReducer from "./import_floating_platform_desc_reducer";
 import ImportFoodDescReducer from "./import_food_desc_reducer";
 import ImportFootprintTileStateReducer from "./import_footprint_tile_state_reducer";
+import ImportFurnitureEmoteDescReducer from "./import_furniture_emote_desc_reducer";
 import ImportGateDescReducer from "./import_gate_desc_reducer";
 import ImportGlobalsReducer from "./import_globals_reducer";
 import ImportGrowthStateReducer from "./import_growth_state_reducer";
@@ -382,6 +385,7 @@ import StageEquipmentPresetKnowledgeDescReducer from "./stage_equipment_preset_k
 import StageExtractionRecipeDescReducer from "./stage_extraction_recipe_desc_reducer";
 import StageFloatingPlatformDescReducer from "./stage_floating_platform_desc_reducer";
 import StageFoodDescReducer from "./stage_food_desc_reducer";
+import StageFurnitureEmoteDescReducer from "./stage_furniture_emote_desc_reducer";
 import StageGateDescReducer from "./stage_gate_desc_reducer";
 import StageHexiteExchangeEntryDescReducer from "./stage_hexite_exchange_entry_desc_reducer";
 import StageInteriorEnvironmentDescReducer from "./stage_interior_environment_desc_reducer";
@@ -548,6 +552,7 @@ import DuelStateRow from "./duel_state_table";
 import DungeonStateRow from "./dungeon_state_table";
 import ElevatorDescRow from "./elevator_desc_table";
 import EmoteDescRow from "./emote_desc_table";
+import EmpireBlacklistStateRow from "./empire_blacklist_state_table";
 import EmpireChunkStateRow from "./empire_chunk_state_table";
 import EmpireColorDescRow from "./empire_color_desc_table";
 import EmpireCraftSuppliesTimerRow from "./empire_craft_supplies_timer_table";
@@ -594,6 +599,7 @@ import FoodDescRow from "./food_desc_table";
 import FootprintTileStateRow from "./footprint_tile_state_table";
 import ForceGenerateTypesRow from "./force_generate_types_table";
 import FriendsStateRow from "./friends_state_table";
+import FurnitureEmoteDescRow from "./furniture_emote_desc_table";
 import GateDescRow from "./gate_desc_table";
 import GatedFeaturesRow from "./gated_features_table";
 import GlobalSearchStateRow from "./global_search_state_table";
@@ -746,6 +752,7 @@ import RegionControlInfoRow from "./region_control_info_table";
 import RegionExplorationInfoRow from "./region_exploration_info_table";
 import RegionPopulationInfoRow from "./region_population_info_table";
 import RegionSignInParametersRow from "./region_sign_in_parameters_table";
+import RegionalBankStateRow from "./regional_bank_state_table";
 import RentStateRow from "./rent_state_table";
 import ReservedNameDescRow from "./reserved_name_desc_table";
 import ResourceClumpDescRow from "./resource_clump_desc_table";
@@ -817,6 +824,7 @@ import StagedEquipmentPresetKnowledgeDescRow from "./staged_equipment_preset_kno
 import StagedExtractionRecipeDescRow from "./staged_extraction_recipe_desc_table";
 import StagedFloatingPlatformDescRow from "./staged_floating_platform_desc_table";
 import StagedFoodDescRow from "./staged_food_desc_table";
+import StagedFurnitureEmoteDescRow from "./staged_furniture_emote_desc_table";
 import StagedGateDescRow from "./staged_gate_desc_table";
 import StagedHexiteExchangeEntryDescRow from "./staged_hexite_exchange_entry_desc_table";
 import StagedInteriorEnvironmentDescRow from "./staged_interior_environment_desc_table";
@@ -1361,9 +1369,12 @@ const tablesSchema = __schema({
         'itemType',
         'claimEntityId',
       ] },
-      { accessor: 'owner_for_claim', name: 'buy_order_state_owner_entity_id_claim_entity_id_idx_btree', algorithm: 'btree', columns: [
+      { accessor: 'item', name: 'buy_order_state_item_id_item_type_idx_btree', algorithm: 'btree', columns: [
+        'itemId',
+        'itemType',
+      ] },
+      { accessor: 'owner_entity_id', name: 'buy_order_state_owner_entity_id_idx_btree', algorithm: 'btree', columns: [
         'ownerEntityId',
-        'claimEntityId',
       ] },
     ],
     constraints: [
@@ -2191,6 +2202,24 @@ const tablesSchema = __schema({
       { name: 'emote_desc_id_key', constraint: 'unique', columns: ['id'] },
     ],
   }, EmoteDescRow),
+  empireBlacklistState: __table({
+    name: 'empire_blacklist_state',
+    indexes: [
+      { accessor: 'empire_entity_id', name: 'empire_blacklist_state_empire_entity_id_idx_btree', algorithm: 'btree', columns: [
+        'empireEntityId',
+      ] },
+      { accessor: 'empire_player', name: 'empire_blacklist_state_empire_entity_id_player_entity_id_idx_btree', algorithm: 'btree', columns: [
+        'empireEntityId',
+        'playerEntityId',
+      ] },
+      { accessor: 'entity_id', name: 'empire_blacklist_state_entity_id_idx_btree', algorithm: 'btree', columns: [
+        'entityId',
+      ] },
+    ],
+    constraints: [
+      { name: 'empire_blacklist_state_entity_id_key', constraint: 'unique', columns: ['entityId'] },
+    ],
+  }, EmpireBlacklistStateRow),
   empireChunkState: __table({
     name: 'empire_chunk_state',
     indexes: [
@@ -2797,6 +2826,17 @@ const tablesSchema = __schema({
       { name: 'friends_state_entity_id_key', constraint: 'unique', columns: ['entityId'] },
     ],
   }, FriendsStateRow),
+  furnitureEmoteDesc: __table({
+    name: 'furniture_emote_desc',
+    indexes: [
+      { accessor: 'emote_id', name: 'furniture_emote_desc_emote_id_idx_btree', algorithm: 'btree', columns: [
+        'emoteId',
+      ] },
+    ],
+    constraints: [
+      { name: 'furniture_emote_desc_emote_id_key', constraint: 'unique', columns: ['emoteId'] },
+    ],
+  }, FurnitureEmoteDescRow),
   gateDesc: __table({
     name: 'gate_desc',
     indexes: [
@@ -4615,6 +4655,20 @@ const tablesSchema = __schema({
       { name: 'region_sign_in_parameters_region_id_key', constraint: 'unique', columns: ['regionId'] },
     ],
   }, RegionSignInParametersRow),
+  regionalBankState: __table({
+    name: 'regional_bank_state',
+    indexes: [
+      { accessor: 'building_entity_id', name: 'regional_bank_state_building_entity_id_idx_btree', algorithm: 'btree', columns: [
+        'buildingEntityId',
+      ] },
+      { accessor: 'claim_entity_id', name: 'regional_bank_state_claim_entity_id_idx_btree', algorithm: 'btree', columns: [
+        'claimEntityId',
+      ] },
+    ],
+    constraints: [
+      { name: 'regional_bank_state_building_entity_id_key', constraint: 'unique', columns: ['buildingEntityId'] },
+    ],
+  }, RegionalBankStateRow),
   rentState: __table({
     name: 'rent_state',
     indexes: [
@@ -4804,9 +4858,12 @@ const tablesSchema = __schema({
         'itemType',
         'claimEntityId',
       ] },
-      { accessor: 'owner_for_claim', name: 'sell_order_state_owner_entity_id_claim_entity_id_idx_btree', algorithm: 'btree', columns: [
+      { accessor: 'item', name: 'sell_order_state_item_id_item_type_idx_btree', algorithm: 'btree', columns: [
+        'itemId',
+        'itemType',
+      ] },
+      { accessor: 'owner_entity_id', name: 'sell_order_state_owner_entity_id_idx_btree', algorithm: 'btree', columns: [
         'ownerEntityId',
-        'claimEntityId',
       ] },
     ],
     constraints: [
@@ -5441,6 +5498,17 @@ const tablesSchema = __schema({
       { name: 'staged_food_desc_item_id_key', constraint: 'unique', columns: ['itemId'] },
     ],
   }, StagedFoodDescRow),
+  stagedFurnitureEmoteDesc: __table({
+    name: 'staged_furniture_emote_desc',
+    indexes: [
+      { accessor: 'emote_id', name: 'staged_furniture_emote_desc_emote_id_idx_btree', algorithm: 'btree', columns: [
+        'emoteId',
+      ] },
+    ],
+    constraints: [
+      { name: 'staged_furniture_emote_desc_emote_id_key', constraint: 'unique', columns: ['emoteId'] },
+    ],
+  }, StagedFurnitureEmoteDescRow),
   stagedGateDesc: __table({
     name: 'staged_gate_desc',
     indexes: [
@@ -6749,6 +6817,8 @@ const reducersSchema = __reducers(
   __reducerSchema("delete_translation_correction", DeleteTranslationCorrectionReducer),
   __reducerSchema("edit_chat_channel", EditChatChannelReducer),
   __reducerSchema("edit_chat_channel_member_permission", EditChatChannelMemberPermissionReducer),
+  __reducerSchema("empire_blacklist_add", EmpireBlacklistAddReducer),
+  __reducerSchema("empire_blacklist_remove", EmpireBlacklistRemoveReducer),
   __reducerSchema("empire_change_emblem", EmpireChangeEmblemReducer),
   __reducerSchema("empire_craft_supplies", EmpireCraftSuppliesReducer),
   __reducerSchema("empire_craft_supplies_scheduled", EmpireCraftSuppliesScheduledReducer),
@@ -6836,6 +6906,7 @@ const reducersSchema = __reducers(
   __reducerSchema("import_floating_platform_desc", ImportFloatingPlatformDescReducer),
   __reducerSchema("import_food_desc", ImportFoodDescReducer),
   __reducerSchema("import_footprint_tile_state", ImportFootprintTileStateReducer),
+  __reducerSchema("import_furniture_emote_desc", ImportFurnitureEmoteDescReducer),
   __reducerSchema("import_gate_desc", ImportGateDescReducer),
   __reducerSchema("import_globals", ImportGlobalsReducer),
   __reducerSchema("import_growth_state", ImportGrowthStateReducer),
@@ -7018,6 +7089,7 @@ const reducersSchema = __reducers(
   __reducerSchema("stage_extraction_recipe_desc", StageExtractionRecipeDescReducer),
   __reducerSchema("stage_floating_platform_desc", StageFloatingPlatformDescReducer),
   __reducerSchema("stage_food_desc", StageFoodDescReducer),
+  __reducerSchema("stage_furniture_emote_desc", StageFurnitureEmoteDescReducer),
   __reducerSchema("stage_gate_desc", StageGateDescReducer),
   __reducerSchema("stage_hexite_exchange_entry_desc", StageHexiteExchangeEntryDescReducer),
   __reducerSchema("stage_interior_environment_desc", StageInteriorEnvironmentDescReducer),
@@ -7277,6 +7349,8 @@ type __SchemaWithTableAccessorAliases = Omit<typeof tablesSchema.schemaType, "ta
     readonly "elevator_desc": Omit<typeof tablesSchema.schemaType.tables["elevatorDesc"], "accessorName"> & { readonly accessorName: "elevator_desc" };
     /** @deprecated Use `emoteDesc` instead. This alias will be removed in the next major version. */
     readonly "emote_desc": Omit<typeof tablesSchema.schemaType.tables["emoteDesc"], "accessorName"> & { readonly accessorName: "emote_desc" };
+    /** @deprecated Use `empireBlacklistState` instead. This alias will be removed in the next major version. */
+    readonly "empire_blacklist_state": Omit<typeof tablesSchema.schemaType.tables["empireBlacklistState"], "accessorName"> & { readonly accessorName: "empire_blacklist_state" };
     /** @deprecated Use `empireChunkState` instead. This alias will be removed in the next major version. */
     readonly "empire_chunk_state": Omit<typeof tablesSchema.schemaType.tables["empireChunkState"], "accessorName"> & { readonly accessorName: "empire_chunk_state" };
     /** @deprecated Use `empireColorDesc` instead. This alias will be removed in the next major version. */
@@ -7369,6 +7443,8 @@ type __SchemaWithTableAccessorAliases = Omit<typeof tablesSchema.schemaType, "ta
     readonly "force_generate_types": Omit<typeof tablesSchema.schemaType.tables["forceGenerateTypes"], "accessorName"> & { readonly accessorName: "force_generate_types" };
     /** @deprecated Use `friendsState` instead. This alias will be removed in the next major version. */
     readonly "friends_state": Omit<typeof tablesSchema.schemaType.tables["friendsState"], "accessorName"> & { readonly accessorName: "friends_state" };
+    /** @deprecated Use `furnitureEmoteDesc` instead. This alias will be removed in the next major version. */
+    readonly "furniture_emote_desc": Omit<typeof tablesSchema.schemaType.tables["furnitureEmoteDesc"], "accessorName"> & { readonly accessorName: "furniture_emote_desc" };
     /** @deprecated Use `gateDesc` instead. This alias will be removed in the next major version. */
     readonly "gate_desc": Omit<typeof tablesSchema.schemaType.tables["gateDesc"], "accessorName"> & { readonly accessorName: "gate_desc" };
     /** @deprecated Use `gatedFeatures` instead. This alias will be removed in the next major version. */
@@ -7665,6 +7741,8 @@ type __SchemaWithTableAccessorAliases = Omit<typeof tablesSchema.schemaType, "ta
     readonly "region_population_info": Omit<typeof tablesSchema.schemaType.tables["regionPopulationInfo"], "accessorName"> & { readonly accessorName: "region_population_info" };
     /** @deprecated Use `regionSignInParameters` instead. This alias will be removed in the next major version. */
     readonly "region_sign_in_parameters": Omit<typeof tablesSchema.schemaType.tables["regionSignInParameters"], "accessorName"> & { readonly accessorName: "region_sign_in_parameters" };
+    /** @deprecated Use `regionalBankState` instead. This alias will be removed in the next major version. */
+    readonly "regional_bank_state": Omit<typeof tablesSchema.schemaType.tables["regionalBankState"], "accessorName"> & { readonly accessorName: "regional_bank_state" };
     /** @deprecated Use `rentState` instead. This alias will be removed in the next major version. */
     readonly "rent_state": Omit<typeof tablesSchema.schemaType.tables["rentState"], "accessorName"> & { readonly accessorName: "rent_state" };
     /** @deprecated Use `reservedNameDesc` instead. This alias will be removed in the next major version. */
@@ -7807,6 +7885,8 @@ type __SchemaWithTableAccessorAliases = Omit<typeof tablesSchema.schemaType, "ta
     readonly "staged_floating_platform_desc": Omit<typeof tablesSchema.schemaType.tables["stagedFloatingPlatformDesc"], "accessorName"> & { readonly accessorName: "staged_floating_platform_desc" };
     /** @deprecated Use `stagedFoodDesc` instead. This alias will be removed in the next major version. */
     readonly "staged_food_desc": Omit<typeof tablesSchema.schemaType.tables["stagedFoodDesc"], "accessorName"> & { readonly accessorName: "staged_food_desc" };
+    /** @deprecated Use `stagedFurnitureEmoteDesc` instead. This alias will be removed in the next major version. */
+    readonly "staged_furniture_emote_desc": Omit<typeof tablesSchema.schemaType.tables["stagedFurnitureEmoteDesc"], "accessorName"> & { readonly accessorName: "staged_furniture_emote_desc" };
     /** @deprecated Use `stagedGateDesc` instead. This alias will be removed in the next major version. */
     readonly "staged_gate_desc": Omit<typeof tablesSchema.schemaType.tables["stagedGateDesc"], "accessorName"> & { readonly accessorName: "staged_gate_desc" };
     /** @deprecated Use `stagedHexiteExchangeEntryDesc` instead. This alias will be removed in the next major version. */
@@ -8126,6 +8206,7 @@ const tableAccessorAliases = {
   "dungeon_state": "dungeonState",
   "elevator_desc": "elevatorDesc",
   "emote_desc": "emoteDesc",
+  "empire_blacklist_state": "empireBlacklistState",
   "empire_chunk_state": "empireChunkState",
   "empire_color_desc": "empireColorDesc",
   "empire_craft_supplies_timer": "empireCraftSuppliesTimer",
@@ -8172,6 +8253,7 @@ const tableAccessorAliases = {
   "footprint_tile_state": "footprintTileState",
   "force_generate_types": "forceGenerateTypes",
   "friends_state": "friendsState",
+  "furniture_emote_desc": "furnitureEmoteDesc",
   "gate_desc": "gateDesc",
   "gated_features": "gatedFeatures",
   "global_search_state": "globalSearchState",
@@ -8320,6 +8402,7 @@ const tableAccessorAliases = {
   "region_exploration_info": "regionExplorationInfo",
   "region_population_info": "regionPopulationInfo",
   "region_sign_in_parameters": "regionSignInParameters",
+  "regional_bank_state": "regionalBankState",
   "rent_state": "rentState",
   "reserved_name_desc": "reservedNameDesc",
   "resource_clump_desc": "resourceClumpDesc",
@@ -8391,6 +8474,7 @@ const tableAccessorAliases = {
   "staged_extraction_recipe_desc": "stagedExtractionRecipeDesc",
   "staged_floating_platform_desc": "stagedFloatingPlatformDesc",
   "staged_food_desc": "stagedFoodDesc",
+  "staged_furniture_emote_desc": "stagedFurnitureEmoteDesc",
   "staged_gate_desc": "stagedGateDesc",
   "staged_hexite_exchange_entry_desc": "stagedHexiteExchangeEntryDesc",
   "staged_interior_environment_desc": "stagedInteriorEnvironmentDesc",
@@ -8698,6 +8782,8 @@ export type DbView = __DbViewBase & {
   readonly "elevator_desc": __DbViewBase["elevatorDesc"];
   /** @deprecated Use `emoteDesc` instead. This alias will be removed in the next major version. */
   readonly "emote_desc": __DbViewBase["emoteDesc"];
+  /** @deprecated Use `empireBlacklistState` instead. This alias will be removed in the next major version. */
+  readonly "empire_blacklist_state": __DbViewBase["empireBlacklistState"];
   /** @deprecated Use `empireChunkState` instead. This alias will be removed in the next major version. */
   readonly "empire_chunk_state": __DbViewBase["empireChunkState"];
   /** @deprecated Use `empireColorDesc` instead. This alias will be removed in the next major version. */
@@ -8790,6 +8876,8 @@ export type DbView = __DbViewBase & {
   readonly "force_generate_types": __DbViewBase["forceGenerateTypes"];
   /** @deprecated Use `friendsState` instead. This alias will be removed in the next major version. */
   readonly "friends_state": __DbViewBase["friendsState"];
+  /** @deprecated Use `furnitureEmoteDesc` instead. This alias will be removed in the next major version. */
+  readonly "furniture_emote_desc": __DbViewBase["furnitureEmoteDesc"];
   /** @deprecated Use `gateDesc` instead. This alias will be removed in the next major version. */
   readonly "gate_desc": __DbViewBase["gateDesc"];
   /** @deprecated Use `gatedFeatures` instead. This alias will be removed in the next major version. */
@@ -9086,6 +9174,8 @@ export type DbView = __DbViewBase & {
   readonly "region_population_info": __DbViewBase["regionPopulationInfo"];
   /** @deprecated Use `regionSignInParameters` instead. This alias will be removed in the next major version. */
   readonly "region_sign_in_parameters": __DbViewBase["regionSignInParameters"];
+  /** @deprecated Use `regionalBankState` instead. This alias will be removed in the next major version. */
+  readonly "regional_bank_state": __DbViewBase["regionalBankState"];
   /** @deprecated Use `rentState` instead. This alias will be removed in the next major version. */
   readonly "rent_state": __DbViewBase["rentState"];
   /** @deprecated Use `reservedNameDesc` instead. This alias will be removed in the next major version. */
@@ -9228,6 +9318,8 @@ export type DbView = __DbViewBase & {
   readonly "staged_floating_platform_desc": __DbViewBase["stagedFloatingPlatformDesc"];
   /** @deprecated Use `stagedFoodDesc` instead. This alias will be removed in the next major version. */
   readonly "staged_food_desc": __DbViewBase["stagedFoodDesc"];
+  /** @deprecated Use `stagedFurnitureEmoteDesc` instead. This alias will be removed in the next major version. */
+  readonly "staged_furniture_emote_desc": __DbViewBase["stagedFurnitureEmoteDesc"];
   /** @deprecated Use `stagedGateDesc` instead. This alias will be removed in the next major version. */
   readonly "staged_gate_desc": __DbViewBase["stagedGateDesc"];
   /** @deprecated Use `stagedHexiteExchangeEntryDesc` instead. This alias will be removed in the next major version. */
@@ -9624,6 +9716,8 @@ export type Tables = __TablesBase & {
   readonly "elevator_desc": __TablesBase["elevatorDesc"];
   /** @deprecated Use `emoteDesc` instead. This alias will be removed in the next major version. */
   readonly "emote_desc": __TablesBase["emoteDesc"];
+  /** @deprecated Use `empireBlacklistState` instead. This alias will be removed in the next major version. */
+  readonly "empire_blacklist_state": __TablesBase["empireBlacklistState"];
   /** @deprecated Use `empireChunkState` instead. This alias will be removed in the next major version. */
   readonly "empire_chunk_state": __TablesBase["empireChunkState"];
   /** @deprecated Use `empireColorDesc` instead. This alias will be removed in the next major version. */
@@ -9716,6 +9810,8 @@ export type Tables = __TablesBase & {
   readonly "force_generate_types": __TablesBase["forceGenerateTypes"];
   /** @deprecated Use `friendsState` instead. This alias will be removed in the next major version. */
   readonly "friends_state": __TablesBase["friendsState"];
+  /** @deprecated Use `furnitureEmoteDesc` instead. This alias will be removed in the next major version. */
+  readonly "furniture_emote_desc": __TablesBase["furnitureEmoteDesc"];
   /** @deprecated Use `gateDesc` instead. This alias will be removed in the next major version. */
   readonly "gate_desc": __TablesBase["gateDesc"];
   /** @deprecated Use `gatedFeatures` instead. This alias will be removed in the next major version. */
@@ -10012,6 +10108,8 @@ export type Tables = __TablesBase & {
   readonly "region_population_info": __TablesBase["regionPopulationInfo"];
   /** @deprecated Use `regionSignInParameters` instead. This alias will be removed in the next major version. */
   readonly "region_sign_in_parameters": __TablesBase["regionSignInParameters"];
+  /** @deprecated Use `regionalBankState` instead. This alias will be removed in the next major version. */
+  readonly "regional_bank_state": __TablesBase["regionalBankState"];
   /** @deprecated Use `rentState` instead. This alias will be removed in the next major version. */
   readonly "rent_state": __TablesBase["rentState"];
   /** @deprecated Use `reservedNameDesc` instead. This alias will be removed in the next major version. */
@@ -10154,6 +10252,8 @@ export type Tables = __TablesBase & {
   readonly "staged_floating_platform_desc": __TablesBase["stagedFloatingPlatformDesc"];
   /** @deprecated Use `stagedFoodDesc` instead. This alias will be removed in the next major version. */
   readonly "staged_food_desc": __TablesBase["stagedFoodDesc"];
+  /** @deprecated Use `stagedFurnitureEmoteDesc` instead. This alias will be removed in the next major version. */
+  readonly "staged_furniture_emote_desc": __TablesBase["stagedFurnitureEmoteDesc"];
   /** @deprecated Use `stagedGateDesc` instead. This alias will be removed in the next major version. */
   readonly "staged_gate_desc": __TablesBase["stagedGateDesc"];
   /** @deprecated Use `stagedHexiteExchangeEntryDesc` instead. This alias will be removed in the next major version. */

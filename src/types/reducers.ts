@@ -85,6 +85,8 @@ import DeleteDeveloperIdentityReducer from "../delete_developer_identity_reducer
 import DeleteTranslationCorrectionReducer from "../delete_translation_correction_reducer";
 import EditChatChannelReducer from "../edit_chat_channel_reducer";
 import EditChatChannelMemberPermissionReducer from "../edit_chat_channel_member_permission_reducer";
+import EmpireBlacklistAddReducer from "../empire_blacklist_add_reducer";
+import EmpireBlacklistRemoveReducer from "../empire_blacklist_remove_reducer";
 import EmpireChangeEmblemReducer from "../empire_change_emblem_reducer";
 import EmpireCraftSuppliesReducer from "../empire_craft_supplies_reducer";
 import EmpireCraftSuppliesScheduledReducer from "../empire_craft_supplies_scheduled_reducer";
@@ -174,6 +176,7 @@ import ImportExtractionRecipeDescReducer from "../import_extraction_recipe_desc_
 import ImportFloatingPlatformDescReducer from "../import_floating_platform_desc_reducer";
 import ImportFoodDescReducer from "../import_food_desc_reducer";
 import ImportFootprintTileStateReducer from "../import_footprint_tile_state_reducer";
+import ImportFurnitureEmoteDescReducer from "../import_furniture_emote_desc_reducer";
 import ImportGateDescReducer from "../import_gate_desc_reducer";
 import ImportGlobalsReducer from "../import_globals_reducer";
 import ImportGrowthStateReducer from "../import_growth_state_reducer";
@@ -356,6 +359,7 @@ import StageEquipmentPresetKnowledgeDescReducer from "../stage_equipment_preset_
 import StageExtractionRecipeDescReducer from "../stage_extraction_recipe_desc_reducer";
 import StageFloatingPlatformDescReducer from "../stage_floating_platform_desc_reducer";
 import StageFoodDescReducer from "../stage_food_desc_reducer";
+import StageFurnitureEmoteDescReducer from "../stage_furniture_emote_desc_reducer";
 import StageGateDescReducer from "../stage_gate_desc_reducer";
 import StageHexiteExchangeEntryDescReducer from "../stage_hexite_exchange_entry_desc_reducer";
 import StageInteriorEnvironmentDescReducer from "../stage_interior_environment_desc_reducer";
@@ -505,6 +509,8 @@ export type DeleteDeveloperIdentityParams = __Infer<typeof DeleteDeveloperIdenti
 export type DeleteTranslationCorrectionParams = __Infer<typeof DeleteTranslationCorrectionReducer>;
 export type EditChatChannelParams = __Infer<typeof EditChatChannelReducer>;
 export type EditChatChannelMemberPermissionParams = __Infer<typeof EditChatChannelMemberPermissionReducer>;
+export type EmpireBlacklistAddParams = __Infer<typeof EmpireBlacklistAddReducer>;
+export type EmpireBlacklistRemoveParams = __Infer<typeof EmpireBlacklistRemoveReducer>;
 export type EmpireChangeEmblemParams = __Infer<typeof EmpireChangeEmblemReducer>;
 export type EmpireCraftSuppliesParams = __Infer<typeof EmpireCraftSuppliesReducer>;
 export type EmpireCraftSuppliesScheduledParams = __Infer<typeof EmpireCraftSuppliesScheduledReducer>;
@@ -594,6 +600,7 @@ export type ImportExtractionRecipeDescParams = __Infer<typeof ImportExtractionRe
 export type ImportFloatingPlatformDescParams = __Infer<typeof ImportFloatingPlatformDescReducer>;
 export type ImportFoodDescParams = __Infer<typeof ImportFoodDescReducer>;
 export type ImportFootprintTileStateParams = __Infer<typeof ImportFootprintTileStateReducer>;
+export type ImportFurnitureEmoteDescParams = __Infer<typeof ImportFurnitureEmoteDescReducer>;
 export type ImportGateDescParams = __Infer<typeof ImportGateDescReducer>;
 export type ImportGlobalsParams = __Infer<typeof ImportGlobalsReducer>;
 export type ImportGrowthStateParams = __Infer<typeof ImportGrowthStateReducer>;
@@ -776,6 +783,7 @@ export type StageEquipmentPresetKnowledgeDescParams = __Infer<typeof StageEquipm
 export type StageExtractionRecipeDescParams = __Infer<typeof StageExtractionRecipeDescReducer>;
 export type StageFloatingPlatformDescParams = __Infer<typeof StageFloatingPlatformDescReducer>;
 export type StageFoodDescParams = __Infer<typeof StageFoodDescReducer>;
+export type StageFurnitureEmoteDescParams = __Infer<typeof StageFurnitureEmoteDescReducer>;
 export type StageGateDescParams = __Infer<typeof StageGateDescReducer>;
 export type StageHexiteExchangeEntryDescParams = __Infer<typeof StageHexiteExchangeEntryDescReducer>;
 export type StageInteriorEnvironmentDescParams = __Infer<typeof StageInteriorEnvironmentDescReducer>;

@@ -74,6 +74,7 @@ export const AbilityType = __t.enum("AbilityType", {
   DeployableToggle: __t.i32(),
   Emote: __t.i32(),
   EquipPreset: __t.i32(),
+  PlaceablePlace: __t.i32(),
 });
 export type AbilityType = __Infer<typeof AbilityType>;
 
@@ -92,6 +93,7 @@ export const AbilityTypeEnum = __t.enum("AbilityTypeEnum", {
   DeployableToggle: __t.unit(),
   Emote: __t.unit(),
   EquipPreset: __t.unit(),
+  PlaceablePlace: __t.unit(),
 });
 export type AbilityTypeEnum = __Infer<typeof AbilityTypeEnum>;
 
@@ -490,6 +492,8 @@ export const BuildingCategory = __t.enum("BuildingCategory", {
   RecoveryChest: __t.unit(),
   PlayerHousing: __t.unit(),
   PremiumBuilding: __t.unit(),
+  OneWayWaystone: __t.unit(),
+  RegionalBank: __t.unit(),
 });
 export type BuildingCategory = __Infer<typeof BuildingCategory>;
 
@@ -1064,6 +1068,9 @@ export const ClaimTechDesc = __t.object("ClaimTechDesc", {
   supplies: __t.i32(),
   xpToMintHexCoin: __t.u32(),
   unlocksTechs: __t.array(__t.i32()),
+  cannotBeResearched: __t.bool(),
+  blockingClaimTechs: __t.option(__t.array(__t.i32())),
+  notShownInUi: __t.bool(),
 });
 export type ClaimTechDesc = __Infer<typeof ClaimTechDesc>;
 
@@ -1100,6 +1107,11 @@ export const ClaimTechType = __t.enum("ClaimTechType", {
   TownBank: __t.unit(),
   LargeHouse: __t.unit(),
   TownMarket: __t.unit(),
+  Homestead: __t.unit(),
+  OneWayWaystones: __t.unit(),
+  DestinationWaystones: __t.unit(),
+  StarterTech: __t.unit(),
+  RegionalBank: __t.unit(),
 });
 export type ClaimTechType = __Infer<typeof ClaimTechType>;
 
@@ -1756,6 +1768,13 @@ export const EmpireAddCurrencyMsg = __t.object("EmpireAddCurrencyMsg", {
 });
 export type EmpireAddCurrencyMsg = __Infer<typeof EmpireAddCurrencyMsg>;
 
+export const EmpireBlacklistState = __t.object("EmpireBlacklistState", {
+  entityId: __t.u64(),
+  empireEntityId: __t.u64(),
+  playerEntityId: __t.u64(),
+});
+export type EmpireBlacklistState = __Infer<typeof EmpireBlacklistState>;
+
 export const EmpireChangeEmblemRequest = __t.object("EmpireChangeEmblemRequest", {
   empireEntityId: __t.u64(),
   iconId: __t.i32(),
@@ -2021,6 +2040,7 @@ export const EmpirePermission = __t.enum("EmpirePermission", {
   Count: __t.unit(),
   HarvestEmpireResources: __t.unit(),
   WithdrawEmpireCurrency: __t.unit(),
+  ManageBlacklist: __t.unit(),
 });
 export type EmpirePermission = __Infer<typeof EmpirePermission>;
 
@@ -2433,6 +2453,14 @@ export const EnemyType = __t.enum("EnemyType", {
   DistractedElderScrofa: __t.unit(),
   DistractedTundraOx: __t.unit(),
   DistractedDesertTerrorbird: __t.unit(),
+  StarseekerBaseT1: __t.unit(),
+  StarseekerLightT1: __t.unit(),
+  ImmortalBaseT1: __t.unit(),
+  ImmortalHeavyT1: __t.unit(),
+  ImmortalBaseT2: __t.unit(),
+  ImmortalHeavyT2: __t.unit(),
+  SentinelStarseekerSkirmisher: __t.unit(),
+  SentinelStarseekerCaptain: __t.unit(),
 });
 export type EnemyType = __Infer<typeof EnemyType>;
 
@@ -2701,6 +2729,7 @@ export const FloatingPlatformDesc = __t.object("FloatingPlatformDesc", {
   },
   supportsBuildings: __t.bool(),
   maxPerPlayer: __t.i32(),
+  targetElevation: __t.i16(),
 });
 export type FloatingPlatformDesc = __Infer<typeof FloatingPlatformDesc>;
 
@@ -2786,6 +2815,14 @@ export const FriendsState = __t.object("FriendsState", {
   isFavorite: __t.bool(),
 });
 export type FriendsState = __Infer<typeof FriendsState>;
+
+export const FurnitureEmoteDesc = __t.object("FurnitureEmoteDesc", {
+  emoteId: __t.i32(),
+  emoteLocationObjectName: __t.string(),
+  actionName: __t.string(),
+  furnitureType: __t.string(),
+});
+export type FurnitureEmoteDesc = __Infer<typeof FurnitureEmoteDesc>;
 
 export const GateDesc = __t.object("GateDesc", {
   buildingId: __t.i32(),
@@ -3279,6 +3316,7 @@ export const InteriorSpawnDestroyTriggerDesc = __t.object("InteriorSpawnDestroyT
   destroyedInteriorSpawnIds: __t.array(__t.i32()),
   triggerInteriorSpawnIds: __t.array(__t.i32()),
   requireAllTriggers: __t.bool(),
+  trackOnDestroySpawnedResources: __t.bool(),
 });
 export type InteriorSpawnDestroyTriggerDesc = __Infer<typeof InteriorSpawnDestroyTriggerDesc>;
 
@@ -3306,6 +3344,8 @@ export const InteriorSpawnedResourceState = __t.object("InteriorSpawnedResourceS
   entityId: __t.u64(),
   interiorSpawnDescId: __t.i32(),
   dimensionId: __t.u32(),
+  destroyTriggerCompleted: __t.bool(),
+  originalResourceId: __t.i32(),
 });
 export type InteriorSpawnedResourceState = __Infer<typeof InteriorSpawnedResourceState>;
 
@@ -4744,6 +4784,11 @@ export const ParametersDesc = __t.object("ParametersDesc", {
     return __t.option(__t.array(TravelerWeeklyTaskCredits));
   },
   travelerTaskRerollCreditCost: __t.i32(),
+  minDistanceToNeutralClaims: __t.i32(),
+  claimTotemSpacing: __t.i32(),
+  empireWatchtowerUpkeepPerChunk: __t.f64(),
+  empireWatchtowerUpkeepPerTotalChunks: __t.f64(),
+  empireSiegeDelayTicks: __t.i32(),
 });
 export type ParametersDesc = __Infer<typeof ParametersDesc>;
 
@@ -4996,6 +5041,10 @@ export const PlaceableInteractionDesc = __t.object("PlaceableInteractionDesc", {
   get selfBuffs() {
     return __t.option(__t.array(PlaceableSelfBuffChance));
   },
+  toolMeshIndex: __t.i32(),
+  get onDestroyYield() {
+    return __t.option(__t.array(ItemStack));
+  },
 });
 export type PlaceableInteractionDesc = __Infer<typeof PlaceableInteractionDesc>;
 
@@ -5036,6 +5085,7 @@ export const PlaceablePlacementDesc = __t.object("PlaceablePlacementDesc", {
   get selfBuffs() {
     return __t.option(__t.array(PlaceableSelfBuffChance));
   },
+  acceptablePavements: __t.option(__t.array(__t.i32())),
 });
 export type PlaceablePlacementDesc = __Infer<typeof PlaceablePlacementDesc>;
 

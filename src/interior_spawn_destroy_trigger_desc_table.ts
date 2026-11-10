@@ -16,4 +16,5 @@ export default __t.row({
   destroyedInteriorSpawnIds: __t.array(__t.i32()).name("destroyed_interior_spawn_ids"),
   triggerInteriorSpawnIds: __t.array(__t.i32()).name("trigger_interior_spawn_ids"),
   requireAllTriggers: __t.bool().name("require_all_triggers"),
+  trackOnDestroySpawnedResources: __t.bool().name("track_on_destroy_spawned_resources"),
 });
