@@ -33,5 +33,10 @@ namespace BitCraftGlobal.Types
         TownBank,
         LargeHouse,
         TownMarket,
+        Homestead,
+        OneWayWaystones,
+        DestinationWaystones,
+        StarterTech,
+        RegionalBank,
     }
 }

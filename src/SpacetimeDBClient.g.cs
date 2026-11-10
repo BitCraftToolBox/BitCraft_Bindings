@@ -121,6 +121,7 @@ namespace BitCraftGlobal.Types
             AddTable(DungeonState = new(conn));
             AddTable(ElevatorDesc = new(conn));
             AddTable(EmoteDesc = new(conn));
+            AddTable(EmpireBlacklistState = new(conn));
             AddTable(EmpireChunkState = new(conn));
             AddTable(EmpireColorDesc = new(conn));
             AddTable(EmpireCraftSuppliesTimer = new(conn));
@@ -167,6 +168,7 @@ namespace BitCraftGlobal.Types
             AddTable(FootprintTileState = new(conn));
             AddTable(ForceGenerateTypes = new(conn));
             AddTable(FriendsState = new(conn));
+            AddTable(FurnitureEmoteDesc = new(conn));
             AddTable(GateDesc = new(conn));
             AddTable(GatedFeatures = new(conn));
             AddTable(GlobalSearchState = new(conn));
@@ -319,6 +321,7 @@ namespace BitCraftGlobal.Types
             AddTable(RegionExplorationInfo = new(conn));
             AddTable(RegionPopulationInfo = new(conn));
             AddTable(RegionSignInParameters = new(conn));
+            AddTable(RegionalBankState = new(conn));
             AddTable(RentState = new(conn));
             AddTable(ReservedNameDesc = new(conn));
             AddTable(ResourceClumpDesc = new(conn));
@@ -390,6 +393,7 @@ namespace BitCraftGlobal.Types
             AddTable(StagedExtractionRecipeDesc = new(conn));
             AddTable(StagedFloatingPlatformDesc = new(conn));
             AddTable(StagedFoodDesc = new(conn));
+            AddTable(StagedFurnitureEmoteDesc = new(conn));
             AddTable(StagedGateDesc = new(conn));
             AddTable(StagedHexiteExchangeEntryDesc = new(conn));
             AddTable(StagedInteriorEnvironmentDesc = new(conn));
@@ -1081,6 +1085,7 @@ namespace BitCraftGlobal.Types
             new QueryBuilder().From.DungeonState().ToSql(),
             new QueryBuilder().From.ElevatorDesc().ToSql(),
             new QueryBuilder().From.EmoteDesc().ToSql(),
+            new QueryBuilder().From.EmpireBlacklistState().ToSql(),
             new QueryBuilder().From.EmpireChunkState().ToSql(),
             new QueryBuilder().From.EmpireColorDesc().ToSql(),
             new QueryBuilder().From.EmpireCraftSuppliesTimer().ToSql(),
@@ -1127,6 +1132,7 @@ namespace BitCraftGlobal.Types
             new QueryBuilder().From.FootprintTileState().ToSql(),
             new QueryBuilder().From.ForceGenerateTypes().ToSql(),
             new QueryBuilder().From.FriendsState().ToSql(),
+            new QueryBuilder().From.FurnitureEmoteDesc().ToSql(),
             new QueryBuilder().From.GateDesc().ToSql(),
             new QueryBuilder().From.GatedFeatures().ToSql(),
             new QueryBuilder().From.GlobalSearchState().ToSql(),
@@ -1279,6 +1285,7 @@ namespace BitCraftGlobal.Types
             new QueryBuilder().From.RegionExplorationInfo().ToSql(),
             new QueryBuilder().From.RegionPopulationInfo().ToSql(),
             new QueryBuilder().From.RegionSignInParameters().ToSql(),
+            new QueryBuilder().From.RegionalBankState().ToSql(),
             new QueryBuilder().From.RentState().ToSql(),
             new QueryBuilder().From.ReservedNameDesc().ToSql(),
             new QueryBuilder().From.ResourceClumpDesc().ToSql(),
@@ -1350,6 +1357,7 @@ namespace BitCraftGlobal.Types
             new QueryBuilder().From.StagedExtractionRecipeDesc().ToSql(),
             new QueryBuilder().From.StagedFloatingPlatformDesc().ToSql(),
             new QueryBuilder().From.StagedFoodDesc().ToSql(),
+            new QueryBuilder().From.StagedFurnitureEmoteDesc().ToSql(),
             new QueryBuilder().From.StagedGateDesc().ToSql(),
             new QueryBuilder().From.StagedHexiteExchangeEntryDesc().ToSql(),
             new QueryBuilder().From.StagedInteriorEnvironmentDesc().ToSql(),
@@ -1551,6 +1559,7 @@ namespace BitCraftGlobal.Types
         public global::SpacetimeDB.Table<DungeonState, DungeonStateCols, DungeonStateIxCols> DungeonState() => new("dungeon_state", new DungeonStateCols("dungeon_state"), new DungeonStateIxCols("dungeon_state"));
         public global::SpacetimeDB.Table<ElevatorDesc, ElevatorDescCols, ElevatorDescIxCols> ElevatorDesc() => new("elevator_desc", new ElevatorDescCols("elevator_desc"), new ElevatorDescIxCols("elevator_desc"));
         public global::SpacetimeDB.Table<EmoteDesc, EmoteDescCols, EmoteDescIxCols> EmoteDesc() => new("emote_desc", new EmoteDescCols("emote_desc"), new EmoteDescIxCols("emote_desc"));
+        public global::SpacetimeDB.Table<EmpireBlacklistState, EmpireBlacklistStateCols, EmpireBlacklistStateIxCols> EmpireBlacklistState() => new("empire_blacklist_state", new EmpireBlacklistStateCols("empire_blacklist_state"), new EmpireBlacklistStateIxCols("empire_blacklist_state"));
         public global::SpacetimeDB.Table<EmpireChunkState, EmpireChunkStateCols, EmpireChunkStateIxCols> EmpireChunkState() => new("empire_chunk_state", new EmpireChunkStateCols("empire_chunk_state"), new EmpireChunkStateIxCols("empire_chunk_state"));
         public global::SpacetimeDB.Table<EmpireColorDesc, EmpireColorDescCols, EmpireColorDescIxCols> EmpireColorDesc() => new("empire_color_desc", new EmpireColorDescCols("empire_color_desc"), new EmpireColorDescIxCols("empire_color_desc"));
         public global::SpacetimeDB.Table<EmpireCraftSuppliesTimer, EmpireCraftSuppliesTimerCols, EmpireCraftSuppliesTimerIxCols> EmpireCraftSuppliesTimer() => new("empire_craft_supplies_timer", new EmpireCraftSuppliesTimerCols("empire_craft_supplies_timer"), new EmpireCraftSuppliesTimerIxCols("empire_craft_supplies_timer"));
@@ -1597,6 +1606,7 @@ namespace BitCraftGlobal.Types
         public global::SpacetimeDB.Table<FootprintTileState, FootprintTileStateCols, FootprintTileStateIxCols> FootprintTileState() => new("footprint_tile_state", new FootprintTileStateCols("footprint_tile_state"), new FootprintTileStateIxCols("footprint_tile_state"));
         public global::SpacetimeDB.Table<ForceGenerateTypes, ForceGenerateTypesCols, ForceGenerateTypesIxCols> ForceGenerateTypes() => new("force_generate_types", new ForceGenerateTypesCols("force_generate_types"), new ForceGenerateTypesIxCols("force_generate_types"));
         public global::SpacetimeDB.Table<FriendsState, FriendsStateCols, FriendsStateIxCols> FriendsState() => new("friends_state", new FriendsStateCols("friends_state"), new FriendsStateIxCols("friends_state"));
+        public global::SpacetimeDB.Table<FurnitureEmoteDesc, FurnitureEmoteDescCols, FurnitureEmoteDescIxCols> FurnitureEmoteDesc() => new("furniture_emote_desc", new FurnitureEmoteDescCols("furniture_emote_desc"), new FurnitureEmoteDescIxCols("furniture_emote_desc"));
         public global::SpacetimeDB.Table<GateDesc, GateDescCols, GateDescIxCols> GateDesc() => new("gate_desc", new GateDescCols("gate_desc"), new GateDescIxCols("gate_desc"));
         public global::SpacetimeDB.Table<GatedFeature, GatedFeaturesCols, GatedFeaturesIxCols> GatedFeatures() => new("gated_features", new GatedFeaturesCols("gated_features"), new GatedFeaturesIxCols("gated_features"));
         public global::SpacetimeDB.Table<GlobalSearchState, GlobalSearchStateCols, GlobalSearchStateIxCols> GlobalSearchState() => new("global_search_state", new GlobalSearchStateCols("global_search_state"), new GlobalSearchStateIxCols("global_search_state"));
@@ -1749,6 +1759,7 @@ namespace BitCraftGlobal.Types
         public global::SpacetimeDB.Table<RegionExplorationInfo, RegionExplorationInfoCols, RegionExplorationInfoIxCols> RegionExplorationInfo() => new("region_exploration_info", new RegionExplorationInfoCols("region_exploration_info"), new RegionExplorationInfoIxCols("region_exploration_info"));
         public global::SpacetimeDB.Table<RegionPopulationInfo, RegionPopulationInfoCols, RegionPopulationInfoIxCols> RegionPopulationInfo() => new("region_population_info", new RegionPopulationInfoCols("region_population_info"), new RegionPopulationInfoIxCols("region_population_info"));
         public global::SpacetimeDB.Table<RegionSignInParameters, RegionSignInParametersCols, RegionSignInParametersIxCols> RegionSignInParameters() => new("region_sign_in_parameters", new RegionSignInParametersCols("region_sign_in_parameters"), new RegionSignInParametersIxCols("region_sign_in_parameters"));
+        public global::SpacetimeDB.Table<BankState, RegionalBankStateCols, RegionalBankStateIxCols> RegionalBankState() => new("regional_bank_state", new RegionalBankStateCols("regional_bank_state"), new RegionalBankStateIxCols("regional_bank_state"));
         public global::SpacetimeDB.Table<RentState, RentStateCols, RentStateIxCols> RentState() => new("rent_state", new RentStateCols("rent_state"), new RentStateIxCols("rent_state"));
         public global::SpacetimeDB.Table<ReservedNameDesc, ReservedNameDescCols, ReservedNameDescIxCols> ReservedNameDesc() => new("reserved_name_desc", new ReservedNameDescCols("reserved_name_desc"), new ReservedNameDescIxCols("reserved_name_desc"));
         public global::SpacetimeDB.Table<ResourceClumpDesc, ResourceClumpDescCols, ResourceClumpDescIxCols> ResourceClumpDesc() => new("resource_clump_desc", new ResourceClumpDescCols("resource_clump_desc"), new ResourceClumpDescIxCols("resource_clump_desc"));
@@ -1820,6 +1831,7 @@ namespace BitCraftGlobal.Types
         public global::SpacetimeDB.Table<ExtractionRecipeDesc, StagedExtractionRecipeDescCols, StagedExtractionRecipeDescIxCols> StagedExtractionRecipeDesc() => new("staged_extraction_recipe_desc", new StagedExtractionRecipeDescCols("staged_extraction_recipe_desc"), new StagedExtractionRecipeDescIxCols("staged_extraction_recipe_desc"));
         public global::SpacetimeDB.Table<FloatingPlatformDesc, StagedFloatingPlatformDescCols, StagedFloatingPlatformDescIxCols> StagedFloatingPlatformDesc() => new("staged_floating_platform_desc", new StagedFloatingPlatformDescCols("staged_floating_platform_desc"), new StagedFloatingPlatformDescIxCols("staged_floating_platform_desc"));
         public global::SpacetimeDB.Table<FoodDesc, StagedFoodDescCols, StagedFoodDescIxCols> StagedFoodDesc() => new("staged_food_desc", new StagedFoodDescCols("staged_food_desc"), new StagedFoodDescIxCols("staged_food_desc"));
+        public global::SpacetimeDB.Table<FurnitureEmoteDesc, StagedFurnitureEmoteDescCols, StagedFurnitureEmoteDescIxCols> StagedFurnitureEmoteDesc() => new("staged_furniture_emote_desc", new StagedFurnitureEmoteDescCols("staged_furniture_emote_desc"), new StagedFurnitureEmoteDescIxCols("staged_furniture_emote_desc"));
         public global::SpacetimeDB.Table<GateDesc, StagedGateDescCols, StagedGateDescIxCols> StagedGateDesc() => new("staged_gate_desc", new StagedGateDescCols("staged_gate_desc"), new StagedGateDescIxCols("staged_gate_desc"));
         public global::SpacetimeDB.Table<HexiteExchangeEntryDesc, StagedHexiteExchangeEntryDescCols, StagedHexiteExchangeEntryDescIxCols> StagedHexiteExchangeEntryDesc() => new("staged_hexite_exchange_entry_desc", new StagedHexiteExchangeEntryDescCols("staged_hexite_exchange_entry_desc"), new StagedHexiteExchangeEntryDescIxCols("staged_hexite_exchange_entry_desc"));
         public global::SpacetimeDB.Table<InteriorEnvironmentDesc, StagedInteriorEnvironmentDescCols, StagedInteriorEnvironmentDescIxCols> StagedInteriorEnvironmentDesc() => new("staged_interior_environment_desc", new StagedInteriorEnvironmentDescCols("staged_interior_environment_desc"), new StagedInteriorEnvironmentDescIxCols("staged_interior_environment_desc"));
@@ -2082,6 +2094,8 @@ namespace BitCraftGlobal.Types
                 Reducer.DeleteTranslationCorrection args => Reducers.InvokeDeleteTranslationCorrection(eventContext, args),
                 Reducer.EditChatChannel args => Reducers.InvokeEditChatChannel(eventContext, args),
                 Reducer.EditChatChannelMemberPermission args => Reducers.InvokeEditChatChannelMemberPermission(eventContext, args),
+                Reducer.EmpireBlacklistAdd args => Reducers.InvokeEmpireBlacklistAdd(eventContext, args),
+                Reducer.EmpireBlacklistRemove args => Reducers.InvokeEmpireBlacklistRemove(eventContext, args),
                 Reducer.EmpireChangeEmblem args => Reducers.InvokeEmpireChangeEmblem(eventContext, args),
                 Reducer.EmpireCraftSupplies args => Reducers.InvokeEmpireCraftSupplies(eventContext, args),
                 Reducer.EmpireCraftSuppliesScheduled args => Reducers.InvokeEmpireCraftSuppliesScheduled(eventContext, args),
@@ -2171,6 +2185,7 @@ namespace BitCraftGlobal.Types
                 Reducer.ImportFloatingPlatformDesc args => Reducers.InvokeImportFloatingPlatformDesc(eventContext, args),
                 Reducer.ImportFoodDesc args => Reducers.InvokeImportFoodDesc(eventContext, args),
                 Reducer.ImportFootprintTileState args => Reducers.InvokeImportFootprintTileState(eventContext, args),
+                Reducer.ImportFurnitureEmoteDesc args => Reducers.InvokeImportFurnitureEmoteDesc(eventContext, args),
                 Reducer.ImportGateDesc args => Reducers.InvokeImportGateDesc(eventContext, args),
                 Reducer.ImportGlobals args => Reducers.InvokeImportGlobals(eventContext, args),
                 Reducer.ImportGrowthState args => Reducers.InvokeImportGrowthState(eventContext, args),
@@ -2353,6 +2368,7 @@ namespace BitCraftGlobal.Types
                 Reducer.StageExtractionRecipeDesc args => Reducers.InvokeStageExtractionRecipeDesc(eventContext, args),
                 Reducer.StageFloatingPlatformDesc args => Reducers.InvokeStageFloatingPlatformDesc(eventContext, args),
                 Reducer.StageFoodDesc args => Reducers.InvokeStageFoodDesc(eventContext, args),
+                Reducer.StageFurnitureEmoteDesc args => Reducers.InvokeStageFurnitureEmoteDesc(eventContext, args),
                 Reducer.StageGateDesc args => Reducers.InvokeStageGateDesc(eventContext, args),
                 Reducer.StageHexiteExchangeEntryDesc args => Reducers.InvokeStageHexiteExchangeEntryDesc(eventContext, args),
                 Reducer.StageInteriorEnvironmentDesc args => Reducers.InvokeStageInteriorEnvironmentDesc(eventContext, args),

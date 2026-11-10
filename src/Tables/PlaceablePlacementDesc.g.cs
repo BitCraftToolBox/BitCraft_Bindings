@@ -66,6 +66,7 @@ namespace BitCraftGlobal.Types
         public global::SpacetimeDB.Col<PlaceablePlacementDesc, System.Collections.Generic.List<int>> Buildings { get; }
         public global::SpacetimeDB.Col<PlaceablePlacementDesc, int> RecipePerformanceId { get; }
         public global::SpacetimeDB.Col<PlaceablePlacementDesc, System.Collections.Generic.List<PlaceableSelfBuffChance>> SelfBuffs { get; }
+        public global::SpacetimeDB.Col<PlaceablePlacementDesc, System.Collections.Generic.List<int>> AcceptablePavements { get; }
 
         public PlaceablePlacementDescCols(string tableName)
         {
@@ -95,6 +96,7 @@ namespace BitCraftGlobal.Types
             Buildings = new global::SpacetimeDB.Col<PlaceablePlacementDesc, System.Collections.Generic.List<int>>(tableName, "buildings");
             RecipePerformanceId = new global::SpacetimeDB.Col<PlaceablePlacementDesc, int>(tableName, "recipe_performance_id");
             SelfBuffs = new global::SpacetimeDB.Col<PlaceablePlacementDesc, System.Collections.Generic.List<PlaceableSelfBuffChance>>(tableName, "self_buffs");
+            AcceptablePavements = new global::SpacetimeDB.Col<PlaceablePlacementDesc, System.Collections.Generic.List<int>>(tableName, "acceptable_pavements");
         }
     }
 
