@@ -65,5 +65,13 @@ namespace BitCraftRegion.Types
         DistractedElderScrofa,
         DistractedTundraOx,
         DistractedDesertTerrorbird,
+        StarseekerBaseT1,
+        StarseekerLightT1,
+        ImmortalBaseT1,
+        ImmortalHeavyT1,
+        ImmortalBaseT2,
+        ImmortalHeavyT2,
+        SentinelStarseekerSkirmisher,
+        SentinelStarseekerCaptain,
     }
 }

@@ -36,5 +36,7 @@ namespace BitCraftRegion.Types
         RecoveryChest,
         PlayerHousing,
         PremiumBuilding,
+        OneWayWaystone,
+        RegionalBank,
     }
 }

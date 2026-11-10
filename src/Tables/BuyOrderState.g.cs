@@ -45,21 +45,31 @@ namespace BitCraftRegion.Types
 
             public readonly ItemForClaimIndex ItemForClaim;
 
-            public sealed class OwnerForClaimIndex : BTreeIndexBase<(ulong OwnerEntityId, ulong ClaimEntityId)>
+            public sealed class ItemIndex : BTreeIndexBase<(int ItemId, int ItemType)>
             {
-                protected override (ulong OwnerEntityId, ulong ClaimEntityId) GetKey(AuctionListingState row) => (row.OwnerEntityId, row.ClaimEntityId);
+                protected override (int ItemId, int ItemType) GetKey(AuctionListingState row) => (row.ItemId, row.ItemType);
 
-                public OwnerForClaimIndex(BuyOrderStateHandle table) : base(table) { }
+                public ItemIndex(BuyOrderStateHandle table) : base(table) { }
             }
 
-            public readonly OwnerForClaimIndex OwnerForClaim;
+            public readonly ItemIndex Item;
+
+            public sealed class OwnerEntityIdIndex : BTreeIndexBase<ulong>
+            {
+                protected override ulong GetKey(AuctionListingState row) => row.OwnerEntityId;
+
+                public OwnerEntityIdIndex(BuyOrderStateHandle table) : base(table) { }
+            }
+
+            public readonly OwnerEntityIdIndex OwnerEntityId;
 
             internal BuyOrderStateHandle(DbConnection conn) : base(conn)
             {
                 ClaimEntityId = new(this);
                 EntityId = new(this);
                 ItemForClaim = new(this);
-                OwnerForClaim = new(this);
+                Item = new(this);
+                OwnerEntityId = new(this);
             }
 
             protected override object GetPrimaryKey(AuctionListingState row) => row.EntityId;

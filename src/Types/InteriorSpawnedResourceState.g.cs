@@ -20,16 +20,24 @@ namespace BitCraftRegion.Types
         public int InteriorSpawnDescId;
         [DataMember(Name = "dimension_id")]
         public uint DimensionId;
+        [DataMember(Name = "destroy_trigger_completed")]
+        public bool DestroyTriggerCompleted;
+        [DataMember(Name = "original_resource_id")]
+        public int OriginalResourceId;
 
         public InteriorSpawnedResourceState(
             ulong EntityId,
             int InteriorSpawnDescId,
-            uint DimensionId
+            uint DimensionId,
+            bool DestroyTriggerCompleted,
+            int OriginalResourceId
         )
         {
             this.EntityId = EntityId;
             this.InteriorSpawnDescId = InteriorSpawnDescId;
             this.DimensionId = DimensionId;
+            this.DestroyTriggerCompleted = DestroyTriggerCompleted;
+            this.OriginalResourceId = OriginalResourceId;
         }
 
         public InteriorSpawnedResourceState()
