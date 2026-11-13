@@ -137,6 +137,7 @@ export type ParametersDesc = {
   empireWatchtowerUpkeepPerChunk: number,
   empireWatchtowerUpkeepPerTotalChunks: number,
   empireSiegeDelayTicks: number,
+  floatingPlatformRegionEdgeMarginChunks: number,
 };
 
 /**
@@ -250,6 +251,7 @@ export namespace ParametersDesc {
       new ProductTypeElement("empireWatchtowerUpkeepPerChunk", AlgebraicType.createF64Type()),
       new ProductTypeElement("empireWatchtowerUpkeepPerTotalChunks", AlgebraicType.createF64Type()),
       new ProductTypeElement("empireSiegeDelayTicks", AlgebraicType.createI32Type()),
+      new ProductTypeElement("floatingPlatformRegionEdgeMarginChunks", AlgebraicType.createI32Type()),
     ]);
   }
 
