@@ -111,6 +111,7 @@ pub struct ParametersDesc {
     pub empire_watchtower_upkeep_per_chunk: f64,
     pub empire_watchtower_upkeep_per_total_chunks: f64,
     pub empire_siege_delay_ticks: i32,
+    pub floating_platform_region_edge_margin_chunks: i32,
 }
 
 impl __sdk::InModule for ParametersDesc {
@@ -223,6 +224,8 @@ pub struct ParametersDescCols {
     pub empire_watchtower_upkeep_per_chunk: __sdk::__query_builder::Col<ParametersDesc, f64>,
     pub empire_watchtower_upkeep_per_total_chunks: __sdk::__query_builder::Col<ParametersDesc, f64>,
     pub empire_siege_delay_ticks: __sdk::__query_builder::Col<ParametersDesc, i32>,
+    pub floating_platform_region_edge_margin_chunks:
+        __sdk::__query_builder::Col<ParametersDesc, i32>,
 }
 
 impl __sdk::__query_builder::HasCols for ParametersDesc {
@@ -581,6 +584,10 @@ impl __sdk::__query_builder::HasCols for ParametersDesc {
             empire_siege_delay_ticks: __sdk::__query_builder::Col::new(
                 table_name,
                 "empire_siege_delay_ticks",
+            ),
+            floating_platform_region_edge_margin_chunks: __sdk::__query_builder::Col::new(
+                table_name,
+                "floating_platform_region_edge_margin_chunks",
             ),
         }
     }
