@@ -141,6 +141,7 @@ namespace BitCraftRegion.Types
         public global::SpacetimeDB.Col<ParametersDesc, double> EmpireWatchtowerUpkeepPerChunk { get; }
         public global::SpacetimeDB.Col<ParametersDesc, double> EmpireWatchtowerUpkeepPerTotalChunks { get; }
         public global::SpacetimeDB.Col<ParametersDesc, int> EmpireSiegeDelayTicks { get; }
+        public global::SpacetimeDB.Col<ParametersDesc, int> FloatingPlatformRegionEdgeMarginChunks { get; }
 
         public ParametersDescCols(string tableName)
         {
@@ -245,6 +246,7 @@ namespace BitCraftRegion.Types
             EmpireWatchtowerUpkeepPerChunk = new global::SpacetimeDB.Col<ParametersDesc, double>(tableName, "empire_watchtower_upkeep_per_chunk");
             EmpireWatchtowerUpkeepPerTotalChunks = new global::SpacetimeDB.Col<ParametersDesc, double>(tableName, "empire_watchtower_upkeep_per_total_chunks");
             EmpireSiegeDelayTicks = new global::SpacetimeDB.Col<ParametersDesc, int>(tableName, "empire_siege_delay_ticks");
+            FloatingPlatformRegionEdgeMarginChunks = new global::SpacetimeDB.Col<ParametersDesc, int>(tableName, "floating_platform_region_edge_margin_chunks");
         }
     }
 

@@ -216,6 +216,8 @@ namespace BitCraftRegion.Types
         public double EmpireWatchtowerUpkeepPerTotalChunks;
         [DataMember(Name = "empire_siege_delay_ticks")]
         public int EmpireSiegeDelayTicks;
+        [DataMember(Name = "floating_platform_region_edge_margin_chunks")]
+        public int FloatingPlatformRegionEdgeMarginChunks;
 
         public ParametersDesc(
             int Version,
@@ -318,7 +320,8 @@ namespace BitCraftRegion.Types
             int ClaimTotemSpacing,
             double EmpireWatchtowerUpkeepPerChunk,
             double EmpireWatchtowerUpkeepPerTotalChunks,
-            int EmpireSiegeDelayTicks
+            int EmpireSiegeDelayTicks,
+            int FloatingPlatformRegionEdgeMarginChunks
         )
         {
             this.Version = Version;
@@ -422,6 +425,7 @@ namespace BitCraftRegion.Types
             this.EmpireWatchtowerUpkeepPerChunk = EmpireWatchtowerUpkeepPerChunk;
             this.EmpireWatchtowerUpkeepPerTotalChunks = EmpireWatchtowerUpkeepPerTotalChunks;
             this.EmpireSiegeDelayTicks = EmpireSiegeDelayTicks;
+            this.FloatingPlatformRegionEdgeMarginChunks = FloatingPlatformRegionEdgeMarginChunks;
         }
 
         public ParametersDesc()
