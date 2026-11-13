@@ -31,4 +31,5 @@ export default __t.row({
   },
   unstartable: __t.bool(),
   isSecret: __t.bool().name("is_secret"),
+  recommendedPriority: __t.u32().name("recommended_priority"),
 });

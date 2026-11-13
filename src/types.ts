@@ -4789,6 +4789,7 @@ export const ParametersDesc = __t.object("ParametersDesc", {
   empireWatchtowerUpkeepPerChunk: __t.f64(),
   empireWatchtowerUpkeepPerTotalChunks: __t.f64(),
   empireSiegeDelayTicks: __t.i32(),
+  floatingPlatformRegionEdgeMarginChunks: __t.i32(),
 });
 export type ParametersDesc = __Infer<typeof ParametersDesc>;
 
@@ -5654,6 +5655,7 @@ export const QuestChainDesc = __t.object("QuestChainDesc", {
   },
   unstartable: __t.bool(),
   isSecret: __t.bool(),
+  recommendedPriority: __t.u32(),
 });
 export type QuestChainDesc = __Infer<typeof QuestChainDesc>;
 

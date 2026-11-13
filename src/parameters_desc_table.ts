@@ -121,4 +121,5 @@ export default __t.row({
   empireWatchtowerUpkeepPerChunk: __t.f64().name("empire_watchtower_upkeep_per_chunk"),
   empireWatchtowerUpkeepPerTotalChunks: __t.f64().name("empire_watchtower_upkeep_per_total_chunks"),
   empireSiegeDelayTicks: __t.i32().name("empire_siege_delay_ticks"),
+  floatingPlatformRegionEdgeMarginChunks: __t.i32().name("floating_platform_region_edge_margin_chunks"),
 });
