@@ -32,6 +32,8 @@ namespace BitCraftGlobal.Types
         public bool Unstartable;
         [DataMember(Name = "is_secret")]
         public bool IsSecret;
+        [DataMember(Name = "recommended_priority")]
+        public uint RecommendedPriority;
 
         public QuestChainDesc(
             int Id,
@@ -42,7 +44,8 @@ namespace BitCraftGlobal.Types
             System.Collections.Generic.List<QuestReward> Rewards,
             System.Collections.Generic.List<QuestReward> ImplicitRewards,
             bool Unstartable,
-            bool IsSecret
+            bool IsSecret,
+            uint RecommendedPriority
         )
         {
             this.Id = Id;
@@ -54,6 +57,7 @@ namespace BitCraftGlobal.Types
             this.ImplicitRewards = ImplicitRewards;
             this.Unstartable = Unstartable;
             this.IsSecret = IsSecret;
+            this.RecommendedPriority = RecommendedPriority;
         }
 
         public QuestChainDesc()
