@@ -37,6 +37,7 @@ impl __sdk::__query_builder::HasCols for DistantVisibleEntity {
 ///
 /// Provides typed access to indexed columns for query building.
 pub struct DistantVisibleEntityIxCols {
+    pub chunk_index: __sdk::__query_builder::IxCol<DistantVisibleEntity, u64>,
     pub entity_id: __sdk::__query_builder::IxCol<DistantVisibleEntity, u64>,
 }
 
@@ -44,6 +45,7 @@ impl __sdk::__query_builder::HasIxCols for DistantVisibleEntity {
     type IxCols = DistantVisibleEntityIxCols;
     fn ix_cols(table_name: &'static str) -> Self::IxCols {
         DistantVisibleEntityIxCols {
+            chunk_index: __sdk::__query_builder::IxCol::new(table_name, "chunk_index"),
             entity_id: __sdk::__query_builder::IxCol::new(table_name, "entity_id"),
         }
     }
