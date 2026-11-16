@@ -2771,6 +2771,9 @@ const tablesSchema = __schema({
   distantVisibleEntity: __table({
     name: 'distant_visible_entity',
     indexes: [
+      { accessor: 'chunk_index', name: 'distant_visible_entity_chunk_index_idx_btree', algorithm: 'btree', columns: [
+        'chunkIndex',
+      ] },
       { accessor: 'entity_id', name: 'distant_visible_entity_entity_id_idx_btree', algorithm: 'btree', columns: [
         'entityId',
       ] },
