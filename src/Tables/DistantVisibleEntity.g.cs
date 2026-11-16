@@ -18,6 +18,15 @@ namespace BitCraftRegion.Types
         {
             public override string RemoteTableName => "distant_visible_entity";
 
+            public sealed class ChunkIndexIndex : BTreeIndexBase<ulong>
+            {
+                protected override ulong GetKey(DistantVisibleEntity row) => row.ChunkIndex;
+
+                public ChunkIndexIndex(DistantVisibleEntityHandle table) : base(table) { }
+            }
+
+            public readonly ChunkIndexIndex ChunkIndex;
+
             public sealed class EntityIdUniqueIndex : UniqueIndexBase<ulong>
             {
                 protected override ulong GetKey(DistantVisibleEntity row) => row.EntityId;
@@ -29,6 +38,7 @@ namespace BitCraftRegion.Types
 
             internal DistantVisibleEntityHandle(DbConnection conn) : base(conn)
             {
+                ChunkIndex = new(this);
                 EntityId = new(this);
             }
 
@@ -53,10 +63,12 @@ namespace BitCraftRegion.Types
     public sealed class DistantVisibleEntityIxCols
     {
         public global::SpacetimeDB.IxCol<DistantVisibleEntity, ulong> EntityId { get; }
+        public global::SpacetimeDB.IxCol<DistantVisibleEntity, ulong> ChunkIndex { get; }
 
         public DistantVisibleEntityIxCols(string tableName)
         {
             EntityId = new global::SpacetimeDB.IxCol<DistantVisibleEntity, ulong>(tableName, "entity_id");
+            ChunkIndex = new global::SpacetimeDB.IxCol<DistantVisibleEntity, ulong>(tableName, "chunk_index");
         }
     }
 }
