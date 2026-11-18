@@ -88,6 +88,7 @@ import AdminMigrateTradeOrdersReducer from "./admin_migrate_trade_orders_reducer
 import AdminMigrateTravelerTasksReducer from "./admin_migrate_traveler_tasks_reducer";
 import AdminModifyChatMessageReducer from "./admin_modify_chat_message_reducer";
 import AdminPatchHousingCostsReducer from "./admin_patch_housing_costs_reducer";
+import AdminRecountResourcesReducer from "./admin_recount_resources_reducer";
 import AdminRemoveCollectibleReducer from "./admin_remove_collectible_reducer";
 import AdminRenameBuildingReducer from "./admin_rename_building_reducer";
 import AdminRenameBuildingCoordReducer from "./admin_rename_building_coord_reducer";
@@ -7903,6 +7904,7 @@ const reducersSchema = __reducers(
   __reducerSchema("admin_migrate_traveler_tasks", AdminMigrateTravelerTasksReducer),
   __reducerSchema("admin_modify_chat_message", AdminModifyChatMessageReducer),
   __reducerSchema("admin_patch_housing_costs", AdminPatchHousingCostsReducer),
+  __reducerSchema("admin_recount_resources", AdminRecountResourcesReducer),
   __reducerSchema("admin_remove_collectible", AdminRemoveCollectibleReducer),
   __reducerSchema("admin_rename_building", AdminRenameBuildingReducer),
   __reducerSchema("admin_rename_building_coord", AdminRenameBuildingCoordReducer),

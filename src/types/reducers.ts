@@ -60,6 +60,7 @@ import AdminMigrateTradeOrdersReducer from "../admin_migrate_trade_orders_reduce
 import AdminMigrateTravelerTasksReducer from "../admin_migrate_traveler_tasks_reducer";
 import AdminModifyChatMessageReducer from "../admin_modify_chat_message_reducer";
 import AdminPatchHousingCostsReducer from "../admin_patch_housing_costs_reducer";
+import AdminRecountResourcesReducer from "../admin_recount_resources_reducer";
 import AdminRemoveCollectibleReducer from "../admin_remove_collectible_reducer";
 import AdminRenameBuildingReducer from "../admin_rename_building_reducer";
 import AdminRenameBuildingCoordReducer from "../admin_rename_building_coord_reducer";
@@ -840,6 +841,7 @@ export type AdminMigrateTradeOrdersParams = __Infer<typeof AdminMigrateTradeOrde
 export type AdminMigrateTravelerTasksParams = __Infer<typeof AdminMigrateTravelerTasksReducer>;
 export type AdminModifyChatMessageParams = __Infer<typeof AdminModifyChatMessageReducer>;
 export type AdminPatchHousingCostsParams = __Infer<typeof AdminPatchHousingCostsReducer>;
+export type AdminRecountResourcesParams = __Infer<typeof AdminRecountResourcesReducer>;
 export type AdminRemoveCollectibleParams = __Infer<typeof AdminRemoveCollectibleReducer>;
 export type AdminRenameBuildingParams = __Infer<typeof AdminRenameBuildingReducer>;
 export type AdminRenameBuildingCoordParams = __Infer<typeof AdminRenameBuildingCoordReducer>;
