@@ -72,6 +72,8 @@ import { AdminCreateEntityNameReport } from "./admin_create_entity_name_report_r
 export { AdminCreateEntityNameReport };
 import { AdminCreatePlayerReport } from "./admin_create_player_report_reducer.ts";
 export { AdminCreatePlayerReport };
+import { AdminDeductShards } from "./admin_deduct_shards_reducer.ts";
+export { AdminDeductShards };
 import { AdminDeleteChatMessage } from "./admin_delete_chat_message_reducer.ts";
 export { AdminDeleteChatMessage };
 import { AdminDeleteModerationActionLogEntry } from "./admin_delete_moderation_action_log_entry_reducer.ts";
@@ -7071,6 +7073,10 @@ const REMOTE_MODULE = {
       reducerName: "admin_create_player_report",
       argsType: AdminCreatePlayerReport.getTypeScriptAlgebraicType(),
     },
+    admin_deduct_shards: {
+      reducerName: "admin_deduct_shards",
+      argsType: AdminDeductShards.getTypeScriptAlgebraicType(),
+    },
     admin_delete_chat_message: {
       reducerName: "admin_delete_chat_message",
       argsType: AdminDeleteChatMessage.getTypeScriptAlgebraicType(),
@@ -8736,6 +8742,7 @@ export type Reducer = never
 | { name: "AdminCreateDirectChatMessage", args: AdminCreateDirectChatMessage }
 | { name: "AdminCreateEntityNameReport", args: AdminCreateEntityNameReport }
 | { name: "AdminCreatePlayerReport", args: AdminCreatePlayerReport }
+| { name: "AdminDeductShards", args: AdminDeductShards }
 | { name: "AdminDeleteChatMessage", args: AdminDeleteChatMessage }
 | { name: "AdminDeleteModerationActionLogEntry", args: AdminDeleteModerationActionLogEntry }
 | { name: "AdminGrantShards", args: AdminGrantShards }
@@ -9443,6 +9450,22 @@ export class RemoteReducers {
 
   removeOnAdminCreatePlayerReport(callback: (ctx: ReducerEventContext, request: CreatePlayerReportRequest) => void) {
     this.connection.offReducer("admin_create_player_report", callback);
+  }
+
+  adminDeductShards(identity: string, amount: number) {
+    const __args = { identity, amount };
+    let __writer = new BinaryWriter(1024);
+    AdminDeductShards.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("admin_deduct_shards", __argsBuffer, this.setCallReducerFlags.adminDeductShardsFlags);
+  }
+
+  onAdminDeductShards(callback: (ctx: ReducerEventContext, identity: string, amount: number) => void) {
+    this.connection.onReducer("admin_deduct_shards", callback);
+  }
+
+  removeOnAdminDeductShards(callback: (ctx: ReducerEventContext, identity: string, amount: number) => void) {
+    this.connection.offReducer("admin_deduct_shards", callback);
   }
 
   adminDeleteChatMessage(entityId: bigint) {
@@ -15925,6 +15948,11 @@ export class SetReducerFlags {
   adminCreatePlayerReportFlags: CallReducerFlags = 'FullUpdate';
   adminCreatePlayerReport(flags: CallReducerFlags) {
     this.adminCreatePlayerReportFlags = flags;
+  }
+
+  adminDeductShardsFlags: CallReducerFlags = 'FullUpdate';
+  adminDeductShards(flags: CallReducerFlags) {
+    this.adminDeductShardsFlags = flags;
   }
 
   adminDeleteChatMessageFlags: CallReducerFlags = 'FullUpdate';
