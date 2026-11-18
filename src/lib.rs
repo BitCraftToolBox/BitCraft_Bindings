@@ -92,6 +92,7 @@ pub mod admin_migrate_trade_orders_reducer;
 pub mod admin_migrate_traveler_tasks_reducer;
 pub mod admin_modify_chat_message_reducer;
 pub mod admin_patch_housing_costs_reducer;
+pub mod admin_recount_resources_reducer;
 pub mod admin_remove_collectible_reducer;
 pub mod admin_rename_building_coord_reducer;
 pub mod admin_rename_building_entity_reducer;
@@ -2203,6 +2204,7 @@ pub use admin_migrate_trade_orders_reducer::admin_migrate_trade_orders;
 pub use admin_migrate_traveler_tasks_reducer::admin_migrate_traveler_tasks;
 pub use admin_modify_chat_message_reducer::admin_modify_chat_message;
 pub use admin_patch_housing_costs_reducer::admin_patch_housing_costs;
+pub use admin_recount_resources_reducer::admin_recount_resources;
 pub use admin_remove_collectible_reducer::admin_remove_collectible;
 pub use admin_rename_building_coord_reducer::admin_rename_building_coord;
 pub use admin_rename_building_entity_reducer::admin_rename_building_entity;
@@ -4408,6 +4410,9 @@ pub enum Reducer {
         new_message_text: String,
     },
     AdminPatchHousingCosts,
+    AdminRecountResources {
+        resource_description_id: i32,
+    },
     AdminRemoveCollectible {
         identity: String,
         collectible_id: i32,
@@ -6675,6 +6680,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::AdminMigrateTravelerTasks => "admin_migrate_traveler_tasks",
             Reducer::AdminModifyChatMessage { .. } => "admin_modify_chat_message",
             Reducer::AdminPatchHousingCosts => "admin_patch_housing_costs",
+            Reducer::AdminRecountResources { .. } => "admin_recount_resources",
             Reducer::AdminRemoveCollectible { .. } => "admin_remove_collectible",
             Reducer::AdminRenameBuilding { .. } => "admin_rename_building",
             Reducer::AdminRenameBuildingCoord { .. } => "admin_rename_building_coord",
@@ -7786,7 +7792,12 @@ Reducer::AdminModifyChatMessage{
 }),
             Reducer::AdminPatchHousingCosts => __sats::bsatn::to_vec(&admin_patch_housing_costs_reducer::AdminPatchHousingCostsArgs {
                 }),
-Reducer::AdminRemoveCollectible{
+Reducer::AdminRecountResources{
+                resource_description_id,
+}             => __sats::bsatn::to_vec(&admin_recount_resources_reducer::AdminRecountResourcesArgs {
+                resource_description_id: resource_description_id.clone(),
+}),
+            Reducer::AdminRemoveCollectible{
                 identity,
                 collectible_id,
                 quantity,
