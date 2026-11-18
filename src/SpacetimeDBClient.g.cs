@@ -2034,6 +2034,7 @@ namespace BitCraftGlobal.Types
                 Reducer.AdminCreateDirectChatMessage args => Reducers.InvokeAdminCreateDirectChatMessage(eventContext, args),
                 Reducer.AdminCreateEntityNameReport args => Reducers.InvokeAdminCreateEntityNameReport(eventContext, args),
                 Reducer.AdminCreatePlayerReport args => Reducers.InvokeAdminCreatePlayerReport(eventContext, args),
+                Reducer.AdminDeductShards args => Reducers.InvokeAdminDeductShards(eventContext, args),
                 Reducer.AdminDeleteChatMessage args => Reducers.InvokeAdminDeleteChatMessage(eventContext, args),
                 Reducer.AdminDeleteModerationActionLogEntry args => Reducers.InvokeAdminDeleteModerationActionLogEntry(eventContext, args),
                 Reducer.AdminGrantShards args => Reducers.InvokeAdminGrantShards(eventContext, args),
