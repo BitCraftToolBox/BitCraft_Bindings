@@ -2297,6 +2297,7 @@ namespace BitCraftRegion.Types
                 Reducer.AdminMigrateTravelerTasks args => Reducers.InvokeAdminMigrateTravelerTasks(eventContext, args),
                 Reducer.AdminModifyChatMessage args => Reducers.InvokeAdminModifyChatMessage(eventContext, args),
                 Reducer.AdminPatchHousingCosts args => Reducers.InvokeAdminPatchHousingCosts(eventContext, args),
+                Reducer.AdminRecountResources args => Reducers.InvokeAdminRecountResources(eventContext, args),
                 Reducer.AdminRemoveCollectible args => Reducers.InvokeAdminRemoveCollectible(eventContext, args),
                 Reducer.AdminRenameBuilding args => Reducers.InvokeAdminRenameBuilding(eventContext, args),
                 Reducer.AdminRenameBuildingCoord args => Reducers.InvokeAdminRenameBuildingCoord(eventContext, args),
