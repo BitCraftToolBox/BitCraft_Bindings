@@ -53,6 +53,7 @@ pub mod admin_create_chat_message_reducer;
 pub mod admin_create_direct_chat_message_reducer;
 pub mod admin_create_entity_name_report_reducer;
 pub mod admin_create_player_report_reducer;
+pub mod admin_deduct_shards_reducer;
 pub mod admin_delete_chat_message_reducer;
 pub mod admin_delete_moderation_action_log_entry_reducer;
 pub mod admin_grant_shards_reducer;
@@ -1541,6 +1542,9 @@ pub use admin_create_entity_name_report_reducer::{
 pub use admin_create_player_report_reducer::{
     admin_create_player_report, set_flags_for_admin_create_player_report,
     AdminCreatePlayerReportCallbackId,
+};
+pub use admin_deduct_shards_reducer::{
+    admin_deduct_shards, set_flags_for_admin_deduct_shards, AdminDeductShardsCallbackId,
 };
 pub use admin_delete_chat_message_reducer::{
     admin_delete_chat_message, set_flags_for_admin_delete_chat_message,
@@ -4058,6 +4062,10 @@ pub enum Reducer {
     AdminCreatePlayerReport {
         request: CreatePlayerReportRequest,
     },
+    AdminDeductShards {
+        identity: String,
+        amount: u32,
+    },
     AdminDeleteChatMessage {
         entity_id: u64,
     },
@@ -5358,6 +5366,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::AdminCreateDirectChatMessage { .. } => "admin_create_direct_chat_message",
             Reducer::AdminCreateEntityNameReport { .. } => "admin_create_entity_name_report",
             Reducer::AdminCreatePlayerReport { .. } => "admin_create_player_report",
+            Reducer::AdminDeductShards { .. } => "admin_deduct_shards",
             Reducer::AdminDeleteChatMessage { .. } => "admin_delete_chat_message",
             Reducer::AdminDeleteModerationActionLogEntry { .. } => {
                 "admin_delete_moderation_action_log_entry"
@@ -5843,6 +5852,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "admin_create_direct_chat_message" => Ok(__sdk::parse_reducer_args::<admin_create_direct_chat_message_reducer::AdminCreateDirectChatMessageArgs>("admin_create_direct_chat_message", &value.args)?.into()),
             "admin_create_entity_name_report" => Ok(__sdk::parse_reducer_args::<admin_create_entity_name_report_reducer::AdminCreateEntityNameReportArgs>("admin_create_entity_name_report", &value.args)?.into()),
             "admin_create_player_report" => Ok(__sdk::parse_reducer_args::<admin_create_player_report_reducer::AdminCreatePlayerReportArgs>("admin_create_player_report", &value.args)?.into()),
+            "admin_deduct_shards" => Ok(__sdk::parse_reducer_args::<admin_deduct_shards_reducer::AdminDeductShardsArgs>("admin_deduct_shards", &value.args)?.into()),
             "admin_delete_chat_message" => Ok(__sdk::parse_reducer_args::<admin_delete_chat_message_reducer::AdminDeleteChatMessageArgs>("admin_delete_chat_message", &value.args)?.into()),
             "admin_delete_moderation_action_log_entry" => Ok(__sdk::parse_reducer_args::<admin_delete_moderation_action_log_entry_reducer::AdminDeleteModerationActionLogEntryArgs>("admin_delete_moderation_action_log_entry", &value.args)?.into()),
             "admin_grant_shards" => Ok(__sdk::parse_reducer_args::<admin_grant_shards_reducer::AdminGrantShardsArgs>("admin_grant_shards", &value.args)?.into()),
