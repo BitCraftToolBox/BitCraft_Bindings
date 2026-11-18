@@ -53,6 +53,7 @@ pub mod admin_create_chat_message_reducer;
 pub mod admin_create_direct_chat_message_reducer;
 pub mod admin_create_entity_name_report_reducer;
 pub mod admin_create_player_report_reducer;
+pub mod admin_deduct_shards_reducer;
 pub mod admin_delete_chat_message_reducer;
 pub mod admin_delete_moderation_action_log_entry_reducer;
 pub mod admin_grant_shards_reducer;
@@ -1488,6 +1489,7 @@ pub use admin_create_chat_message_reducer::admin_create_chat_message;
 pub use admin_create_direct_chat_message_reducer::admin_create_direct_chat_message;
 pub use admin_create_entity_name_report_reducer::admin_create_entity_name_report;
 pub use admin_create_player_report_reducer::admin_create_player_report;
+pub use admin_deduct_shards_reducer::admin_deduct_shards;
 pub use admin_delete_chat_message_reducer::admin_delete_chat_message;
 pub use admin_delete_moderation_action_log_entry_reducer::admin_delete_moderation_action_log_entry;
 pub use admin_grant_shards_reducer::admin_grant_shards;
@@ -2974,6 +2976,10 @@ pub enum Reducer {
     AdminCreatePlayerReport {
         request: CreatePlayerReportRequest,
     },
+    AdminDeductShards {
+        identity: String,
+        amount: u32,
+    },
     AdminDeleteChatMessage {
         entity_id: u64,
     },
@@ -4274,6 +4280,7 @@ impl __sdk::Reducer for Reducer {
             Reducer::AdminCreateDirectChatMessage { .. } => "admin_create_direct_chat_message",
             Reducer::AdminCreateEntityNameReport { .. } => "admin_create_entity_name_report",
             Reducer::AdminCreatePlayerReport { .. } => "admin_create_player_report",
+            Reducer::AdminDeductShards { .. } => "admin_deduct_shards",
             Reducer::AdminDeleteChatMessage { .. } => "admin_delete_chat_message",
             Reducer::AdminDeleteModerationActionLogEntry { .. } => {
                 "admin_delete_moderation_action_log_entry"
@@ -4899,6 +4906,13 @@ Reducer::AdminCreateChatMessage{
                 request,
 }             => __sats::bsatn::to_vec(&admin_create_player_report_reducer::AdminCreatePlayerReportArgs {
                 request: request.clone(),
+}),
+            Reducer::AdminDeductShards{
+                identity,
+                amount,
+}             => __sats::bsatn::to_vec(&admin_deduct_shards_reducer::AdminDeductShardsArgs {
+                identity: identity.clone(),
+                amount: amount.clone(),
 }),
             Reducer::AdminDeleteChatMessage{
                 entity_id,
