@@ -53,6 +53,7 @@ import AdminCreateChatMessageReducer from "./admin_create_chat_message_reducer";
 import AdminCreateDirectChatMessageReducer from "./admin_create_direct_chat_message_reducer";
 import AdminCreateEntityNameReportReducer from "./admin_create_entity_name_report_reducer";
 import AdminCreatePlayerReportReducer from "./admin_create_player_report_reducer";
+import AdminDeductShardsReducer from "./admin_deduct_shards_reducer";
 import AdminDeleteChatMessageReducer from "./admin_delete_chat_message_reducer";
 import AdminDeleteModerationActionLogEntryReducer from "./admin_delete_moderation_action_log_entry_reducer";
 import AdminGrantShardsReducer from "./admin_grant_shards_reducer";
@@ -2111,6 +2112,9 @@ const tablesSchema = __schema({
   distantVisibleEntity: __table({
     name: 'distant_visible_entity',
     indexes: [
+      { accessor: 'chunk_index', name: 'distant_visible_entity_chunk_index_idx_btree', algorithm: 'btree', columns: [
+        'chunkIndex',
+      ] },
       { accessor: 'entity_id', name: 'distant_visible_entity_entity_id_idx_btree', algorithm: 'btree', columns: [
         'entityId',
       ] },
@@ -6757,6 +6761,7 @@ const reducersSchema = __reducers(
   __reducerSchema("admin_create_direct_chat_message", AdminCreateDirectChatMessageReducer),
   __reducerSchema("admin_create_entity_name_report", AdminCreateEntityNameReportReducer),
   __reducerSchema("admin_create_player_report", AdminCreatePlayerReportReducer),
+  __reducerSchema("admin_deduct_shards", AdminDeductShardsReducer),
   __reducerSchema("admin_delete_chat_message", AdminDeleteChatMessageReducer),
   __reducerSchema("admin_delete_moderation_action_log_entry", AdminDeleteModerationActionLogEntryReducer),
   __reducerSchema("admin_grant_shards", AdminGrantShardsReducer),

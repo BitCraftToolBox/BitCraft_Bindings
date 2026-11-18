@@ -25,6 +25,7 @@ import AdminCreateChatMessageReducer from "../admin_create_chat_message_reducer"
 import AdminCreateDirectChatMessageReducer from "../admin_create_direct_chat_message_reducer";
 import AdminCreateEntityNameReportReducer from "../admin_create_entity_name_report_reducer";
 import AdminCreatePlayerReportReducer from "../admin_create_player_report_reducer";
+import AdminDeductShardsReducer from "../admin_deduct_shards_reducer";
 import AdminDeleteChatMessageReducer from "../admin_delete_chat_message_reducer";
 import AdminDeleteModerationActionLogEntryReducer from "../admin_delete_moderation_action_log_entry_reducer";
 import AdminGrantShardsReducer from "../admin_grant_shards_reducer";
@@ -449,6 +450,7 @@ export type AdminCreateChatMessageParams = __Infer<typeof AdminCreateChatMessage
 export type AdminCreateDirectChatMessageParams = __Infer<typeof AdminCreateDirectChatMessageReducer>;
 export type AdminCreateEntityNameReportParams = __Infer<typeof AdminCreateEntityNameReportReducer>;
 export type AdminCreatePlayerReportParams = __Infer<typeof AdminCreatePlayerReportReducer>;
+export type AdminDeductShardsParams = __Infer<typeof AdminDeductShardsReducer>;
 export type AdminDeleteChatMessageParams = __Infer<typeof AdminDeleteChatMessageReducer>;
 export type AdminDeleteModerationActionLogEntryParams = __Infer<typeof AdminDeleteModerationActionLogEntryReducer>;
 export type AdminGrantShardsParams = __Infer<typeof AdminGrantShardsReducer>;
