@@ -142,6 +142,8 @@ import { AdminModifyChatMessage } from "./admin_modify_chat_message_reducer.ts";
 export { AdminModifyChatMessage };
 import { AdminPatchHousingCosts } from "./admin_patch_housing_costs_reducer.ts";
 export { AdminPatchHousingCosts };
+import { AdminRecountResources } from "./admin_recount_resources_reducer.ts";
+export { AdminRecountResources };
 import { AdminRemoveCollectible } from "./admin_remove_collectible_reducer.ts";
 export { AdminRemoveCollectible };
 import { AdminRenameBuilding } from "./admin_rename_building_reducer.ts";
@@ -9028,6 +9030,10 @@ export const REMOTE_MODULE = {
       reducerName: "admin_patch_housing_costs",
       argsType: AdminPatchHousingCosts.getTypeScriptAlgebraicType(),
     },
+    admin_recount_resources: {
+      reducerName: "admin_recount_resources",
+      argsType: AdminRecountResources.getTypeScriptAlgebraicType(),
+    },
     admin_remove_collectible: {
       reducerName: "admin_remove_collectible",
       argsType: AdminRemoveCollectible.getTypeScriptAlgebraicType(),
@@ -12012,6 +12018,7 @@ export type Reducer = never
 | { name: "AdminMigrateTravelerTasks", args: AdminMigrateTravelerTasks }
 | { name: "AdminModifyChatMessage", args: AdminModifyChatMessage }
 | { name: "AdminPatchHousingCosts", args: AdminPatchHousingCosts }
+| { name: "AdminRecountResources", args: AdminRecountResources }
 | { name: "AdminRemoveCollectible", args: AdminRemoveCollectible }
 | { name: "AdminRenameBuilding", args: AdminRenameBuilding }
 | { name: "AdminRenameBuildingCoord", args: AdminRenameBuildingCoord }
@@ -13556,6 +13563,22 @@ export class RemoteReducers {
 
   removeOnAdminPatchHousingCosts(callback: (ctx: ReducerEventContext) => void) {
     this.connection.offReducer("admin_patch_housing_costs", callback);
+  }
+
+  adminRecountResources(resourceDescriptionId: number) {
+    const __args = { resourceDescriptionId };
+    let __writer = new BinaryWriter(1024);
+    AdminRecountResources.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("admin_recount_resources", __argsBuffer, this.setCallReducerFlags.adminRecountResourcesFlags);
+  }
+
+  onAdminRecountResources(callback: (ctx: ReducerEventContext, resourceDescriptionId: number) => void) {
+    this.connection.onReducer("admin_recount_resources", callback);
+  }
+
+  removeOnAdminRecountResources(callback: (ctx: ReducerEventContext, resourceDescriptionId: number) => void) {
+    this.connection.offReducer("admin_recount_resources", callback);
   }
 
   adminRemoveCollectible(identity: string, collectibleId: number, quantity: number) {
@@ -25217,6 +25240,11 @@ export class SetReducerFlags {
   adminPatchHousingCostsFlags: CallReducerFlags = 'FullUpdate';
   adminPatchHousingCosts(flags: CallReducerFlags) {
     this.adminPatchHousingCostsFlags = flags;
+  }
+
+  adminRecountResourcesFlags: CallReducerFlags = 'FullUpdate';
+  adminRecountResources(flags: CallReducerFlags) {
+    this.adminRecountResourcesFlags = flags;
   }
 
   adminRemoveCollectibleFlags: CallReducerFlags = 'FullUpdate';
