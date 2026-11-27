@@ -37,4 +37,5 @@ export default __t.row({
   cannotBeResearched: __t.bool().name("cannot_be_researched"),
   blockingClaimTechs: __t.option(__t.array(__t.i32())).name("blocking_claim_techs"),
   notShownInUi: __t.bool().name("not_shown_in_ui"),
+  destroyMultiplier: __t.f32().name("destroy_multiplier"),
 });
