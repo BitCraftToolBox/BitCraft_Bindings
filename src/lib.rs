@@ -106,6 +106,7 @@ pub mod admin_reset_herd_locations_reducer;
 pub mod admin_reset_onboarding_completely_reducer;
 pub mod admin_reset_traveler_task_credits_reducer;
 pub mod admin_resource_force_regen_reducer;
+pub mod admin_resources_delete_in_dimension_very_slow_reducer;
 pub mod admin_resources_delete_percentage_reducer;
 pub mod admin_resources_delete_very_slow_reducer;
 pub mod admin_resources_log_count_reducer;
@@ -2218,6 +2219,7 @@ pub use admin_reset_herd_locations_reducer::admin_reset_herd_locations;
 pub use admin_reset_onboarding_completely_reducer::admin_reset_onboarding_completely;
 pub use admin_reset_traveler_task_credits_reducer::admin_reset_traveler_task_credits;
 pub use admin_resource_force_regen_reducer::admin_resource_force_regen;
+pub use admin_resources_delete_in_dimension_very_slow_reducer::admin_resources_delete_in_dimension_very_slow;
 pub use admin_resources_delete_percentage_reducer::admin_resources_delete_percentage;
 pub use admin_resources_delete_very_slow_reducer::admin_resources_delete_very_slow;
 pub use admin_resources_log_count_reducer::admin_resources_log_count;
@@ -4459,6 +4461,10 @@ pub enum Reducer {
         iterations: i32,
         ignore_target_count: bool,
     },
+    AdminResourcesDeleteInDimensionVerySlow {
+        resource_id: i32,
+        dimension_id: u32,
+    },
     AdminResourcesDeletePercentage {
         resource_id: i32,
         percentage: f32,
@@ -6694,6 +6700,9 @@ impl __sdk::Reducer for Reducer {
             Reducer::AdminResetOnboardingCompletely { .. } => "admin_reset_onboarding_completely",
             Reducer::AdminResetTravelerTaskCredits => "admin_reset_traveler_task_credits",
             Reducer::AdminResourceForceRegen { .. } => "admin_resource_force_regen",
+            Reducer::AdminResourcesDeleteInDimensionVerySlow { .. } => {
+                "admin_resources_delete_in_dimension_very_slow"
+            }
             Reducer::AdminResourcesDeletePercentage { .. } => "admin_resources_delete_percentage",
             Reducer::AdminResourcesDeleteVerySlow { .. } => "admin_resources_delete_very_slow",
             Reducer::AdminResourcesLogCount { .. } => "admin_resources_log_count",
@@ -7877,6 +7886,13 @@ Reducer::AdminResourceForceRegen{
                 resource_id: resource_id.clone(),
                 iterations: iterations.clone(),
                 ignore_target_count: ignore_target_count.clone(),
+}),
+            Reducer::AdminResourcesDeleteInDimensionVerySlow{
+                resource_id,
+                dimension_id,
+}             => __sats::bsatn::to_vec(&admin_resources_delete_in_dimension_very_slow_reducer::AdminResourcesDeleteInDimensionVerySlowArgs {
+                resource_id: resource_id.clone(),
+                dimension_id: dimension_id.clone(),
 }),
             Reducer::AdminResourcesDeletePercentage{
                 resource_id,
