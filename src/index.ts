@@ -170,6 +170,8 @@ import { AdminResetTravelerTaskCredits } from "./admin_reset_traveler_task_credi
 export { AdminResetTravelerTaskCredits };
 import { AdminResourceForceRegen } from "./admin_resource_force_regen_reducer.ts";
 export { AdminResourceForceRegen };
+import { AdminResourcesDeleteInDimensionVerySlow } from "./admin_resources_delete_in_dimension_very_slow_reducer.ts";
+export { AdminResourcesDeleteInDimensionVerySlow };
 import { AdminResourcesDeletePercentage } from "./admin_resources_delete_percentage_reducer.ts";
 export { AdminResourcesDeletePercentage };
 import { AdminResourcesDeleteVerySlow } from "./admin_resources_delete_very_slow_reducer.ts";
@@ -9086,6 +9088,10 @@ export const REMOTE_MODULE = {
       reducerName: "admin_resource_force_regen",
       argsType: AdminResourceForceRegen.getTypeScriptAlgebraicType(),
     },
+    admin_resources_delete_in_dimension_very_slow: {
+      reducerName: "admin_resources_delete_in_dimension_very_slow",
+      argsType: AdminResourcesDeleteInDimensionVerySlow.getTypeScriptAlgebraicType(),
+    },
     admin_resources_delete_percentage: {
       reducerName: "admin_resources_delete_percentage",
       argsType: AdminResourcesDeletePercentage.getTypeScriptAlgebraicType(),
@@ -12032,6 +12038,7 @@ export type Reducer = never
 | { name: "AdminResetOnboardingCompletely", args: AdminResetOnboardingCompletely }
 | { name: "AdminResetTravelerTaskCredits", args: AdminResetTravelerTaskCredits }
 | { name: "AdminResourceForceRegen", args: AdminResourceForceRegen }
+| { name: "AdminResourcesDeleteInDimensionVerySlow", args: AdminResourcesDeleteInDimensionVerySlow }
 | { name: "AdminResourcesDeletePercentage", args: AdminResourcesDeletePercentage }
 | { name: "AdminResourcesDeleteVerySlow", args: AdminResourcesDeleteVerySlow }
 | { name: "AdminResourcesLogCount", args: AdminResourcesLogCount }
@@ -13779,6 +13786,22 @@ export class RemoteReducers {
 
   removeOnAdminResourceForceRegen(callback: (ctx: ReducerEventContext, resourceId: number, iterations: number, ignoreTargetCount: boolean) => void) {
     this.connection.offReducer("admin_resource_force_regen", callback);
+  }
+
+  adminResourcesDeleteInDimensionVerySlow(resourceId: number, dimensionId: number) {
+    const __args = { resourceId, dimensionId };
+    let __writer = new BinaryWriter(1024);
+    AdminResourcesDeleteInDimensionVerySlow.getTypeScriptAlgebraicType().serialize(__writer, __args);
+    let __argsBuffer = __writer.getBuffer();
+    this.connection.callReducer("admin_resources_delete_in_dimension_very_slow", __argsBuffer, this.setCallReducerFlags.adminResourcesDeleteInDimensionVerySlowFlags);
+  }
+
+  onAdminResourcesDeleteInDimensionVerySlow(callback: (ctx: ReducerEventContext, resourceId: number, dimensionId: number) => void) {
+    this.connection.onReducer("admin_resources_delete_in_dimension_very_slow", callback);
+  }
+
+  removeOnAdminResourcesDeleteInDimensionVerySlow(callback: (ctx: ReducerEventContext, resourceId: number, dimensionId: number) => void) {
+    this.connection.offReducer("admin_resources_delete_in_dimension_very_slow", callback);
   }
 
   adminResourcesDeletePercentage(resourceId: number, percentage: number, updateResourcesLog: boolean) {
@@ -25310,6 +25333,11 @@ export class SetReducerFlags {
   adminResourceForceRegenFlags: CallReducerFlags = 'FullUpdate';
   adminResourceForceRegen(flags: CallReducerFlags) {
     this.adminResourceForceRegenFlags = flags;
+  }
+
+  adminResourcesDeleteInDimensionVerySlowFlags: CallReducerFlags = 'FullUpdate';
+  adminResourcesDeleteInDimensionVerySlow(flags: CallReducerFlags) {
+    this.adminResourcesDeleteInDimensionVerySlowFlags = flags;
   }
 
   adminResourcesDeletePercentageFlags: CallReducerFlags = 'FullUpdate';
