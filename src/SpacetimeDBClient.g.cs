@@ -2311,6 +2311,7 @@ namespace BitCraftRegion.Types
                 Reducer.AdminResetOnboardingCompletely args => Reducers.InvokeAdminResetOnboardingCompletely(eventContext, args),
                 Reducer.AdminResetTravelerTaskCredits args => Reducers.InvokeAdminResetTravelerTaskCredits(eventContext, args),
                 Reducer.AdminResourceForceRegen args => Reducers.InvokeAdminResourceForceRegen(eventContext, args),
+                Reducer.AdminResourcesDeleteInDimensionVerySlow args => Reducers.InvokeAdminResourcesDeleteInDimensionVerySlow(eventContext, args),
                 Reducer.AdminResourcesDeletePercentage args => Reducers.InvokeAdminResourcesDeletePercentage(eventContext, args),
                 Reducer.AdminResourcesDeleteVerySlow args => Reducers.InvokeAdminResourcesDeleteVerySlow(eventContext, args),
                 Reducer.AdminResourcesLogCount args => Reducers.InvokeAdminResourcesLogCount(eventContext, args),

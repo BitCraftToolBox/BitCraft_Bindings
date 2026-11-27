@@ -67,6 +67,7 @@ namespace BitCraftRegion.Types
         public global::SpacetimeDB.Col<ClaimTechDesc, bool> CannotBeResearched { get; }
         public global::SpacetimeDB.Col<ClaimTechDesc, System.Collections.Generic.List<int>> BlockingClaimTechs { get; }
         public global::SpacetimeDB.Col<ClaimTechDesc, bool> NotShownInUi { get; }
+        public global::SpacetimeDB.Col<ClaimTechDesc, float> DestroyMultiplier { get; }
 
         public ClaimTechDescCols(string tableName)
         {
@@ -87,6 +88,7 @@ namespace BitCraftRegion.Types
             CannotBeResearched = new global::SpacetimeDB.Col<ClaimTechDesc, bool>(tableName, "cannot_be_researched");
             BlockingClaimTechs = new global::SpacetimeDB.Col<ClaimTechDesc, System.Collections.Generic.List<int>>(tableName, "blocking_claim_techs");
             NotShownInUi = new global::SpacetimeDB.Col<ClaimTechDesc, bool>(tableName, "not_shown_in_ui");
+            DestroyMultiplier = new global::SpacetimeDB.Col<ClaimTechDesc, float>(tableName, "destroy_multiplier");
         }
     }
 

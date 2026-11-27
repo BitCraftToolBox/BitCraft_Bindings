@@ -48,6 +48,8 @@ namespace BitCraftRegion.Types
         public System.Collections.Generic.List<int>? BlockingClaimTechs;
         [DataMember(Name = "not_shown_in_ui")]
         public bool NotShownInUi;
+        [DataMember(Name = "destroy_multiplier")]
+        public float DestroyMultiplier;
 
         public ClaimTechDesc(
             int Id,
@@ -66,7 +68,8 @@ namespace BitCraftRegion.Types
             System.Collections.Generic.List<int> UnlocksTechs,
             bool CannotBeResearched,
             System.Collections.Generic.List<int>? BlockingClaimTechs,
-            bool NotShownInUi
+            bool NotShownInUi,
+            float DestroyMultiplier
         )
         {
             this.Id = Id;
@@ -86,6 +89,7 @@ namespace BitCraftRegion.Types
             this.CannotBeResearched = CannotBeResearched;
             this.BlockingClaimTechs = BlockingClaimTechs;
             this.NotShownInUi = NotShownInUi;
+            this.DestroyMultiplier = DestroyMultiplier;
         }
 
         public ClaimTechDesc()
