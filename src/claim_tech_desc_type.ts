@@ -53,6 +53,7 @@ export type ClaimTechDesc = {
   cannotBeResearched: boolean,
   blockingClaimTechs: number[] | undefined,
   notShownInUi: boolean,
+  destroyMultiplier: number,
 };
 
 /**
@@ -82,6 +83,7 @@ export namespace ClaimTechDesc {
       new ProductTypeElement("cannotBeResearched", AlgebraicType.createBoolType()),
       new ProductTypeElement("blockingClaimTechs", AlgebraicType.createOptionType(AlgebraicType.createArrayType(AlgebraicType.createI32Type()))),
       new ProductTypeElement("notShownInUi", AlgebraicType.createBoolType()),
+      new ProductTypeElement("destroyMultiplier", AlgebraicType.createF32Type()),
     ]);
   }
 
