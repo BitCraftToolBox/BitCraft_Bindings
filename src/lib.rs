@@ -106,6 +106,7 @@ pub mod admin_reset_herd_locations_reducer;
 pub mod admin_reset_onboarding_completely_reducer;
 pub mod admin_reset_traveler_task_credits_reducer;
 pub mod admin_resource_force_regen_reducer;
+pub mod admin_resources_delete_in_dimension_very_slow_reducer;
 pub mod admin_resources_delete_percentage_reducer;
 pub mod admin_resources_delete_very_slow_reducer;
 pub mod admin_resources_log_count_reducer;
@@ -2414,6 +2415,11 @@ pub use admin_reset_traveler_task_credits_reducer::{
 pub use admin_resource_force_regen_reducer::{
     admin_resource_force_regen, set_flags_for_admin_resource_force_regen,
     AdminResourceForceRegenCallbackId,
+};
+pub use admin_resources_delete_in_dimension_very_slow_reducer::{
+    admin_resources_delete_in_dimension_very_slow,
+    set_flags_for_admin_resources_delete_in_dimension_very_slow,
+    AdminResourcesDeleteInDimensionVerySlowCallbackId,
 };
 pub use admin_resources_delete_percentage_reducer::{
     admin_resources_delete_percentage, set_flags_for_admin_resources_delete_percentage,
@@ -6351,6 +6357,10 @@ pub enum Reducer {
         iterations: i32,
         ignore_target_count: bool,
     },
+    AdminResourcesDeleteInDimensionVerySlow {
+        resource_id: i32,
+        dimension_id: u32,
+    },
     AdminResourcesDeletePercentage {
         resource_id: i32,
         percentage: f32,
@@ -8586,6 +8596,9 @@ impl __sdk::Reducer for Reducer {
             Reducer::AdminResetOnboardingCompletely { .. } => "admin_reset_onboarding_completely",
             Reducer::AdminResetTravelerTaskCredits => "admin_reset_traveler_task_credits",
             Reducer::AdminResourceForceRegen { .. } => "admin_resource_force_regen",
+            Reducer::AdminResourcesDeleteInDimensionVerySlow { .. } => {
+                "admin_resources_delete_in_dimension_very_slow"
+            }
             Reducer::AdminResourcesDeletePercentage { .. } => "admin_resources_delete_percentage",
             Reducer::AdminResourcesDeleteVerySlow { .. } => "admin_resources_delete_very_slow",
             Reducer::AdminResourcesLogCount { .. } => "admin_resources_log_count",
@@ -9452,6 +9465,7 @@ impl TryFrom<__ws::ReducerCallInfo<__ws::BsatnFormat>> for Reducer {
             "admin_reset_onboarding_completely" => Ok(__sdk::parse_reducer_args::<admin_reset_onboarding_completely_reducer::AdminResetOnboardingCompletelyArgs>("admin_reset_onboarding_completely", &value.args)?.into()),
             "admin_reset_traveler_task_credits" => Ok(__sdk::parse_reducer_args::<admin_reset_traveler_task_credits_reducer::AdminResetTravelerTaskCreditsArgs>("admin_reset_traveler_task_credits", &value.args)?.into()),
             "admin_resource_force_regen" => Ok(__sdk::parse_reducer_args::<admin_resource_force_regen_reducer::AdminResourceForceRegenArgs>("admin_resource_force_regen", &value.args)?.into()),
+            "admin_resources_delete_in_dimension_very_slow" => Ok(__sdk::parse_reducer_args::<admin_resources_delete_in_dimension_very_slow_reducer::AdminResourcesDeleteInDimensionVerySlowArgs>("admin_resources_delete_in_dimension_very_slow", &value.args)?.into()),
             "admin_resources_delete_percentage" => Ok(__sdk::parse_reducer_args::<admin_resources_delete_percentage_reducer::AdminResourcesDeletePercentageArgs>("admin_resources_delete_percentage", &value.args)?.into()),
             "admin_resources_delete_very_slow" => Ok(__sdk::parse_reducer_args::<admin_resources_delete_very_slow_reducer::AdminResourcesDeleteVerySlowArgs>("admin_resources_delete_very_slow", &value.args)?.into()),
             "admin_resources_log_count" => Ok(__sdk::parse_reducer_args::<admin_resources_log_count_reducer::AdminResourcesLogCountArgs>("admin_resources_log_count", &value.args)?.into()),

@@ -27,6 +27,7 @@ pub struct ClaimTechDesc {
     pub cannot_be_researched: bool,
     pub blocking_claim_techs: Option<Vec<i32>>,
     pub not_shown_in_ui: bool,
+    pub destroy_multiplier: f32,
 }
 
 impl __sdk::InModule for ClaimTechDesc {
@@ -54,6 +55,7 @@ pub struct ClaimTechDescCols {
     pub cannot_be_researched: __sdk::__query_builder::Col<ClaimTechDesc, bool>,
     pub blocking_claim_techs: __sdk::__query_builder::Col<ClaimTechDesc, Option<Vec<i32>>>,
     pub not_shown_in_ui: __sdk::__query_builder::Col<ClaimTechDesc, bool>,
+    pub destroy_multiplier: __sdk::__query_builder::Col<ClaimTechDesc, f32>,
 }
 
 impl __sdk::__query_builder::HasCols for ClaimTechDesc {
@@ -86,6 +88,7 @@ impl __sdk::__query_builder::HasCols for ClaimTechDesc {
                 "blocking_claim_techs",
             ),
             not_shown_in_ui: __sdk::__query_builder::Col::new(table_name, "not_shown_in_ui"),
+            destroy_multiplier: __sdk::__query_builder::Col::new(table_name, "destroy_multiplier"),
         }
     }
 }
@@ -95,7 +98,6 @@ impl __sdk::__query_builder::HasCols for ClaimTechDesc {
 /// Provides typed access to indexed columns for query building.
 pub struct ClaimTechDescIxCols {
     pub id: __sdk::__query_builder::IxCol<ClaimTechDesc, i32>,
-    pub tier: __sdk::__query_builder::IxCol<ClaimTechDesc, i32>,
 }
 
 impl __sdk::__query_builder::HasIxCols for ClaimTechDesc {
@@ -103,7 +105,6 @@ impl __sdk::__query_builder::HasIxCols for ClaimTechDesc {
     fn ix_cols(table_name: &'static str) -> Self::IxCols {
         ClaimTechDescIxCols {
             id: __sdk::__query_builder::IxCol::new(table_name, "id"),
-            tier: __sdk::__query_builder::IxCol::new(table_name, "tier"),
         }
     }
 }
