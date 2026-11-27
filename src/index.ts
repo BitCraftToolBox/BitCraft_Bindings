@@ -102,6 +102,7 @@ import AdminResetHerdLocationsReducer from "./admin_reset_herd_locations_reducer
 import AdminResetOnboardingCompletelyReducer from "./admin_reset_onboarding_completely_reducer";
 import AdminResetTravelerTaskCreditsReducer from "./admin_reset_traveler_task_credits_reducer";
 import AdminResourceForceRegenReducer from "./admin_resource_force_regen_reducer";
+import AdminResourcesDeleteInDimensionVerySlowReducer from "./admin_resources_delete_in_dimension_very_slow_reducer";
 import AdminResourcesDeletePercentageReducer from "./admin_resources_delete_percentage_reducer";
 import AdminResourcesDeleteVerySlowReducer from "./admin_resources_delete_very_slow_reducer";
 import AdminResourcesLogCountReducer from "./admin_resources_log_count_reducer";
@@ -7918,6 +7919,7 @@ const reducersSchema = __reducers(
   __reducerSchema("admin_reset_onboarding_completely", AdminResetOnboardingCompletelyReducer),
   __reducerSchema("admin_reset_traveler_task_credits", AdminResetTravelerTaskCreditsReducer),
   __reducerSchema("admin_resource_force_regen", AdminResourceForceRegenReducer),
+  __reducerSchema("admin_resources_delete_in_dimension_very_slow", AdminResourcesDeleteInDimensionVerySlowReducer),
   __reducerSchema("admin_resources_delete_percentage", AdminResourcesDeletePercentageReducer),
   __reducerSchema("admin_resources_delete_very_slow", AdminResourcesDeleteVerySlowReducer),
   __reducerSchema("admin_resources_log_count", AdminResourcesLogCountReducer),

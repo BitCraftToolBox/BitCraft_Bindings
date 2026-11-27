@@ -74,6 +74,7 @@ import AdminResetHerdLocationsReducer from "../admin_reset_herd_locations_reduce
 import AdminResetOnboardingCompletelyReducer from "../admin_reset_onboarding_completely_reducer";
 import AdminResetTravelerTaskCreditsReducer from "../admin_reset_traveler_task_credits_reducer";
 import AdminResourceForceRegenReducer from "../admin_resource_force_regen_reducer";
+import AdminResourcesDeleteInDimensionVerySlowReducer from "../admin_resources_delete_in_dimension_very_slow_reducer";
 import AdminResourcesDeletePercentageReducer from "../admin_resources_delete_percentage_reducer";
 import AdminResourcesDeleteVerySlowReducer from "../admin_resources_delete_very_slow_reducer";
 import AdminResourcesLogCountReducer from "../admin_resources_log_count_reducer";
@@ -855,6 +856,7 @@ export type AdminResetHerdLocationsParams = __Infer<typeof AdminResetHerdLocatio
 export type AdminResetOnboardingCompletelyParams = __Infer<typeof AdminResetOnboardingCompletelyReducer>;
 export type AdminResetTravelerTaskCreditsParams = __Infer<typeof AdminResetTravelerTaskCreditsReducer>;
 export type AdminResourceForceRegenParams = __Infer<typeof AdminResourceForceRegenReducer>;
+export type AdminResourcesDeleteInDimensionVerySlowParams = __Infer<typeof AdminResourcesDeleteInDimensionVerySlowReducer>;
 export type AdminResourcesDeletePercentageParams = __Infer<typeof AdminResourcesDeletePercentageReducer>;
 export type AdminResourcesDeleteVerySlowParams = __Infer<typeof AdminResourcesDeleteVerySlowReducer>;
 export type AdminResourcesLogCountParams = __Infer<typeof AdminResourcesLogCountReducer>;

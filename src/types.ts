@@ -1334,6 +1334,7 @@ export const ClaimTechDesc = __t.object("ClaimTechDesc", {
   cannotBeResearched: __t.bool(),
   blockingClaimTechs: __t.option(__t.array(__t.i32())),
   notShownInUi: __t.bool(),
+  destroyMultiplier: __t.f32(),
 });
 export type ClaimTechDesc = __Infer<typeof ClaimTechDesc>;
 
